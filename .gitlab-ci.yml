@@ -18,11 +18,10 @@ build:
     - mv hugo /usr/local/bin/hugo
     - /usr/local/bin/hugo version
   script:
-    - cd hugo-site
     - /usr/local/bin/hugo --minify --gc
   artifacts:
     paths:
-      - hugo-site/public/
+      - public/
     expire_in: 1 hour
   only:
     - main
@@ -37,7 +36,7 @@ deploy:
     - chmod 600 ~/.ssh/deploy_key
     - ssh-keyscan -p $DEPLOY_SSH_PORT -H $DEPLOY_HOST >> ~/.ssh/known_hosts
   script:
-    - rsync -avz --delete -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_SSH_PORT -o StrictHostKeyChecking=no" hugo-site/public/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - rsync -avz --delete -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_SSH_PORT -o StrictHostKeyChecking=no" public/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - ssh -i ~/.ssh/deploy_key -p $DEPLOY_SSH_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R www-data:www-data $DEPLOY_PATH"
   after_script:
     - rm -f ~/.ssh/deploy_key
