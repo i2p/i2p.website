@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reseed on I2P - The Invisible Internet Project</title>
+    <link>//localhost:1313/en/categories/reseed/</link>
+    <description>Recent content in Reseed on I2P - The Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 07 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/en/categories/reseed/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Help your Friends Join I2P by Sharing Reseed Bundles</title>
+      <link>//localhost:1313/en/blog/2020/06/07/help-your-friends-join-i2p-by-sharing-reseed-bundles/</link>
+      <pubDate>Sun, 07 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2020/06/07/help-your-friends-join-i2p-by-sharing-reseed-bundles/</guid>
+      <description>&lt;p&gt;Most new I2P routers join the network by bootstrapping with the help of a reseed service. However, reseed services are centralized and comparatively easy to block, considering the emphasis on de-centralized and un-blockable connections in the rest of the I2P network. If a new I2P router finds itself unable to bootstrap, it may be a possible to use an existing I2P router to generate a working &amp;ldquo;Reseed bundle&amp;rdquo; and bootstrap without the need of a reseed service.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>General on I2P - The Invisible Internet Project</title>
+    <link>//localhost:1313/en/categories/general/</link>
+    <description>Recent content in General on I2P - The Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 26 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/en/categories/general/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Reminder to be Safe as I2P Grows</title>
+      <link>//localhost:1313/en/blog/2022/09/26/a-reminder-to-be-safe-as-i2p-grows/</link>
+      <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2022/09/26/a-reminder-to-be-safe-as-i2p-grows/</guid>
+      <description>&lt;h2 id=&#34;a-reminder-to-be-safe-as-i2p-grows&#34;&gt;A Reminder to be Safe as I2P Grows&lt;/h2&gt;&#xA;&lt;p&gt;It is an an exciting time for The Invisible Internet Project (I2P).&#xA;We are completing our migration to modern cryptography across all of our transports, ( Java and C++), and we have recently gained a high-capacity and professional outproxy service, and there are more applications integrating I2P based functionality than ever.&#xA;The network is poised to grow, so now is a good time to remind everyone to be smart and be safe when obtaining I2P and I2P-related software.&#xA;We welcome new applications, implementations, and forks with new ideas, and the power of the network comes from its openness to participation by all I2P users.&#xA;In fact, we don&amp;rsquo;t like to call you users, we like to use the word &amp;ldquo;Participants&amp;rdquo; because each of you helps the network, in your own way by contributing content, developing applications, or simply routing traffic and helping other participants find peers.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Meet your Maintainer: DivaExchange</title>
+      <link>//localhost:1313/en/blog/2022/09/26/meet-your-maintainer-divaexchange/</link>
+      <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2022/09/26/meet-your-maintainer-divaexchange/</guid>
+      <description>&lt;p&gt;&lt;em&gt;In this second installment of Meet Your Maintainer, I reached out to&#xA;Konrad from DIVA.EXCHANGE to talk about DIVA&amp;rsquo;s research and services.&#xA;DIVA.EXCHANGE is developing software with the goal of providing free&#xA;banking technology for everyone. It is secure without a central&#xA;infrastructure, and based on blockchain and I2P technology.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;What got you interested in I2P?&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;About 10 years ago I had a presentation for &amp;ldquo;Technologieforum Zug&amp;rdquo; - a&#xA;very local technology network for business guys. I was introducing I2P&#xA;and Tor as overlay networks to them - to show them that other&#xA;interesting things exist out there.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Meet Your Maintainer: StormyCloud</title>
+      <link>//localhost:1313/en/blog/2022/09/07/meet-your-maintainer-stormycloud/</link>
+      <pubDate>Wed, 07 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2022/09/07/meet-your-maintainer-stormycloud/</guid>
+      <description>&lt;h2 id=&#34;a-conversation-with-stormycloud-inc&#34;&gt;A conversation with StormyCloud Inc.&lt;/h2&gt;&#xA;&lt;p&gt;With the most recent &lt;a href=&#34;https://geti2p.net/en/blog/post/2022/08/22/1.9.0-Release&#34;&gt;I2P Java release&lt;/a&gt;, the existing outproxy, false.i2p was replaced with the new StormyCloud outproxy for new I2P installs. For people who are updating their router, changing over to the Stormycloud service can be done quickly.&lt;/p&gt;&#xA;&lt;p&gt;In your Hidden Services Manager, change both Outproxies and SSL Outproxies to exit.stormycloud.i2p and click on the save button at the bottom of the page.&lt;/p&gt;&#xA;&lt;h2 id=&#34;who-is-stormycloud-inc&#34;&gt;Who is StormyCloud Inc?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Mission of StormyCloud Inc.&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Switch to the StormyCloud Outproxy Service</title>
+      <link>//localhost:1313/en/blog/2022/08/04/how-to-switch-to-the-stormycloud-outproxy-service/</link>
+      <pubDate>Thu, 04 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2022/08/04/how-to-switch-to-the-stormycloud-outproxy-service/</guid>
+      <description>&lt;h2 id=&#34;how-to-switch-to-the-stormycloud-outproxy-service&#34;&gt;How to Switch to the StormyCloud Outproxy Service&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;A New, Professional Outproxy&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;For years, I2P has been served by a single default outproxy, &lt;code&gt;false.i2p&lt;/code&gt; whose reliability has been degrading. Although several competitors have emerged to take up some of the slack, they are mostly unable to volunteer to serve the clients of an entire I2P implementation by default. However, StormyCloud, a professional, non-profit organization which runs Tor exit nodes, has started a new, professional outproxy service which has been tested by members of the I2P community and which will become the new default outproxy in the upcoming release.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Apple Silicon Easy Install</title>
+      <link>//localhost:1313/en/blog/2022/08/03/apple-silicon-easy-install/</link>
+      <pubDate>Wed, 03 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2022/08/03/apple-silicon-easy-install/</guid>
+      <description>&lt;p&gt;We are pleased to offer an Easy Install BETA bundle for Mac OS running on Apple Silicon hardware. You can download it here:&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://geti2p.net/en/download/mac&#34;&gt;I2P Mac OS Easy Install bundles&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Speed&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;In our internal benchmarks the cryptographic operations are between 2 and 2.5 times faster than when running the Intel bundle under Rosetta.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Known Issues&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Quitting I2P by right-clicking on the dock icon causes I2P to freeze and a &amp;ldquo;Force Quit&amp;rdquo; is necessary. This issue will be fixed for the 1.9 release.&lt;/li&gt;&#xA;&lt;li&gt;If you already had an Intel bundle installed on your Mac, you need to modify some settings to prevent in-network updates from reverting you to an Intel bundle. Please see the instructions on the download page.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;Thank you for testing!&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Year in Review: 2021</title>
+      <link>//localhost:1313/en/blog/2022/01/01/year-in-review-2021/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2022/01/01/year-in-review-2021/</guid>
+      <description>&lt;h2 id=&#34;update-details&#34;&gt;Update details&lt;/h2&gt;&#xA;&lt;h3 id=&#34;development-highlights&#34;&gt;Development Highlights&lt;/h3&gt;&#xA;&lt;p&gt;The 0.9.49 release began the migration to the new, faster ECIES-X25519 encryption for routers. It took many years of work on the specifications and protocols for new encryption, and this release, new installs and a very small percentage of existing installs (randomly selected at restart) began using the new encryption. This is the first time that the default encryption type has ever been changed, so the full migration would take place over several releases in order to minimize any issues.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Jpackages get their First Update</title>
+      <link>//localhost:1313/en/blog/2021/11/02/i2p-jpackages-get-their-first-update/</link>
+      <pubDate>Tue, 02 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2021/11/02/i2p-jpackages-get-their-first-update/</guid>
+      <description>&lt;p&gt;A few months ago we released new packages which we hoped would help with onboarding new people to the I2P network by making the installation and configuration of I2P easier for more people. We removed dozens of steps from the installation process by switching from an external JVM to a Jpackage, built standard packages for target operating systems, and signed them in a way the operating system would recognize to keep the user secure. Since then, the jpackage routers have reached a new milestone, they are about to recieve their first incremental updates. These updates will replace the JDK 16 jpackage with an updated JDK 17 jpackage and provide fixes for some small bugs which we caught after the release.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Bitcoin Core adds support for I2P!</title>
+      <link>//localhost:1313/en/blog/2021/09/18/bitcoin-core-adds-support-for-i2p/</link>
+      <pubDate>Sat, 18 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2021/09/18/bitcoin-core-adds-support-for-i2p/</guid>
+      <description>&lt;p&gt;An event months in the making, Bitcoin Core has added official support for I2P! Bitcoin-over-I2P nodes can interact fully with the rest of the Bitcoin nodes, using the help of nodes that operate within both I2P and the clearnet, making them first-class participants in the Bitcoin network. It&amp;rsquo;s exciting to see large communities like Bitcoin taking notice of the advantages I2P can bring to them providing privacy and reachability to people all over the world.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Improving I2P Adoption and Onboarding using Jpackage, I2P-Zero</title>
+      <link>//localhost:1313/en/blog/2021/09/15/improving-i2p-adoption-and-onboarding-using-jpackage-i2p-zero/</link>
+      <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2021/09/15/improving-i2p-adoption-and-onboarding-using-jpackage-i2p-zero/</guid>
+      <description>&lt;p&gt;For the majority of I2P&amp;rsquo;s existence, it&amp;rsquo;s been an application that runs with the help of a Java Virtual Machine that is already installed on the platform. This has always been the normal way to distribute Java applications, but it leads to a complicated installation procedure for many people. To make things even more complicated, the &amp;ldquo;right answer&amp;rdquo; to making I2P easy to install on any given platform might not be the same as any other platform. For example, I2P is quite simple to install with standard tools on Debian and Ubuntu based operating systems, because we can simply list the required Java components as &amp;ldquo;Required&amp;rdquo; by our package, however on Windows or OSX, there is no such system allowing us to make sure that a compatible Java is installed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Level up your I2P Skills with Encrypted LeaseSets</title>
+      <link>//localhost:1313/en/blog/2021/09/07/level-up-your-i2p-skills-with-encrypted-leasesets/</link>
+      <pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2021/09/07/level-up-your-i2p-skills-with-encrypted-leasesets/</guid>
+      <description>&lt;h2 id=&#34;level-up-your-i2p-skills-with-encrypted-leasesets&#34;&gt;Level up your I2P Skills with Encrypted LeaseSets&lt;/h2&gt;&#xA;&lt;p&gt;It has been said in the past that I2P emphasizes support for Hidden Services, which is true in many ways. However, what this means to users, developers, and hidden service administrators isn&amp;rsquo;t always the same. Encrypted LeaseSets and their use-cases provide a unique, practical window into how I2P makes hidden services more versatile, easier to administer, and how I2P extends on the Hidden Service concept to provide security benefits for potentially interesting use-cases.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>20 Years of Privacy: A Brief History of I2P</title>
+      <link>//localhost:1313/en/blog/2021/08/28/20-years-of-privacy-a-brief-history-of-i2p/</link>
+      <pubDate>Sat, 28 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2021/08/28/20-years-of-privacy-a-brief-history-of-i2p/</guid>
+      <description>&lt;h2 id=&#34;invisibility-is-the-best-defense-building-an-internet-within-an-internet&#34;&gt;Invisibility is the best defense: building an internet within an internet&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&amp;ldquo;I believe most people want this technology so they can express themselves freely. It&amp;rsquo;s a comfortable feeling when you know you can do that. At the same time we can conquer some of the problems seen within the Internet by changing the way security and privacy is viewed, as well as the extent to what it is valued.&amp;rdquo;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;In October 2001, 0x90 (Lance James) had a dream. It started as a &amp;ldquo;desire for instant communication with other Freenet users to talk about Freenet issues, and exchange Freenet keys while still maintaining anonymity, privacy and security.&amp;rdquo; It was called IIP — the Invisible IRC Project.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Celebrates its 20th Year</title>
+      <link>//localhost:1313/en/blog/2021/08/26/i2p-celebrates-its-20th-year/</link>
+      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2021/08/26/i2p-celebrates-its-20th-year/</guid>
+      <description>&lt;h2 id=&#34;20-years-of-i2p&#34;&gt;20 Years of I2P&lt;/h2&gt;&#xA;&lt;p&gt;It&amp;rsquo;s hard to believe, but I2P has been around for nearly 20 years! From its beginning as a C project which provided anonymous access to IRC, we&amp;rsquo;ve had hundreds of contributors, accepted checkins from dozens of coders, used 2 main languages, 3 version control systems, experienced a migration of its crypography, and multiple soft-forks. There have been around 500 registered sites on the Invisible Web, and countless unregistered I2P sites that were only accessible via their cryptographic hostnames.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

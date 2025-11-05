@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Dev Meeting - July 01, 2014 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="I2P development meeting log for July 01, 2014.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Dev Meeting - July 01, 2014 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="I2P development meeting log for July 01, 2014.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2014/07/01/i2p-dev-meeting-july-01-2014/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2014/07/01/i2p-dev-meeting-july-01-2014/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2014-07-01">
+                    July 1, 2014
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">meeting</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Dev Meeting - July 01, 2014</h1>
+
+            
+            <div class="post-author">By zzz</div>
+            
+        </div>
+
+        <div class="post-content">
+            <h2 id="quick-recap">Quick recap</h2>
+<p class="attendees-inline"><strong>Present:</strong> bgwcb, eche|on, kytv, Meeh, psi, str4d, zzz</p>
+<h2 id="meeting-log">Meeting Log</h2>
+<div class="irc-log">
+20:00:32  &lt;zzz&gt; 0. Hi
+20:00:32  &lt;zzz&gt; 1. I2P on Google Play (meeh / str4d)
+20:00:32  &lt;zzz&gt; 2. Tablet testing (zzz)
+20:00:37  &lt;zzz&gt; 0. Hi
+20:00:39  &lt;zzz&gt; Hello
+20:00:51  &lt;zzz&gt; 1. I2P on Google Play (meeh / str4d)
+20:01:12  &lt;eche|on&gt; hi
+20:01:13  &lt;zzz&gt; Meeh, str4d, please tell us about your plans for Google Play
+20:03:31  &lt;zzz&gt; ok, I'll give you what I know
+20:03:56  &lt;zzz&gt; Meeh has an existing but unused account; he's going to give str4d access too;
+20:04:35  &lt;zzz&gt; he;s got a dev build up on it now that's invite-only; they plan to make it available to all with the 0.9.14 build;
+20:04:55  &lt;eche|on&gt; a dev account should not be the big problem at all
+20:05:06  &lt;zzz&gt; they plan to have two versions, one free and one "donate" for a cost of ~$2.50
+20:05:18  &lt;eche|on&gt; yeah
+20:05:30  &lt;bgwcb&gt; why?
+20:05:49  &lt;zzz&gt; Meeh would relay the funds to echelon monthly (assuming it was enough to make it worth it, and meeh didn't have any expenses)
+20:05:50  &lt;eche|on&gt; It will have some issues with registration as I2P, but he/she will do it fine
+20:05:52  &lt;bgwcb&gt; and for what you need google play?
+20:06:14  &lt;zzz&gt; apparently lots of apps have donate versions, take rate is maybe 1% of the free version
+20:06:47  &lt;eche|on&gt; it is a fine idea
+20:06:50  &lt;zzz&gt; everybody has google play; only the few have f-droid or amazon or load directly from a website
+20:07:03  &lt;eche|on&gt; I do not think much money will come in, but better than nothing
+20:07:05  &lt;zzz&gt; that's what i know, more or less. Comments?
+20:07:22  &lt;eche|on&gt; comment: registration as I2P will be a mess, but else, go ahead
+20:08:08  &lt;zzz&gt; somebody unknown has reserved, but not published, net.i2p.android.router. Meeh is attempting to get it back.
+20:08:11  &lt;bgwcb&gt; what differenses are in free between donate?
+20:08:21  &lt;eche|on&gt; bgwcb: none ;-)
+20:08:33  &lt;zzz&gt; it's not a big deal but it would prevent dup detection with existing installs from website or f-droid
+20:08:33  &lt;bgwcb&gt; wow
+20:08:33  &lt;eche|on&gt; except the donation of the buy-field.
+20:08:44  &lt;bgwcb&gt; good idea, in you sleeped genius
+20:08:49  &lt;psi&gt; hi
+20:08:57  &lt;eche|on&gt; zzz: so the registration works via the java classes and not the project name?
+20:09:34  &lt;zzz&gt; the class is essentially the name, or unique identifier. meeh and str4d are investigating
+20:09:48  &lt;psi&gt; re: donate version, will it have "more features" ?
+20:09:54  &lt;zzz&gt; we're also trying to find nextloop, our f-droid guy, for assistance
+20:10:02  &lt;psi&gt; or is it just another package?
+20:10:11  &lt;eche|on&gt; psi: no, just a function for "you got the donation version" ;-
+20:10:18  &lt;eche|on&gt; in about screen IMHO
+20:10:37  &lt;eche|on&gt; balm for the soul "you are something better than anyone else, you did pay us some!"
+20:10:38  &lt;psi&gt; neat
+20:10:41  &lt;kytv&gt; (belated 'hi')
+20:10:53  &lt;zzz&gt; any comments on a donate version?
+20:10:56  &lt;psi&gt; epeen
+20:11:21  &lt;zzz&gt; any objections to a donate version? or to google play at all?
+20:11:28  &lt;eche|on&gt; zzz: go ahead, I would add a different about text in the app itself
+20:11:47  &lt;eche|on&gt; I once have had the idea to sell every android version, but no need to
+20:12:29  &lt;zzz&gt; if you're interested in what Meeh has so far or want to test his version of the app, contact him
+20:12:50  &lt;eche|on&gt; which is a nice guide to TOP2 ;-)
+20:13:01  &lt;zzz&gt; last call for comments on google play
+20:13:28  &lt;kytv&gt; +1 for google play, more users is good
+20:13:50  &lt;psi&gt; +1 for google play as well, since more users means more feedback
+20:14:14  &lt;kytv&gt; (not sure about +1 for 'requiring payment' but donations are A-OK)
+20:14:36  &lt;Meeh&gt; *reading backlog*
+20:14:39  &lt;zzz&gt; 2 versions, free and not. prediction is 99% will choose free
+20:15:12  &lt;kytv&gt; yeah, I got that. That's perfectly fine.
+20:15:25  &lt;zzz&gt; Meeh inb4 last call, let's give him a couple minutes to read backlog and elaborate
+20:17:56  &lt;Meeh&gt; hm, yea.
+20:18:13  &lt;Meeh&gt; well, I would like to add a topic actually, which in a way is connected with this
+20:18:24  &lt;Meeh&gt; but in a way not in anyway either
+20:18:55  &lt;zzz&gt; Meeh, last call for comments on 1)
+20:19:04  &lt;zzz&gt; anything I got wrong?
+20:20:04  &lt;Meeh&gt; I would gladly do it, and the two-app with donations seems like a good idea still :)
+20:20:05  &lt;Meeh&gt; no, it was right about the namespace etc
+20:20:05  &lt;Meeh&gt; you got it right
+20:20:06  &lt;zzz&gt; ok then. end of 1).
+20:20:07  &lt;zzz&gt; 2. Tablet testing (zzz)
+20:20:42  &lt;zzz&gt; We don't have enough android testers and devs now. We're about to get a lot more users. So we definitely need more testers and devs.
+20:20:49  &lt;Meeh&gt; HL me when I can add 3), it's a big topic. and it would probably interest many
+20:21:03  &lt;Meeh&gt; need to work more on the topic while 2)
+20:21:05  &lt;zzz&gt; ok 3) meeh on the list
+20:21:08  &lt;zzz&gt; back to 2)
+20:21:41  &lt;zzz&gt; I'd like to propose reimbursing people who would like to buy an Android device that promise to do testing or development.
+20:22:13  &lt;zzz&gt; Say, up to $200 each for up to 8 people, Enough to buy a 7" tablet, or to partially fund a phone or 10" tablet
+20:22:31  &lt;zzz&gt; I'd also like to fully fund a 10" tablet for str4d, up to $400 or so
+20:22:44  &lt;zzz&gt; comments? volunteers?
+20:23:24  &lt;eche|on&gt; my comment is already on record, go ahead.
+20:23:25  &lt;str4d&gt; hai
+20:23:27  &lt;str4d&gt; ary for l8ness
+20:23:36  &lt;eche|on&gt; but do not buy chinese spyware devices^^
+20:24:07  &lt;zzz&gt; we've already bought some devices for devs but we really really need testers
+20:24:47  &lt;str4d&gt; sry*
+20:24:55  &lt;zzz&gt; this would be for people already part of the dev community, e.g. psi, orion, dg, kytv, echelon, etc
+20:25:23  &lt;zzz&gt; who wants one? i think this would be a great use of project funds
+20:26:00  &lt;kytv&gt; I'm always open for testing, but I have no tablet and don't know how useful any feedback I could give would be. That said, I can test and supply (hopefully) valid reports.
+20:26:21  &lt;zzz&gt; ok, there's one. great.
+20:26:48  &lt;zzz&gt; as usual, ask echelon, our treasurer, for reimbursement
+20:26:52  &lt;Meeh&gt; I could test too, but my pad is starting to get simewhat old
+20:26:56  &lt;Meeh&gt; somewhat*
+20:27:18  &lt;zzz&gt; I really like the 7" android tablets. Great for testing and general use. And you don't risk horking your phone.
+20:27:50  &lt;zzz&gt; last call for comments on 2) android tablets for testing
+20:28:23  &lt;str4d&gt; Choice of device is important
+20:28:30  &lt;eche|on&gt; (I do NOT pay apple products, lol)
+20:28:37  &lt;Meeh&gt; I can help test, but for guaranteen the testing it would probably need a buyin of a new tablet
+20:28:53  &lt;str4d&gt; The opportunity we have here is to provide a range of device *sizes* as well as screen *densities*
+20:29:21  &lt;zzz&gt; if we let each person pick their own phone or tablet, that should provide the assortment needed
+20:29:55  &lt;zzz&gt; ok, moving on to 3) Meeh's unknown topic. 15 minutes max.
+20:29:57  &lt;zzz&gt; go Meeh
+20:29:59  &lt;str4d&gt; (e.g. my 7" tablet is 600x1024 pixels, and falls into the -sw600dp category)
+20:32:03  &lt;Meeh&gt; ok, I decidedto come back (since I've been away a whhile) with a supprise, some have might heard of it, and some seen some of it.. but simple saying I've made a "I2P browser bundle" which is probably ready for win32 and osx within 24hours
+20:32:29  &lt;Meeh&gt; turn on your tor plugins and see https://hideme.today/dev/
+20:32:35  &lt;iRelay&gt; Title: The Abscond bundle (at hideme.today)
+20:32:39  &lt;Meeh&gt; that's the featureset and "face" of it
+20:32:57  &lt;psi&gt; wait wut
+20:33:01  &lt;psi&gt; a browser bundle?
+20:33:05  &lt;Meeh&gt; I'm trying to get i2p more eaiser to get into.. because that's always the complaint I get
+20:33:08  &lt;Meeh&gt; yes
+20:33:17  &lt;Meeh&gt; more too, since it's 100% portable
+20:33:26  &lt;Meeh&gt; you can put it on a usb stick
+20:33:39  &lt;Meeh&gt; launch it on any machine.. do a mod, and you can cross boot it too
+20:33:42  &lt;psi&gt; neat
+20:33:43  &lt;str4d&gt; psi: Tor Browser with I2PButton
+20:33:46  &lt;Meeh&gt; as in same install on win,linux,osx
+20:33:58  &lt;Meeh&gt; more or less as str4d said yes :)
+20:34:38  &lt;Meeh&gt; so, do any of you have comments etc on this, ideas, ++, ?
+20:34:49  &lt;psi&gt; where can i get it?
+20:34:56  &lt;Meeh&gt; thinking it was good with some feedback before release
+20:34:57  &lt;psi&gt; looks like the gitlab instance is locked
+20:35:11  &lt;Meeh&gt; I will push the final code and make it available some hours now after the meeting
+20:35:21  &lt;psi&gt; okay
+20:35:23  &lt;Meeh&gt; 've not finished with a complete build set
+20:35:38  &lt;Meeh&gt; so I need to tell you how to compile and set all parts together
+20:35:44  &lt;eche|on&gt; comment: lots of work.
+20:35:47  &lt;eche|on&gt; but great.
+20:36:13  &lt;Meeh&gt; I've focused most on a prototype/proof of consept rather than a build system
+20:36:54  &lt;Meeh&gt; so I took the torbrowser itself and rebranded it, torbutton is almost rewritten to work 100% with i2p instead of tor,
+20:37:17  &lt;Meeh&gt; the launcher is written from scratch by me, much because of the jre part
+20:37:34  &lt;Meeh&gt; therefore all old build scripts from tor fails
+20:37:43  &lt;Meeh&gt; and isn't easily mod.able
+20:38:36  &lt;psi&gt; orchid included?
+20:38:59  &lt;Meeh&gt; yes, it's some i2p plugins as well as browser plugins included
+20:39:06  &lt;psi&gt; neat
+20:39:16  &lt;Meeh&gt; i2p plugins mostly for getting people interested, like i2p-bote
+20:39:23  &lt;Meeh&gt; and browser plugins for privacy
+20:40:20  &lt;Meeh&gt; the idea is to have a build script that easily build a new bundle for osx,linux,win32 on each i2p release
+20:40:37  &lt;Meeh&gt; and ofc. browser update etc, but that will require manually work
+20:40:53  &lt;Meeh&gt; but I've included in my future plan to maintain that
+20:42:25  &lt;zzz&gt; ok, anything else on 3) ?
+20:43:02  &lt;zzz&gt; anybody have any other topics?
+20:43:14  &lt;Meeh&gt; no it was mainly all. if anyone on win32 wants to test please yell out, because after anoncoin experience that needs most testing
+20:43:55  &lt;Meeh&gt; and I see I go emtpy for coffeine if I don't run out and buy, back in 10. takes 5min each way :)
+20:44:24  &lt;zzz&gt; ok great. A reminder that anybody can call a meeting on any topic at any time.
+20:44:35  * zzz *bafs* the meeting closed
+</div>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

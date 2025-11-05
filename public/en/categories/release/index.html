@@ -1,0 +1,3665 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Release | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="Release | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/categories/release/">
+
+    
+    <link rel="icon" type="image/png" href="../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../en/" class="logo-link">
+                    <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/about/">Overview</a></li>
+                            <li><a href="../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../en/blog/" class="">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../en/categories/release/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<div class="blog-page">
+    <div class="container">
+        
+        <header class="blog-header">
+            <h1>Release</h1>
+            <p class="blog-description">Blog posts tagged with "Release"</p>
+        </header>
+
+        
+        <div class="blog-posts">
+            
+            
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2025/09/08/i2p-2.10.0-release/">I2P 2.10.0 Release</a>
+                        </h2>
+                        <time class="post-date">September 8, 2025</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 2.10.0 adds post-quantum cryptography testing, UDP tracker support in I2PSnark, and Hidden Mode stability improvements.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2025/06/02/i2p-2.9.0-release/">I2P 2.9.0 Release</a>
+                        </h2>
+                        <time class="post-date">June 2, 2025</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 2.9.0 is a maintenance release that includes bug fixes and work on new features.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2025/03/29/i2p-2.8.2-release/">I2P 2.8.2 Release</a>
+                        </h2>
+                        <time class="post-date">March 29, 2025</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">2.8.2 fixes a bug causing SHA256 failures that was introduced in the 2.8.1 release.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2025/03/17/2.8.1-release/">2.8.1 Release</a>
+                        </h2>
+                        <time class="post-date">March 17, 2025</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">2.8.1 Release with local site access fix</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2025/02/04/i2p-2.8.0-released/">I2P 2.8.0 Released</a>
+                        </h2>
+                        <time class="post-date">February 4, 2025</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 2.8.0 Released</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2024/10/09/i2p-2.7.0-released/">I2P 2.7.0 Released</a>
+                        </h2>
+                        <time class="post-date">October 9, 2024</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 2.7.0 Released</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2024/08/06/2.6.1-release/">2.6.1 Release</a>
+                        </h2>
+                        <time class="post-date">August 6, 2024</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">2.6.1 Release with I2PTunnel UI fix</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2024/07/19/i2p-2.6.0-release/">I2P 2.6.0 Release</a>
+                        </h2>
+                        <time class="post-date">July 19, 2024</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 2.6.0 Release</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2024/05/15/2.5.2-release/">2.5.2 Release</a>
+                        </h2>
+                        <time class="post-date">May 15, 2024</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">2.5.2 Release with HTTP fix</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2024/05/06/new-release-i2p-2.5.1/">New Release I2P 2.5.1</a>
+                        </h2>
+                        <time class="post-date">May 6, 2024</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 2.5.1 Release</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2024/04/25/stormy-weather/">Stormy Weather</a>
+                        </h2>
+                        <time class="post-date">April 25, 2024</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Stormy Weather</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2024/04/08/new-release-i2p-2.5.0/">New Release I2P 2.5.0</a>
+                        </h2>
+                        <time class="post-date">April 8, 2024</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 2.5.0 release</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2023/12/18/i2p-2.4.0-release-with-congestion-and-netdb-security-improvements/">I2P 2.4.0 Release with Congestion and NetDB Security improvements</a>
+                        </h2>
+                        <time class="post-date">December 18, 2023</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 2.4.0 Release with Congestion and NetDB Security improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2023/07/10/easy-install-for-windows-2.3.0-released/">Easy-Install for Windows 2.3.0 Released</a>
+                        </h2>
+                        <time class="post-date">July 10, 2023</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Easy-Install for Windows 2.3.0 Released</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2023/06/25/i2p-release-2.3.0/">I2P Release 2.3.0</a>
+                        </h2>
+                        <time class="post-date">June 25, 2023</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 2.3.0: Security Fixes, Tweakable Blocklists</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2023/04/12/i2p-release-2.2.1/">I2P Release 2.2.1</a>
+                        </h2>
+                        <time class="post-date">April 12, 2023</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Packaging Fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2023/03/13/i2p-release-2.2.0/">I2P Release 2.2.0</a>
+                        </h2>
+                        <time class="post-date">March 13, 2023</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">DDoS Mitigations, New Release Maintainer</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2023/02/09/about-the-recent-denial-of-service-attacks/">About the recent Denial of Service attacks</a>
+                        </h2>
+                        <time class="post-date">February 9, 2023</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P remains intact with impaired performance</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk, sadie</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2023/01/31/update-on-mac-easy-install-notarization/">Update on Mac Easy Install Notarization</a>
+                        </h2>
+                        <time class="post-date">January 31, 2023</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Easy Install Bundle for Mac is stalled</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk, sadie</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2023/01/13/windows-easy-install-2.1.0-release/">Windows Easy-Install 2.1.0 Release</a>
+                        </h2>
+                        <time class="post-date">January 13, 2023</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Windows Easy-Install Bundle 2.1.0 released to improve stability, performance</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2023/01/09/2.1.0-release/">2.1.0 Release</a>
+                        </h2>
+                        <time class="post-date">January 9, 2023</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">2.1.0 with SSU2 and congestion fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2022/11/23/easy-install-2.0.0-for-windows-osx-delayed-by-1-month/">Easy Install 2.0.0 for Windows, OSX delayed by 1 Month</a>
+                        </h2>
+                        <time class="post-date">November 23, 2022</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Bugfixes, Stability/Compatibility Improvements and 2.0.0</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2022/11/21/2.0.0-release/">2.0.0 Release</a>
+                        </h2>
+                        <time class="post-date">November 21, 2022</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">2.0.0 enables SSU2</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2022/09/07/windows-easy-install-bundle-1.9.5-release/">Windows Easy-Install Bundle 1.9.5 Release</a>
+                        </h2>
+                        <time class="post-date">September 7, 2022</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Windows Easy-Install Bundle 1.9.5</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2022/08/28/windows-easy-install-bundle-1.9.0-release/">Windows Easy-Install Bundle 1.9.0 Release</a>
+                        </h2>
+                        <time class="post-date">August 28, 2022</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Windows Easy-Install Bundle 1.9.0 - Major Stability/Compatibility Improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2022/08/22/1.9.0-release/">1.9.0 Release</a>
+                        </h2>
+                        <time class="post-date">August 22, 2022</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">1.9.0 with SSU2</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2022/05/23/1.8.0-release/">1.8.0 Release</a>
+                        </h2>
+                        <time class="post-date">May 23, 2022</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">1.8.0 with bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2022/04/21/jpackage-update-for-java-cve-2022-21449/">Jpackage Update for Java CVE-2022-21449</a>
+                        </h2>
+                        <time class="post-date">April 21, 2022</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Jpackage bundles released with fixes for Java CVE-2022-21449</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By idk</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2022/02/21/1.7.0-release/">1.7.0 Release</a>
+                        </h2>
+                        <time class="post-date">February 21, 2022</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">1.7.0 with reliability and performance improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2021/11/29/1.6.1-release/">1.6.1 Release</a>
+                        </h2>
+                        <time class="post-date">November 29, 2021</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">1.6.1 enables new tunnel build messages</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2021/08/23/1.5.0-release/">1.5.0 Release</a>
+                        </h2>
+                        <time class="post-date">August 23, 2021</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">1.5.0 with new tunnel build messages</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2021/05/17/0.9.50-release/">0.9.50 Release</a>
+                        </h2>
+                        <time class="post-date">May 17, 2021</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.50 with IPv6 fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2021/02/17/0.9.49-release/">0.9.49 Release</a>
+                        </h2>
+                        <time class="post-date">February 17, 2021</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.49 with SSU fixes and faster crypto</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2020/11/30/0.9.48-release/">0.9.48 Release</a>
+                        </h2>
+                        <time class="post-date">November 30, 2020</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.48 with performance enhancements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2020/08/24/0.9.47-release/">0.9.47 Release</a>
+                        </h2>
+                        <time class="post-date">August 24, 2020</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.47 enables new ECIES Encryption</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2020/05/25/0.9.46-release/">0.9.46 Release</a>
+                        </h2>
+                        <time class="post-date">May 25, 2020</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.46 with new ECIES Encryption</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2020/02/25/0.9.45-release/">0.9.45 Release</a>
+                        </h2>
+                        <time class="post-date">February 25, 2020</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.45 with bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2019/12/01/0.9.44-release/">0.9.44 Release</a>
+                        </h2>
+                        <time class="post-date">December 1, 2019</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.44 with bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2019/10/22/0.9.43-release/">0.9.43 Release</a>
+                        </h2>
+                        <time class="post-date">October 22, 2019</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.43 with bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2019/08/27/0.9.42-release/">0.9.42 Release</a>
+                        </h2>
+                        <time class="post-date">August 27, 2019</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.42 with bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2019/07/02/0.9.41-release/">0.9.41 Release</a>
+                        </h2>
+                        <time class="post-date">July 2, 2019</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.41 with bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2019/05/07/0.9.40-release/">0.9.40 Release</a>
+                        </h2>
+                        <time class="post-date">May 7, 2019</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.40 with NTCP1 disabled</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2019/03/21/0.9.39-release/">0.9.39 Release</a>
+                        </h2>
+                        <time class="post-date">March 21, 2019</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.39 with LS2 support</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2019/01/22/0.9.38-release/">0.9.38 Release</a>
+                        </h2>
+                        <time class="post-date">January 22, 2019</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.38 with NTCP2 enabled</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2018/10/04/0.9.37-release/">0.9.37 Release</a>
+                        </h2>
+                        <time class="post-date">October 4, 2018</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.37 with bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2018/08/23/0.9.36-release/">0.9.36 Release</a>
+                        </h2>
+                        <time class="post-date">August 23, 2018</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.36 with NTCP2</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2018/06/26/0.9.35-release/">0.9.35 Release</a>
+                        </h2>
+                        <time class="post-date">June 26, 2018</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.35 with Ed25519 signatures</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2018/04/10/0.9.34-release/">0.9.34 Release</a>
+                        </h2>
+                        <time class="post-date">April 10, 2018</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.34 with bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2018/01/30/0.9.33-release/">0.9.33 Release</a>
+                        </h2>
+                        <time class="post-date">January 30, 2018</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.33 with crypto migration</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2017/11/07/0.9.32-release/">0.9.32 Release</a>
+                        </h2>
+                        <time class="post-date">November 7, 2017</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.32 with Console Updates</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2017/08/07/0.9.31-release/">0.9.31 Release</a>
+                        </h2>
+                        <time class="post-date">August 7, 2017</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.31 with Console Updates</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2017/05/03/0.9.30-release/">0.9.30 Release</a>
+                        </h2>
+                        <time class="post-date">May 3, 2017</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.30 with Jetty 9</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2017/03/04/0.9.29-windows-installer-fix/">0.9.29 Windows Installer Fix</a>
+                        </h2>
+                        <time class="post-date">March 4, 2017</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.29 Windows installer fix</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2017/02/27/0.9.29-release/">0.9.29 Release</a>
+                        </h2>
+                        <time class="post-date">February 27, 2017</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.29 contains bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2016/12/12/0.9.28-release/">0.9.28 Release</a>
+                        </h2>
+                        <time class="post-date">December 12, 2016</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.28 contains bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2016/10/17/0.9.27-release/">0.9.27 Release</a>
+                        </h2>
+                        <time class="post-date">October 17, 2016</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.27 contains bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2016/06/07/0.9.26-release/">0.9.26 Release</a>
+                        </h2>
+                        <time class="post-date">June 7, 2016</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.26 contains crypto updates, Debian packaging improvements, and bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2016/03/22/0.9.25-release/">0.9.25 Release</a>
+                        </h2>
+                        <time class="post-date">March 22, 2016</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.25 contains SAM 3.3, QR codes, and bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2016/01/27/0.9.24-release/">0.9.24 Release</a>
+                        </h2>
+                        <time class="post-date">January 27, 2016</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.24 contains a variety of bug fixes and performance enhancements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2015/11/19/0.9.23-release/">0.9.23 Release</a>
+                        </h2>
+                        <time class="post-date">November 19, 2015</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.23 contains a variety of bug fixes, and some minor improvements in I2PSnark</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By str4d</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2015/09/12/0.9.22-release/">0.9.22 Release</a>
+                        </h2>
+                        <time class="post-date">September 12, 2015</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.22 with bug fixes and start of Ed25519 migration</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2015/07/31/0.9.21-release/">0.9.21 Release</a>
+                        </h2>
+                        <time class="post-date">July 31, 2015</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.21 with performance improvements and bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2015/06/02/0.9.20-release/">0.9.20 Release</a>
+                        </h2>
+                        <time class="post-date">June 2, 2015</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.20 with performance improvements and bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2015/04/12/0.9.19-release/">0.9.19 Release</a>
+                        </h2>
+                        <time class="post-date">April 12, 2015</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.19 with performance improvements and bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2015/02/22/0.9.18-release/">0.9.18 Release</a>
+                        </h2>
+                        <time class="post-date">February 22, 2015</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.18 with performance improvements and bug fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2014/11/30/0.9.17-release/">0.9.17 Release</a>
+                        </h2>
+                        <time class="post-date">November 30, 2014</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.17 with more crypto migration and many fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2014/11/01/0.9.16-release/">0.9.16 Release</a>
+                        </h2>
+                        <time class="post-date">November 1, 2014</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.16 includes crypto migration and many fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2014/09/20/0.9.15-release/">0.9.15 Release</a>
+                        </h2>
+                        <time class="post-date">September 20, 2014</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.15 includes Ed25519 crypto and many fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2014/08/09/0.9.14.1-release/">0.9.14.1 Release</a>
+                        </h2>
+                        <time class="post-date">August 9, 2014</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.14.1 includes i2psnark and console fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2014/07/26/i2p-0.9.14-release/">I2P 0.9.14 Release</a>
+                        </h2>
+                        <time class="post-date">July 26, 2014</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.14 includes critical security fixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2014/05/22/i2p-0.9.13-release/">I2P 0.9.13 Release</a>
+                        </h2>
+                        <time class="post-date">May 22, 2014</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.13 with SusiMail improvements and fixes for firewalled routers</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2014/03/31/0.9.12-release/">0.9.12 Release</a>
+                        </h2>
+                        <time class="post-date">March 31, 2014</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.12 adds support for ECDSA and updates to Jetty 8</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2014/02/08/0.9.11-release/">0.9.11 Release</a>
+                        </h2>
+                        <time class="post-date">February 8, 2014</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.11 adds support for outproxy plugins, improves lease set lookup security, and reduces memory usage.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2014/01/22/0.9.10-release/">0.9.10 Release</a>
+                        </h2>
+                        <time class="post-date">January 22, 2014</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.10 changes the mechanism for doing LeaseSet lookups, making it more difficult for an attacker to correlate a Destination with a Router.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2014/01/21/syndie-1.105b-release/">Syndie 1.105b Release</a>
+                        </h2>
+                        <time class="post-date">January 21, 2014</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Update to HSQLDB 2.3.1</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2013/12/07/0.9.9-release/">0.9.9 Release</a>
+                        </h2>
+                        <time class="post-date">December 7, 2013</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.9 fixes a number of bugs in the netdb, streaming, and i2ptunnel, and starts work on a year-long plan to increase the strength of the cryptographic signing algorithms.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2013/10/02/0.9.8.1-release/">0.9.8.1 Release</a>
+                        </h2>
+                        <time class="post-date">October 2, 2013</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.8.1 fixes a problem with updating to 0.9.8 on Windows for some people.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2013/09/30/0.9.8-release/">0.9.8 Release</a>
+                        </h2>
+                        <time class="post-date">September 30, 2013</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.8 includes the long-awaited support for IPv6.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2013/08/10/0.9.7.1-release/">0.9.7.1 Release</a>
+                        </h2>
+                        <time class="post-date">August 10, 2013</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">This unscheduled release disables the RouterInfo verification messages that were used in the attack published in the UCSB paper.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2013/07/15/0.9.7-release/">0.9.7 Release</a>
+                        </h2>
+                        <time class="post-date">July 15, 2013</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.7 includes significant bug fixes and improvements.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2013/05/28/0.9.6-release/">0.9.6 Release</a>
+                        </h2>
+                        <time class="post-date">May 28, 2013</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.6 includes bug fixes and an update from Jetty 6.1.26 (2010-11-10) to Jetty 7.6.10 (2013-03-12).</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2013/03/08/0.9.5-release/">0.9.5 Release</a>
+                        </h2>
+                        <time class="post-date">March 8, 2013</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.5 includes bug fixes and defenses for some issues and vulnerabilities that are being investigated by researchers at UCSB.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2012/12/17/0.9.4-release/">0.9.4 Release</a>
+                        </h2>
+                        <time class="post-date">December 17, 2012</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.4 includes a fix for a network capacity bug, introduced in 0.9.2, that was reducing network performance and reliability.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2012/10/27/0.9.3-release/">0.9.3 Release</a>
+                        </h2>
+                        <time class="post-date">October 27, 2012</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.3 includes extensive low-level changes to the queueing of messages in the router. We implement the CoDel Active Queue Management (AQM) algorithm.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2012/09/21/0.9.2-release/">0.9.2 Release</a>
+                        </h2>
+                        <time class="post-date">September 21, 2012</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.2 includes extensive low-level changes to improve the performance and efficiency of the router. We have updated our UPnP library, to hopefully make UPnP work for more people.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2012/07/30/0.9.1-release/">0.9.1 Release</a>
+                        </h2>
+                        <time class="post-date">July 30, 2012</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">0.9.1 includes a large number of bug fixes in i2psnark, some streaming lib improvements, home page changes, new themes, and translation updates.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2012/05/02/0.9-release/">0.9 Release</a>
+                        </h2>
+                        <time class="post-date">May 2, 2012</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">The 0.9 release concludes over a year and a half of work on the 0.8.x series, in which we greatly improved the performance and security of the router, and the scalability of the network.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2012/02/27/0.8.13-release/">0.8.13 Release</a>
+                        </h2>
+                        <time class="post-date">February 27, 2012</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">The 0.8.13 release contains several bug fixes and a couple of new features. We are pleased that the last release significantly improved performance, and the network is running well despite continued rapid growth.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2012/01/06/0.8.12-release/">0.8.12 Release</a>
+                        </h2>
+                        <time class="post-date">January 6, 2012</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">The 0.8.12 release fixes several message corruption bugs, some present since 2005. It also contains a redesign of the router&#39;s congestion control, and continued optimization of CPU and memory usage.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2011/11/08/0.8.11-release/">0.8.11 Release</a>
+                        </h2>
+                        <time class="post-date">November 8, 2011</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Release 0.8.11 includes several more changes to reduce the number of router-to-router connections and increase connection and tunnel build capacity.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2011/10/20/0.8.10-release/">0.8.10 Release</a>
+                        </h2>
+                        <time class="post-date">October 20, 2011</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">Release 0.8.10 includes two changes intended to reduce the number of router-to-router connections, and therefore improve tunnel build success rates and general reliability.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2011/10/11/0.8.9-release/">0.8.9 Release</a>
+                        </h2>
+                        <time class="post-date">October 11, 2011</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">The 0.8.9 release has several performance improvements, and many changes to handle the continued rapid growth of the network.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2011/08/23/0.8.8-release/">0.8.8 Release</a>
+                        </h2>
+                        <time class="post-date">August 23, 2011</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P release 0.8.8 enables the new hosts.txt database to speed hostname lookups and store additional information on hostname entries.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2011/06/27/0.8.7-release/">0.8.7 Release</a>
+                        </h2>
+                        <time class="post-date">June 27, 2011</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P release 0.8.7 contains several upgrades to long-neglected components, including the Naming Services, graphing, the native CPU ID and BigInteger libraries, crypto implementations, and the wrapper.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2011/05/16/0.8.6-release/">0.8.6 Release</a>
+                        </h2>
+                        <time class="post-date">May 16, 2011</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">The 0.8.6 release contains more peer selection defenses to resist powerful attackers, and tweaks to adjust to the recent rapid growth in the network.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2011/04/18/0.8.5-release/">0.8.5 Release</a>
+                        </h2>
+                        <time class="post-date">April 18, 2011</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">The 0.8.5 release contains a few bug fixes and performance improvements, and lots of translation updates.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2011/03/02/0.8.4-release/">0.8.4 Release</a>
+                        </h2>
+                        <time class="post-date">March 2, 2011</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">The 0.8.4 release contains some performance improvements and important bug fixes. Also, i2psnark now supports magnet links.</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2011/01/24/0.8.3-release/">0.8.3 Release</a>
+                        </h2>
+                        <time class="post-date">January 24, 2011</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P version 0.8.3 released with SSL support, performance improvements, and new configuration pages</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2010/12/22/0.8.2-release/">0.8.2 Release</a>
+                        </h2>
+                        <time class="post-date">December 22, 2010</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P version 0.8.2 released with bug fixes, theme updates, and proxy authorization support</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2010/11/15/0.8.1-release/">0.8.1 Release</a>
+                        </h2>
+                        <time class="post-date">November 15, 2010</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P version 0.8.1 released with bug fixes, performance tweaks, and new i2psnark theme</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2010/07/12/0.8-release/">0.8 Release</a>
+                        </h2>
+                        <time class="post-date">July 12, 2010</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P version 0.8 released, marking the start of the 0.8 series with 18 months of improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2010/06/07/0.7.14-release/">0.7.14 Release</a>
+                        </h2>
+                        <time class="post-date">June 7, 2010</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P version 0.7.14 released with bug fixes, performance tweaks, and i2psnark improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2010/04/27/0.7.13-release/">0.7.13 Release</a>
+                        </h2>
+                        <time class="post-date">April 27, 2010</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P version 0.7.13 released with performance improvements and smaller tunnel build messages enabled</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2010/03/15/0.7.12-release/">0.7.12 Release</a>
+                        </h2>
+                        <time class="post-date">March 15, 2010</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P version 0.7.12 released with plugin support and smaller tunnel build messages</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2010/02/15/0.7.11-release/">0.7.11 Release</a>
+                        </h2>
+                        <time class="post-date">February 15, 2010</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P version 0.7.11 released with clock-related fixes and Jetty security update</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2010/01/22/0.7.10-release/">0.7.10 Release</a>
+                        </h2>
+                        <time class="post-date">January 22, 2010</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P version 0.7.10 released with security fixes for floodfill communication vulnerabilities</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2010/01/12/0.7.9-release/">0.7.9 Release</a>
+                        </h2>
+                        <time class="post-date">January 12, 2010</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P version 0.7.9 released with bug fixes for message corruption and performance improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2009/12/08/i2p-0.7.8-release/">I2P 0.7.8 Release</a>
+                        </h2>
+                        <time class="post-date">December 8, 2009</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 0.7.8 release with router console translations, floodfill improvements, and randomized ports</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2009/10/12/i2p-0.7.7-release/">I2P 0.7.7 Release</a>
+                        </h2>
+                        <time class="post-date">October 12, 2009</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 0.7.7 release with anonymity improvements, crypto rework, and memory optimizations</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2009/07/31/i2p-0.7.6-release/">I2P 0.7.6 Release</a>
+                        </h2>
+                        <time class="post-date">July 31, 2009</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 0.7.6 release with network stability fixes, new console themes, and resource optimizations</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2009/06/29/i2p-0.7.5-release/">I2P 0.7.5 Release</a>
+                        </h2>
+                        <time class="post-date">June 29, 2009</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 0.7.5 release with network stability fixes and announcement of Complication&#39;s departure</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2009/06/13/i2p-0.7.4-release/">I2P 0.7.4 Release</a>
+                        </h2>
+                        <time class="post-date">June 13, 2009</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 0.7.4 release with GeoIP capability, UPnP support, and automatic inbound NTCP</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2009/05/18/i2p-0.7.3-release/">I2P 0.7.3 Release</a>
+                        </h2>
+                        <time class="post-date">May 18, 2009</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 0.7.3 release with bugfixes, improvements, and updated SAM and BOB protocols</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2009/04/19/i2p-0.7.2-release/">I2P 0.7.2 Release</a>
+                        </h2>
+                        <time class="post-date">April 19, 2009</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 0.7.2 release with bug fixes, IPv6 console support, and experimental desktop interface</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2009/03/29/i2p-0.7.1-release/">I2P 0.7.1 Release</a>
+                        </h2>
+                        <time class="post-date">March 29, 2009</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 0.7.1 release with performance optimizations, encrypted LeaseSets support, and new tunnel types</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2009/01/25/i2p-0.7-release/">I2P 0.7 Release</a>
+                        </h2>
+                        <time class="post-date">January 25, 2009</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P release 0.7 with stability improvements and experimental Base32 address system</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2008/12/01/i2p-0.6.5-release/">I2P 0.6.5 Release</a>
+                        </h2>
+                        <time class="post-date">December 1, 2008</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P release 0.6.5 with new BOB protocol and Java 1.5 requirement</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2008/10/06/i2p-0.6.4-release/">I2P 0.6.4 Release</a>
+                        </h2>
+                        <time class="post-date">October 6, 2008</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P release 0.6.4 with performance and stability improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2008/08/26/i2p-0.6.3-release/">I2P 0.6.3 Release</a>
+                        </h2>
+                        <time class="post-date">August 26, 2008</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P release 0.6.3 with bugfixes, optimizations and security improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2008/06/07/i2p-0.6.2-release/">I2P 0.6.2 Release</a>
+                        </h2>
+                        <time class="post-date">June 7, 2008</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P release 0.6.2 with performance and anonymity improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2008/04/26/i2p-0.6.1.33-release/">I2P 0.6.1.33 Release</a>
+                        </h2>
+                        <time class="post-date">April 26, 2008</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P release 0.6.1.33 with important bug fixes and performance improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2008/03/09/i2p-0.6.1.32-release/">I2P 0.6.1.32 Release</a>
+                        </h2>
+                        <time class="post-date">March 9, 2008</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P release 0.6.1.32 with new tunnel build algorithm and performance improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By Complication</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item even">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2008/02/10/i2p-0.6.1.31-release/">I2P 0.6.1.31 Release</a>
+                        </h2>
+                        <time class="post-date">February 10, 2008</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P release 0.6.1.31 with independent release process and multiple bugfixes</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By zzz</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+                <article class="blog-post-item ">
+                    <div class="post-header">
+                        <h2 class="post-title">
+                            <a href="../../../en/blog/2007/10/07/i2p-0.6.1.30-release/">I2P 0.6.1.30 Release</a>
+                        </h2>
+                        <time class="post-date">October 7, 2007</time>
+                    </div>
+
+                    
+                        <p class="post-excerpt">I2P 0.6.1.30 release announcement featuring experimental tunnel throughput enhancements, eepget fixes, network backlog handling, and i2psnark improvements</p>
+                    
+
+                    <div class="post-footer">
+                        
+                            <span class="post-author">By jr</span>
+                        
+                        
+                            <div class="post-categories">
+                                
+                                    <span class="category-badge">release</span>
+                                
+                            </div>
+                        
+                    </div>
+                </article>
+                
+            
+        </div>
+
+        
+        <div class="back-to-blog">
+            <a href="../../../en/blog/">&larr; Back to all posts</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.blog-page {
+    min-height: 100vh;
+    padding: var(--spacing-2xl) 0;
+}
+
+.blog-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.blog-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    text-transform: capitalize;
+}
+
+.blog-description {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+}
+
+.no-posts {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+}
+
+.blog-posts {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.blog-post-item {
+    padding: var(--spacing-xl);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    transition: box-shadow var(--transition-base);
+}
+
+.blog-post-item.even {
+    background: var(--color-bg-secondary);
+}
+
+.blog-post-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.post-title {
+    font-size: 1.5rem;
+    margin: 0;
+    flex: 1;
+}
+
+.post-title a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.post-title a:hover {
+    color: var(--color-primary);
+}
+
+.post-date {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    white-space: nowrap;
+}
+
+.post-excerpt {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.post-author {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.back-to-blog {
+    text-align: center;
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-base);
+}
+
+.back-to-blog a:hover {
+    color: var(--color-primary-dark);
+}
+
+@media (max-width: 768px) {
+    .blog-header h1 {
+        font-size: 2rem;
+    }
+
+    .post-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .post-title {
+        font-size: 1.25rem;
+    }
+
+    .post-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../en/privacy/">Privacy</a>
+                <a href="../../../en/terms/">Terms</a>
+                <a href="../../../en/impressum/">Impressum</a>
+                <a href="../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

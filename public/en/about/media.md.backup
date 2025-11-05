@@ -1,0 +1,588 @@
+---
+title: "Press & Media"
+description: "Presentations, videos, tutorials, articles, and interviews about I2P"
+lastUpdated: "2024-09"
+layout: "single"
+---
+
+<div class="content-intro">
+Resources for journalists, researchers, and anyone interested in learning about I2P through presentations, interviews, and media coverage.
+</div>
+
+## Presentations & Talks
+
+<h3 class="content-year">2023</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://odysee.com/@diva.exchange:d/diva-dns-i2p-fosdem2023:2" target="_blank">DNS for I2P</a>
+</div>
+<div class="content-entry-meta">FOSDEM 2023 • February 12, 2023</div>
+<div class="content-entry-actions">
+<a href="https://odysee.com/@diva.exchange:d/diva-dns-i2p-fosdem2023:2" target="_blank" class="content-btn">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+Watch Video
+</a>
+</div>
+</div>
+
+<h3 class="content-year">2022</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://odysee.com/@diva.exchange:d/monerokon2022:0" target="_blank">Private, fully distributed exchange (DEX), Monero and I2P research results</a>
+</div>
+<div class="content-entry-meta">MoneroKon 2022 Lisbon • July 5, 2022</div>
+<div class="content-entry-actions">
+<a href="https://odysee.com/@diva.exchange:d/monerokon2022:0" target="_blank" class="content-btn">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+Watch Video
+</a>
+</div>
+</div>
+
+<h3 class="content-year">2021</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://odysee.com/@diva.exchange:d/diva-exchange-fosdem-21:c" target="_blank">I2P, blockchain and the application</a>
+</div>
+<div class="content-entry-meta">FOSDEM 2021 • February 7, 2021</div>
+<div class="content-entry-actions">
+<a href="https://odysee.com/@diva.exchange:d/diva-exchange-fosdem-21:c" target="_blank" class="content-btn">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+Watch Video
+</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://archive.org/download/ournetworks2019/Our_Networks_2019_Mesh_Lightning_Talks_I2P_Intro_For_App_Devs_by_Idk_720p.mp4" target="_blank">Intro to I2P for App Developers</a>
+</div>
+<div class="content-entry-meta">idk</div>
+<div class="content-entry-actions">
+<a href="https://archive.org/download/ournetworks2019/Our_Networks_2019_Mesh_Lightning_Talks_I2P_Intro_For_App_Devs_by_Idk_720p.mp4" target="_blank" class="content-btn">Download MP4</a>
+</div>
+</div>
+
+<h3 class="content-year">2018</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://video.fosdem.org/2018/H.1301%20(Cornil)/i2p.mp4" target="_blank">The Invisible Internet Project - An overview and guide to the technology</a>
+</div>
+<div class="content-entry-meta">Andrew Savchenko (bircoph) • FOSDEM, Brussels • February 4, 2018</div>
+<div class="content-entry-actions">
+<a href="https://video.fosdem.org/2018/H.1301%20(Cornil)/i2p.mp4" target="_blank" class="content-btn">MP4</a>
+<a href="https://video.fosdem.org/2018/H.1301%20(Cornil)/i2p.webm" target="_blank" class="content-btn-secondary">WebM</a>
+</div>
+</div>
+
+<h3 class="content-year">2016</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank">Onions and Garlic: the protocols of I2P</a>
+</div>
+<div class="content-entry-meta">str4d • COMPSCI 460, University of Wisconsin Whitewater • February 17, 2016</div>
+<div class="content-entry-actions">
+<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.pdf" target="_blank" class="content-btn">PDF</a>
+<a href="http://str4d.i2p/talks/2016-uww-i2p-slides.odp" target="_blank" class="content-btn-secondary">ODP</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://download.i2p2.de/media/rwc/2016/rwc2016-str4d-slides.pdf" target="_blank">Replacing Weary Crypto: Upgrading the I2P network with stronger primitives</a>
+</div>
+<div class="content-entry-meta">str4d • Real World Crypto, Stanford • January 8, 2016</div>
+<div class="content-entry-actions">
+<a href="https://download.i2p2.de/media/rwc/2016/rwc2016-str4d-slides.pdf" target="_blank" class="content-btn">PDF</a>
+<a href="https://download.i2p2.de/media/rwc/2016/rwc2016-str4d-slides.odp" target="_blank" class="content-btn-secondary">ODP</a>
+</div>
+</div>
+
+<h3 class="content-year">2015</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://download.i2p2.de/media/ccc/2015/I2P_Still_alive.pdf" target="_blank">I2P - Still alive!</a>
+</div>
+<div class="content-entry-meta">echelon • 32C3 (You Broke the Internet Assembly), Hamburg • December 28, 2015</div>
+<div class="content-entry-actions">
+<a href="https://download.i2p2.de/media/ccc/2015/I2P_Still_alive.pdf" target="_blank" class="content-btn">PDF</a>
+<a href="https://fossil.net2o.de/32c3/doc/trunk/wiki/i2p.md" target="_blank" class="content-btn-secondary">Video</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="/en/about/i2pcon/2015/">I2PCon 2015</a>
+</div>
+<div class="content-entry-meta">Toronto • August 15-16, 2015</div>
+<div class="content-entry-actions">
+<a href="/en/about/i2pcon/2015/" class="content-btn">Event Details</a>
+</div>
+</div>
+
+<details class="content-section">
+<summary><strong>Show older presentations (2002-2012)</strong></summary>
+
+<h3 class="content-year">2011-2012</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://www.youtube.com/watch?v=pyeEWaz9z1s" target="_blank">I2P - The Anonymous Network</a>
+</div>
+<div class="content-entry-meta">Blair Dick • University of Abertay, Dundee • January 25, 2012</div>
+<div class="content-entry-actions">
+<a href="https://www.youtube.com/watch?v=pyeEWaz9z1s" target="_blank" class="content-btn">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+YouTube
+</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://0x375.org/" target="_blank">Modern cipherspace ecosystems</a>
+</div>
+<div class="content-entry-meta">0x375 0x06 (Thessaloniki Tech Talk Sessions) • November 4, 2011</div>
+<div class="content-entry-actions">
+<a href="http://0x375.org/" target="_blank" class="content-btn">Details</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://www.youtube.com/watch?v=xxKXkbohRZM" target="_blank">Cipherspaces/Darknets: An Overview Of Attack Strategies</a>
+</div>
+<div class="content-entry-meta">Adrian Crenshaw • DEF CON 19, Las Vegas • August 7, 2011</div>
+<div class="content-entry-actions">
+<a href="http://www.youtube.com/watch?v=xxKXkbohRZM" target="_blank" class="content-btn">DEF CON Live</a>
+<a href="http://www.youtube.com/watch?v=xFxJ6Dc5ass" target="_blank" class="content-btn-secondary">Studio</a>
+<a href="http://www.irongeek.com/downloads/Adrian-Crenshaw-darknet-weaknesses.pptx" target="_blank" class="content-btn-secondary">Slides</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://www.irongeek.com/i.php?page=security/i2p-tor-workshop-notes" target="_blank">I2P / Tor Workshop Notes</a>
+</div>
+<div class="content-entry-meta">Adrian Crenshaw • DEF CON 19, Las Vegas • August 6, 2011</div>
+<div class="content-entry-actions">
+<a href="http://www.irongeek.com/i.php?page=security/i2p-tor-workshop-notes" target="_blank" class="content-btn">Read Notes</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://www.youtube.com/watch?v=bI_1qlcwfE0" target="_blank">Common Darknet Weaknesses</a>
+</div>
+<div class="content-entry-meta">Adrian Crenshaw • AIDE • July 11-15, 2011</div>
+<div class="content-entry-actions">
+<a href="http://www.youtube.com/watch?v=bI_1qlcwfE0" target="_blank" class="content-btn">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+YouTube
+</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://www.youtube.com/watch?v=TexNr_5J5AU" target="_blank">Using technology to advance liberty</a>
+</div>
+<div class="content-entry-meta">Eric Johnson • Agora I/O Unconference • March 27, 2011 • I2P segment: 10:00-20:00</div>
+<div class="content-entry-actions">
+<a href="http://www.youtube.com/watch?v=TexNr_5J5AU" target="_blank" class="content-btn">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+YouTube
+</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://www.irongeek.com/i.php?page=videos/shmoocon-firetalks-2011" target="_blank">Into the I2P Darknet: Welcome to Cipherspace</a>
+</div>
+<div class="content-entry-meta">Adrian Crenshaw • Schmoocon Firetalk • January 2011</div>
+<div class="content-entry-actions">
+<a href="http://www.irongeek.com/i.php?page=videos/shmoocon-firetalks-2011" target="_blank" class="content-btn">Details</a>
+</div>
+</div>
+
+<h3 class="content-year">2007-2010</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://www.youtube.com/watch?v=ADiZ32CkEao" target="_blank">Hackers for Human Rights (I2P segment by zzz)</a>
+</div>
+<div class="content-entry-meta">Adrian Hong • HOPE New York • July 17, 2010 • I2P segment at 44 minutes</div>
+<div class="content-entry-actions">
+<a href="http://stats.i2p/media/tnhc21.mp3" target="_blank" class="content-btn">MP3 Audio</a>
+<a href="https://www.youtube.com/watch?v=ADiZ32CkEao" target="_blank" class="content-btn-secondary">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+YouTube
+</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://marge.informatik.tu-chemnitz.de/archiv/CLT2009/V4-Sa1200-Security-Lars_Schimmer.mp4" target="_blank">I2P talk at Chemnitz Linux Tag</a>
+</div>
+<div class="content-entry-meta">Lars Schimmer • March 14-15, 2009</div>
+<div class="content-entry-actions">
+<a href="http://marge.informatik.tu-chemnitz.de/archiv/CLT2009/V4-Sa1200-Security-Lars_Schimmer.mp4" target="_blank" class="content-btn">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+Video
+</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://www.youtube.com/watch?v=TsfdzfGZyu0" target="_blank">To Be or I2P</a>
+</div>
+<div class="content-entry-meta">Jens Kubieziel • 24C3 Berlin • December 28, 2007</div>
+<div class="content-entry-actions">
+<a href="http://www.youtube.com/watch?v=TsfdzfGZyu0" target="_blank" class="content-btn">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+YouTube
+</a>
+<a href="http://events.ccc.de/congress/2007/Fahrplan/attachments/1017_24c3-i2p.pdf" target="_blank" class="content-btn-secondary">PDF Slides</a>
+</div>
+</div>
+
+<h3 class="content-year">2002</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">IIP Presentation at ToorCon</div>
+<div class="content-entry-meta">Lance James (0x90) • September 2002</div>
+<div class="content-entry-actions">
+<a href="http://invisibleip.sourceforge.net/iip/resources/toorconspeech.mp3" target="_blank" class="content-btn">MP3 Audio</a>
+<a href="http://invisibleip.sourceforge.net/iip/resources/toorconspeech/" target="_blank" class="content-btn-secondary">Slides</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">IIP Presentation at CodeCon</div>
+<div class="content-entry-meta">Lance James (0x90) • February 2002</div>
+<div class="content-entry-actions">
+<a href="http://invisibleip.sourceforge.net/iip/resources/codecon_0x90.mp3" target="_blank" class="content-btn">MP3 Audio</a>
+<a href="http://invisibleip.sourceforge.net/iip/resources/iip_transcript.txt" target="_blank" class="content-btn-secondary">Transcript</a>
+</div>
+</div>
+
+</details>
+
+---
+
+## Articles & Interviews
+
+<h3 class="content-year">2024</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://www.diva.exchange/en/privacy/i2p-interview-with-the-developer-idk-part-1/" target="_blank">Interview with IDK on I2P Development</a>
+</div>
+<div class="content-entry-meta">July 2024 • Two-part interview series</div>
+<div class="content-entry-actions">
+<a href="https://www.diva.exchange/en/privacy/i2p-interview-with-the-developer-idk-part-1/" target="_blank" class="content-btn">Part 1</a>
+<a href="https://www.diva.exchange/en/privacy/i2p-interview-with-the-developer-idk-part-2/" target="_blank" class="content-btn-secondary">Part 2</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://www.diva.exchange/en/privacy/i2p-network-reliability-is-on-the-radar-of-the-academic-community/" target="_blank">Interview with Phillip on I2P Network Reliability</a>
+</div>
+<div class="content-entry-meta">March 2024</div>
+<div class="content-entry-actions">
+<a href="https://www.diva.exchange/en/privacy/i2p-network-reliability-is-on-the-radar-of-the-academic-community/" target="_blank" class="content-btn">Read Interview</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://www.diva.exchange/en/privacy/i2p-and-the-free-internet-interview-with-a-community-member/" target="_blank">Interview with Sadie on I2P and the Free Internet</a>
+</div>
+<div class="content-entry-meta">February 2024</div>
+<div class="content-entry-actions">
+<a href="https://www.diva.exchange/en/privacy/i2p-and-the-free-internet-interview-with-a-community-member/" target="_blank" class="content-btn">Read Interview</a>
+</div>
+</div>
+
+<h3 class="content-year">2022</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://odysee.com/@diva.exchange:d/i2p-diva-exchange-2022-09-26:6" target="_blank">I2P and DIVA.EXCHANGE</a>
+</div>
+<div class="content-entry-meta">Interview with Konrad • September 26, 2022</div>
+<div class="content-entry-actions">
+<a href="https://odysee.com/@diva.exchange:d/i2p-diva-exchange-2022-09-26:6" target="_blank" class="content-btn">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+Watch Video
+</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://www.buzzsprout.com/1790481/10173995-network-privacy-via-i2p-w-idk-and-sadie.mp3" target="_blank">Network Privacy via I2P</a>
+</div>
+<div class="content-entry-meta">Interview with idk and Sadie • Opt Out Podcast S2E10 • March 6, 2022</div>
+<div class="content-entry-actions">
+<a href="https://www.buzzsprout.com/1790481/10173995-network-privacy-via-i2p-w-idk-and-sadie.mp3" target="_blank" class="content-btn">MP3 Audio</a>
+<a href="https://www.youtube.com/watch?v=-VqXfUxVQoA" target="_blank" class="content-btn-secondary">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+YouTube
+</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://torrentfreak.com/i2p-the-censorship-resistant-anonymous-p2p-network-is-20-years-old-220306/" target="_blank">I2P: The Censorship Resistant Anonymous P2P Network is 20 Years Old</a>
+</div>
+<div class="content-entry-meta">Interview with Lance James, zlatinb, and zzz • TorrentFreak • March 6, 2022</div>
+<div class="content-entry-actions">
+<a href="https://torrentfreak.com/i2p-the-censorship-resistant-anonymous-p2p-network-is-20-years-old-220306/" target="_blank" class="content-btn">Read Article</a>
+</div>
+</div>
+
+<details class="content-section">
+<summary><strong>Show older articles (2011-2021)</strong></summary>
+
+<h3 class="content-year">2019-2021</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://www.heise.de/news/Open-Source-Adventskalender-Die-Darknets-Freenet-und-I2P-6302109.html" target="_blank">Open-Source-Adventskalender: Die Darknets Freenet und I2P</a>
+</div>
+<div class="content-entry-meta">Stefan Mey • December 21, 2021 • German</div>
+<div class="content-entry-actions">
+<a href="https://www.heise.de/news/Open-Source-Adventskalender-Die-Darknets-Freenet-und-I2P-6302109.html" target="_blank" class="content-btn">Read Article</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://www.ctrl.blog/entry/proxy-pac-i2p-onion.html" target="_blank">Enabling both .onion and .i2p routing with Proxy Auto-Configuration</a>
+</div>
+<div class="content-entry-meta">Daniel Aleksandersen • February 7, 2019</div>
+<div class="content-entry-actions">
+<a href="https://www.ctrl.blog/entry/proxy-pac-i2p-onion.html" target="_blank" class="content-btn">Read Article</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="https://medium.com/@mhatta" target="_blank">Articles by I2P contributor Masayuki Hatta on Medium.com</a>
+</div>
+<div class="content-entry-meta">2019</div>
+<div class="content-entry-actions">
+<a href="https://medium.com/@mhatta" target="_blank" class="content-btn">View on Medium</a>
+</div>
+</div>
+
+<h3 class="content-year">2011-2018</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">Fireside With Lei - Episode 18: Lance James</div>
+<div class="content-entry-meta">Robert Lei • December 31, 2018 • Success, Failures, Grief and Buddhism</div>
+<div class="content-entry-actions">
+<a href="http://fireside.disconnect.camp/2018/12/31/episode-18-lance-james/" target="_blank" class="content-btn">Link</a>
+<a href="https://web.archive.org/web/20190207113945/http://fireside.disconnect.camp/2018/12/31/episode-18-lance-james/" target="_blank" class="content-btn-secondary">Archive</a>
+<a href="http://media.blubrry.com/firesidewithlei/s/fireside.disconnect.camp/wp-content/uploads/2019/01/LanceJames.mp3" target="_blank" class="content-btn-secondary">MP3</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">Jeff and Str4d interviewed on Brakeing Down Security Podcast</div>
+<div class="content-entry-meta">Episode 2015-011 (Part 2) • March 6, 2015</div>
+<div class="content-entry-actions">
+<a href="http://traffic.libsyn.com/brakeingsecurity/2015-011-part2-i2p.mp3" target="_blank" class="content-btn">MP3 Part 2</a>
+<a href="http://traffic.libsyn.com/brakeingsecurity/2015-010-I2P_dev_interview.mp3" target="_blank" class="content-btn-secondary">MP3 Part 1</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">zzz and Lance James interviewed on InfoSec Daily Podcast</div>
+<div class="content-entry-meta">Episode 596 • February 16, 2012</div>
+<div class="content-entry-actions">
+<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=15905" target="_blank" class="content-btn">MP3 (I2P Torrent)</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://how-to.linuxcareer.com/i2p-anonymity-for-the-masses" target="_blank">I2P - Anonymity for the Masses</a>
+</div>
+<div class="content-entry-meta">Jonathan Cox • November 11, 2011</div>
+<div class="content-entry-actions">
+<a href="http://how-to.linuxcareer.com/i2p-anonymity-for-the-masses" target="_blank" class="content-btn">Read Article</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">zzz interviewed on InfoSec Daily Podcast</div>
+<div class="content-entry-meta">Episode 454 • August 18, 2011</div>
+<div class="content-entry-actions">
+<a href="http://tracker2.postman.i2p/index.php?view=TorrentDetail&id=14336" target="_blank" class="content-btn">MP3 (I2P Torrent)</a>
+</div>
+</div>
+
+<h3 class="content-year">2007-2009</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://www.youtube.com/watch?v=NV90TRs_pGE" target="_blank">Short garlic routing animation</a>
+</div>
+<div class="content-entry-meta">Adrian Crenshaw</div>
+<div class="content-entry-actions">
+<a href="http://www.youtube.com/watch?v=NV90TRs_pGE" target="_blank" class="content-btn">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+YouTube
+</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://www.youtube.com/watch?v=5jv7tVVJdTQ" target="_blank">Felix Atari explains the basic principles of I2P</a>
+</div>
+<div class="content-entry-meta">Agent Felix Atari of the Telecomix Crypto Munitions Bureau</div>
+<div class="content-entry-actions">
+<a href="http://www.youtube.com/watch?v=5jv7tVVJdTQ" target="_blank" class="content-btn">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+</svg>
+YouTube
+</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://www.gulli.com/news/i2p-an-anonymous-network-2009-03-09/" target="_blank">zzz interviewed by gulli.com</a>
+</div>
+<div class="content-entry-meta">March 2009</div>
+<div class="content-entry-actions">
+<a href="http://www.gulli.com/news/i2p-an-anonymous-network-2009-03-09/" target="_blank" class="content-btn">Read (English)</a>
+<a href="http://www.gulli.com/news/i2p-anonymes-netzwerk-im-2009-03-09/" target="_blank" class="content-btn-secondary">Read (German)</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://www.netzwelt.de/news/75371-i2p-das-anonyme-netz-im.html" target="_blank">I2P: Das anonyme Netz im Internet</a>
+</div>
+<div class="content-entry-meta">Netzwelt.de • November 2007 • German</div>
+<div class="content-entry-actions">
+<a href="http://www.netzwelt.de/news/75371-i2p-das-anonyme-netz-im.html" target="_blank" class="content-btn">Read Article</a>
+</div>
+</div>
+
+<h3 class="content-year">2002-2003</h3>
+
+<div class="content-entry">
+<div class="content-entry-title">
+<a href="http://www.bloomberg.com/bw/stories/2003-09-14/the-underground-internet" target="_blank">The Underground Internet</a>
+</div>
+<div class="content-entry-meta">Business Week • September 14, 2003 • References invisiblenet</div>
+<div class="content-entry-actions">
+<a href="http://www.bloomberg.com/bw/stories/2003-09-14/the-underground-internet" target="_blank" class="content-btn">Read Article</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">Lance James (0x90) Interviewed by El País</div>
+<div class="content-entry-meta">October 31, 2002 • Spanish newspaper</div>
+<div class="content-entry-actions">
+<a href="http://invisibleip.sourceforge.net/iip/resources/elpais-iip.txt" target="_blank" class="content-btn">English Translation</a>
+</div>
+</div>
+
+<div class="content-entry">
+<div class="content-entry-title">Lance James (0x90) Interviewed by DistributedCity</div>
+<div class="content-entry-meta">July 26, 2002</div>
+<div class="content-entry-actions">
+<a href="http://invisibleip.sourceforge.net/iip/mediaDCInterview1.php" target="_blank" class="content-btn">Part 1</a>
+<a href="http://invisibleip.sourceforge.net/iip/mediaDCInterview2.php" target="_blank" class="content-btn-secondary">Part 2</a>
+</div>
+</div>
+
+</details>
+
+---
+
+## Brand Assets
+
+Download official I2P logos and brand assets for use in presentations, articles, and projects.
+
+<div class="content-grid">
+
+<div class="content-card">
+<img src="/images/i2plogo_lightmode.svg" alt="I2P Logo Light Mode" style="max-width: 200px; height: auto; margin: 0 auto var(--spacing-md);">
+<h3>Light Mode Logo</h3>
+<p>SVG format for light backgrounds</p>
+<a href="/images/i2plogo_lightmode.svg" download class="content-btn">Download SVG</a>
+</div>
+
+<div class="content-card">
+<img src="/images/i2plogo_darkmode.svg" alt="I2P Logo Dark Mode" style="max-width: 200px; height: auto; margin: 0 auto var(--spacing-md);">
+<h3>Dark Mode Logo</h3>
+<p>SVG format for dark backgrounds</p>
+<a href="/images/i2plogo_darkmode.svg" download class="content-btn">Download SVG</a>
+</div>
+
+<div class="content-card">
+<img src="/images/itoopie.svg" alt="I2P Toopie Mascot" style="max-width: 200px; height: auto; margin: 0 auto var(--spacing-md);">
+<h3>I2P Toopie Mascot</h3>
+<p>Official I2P mascot character</p>
+<a href="/images/itoopie.svg" download class="content-btn">Download SVG</a>
+</div>
+
+</div>
+
+### Usage Guidelines
+
+- **Logo**: Available in light and dark variants. Use the version that provides best contrast for your background.
+- **Mascot**: I2P Toopie can be used in presentations, tutorials, and community materials.
+- **Attribution**: Please credit "The Invisible Internet Project (I2P)" when using these assets.
+- **Modifications**: You may resize the logos, but please do not modify the design or colors.
+
+---
+
+## Additional Resources
+
+- **Research Papers**: See our [Academic Papers](/en/papers) page for peer-reviewed research about I2P
+- **Press Contact**: For press inquiries, email [press@i2p.net](mailto:press@i2p.net)
+- **Submit Content**: To suggest additions to this page, email [press@i2p.net](mailto:press@i2p.net)

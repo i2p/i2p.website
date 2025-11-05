@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Blog | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="Latest news, releases, and updates from the I2P Project">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="Blog | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="Latest news, releases, and updates from the I2P Project">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../en/" class="logo-link">
+                    <img src="../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../en/blog/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../es/blog/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../ko/blog/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../de/blog/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<div class="blog-page">
+    <div class="container">
+        <header class="blog-header">
+            <h1>Blog</h1>
+            
+            <p class="blog-description">Latest news, releases, and updates from the I2P Project</p>
+            
+        </header>
+
+        
+        <div class="category-filter">
+            <a href="../../../../en/blog/" class="filter-btn ">
+                All Posts
+                <span class="count">726</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/community/" class="filter-btn">
+                Community
+                <span class="count">7</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/conferences/" class="filter-btn">
+                Conferences
+                <span class="count">7</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/development/" class="filter-btn">
+                Development
+                <span class="count">9</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/general/" class="filter-btn">
+                General
+                <span class="count">12</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/i2pcon/" class="filter-btn">
+                I2pcon
+                <span class="count">2</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/meeting/" class="filter-btn">
+                Meeting
+                <span class="count">286</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/meetup/" class="filter-btn">
+                Meetup
+                <span class="count">3</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/press/" class="filter-btn">
+                Press
+                <span class="count">4</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/release/" class="filter-btn">
+                Release
+                <span class="count">124</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/reseed/" class="filter-btn">
+                Reseed
+                <span class="count">1</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/roadmap/" class="filter-btn">
+                Roadmap
+                <span class="count">2</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/security/" class="filter-btn">
+                Security
+                <span class="count">2</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/status/" class="filter-btn">
+                Status
+                <span class="count">85</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/summer-dev/" class="filter-btn">
+                Summer-Dev
+                <span class="count">4</span>
+            </a>
+            
+            <a href="//localhost:1313/en/categories/tutorial/" class="filter-btn">
+                Tutorial
+                <span class="count">3</span>
+            </a>
+            
+        </div>
+
+        
+        
+        <div class="post-count">
+            Showing 471–480 of 552 posts
+        </div>
+
+        <div class="blog-list">
+            
+            <article class="blog-item">
+                <a href="//localhost:1313/en/blog/2004/09/14/i2p-status-notes-for-2004-09-14/" class="blog-item-link">
+                    <div class="blog-item-header">
+                        <h2 class="blog-item-title">I2P Status Notes for 2004-09-14</h2>
+                        
+                        <time class="blog-item-date" datetime="2004-09-14">
+                            Sep 14, 2004
+                        </time>
+                        
+                    </div>
+
+                    
+                    <p class="blog-item-excerpt">Weekly I2P status update covering 0.4.0.1 release, threat model updates, website improvements, roadmap changes, and client application development needs</p>
+                    
+
+                    <div class="blog-item-footer">
+                        
+                        <span class="blog-item-author">jr</span>
+                        
+
+                        
+                        <div class="blog-item-categories">
+                            
+                            
+                            <a href="../../../../en/categories/status/" class="category-tag">status</a>
+                            
+                        </div>
+                        
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-item">
+                <a href="//localhost:1313/en/blog/2004/09/08/i2p-status-notes-for-2004-09-08/" class="blog-item-link">
+                    <div class="blog-item-header">
+                        <h2 class="blog-item-title">I2P Status Notes for 2004-09-08</h2>
+                        
+                        <time class="blog-item-date" datetime="2004-09-08">
+                            Sep 8, 2004
+                        </time>
+                        
+                    </div>
+
+                    
+                    <p class="blog-item-excerpt">Weekly I2P status update covering 0.4 release, network capacity issues, website updates, and I2PTunnel interface improvements</p>
+                    
+
+                    <div class="blog-item-footer">
+                        
+                        <span class="blog-item-author">jr</span>
+                        
+
+                        
+                        <div class="blog-item-categories">
+                            
+                            
+                            <a href="../../../../en/categories/status/" class="category-tag">status</a>
+                            
+                        </div>
+                        
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-item">
+                <a href="//localhost:1313/en/blog/2004/09/07/i2p-dev-meeting-september-07-2004/" class="blog-item-link">
+                    <div class="blog-item-header">
+                        <h2 class="blog-item-title">I2P Dev Meeting - September 07, 2004</h2>
+                        
+                        <time class="blog-item-date" datetime="2004-09-07">
+                            Sep 7, 2004
+                        </time>
+                        
+                    </div>
+
+                    
+                    <p class="blog-item-excerpt">I2P development meeting log for September 07, 2004.</p>
+                    
+
+                    <div class="blog-item-footer">
+                        
+                        <span class="blog-item-author">jrandom</span>
+                        
+
+                        
+                        <div class="blog-item-categories">
+                            
+                            
+                            <a href="../../../../en/categories/meeting/" class="category-tag">meeting</a>
+                            
+                        </div>
+                        
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-item">
+                <a href="//localhost:1313/en/blog/2004/08/31/i2p-dev-meeting-august-31-2004/" class="blog-item-link">
+                    <div class="blog-item-header">
+                        <h2 class="blog-item-title">I2P Dev Meeting - August 31, 2004</h2>
+                        
+                        <time class="blog-item-date" datetime="2004-08-31">
+                            Aug 31, 2004
+                        </time>
+                        
+                    </div>
+
+                    
+                    <p class="blog-item-excerpt">I2P development meeting log for August 31, 2004.</p>
+                    
+
+                    <div class="blog-item-footer">
+                        
+                        <span class="blog-item-author">jrandom</span>
+                        
+
+                        
+                        <div class="blog-item-categories">
+                            
+                            
+                            <a href="../../../../en/categories/meeting/" class="category-tag">meeting</a>
+                            
+                        </div>
+                        
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-item">
+                <a href="//localhost:1313/en/blog/2004/08/31/i2p-status-notes-for-2004-08-31/" class="blog-item-link">
+                    <div class="blog-item-header">
+                        <h2 class="blog-item-title">I2P Status Notes for 2004-08-31</h2>
+                        
+                        <time class="blog-item-date" datetime="2004-08-31">
+                            Aug 31, 2004
+                        </time>
+                        
+                    </div>
+
+                    
+                    <p class="blog-item-excerpt">Weekly I2P status update covering network performance degradation, 0.3.5 release planning, documentation needs, and Stasher DHT progress</p>
+                    
+
+                    <div class="blog-item-footer">
+                        
+                        <span class="blog-item-author">jr</span>
+                        
+
+                        
+                        <div class="blog-item-categories">
+                            
+                            
+                            <a href="../../../../en/categories/status/" class="category-tag">status</a>
+                            
+                        </div>
+                        
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-item">
+                <a href="//localhost:1313/en/blog/2004/08/24/i2p-dev-meeting-august-24-2004/" class="blog-item-link">
+                    <div class="blog-item-header">
+                        <h2 class="blog-item-title">I2P Dev Meeting - August 24, 2004</h2>
+                        
+                        <time class="blog-item-date" datetime="2004-08-24">
+                            Aug 24, 2004
+                        </time>
+                        
+                    </div>
+
+                    
+                    <p class="blog-item-excerpt">I2P development meeting log for August 24, 2004.</p>
+                    
+
+                    <div class="blog-item-footer">
+                        
+                        <span class="blog-item-author">jrandom</span>
+                        
+
+                        
+                        <div class="blog-item-categories">
+                            
+                            
+                            <a href="../../../../en/categories/meeting/" class="category-tag">meeting</a>
+                            
+                        </div>
+                        
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-item">
+                <a href="//localhost:1313/en/blog/2004/08/24/i2p-status-notes-for-2004-08-24/" class="blog-item-link">
+                    <div class="blog-item-header">
+                        <h2 class="blog-item-title">I2P Status Notes for 2004-08-24</h2>
+                        
+                        <time class="blog-item-date" datetime="2004-08-24">
+                            Aug 24, 2004
+                        </time>
+                        
+                    </div>
+
+                    
+                    <p class="blog-item-excerpt">Weekly I2P status update covering 0.3.4.3 release, new router console features, 0.4 progress, and various improvements</p>
+                    
+
+                    <div class="blog-item-footer">
+                        
+                        <span class="blog-item-author">jr</span>
+                        
+
+                        
+                        <div class="blog-item-categories">
+                            
+                            
+                            <a href="../../../../en/categories/status/" class="category-tag">status</a>
+                            
+                        </div>
+                        
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-item">
+                <a href="//localhost:1313/en/blog/2004/08/17/i2p-dev-meeting-august-17-2004/" class="blog-item-link">
+                    <div class="blog-item-header">
+                        <h2 class="blog-item-title">I2P Dev Meeting - August 17, 2004</h2>
+                        
+                        <time class="blog-item-date" datetime="2004-08-17">
+                            Aug 17, 2004
+                        </time>
+                        
+                    </div>
+
+                    
+                    <p class="blog-item-excerpt">I2P development meeting log for August 17, 2004.</p>
+                    
+
+                    <div class="blog-item-footer">
+                        
+                        <span class="blog-item-author">jrandom</span>
+                        
+
+                        
+                        <div class="blog-item-categories">
+                            
+                            
+                            <a href="../../../../en/categories/meeting/" class="category-tag">meeting</a>
+                            
+                        </div>
+                        
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-item">
+                <a href="//localhost:1313/en/blog/2004/08/17/i2p-status-notes-for-2004-08-17/" class="blog-item-link">
+                    <div class="blog-item-header">
+                        <h2 class="blog-item-title">I2P Status Notes for 2004-08-17</h2>
+                        
+                        <time class="blog-item-date" datetime="2004-08-17">
+                            Aug 17, 2004
+                        </time>
+                        
+                    </div>
+
+                    
+                    <p class="blog-item-excerpt">Weekly I2P status update covering network performance issues, DoS attacks, and Stasher DHT development</p>
+                    
+
+                    <div class="blog-item-footer">
+                        
+                        <span class="blog-item-author">jr</span>
+                        
+
+                        
+                        <div class="blog-item-categories">
+                            
+                            
+                            <a href="../../../../en/categories/status/" class="category-tag">status</a>
+                            
+                        </div>
+                        
+                    </div>
+                </a>
+            </article>
+            
+            <article class="blog-item">
+                <a href="//localhost:1313/en/blog/2004/08/10/i2p-dev-meeting-august-10-2004/" class="blog-item-link">
+                    <div class="blog-item-header">
+                        <h2 class="blog-item-title">I2P Dev Meeting - August 10, 2004</h2>
+                        
+                        <time class="blog-item-date" datetime="2004-08-10">
+                            Aug 10, 2004
+                        </time>
+                        
+                    </div>
+
+                    
+                    <p class="blog-item-excerpt">I2P development meeting log for August 10, 2004.</p>
+                    
+
+                    <div class="blog-item-footer">
+                        
+                        <span class="blog-item-author">jrandom</span>
+                        
+
+                        
+                        <div class="blog-item-categories">
+                            
+                            
+                            <a href="../../../../en/categories/meeting/" class="category-tag">meeting</a>
+                            
+                        </div>
+                        
+                    </div>
+                </a>
+            </article>
+            
+        </div>
+
+        
+        
+        <nav class="pagination">
+            
+            <a href="../../../../en/blog/page/47/" class="pagination-btn prev">
+                ← Previous
+            </a>
+            
+
+            <div class="pagination-numbers">
+                
+                
+                
+
+                
+                    
+                    
+                    <a href="../../../../en/blog/" class="pagination-number">1</a>
+                    
+
+                    
+                    
+                    <span class="pagination-ellipsis">…</span>
+                    
+
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                                
+                                    
+                                    <a href="../../../../en/blog/page/47/" class="pagination-number">47</a>
+                                    
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                    
+                                    <span class="pagination-number active">48</span>
+                                    
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                    
+                                    <a href="../../../../en/blog/page/49/" class="pagination-number">49</a>
+                                    
+                                
+                            
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+
+                    
+                    
+                    <span class="pagination-ellipsis">…</span>
+                    
+
+                    
+                    
+                    <a href="../../../../en/blog/page/56/" class="pagination-number">56</a>
+                    
+                
+            </div>
+
+            
+            <a href="../../../../en/blog/page/49/" class="pagination-btn next">
+                Next →
+            </a>
+            
+        </nav>
+        
+
+        
+    </div>
+</div>
+
+<style>
+.blog-page {
+    padding: var(--spacing-2xl) 0;
+}
+
+.blog-header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.blog-header h1 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.blog-description {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+ 
+.category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    transition: color var(--transition-fast);
+}
+
+.filter-btn:hover {
+    color: var(--color-primary);
+}
+
+.filter-btn.active {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.filter-btn .count {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+}
+
+.filter-btn.active .count {
+    color: var(--color-primary);
+}
+
+ 
+.post-count {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+}
+
+.blog-list {
+    display: grid;
+    gap: var(--spacing-md);
+    max-width: 1000px;
+}
+
+.blog-item {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--spacing-md);
+}
+
+.blog-item:nth-child(even) {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-md);
+    margin: 0 calc(var(--spacing-md) * -1);
+    border-radius: var(--radius-md);
+}
+
+.blog-item:last-child {
+    border-bottom: none;
+}
+
+.blog-item-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-fast);
+}
+
+.blog-item-link:hover {
+    padding-left: var(--spacing-sm);
+}
+
+.blog-item-link:hover .blog-item-title {
+    color: var(--color-primary);
+}
+
+.blog-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+}
+
+.blog-item-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    transition: color var(--transition-fast);
+    flex: 1;
+}
+
+.blog-item-date {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.blog-item-excerpt {
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    margin-bottom: var(--spacing-sm);
+}
+
+.blog-item-footer {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-size: 0.8125rem;
+}
+
+.blog-item-author {
+    color: var(--color-text-muted);
+}
+
+.blog-item-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-left: auto;
+}
+
+.category-tag {
+    padding: 0.125rem 0.5rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.category-tag:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-1px);
+}
+
+ 
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.pagination-btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.pagination-btn:not(.disabled):hover {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.pagination-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.pagination-numbers {
+    display: flex;
+    gap: var(--spacing-xs);
+    align-items: center;
+}
+
+.pagination-number {
+    min-width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.pagination-number:hover {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-primary);
+}
+
+.pagination-number.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.pagination-ellipsis {
+    padding: 0 var(--spacing-xs);
+    color: var(--color-text-muted);
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-3xl) 0;
+    color: var(--color-text-muted);
+}
+
+@media (max-width: 768px) {
+    .blog-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .category-filter {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: var(--spacing-md);
+    }
+
+    .filter-btn {
+        white-space: nowrap;
+    }
+
+    .pagination {
+        flex-direction: column;
+    }
+
+    .pagination-numbers {
+        order: -1;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .pagination-number {
+        min-width: 2rem;
+        height: 2rem;
+        font-size: 0.875rem;
+    }
+
+    .blog-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .blog-item-title {
+        font-size: 1.125rem;
+    }
+
+    .blog-item-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .blog-item-categories {
+        margin-left: 0;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../en/privacy/">Privacy</a>
+                <a href="../../../../en/terms/">Terms</a>
+                <a href="../../../../en/impressum/">Impressum</a>
+                <a href="../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

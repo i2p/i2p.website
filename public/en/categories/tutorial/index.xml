@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorial on I2P - The Invisible Internet Project</title>
+    <link>//localhost:1313/en/categories/tutorial/</link>
+    <description>Recent content in Tutorial on I2P - The Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 27 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/en/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Speeding up your I2P network</title>
+      <link>//localhost:1313/en/blog/2019/07/27/speeding-up-your-i2p-network/</link>
+      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/07/27/speeding-up-your-i2p-network/</guid>
+      <description>&lt;p&gt;&lt;em&gt;This post is adapted directly from material originally created for mhatta&amp;rsquo;s&lt;/em&gt; &lt;a href=&#34;https://medium.com/@mhatta/speeding-up-your-i2p-network-c08ec9de225d&#34;&gt;medium blog&lt;/a&gt; &lt;em&gt;.&lt;/em&gt; &lt;em&gt;He deserves the credit for the OP. It has been updated in certain places where&lt;/em&gt; &lt;em&gt;it refers to old versions of I2P as current and has undergone some light&lt;/em&gt; &lt;em&gt;editing. -idk&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Right after it starts up, I2P is often seen as a little bit slow. It&amp;rsquo;s true, and we all know why, by nature, &lt;a href=&#34;https://en.wikipedia.org/wiki/Garlic_routing&#34;&gt;garlic routing&lt;/a&gt; adds overhead to the familiar experience of using the internet so that you can have privacy, but this means that for many or most I2P services, your data will need to go through 12 hops by default.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Basic I2P Tunnels Tutorial with Pictures</title>
+      <link>//localhost:1313/en/blog/2019/06/02/basic-i2p-tunnels-tutorial-with-pictures/</link>
+      <pubDate>Sun, 02 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/06/02/basic-i2p-tunnels-tutorial-with-pictures/</guid>
+      <description>&lt;p&gt;Although the Java I2P router comes pre-configured with a static web server, jetty, to provide the user&amp;rsquo;s first eepSite, many require more sophisticated functionality from their web server and would rather create an eepSite with a different server. This is of course possible, and actually is really easy once you&amp;rsquo;ve done it one time.&lt;/p&gt;&#xA;&lt;p&gt;Although it is easy to do, there are a few things you should consider before doing it. You will want to remove identifying characteristics from your web server, like potentially identifying headers and default error pages that report the server/distro type. More information about threats to anonymity posed by improperly configured applications see: &lt;a href=&#34;https://riseup.net/en/security/network-security/tor/onionservices-best-practices&#34;&gt;Riseup here&lt;/a&gt;, &lt;a href=&#34;https://www.whonix.org/wiki/Onion_Services&#34;&gt;Whonix Here&lt;/a&gt;, &lt;a href=&#34;https://blog.0day.rocks/securing-a-web-hidden-service-89d935ba1c1d&#34;&gt;This blog article for some opsec fails&lt;/a&gt;, &lt;a href=&#34;https://geti2p.net/en/docs/applications/supported&#34;&gt;and the I2P applications page here&lt;/a&gt;. Although much of this information is expressed for Tor Onion Services, the same procedures and principles apply to hosting applications over I2P.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to offer your existing Web Site as an I2P eepSite</title>
+      <link>//localhost:1313/en/blog/2019/06/02/how-to-offer-your-existing-web-site-as-an-i2p-eepsite/</link>
+      <pubDate>Sun, 02 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/06/02/how-to-offer-your-existing-web-site-as-an-i2p-eepsite/</guid>
+      <description>&lt;p&gt;This blog post is intended as a general guide to running a mirror of a clear-net service as an eepSite. It elaborates on the previous blog post about basic I2PTunnel tunnels.&lt;/p&gt;&#xA;&lt;p&gt;Unfortunately, it&amp;rsquo;s probably impossible to &lt;em&gt;completely&lt;/em&gt; cover all possible cases of making an existing web site available as an eepSite, there&amp;rsquo;s simply too diverse an array of server-side software, not to mention the in-practice peculiarities of any particular deployment of software. Instead, I&amp;rsquo;m going to try and convey, as specifically as possible, the general process preparing a service for deployment to the eepWeb or other hidden services.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

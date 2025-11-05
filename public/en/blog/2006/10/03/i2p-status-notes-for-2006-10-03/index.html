@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Status Notes for 2006-10-03 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="Network performance analysis, CPU bottleneck investigation, Syndie 1.0 release planning, and distributed version control evaluation">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Status Notes for 2006-10-03 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="Network performance analysis, CPU bottleneck investigation, Syndie 1.0 release planning, and distributed version control evaluation">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2006/10/03/i2p-status-notes-for-2006-10-03/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2006/10/03/i2p-status-notes-for-2006-10-03/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2006-10-03">
+                    October 3, 2006
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">status</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Status Notes for 2006-10-03</h1>
+
+            
+            <div class="post-author">By jr</div>
+            
+        </div>
+
+        <div class="post-content">
+            <p>Hi y&rsquo;all, a belated status notes this week</p>
+<ul>
+<li>Index</li>
+</ul>
+<ol>
+<li>Net status</li>
+<li>Router dev status</li>
+<li>Syndie rationale continued</li>
+<li>Syndie dev status</li>
+<li>Distributed version control</li>
+<li>???</li>
+</ol>
+<ul>
+<li>
+<ol>
+<li>Net status</li>
+</ol>
+</li>
+</ul>
+<p>The past week or two have been fairly stable on irc and other services, though dev.i2p/squid.i2p/www.i2p/cvs.i2p had a few bumps (due to temporary OS-related issues). Things seem to be at a steady state at the moment.</p>
+<ul>
+<li>
+<ol start="2">
+<li>Router dev status</li>
+</ol>
+</li>
+</ul>
+<p>The flip side to the Syndie discussion is &ldquo;so, what does that mean for the router?&rdquo;, and to answer that, let me explain a bit where the router development stands right now.</p>
+<p>On the whole, the thing holding the router back from 1.0 is in my view its performance, not its anonymity properties. Certainly, there are anonymity issues to improve, but while we do get pretty good performance for an anonymous network, our performance is not sufficient for wider use. In addition, improvements to the anonymity of the network will not improve its performance (in most instances I can think of, anonymity improvements reduce throughput and increase latency). We need to sort out the performance issues first, for if the performance is insufficient, the whole system is insufficient, regardless of how strong its anonymity techniques are.</p>
+<p>So, what is keeping our performance back? Oddly enough, it seems to be our CPU usage. Before we get to exactly why, a little more background first.</p>
+<ul>
+<li>to prevent partitioning attacks, we all need to plausibly build
+our tunnels from the same pool of routers.</li>
+<li>to allow the tunnels to be of manageable length (and source
+routed), the routers in that pool must be directly reachable by
+anyone.</li>
+<li>the bandwidth costs of receiving and rejecting tunnel join
+requests exceeds the capacity of dialup users on burst.</li>
+</ul>
+<p>Therefore, we need tiers of routers - some globally reachable with high bandwidth limits (tier A), some not (tier B). This has already in effect been implemented through the capacity information in the netDb, and as of a day or two ago, the ratio of tier B to tier A has been around 3 to 1 (93 routers of cap L, M, N, or O, and 278 of cap K).</p>
+<p>Now, there are basically two scarce resources to be managed in tier A - bandwidth and CPU. Bandwidth can be managed by the usual means (split load across a wide pool, have some peers handle insane amounts [e.g. those on T3s], and reject or throttle individual tunnels and connections).</p>
+<p>Managing CPU usage is harder. The primary CPU bottleneck seen on tier A routers is the decryption of tunnel build requests. Large routers can be (and are) entirely consumed by this activity - for instance, the lifetime average tunnel decrypt time on one of my routers is 225ms, and the lifetime <em>average</em> frequency of a tunnel request decryption is 254 events per 60 seconds, or 4.2 per second. Simply multiplying those two together and that shows that 95% of the CPU is consumed by tunnel request decryption alone (and that doesn&rsquo;t take into consideration the spikes in the event counts). That router still somehow manages to participate in 4-6000 tunnels at a time, accepting approximately 80% of the decrypted requests.</p>
+<p>Unfortunately, because the CPU on that router is so heavily loaded, it has to drop a significant number of tunnel build requests before they can even be decrypted (otherwise the requests would sit on the queue so long that even if they were accepted, the original requestor would have considered them lost or too loaded to do anything anyway). In that light, the router&rsquo;s 80% accept rate looks much worse - over its lifetime, it decrypted around 250k requests (meaning around 200k were accepted), but it had to drop around 430k requests in the decrypt queue due to CPU overload (turning that 80% accept rate into 30%).</p>
+<p>The solutions seem to be along the lines of reducing the relevent CPU cost for tunnel request decryption. If we cut the CPU time by an order of magnitude, that would increase the tier A router&rsquo;s capacity substantially, thereby reducing rejections (both explicit and implicit, due to dropped requests). That in turn would increase the tunnel build success rate, thereby reducing the frequency of lease expirations, which would then reduce the bandwidth load on the network due to tunnel rebuilding.</p>
+<p>One method for doing this would be to change the tunnel build requests from using 2048bit Elgamal to, say, 1024bit or 768bit. The problem there though is that if you break the encryption on a tunnel build request message, you know the full path of the tunnel. Even if we went this route, how much would it buy us? An improvement by an order of magnitude in the decryption time could be wiped out by an increase of an order of magnitude in the ratio of tier B to tier A (aka the freeriders problem), and then we&rsquo;d be stuck, since there&rsquo;s no way we could move to 512 or 256bit Elgamal (and look ourselves in the mirror ;)</p>
+<p>One alternative would be to use weaker crypto but drop the protection for packet counting attacks that we added in with the new tunnel build process. That would allow us to use entirely ephemeral negotiated keys in a Tor-like telescopic tunnel (though, again, would expose the tunnel creator to trivial passive packet counting attacks that identify a service).</p>
+<p>Another idea is to publish and use even more explicit load information in the netDb, allowing clients to more accurately detect situations like the one above where a high bandwidth router drops 60% of its tunnel request messages without even looking at them. There are a few experiments worth doing along this avenue, and they can be done with full backwards compatability, so we should be seeing them soon.</p>
+<p>So, that&rsquo;s the bottleneck in the router/network as I see it today. Any and all suggestions for how we can deal with it would very much be appreciated.</p>
+<ul>
+<li>
+<ol start="3">
+<li>Syndie rationale continued</li>
+</ol>
+</li>
+</ul>
+<p>There&rsquo;s a meaty post up on the forum regarding Syndie and where it fits in with things - check it out at
+<a href="http://forum.i2p.net/viewtopic.php?t=1910">http://forum.i2p.net/viewtopic.php?t=1910</a></p>
+<p>Also, I&rsquo;d just like to highlight two snippets from the Syndie docs being worked on. First, from irc (and the not-yet-out-there FAQ):</p>
+<p><bar> a question i&rsquo;ve been pondering is, who is later going to have
+balls big enough to host syndie production servers/archives?
+<bar> aren&rsquo;t those going to be as easy to track down as the eepsites(I2P Sites)
+are today?
+<jrandom> public syndie archives do not have the ability to
+<em>read</em> the content posted to forums, unless the forums publish
+the keys to do so
+<jrandom> and see the second paragraph of usecases.html
+<jrandom> of course, those hosting archives given lawful
+orders to drop a forum will probably do so
+<jrandom> (but then people can move to another
+archive, without disrupting the forum&rsquo;s operation)
+<void> yeah, you should mention the fact that migration to a
+different medium is going to be seamless
+<bar> if my archive shuts down, i can upload my whole forum to a new
+one, right?
+<jrandom> &lsquo;zactly bar
+<void> they can use two methods at the same time while migrating
+<void> and anyone is able to synchronize the mediums
+<jrandom> right void</p>
+<p>The relevent section of (the not yet published) Syndie usecases.html is:</p>
+<p>While many different groups often want to organize discussions into
+an online forum, the centralized nature of traditional forums
+(websites, BBSes, etc) can be a problem. For instance, the site
+hosting the forum can be taken offline through denial of service
+attacks or administrative action. In addition, the single host
+offers a simple point to monitor the group&rsquo;s activity, so that even
+if a forum is pseudonymous, those pseudonyms can be tied to the IP
+that posted or read individual messages.</p>
+<p>In addition, not only are the forums decentralized, they are
+organized in an ad-hoc manner yet fully compatible with other
+organization techniques. This means that some small group of people
+can run their forum using one technique (distributing the messages
+by pasting them on a wiki site), another can run their forum using
+another technique (posting their messages in a distributed
+hashtable like OpenDHT, yet if one person is aware of both
+techniques, they can synchronize the two forums together. This lets
+the people who were only aware of the wiki site talk to people who
+were only aware of the OpenDHT service without knowing anything
+about each other. Extended further, Syndie allows individual cells
+to control their own exposure while communicating across the whole
+organization.</p>
+<ul>
+<li>
+<ol start="4">
+<li>Syndie dev status</li>
+</ol>
+</li>
+</ul>
+<p>There&rsquo;s been lots of progress on Syndie lately, with 7 alpha releases handed out to folks on the irc channel. Most of the major issues in the scriptable interface have been addressed, and I&rsquo;m hoping we can get the Syndie 1.0 release out later this month.</p>
+<p>Did I just say &ldquo;1.0&rdquo;? You betcha! While Syndie 1.0 will be a text based application, and won&rsquo;t even be comparable to the usability of other comparable text based apps (such as mutt or tin), it will provide the full range of functionality, allow HTTP and file based syndication strategies, and hopefully demonstrate to potential developers Syndie&rsquo;s capabilities.</p>
+<p>Right now, I&rsquo;m penciling in a Syndie 1.1 release (allowing people to organize their archives and reading habits better) and maybe a 1.2 release to integrate some search functionality (both simple searches and maybe lucene&rsquo;s fulltext searches). Syndie 2.0 will probably be the first GUI release, with the browser plugin coming with 3.0. Support for additional archives and message distribution networks will be coming when implemented, of course (freenet, mixminion/mixmaster/smtp, opendht, gnutella, etc).</p>
+<p>I realize though that Syndie 1.0 won&rsquo;t be the earth shaker that some want, as text based apps are really for the geeks, but I&rsquo;d like to try to break us of the habit of viewing &ldquo;1.0&rdquo; as a terminal release and instead consider it a beginning.</p>
+<ul>
+<li>
+<ol start="5">
+<li>Distributed version control</li>
+</ol>
+</li>
+</ul>
+<p>So far, I&rsquo;ve been mucking around with subversion as the vcs for Syndie, even though I&rsquo;m only really fluent in CVS and clearcase. This is because I&rsquo;m offline most of the time, and even when I am online, dialup is slow, so subversion&rsquo;s local diff/revert/etc has been quite handy. However, yesterday void poked me with the suggestion that we look into one of the distributed systems instead.</p>
+<p>I looked at them a few years back when evaluating a vcs for I2P, but I dismissed them because I didn&rsquo;t need their offline functionality (I had good net access then) so learning them wasn&rsquo;t worthwhile. Thats not the case anymore, so I&rsquo;m looking at them a bit more now.</p>
+<ul>
+<li>From what I can see, darcs, monotone, and codeville are the top
+contenders, and darcs&rsquo; patch-based vcs seems particularly attractive.
+For instance, I can do all my work locally and just scp up the
+gzip&rsquo;ed &amp; gpg&rsquo;ed diffs to an apache directory on dev.i2p.net, and
+people can contribute their own changes by posting their gzip&rsquo;ed and
+gpg&rsquo;ed diffs to locations of their choice. When it comes time to tag
+a release, I&rsquo;d make a darcs diff which specifies the set of patches
+contained within the release and push that .gz&rsquo;ed/.gpg&rsquo;ed diff up
+like the others (as well as push out actual tar.bz2, .exe, and .zip
+files, of course ;)</li>
+</ul>
+<p>And, as a particularly interesting point, these gzip&rsquo;ed/gpg&rsquo;ed diffs
+can be posted as attachments to Syndie messages, allowing Syndie to
+be self-hosting.</p>
+<p>Anyone have any experience with these suckers though? Any advice?</p>
+<ul>
+<li>
+<ol start="6">
+<li>???</li>
+</ol>
+</li>
+</ul>
+<p>Only 24 screenfulls of text this time (including the forum post) ;)
+I unfortunately wasn&rsquo;t able to make it to the meeting, but as always,
+I&rsquo;d love to hear from you if you&rsquo;ve got any ideas or suggestions -
+just post up to the list, the forum, or swing on by IRC.</p>
+<p>=jr</p>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on I2P - The Invisible Internet Project</title>
+    <link>//localhost:1313/en/categories/</link>
+    <description>Recent content in Categories on I2P - The Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/en/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Community</title>
+      <link>//localhost:1313/en/categories/community/</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/community/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Release</title>
+      <link>//localhost:1313/en/categories/release/</link>
+      <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/release/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Development</title>
+      <link>//localhost:1313/en/categories/development/</link>
+      <pubDate>Fri, 29 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/development/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Meeting</title>
+      <link>//localhost:1313/en/categories/meeting/</link>
+      <pubDate>Tue, 07 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/meeting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>General</title>
+      <link>//localhost:1313/en/categories/general/</link>
+      <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/general/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Security</title>
+      <link>//localhost:1313/en/categories/security/</link>
+      <pubDate>Sat, 11 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/security/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Status</title>
+      <link>//localhost:1313/en/categories/status/</link>
+      <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/status/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reseed</title>
+      <link>//localhost:1313/en/categories/reseed/</link>
+      <pubDate>Sun, 07 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/reseed/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Conferences</title>
+      <link>//localhost:1313/en/categories/conferences/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/conferences/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorial</title>
+      <link>//localhost:1313/en/categories/tutorial/</link>
+      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/tutorial/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Meetup</title>
+      <link>//localhost:1313/en/categories/meetup/</link>
+      <pubDate>Mon, 12 Feb 2018 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/meetup/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Roadmap</title>
+      <link>//localhost:1313/en/categories/roadmap/</link>
+      <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/roadmap/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Summer-Dev</title>
+      <link>//localhost:1313/en/categories/summer-dev/</link>
+      <pubDate>Thu, 01 Jun 2017 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/summer-dev/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>I2pcon</title>
+      <link>//localhost:1313/en/categories/i2pcon/</link>
+      <pubDate>Thu, 20 Aug 2015 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/i2pcon/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Press</title>
+      <link>//localhost:1313/en/categories/press/</link>
+      <pubDate>Mon, 01 Dec 2014 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/categories/press/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

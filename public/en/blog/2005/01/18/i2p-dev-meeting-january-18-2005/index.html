@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Dev Meeting - January 18, 2005 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="I2P development meeting log for January 18, 2005.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Dev Meeting - January 18, 2005 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="I2P development meeting log for January 18, 2005.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2005/01/18/i2p-dev-meeting-january-18-2005/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2005/01/18/i2p-dev-meeting-january-18-2005/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2005-01-18">
+                    January 18, 2005
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">meeting</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Dev Meeting - January 18, 2005</h1>
+
+            
+            <div class="post-author">By jrandom</div>
+            
+        </div>
+
+        <div class="post-content">
+            <h2 id="quick-recap">Quick recap</h2>
+<p class="attendees-inline"><strong>Present:</strong> ant, bla, BrockSamson, cervantes, dox, duck, Frooze, jrandom, kaji, mule, orion, polecat, postman, protokol, Ragnarok, Teal`c, Xan</p>
+<h2 id="meeting-log">Meeting Log</h2>
+<div class="irc-log">
+13:04 &lt;jrandom&gt; 0) hi
+13:04 &lt;jrandom&gt; 1) Net status
+13:04 &lt;jrandom&gt; 2) 0.5
+13:04 &lt;jrandom&gt; 3) i2pmail.v2
+13:04 &lt;jrandom&gt; 4) azneti2p_0.2
+13:04 &lt;jrandom&gt; 5) ???
+13:04 &lt;ant&gt; &lt;duck&gt; (the sound of the crypto talk flying past my ears)
+13:04 &lt;jrandom&gt; :)
+13:04  * jrandom waves
+13:04 &lt;cervantes&gt; 'lo
+13:04 &lt;jrandom&gt; you too can listen to the sound of crypto talk flying past your ears!  weekly status note posted @ http://dev.i2p.net/pipermail/i2p/2005-January/000559.html
+13:05 &lt;bla&gt; hi
+13:05 &lt;jrandom&gt; jumping on in, since we're cutting into an interesting discussion anyway... 1) net status
+13:05 &lt;jrandom&gt; i dont really have anything to add beyond whats in the mail - anyone have anything they want to bring up wrt the net status?
+13:06 &lt;bla&gt; Other that we have, for the first time, seen nodes on *all* continents except Antarctica, no.
+13:06 &lt;jrandom&gt; w00t!
+13:07 &lt;jrandom&gt; ok, moving on to 2) 0.5 stuff
+13:07 &lt;mule&gt; hey, my father is just on his way to antarctica, should have given him a node
+13:07 &lt;ant&gt; &lt;duck&gt; bloody Antarticans
+13:07 &lt;Xan&gt; no antarcticans? :(
+13:07 &lt;jrandom&gt; hah nice
+13:07 &lt;jrandom&gt; though i dont think there's much of an anonymity set up there 
+13:07 &lt;Frooze&gt; blame antarctica
+13:08  * cervantes sets up an oil rig in antartica so he can finance a node there
+13:09 &lt;jrandom&gt; ok ok, there's a lot of 0.5 stuff, so we can take it in pieces
+13:09 &lt;jrandom&gt; first up, thanks to the folks who gathered a days worth of stats - lots of interesting data @ http://dev.i2p.net/~jrandom/messageSizes/
+13:09 &lt;postman&gt; it was a pleasure :)
+13:10 &lt;cervantes&gt; wrt net status...seen quite a few people having troubles getting I2P up and running lately (on the forums etc) - I don't know if that's just down to increase user volume or perhaps more i2p based apps for things to go wrong with
+13:10 &lt;+protokol&gt; jrandom: LIAR! you said the data was interesting!
+13:10  * jrandom flings mud at protokol 
+13:11 &lt;ant&gt; &lt;duck&gt; cervantes: I have also seen reports of ppl able to get it up and running within a couple of minutes
+13:11 &lt;ant&gt; &lt;duck&gt; I think that NAT is causing most problems
+13:11 &lt;cervantes&gt; duck: true...
+13:11 &lt;ant&gt; &lt;dmdm&gt; who is NAT?
+13:11 &lt;jrandom&gt; cervantes: there are some ugly issues still, certainly.  the NAT issue and osx has been a bit of a pain lately, but Jhor's help with the later should improve the later
+13:12 &lt;cervantes&gt; aye
+13:12 &lt;cervantes&gt; *cough* so... 0.5
+13:13 &lt;Xan&gt; dmdm: network address translation
+13:13 &lt;jrandom&gt; heh, ok.  basically the drive with those message size stats is to explore the padding issues 
+13:14 &lt;jrandom&gt; unfortunately, the strategy i built by cherry picking numbers sucked, giving a 25% overhead just with padding data
+13:14 &lt;jrandom&gt; if we go with one of the proposals for the 0.5 encryption (tunnels-alt.html), we won't have that issue
+13:15 &lt;jrandom&gt; (since it'll force small fixes sizes with fragmentation)
+13:15 &lt;mule&gt; what type of messages do you want to pad, those a router sees or those an external observer sees?
+13:15 &lt;jrandom&gt; mule: important question
+13:15 &lt;jrandom&gt; if we're just worried about the external observer, we can leave the messages unpadded, doing any chaff generation at the transport layer
+13:16 &lt;Teal`c&gt; http://microsoft.i2p/david_hasselhoff_05_christmas_album__silent_night.mp3
+13:16 &lt;jrandom&gt; otoh, if we're worried about tunnel participants doing flow analysis, we need to worry about padding down the tunnel
+13:16 &lt;@duck&gt; with 5-6 hops, how big is the danger of a router doing traffic analysis?
+13:16 &lt;cervantes&gt; Teal`c: meeting atm... can you use #i2p-chat for mp3 announce ;-)
+13:17 &lt;Teal`c&gt; sorry
+13:17 &lt;cervantes&gt; :) for david hasselhoff?
+13:18 &lt;jrandom&gt; depends upon what level of analysis duck.  if they've somehow tracked down what tunnel they're in (e.g. they're the inbound tunnel gateway and have harvested the netDb, correlatign that with a destination), thats nontrivial data.  otoh its not a direct exposure, but does give some info
+13:18 &lt;jrandom&gt; even more than the tunnel padding though is end to end padding, hiding message flow data from gateways and endpoints.
+13:19 &lt;jrandom&gt; if we're crazy/stupid, we could go all the way to a pipenet, using constant bitrate everywhere
+13:19 &lt;+polecat&gt; I got it!
+13:19 &lt;jrandom&gt; (and end up with no users running i2p)
+13:19 &lt;+polecat&gt; What we need to do is tunnel i2p over email!
+13:19 &lt;cervantes&gt; what's the likelyhood of colluding routers ending up in the same tunnel on a sufficiently large network?
+13:19 &lt;+polecat&gt; No ISP would be dumb enough to stop email!
+13:20  * jrandom awaits the net.i2p.router.transport.gmail implementation
+13:20 &lt;postman&gt; polecat: gee , this is silly 
+13:20 &lt;postman&gt; :)
+13:20 &lt;bla&gt; cervantes: N^(-h) (N is # of fast nodes, h = # hops). It seems
+13:20 &lt;+polecat&gt; =3   I know.
+13:21 &lt;cervantes&gt; is that a lot? :)
+13:21 &lt;jrandom&gt; not the # of fast nodes, as external people won't know your profiles
+13:21 &lt;+polecat&gt; Seriously though, in shameless abuse of existing IP services, we could tunnel i2p in any number of ingenious ways.
+13:21 &lt;jrandom&gt; c^2/N^h to get two peers into the same tunnel
+13:21 &lt;jrandom&gt; agreed polecat.  thats one of the reasons why we don't have bidirectional tunnels
+13:22 &lt;jrandom&gt; some transports (e.g. email) suck for bidirectional comm
+13:22 &lt;bla&gt; jrandom: c = ?
+13:22 &lt;jrandom&gt; c==# colluding peers
+13:23 &lt;+polecat&gt; Hm, interesting point.
+13:23 &lt;ant&gt; &lt;duck&gt; roadmap wise, what is the impact of i2p going a wrong direction and picking a wrong crypto solution?
+13:23 &lt;+polecat&gt; Or carrier pigeon protocol, not bidi in the slightest.
+13:23 &lt;+polecat&gt; crypto is modular already, isn't it?
+13:23 &lt;jrandom&gt; duck: its just one bullet point out of 0.5, and one subsection of the tunnels*.html doc.  theres lots more to the tunnel routing than just how we wrap the data
+13:24 &lt;bla&gt; jrandom: Then again, this is the prob. for getting them in the tunnel *now*. However, over T tunnel refreshments (every so many minutes), this goes as P = 1 - (1 - c^2/N^h)^T
+13:24 &lt;jrandom&gt; otoh, the difference between "fixed 1KB blocks" and "0-40KB blocks" has substantial impact
+13:24 &lt;+polecat&gt; I'd hate to see this network go the way of Entropy, stuck in McEliece.
+13:24 &lt;jrandom&gt; polecat: read http://dev.i2p.net/cgi-bin/cvsweb.cgi/i2p/router/doc/tunnel-alt.html?rev=HEAD
+13:24 &lt;bla&gt; jrandom: And thus tends to zero for large enough time. I.e.: for large enough time, the attackers will be in the same tunnel at last one time
+13:25 &lt;jrandom&gt; the plan is standard AES256/CBC
+13:25 &lt;+protokol&gt; i hear dns is good for tunneling stuff, most people dont block it
+13:25 &lt;jrandom&gt; certainly bla, though its not quite that direct (for exploratory tunnels it is, but not for client tunnels)
+13:26 &lt;+polecat&gt; And if somehow even AES gets cracked, some equivalent symmetric cipher.
+13:27 &lt;jrandom&gt; bla: i dont think its large enough of a practical worry for most cases in that degree, but when you mount it as part of a predecessor attack, the issue is largely moot
+13:28 &lt;jrandom&gt; (because of the way we do the rest of the tunnel routing)
+13:28 &lt;bla&gt; jrandom: k
+13:28 &lt;jrandom&gt; right polecat 
+13:29 &lt;jrandom&gt; duck: if we go w/ the second option, changing to another later will likely be easy.  
+13:29 &lt;jrandom&gt; otoh, the second option will require some hefty performance tuning to Not Suck
+13:29 &lt;jrandom&gt; but i'm sure we can pull it off
+13:31 &lt;jrandom&gt; anyway, I think the above covers where we are right now wrt 0.5 work
+13:31 &lt;jrandom&gt; does anyone have any more questions/comments/concerns?
+13:31 &lt;bla&gt; jrandom: One
+13:32 &lt;bla&gt; jrandom: I think we should values anon. slightly more than performance atm: so yes, the PRNG options sounds good
+13:33 &lt;jrandom&gt; agreed.  performance can be tuned later, "adding in" better anonymity however, is much harder
+13:33 &lt;jrandom&gt; (but, of course, performance /is/ a security parameter.  if it Sucks, no one uses it)
+13:33 &lt;bla&gt; Yes.
+13:33 &lt;bla&gt; jrandom: 
+13:33 &lt;bla&gt; sorry
+13:33 &lt;@duck&gt; right, /me flips the magical Freenet-performance bit
+13:33 &lt;cervantes&gt; perhaps it'll deter all those torrent waving leechers to stay away a while longer ;-)
+13:34 &lt;jrandom&gt; heh
+13:34 &lt;cervantes&gt; &lt;-- connection reset
+13:34 &lt;bla&gt; cervantes: No, I'm not! :)
+13:34 &lt;cervantes&gt; :)
+13:35 &lt;jrandom&gt; i do think that we can pull off some really cool optimizations, and it seems a lot of our choke is not related to the peer selection, but merely (heh) bugs in the jobqueue
+13:36 &lt;jrandom&gt; but, anyway, anything else for 2) 0.5?
+13:36 &lt;ant&gt; &lt;BS314159&gt; could you post an explanation for this loop attack?
+13:37 &lt;ant&gt; &lt;BS314159&gt; it sounds more dangerous than your treatment implies it is
+13:37 &lt;jrandom&gt; loop: build a tunnel containing A--&gt;B--&gt;C--&gt;D--&gt;C, send in 10 messages.
+13:37 &lt;jrandom&gt; without the PRNGs, you can add as many messages to that C&lt;--&gt;D loop as you want
+13:38 &lt;ant&gt; &lt;BS314159&gt; ok
+13:38 &lt;jrandom&gt; effectively DoSing any routers with just a few messages
+13:38 &lt;ant&gt; &lt;BS314159&gt; but only A can do this
+13:38 &lt;jrandom&gt; with the PRNGs, it limits the number of messages that can go into the loop
+13:38 &lt;ant&gt; &lt;BS314159&gt; so there's no danger of an attacker shortening my tunnels by introducing loops
+13:38 &lt;jrandom&gt; no, no one can shorten your tunnels
+13:39 &lt;jrandom&gt; the only thing this is useful for is a DoS
+13:39 &lt;jrandom&gt; (a very cheap DoS)
+13:39 &lt;jrandom&gt; (but when you can selectively DoS peers without much cost, you can do naaaasty stuff)
+13:40 &lt;ant&gt; &lt;BS314159&gt; comprendo
+13:40 &lt;+protokol&gt; and hashcash certs will help this?
+13:40 &lt;jrandom&gt; protokol: hashcash addresses the issue of a peer building too many tunnels, and perhaps building too many hops
+13:41 &lt;jrandom&gt; protokol: it doesnt help with loops.  the two ways i could find that /did/ were the PRNGs (tunnel-alt.html) or verifying at each step (tunnel.html)
+13:42 &lt;jrandom&gt; verifying at each step has dangers, so the current leaning is towards the PRNGs
+13:42 &lt;+Ragnarok&gt; how effective will the prng method be?
+13:42 &lt;Xan&gt; A--&gt;B--&gt;C--&gt;D--&gt;C - shouldnt each hop get a different id or something, so that messages leave the tunnel the second time they reach C rather than looping?
+13:43 &lt;jrandom&gt; Xan: they do, but without verifying each step, you can't tell whether its bad or not
+13:44 &lt;jrandom&gt; Ragnarok: i think it'll be very effective at minimizing the damage done
+13:45 &lt;jrandom&gt; at least, from what I can see so far
+13:45 &lt;jrandom&gt; if anyone sees any problems/issues with it, or suggestions for improvement, please get in touch :)
+13:46 &lt;Xan&gt; or maybe Im missing the point
+13:46 &lt;Xan&gt; bbl
+13:46 &lt;jrandom&gt; 'k l8r, i'll update the doc to be more clear 
+13:47 &lt;jrandom&gt; ok, unless there's something else, shall we move on to 3) i2pmail.v2?
+13:47 &lt;jrandom&gt; postman: you 'round?
+13:48 &lt;postman&gt; yes
+13:49 &lt;postman&gt; :)
+13:49 &lt;jrandom&gt; anything to add from your post on the forum?  it sounds pretty cool
+13:49 &lt;postman&gt; well, a few of you might have read the draft for i2pmail.v2 already
+13:50 &lt;bla&gt; wtf is happening? Massive disconnects. I've got trouble reaching sites (say orion, library) here too
+13:50 &lt;postman&gt; it aims towards a fully decentralized mail infrastructure in the future
+13:50 &lt;postman&gt; but is in need of proxysoftware on the nodes as well as a bunch of dedicated relays
+13:51 &lt;postman&gt; all are invited to contribute ideas / concepts / rants
+13:51 &lt;postman&gt; development already has started - dont expect anything before late spring :)
+13:51 &lt;jrandom&gt; w00t
+13:51 &lt;kaji&gt; hmm, the cops just showed up at my door
+13:52 &lt;bla&gt; kaji: ?
+13:52 &lt;jrandom&gt; quick, blow your hard drive
+13:52 &lt;postman&gt; jrandom: well, this is all i have to say for now :) 
+13:52 &lt;cervantes&gt; hide the blackjack table!
+13:52 &lt;jrandom&gt; wikked, thanks postman 
+13:52 &lt;kaji&gt; they said i dialed 911, but im quite sure neither i nor my brother did
+13:53 &lt;+protokol&gt; kaji: they're just checking up on i2p
+13:53 &lt;jrandom&gt; ok, unless there's anytihng else on 3) i2pmail, lets move over to 4) azneti2p_0.2
+13:53 &lt;+protokol&gt; &lt;creepy music&gt;
+13:53 &lt;jrandom&gt; as mentioned in the email, there's been some important progress lately
+13:53 &lt;kaji&gt; then they said cordless phones can freak out when off the hook, but all my cordless phones are on their charger -&gt; #i2p-chat
+13:55 &lt;jrandom&gt; the azureus folks have been very responsive in getting an update ready (yay!), but people should also be on the lookout for problems
+13:55 &lt;jrandom&gt; (if you don't read the i2p mailing list and use azneti2p, read the i2p mailing list)
+13:55 &lt;jrandom&gt; ((or even if yuo dont use azneti2p, read the list, as thats where we announce important things ;)
+13:56 &lt;jrandom&gt; duck and orion have also been making lots of updates to accomodate the new bt client and formatting
+13:56 &lt;jrandom&gt; (yay!)
+13:56  * orion smiles
+13:57 &lt;orion&gt; theres still a ways to go, but for now, it works.
+13:57 &lt;jrandom&gt; (inasmuch as i2p lets it ;)
+13:58 &lt;orion&gt; hehe, yes. ;)
+13:58 &lt;jrandom&gt; does anyone else have anything to bring up wrt azneti2p or i2p-bt?
+13:58 &lt;jrandom&gt; (or bytemonsoon2p ;)
+14:00 &lt;jrandom&gt; ok if not, moving right along to 5) ???
+14:00 &lt;jrandom&gt; open floor - anyone else have anything to bring up? 
+14:00 &lt;postman&gt; jrandom: why does the addressbook publich userhosts entries ?
+14:01 &lt;jrandom&gt; postman: bug.  
+14:01 &lt;postman&gt; so this was no planned behaviour and will be changed?
+14:01 &lt;cervantes&gt; just one thing...
+14:01 &lt;jrandom&gt; postman: correct, and will be changed
+14:02 &lt;jrandom&gt; (right Ragnarok?  :)
+14:02 &lt;+Ragnarok&gt; depends on exactly what postman means...
+14:03 &lt;jrandom&gt; Ragnarok: new entries added by the local user to their own private hosts shouldn't be propogated to the hosts published
+14:03 &lt;jrandom&gt; (e.g. userhosts.txt is private, hosts.txt is synchronized with other people and is public)
+14:03 &lt;cervantes&gt; As part of a semi regular slot on the forum, there will be recognition and awards for those that have contributed good things to I2P either recently or over the project's lifetime
+14:03 &lt;postman&gt; Ragnarok: after updating to 0.4.2.6 i found entries from my userhosts.txt in the published addressbook in my eepsite folder
+14:03 &lt;ant&gt; &lt;BS314159&gt; hmm
+14:04 &lt;postman&gt; Ragnarok: those have been manually added keys, which haven't been supposed to be published
+14:04 &lt;cervantes&gt; this week we recognise duck for general excellence as a service provider for the community and as an all round great idler: http://forum.i2p/viewtopic.php?t=275
+14:04 &lt;jrandom&gt; w00t!
+14:04 &lt;jrandom&gt; (go duck go, go duck go)
+14:05 &lt;Teal`c&gt; what about domain name hijacking ?
+14:05  * brachtus applauds
+14:05  * orion does a duck waddle as a sign of respect.
+14:05 &lt;cervantes&gt; one important point for the future...you don't have to be a cryptographic genius to get praise!
+14:06 &lt;+Ragnarok&gt; no, that's expected behaviour.  I can change it, but first I'll have to finish implementing file locking so you can change hosts.txt directly
+14:06 &lt;orion&gt; (but it helps)
+14:06 &lt;cervantes&gt; you might just have contributed a cracking eepsite or something...
+14:06 &lt;cervantes&gt; or been a helpful bod on the forum etc
+14:07 &lt;ant&gt; &lt;BS314159&gt; hmm
+14:07 &lt;cervantes&gt; (otherwise, lets face it, jrandom would win every week)
+14:07 &lt;jrandom&gt; hey, y'all are paying for my beer fund, this stuff aint free ;)
+14:07 &lt;ant&gt; &lt;BS314159&gt; could you just make a new file, "publichosts.txt"?
+14:07 &lt;ant&gt; &lt;BS314159&gt; then have addressbook ignore userhosts.txt, but allowed users to subscribe to their own publichosts.txt?
+14:08 &lt;jrandom&gt; Teal`c: there is no way to hijack a domain name, no entries are overwritten, and userhosts always overrides hosts
+14:09 &lt;jrandom&gt; Ragnarok: perhaps the web interface can address the locking issue, since users won't be adding to the files manually
+14:09 &lt;+Ragnarok&gt; once the locking is done, there's no real reason to pull in addresses from userhosts.txt anymore (it's currently the only way to dodge a race), so there's no real point in adding a third file
+14:10 &lt;+Ragnarok&gt; jrandom: well, I was planning on using the java file locking api
+14:10 &lt;jrandom&gt; if you think its necessary, you're the boss :)
+14:10 &lt;ant&gt; &lt;BS314159&gt; it would allow you to kill all the names gotten from other people while keeping the ones you made yourself
+14:10 &lt;ant&gt; &lt;BS314159&gt; simply by clearing hosts.txt and changing your subscriptiong
+14:11 &lt;ant&gt; &lt;BS314159&gt; but I guess that can wait for name-signing
+14:11 &lt;orion&gt; metadata will solve this problem.  Is a spec drafted yet?
+14:11 &lt;jrandom&gt; using just two files should be fine - one managed by the addressbook, one not
+14:12 &lt;jrandom&gt; (you could even have the addressbook ignore userhosts.txt entirely - userhosts.txt overrides hosts.txt anyway)
+14:12 &lt;+Ragnarok&gt; jrandom: that would be the plan, once locking is done (which really shouldn't be too much work, I just haven't gotten around to it :)
+14:13 &lt;+Ragnarok&gt; and I'm currently working on learning enough xml schema to write one for the namerecords
+14:13 &lt;ant&gt; &lt;dr_kavra&gt; is this the channel for kenosis? another channel told me to come here :D
+14:13 &lt;jrandom&gt; lol
+14:13 &lt;jrandom&gt; nah, sorry, this is i2p
+14:14 &lt;jrandom&gt; (unless you're looking for an anonymous comm layer)
+14:14 &lt;jrandom&gt; wikked Ragnarok 
+14:14 &lt;ant&gt; &lt;BS314159&gt; I still the XML is too verbose and non-human-readable for this, compared to YAML, but I'm not the one writing the code
+14:14 &lt;jrandom&gt; Ragnarok: the tough part will be doing the crypto w/ XML without reverting to ugly CDATA
+14:14 &lt;orion&gt; anybody write a working draft for the metadata spec yet?
+14:15 &lt;jrandom&gt; (i personally think xml sucks, but i'm just a naysayer)
+14:15 &lt;jrandom&gt; orion: http://dev.i2p.net/pipermail/i2p/2004-February/000135.html has a basic setup
+14:15 &lt;orion&gt; (name/key metadata)
+14:15 &lt;dox&gt; has the addressbook and its features been announced somewhere? I didn't know my hosts.txt is published
+14:15 &lt;jrandom&gt; (see NameReference and LocalEntry elements)
+14:16 &lt;jrandom&gt; dox: its written to the location specified in addressbook/config.txt
+14:16 &lt;jrandom&gt; (by default, ./eepsite/docroot/hosts.txt)
+14:17 &lt;orion&gt; is missing a public/private (i.e. distribute, don't) flag.
+14:17 &lt;ant&gt; &lt;cervantes&gt; the only good thing about XML (and this is a large + point) is that it's a widely accepted standard
+14:17 &lt;jrandom&gt; right orion, lots of good ideas have come up since that post
+14:17 &lt;+Ragnarok&gt; xml may suck, but frankly, it better than any of the alternatives for what I'm doing
+14:17 &lt;jrandom&gt; cervantes: so is EDI
+14:17 &lt;orion&gt; is there a place to condense them?  i.e. forum area?
+14:18 &lt;orion&gt; or maybe a wiki page?
+14:18 &lt;jrandom&gt; orion: susi's or ugha's wiki
+14:18 &lt;orion&gt; I'm going to set up wikis for bytemonsoon and orion.i2p to help get some community consensus as to the future development goals of each.
+14:18 &lt;BrockSamson&gt; xml + crypto w/o CDATA = mime, no?
+14:19 &lt;jrandom&gt; wikked orion 
+14:19 &lt;jrandom&gt; BrockSamson: smime, with different parsers ;)
+14:19 &lt;orion&gt; (also one for name metadata)
+14:21 &lt;jrandom&gt; there are lots of ways to do the metadata, the important thing is flexibility and 'correctness' so that it can grow or change over time
+14:21  * jrandom is sure Ragnarok et al will come up with some good stuff :)
+14:21 &lt;orion&gt; thats why I think a public draft is in order.
+14:22 &lt;ant&gt; &lt;cervantes&gt; i2p consortium :P
+14:22 &lt;jrandom&gt; well, people have been saying "someone should put up their ideas on the wiki" for the last few meetings, but the wiki pages aren't growing too much ;)  which is fine, we take the pace we take
+14:23  * orion promises to have three wikis up within a day and email everyone their locations
+14:23 &lt;BrockSamson&gt; call me lazy, but compare an ANSI 850 Purchase order EDI to nearly any other XML based purchase order, and i'd rather decode, code, and debug for the XML version. Even if it's 5x the EDI size
+14:23 &lt;jrandom&gt; w00t
+14:23 &lt;jrandom&gt; heh BrockSamson 
+14:24 &lt;BrockSamson&gt; Position 10 is ST? oh then position 310 should be name
+14:24 &lt;BrockSamson&gt; duh me
+14:24 &lt;jrandom&gt; BrockSamson: don't think the xml schemas for POs are much better ;)
+14:24 &lt;jrandom&gt; (but yeah, that stuff is just a totally bloody disaster)
+14:25 &lt;BrockSamson&gt; they are at 4:30 in the morning
+14:25 &lt;BrockSamson&gt; unless...
+14:25 &lt;jrandom&gt; heh
+14:25 &lt;BrockSamson&gt; it's written by an ex EDI programmer
+14:25 &lt;BrockSamson&gt; and the xml looks like this: &lt;p1&gt;&lt;po&gt;&lt;q&gt;1&lt;/q&gt;&lt;/po&gt;&lt;/p1&gt;
+14:26 &lt;BrockSamson&gt; i bet though, if you add up the horuse OpenSource projects spend talking about to 'XML' or not 'XML' you could code linux 10x over.
+14:26 &lt;BrockSamson&gt; every project i've ever been part of has had massive debates on it
+14:27 &lt;orion&gt; debates are good for a project, depending on who's debating. ;)
+14:27 &lt;jrandom&gt; eh, it does what it does, but its not a panacea.  it may work well for the naming stuff
+14:28 &lt;BrockSamson&gt; many people are in projects just to debate though.
+14:28 &lt;jrandom&gt; not here.  i'm here for the free beer
+14:28 &lt;ant&gt; &lt;cervantes&gt; that's debatable
+14:28 &lt;orion&gt; the implementation details will be clearer when the draft spec is more tangable.
+14:28 &lt;orion&gt; hence the need for a wiki/peer review.
+14:29 &lt;BrockSamson&gt; I heard this project gave away free Garlic
+14:29 &lt;jrandom&gt; lots of it
+14:30 &lt;jrandom&gt; ok, anyone else have anything to bring up for the meeting?
+14:30 &lt;ant&gt; * cervantes wheels out the ceremonial call with bell
+14:30 &lt;ant&gt; &lt;cervantes&gt; call =cow
+14:30  * jrandom winds up
+14:31  * jrandom *baf*s the cowbell, closing the meeting
+</div>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

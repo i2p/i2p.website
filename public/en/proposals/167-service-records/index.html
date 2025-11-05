@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Service Records in LS2 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="Service Records in LS2 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/proposals/167-service-records/">
+
+    
+    <link rel="icon" type="image/png" href="../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../en/" class="logo-link">
+                    <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/about/">Overview</a></li>
+                            <li><a href="../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../en/blog/" class="">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../en/proposals/167-service-records/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+
+<div class="proposals-page">
+    <div class="container">
+        
+        <nav class="breadcrumbs">
+            <a href="../../../en/">Home</a>
+            <span class="separator">/</span>
+            <a href="../../../en/proposals/">Proposals</a>
+            <span class="separator">/</span>
+            <span class="current">Service Records in LS2</span>
+        </nav>
+
+        
+        <header class="proposal-header">
+            <div class="proposal-title-section">
+                <h1 class="proposal-title">Service Records in LS2</h1>
+                <div class="proposal-number">Proposal 167</div>
+            </div>
+
+            
+            <div class="proposal-meta-box">
+                <div class="proposal-status status-closed">
+                    Closed
+                </div>
+
+                
+                <div class="proposal-info-grid">
+                    
+                    <div class="info-item">
+                        <span class="info-label">Author</span>
+                        <span class="info-value">zzz, orignal, eyedeekay</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Created</span>
+                        <span class="info-value">2024-06-22</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Last Updated</span>
+                        <span class="info-value">2025-04-03</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Target Version</span>
+                        <span class="info-value">0.9.66</span>
+                    </div>
+                    
+
+                    
+                </div>
+
+                
+                
+            </div>
+        </header>
+
+        
+        <article class="proposal-content">
+            <h2 id="status">Status</h2>
+<p>Approved on 2nd review 2025-04-01; specs are updated; not yet implemented.</p>
+<h2 id="overview">Overview</h2>
+<p>I2P lacks a centralized DNS system.
+However, the address book, together with the b32 hostname system, allows
+the router to look up full destinations and fetch lease sets, which contain
+a list of gateways and keys so that clients may connect to that destination.</p>
+<p>So, leasesets are somewhat like a DNS record. But there is currently no facility to
+find out if that host supports any services, either on that destination or a different one,
+in a manner similar to DNS SRV records [SRV]_ [RFC2782]_.</p>
+<p>The first application for this may be peer-to-peer email.
+Other possible applications: DNS, GNS, key servers, certificate authorities, time servers,
+bittorrent, cryptocurrencies, other peer-to-peer applications.</p>
+<h2 id="related-proposals-and-alternatives">Related Proposals and Alternatives</h2>
+<h3 id="service-lists">Service Lists</h3>
+<p>The LS2 proposal 123 [Prop123]_ defined &lsquo;service records&rsquo; that indicated a destination
+was participating in a global service. The floodfills would aggregate these records
+into global &lsquo;service lists&rsquo;.
+This was never implemented due to complexity, lack of authentication,
+security, and spamming concerns.</p>
+<p>This proposal is different in that it provides lookup for a service for a specific destination,
+not a global pool of destinations for some global service.</p>
+<h3 id="gns">GNS</h3>
+<p>GNS [GNS]_ proposes that everybody runs their own DNS server.
+This proposal is complementary, in that we could use service records to specify
+that GNS (or DNS) is supported, with a standard service name of &ldquo;domain&rdquo; on port 53.</p>
+<h3 id="dot-well-known">Dot well-known</h3>
+<p>In [DOTWELLKNOWN]_ it is proposed that services be looked up via an HTTP request to
+/.well-known/i2pmail.key. This requires that every service must have a related
+website to host the key. Most users do not run websites.</p>
+<p>One workaround is that we could presume that a service for a b32 address is actually
+running on that b32 address. So that looking for the service for example.i2p requires
+the HTTP fetch from <a href="http://example.i">http://example.i</a>2p/.well-known/i2pmail.key, but
+a service for aaa&hellip;aaa.b32.i2p does not require that lookup, it can just connect directly.</p>
+<p>But there&rsquo;s an ambiguity there, because example.i2p can also be addressed by its b32.</p>
+<h3 id="mx-records">MX Records</h3>
+<p>SRV records are simply a generic version of MX records for any service.
+&ldquo;_smtp._tcp&rdquo; is the &ldquo;MX&rdquo; record.
+There is no need for MX records if we have SRV records, and MX records
+alone do not provide a generic record for any service.</p>
+<h2 id="design">Design</h2>
+<p>Service records are placed in the options section in LS2 [LS2]<em>.
+The LS2 options section is currently unused.
+Not supported for LS1.
+This is similar to the tunnel bandwidth proposal [Prop168]</em>,
+which defines options for tunnel build records.</p>
+<p>To lookup a service address for a specific hostname or b32, the router fetches the
+leaseset and looks up the service record in the properties.</p>
+<p>The service may be hosted on the same destination as the LS itself, or may reference
+a different hostname/b32.</p>
+<p>If the target destination for the service is different, the target LS must also
+include a service record, pointing to itself, indicating that it supports the service.</p>
+<p>The design does not require special support or caching or any changes in the floodfills.
+Only the leaseset publisher, and the client looking up a service record,
+must support these changes.</p>
+<p>Minor I2CP and SAM extensions are proposed to facilitate retrieval of
+service records by clients.</p>
+<h2 id="specification">Specification</h2>
+<h3 id="ls2-option-specification">LS2 Option Specification</h3>
+<p>LS2 options MUST be sorted by key, so the signature is invariant.</p>
+<p>Defined as follows:</p>
+<ul>
+<li>serviceoption := optionkey optionvalue</li>
+<li>optionkey := _service._proto</li>
+<li>service := The symbolic name of the desired service. Must be lower case. Example: &ldquo;smtp&rdquo;.
+Allowed chars are [a-z0-9-] and must not start or end with a &lsquo;-&rsquo;.
+Standard identifiers from [REGISTRY]_ or Linux /etc/services must be used if defined there.</li>
+<li>proto := The transport protocol of the desired service. Must be lower case, either &ldquo;tcp&rdquo; or &ldquo;udp&rdquo;.
+&ldquo;tcp&rdquo; means streaming and &ldquo;udp&rdquo; means repliable datagrams.
+Protocol indicators for raw datagrams and datagram2 may be defined later.
+Allowed chars are [a-z0-9-] and must not start or end with a &lsquo;-&rsquo;.</li>
+<li>optionvalue := self | srvrecord[,srvrecord]*</li>
+<li>self := &ldquo;0&rdquo; ttl port [appoptions]</li>
+<li>srvrecord := &ldquo;1&rdquo; ttl priority weight port target [appoptions]</li>
+<li>ttl := time to live, integer seconds. Positive integer. Example: &ldquo;86400&rdquo;.
+A minimum of 86400 (one day) is recommended, see Recommendations section below for details.</li>
+<li>priority := The priority of the target host, lower value means more preferred. Non-negative integer. Example: &ldquo;0&rdquo;
+Only useful if more than one record, but required even if just one record.</li>
+<li>weight := A relative weight for records with the same priority. Higher value means more chance of getting picked. Non-negative integer. Example: &ldquo;0&rdquo;
+Only useful if more than one record, but required even if just one record.</li>
+<li>port := The I2CP port on which the service is to be found. Non-negative integer. Example: &ldquo;25&rdquo;
+Port 0 is supported but not recommended.</li>
+<li>target := The hostname or b32 of the destination providing the service. A valid hostname as in [NAMING]_. Must be lower case.
+Example: &ldquo;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p&rdquo; or &ldquo;example.i2p&rdquo;.
+b32 is recommended unless the hostname is &ldquo;well known&rdquo;, i.e. in official or default address books.</li>
+<li>appoptions := arbitrary text specific to the application, must not contain &quot; &quot; or &ldquo;,&rdquo;. Encoding is UTF-8.</li>
+</ul>
+<p>Examples</p>
+<pre tabindex="0"><code>
+In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to one SMTP server:
+
+&#34;_smtp._tcp&#34; &#34;1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p&#34;
+
+In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to two SMTP servers:
+
+&#34;_smtp._tcp&#34; &#34;1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p&#34;
+
+In LS2 for bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, pointing to itself as a SMTP server:
+
+&#34;_smtp._tcp&#34; &#34;0 999999 25&#34;
+
+Possible format for redirecting email (see below):
+
+&#34;_smtp._tcp&#34; &#34;1 86400 0 0 25 smtp.postman.i2p example@mail.i2p&#34;
+
+
+Limits
+```````
+
+The Mapping data structure format used for LS2 options limits keys and values to 255 bytes (not chars) max.
+With a b32 target, the optionvalue is about 67 bytes, so only 3 records would fit.
+Maybe only one or two with a long appoptions field, or up to four or five with a short hostname.
+This should be sufficient; multiple records should be rare.
+
+
+Differences from [RFC2782]_
+</code></pre><ul>
+<li>No trailing dots</li>
+<li>No name after the proto</li>
+<li>Lower case required</li>
+<li>In text format with comma-separated records, not binary DNS format</li>
+<li>Different record type indicators</li>
+<li>Additional appoptions field</li>
+</ul>
+<p>Notes</p>
+<pre tabindex="0"><code>
+No wildcarding such as (asterisk), (asterisk)._tcp, or _tcp is allowed.
+Each supported service must have its own record.
+
+
+
+### Service Name Registry
+
+Non-standard identifiers that are not listed in [REGISTRY]_ or Linux /etc/services
+may be requested and added to the common structures specification [LS2]_.
+
+Service-specific appoptions formats may also be added there.
+
+
+### I2CP Specification
+
+The [I2CP]_ protocol must be extended to support service lookups.
+Additional MessageStatusMessage and/or HostReplyMessage error codes related to service lookup
+are required.
+To make the lookup facility general, not just service record-specific,
+the design is to support retrieval of all LS2 options.
+
+Implementation: Extend HostLookupMessage to add request for
+LS2 options for hash, hostname, and destination (request types 2-4).
+Extend HostReplyMessage to add the options mapping if requested.
+Extend HostReplyMessage with additional error codes.
+
+Options mappings may be cached or negative cached for a short time on either the client or router side,
+implementation-dependent. Recommended maximum time is one hour, unless the service record TTL is shorter.
+Service records may be cached up to the TTL specified by the application, client, or router.
+
+Extend the specification as follows:
+
+Configuration options
+</code></pre><p>Add the following to [I2CP-OPTIONS]</p>
+<p>i2cp.leaseSetOption.nnn</p>
+<p>Options to be put in the leaseset. Only available for LS2.
+nnn starts with 0. Option value contains &ldquo;key=value&rdquo;.
+(do not include quotes)</p>
+<p>Example:
+i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p</p>
+<p>HostLookup Message</p>
+<pre tabindex="0"><code>
+- Lookup type 2: Hash lookup, request options mapping
+- Lookup type 3: Hostname lookup, request options mapping
+- Lookup type 4: Destination lookup, request options mapping
+
+For lookup type 4, item 5 is a Destination.
+
+
+
+HostReply Message
+</code></pre><p>For lookup types 2-4, the router must fetch the leaseset,
+even if the lookup key is in the address book.</p>
+<p>If successful, the HostReply will contain the options Mapping
+from the leaseset, and includes it as item 5 after the destination.
+If there are no options in the Mapping, or the leaseset was version 1,
+it will still be included as an empty Mapping (two bytes: 0 0).
+All options from the leaseset will be included, not just service record options.
+For example, options for parameters defined in the future may be present.</p>
+<p>On leaseset lookup failure, the reply will contain a new error code 6 (Leaseset lookup failure)
+and will not include a mapping.
+When error code 6 is returned, the Destination field may or may not be present.
+It will be present if a hostname lookup in the address book was successful,
+or if a previous lookup was successful and the result was cached,
+or if the Destination was present in the lookup message (lookup type 4).</p>
+<p>If a lookup type is not supported,
+the reply will contain a new error code 7 (lookup type unsupported).</p>
+<h3 id="sam-specification">SAM Specification</h3>
+<p>The [SAMv3]_ protocol must be extended to support service lookups.</p>
+<p>Extend NAMING LOOKUP as follows:</p>
+<p>NAMING LOOKUP NAME=example.i2p OPTIONS=true requests the options mapping in the reply.</p>
+<p>NAME may be a full base64 destination when OPTIONS=true.</p>
+<p>If the destination lookup was successful and options were present in the leaseset,
+then in the reply, following the destination,
+will be one or more options in the form of OPTION:key=value.
+Each option will have a separate OPTION: prefix.
+All options from the leaseset will be included, not just service record options.
+For example, options for parameters defined in the future may be present.
+Example:</p>
+<p>NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp=&ldquo;1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p&rdquo;</p>
+<p>Keys containing &lsquo;=&rsquo;, and keys or values containing a newline,
+are considered invalid and the key/value pair will be removed from the reply.</p>
+<p>If there are no options found in the leaseset, or if the leaseset was version 1,
+then the response will not include any options.</p>
+<p>If OPTIONS=true was in the lookup, and the leaseset is not found, a new result value LEASESET_NOT_FOUND will be returned.</p>
+<h2 id="naming-lookup-alternative">Naming Lookup Alternative</h2>
+<p>An alternative design was considered, to support lookups of services
+as a full hostname, for example <em>smtp.<em>tcp.example.i2p,
+by updating [NAMING]</em> to specify handling of hostnames starting with &lsquo;</em>&rsquo;.
+This was rejected for two reasons:</p>
+<ul>
+<li>I2CP and SAM changes would still be necessary to pass through the TTL and port information to the client.</li>
+<li>It would not be a general facility that could be used to retrieve other LS2
+options that could be defined in the future.</li>
+</ul>
+<h2 id="recommendations">Recommendations</h2>
+<p>Servers should specify a TTL of at least 86400, and the standard port for the application.</p>
+<h2 id="advanced-features">Advanced Features</h2>
+<h3 id="recursive-lookups">Recursive Lookups</h3>
+<p>It may be desirable to support recursive lookups, where each successive leaseset
+is checked for a service record pointing to another leaseset, DNS-style.
+This is probably not necessary, at least in an initial implementation.</p>
+<p>TODO</p>
+<h3 id="application-specific-fields">Application-specific fields</h3>
+<p>It may be desirable to have application-specific data in the service record.
+For example, the operator of example.i2p may wish to indicate that email should
+be forwarded to <a href="mailto:example@mail.i2p">example@mail.i2p</a>. The &ldquo;example@&rdquo; part would need to be in a separate field
+of the service record, or stripped from the target.</p>
+<p>Even if the operator runs his own email service, he may wish to indicate that
+email should be sent to <a href="mailto:example@example.i2p">example@example.i2p</a>. Most I2P services are run by a single person.
+So a separate field may be helpful here as well.</p>
+<p>TODO how to do this in a generic way</p>
+<h3 id="changes-required-for-email">Changes required for Email</h3>
+<p>Out of the scope of this proposal. See [DOTWELLKNOWN]_ for a discussion.</p>
+<h2 id="implementation-notes">Implementation Notes</h2>
+<p>Caching of service records up to the TTL may be done by the router or the application,
+implementation-dependent. Whether to cache persistently is also implementation-dependent.</p>
+<p>Lookups must also lookup the target leaseset and verify it contains a &ldquo;self&rdquo; record
+before returning the target destination to the client.</p>
+<h2 id="security-analysis">Security Analysis</h2>
+<p>As the leaseset is signed, any service records within it are authenticated by the signing key of the destination.</p>
+<p>The service records are public and visible to floodfills, unless the leaseset is encrypted.
+Any router requesting the leaseset will be able to see the service records.</p>
+<p>A SRV record other than &ldquo;self&rdquo; (i.e., one that points to a different hostname/b32 target)
+does not require the consent of the targeted hostname/b32.
+It&rsquo;s not clear if a redirection of a service to an arbitrary destination could facilitate some
+sort of attack, or what the purpose of such an attack would be.
+However, this proposal mitigates such an attack by requiring that the target
+also publish a &ldquo;self&rdquo; SRV record. Implementers must check for a &ldquo;self&rdquo; record
+in the leaseset of the target.</p>
+<h2 id="compatibility">Compatibility</h2>
+<p>LS2: No issues. All known implementations currently ignore the options field in LS2,
+and correctly skip over a non-empty options field.
+This was verified in testing by both Java I2P and i2pd during the development of LS2.
+LS2 was implemented in 0.9.38 in 2016 and is well-supported by all router implementations.
+The design does not require special support or caching or any changes in the floodfills.</p>
+<p>Naming: &lsquo;_&rsquo; is not a valid character in i2p hostnames.</p>
+<p>I2CP: Lookup types 2-4 should not be sent to routers below the minimum API version
+at which it is supported (TBD).</p>
+<p>SAM: Java SAM server ignores additional keys/values such as OPTIONS=true.
+i2pd should as well, to be verified.
+SAM clients will not get the additional values in the reply unless requested with OPTIONS=true.
+No version bump should be necessary.</p>
+<h2 id="migration">Migration</h2>
+<p>Implementations may add support at any time, no coordination is needed,
+except for an agreement on the effective API version for the I2CP changes.
+SAM compatibility versions for each implementation will be documented in the SAM spec.</p>
+<h2 id="references">References</h2>
+<p>.. [DOTWELLKNOWN]
+<a href="http://i2pforum.i">http://i2pforum.i</a>2p/viewtopic.php?p=3102</p>
+<p>.. [I2CP]
+{{ spec_url(&lsquo;i2cp&rsquo;) }}</p>
+<p>.. [I2CP-OPTIONS]
+{{ site_url(&lsquo;docs/protocol/i2cp&rsquo;, True) }}</p>
+<p>.. [LS2]
+{{ spec_url(&lsquo;common-structures&rsquo;) }}</p>
+<p>.. [GNS]
+<a href="http://zzz.i">http://zzz.i</a>2p/topcs/1545</p>
+<p>.. [NAMING]
+{{ site_url(&lsquo;docs/naming&rsquo;, True) }}</p>
+<p>.. [Prop123]
+{{ proposal_url(&lsquo;123&rsquo;) }}</p>
+<p>.. [Prop168]
+{{ proposal_url(&lsquo;168&rsquo;) }}</p>
+<p>.. [REGISTRY]
+<a href="http://www.dns-sd.org/ServiceTypes.html">http://www.dns-sd.org/ServiceTypes.html</a></p>
+<p>.. [RFC2782]
+<a href="https://datatracker.ietf.org/doc/html/rfc2782">https://datatracker.ietf.org/doc/html/rfc2782</a></p>
+<p>.. [SAMv3]
+{{ site_url(&lsquo;docs/api/samv3&rsquo;) }}</p>
+<p>.. [SRV]
+<a href="https://en.wikipedia.org/wiki/SRV_record">https://en.wikipedia.org/wiki/SRV_record</a></p>
+
+        </article>
+
+        
+        <nav class="page-nav">
+            <a href="../../../en/proposals/" class="page-nav-link">
+                ← Back to Proposals
+            </a>
+            
+            <a href="../../../proposals/167-service-records-in-ls2.txt" class="page-nav-link" download>
+                📄 Download Source (.txt)
+            </a>
+            
+        </nav>
+    </div>
+</div>
+
+<style>
+.proposals-page {
+    min-height: 100vh;
+    padding: var(--spacing-xl) 0;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.breadcrumbs a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.breadcrumbs a:hover {
+    color: var(--color-primary);
+}
+
+.separator {
+    color: var(--color-border);
+}
+
+.current {
+    color: var(--color-text);
+}
+
+ 
+.proposal-header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.proposal-title-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.proposal-title {
+    font-size: 2.5rem;
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--color-text);
+}
+
+.proposal-number {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+ 
+.proposal-meta-box {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.proposal-status {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+ 
+.status-open {
+    background: #dbeafe;
+    color: #0369a1;
+}
+
+.dark .status-open {
+    background: #0c4a6e;
+    color: #7dd3fc;
+}
+
+.status-accepted {
+    background: #dbeafe;
+    color: #0369a1;
+}
+
+.dark .status-accepted {
+    background: #0c4a6e;
+    color: #7dd3fc;
+}
+
+.status-finished {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.dark .status-finished {
+    background: #164e63;
+    color: #86efac;
+}
+
+.status-closed {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.dark .status-closed {
+    background: #164e63;
+    color: #86efac;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.dark .status-rejected {
+    background: #7f1d1d;
+    color: #fca5a5;
+}
+
+.status-draft,
+.status-needs-revision,
+.status-dead,
+.status-needs-research {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.dark .status-draft,
+.dark .status-needs-revision,
+.dark .status-dead,
+.dark .status-needs-research {
+    background: #78350f;
+    color: #fde047;
+}
+
+.status-meta,
+.status-informational,
+.status-reserve {
+    background: #e9d5ff;
+    color: #6b21a8;
+}
+
+.dark .status-meta,
+.dark .status-informational,
+.dark .status-reserve {
+    background: #581c87;
+    color: #e879f9;
+}
+
+ 
+.proposal-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.info-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+}
+
+.info-value {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+ 
+.proposal-relationships {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-md);
+}
+
+.relationship {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.relationship:last-child {
+    margin-bottom: 0;
+}
+
+.relationship-label {
+    font-weight: 600;
+    color: var(--color-text-muted);
+    min-width: 120px;
+}
+
+.relationship-value {
+    color: var(--color-text);
+}
+
+ 
+.proposal-content {
+    line-height: 1.8;
+    color: var(--color-text);
+    max-width: 900px;
+    margin: var(--spacing-2xl) 0;
+}
+
+.proposal-content h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+}
+
+.proposal-content h3 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.375rem;
+}
+
+.proposal-content h4 {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.125rem;
+}
+
+.proposal-content p {
+    margin-bottom: var(--spacing-md);
+}
+
+.proposal-content ul,
+.proposal-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.proposal-content li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.proposal-content code {
+    background: var(--color-bg-secondary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+    font-family: 'Courier New', monospace;
+}
+
+.proposal-content pre {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    overflow-x: auto;
+    margin-bottom: var(--spacing-md);
+    font-size: 0.875rem;
+}
+
+.proposal-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.proposal-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--spacing-md);
+    margin-left: 0;
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+    color: var(--color-text-secondary);
+}
+
+.proposal-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.proposal-content a:hover {
+    border-bottom-color: var(--color-primary);
+}
+
+.proposal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-md);
+}
+
+.proposal-content table th {
+    background: var(--color-bg-secondary);
+    padding: var(--spacing-sm);
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.proposal-content table td {
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.proposal-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin: var(--spacing-lg) 0;
+    display: block;
+}
+
+ 
+.page-nav {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.page-nav-link {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.page-nav-link:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+ 
+@media (max-width: 768px) {
+    .proposal-title {
+        font-size: 1.75rem;
+    }
+
+    .proposal-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../en/privacy/">Privacy</a>
+                <a href="../../../en/terms/">Terms</a>
+                <a href="../../../en/impressum/">Impressum</a>
+                <a href="../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Status Notes for 2004-09-14 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="Weekly I2P status update covering 0.4.0.1 release, threat model updates, website improvements, roadmap changes, and client application development needs">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Status Notes for 2004-09-14 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="Weekly I2P status update covering 0.4.0.1 release, threat model updates, website improvements, roadmap changes, and client application development needs">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2004/09/14/i2p-status-notes-for-2004-09-14/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2004/09/14/i2p-status-notes-for-2004-09-14/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2004-09-14">
+                    September 14, 2004
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">status</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Status Notes for 2004-09-14</h1>
+
+            
+            <div class="post-author">By jr</div>
+            
+        </div>
+
+        <div class="post-content">
+            <p>Hi y&rsquo;all, its that time of the week again</p>
+<h2 id="index">Index:</h2>
+<ol>
+<li>0.4.0.1</li>
+<li>Threat model updates</li>
+<li>Website updates</li>
+<li>Roadmap</li>
+<li>Client apps</li>
+<li>???</li>
+</ol>
+<h2 id="1-0401">1) 0.4.0.1</h2>
+<p>Since last Wednesday&rsquo;s 0.4.0.1 release, things have been going pretty well on the net - more than 2/3rd of the network has upgraded, and we&rsquo;e been maintaining between 60 and 80 routers on the network. IRC connection times vary, but lately 4-12 hour connections have been normal. There have been some reports of funkiness starting up on OS/X though, but I believe some progress is being made on that front too.</p>
+<h2 id="2-threat-model-updates">2) Threat model updates</h2>
+<p>As mentioned in reply to Toni&rsquo;s post, there has been a pretty substantial rewrite of the threat model. The main difference is that rather than the old way of addressing the threats in an ad-hoc manner, I tried to follow some of the taxonomies offered within the literature. The biggest problem for me was finding ways to fit the actual techniques people can use into the patterns offered - often a single attack fit within several different categories. As such, I&rsquo;m not really too pleased with how the information in that page is conveyed, but its better than it was before.</p>
+<h2 id="3-website-updates">3) Website updates</h2>
+<p>Thanks to Curiosity&rsquo;s help, we&rsquo;ve begun on some updates to the website - the most visible of which you can see on the homepage itself. This should help people out who stumble upon I2P and want to know right off the bat wtf this I2P thing is, rather than having to hunt and peck through the various pages. In any case, progress, ever onwards :)</p>
+<h2 id="4-roadmap">4) Roadmap</h2>
+<p>Speaking of progress, I&rsquo;ve finally thrown together a revamped roadmap based upon what I feel we need to implement and upon what must be accomplished to provide for the user&rsquo;s needs. The major changes to the old roadmap are:</p>
+<ul>
+<li>Drop AMOC altogether, replaced with UDP (however, we&rsquo;ll support TCP for those who can&rsquo;t use UDP <em>cough</em>mihi<em>cough</em>)</li>
+<li>Kept all of the restricted route operation to the 2.0 release, rather than bring in partial restricted routes earlier. I believe we&rsquo;ll be able to meet the needs of many users without restricted routes, though of course with them many more users will be able to join us. Walk before run, as they say.</li>
+<li>Pulled the streaming lib in to the 0.4.3 release, as we don&rsquo;t want to go 1.0 with the ~4KBps per stream limit. The bounty on this is still of course valid, but if no one claims it before 0.4.2 is done, I&rsquo;ll start working on it.</li>
+<li>TCP revamp moved to 0.4.1 to address some of our uglier issues (high CPU usage when connecting to people, the whole mess with &ldquo;target changed identities&rdquo;, adding autodetection of IP address)</li>
+</ul>
+<p>The other items scheduled for various 0.4.* releases have already been implemented. However, there is one other thing dropped from the roadmap&hellip;</p>
+<h2 id="5-client-apps">5) Client apps</h2>
+<p>We need client applications. Applications that are engaging, secure, scalable, and anonymous. I2P by itself doesn&rsquo;t do much, it merely lets two endpoints talk to each other anonymously. While I2PTunnel does offer one hell of a swiss army knife, tools like that are only really engaging to the geeks among us. We need more than that - we need something that lets people do what they actually want to do, and that helps them do it better. We need a reason for people to use I2P beyond simply because its safer.</p>
+<p>So far I&rsquo;ve been touting MyI2P to meet that need - a distributed blogging system offering a LiveJournal-esque interface. I recently discussed some of the functionality within MyI2P on the list. However, I&rsquo;ve pulled it out of the roadmap as its just too much work for me to do and still give the base I2P network the attention it needs (we&rsquo;re already packed extremely tight).</p>
+<p>There are a few other apps that have much promise. Stasher would provide a significant infrastructure for distributed data storage, but I&rsquo;m not sure how that&rsquo;s progressing. Even with Stasher, however, there would need to be an engaging user interface (though some FCP apps may be able to work with it).</p>
+<p>IRC is also a potent system, though has its limitations due to the server-based architecture. oOo has done some work to see about implementing transparent DCC though, so perhaps the IRC side could be used for public chat and DCC for private file transfers or serverless chat.</p>
+<p>General eepsite(I2P Site) functionality is also important, and what we have now is completely unsatisfactory. As DrWoo points out, there are significant anonymity risks with the current setup, and even though oOo has made some patches filtering some headers, there is much more work to be done before eepsites(I2P Sites) can be considered secure. There are a few different approaches to addressing this, all of which can work, but all of which require work. I do know that duck mentioned he had someone working on something, though I don&rsquo;t know how thats coming or whether it could be bundled in with I2P for everyone to use or not. Duck?</p>
+<p>Another pair of client apps that could help would be either a swarming file transfer app (ala BitTorrent) or a more traditional file sharing app (ala DC/Napster/Gnutella/etc). This is what I suspect a large number of people want, but there are issues with each of these systems. However, they&rsquo;re well known and porting may not be much trouble (perhaps).</p>
+<p>Ok, so the above isn&rsquo;t anything new - why did I bring them all up? Well, we need to find a way to get an engaging, secure, scalable, and anonymous client application implemented, and it isn&rsquo;t going to happen all by itself out of the blue. I&rsquo;ve come to accept that I&rsquo;m not going to be able to do it myself, so we need to be proactive and find a way to get it done.</p>
+<p>To do so, I think our bounty system may be able to help, but I think one of the reasons we haven&rsquo;t seen much activity on that front (people working on implementing a bounty) is because they&rsquo;re spread too thin. To get the results we need, I feel we need to prioritize what we want and focus our efforts on that top item, &lsquo;sweetening the pot&rsquo; so as to hopefully encourage someone to step up and work on the bounty.</p>
+<p>My personal opinion is still that a secure and distributed blogging system like MyI2P would be best. Rather than simply shoveling data back and forth anonymously, it offers a way to build communities, the lifeblood of any development effort. In addition, it offers a relatively high signal to noise ratio, low chance for abuse of the commons, and in general, a light network load. It doesn&rsquo;t, however, offer the full richness of normal websites, but the 1.8 million active LiveJournal users don&rsquo;t seem to mind.</p>
+<p>Beyond that, securing the eepsite(I2P Site) architecture would be my next preference, allowing browsers the safety they need and letting people serve eepsites(I2P Sites) &lsquo;out of the box&rsquo;.</p>
+<p>File transfer and distributed data storage are also incredibly powerful, but they don&rsquo;t seem to be as community oriented as we probably want for the first normal end user app.</p>
+<p>I want all of the apps listed to be implemented yesterday, as well as a thousand other apps I couldn&rsquo;t begin to dream of. I also want world peace, and end to hunger, the destruction of capitalism, freedom from statism, racism, sexism, homophibia, an end to the outright destruction of the environment and all that other evil stuff. However, we are only so many people and we can only accomplish so much. As such, we must prioritize and focus our efforts on achieving what we can rather than sit around overwhelmed with all we want to do.</p>
+<p>Perhaps we can discuss some ideas about what we should do in the meeting tonight.</p>
+<h2 id="6-">6) ???</h2>
+<p>Well, thats all I&rsquo;ve got for the moment, and hey, I got the status notes written up <em>before</em> the meeting! So no excuses, swing on by at 9pm GMT and barrage us all with your ideas.</p>
+<p>=jr</p>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

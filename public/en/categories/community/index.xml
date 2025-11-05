@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Community on I2P - The Invisible Internet Project</title>
+    <link>//localhost:1313/en/categories/community/</link>
+    <description>Recent content in Community on I2P - The Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/en/categories/community/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New I2P Routers</title>
+      <link>//localhost:1313/en/blog/2025/10/16/new-i2p-routers/</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2025/10/16/new-i2p-routers/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s an exciting time for I2P development, our community is growing and there are now multiple new, fully-functioning I2P router prototypes emerging on the scene! We&amp;rsquo;re very excited about this development and about sharing the news with you.&lt;/p&gt;&#xA;&lt;h2 id=&#34;how-does-this-help-the-network&#34;&gt;How does this help the network?&lt;/h2&gt;&#xA;&lt;p&gt;Writing I2P routers helps us prove that our specification documents can be used to produce new I2P routers, opens up the code to new analysis tools, and generally improves the security and interoperability of the network. Multiple I2P routers means that potential bugs are not uniform, an attack on one router may not work on a different router, avoiding a monoculture problem. Perhaps the most exciting prospect in the long-term, however, is &lt;code&gt;embedding&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Highlighting Research</title>
+      <link>//localhost:1313/en/blog/2019/10/25/highlighting-research/</link>
+      <pubDate>Fri, 25 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/10/25/highlighting-research/</guid>
+      <description>&lt;h2 id=&#34;highlighting-research---an-empirical-study-of-the-i2p-anonymity-network-and-its-censorship-resistance&#34;&gt;Highlighting Research - An Empirical Study of the I2P Anonymity Network and its Censorship Resistance&lt;/h2&gt;&#xA;&lt;p&gt;The following blog post is authored by Information Controls Fellow Hoàng Nguyên Phong. As an ICFP fellow, Phong&amp;rsquo;s research focused on analyzing different aspects of the I2P network, a privacy-enhancing Internet tool that can be used to access online content over an anonymity-enhancing network helpful in circumventing state-imposed censorship. Working with his host organization, the University of Massachusetts Amherst, Phong studied the I2P network&amp;rsquo;s censorship resilience, including identifying what blocking methods a state censor might use to inhibit access to I2P and investigating potential solutions to make I2P more resistant to such blockage.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Community Outreach</title>
+      <link>//localhost:1313/en/blog/2015/11/15/community-outreach/</link>
+      <pubDate>Sun, 15 Nov 2015 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2015/11/15/community-outreach/</guid>
+      <description>&lt;h2 id=&#34;meta&#34;&gt;Meta&lt;/h2&gt;&#xA;&lt;p&gt;Greetings! This is the first in a long series of blogs to help the community see what is happening in the I2P community. Since many awesome events are happening &lt;em&gt;inside&lt;/em&gt; the network, we think it will be worthwhile to talk about some of activities here.&lt;/p&gt;&#xA;&lt;h2 id=&#34;a-call-for-feedback&#34;&gt;A Call for Feedback&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s face it &amp;ndash; our console needs improvement. Our site could use an update as well. We are looking for feedback on how to improve the usability of I2P for new and existing users!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Toronto Meetup</title>
+      <link>//localhost:1313/en/blog/2015/06/02/toronto-meetup/</link>
+      <pubDate>Tue, 02 Jun 2015 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2015/06/02/toronto-meetup/</guid>
+      <description>&lt;p&gt;The I2P team is proud to announce that we are going to host a meetup in Toronto on August 15-16. A number of members of our community will be attending and are going to host talks, workshops and discussions about and relating to I2P. This event is not just for I2P people though, it&amp;rsquo;s meant for everyone.&lt;/p&gt;&#xA;&lt;p&gt;If you&amp;rsquo;re curious about I2P, interested in privacy/cryptography/anonymity or just want to come by and talk to us, please do. This is an event for everyone. If you&amp;rsquo;re not familiar with any of these topics, come by anyway and we&amp;rsquo;ll show you how I2P works and what you can do with it.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>31C3 trip report</title>
+      <link>//localhost:1313/en/blog/2015/01/20/31c3-trip-report/</link>
+      <pubDate>Tue, 20 Jan 2015 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2015/01/20/31c3-trip-report/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Attending:&lt;/em&gt; &lt;a href=&#34;https://twitter.com/apekattenandre&#34;&gt;Apekatten&lt;/a&gt;, &lt;a href=&#34;https://twitter.com/echeloni2p&#34;&gt;Echelon&lt;/a&gt;, &lt;a href=&#34;https://twitter.com/hottuna_i2p&#34;&gt;Hottuna&lt;/a&gt;, &lt;a href=&#34;https://twitter.com/k4k3fyll&#34;&gt;Marielle&lt;/a&gt;, &lt;a href=&#34;https://twitter.com/mikalv&#34;&gt;Meeh&lt;/a&gt;, Sindu, &lt;a href=&#34;https://twitter.com/i2p&#34;&gt;zzz&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;We were, for the second year in a row, at a great location in the Congress, in &lt;a href=&#34;https://noisysquare.com/&#34;&gt;Noisy Square&lt;/a&gt;, right next to the EFF table. Being part of Noisy Square has really increased our visibility and helped many people find us. Thanks to Noisy Square and the 31C3 organizers for a great Congress.&lt;/p&gt;&#xA;&lt;p&gt;We also thank Gabriel Weinberg and his fabulous search engine &lt;a href=&#34;https://duckduckgo.com/&#34;&gt;DuckDuckGo&lt;/a&gt; for their support of open source anonymity tools and their &lt;a href=&#34;https://geti2p.net/en/blog/post/2014/03/12/press-release-ddg-donation&#34;&gt;generous contribution&lt;/a&gt; to I2P in 2014. Funding from DuckDuckGo and others helped support our attendance at CCC. This is the primary annual meetup for I2P developers and it is critical to our success.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Ipredator Summer of Code</title>
+      <link>//localhost:1313/en/blog/2011/09/03/ipredator-summer-of-code/</link>
+      <pubDate>Sat, 03 Sep 2011 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2011/09/03/ipredator-summer-of-code/</guid>
+      <description>&lt;p&gt;itoopie and I2PControl are launching!&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m happy to announce that itoopie and I2PControl are available publicly.&lt;/p&gt;&#xA;&lt;p&gt;itoopie is a graphical interface intended as a compliment to the I2P Router Console. The aim of itoopie is to provide an interface that is simpler and has a lower learning curve than the I2P Router Console.&lt;/p&gt;&#xA;&lt;p&gt;I2PControl is an I2P plugin providing a JSONRPC interface for the I2P router. The interface supports setting basic settings (bandwidth, ports etc.), reading many stats and is provided over an SSL encrypted HTTP connection.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Ipredator Summer of Code</title>
+      <link>//localhost:1313/en/blog/2011/06/06/ipredator-summer-of-code/</link>
+      <pubDate>Mon, 06 Jun 2011 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2011/06/06/ipredator-summer-of-code/</guid>
+      <description>&lt;p&gt;I have been commissioned to contribute code to I2P during the summer of 2011, implementing a control protocol and a client for this protocol (similar to &lt;a href=&#34;https://www.torproject.org/projects/vidalia.html&#34;&gt;Vidalia&lt;/a&gt; for Tor). This work was the idea of Jan-Erik Fiske of &lt;a href=&#34;http://viaeuropa.se&#34;&gt;ViaEuropa&lt;/a&gt; and Peter Sunde of &lt;a href=&#34;https://flattr.com&#34;&gt;flattr&lt;/a&gt; and &lt;a href=&#34;http://thepiratebay.org/&#34;&gt;The Pirate Bay&lt;/a&gt; fame and its funding will be generously provided by &lt;a href=&#34;https://www.relakks.com/?cid=gb&#34;&gt;Relakks&lt;/a&gt; and &lt;a href=&#34;https://www.ipredator.se/?lang=en&#34;&gt;Ipredator&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Current information can be found on &lt;a href=&#34;http://zzz.i2p/topics/888&#34;&gt;zzz&amp;rsquo;s forum&lt;/a&gt; and #i2p-dev on chat.freenode.net&lt;/p&gt;&#xA;&lt;p&gt;Cheers&lt;/p&gt;&#xA;&lt;p&gt;// hottuna (or Robert)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

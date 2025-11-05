@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Dev Meeting - September 06, 2016 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="I2P development meeting log for September 06, 2016.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Dev Meeting - September 06, 2016 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="I2P development meeting log for September 06, 2016.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2016/09/06/i2p-dev-meeting-september-06-2016/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2016/09/06/i2p-dev-meeting-september-06-2016/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2016-09-06">
+                    September 6, 2016
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">meeting</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Dev Meeting - September 06, 2016</h1>
+
+            
+            <div class="post-author">By zzz</div>
+            
+        </div>
+
+        <div class="post-content">
+            <h2 id="quick-recap">Quick recap</h2>
+<p class="attendees-inline"><strong>Present:</strong> echelon, EinMByte, orignal, psi, str4d, z3r0fox, zzz</p>
+<h2 id="meeting-log">Meeting Log</h2>
+<div class="irc-log">
+21:00:01 &lt;zzz&gt; 0) Hi
+21:00:01 &lt;zzz&gt; 1) 0.9.27 update (zzz)
+21:00:01 &lt;zzz&gt; 2) Summer of X update (sadie/str4d)
+21:00:01 &lt;zzz&gt; 3) 33C3 Budget http://zzz.i2p/topics/2150
+21:00:01 &lt;zzz&gt; 4) SAM on by default (str4d)
+21:00:06 &lt;zzz&gt; 0) Hi
+21:00:12 &lt;zzz&gt; hi
+21:00:13 &lt;psi&gt; hi
+21:00:24 &lt;eche|on&gt; welcome
+21:00:33 &lt;z3r0fox_&gt; Hi
+21:00:40 &lt;zzz&gt; 1) 0.9.27 update (zzz)
+21:01:01 &lt;zzz&gt; ok, not much to report. only 6K lines of diff since 26
+21:01:13 &lt;zzz&gt; at this point I'd say .27 will be maybe mid-october?
+21:01:41 &lt;zzz&gt; earlier in the summer I was doing summer of x stuff, lately I've been taking a break... but I don't see much activity from anybody else either
+21:02:03 &lt;zzz&gt; anything else on 1) ?
+21:02:19 &lt;eche|on&gt; not much on summer of X
+21:03:25 &lt;zzz&gt; 2) Summer of X update (sadie/str4d)
+21:03:30 &lt;zzz&gt; sadie / str4d go
+21:06:07 &lt;zzz&gt; hearing nothing, I'll put it on the agenda for next month
+21:06:15 &lt;zzz&gt; 3) 33C3 Budget http://zzz.i2p/topics/2150
+21:06:28 &lt;str4d&gt; IHi!
+21:06:33 &lt;eche|on&gt; Awake
+21:06:33 &lt;zzz&gt; eche|on, could you please give us a brief update on our finances?
+21:06:45 &lt;str4d&gt; Sorry, was distracted by work briefly. Can address 2) at end of meeting
+21:07:34 &lt;eche|on&gt; finances, ok, current sums: 37k , 510 BTC, 700 LTC and 1300 XMZ (round)
+21:07:47 &lt;eche|on&gt; bts is around 540 and LTC around 3.5
+21:08:00 &lt;zzz&gt; sounds like we are in pretty good shape
+21:08:10 &lt;eche|on&gt; we spent roughly 4800 this year already
+21:08:56 &lt;eche|on&gt; and 10 BTC (which I converted into ), so we got roughly 5k  this year
+21:09:20 &lt;zzz&gt; for 33C3, I propose to do about the same as we did last year... we pay for all conf tickets. And for full project members we'll reimburse up to $1000 (or euro), or $1500 if people really need it
+21:09:41 &lt;zzz&gt; for people running a service or two, I propose we pay for their conf ticket and up to $500 in travel
+21:10:01 &lt;zzz&gt; what do you all think about that?
+21:10:23 &lt;eche|on&gt; currently we have 5 people requesting money
+21:10:25 &lt;str4d&gt; I think that seems fair.
+21:11:04 &lt;str4d&gt; eche|on, assuming the above figures, what's the expected total expenditure?
+21:11:13 &lt;zzz&gt; so around $4000-$5000, plus about $500 in tickets, I'd guess?
+21:11:32 &lt;eche|on&gt; with these rules, we got around 4k  max
+21:11:39 &lt;zzz&gt; plus a couple hundred for a dinner
+21:11:57 &lt;zzz&gt; oh, also, anybody who did NOT email echelon and wants funding, speak up now!
+21:11:58 &lt;eche|on&gt; 2 people with services, 2 with usual and 1 with special circumstances
+21:12:07 &lt;eche|on&gt; ticket will be around 100 each
+21:12:12 &lt;str4d&gt; Mmm. That keeps us inside our rough 10% spending target
+21:13:03 &lt;eche|on&gt; a bit above, but still ok
+21:13:21 &lt;zzz&gt; sounds like about 5200 or so. Let's set a budget of 6000 euros?
+21:13:46 &lt;eche|on&gt; last times some did receive their request in BTC, which made it quite easy for me^^
+21:14:12 &lt;zzz&gt; yeah, anybody who agrees to get paid in BTC, thats better
+21:14:21 &lt;eche|on&gt; sounds legit
+21:14:48 &lt;eche|on&gt; dinner we may got to same place like last year or maybe a bit above, we will see
+21:15:02 &lt;zzz&gt; I want to emphasize that we want to see everybody there. While we're trying to use our money wisely, we also would hate for anybody to not show up because they can't afford it.
+21:15:09 &lt;eche|on&gt; some sweets and other stuff for the event itself, 6k is ok
+21:15:10 &lt;str4d&gt; I'm certainly happy to be reimbursed in BTC
+21:15:48 &lt;zzz&gt; anything else on 3) ?
+21:16:15 &lt;eche|on&gt; not on my side, I will reply all emails tomorrow and will later on buy the tickets
+21:16:18 &lt;eche|on&gt; oh, tickets:
+21:16:36 &lt;eche|on&gt; if ANYbody in here from I2P did not request funding, but wants a ticket, send me a mail!
+21:16:37 &lt;str4d&gt; Anyone looking to share accommodation, ping me :)
+21:16:56 &lt;str4d&gt; eche|on, you're planning to buy the tickets for all team members?
+21:17:03 &lt;eche|on&gt; yes
+21:17:07 &lt;zzz&gt; yeah. Ech will buy the tickets. Do not buy your own
+21:17:10 &lt;eche|on&gt; to get rid of the issues we had last year
+21:17:12 &lt;str4d&gt; Thanks :)
+21:17:34 &lt;str4d&gt; Also, am I correct that it generally starts about 11am local?
+21:17:56 &lt;zzz&gt; oh, while we are on 3), I want to thank eche|on for all he does, including keeping the finances up to date. We'd be broke without you!
+21:18:02 &lt;str4d&gt; I've been trying to figure out whether I can manage a flight that arrives on the 27th
+21:18:02 &lt;eche|on&gt; oh, we did met mostly 11am/12am in place and styed until 1,2 am
+21:18:05 &lt;eche|on&gt; but some talks ends at 3 am
+21:18:10 &lt;zzz&gt; ok, lets not discuss logistics here
+21:18:17 &lt;zzz&gt; anything else on 3) ?
+21:18:19 &lt;str4d&gt; (otherwise I have to leave the evening of the 25th)
+21:18:34 &lt;str4d&gt; eche|on, mmk, thanks. And yes, big thanks for keeping us floating! :D
+21:18:55 &lt;zzz&gt; 4) SAM on by default (str4d)
+21:18:59 &lt;zzz&gt; str4d go
+21:19:08 &lt;eche|on&gt; thanks to all the donors (just got a donation with the line "do not spent all money on useless designers"
+21:19:39 &lt;str4d&gt; Okay
+21:20:29 &lt;str4d&gt; I'm thinking that with the rise of apps using the SAM API, we should consider whether we enable it by default, and if we do then how we should do so
+21:20:51 &lt;str4d&gt; Similar to how Tor enables their control port by default, so apps can generally assume it is available
+21:21:07 &lt;eche|on&gt; I think SAM ist quite stable and not a reason for a router to breakdown easy
+21:21:19 &lt;eche|on&gt; I vote for yes, enable by default
+21:21:25 &lt;zzz&gt; is there anybody complaining?
+21:21:37 &lt;EinMByte&gt; Seems like a reasonable idea to me
+21:21:55 &lt;EinMByte&gt; Only issue that I can see is conflicting ports
+21:22:07 &lt;str4d&gt; Mmm
+21:23:08 &lt;eche|on&gt; I do not see that issue on new installs
+21:23:10 &lt;zzz&gt; the usual way to do it would be to change clients.config, which would only affect new installs. Anything else would be... harder
+21:23:12 &lt;eche|on&gt; as it is all localhost
+21:23:27 &lt;str4d&gt; I know Tor has been mulling over the security of having their control port open always
+21:23:29 &lt;eche|on&gt; I would NOT enable it on old installs
+21:23:36 &lt;EinMByte&gt; eche|on: I mean, there could be another service (non-I2P related) using the same port
+21:23:43 &lt;str4d&gt; And they do encourage people to use the Unix socket mode instead
+21:23:50 &lt;str4d&gt; (with local cookie authentication)
+21:23:58 &lt;zzz&gt; I don't think apps can ever 'assume it is available', they will always need proper error handling and user messaging for it
+21:24:01 &lt;eche|on&gt; EinMByte: sure, but thats localhost, and thats should be warned
+21:24:08 &lt;str4d&gt; But that's not as much of a concern for us, because anything that can connect to SAM can only control its own tunnels
+21:24:33 &lt;str4d&gt; (unless they can guess the session name of another clients' tunnels)
+21:24:36 &lt;EinMByte&gt; eche|on: Ok, so if port taken don't enable SAM and warn?
+21:24:41 &lt;eche|on&gt; EinMByte: thats the logical way of doing it^^
+21:24:42 &lt;str4d&gt; zzz, sure, apps can't assume
+21:24:48 &lt;str4d&gt; The reason for it is usability
+21:24:58 &lt;str4d&gt; So the "simple option" is "start I2P; use app"
+21:25:06 &lt;zzz&gt; so after years and years of it being disabled, enabling it now may not make much difference
+21:25:16 &lt;str4d&gt; The current option is "start I2P; find page to enable SAM; enable SAM; use app"
+21:25:33 &lt;zzz&gt; fyi I split up /configclients, that will be in .27
+21:25:36 &lt;eche|on&gt; In my POV: most i2p routers do have SAM enabled yet already
+21:25:39 &lt;eche|on&gt; if not&gt;90%
+21:25:41 &lt;str4d&gt; My main motivator is reduction of friction
+21:25:48 &lt;str4d&gt; for new users
+21:25:54 &lt;str4d&gt; so I agree this would only be for new installs
+21:26:19 &lt;EinMByte&gt; That sounds OK.
+21:26:27 &lt;zzz&gt; btw, I have yet to see evidence of your 'rise of apps using SAM'
+21:26:30 &lt;str4d&gt; eche|on, yeah, Tor has a similar port-conflict issue with Orbot on some Samsung phones
+21:26:46 &lt;psi&gt; sam should be default on so that people don't have to turn it on
+21:26:50 &lt;EinMByte&gt; zzz: Maybe this is exactly what is needed ;)
+21:26:51 &lt;zzz&gt; but I'm not opposed to the proposal either
+21:26:53 &lt;zzz&gt; heh
+21:27:05 &lt;str4d&gt; zzz, Tahoe-LAFS is about to launch with native I2P support
+21:27:19 &lt;EinMByte&gt; Remind me what the default SAM port is?
+21:27:21 &lt;zzz&gt; ok, sounds like we have a consensus?
+21:27:32 &lt;str4d&gt; 7656
+21:27:52 &lt;zzz&gt; anything else on 4) ?
+21:28:36 &lt;EinMByte&gt; str4d: Ok, can't think of any common things using that
+21:29:09 &lt;zzz&gt; 2) Summer of X update (sadie/str4d)
+21:29:14 &lt;zzz&gt; sadie / str4d go
+21:29:35 &lt;str4d&gt; Okay!
+21:29:45 &lt;str4d&gt; I2P Summer Dev was IMHO a success
+21:30:06 &lt;str4d&gt; We didn't get any new contributors (at least that I saw)
+21:30:42 &lt;str4d&gt; (there were a few at one of the early meetings who we should have followed up on perhaps...)
+21:30:45 &lt;eche|on&gt; we got a new buildbot
+21:30:52 &lt;zzz&gt; I didn't see the promised August blog post... might we get a September one?
+21:30:54 &lt;str4d&gt; But we made excellent progress on a number of user- and dev-facing fronts
+21:30:56 &lt;str4d&gt; As I mentioned above, the next Tahoe-LAFS release will feature native I2P support via my txi2p library
+21:31:13 &lt;str4d&gt; zzz, yeah, I didn't get time to do it. I'll be writing a roundup post this weekend
+21:31:20 &lt;zzz&gt; great
+21:31:47 &lt;str4d&gt; I have my Zeronet work locally that I wanted to feature in the August post, but unfortunately we couldn't get i2p.socket working with gevent properly...
+21:32:05 &lt;str4d&gt; But I think I'll just make a PR with it this weekend, and we'll see how things go
+21:32:33 &lt;zzz&gt; tahoe is what, 5 years at least since we entered the tickets on their site. zooko does not move quickly
+21:33:05 &lt;eche|on&gt; at least it is now done
+21:33:21 &lt;str4d&gt; So as far as dev usability goes, we've made good progress on i2p.socket and txi2p, and with the SAM API being enabled by default, there should be less friction for adding I2P to Python apps
+21:33:25 &lt;eche|on&gt; now we need parallel up/downloads, or tahoe-lafs will crawl on
+21:33:55 &lt;eche|on&gt; btw, a user asked me fe min ago about python dev work in I2P
+21:34:04 &lt;str4d&gt; We did some outreach with potential new apps, but we need more work there
+21:34:28 &lt;str4d&gt; (IPFS and OpenBazaar in particular are both keen but progress there isn't going forwards currently)
+21:34:49 &lt;EinMByte&gt; BTW, apologies from me; I had said earlier I'd try to do something for summer of X, but it came to early for kovri
+21:34:53 &lt;zzz&gt; the thing that's still in desperate shape after summer of x is Bote. No release in forever, and about 40 (!) trac tickets, including the classpath one I think is a blocker for .27 ... Do you have any intention on working on bote again or should we write it off?
+21:35:30 &lt;str4d&gt; zzz, I do plan to, and I did work on it
+21:35:38 &lt;eche|on&gt; someone should do bote. it is more important than syndie or i2phex
+21:36:05 &lt;zzz&gt; I gotta know if we have to change the deb packaging to fix bote, or if it's something else that's wrong, or we don't care
+21:36:32 &lt;zzz&gt; September of Bote?
+21:37:22 &lt;str4d&gt; In August I spent some time migrating it to Gradle, meaning that I will be able to merge the android and plugin codebases
+21:37:22 &lt;str4d&gt; This will remove a lot of the friction I have wrt developing on Bote
+21:37:22 &lt;str4d&gt; All that's missing is integrating the existing plugin scripts
+21:37:22 &lt;str4d&gt; (or rewriting them in Gradle)(
+21:37:39 &lt;str4d&gt; Unfortunately work deadlines got in the way of that in August
+21:37:54 &lt;zzz&gt; ok
+21:37:59 &lt;zzz&gt; anything else on 2) ?
+21:38:07 &lt;str4d&gt; I'll spend time on Bote this weekend
+21:38:30 &lt;zzz&gt; anything else for the meeting?
+21:39:02 &lt;zzz&gt; may I propose moving back to 8 PM UTC for October?
+21:39:46 &lt;str4d&gt; and try to figure out a fix for the Debian issue
+21:39:55 &lt;zzz&gt; any objections to 8 PM?
+21:40:03 &lt;str4d&gt; But it's definitely Debian-only
+21:40:24 &lt;zzz&gt; ok, I haven't even seen confirmation that it's deb-only, so that's progress
+21:40:46 &lt;str4d&gt; Nothing else, other than good work everyone who worked on Summer Dev stuff!
+21:40:46 &lt;str4d&gt; I look forward to next year ;)
+21:40:49 &lt;zzz&gt; I've proposed a fix or at least a test in the ticket, but haven't heard anything
+21:40:49 &lt;eche|on&gt; for me OK so far
+21:41:22 &lt;zzz&gt; ok I got more ppl complaining about 9 than 8, so let's go back to 8. summer's over anyway
+21:41:29 * zzz grabs the baffer
+21:41:29 &lt;str4d&gt; I'm okay for 8PM in October, as I'll be in the US
+21:41:31 &lt;str4d&gt; (And actually November too, since that would be the 1st(
+21:42:37 &lt;eche|on&gt; ok, time to go to bed
+21:42:41 &lt;eche|on&gt; cya
+21:42:44 * zzz ***bafs*** the meeting closed
+</div>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Status on I2P - The Invisible Internet Project</title>
+    <link>//localhost:1313/en/categories/status/</link>
+    <description>Recent content in Status on I2P - The Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 10 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/en/categories/status/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello Git, Goodbye Monotone</title>
+      <link>//localhost:1313/en/blog/2020/12/10/hello-git-goodbye-monotone/</link>
+      <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2020/12/10/hello-git-goodbye-monotone/</guid>
+      <description>&lt;h2 id=&#34;hello-git-goodbye-monotone&#34;&gt;Hello Git, Goodbye Monotone&lt;/h2&gt;&#xA;&lt;h3 id=&#34;the-i2p-git-migration-is-nearly-concluded&#34;&gt;The I2P Git Migration is nearly concluded&lt;/h3&gt;&#xA;&lt;p&gt;For over a decade, I2P has relied on the venerable Monotone service to support its version control needs, but during the past few years, most of the world has moved on to the now-universal Git version control system. In that same time, the I2P Network has become faster and more reliable, and accessible workarounds to Git&amp;rsquo;s non-resumability have been developed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2008-02-01</title>
+      <link>//localhost:1313/en/blog/2008/02/01/i2p-status-notes-for-2008-02-01/</link>
+      <pubDate>Fri, 01 Feb 2008 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2008/02/01/i2p-status-notes-for-2008-02-01/</guid>
+      <description>&lt;p&gt;Welcome!&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Status Update 01/2008&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Due to a server breakdown of i2p.net beginning of 2008 the I2P project page wasn&amp;rsquo;t reachable.&#xA;The only person who&amp;rsquo;s got access (jrandom) to reactivate that server is offline and NOT&#xA;reachable for us at least for 10 more month. It wasn&amp;rsquo;t even possible to get the installer or&#xA;the seednodes to start a fresh router.&lt;/p&gt;&#xA;&lt;p&gt;In the last few weeks we got 2 webserver by friendly helpers as donations and setup a complete&#xA;redundant solution for the vital parts of I2P.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-10-10</title>
+      <link>//localhost:1313/en/blog/2006/10/10/i2p-status-notes-for-2006-10-10/</link>
+      <pubDate>Tue, 10 Oct 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/10/10/i2p-status-notes-for-2006-10-10/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, brief status notes this week&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.26 and network status&lt;/li&gt;&#xA;&lt;li&gt;Syndie development status&lt;/li&gt;&#xA;&lt;li&gt;Distributed version control revisited&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.26 and network status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The other day we pushed out a new 0.6.1.26 release, including lots of i2psnark improvements from zzz and some new NTP safety checks from Complication, and reports have been positive. The network seems to be growing slightly with no new odd effects, though some people still have trouble building their tunnels (as has always been the case).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-10-03</title>
+      <link>//localhost:1313/en/blog/2006/10/03/i2p-status-notes-for-2006-10-03/</link>
+      <pubDate>Tue, 03 Oct 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/10/03/i2p-status-notes-for-2006-10-03/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, a belated status notes this week&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;Router dev status&lt;/li&gt;&#xA;&lt;li&gt;Syndie rationale continued&lt;/li&gt;&#xA;&lt;li&gt;Syndie dev status&lt;/li&gt;&#xA;&lt;li&gt;Distributed version control&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The past week or two have been fairly stable on irc and other services, though dev.i2p/squid.i2p/www.i2p/cvs.i2p had a few bumps (due to temporary OS-related issues). Things seem to be at a steady state at the moment.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;Router dev status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The flip side to the Syndie discussion is &amp;ldquo;so, what does that mean for the router?&amp;rdquo;, and to answer that, let me explain a bit where the router development stands right now.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-09-12</title>
+      <link>//localhost:1313/en/blog/2006/09/12/i2p-status-notes-for-2006-09-12/</link>
+      <pubDate>Tue, 12 Sep 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/09/12/i2p-status-notes-for-2006-09-12/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, here&amp;rsquo;s our &lt;em&gt;cough&lt;/em&gt; weekly status notes&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index:&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.25 and net status&lt;/li&gt;&#xA;&lt;li&gt;I2PSnark&lt;/li&gt;&#xA;&lt;li&gt;Syndie (what/why/when)&lt;/li&gt;&#xA;&lt;li&gt;Syndie crypto questions&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.25 and net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The other day we pushed out the 0.6.1.25 release, including the swarm of bugfixes accumulated over the past month, as well as zzz&amp;rsquo;s work on I2PSnark and Complication&amp;rsquo;s work trying to make our time synchronization code a bit more robust. Right now the network seems to be fairly stable, though IRC has been a bit rough in the last few days (due to reasons unrelated to I2P). With perhaps half of the network upgraded to the latest release, tunnel build success rates have not changed much, though overall throughput seems to have increased (likely due to an increase in the number of people using I2PSnark).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-08-01</title>
+      <link>//localhost:1313/en/blog/2006/08/01/i2p-status-notes-for-2006-08-01/</link>
+      <pubDate>Tue, 01 Aug 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/08/01/i2p-status-notes-for-2006-08-01/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time for a brief set of notes before tonight&amp;rsquo;s meeting. I realize that you may have a variety of questions or issues to bring up, so we&amp;rsquo;ll go in a more fluid format than usual. There are just a few things I want to mention first.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Network status&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;It seems the network is doing pretty well, with swarms of fairly large I2PSnark transfers completing, and with quite sustantial transfer rates achieved on individual routers - I&amp;rsquo;ve seen 650KBytes/sec and 17,000 participating tunnels without any fireworks. Routers on the low end of the spectrum seem to be doing fine too, browsing eepsites(I2P Sites) and irc with 2 hop tunnels using under 1KByte/sec average.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-06-13</title>
+      <link>//localhost:1313/en/blog/2006/06/13/i2p-status-notes-for-2006-06-13/</link>
+      <pubDate>Tue, 13 Jun 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/06/13/i2p-status-notes-for-2006-06-13/</guid>
+      <description>&lt;p&gt;Hi gang, &amp;rsquo;tis tuesday again,&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;0.6.1.21&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;These days, things aren&amp;rsquo;t doing so great on the net, and unfortunately, there aren&amp;rsquo;t local tweaks you can do to improve it. Your patience is appreciated.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;0.6.1.21&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Over the last few releases, we&amp;rsquo;ve been trimming down variables in the network&amp;rsquo;s behavior, and in the next day or so we should have a new 0.6.1.21 release to build upon the experiences we&amp;rsquo;ve found with 0.6.1.20. Among other things, tomorrow&amp;rsquo;s release should reduce the number of unnecessary tunnel rejections (though to a state thats a bit too free-wheeling), and as that is deployed, we&amp;rsquo;ll hopefully see some improvement. If not, we&amp;rsquo;ve still got one more subsystem to shred to get us back into good form, but I&amp;rsquo;d like to avoid that battle, if at all possible.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-05-30</title>
+      <link>//localhost:1313/en/blog/2006/05/30/i2p-status-notes-for-2006-05-30/</link>
+      <pubDate>Tue, 30 May 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/05/30/i2p-status-notes-for-2006-05-30/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, after a brief intermission, its time for our weekly status notes again (unsigned for system maintenance reasons)&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;Peer filtering&lt;/li&gt;&#xA;&lt;li&gt;Syndie status&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Unfortunately, there isn&amp;rsquo;t anything new to report regarding the network&amp;rsquo;s status. The seas are still pretty rough out there, and as far as I can see, there&amp;rsquo;s no tweak or tunable parameter you can use to safely improve it locally. We&amp;rsquo;ll put out more information and releases to do so when its available, but in the meantime, your patience is appreciated.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-05-16</title>
+      <link>//localhost:1313/en/blog/2006/05/16/i2p-status-notes-for-2006-05-16/</link>
+      <pubDate>Tue, 16 May 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/05/16/i2p-status-notes-for-2006-05-16/</guid>
+      <description>&lt;p&gt;Hey y&amp;rsquo;all, quick meta-notes today. I&amp;rsquo;ve got to bolt for the evening and won&amp;rsquo;t be back in time for the meeting, but will write up a set of status notes tomorrow (with the meeting next week, of course). Complication has been churning away with some neat mods in cvs, and there is some promising stuff coming up, so hopefully we&amp;rsquo;ll have a release later this week. Not sure though.&lt;/p&gt;&#xA;&lt;p&gt;In any case, if y&amp;rsquo;all meet up tonight, please keep logs of the meeting and commit &amp;rsquo;em to the i2pwww cvs module and I&amp;rsquo;ll post those to the site tomorrow.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-05-09</title>
+      <link>//localhost:1313/en/blog/2006/05/09/i2p-status-notes-for-2006-05-09/</link>
+      <pubDate>Tue, 09 May 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/05/09/i2p-status-notes-for-2006-05-09/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, tuesday rolls &amp;lsquo;round once again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.18&lt;/li&gt;&#xA;&lt;li&gt;baz&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.18&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;After another week of testing and tweaking, we pushed out a new release earlier this afternoon which should get us into a more stable environment to make improvements from. We probably won&amp;rsquo;t see much effect until it gets widely deployed though, so we may have to wait a few days to see how it goes, but measurements will of course continue.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-05-02</title>
+      <link>//localhost:1313/en/blog/2006/05/02/i2p-status-notes-for-2006-05-02/</link>
+      <pubDate>Tue, 02 May 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/05/02/i2p-status-notes-for-2006-05-02/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, tuesday rolls &amp;lsquo;round one more time&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;Syndie status&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;With another week on 0.6.1.17 under our belt, several of the prime measurements of network health are staying in good shape. We are however seeing some of the remaining problems propogate up to the application layer, namely the recent rise in reconnections on the irc2p servers. Postman, cervantes, Complication, and myself have been digging through various aspects of the network&amp;rsquo;s behavior as it relates to the user-visible performance, and we&amp;rsquo;ve tracked down and implemented a few improvements (current CVS HEAD is 0.6.1.17-4). We&amp;rsquo;re still monitoring its behavior and experimenting with some tweaks before pushing it out as 0.6.1.18 though, but thats probably only a few days away.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-04-25</title>
+      <link>//localhost:1313/en/blog/2006/04/25/i2p-status-notes-for-2006-04-25/</link>
+      <pubDate>Tue, 25 Apr 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/04/25/i2p-status-notes-for-2006-04-25/</guid>
+      <description>&lt;p&gt;Hi gang, &amp;rsquo;tis time for our pre-wednesday meeting&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.17&lt;/li&gt;&#xA;&lt;li&gt;I2Phex&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.17&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;After a few days of monitoring some patches, we pushed out a new 0.6.1.17 release, and so far, the improvement has been substantial. Tunnel build success rates have increased by one to two orders of magnitude, and throttled peers are now able to operate with reasonable bandwidth constraints again. A good 60%+ of the network has upgraded so far (thanks!), though getting the rest up to speed would be useful.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-04-18</title>
+      <link>//localhost:1313/en/blog/2006/04/18/i2p-status-notes-for-2006-04-18/</link>
+      <pubDate>Tue, 18 Apr 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/04/18/i2p-status-notes-for-2006-04-18/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, tuesday rolls around again for our weekly status notes&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.16&lt;/li&gt;&#xA;&lt;li&gt;Tunnel creation and congestion&lt;/li&gt;&#xA;&lt;li&gt;Feedspace&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.16&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;With 70% of the network upgraded to 0.6.1.16, we seem to be seeing&#xA;an improvement over earlier releases, and with the issues fixed in&#xA;that release out of the way, we&amp;rsquo;ve got a clearer view of our next&#xA;bottleneck.  For those not yet on 0.6.1.16, please upgrade as soon&#xA;as possible, since earlier releases will reject tunnel creation&#xA;requests arbitrarily (even if the router has sufficient resources to&#xA;participate in more tunnels).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-04-04</title>
+      <link>//localhost:1313/en/blog/2006/04/04/i2p-status-notes-for-2006-04-04/</link>
+      <pubDate>Tue, 04 Apr 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/04/04/i2p-status-notes-for-2006-04-04/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, tuesday rolls &amp;lsquo;round again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.14&lt;/li&gt;&#xA;&lt;li&gt;Syndie plotting&lt;/li&gt;&#xA;&lt;li&gt;Local jbigi optimizations&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.14&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The 0.6.1.13 release is still a bit bumpy out there, though we&amp;rsquo;ve&#xA;had some substantial fixes and improvements in subsequent builds.&#xA;I hope to have a new 0.6.1.14 release out in the next few days,&#xA;so keep your ears to the ground!&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;Syndie plotting&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;There&amp;rsquo;ve been a bunch of discussions regarding syndie revamps,&#xA;including GUIs, browser plugins, full text search, a more complete&#xA;syndication scheduler, an archive manager, multipage posts, support&#xA;for more formatting options, and a whole bunch more.  I expect we&amp;rsquo;ll&#xA;be getting way on a substantial set of mods pretty soon, so if you&#xA;want to get involved, or get your ideas implemented, speak up :)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-03-28</title>
+      <link>//localhost:1313/en/blog/2006/03/28/i2p-status-notes-for-2006-03-28/</link>
+      <pubDate>Tue, 28 Mar 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/03/28/i2p-status-notes-for-2006-03-28/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, tuesday rolls around again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.13&lt;/li&gt;&#xA;&lt;li&gt;Use case survey&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.13&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Things were progressing fairly smoothly on 0.6.1.12, and the&#xA;new 0.6.1.13 release has some updates to help users on both&#xA;low bandwidth and highly congested links.  There have been some&#xA;reports of problems regarding load throttling on high bandwidth&#xA;links and on some of the netDb changes, so I&amp;rsquo;m working on fixes&#xA;now.  Affected users will likely have a release available later&#xA;on in the week, perhaps by the weekend.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-03-21</title>
+      <link>//localhost:1313/en/blog/2006/03/21/i2p-status-notes-for-2006-03-21/</link>
+      <pubDate>Tue, 21 Mar 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/03/21/i2p-status-notes-for-2006-03-21/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, &amp;rsquo;tis tuesday again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;jrobin&lt;/li&gt;&#xA;&lt;li&gt;biff and toopie&lt;/li&gt;&#xA;&lt;li&gt;new key&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The past week has been pretty stable, with no new release yet.  I&amp;rsquo;ve&#xA;been churning away on tunnel throttling and low bandwidth operation,&#xA;but to help out with that testing, I&amp;rsquo;ve integrated JRobin with the&#xA;web console and our stats management system.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;JRobin&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;JRobin [1] is a pure java port of RRDtool [2], which lets us generate&#xA;pretty graphs like the ones zzz has been churning out with very&#xA;little memory overhead.  We&amp;rsquo;ve got it configured to work entirely&#xA;in-memory, so there&amp;rsquo;s no file lock contention, and the time to update&#xA;the database is imperceptable.  There are a whole lot of neat things&#xA;that JRobin can do that we aren&amp;rsquo;t exploiting, but the next release&#xA;will have the basic functionality, plus a means to export the data&#xA;in a format RRDtool can understand.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-03-14</title>
+      <link>//localhost:1313/en/blog/2006/03/14/i2p-status-notes-for-2006-03-14/</link>
+      <pubDate>Tue, 14 Mar 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/03/14/i2p-status-notes-for-2006-03-14/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, another quick update this week&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The past week has been reasonably stable on the net - we&amp;rsquo;ve got more&#xA;than 60 routers with more than 3 days uptime (a few with 2+ week&#xA;uptimes), and I&amp;rsquo;ve had an irc connection for more than three days&#xA;now.  There have been some tweaks in tunnel throttling the last&#xA;week, but not too many, as I&amp;rsquo;ve had some changes on an inaccessible&#xA;machine.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-03-07</title>
+      <link>//localhost:1313/en/blog/2006/03/07/i2p-status-notes-for-2006-03-07/</link>
+      <pubDate>Tue, 07 Mar 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/03/07/i2p-status-notes-for-2006-03-07/</guid>
+      <description>&lt;p&gt;Hey y&amp;rsquo;all, a brief weekly update this time&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The past week has been doing quite well, as with 90+% of the network&#xA;on 0.6.1.12, the tunnel build success rates have been pretty good,&#xA;and the peer selection and end to end throughput I&amp;rsquo;ve seen have been&#xA;on an upward track.  There are still some throttling issues I&amp;rsquo;m&#xA;working through in CVS, as well as some optimizations to reduce&#xA;unnecessary breadth in peer communication, but those are looking&#xA;quite promising.  There&amp;rsquo;ll be an update as 0.6.1.13 sometime, but&#xA;its not imminent.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-02-28</title>
+      <link>//localhost:1313/en/blog/2006/02/28/i2p-status-notes-for-2006-02-28/</link>
+      <pubDate>Tue, 28 Feb 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/02/28/i2p-status-notes-for-2006-02-28/</guid>
+      <description>&lt;p&gt;Hey y&amp;rsquo;all, time for our tuesday ranting again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.12&lt;/li&gt;&#xA;&lt;li&gt;Road to 0.6.2&lt;/li&gt;&#xA;&lt;li&gt;Miniprojects&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.12&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The past week has seen some substantial improvement on the net,&#xA;first with widespread deployment of 0.6.1.11 last Tuesday,&#xA;followed by this past Monday&amp;rsquo;s 0.6.1.12 release (which has been&#xA;pushed out to 70% of the net so far - thanks!)  Overall, things are&#xA;much improved over both 0.6.1.10 and earlier releases - tunnel build&#xA;success rates are a full order of magnitude higher without any of&#xA;those fallback tunnels, latency is down, CPU usage is down, and&#xA;throughput is up.  In addition, with TCP fully disabled, the packet&#xA;retransmission rate is staying under control.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-02-21</title>
+      <link>//localhost:1313/en/blog/2006/02/21/i2p-status-notes-for-2006-02-21/</link>
+      <pubDate>Tue, 21 Feb 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/02/21/i2p-status-notes-for-2006-02-21/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, &amp;rsquo;tis tuesday again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The network has been having a bit of rough weather with the 0.6.1.10&#xA;release, due in part to the backwards incompatibility, but also due&#xA;to unexpected bugs.  Neither reliability nor uptime on 0.6.1.10&#xA;was sufficient, so over the last 5 days there was been a flurry of&#xA;patches, culminating in the new 0.6.1.11 release -&#xA;&lt;a href=&#34;http://dev.i2p.net/pipermail/i2p/2006-February/001263.html&#34;&gt;http://dev.i2p.net/pipermail/i2p/2006-February/001263.html&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Most of the bugs found in 0.6.1.10 have been present since the 0.6&#xA;release last September, but weren&amp;rsquo;t readily apparent while there&#xA;were alternate transports to fall back on (TCP).  My local test&#xA;network simulates packet failure, but didn&amp;rsquo;t really cover router&#xA;churn and other persistent network failures.  The _PRE test network&#xA;also included a self-selected set of fairly reliable peers, too, so&#xA;there were substantial situations not fully explored prior to the&#xA;full release.  Thats a problem, obviously, and next time we&amp;rsquo;ll make&#xA;sure to include a wider selection of scenarios.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-02-14</title>
+      <link>//localhost:1313/en/blog/2006/02/14/i2p-status-notes-for-2006-02-14/</link>
+      <pubDate>Tue, 14 Feb 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/02/14/i2p-status-notes-for-2006-02-14/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, quick update today&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;0.6.1.10&lt;/li&gt;&#xA;&lt;li&gt;Syndie activity&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As I said last week, &amp;ldquo;There haven&amp;rsquo;t been any substantial changes on&#xA;the live net over the last week, so the live net status hasn&amp;rsquo;t changed&#xA;much.  On the other hand&amp;hellip;&amp;rdquo;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;0.6.1.10&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;There has been more progress with the _PRE network to get us to&#xA;the 0.6.1.10 release, and the other day I gave y&amp;rsquo;all the 5 day&#xA;warning [1].  Things are still on track, so I expect 0.6.1.10 to be&#xA;out sometime late thursday.  The release will not be backwards&#xA;compatible, and your router will likely create a new router identity&#xA;and require reseeding to get onto the new network.  This should&#xA;happen transparently though.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-02-07</title>
+      <link>//localhost:1313/en/blog/2006/02/07/i2p-status-notes-for-2006-02-07/</link>
+      <pubDate>Tue, 07 Feb 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/02/07/i2p-status-notes-for-2006-02-07/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, tuesday rolls around again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;_PRE net progress&lt;/li&gt;&#xA;&lt;li&gt;I2Phex 0.1.1.37&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;There haven&amp;rsquo;t been any substantial changes on the live net over the&#xA;last week, so the live net status hasn&amp;rsquo;t changed much.  On the other&#xA;hand&amp;hellip;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;_PRE net progress&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Last week I started committing backwards incompatible code for the&#xA;0.6.1.10 release onto a separate branch in CVS (i2p_0_6_1_10_PRE),&#xA;and a cadre of volunteers have helped test this out.  This new _PRE&#xA;network cannot talk to the live net, and doesn&amp;rsquo;t have any meaningful&#xA;anonymity (since there are under 10 peers).  With the pen register&#xA;logs from those routers, a few substantial bugs in both the new and&#xA;old code have been tracked down and swatted, though further testing&#xA;and improvement continues.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-01-31</title>
+      <link>//localhost:1313/en/blog/2006/01/31/i2p-status-notes-for-2006-01-31/</link>
+      <pubDate>Tue, 31 Jan 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/01/31/i2p-status-notes-for-2006-01-31/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, tuesday rolls around once again,&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;0.6.1.10 status&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Over the last week, I&amp;rsquo;ve been trying out a few different tweaks to&#xA;increase the reliability of tunnel creation on the live net, but&#xA;there hasn&amp;rsquo;t yet been a breakthrough.  There have been some&#xA;substantial changes in CVS though, but they aren&amp;rsquo;t what I&amp;rsquo;d term&amp;hellip;&#xA;stable.  So, generally, I&amp;rsquo;d recommend people either use the most&#xA;recent release (0.6.1.9, tagged in CVS as i2p_0_6_1_9), or no more&#xA;than 1 hop tunnels with the latest builds.  On the other hand&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-01-24</title>
+      <link>//localhost:1313/en/blog/2006/01/24/i2p-status-notes-for-2006-01-24/</link>
+      <pubDate>Tue, 24 Jan 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/01/24/i2p-status-notes-for-2006-01-24/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, tuesday keeps coming back&amp;hellip;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;New build process&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The past week hasn&amp;rsquo;t brought many changes to the network, with most&#xA;users (77%) up on the latest release.  Still, there are some hefty&#xA;changes coming down the path, related to the new tunnel building&#xA;process, and these changes will cause some bumps for those helping&#xA;to test the unrelease builds.  On the whole, however, those using&#xA;the releases should continue to have a fairly reliable level of&#xA;service.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-01-17</title>
+      <link>//localhost:1313/en/blog/2006/01/17/i2p-status-notes-for-2006-01-17/</link>
+      <pubDate>Tue, 17 Jan 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/01/17/i2p-status-notes-for-2006-01-17/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, &amp;rsquo;tis tuesday again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.9&lt;/li&gt;&#xA;&lt;li&gt;Tunnel creation crypto&lt;/li&gt;&#xA;&lt;li&gt;Syndie blogs&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.9&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;With 0.6.1.9 out and 70% of the network upgraded, most of the&#xA;bugfixes included seem to be working as expected, with reports are&#xA;that the new speed profiling has been picking out some good peers.&#xA;I&amp;rsquo;ve heard of sustained throughput on fast peers exceeding 300KBps&#xA;with 50-70% cpu usage, with other routers in the 100-150KBps range,&#xA;tapering down to those pushing 1-5KBps.  There still is substantial&#xA;router identity churn though, so it seems the bugfix I thought would&#xA;reduce that hasn&amp;rsquo;t (or the churn is legitimate).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-01-10</title>
+      <link>//localhost:1313/en/blog/2006/01/10/i2p-status-notes-for-2006-01-10/</link>
+      <pubDate>Tue, 10 Jan 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/01/10/i2p-status-notes-for-2006-01-10/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, seems that tuesday has rolled around again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;Throughput profiling&lt;/li&gt;&#xA;&lt;li&gt;Syndie blogs&lt;/li&gt;&#xA;&lt;li&gt;HTTP persistent connections&lt;/li&gt;&#xA;&lt;li&gt;I2Phex gwebcache&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The past week has seen a lot of bugfixes and enhnacements going on in CVS, with the current build sitting at 0.6.1.8-11. The network has been reasonably stable, though some outages at different i2p service providers led to the occational hiccough. We&amp;rsquo;ve finally gotten rid of the unnecessarily high router identity churn in CVS, and there&amp;rsquo;s a new bugfix to the core that zzz came up with yesterday that sounds quite promising, but we&amp;rsquo;ll have to wait and see how it impacts things. Two other big things going on in the past week have been the new throughput based speed profiling, and some major work on Syndie&amp;rsquo;s blog view. As for when we&amp;rsquo;ll see 0.6.1.9, it should be out later this week, the weekend at the latest. Keep your ears to the usual places.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2006-01-03</title>
+      <link>//localhost:1313/en/blog/2006/01/03/i2p-status-notes-for-2006-01-03/</link>
+      <pubDate>Tue, 03 Jan 2006 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2006/01/03/i2p-status-notes-for-2006-01-03/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, happy new year! Lets jump back into our weekly status notes after a week without them -&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.8&lt;/li&gt;&#xA;&lt;li&gt;Load testing results and peer profiling&lt;/li&gt;&#xA;&lt;li&gt;2005 review / 2006 preview / ???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status and 0.6.1.8&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The other week we pushed out 0.6.1.8 and reports from the field are that zzz&amp;rsquo;s modifications have helped out a bunch, and things seem fairly stable on the net, even with the substantially increased network traffic as of late (the mean seems to have doubled in the last month, according to stats.i2p). I2PSnark seems to be working out fairly well too - while we&amp;rsquo;ve run into a few snags, we&amp;rsquo;ve tracked down and fixed most of them in subsequent builds. There hasn&amp;rsquo;t been much feedback regarding Syndie&amp;rsquo;s new blog interface, but there has been a bit of an increase in Syndie traffic (partly due to protocol&amp;rsquo;s discovery of dust&amp;rsquo;s rss/atom importer :)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-11-08</title>
+      <link>//localhost:1313/en/blog/2005/11/08/i2p-status-notes-for-2005-11-08/</link>
+      <pubDate>Tue, 08 Nov 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/11/08/i2p-status-notes-for-2005-11-08/</guid>
+      <description>&lt;p&gt;Hi gang, tuesday again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status / short term roadmap&lt;/li&gt;&#xA;&lt;li&gt;I2Phex&lt;/li&gt;&#xA;&lt;li&gt;I2P-Rufus&lt;/li&gt;&#xA;&lt;li&gt;I2PSnarkGUI&lt;/li&gt;&#xA;&lt;li&gt;Syndie&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status / short term roadmap&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;0.6.1.4 still seems pretty solid, though there have been some bugfixes in CVS since then. I&amp;rsquo;ve also added some optimizations for SSU to transfer data more efficiently, which I hope will have a noticeable impact on the network once its rolled out widely. I&amp;rsquo;m holding off on 0.6.1.5 for the moment though, as there are a few other things I want to get into the next release. The current plan is to push it out this weekend, so keep an ear out for the latest news.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-11-01</title>
+      <link>//localhost:1313/en/blog/2005/11/01/i2p-status-notes-for-2005-11-01/</link>
+      <pubDate>Tue, 01 Nov 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/11/01/i2p-status-notes-for-2005-11-01/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, its that time of the week again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.4 and net status&lt;/li&gt;&#xA;&lt;li&gt;boostraps, predecessors, global passive adversaries, and CBR&lt;/li&gt;&#xA;&lt;li&gt;i2phex 0.1.1.34&lt;/li&gt;&#xA;&lt;li&gt;voi2p app&lt;/li&gt;&#xA;&lt;li&gt;syndie and sucker&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.4 and net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Last saturday&amp;rsquo;s 0.6.1.4 release seems to have gone fairly smoothly - 75% of the network has upgraded already (thanks!), and most of the remaining are on 0.6.1.3 anyway. Things seems to be working reasonably well, and while I haven&amp;rsquo;t heard much feedback about it - either positive or negative, I&amp;rsquo;m assuming y&amp;rsquo;all would complain loudly if it were bad :)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-10-25</title>
+      <link>//localhost:1313/en/blog/2005/10/25/i2p-status-notes-for-2005-10-25/</link>
+      <pubDate>Tue, 25 Oct 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/10/25/i2p-status-notes-for-2005-10-25/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, more news from the front&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;Fortuna integration&lt;/li&gt;&#xA;&lt;li&gt;GCJ status&lt;/li&gt;&#xA;&lt;li&gt;i2psnark returns&lt;/li&gt;&#xA;&lt;li&gt;More on bootstrapping&lt;/li&gt;&#xA;&lt;li&gt;Virus investigations&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The past week has been pretty good on the net - things seem fairly stable, throughput normal, and the net continues to grow into the 4-500 peer range. There have been some significant improvements since the 0.6.1.3 release too, and as they affect performance and reliability, I expect we&amp;rsquo;ll have a 0.6.1.4 release later this week.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-10-18</title>
+      <link>//localhost:1313/en/blog/2005/10/18/i2p-status-notes-for-2005-10-18/</link>
+      <pubDate>Tue, 18 Oct 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/10/18/i2p-status-notes-for-2005-10-18/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, its Tuesday again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.3&lt;/li&gt;&#xA;&lt;li&gt;Freenet, I2P, and darknets (oh my)&lt;/li&gt;&#xA;&lt;li&gt;Tunnel bootstrap attacks&lt;/li&gt;&#xA;&lt;li&gt;I2Phex&lt;/li&gt;&#xA;&lt;li&gt;Syndie/Sucker&lt;/li&gt;&#xA;&lt;li&gt;??? [500+ symmetric nat bounty]&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.3&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Last Friday we pushed out a new 0.6.1.3 release, and with 70% of the network upgraded, reports have been very positive. The new SSU improvements seems to have cut down on unnecessary retransmissions, allowing more efficient throughput at higher rates, and there haven&amp;rsquo;t been any major problems with the IRC proxy or Syndie improvements to my knowledge.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-10-11</title>
+      <link>//localhost:1313/en/blog/2005/10/11/i2p-status-notes-for-2005-10-11/</link>
+      <pubDate>Tue, 11 Oct 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/10/11/i2p-status-notes-for-2005-10-11/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, its tuesday again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.2&lt;/li&gt;&#xA;&lt;li&gt;I2PTunnelIRCClient&lt;/li&gt;&#xA;&lt;li&gt;Syndie&lt;/li&gt;&#xA;&lt;li&gt;I2Phex&lt;/li&gt;&#xA;&lt;li&gt;Stego and darknets (re: flamewar)&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.2&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Last week&amp;rsquo;s 0.6.1.2 release has gone pretty well so far - 75% of the network has upgraded, HTTP POST is working fine, and the streaming lib is pushing data reasonably efficiently (the full response to an HTTP request is often received in a single end to end round trip). The network has also grown a bit - steady numbers look like 400-ish peers, though it bursted up a bit further to 6-700 with churn during the peak of the digg/gotroot [1] reference over the weekend.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-10-04</title>
+      <link>//localhost:1313/en/blog/2005/10/04/i2p-status-notes-for-2005-10-04/</link>
+      <pubDate>Tue, 04 Oct 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/10/04/i2p-status-notes-for-2005-10-04/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time for our weekly status notes (insert cheering here)&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.1&lt;/li&gt;&#xA;&lt;li&gt;i2phex&lt;/li&gt;&#xA;&lt;li&gt;syndie&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.1.1&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As announced on the usual places, 0.6.1.1 came out the other day, and so far, reports have been positive. The network has grown to a steady 3-400 known peers, and performance has been pretty good, though cpu usage has increased a bit. This is probably be due to a long standing bugs which incorrectly allows invalid IP addresses to get accepted, which in turn causes a higher than necessary churn. There have been fixes to this and other things in CVS builds since 0.6.1.1, so we&amp;rsquo;ll probably have a 0.6.1.2 later this week.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-09-20</title>
+      <link>//localhost:1313/en/blog/2005/09/20/i2p-status-notes-for-2005-09-20/</link>
+      <pubDate>Tue, 20 Sep 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/09/20/i2p-status-notes-for-2005-09-20/</guid>
+      <description>&lt;p&gt;Hi gang, its tuesday again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index:&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.0.6&lt;/li&gt;&#xA;&lt;li&gt;I2Phex 0.1.1.27&lt;/li&gt;&#xA;&lt;li&gt;migration&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.0.6&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;With last saturday&amp;rsquo;s 0.6.0.6 release, we&amp;rsquo;ve got a bunch of new pieces in play on the live net, and y&amp;rsquo;all have done a great job upgrading - as of a few hours ago, almost 250 routers have upgraded! The network seems to be doing well too, and introductions have so far been working - you can track your own introduction activity with the http://localhost:7657/oldstats.jsp, looking at the udp.receiveHolePunch and udp.receiveIntroRelayResponse (as well as udp.receiveRelayIntro, for those behind NATs).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-09-13</title>
+      <link>//localhost:1313/en/blog/2005/09/13/i2p-status-notes-for-2005-09-13/</link>
+      <pubDate>Tue, 13 Sep 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/09/13/i2p-status-notes-for-2005-09-13/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time for the weekly status notes&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;SSU introductions / NAT hole punching&lt;/li&gt;&#xA;&lt;li&gt;Bounties&lt;/li&gt;&#xA;&lt;li&gt;Client app directions&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;We&amp;rsquo;re still churning along with the 0.6.0.5 release on the net, and nearly everyone has upgraded, with many running one of the builds since then (CVS HEAD is 0.6.0.5-9 right now). Things are still working well on the whole, though there has been a substantial increase in network traffic from what I&amp;rsquo;ve observed, likely due to more i2p-bt or i2phex usage. Once of the irc servers had a bit of a bump last night, but the other held on fine and things seem to have recovered well. There have been substantial improvements in error handling and other features in the CVS builds however, so I expect we&amp;rsquo;ll have a new release later this week.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-09-06</title>
+      <link>//localhost:1313/en/blog/2005/09/06/i2p-status-notes-for-2005-09-06/</link>
+      <pubDate>Tue, 06 Sep 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/09/06/i2p-status-notes-for-2005-09-06/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all,&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;Syndie status&lt;/li&gt;&#xA;&lt;li&gt;susidns&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As many have seen, the 0.6.0.5 release came out last week after a brief 0.6.0.4 rev, and so far, the reliability has been greatly improved, and the net has grown larger than ever. There is still some room for improvement, but it seems that the new netDb is performing as designed. We&amp;rsquo;ve even had the fallback tested out - when the floodfill peers are unreachable, routers fall back on the kademlia netDb, and the other day when that scenario occurred, irc and eepsite(I2P Site) reliability was not substantially diminished.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-08-30</title>
+      <link>//localhost:1313/en/blog/2005/08/30/i2p-status-notes-for-2005-08-30/</link>
+      <pubDate>Tue, 30 Aug 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/08/30/i2p-status-notes-for-2005-08-30/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, its that time of the week again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;floodfill netDb&lt;/li&gt;&#xA;&lt;li&gt;Syndie&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;With 0.6.0.3 out for a week, the reports are pretty good, though the logging and display has been pretty confusing for some. As of a few minutes ago, I2P is reporting that a substantial number of people have misconfigured their NATs or firewalls though - out of 241 peers, 41 have seen the status go to ERR-Reject, while 200 have been straight OK (when they can get an explicit status). This is not good, but it has helped focus what needs to be done a bit further.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-08-23</title>
+      <link>//localhost:1313/en/blog/2005/08/23/i2p-status-notes-for-2005-08-23/</link>
+      <pubDate>Tue, 23 Aug 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/08/23/i2p-status-notes-for-2005-08-23/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time for the weekly status notes again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.0.3 status&lt;/li&gt;&#xA;&lt;li&gt;IRC status&lt;/li&gt;&#xA;&lt;li&gt;susibt&lt;/li&gt;&#xA;&lt;li&gt;Syndie&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.0.3 status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As mentioned the other day [1], we&amp;rsquo;ve got a new 0.6.0.3 release out there, ready for your enjoyment. Its a big improvement from the 0.6.0.2 release (its not uncommon to get several days without disconnect on irc - I&amp;rsquo;ve had 5 day uptimes broken by an upgrade), but there are a few things worth noting. Still, its not always like that - people with slow net connections run into troubles, but its progress.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-08-16</title>
+      <link>//localhost:1313/en/blog/2005/08/16/i2p-status-notes-for-2005-08-16/</link>
+      <pubDate>Tue, 16 Aug 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/08/16/i2p-status-notes-for-2005-08-16/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, brief notes today&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index:&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;PeerTest status&lt;/li&gt;&#xA;&lt;li&gt;Irc2P&lt;/li&gt;&#xA;&lt;li&gt;Feedspace&lt;/li&gt;&#xA;&lt;li&gt;meta&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;PeerTest status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As mentioned before, the upcoming 0.6.1 release will include a series of tests to more carefully configure the router and to verify reachability (or point out what needs to be done), and while we&amp;rsquo;ve had some code in CVS for two builds now, there are still some refinements left before it&amp;rsquo;ll work as smoothly as necessary. At the moment, I&amp;rsquo;m making some slight modifications to the test flow documented [1] by adding in an additional packet to verify Charlie&amp;rsquo;s reachability and delaying Bob&amp;rsquo;s reply to Alice until Charlie has responded. This should reduce the number of unnecessary &amp;ldquo;ERR-Reject&amp;rdquo; status values people see as Bob won&amp;rsquo;t reply to Alice until he has a Charlie who is up for testing (and when Bob doesn&amp;rsquo;t reply, Alice sees &amp;ldquo;Unknown&amp;rdquo; as the status).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-08-09</title>
+      <link>//localhost:1313/en/blog/2005/08/09/i2p-status-notes-for-2005-08-09/</link>
+      <pubDate>Tue, 09 Aug 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/08/09/i2p-status-notes-for-2005-08-09/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, its that time of the week again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.0.2&lt;/li&gt;&#xA;&lt;li&gt;roadmap update&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6.0.2&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As announced yesterday [1], we&amp;rsquo;ve got a new release out and available and the reports are generally positive. About half of y&amp;rsquo;all have upgraded already (I see 110 @ 0.6.0.2, 89 @ 0.6.0.1, and 21 @ 0.6), but the rest should upgrade asap, as there have been some useful improvements.&lt;/p&gt;&#xA;&lt;p&gt;[1] &lt;a href=&#34;http://dev.i2p.net/pipermail/i2p/2005-August/000834.html&#34;&gt;http://dev.i2p.net/pipermail/i2p/2005-August/000834.html&lt;/a&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;Roadmap update&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Earlier this afternoon I thought it&amp;rsquo;d make sense to transcribe a summary of the roadmap from my notebook to the web, so those of you wondering whats up and where we&amp;rsquo;re going can now swing on over to &lt;a href=&#34;http://www.i2p.net/roadmap&#34;&gt;http://www.i2p.net/roadmap&lt;/a&gt; and see whats been changed. Its nothing revolutionary, but should help clarify things for people.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-08-02</title>
+      <link>//localhost:1313/en/blog/2005/08/02/i2p-status-notes-for-2005-08-02/</link>
+      <pubDate>Tue, 02 Aug 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/08/02/i2p-status-notes-for-2005-08-02/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, belated notes today,&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index:&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6 status&lt;/li&gt;&#xA;&lt;li&gt;PeerTest&lt;/li&gt;&#xA;&lt;li&gt;SSU introductions&lt;/li&gt;&#xA;&lt;li&gt;I2PTunnel web interface&lt;/li&gt;&#xA;&lt;li&gt;mnet over i2p&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6 status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As you&amp;rsquo;ve all seen, we pushed out the 0.6 release a few days ago, and on the whole, things have been going fairly well. Some of the transport improvements since 0.5.* have exposed issues with the netDb implementation, but fixes for much of that is in testing now (as the 0.6-1 build) and will be deployed as 0.6.0.1 fairly shortly. We&amp;rsquo;ve also run into some problems with different NAT and firewall setups, as well as MTU issues with some users - issues that weren&amp;rsquo;t present in the smaller test network due to fewer testers. Workarounds have been added in for the worst offenders, but we&amp;rsquo;ve got a long term solution coming up soon - peer tests.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-07-26</title>
+      <link>//localhost:1313/en/blog/2005/07/26/i2p-status-notes-for-2005-07-26/</link>
+      <pubDate>Tue, 26 Jul 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/07/26/i2p-status-notes-for-2005-07-26/</guid>
+      <description>&lt;p&gt;Hi gang, another brief update this week, but with some important stuff&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.6&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Things are looking pretty good on the SSU front, and I don&amp;rsquo;t see any showstoppers which are holding us back from pushing out as 0.6. As such, we&amp;rsquo;ll be going live with a new 0.6 release later this week - lets pencil it in for tomorrow (wednesday). The 0.6 rev is NOT going to be backwards compatible, so we should expect it to be a bit bumpy, but everyone should upgrade to it as soon as its out. That includes people already running 0.5.0.7-19 (or later), as I&amp;rsquo;ve held off from committing the switch to a few vars making it incompatible.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-07-19</title>
+      <link>//localhost:1313/en/blog/2005/07/19/i2p-status-notes-for-2005-07-19/</link>
+      <pubDate>Tue, 19 Jul 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/07/19/i2p-status-notes-for-2005-07-19/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, brief update this week&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;SSU testing progress&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;SSU testing&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;We&amp;rsquo;ve been doing lots of tweaking and bugfixing since this second round of SSU testing started, but its looking more and more positive. There are around 20-30 people participating in the tests (or at least running SSU-enabled routers), and the performance is much better than I had hoped. There are still some bugs being tracked down, but we&amp;rsquo;re getting close to the point where we can push &amp;rsquo;er out into 0.6 to get full network testing.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-07-12</title>
+      <link>//localhost:1313/en/blog/2005/07/12/i2p-status-notes-for-2005-07-12/</link>
+      <pubDate>Tue, 12 Jul 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/07/12/i2p-status-notes-for-2005-07-12/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, its that time of the week again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;squid/www/cvs/dev.i2p restored&lt;/li&gt;&#xA;&lt;li&gt;SSU testing&lt;/li&gt;&#xA;&lt;li&gt;I2CP crypto&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;squid/www/cvs/dev.i2p restored&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;After bashing my head on several colo boxes, some of the old services have been restored - squid.i2p (one of the two default outproxies), www.i2p (a secure pointer to &lt;a href=&#34;https://www.i2p.net&#34;&gt;www.i2p.net&lt;/a&gt;), dev.i2p (a secure pointer to dev.i2p.net, where the mailing list archives, cvsweb, and default netDb seeds are found), and cvs.i2p (a secure pointer to our CVS server - cvs.i2p.net:2401). My blog is still awol, but its content was lost anyway so there&amp;rsquo;ll need to be a fresh start sooner or later. Now that these services are back online reliably, its time to move on to the&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-07-05</title>
+      <link>//localhost:1313/en/blog/2005/07/05/i2p-status-notes-for-2005-07-05/</link>
+      <pubDate>Tue, 05 Jul 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/07/05/i2p-status-notes-for-2005-07-05/</guid>
+      <description>&lt;p&gt;Hi gang, its that time of the week,&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Dev status&lt;/li&gt;&#xA;&lt;li&gt;Tunnel IVs&lt;/li&gt;&#xA;&lt;li&gt;SSU MACs&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Dev status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Another week, another message saying &amp;ldquo;There&amp;rsquo;s been a lot of progress on the SSU transport&amp;rdquo; ;) My local mods are stable and have been pushed to CVS (HEAD sits at 0.5.0.7-9), but no release yet. More news on that front soon. Details on the non-SSU related changes up in the history [1], though I&amp;rsquo;m keeping SSU related changes out of that list so far, since SSU isn&amp;rsquo;t used by any non-devs yet (and devs read i2p-cvs@ :)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-06-28</title>
+      <link>//localhost:1313/en/blog/2005/06/28/i2p-status-notes-for-2005-06-28/</link>
+      <pubDate>Tue, 28 Jun 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/06/28/i2p-status-notes-for-2005-06-28/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, weekly update time again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;SSU status&lt;/li&gt;&#xA;&lt;li&gt;Unit test status&lt;/li&gt;&#xA;&lt;li&gt;Kaffe status&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;SSU status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;There has been some more progress on the SSU transport, and my current thinking will be that after some more live net testing, we&amp;rsquo;ll be able to deploy as 0.6 without much delay. The first SSU release will not include support for people who cannot poke a hole in their firewall or adjust their NAT, but that will be rolled out in 0.6.1. After 0.6.1 is out, tested, and kicking ass (aka 0.6.1.42), we&amp;rsquo;ll move on over to 1.0.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-06-21</title>
+      <link>//localhost:1313/en/blog/2005/06/21/i2p-status-notes-for-2005-06-21/</link>
+      <pubDate>Tue, 21 Jun 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/06/21/i2p-status-notes-for-2005-06-21/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time to start back up our weekly status notes&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Dev[eloper] status&lt;/li&gt;&#xA;&lt;li&gt;Dev[elopment] status&lt;/li&gt;&#xA;&lt;li&gt;Unit test bounty&lt;/li&gt;&#xA;&lt;li&gt;Service outage&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Dev[eloper] status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;After 4 cities in 4 countries, I&amp;rsquo;m finally getting settled and churning through code again. Last week I got the last of the pieces to a laptop together, I&amp;rsquo;m no longer couch hopping, and while I don&amp;rsquo;t have net access at home, there are plenty of net cafes around, so access is reliable (just infrequent and expensive).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-05-03</title>
+      <link>//localhost:1313/en/blog/2005/05/03/i2p-status-notes-for-2005-05-03/</link>
+      <pubDate>Tue, 03 May 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/05/03/i2p-status-notes-for-2005-05-03/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, lots of stuff on the table this week&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;SSU status&lt;/li&gt;&#xA;&lt;li&gt;i2phex&lt;/li&gt;&#xA;&lt;li&gt;awol&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;No big changes on the overall network health - things seem fairly stable, and though we&amp;rsquo;ve got the occational bump services seem to be doing well. There have been lots of updates to CVS since the last release but no show stopper bug fixes. We may have one more release before my move, just to get the latest CVS out further, but I&amp;rsquo;m not sure yet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-04-26</title>
+      <link>//localhost:1313/en/blog/2005/04/26/i2p-status-notes-for-2005-04-26/</link>
+      <pubDate>Tue, 26 Apr 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/04/26/i2p-status-notes-for-2005-04-26/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, brief weekly status notes today&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;SSU status&lt;/li&gt;&#xA;&lt;li&gt;Unit test bounty&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Most people have upgraded to last weeks 0.5.0.7 release fairly quickly (thanks!) and the overall result seems positive. The net seems fairly reliable and the previous tunnel throttling has been resolved. There are still some intermittent problems reported by some users though, and we&amp;rsquo;re tracking those down.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;SSU status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Most of my time is spent focused on the 0.6 UDP code, and no, its not ready for release, and yes, there is progress ;) Right now it can handle multiple networks, keeping some peers on UDP and others on TCP with fairly reasonable performance. The hard part is working through all the congestion/contention cases, since the live net will be under constant load, but there&amp;rsquo;s been a lot of progress there in the last day or so. More news when there&amp;rsquo;s more news.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-04-19</title>
+      <link>//localhost:1313/en/blog/2005/04/19/i2p-status-notes-for-2005-04-19/</link>
+      <pubDate>Tue, 19 Apr 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/04/19/i2p-status-notes-for-2005-04-19/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, its that time of the week again,&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;SSU status&lt;/li&gt;&#xA;&lt;li&gt;Roadmap update&lt;/li&gt;&#xA;&lt;li&gt;Q status&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Over the nearly two weeks since 0.5.0.6 came out, things have been mostly positive, though service providers (eepsites(I2P Sites), ircd, etc) have been running into some bugs as of late. While clients are in good shape, over time a server may run into situation where failing tunnels can trigger some excessive throttling code, preventing proper rebuilding and publication of the leaseSet.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-04-12</title>
+      <link>//localhost:1313/en/blog/2005/04/12/i2p-status-notes-for-2005-04-12/</link>
+      <pubDate>Tue, 12 Apr 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/04/12/i2p-status-notes-for-2005-04-12/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, update time again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;SSU status&lt;/li&gt;&#xA;&lt;li&gt;Bayesian peer profiling&lt;/li&gt;&#xA;&lt;li&gt;Q status&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Last week&amp;rsquo;s 0.5.0.6 release seems to have fixed the netDb issues we were seeing (yay). Sites and services are much more reliable than they were on 0.5.0.5, though there have been some reports of trouble where a site or service would become unreachable after a few days uptime.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;SSU status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;There&amp;rsquo;s been lots of progress on the 0.6 UDP code, with the first batch of commits already made to CVS. Its not anything you could actually use yet, but the fundamentals are in place. Session negotiation works well and the semireliable message delivery performs as expected. There&amp;rsquo;s still a lot of work to do though, test cases to write, and oddball situations to debug, but its progress.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-04-05</title>
+      <link>//localhost:1313/en/blog/2005/04/05/i2p-status-notes-for-2005-04-05/</link>
+      <pubDate>Tue, 05 Apr 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/04/05/i2p-status-notes-for-2005-04-05/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time for the weekly update&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5.0.5&lt;/li&gt;&#xA;&lt;li&gt;Bayesian peer profiling&lt;/li&gt;&#xA;&lt;li&gt;Q&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5.0.5&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Last week&amp;rsquo;s 0.5.0.5 release has had its ups and downs - the major change to address some attacks in the netDb seems to work as expected, but has exposed some long overlooked bugs in the netDb&amp;rsquo;s operation. This has caused some substantial reliability issues, especially for eepsites(I2P Sites). The bugs have however been identified and addressed in CVS, and those fixes among a few others will be pushed out as a 0.5.0.6 release within the next day.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-03-29</title>
+      <link>//localhost:1313/en/blog/2005/03/29/i2p-status-notes-for-2005-03-29/</link>
+      <pubDate>Tue, 29 Mar 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/03/29/i2p-status-notes-for-2005-03-29/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time for the weekly status notes&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5.0.5&lt;/li&gt;&#xA;&lt;li&gt;UDP (SSU)&lt;/li&gt;&#xA;&lt;li&gt;Q&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5.0.5&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Since y&amp;rsquo;all did such a great job at upgrading to 0.5.0.4 so quickly,&#xA;we&amp;rsquo;re going to have the new 0.5.0.5 release come out after the&#xA;meeting.  As discussed last week, the big change is the inclusion of&#xA;the batching code, bundling multiple small messages together, rather&#xA;than giving them each their own full 1KB tunnel message.  While this&#xA;alone won&amp;rsquo;t be revolutionary, it should substantially reduce the&#xA;number of messages passed, as well as the bandwidth used, especially&#xA;for services like IRC.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-03-22</title>
+      <link>//localhost:1313/en/blog/2005/03/22/i2p-status-notes-for-2005-03-22/</link>
+      <pubDate>Tue, 22 Mar 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/03/22/i2p-status-notes-for-2005-03-22/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, quick status update&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5.0.3&lt;/li&gt;&#xA;&lt;li&gt;batching&lt;/li&gt;&#xA;&lt;li&gt;updating&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;0.5.0.3&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The new release is out and about, and most of y&amp;rsquo;all have upgraded&#xA;fairly quickly - thanks!  There were some bugfixes to various&#xA;issues, but nothing revolutionary - the biggest part was dropping&#xA;0.5 and 0.5.0.1 users off the net.  I&amp;rsquo;ve been tracking the net&amp;rsquo;s&#xA;behavior since then, digging through what&amp;rsquo;s going on, and while&#xA;there has been some improvement, there are still some things that&#xA;need to get sorted out.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-03-15</title>
+      <link>//localhost:1313/en/blog/2005/03/15/i2p-status-notes-for-2005-03-15/</link>
+      <pubDate>Tue, 15 Mar 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/03/15/i2p-status-notes-for-2005-03-15/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, weekly update time&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;Feedspace&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Over the last week, much of my time has been spent analyzing the&#xA;network&amp;rsquo;s behavior, tracking stats and trying to reproduce various&#xA;events in the simulator.  While some of the funky network behavior&#xA;can be attributed to the two dozen or so routers still on older&#xA;versions, the key factor is that our speed calculations aren&amp;rsquo;t&#xA;giving us good data - we aren&amp;rsquo;t able to properly identify peers who&#xA;can pump data quickly.  In the past, this wasn&amp;rsquo;t much of a problem,&#xA;since there was a bug causing us to use the 8 highest capacity peers&#xA;as the &amp;lsquo;fast&amp;rsquo; pool, rather than building legitimate capacity derived&#xA;tiers.  Our current speed calculation is derived from a periodic&#xA;latency test (the RTT of a tunnel test, in particular), but that&#xA;provides insufficient data to have any confidence in the value.&#xA;What we need is a better way to gather more data points while still&#xA;allowing &amp;lsquo;high capacity&amp;rsquo; peers to be promoted to the &amp;lsquo;fast&amp;rsquo; tier, as&#xA;necessary.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-03-08</title>
+      <link>//localhost:1313/en/blog/2005/03/08/i2p-status-notes-for-2005-03-08/</link>
+      <pubDate>Tue, 08 Mar 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/03/08/i2p-status-notes-for-2005-03-08/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, weekly update time&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5.0.2&lt;/li&gt;&#xA;&lt;li&gt;mail.i2p updates&lt;/li&gt;&#xA;&lt;li&gt;i2p-bt updates&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5.0.2&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The other day we pushed out the 0.5.0.2 release and a good portion&#xA;of the network has upgraded (yay!)  Reports are coming in that the&#xA;worst offenders from 0.5.0.1 have been killed, and overall things&#xA;seem to be working fine.  There are still some reliability issues,&#xA;though the streaming lib has been handling it (irc connections&#xA;lasting for 12-24+ hours seems the norm).  I&amp;rsquo;ve been trying to&#xA;track down some of the issues remaining, but it would be really,&#xA;really good if everyone got up to date ASAP.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-03-01</title>
+      <link>//localhost:1313/en/blog/2005/03/01/i2p-status-notes-for-2005-03-01/</link>
+      <pubDate>Tue, 01 Mar 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/03/01/i2p-status-notes-for-2005-03-01/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time for our status update&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5.0.1&lt;/li&gt;&#xA;&lt;li&gt;roadmap&lt;/li&gt;&#xA;&lt;li&gt;addressbook editor and config&lt;/li&gt;&#xA;&lt;li&gt;i2p-bt&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5.0.1&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As discussed last week, a few hours after the meeting we pushed out&#xA;a new 0.5.0.1 release fixing the bugs in 0.5 that had caused the&#xA;massive number of tunnels being built (among other things).&#xA;Generally, this rev has improved things, but under wider testing,&#xA;we&amp;rsquo;ve come across some additional bugs that have been hitting a few&#xA;people.  In particular, the 0.5.0.1 rev can gobble tons of CPU if&#xA;you have a slow machine or your router&amp;rsquo;s tunnels fail in bulk, and&#xA;some long lived I2PTunnel servers can gobble up RAM until it OOMs.&#xA;There has also been a long standing bug in the streaming lib, where&#xA;we can fail to establish a connection if just the right failures&#xA;happen.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-02-22</title>
+      <link>//localhost:1313/en/blog/2005/02/22/i2p-status-notes-for-2005-02-22/</link>
+      <pubDate>Tue, 22 Feb 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/02/22/i2p-status-notes-for-2005-02-22/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, weekly update time&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5&lt;/li&gt;&#xA;&lt;li&gt;Next steps&lt;/li&gt;&#xA;&lt;li&gt;azneti2p&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;As y&amp;rsquo;all have heard, we finally got 0.5 out the door, and for the&#xA;most part, its been doing pretty well.  I really appreciate how&#xA;quickly people have updated - within the first day, 50-75% of the&#xA;net was up to 0.5!  Because of the fast adoption, we&amp;rsquo;ve been able&#xA;to see the impact of the various changes more quickly, and in turn&#xA;have found a bunch of bugs.  While there are still some outstanding&#xA;issues, we will be putting out a new 0.5.0.1 release later this&#xA;evening to address the most important ones.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-02-15</title>
+      <link>//localhost:1313/en/blog/2005/02/15/i2p-status-notes-for-2005-02-15/</link>
+      <pubDate>Tue, 15 Feb 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/02/15/i2p-status-notes-for-2005-02-15/</guid>
+      <description>&lt;p&gt;Bonjour, sa cette fois de la semaine encore,&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;0.5 status&lt;/li&gt;&#xA;&lt;li&gt;i2p-bt 0.1.7&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;While no new bugs have shown up in the network, last week we gained&#xA;some exposure on a popular French p2p website, which has led to an&#xA;increase both in users and in bittorrent activity.  At the peak, we&#xA;reached 211 routers on the net, though its hovering between 150 and&#xA;180 lately.  Reported bandwidth usage has been up as well, though&#xA;unfortunately the irc reliability has been degraded, with one of the&#xA;servers lowering their bandwidth limits due to the load.  There have&#xA;been a bunch of improvements to the streaming lib to help with this,&#xA;but they&amp;rsquo;ve been on the 0.5-pre branch, so not yet available to the&#xA;live net.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-02-08</title>
+      <link>//localhost:1313/en/blog/2005/02/08/i2p-status-notes-for-2005-02-08/</link>
+      <pubDate>Tue, 08 Feb 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/02/08/i2p-status-notes-for-2005-02-08/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, update time again&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.4.2.6-*&lt;/li&gt;&#xA;&lt;li&gt;0.5&lt;/li&gt;&#xA;&lt;li&gt;i2p-bt 0.1.6&lt;/li&gt;&#xA;&lt;li&gt;fortuna&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.4.2.6-*&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;It doesn&amp;rsquo;t seem like it, but its been over a month since the 0.4.2.6&#xA;release came out and things are still in pretty good shape.  There&#xA;have been a series of pretty useful updates [1] since then, but no&#xA;real show stopper calling for a new release to get pushed.  However,&#xA;in the last day or two we&amp;rsquo;ve had some really good bugfixes sent in&#xA;(thanks anon and Sugadude!), and if we weren&amp;rsquo;t on the verge of the&#xA;0.5 release, I&amp;rsquo;d probably package &amp;rsquo;er up and push &amp;rsquo;er out.  anon&amp;rsquo;s&#xA;update fixes a border condition in the streaming lib which has been&#xA;causing many of the timeouts seen in BT and other large transfers,&#xA;so if you&amp;rsquo;re feeling adventurous, grab CVS HEAD and try &amp;rsquo;er out.  Or&#xA;wait around for the next release, of course.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-02-01</title>
+      <link>//localhost:1313/en/blog/2005/02/01/i2p-status-notes-for-2005-02-01/</link>
+      <pubDate>Tue, 01 Feb 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/02/01/i2p-status-notes-for-2005-02-01/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, weekly status time&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5 status&lt;/li&gt;&#xA;&lt;li&gt;nntp&lt;/li&gt;&#xA;&lt;li&gt;tech proposals&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5 status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;There has been lots of progress on the 0.5 front, with a big batch&#xA;of commits yesterday.  The bulk of the router now uses the new&#xA;tunnel encryption and tunnel pooling [1], and it has been working&#xA;well on the test network.  There are still some key pieces left to&#xA;integrate, and the code is obviously not backwards compatible, but&#xA;I&amp;rsquo;m hoping we can do some wider scale deployment sometime next week.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-01-25</title>
+      <link>//localhost:1313/en/blog/2005/01/25/i2p-status-notes-for-2005-01-25/</link>
+      <pubDate>Tue, 25 Jan 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/01/25/i2p-status-notes-for-2005-01-25/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, quick weekly status update&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5 status&lt;/li&gt;&#xA;&lt;li&gt;sam.net&lt;/li&gt;&#xA;&lt;li&gt;gcj progress&lt;/li&gt;&#xA;&lt;li&gt;udp&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.5 status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Over the past week, there&amp;rsquo;s been a lot of progress on the 0.5 side.&#xA;The issues we were discussing before have been resolved, dramatically&#xA;simplifying the crypto and removing the tunnel looping issue.  The&#xA;new technique [1] has been implemented and the unit tests are in&#xA;place.  Next up I&amp;rsquo;m putting together more of the code to integrate&#xA;those tunnels into the main router, then build up the tunnel&#xA;management and pooling infrastructure.  After thats in place, we&amp;rsquo;ll&#xA;run it through the sim and eventually onto a parallel net to burn it&#xA;in before wrapping a bow on it and calling it 0.5.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-01-18</title>
+      <link>//localhost:1313/en/blog/2005/01/18/i2p-status-notes-for-2005-01-18/</link>
+      <pubDate>Tue, 18 Jan 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/01/18/i2p-status-notes-for-2005-01-18/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, weekly update time&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;0.5&lt;/li&gt;&#xA;&lt;li&gt;i2pmail.v2&lt;/li&gt;&#xA;&lt;li&gt;azneti2p_0.2&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Hmm, not much to report here - things still work as they did last&#xA;week, size of the net is still pretty similar, perhaps a little&#xA;larger.  Some neat new sites are popping up - see the forum [1]&#xA;and orion [2] for details.&lt;/p&gt;&#xA;&lt;p&gt;[1] &lt;a href=&#34;http://forum.i2p.net/viewforum.php?f=16&#34;&gt;http://forum.i2p.net/viewforum.php?f=16&lt;/a&gt;&#xA;[2] &lt;a href=&#34;http://orion.i&#34;&gt;http://orion.i&lt;/a&gt;2p/&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;0.5&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Thanks to the help of postman, dox, frosk, and cervantes (and&#xA;everyone who tunneled data through their routers ;), we&amp;rsquo;ve&#xA;collected a full day&amp;rsquo;s worth of message size stats [3].  There are&#xA;two sets of stats there - height and width of the zoom.  This was&#xA;driven by the desire to explore the impact of different message&#xA;padding strategies on the network load, as explained [4] in one of&#xA;the drafts for the 0.5 tunnel routing.  (ooOOoo pretty pictures).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-01-11</title>
+      <link>//localhost:1313/en/blog/2005/01/11/i2p-status-notes-for-2005-01-11/</link>
+      <pubDate>Tue, 11 Jan 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/01/11/i2p-status-notes-for-2005-01-11/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time for the weekly update&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;0.5 progress&lt;/li&gt;&#xA;&lt;li&gt;0.6 status&lt;/li&gt;&#xA;&lt;li&gt;azneti2p&lt;/li&gt;&#xA;&lt;li&gt;fbsd&lt;/li&gt;&#xA;&lt;li&gt;hosts.txt as WoT&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Overall the net is handling itself well, though we had some problems&#xA;with one of the irc servers being offline and my outproxy acting up.&#xA;However, the other irc server was (and still is) around (though at&#xA;the moment doesn&amp;rsquo;t have CTCP disabled - see [1]), so we were able to&#xA;satiate our need for irc :)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2005-01-04</title>
+      <link>//localhost:1313/en/blog/2005/01/04/i2p-status-notes-for-2005-01-04/</link>
+      <pubDate>Tue, 04 Jan 2005 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2005/01/04/i2p-status-notes-for-2005-01-04/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time for our first weekly status notes of 2005&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Index&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;0.4.2.6&lt;/li&gt;&#xA;&lt;li&gt;0.5&lt;/li&gt;&#xA;&lt;li&gt;jabber @ chat.i2p&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Over the last week, things have been pretty interesting on the net - on nye, there were some comments posted to a popular website talking about i2p-bt and we&amp;rsquo;ve had a small burst of new users. At the moment there are between 120-150 routers on the net, though that peaked at 160 a few days ago. The network held its own though, with high capacity peers picking up the excess load without much disruption to other peers. Some users running without bandwidth limits on really fast links have reported throughput of 2-300KBps, while those with less capacity use the usual low 1-5KBps.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-11-30</title>
+      <link>//localhost:1313/en/blog/2004/11/30/i2p-status-notes-for-2004-11-30/</link>
+      <pubDate>Tue, 30 Nov 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/11/30/i2p-status-notes-for-2004-11-30/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.4.2 and 0.4.2.1&lt;/li&gt;&#xA;&lt;li&gt;mail.i2p&lt;/li&gt;&#xA;&lt;li&gt;i2p-bt&lt;/li&gt;&#xA;&lt;li&gt;eepsites(I2P Sites)&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-042-and-0421&#34;&gt;1) 0.4.2 and 0.4.2.1&lt;/h2&gt;&#xA;&lt;p&gt;Since we finally pushed out 0.4.2, the network&amp;rsquo;s reliability and throughput shot up for a while, until we ran into the brand new bugs we created. IRC connections for most people are lasting for hours on end, though for some who have run into some of the problems, its been a bumpy ride. There have been a slew of fixes though, and later on tonight or early tomorrow we&amp;rsquo;ll have a new 0.4.2.1 release ready for download.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-11-23</title>
+      <link>//localhost:1313/en/blog/2004/11/23/i2p-status-notes-for-2004-11-23/</link>
+      <pubDate>Tue, 23 Nov 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/11/23/i2p-status-notes-for-2004-11-23/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time for a status update&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;Streaming lib&lt;/li&gt;&#xA;&lt;li&gt;0.4.2&lt;/li&gt;&#xA;&lt;li&gt;Addressbook.py 0.3.1&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-net-status&#34;&gt;1) Net status&lt;/h2&gt;&#xA;&lt;p&gt;After last week&amp;rsquo;s 2-3 day stint of things being pretty congested, the network has come back on track (likely because we stopped stress testing the bittorrent port ;). The network has been pretty reliable since then - we do have a few routers that have been up and running for 30-40+ days, but IRC connections have still had their occational bumps. On the other hand&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-11-16</title>
+      <link>//localhost:1313/en/blog/2004/11/16/i2p-status-notes-for-2004-11-16/</link>
+      <pubDate>Tue, 16 Nov 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/11/16/i2p-status-notes-for-2004-11-16/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, its tuesday again&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Congestion&lt;/li&gt;&#xA;&lt;li&gt;Streaming&lt;/li&gt;&#xA;&lt;li&gt;BT&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-congestion&#34;&gt;1) Congestion&lt;/h2&gt;&#xA;&lt;p&gt;I know, I&amp;rsquo;m breaking the habit of naming point 1 &amp;ldquo;Net status&amp;rdquo;, but this week &amp;ldquo;congestion&amp;rdquo; seems appropriate. The network itself has been doing pretty well, but as the bittorrent usage increased, things started getting more and more clogged up, leading to an essential congestion collapse.&lt;/p&gt;&#xA;&lt;p&gt;This was expected, and only reinforces our plan - get the new streaming lib out there, and revamp our tunnel management so we have sufficient data about peers to use when our fast peers fail. There were some other factors in play in the recent network problems, but the bulk can be traced to the congestion increase and resulting tunnel failures (which in turn caused all sorts of wild peer selection).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-11-09</title>
+      <link>//localhost:1313/en/blog/2004/11/09/i2p-status-notes-for-2004-11-09/</link>
+      <pubDate>Tue, 09 Nov 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/11/09/i2p-status-notes-for-2004-11-09/</guid>
+      <description>&lt;p&gt;Hey everyone, weekly update time&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.4.1.4&lt;/li&gt;&#xA;&lt;li&gt;Streaming lib&lt;/li&gt;&#xA;&lt;li&gt;BT progress&lt;/li&gt;&#xA;&lt;li&gt;addressbook.py&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-0414&#34;&gt;1) 0.4.1.4&lt;/h2&gt;&#xA;&lt;p&gt;The other day we pushed out a new patch update, and 2/3rds of the network has upgraded so far - thanks! Reports have been positive, including lower CPU usage and less failures, along side lower memory usage. The network as a whole has grown a bit, staying consistently in the upper 70s/low 80s as well, which is a good healthy number for the time being.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-11-02</title>
+      <link>//localhost:1313/en/blog/2004/11/02/i2p-status-notes-for-2004-11-02/</link>
+      <pubDate>Tue, 02 Nov 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/11/02/i2p-status-notes-for-2004-11-02/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, time for the weekly update&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;Core updates&lt;/li&gt;&#xA;&lt;li&gt;Streaming lib&lt;/li&gt;&#xA;&lt;li&gt;mail.i2p progress&lt;/li&gt;&#xA;&lt;li&gt;BT progress&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-net-status&#34;&gt;1) Net status&lt;/h2&gt;&#xA;&lt;p&gt;Pretty much as before - a steady number of peers, eepsites(I2P Sites) fairly reachable, and irc for hours on end. You can get a peek at the reachability of various eepsites(I2P Sites) through a few different pages:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;http://gott.i2p/sites.html&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;http://www.baffled.i2p/links.html&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;http://thetower.i2p/pings.txt&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;2-core-updates&#34;&gt;2) Core updates&lt;/h2&gt;&#xA;&lt;p&gt;For those hanging out in the channel (or reading the CVS logs), you&amp;rsquo;ve seen a lot of things going on, even though its been a while since the last release. A full list of changes since the 0.4.1.3 release can be found online, but there are two major modifications, one good and one bad:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-10-26</title>
+      <link>//localhost:1313/en/blog/2004/10/26/i2p-status-notes-for-2004-10-26/</link>
+      <pubDate>Tue, 26 Oct 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/10/26/i2p-status-notes-for-2004-10-26/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, weekly update time&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Net status&lt;/li&gt;&#xA;&lt;li&gt;Streaming lib&lt;/li&gt;&#xA;&lt;li&gt;mail.i2p progress&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-net-status&#34;&gt;1) Net status&lt;/h2&gt;&#xA;&lt;p&gt;I don&amp;rsquo;t want to jinx it, but for the last week the network has been pretty much as before - fairly stable for irc, eepsites(I2P Sites) loading reliably, though large files still often require resuming. Basically nothing new to report, beyond the fact that there&amp;rsquo;s nothing new to report.&lt;/p&gt;&#xA;&lt;p&gt;Oh, one thing we found was that while Jetty supports HTTP resume, it only does so for HTTP 1.1. Thats fine for most browsers and download tools, &lt;em&gt;except&lt;/em&gt; wget - wget sends the resume request as HTTP 1.0. So, for downloading large files, use curl or some other HTTP 1.1 resume-capable tool (thanks to duck and ardvark for digging in and finding a solution!)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-10-19</title>
+      <link>//localhost:1313/en/blog/2004/10/19/i2p-status-notes-for-2004-10-19/</link>
+      <pubDate>Tue, 19 Oct 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/10/19/i2p-status-notes-for-2004-10-19/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, its tuesday again&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.4.1.3&lt;/li&gt;&#xA;&lt;li&gt;Tunnel test time, and send processing time&lt;/li&gt;&#xA;&lt;li&gt;Streaming lib&lt;/li&gt;&#xA;&lt;li&gt;files.i2p&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-0413&#34;&gt;1) 0.4.1.3&lt;/h2&gt;&#xA;&lt;p&gt;The 0.4.1.3 release came out a day or two ago and it looks like most people have upgraded (thanks!). The net is working fairly well, but still no revolutionary increase in reliability. However, the watchdog bugs from 0.4.1.2 have gone away (or at least no one has mentioned them). My aim is for this 0.4.1.3 release to be the last patch before 0.4.2, though of course if something big comes up needing fixing, we&amp;rsquo;ll have another one.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-10-12</title>
+      <link>//localhost:1313/en/blog/2004/10/12/i2p-status-notes-for-2004-10-12/</link>
+      <pubDate>Tue, 12 Oct 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/10/12/i2p-status-notes-for-2004-10-12/</guid>
+      <description>&lt;p&gt;Hi gang, time for our weekly update&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.4.1.2&lt;/li&gt;&#xA;&lt;li&gt;0.4.1.3&lt;/li&gt;&#xA;&lt;li&gt;0.4.2&lt;/li&gt;&#xA;&lt;li&gt;mail discussions&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-0412&#34;&gt;1) 0.4.1.2&lt;/h2&gt;&#xA;&lt;p&gt;The new 0.4.1.2 release has been out for a few days and things have been going pretty much as expected - there have been a few bumps with the new watchdog component though, causing it to kill your router when things are Bad rather than to restart it. As I mentioned earlier today, I&amp;rsquo;m looking for people to use the new stats logging tool to send me some data, so your help there would be greatly appreciated.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-10-05</title>
+      <link>//localhost:1313/en/blog/2004/10/05/i2p-status-notes-for-2004-10-05/</link>
+      <pubDate>Tue, 05 Oct 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/10/05/i2p-status-notes-for-2004-10-05/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, its weekly update time&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.4.1.1 status&lt;/li&gt;&#xA;&lt;li&gt;Pretty pictures&lt;/li&gt;&#xA;&lt;li&gt;0.4.1.2 and 0.4.2&lt;/li&gt;&#xA;&lt;li&gt;Bundled eepserver&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-0411-status&#34;&gt;1) 0.4.1.1 status&lt;/h2&gt;&#xA;&lt;p&gt;After a pretty bumpy 0.4.1 release (and subsequent rapid 0.4.1.1 update), the net seems to be back to normal - 50-something peers active at the moment, and both irc and eepsites(I2P Sites) are reachable. Most of the pain was caused by insufficient testing of the new transport outside lab conditions (e.g. sockets breaking at strange times, excessive delays, etc). Next time we need to make changes at that layer, we&amp;rsquo;ll be sure to test it more widely prior to release.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-09-28</title>
+      <link>//localhost:1313/en/blog/2004/09/28/i2p-status-notes-for-2004-09-28/</link>
+      <pubDate>Tue, 28 Sep 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/09/28/i2p-status-notes-for-2004-09-28/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, weekly update time&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;New transport&lt;/li&gt;&#xA;&lt;li&gt;0.4.1 status&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-new-transport&#34;&gt;1) New transport&lt;/h2&gt;&#xA;&lt;p&gt;The 0.4.1 release has been taking longer than expected, but the new transport protocol and implementation is in place with everything that has been planned - IP detection, low cost connection establishment, and an easier interface to help debug when connections are failing. This is done by completely throwing out the old transport protocol and implementing a new one, though we&amp;rsquo;ve still got the same buzzwords (2048bit DH + STS, AES256/CBC/PKCS#5). If you&amp;rsquo;d like to review the protocol, its in the docs. The new implementation is also a lot cleaner, since the old version was just a bunch of updates accumulated over the last year.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-09-21</title>
+      <link>//localhost:1313/en/blog/2004/09/21/i2p-status-notes-for-2004-09-21/</link>
+      <pubDate>Tue, 21 Sep 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/09/21/i2p-status-notes-for-2004-09-21/</guid>
+      <description>&lt;p&gt;Hi gang, quick update this week&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Dev status&lt;/li&gt;&#xA;&lt;li&gt;New userhosts.txt vs. hosts.txt&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-dev-status&#34;&gt;1) Dev status&lt;/h2&gt;&#xA;&lt;p&gt;The network has been fairly stable over the last week, so I&amp;rsquo;ve been able to focus my time on the 0.4.1 release - revamping the TCP transport and adding support for detecting IP addresses and removing that old &amp;ldquo;target changed identities&amp;rdquo; thing. This should also get rid of the need for dyndns entries as well.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-09-14</title>
+      <link>//localhost:1313/en/blog/2004/09/14/i2p-status-notes-for-2004-09-14/</link>
+      <pubDate>Tue, 14 Sep 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/09/14/i2p-status-notes-for-2004-09-14/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, its that time of the week again&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.4.0.1&lt;/li&gt;&#xA;&lt;li&gt;Threat model updates&lt;/li&gt;&#xA;&lt;li&gt;Website updates&lt;/li&gt;&#xA;&lt;li&gt;Roadmap&lt;/li&gt;&#xA;&lt;li&gt;Client apps&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-0401&#34;&gt;1) 0.4.0.1&lt;/h2&gt;&#xA;&lt;p&gt;Since last Wednesday&amp;rsquo;s 0.4.0.1 release, things have been going pretty well on the net - more than 2/3rd of the network has upgraded, and we&amp;rsquo;e been maintaining between 60 and 80 routers on the network. IRC connection times vary, but lately 4-12 hour connections have been normal. There have been some reports of funkiness starting up on OS/X though, but I believe some progress is being made on that front too.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-09-08</title>
+      <link>//localhost:1313/en/blog/2004/09/08/i2p-status-notes-for-2004-09-08/</link>
+      <pubDate>Wed, 08 Sep 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/09/08/i2p-status-notes-for-2004-09-08/</guid>
+      <description>&lt;p&gt;Hi all, sorry for being late&amp;hellip;&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.4&lt;/li&gt;&#xA;&lt;li&gt;Capacity and overload&lt;/li&gt;&#xA;&lt;li&gt;Website updates&lt;/li&gt;&#xA;&lt;li&gt;I2PTunnel web interface&lt;/li&gt;&#xA;&lt;li&gt;Roadmap and todo&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-04&#34;&gt;1) 0.4&lt;/h2&gt;&#xA;&lt;p&gt;As I&amp;rsquo;m sure you&amp;rsquo;ve all seen, the 0.4 release came out the other day and overall, its going pretty well. Its hard to believe it was 6 months since 0.3 came out (and a year since the 1.0 SDK was released), but we&amp;rsquo;ve come a long way, and y&amp;rsquo;all&amp;rsquo;s hard work, enthusiasm, and patience has done wonders. Congrats, and thanks!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-08-31</title>
+      <link>//localhost:1313/en/blog/2004/08/31/i2p-status-notes-for-2004-08-31/</link>
+      <pubDate>Tue, 31 Aug 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/08/31/i2p-status-notes-for-2004-08-31/</guid>
+      <description>&lt;p&gt;Well boys &amp;rsquo;n girls, its Tuesday again!&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.3.4.3&lt;/li&gt;&#xA;&lt;li&gt;0.3.5 and 0.4&lt;/li&gt;&#xA;&lt;li&gt;docs&lt;/li&gt;&#xA;&lt;li&gt;stasher update&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-0343&#34;&gt;1) 0.3.4.3&lt;/h2&gt;&#xA;&lt;p&gt;Well, as I&amp;rsquo;m you&amp;rsquo;ve all noticed, while the number of users on the network has stayed pretty steady, the performance has significantly degraded over the last few days. The source of this has been a series of bugs in the peer selection and message delivery code, exposed when there was a minor DoS last week. The result has been essentially everyone&amp;rsquo;s tunnels have been consistently failing, which has a bit of a snowball effect. So no, its not just you - the net has been horrid for the rest of us as well ;)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-08-24</title>
+      <link>//localhost:1313/en/blog/2004/08/24/i2p-status-notes-for-2004-08-24/</link>
+      <pubDate>Tue, 24 Aug 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/08/24/i2p-status-notes-for-2004-08-24/</guid>
+      <description>&lt;p&gt;Hi everyone, lots of updates today&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.3.4.3 status&#xA;1.1) timestamper&#xA;1.2) new router console authentication&lt;/li&gt;&#xA;&lt;li&gt;0.4 status&#xA;2.1) service &amp;amp; systray integration&#xA;2.2) jbigi &amp;amp; jcpuid&#xA;2.3) i2paddresshelper&lt;/li&gt;&#xA;&lt;li&gt;AMOC vs. restricted routes&lt;/li&gt;&#xA;&lt;li&gt;stasher&lt;/li&gt;&#xA;&lt;li&gt;pages of note&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-0343-status&#34;&gt;1) 0.3.4.3 status&lt;/h2&gt;&#xA;&lt;p&gt;The 0.3.4.3 release came out last Friday and things have been going pretty well since. There have been some problems with some newly introduced tunnel testing and peer selection code, but after some tweaking since the release, its pretty solid. I don&amp;rsquo;t know if the irc server is on the new rev yet, so we generally have to rely on testing with eepsites(I2P Sites) and the http outproxies (squid.i2p and www1.squid.i2p). Large (&amp;gt;5MB) file transfers in the 0.3.4.3 release are still not reliable enough, but in my testing, the modifications since then have improved things further.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-08-17</title>
+      <link>//localhost:1313/en/blog/2004/08/17/i2p-status-notes-for-2004-08-17/</link>
+      <pubDate>Tue, 17 Aug 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/08/17/i2p-status-notes-for-2004-08-17/</guid>
+      <description>&lt;p&gt;Hi y&amp;rsquo;all, update time&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Network status and 0.3.4.3&lt;/li&gt;&#xA;&lt;li&gt;Stasher&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-network-status-and-0343&#34;&gt;1) Network status and 0.3.4.3&lt;/h2&gt;&#xA;&lt;p&gt;While the network has been functional over the last week, there has been a lot of trouble at times, leading to a dramatic decrease in reliability. The 0.3.4.2 release has helped out significantly in addressing a DoS caused by some incompatability and time synchronization issues - see the graph of network database requests showing the DoS (spikes off the chart) which was stopped by the introduction of 0.3.4.2. Unfortunately, that in turn introduced its own set of issues, causing a significant number of messages to be retransmitted, as can be seen in the bandwidth plot. The increased load there was also due to an actual increase in user activity, so its not /that/ crazy ;) But still, it was a problem.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-08-10</title>
+      <link>//localhost:1313/en/blog/2004/08/10/i2p-status-notes-for-2004-08-10/</link>
+      <pubDate>Tue, 10 Aug 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/08/10/i2p-status-notes-for-2004-08-10/</guid>
+      <description>&lt;p&gt;Hey everyone, weekly update time&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.3.4.1 status&lt;/li&gt;&#xA;&lt;li&gt;Updated docs&lt;/li&gt;&#xA;&lt;li&gt;0.4 progress&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-0341-status&#34;&gt;1) 0.3.4.1 status&lt;/h2&gt;&#xA;&lt;p&gt;Well, we&amp;rsquo;ve pushed out the 0.3.4.1 release the other day, and it has been doing pretty well. Connect times on irc have been consistently for multiple hours, and transfer rates are doing pretty good as well (I pulled 25KBps from one eepsite(I2P Site) the other day using 3 parallel streams).&lt;/p&gt;&#xA;&lt;p&gt;One really cool feature added in with the 0.3.4.1 release (that I forgot to add to the release announcement) was mule&amp;rsquo;s patch to allow the eepproxy to round robin non-i2p requests through a series of outproxies. The default is still just to use the squid.i2p outproxy, but if you go into your router.config and change the clientApp line to have:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-08-03</title>
+      <link>//localhost:1313/en/blog/2004/08/03/i2p-status-notes-for-2004-08-03/</link>
+      <pubDate>Tue, 03 Aug 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/08/03/i2p-status-notes-for-2004-08-03/</guid>
+      <description>&lt;p&gt;hi y&amp;rsquo;all, lets get this status update out of the way&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.3.4 status&lt;/li&gt;&#xA;&lt;li&gt;On deck for 0.3.4.1&lt;/li&gt;&#xA;&lt;li&gt;New web console / I2PTunnel controller&lt;/li&gt;&#xA;&lt;li&gt;0.4 stuff&lt;/li&gt;&#xA;&lt;li&gt;Other development activities&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-034-status&#34;&gt;1) 0.3.4 status&lt;/h2&gt;&#xA;&lt;p&gt;With last week&amp;rsquo;s 0.3.4 release, the new net is performing pretty well - irc connections are lasting for several hours at a time and eepsite(I2P Site) retrieval seems to be pretty reliable. Throughput is still generally low, though slightly improved (I used to see a consistent 4-5KBps, now I consistently see a 5-8KBps). oOo has posted up a pair of scripts summarizing the irc activity, including round trip message time and connection lifetime (based off hypercubus&amp;rsquo;s bogobot, which was recently committed to CVS)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-07-27</title>
+      <link>//localhost:1313/en/blog/2004/07/27/i2p-status-notes-for-2004-07-27/</link>
+      <pubDate>Tue, 27 Jul 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/07/27/i2p-status-notes-for-2004-07-27/</guid>
+      <description>&lt;p&gt;&amp;rsquo;lo all, time for the weekly rant session&lt;/p&gt;&#xA;&lt;h2 id=&#34;index&#34;&gt;Index:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;0.3.3 &amp;amp; current updates&lt;/li&gt;&#xA;&lt;li&gt;NativeBigInteger&lt;/li&gt;&#xA;&lt;li&gt;???&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;1-033&#34;&gt;1) 0.3.3&lt;/h2&gt;&#xA;&lt;p&gt;We pushed out the 0.3.3 release this past Friday and after a day or two of pretty bumpy weather, it seems to be doing ok. Not as good as 0.3.2.3, but I&amp;rsquo;ve usually been able to hang around on irc.duck.i2p for 2-7h stints. However, as I&amp;rsquo;ve seen lots of people having trouble, I fired up the logger and monitored in detail what was up. Short answer is that we were simply using more bandwidth than we need to, causing congestion and tunnel failures (due to test messages timing out, etc).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Status Notes for 2004-07-20</title>
+      <link>//localhost:1313/en/blog/2004/07/20/i2p-status-notes-for-2004-07-20/</link>
+      <pubDate>Tue, 20 Jul 2004 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2004/07/20/i2p-status-notes-for-2004-07-20/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;1) 0.3.2.3, 0.3.3, and the roadmap&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;After the release of 0.3.2.3 last week, y&amp;rsquo;all have done a great job of upgrading - we only have two holdouts now (one at 0.3.2.2 and one way back at 0.3.1.4 :). Over the last few days the network has been more reliable than usual - people are staying on irc.duck.i2p for hours at a time, larger file downloads are succeeding from eepsites(I2P Sites), and general eepsite(I2P Site) reachability is fairly good. Since its going well and I want to keep you on your toes, I decided to change a few fundamental concepts and we&amp;rsquo;ll have them deployed in a 0.3.3 release in a day or two.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

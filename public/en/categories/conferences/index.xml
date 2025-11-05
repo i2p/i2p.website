@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Conferences on I2P - The Invisible Internet Project</title>
+    <link>//localhost:1313/en/categories/conferences/</link>
+    <description>Recent content in Conferences on I2P - The Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 05 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/en/categories/conferences/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Our Networks Trip Report- idk</title>
+      <link>//localhost:1313/en/blog/2019/10/05/our-networks-trip-report-idk/</link>
+      <pubDate>Sat, 05 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/10/05/our-networks-trip-report-idk/</guid>
+      <description>&lt;h2 id=&#34;our-networks-trip-report&#34;&gt;Our Networks Trip Report&lt;/h2&gt;&#xA;&lt;p&gt;The weekend of September 20th I traveled to Toronto to meet with Sadie to take part in the Our Networks conference. The Our Networks conference encompasses a wide variety of topic including many peer-to-peer technologies with an eye toward their potential to make the world a better place.&lt;/p&gt;&#xA;&lt;p&gt;The conference was fascinating, full of very smart people working on everything from physical mesh networks to the distributed web to, of course, anonymity. We got to talk to some great people from Tor, Protocol Labs, Parity Labs, the Dat Project, as well as a variety of artists and social scientists. Lots of fun too, and a great environment. Dat in particular presents some pretty cool opportunities for future co-operation I think.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Def Con Trip Report- idk</title>
+      <link>//localhost:1313/en/blog/2019/08/30/def-con-trip-report-idk/</link>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/08/30/def-con-trip-report-idk/</guid>
+      <description>&lt;h2 id=&#34;def-con-trip-report&#34;&gt;Def Con Trip Report&lt;/h2&gt;&#xA;&lt;p&gt;I went to Def Con 27 last weekend to give a workshop on I2P application development, and to meet zzz, mhatta, and Alex in person.&lt;/p&gt;&#xA;&lt;p&gt;My workshop went well, we even had a few application developers attend! In particular I had a pretty lengthy conversation with a person named Mary about how I2P could be used to eliminate centralization and enhance privacy in a &amp;ldquo;Magic Wormhole&amp;rdquo; type of application. While I wasn&amp;rsquo;t totally familiar with Magic Wormhole at the time, I think most of my advice was usable. I think Mary had some very interesting and workable ideas about sharing information in more human-centric ways that could be interesting in I2P applications, and am looking forward to experimenting with some of those.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Def Con Trip Report- zzz</title>
+      <link>//localhost:1313/en/blog/2019/08/30/def-con-trip-report-zzz/</link>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/08/30/def-con-trip-report-zzz/</guid>
+      <description>&lt;h2 id=&#34;def-con-trip-report&#34;&gt;Def Con Trip Report&lt;/h2&gt;&#xA;&lt;p&gt;idk and I attended DEFCON 27 and presented two workshops on I2P for application developers, with support from mhatta and Alex. I gave the workshop at Monero Village and idk gave the one at Crypto/Privacy Village. Here, I will summarize the Monero Village workshop, and a Tor talk by Roger Dingledine. idk will post a trip report covering his workshop.&lt;/p&gt;&#xA;&lt;p&gt;We had about 8 attendees for the Monero Village workshop, entitled &amp;ldquo;I2P for Cryptocurrency Developers&amp;rdquo;. We planned to discuss the particular networking needs for each application and work through the various i2ptunnel and SAM options available. However, all attendees were relatively unfamiliar with I2P, so we pivoted and gave an overview of I2P. As none of the attendees had a laptop with them, we helped several of them install I2P on their Android phone and walked through some of the features of the app. For all users, the app appeared to reseed and build tunnels fairly quickly.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Internet Freedom Festival Trip Report</title>
+      <link>//localhost:1313/en/blog/2019/08/30/internet-freedom-festival-trip-report/</link>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/08/30/internet-freedom-festival-trip-report/</guid>
+      <description>&lt;h2 id=&#34;internet-freedom-festival-trip-report&#34;&gt;Internet Freedom Festival Trip Report&lt;/h2&gt;&#xA;&lt;p&gt;This was my first time attending IFF, and what a great experience for I2P this was! I met with human rights defenders, people who work on censorship metrics, and of course UX and security professionals.&lt;/p&gt;&#xA;&lt;p&gt;My goal was to connect with people to further support I2P&amp;rsquo;s UX overhaul, keeping in mind security and UX considerations for frontline workers. As it was pointed out to me, people see I2P as a very important and powerful resource to circumvent censorship and support safe communication, however the interface suffers from some usability concerns. People were happy with our initial steps to make first time users have a better experience, such as our set up wizard and bandwidth detection tool. I also received positive reviews on our changes to the website and /home icons. It was very encouraging to hear directly from the community that small changes we have made are in the right direction.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>RightsCon Trip Report</title>
+      <link>//localhost:1313/en/blog/2019/08/30/rightscon-trip-report/</link>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/08/30/rightscon-trip-report/</guid>
+      <description>&lt;h2 id=&#34;rightscon-trip-report&#34;&gt;RightsCon Trip Report&lt;/h2&gt;&#xA;&lt;p&gt;The messages from activists in Syria during the Access No! session on the first day were deeply moving and really drove home why I work in digital rights. We listened to the experiences of activists who are unable to travel due to lack of status, documentation and active conflict. For these people &amp;ldquo;the internet is the only passport (they) carry.&amp;rdquo; Human rights defenders spoke of the importance of digital training to keep people protected when they are communicating with family inside of the country, as well as with family and friends who have left. They had created digital clinics to show people how to use services securely, for instance, how to use features like Signal&amp;rsquo;s disappearing messages so that those messages could not be used against them when devices are searched at security check points. Continuing to pursue education was also very important, the internet being relied on to access resources.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>USENIX FOCI Trip Report</title>
+      <link>//localhost:1313/en/blog/2019/08/30/usenix-foci-trip-report/</link>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/08/30/usenix-foci-trip-report/</guid>
+      <description>&lt;h2 id=&#34;usenix-foci-trip-report&#34;&gt;USENIX FOCI Trip Report&lt;/h2&gt;&#xA;&lt;p&gt;Over the past year I have had the good fortune to participate in the research Nguyen Phong Hoang from Stony Brook University has been doing regarding I2P censorship. The infrastructure used for this research provided numerous and geographically diverse vantage points, and also the ability to conduct in-depth measurements across all levels of the network stack. I2P services which were measured for availability included official homepage, mirror site, reseed servers and active relays.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CCC Recap</title>
+      <link>//localhost:1313/en/blog/2016/01/23/ccc-recap/</link>
+      <pubDate>Sat, 23 Jan 2016 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2016/01/23/ccc-recap/</guid>
+      <description>&lt;p&gt;Attending: Sadie, Colin, lazygravy, zzz, hottuna, kytv, cacapo, and eche|on.&lt;/p&gt;&#xA;&lt;h2 id=&#34;start&#34;&gt;Start&lt;/h2&gt;&#xA;&lt;p&gt;The project has had another successful year at CCC. We would like to thank the volunteers at 32C3 for all of their help in organizing this event and for being accommodating hosts for us. Many I2P contributors were able to attend this year&amp;rsquo;s Congress due to many of the generous donations from supporters like you to the project.&lt;/p&gt;&#xA;&lt;p&gt;Just like previous years we were located in Noisy Square, located near the EFF&amp;rsquo;s table. This proved to be an ideal spot for us as our table was almost always busy with current and new users who were interested in I2P, many of whom we wouldn&amp;rsquo;t have otherwise had the ability to talk to.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

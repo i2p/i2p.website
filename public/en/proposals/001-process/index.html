@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>The I2P Proposal Process | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="The I2P Proposal Process | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/proposals/001-process/">
+
+    
+    <link rel="icon" type="image/png" href="../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../en/" class="logo-link">
+                    <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/about/">Overview</a></li>
+                            <li><a href="../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../en/blog/" class="">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../en/proposals/001-process/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+
+<div class="proposals-page">
+    <div class="container">
+        
+        <nav class="breadcrumbs">
+            <a href="../../../en/">Home</a>
+            <span class="separator">/</span>
+            <a href="../../../en/proposals/">Proposals</a>
+            <span class="separator">/</span>
+            <span class="current">The I2P Proposal Process</span>
+        </nav>
+
+        
+        <header class="proposal-header">
+            <div class="proposal-title-section">
+                <h1 class="proposal-title">The I2P Proposal Process</h1>
+                <div class="proposal-number">Proposal 001</div>
+            </div>
+
+            
+            <div class="proposal-meta-box">
+                <div class="proposal-status status-meta">
+                    Meta
+                </div>
+
+                
+                <div class="proposal-info-grid">
+                    
+                    <div class="info-item">
+                        <span class="info-label">Author</span>
+                        <span class="info-value">str4d</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Created</span>
+                        <span class="info-value">2016-04-10</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Last Updated</span>
+                        <span class="info-value">2017-04-07</span>
+                    </div>
+                    
+
+                    
+
+                    
+                </div>
+
+                
+                
+            </div>
+        </header>
+
+        
+        <article class="proposal-content">
+            <h2 id="overview">Overview</h2>
+<p>This document describes how to change the I2P specifications, how I2P proposals work, and the relationship between I2P proposals and the specifications.</p>
+<p>This document is adapted from the Tor proposal process, and much of the content below was originally authored by Nick Mathewson.</p>
+<p>This is an informational document.</p>
+<h2 id="motivation">Motivation</h2>
+<p>Previously, our process for updating the I2P specifications was relatively informal: we&rsquo;d make a proposal on the development forum and discuss the changes, then we would reach consensus and patch the specification with draft changes (not necessarily in that order), and finally we would implement the changes.</p>
+<p>This had a few problems.</p>
+<p>First, even at its most efficient, the old process would often have the spec out of sync with the code. The worst cases were those where implementation was deferred: the spec and code could stay out of sync for versions at a time.</p>
+<p>Second, it was hard to participate in discussion, since it was not always clear which portions of the discussion thread were part of the proposal, or which changes to the spec had been implemented. The development forums are also only accessible inside I2P, meaning that proposals could only be viewed by people who use I2P.</p>
+<p>Third, it was very easy to forget about some proposals because they would get buried several pages back in the forum thread list.</p>
+<h2 id="how-to-change-the-specs-now">How to change the specs now</h2>
+<p>First, somebody writes a proposal document. It should describe the change that should be made in detail, and give some idea of how to implement it. Once it&rsquo;s fleshed out enough, it becomes a proposal.</p>
+<p>Like an RFC, every proposal gets a number. Unlike RFCs, proposals can change over time and keep the same number, until they are finally accepted or rejected. The history for each proposal will be stored in the I2P website repository.</p>
+<p>Once a proposal is in the repository, we should discuss it on the corresponding thread and improve it until we&rsquo;ve reached consensus that it&rsquo;s a good idea, and that it&rsquo;s detailed enough to implement. When this happens, we implement the proposal and incorporate it into the specifications. Thus, the specs remain the canonical documentation for the I2P protocol: no proposal is ever the canonical documentation for an implemented feature.</p>
+<p>(This process is pretty similar to the Python Enhancement Process, with the major exception that I2P proposals get re-integrated into the specs after implementation, whereas PEPs <em>become</em> the new spec.)</p>
+<h3 id="small-changes">Small changes</h3>
+<p>It&rsquo;s still okay to make small changes directly to the spec if the code can be written more or less immediately, or cosmetic changes if no code change is required. This document reflects the current developers&rsquo; <em>intent</em>, not a permanent promise to always use this process in the future: we reserve the right to get really excited and run off and implement something in a caffeine-or-M&amp;M-fueled all-night hacking session.</p>
+<h2 id="how-new-proposals-get-added">How new proposals get added</h2>
+<p>To submit a proposal, post it on the development forum or enter a ticket with the proposal attached.</p>
+<p>Once an idea has been proposed, a properly formatted (see below) draft exists, and rough consensus within the active development community exists that this idea warrants consideration, the proposal editors will officially add the proposal.</p>
+<p>The current proposal editors are zzz and str4d.</p>
+<h2 id="what-should-go-in-a-proposal">What should go in a proposal</h2>
+<p>Every proposal should have a header containing these fields:</p>
+<pre tabindex="0"><code>:author:
+:created:
+:thread:
+:lastupdated:
+:status:
+</code></pre><ul>
+<li>The <code>author</code> field should contain the names of the authors of this proposal.</li>
+<li>The <code>thread</code> field should be a link to the development forum thread where this proposal was originally posted, or to a new thread created for discussing this proposal.</li>
+<li>The <code>lastupdated</code> field should initially be equal to the <code>created</code> field, and should be updated whenever the proposal is changed.</li>
+</ul>
+<p>These fields should be set when necessary:</p>
+<pre tabindex="0"><code>:supercedes:
+:supercededby:
+:editor:
+</code></pre><ul>
+<li>The <code>supercedes</code> field is a comma-separated list of all the proposals that this proposal replaces. Those proposals should be Rejected and have their <code>supercededby</code> field set to the number of this proposal.</li>
+<li>The <code>editor</code> field should be set if significant changes are made to this proposal that don&rsquo;t substantially alter its content. If the content is being substantially altered, either an additional <code>author</code> should be added, or a new proposal created superceding this one.</li>
+</ul>
+<p>These fields are optional but recommended:</p>
+<pre tabindex="0"><code>:target:
+:implementedin:
+</code></pre><ul>
+<li>The <code>target</code> field should describe which version the proposal is hoped to be implemented in (if it&rsquo;s Open or Accepted).</li>
+<li>The <code>implementedin</code> field should describe which version the proposal was implemented in (if it&rsquo;s Finished or Closed).</li>
+</ul>
+<p>The body of the proposal should start with an Overview section explaining what the proposal&rsquo;s about, what it does, and about what state it&rsquo;s in.</p>
+<p>After the Overview, the proposal becomes more free-form. Depending on its length and complexity, the proposal can break into sections as appropriate, or follow a short discursive format. Every proposal should contain at least the following information before it is Accepted, though the information does not need to be in sections with these names.</p>
+<dl>
+<dt><strong>Motivation</strong></dt>
+<dd>What problem is the proposal trying to solve? Why does this problem matter? If several approaches are possible, why take this one?</dd>
+<dt><strong>Design</strong></dt>
+<dd>A high-level view of what the new or modified features are, how the new or modified features work, how they interoperate with each other, and how they interact with the rest of I2P. This is the main body of the proposal. Some proposals will start out with only a Motivation and a Design, and wait for a specification until the Design seems approximately right.</dd>
+<dt><strong>Security implications</strong></dt>
+<dd>What effects the proposed changes might have on anonymity, how well understood these effects are, and so on.</dd>
+<dt><strong>Specification</strong></dt>
+<dd>A detailed description of what needs to be added to the I2P specifications in order to implement the proposal. This should be in about as much detail as the specifications will eventually contain: it should be possible for independent programmers to write mutually compatible implementations of the proposal based on its specifications.</dd>
+<dt><strong>Compatibility</strong></dt>
+<dd>Will versions of I2P that follow the proposal be compatible with versions that do not? If so, how will compatibility be achieved? Generally, we try to not drop compatibility if at all possible; we haven&rsquo;t made a &ldquo;flag day&rdquo; change since March 2008, and we don&rsquo;t want to do another one.</dd>
+<dt><strong>Implementation</strong></dt>
+<dd>If the proposal will be tricky to implement in I2P&rsquo;s current architecture, the document can contain some discussion of how to go about making it work. Actual patches should go on public monotone branches, or be uploaded to Trac.</dd>
+<dt><strong>Performance and scalability notes</strong></dt>
+<dd>If the feature will have an effect on performance (in RAM, CPU, bandwidth) or scalability, there should be some analysis on how significant this effect will be, so that we can avoid really expensive performance regressions, and so we can avoid wasting time on insignificant gains.</dd>
+<dt><strong>References</strong></dt>
+<dd>If the proposal refers to outside documents, these should be listed.</dd>
+</dl>
+<h2 id="proposal-status">Proposal status</h2>
+<dl>
+<dt><strong>Open</strong></dt>
+<dd>A proposal under discussion.</dd>
+<dt><strong>Accepted</strong></dt>
+<dd>The proposal is complete, and we intend to implement it. After this point, substantive changes to the proposal should be avoided, and regarded as a sign of the process having failed somewhere.</dd>
+<dt><strong>Finished</strong></dt>
+<dd>The proposal has been accepted and implemented. After this point, the proposal should not be changed.</dd>
+<dt><strong>Closed</strong></dt>
+<dd>The proposal has been accepted, implemented, and merged into the main specification documents. The proposal should not be changed after this point.</dd>
+<dt><strong>Rejected</strong></dt>
+<dd>We&rsquo;re not going to implement the feature as described here, though we might do some other version. See comments in the document for details. The proposal should not be changed after this point; to bring up some other version of the idea, write a new proposal.</dd>
+<dt><strong>Draft</strong></dt>
+<dd>This isn&rsquo;t a complete proposal yet; there are definite missing pieces. Please don&rsquo;t add any new proposals with this status; put them in the &ldquo;ideas&rdquo; sub-directory instead.</dd>
+<dt><strong>Needs-Revision</strong></dt>
+<dd>The idea for the proposal is a good one, but the proposal as it stands has serious problems that keep it from being accepted. See comments in the document for details.</dd>
+<dt><strong>Dead</strong></dt>
+<dd>The proposal hasn&rsquo;t been touched in a long time, and it doesn&rsquo;t look like anybody is going to complete it soon. It can become &ldquo;Open&rdquo; again if it gets a new proponent.</dd>
+<dt><strong>Needs-Research</strong></dt>
+<dd>There are research problems that need to be solved before it&rsquo;s clear whether the proposal is a good idea.</dd>
+<dt><strong>Meta</strong></dt>
+<dd>This is not a proposal, but a document about proposals.</dd>
+<dt><strong>Reserve</strong></dt>
+<dd>This proposal is not something we&rsquo;re currently planning to implement, but we might want to resurrect it some day if we decide to do something like what it proposes.</dd>
+<dt><strong>Informational</strong></dt>
+<dd>This proposal is the last word on what it&rsquo;s doing. It isn&rsquo;t going to turn into a spec unless somebody copy-and-pastes it into a new spec for a new subsystem.</dd>
+</dl>
+<p>The editors maintain the correct status of proposals, based on rough consensus and their own discretion.</p>
+<h2 id="proposal-numbering">Proposal numbering</h2>
+<p>Numbers 000-099 are reserved for special and meta-proposals. 100 and up are used for actual proposals. Numbers aren&rsquo;t recycled.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://gitweb.torproject.org/torspec.git/tree/proposals/001-process.txt">Tor Proposal Process</a></li>
+</ul>
+
+        </article>
+
+        
+        <nav class="page-nav">
+            <a href="../../../en/proposals/" class="page-nav-link">
+                ← Back to Proposals
+            </a>
+            
+            <a href="../../../proposals/001-the-i2p-proposal-process.txt" class="page-nav-link" download>
+                📄 Download Source (.txt)
+            </a>
+            
+        </nav>
+    </div>
+</div>
+
+<style>
+.proposals-page {
+    min-height: 100vh;
+    padding: var(--spacing-xl) 0;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.breadcrumbs a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.breadcrumbs a:hover {
+    color: var(--color-primary);
+}
+
+.separator {
+    color: var(--color-border);
+}
+
+.current {
+    color: var(--color-text);
+}
+
+ 
+.proposal-header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.proposal-title-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.proposal-title {
+    font-size: 2.5rem;
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--color-text);
+}
+
+.proposal-number {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+ 
+.proposal-meta-box {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.proposal-status {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+ 
+.status-open {
+    background: #dbeafe;
+    color: #0369a1;
+}
+
+.dark .status-open {
+    background: #0c4a6e;
+    color: #7dd3fc;
+}
+
+.status-accepted {
+    background: #dbeafe;
+    color: #0369a1;
+}
+
+.dark .status-accepted {
+    background: #0c4a6e;
+    color: #7dd3fc;
+}
+
+.status-finished {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.dark .status-finished {
+    background: #164e63;
+    color: #86efac;
+}
+
+.status-closed {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.dark .status-closed {
+    background: #164e63;
+    color: #86efac;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.dark .status-rejected {
+    background: #7f1d1d;
+    color: #fca5a5;
+}
+
+.status-draft,
+.status-needs-revision,
+.status-dead,
+.status-needs-research {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.dark .status-draft,
+.dark .status-needs-revision,
+.dark .status-dead,
+.dark .status-needs-research {
+    background: #78350f;
+    color: #fde047;
+}
+
+.status-meta,
+.status-informational,
+.status-reserve {
+    background: #e9d5ff;
+    color: #6b21a8;
+}
+
+.dark .status-meta,
+.dark .status-informational,
+.dark .status-reserve {
+    background: #581c87;
+    color: #e879f9;
+}
+
+ 
+.proposal-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.info-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+}
+
+.info-value {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+ 
+.proposal-relationships {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-md);
+}
+
+.relationship {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.relationship:last-child {
+    margin-bottom: 0;
+}
+
+.relationship-label {
+    font-weight: 600;
+    color: var(--color-text-muted);
+    min-width: 120px;
+}
+
+.relationship-value {
+    color: var(--color-text);
+}
+
+ 
+.proposal-content {
+    line-height: 1.8;
+    color: var(--color-text);
+    max-width: 900px;
+    margin: var(--spacing-2xl) 0;
+}
+
+.proposal-content h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+}
+
+.proposal-content h3 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.375rem;
+}
+
+.proposal-content h4 {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.125rem;
+}
+
+.proposal-content p {
+    margin-bottom: var(--spacing-md);
+}
+
+.proposal-content ul,
+.proposal-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.proposal-content li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.proposal-content code {
+    background: var(--color-bg-secondary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+    font-family: 'Courier New', monospace;
+}
+
+.proposal-content pre {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    overflow-x: auto;
+    margin-bottom: var(--spacing-md);
+    font-size: 0.875rem;
+}
+
+.proposal-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.proposal-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--spacing-md);
+    margin-left: 0;
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+    color: var(--color-text-secondary);
+}
+
+.proposal-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.proposal-content a:hover {
+    border-bottom-color: var(--color-primary);
+}
+
+.proposal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-md);
+}
+
+.proposal-content table th {
+    background: var(--color-bg-secondary);
+    padding: var(--spacing-sm);
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.proposal-content table td {
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.proposal-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin: var(--spacing-lg) 0;
+    display: block;
+}
+
+ 
+.page-nav {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.page-nav-link {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.page-nav-link:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+ 
+@media (max-width: 768px) {
+    .proposal-title {
+        font-size: 1.75rem;
+    }
+
+    .proposal-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../en/privacy/">Privacy</a>
+                <a href="../../../en/terms/">Terms</a>
+                <a href="../../../en/impressum/">Impressum</a>
+                <a href="../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

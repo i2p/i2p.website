@@ -1,0 +1,58 @@
+<svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+  <!-- Owl Body -->
+  <ellipse cx="100" cy="130" rx="60" ry="70" fill="#60a5fa" stroke="#1e40af" stroke-width="3"/>
+
+  <!-- Wings -->
+  <path d="M 40 120 Q 20 130 25 150 Q 30 160 40 155 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <path d="M 160 120 Q 180 130 175 150 Q 170 160 160 155 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+
+  <!-- Head -->
+  <circle cx="100" cy="80" r="45" fill="#60a5fa" stroke="#1e40af" stroke-width="3"/>
+
+  <!-- Eyes Background -->
+  <circle cx="85" cy="75" r="18" fill="white" stroke="#1e40af" stroke-width="2"/>
+  <circle cx="115" cy="75" r="18" fill="white" stroke="#1e40af" stroke-width="2"/>
+
+  <!-- Pupils -->
+  <circle cx="88" cy="78" r="8" fill="#1e40af"/>
+  <circle cx="118" cy="78" r="8" fill="#1e40af"/>
+
+  <!-- Eye Shine -->
+  <circle cx="90" cy="75" r="3" fill="white"/>
+  <circle cx="120" cy="75" r="3" fill="white"/>
+
+  <!-- Beak -->
+  <path d="M 100 85 L 95 95 L 105 95 Z" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+
+  <!-- Ear Tufts -->
+  <path d="M 65 45 Q 60 30 70 35 Q 75 40 70 50 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+  <path d="M 135 45 Q 140 30 130 35 Q 125 40 130 50 Z" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+
+  <!-- Feet -->
+  <ellipse cx="85" cy="195" rx="12" ry="8" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+  <ellipse cx="115" cy="195" rx="12" ry="8" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+
+  <!-- Belly Spot -->
+  <ellipse cx="100" cy="140" rx="25" ry="35" fill="#93c5fd" opacity="0.5"/>
+
+  <!-- Heart Above Head -->
+  <g transform="translate(100, 20)">
+    <path d="M 0 5
+             C 0 2 -3 0 -5 0
+             C -8 0 -10 3 -10 6
+             C -10 10 -5 14 0 18
+             C 5 14 10 10 10 6
+             C 10 3 8 0 5 0
+             C 3 0 0 2 0 5 Z"
+          fill="#ef4444"
+          stroke="#dc2626"
+          stroke-width="1">
+      <animateTransform
+        attributeName="transform"
+        type="scale"
+        values="1;1.2;1"
+        dur="1.5s"
+        repeatCount="indefinite"/>
+    </path>
+  </g>
+</svg>

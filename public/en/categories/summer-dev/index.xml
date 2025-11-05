@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Summer-Dev on I2P - The Invisible Internet Project</title>
+    <link>//localhost:1313/en/categories/summer-dev/</link>
+    <description>Recent content in Summer-Dev on I2P - The Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 01 Jun 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/en/categories/summer-dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I2P Summer Dev 2017: MOAR Speed!</title>
+      <link>//localhost:1313/en/blog/2017/06/01/i2p-summer-dev-2017-moar-speed/</link>
+      <pubDate>Thu, 01 Jun 2017 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2017/06/01/i2p-summer-dev-2017-moar-speed/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s that time of year again! We&amp;rsquo;re embarking on our summer development programme, where we focus on a particular aspect of I2P to push it forward. For the next three months, we&amp;rsquo;ll be encouraging both new contributors and existing community members to pick a task and have fun with it!&lt;/p&gt;&#xA;&lt;p&gt;Last year, we focused on helping users and developers leverage I2P, by improving API tooling and giving some love to applications that run over I2P. This year, we want to improve the user experience by working on an aspect that affects everyone: performance.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Summer Dev roundup: APIs</title>
+      <link>//localhost:1313/en/blog/2016/07/02/summer-dev-roundup-apis/</link>
+      <pubDate>Sat, 02 Jul 2016 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2016/07/02/summer-dev-roundup-apis/</guid>
+      <description>&lt;p&gt;Summer Dev is in full swing: we&amp;rsquo;ve been busy greasing wheels, sanding edges, and tidying the place up. Now it&amp;rsquo;s time for our first roundup, where we bring you up to speed on the progress we are making!&lt;/p&gt;&#xA;&lt;h2 id=&#34;apis-month&#34;&gt;APIs month&lt;/h2&gt;&#xA;&lt;p&gt;Our goal for this month was to &amp;ldquo;blend in&amp;rdquo; - to make our APIs and libraries work within the existing infrastructure of various communities, so that application developers can work with I2P more efficiently, and users don&amp;rsquo;t need to worry about the details.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P on Maven Central</title>
+      <link>//localhost:1313/en/blog/2016/06/13/i2p-on-maven-central/</link>
+      <pubDate>Mon, 13 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2016/06/13/i2p-on-maven-central/</guid>
+      <description>&lt;p&gt;We&amp;rsquo;re nearly half-way into the APIs month of Summer Dev, and making great progress on a number of fronts. I&amp;rsquo;m happy to announce that the first of these is complete: the I2P client libraries are now available on Maven Central!&lt;/p&gt;&#xA;&lt;p&gt;This should make it much simpler for Java developers to use I2P in their applications. Instead of needing to obtain the libraries from a current install, they can simply add I2P to their dependencies. Upgrading to new versions will similarly be much easier.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Summer Dev</title>
+      <link>//localhost:1313/en/blog/2016/06/01/i2p-summer-dev/</link>
+      <pubDate>Wed, 01 Jun 2016 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2016/06/01/i2p-summer-dev/</guid>
+      <description>&lt;p&gt;Over the last few years, the need for users to be in control of their own data has become increasingly apparent. Some excellent progress had been made in this regard with the rise of messaging apps like Signal, and file storage systems like Tahoe-LAFS. The ongoing work of Let&amp;rsquo;s Encrypt to bring HTTPS to the whole world is steadily gaining traction.&lt;/p&gt;&#xA;&lt;p&gt;But building privacy and anonymity into applications is not trivial. Much of the software people use every day was not designed to be privacy-preserving, and the tools developers have available are generally not easy to work with. The recently-published OnionScan survey gives some insight into just how easy it is for even technical users to mis-configure their services, completely undermining their intentions.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

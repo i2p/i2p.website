@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Community on I2P - Das Invisible Internet Project</title>
+    <link>//localhost:1313/de/categories/community/</link>
+    <description>Recent content in Community on I2P - Das Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>de-DE</language>
+    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/de/categories/community/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Neue I2P Router(G)</title>
+      <link>//localhost:1313/de/blog/2025/10/16/neue-i2p-routerg/</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/de/blog/2025/10/16/neue-i2p-routerg/</guid>
+      <description>&lt;p&gt;Es ist eine aufregende Zeit für die I2P-Entwicklung, unsere Community wächst, und es treten nun mehrere neue, voll funktionsfähige I2P router-Prototypen in Erscheinung! Wir freuen uns sehr über diese Entwicklung und darauf, die Neuigkeiten mit Ihnen zu teilen.&lt;/p&gt;&#xA;&lt;h2 id=&#34;wie-hilft-das-dem-netzwerk&#34;&gt;Wie hilft das dem Netzwerk?&lt;/h2&gt;&#xA;&lt;p&gt;Die Implementierung von I2P routers hilft uns nachzuweisen, dass unsere Spezifikationsdokumente zur Erstellung neuer I2P routers verwendet werden können, macht den Code für neue Analysewerkzeuge zugänglich und verbessert allgemein die Sicherheit und Interoperabilität des Netzwerks. Mehrere I2P routers bedeuten, dass potenzielle Fehler nicht einheitlich sind; ein Angriff auf einen router funktioniert möglicherweise auf einem anderen router nicht, wodurch ein Monokultur-Problem vermieden wird. Die vielleicht spannendste Perspektive auf lange Sicht ist jedoch &lt;code&gt;embedding&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Neue I2P-Router(D)</title>
+      <link>//localhost:1313/de/blog/2025/10/16/neue-i2p-routerd/</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/de/blog/2025/10/16/neue-i2p-routerd/</guid>
+      <description>&lt;p&gt;Es ist eine aufregende Zeit für die I2P-Entwicklung, unsere Community wächst und es gibt nun mehrere neue, voll funktionsfähige I2P-Router-Prototypen, die in der Szene auftauchen! Wir freuen uns sehr über diese Entwicklung und darüber, diese Neuigkeiten mit Ihnen zu teilen.&lt;/p&gt;&#xA;&lt;h2 id=&#34;wie-hilft-dies-dem-netz&#34;&gt;Wie hilft dies dem Netz?&lt;/h2&gt;&#xA;&lt;p&gt;Das Schreiben von I2P-Routern hilft uns zu beweisen, dass unsere Spezifikationsdokumente verwendet werden können, um neue I2P-Router zu erstellen, öffnet den Code für neue Analysetools und verbessert allgemein die Sicherheit und Interoperabilität des Netzwerks. Mehrere I2P-Router bedeuten, dass potentielle Bugs nicht einheitlich sind, ein Angriff auf einen Router funktioniert möglicherweise nicht auf einem anderen Router, wodurch das Problem der Monokultur vermieden wird. Die vielleicht aufregendste Aussicht auf lange Sicht ist jedoch das &amp;ldquo;Einbetten&amp;rdquo;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>New I2P Routers(t)</title>
+      <link>//localhost:1313/de/blog/2025/10/16/new-i2p-routerst/</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/de/blog/2025/10/16/new-i2p-routerst/</guid>
+      <description>&lt;p&gt;Es ist eine aufregende Zeit für die I2P-Entwicklung, unsere Community wächst und es gibt jetzt mehrere neue, voll funktionsfähige I2P-Router-Prototypen, die in der Szene auftauchen! Wir freuen uns sehr über diese Entwicklung und darüber, die Neuigkeiten mit Ihnen zu teilen.&lt;/p&gt;&#xA;&lt;h2 id=&#34;wie-hilft-das-dem-netzwerk&#34;&gt;Wie hilft das dem Netzwerk?&lt;/h2&gt;&#xA;&lt;p&gt;Das Schreiben von I2P-Routern hilft uns zu beweisen, dass unsere Spezifikationsdokumente zur Herstellung neuer I2P-Router verwendet werden können, öffnet den Code für neue Analysetools und verbessert allgemein die Sicherheit und Interoperabilität des Netzwerks. Mehrere I2P-Router bedeuten, dass potenzielle Fehler nicht einheitlich sind. Ein Angriff auf einen Router funktioniert möglicherweise nicht auf einem anderen Router, wodurch ein Monokulturproblem vermieden wird. Die vielleicht aufregendste Perspektive auf lange Sicht ist jedoch die &lt;code&gt;Einbettung&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

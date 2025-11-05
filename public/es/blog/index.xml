@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on I2P - El Proyecto Internet Invisible</title>
+    <link>//localhost:1313/es/blog/</link>
+    <description>Recent content in Blogs on I2P - El Proyecto Internet Invisible</description>
+    <generator>Hugo</generator>
+    <language>es-ES</language>
+    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/es/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New I2P Routers(T)</title>
+      <link>//localhost:1313/es/blog/2025/10/16/new-i2p-routerst/</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/es/blog/2025/10/16/new-i2p-routerst/</guid>
+      <description>&lt;p&gt;¡Es un momento emocionante para el desarrollo de I2P, nuestra comunidad está creciendo y ahora hay múltiples prototipos de enrutadores I2P nuevos y completamente funcionales que emergen en escena! Estamos muy entusiasmados con este desarrollo y con compartir las noticias contigo.&lt;/p&gt;&#xA;&lt;h2 id=&#34;cómo-ayuda-esto-a-la-red&#34;&gt;¿Cómo ayuda esto a la red?&lt;/h2&gt;&#xA;&lt;p&gt;Escribir enrutadores I2P nos ayuda a demostrar que nuestros documentos de especificación se pueden utilizar para producir nuevos enrutadores I2P, abre el código a nuevas herramientas de análisis y, en general, mejora la seguridad y la interoperabilidad de la red. Múltiples enrutadores I2P significan que los errores potenciales no son uniformes, un ataque a un enrutador puede no funcionar en un enrutador diferente, evitando un problema de monocultivo. Sin embargo, quizás la perspectiva más emocionante a largo plazo sea la &lt;code&gt;incorporación&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Nuevos Routers de I2P</title>
+      <link>//localhost:1313/es/blog/2025/10/16/nuevos-routers-de-i2p/</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/es/blog/2025/10/16/nuevos-routers-de-i2p/</guid>
+      <description>&lt;p&gt;Es un momento emocionante para el desarrollo de I2P; nuestra comunidad está creciendo y ahora están apareciendo en escena varios nuevos prototipos de I2P router completamente funcionales. Estamos muy entusiasmados con este desarrollo y con poder compartir la noticia contigo.&lt;/p&gt;&#xA;&lt;h2 id=&#34;cómo-ayuda-esto-a-la-red&#34;&gt;¿Cómo ayuda esto a la red?&lt;/h2&gt;&#xA;&lt;p&gt;Escribir routers de I2P nos ayuda a demostrar que nuestros documentos de especificación pueden utilizarse para producir nuevos routers de I2P, abre el código a nuevas herramientas de análisis y, en general, mejora la seguridad y la interoperabilidad de la red. La existencia de múltiples routers de I2P significa que los posibles errores no son uniformes; un ataque contra un router puede no funcionar contra otro router, evitando un problema de monocultivo. Sin embargo, quizá la perspectiva más emocionante a largo plazo sea &lt;code&gt;embedding&lt;/code&gt; (integración embebida).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Nuevos routers I2P(d)</title>
+      <link>//localhost:1313/es/blog/2025/10/16/nuevos-routers-i2pd/</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/es/blog/2025/10/16/nuevos-routers-i2pd/</guid>
+      <description>&lt;p&gt;Es un momento emocionante para el desarrollo de I2P, nuestra comunidad está creciendo y ahora hay varios prototipos de routers I2P nuevos y completamente funcionales que están apareciendo en escena. Estamos muy ilusionados con este desarrollo y con compartir las noticias contigo.&lt;/p&gt;&#xA;&lt;h2 id=&#34;cómo-ayuda-esto-a-la-red&#34;&gt;¿Cómo ayuda esto a la red?&lt;/h2&gt;&#xA;&lt;p&gt;Escribir enrutadores I2P nos ayuda a demostrar que nuestros documentos de especificación pueden utilizarse para producir nuevos enrutadores I2P, abre el código a nuevas herramientas de análisis y, en general, mejora la seguridad y la interoperabilidad de la red. Múltiples enrutadores I2P significa que los errores potenciales no son uniformes, un ataque en un enrutador puede no funcionar en un enrutador diferente, evitando un problema de monocultivo. Pero quizá la perspectiva más interesante a largo plazo sea la &amp;ldquo;incrustación&amp;rdquo;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

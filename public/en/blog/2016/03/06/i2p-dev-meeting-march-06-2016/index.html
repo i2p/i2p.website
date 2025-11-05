@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Dev Meeting - March 06, 2016 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="I2P development meeting log for March 06, 2016.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Dev Meeting - March 06, 2016 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="I2P development meeting log for March 06, 2016.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2016/03/06/i2p-dev-meeting-march-06-2016/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2016/03/06/i2p-dev-meeting-march-06-2016/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2016-03-06">
+                    March 6, 2016
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">meeting</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Dev Meeting - March 06, 2016</h1>
+
+            
+            <div class="post-author">By zzz</div>
+            
+        </div>
+
+        <div class="post-content">
+            <h2 id="quick-recap">Quick recap</h2>
+<p class="attendees-inline"><strong>Present:</strong> EinMByte, sadie, str4d, z3r0fox, zzz</p>
+<h2 id="meeting-log">Meeting Log</h2>
+<div class="irc-log">
+&lt;zzz&gt; 1) VRP/H1/1119
+&lt;zzz&gt; 2) 0.9.26 carryover
+&lt;zzz&gt; 3) Summer of X
+&lt;zzz&gt; 4) 27-29 deferred to next meeting
+&lt;zzz&gt; 0) hi
+&lt;zzz&gt; hi
+&lt;str4d&gt; hi
+&lt;zzz&gt; I'll explain 3) when we get there
+&lt;EinMByte&gt; Hi
+&lt;zzz&gt; 1) VRP/H1/1119
+&lt;zzz&gt; http://trac.i2p2.i2p/ticket/1119
+&lt;zzz&gt; has everybody had a chance to catch up and review this ticket?
+* str4d is about to post his comments
+&lt;zzz&gt; str4d overall thoughts?
+&lt;str4d&gt; Overall I think it is pretty good. I like the positive feedback we have had from people who do this kind of thing for a living :)
+&lt;zzz&gt; I think we're on the right track more or less
+&lt;zzz&gt; this ticket has been around for 2 years. you brought up H1 14  months ago. we've had anonimal's vrp process drafts since september
+&lt;zzz&gt; i think over that time, h1 has become pretty legit
+&lt;str4d&gt; I agree with zzz that the later points are overspecified, but I think the process and response sections (sections III and IV) are about the right level of specification
+&lt;zzz&gt; i have no remaining doubts about using h1
+&lt;EinMByte&gt; Yes, although I've only followed the discussion from a distance, vuln. response should follow stricter procedures then now. H1 might be a good options for that.
+&lt;EinMByte&gt; s/options/option
+&lt;str4d&gt; I am also +1 on h1, for the reasons I have already outlined in the ticket.
+&lt;zzz&gt; str4d, you met katie of h1 a while back right? can you fill us in on that meeting?
+&lt;z3r0fox&gt; Hi
+&lt;str4d&gt; Yeah! I met her at Kiwicon 9
+&lt;str4d&gt; I asked her about the tweet I posted, that arice responded to in the ticket
+&lt;str4d&gt; Turns out that arice actually emailed her a link to our ticket asking if his response was adequate, and she ended up reviewing the ticket on her phone while in another meeting :P
+&lt;str4d&gt; She also liked it :P
+&lt;zzz&gt; and what about the funded stuff and what tor's doing with them?
+&lt;str4d&gt; She mentioned that it was going to happen, and did indicate that we may be able to get in the same program
+&lt;zzz&gt; also, overall impressions of h1 the company after meeting katie?
+&lt;str4d&gt; I have yet to follow up on this, because 1) thesis, and 2) there is no point in going in any program if we don't then use h1
+&lt;str4d&gt; zzz, very positive
+&lt;zzz&gt; anybody have any objections to using h1?
+&lt;str4d&gt; They appear to know their stuff, and Katie is certainly thriving there
+&lt;zzz&gt; can we flip the switch on h1 now to go live or what has to happen first?
+&lt;str4d&gt; If we go for h1, this is what I think needs to happen:
+&lt;str4d&gt; - We finish up the VRP and get it on the website
+&lt;str4d&gt; - We tidy up the copy text front page of the h1 page
+&lt;str4d&gt; (things like how we respond, what we consider in-scope etc.)
+&lt;zzz&gt; vrp must be before h1 live?
+&lt;str4d&gt; - We decide on the response team
+&lt;str4d&gt; - We move the sandbox into closed beta, where we have a few researchers invited
+&lt;str4d&gt; - Once we have had some time to get used to the platform, response volumes etc. we take it to open
+&lt;zzz&gt; you really think responses are going to start rolling in the day we flip the switch?
+&lt;str4d&gt; They could
+&lt;str4d&gt; Katie indicated to me there were a number of researchers who were very interested in helping open-source projects, if they could find them
+&lt;zzz&gt; can't imagine we need to have everything lined up. not like the researchers are going to start hacking on day one
+&lt;zzz&gt; especially if no money involved
+&lt;zzz&gt; closed beta means they have to let the in?
+&lt;str4d&gt; Yes
+&lt;str4d&gt; Essentially h1 invites maybe 10 researchers to be able to use our page
+&lt;EinMByte&gt; Do you have any idea who would be invited?
+&lt;zzz&gt; so putting the VRP and our response team aside for the moment, who's going to fix up our h1 page to get ready? str4d?
+&lt;str4d&gt; I don't recall the exact specifics
+&lt;str4d&gt; (whether we invite people ourselves through h1 or whether they find the researchers from the existing registered pool)
+&lt;str4d&gt; The idea is that then we don't get inundated with crappy tickets before getting used to how to respond to them
+&lt;str4d&gt; But IMHO it also helps us start to directly build relationships with a few researchers
+&lt;zzz&gt; do you have a sense of whether everybody is chasing after bounties on h1 or are the free ones getting a lot of reports too?
+&lt;EinMByte&gt; Sure, or at least with those that are using h1
+&lt;str4d&gt; I don't personally have a sense of that
+&lt;EinMByte&gt; zzz: Is there a possibility of eventually oferring bounties?
+&lt;str4d&gt; But Katie indicated that there were definitely researchers who wanted to help FOSS projects if they could identify them
+&lt;zzz&gt; somebody is funding tor bounties now, so yes
+&lt;sadie&gt; I can help str4d on the h1 mainpage
+&lt;str4d&gt; thx sadie
+&lt;EinMByte&gt; I2P has reasonable savings, why not spend some of them on bounties
+&lt;zzz&gt; ok great, so sadie and str4d will work on getting the h1 side ready
+&lt;str4d&gt; EinMByte, yes we could go to bounties, but not initially IMHO
+&lt;zzz&gt; 1mb we certainly can if we want
+&lt;zzz&gt; anything else on h1 or can we move onto the vrp itself?
+&lt;EinMByte&gt; Let's see how it works out without bounties
+&lt;str4d&gt; And as mentioned above, there is now a program on h1 for funding bounties for FOSS projects
+&lt;z3r0fox&gt; Beta sounds like a good opportunity for team to develop public facing responses for if a really serious bug is publically disclosed
+&lt;str4d&gt; which we may be able to get into
+&lt;zzz&gt; last call for h1
+&lt;zzz&gt; ok, lets look at the vrp itself in the ticket
+* str4d posts his comments
+&lt;zzz&gt; we're reviewing anonimal's draft from november
+&lt;zzz&gt; let's not go thru point by point though
+&lt;zzz&gt; overall impressions on the november draft and where we go from here?
+&lt;str4d&gt; &lt;str4d&gt; I agree with zzz that the later points are overspecified, but I think the process and response sections (sections III and IV) are about the right level of specification
+* zzz takes a minute to read str4d's comments
+&lt;zzz&gt; ok it seems like we are in general agreement that the november draft is a great start and we have rough agreements on the edits necessary
+&lt;zzz&gt; what I'd like to do is take the final stage of this from anonimal, that str4d and I will finish the edits and get it posted on the website, and round up a team
+&lt;str4d&gt; Sounds good
+&lt;zzz&gt; what do you guys think?
+&lt;str4d&gt; There are also the necessary tweaks now we are going for h1 instead of private Trac
+&lt;zzz&gt; any volunteers to help us work on the final version?
+&lt;zzz&gt; we don't want to get overly tool-specific (mtn, h1, etc) in the process. It should be high level enough to avoid most of that
+&lt;str4d&gt; True
+&lt;str4d&gt; And we will be iterating on it anyway
+&lt;zzz&gt; doesnt need to be perfect out of the gate
+&lt;str4d&gt; That is another reason for a private beta initially
+&lt;zzz&gt; ok str4d when are we going to have that done by?
+&lt;sadie&gt; vrp draft looks good
+&lt;zzz&gt; end of march?
+&lt;str4d&gt; sounds good
+&lt;zzz&gt; ok anything else on 1) ??
+&lt;zzz&gt; moving on to 2) 0.9.26 revisited
+&lt;zzz&gt; any other comments? unfortunately I haven't updated the roadmap on the website yet
+&lt;zzz&gt; so i could hold up my notes to the camera
+&lt;zzz&gt; sorry i should have done the website.
+&lt;zzz&gt; I did get the last 3 meeting logs, including last thurs and fri., up on the website though
+&lt;zzz&gt; guess i will be doing that until kytv reappears
+&lt;zzz&gt; whenever our next meeting is, I will put .26 on the agenda to look at it then
+&lt;zzz&gt; anything else on 2) ?
+&lt;zzz&gt; ok moving on to 3) summer of x
+&lt;zzz&gt; str4d can you explain our idea please
+&lt;str4d&gt; The idea is that we focus development for three months on user- and developer-facing elements of I2P
+&lt;str4d&gt; ie. things that people might actually care about, rather than streaming tweaks ;P
+&lt;str4d&gt; And therefore things that are easier to do publicity on
+&lt;str4d&gt; The rough idea is:
+&lt;str4d&gt; - Summer of APIs: spend a month working on updating our libraries etc
+&lt;str4d&gt; - Summer of Apps: spend a month working on helping other projects use those libraries
+&lt;str4d&gt; - Summer of Plugins: spend a month working on our own apps and plugins
+&lt;zzz&gt; right, this is about growing the network through outreach and making apps (ours and other people's) better
+&lt;str4d&gt; Yep
+&lt;zzz&gt; my idea was, if we can get 5 more Vuze's, we'll be 5 times bigger
+&lt;EinMByte&gt; You might also want to add documentation to that
+&lt;str4d&gt; Plus there's the whole Summer of Code ethos that we can hook into online
+&lt;EinMByte&gt; no good API without decent documentation
+&lt;zzz&gt; a lot of times we see some project thinking about i2p but they dont know much and dont get any help
+&lt;str4d&gt; EinMByte, to the API parts, yes
+&lt;zzz&gt; agreed 1mb
+&lt;str4d&gt; ie. that would be on making our libraries and APIs as easy for devs to use as possible
+&lt;z3r0fox&gt; Sounds like a good campaign idea! Worth a shot
+&lt;str4d&gt; so e.g. updating txi2p, libsam etc. with SAMv3.3
+&lt;EinMByte&gt; Supporting more languages?
+&lt;EinMByte&gt; More interfacing through existing libraries
+&lt;str4d&gt; Potentially, if we have the developers to help :)
+&lt;str4d&gt; EinMByte, yah
+&lt;zzz&gt; I'd like to sadie involved in this too with branding and outreach
+&lt;EinMByte&gt; I think str4d's work with twisted is great, would be nice to do more stuff like that
+&lt;str4d&gt; Fix the libtorrent support, try and get something into libp2p, etc.
+&lt;zzz&gt; summer of i2p, or i2p summer of fun, etc
+&lt;EinMByte&gt; i;e. do not write our own API from scratch but offer plugins for whatever framework people are using
+&lt;str4d&gt; EinMByte, exactly.
+&lt;zzz&gt; pushing sam 3.3, bringing all the various bridge libs up to date, documented, etc
+&lt;str4d&gt; Or if we do offer our own API, make it as simple as possible. That's what I like about libsam, it is two files that any project can bundle (or ideally, any existing library)
+&lt;zzz&gt; there's python and go and c and c++ and twisted and libtorrent and libsockets and and and...
+&lt;zzz&gt; we fix up other people's stuff and do pull requests to them
+&lt;EinMByte&gt; str4d: Agreed, APIs should be easy to bundle. It's a common problem for me
+&lt;str4d&gt; While that is ongoing, we can ask other projects if they want help getting I2P into their apps
+&lt;zzz&gt; why the heck doesn't libtorrent work? who can figure that out and get it fixed?
+&lt;zzz&gt; ^^ as an example
+&lt;str4d&gt; Then in the next phase of SoX, we then work on educating them and helping them use the newly-updated libraries and APIs
+&lt;EinMByte&gt; sounds good
+&lt;str4d&gt; It would be great to have buy-in with this from i2pd and kovri too, at least for the API part
+&lt;str4d&gt; since we want to end up with apps being able to use whatever I2P backend they want
+&lt;zzz&gt; i think we could get a lot of people excited here. I know psi is working on various libs
+&lt;zzz&gt; we need a list of all the messaging apps we want to target
+&lt;str4d&gt; And this is good for tying in with our existing outreach
+&lt;EinMByte&gt; If we get the right PR it might be a success
+&lt;EinMByte&gt; I want to create a simple C++ API for kovri, at some point
+&lt;zzz&gt; great 1mb
+&lt;EinMByte&gt; Then that API could be used from various programming languages. But this is a core API, not a client API (so use-case is somewhat different)
+&lt;EinMByte&gt; Pretty much it should allow any application to bundle the kovri core.
+&lt;zzz&gt; this would be a nice wholistic project to get everybody involved
+&lt;EinMByte&gt; Agreed
+&lt;str4d&gt; In my outreach todo list I have Tahoe-LAFS, IPFS, Tox, OpenBazaar, Zeronet...
+&lt;zzz&gt; ok how do we move forward with this
+&lt;zzz&gt; maybe sadie can give it  a cool name
+&lt;str4d&gt; We essentially have until the end of May to plan this
+&lt;str4d&gt; (while .25 and .26 are released)
+&lt;zzz&gt; so after .26
+&lt;zzz&gt; lets put this on the april 4 meeting agenda
+&lt;EinMByte&gt; Ok.
+&lt;EinMByte&gt; PR would have to attend, though
+&lt;zzz&gt; june: APIs july: apps aug: plugins
+&lt;EinMByte&gt; (so I think that's sadie, now?)
+&lt;zzz&gt; also could wrap this around HOPE
+&lt;z3r0fox&gt; I don't know many of the details obviously yet, but I'm not a terrible tech writer if anyone wants to assign me some grunt work
+&lt;zzz&gt; ok let's ask sadie to flesh this out a little on april 4
+&lt;sadie&gt; zzz - I can take care of graphics/ content with str4d for outreach
+&lt;zzz&gt; ok
+&lt;zzz&gt; anything else on summer of x?
+&lt;sadie&gt; also, I will at Hope with stickers ..
+&lt;str4d&gt; Nothing from me :)
+&lt;amnesia&gt; Call it something other than Summer of X so it doesn't sound either non-descript, or like porn?
+&lt;str4d&gt; amnesia, X is a placeholder
+&lt;str4d&gt; (until we think of something better)
+&lt;zzz&gt; ok. as I said at the top of the meeting, I'd like to defer discussion of 27-29 and the bigger roadmap and goals for 2nd half '16
+&lt;amnesia&gt; Summer of Targetted Development?
+&lt;zzz&gt; do we like these roadmap-specific meetings or not? should we do this again?
+&lt;str4d&gt; amnesia, a little long IMHO
+&lt;str4d&gt; We will think of something for the April meeting
+&lt;zzz&gt; send your ideas for 'X' to sadie or post somewhere
+&lt;str4d&gt; zzz, I like them
+&lt;str4d&gt; And speaking of
+&lt;zzz&gt; do we want another roadmap mtg in march?
+&lt;sadie&gt; zzz , can we put something on forum where people can leave suggestions for the "summer of" name?
+&lt;zzz&gt; yes sadie
+&lt;str4d&gt; The other thing I wanted to bring up was the longer-term roadmapping
+&lt;EinMByte&gt; zzz: Yes. We need more long-term
+&lt;zzz&gt; we got our .25 release next weekend so that will keep us occupied
+&lt;zzz&gt; maybe about 2 weeks from now for another roadmap meeting
+&lt;EinMByte&gt; Unless we plan that for later, but at some point it will need discussion
+&lt;str4d&gt; Sounds good
+&lt;z3r0fox&gt; zzz: I think they're good. Keeps focus
+&lt;str4d&gt; I want to suggest something for people to mull over
+&lt;EinMByte&gt; zzz: sure
+&lt;zzz&gt; want to go back to a tuesday 8 PM or do it on the weekend?
+&lt;str4d&gt; In parallel with the SoX, I would like to have another two parallel streams of development work
+&lt;str4d&gt; - Crypto migration
+&lt;str4d&gt; - UI overhaul
+&lt;str4d&gt; The blocker on both of these is research and design, not implementatino
+&lt;EinMByte&gt; Does crypto migration include NTCP2?
+&lt;str4d&gt; Yes
+&lt;str4d&gt; So while we are doing SoX implementation stuff, we are also doing reviews of the various proposals etc.
+&lt;zzz&gt; how is saturday March 19th
+&lt;z3r0fox&gt; +1 Weekends
+&lt;zzz&gt; 8 PM UTC Saturday March 19
+&lt;str4d&gt; With a goal of having a plan ready to implement either during or after SoX
+&lt;EinMByte&gt; March 19 seems good
+&lt;str4d&gt; Likewise with UI, we need to start planning design work on that ASAP, because it will take a long time
+&lt;sadie&gt; march 19th works for me
+&lt;zzz&gt; ok sox == summer of x, got it
+&lt;str4d&gt; Yes (until we change it :P )
+&lt;str4d&gt; Design stuff can happen in parallel with everything else, and then implementation could happen after SoX
+&lt;str4d&gt; It would be *so* nice if we could have a new UI in place for CCC
+&lt;zzz&gt; ok I will get an agenda up on zzz.i2p, plus the notes, plus the logs from todays meeting on the website
+&lt;str4d&gt; Anyway, stuff to think about
+&lt;zzz&gt; anything else for today's meeting?
+* zzz grabs the baffer
+&lt;str4d&gt; We can discuss more at next roadmap
+&lt;sadie&gt; baff it
+&lt;str4d&gt; March 19 works for me :)
+* zzz *baffs* it
+&lt;zzz&gt; thanks everybody
+</div>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

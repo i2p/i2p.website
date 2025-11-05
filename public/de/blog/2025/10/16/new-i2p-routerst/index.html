@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>New I2P Routers(t) | I2P - Das Invisible Internet Project</title>
+
+    <meta name="description" content="Multiple new I2P router implementations are emerging, including emissary in Rust and go-i2p in Go, bringing new possibilities for embedding and network diversity.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="New I2P Routers(t) | I2P - Das Invisible Internet Project">
+    <meta property="og:description" content="Multiple new I2P router implementations are emerging, including emissary in Rust and go-i2p in Go, bringing new possibilities for embedding and network diversity.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/de/blog/2025/10/16/new-i2p-routerst/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../de/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../de/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../de/about/">Overview</a></li>
+                            <li><a href="../../../../../../de/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../de/about/media/">Press</a></li>
+                            <li><a href="../../../../../../de/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../de/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../de/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../de/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../de/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../de/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../de/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">de</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../en/" class="lang-option">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../de/blog/2025/10/16/new-i2p-routerst/" class="lang-option active">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../de/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2025-10-16">
+                    October 16, 2025
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">community</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">New I2P Routers(t)</h1>
+
+            
+            <div class="post-author">By idk</div>
+            
+        </div>
+
+        <div class="post-content">
+            <p>Es ist eine aufregende Zeit für die I2P-Entwicklung, unsere Community wächst und es gibt jetzt mehrere neue, voll funktionsfähige I2P-Router-Prototypen, die in der Szene auftauchen! Wir freuen uns sehr über diese Entwicklung und darüber, die Neuigkeiten mit Ihnen zu teilen.</p>
+<h2 id="wie-hilft-das-dem-netzwerk">Wie hilft das dem Netzwerk?</h2>
+<p>Das Schreiben von I2P-Routern hilft uns zu beweisen, dass unsere Spezifikationsdokumente zur Herstellung neuer I2P-Router verwendet werden können, öffnet den Code für neue Analysetools und verbessert allgemein die Sicherheit und Interoperabilität des Netzwerks. Mehrere I2P-Router bedeuten, dass potenzielle Fehler nicht einheitlich sind. Ein Angriff auf einen Router funktioniert möglicherweise nicht auf einem anderen Router, wodurch ein Monokulturproblem vermieden wird. Die vielleicht aufregendste Perspektive auf lange Sicht ist jedoch die <code>Einbettung</code>.</p>
+<h2 id="was-ist-einbettung">Was ist <code>Einbettung</code>?</h2>
+<p>Im Rahmen von I2P ist die <code>Einbettung</code> eine Möglichkeit, einen I2P-Router direkt in eine andere App einzubinden, ohne dass ein freistehender Router im Hintergrund läuft. Auf diese Weise können wir die Nutzung von I2P vereinfachen, was das Wachstum des Netzwerks erleichtert, indem wir die Software zugänglicher machen. Sowohl Java als auch C++ sind außerhalb ihrer eigenen Ökosysteme schwierig zu verwenden, wobei C++ spröde handschriftliche C-Bindungen erfordert und im Fall von Java der Schmerz der Kommunikation mit einer JVM-Anwendung aus einer Nicht-JVM-Anwendung.</p>
+<p>Obwohl diese Situation in vielerlei Hinsicht ganz normal ist, glaube ich, dass sie verbessert werden kann, um I2P zugänglicher zu machen. Andere Sprachen haben elegantere Lösungen für diese Probleme. Natürlich sollten wir immer die bestehenden Richtlinien für die Java- und C++ -Router berücksichtigen und anwenden.</p>
+<h2 id="abgesandter-erscheint-aus-der-dunkelheit"><code>abgesandter</code> erscheint aus der Dunkelheit</h2>
+<p>Völlig unabhängig von unserem Team hat ein Entwickler <code>namens</code> altonen eine Rust-Implementierung von I2P namens <code>emissary</code> entwickelt. Es ist zwar noch recht neu und Rust ist uns unbekannt, aber dieses faszinierende Projekt ist vielversprechend. Herzlichen Glückwunsch an altonen zur Erstellung des <code>Abgesandten</code>, wir sind ziemlich beeindruckt.</p>
+<h3 id="warum-rost">Warum Rost?</h3>
+<p>Der Hauptgrund für die Verwendung von Rust ist im Grunde derselbe wie der Grund für die Verwendung von Java oder Go. Rust ist eine kompilierte Programmiersprache mit Speicherverwaltung und einer riesigen, sehr enthusiastischen Community. Rust bietet auch erweiterte Funktionen zum Erstellen von Bindungen an die Programmiersprache C, die möglicherweise einfacher zu pflegen sind als in anderen Sprachen, während sie gleichzeitig die starken Speichersicherheitsfunktionen von Rust übernehmen.</p>
+<h3 id="möchtest-du-dich-auf-den-abgesandten-einlassen">Möchtest du dich auf den <code>Abgesandten</code> einlassen?</h3>
+<p><code>emissary</code> wird auf Github von altonen <code>entwickelt</code>. Sie finden das Repository unter: <a href="https://github.com/altonen/emissary">altonen/emissary</a>. Rust leidet auch unter einem Mangel an umfassenden SAMv3-Client-Bibliotheken, die mit den beliebten Rust-Netzwerkprodukten kompatibel sind. Das Schreiben einer SAMv3-Bibliothek ist ein großartiger Ausgangspunkt.</p>
+<h2 id="go-i2p-nähert-sich-der-fertigstellung"><code>go-i2p</code> nähert sich der Fertigstellung</h2>
+<p>Seit etwa 3 Jahren arbeite ich an go-i2p und <code>versuche</code>, eine junge Bibliothek in einen vollwertigen I2P-Router in pure-Go, einer weiteren speichersicheren Sprache, zu verwandeln. In den letzten 6 Monaten wurde es drastisch umstrukturiert, um Leistung, Zuverlässigkeit und Wartbarkeit zu verbessern.</p>
+<h3 id="warum-gehen">Warum gehen?</h3>
+<p>Während Rust und Go viele der gleichen Vorteile haben, ist Go in vielerlei Hinsicht viel einfacher zu erlernen. Seit Jahren gibt es hervorragende Bibliotheken und Anwendungen für die Verwendung von I2P in der Programmiersprache Go, einschließlich der vollständigsten Implementierungen der SAMv3.3-Bibliotheken. Aber ohne einen I2P-Router, den wir automatisch verwalten können (z. B. einen eingebetteten Router), stellt es immer noch eine Barriere für die Benutzer dar. Der Punkt von go-i2p ist es, diese Lücke zu schließen und alle Ecken und Kanten für I2P-Anwendungsentwickler zu entfernen, die in Go arbeiten.</p>
+<h3 id="möchtest-du-dich-auf-go-i2p-einlassen">Möchtest du dich auf go-i2p <code>einlassen</code>?</h3>
+<p><code>go-i2p</code> wird auf Github entwickelt, zu diesem <code>Zeitpunkt</code> primär von eyedeekay und offen für Beiträge der Community bei <a href="https://github.com/go-i2p/">go-i2p</a>. Innerhalb dieses Namespace existieren viele Projekte, wie zum Beispiel:</p>
+<h4 id="router-bibliotheken">Router-Bibliotheken</h4>
+<p>Wir haben diese Bibliotheken erstellt, um unsere I2P-Router-Bibliotheken zu produzieren. Sie sind auf mehrere, fokussierte Repositories verteilt, um die Überprüfung zu erleichtern und sie für andere Personen nützlich zu machen, die experimentelle, benutzerdefinierte I2P-Router erstellen möchten.</p>
+<ul>
+<li><a href="https://github.com/go-i2p/go-i2p">go-i2p der Router selbst, derzeit am aktivsten</a></li>
+<li><a href="https://github.com/go-i2p/common">gemeinsame Kernbibliothek für I2P-Datenstrukturen</a></li>
+<li><a href="https://github.com/go-i2p/crypto">krypto unsere Bibliothek für kryptographische Operationen</a></li>
+<li><a href="https://github.com/go-i2p/go-noise">go-noise eine Bibliothek zur Implementierung von geräuschbasierten Verbindungen</a></li>
+<li><a href="https://github.com/go-i2p/noise">eine Low-Level-Bibliothek für die Verwendung des Noise-Frameworks</a></li>
+<li><a href="https://github.com/go-i2p/su3">su3 eine Bibliothek zum Manipulieren von su3-Dateien</a></li>
+</ul>
+<h4 id="kundenbibliotheken">Kundenbibliotheken</h4>
+<ul>
+<li><a href="https://github.com/go-i2p/onramp">onramp eine sehr praktische Bibliothek für die Verwendung(oder Kombination) von I2P und Tor</a></li>
+<li><a href="https://github.com/go-i2p/go-sam-go">go-sam-go eine fortschrittliche, effiziente und sehr vollständige SAMv3-Bibliothek</a></li>
+</ul>
+<h2 id="wenn-sie-go-oder-rust-nicht-mögen-und-daran-denken-einen-i2p-router-zu-schreiben-was-sollten-sie-tun">Wenn Sie Go oder Rust nicht mögen und daran denken, einen I2P-Router zu schreiben, was sollten Sie tun?</h2>
+<p>Nun, es gibt ein ruhendes Projekt, um <a href="https://github.com/PeterZander/i2p-cs">einen I2P-Router in C#</a> zu schreiben, wenn Sie I2P auf einer XBox ausführen möchten. Klingt eigentlich ziemlich ordentlich. Wenn das auch nicht deine Präferenz ist, könntest du es <code>wie</code> altonen machen und eine ganz neue entwickeln.</p>
+<h3 id="entscheide-warum-du-es-schreibst-für-wen-du-es-schreibst">Entscheide, warum du es schreibst, für wen du es schreibst</h3>
+<p>Sie können einen I2P-Router aus irgendeinem Grund schreiben, es ist ein kostenloses Netzwerk, aber es wird Ihnen helfen zu wissen, warum. Gibt es eine Community, die Sie stärken möchten, ein Tool, das Ihrer Meinung nach gut zu I2P passt, oder eine Strategie, die Sie ausprobieren möchten? Finden Sie heraus, was Ihr Ziel ist, um herauszufinden, wo Sie anfangen müssen, und wie ein &ldquo;fertiger&rdquo; Zustand aussehen wird.</p>
+<h3 id="entscheiden-sie-in-welcher-sprache-sie-es-tun-möchten-und-warum">Entscheiden Sie, in welcher Sprache Sie es tun möchten und warum</h3>
+<p>Hier sind einige Gründe, warum Sie eine Sprache wählen könnten:</p>
+<ul>
+<li><strong>C</strong>: No need for binding-generation, supported everywhere, can be called from any language, lingua franca of modern computing</li>
+<li><strong>Typescript</strong>: Massive Community, viele Anwendungen, Dienste und Bibliotheken, arbeitet mit <code>Node</code> und <code>Deno</code>, scheint im Moment überall zu sein</li>
+<li><strong>D</strong>: Es ist speichersicher und nicht Rust or Go</li>
+<li><strong>Vala</strong>: Es gibt C-Code für die Zielplattform aus und kombiniert einige der Vorteile von speichersicheren Sprachen mit der Flexibilität von C</li>
+<li><strong>Python</strong>: Jeder verwendet Python</li>
+</ul>
+<p>Aber hier sind einige Gründe, warum Sie diese Sprachen möglicherweise nicht wählen:</p>
+<ul>
+<li><strong>C</strong>: Speicherverwaltung kann eine Herausforderung sein, die zu wirkungsvollen Fehlern führt</li>
+<li><strong>Typescript</strong>: TypeScript wird in JavaScript transpiliert, was interpretiert wird und die Leistung beeinträchtigen kann</li>
+<li><strong>D</strong>: Relativ kleine Gemeinschaft</li>
+<li><strong>Vala</strong>: Nicht viel zugrunde liegende Infrastruktur in Vala, Sie verwenden am Ende C-Versionen der meisten Bibliotheken</li>
+<li><strong>Python</strong>: Es ist eine interpretierte Sprache, die sich auf die Leistung auswirken kann</li>
+</ul>
+<p>Es gibt Hunderte von Programmiersprachen und wir begrüßen gewartete I2P-Bibliotheken und Router in allen. Wählen Sie Ihre Kompromisse mit Bedacht und beginnen Sie.</p>
+<h2 id="kontaktieren-sie-uns-und-beginnen-sie-mit-der-programmierung">Kontaktieren Sie uns und beginnen Sie mit der Programmierung</h2>
+<p>Egal, ob Sie in Rust, Go, Java, C++ oder einer anderen Sprache arbeiten möchten, kontaktieren Sie uns unter #i2p-dev auf Irc2P. Beginnen Sie dort, und wir werden Sie zu routerspezifischen Kanälen einbinden. Wir sind auch auf ramble.i2p bei f/i2p, auf reddit bei r/i2p und auf GitHub und git.idk.i2p präsent. Wir freuen uns, bald von Ihnen zu hören.</p>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../de/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../de/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../de/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../de/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../de/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../de/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../de/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../de/privacy/">Privacy</a>
+                <a href="../../../../../../de/terms/">Terms</a>
+                <a href="../../../../../../de/impressum/">Impressum</a>
+                <a href="../../../../../../de/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

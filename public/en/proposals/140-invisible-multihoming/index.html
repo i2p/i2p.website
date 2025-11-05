@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Invisible Multihoming | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="Invisible Multihoming | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/proposals/140-invisible-multihoming/">
+
+    
+    <link rel="icon" type="image/png" href="../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../en/" class="logo-link">
+                    <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/about/">Overview</a></li>
+                            <li><a href="../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../en/blog/" class="">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../en/proposals/140-invisible-multihoming/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+
+<div class="proposals-page">
+    <div class="container">
+        
+        <nav class="breadcrumbs">
+            <a href="../../../en/">Home</a>
+            <span class="separator">/</span>
+            <a href="../../../en/proposals/">Proposals</a>
+            <span class="separator">/</span>
+            <span class="current">Invisible Multihoming</span>
+        </nav>
+
+        
+        <header class="proposal-header">
+            <div class="proposal-title-section">
+                <h1 class="proposal-title">Invisible Multihoming</h1>
+                <div class="proposal-number">Proposal 140</div>
+            </div>
+
+            
+            <div class="proposal-meta-box">
+                <div class="proposal-status status-open">
+                    Open
+                </div>
+
+                
+                <div class="proposal-info-grid">
+                    
+                    <div class="info-item">
+                        <span class="info-label">Author</span>
+                        <span class="info-value">str4d</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Created</span>
+                        <span class="info-value">2017-05-22</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Last Updated</span>
+                        <span class="info-value">2017-07-04</span>
+                    </div>
+                    
+
+                    
+
+                    
+                </div>
+
+                
+                
+            </div>
+        </header>
+
+        
+        <article class="proposal-content">
+            <h2 id="overview">Overview</h2>
+<p>This proposal outlines a design for a protocol enabling an I2P client, service
+or external balancer process to manage multiple routers transparently hosting a
+single [Destination]_.</p>
+<p>The proposal currently does not specify a concrete implementation. It could be
+implemented as an extension to [I2CP]_, or as a new protocol.</p>
+<h2 id="motivation">Motivation</h2>
+<p>Multihoming is where multiple routers are used to host the same Destination.
+The current way to multihome with I2P is to run the same Destination on each
+router independently; the router that gets used by clients at any particular
+time is the last one to publish a [LeaseSet]_.</p>
+<p>This is a hack and presumably won&rsquo;t work for large websites at scale. Say we had
+100 multihoming routers each with 16 tunnels. That&rsquo;s 1600 LeaseSet publishes
+every 10 minutes, or almost 3 per second. The floodfills would get overwhelmed
+and throttles would kick in. And that&rsquo;s before we even mention the lookup
+traffic.</p>
+<p>[Prop123]_ solves this problem with a meta-LeaseSet, which lists the 100 real
+LeaseSet hashes. A lookup becomes a two-stage process: first looking up the
+meta-LeaseSet, and then one of the named LeaseSets. This is a good solution to
+the lookup traffic issue, but on its own it creates a significant privacy leak:
+It is possible to determine which multihoming routers are online by monitoring
+the published meta-LeaseSet, because each real LeaseSet has corresponds to a
+single router.</p>
+<p>We need a way for an I2P client or service to spread a single Destination across
+multiple routers, in a way that is indistinguishable to using a single router
+(from the perspective of the LeaseSet itself).</p>
+<h2 id="design">Design</h2>
+<h3 id="definitions">Definitions</h3>
+<pre><code>User
+    The person or organisation wanting to multihome their Destination(s). A
+    single Destination is considered here without loss of generality (WLOG).
+
+Client
+    The application or service running behind the Destination. It may be a
+    client-side, server-side, or peer-to-peer application; we refer to it as
+    a client in the sense that it connects to the I2P routers.
+
+    The client consists of three parts, which may all be in the same process
+    or may be split across processes or machines (in a multi-client setup):
+
+    Balancer
+        The part of the client that manages peer selection and tunnel
+        building. There is a single balancer at any one time, and it
+        communicates with all I2P routers. There may be failover balancers.
+
+    Frontend
+        The part of the client that can be operated in parallel. Each
+        frontend communicates with a single I2P router.
+
+    Backend
+        The part of the client that is shared between all frontends. It has
+        no direct communication with any I2P router.
+
+Router
+    An I2P router run by the user that sits at the boundary between the I2P
+    network and the user's network (akin to an edge device in corporate
+    networks). It builds tunnels under the command of a balancer, and routes
+    packets for a client or frontend.
+</code></pre>
+<h3 id="high-level-overview">High-level overview</h3>
+<p>Imagine the following desired configuration:</p>
+<ul>
+<li>A client application with one Destination.</li>
+<li>Four routers, each managing three inbound tunnels.</li>
+<li>All twelve tunnels should be published in a single LeaseSet.</li>
+</ul>
+<p>Single-client</p>
+<pre tabindex="0"><code>.. raw:: html
+
+  {% highlight lang=&#39;text&#39; %}
+                -{ [Tunnel 1]===\
+                 |-{ [Tunnel 2]====[Router 1]-----
+                 |-{ [Tunnel 3]===/               \
+                 |                                 \
+                 |-{ [Tunnel 4]===\                 \
+  [Destination]  |-{ [Tunnel 5]====[Router 2]-----   \
+    \            |-{ [Tunnel 6]===/               \   \
+     [LeaseSet]--|                               [Client]
+                 |-{ [Tunnel 7]===\               /   /
+                 |-{ [Tunnel 8]====[Router 3]-----   /
+                 |-{ [Tunnel 9]===/                 /
+                 |                                 /
+                 |-{ [Tunnel 10]==\               /
+                 |-{ [Tunnel 11]===[Router 4]-----
+                  -{ [Tunnel 12]==/
+{% endhighlight %}
+
+Multi-client
+````````````
+.. raw:: html
+
+  {% highlight lang=&#39;text&#39; %}
+                -{ [Tunnel 1]===\
+                 |-{ [Tunnel 2]====[Router 1]---------[Frontend 1]
+                 |-{ [Tunnel 3]===/          \                    \
+                 |                            \                    \
+                 |-{ [Tunnel 4]===\            \                    \
+  [Destination]  |-{ [Tunnel 5]====[Router 2]---\-----[Frontend 2]   \
+    \            |-{ [Tunnel 6]===/          \   \                \   \
+     [LeaseSet]--|                         [Balancer]            [Backend]
+                 |-{ [Tunnel 7]===\          /   /                /   /
+                 |-{ [Tunnel 8]====[Router 3]---/-----[Frontend 3]   /
+                 |-{ [Tunnel 9]===/            /                    /
+                 |                            /                    /
+                 |-{ [Tunnel 10]==\          /                    /
+                 |-{ [Tunnel 11]===[Router 4]---------[Frontend 4]
+                  -{ [Tunnel 12]==/
+{% endhighlight %}
+
+General client process
+</code></pre><ul>
+<li>
+<p>Load or generate a Destination.</p>
+</li>
+<li>
+<p>Open up a session with each router, tied to the Destination.</p>
+</li>
+<li>
+<p>Periodically (around every ten minutes, but more or less based on tunnel
+liveness):</p>
+<ul>
+<li>
+<p>Obtain the fast tier from each router.</p>
+</li>
+<li>
+<p>Use the superset of peers to build tunnels to/from each router.</p>
+<ul>
+<li>By default, tunnels to/from a particular router will use peers from
+that router&rsquo;s fast tier, but this is not enforced by the protocol.</li>
+</ul>
+</li>
+<li>
+<p>Collect the set of active inbound tunnels from all active routers, and create a
+LeaseSet.</p>
+</li>
+<li>
+<p>Publish the LeaseSet through one or more of the routers.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Differences to I2CP</p>
+<pre tabindex="0"><code>To create and manage this configuration, the client needs the following new
+functionality beyond what is currently provided by [I2CP]_:
+
+- Tell a router to build tunnels, without creating a LeaseSet for them.
+- Get a list of the current tunnels in the inbound pool.
+
+Additionally, the following functionality would enable significant flexibility
+in how the client manages its tunnels:
+
+- Get the contents of a router&#39;s fast tier.
+- Tell a router to build an inbound or outbound tunnel using a given list of
+  peers.
+
+### Protocol outline
+
+.. raw:: html
+
+  {% highlight %}
+         Client                           Router
+
+                    ---------------------&gt;  Create Session
+   Session Status  &lt;---------------------
+                    ---------------------&gt;  Get Fast Tier
+        Peer List  &lt;---------------------
+                    ---------------------&gt;  Create Tunnel
+    Tunnel Status  &lt;---------------------
+                    ---------------------&gt;  Get Tunnel Pool
+      Tunnel List  &lt;---------------------
+                    ---------------------&gt;  Publish LeaseSet
+                    ---------------------&gt;  Send Packet
+      Send Status  &lt;---------------------
+  Packet Received  &lt;---------------------
+{% endhighlight %}
+
+Messages
+````````
+    Create Session
+        Create a session for the given Destination.
+
+    Session Status
+        Confirmation that the session has been set up, and the client can now
+        start building tunnels.
+
+    Get Fast Tier
+        Request a list of the peers that the router currently would consider
+        building tunnels through.
+
+    Peer List
+        A list of peers known to the router.
+
+    Create Tunnel
+        Request that the router build a new tunnel through the specified peers.
+
+    Tunnel Status
+        The result of a particular tunnel build, once it is available.
+
+    Get Tunnel Pool
+        Request a list of the current tunnels in the inbound or outbound pool
+        for the Destination.
+
+    Tunnel List
+        A list of tunnels for the requested pool.
+
+    Publish LeaseSet
+        Request that the router publish the provided LeaseSet through one of the
+        outbound tunnels for the Destination. No reply status is needed; the
+        router should continue re-trying until it is satisfied that the LeaseSet
+        has been published.
+
+    Send Packet
+        An outgoing packet from the client. Optionally specifies an outbound
+        tunnel through which the packet must (should?) be sent.
+
+    Send Status
+        Informs the client of the success or failure of sending a packet.
+
+    Packet Received
+        An incoming packet for the client. Optionally specifies the inbound
+        tunnel through which the packet was received(?)
+
+
+## Security implications
+
+From the perspective of the routers, this design is functionally equivalent to
+the status quo. The router still builds all tunnels, maintains its own peer
+profiles, and enforces separation between router and client operations. In the
+default configuration is completely identical, because tunnels for that router
+are built from its own fast tier.
+
+From the perspective of the netDB, a single LeaseSet created via this protocol
+is identical to the status quo, because it leverages pre-existing functionality.
+However, for larger LeaseSets approaching 16 Leases, it may be possible for an
+observer to determine that the LeaseSet is multihomed:
+
+- The current maximum size of the fast tier is 75 peers. The Inbound Gateway
+  (IBGW, the node published in a Lease) is selected from a fraction of the tier
+  (partitioned randomly per-tunnel pool by hash, not count):
+
+      1 hop
+          The whole fast tier
+
+      2 hops
+          Half of the fast tier
+          (the default until mid-2014)
+
+      3+ hops
+          A quarter of the fast tier
+          (3 being the current default)
+
+  That means on average the IBGWs will be from a set of 20-30 peers.
+
+- In a single-homed setup, a full 16-tunnel LeaseSet would have 16 IBGWs
+  randomly selected from a set of up to (say) 20 peers.
+
+- In a 4-router multihomed setup using the default configuration, a full
+  16-tunnel LeaseSet would have 16 IBGWs randomly-selected from a set of at most
+  80 peers, though there are likely to be a fraction of common peers between
+  routers.
+
+Thus with the default configuration, it may be possible through statistical
+analysis to figure out that a LeaseSet is being generated by this protocol. It
+might also be possible to figure out how many routers there are, although the
+effect of churn on the fast tiers would reduce the effectiveness of this
+analysis.
+
+As the client has full control over which peers it selects, this information
+leakage could be reduced or eliminated by selecting IBGWs from a reduced set of
+peers.
+
+
+## Compatibility
+
+This design is completely backwards-compatible with the network, because there
+are no changes to the [LeaseSet]_ format. All routers would need to be aware of
+the new protocol, but this is not a concern as they would all be controlled by
+the same entity.
+
+
+## Performance and scalability notes
+
+The upper limit of 16 [Leases]_ per LeaseSet is unaltered by this proposal. For
+Destinations that require more tunnels than this, there are two possible network
+modifications:
+
+- Increase the upper limit on the size of LeaseSets. This would be the simplest
+  to implement (though it would still require pervasive network support before
+  it could be widely used), but could result in slower lookups due to the larger
+  packet sizes. The maximum feasible LeaseSet size is defined by the MTU of the
+  underlying transports, and is therefore around 16kB.
+
+- Implement [Prop123]_ for tiered LeaseSets. In combination with this proposal,
+  the Destinations for the sub-LeaseSets could be spread across multiple
+  routers, effectively acting like multiple IP addresses for a clearnet service.
+
+
+## Acknowledgements
+
+Thanks to psi for the discussion that led to this proposal.
+
+
+## References
+
+.. [Destination]
+    {{ ctags_url(&#39;Destination&#39;) }}
+
+.. [I2CP]
+    {{ site_url(&#39;docs/protocol/i2cp&#39;, True) }}
+
+.. [Leases]
+    {{ ctags_url(&#39;Lease&#39;) }}
+
+.. [LeaseSet]
+    {{ ctags_url(&#39;LeaseSet&#39;) }}
+
+.. [Prop123]
+    {{ proposal_url(&#39;123&#39;) }}
+</code></pre>
+        </article>
+
+        
+        <nav class="page-nav">
+            <a href="../../../en/proposals/" class="page-nav-link">
+                ← Back to Proposals
+            </a>
+            
+            <a href="../../../proposals/140-invisible-multihoming.txt" class="page-nav-link" download>
+                📄 Download Source (.txt)
+            </a>
+            
+        </nav>
+    </div>
+</div>
+
+<style>
+.proposals-page {
+    min-height: 100vh;
+    padding: var(--spacing-xl) 0;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.breadcrumbs a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.breadcrumbs a:hover {
+    color: var(--color-primary);
+}
+
+.separator {
+    color: var(--color-border);
+}
+
+.current {
+    color: var(--color-text);
+}
+
+ 
+.proposal-header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.proposal-title-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.proposal-title {
+    font-size: 2.5rem;
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--color-text);
+}
+
+.proposal-number {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+ 
+.proposal-meta-box {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.proposal-status {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+ 
+.status-open {
+    background: #dbeafe;
+    color: #0369a1;
+}
+
+.dark .status-open {
+    background: #0c4a6e;
+    color: #7dd3fc;
+}
+
+.status-accepted {
+    background: #dbeafe;
+    color: #0369a1;
+}
+
+.dark .status-accepted {
+    background: #0c4a6e;
+    color: #7dd3fc;
+}
+
+.status-finished {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.dark .status-finished {
+    background: #164e63;
+    color: #86efac;
+}
+
+.status-closed {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.dark .status-closed {
+    background: #164e63;
+    color: #86efac;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.dark .status-rejected {
+    background: #7f1d1d;
+    color: #fca5a5;
+}
+
+.status-draft,
+.status-needs-revision,
+.status-dead,
+.status-needs-research {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.dark .status-draft,
+.dark .status-needs-revision,
+.dark .status-dead,
+.dark .status-needs-research {
+    background: #78350f;
+    color: #fde047;
+}
+
+.status-meta,
+.status-informational,
+.status-reserve {
+    background: #e9d5ff;
+    color: #6b21a8;
+}
+
+.dark .status-meta,
+.dark .status-informational,
+.dark .status-reserve {
+    background: #581c87;
+    color: #e879f9;
+}
+
+ 
+.proposal-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.info-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+}
+
+.info-value {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+ 
+.proposal-relationships {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-md);
+}
+
+.relationship {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.relationship:last-child {
+    margin-bottom: 0;
+}
+
+.relationship-label {
+    font-weight: 600;
+    color: var(--color-text-muted);
+    min-width: 120px;
+}
+
+.relationship-value {
+    color: var(--color-text);
+}
+
+ 
+.proposal-content {
+    line-height: 1.8;
+    color: var(--color-text);
+    max-width: 900px;
+    margin: var(--spacing-2xl) 0;
+}
+
+.proposal-content h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+}
+
+.proposal-content h3 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.375rem;
+}
+
+.proposal-content h4 {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.125rem;
+}
+
+.proposal-content p {
+    margin-bottom: var(--spacing-md);
+}
+
+.proposal-content ul,
+.proposal-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.proposal-content li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.proposal-content code {
+    background: var(--color-bg-secondary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+    font-family: 'Courier New', monospace;
+}
+
+.proposal-content pre {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    overflow-x: auto;
+    margin-bottom: var(--spacing-md);
+    font-size: 0.875rem;
+}
+
+.proposal-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.proposal-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--spacing-md);
+    margin-left: 0;
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+    color: var(--color-text-secondary);
+}
+
+.proposal-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.proposal-content a:hover {
+    border-bottom-color: var(--color-primary);
+}
+
+.proposal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-md);
+}
+
+.proposal-content table th {
+    background: var(--color-bg-secondary);
+    padding: var(--spacing-sm);
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.proposal-content table td {
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.proposal-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin: var(--spacing-lg) 0;
+    display: block;
+}
+
+ 
+.page-nav {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.page-nav-link {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.page-nav-link:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+ 
+@media (max-width: 768px) {
+    .proposal-title {
+        font-size: 1.75rem;
+    }
+
+    .proposal-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../en/privacy/">Privacy</a>
+                <a href="../../../en/terms/">Terms</a>
+                <a href="../../../en/impressum/">Impressum</a>
+                <a href="../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

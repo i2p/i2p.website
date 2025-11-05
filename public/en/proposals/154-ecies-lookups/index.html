@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Database Lookups from ECIES Destinations | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="Database Lookups from ECIES Destinations | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/proposals/154-ecies-lookups/">
+
+    
+    <link rel="icon" type="image/png" href="../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../en/" class="logo-link">
+                    <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/about/">Overview</a></li>
+                            <li><a href="../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../en/blog/" class="">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../en/proposals/154-ecies-lookups/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+
+<div class="proposals-page">
+    <div class="container">
+        
+        <nav class="breadcrumbs">
+            <a href="../../../en/">Home</a>
+            <span class="separator">/</span>
+            <a href="../../../en/proposals/">Proposals</a>
+            <span class="separator">/</span>
+            <span class="current">Database Lookups from ECIES Destinations</span>
+        </nav>
+
+        
+        <header class="proposal-header">
+            <div class="proposal-title-section">
+                <h1 class="proposal-title">Database Lookups from ECIES Destinations</h1>
+                <div class="proposal-number">Proposal 154</div>
+            </div>
+
+            
+            <div class="proposal-meta-box">
+                <div class="proposal-status status-closed">
+                    Closed
+                </div>
+
+                
+                <div class="proposal-info-grid">
+                    
+                    <div class="info-item">
+                        <span class="info-label">Author</span>
+                        <span class="info-value">zzz</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Created</span>
+                        <span class="info-value">2020-03-23</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Last Updated</span>
+                        <span class="info-value">2021-01-08</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Target Version</span>
+                        <span class="info-value">0.9.46</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Implemented In</span>
+                        <span class="info-value">0.9.46</span>
+                    </div>
+                    
+                </div>
+
+                
+                
+            </div>
+        </header>
+
+        
+        <article class="proposal-content">
+            <h2 id="note">Note</h2>
+<p>ECIES to ElG is implemented in 0.9.46 and the proposal phase is closed.
+See [I2NP]_ for the official specification.
+This proposal may still be referenced for background information.
+ECIES to ECIES with included keys is implemented as of 0.9.48.
+The ECIES-to-ECIES (derived keys) section may be reopened or incorporated
+in a future proposal.</p>
+<h2 id="overview">Overview</h2>
+<h3 id="definitions">Definitions</h3>
+<ul>
+<li>AEAD: ChaCha20/Poly1305</li>
+<li>DLM: I2NP Database Lookup Message</li>
+<li>DSM: I2NP Database Store Message</li>
+<li>DSRM: I2NP Database Search Reply Message</li>
+<li>ECIES: ECIES-X25519-AEAD-Ratchet (propoosal 144)</li>
+<li>ElG: ElGamal</li>
+<li>ENCRYPT(k, n, payload, ad): As defined in [ECIES]_</li>
+<li>LS: Leaseset</li>
+<li>lookup: I2NP DLM</li>
+<li>reply: I2NP DSM or DSRM</li>
+</ul>
+<h3 id="summary">Summary</h3>
+<p>When sending a DLM for a LS to a floodfill, the DLM generally specifies
+that the reply be tagged, AES encrypted, and sent down a tunnel to the destination.
+Support for AES-encrypted replies was added in 0.9.7.</p>
+<p>AES-encrypted replies were specified in 0.9.7 to minimize the large crypto
+overhead of ElG, and because it reused the tags/AES facility
+in ElGamal/AES+SessionTags.
+However, AES replies may be tampered with at the IBEP as there is no authentication,
+and the replies are not forward secret.</p>
+<p>With [ECIES]_ destinations, the intent of proposal 144 is that
+the destinations no longer support 32-byte tags and AES decryption.
+The specifics were intentionally not included in that proposal.</p>
+<p>This proposal documents a new option in the DLM to request ECIES-encrypted replies.</p>
+<h3 id="goals">Goals</h3>
+<ul>
+<li>New flags for DLM when an encrypted reply is requested down a tunnel to a ECIES destination</li>
+<li>For the reply, add forward secrecy and sender authentication resistant to
+the requester&rsquo;s (destination) key compromise impersonation (KCI).</li>
+<li>Maintain anonymity of requester</li>
+<li>Minimize crypto overhead</li>
+</ul>
+<h3 id="non-goals">Non-Goals</h3>
+<ul>
+<li>No change to the encryption or security properties of the lookup (DLM).
+The lookup has forward secrecy for requester key compromise only.
+The encryption is to the floodfill&rsquo;s static key.</li>
+<li>No forward secrecy or sender authentication issues resistant to
+the responder&rsquo;s (floodfill&rsquo;s) key compromise impersonation (KCI).
+The floodfill is a public database and will respond to lookups
+from anybody.</li>
+<li>Don&rsquo;t design ECIES routers in this proposal.
+Where a router&rsquo;s X25519 public key goes is TBD.</li>
+</ul>
+<h2 id="alternatives">Alternatives</h2>
+<p>In the absence of a defined way to encrypt replies to ECIES destinations, there
+are several alternatives:</p>
+<ol>
+<li>
+<p>Do not request encrypted replies. Replies will be unencrypted.
+Java I2P currently uses this approach.</p>
+</li>
+<li>
+<p>Add support for 32-byte tags and AES-encrypted replies to ECIES-only destinations,
+and request AES-encrypted replies as usual. i2pd currently uses this approach.</p>
+</li>
+<li>
+<p>Request AES-encrypted replies as usual, but route them back through
+exploratory tunnels to the router.
+Java I2P currently uses this approach in some cases.</p>
+</li>
+<li>
+<p>For dual ElG and ECIES destinations,
+request AES-encrypted replies as usual. Java I2P currently uses this approach.
+i2pd has not yet implemented dual-crypto destinations.</p>
+</li>
+</ol>
+<h2 id="design">Design</h2>
+<ul>
+<li>
+<p>New DLM format will add a bit to the flags field to specify ECIES-encrypted replies.
+ECIES-encrypted replies will use the [ECIES]_ Existing Session message format,
+with a prepended tag and a ChaCha/Poly payload and MAC.</p>
+</li>
+<li>
+<p>Define two variants. One for ElG routers, where a DH operation is not possible,
+and one for future ECIES routers, where a DH operation is possible and may provide
+additional security. For further study.</p>
+</li>
+</ul>
+<p>DH is not possible for replies from ElG routers because they do not publish
+a X25519 public key.</p>
+<h2 id="specification">Specification</h2>
+<p>In the [I2NP]_ DLM (DatabaseLookup) specification, make the following changes.</p>
+<p>Add flag bit 4 &ldquo;ECIESFlag&rdquo; for the new encryption options.</p>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}
+flags ::
+bit 4: ECIESFlag
+before release 0.9.46 ignored
+as of release 0.9.46:
+0  =&gt; send unencrypted or ElGamal reply
+1  =&gt; send ChaCha/Poly encrypted reply using enclosed key
+(whether tag is enclosed depends on bit 1)
+{% endhighlight %}</p>
+<p>Flag bit 4 is used in combination with bit 1 to determine the reply encryption mode.
+Flag bit 4 must only be set when sending to routers with version 0.9.46 or higher.</p>
+<p>In the table below,
+&ldquo;DH n/a&rdquo; means that the reply is not encrypted.
+&ldquo;DH no&rdquo; means that the reply keys are included in the request.
+&ldquo;DH yes&rdquo; means that the reply keys are derived from the DH operation.</p>
+<p>=============  =========  =========  ======  ===  =======
+Flag bits 4,1  From Dest  To Router  Reply   DH?  notes
+=============  =========  =========  ======  ===  =======
+0 0            Any        Any        no enc  n/a  current
+0 1            ElG        ElG        AES     no   current
+0 1            ECIES      ElG        AES     no   i2pd workaround
+1 0            ECIES      ElG        AEAD    no   this proposal
+1 0            ECIES      ECIES      AEAD    no   0.9.49
+1 1            ECIES      ECIES      AEAD    yes  future
+=============  =========  =========  ======  ===  =======</p>
+<h3 id="elg-to-elg">ElG to ElG</h3>
+<p>ElG destination sends a lookup to a ElG router.</p>
+<p>Minor changes to the specification to check for new bit 4.
+No changes to the existing binary format.</p>
+<p>Requester key generation (clarification):</p>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}
+reply_key :: CSRNG(32) 32 bytes random data
+reply_tags :: Each is CSRNG(32) 32 bytes random data
+{% endhighlight %}</p>
+<p>Message format (add check for ECIESFlag):</p>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}
+reply_key ::
+32 byte <code>SessionKey</code> big-endian
+only included if encryptionFlag == 1 AND ECIESFlag == 0, only as of release 0.9.7</p>
+<p>tags ::
+1 byte <code>Integer</code>
+valid range: 1-32 (typically 1)
+the number of reply tags that follow
+only included if encryptionFlag == 1 AND ECIESFlag == 0, only as of release 0.9.7</p>
+<p>reply_tags ::
+one or more 32 byte <code>SessionTag</code>s (typically one)
+only included if encryptionFlag == 1 AND ECIESFlag == 0, only as of release 0.9.7
+{% endhighlight %}</p>
+<h3 id="ecies-to-elg">ECIES to ElG</h3>
+<p>ECIES destination sends a lookup to a ElG router.
+Supported as of 0.9.46.</p>
+<p>The reply_key and reply_tags fields are redefined for an ECIES-encrypted reply.</p>
+<p>Requester key generation:</p>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}
+reply_key :: CSRNG(32) 32 bytes random data
+reply_tags :: Each is CSRNG(8) 8 bytes random data
+{% endhighlight %}</p>
+<p>Message format:
+Redefine reply_key and reply_tags fields as follows:</p>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}
+reply_key ::
+32 byte ECIES <code>SessionKey</code> big-endian
+only included if encryptionFlag == 0 AND ECIESFlag == 1, only as of release 0.9.46</p>
+<p>tags ::
+1 byte <code>Integer</code>
+required value: 1
+the number of reply tags that follow
+only included if encryptionFlag == 0 AND ECIESFlag == 1, only as of release 0.9.46</p>
+<p>reply_tags ::
+an 8 byte ECIES <code>SessionTag</code>
+only included if encryptionFlag == 0 AND ECIESFlag == 1, only as of release 0.9.46</p>
+<p>{% endhighlight %}</p>
+<p>The reply is an ECIES Existing Session message, as defined in [ECIES]_.</p>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}
+tag :: 8 byte reply_tag</p>
+<p>k :: 32 byte session key
+The reply_key.</p>
+<p>n :: 0</p>
+<p>ad :: The 8 byte reply_tag</p>
+<p>payload :: Plaintext data, the DSM or DSRM.</p>
+<p>ciphertext = ENCRYPT(k, n, payload, ad)</p>
+<p>{% endhighlight %}</p>
+<h3 id="ecies-to-ecies-0949">ECIES to ECIES (0.9.49)</h3>
+<p>ECIES destination or router sends a lookup to a ECIES router, with bundled reply keys.
+Supported as of 0.9.49.</p>
+<p>ECIES routers were introduced in 0.9.48, see [Prop156]<em>.
+As of 0.9.49, ECIES destinations and routers may use the same format as in
+the &ldquo;ECIES to ElG&rdquo; section above, with reply keys included in the request.
+The lookup will use the &ldquo;one time format&rdquo; in [ECIES]</em>
+as the requester is anonymous.</p>
+<p>For a new method with derived keys, see the next section.</p>
+<h3 id="ecies-to-ecies-future">ECIES to ECIES (future)</h3>
+<p>ECIES destination or router sends a lookup to a ECIES router, and the reply keys are derived from the DH.
+Not fully defined or supported, implementation is TBD.</p>
+<p>The lookup will use the &ldquo;one time format&rdquo; in [ECIES]_
+as the requester is anonymous.</p>
+<p>Redefine reply_key field as follows. There are no associated tags.
+The tags will be generated in the KDF below.</p>
+<p>This section is incomplete and requires further study.</p>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}
+reply_key ::
+32 byte X25519 ephemeral <code>PublicKey</code> of the requester, little-endian
+only included if encryptionFlag == 1 AND ECIESFlag == 1, only as of release 0.9.TBD</p>
+<p>{% endhighlight %}</p>
+<p>The reply is an ECIES Existing Session message, as defined in [ECIES]<em>.
+See [ECIES]</em> for all definitions.</p>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}
+// Alice&rsquo;s X25519 ephemeral keys
+// aesk = Alice ephemeral private key
+aesk = GENERATE_PRIVATE()
+// aepk = Alice ephemeral public key
+aepk = DERIVE_PUBLIC(aesk)
+// Bob&rsquo;s X25519 static keys
+// bsk = Bob private static key
+bsk = GENERATE_PRIVATE()
+// bpk = Bob public static key
+// bpk is either part of RouterIdentity, or published in RouterInfo (TBD)
+bpk = DERIVE_PUBLIC(bsk)</p>
+<p>// (DH()
+//[chainKey, k] = MixKey(sharedSecret)
+// chainKey from ???
+sharedSecret = DH(aesk, bpk) = DH(bsk, aepk)
+keydata = HKDF(chainKey, sharedSecret, &ldquo;ECIES-DSM-Reply1&rdquo;, 32)
+chainKey = keydata[0:31]</p>
+<ol>
+<li>rootKey = chainKey from Payload Section</li>
+<li>k from the New Session KDF or split()</li>
+</ol>
+<p>// KDF_RK(rk, dh_out)
+keydata = HKDF(rootKey, k, &ldquo;KDFDHRatchetStep&rdquo;, 64)</p>
+<p>// Output 1: unused
+unused = keydata[0:31]
+// Output 2: The chain key to initialize the new
+// session tag and symmetric key ratchets
+// for Alice to Bob transmissions
+ck = keydata[32:63]</p>
+<p>// session tag and symmetric key chain keys
+keydata = HKDF(ck, ZEROLEN, &ldquo;TagAndKeyGenKeys&rdquo;, 64)
+sessTag_ck = keydata[0:31]
+symmKey_ck = keydata[32:63]</p>
+<p>tag :: 8 byte tag as generated from RATCHET_TAG() in [ECIES]_</p>
+<p>k :: 32 byte key as generated from RATCHET_KEY() in [ECIES]_</p>
+<p>n :: The index of the tag. Typically 0.</p>
+<p>ad :: The 8 byte tag</p>
+<p>payload :: Plaintext data, the DSM or DSRM.</p>
+<p>ciphertext = ENCRYPT(k, n, payload, ad)
+{% endhighlight %}</p>
+<h3 id="reply-format">Reply format</h3>
+<p>This is the existing session message,
+same as in [ECIES]_, copied below for reference.</p>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}
++&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+
+|       Session Tag                     |
++&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+
+|                                       |</p>
+<ul>
+<li>
+<pre><code>       Payload Section            +
+</code></pre>
+</li>
+</ul>
+<p>|       ChaCha20 encrypted data         |
+~                                       ~
+|                                       |</p>
+<ul>
+<li>
+<pre><code>                                  +
+</code></pre>
+</li>
+</ul>
+<p>|                                       |
++&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+
+|  Poly1305 Message Authentication Code |</p>
+<ul>
+<li>
+<pre><code>         (MAC)                    +
+</code></pre>
+</li>
+</ul>
+<p>|             16 bytes                  |
++&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+</p>
+<p>Session Tag :: 8 bytes, cleartext</p>
+<p>Payload Section encrypted data :: remaining data minus 16 bytes</p>
+<p>MAC :: Poly1305 message authentication code, 16 bytes</p>
+<p>{% endhighlight %}</p>
+<h2 id="justification">Justification</h2>
+<p>The reply encryption parameters in the lookup, first introduced in 0.9.7,
+are somewhat of a layering violation. It&rsquo;s done this way for efficiency.
+But also because the lookup is anonymous.</p>
+<p>We could make the lookup format generic, like with an encryption type field,
+but that&rsquo;s probably more trouble than it&rsquo;s worth.</p>
+<p>The above proposal is the easiest and minimizes the change to the lookup format.</p>
+<h2 id="notes">Notes</h2>
+<p>Database lookups and stores to ElG routers must be ElGamal/AESSessionTag encrypted
+as usual.</p>
+<h2 id="issues">Issues</h2>
+<p>Further analysis is required on the security of the two ECIES reply options.</p>
+<h2 id="migration">Migration</h2>
+<p>No backward compatibility issues. Routers advertising a router.version of 0.9.46 or higher
+in their RouterInfo must support this feature.
+Routers must not send a DatabaseLookup with the new flags to routers with a version less than 0.9.46.
+If a database lookup message with bit 4 set and bit 1 unset is mistakenly sent to
+a router without support, it will probably ignore the supplied key and tag, and
+sent the reply unencrypted.</p>
+<h2 id="references">References</h2>
+<p>.. [ECIES]
+{{ spec_url(&rsquo;ecies&rsquo;) }}</p>
+<p>.. [I2NP]
+{{ spec_url(&lsquo;i2np&rsquo;) }}</p>
+<p>.. [Prop156]
+{{ proposal_url(&lsquo;156&rsquo;) }}</p>
+
+        </article>
+
+        
+        <nav class="page-nav">
+            <a href="../../../en/proposals/" class="page-nav-link">
+                ← Back to Proposals
+            </a>
+            
+            <a href="../../../proposals/154-database-lookups-from-ecies-destinations.txt" class="page-nav-link" download>
+                📄 Download Source (.txt)
+            </a>
+            
+        </nav>
+    </div>
+</div>
+
+<style>
+.proposals-page {
+    min-height: 100vh;
+    padding: var(--spacing-xl) 0;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.breadcrumbs a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.breadcrumbs a:hover {
+    color: var(--color-primary);
+}
+
+.separator {
+    color: var(--color-border);
+}
+
+.current {
+    color: var(--color-text);
+}
+
+ 
+.proposal-header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.proposal-title-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.proposal-title {
+    font-size: 2.5rem;
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--color-text);
+}
+
+.proposal-number {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+ 
+.proposal-meta-box {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.proposal-status {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+ 
+.status-open {
+    background: #dbeafe;
+    color: #0369a1;
+}
+
+.dark .status-open {
+    background: #0c4a6e;
+    color: #7dd3fc;
+}
+
+.status-accepted {
+    background: #dbeafe;
+    color: #0369a1;
+}
+
+.dark .status-accepted {
+    background: #0c4a6e;
+    color: #7dd3fc;
+}
+
+.status-finished {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.dark .status-finished {
+    background: #164e63;
+    color: #86efac;
+}
+
+.status-closed {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.dark .status-closed {
+    background: #164e63;
+    color: #86efac;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.dark .status-rejected {
+    background: #7f1d1d;
+    color: #fca5a5;
+}
+
+.status-draft,
+.status-needs-revision,
+.status-dead,
+.status-needs-research {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.dark .status-draft,
+.dark .status-needs-revision,
+.dark .status-dead,
+.dark .status-needs-research {
+    background: #78350f;
+    color: #fde047;
+}
+
+.status-meta,
+.status-informational,
+.status-reserve {
+    background: #e9d5ff;
+    color: #6b21a8;
+}
+
+.dark .status-meta,
+.dark .status-informational,
+.dark .status-reserve {
+    background: #581c87;
+    color: #e879f9;
+}
+
+ 
+.proposal-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.info-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+}
+
+.info-value {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+ 
+.proposal-relationships {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-md);
+}
+
+.relationship {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.relationship:last-child {
+    margin-bottom: 0;
+}
+
+.relationship-label {
+    font-weight: 600;
+    color: var(--color-text-muted);
+    min-width: 120px;
+}
+
+.relationship-value {
+    color: var(--color-text);
+}
+
+ 
+.proposal-content {
+    line-height: 1.8;
+    color: var(--color-text);
+    max-width: 900px;
+    margin: var(--spacing-2xl) 0;
+}
+
+.proposal-content h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+}
+
+.proposal-content h3 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.375rem;
+}
+
+.proposal-content h4 {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.125rem;
+}
+
+.proposal-content p {
+    margin-bottom: var(--spacing-md);
+}
+
+.proposal-content ul,
+.proposal-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.proposal-content li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.proposal-content code {
+    background: var(--color-bg-secondary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+    font-family: 'Courier New', monospace;
+}
+
+.proposal-content pre {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    overflow-x: auto;
+    margin-bottom: var(--spacing-md);
+    font-size: 0.875rem;
+}
+
+.proposal-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.proposal-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--spacing-md);
+    margin-left: 0;
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+    color: var(--color-text-secondary);
+}
+
+.proposal-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.proposal-content a:hover {
+    border-bottom-color: var(--color-primary);
+}
+
+.proposal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-md);
+}
+
+.proposal-content table th {
+    background: var(--color-bg-secondary);
+    padding: var(--spacing-sm);
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.proposal-content table td {
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.proposal-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin: var(--spacing-lg) 0;
+    display: block;
+}
+
+ 
+.page-nav {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.page-nav-link {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.page-nav-link:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+ 
+@media (max-width: 768px) {
+    .proposal-title {
+        font-size: 1.75rem;
+    }
+
+    .proposal-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../en/privacy/">Privacy</a>
+                <a href="../../../en/terms/">Terms</a>
+                <a href="../../../en/impressum/">Impressum</a>
+                <a href="../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

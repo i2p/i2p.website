@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Installing I2P on Windows | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="Choose your Windows installation method: Easy Install Bundle or Standard Installation">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="Installing I2P on Windows | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="Choose your Windows installation method: Easy Install Bundle or Standard Installation">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/docs/guides/installing-i2p-on-windows/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../en/" class="logo-link">
+                    <img src="../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../en/docs/" class="active">Docs</a></li>
+                    <li><a href="../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../en/blog/" class="">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../en/docs/guides/installing-i2p-on-windows/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+
+
+
+<div class="docs-page">
+    <div class="container">
+        <div class="docs-layout">
+            
+            
+            <aside class="docs-sidebar">
+    <div class="sidebar-header">
+        <a href="../../../../en/docs/" class="sidebar-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Documentation
+        </a>
+    </div>
+
+    <nav class="sidebar-nav">
+        <div class="nav-section">
+            <div class="nav-section-title">Overview</div>
+            <a href="../../../../en/docs/overview/intro/" class="nav-link">Introduction to I2P</a>
+            <a href="../../../../en/docs/overview/tech-intro/" class="nav-link">Technical Introduction</a>
+            <a href="../../../../en/docs/overview/faq/" class="nav-link">Frequently Asked Questions</a>
+            <a href="../../../../en/docs/overview/comparison/" class="nav-link">Comparisons</a>
+            <a href="../../../../en/docs/overview/threat-model/" class="nav-link">Threat Model</a>
+            <a href="../../../../en/docs/overview/alternative-clients/" class="nav-link">Alternative I2P Clients</a>
+            <a href="../../../../en/docs/overview/performance/" class="nav-link">Performance</a>
+            <a href="../../../../en/docs/overview/restrictive-countries/" class="nav-link">Strict/Restrictive Countries</a>
+            <a href="../../../../en/docs/overview/naming/" class="nav-link">Naming &amp; Address Book</a>
+            <a href="../../../../en/docs/overview/tunnel-routing/" class="nav-link">Tunnel Routing</a>
+            <a href="../../../../en/docs/overview/garlic-routing/" class="nav-link">Garlic Routing</a>
+            <a href="../../../../en/docs/overview/glossary/" class="nav-link">Glossary</a>
+            <a href="../../../../en/docs/overview/ports/" class="nav-link">Port Assignments</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Applications</div>
+            <a href="../../../../en/docs/applications/managed-clients/" class="nav-link">Managed Clients</a>
+            <a href="../../../../en/docs/applications/embedding/" class="nav-link">Embedding the Router</a>
+            <a href="../../../../en/docs/applications/bittorrent/" class="nav-link">BitTorrent over I2P</a>
+            <a href="../../../../en/docs/applications/irc/" class="nav-link">IRC Clients &amp; Servers</a>
+            <a href="../../../../en/docs/applications/git/" class="nav-link">Git over I2P</a>
+            <a href="../../../../en/docs/applications/git-bundle/" class="nav-link">Git Bundles</a>
+            <a href="../../../../en/docs/guides/gitlab/" class="nav-link">GitLab Hosting</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">APIs</div>
+            <a href="../../../../en/docs/api/i2ptunnel/" class="nav-link">I2PTunnel</a>
+            <a href="../../../../en/docs/api/samv3/" class="nav-link">SAM v3</a>
+            <a href="../../../../en/docs/api/socks/" class="nav-link">SOCKS Proxy</a>
+            <a href="../../../../en/docs/api/streaming/" class="nav-link">Streaming Protocol</a>
+            <a href="../../../../en/docs/api/datagrams/" class="nav-link">Datagram API</a>
+            <a href="../../../../en/docs/api/v3dgsend/" class="nav-link">v3dgsend</a>
+            <a href="../../../../en/docs/api/i2pcontrol/" class="nav-link">I2PControl JSON-RPC</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Guides</div>
+            <a href="../../../../en/docs/guides/browser-config/" class="nav-link">Web Browser Configuration</a>
+            <a href="../../../../en/docs/guides/plugins/" class="nav-link">Plugins Overview</a>
+            <a href="../../../../en/docs/guides/ides/" class="nav-link">Using an IDE with I2P</a>
+            <a href="../../../../en/docs/guides/creating-an-ssh-tunnel-to-access-i2p-remotely/" class="nav-link">SSH Tunnel to I2P</a>
+            <a href="../../../../en/docs/guides/creating-and-running-an-i2p-reseed-server/" class="nav-link">Running a Reseed Server</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Specifications</div>
+            <a href="../../../../en/docs/specs/overview/" class="nav-link">Specs Overview</a>
+            <a href="../../../../en/docs/specs/streaming/" class="nav-link">Streaming</a>
+            <a href="../../../../en/docs/specs/i2cp/" class="nav-link">I2CP</a>
+            <a href="../../../../en/docs/specs/i2np/" class="nav-link">I2NP</a>
+            <a href="../../../../en/docs/specs/ntcp2/" class="nav-link">NTCP2 Transport</a>
+            <a href="../../../../en/docs/specs/ssu2/" class="nav-link">SSU2 Transport</a>
+            <a href="../../../../en/docs/specs/ecies/" class="nav-link">ECIES Encryption</a>
+            <a href="../../../../en/docs/specs/ecies-hybrid/" class="nav-link">ECIES Hybrid</a>
+            <a href="../../../../en/docs/specs/red25519/" class="nav-link">Red25519 Signatures</a>
+            <a href="../../../../en/docs/specs/encryptedleaseset/" class="nav-link">Encrypted LeaseSets</a>
+            <a href="../../../../en/docs/specs/common-structures/" class="nav-link">Common Structures</a>
+            <a href="../../../../en/docs/specs/updates/" class="nav-link">Software Updates</a>
+            <a href="../../../../en/docs/specs/plugin/" class="nav-link">Plugin Package Format</a>
+            <a href="../../../../en/docs/specs/blockfile/" class="nav-link">Blockfile</a>
+            <a href="../../../../en/docs/specs/configuration/" class="nav-link">Router Configuration</a>
+            <a href="../../../../en/docs/specs/filter-format/" class="nav-link">Access Filter Format</a>
+            <a href="../../../../en/docs/specs/subscription/" class="nav-link">Subscription Feed</a>
+            <a href="../../../../en/docs/specs/b32encrypted/" class="nav-link">B32 Encrypted Addresses</a>
+            <a href="../../../../en/docs/specs/udp-announces/" class="nav-link">UDP Tracker Announces</a>
+            <a href="../../../../en/docs/specs/implementation/" class="nav-link">Implementation Notes</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Developers</div>
+            <a href="../../../../en/docs/develop/new-developers/" class="nav-link">New Developers Guide</a>
+            <a href="../../../../en/docs/develop/dev-guidelines/" class="nav-link">Development Guidelines</a>
+            <a href="../../../../en/docs/develop/applications/" class="nav-link">Application Development</a>
+            <a href="../../../../en/docs/develop/new-translators/" class="nav-link">New Translators Guide</a>
+            <a href="../../../../en/docs/develop/licenses/" class="nav-link">Software Licenses</a>
+            <a href="../../../../en/docs/develop/release-signing-key/" class="nav-link">Release Signing Key</a>
+            <a href="../../../../en/docs/develop/security-key/" class="nav-link">Security GPG Key</a>
+            <a href="../../../../en/proposals/" class="nav-link">Proposals</a>
+            <a href="../../../../en/get-involved/roadmap/" class="nav-link">Project Roadmap</a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Legacy Protocols</div>
+            <a href="../../../../en/docs/legacy/bob/" class="nav-link">BOB Protocol</a>
+            <a href="../../../../en/docs/legacy/sam/" class="nav-link">SAM v1</a>
+            <a href="../../../../en/docs/legacy/samv2/" class="nav-link">SAM v2</a>
+            <a href="../../../../en/docs/legacy/ssu/" class="nav-link">SSU Transport</a>
+            <a href="../../../../en/docs/legacy/elgamal-aes/" class="nav-link">ElGamal/AES Encryption</a>
+            <a href="../../../../en/docs/legacy/tunnel/" class="nav-link">Tunnel Spec</a>
+            <a href="../../../../en/docs/legacy/unidirectional/" class="nav-link">Unidirectional Tunnels</a>
+            <a href="../../../../en/docs/legacy/old-implementation/" class="nav-link">Old Implementation Notes</a>
+            <a href="../../../../en/docs/legacy/naming/" class="nav-link">Naming (legacy)</a>
+            <a href="../../../../en/docs/legacy/ministreaming/" class="nav-link">Ministreaming</a>
+            <a href="../../../../en/docs/legacy/geoip-file-formats/" class="nav-link">GeoIP File Formats</a>
+        </div>
+    </nav>
+</aside>
+
+            
+
+            
+            <main class="docs-article">
+                
+                <nav class="breadcrumbs">
+                    <a href="../../../../en/">Home</a>
+                    <span class="separator">/</span>
+                    
+                        <a href="../../../../en/docs/">Docs</a>
+                        
+                            
+                                <span class="separator">/</span>
+                                <a href="../../../../en/docs/guides/">Guides</a>
+                            
+                        
+                        <span class="separator">/</span>
+                        <span class="current">Installing I2P on Windows</span>
+                    
+                </nav>
+
+                
+                <header class="article-header">
+                    <h1 class="article-title">Installing I2P on Windows</h1>
+                    
+                        <p class="article-description">Choose your Windows installation method: Easy Install Bundle or Standard Installation</p>
+                    
+                    <div class="article-meta">
+                        
+                            <span class="meta-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                Updated: 2025-11
+                            </span>
+                        
+                        
+                    </div>
+                </header>
+
+                
+                
+                <details class="toc">
+                    <summary class="toc-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        On This Page
+                        <svg class="toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </summary>
+                    <div class="toc-content">
+                        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#choose-your-installation-method">Choose Your Installation Method</a>
+      <ul>
+        <li><a href="#-easy-install-bundle-recommended">🚀 Easy Install Bundle (Recommended)</a></li>
+        <li><a href="#-standard-installation">⚙️ Standard Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#easy-install-bundle">Easy Install Bundle</a>
+      <ul>
+        <li><a href="#what-is-the-easy-install-bundle">What is the Easy Install Bundle?</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-1-select-your-language">Step 1: Select Your Language</a></li>
+    <li><a href="#step-2-accept-the-license-agreement">Step 2: Accept the License Agreement</a></li>
+    <li><a href="#step-3-choose-installation-folder">Step 3: Choose Installation Folder</a></li>
+    <li><a href="#step-4-complete-installation-and-start-i2p">Step 4: Complete Installation and Start I2P</a></li>
+    <li><a href="#what-happens-next">What Happens Next</a></li>
+    <li><a href="#recommended-port-forwarding-optional-but-important">Recommended: Port Forwarding (Optional but Important)</a>
+      <ul>
+        <li><a href="#why-forward-a-port">Why Forward a Port?</a></li>
+        <li><a href="#finding-your-i2p-port">Finding Your I2P Port</a></li>
+        <li><a href="#finding-your-port-numbers">Finding Your Port Numbers</a></li>
+        <li><a href="#how-to-forward-your-port">How to Forward Your Port</a></li>
+      </ul>
+    </li>
+    <li><a href="#next-steps">Next Steps</a></li>
+    <li><a href="#standard-installation">Standard Installation</a>
+      <ul>
+        <li><a href="#what-is-the-standard-installation">What is the Standard Installation?</a></li>
+      </ul>
+    </li>
+    <li><a href="#prerequisites">Prerequisites</a>
+      <ul>
+        <li><a href="#java-requirements">Java Requirements</a></li>
+        <li><a href="#installing-java">Installing Java</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-1-install-java">Step 1: Install Java</a></li>
+    <li><a href="#step-2-download-and-launch-the-i2p-installer">Step 2: Download and Launch the I2P Installer</a></li>
+    <li><a href="#step-3-select-your-language">Step 3: Select Your Language</a></li>
+    <li><a href="#step-4-welcome-to-i2p-installation">Step 4: Welcome to I2P Installation</a></li>
+    <li><a href="#step-5-accept-the-license-agreement">Step 5: Accept the License Agreement</a></li>
+    <li><a href="#step-6-select-installation-path">Step 6: Select Installation Path</a></li>
+    <li><a href="#step-7-select-installation-packs">Step 7: Select Installation Packs</a></li>
+    <li><a href="#step-8-installation-progress">Step 8: Installation Progress</a></li>
+    <li><a href="#step-9-setup-shortcuts">Step 9: Setup Shortcuts</a></li>
+    <li><a href="#step-10-installation-complete">Step 10: Installation Complete</a></li>
+    <li><a href="#what-happens-next-1">What Happens Next</a></li>
+    <li><a href="#starting-i2p-manually">Starting I2P Manually</a>
+      <ul>
+        <li><a href="#option-1-start-menu">Option 1: Start Menu</a></li>
+        <li><a href="#option-2-windows-services">Option 2: Windows Services</a></li>
+      </ul>
+    </li>
+    <li><a href="#next-steps-1">Next Steps</a></li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+                
+
+                
+                <article class="article-content">
+                    <h2 id="choose-your-installation-method">Choose Your Installation Method</h2>
+<p>There are two ways to install I2P on Windows. Choose the method that best fits your needs:</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+<div style="border: 2px solid #22c55e; border-radius: 8px; padding: 1.5rem; background: var(--background-secondary);">
+<h3 id="-easy-install-bundle-recommended">🚀 Easy Install Bundle (Recommended)</h3>
+<p><strong>Best for most users</strong></p>
+<p>✅ All-in-one installer
+✅ Java included (no separate install)
+✅ Firefox profiles included
+✅ Fastest setup</p>
+<p><strong>Choose this if:</strong></p>
+<ul>
+<li>You want the simplest installation</li>
+<li>You don&rsquo;t have Java installed</li>
+<li>You&rsquo;re new to I2P</li>
+</ul>
+<p><a href="#easy-install-bundle" style="display: inline-block; background: #22c55e; color: white; padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; margin-top: 1rem;">Easy Install Guide →</a></p>
+</div>
+<div style="border: 2px solid #1e40af; border-radius: 8px; padding: 1.5rem; background: var(--background-secondary);">
+<h3 id="-standard-installation">⚙️ Standard Installation</h3>
+<p><strong>For advanced users</strong></p>
+<p>📦 Java-based JAR installer
+🔧 More control over installation
+💾 Smaller download size</p>
+<p><strong>Choose this if:</strong></p>
+<ul>
+<li>You already have Java installed</li>
+<li>You want more control</li>
+<li>You prefer the traditional method</li>
+</ul>
+<p><a href="#standard-installation" style="display: inline-block; background: #1e40af; color: white; padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; margin-top: 1rem;">Standard Install Guide →</a></p>
+</div>
+</div>
+<hr>
+<h2 id="easy-install-bundle">Easy Install Bundle</h2>
+<h3 id="what-is-the-easy-install-bundle">What is the Easy Install Bundle?</h3>
+<p>The <strong>I2P Easy Install Bundle</strong> is the recommended installation method for Windows users. This all-in-one installer includes everything you need to get started with I2P:</p>
+<ul>
+<li><strong>I2P Router</strong> - The core I2P software</li>
+<li><strong>Embedded Java Runtime</strong> - No separate Java installation required</li>
+<li><strong>Firefox profiles and extensions</strong> - I2P-optimized browser profiles and extensions for secure browsing</li>
+<li><strong>Simple installer</strong> - No manual configuration required</li>
+<li><strong>Automatic updates</strong> - Keep your I2P software current</li>
+</ul>
+<p>This beta installer simplifies the installation process by bundling Java directly, so you don&rsquo;t need to download or configure Java separately.</p>
+<hr>
+<h2 id="step-1-select-your-language">Step 1: Select Your Language</h2>
+<p>After launching the Easy Install Bundle installer, you&rsquo;ll be greeted with the language selection screen.</p>
+<p><img src="../../../../images/guides/windows-install/language-selection.png" alt="Language Selection"></p>
+<ol>
+<li><strong>Choose your preferred language</strong> from the dropdown menu
+<ul>
+<li>Available languages include English, German, Spanish, French, and many others</li>
+</ul>
+</li>
+<li>Click <strong>OK</strong> to continue</li>
+</ol>
+<p>The installer interface will use your selected language for all subsequent steps.</p>
+<hr>
+<h2 id="step-2-accept-the-license-agreement">Step 2: Accept the License Agreement</h2>
+<p>Next, you&rsquo;ll be presented with the I2P license information. The Easy Install Bundle includes components under various free and open-source licenses.</p>
+<p><img src="../../../../images/guides/windows-install/license-agreement.png" alt="License Agreement"></p>
+<p><strong>To continue installation</strong>:</p>
+<ol>
+<li>Review the license information (optional but recommended)</li>
+<li>Click <strong>I Agree</strong> to accept the licenses and proceed</li>
+<li>Click <strong>Cancel</strong> if you do not wish to install</li>
+</ol>
+<hr>
+<h2 id="step-3-choose-installation-folder">Step 3: Choose Installation Folder</h2>
+<p>Now you&rsquo;ll select where to install I2P on your computer.</p>
+<p><img src="../../../../images/guides/windows-install/installation-folder.png" alt="Installation Folder Selection"></p>
+<p><strong>Installation options</strong>:</p>
+<ol>
+<li>
+<p><strong>Use the default location</strong> (recommended)</p>
+<ul>
+<li>Default path: <code>C:\Users\[YourUsername]\AppData\Local\I2peasy\</code></li>
+<li>This installs I2P in your user profile directory</li>
+<li>No administrator privileges required for updates</li>
+</ul>
+</li>
+<li>
+<p><strong>Choose a custom location</strong></p>
+<ul>
+<li>Click <strong>Browse&hellip;</strong> to select a different folder</li>
+<li>Useful if you want to install on a different drive</li>
+<li>Make sure you have write permissions to the selected folder</li>
+</ul>
+</li>
+</ol>
+<p><strong>Space requirements</strong>:</p>
+<ul>
+<li>The installer shows how much space is required (typically less than 1 GB)</li>
+<li>Verify you have enough free space available on the selected drive</li>
+</ul>
+<ol start="3">
+<li>Click <strong>Install</strong> to begin the installation process</li>
+</ol>
+<p>The installer will now copy all necessary files to your chosen location. This may take a few minutes.</p>
+<hr>
+<h2 id="step-4-complete-installation-and-start-i2p">Step 4: Complete Installation and Start I2P</h2>
+<p>Once the installation finishes, you&rsquo;ll see the completion screen.</p>
+<p><img src="../../../../images/guides/windows-install/installation-complete.png" alt="Installation Complete"></p>
+<p>The setup wizard confirms that &ldquo;I2P - i2peasy has been installed on your computer.&rdquo;</p>
+<p><strong>Important</strong>: Make sure the <strong>&ldquo;Start I2P?&rdquo;</strong> checkbox is checked (it should be checked by default).</p>
+<ul>
+<li><strong>Checked</strong> (recommended): I2P will start automatically when you click Finish</li>
+<li><strong>Unchecked</strong>: You&rsquo;ll need to manually start I2P later from the Start Menu or desktop shortcut</li>
+</ul>
+<p>Click <strong>Finish</strong> to complete the installation and launch I2P.</p>
+<hr>
+<h2 id="what-happens-next">What Happens Next</h2>
+<p>After clicking Finish with &ldquo;Start I2P?&rdquo; checked:</p>
+<ol>
+<li><strong>I2P Router starts</strong> - The I2P router begins running in the background</li>
+<li><strong>System tray icon appears</strong> - Look for the I2P icon in your Windows system tray (bottom-right corner)</li>
+<li><strong>Router console opens</strong> - Your default web browser will automatically open to the I2P Router Console (typically at <code>http://127.0.0.1:7657</code>)</li>
+<li><strong>Initial connection</strong> - I2P will begin connecting to the network and building tunnels (this can take 5-10 minutes on first launch)</li>
+</ol>
+<p><strong>Congratulations!</strong> I2P is now installed and running on your Windows computer.</p>
+<hr>
+<h2 id="recommended-port-forwarding-optional-but-important">Recommended: Port Forwarding (Optional but Important)</h2>
+<p>While not strictly required, <strong>port forwarding significantly improves your I2P experience</strong> by allowing your router to communicate more effectively with other I2P routers. Without port forwarding, you&rsquo;ll still be able to use I2P, but with reduced performance and contribution to the network.</p>
+<h3 id="why-forward-a-port">Why Forward a Port?</h3>
+<ul>
+<li><strong>Better connectivity</strong>: Allows incoming connections from other I2P routers</li>
+<li><strong>Faster integration</strong>: Helps you integrate into the network more quickly</li>
+<li><strong>Network contribution</strong>: Makes you a better participant in the I2P network</li>
+<li><strong>Improved performance</strong>: Generally results in better tunnel reliability and speed</li>
+</ul>
+<h3 id="finding-your-i2p-port">Finding Your I2P Port</h3>
+<p>First, you need to identify which port I2P is using (it&rsquo;s randomly assigned by default).</p>
+<ol>
+<li><strong>Locate the I2P icon</strong> in your Windows system tray (notification area) at the bottom-right of your screen</li>
+</ol>
+<p><img src="../../../../images/guides/windows-install/system-tray-menu.png" alt="I2P System Tray Menu"></p>
+<ol start="2">
+<li><strong>Right-click the I2P icon</strong> to open the context menu</li>
+<li><strong>Click &ldquo;Launch I2P Browser&rdquo;</strong> to open the I2P router console</li>
+</ol>
+<p>The menu also shows useful options like:</p>
+<ul>
+<li><strong>Network: Firewalled</strong> - Shows your current network status</li>
+<li><strong>Configure I2P System Tray</strong> - Customize tray icon settings</li>
+<li><strong>Stop I2P</strong> / <strong>Stop I2P Immediately</strong> - Shutdown options</li>
+</ul>
+<h3 id="finding-your-port-numbers">Finding Your Port Numbers</h3>
+<p>Once the I2P browser opens, you need to check which ports I2P is using:</p>
+<ol>
+<li>
+<p><strong>Navigate to the network configuration page</strong>:</p>
+<ul>
+<li>Go to <a href="http://127.0.0.1:7657/confignet">http://127.0.0.1:7657/confignet</a> in your browser</li>
+<li>Or from the router console sidebar: <strong>Configuration → Network</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Scroll down</strong> to the port configuration section</p>
+</li>
+</ol>
+<p><img src="../../../../images/guides/windows-install/port-configuration.png" alt="I2P Port Configuration"></p>
+<ol start="3">
+<li>
+<p><strong>Note the port numbers</strong> shown:</p>
+<p><strong>UDP Configuration</strong>:</p>
+<ul>
+<li><strong>UDP port</strong>: The port shown here (example: <code>13697</code>)</li>
+<li>By default, this is set to &ldquo;Specify Port&rdquo; with a randomly assigned number</li>
+</ul>
+<p><strong>TCP Configuration</strong>:</p>
+<ul>
+<li><strong>Externally reachable TCP port</strong>: Usually set to use the same port as UDP</li>
+<li>In the example above: &ldquo;Use the same port configured for UDP (currently 13697)&rdquo;</li>
+</ul>
+</li>
+</ol>
+<p><strong>Important</strong>: You need to forward <strong>both UDP and TCP</strong> on the same port number (in this example, port <code>13697</code>) in your router/firewall.</p>
+<h3 id="how-to-forward-your-port">How to Forward Your Port</h3>
+<p>Since every router and firewall is different, we cannot provide universal instructions. However, <a href="https://portforward.com/">portforward.com</a> has detailed guides for thousands of router models:</p>
+<ol>
+<li>Visit <strong><a href="https://portforward.com/">portforward.com</a></strong></li>
+<li>Select your router manufacturer and model</li>
+<li>Follow the step-by-step guide to forward your port</li>
+<li>Forward <strong>both UDP and TCP</strong> protocols on the port number shown in your I2P configuration</li>
+</ol>
+<p><strong>General steps</strong> (varies by router):</p>
+<ul>
+<li>Log into your router&rsquo;s admin interface (usually at <code>192.168.1.1</code> or <code>192.168.0.1</code>)</li>
+<li>Find the &ldquo;Port Forwarding&rdquo; or &ldquo;Virtual Servers&rdquo; section</li>
+<li>Create a new port forwarding rule for your I2P port number</li>
+<li>Set both UDP and TCP protocols</li>
+<li>Point the rule to your computer&rsquo;s local IP address</li>
+<li>Save the configuration</li>
+</ul>
+<p>After forwarding your port, I2P should change from &ldquo;Network: Firewalled&rdquo; to &ldquo;Network: OK&rdquo; in the system tray menu (this may take a few minutes).</p>
+<hr>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li><strong>Wait for integration</strong>: Give I2P 5-10 minutes to integrate into the network and build tunnels</li>
+<li><strong>Configure your browser</strong>: Use the included Firefox profile for I2P browsing</li>
+<li><strong>Forward your port</strong>: See <a href="https://portforward.com/">portforward.com</a> for router-specific instructions on how to forward the port I2P is using</li>
+<li><strong>Explore the router console</strong>: Learn about I2P&rsquo;s features, services, and configuration options</li>
+<li><strong>Visit eepsites</strong>: Try accessing <code>.i2p</code> websites through the I2P network</li>
+<li><strong>Read the documentation</strong>: Check out the <a href="../../../../en/">I2P documentation</a> for more information</li>
+</ul>
+<p>Welcome to the I2P network! 🎉</p>
+<hr>
+<h2 id="standard-installation">Standard Installation</h2>
+<h3 id="what-is-the-standard-installation">What is the Standard Installation?</h3>
+<p>The <strong>standard I2P installation</strong> is the traditional method of installing I2P on Windows. Unlike the Easy Install Bundle, this method requires you to:</p>
+<ul>
+<li><strong>Install Java separately</strong> - Download and install Java Runtime Environment (JRE) before installing I2P</li>
+<li><strong>Run the JAR installer</strong> - Use the Java-based graphical installer</li>
+<li><strong>Configure manually</strong> - Set up browser configurations yourself (optional)</li>
+</ul>
+<p>This method is recommended for:</p>
+<ul>
+<li>Users who already have Java installed</li>
+<li>Advanced users who want more control over the installation</li>
+<li>Users who prefer the traditional installation method</li>
+<li>Systems where the Easy Install Bundle is not compatible</li>
+</ul>
+<hr>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before installing I2P, you need to have Java installed on your system.</p>
+<h3 id="java-requirements">Java Requirements</h3>
+<ul>
+<li><strong>Java Version</strong>: Java 8 (1.8) or higher required</li>
+<li><strong>Recommended</strong>: Java 11 or later (LTS version)</li>
+<li><strong>Type</strong>: Java Runtime Environment (JRE) or Java Development Kit (JDK)</li>
+</ul>
+<h3 id="installing-java">Installing Java</h3>
+<p>If you don&rsquo;t already have Java installed, you can download it from several sources:</p>
+<p><strong>Option 1: Oracle Java</strong></p>
+<ul>
+<li>Official source: <a href="https://www.java.com/download">java.com/download</a></li>
+<li>Most widely used distribution</li>
+</ul>
+<p><strong>Option 2: OpenJDK</strong></p>
+<ul>
+<li>Open-source implementation: <a href="https://openjdk.org">openjdk.org</a></li>
+<li>Free and open-source</li>
+</ul>
+<p><strong>Option 3: Adoptium (Eclipse Temurin)</strong></p>
+<ul>
+<li>Recommended alternative: <a href="https://adoptium.net">adoptium.net</a></li>
+<li>Free, open-source, and well-maintained LTS releases</li>
+</ul>
+<p><strong>To verify Java is installed</strong>:</p>
+<ol>
+<li>Open Command Prompt (press <code>Windows + R</code>, type <code>cmd</code>, press Enter)</li>
+<li>Type: <code>java -version</code></li>
+<li>You should see output showing your Java version</li>
+</ol>
+<hr>
+<h2 id="step-1-install-java">Step 1: Install Java</h2>
+<p>Before installing I2P, you need to install Java on your system.</p>
+<ol>
+<li>
+<p><strong>Choose a Java distribution</strong>:</p>
+<ul>
+<li><strong>Oracle Java</strong>: <a href="https://www.java.com/download">java.com/download</a></li>
+<li><strong>OpenJDK</strong>: <a href="https://openjdk.org">openjdk.org</a></li>
+<li><strong>Adoptium</strong>: <a href="https://adoptium.net">adoptium.net</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Download the Windows installer</strong> for your chosen distribution</p>
+</li>
+<li>
+<p><strong>Run the installer</strong> and follow the installation prompts</p>
+</li>
+<li>
+<p><strong>Verify the installation</strong>:</p>
+<ul>
+<li>Open Command Prompt</li>
+<li>Type <code>java -version</code> and press Enter</li>
+<li>Confirm that Java 8 or higher is installed</li>
+</ul>
+</li>
+</ol>
+<p>Once Java is installed, you&rsquo;re ready to install I2P.</p>
+<hr>
+<h2 id="step-2-download-and-launch-the-i2p-installer">Step 2: Download and Launch the I2P Installer</h2>
+<ol>
+<li>
+<p><strong>Download the I2P installer</strong>:</p>
+<ul>
+<li>Visit the <a href="../../../../en/downloads/">I2P downloads page</a></li>
+<li>Download the <strong>Windows installer</strong> (JAR file): <code>i2pinstall_X.X.X.jar</code></li>
+<li>Save it to a location you can easily find (e.g., Downloads folder)</li>
+</ul>
+</li>
+<li>
+<p><strong>Launch the installer</strong>:</p>
+<ul>
+<li>Double-click the downloaded JAR file to launch the installer</li>
+<li>If double-clicking doesn&rsquo;t work, right-click the file and select &ldquo;Open with → Java(TM) Platform SE binary&rdquo;</li>
+<li>Alternatively, open Command Prompt and run: <code>java -jar i2pinstall_X.X.X.jar</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="step-3-select-your-language">Step 3: Select Your Language</h2>
+<p>After launching the installer, you&rsquo;ll see the Language Selection dialog.</p>
+<p><img src="../../../../images/guides/windows-standard-install/language-selection.png" alt="Language Selection"></p>
+<ol>
+<li><strong>Select your preferred language</strong> from the dropdown menu
+<ul>
+<li>Available languages include English, German, Spanish, French, and many others</li>
+</ul>
+</li>
+<li>Click <strong>OK</strong> to continue</li>
+</ol>
+<p>The installer will use your selected language for all subsequent steps.</p>
+<hr>
+<h2 id="step-4-welcome-to-i2p-installation">Step 4: Welcome to I2P Installation</h2>
+<p><img src="../../../../images/guides/windows-standard-install/welcome-screen.png" alt="Welcome Screen"></p>
+<p>This is <strong>Step 1 of 8</strong> in the installation process.</p>
+<p>Click <strong>Next</strong> to continue with the installation.</p>
+<hr>
+<h2 id="step-5-accept-the-license-agreement">Step 5: Accept the License Agreement</h2>
+<p><img src="../../../../images/guides/windows-standard-install/license-agreement.png" alt="License Agreement"></p>
+<p>This is <strong>Step 2 of 8</strong> in the installation process.</p>
+<p>Click <strong>Next</strong> to accept the license and continue.</p>
+<hr>
+<h2 id="step-6-select-installation-path">Step 6: Select Installation Path</h2>
+<p>Choose where you want to install I2P on your computer.</p>
+<p><img src="../../../../images/guides/windows-standard-install/installation-path.png" alt="Installation Path"></p>
+<p><strong>Default installation path</strong>: <code>C:\Program Files (x86)\i2p\</code></p>
+<p>You can either:</p>
+<ul>
+<li>Use the default location (recommended)</li>
+<li>Click <strong>Browse&hellip;</strong> to select a different folder</li>
+</ul>
+<p>This is <strong>Step 3 of 8</strong> in the installation process.</p>
+<p>Click <strong>Next</strong> to continue.</p>
+<p><strong>Note</strong>: If this is your first time installing I2P, you&rsquo;ll see a popup confirming directory creation:</p>
+<p><img src="../../../../images/guides/windows-standard-install/directory-creation-popup.png" alt="Directory Creation Popup"></p>
+<p>Click <strong>OK</strong> to create the installation directory.</p>
+<hr>
+<h2 id="step-7-select-installation-packs">Step 7: Select Installation Packs</h2>
+<p>Choose which components to install.</p>
+<p><img src="../../../../images/guides/windows-standard-install/select-packs.png" alt="Select Packs"></p>
+<p><strong>Important</strong>: Make sure both packs are selected:</p>
+<ul>
+<li><strong>Base</strong> (required) - Core I2P software (27.53 MB)</li>
+<li><strong>Windows Service</strong> (recommended) - Automatically start I2P on boot</li>
+</ul>
+<p>The <strong>Windows Service</strong> option ensures I2P starts automatically when your computer boots, so you don&rsquo;t need to manually start it each time.</p>
+<p>This is <strong>Step 4 of 8</strong> in the installation process.</p>
+<p>Click <strong>Next</strong> to continue.</p>
+<hr>
+<h2 id="step-8-installation-progress">Step 8: Installation Progress</h2>
+<p>The installer will now copy files to your system.</p>
+<p><img src="../../../../images/guides/windows-standard-install/installation-progress.png" alt="Installation Progress"></p>
+<p>You&rsquo;ll see two progress bars:</p>
+<ul>
+<li><strong>Pack installation progress</strong>: Shows the current pack being installed</li>
+<li><strong>Overall installation progress</strong>: Shows overall progress (e.g., &ldquo;2 / 2&rdquo;)</li>
+</ul>
+<p>This is <strong>Step 5 of 8</strong> in the installation process.</p>
+<p>Wait for the installation to complete, then click <strong>Next</strong>.</p>
+<hr>
+<h2 id="step-9-setup-shortcuts">Step 9: Setup Shortcuts</h2>
+<p>Configure where you want I2P shortcuts created.</p>
+<p><img src="../../../../images/guides/windows-standard-install/setup-shortcuts.png" alt="Setup Shortcuts"></p>
+<p><strong>Shortcut options</strong>:</p>
+<ul>
+<li>✓ <strong>Create shortcuts in the Start-Menu</strong> (recommended)</li>
+<li>✓ <strong>Create additional shortcuts on the desktop</strong> (optional)</li>
+</ul>
+<p><strong>Program Group</strong>: Select or create a folder name for the shortcuts</p>
+<ul>
+<li>Default: <code>I2P</code></li>
+<li>You can choose an existing program group or create a new one</li>
+</ul>
+<p><strong>Create shortcut for</strong>:</p>
+<ul>
+<li><strong>Current user</strong> - Only you can access the shortcuts</li>
+<li><strong>All users</strong> - All users on the system can access the shortcuts (requires administrator privileges)</li>
+</ul>
+<p>This is <strong>Step 6 of 8</strong> in the installation process.</p>
+<p>Click <strong>Next</strong> to continue.</p>
+<hr>
+<h2 id="step-10-installation-complete">Step 10: Installation Complete</h2>
+<p>The installation is now finished!</p>
+<p><img src="../../../../images/guides/windows-standard-install/installation-complete.png" alt="Installation Complete"></p>
+<p>You&rsquo;ll see:</p>
+<ul>
+<li>✓ <strong>Installation has completed successfully</strong></li>
+<li><strong>An uninstaller will be created in</strong>: <code>C:\Program Files (x86)\i2p\Uninstaller</code></li>
+</ul>
+<p>This is <strong>Step 8 of 8</strong> - the final step in the installation process.</p>
+<p>Click <strong>Done</strong> to finish.</p>
+<hr>
+<h2 id="what-happens-next-1">What Happens Next</h2>
+<p>After clicking Done:</p>
+<ol>
+<li><strong>I2P Router starts</strong> - If you installed the Windows Service, I2P will start automatically</li>
+<li><strong>Router console opens</strong> - Your default web browser will open to the I2P Router Console at <code>http://127.0.0.1:7657</code></li>
+<li><strong>Initial connection</strong> - I2P will begin connecting to the network and building tunnels (this can take 5-10 minutes on first launch)</li>
+</ol>
+<p><strong>Congratulations!</strong> I2P is now installed on your Windows computer.</p>
+<hr>
+<h2 id="starting-i2p-manually">Starting I2P Manually</h2>
+<p>If I2P doesn&rsquo;t start automatically, or if you need to start it manually in the future, you have two options:</p>
+<h3 id="option-1-start-menu">Option 1: Start Menu</h3>
+<p><img src="../../../../images/guides/windows-standard-install/start-menu.png" alt="Windows Start Menu"></p>
+<ol>
+<li>Open the <strong>Windows Start Menu</strong></li>
+<li>Navigate to the <strong>I2P</strong> folder</li>
+<li>Choose one of the start options:
+<ul>
+<li><strong>I2P router console</strong> - Opens the router console in your browser</li>
+<li><strong>Start I2P (no window)</strong> - Starts I2P silently in the background</li>
+<li><strong>Start I2P (restartable)</strong> - Starts I2P with automatic restart capability</li>
+</ul>
+</li>
+</ol>
+<p>You can also access the <strong>Open I2P Profile Folder (service)</strong> to view I2P&rsquo;s configuration files.</p>
+<h3 id="option-2-windows-services">Option 2: Windows Services</h3>
+<p><img src="../../../../images/guides/windows-standard-install/windows-services.png" alt="Windows Services"></p>
+<ol>
+<li>Press <strong>Windows + R</strong> to open Run dialog</li>
+<li>Type <code>services.msc</code> and press Enter</li>
+<li>Scroll down to find <strong>I2P Service</strong></li>
+<li>Right-click on <strong>I2P Service</strong> and select:
+<ul>
+<li><strong>Start</strong> - Start the I2P service</li>
+<li><strong>Stop</strong> - Stop the I2P service</li>
+<li><strong>Restart</strong> - Restart the I2P service</li>
+<li><strong>Properties</strong> - Configure service settings (startup type, etc.)</li>
+</ul>
+</li>
+</ol>
+<p>The Windows Services method is useful for managing I2P as a background service, especially if you installed it as a Windows Service.</p>
+<hr>
+<h2 id="next-steps-1">Next Steps</h2>
+<ul>
+<li><strong>Wait for integration</strong>: Give I2P 5-10 minutes to integrate into the network and build tunnels</li>
+<li><strong>Configure port forwarding</strong>: See the <a href="windows-easy-install.md#recommended-port-forwarding-optional-but-important">port forwarding guide</a> for instructions</li>
+<li><strong>Configure your browser</strong>: Set up your web browser to use I2P&rsquo;s HTTP proxy</li>
+<li><strong>Explore the router console</strong>: Learn about I2P&rsquo;s features, services, and configuration options</li>
+<li><strong>Visit eepsites</strong>: Try accessing <code>.i2p</code> websites through the I2P network</li>
+<li><strong>Read the documentation</strong>: Check out the <a href="../../../../en/">I2P documentation</a> for more information</li>
+</ul>
+<p>Welcome to the I2P network! 🎉</p>
+
+                </article>
+
+                
+                <nav class="page-nav">
+                    
+                        <a href="../../../../en/docs/guides/gitlab/" class="page-nav-link prev">
+                            <span class="nav-label">← Previous</span>
+                            <span class="nav-title">Running GitLab over I2P</span>
+                        </a>
+                    
+                    
+                        <a href="../../../../en/docs/guides/installing-i2p-on-macos-the-long-way/" class="page-nav-link next">
+                            <span class="nav-label">Next →</span>
+                            <span class="nav-title">Installing I2P on macOS (The Long Way)</span>
+                        </a>
+                    
+                </nav>
+
+                
+                <div class="docs-feedback">
+                    <p>Was this page helpful?</p>
+                    <div class="feedback-buttons" id="feedback-buttons">
+                        <button class="feedback-btn" id="feedback-yes">👍 Yes</button>
+                        <button class="feedback-btn" id="feedback-no">👎 No</button>
+                    </div>
+
+                    
+                    <div class="feedback-form-container" id="feedback-form-container" style="display: none;">
+                        <p class="feedback-form-title">We're sorry to hear that. How can we improve this page?</p>
+                        <form id="feedback-form">
+                            <div class="form-group">
+                                <label for="feedback-email">Email (optional - if you'd like a response)</label>
+                                <input type="email" id="feedback-email" name="email" placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="feedback-message">Feedback *</label>
+                                <textarea id="feedback-message" name="message" rows="4" required placeholder="Tell us what we can improve..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit-feedback" id="feedback-submit-btn">
+                                <span class="btn-text">Submit Feedback</span>
+                                <span class="btn-loading" style="display: none;">Sending...</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    
+                    <div class="feedback-message" id="feedback-success" style="display: none;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
+                        </svg>
+                        <span id="feedback-success-text">Thanks for your feedback!</span>
+                    </div>
+                    <div class="feedback-message feedback-error" id="feedback-error" style="display: none;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                            <path d="M12 8v4M12 16h.01" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span id="feedback-error-text">Something went wrong. Please try again.</span>
+                    </div>
+
+                    <p class="feedback-note">
+                        Found an issue? <a href="https://gitlab.com/stormycloud-group/i-2-p-www-v-2/-/blob/main/hugo-site/content/en/docs/guides/windows-install.md?ref_type=heads" target="_blank">Edit this page on GitLab</a>
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<style>
+.docs-page {
+    min-height: 100vh;
+    padding: var(--spacing-xl) 0;
+}
+
+.docs-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+}
+
+.docs-layout.docs-layout--no-sidebar {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.docs-article.docs-article--wide,
+.docs-layout.docs-layout--no-sidebar .docs-article {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.docs-layout.docs-layout--no-sidebar .breadcrumbs {
+    margin-bottom: var(--spacing-xl);
+}
+
+ 
+.docs-sidebar {
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.sidebar-header {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.sidebar-title:hover {
+    color: var(--color-primary);
+}
+
+.nav-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.nav-section:last-child {
+    margin-bottom: 0;
+}
+
+.nav-section-title {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+}
+
+.nav-link {
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-size: 0.9375rem;
+    transition: all var(--transition-fast);
+}
+
+.nav-link:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-primary);
+}
+
+.nav-link.active {
+    background: var(--color-primary);
+    color: white;
+    font-weight: 600;
+}
+
+ 
+.docs-article {
+    max-width: 800px;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.breadcrumbs a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    color: var(--color-primary);
+}
+
+.separator {
+    color: var(--color-border);
+}
+
+.current {
+    color: var(--color-text);
+}
+
+.article-header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.article-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+}
+
+.article-description {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.article-meta {
+    display: flex;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.meta-item svg {
+    color: var(--color-primary);
+}
+
+ 
+.toc {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.toc-title {
+    font-weight: 700;
+    padding: var(--spacing-md) var(--spacing-lg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    user-select: none;
+    list-style: none;
+}
+
+.toc-title::-webkit-details-marker {
+    display: none;
+}
+
+.toc-title:hover {
+    background: var(--color-bg-tertiary);
+}
+
+.toc-chevron {
+    margin-left: auto;
+    transition: transform var(--transition-fast);
+}
+
+.toc[open] .toc-chevron {
+    transform: rotate(180deg);
+}
+
+.toc-content {
+    padding: 0 var(--spacing-lg) var(--spacing-md) var(--spacing-lg);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.toc-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.toc-content::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+}
+
+.toc-content::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+}
+
+.toc-content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+}
+
+.toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.toc li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.toc ul ul {
+    padding-left: var(--spacing-md);
+    margin-top: var(--spacing-xs);
+}
+
+.toc a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: inline-block;
+    padding: 0.125rem 0;
+    transition: color var(--transition-fast);
+}
+
+.toc a:hover {
+    color: var(--color-primary);
+}
+
+ 
+.article-content {
+    line-height: 1.8;
+    color: var(--color-text);
+}
+
+.article-content h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+}
+
+.article-content h3 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.375rem;
+}
+
+.article-content p {
+    margin-bottom: var(--spacing-md);
+}
+
+.article-content ul,
+.article-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.article-content li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.article-content code {
+    background: var(--color-bg-secondary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+    font-family: 'Courier New', monospace;
+}
+
+.article-content pre {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    overflow-x: auto;
+    margin-bottom: var(--spacing-md);
+}
+
+.article-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin: var(--spacing-lg) 0;
+    display: block;
+}
+
+.article-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.article-content a:hover {
+    border-bottom-color: var(--color-primary);
+}
+
+ 
+.page-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.page-nav-link {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.page-nav-link:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.page-nav-link.next {
+    text-align: right;
+}
+
+.nav-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+.nav-title {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+ 
+.docs-feedback {
+    margin-top: var(--spacing-2xl);
+    padding: var(--spacing-lg);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin: var(--spacing-md) 0;
+}
+
+.feedback-btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.feedback-btn:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: white;
+}
+
+.feedback-note {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-md);
+}
+
+.feedback-note a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.feedback-note a:hover {
+    text-decoration: underline;
+}
+
+ 
+.feedback-form-container {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-align: left;
+}
+
+.feedback-form-title {
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text);
+}
+
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.9375rem;
+    transition: border-color var(--transition-fast);
+}
+
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.btn-submit-feedback {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.btn-submit-feedback:hover:not(:disabled) {
+    background: var(--color-primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-submit-feedback:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+ 
+.feedback-message {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: #d1fae5;
+    color: #065f46;
+    border-radius: var(--radius-md);
+    margin-top: var(--spacing-md);
+}
+
+.feedback-message.feedback-error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.feedback-message svg {
+    flex-shrink: 0;
+}
+
+ 
+@media (max-width: 968px) {
+    .docs-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .docs-sidebar {
+        position: static;
+        max-height: none;
+    }
+
+    .article-title {
+        font-size: 2rem;
+    }
+}
+</style>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+});
+</script>
+
+
+<script src="https://feedback.stormycloud.org/widgets/docs-feedback.js"></script>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../en/privacy/">Privacy</a>
+                <a href="../../../../en/terms/">Terms</a>
+                <a href="../../../../en/impressum/">Impressum</a>
+                <a href="../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

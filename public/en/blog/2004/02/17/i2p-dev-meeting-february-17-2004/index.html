@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Dev Meeting - February 17, 2004 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="I2P development meeting log for February 17, 2004.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Dev Meeting - February 17, 2004 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="I2P development meeting log for February 17, 2004.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2004/02/17/i2p-dev-meeting-february-17-2004/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2004/02/17/i2p-dev-meeting-february-17-2004/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2004-02-17">
+                    February 17, 2004
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">meeting</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Dev Meeting - February 17, 2004</h1>
+
+            
+            <div class="post-author">By human</div>
+            
+        </div>
+
+        <div class="post-content">
+            <h2 id="quick-recap">Quick recap</h2>
+<p class="attendees-inline"><strong>Present:</strong> DrWoo, duck, fidd, human, jar, jrand0m, kaji, li, lucky, madman2003, mihi, Newsbyte, wilde</p>
+<h2 id="meeting-log">Meeting Log</h2>
+<div class="irc-log">
+Considering we did not have a very official meeting do to Jrand0m not
+feeling very well, here are my logs of the meeting from slightly
+before it started to sometime after it ended.  I have edited out the
+kick offs and start screens from iip restarting at least twice during
+that period.  If someone else has better logs feel free to replace
+these. (baffled)
+<p>&lt;human&gt; baffled: we&rsquo;re experimenting a psychic communication towards jrand0m, to ask him to be here for the meeting
+&lt;human&gt; baffled: just focus your mind on him, and help us
+&gt; Don&rsquo;t we have to hold hands or something like that?
+&lt;human&gt; baffled: if it helps you focusing your mind&hellip; well, yes
+&gt; Cool, gimme your hand I&rsquo;m commensing to focus!
+&lt;UL &gt;
+&lt;li&gt; human gives his hand to baffled
+&lt;/UL&gt;
+human has changed the topic on channel #i2p to I2P meeting: hold the hand of your neighbour, focus your mind on jrand0m, and ask him to come here
+thecrypto (~<a href="mailto:thecrypto@anon.iip">thecrypto@anon.iip</a>) has joined channel #i2p
+&lt;UL &gt;
+&lt;li&gt; baffled whipes the sacred potato-chip oil off his fingers and takes humans hand.
+&lt;/UL&gt;
+&lt;DrWoo&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=DrWoo&rdquo; class=wikipageedit&gt;?&lt;/a&gt;&gt; human: doesn&rsquo;t he make up a pre meeting agenda, you can grab that and direct the meeting
+&lt;human&gt; DrWoo&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=DrWoo&rdquo; class=wikipageedit&gt;?&lt;/a&gt;: er&hellip; why me?
+Rain (<a href="mailto:Rain@anon.iip">Rain@anon.iip</a>) has joined channel #i2p
+&lt;human&gt; DrWoo&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=DrWoo&rdquo; class=wikipageedit&gt;?&lt;/a&gt;: (i didn&rsquo;t see any meeting agenda, though)
+&lt;DrWoo&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=DrWoo&rdquo; class=wikipageedit&gt;?&lt;/a&gt;&gt; human: why not, you&rsquo;re sober
+&lt;wilde&gt; let&rsquo;s make an agenda ourselves
+&lt;DrWoo&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=DrWoo&rdquo; class=wikipageedit&gt;?&lt;/a&gt;&gt; yeah you guys know the general issues
+&lt;wilde&gt; there are many topics to discuss
+&lt;UL &gt;
+&lt;li&gt; human will direct the meeting in exchange of the sacrifice of the first daughter of every participant
+&lt;/UL&gt;
+&lt;wilde&gt; funding, strategy, marketing, website, recruiting more developers and powerusers, etc
+&lt;human&gt; wilde: i agree, we could informally talk about the recent history of I2P
+&lt;DrWoo&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=DrWoo&rdquo; class=wikipageedit&gt;?&lt;/a&gt;&gt; wilde: open a text window and quickly make a numbered agenda
+&lt;UL &gt;
+&lt;li&gt; human agrees with wilde
+&lt;/UL&gt;
+&gt; As the first item don&rsquo;t we need to add massive responsibilites to jrandom in absentia?
+Signoff: wilde (Ping timeout)
+Signoff: ion (Ping timeout)
+&lt;UL &gt;
+&lt;li&gt; human agrees with baffled, too
+&lt;/UL&gt;
+wilde (~<a href="mailto:anon@anon.iip">anon@anon.iip</a>) has joined channel #i2p
+&lt;wilde&gt; back
+&gt; you&rsquo;re the first to say anything your in charge.
+&lt;wilde&gt; who? me?
+jar (<a href="mailto:jar@anon.iip">jar@anon.iip</a>) has joined channel #i2p
+&gt; quit looking surprised.
+&lt;DrWoo&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=DrWoo&rdquo; class=wikipageedit&gt;?&lt;/a&gt;&gt; you guys are funny :)
+&gt; hey jar.
+&lt;jar&gt; &rsquo;lo baffled :)
+&lt;jar&gt; &rsquo;lo i2p !
+ion (<a href="mailto:ion@anon.iip">ion@anon.iip</a>) has joined channel #i2p
+&lt;UL &gt;
+&lt;li&gt; human started logging the meeting (or whatever it will be)
+&lt;/UL&gt;
+&gt; We elected wild to run the meeting because he was the first to say anything after meeting time.
+&lt;wilde&gt; ok
+jrand0m (<a href="mailto:jrand0m@anon.iip">jrand0m@anon.iip</a>) has joined channel #i2p
+&lt;wilde&gt; 1. Hello
+&lt;wilde&gt; 2. Status I2P
+&lt;wilde&gt; 3. How to help I2P Project
+&lt;wilde&gt; 4. Recruiting more developers
+&lt;wilde&gt; 5. Raising money (donations, selling t-shirts)
+&lt;wilde&gt; 6. General discussion
+&lt;human&gt; jrand0m: has appeared!!!
+&lt;wilde&gt; hey jrand0m!
+&gt; I&rsquo;ll take a t-shirt.
+&lt;human&gt; our experiment succeeded!!!
+&lt;jrand0m&gt; shit thought I missed it :)
+&lt;UL &gt;
+&lt;li&gt; jrand0m leaves the floor to wilde ;)
+&lt;/UL&gt;
+&gt; You better look back through the log jrandom.
+&lt;wilde&gt; ok boss you could modify the agenda as you like
+&lt;jrand0m&gt; &lt;a href=&ldquo;<a href="http://i2p.dnsalias.net/pipermail/i2p/2004-February/000144.html%22&amp;gt;http://i2p.dnsalias.net/pipermail/i2p/2004-February/000144.html&amp;lt;/a">http://i2p.dnsalias.net/pipermail/i2p/2004-February/000144.html"&gt;http://i2p.dnsalias.net/pipermail/i2p/2004-February/000144.html&lt;/a</a>&gt;
+&lt;UL &gt;
+&lt;li&gt; jrand0m just posted
+&lt;/UL&gt;
+&gt; Are the t-shirts good?
+&lt;jrand0m&gt; they had better be
+&lt;UL &gt;
+&lt;li&gt; jrand0m apologizes for being late, been avoiding looking at the monitor today (killer headache)
+&lt;/UL&gt;
+&gt; No apology necessary or expected.
+&lt;wilde&gt; np, we prepared an emergency plan
+&lt;wilde&gt; everyone taking a job at McDonalds&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=McDonalds&rdquo; class=wikipageedit&gt;?&lt;/a&gt; and hiring indian programmers for the money
+Signoff: ion (Ping timeout)
+&lt;jrand0m&gt; hah nice
+&lt;jrand0m&gt; perhaps we can jump into that agenda, or are we on 1, 2, 3, 6?
+&lt;wilde&gt; 0.
+&lt;wilde&gt; 1. Hello
+&lt;wilde&gt; Hello I2P
+&lt;fidd&gt; hi
+&lt;jrand0m&gt; hi
+&lt;jar&gt; hi
+&lt;kaji&gt; ah, i made it
+&lt;wilde&gt; last hellos? going once, going twice&hellip;
+&lt;kaji&gt; hi
+&gt; Which agenda the one you posted or the oone wild posted?
+&lt;jrand0m&gt; perhaps I can help out with agenda 2) status
+&lt;wilde&gt; 2. Status I2P
+&lt;jrand0m&gt; the router, as is, is nonfunctional
+&lt;wilde&gt; so how are we post-testnet?
+&gt; can we cote on that?
+&lt;jrand0m&gt; post testnet, yes, but I introduced two bugs in the process
+&gt; vote.
+&lt;jrand0m&gt; vote on whether its nonfunctional?
+&gt; Right.
+&lt;UL &gt;
+&lt;li&gt; jrand0m wonders if we vote hard enough it&rsquo;ll be functional again
+&lt;/UL&gt;
+&lt;kaji&gt; its dead for me
+&gt; oh, nevermind.
+&gt; well, we held hands and you appeared.
+&lt;jrand0m&gt; hey, worth a shot ;)
+&lt;UL &gt;
+&lt;li&gt; jrand0m starts a bug-excorcism seance
+&lt;/UL&gt;
+&gt; does that make them bogobugs?
+&lt;UL &gt;
+&lt;li&gt; DrWoo&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=DrWoo&rdquo; class=wikipageedit&gt;?&lt;/a&gt; sprinkles dried blood on the floor
+&lt;li&gt; jrand0m senses that this chant will cause the bugs to dissapear in the next day or two, with an email going out to i2p@ once its ready
+&lt;/UL&gt;
+&gt; oh wooooow!
+&lt;kaji&gt; i switched to j2sdk1.4.2_03 to get ant to work on XP, i wonder how much of and effect it has on the router not working
+&lt;wilde&gt; so there&rsquo;s a short i2p vacation
+&lt;jrand0m&gt; none, I use that build on xp
+&lt;jrand0m&gt; the bug is programmer error, probably a trivial one too
+&lt;jrand0m&gt; (but quite fatal)
+&lt;jrand0m&gt; right wilde
+&lt;jrand0m&gt; but after that, I&rsquo;ve been making a bunch of progress on the docs for 0.2.5 and 0.3
+&lt;jrand0m&gt; so I don&rsquo;t think they&rsquo;ll be a full two weeks out
+&lt;jrand0m&gt; but we&rsquo;ll cross that bridge when we come to it.
+&lt;wilde&gt; nice, any application improvments anyone?
+&lt;jrand0m&gt; one idea - on the testnet, we focused a lot on irc and echo, more than eepsites
+&lt;UL &gt;
+&lt;li&gt; wilde notes in the black book who hasn&rsquo;t done todays homework, a cool I2P application
+&lt;/UL&gt;
+&gt; Do you think they suffered for that? I certainly do.
+&lt;jrand0m&gt; having lots of clients (aka destinations) on a single router increases the load, and we may want to think about trimming down our test scope, perhaps
+&lt;jrand0m&gt; there&rsquo;s also a discussion wrt perhaps revisiting the keysize of the crypto to reduce the load (for another day after we have more metrics, etc)
+Signoff: Robert (Ping timeout)
+&gt; What do you consider a lot of clients on one router?
+&lt;jrand0m&gt; I dont know, I would like once 0.2.4.x is out and usable that we can use both IRC and eepsites
+&lt;jrand0m&gt; that depends on the computer
+&lt;wilde&gt; so what&rsquo;s best for now? eepsites or irc?
+&lt;UL &gt;
+&lt;li&gt; jrand0m wants both, and we will have both functional in the mid and long run
+&lt;/UL&gt;
+&lt;jrand0m&gt; anyway, we can see as 0.2.4.x comes out.  perhaps both will be fine again.
+&lt;wilde&gt; yeah but what&rsquo;s most useful for debugging? continous connections or sporadic ones?
+&lt;jrand0m&gt; both ;)
+&lt;wilde&gt; lighweight irc, or eep graphics?
+&lt;jrand0m&gt; i2p needs to support long term streaming connections and short term bursty ones
+&lt;kaji&gt; what about heavy long downloads?
+&lt;jrand0m&gt; right, long term streaming connections
+&lt;jrand0m&gt; (though I do think filesharing over i2p would best be served with i2psnark via messages, ala udp)
+&lt;wilde&gt; the question really is: you suggested narrowing the test scope, was that to IRC or EEP?
+&lt;wilde&gt; (or something else)
+&lt;jrand0m&gt; two or three clients will be fine, I just know that running 4+ services may be a bit of an overload for the time being (depending on people&rsquo;s computer)
+lucky (~<a href="mailto:lucky@anon.iip">lucky@anon.iip</a>) has joined channel #i2p
+&lt;wilde&gt; ok, that&rsquo;s probably wise
+&lt;jrand0m&gt; anyone have any dev status for client apps?
+&lt;wilde&gt; so the focus should be on services that can us some statistics, like the irc scripts
+&lt;jrand0m&gt; that is definitely key.
+Newsbyte (~<a href="mailto:fredisdea@anon.iip">fredisdea@anon.iip</a>) has joined channel #i2p
+&lt;jrand0m&gt; woah
+&lt;jrand0m&gt; hi Newsbyte
+&lt;Newsbyte&gt; ah, jran
+&lt;UL &gt;
+&lt;li&gt; wilde looks at the clock and at Newsbyte, late arrival, that will cost you an apple
+&lt;/UL&gt;
+&lt;Newsbyte&gt; huh?
+&lt;Newsbyte&gt; I never come here
+&lt;jrand0m&gt; also, the echo server and client app is great at gathering stats, and doesn&rsquo;t have any irc-specific dependencies.
+&lt;wilde&gt; nothing
+&lt;Newsbyte&gt; besides, what&rsquo;s an I2P meeting without nop? ;-)
+&lt;DrWoo&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=DrWoo&rdquo; class=wikipageedit&gt;?&lt;/a&gt;&gt; wilde: heh somehow I dont think hes here for the meeting :)
+&lt;human&gt; would an eepsite monitoring tool be useful?
+&lt;Newsbyte&gt; no nop, no meeting
+&lt;UL &gt;
+&lt;li&gt; Newsbyte can summarise
+&lt;/UL&gt;
+&lt;wilde&gt; jrand0m: is there something else you&rsquo;d like to have statistics in the network?
+&lt;jrand0m&gt; human&gt; certainly - perhaps some way to do periodic pings of eepsites, maybe keeping track of changes even?
+&lt;human&gt; jrand0m: keeping track of what changes?
+&lt;jrand0m&gt; I think with the irc scripts giving us long term disconnect / reliability stats, plus the echo app giving us latency, the only thing left is really throughput
+&lt;jrand0m&gt; content on the page changing
+&lt;Newsbyte&gt; yes, and use more then one server
+&lt;wilde&gt; a kb/s meter, I2P Pirate Radio someone?
+&lt;jrand0m&gt; hmm?  right, when the net is up we usually have between 4-10 servers
+&lt;human&gt; jrand0m: it&rsquo;s doable but&hellip; how would you use the content change information?
+&lt;kaji&gt; i ran a shoutcast stream for a while
+&lt;jrand0m&gt; human&gt; that particular aspect wouldn&rsquo;t help me, but would let users use the test (which would tell them whats changed, as well as get them to run the test more [generate more traffic])
+&lt;jrand0m&gt; nice kaji
+&lt;jrand0m&gt; yeah, aum&rsquo;s streams were up periodically as well
+&lt;human&gt; jrand0m: oh, ok, now i understand
+&lt;mihi&gt; jrand0m: a chargen service? ;)
+&lt;madman2003&gt; bye everyone, good luck with i2p
+&lt;wilde&gt; so throuhput is one stat that would be interesting/useful
+&lt;jrand0m&gt; later madman2003
+&lt;wilde&gt; cya madman2003
+Signoff: madman2003 (..12(. <a href="https://www...nnscript...de">www...nnscript...de</a> .12.::. .N.o.N.ame.S.cript 3&hellip;8 .12.::. <a href="https://www...XLhost...de">www...XLhost...de</a>. .12.).)
+&gt; Well, I have another meeting at five as usual so I&rsquo;ll bbl.  Remember to put me down for a t-shirt.
+&lt;jrand0m&gt; yes mihi, that&rsquo;d work (but streaming .ogg sounds cooler)
+baffled (~<a href="mailto:kirk@anon.iip">kirk@anon.iip</a>) has joined channel #i2p
+mrflibble (<a href="mailto:mrflibble@anon.iip">mrflibble@anon.iip</a>) has joined channel #i2p
+-Trent@anon.iip- The nickname baffled is not registered
+Ocelot (~<a href="mailto:Ocelot@anon.iip">Ocelot@anon.iip</a>) has joined channel #i2p
+Rain (~<a href="mailto:Rain@anon.iip">Rain@anon.iip</a>) has joined channel #i2p
+nickthief61599 (~<a href="mailto:chatzilla@anon.iip">chatzilla@anon.iip</a>) has joined channel #i2p
+lucky (~<a href="mailto:lucky@anon.iip">lucky@anon.iip</a>) has joined channel #i2p
+backup (~<a href="mailto:ypo@anon.iip">ypo@anon.iip</a>) has joined channel #i2p
+Sonax (~<a href="mailto:Sonax@anon.iip">Sonax@anon.iip</a>) has joined channel #i2p
+jar (<a href="mailto:jar@anon.iip">jar@anon.iip</a>) has joined channel #i2p
+wilde (~<a href="mailto:anon@anon.iip">anon@anon.iip</a>) has joined channel #i2p
+Signoff: backup (Ping timeout)
+&lt;wilde&gt; hey
+&lt;wilde&gt; is the network unstable?
+&lt;wilde&gt; I just couldn&rsquo;t get back on
+Signoff: thecrypto (Leaving)
+&lt;lucky&gt; yea
+&lt;lucky&gt; its a bit&hellip; ugh.
+&lt;lucky&gt; recently.
+&lt;wilde&gt; what happened to the meeting?
+&lt;lucky&gt; probably got decimated
+&lt;wilde&gt; ok lucky what was the last thing you saw from the meeting? (msg me)
+&lt;lucky&gt; &lt;wilde&gt; cya madman2003
+&lt;lucky&gt; &lt;&ndash; madman2003 has quit (( <a href="https://www.nnscript.de">www.nnscript.de</a> :: NoNameScript&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=NoNameScript&rdquo; class=wikipageedit&gt;?&lt;/a&gt; 3.8 :: <a href="https://www.XLhost.de">www.XLhost.de</a> ))
+&lt;lucky&gt; &lt;jrand0m&gt; yes mihi, that&rsquo;d work (but streaming .ogg sounds cooler)
+Galaxy (<a href="mailto:yogi@anon.iip">yogi@anon.iip</a>) has joined channel #i2p
+&lt;wilde&gt; ok that&rsquo;s where it ended for me too
+&lt;fidd&gt; me2
+Signoff: Sonax (EOF From client)
+Sonax (~<a href="mailto:Sonax@anon.iip">Sonax@anon.iip</a>) has joined channel #i2p
+&lt;kaji&gt; the meeting got nuked
+kaji has changed the topic on channel #i2p to nuked
+&lt;kaji&gt; ping?
+&lt;jar&gt; pong!
+&lt;kaji&gt; ok
+&lt;kaji&gt; ithough it crashed again
+&lt;jar&gt; yep :(
+Signoff: wilde ()
+&lt;kaji&gt; so&hellip; meeting?
+&lt;jar&gt; ending brutaly &hellip;
+&lt;jar&gt; more signs of jrandom, it seems it&rsquo;s all for the moment
+&lt;jar&gt; next move on 0.2.4.2 in few days &hellip;.
+&lt;jar&gt; (one or two as said jr)
+mihi_backup (~<a href="mailto:mihi@anon.iip">mihi@anon.iip</a>) has joined channel #i2p
+jar is now known as jar_
+sheer (<a href="mailto:sheer@anon.iip">sheer@anon.iip</a>) has joined channel #i2p
+&lt;kaji&gt; wilde said something about funding, but last time i asked jran he said i2p wasnt in a position to need money atm
+Signoff: Ranma ()
+Robert (~<a href="mailto:chatzilla@anon.iip">chatzilla@anon.iip</a>) has joined channel #i2p
+Sonax is now known as JaSiger&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=JaSiger&rdquo; class=wikipageedit&gt;?&lt;/a&gt;
+JaSiger&lt;a href=&ldquo;iip-wiki?action=edit&amp;id=JaSiger&rdquo; class=wikipageedit&gt;?&lt;/a&gt; is now known as Sonax
+Signoff: Rain (I Quit)
+zathras (~<a href="mailto:zathras@anon.iip">zathras@anon.iip</a>) has joined channel #i2p
+Ranma (<a href="mailto:ranma@anon.iip">ranma@anon.iip</a>) has joined channel #i2p
+mihi (<a href="mailto:mihi@anon.iip">mihi@anon.iip</a>) has joined channel #i2p
+&lt;mihi&gt; hmm, what happened to the meeting?
+&lt;UL &gt;
+&lt;li&gt; mihi has an idea
+&lt;/UL&gt;
+&lt;mihi&gt; ;)
+Mode change &ldquo;+o mihi&rdquo; on channel #i2p by <a href="mailto:Trent@anon.iip">Trent@anon.iip</a>
+Mode change &ldquo;-o duck&rdquo; on channel #i2p by mihi
+&lt;mihi&gt; no one knowing anything about the meeting?
+&lt;UL &gt;
+&lt;li&gt; mihi notices that no one fears ops any longer ;)
+&lt;/UL&gt;
+Signoff: zathras (Ping timeout)
+mihi_backup has been kicked off channel #i2p by mihi (mihi)
+zathras (~<a href="mailto:zathras@anon.iip">zathras@anon.iip</a>) has joined channel #i2p
+Signoff: Sonax (Client exiting)
+&lt;lucky&gt; mihi, we lall got kicked for the meoeting
+hacktic4ever (~<a href="mailto:hacktic4e@anon.iip">hacktic4e@anon.iip</a>) has joined channel #i2p
+Signoff: hacktic4ever ()
+&lt;mihi&gt; ok, nite
+&lt;duck&gt; hello
+Signoff: sheer (EOF From client)
+Signoff: mihi (let&rsquo;s have more luck next week&hellip;)
+&lt;duck&gt; did I miss anything?
+Signoff: jnk (Ping timeout)</p>
+</div>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

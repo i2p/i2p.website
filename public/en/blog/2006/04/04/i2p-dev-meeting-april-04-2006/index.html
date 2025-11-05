@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Dev Meeting - April 04, 2006 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="I2P development meeting log for April 04, 2006.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Dev Meeting - April 04, 2006 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="I2P development meeting log for April 04, 2006.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2006/04/04/i2p-dev-meeting-april-04-2006/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2006/04/04/i2p-dev-meeting-april-04-2006/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2006-04-04">
+                    April 4, 2006
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">meeting</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Dev Meeting - April 04, 2006</h1>
+
+            
+            <div class="post-author">By jrandom</div>
+            
+        </div>
+
+        <div class="post-content">
+            <h2 id="quick-recap">Quick recap</h2>
+<p class="attendees-inline"><strong>Present:</strong> BrianR\___, cervantes, Complication, frosk, jrandom, tethra</p>
+<h2 id="meeting-log">Meeting Log</h2>
+<div class="irc-log">
+16:21 &lt;jrandom&gt; 0) hi
+16:21 &lt;jrandom&gt; 1) Net status and 0.6.1.14
+16:21 &lt;jrandom&gt; 2) Syndie plotting
+16:21 &lt;jrandom&gt; 3) Local jbigi optimizations
+16:21 &lt;jrandom&gt; 4) ???
+16:21 &lt;jrandom&gt; 0) hi
+16:21  * jrandom waves
+16:21 &lt;jrandom&gt; weekly status notes posted up at http://dev.i2p.net/pipermail/i2p/2006-April/001275.html
+16:21  * Complication reads
+16:22 &lt;jrandom&gt; while y'all read that (briefly put together) post, lets jump on in to 1) Net status
+16:23 &lt;@cervantes&gt; (forum back)
+16:23 &lt;jrandom&gt; there are a few problems out there affecting use on 0.6.1.13, and most of tem have been tracked down and solved
+16:24 &lt;Complication&gt; Over here, with the "fourth" CVS build, I noticed a change in my graphs
+16:24 &lt;jrandom&gt; here are still a few kinks getting tested and revamped though, but a release should be out in the next few days
+16:24 &lt;Complication&gt; In general, things moved towards more stability and less jumpyness
+16:24 &lt;jrandom&gt; oh bugger, I forgot to increment it to -4 didn't I?
+16:24 &lt;jrandom&gt; (ok, -5 will be out later this evening)
+16:24 &lt;jrandom&gt; cool Complication 
+16:25 &lt;Complication&gt; But my perceptions could be influenced by jbigi too, as I didn't take steps to exclude that
+16:25 &lt;Complication&gt; Now, after a while, retransmission has edged down to 15% too
+16:28 &lt;jrandom&gt; hmm, i'm also seeing my average ssu rto approach the 3s ceiling as well
+16:28 &lt;jrandom&gt; (though very low retransmission still, under 5%)
+16:29  * Complication takes a second look at it
+16:29 &lt;Complication&gt; Let's say the raw average is a little over 1500
+16:29 &lt;Complication&gt; (over here)
+16:30 &lt;+fox&gt; &lt;BrianR___&gt; jrandom: Is there a de-facto "MTU" for i2p packets?
+16:30 &lt;jrandom&gt; ah ok, perhapsas that inches up, the retransmission rate will go down
+16:30 &lt;Complication&gt; I noticed mine start out with smaller MTUs, now it's upped some to 1350
+16:30 &lt;jrandom&gt; BrianR___: yes, either 1350 or 608 (as shown on http://localhost:7657/peers.js)
+16:31 &lt;jrandom&gt; if the failure rate is too high at the larger MTU, it falls back to the smaller MTU (and if its too low at the smaller MTU, it jumps up to the higher MTU)
+16:31 &lt;+fox&gt; &lt;BrianR___&gt; jrandom: Now is that for the inside payload or the visible IP packets?
+16:31 &lt;+fox&gt; &lt;BrianR___&gt; Ie, if I were to send a block of data over an I2P stream, what would be the ideal size for the chunks to minimize overhead?
+16:31 &lt;jrandom&gt; that is for the UDP payload
+16:32 &lt;jrandom&gt; streams are two layers up
+16:32 &lt;jrandom&gt; (there's fragmentation for tunnels, and then fragmentation at the stream/i2cp level)
+16:32 &lt;+fox&gt; &lt;BrianR___&gt; Yes... Is there an ideal size to minimize fragmentation?
+16:32 &lt;jrandom&gt; the ideal block size of an app using the streaming lib is "large", so that the streaming lib can use the appropriate size.
+16:33 &lt;jrandom&gt; (aka ignore the man behind the curtain)
+16:33 &lt;+fox&gt; &lt;BrianR___&gt; Aah.. Maybe I should think about pipelining or something then..
+16:34 &lt;+fox&gt; &lt;BrianR___&gt; I'm planning an app with lots of request/response traffic...
+16:34 &lt;jrandom&gt; i'd recommend batching then to cut down on the chattyness
+16:34 &lt;Complication&gt; Perhaps keeping traffic focused would help to some extent
+16:37 &lt;jrandom&gt; ok, anyhing else on 1) Net status, or shall e shimmy on over to 2) Syndie plotting
+16:38  * jrandom shimmies
+16:39 &lt;jrandom&gt; this is largely a placeholder and cfp - there's going to be some substantial revamp to syndie, both in operaion and the ui, so if you've got some key features or use cases you think need to be addressed, get in touch
+16:40 &lt;jrandom&gt; (more info will be of course forthcoming as things get fleshed out further)
+16:42 &lt;jrandom&gt; thats all i've got to say on that for the moment, so, moving on over to 3) jbigi optimizations
+16:42 &lt;@frosk&gt; and i had assumed "plotting" referred to some jrobin stuff in syndie :)
+16:43 &lt;jrandom&gt; hehe
+16:43 &lt;jrandom&gt; it'd be interesting to plot posts/day, posts/author, new authors/day, etc ;)
+16:44 &lt;Complication&gt; Oh, on bit about Syndie (sorry, only now remembered)
+16:44 &lt;Complication&gt; =one bit
+16:44 &lt;@frosk&gt; which do you want, 0 or 1? :)
+16:44 &lt;Complication&gt; Do you think it could be practical, or easy/difficult to separate favourite authors and blacklisted (spam)authors into two different lists?
+16:45 &lt;Complication&gt; On addresses.jsp
+16:45 &lt;jrandom&gt; oh, yeah without much trouble
+16:46 &lt;jrandom&gt; thats a good idea for therevamp too, but perhaps we can get that into the 0.6.1.14 build
+16:47 &lt;Complication&gt; Nah, it's not byting me, I just remembered something I noticed back then
+16:47 &lt;Complication&gt; Anyway, jbigi gets faster on Linux/AMD64 when you compile locally and use GMP 4.2
+16:48 &lt;jrandom&gt; cool
+16:48 &lt;jrandom&gt; did you compare that w/ -O3 -m64 on GMP 4.1.2?
+16:48 &lt;Complication&gt; And I'm a damn fool for going after way wrong compile flags :O
+16:48 &lt;@cervantes&gt; the relevant link was http://forum.i2p/viewtopic.php?t=1523&start=30 btw
+16:48 &lt;jrandom&gt; ah thanks cervantes 
+16:48 &lt;Complication&gt; jrandom: I haven't compared yet, but will
+16:49 &lt;Complication&gt; During next scheduled reboot
+16:50 &lt;jrandom&gt; the jbigi build process is essentially "build GMP, then build jbigi.o, and link the two together", so any sort of optimizations people want to make on GMP can be made as the first step
+16:50 &lt;@cervantes&gt; I've not seen much difference between -O3 and -O2 in any previous tests I've done, whether that's different under x86_64 ... *shrug*
+16:50 &lt;jrandom&gt; aye, might be compiler rev dependent as well
+16:50 &lt;jrandom&gt; (especially with all these 3.3/3.4/4.0/4.1 issues)
+16:51 &lt;@cervantes&gt; just to re-iterate what I mentioned in that thread... we probably won't see windows64 optimised jbigi anytime soon
+16:51 &lt;+fox&gt; &lt;BrianR___&gt; Does the i2p stream lib do payload compression?
+16:52 &lt;Complication&gt; BrianR: yes
+16:52 &lt;@cervantes&gt; unless someone has M$ VC 2005 w/64-bit SDK and fancies some heavy toil to get it to compile gmp
+16:52 &lt;Complication&gt; At least to my knowledge
+16:53 &lt;@cervantes&gt; (there was a project to port gmp into a vc project somewhere though)
+16:53 &lt;jrandom&gt; cervantes: well, we've got one that /works/ for amd64/win, but it doesn't use the most out of the hardware ;)
+16:53 &lt;jrandom&gt; (when my new box gets here though i may be able to tweak that, as its an amd64)
+16:53 &lt;+fox&gt; &lt;BrianR___&gt; trying to figure if I should use a binary protocol to save bits or if zlib or something is going to smoosh up ascii protocol nice and small..
+16:54 &lt;@cervantes&gt; coolio - unfortunately Mingw64 or cygwin64 doesn't seem to be on the near horizon...
+16:54 &lt;jrandom&gt; BrianR___: premature optimization being the root of all evil, and all that jazz...
+16:55 &lt;Complication&gt; at least partly human readable protocols are generally easier to debug, but I guess it depends what one's doing
+16:56 &lt;Complication&gt; ('cause some things like encryption don't like being human-readable, no matter what :) )
+16:57 &lt;Complication&gt; But if I2P does the encryption, and also compresses, good chances are that many things which occur on top of it, can be done with human-readable protos
+16:58 &lt;jrandom&gt; aye
+16:58 &lt;jrandom&gt; ok, anything else on 3) jbigi stuff?
+16:58 &lt;jrandom&gt; if not, lets move to 4) ??? 
+16:59 &lt;jrandom&gt; anyone have anything else for the meeting?
+17:01 &lt;+tethra&gt; i recall hearing something about anonymous collaboration tools recently
+17:01 &lt;+tethra&gt; care to elaborate on what kind, and whether they'll be syndie-esque or not?
+17:02 &lt;@cervantes&gt; irc and syndie is an anonymous collaboration tool :)
+17:02 &lt;jrandom&gt; hmm, not sure of what you refer to - or maybe you mean the actual planned syndie revamps?  :)
+17:02 &lt;+tethra&gt; true.
+17:02  * tethra isn't sure either, which is why he asked
+17:02 &lt;+tethra&gt; there was talk of it on the forums - reasons for anonymity and stuff
+17:03 &lt;+tethra&gt; i'll find the thread so i can get the quote
+17:03 &lt;jrandom&gt; ah right
+17:03 &lt;+tethra&gt; http://forum.i2p.net/viewtopic.php?t=1618
+17:03 &lt;jrandom&gt; the use case thread
+17:03 &lt;+tethra&gt;  - anonymously hosted & publicly reachable forums/boards/wikis 
+17:03 &lt;+tethra&gt; yeah
+17:04 &lt;+tethra&gt; is there going to be an i2wiki type project that is based around something like syndie or is it up to users?
+17:04 &lt;jrandom&gt; there have been some good ideas in there, and some good feedback
+17:05 &lt;jrandom&gt; the ability to edit syndie posts is an oft-requested feature, and with that, you could pull off a wiki w/ a rich editor
+17:05 &lt;jrandom&gt; but, of course, nothing will exist in a vaccum - if someone believes that is necessary, someone should say "hey, a wiki is essential, and here's why"
+17:06 &lt;jrandom&gt; there are an infinite number of apps that /can/ be built, but as we're aiming for strong anonymity and strong security, care must be taken in what is built
+17:07 &lt;+tethra&gt; right
+17:07 &lt;+tethra&gt; that said, some of the more difficult things to keep anonymous and secure might be better off being done by someone who is good at keeping things anonymous and secure, right?
+17:08 &lt;jrandom&gt; likely so, though there is no cabal - anyone can learn
+17:08 &lt;+tethra&gt; (key things, basically. not that i'm naming any, but hey.)
+17:08 &lt;+tethra&gt; true
+17:09 &lt;+tethra&gt; but learning at the cost of your own and other people's anonymity isn't the greatest way of doing it
+17:10 &lt;jrandom&gt; everyone has to start somewhere, of course
+17:10 &lt;+tethra&gt; (perhaps if someone made a sandbox type thing that allowed people to run $software and have people attack it and stuff that'd be good for someone who is new/inexperienced?)
+17:10 &lt;+tethra&gt; yeah
+17:14 &lt;jrandom&gt; ok, anyone else have anything for the meeting?
+17:15 &lt;jrandom&gt; if not
+17:15  * jrandom winds up
+17:15 &lt;@cervantes&gt; *ahem*
+17:15  * jrandom pauses
+17:16 &lt;jrandom&gt; whats shakin' cerv? 
+17:16 &lt;Complication&gt; Neat, I found a baf ;P
+17:17 &lt;jrandom&gt; baf-blocked ;)
+17:17 &lt;@cervantes&gt; hups srry, continue baffing
+17:17  * jrandom resumes winding
+17:18  * jrandom *baf*s the meeting closed
+</div>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

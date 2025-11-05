@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Dev Meeting - November 30, 2004 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="I2P development meeting log for November 30, 2004.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Dev Meeting - November 30, 2004 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="I2P development meeting log for November 30, 2004.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2004/11/30/i2p-dev-meeting-november-30-2004/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2004/11/30/i2p-dev-meeting-november-30-2004/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2004-11-30">
+                    November 30, 2004
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">meeting</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Dev Meeting - November 30, 2004</h1>
+
+            
+            <div class="post-author">By jrandom</div>
+            
+        </div>
+
+        <div class="post-content">
+            <h2 id="quick-recap">Quick recap</h2>
+<p class="attendees-inline"><strong>Present:</strong> ant, bla, clayboy, duck, jrandom, nmi, postman, Ragnarok</p>
+<h2 id="meeting-log">Meeting Log</h2>
+<div class="irc-log">
+13:08 &lt;jrandom&gt; 0) hi
+13:08 &lt;jrandom&gt; 1) 0.4.2 and 0.4.2.1
+13:08 &lt;jrandom&gt; 2) mail.i2p
+13:08 &lt;jrandom&gt; 3) i2p-bt
+13:08 &lt;jrandom&gt; 4) eepsites
+13:08 &lt;jrandom&gt; 5) ???
+13:09 &lt;jrandom&gt; 0) hi
+13:09 &lt;jrandom&gt; sorry to interrupt dm's agenda
+13:09 &lt;jrandom&gt; status notes up @ http://dev.i2p.net/pipermail/i2p/2004-November/000492.html
+13:09 &lt;jrandom&gt; [hi]
+13:10 &lt;+postman&gt; ((hi))
+13:10 &lt;+postman&gt; :)
+13:10 &lt;jrandom&gt; so, as y'all read through that overwhelmingly interesting email, we might as well get the meeting underway
+13:10 &lt;jrandom&gt; 1) 0.4.2 and 0.4.2.1
+13:11 &lt;jrandom&gt; 0.4.2 is out, as you know, and the results are mixed, but when its not failing bad, it seems to be doing much better ;)
+13:12 &lt;jrandom&gt; there will be a release with a whole slew of bugfixes soon - i've been holding off to try to get as many things improved as possible
+13:12 &lt;jrandom&gt; as things stand now though, it looks like the 0.4.2.1 release will not yet get the i2p-bt port into tip top shape quite yet
+13:12 &lt;+postman&gt; jrandom: what do the bugfixes address - all errors in the new streaminglib or other stuff as well?
+13:13 &lt;jrandom&gt; a fast busy loop in the streaming lib that came up from a poorly tested scenario, some SAM issues, IP address detection problems, among other things
+13:14 &lt;jrandom&gt; dev.i2p.net/cgi-bin/cvsweb.cgi/~checkout~/i2p/history.txt?rev=HEAD has the full list
+13:14 &lt;+postman&gt; k
+13:14 &lt;+postman&gt; thx
+13:15 &lt;jrandom&gt; oh, one thing to note about 0.4.2.1 is that it, like 0.4.2, will need to modify your wrapper.config again, so please pay attention to the update instructions when they're out :)
+13:15 &lt;jrandom&gt; does anyone have any questions/comments/concerns about 0.4.2?
+13:15 &lt;jrandom&gt; (/0.4.2.1)
+13:16 &lt;clayboy&gt; been working great here, have been tracking cvs too, always smooth
+13:16 &lt;jrandom&gt; wikked
+13:17 &lt;bla&gt; It's table (0.4.2): up for days already
+13:17 &lt;bla&gt; s/table/stable/
+13:17 &lt;jrandom&gt; ah nice, yeah, the bugs havent been hitting everyone
+13:17 &lt;jrandom&gt; ok, if there's nothing else on that, lets jump on to 2) mail.i2p
+13:18 &lt;jrandom&gt; i hear postman has some things to discuss
+13:18 &lt;+postman&gt; hello
+13:18 &lt;jrandom&gt; hi postman, you're up :)
+13:18 &lt;+postman&gt; weeks ago i conducted a poll regarding IMAP
+13:19 &lt;+postman&gt; since a few weeks passed now i decided to close the polls and to count the vote
+13:19 &lt;+postman&gt; result is: not needed - won't be done. period
+13:19 &lt;+postman&gt; after talking to susi - she was quite fine wioth pop3 on her webmail interface
+13:19 &lt;clayboy&gt; reason wins! :)
+13:19 &lt;jrandom&gt; w3wt
+13:20 &lt;+postman&gt; so let's just stick to the pop3 end bury any silly imap ideas
+13:20 &lt;+postman&gt; :)
+13:20  * jrandom gets the shovel
+13:20 &lt;+postman&gt; 2.) we're close to 100 registered users
+13:21 &lt;clayboy&gt; wow
+13:21 &lt;+postman&gt; not all of them public of course, but it still sounds like a quite reasonable number regarding the size of the network 
+13:21 &lt;+Ragnarok&gt; so... how about that LDAP address book? :)
+13:21 &lt;jrandom&gt; nice
+13:21 &lt;+postman&gt; 3. a feature to upload/share you public pgp key is active since weekend
+13:21 &lt;+postman&gt; please use it 
+13:21 &lt;+postman&gt; www.postman.i2p/user/acc.html
+13:22 &lt;clayboy&gt; i'm not taking any credit for that idea :&gt;
+13:22 &lt;+postman&gt; the public keys can easily be downloaded with the help of the addressbook
+13:22 &lt;+postman&gt; or direct as www.postman.i2p/public/accountname.pub
+13:22 &lt;jrandom&gt; ooh cool
+13:22 &lt;+postman&gt; the system works quite fine
+13:22 &lt;+postman&gt; thanks to duck for pointing at a few bugs
+13:23 &lt;+postman&gt; 4.) i think about offering accountbased routing
+13:23 &lt;+postman&gt; like ppl say
+13:23 &lt;jrandom&gt; account based routing?
+13:23 &lt;+postman&gt; all mail for foo@mail.i2p gets transported to the following destination 
+13:23 &lt;+postman&gt; and user presents a valid destination key for it
+13:24 &lt;+postman&gt; postman.i2p will then manually route mail to those accounts to mailsystems
+13:24 &lt;+postman&gt; just an idea(tm)
+13:24 &lt;jrandom&gt; ah nice
+13:24 &lt;+postman&gt; i am looking forward to develop and discuss the whole matter
+13:25 &lt;+postman&gt; that's it for now
+13:25 &lt;+postman&gt; more follows next week
+13:25 &lt;+postman&gt; thanks
+13:25 &lt;nmi&gt; postman: sorry, transported to a particular i2p destination you mean?
+13:25  * postman hands the mike back to jrandom 
+13:25 &lt;+postman&gt; nmi: yes
+13:25 &lt;ant&gt; &lt;Nightblade&gt; am SMTP i2p destination?
+13:25 &lt;ant&gt; &lt;Nightblade&gt; an
+13:25 &lt;+postman&gt; nmi: provided the destination accepts smtp and mail for that account
+13:25 &lt;jrandom&gt; that sounds very cool, gets rid of the trust aspect of the mail fiiltering
+13:26 &lt;nmi&gt; ah, ok. clever. i had thought of doing something similar using mixminion single-use-reply-blocks but your idea is better...
+13:26 &lt;jrandom&gt; its probably a lot of work to set up on the client side, but perhaps someone could do some hacking
+13:26 &lt;+postman&gt; jrandom: i am working on it
+13:26 &lt;jrandom&gt; w00t
+13:26 &lt;+postman&gt; jrandom: the user will have the usual webinterface ( acc.html...)
+13:27 &lt;+postman&gt; jrandom: and inserts the destinationkey
+13:27 &lt;jrandom&gt; well, right, but then there's the MTA configuration
+13:27 &lt;+postman&gt; the rest will be done automatigally
+13:27 &lt;+postman&gt; yes, on the postman.i2p AND the receiving sinde
+13:28 &lt;nmi&gt; jrandom: yeah, it would be cool to have a really stripped down smtp proxy for people not wanting to run a full MTA
+13:28 &lt;jrandom&gt; right right
+13:28 &lt;+postman&gt; jrandom: i will provide a simple setup config for ppl interested
+13:28 &lt;+postman&gt; jrandom: for postfix, exim and sendmail
+13:28 &lt;+postman&gt; jrandom: those can be stripped down to BARE necessities
+13:28 &lt;@duck&gt; seriously, do you think that there are many users for that?
+13:28 &lt;jrandom&gt; postman: this all sounds pretty kickass.  i look forward to hearing more when you're ready
+13:29 &lt;+postman&gt; jrandom: no idea about windows smtp servers tho
+13:29 &lt;+postman&gt; duck: well
+13:29 &lt;+postman&gt; duck: 8 weeks ago there was no need for a mailsystem and no users either
+13:29 &lt;+postman&gt; duck: it's investment
+13:29 &lt;@duck&gt; true
+13:29 &lt;+postman&gt; duck: in 6 months we'll be happy to have it
+13:29 &lt;jrandom&gt; duck: the potential comes with moving away from a trusted SMTP filter
+13:29 &lt;+postman&gt; :)
+13:30 &lt;jrandom&gt; er, perhaps i should say, moving /to/ a trusted smtp filter (no offense postman ;)
+13:30 &lt;+postman&gt; and there will be a few ones
+13:30 &lt;+postman&gt; AND
+13:30 &lt;+postman&gt; (now the punchline)
+13:30 &lt;+postman&gt; we could easily create maildomains :)
+13:30 &lt;+postman&gt; like duck@duck.i2p and other stuff
+13:30 &lt;+postman&gt; :)
+13:30 &lt;@duck&gt; ah
+13:31 &lt;+postman&gt; the only problem would be the official/private mapping
+13:31 &lt;jrandom&gt; hosts.txt!
+13:31  * jrandom ducks
+13:31 &lt;+postman&gt; but this is another thing for the webmanagement console :)
+13:31 &lt;+postman&gt; LOL
+13:31 &lt;+postman&gt; jrandom: i rely on shaky sql databases :)
+13:31 &lt;@duck&gt; ok; I see it fitting in
+13:32 &lt;+postman&gt; ok
+13:32 &lt;+postman&gt; then i will work it out and present an concept soon
+13:32 &lt;+postman&gt; yess, yet more work
+13:32  * postman leans back relaxed
+13:32 &lt;+postman&gt; :)
+13:32 &lt;jrandom&gt; kickass, thanks postman 
+13:33 &lt;jrandom&gt; ok, unless other people have further mail.i2p related questions, shall we move on to 3) i2p-bt?
+13:33 &lt;jrandom&gt; consider us moved
+13:34 &lt;jrandom&gt; ok, as the email mentioned, i broke the i2p-bt port
+13:34  * jrandom hangs head in shame
+13:34 &lt;jrandom&gt; in other news, duck, do you have anything wrt i2p-bt you want to discuss?
+13:34 &lt;@duck&gt; as a result of jrandom's work not much has been done :)
+13:35 &lt;+Ragnarok&gt; booo, hissss
+13:35 &lt;@duck&gt; oh Ragnarok had some patches
+13:35  * jrandom2p pelts jrandom with tomatoes
+13:35 &lt;@duck&gt; I think, see the history file :)
+13:35 &lt;jrandom&gt; oh cool
+13:35 &lt;@duck&gt; we got some things in the queue too
+13:35 &lt;+Ragnarok&gt; well, I was hissing at jr, but ok :)
+13:36 &lt;@duck&gt; but I dont want to change (too) much on the unstable ground
+13:36 &lt;@duck&gt; (like breaking bt while i2p is getting fixed)
+13:36 &lt;jrandom&gt; aye, good plan
+13:36 &lt;@duck&gt; .
+13:37 &lt;jrandom&gt; ok cool, anyone else have anything on i2p-bt?
+13:37 &lt;jrandom&gt; if not, moving us along to 4) eepsites
+13:38 &lt;jrandom&gt; well, i know the issues have been discussed a few times since we first got the eepproxy, but there have been some recent queries warranting their mention again
+13:39 &lt;bla&gt; yes...
+13:39 &lt;jrandom&gt; what we have now for browsing eepsites and normal websites anonymously just plain isn't safe
+13:39 &lt;clayboy&gt; disabling java, javascript, cookies and flash helps, though
+13:39 &lt;jrandom&gt; DrWoo has done a great job with his page describing the dangers and how you can protect yourself
+13:40 &lt;jrandom&gt; right clayboy, definitely
+13:40 &lt;clayboy&gt; url?
+13:40 &lt;bla&gt; clayboy: Yes, on the HTML side, but not on the HTTP side
+13:40 &lt;jrandom&gt; but if there's one thing i've learned with the router console, its that no one follows more than two steps into the instructions ;)
+13:40 &lt;clayboy&gt; bla: good point
+13:40 &lt;jrandom&gt; clayboy: http://brittanyworld.i2p/browsing/
+13:41 &lt;bla&gt; I've done some experiments here: http://forum.i2p/viewtopic.php?t=182
+13:41 &lt;bla&gt; Doesn't look good as it is
+13:42 &lt;@duck&gt; who has the evil applets?
+13:42 &lt;ant&gt; &lt;Nightblade&gt; there was a security exploit found in java
+13:43 &lt;ant&gt; &lt;Nightblade&gt; for some older 1.4.x vers
+13:43 &lt;ant&gt; &lt;Nightblade&gt; not 1.5
+13:44 &lt;jrandom&gt; nightblade: the 'attack' used in this person's case was really trivial, and, according to the person, worked from 1.1.6-1.5
+13:44 &lt;ant&gt; &lt;Nightblade&gt; hmm
+13:44 &lt;jrandom&gt; (download a .exe, run the .exe)
+13:45 &lt;jrandom&gt; i was suprised to see some java security permissions fire up on instantiation of new File(filename) but no security permissions fire up on instantiation of new FileOutputStream(filename)
+13:45  * jrandom stops handing out hand grenades
+13:46 &lt;jrandom&gt; (i havent verified their code, but did see much of it)
+13:46 &lt;jrandom&gt; but anyway, eepsites
+13:47 &lt;jrandom&gt; well, i dont think it would be prudent to remove the eepproxy altogether
+13:47 &lt;jrandom&gt; but i dont really have time right now to implement any of the solutions listed
+13:48 &lt;bla&gt; jrandom: Stripping out all Accept* headers would be a good thing, for now
+13:48 &lt;jrandom&gt; what do y'all think?  any volunteers?  shall we wing it until we do get time?
+13:48 &lt;ant&gt; &lt;Nightblade&gt; bla: I don't think it is a big deal that people can see some browser headers
+13:49 &lt;ant&gt; &lt;Nightblade&gt; millions of people use those browsers
+13:49 &lt;bla&gt; And always adding a User-Agent: header, even if the client didn't send one. I makes requests homogeneous
+13:50 &lt;bla&gt; Nighblade: Yes, but if your browser says Accept-Language: xx (just made up on the spot), and there happens to be only 1 I2P node in a country that speaks language xx, almonimity is gone, completely
+13:50 &lt;bla&gt; The Accept-Language: header is there though, in some browsers. And we can't rely on it always being "en"
+13:50 &lt;ant&gt; &lt;Nightblade&gt; ok but what if removing some of those headers violates the HTTP spec?
+13:50 &lt;jrandom&gt; adding those two cases are easy enough, and i'll get them into 0.4.2.1, but it really isn't safe to explicitly filter headers like this
+13:50 &lt;jrandom&gt; nightblade: we break so many aspects of the HTTP spec it hurts
+13:51 &lt;bla&gt; Nightblade: Only one of the threee browsers I listed did send the header, so it shouldn't be much of a problem
+13:51 &lt;ant&gt; &lt;Connelly&gt; HTTP was not designed for anonymity
+13:51 &lt;jrandom&gt; the eepproxy is duct tape and shoe polish
+13:51 &lt;bla&gt; jrandom: Why isn't that filttering safe?
+13:52 &lt;bla&gt; jrandom: We could even consider stripping _all_ headeers, except for the Host: header and the GET header
+13:52 &lt;jrandom&gt; bla: stripping all headers except the host would be safer, yes
+13:52 &lt;bla&gt; jrandom: After all, what do we need more for an anonymous HTTP?
+13:52 &lt;jrandom&gt; but thats beyond the amount of time i can put into it
+13:52 &lt;jrandom&gt; i can add the Accept and user-agent filters in ~ 30s
+13:53 &lt;jrandom&gt; much beyond that and i throw my hands in the air and rewrite the http proxy ;)
+13:53 &lt;bla&gt; jrandom: How come stripping all of them is more difficult?
+13:53 &lt;jrandom&gt; read the code.  
+13:54 &lt;jrandom&gt; (patches welcome)
+13:54 &lt;jrandom&gt; but what we're looking at here is still just a short term solution
+13:54 &lt;bla&gt; jrandom: Point well taken ;)  But seriously: I think the Accept* and User-Agent fixes would do really fine for now
+13:54 &lt;jrandom&gt; we need someone to work on something that will last us long term
+13:55 &lt;ant&gt; * dm just ate 20 slices of cheese... drool.
+13:55 &lt;jrandom&gt; bla: i heard that last time someone asked us to filter the User-agent and referrer headers ;)
+13:55 &lt;jrandom&gt; (but yeah, i'll get those two into the next rev)
+13:56 &lt;ant&gt; &lt;dm&gt; those headers are usefl
+13:56 &lt;ant&gt; &lt;dm&gt; useful
+13:56 &lt;ant&gt; &lt;dm&gt; For service providers.
+13:56 &lt;jrandom&gt; yes, they are
+13:57 &lt;jrandom&gt; we've already had some apps break because we filter referrer too
+13:57 &lt;bla&gt; dmm: Yes, indeed. However, they also provide a browser or OS fingerprint
+13:57 &lt;ant&gt; &lt;dm&gt; I have an idea!
+13:57  * jrandom takes cover
+13:58 &lt;ant&gt; &lt;dm&gt; Hard code the User-Agent to: Nokia6230/2.0 (03.15) Profile/MIDP-2.0 Configuration/CLDC-1.1 149.254.201.133 
+13:58 &lt;ant&gt; &lt;dm&gt; eh? eh?
+13:58 &lt;jrandom&gt; we already hard code the user agent header
+13:59 &lt;ant&gt; &lt;Nightblade&gt; I2P-enabled cell phones
+13:59  * jrandom mounts a DoS on that phone
+13:59 &lt;ant&gt; &lt;dm&gt; To what?
+13:59 &lt;ant&gt; &lt;dm&gt; My poor phone!!!
+13:59 &lt;jrandom&gt; ok, anyone else have any thoughts on the eepproxy/eepsite stuff?
+14:00 &lt;bla&gt; MYOB/6.ss (AN/ON)
+14:00 &lt;bla&gt; no\
+14:00 &lt;+Ragnarok&gt; we should reinvent html using s-expressions!
+14:01 &lt;jrandom&gt; (i really do think using a bbcode style macro language is the way to go, at least for some things ;)
+14:01 &lt;jrandom&gt; ((or xml for you geeks))
+14:02 &lt;ant&gt; &lt;dm&gt; Microsoft endorses use of XML
+14:02 &lt;ant&gt; &lt;dm&gt; So I'm all for it.
+14:02 &lt;+Ragnarok&gt; xml is just excessively wordy s-expressions :)
+14:03 &lt;ant&gt; &lt;dm&gt; Is this a good time for me to aplaud jrandom for his work on this project?
+14:03  * jrandom volunteers Ragnarok to work on it, after getting the next gen address book ;)
+14:03 &lt;@duck&gt; I dont think that 'invent your own markup language' will work for general browsers
+14:04 &lt;@duck&gt; maybe for the blog thing inside myi2p
+14:04 &lt;+Ragnarok&gt; it's always a good time :)
+14:04 &lt;ant&gt; &lt;dm&gt; applaud even
+14:04 &lt;jrandom&gt; duck: the proxy will need to filter content anyway, it would be simple enough (heh) to inject the results of macro expansions into the resulting filtered content
+14:05 &lt;ant&gt; * dm tips his hat to jr.
+14:05 &lt;jrandom&gt; gracias dm et al
+14:05 &lt;ant&gt; &lt;Nightblade&gt; something like PDF would be safer than HTML
+14:05 &lt;jrandom&gt; lol
+14:05 &lt;@duck&gt; .txt files!
+14:06 &lt;ant&gt; &lt;Nightblade&gt; i've seem PDF files with clickable links, but the files themselves are huge
+14:06 &lt;ant&gt; &lt;Nightblade&gt; seen
+14:06 &lt;ant&gt; &lt;dm&gt; Uncompressed Bitmaps?
+14:06 &lt;jrandom&gt; yes, lets all write in pdf
+14:07 &lt;+Ragnarok&gt; erg, postscript is fugly
+14:07 &lt;ant&gt; &lt;cat-a-puss&gt; how is html insecure?
+14:07 &lt;@duck&gt; anyway
+14:07 &lt;ant&gt; &lt;Nightblade&gt; cat: with javascript, activex, applets,...
+14:07 &lt;jrandom&gt; cat-a-puss: all the different ways to encode dangerous data
+14:08 &lt;ant&gt; &lt;dm&gt; languages aren't secure or insecure, clients are.
+14:08 &lt;+Ragnarok&gt; the realy problem is how to do anon dhtml...
+14:08 &lt;jrandom&gt; (and we'll never, /never/ be ahead of the game as long as we explicitly filter)
+14:08 &lt;ant&gt; &lt;cat-a-puss&gt; Java/javascript are enclosed in tags. So strip those out, plain html is not harmful right?
+14:08 &lt;ant&gt; &lt;dm&gt; We need to use a data format that is parsed by a client made by a company that we trust.
+14:08 &lt;jrandom&gt; Ragnarok: macros, and/or reference known safe and locally installed javascript
+14:08 &lt;ant&gt; &lt;dm&gt; I trust Microsoft, therefore I suggest Internet Explorer, Microsoft Word, or Notepad
+14:09 &lt;ant&gt; &lt;dm&gt; Flight Simulator 2002 is acceptable as well.
+14:09 &lt;ant&gt; &lt;cat-a-puss&gt; Freenet already has an "anonymity filter" strips out all Java / Javascript / ActiveX etc. Borrow that and the only thing I can think could get through would be Image exploits... unless there is something I am missing.
+14:10 &lt;jrandom&gt; freenet's anon filter is a good start for one or two of the different camps, but would likely require some work to get forms working as we want them
+14:10 &lt;ant&gt; &lt;Nightblade&gt; the eepproxy would have to run as a separate process, because of licensing
+14:11 &lt;jrandom&gt; that still leaves us a heavily crippled html
+14:11 &lt;jrandom&gt; (with no css)
+14:11 &lt;ant&gt; &lt;dm&gt; Okay, how about Flash?
+14:11 &lt;jrandom&gt; nightblade: we can work around that (same way we work around i2ptunnel being GPL)
+14:11 &lt;ant&gt; &lt;dm&gt; Imagine a world wide web with only flash.
+14:11 &lt;ant&gt; &lt;dm&gt; What a rich and wonderful world that would be.
+14:12 &lt;ant&gt; &lt;Nightblade&gt; well Just create a warning: "Eepsite browsing is hazardous to your anonymity.  Please use Gopher."
+14:12 &lt;ant&gt; &lt;Nightblade&gt; actually gopher is not a bad idea
+14:12  * jrandom ports archie
+14:12 &lt;+Ragnarok&gt; gopher!
+14:12 &lt;ant&gt; &lt;dm&gt; There was Betty as well, wasn't there...
+14:12 &lt;+Ragnarok&gt; I remember gopher :)
+14:13 &lt;+Ragnarok&gt; man, those were the good old days.  I think I had a screaming 14.4 baud at the time... &lt;sigh&gt;
+14:13 &lt;ant&gt; &lt;Nightblade&gt; I only browsed gopher in text mode, and I don't know if it supported graphics
+14:13 &lt;jrandom&gt; they didnt have gui browsers last time i used gopher ;)
+14:14 &lt;jrandom&gt; anyway, there are lots of options
+14:14 &lt;ant&gt; &lt;Nightblade&gt; what was that browser called back then?  the one before Netscape...
+14:14 &lt;ant&gt; &lt;Nightblade&gt; i forget
+14:14 &lt;jrandom&gt; mosaic
+14:15 &lt;ant&gt; &lt;Nightblade&gt; yeah
+14:15 &lt;ant&gt; &lt;dm&gt; Mosaic 2.0
+14:15 &lt;ant&gt; &lt;Nightblade&gt; "Welcome to I2P, please wait while we install Gopher and Mosaic."
+14:15 &lt;jrandom&gt; heh
+14:15 &lt;jrandom&gt; yeah, probably no javascript exploits in those
+14:16 &lt;jrandom&gt; ok, anyway, thats that, i suppose
+14:16 &lt;jrandom&gt; moving on to 5) ???
+14:16 &lt;+Ragnarok&gt; there's still a gopher package in debian
+14:16 &lt;jrandom&gt; anyone have anything else (not gopher related)?
+14:17 &lt;ant&gt; &lt;dm&gt; What will happen to I2P when you need to start working again?
+14:18 &lt;jrandom&gt; i'll be on i2p fulltime through the spring, at least.  we can discuss things beyond then as that time approaches
+14:19 &lt;ant&gt; &lt;dm&gt; o k
+14:19 &lt;jrandom&gt; in any case, if i got hit by a bus tomorrow, everything is in cvs and all code is free
+14:19 &lt;+Ragnarok&gt; I assume you're planning to have a 1.0 before then.  What do you think the odds are?
+14:19 &lt;+Ragnarok&gt; before spring, not your untimely demise...
+14:20 &lt;jrandom&gt; certainty.
+14:20 &lt;ant&gt; &lt;dm&gt; ahaha.. yes, what are the odds of 1.0 before tomorrow when you get hit by that bus?
+14:20 &lt;jrandom&gt; (assuming no buses ;)
+14:20 &lt;ant&gt; &lt;dm&gt; I just had a very sad thought.
+14:20 &lt;ant&gt; &lt;dm&gt; Depressing really, but... If you were to get hit by a bus, no one here would know of it.
+14:20 &lt;ant&gt; &lt;cat-a-puss&gt; On filtering: What if we created a better proxy, such that all the applications on the computer's traffic could go through it, then we would not need to filter Javascript et alt because they can't find out who we are anyway.
+14:21 &lt;ant&gt; &lt;dm&gt; You would just die, and we wouldn't know what happened :(
+14:21 &lt;ant&gt; &lt;dm&gt; God why did he have to die?!?!? why?!?!
+14:22 &lt;ant&gt; &lt;dm&gt; Can you put a clause in your will to email the mailing list if you die?
+14:22 &lt;jrandom&gt; cat-a-puss: javascript can send the contennts of your bookmarks, your IP address, and all sorts of things to a remote site
+14:22 &lt;jrandom&gt; dm: people who know me irl know i'm involved in i2p.  enough of this morbid shit
+14:23 &lt;ant&gt; &lt;dm&gt; ah cool.
+14:24 &lt;ant&gt; &lt;cat-a-puss&gt; jrandom: yeah, but that sort of thing requres an exploit right, not just say forwarding them to some page that uses a different protocall that is not proxied. We probably be reasonable safe from those with a scanner on incomming content and automatic updates.
+14:25 &lt;jrandom&gt; cat-a-puss: erm, perhaps i misunderstood - are you suggesting that it may be safe to have javascript enabled in the browser, as long as the connections that that javascript code makes are proxied also?
+14:26 &lt;ant&gt; &lt;cat-a-puss&gt; jrandom: yeah, as long as there is no buffer overflows etc.
+14:26 &lt;jrandom&gt; if so, thats still vulnerable to plain old javascript that reads the javascrip environment and sends it "anonymously" to http://cia.i2p/data.  
+14:27 &lt;jrandom&gt; the data available to javascript includes your IP address, as well as your bookmarks and all sorts of other things
+14:27 &lt;jrandom&gt; so even though the connection to cia.i2p was anonymous, the content exposes you
+14:31 &lt;jrandom&gt; ok, anyone else have something to bring up for the meeting?
+14:31 &lt;@duck&gt; yes:
+14:31 &lt;@duck&gt; what does the new 'active peers' counter mean
+14:31 &lt;jrandom&gt; ah
+14:31 &lt;jrandom&gt; yeah, that changed
+14:32 &lt;jrandom&gt; in 0.4.2.1, the new Active: x/y will have x=# of peers you've sent or received a message from successfully in the last minute, y=# peers seen in the last hour or so
+14:32 &lt;jrandom&gt; this is part of the code to deal with some peers giving out bad info in the IP autodetection phase
+14:33  * duck will try to remember it
+14:33 &lt;jrandom&gt; so it'll vary much more than before
+14:33 &lt;jrandom&gt; heh so dont worry when the value is lower than you're used to ;)
+14:34 &lt;jrandom&gt; ok, if thats it, then y'all should check back onto the mailing list and website over the next day for the 0.4.2.1 release
+14:34 &lt;jrandom&gt; it'll be backwards compatible, blah blah blah
+14:34 &lt;jrandom&gt; in any case
+14:34  * jrandom winds up
+14:35  * jrandom *baf*s the meeting closed
+</div>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

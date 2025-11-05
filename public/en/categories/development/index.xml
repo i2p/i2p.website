@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Development on I2P - The Invisible Internet Project</title>
+    <link>//localhost:1313/en/categories/development/</link>
+    <description>Recent content in Development on I2P - The Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 29 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/en/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Many Masks, One Mind: Securing the NetDB</title>
+      <link>//localhost:1313/en/blog/2024/03/29/many-masks-one-mind-securing-the-netdb/</link>
+      <pubDate>Fri, 29 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2024/03/29/many-masks-one-mind-securing-the-netdb/</guid>
+      <description>&lt;p&gt;Author&amp;rsquo;s note: the attacks referred to in this article are not possible against current versions of I2P.&lt;/p&gt;&#xA;&lt;p&gt;As a self-organizing peer-to-peer network, I2P relies on the routers participating in the network to have a way to share information about what is on the network and how to reach it.&#xA;I2P routers achieve this information sharing using the NetDB, a DHT based on Kademlia but modified to work for I2P.&#xA;The NetDB needs to share two main kinds of entries, &amp;ldquo;RouterInfos&amp;rdquo; which peers will use to communicate with other routers directly, and &amp;ldquo;LeaseSets&amp;rdquo; which other peers will use to communicate with I2P clients through anonymous tunnels.&#xA;Routers are frequently commmunicating NetDB entries with eachother, either by sending the information to a router or client, or requesting information from a router or client.&#xA;This means that the entries can arrive directly or indirectly, anonymously or non-anonymously, depending on the needs of the network and the capabilities of the client.&#xA;However, as an anonymizing network, it is also important that it remain impossible for information sent anonymously to be requested back non-anonymously.&#xA;It is also important and for information sent non-anonymously to be impossible to request back anonymously.&#xA;If it becomes possible for either of those situations to occur, then a linking attack may be carried out which allows an attacker to determine if a clients and routers are sharing a common view of the NetDB.&#xA;If it can be reliably determined that the 2 targets share a common view of the NetDB, then there&amp;rsquo;s a very good chance they are on the same router, weakening the target&amp;rsquo;s anonymity drastically.&#xA;Because there are so few anonymizing networks, and I2P is the only one where the routing table is shared via the operation of a DHT, this class of attack is all but unique to I2P and its resolution is important to I2P&amp;rsquo;s success.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SSU2 Transport</title>
+      <link>//localhost:1313/en/blog/2022/10/11/ssu2-transport/</link>
+      <pubDate>Tue, 11 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2022/10/11/ssu2-transport/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;I2P has used a censorship-resistant UDP transport protocol &amp;ldquo;SSU&amp;rdquo; since 2005.&#xA;We&amp;rsquo;ve had few, if any, reports of SSU being blocked in 17 years.&#xA;However, by today&amp;rsquo;s standards of security, blocking resistance,&#xA;and performance, we can do better. Much better.&lt;/p&gt;&#xA;&lt;p&gt;That&amp;rsquo;s why, together with the &lt;a href=&#34;https://i2pd.xyz/&#34;&gt;i2pd project&lt;/a&gt;, we have created and implemented &amp;ldquo;SSU2&amp;rdquo;,&#xA;a modern UDP protocol designed to the highest standards of security and blocking resistance.&#xA;This protocol will replace SSU.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Using a git bundle to fetch the I2P source code</title>
+      <link>//localhost:1313/en/blog/2020/03/18/using-a-git-bundle-to-fetch-the-i2p-source-code/</link>
+      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2020/03/18/using-a-git-bundle-to-fetch-the-i2p-source-code/</guid>
+      <description>&lt;p&gt;Cloning large software repositories over I2P can be difficult, and using git can sometimes make this harder. Fortunately, it can also sometimes make it easier. Git has a &lt;code&gt;git bundle&lt;/code&gt; command which can be used to turn a git repository into a file which git can then clone, fetch, or import from a location on your local disk. By combining this capability with bittorrent downloads, we can solve our remaining problems with &lt;code&gt;git clone&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Gitlab over I2P Setup</title>
+      <link>//localhost:1313/en/blog/2020/03/16/gitlab-over-i2p-setup/</link>
+      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2020/03/16/gitlab-over-i2p-setup/</guid>
+      <description>&lt;p&gt;This is the setup process I use for configuring Gitlab and I2P, with Docker in place to manage the service itself. Gitlab is very easy to host on I2P in this fashion, it can be administered by one person without much difficulty. These instructions should work on any Debian-based system and should easily translate to any system where Docker and an I2P router are available.&lt;/p&gt;&#xA;&lt;h2 id=&#34;dependencies-and-docker&#34;&gt;Dependencies and Docker&lt;/h2&gt;&#xA;&lt;p&gt;Because Gitlab runs in a container, we only need to install the dependencies required for the container on our main system. Conveniently, you can install everything you need with:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Git over I2P for Users</title>
+      <link>//localhost:1313/en/blog/2020/03/06/git-over-i2p-for-users/</link>
+      <pubDate>Fri, 06 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2020/03/06/git-over-i2p-for-users/</guid>
+      <description>&lt;p&gt;Tutorial for setting up git access through an I2P Tunnel. This tunnel will act as your access point to a single git service on I2P. It is part of the overall effort to transition I2P from monotone to Git.&lt;/p&gt;&#xA;&lt;h2 id=&#34;before-anything-else-know-the-capabilities-the-service-offers-to-the-public&#34;&gt;Before anything else: Know the capabilities the service offers to the public&lt;/h2&gt;&#xA;&lt;p&gt;Depending on how the git service is configured, it may or may not offer all services on the same address. In the case of git.idk.i2p, there is a public HTTP URL, and an SSH URL to configure for your Git SSH client. Either can be used to push or pull, but SSH is recommended.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to volunteer by helping I2P-Bote bootstrap</title>
+      <link>//localhost:1313/en/blog/2019/05/20/how-to-volunteer-by-helping-i2p-bote-bootstrap/</link>
+      <pubDate>Mon, 20 May 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/05/20/how-to-volunteer-by-helping-i2p-bote-bootstrap/</guid>
+      <description>&lt;p&gt;An easy way to help people message each other privately is to run an I2P-Bote peer which can be used by new bote users to bootstrap their own I2P-Bote peers. Unfortunately, until now, the process of setting up an I2P-Bote bootstrap peer has been much more obscure than it should be. It&amp;rsquo;s actually extremely simple!&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;What is I2P-bote?&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;I2P-bote is a private messaging system built on i2p, which has additional features to make it even more difficult to discern information about the messages that are transmitted. Because of this, it can be used to transmit private messages securely while tolerating high latency and not relying on a centralized relay to send messages when the sender goes offline. This is in contrast to almost every other popular private messaging system, which either require both parties to be online or rely on a semi-trusted service which transmits messages on behalf of senders who go offline.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>I2P Laboratory</title>
+      <link>//localhost:1313/en/blog/2019/02/14/i2p-laboratory/</link>
+      <pubDate>Thu, 14 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2019/02/14/i2p-laboratory/</guid>
+      <description>&lt;p&gt;Hello everyone,&lt;/p&gt;&#xA;&lt;p&gt;There are many projects in the I2P world that we are excited about, but not all of them are ready for prime-time. We decided to create a place where we can make those available for anyone interested in trying them out, that will serve as proving grounds for projects that may one day become official I2P products. This place is the &lt;a href=&#34;https://geti2p.net/en/download/lab&#34;&gt;I2P Laboratory&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;In the lab we will be offering downloads ready for you to try. Keep in mind that they are not going to be &amp;ldquo;release&amp;rdquo; quality, and some may not even be &amp;ldquo;beta&amp;rdquo; quality. We do not offer official support for them. Any of the lab projects may get discontinued at any time.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Developing privacy-aware applications with Python and I2P</title>
+      <link>//localhost:1313/en/blog/2018/10/23/developing-privacy-aware-applications-with-python-and-i2p/</link>
+      <pubDate>Tue, 23 Oct 2018 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2018/10/23/developing-privacy-aware-applications-with-python-and-i2p/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://geti2p.net/images/blog/i2plib.jpeg&#34; alt=&#34;i2plib&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://geti2p.net/&#34;&gt;Invisible Internet Project&lt;/a&gt; (I2P) provides a framework for developing privacy-aware applications. It is a virtual network working on top of the regular Internet, in which hosts can exchange data without disclosing their &amp;ldquo;real&amp;rdquo; IP addresses. Connections inside I2P network are established between virtual addresses called &lt;em&gt;I2P destinations&lt;/em&gt;. It&amp;rsquo;s possible to have as many of destinations as one needs, even use a new destination for each connection, they don&amp;rsquo;t disclose any information about the real IP address to the other side.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>NTCP2 Implementation Details</title>
+      <link>//localhost:1313/en/blog/2018/08/20/ntcp2-implementation-details/</link>
+      <pubDate>Mon, 20 Aug 2018 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/blog/2018/08/20/ntcp2-implementation-details/</guid>
+      <description>&lt;p&gt;I2P&amp;rsquo;s transport protocols were originally developed around 15 years ago. Back then, the main goal was to hide the transferred data, not to hide the fact that one was using the protocol itself. Nobody thought seriously about protecting against DPI (deep packets inspection) and protocols censorship. Times change, and even though original transport protocols are still providing strong security, there was a demand for a new transport protocol. NTCP2 is designed to resist current censorship threats. Mainly, DPI analysis of packets length. Plus, the new protocol uses the most modern cryptography developments. NTCP2 is based on the &lt;a href=&#34;https://noiseprotocol.org/noise.html&#34;&gt;Noise Protocol Framework&lt;/a&gt;, with SHA256 as a hash function and x25519 as an elliptic curve Diffie-Hellman (DH) key exchange.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

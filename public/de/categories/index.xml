@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on I2P - Das Invisible Internet Project</title>
+    <link>//localhost:1313/de/categories/</link>
+    <description>Recent content in Categories on I2P - Das Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>de-DE</language>
+    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/de/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Community</title>
+      <link>//localhost:1313/de/categories/community/</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/de/categories/community/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

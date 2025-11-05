@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Development Roadmap | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="Current development plans and historical milestones for the I2P network">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Development Roadmap | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="Current development plans and historical milestones for the I2P network">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/get-involved/roadmap/">
+
+    
+    <link rel="icon" type="image/png" href="../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../en/" class="logo-link">
+                    <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/about/">Overview</a></li>
+                            <li><a href="../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../en/blog/" class="">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../en/get-involved/" class="active">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../en/get-involved/roadmap/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="single-page">
+    <div class="container">
+        <div class="page-header">
+            
+
+            <h1 class="page-title">I2P Development Roadmap</h1>
+
+            
+            <p class="page-description">Current development plans and historical milestones for the I2P network</p>
+            
+
+            
+
+            
+        </div>
+
+        <div class="page-content">
+            <div style="background: var(--color-bg-secondary); border-left: 4px solid var(--color-primary); padding: 1.5rem; margin-bottom: 2rem; border-radius: var(--radius-md);">
+<p><strong>I2P follows an incremental development model</strong> with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.</p>
+<p><strong>Last Updated:</strong> August 2025</p>
+</div>
+<h2 id="-upcoming-releases">🎯 Upcoming Releases</h2>
+<div style="border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 2rem;">
+<h3 id="version-2110">Version 2.11.0</h3>
+<div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
+Target: Early December 2025
+</div>
+<ul>
+<li>Hybrid PQ MLKEM Ratchet final, enable by default (prop. 169)</li>
+<li>Jetty 12, require Java 17+</li>
+<li>Continue work on PQ (transports) (prop. 169)</li>
+<li>I2CP lookup support for LS service record parameters (prop. 167)</li>
+<li>Per-tunnel throttling</li>
+<li>Prometheus-friendly stat subsystem</li>
+<li>SAM support for Datagram 2/3</li>
+</ul>
+</div>
+<hr>
+<h2 id="-recent-releases">📦 Recent Releases</h2>
+<h3 id="2025-releases">2025 Releases</h3>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
+<p><strong>Version 2.10.0</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released September 8, 2025</span></p>
+<ul>
+<li>i2psnark UDP tracker support (prop. 160)</li>
+<li>I2CP LS service record parameters (partial) (prop. 167)</li>
+<li>I2CP async lookup API</li>
+<li>Hybrid PQ MLKEM Ratchet Beta (prop. 169)</li>
+<li>Continue work on PQ (transports) (prop. 169)</li>
+<li>Tunnel build bandwidth parameters (prop. 168) Part 2 (handling)</li>
+<li>Continue work on per-tunnel throttling</li>
+<li>Remove unused transport ElGamal code</li>
+<li>Remove ancient SSU2 &ldquo;active throttle&rdquo; code</li>
+<li>Remove ancient stat logging support</li>
+<li>Stat/graph subsystem cleanup</li>
+<li>Hidden mode improvements and fixes</li>
+</ul>
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
+<p><strong>Version 2.9.0</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released June 2, 2025</span></p>
+<ul>
+<li>Netdb map</li>
+<li>Implement Datagram2, Datagram3 (prop. 163)</li>
+<li>Start work on LS service record parameter (prop. 167)</li>
+<li>Start work on PQ (prop. 169)</li>
+<li>Continue work on per-tunnel throttling</li>
+<li>Tunnel build bandwidth parameters (prop. 168) Part 1 (sending)</li>
+<li>Use /dev/random for PRNG by default on Linux</li>
+<li>Remove redundant LS render code</li>
+<li>Display changelog in HTML</li>
+<li>Reduce HTTP server thread usage</li>
+<li>Fix auto-floodfill enrollment</li>
+<li>Wrapper update to 3.5.60</li>
+</ul>
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
+<p><strong>Version 2.8.2</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released March 29, 2025</span></p>
+<ul>
+<li>Fix SHA256 corruption bug</li>
+</ul>
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
+<p><strong>Version 2.8.1</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released March 17, 2025</span></p>
+<ul>
+<li>Fix installer failure on Java 21+</li>
+<li>Fix &ldquo;loopback&rdquo; bug</li>
+<li>Fix tunnel tests for outbound client tunnels</li>
+<li>Fix installing to paths with spaces</li>
+<li>Update outdated Docker container and container libraries</li>
+<li>Console notification bubbles</li>
+<li>SusiDNS sort-by-latest</li>
+<li>Use SHA256 pool in Noise</li>
+<li>Console dark theme fixes and improvements</li>
+<li>.i2p.alt support</li>
+</ul>
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
+<p><strong>Version 2.8.0</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released February 3, 2025</span></p>
+<ul>
+<li>RouterInfo publishing improvements</li>
+<li>Improve SSU2 ACK efficiency</li>
+<li>Improve SSU2 handling of dup relay messages</li>
+<li>Faster / variable lookup timeouts</li>
+<li>LS expiration improvements</li>
+<li>Change symmetric NAT cap</li>
+<li>Enforce POST in more forms</li>
+<li>SusiDNS dark theme fixes</li>
+<li>Bandwidth test cleanups</li>
+<li>New Gan Chinese translation</li>
+<li>Add Kurdish UI option</li>
+<li>New Jammy build</li>
+<li>Izpack 5.2.3</li>
+<li>rrd4j 3.10</li>
+</ul>
+</div>
+<div style="margin: 3rem 0; padding: 1rem 0; border-top: 2px solid var(--color-border); border-bottom: 2px solid var(--color-border);">
+  <h3 style="margin: 0; color: var(--color-primary);">📅 2024 Releases</h3>
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
+<p><strong>Version 2.7.0</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— October 8, 2024</span></p>
+<ul>
+<li>i2ptunnel HTTP server reduce thread usage</li>
+<li>Generic UDP Tunnels in I2PTunnel</li>
+<li>Browser Proxy in I2PTunnel</li>
+<li>Website Migration</li>
+<li>Fix for tunnels going yellow</li>
+<li>Console /netdb refactoring</li>
+</ul>
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
+<p><strong>Version 2.6.1</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— August 6, 2024</span></p>
+<ul>
+<li>Fix iframe size issues in console</li>
+<li>Convert graphs to SVG</li>
+<li>Bundle translation status report</li>
+</ul>
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
+<p><strong>Version 2.6.0</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— July 19, 2024</span></p>
+<ul>
+<li>Reduce netdb memory usage</li>
+<li>Remove SSU1 code</li>
+<li>Fix i2psnark temp file leaks and stalls</li>
+<li>More efficient PEX in i2psnark</li>
+<li>JS refresh of console graphs</li>
+<li>Graph rendering improvements</li>
+<li>Susimail JS search</li>
+<li>More efficient message handling at OBEP</li>
+<li>More efficient local destination I2CP lookups</li>
+<li>Fix JS variable scoping issues</li>
+</ul>
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
+<p><strong>Version 2.5.2</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— May 15, 2024</span></p>
+<ul>
+<li>Fix HTTP truncation</li>
+<li>Publish G capability if symmetric NAT detected</li>
+<li>Update to rrd4j 3.9.1-preview</li>
+</ul>
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
+<p><strong>Version 2.5.1</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— May 6, 2024</span></p>
+<ul>
+<li>NetDB DDoS mitigations</li>
+<li>Tor blocklist</li>
+<li>Susimail fixes and search</li>
+<li>Continue removing SSU1 code</li>
+<li>Update to Tomcat 9.0.88</li>
+</ul>
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
+<p><strong>Version 2.5.0</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— April 8, 2024</span></p>
+<ul>
+<li>Console iframe improvements</li>
+<li>Redesign i2psnark bandwidth limiter</li>
+<li>Javascript drag-and-drop for i2psnark and susimail</li>
+<li>i2ptunnel SSL error handling improvements</li>
+<li>i2ptunnel persistent HTTP connection support</li>
+<li>Start removing SSU1 code</li>
+<li>SSU2 relay tag request handling improvements</li>
+<li>SSU2 peer test fixes</li>
+<li>Susimail improvements (loading, markdown, HTML email support)</li>
+<li>Tunnel peer selection adjustments</li>
+<li>Update RRD4J to 3.9</li>
+<li>Update gradlew to 8.5</li>
+</ul>
+</div>
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary);">
+<p><strong>Version 2.4.0</strong> <span style="color: var(--color-text-muted); font-size: 0.9rem;">— December 18, 2023</span></p>
+<ul>
+<li>NetDB context management/Segmented NetDB</li>
+<li>Handle congestion capabilities by deprioritizing overloaded routers</li>
+<li>Revive Android helper library</li>
+<li>i2psnark local torrent file selector</li>
+<li>NetDB lookup handler fixes</li>
+<li>Disable SSU1</li>
+<li>Ban routers publishing in the future</li>
+<li>SAM fixes</li>
+<li>susimail fixes</li>
+<li>UPnP fixes</li>
+</ul>
+</div>
+<hr>
+<h3 id="2023-2022-releases">2023-2022 Releases</h3>
+<details>
+<summary>Click to expand 2023-2022 releases</summary>
+<p><strong>Version 2.3.0</strong> — Released June 28, 2023</p>
+<ul>
+<li>Tunnel peer selection improvements</li>
+<li>User-Configurable blocklist expiration</li>
+<li>Throttle fast bursts of lookup from same source</li>
+<li>Fix replay detection information leak</li>
+<li>NetDB fixes for multihomed leaseSets</li>
+<li>NetDB fixes for leaseSets received as a reply before being received as a store</li>
+</ul>
+<p><strong>Version 2.2.1</strong> — Released April 12, 2023</p>
+<ul>
+<li>Packaging fixes</li>
+</ul>
+<p><strong>Version 2.2.0</strong> — Released March 13, 2023</p>
+<ul>
+<li>Tunnel peer selection improvements</li>
+<li>Streaming replay fix</li>
+</ul>
+<p><strong>Version 2.1.0</strong> — Released January 10, 2023</p>
+<ul>
+<li>SSU2 fixes</li>
+<li>Tunnel build congestion fixes</li>
+<li>SSU peer test and symmetric NAT detection fixes</li>
+<li>Fix broken LS2 encrypted leasesets</li>
+<li>Option to disable SSU 1 (preliminary)</li>
+<li>Compressible padding (proposal 161)</li>
+<li>New console peers status tab</li>
+<li>Add torsocks support to SOCKS proxy and other SOCKS improvements and fixes</li>
+</ul>
+<p><strong>Version 2.0.0</strong> — Released November 21, 2022</p>
+<ul>
+<li>SSU2 connection migration</li>
+<li>SSU2 immediate acks</li>
+<li>Enable SSU2 by default</li>
+<li>SHA-256 digest proxy authentication in i2ptunnel</li>
+<li>Update Android build process to use modern AGP</li>
+<li>Cross-Platform(Desktop) I2P browser auto-configuration support</li>
+</ul>
+<p><strong>Version 1.9.0</strong> — Released August 22, 2022</p>
+<ul>
+<li>SSU2 peer test and relay implementation</li>
+<li>SSU2 fixes</li>
+<li>SSU MTU/PMTU improvements</li>
+<li>Enable SSU2 for a small portion of routers</li>
+<li>Add deadlock detector</li>
+<li>More certificate import fixes</li>
+<li>Fix i2psnark DHT restart after router restart</li>
+</ul>
+<p><strong>Version 1.8.0</strong> — Released May 23, 2022</p>
+<ul>
+<li>Router family fixes and improvements</li>
+<li>Soft restart fixes</li>
+<li>SSU fixes and performance improvements</li>
+<li>I2PSnark standalone fixes and improvements</li>
+<li>Avoid Sybil penalty for trusted families</li>
+<li>Reduce tunnel build reply timeout</li>
+<li>UPnP fixes</li>
+<li>Remove BOB source</li>
+<li>Certificate import fixes</li>
+<li>Tomcat 9.0.62</li>
+<li>Refactoring to support SSU2 (proposal 159)</li>
+<li>Initial implementation of SSU2 base protocol (proposal 159)</li>
+<li>SAM authorization popup for Android apps</li>
+<li>Improve support for custom directory installs in i2p.firefox</li>
+</ul>
+<p><strong>Version 1.7.0</strong> — Released February 21, 2022</p>
+<ul>
+<li>Remove BOB</li>
+<li>New i2psnark torrent editor</li>
+<li>i2psnark standalone fixes and improvements</li>
+<li>NetDB reliability improvements</li>
+<li>Add popup messages in systray</li>
+<li>NTCP2 performance improvements</li>
+<li>Remove outbound tunnel when first hop fails</li>
+<li>Fallback to exploratory for tunnel build reply after repeated client tunnel build failures</li>
+<li>Restore tunnel same-IP restrictions</li>
+<li>Refactor i2ptunnel UDP support for I2CP ports</li>
+<li>Continue work on SSU2, start implementation (proposal 159)</li>
+<li>Create Debian/Ubuntu Package of I2P Browser Profile</li>
+<li>Create Plugin of I2P Browser Profile</li>
+<li>Document I2P for Android applications</li>
+<li>i2pcontrol improvements</li>
+<li>Plugin support improvements</li>
+<li>New local outproxy plugin</li>
+<li>IRCv3 message tag support</li>
+</ul>
+</details>
+<hr>
+<h3 id="2021-releases">2021 Releases</h3>
+<details>
+<summary>Click to expand 2021 releases</summary>
+<p><strong>Version 1.6.1</strong> — Released November 29, 2021</p>
+<ul>
+<li>Accelerate rekeying routers to ECIES</li>
+<li>SSU performance improvements</li>
+<li>Improve SSU peer test security</li>
+<li>Add theme selection to new-install wizard</li>
+<li>Continue work on SSU2 (proposal 159)</li>
+<li>Send new tunnel build messages (proposal 157)</li>
+<li>Include automatic browser configuration tool in IzPack installer</li>
+<li>Make Fork-and-Exec Plugins Manageable</li>
+<li>Document jpackage install processes</li>
+<li>Complete, document Go/Java Plugin Generation Tools</li>
+<li>Reseed Plugin for self-signed HTTPS reseed</li>
+</ul>
+<p><strong>Version 1.5.0</strong> — Released August 23, 2021</p>
+<ul>
+<li>Accelerate rekeying routers to ECIES</li>
+<li>Start work on SSU2</li>
+<li>Implement new tunnel build messages (proposal 157)</li>
+<li>Support dmg and exe automatic updates</li>
+<li>New native OSX installer</li>
+<li>X-I2P-Location(alt-svc) locations for built-in I2P Site</li>
+<li>RRD4J 3.8</li>
+<li>Create C, CGo, SWIG bindings for libi2pd</li>
+</ul>
+<p><strong>Version 0.9.50</strong> — Released May 18, 2021</p>
+<ul>
+<li>Accelerate rekeying routers to ECIES</li>
+<li>UPnP IPv6 support</li>
+<li>4/6 router address caps (proposal 158)</li>
+<li>IPv6 introducers (proposal 158)</li>
+<li>NTP year 2036 fixes</li>
+<li>Continue work on new tunnel build message (proposal 157)</li>
+<li>Enable DoH for reseeding</li>
+<li>Docker improvements</li>
+<li>SSU IPv6 fixes</li>
+<li>Persist Sybil blocklist</li>
+<li>Tunnel bandwidth limiter fixes</li>
+</ul>
+<p><strong>Version 0.9.49</strong> — Released February 17, 2021</p>
+<ul>
+<li>SSU send individual fragments</li>
+<li>SSU Westwood+</li>
+<li>SSU fast retransmit</li>
+<li>SSU fix partial acks</li>
+<li>ECIES router encrypted messages</li>
+<li>Start rekeying routers to ECIES</li>
+<li>Start work on new tunnel build message (proposal 157)</li>
+<li>More SSU performance improvements</li>
+<li>i2psnark webseed support</li>
+<li>Start work on i2psnark hybrid v2 support</li>
+<li>Move web resources to wars</li>
+<li>Move resources to jars</li>
+<li>Fix Gradle build</li>
+<li>Hidden mode fixes</li>
+<li>Change DoH to RFC 8484</li>
+<li>Fix &ldquo;Start on Boot&rdquo; support on Android</li>
+<li>Add support for copying b32 addresses on Android</li>
+<li>Add SAMv3 Support to Android</li>
+<li>Revise CSS on default I2P Site</li>
+<li>Document I2P site setup</li>
+<li>Add icons to router console themes</li>
+<li>Complete transition to Git</li>
+<li>Donation page redesign</li>
+<li>Review and update VCS information</li>
+</ul>
+</details>
+<hr>
+<h3 id="2020-2016-historical-archive">2020-2016 Historical Archive</h3>
+<details>
+<summary>Click to expand 2020-2016 releases (0.9.48 back to 0.9.24)</summary>
+<p>For the complete historical archive of releases from 2020 back to January 2016, including all versions from 0.9.48 to 0.9.24, see the <a href="../../../en/blog/categories/release">full release notes</a> on the I2P blog.</p>
+<p><strong>Major milestones from this era:</strong></p>
+<ul>
+<li><strong>0.9.47 (August 2020)</strong>: Required Java 8, ECIES enabled for some tunnels, Sybil analysis enabled by default</li>
+<li><strong>0.9.46 (May 2020)</strong>: Replaced jrobin with rrd4j, ECIES testing</li>
+<li><strong>0.9.45 (February 2020)</strong>: Full dual IPv4/IPv6 support, hidden mode fixes</li>
+<li><strong>0.9.44 (December 2019)</strong>: Docker image, testnet Kubernetes, I2P Browser development</li>
+<li><strong>0.9.43 (October 2019)</strong>: Preliminary ECIES support, SSU IPv6 peer testing, Red25519 signature support</li>
+<li><strong>0.9.42 (August 2019)</strong>: Browser WebExtensions, Linux distribution ISO</li>
+<li><strong>0.9.41 (July 2019)</strong>: Redesigned website navigation, router-side meta LS2 support</li>
+<li><strong>0.9.40 (May 2019)</strong>: Decrypting LS2 support, disable NTCP1, Docker image</li>
+<li><strong>0.9.39 (March 2019)</strong>: Redesigned website, encrypted LS2 support</li>
+<li><strong>0.9.38 (January 2019)</strong>: New setup wizard with bandwidth testing, macOS installer enhancements, signed installers</li>
+<li><strong>0.9.37 (October 2018)</strong>: NTCP2 enabled by default</li>
+<li><strong>0.9.36 (August 2018)</strong>: NTCP2 implementation (disabled by default)</li>
+<li><strong>0.9.35 (June 2018)</strong>: Susimail folders, Jetty 9.2.24</li>
+<li><strong>0.9.34 (April 2018)</strong>: UPnP IGD 2 support, IPv6 improvements</li>
+<li><strong>0.9.33 (January 2018)</strong>: Reseed proxy support, Jetty 9.2.22, Tomcat 8.5.23</li>
+<li><strong>0.9.32 (November 2017)</strong>: Ignore hostnames in router infos (proposal 141)</li>
+<li><strong>0.9.31 (August 2017)</strong>: Console redesign phase 1, i2psnark ratings</li>
+<li><strong>0.9.30 (May 2017)</strong>: Hidden service server sigtype migration, Tomcat 8 / Jetty 9.2</li>
+<li><strong>0.9.29 (February 2017)</strong>: Java 9 fixes, NTP hardening, Docker support</li>
+<li><strong>0.9.28 (December 2016)</strong>: IPv6 improvements, blocklist enhancements</li>
+<li><strong>0.9.27 (October 2016)</strong>: SSU IPv6 peer testing, hidden mode improvements</li>
+<li><strong>0.9.26 (June 2016)</strong>: New subscription protocol, Wrapper 3.5.29, GMP 6.0</li>
+<li><strong>0.9.25 (March 2016)</strong>: SAM v3.3, Sybil tool enhancements, QR codes</li>
+<li><strong>0.9.24 (January 2016)</strong>: SAM v3.2, Require Java 7, NetDB Family, Ed25519 transition</li>
+</ul>
+</details>
+<hr>
+<h2 id="release-information">Release Information</h2>
+<p><strong>Release Cycle:</strong> Approximately every 13 weeks for major releases</p>
+<p><strong>Support Policy:</strong></p>
+<ul>
+<li><strong>Current release</strong>: Fully supported with updates and security patches</li>
+<li><strong>Previous release</strong>: Security updates only</li>
+<li><strong>Older releases</strong>: No longer supported (upgrade recommended)</li>
+</ul>
+<p><strong>Version Numbering:</strong></p>
+<ul>
+<li>Started with 0.9.x series (through 0.9.66)</li>
+<li>Transitioned to 1.x series (1.5.0 through 1.9.0)</li>
+<li>Now in 2.x series (2.0.0+)</li>
+</ul>
+<hr>
+<h2 id="development-resources">Development Resources</h2>
+<ul>
+<li><strong>Source Code</strong>: <a href="https://i2pgit.org">i2pgit.org</a></li>
+<li><strong>Issue Tracker</strong>: GitLab issues</li>
+<li><strong>Monthly Meetings</strong>: First Tuesday of each month</li>
+<li><strong>IRC</strong>: #i2p-dev on IRC2P</li>
+<li><strong>Release Notes</strong>: <a href="../../../en/blog/categories/release">I2P Blog</a></li>
+</ul>
+<hr>
+<h2 id="get-involved">Get Involved</h2>
+<p>Want to contribute to I2P&rsquo;s future? Check out the <a href="../../../en/get-involved">Get Involved</a> page to learn how you can help with development, testing, documentation, and more!</p>
+<p>For the latest news and detailed release information, visit the <a href="../../../en/blog">I2P Blog</a>.</p>
+
+        </div>
+
+        
+    </div>
+</article>
+
+<style>
+.single-page {
+    padding: var(--spacing-2xl) 0;
+}
+
+.page-header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.breadcrumb {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+}
+
+.breadcrumb a {
+    color: var(--color-text-muted);
+}
+
+.breadcrumb a:hover {
+    color: var(--color-primary);
+}
+
+.breadcrumb .separator {
+    margin: 0 var(--spacing-sm);
+}
+
+.breadcrumb .current {
+    color: var(--color-text);
+}
+
+.page-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.page-description {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.page-meta {
+    display: flex;
+    gap: var(--spacing-lg);
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+}
+
+.page-meta time::before {
+    content: '📅 ';
+}
+
+.page-meta .author::before {
+    content: '✍️ ';
+}
+
+.page-meta .reading-time::before {
+    content: '⏱ ';
+}
+
+.page-categories {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.category-tag {
+    padding: 0.25rem 0.75rem;
+    background-color: var(--color-bg-tertiary);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.category-tag:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.page-content {
+    max-width: 800px;
+    line-height: 1.8;
+}
+
+.page-content h2,
+.page-content h3,
+.page-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.page-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.page-content h3 {
+    font-size: 1.5rem;
+}
+
+.page-content h4 {
+    font-size: 1.25rem;
+}
+
+.page-content ul,
+.page-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.page-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.page-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    color: var(--color-text-secondary);
+    font-style: italic;
+}
+
+.page-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.page-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-lg) 0;
+}
+
+.page-content th,
+.page-content td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-border);
+    text-align: left;
+}
+
+.page-content th {
+    background-color: var(--color-bg-secondary);
+    font-weight: 600;
+}
+
+.table-of-contents {
+    margin-top: var(--spacing-2xl);
+    padding: var(--spacing-lg);
+    background-color: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+}
+
+.table-of-contents h3 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+}
+
+.table-of-contents ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.table-of-contents li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.table-of-contents a {
+    color: var(--color-text-secondary);
+}
+
+.table-of-contents a:hover {
+    color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .page-meta {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../en/privacy/">Privacy</a>
+                <a href="../../../en/terms/">Terms</a>
+                <a href="../../../en/impressum/">Impressum</a>
+                <a href="../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

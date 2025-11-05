@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Donates on I2P - The Invisible Internet Project</title>
+    <link>//localhost:1313/en/donate/</link>
+    <description>Recent content in Donates on I2P - The Invisible Internet Project</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/donate/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thank You for Downloading I2P</title>
+      <link>//localhost:1313/en/donate/download/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/donate/download/</guid>
+      <description>&lt;h2 id=&#34;your-download-will-begin-shortly&#34;&gt;Your Download Will Begin Shortly&lt;/h2&gt;&#xA;&lt;p&gt;Thank you for choosing I2P! Your download will start automatically in a few seconds.&lt;/p&gt;&#xA;&lt;h3 id=&#34;why-donate-to-i2p&#34;&gt;Why Donate to I2P?&lt;/h3&gt;&#xA;&lt;p&gt;I2P is a &lt;strong&gt;free, open-source project&lt;/strong&gt; built and maintained by volunteers around the world. We&amp;rsquo;re committed to providing secure, private, and censorship-resistant communication for everyone.&lt;/p&gt;&#xA;&lt;p&gt;Your donations help us:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Develop new features&lt;/strong&gt; and improve performance&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Maintain infrastructure&lt;/strong&gt; (download servers, update systems, websites)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Support developers&lt;/strong&gt; who dedicate their time to privacy technology&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Keep I2P free&lt;/strong&gt; for users everywhere&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;how-your-support-makes-a-difference&#34;&gt;How Your Support Makes a Difference&lt;/h3&gt;&#xA;&lt;p&gt;I2P has no corporate backing, venture capital, or advertising. We depend entirely on community support to keep the network running and growing.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

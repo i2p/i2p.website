@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Dev Meeting - October 12, 2004 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="I2P development meeting log for October 12, 2004.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Dev Meeting - October 12, 2004 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="I2P development meeting log for October 12, 2004.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2004/10/12/i2p-dev-meeting-october-12-2004/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2004/10/12/i2p-dev-meeting-october-12-2004/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2004-10-12">
+                    October 12, 2004
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">meeting</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Dev Meeting - October 12, 2004</h1>
+
+            
+            <div class="post-author">By jrandom</div>
+            
+        </div>
+
+        <div class="post-content">
+            <h2 id="quick-recap">Quick recap</h2>
+<p class="attendees-inline"><strong>Present:</strong> deer, Janonymous, jrandom, modulus</p>
+<h2 id="meeting-log">Meeting Log</h2>
+<div class="irc-log">
+14:04 &lt;jrandom&gt; 0) hi
+14:04 &lt;jrandom&gt; 1) 0.4.1.2
+14:04 &lt;jrandom&gt; 2) 0.4.1.3
+14:05 &lt;jrandom&gt; 3) 0.4.2
+14:05 &lt;jrandom&gt; 4) mail discussions
+14:05 &lt;jrandom&gt; 5) ???
+14:05 &lt;jrandom&gt; 0) hi
+14:05  * jrandom waves
+14:05 &lt;Janonymous&gt; hello
+14:05 &lt;jrandom&gt; lots of #s in our agenda this week
+14:05 &lt;jrandom&gt; weekly status notes up @ http://i2p.net/pipermail/i2p/2004-October/000466.html
+14:05 &lt;jrandom&gt; (posted a min or three ago)
+14:05 &lt;deer&gt; * cervantes has brought a pillow
+14:06 &lt;jrandom&gt; oh i hope it won't be that boring ;)
+14:06 &lt;jrandom&gt; anyway, jumping on in to the good stuff: 1) 0.4.1.2
+14:06 &lt;deer&gt; &lt;cervantes&gt; make me up after the statistal analysis section
+14:06 &lt;jrandom&gt; the release is out and everyone should upgrade
+14:06 &lt;jrandom&gt; heh
+14:06 &lt;deer&gt; &lt;cervantes&gt; eerm wake
+14:07 &lt;jrandom&gt; there are some bugs with the watchdog code, which will kill your router poorly (rather than restart it when bad stuff happens)
+14:07 &lt;jrandom&gt; but hopefully those situations are few and far between
+14:07 &lt;deer&gt; &lt;mule_iip&gt; nope :(
+14:08 &lt;jrandom&gt; well, it varies by the user
+14:08 &lt;jrandom&gt; i'm trying to find the cause, as its been around forever and its pretty annoying
+14:08 &lt;jrandom&gt; (the actual hang, not the watchdog code that detects the hang)
+14:09 &lt;jrandom&gt; the current CVS rev (0.4.1.2-1) has the 'meat' of the watchdog disabled - it monitors, but oesn't shut down the router
+14:10 &lt;jrandom&gt; but 0.4.1.2 should be fine for everyone (except mule ;)
+14:10 &lt;jrandom&gt; oh, as mentioned before, start up some logging and send me some data, per http://dev.i2p.net/pipermail/i2p/2004-October/000465.html
+14:11 &lt;jrandom&gt; the more data the better - if you can leave it running overnight, that'd be great (a 20h run on duck's box generated ~60MB of data)
+14:11 &lt;jrandom&gt; ok, moving on to 2) 0.4.1.3
+14:12 &lt;jrandom&gt; well, there's not really anything i want to mention beyond wahts in the email
+14:12 &lt;jrandom&gt; anyone have anything they want to say re: 0.4.1.3?
+14:12 &lt;Janonymous&gt; nah
+14:13 &lt;deer&gt; &lt;postman&gt; no
+14:13 &lt;Janonymous&gt; backwards compatable?
+14:13 &lt;jrandom&gt; certainly
+14:13 &lt;jrandom&gt; ok, moving on to * 3) 0.4.2
+14:14 &lt;jrandom&gt; again, another "see the email" :)
+14:14 &lt;Janonymous&gt; xpc vs. tcp ??
+14:14 &lt;jrandom&gt; i've never implemented a tcp stack before, so any guidance would be appreciated
+14:15 &lt;jrandom&gt; xcp has better handling in networks with high delays
+14:15 &lt;jrandom&gt; (for congestion control)
+14:15 &lt;Janonymous&gt; does that include fec?
+14:15 &lt;jrandom&gt; no
+14:16 &lt;Janonymous&gt; k, cause I've been researching that some
+14:17 &lt;jrandom&gt; cool
+14:17 &lt;jrandom&gt; anything good you've found?
+14:17 &lt;deer&gt; &lt;cervantes&gt; most GET requests are sub 32kb...and your average html page should be around that size...so I'd imagine eepsurfing will be much improved... - I wouldn't mind seeing an improvement in per-tunnel throughput though...will the new stack improve upon that?
+14:17 &lt;Janonymous&gt; fec is used a lot for high latency/high throughput networks
+14:18 &lt;deer&gt; &lt;mule_iip&gt; jrandom: nor have i, but i could tell a folk here to support you
+14:18 &lt;Janonymous&gt; jrandom: some.. I'll report back
+14:18 &lt;deer&gt; &lt;mule_iip&gt; at least it would be a good learning experience for him and another pair of eyes
+14:18 &lt;jrandom&gt; great Janonymous 
+14:18 &lt;jrandom&gt; oh kickass mule
+14:18 &lt;jrandom&gt; cervantes: per-tunnel throughput would improve with&gt;1 message windows
+14:19 &lt;jrandom&gt; (i expect we'll be able to even start with&gt;1 as a window size, depending upon what we can gleam from the router)
+14:19 &lt;jrandom&gt; ((ecn++))
+14:19 &lt;deer&gt; &lt;cervantes&gt; grand
+14:20 &lt;jrandom&gt; ok, anything else on 0.4.2 stuff?
+14:20 &lt;Janonymous&gt; fresh stack.. fresh laptop.. *drools*
+14:21 &lt;jrandom&gt; heh
+14:21 &lt;Janonymous&gt; yea
+14:21 &lt;Janonymous&gt; one thing
+14:22 &lt;Janonymous&gt; this will implement the new short handshake?
+14:22 &lt;jrandom&gt; hmm?
+14:22 &lt;jrandom&gt; we have the low-cpu TCP reconnection code in the 0.4.1 transport
+14:22 &lt;Janonymous&gt; ah, in the email, you mention the alice-&gt; bob handshake
+14:23 &lt;Janonymous&gt; ah
+14:23 &lt;Janonymous&gt; still catching up
+14:23 &lt;jrandom&gt; oh.  yeah, whatever 0.4.2 comes up with, it'll support a packet sequence like the one in the email
+14:24 &lt;Janonymous&gt; k
+14:24 &lt;jrandom&gt; we'll probably control it largely through socket options (e.g. set the stream to interactive and it sends asap, set the stream to bulk and it only sends when the buffer is full or itsflushed [or it needs to ack])
+14:25 &lt;jrandom&gt; ok, swinging on to 4) mail discussion
+14:25 &lt;jrandom&gt; postman - you 'round?
+14:26 &lt;deer&gt; &lt;postman&gt; ya
+14:26 &lt;jrandom&gt; word, wanna give us a run down / update wrt the mail stuff?
+14:27 &lt;deer&gt; &lt;postman&gt; hmm, ok tho i am quite shy talking in front of that many ppl :)
+14:27 &lt;jrandom&gt; heh just imagine we're all nak^H^H^Her... nm
+14:28  * Janonymous gets popcorn out
+14:28 &lt;deer&gt; &lt;postman&gt; since the 20th od september there is a SMTP/POP Service running - accessible with normal smtp/pop3 MUAs
+14:29 &lt;deer&gt; &lt;postman&gt; i put quite some efforts in it in a way that i analyzed the potential risks that normal mail clients bear
+14:29 &lt;Janonymous&gt; what about inproxies/outproxies?
+14:29 &lt;deer&gt; &lt;postman&gt; put it all together on a website 
+14:29 &lt;deer&gt; &lt;postman&gt; for those who haven't done so: www.postman.i2p
+14:29  * Janonymous has not access to the network currently
+14:30 &lt;deer&gt; &lt;postman&gt; there's a proposal on the website that tries to comprehend all the common problems dealing with anonymity and reliability of a mailservice when doing a bridging between i2p and internet
+14:30 &lt;deer&gt; &lt;postman&gt; out/inproxy does not run yet but is in the planning
+14:30 &lt;Janonymous&gt; I think I caught some of the discussion on the maillist or the forum
+14:30 &lt;Janonymous&gt; out would be more dangerous than in, right?
+14:31 &lt;deer&gt; &lt;postman&gt; first i want a commonly accepted concept
+14:31 &lt;deer&gt; &lt;postman&gt; generally YES, but i think we found a way that spam and the likes won't be sent outward
+14:31 &lt;jrandom&gt; what'd be neat is if the mx.postman.i2p in/outproxy could dispatch to different (or multiple redundant) pop3 accts
+14:31 &lt;deer&gt; &lt;postman&gt; simply by putting a quota on every user trying to send mails out
+14:32 &lt;jrandom&gt; (that way it wouldn't be tied to a particular mailhost)
+14:32 &lt;deer&gt; &lt;postman&gt; jrandom2p: please explain further
+14:33 &lt;Janonymous&gt; could the seperate mailhosts be syncronized too?
+14:33 &lt;deer&gt; &lt;postman&gt; jrandom2p: it's a question of account based routing
+14:33 &lt;jrandom&gt; right postman
+14:33 &lt;jrandom&gt; probably lots of work, i dont know much about the MTAs you're working on
+14:33 &lt;deer&gt; &lt;postman&gt; jrandom2p: the out/in proxy could easily handle more than one internal mailsystem - even could arrange a fallback kind of delivery 
+14:34 &lt;jrandom&gt; 'k, great
+14:34 &lt;Janonymous&gt; Q wrt in/out
+14:34 &lt;deer&gt; &lt;postman&gt; janonymous: i did not understand your question - please explain
+14:34  * jrandom dreams up uucp-style offline fetch from mx.postman :)
+14:35 &lt;Janonymous&gt; would mandatory mailbox to mailbox encryption make in/out sending less dangerous?
+14:35 &lt;deer&gt; &lt;postman&gt; jrandom: haha, uucp is not needed i think - maybe ETRN is sexier :)
+14:35 &lt;deer&gt; &lt;postman&gt; janonymous: right now the system works only internaly - everyone is free to apply PGP or sth similiar
+14:36 &lt;jrandom&gt; Janonymous: you should swing by www.postman.i2p - he's put up a chunk of ideas / issues on there
+14:36 &lt;Janonymous&gt; mandatory encryption/signatures is also an antispam method I believe
+14:36 &lt;deer&gt; &lt;Ragnarok&gt; would it be possible to serve the postman.i2p address book using LDAP?
+14:36 &lt;Janonymous&gt; I will once my laptop comes in
+14:37 &lt;deer&gt; &lt;postman&gt; rag: there's an addressbook already - it is based on SQL tho - a transfer to LDAP os possible
+14:38 &lt;Janonymous&gt; = server hosted address book?
+14:38 &lt;deer&gt; * postman invites everybody to contribute own ideas to the ideas/concepts html document
+14:38 &lt;Janonymous&gt; will do postman
+14:38 &lt;deer&gt; * cervantes spiders the address book and starts writing penis enlargement pharmacutical mails 
+14:39 &lt;deer&gt; &lt;postman&gt; janonymous: well, ALL mailusers are SQL based - thus the "addressbook" is just a view on that table
+14:39 &lt;deer&gt; &lt;postman&gt; cervantes: btw, every user can chose whether he wants to be visible or not
+14:39 &lt;Janonymous&gt; ah
+14:40 &lt;Janonymous&gt; how about selective groups ;)
+14:40 &lt;deer&gt; &lt;cervantes&gt; postman: yup I've signed up already ;-)
+14:40 &lt;deer&gt; &lt;postman&gt; cervantes: and since we HAVE a mailidentidy system , you cannot forge your senderaddress - we know it has been YOU :)
+14:40 &lt;deer&gt; &lt;postman&gt; janonymous: yeah, it's planned for version 2.0 :)
+14:41 &lt;deer&gt; &lt;cervantes&gt; postman: but I'll just spam every ircnym@postman.i2p ;-)
+14:41 &lt;deer&gt; &lt;postman&gt; cervantes: this is technically possible, yes :)
+14:42 &lt;deer&gt; &lt;postman&gt; cervantes: i hope you're able to deliver those pills too :)
+14:42 &lt;Janonymous&gt; sounds like a much needed and long expected development for i2p
+14:42 &lt;Janonymous&gt; the new email system
+14:42 &lt;deer&gt; &lt;cervantes&gt; postman: and on the sender thing..the "Cervantes' penis enlargement elixir" would indicate the sender too :)
+14:42 &lt;deer&gt; &lt;postman&gt; janonyous: i cannot tell about every detail implemented
+14:43 &lt;deer&gt; &lt;postman&gt; jan: the website is best suited for this
+14:43 &lt;deer&gt; &lt;postman&gt; cervantes: indeed - but this could be forged :)
+14:43 &lt;Janonymous&gt; alrighty.. I'll get there asap
+14:43 &lt;jrandom&gt; ok, great.  so, yeah, y'all should review whats up on www.postman.i2p and send in your ideas/comments
+14:43 &lt;deer&gt; * postman nods and sits down again
+14:44 &lt;jrandom&gt; (postman++)
+14:44 &lt;jrandom&gt; ok that brings us to 5) ???
+14:44 &lt;jrandom&gt; anyone have anything else they want to bring up?
+14:44 &lt;jrandom&gt; (i2p related)
+14:44 &lt;deer&gt; &lt;postman&gt; :)
+14:44 &lt;Janonymous&gt; just a thought
+14:45 &lt;Janonymous&gt; possible uses for I2P.. we know its a "distributed anonymous network layer"
+14:45 &lt;deer&gt; &lt;Jake&gt; my node is down :( moving equipment to a different part of the house
+14:46 &lt;Janonymous&gt; but what can that be used for.. particularly, those "common good" issues
+14:46 &lt;Janonymous&gt; Oppressive third world countries, freedom of speech.. etc.. thats one of the primary things that got me so interested in i2p to start with
+14:47 &lt;Janonymous&gt; and freenet for that matter
+14:47 &lt;deer&gt; &lt;Jake&gt; oppressed 1st world countries like the u.s.
+14:47 &lt;Janonymous&gt; so, I thought maybe some extrapolation on those issues, maybe starting on the forum, then some words on the site
+14:48 &lt;jrandom&gt; we've got a lot of work to do before we can claim any relevence for people in china
+14:48 &lt;Janonymous&gt; heh, yea, wouldn't want to make any false promises, but..
+14:48  * jrandom will not say we're safe when there has been so little peer review (and there are still so many outstanding issues)
+14:49 &lt;deer&gt; &lt;fidd&gt; how hard will it be for china to censor i2p?
+14:49 &lt;deer&gt; &lt;cervantes&gt; I think applications will begin to surface more readily once the underlying network has stopped "shapeshifting"
+14:49 &lt;Janonymous&gt; but those issues to me are one of the main things that makes i2p so exciting
+14:49 &lt;jrandom&gt; fidd: censor has many definitions.  in the sense "stop specific content from being transferred", pretty much impossible, short of making i2p illegal
+14:50 &lt;Janonymous&gt; how about, "detect i2p on networks in china"
+14:50 &lt;Janonymous&gt; stego?
+14:51 &lt;jrandom&gt; exciting, yes.  important?  yes.  necessary?  yes.  but since there's so much work to do before we're relevent, its just depressing to talk about it.
+14:51 &lt;Janonymous&gt; my bad :) 
+14:51 &lt;deer&gt; &lt;cervantes&gt; once the base network is solid, then we could probably do with some nice toys to play with  - eg filesharing apps, IM systems etc. Hopefully the userbase will swell at that point....before this happens there just won't be enough peers to guarantee anonymity for people who live in oppressive systems
+14:52 &lt;jrandom&gt; its always important to keep your eyes on the real goals Janonymous, and i appreciate that
+14:52 &lt;Janonymous&gt; yea, numbers of nodes has a lot to do with it
+14:52 &lt;modulus&gt; imo until there is stego and things like random noise to defeat traffic analysis people in oppressive countries should stay away for a while.
+14:53 &lt;deer&gt; &lt;cervantes&gt; no..they should stay here and help :)
+14:53 &lt;modulus&gt; :-)
+14:53  * jrandom will not describe in detail why those aspects won't be necessary, as the 3.0 rev will take care of 'em :)
+14:53 &lt;modulus&gt; 3.0? sounds long-term ;-)
+14:53 &lt;jrandom&gt; i have ~= 0 faith in stego transports for public networks
+14:54 &lt;jrandom&gt; it aint tomorrow, thats for sure.
+14:54 &lt;Janonymous&gt; word? huh
+14:54 &lt;Janonymous&gt; jrandom: whys that (wrt stego)?
+14:55 &lt;jrandom&gt; how to defeat stego on public networks with open source software: download the source, review the stego generation code, write detection code, deploy.
+14:56 &lt;jrandom&gt; how to defeat stego on public networks with closed source software: kidnap the dev's family, subvert the code.  deploy.
+14:56 &lt;Janonymous&gt; ah.. yea.. random inputs? eh.. I just read this article talking like it was the future or something
+14:56 &lt;jrandom&gt; how to defeat stego on private networks:  laugh at the 5 people using it, and arrest 'em all.
+14:56 &lt;modulus&gt; well, what about anonymous closed-source software? of course it could be a trojan ;-)
+14:57 &lt;deer&gt; &lt;Jake&gt; jrandom: if you're ever kidnapped, you can let us know by telling us "my dog fido is really upset about the food he's eating today"
+14:57 &lt;deer&gt; &lt;Jake&gt; that will be the giveaway and we'll know
+14:57 &lt;deer&gt; &lt;cervantes&gt; %s!dev's family!jrandom
+14:57 &lt;jrandom&gt; heh jake
+14:58 &lt;Janonymous&gt; whens the eta for 4.2?
+14:58 &lt;jrandom&gt; Janonymous: the #1 feature of anonymity or security software: snake oil.
+14:58 &lt;jrandom&gt; 0.4.2?  sometime this month
+14:58 &lt;jrandom&gt; prolly near the end
+14:58 &lt;Janonymous&gt; heheh. 
+14:58 &lt;jrandom&gt; 0.4.1.3 will prolly be out later this week or the weekend
+14:58 &lt;deer&gt; &lt;cervantes&gt; Jake: that would never work, we'll juist think you've poisoned his dog
+14:58 &lt;deer&gt; &lt;cervantes&gt; *just
+14:58 &lt;Janonymous&gt; I should be back on the net in a week or two
+14:59 &lt;jrandom&gt; r0x0r
+14:59 &lt;jrandom&gt; ok, anyone else have something to bring up?
+14:59 &lt;deer&gt; &lt;Jake&gt; cervantes :)
+15:00 &lt;jrandom&gt; if not..
+15:00  * jrandom winds up
+15:00  * jrandom *baf*s the meeting closed
+</div>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

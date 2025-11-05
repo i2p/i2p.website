@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>ChaCha Tunnel Layer Encryption | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="ChaCha Tunnel Layer Encryption | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="The Invisible Internet Project - A privacy-focused, anonymous network layer">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/proposals/153-chacha20-layer-encryption/">
+
+    
+    <link rel="icon" type="image/png" href="../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../en/" class="logo-link">
+                    <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/about/">Overview</a></li>
+                            <li><a href="../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../en/blog/" class="">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../en/proposals/153-chacha20-layer-encryption/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+
+<div class="proposals-page">
+    <div class="container">
+        
+        <nav class="breadcrumbs">
+            <a href="../../../en/">Home</a>
+            <span class="separator">/</span>
+            <a href="../../../en/proposals/">Proposals</a>
+            <span class="separator">/</span>
+            <span class="current">ChaCha Tunnel Layer Encryption</span>
+        </nav>
+
+        
+        <header class="proposal-header">
+            <div class="proposal-title-section">
+                <h1 class="proposal-title">ChaCha Tunnel Layer Encryption</h1>
+                <div class="proposal-number">Proposal 153</div>
+            </div>
+
+            
+            <div class="proposal-meta-box">
+                <div class="proposal-status status-open">
+                    Open
+                </div>
+
+                
+                <div class="proposal-info-grid">
+                    
+                    <div class="info-item">
+                        <span class="info-label">Author</span>
+                        <span class="info-value">chisana</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Created</span>
+                        <span class="info-value">2019-08-04</span>
+                    </div>
+                    
+
+                    
+                    <div class="info-item">
+                        <span class="info-label">Last Updated</span>
+                        <span class="info-value">2019-08-05</span>
+                    </div>
+                    
+
+                    
+
+                    
+                </div>
+
+                
+                
+            </div>
+        </header>
+
+        
+        <article class="proposal-content">
+            <h2 id="overview">Overview</h2>
+<p>This proposal builds on and requires the changes from proposal 152: ECIES Tunnels.</p>
+<p>Only tunnels built through hops supporting the BuildRequestRecord format for ECIES-X25519
+tunnels can implement this specification.</p>
+<p>This specification requires the Tunnel Build Options format for indicating
+tunnel layer encryption type, and transmitting layer AEAD keys.</p>
+<h3 id="goals">Goals</h3>
+<p>The goals of this proposal are to:</p>
+<ul>
+<li>Replace AES256/ECB+CBC with ChaCha20 for established tunnel IV and layer encryption</li>
+<li>Use ChaCha20-Poly1305 for inter-hop AEAD protection</li>
+<li>Be undetectable from existing tunnel layer encryption by non-tunnel participants</li>
+<li>Make no changes to overall tunnel message length</li>
+</ul>
+<h3 id="established-tunnel-message-processing">Established Tunnel Message Processing</h3>
+<p>This section describes changes to:</p>
+<ul>
+<li>Outbound and Inbound Gateway preprocessing + encryption</li>
+<li>Participant encryption + postprocessing</li>
+<li>Outbound and Inbound Endpoint encryption + postprocessing</li>
+</ul>
+<p>For an overview of current tunnel message processing, see the [Tunnel-Implementation]_ spec.</p>
+<p>Only changes for routers supporting ChaCha20 layer encryption are discussed.</p>
+<p>No changes are considered for mixed tunnel with AES layer encryption, until a safe protocol can be devised
+for converting a 128-bit AES IV to a 64-bit ChaCha20 nonce. Bloom filters guarantee uniqueness
+for the full IV, but the first half of unique IVs could be identical.</p>
+<p>This means layer encryption must be uniform for all hops in the tunnel, and established using
+tunnel build options during the tunnel creation process.</p>
+<p>All gateways and tunnel participants will need to maintain a Bloom filter for validating the two independent nonces.</p>
+<p>The <code>nonceKey</code> mentioned throughout this proposal takes the place of the <code>IVKey</code> used in AES layer encryption.
+It is generated using the same KDF from proposal 152.</p>
+<h3 id="aead-encryption-of-hop-to-hop-messages">AEAD Encryption of Hop-to-Hop Messages</h3>
+<p>An additional unique <code>AEADKey</code> will need to be generated for each pair of consecutive hops.
+This key will be used by consecutive hops to ChaCha20-Poly1305 encrypt and decrypt the
+inner ChaCha20 encrypted tunnel message.</p>
+<p>Tunnel messages will need to reduce the length of the inner encrypted frame by 16 bytes to
+accommodate the Poly1305 MAC.</p>
+<p>AEAD cannot be used on the messages directly, since iterative decryption is needed by outbound tunnels.
+Iterative decryption can only be achieved, in the way it&rsquo;s used now, using ChaCha20 without AEAD.</p>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; -%}
++&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+
+|    Tunnel ID      |   tunnelNonce     |
++&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+
+| tunnelNonce cont. |    obfsNonce      |
++&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+&mdash;-+
+|  obfsNonce cont.  |                   |
++&mdash;-+&mdash;-+&mdash;-+&mdash;-+                   +
+|                                       |</p>
+<ul>
+<li>
+<pre><code>      Encrypted Data              +
+</code></pre>
+</li>
+</ul>
+<p>~                                       ~
+|                                       |</p>
+<ul>
+<li>
+<pre><code>              +----+----+----+----+
+</code></pre>
+</li>
+</ul>
+<p>|                   |    Poly1305 MAC   |
++&mdash;-+&mdash;-+&mdash;-+&mdash;-+                   +<br>
+|                                       |</p>
+<ul>
+<li>
+<pre><code>              +----+----+----+----+
+</code></pre>
+</li>
+</ul>
+<p>|                   |
++&mdash;-+&mdash;-+&mdash;-+&mdash;-+</p>
+<p>Tunnel ID :: <code>TunnelId</code>
+4 bytes
+the ID of the next hop</p>
+<p>tunnelNonce ::
+8 bytes
+the tunnel layer nonce</p>
+<p>obfsNonce ::
+8 bytes
+the tunnel layer nonce encryption nonce</p>
+<p>Encrypted Data ::
+992 bytes
+the encrypted tunnel message</p>
+<p>Poly1305 MAC ::
+16 bytes</p>
+<p>total size: 1028 Bytes
+{% endhighlight %}</p>
+<p>Inner hops (with preceding and following hops), will have two <code>AEADKeys</code>, one for decrypting
+the AEAD layer of the previous hop, and encrypting the AEAD layer to the following hop.</p>
+<p>All inner hop participants will thus have 64 additional bytes of key material included in their BuildRequestRecords.</p>
+<p>The Outbound Endpoint and Inbound Gateway will only require an additional 32 bytes of keydata,
+since they do not tunnel layer encrypt messages between each other.</p>
+<p>The Outbound Gateway generates its <code>outAEAD</code> key, which is the same as the first
+outbound hop&rsquo;s <code>inAEAD</code> key.</p>
+<p>The Inbound Endpoint generates its <code>inAEAD</code> key, which is the same as the final
+inbound hop&rsquo;s <code>outAEAD</code> key.</p>
+<p>Inner hops will receive and <code>inAEADKey</code> and <code>outAEADKey</code> which will be used to AEAD decrypt
+incoming messages and encrypt outgoing messages, respectively.</p>
+<p>As an example, in a tunnel with inner hops OBGW, A, B, OBEP:</p>
+<ul>
+<li>A&rsquo;s <code>inAEADKey</code> is the same as the OBGW&rsquo;s <code>outAEADKey</code></li>
+<li>B&rsquo;s <code>inAEADKey</code> is the same as A&rsquo;s <code>outAEADKey</code></li>
+<li>B&rsquo;s <code>outAEADKey</code> is the same as OBEP&rsquo;s <code>inAEADKey</code></li>
+</ul>
+<p>Keys are unique to hop pairs, so OBEP&rsquo;s <code>inAEADKey</code> will be different than A&rsquo;s <code>inAEADKey</code>,
+A&rsquo;s <code>outAEADKey</code> different than B&rsquo;s <code>outAEADKey</code>, etc.</p>
+<h3 id="gateway-and-tunnel-creator-message-processing">Gateway and Tunnel Creator Message Processing</h3>
+<p>Gateways will fragment and bundle messages in the same way, reserving space after the instructions-fragment
+frame for the Poly1305 MAC.</p>
+<p>Inner I2NP messages containing AEAD frames (including the MAC) can be split across fragments,
+but any dropped fragments will result in failed AEAD decryption (failed MAC verification) at the
+endpoint.</p>
+<h3 id="gateway-preprocessing--encryption">Gateway Preprocessing &amp; Encryption</h3>
+<p>When tunnels support ChaCha20 layer encryption, gateways will generate two 64-bit nonces per message set.</p>
+<p>Inbound tunnels:</p>
+<ul>
+<li>
+<p>Encrypt the IV and tunnel message(s) using ChaCha20</p>
+</li>
+<li>
+<p>Use 8-byte <code>tunnelNonce</code> and <code>obfsNonce</code> given the lifetime of tunnels</p>
+</li>
+<li>
+<p>Use 8-byte <code>obfsNonce</code> for <code>tunnelNonce</code> encryption</p>
+</li>
+<li>
+<p>Destroy tunnel before 2^(64 - 1) - 1 sets of messages: 2^63 - 1 = 9,223,372,036,854,775,807</p>
+<ul>
+<li>Nonce limit in place to avoid collision of the 64-bit nonces</li>
+<li>Nonce limit nearly impossible to ever be reached, given this would be over ~15,372,286,728,091,294 msgs/second for 10 minute tunnels</li>
+</ul>
+</li>
+<li>
+<p>Tune the Bloom filter based on a reasonable number of expected elements (128 msgs/sec, 1024 msgs/sec? TBD)</p>
+</li>
+</ul>
+<p>The tunnel&rsquo;s Inbound Gateway (IBGW), processes messages received from another tunnel&rsquo;s Outbound Endpoint (OBEP).</p>
+<p>At this point, the outermost message layer is encrypted using point-to-point transport encryption.
+The I2NP message headers are visible, at the tunnel layer, to the OBEP and IBGW.
+The inner I2NP messsages are wrapped in Garlic cloves, encrypted using end-to-end session encryption.</p>
+<p>The IBGW preprocesses the messages into the appropriately formatted tunnel messages, and encrypts as following:</p>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}</p>
+<p>// IBGW generates random nonces, ensuring no collision in its Bloom filter for each nonce
+tunnelNonce = Random(len = 64-bits)
+obfsNonce = Random(len = 64-bits)
+// IBGW ChaCha20 &ldquo;encrypts&rdquo; each of the preprocessed tunnel messages with its tunnelNonce and layerKey
+encMsg = ChaCha20(msg = tunnel msg, nonce = tunnelNonce, key = layerKey)</p>
+<p>// ChaCha20-Poly1305 encrypt each message&rsquo;s encrypted data frame with the tunnelNonce and outAEADKey
+(encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
+{% endhighlight %}</p>
+<p>Tunnel message format will slightly change, using two 8-byte nonces instead of a 16-byte IV.
+The <code>obfsNonce</code> used for encrypting the nonce is appended to the 8-byte <code>tunnelNonce</code>,
+and is encrypted by each hop using the encrypted <code>tunnelNonce</code> and the hop&rsquo;s <code>nonceKey</code>.</p>
+<p>After the message set has be pre-emptively decrypted for each hop, the Outbound Gateway
+ChaCha20-Poly1305 AEAD encrypts the ciphertext portion of each tunnel message using
+the <code>tunnelNonce</code> and its <code>outAEADKey</code>.</p>
+<p>Outbound tunnels:</p>
+<ul>
+<li>Iteratively decrypt tunnel messages</li>
+<li>ChaCha20-Poly1305 encrypt preemptively decrypted tunnel message encrypted frames</li>
+<li>Use the same rules for layer nonces as Inbound tunnels</li>
+<li>Generate random nonces once per set of tunnel messages sent</li>
+</ul>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}</p>
+<p>// For each set of messages, generate unique, random nonces
+tunnelNonce = Random(len = 64-bits)
+obfsNonce = Random(len = 64-bits)</p>
+<p>// For each hop, ChaCha20 the previous tunnelNonce with the current hop&rsquo;s IV key
+tunnelNonce = ChaCha20(msg = prev. tunnelNonce, nonce = obfsNonce, key = hop&rsquo;s nonceKey)</p>
+<p>// For each hop, ChaCha20 &ldquo;decrypt&rdquo; the tunnel message with the current hop&rsquo;s tunnelNonce and layerKey
+decMsg = ChaCha20(msg = tunnel msg(s), nonce = tunnelNonce, key = hop&rsquo;s layerKey)</p>
+<p>// For each hop, ChaCha20 &ldquo;decrypt&rdquo; the obfsNonce with the current hop&rsquo;s encrypted tunnelNonce and nonceKey
+obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = hop&rsquo;s nonceKey)</p>
+<p>// After hop processing, ChaCha20-Poly1305 encrypt each tunnel message&rsquo;s &ldquo;decrypted&rdquo; data frame with the first hop&rsquo;s encrypted tunnelNonce and inAEADKey
+(encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = decMsg, nonce = first hop&rsquo;s encrypted tunnelNonce, key = first hop&rsquo;s inAEADKey / GW outAEADKey)
+{% endhighlight %}</p>
+<h3 id="participant-processing">Participant Processing</h3>
+<p>Participants will track seen messages in the same way, using decaying Bloom filters.</p>
+<p>Tunnel nonces will each need to be encrypted once per-hop, to prevent confirmation attacks
+by non-consecutive, colluding hops.</p>
+<p>Hops will encrypt the received nonce to prevent confirmation attacks between prior and later hops,
+i.e. colluding, non-consecutive hops being able to tell they belong to the same tunnel.</p>
+<p>To validate received <code>tunnelNonce</code> and <code>obfsNonce</code>, participants check each nonce individually
+against their Bloom filter for duplicates.</p>
+<p>After validation, the participant:</p>
+<ul>
+<li>ChaCha20-Poly1305 decrypts each tunnel message&rsquo;s AEAD ciphertext with the received <code>tunnelNonce</code> and its <code>inAEADKey</code></li>
+<li>ChaCha20 encrypts the <code>tunnelNonce</code> with its <code>nonceKey</code> and received <code>obfsNonce</code></li>
+<li>ChaCha20 encrypts the each tunnel message&rsquo;s encrypted data frame with the encrypted <code>tunnelNonce</code> and its <code>layerKey</code></li>
+<li>ChaCha20-Poly1305 encrypts each tunnel message&rsquo;s encrypted data frame the encrypted <code>tunnelNonce</code> and its <code>outAEADKey</code></li>
+<li>ChaCha20 encrypts the <code>obfsNonce</code> with its <code>nonceKey</code> and encrypted <code>tunnelNonce</code></li>
+<li>Sends the tuple {<code>nextTunnelId</code>, encrypted (<code>tunnelNonce</code> || <code>obfsNonce</code>), AEAD ciphertext || MAC} to the next hop.</li>
+</ul>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}</p>
+<p>// For verification, tunnel hops should check Bloom filter for each received nonce&rsquo;s uniqueness
+// After verification, unwrap the AEAD frame(s) byChaCha20-Poly1305 decrypt each tunnel message&rsquo;s encrypted frame
+// with the received tunnelNonce and inAEADKey
+encTunMsg = ChaCha20-Poly1305-Decrypt(msg = received encMsg || MAC, nonce = received tunnelNonce, key = inAEADKey)</p>
+<p>// ChaCha20 encrypt the tunnelNonce with the obfsNonce and hop&rsquo;s nonceKey
+tunnelNonce = ChaCha20(msg = received tunnelNonce, nonce = received obfsNonce, key = nonceKey)</p>
+<p>// ChaCha20 encrypt each tunnel message&rsquo;s encrypted data frame with the encrypted tunnelNonce and hop&rsquo;s layerKey
+encMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)</p>
+<p>// For AEAD protection, also ChaCha20-Poly1305 encrypt each message&rsquo;s encrypted data frame
+// with the encrypted tunnelNonce and the hop&rsquo;s outAEADKey
+(encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)</p>
+<p>// ChaCha20 encrypt the received obfsNonce with the encrypted tunnelNonce and hop&rsquo;s nonceKey
+obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
+{% endhighlight %}</p>
+<h3 id="inbound-endpoint-processing">Inbound Endpoint Processing</h3>
+<p>For ChaCha20 tunnels, the following scheme will be used to decrypt each tunnel message:</p>
+<ul>
+<li>Validate the received <code>tunnelNonce</code> and <code>obfsNonce</code> independently against its Bloom filter</li>
+<li>ChaCha20-Poly1305 decrypt the encrypted data frame using the received <code>tunnelNonce</code> and <code>inAEADKey</code></li>
+<li>ChaCha20 decrypt the encrypted data frame using the received <code>tunnelNonce</code> &amp; the hop&rsquo;s <code>layerKey</code></li>
+<li>ChaCha20 decrypt the <code>obfsNonce</code> using the hop&rsquo;s <code>nonceKey</code> and received <code>tunnelNonce</code> to get the preceding <code>obfsNonce</code></li>
+<li>ChaCha20 decrypt the received <code>tunnelNonce</code> using the hop&rsquo;s <code>nonceKey</code> and decrypted <code>obfsNonce</code> to get the preceding <code>tunnelNonce</code></li>
+<li>ChaCha20 decrypt the encrypted data using the decrypted <code>tunnelNonce</code> &amp; the preceding hop&rsquo;s <code>layerKey</code></li>
+<li>Repeat the steps for nonce and layer decryption for each hop in the tunnel, back to the IBGW</li>
+<li>The AEAD frame decryption is only needed in the first round</li>
+</ul>
+<p>.. raw:: html</p>
+<p>{% highlight lang=&lsquo;dataspec&rsquo; %}</p>
+<p>// For the first round, ChaCha20-Poly1305 decrypt each message&rsquo;s encrypted data frame + MAC
+// using the received tunnelNonce and inAEADKey
+msg = encTunMsg || MAC
+tunnelNonce = received tunnelNonce
+encTunMsg = ChaCha20-Poly1305-Decrypt(msg, nonce = tunnelNonce, key = inAEADKey)</p>
+<p>// Repeat for each hop in the tunnel back to the IBGW
+// For every round, ChaCha20 decrypt each hop&rsquo;s layer encryption on each message&rsquo;s encrypted data frame
+// Replace the received tunnelNonce w/ the prior round&rsquo;s decrypted tunnelNonce for each hop
+decMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
+obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
+tunnelNonce = ChaCha20(msg = tunnelNonce, nonce = obfsNonce, key = nonceKey)
+{% endhighlight %}</p>
+<h3 id="security-analysis-for-chacha20chacha20-poly1305-tunnel-layer-encryption">Security Analysis for ChaCha20+ChaCha20-Poly1305 Tunnel Layer Encryption</h3>
+<p>Switching from AES256/ECB+AES256/CBC to ChaCha20+ChaCha20-Poly1305 has a number of advantages, and new security considerations.</p>
+<p>The biggest security considerations to account for, are that ChaCha20 and ChaCha20-Poly1305 nonces must be unique per-message,
+for the life of the key being used.</p>
+<p>Failing to use unique nonces with the same key on different messages breaks ChaCha20 and ChaCha20-Poly1305.</p>
+<p>Using an appended <code>obfsNonce</code> allows the IBEP to decrypt the <code>tunnelNonce</code> for each hop&rsquo;s layer encryption,
+recovering the previous nonce.</p>
+<p>The <code>obfsNonce</code> alongside the <code>tunnelNonce</code> doesn&rsquo;t reveal any new information to tunnel hops,
+since the <code>obfsNonce</code> is encrypted using the encrypted <code>tunnelNonce</code>. This also allows the IBEP to recover
+the previous <code>obfsNonce</code> in a similar way to <code>tunnelNonce</code> recovery.</p>
+<p>The biggest security advantage is that there are no confirmation or oracle attacks against ChaCha20,
+and using ChaCha20-Poly1305 between hops adds AEAD protection against ciphertext manipulation from
+out-of-band MitM attackers.</p>
+<p>There are practical oracle attacks against AES256/ECB + AES256/CBC, when the key is reused (as in tunnel layer encryption).</p>
+<p>The oracle attacks against AES256/ECB won&rsquo;t work, because of the double-encryption used, and encryption is over a
+single block (the tunnel IV).</p>
+<p>The padding oracle attacks against AES256/CBC won&rsquo;t work, because no padding is used. If tunnel message length ever
+changed to non-mod-16 lengths, AES256/CBC would still not be vulnerable due to rejected duplicate IVs.</p>
+<p>Both attacks are also blocked by disallowing multiple oracle calls using the same IV, since duplicate IVs are rejected.</p>
+<h2 id="references">References</h2>
+<p>.. [Tunnel-Implementation]
+/docs/specs/implementation/</p>
+
+        </article>
+
+        
+        <nav class="page-nav">
+            <a href="../../../en/proposals/" class="page-nav-link">
+                ← Back to Proposals
+            </a>
+            
+            <a href="../../../proposals/153-chacha-tunnel-layer-encryption.txt" class="page-nav-link" download>
+                📄 Download Source (.txt)
+            </a>
+            
+        </nav>
+    </div>
+</div>
+
+<style>
+.proposals-page {
+    min-height: 100vh;
+    padding: var(--spacing-xl) 0;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.breadcrumbs a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.breadcrumbs a:hover {
+    color: var(--color-primary);
+}
+
+.separator {
+    color: var(--color-border);
+}
+
+.current {
+    color: var(--color-text);
+}
+
+ 
+.proposal-header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.proposal-title-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.proposal-title {
+    font-size: 2.5rem;
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--color-text);
+}
+
+.proposal-number {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+ 
+.proposal-meta-box {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.proposal-status {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+ 
+.status-open {
+    background: #dbeafe;
+    color: #0369a1;
+}
+
+.dark .status-open {
+    background: #0c4a6e;
+    color: #7dd3fc;
+}
+
+.status-accepted {
+    background: #dbeafe;
+    color: #0369a1;
+}
+
+.dark .status-accepted {
+    background: #0c4a6e;
+    color: #7dd3fc;
+}
+
+.status-finished {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.dark .status-finished {
+    background: #164e63;
+    color: #86efac;
+}
+
+.status-closed {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.dark .status-closed {
+    background: #164e63;
+    color: #86efac;
+}
+
+.status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.dark .status-rejected {
+    background: #7f1d1d;
+    color: #fca5a5;
+}
+
+.status-draft,
+.status-needs-revision,
+.status-dead,
+.status-needs-research {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.dark .status-draft,
+.dark .status-needs-revision,
+.dark .status-dead,
+.dark .status-needs-research {
+    background: #78350f;
+    color: #fde047;
+}
+
+.status-meta,
+.status-informational,
+.status-reserve {
+    background: #e9d5ff;
+    color: #6b21a8;
+}
+
+.dark .status-meta,
+.dark .status-informational,
+.dark .status-reserve {
+    background: #581c87;
+    color: #e879f9;
+}
+
+ 
+.proposal-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.info-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+}
+
+.info-value {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+ 
+.proposal-relationships {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-md);
+}
+
+.relationship {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.relationship:last-child {
+    margin-bottom: 0;
+}
+
+.relationship-label {
+    font-weight: 600;
+    color: var(--color-text-muted);
+    min-width: 120px;
+}
+
+.relationship-value {
+    color: var(--color-text);
+}
+
+ 
+.proposal-content {
+    line-height: 1.8;
+    color: var(--color-text);
+    max-width: 900px;
+    margin: var(--spacing-2xl) 0;
+}
+
+.proposal-content h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+}
+
+.proposal-content h3 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.375rem;
+}
+
+.proposal-content h4 {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.125rem;
+}
+
+.proposal-content p {
+    margin-bottom: var(--spacing-md);
+}
+
+.proposal-content ul,
+.proposal-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.proposal-content li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.proposal-content code {
+    background: var(--color-bg-secondary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+    font-family: 'Courier New', monospace;
+}
+
+.proposal-content pre {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    overflow-x: auto;
+    margin-bottom: var(--spacing-md);
+    font-size: 0.875rem;
+}
+
+.proposal-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.proposal-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--spacing-md);
+    margin-left: 0;
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+    color: var(--color-text-secondary);
+}
+
+.proposal-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.proposal-content a:hover {
+    border-bottom-color: var(--color-primary);
+}
+
+.proposal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-md);
+}
+
+.proposal-content table th {
+    background: var(--color-bg-secondary);
+    padding: var(--spacing-sm);
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.proposal-content table td {
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.proposal-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin: var(--spacing-lg) 0;
+    display: block;
+}
+
+ 
+.page-nav {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.page-nav-link {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.page-nav-link:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+ 
+@media (max-width: 768px) {
+    .proposal-title {
+        font-size: 1.75rem;
+    }
+
+    .proposal-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../en/privacy/">Privacy</a>
+                <a href="../../../en/terms/">Terms</a>
+                <a href="../../../en/impressum/">Impressum</a>
+                <a href="../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

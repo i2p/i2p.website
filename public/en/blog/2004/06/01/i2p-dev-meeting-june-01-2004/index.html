@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Dev Meeting - June 01, 2004 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="I2P development meeting log for June 01, 2004.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Dev Meeting - June 01, 2004 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="I2P development meeting log for June 01, 2004.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2004/06/01/i2p-dev-meeting-june-01-2004/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2004/06/01/i2p-dev-meeting-june-01-2004/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2004-06-01">
+                    June 1, 2004
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">meeting</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Dev Meeting - June 01, 2004</h1>
+
+            
+            <div class="post-author">By duck</div>
+            
+        </div>
+
+        <div class="post-content">
+            <h2 id="quick-recap">Quick recap</h2>
+<p class="attendees-inline"><strong>Present:</strong> deer, duck, hypercubus, Masterboy, mihi, Nightblade, tessier, wilde</p>
+<h2 id="meeting-log">Meeting Log</h2>
+<div class="irc-log">
+[22:59] &lt;duck&gt; Tue Jun  1 21:00:00 UTC 2004
+[23:00] &lt;duck&gt; hi folks!
+[23:00] &lt;mihi&gt; hi duck
+[23:00] &lt;duck&gt; http://dev.i2p.net/pipermail/i2p/2004-June/000250.html
+[23:00] &lt;duck&gt; my proposal:
+[23:00] * Masterboy has joined #i2p
+<p>[23:00] &lt;duck&gt; 1) code progress
+[23:00] &lt;duck&gt; 2) featured content
+[23:00] &lt;duck&gt; 3) testnet status
+[23:00] &lt;duck&gt; 4) bounties
+[23:00] &lt;duck&gt; 5) ???
+[23:00] &lt;Masterboy&gt; hi:)
+[23:00] &lt;duck&gt; .
+[23:01] &lt;duck&gt; since jrandom is off we&rsquo;ll have to do it ourself
+[23:01] &lt;duck&gt; (I know that he is logging and verifying our independency)
+[23:01] &lt;Masterboy&gt; no problem:P
+[23:02] &lt;duck&gt; unless there are problems with the agenda I propose that we stick to it
+[23:02] &lt;duck&gt; though there aint much that I can do if you dont :)
+[23:02] &lt;duck&gt; .
+[23:02] &lt;mihi&gt; ;)
+[23:02] &lt;duck&gt; 1) code progress
+[23:02] &lt;duck&gt; not much code submitted to cvs
+[23:02] &lt;duck&gt; I did win the trophy this week: <a href="http://duck.i">http://duck.i</a>2p/duck_trophy.jpg
+[23:03] * hypercubus has no cvs account yet
+[23:03] &lt;Masterboy&gt; and who did submit something?
+[23:03] &lt;duck&gt; anybody doing any secret coding?
+[23:03] * Nightblade has joined #I2P</p>
+<p>[23:03] &lt;hypercubus&gt; BrianR was working on some stuff
+[23:04] &lt;hypercubus&gt; i&rsquo;ve got maybe 20% of the 0.4 installer hacked out
+[23:04] &lt;duck&gt; hypercubus: if you have stuff then provide diffs and $dev will commit for you
+[23:04] &lt;duck&gt; ofcourse the strict license agreements apply
+[23:05] &lt;duck&gt; hypercubus: cool, any issues / things worth mentioning?
+[23:06] &lt;hypercubus&gt; not yet, but i&rsquo;ll probably need a couple of BSD people to test the preinstaller shell scripts
+[23:06] * duck turns some stones
+[23:06] &lt;Nightblade&gt; is it text-only
+[23:07] &lt;mihi&gt; duck: which one is you on duck_trophy.jpg?
+[23:07] &lt;mihi&gt; ;)
+[23:07] &lt;Nightblade&gt; luckypunk has freebsd, also my isp has freebsd but their config is kind of screwed up
+[23:07] &lt;Nightblade&gt; my web host isp that is, not comcast
+[23:08] &lt;duck&gt; mihi: left one with the glasses. wilde is the right guy handing me the trophy
+[23:08] * wilde waves
+[23:08] &lt;hypercubus&gt; you have a choice&hellip; if you have java installed, you can skip the preinstaller altogether&hellip;
+if you don&rsquo;t have java installed you can run the linux binary or win32 binary preinstaller (console mode), or a
+generic *nix script preinstaller (console mode)
+[23:08] &lt;hypercubus&gt; the main installer gives you the choice of using console mode or spiffy GUI mode
+[23:08] &lt;Masterboy&gt; i will install freebsd soon so in the future i will give a try to the installer too
+[23:09] &lt;hypercubus&gt; ok good&hellip; didn&rsquo;t know if anyone else besides jrandom was using it
+[23:09] &lt;Nightblade&gt; freebsd java is invoked as &ldquo;javavm&rdquo; rather than &ldquo;java&rdquo;
+[23:09] &lt;hypercubus&gt; as built from sun sources?
+[23:09] &lt;mihi&gt; freebsd supports symlinks ;)
+[23:10] &lt;hypercubus&gt; anyhow the binary preinstaller is 100% complete
+[23:10] &lt;hypercubus&gt; compiles with gcj to native
+[23:11] &lt;hypercubus&gt; it just asks you for the install dir, and it grabs a JRE for you
+[23:11] &lt;duck&gt; w00t
+[23:11] &lt;Nightblade&gt; cool
+[23:11] &lt;hypercubus&gt; jrandom&rsquo;s packaging a custom JRE for i2p</p>
+<p>[23:12] &lt;deer&gt; &lt;j&gt; .
+[23:12] &lt;Nightblade&gt; if you install java from the freebsd ports collection you use some wrapper script called
+javavm
+[23:12] &lt;deer&gt; &lt;r&gt; .
+[23:12] &lt;hypercubus&gt; anyhow this puppy will be almost completely automated
+[23:12] &lt;deer&gt; &lt;r&gt; .
+[23:12] &lt;deer&gt; &lt;r&gt; .
+[23:12] &lt;deer&gt; &lt;r&gt; .
+[23:12] &lt;deer&gt; &lt;duck&gt; r: cut it
+[23:12] &lt;deer&gt; &lt;r&gt; .
+[23:12] &lt;deer&gt; &lt;m&gt; .
+[23:13] &lt;deer&gt; &lt;m&gt; stoopid irc server, does not support pipelining :(
+[23:13] &lt;duck&gt; hypercubus: got any ETA for us?
+[23:14] &lt;deer&gt; &lt;m&gt; oops, the problem is &ldquo;Nick change too fast&rdquo; :(
+[23:14] &lt;hypercubus&gt; i still expect to be finished in under a month, before 0.4 is ripe for release
+[23:14] &lt;hypercubus&gt; though at present i&rsquo;m compiling a new OS for my dev system, so it&rsquo;ll be a couple of days
+before i get back to the installer ;-)
+[23:14] &lt;hypercubus&gt; no worries though
+[23:15] &lt;duck&gt; ok. so more news next week :)
+[23:15] &lt;duck&gt; any other coding done?
+[23:15] &lt;hypercubus&gt; hopefully&hellip; unless the power company screws me again
+[23:16] * duck moves to #2
+[23:16] &lt;duck&gt; * 2) featured content
+[23:16] &lt;duck&gt; lots of streaming audio (ogg/vorbis) done this week
+[23:16] &lt;duck&gt; baffled is running his egoplay stream and I am running a stream too
+[23:16] &lt;Masterboy&gt; and it works quite good
+[23:17] &lt;duck&gt; on our site you can get info how to use it
+[23:17] &lt;hypercubus&gt; got any rough stats for us?
+[23:17] &lt;duck&gt; if you use a player not listed there and figure out how to use it, please send them to me and I&rsquo;ll
+add
+[23:17] &lt;Masterboy&gt; duck where is the link to baffleds stream on your site?
+[23:17] &lt;Masterboy&gt; :P
+[23:17] &lt;duck&gt; hypercubus: 4kB/s goes pretty well
+[23:18] &lt;duck&gt; and with ogg it aint tooooo bad
+[23:18] &lt;hypercubus&gt; but that still seems to be the avg. speed?
+[23:18] &lt;duck&gt; my observation is that is the max
+[23:18] &lt;duck&gt; but it is all config tweaking
+[23:19] &lt;hypercubus&gt; any idea why that seems to be the max?
+[23:19] &lt;hypercubus&gt; and i&rsquo;m not just talking streaming here
+[23:19] &lt;hypercubus&gt; but downloads too
+[23:20] &lt;Nightblade&gt; i was downloading some big files yesterday (a couple megabytes) off of duck&rsquo;s hosting
+service and i was getting about 4kb-5kb as well
+[23:20] &lt;duck&gt; I think that it is the rtt
+[23:20] &lt;Nightblade&gt; those Chips movies
+[23:20] &lt;hypercubus&gt; 4-5 seems an improvement over the ~3 that i&rsquo;ve gotten consistently since i started using i2p</p>
+<p>[23:20] &lt;Masterboy&gt; 4-5kb is not bad..
+[23:20] &lt;duck&gt; with a windowsize of 1 you dont get much faster..
+[23:20] &lt;duck&gt; windowsize&gt;1 bounty: <a href="http://www.i2p.net/node/view/224">http://www.i2p.net/node/view/224</a>
+[23:21] &lt;duck&gt; mihi: maybe you can comment?
+[23:21] &lt;hypercubus&gt; but it is a remarkably consistent 3 kbps
+[23:21] &lt;mihi&gt; on what? windowsize&gt;1 with ministreaming: you are a wizard if you manage that ;)
+[23:21] &lt;hypercubus&gt; no hiccups on the bandwidth meter&hellip; a fairly smooth line
+[23:21] &lt;duck&gt; mihi: on why it is so stable at 4kb/s
+[23:21] &lt;mihi&gt; no idea. i don&rsquo;t hear any sound :(
+[23:22] &lt;duck&gt; mihi: for all i2ptunnel transfers
+[23:22] &lt;Masterboy&gt; mihi you need to config the ogg streaming plugin..
+[23:22] &lt;mihi&gt; Masterboy:?
+[23:23] &lt;mihi&gt; no, there is no limit inside i2ptunnel regarding speed. it must be in the router&hellip;
+[23:23] &lt;duck&gt; my thinking: max packet size: 32kB, 5 second rtt: 32kB/5s =~ 6.5kb/s
+[23:24] &lt;hypercubus&gt; sounds plausible
+[23:25] &lt;duck&gt; ok..
+[23:25] &lt;duck&gt; other content:
+[23:25] * hirvox has joined #i2p</p>
+<p>[23:25] &lt;duck&gt; there is a new eepsite from Naughtious
+[23:25] &lt;duck&gt; anonynanny.i2p
+[23:25] &lt;duck&gt; key is commited to cvs and he did put it on ugha&rsquo;s wiki
+[23:25] * mihi is hearing &ldquo;sitting in the &hellip;&rdquo; - duck++
+[23:25] &lt;Nightblade&gt; see if you can open two or three streams at a 4kb speed then you will be able to tell if it
+is in the router or the streaming lib
+[23:26] &lt;duck&gt; Naughtious: you there? tell something about your plan :)
+[23:26] &lt;Masterboy&gt; i have read that he provides hosting
+[23:26] &lt;duck&gt; Nightblade: I did try 3 parallel downloads from baffled and I got 3-4kB each
+[23:26] &lt;Nightblade&gt; i c
+[23:27] &lt;mihi&gt; Nightblade: how can you tell that then?
+[23:27] * mihi likes listening in &ldquo;stop&amp;go&rdquo; mode ;)
+[23:27] &lt;Nightblade&gt; well if there is some kind of limitation in the router that only lets it handle 4kb at once
+[23:27] &lt;Nightblade&gt; or if it is something else
+[23:28] &lt;hypercubus&gt; can someone explain this anonynanny site? i don&rsquo;t have a running i2p router atm
+[23:28] &lt;mihi&gt; hypercubus: just a wiki or some sort of it
+[23:28] &lt;duck&gt; plone CMS setup, open account creation
+[23:28] &lt;duck&gt; allows file upload and website stuff
+[23:28] &lt;duck&gt; through web interface
+[23:28] &lt;Nightblade&gt; another thing to do would be to test the throughput of the &ldquo;repliable datagram&rdquo; which afaik
+is the same as the streams but without acks
+[23:28] &lt;duck&gt; likely a lot like drupal
+[23:28] &lt;hypercubus&gt; yeah i&rsquo;ve run plone before
+[23:29] &lt;duck&gt; Nightblade: I have been thinking about using airhook to manage those
+[23:29] &lt;duck&gt; but so far only some basic thought
+[23:29] &lt;hypercubus&gt; anything goes for the wiki content, or does it center on something in particular?
+[23:29] &lt;Nightblade&gt; i think airhook is GPLed
+[23:29] &lt;duck&gt; the protocol
+[23:29] &lt;duck&gt; not the code
+[23:29] &lt;Nightblade&gt; ah :)
+[23:30] &lt;duck&gt; hypercubus: he wants quality content, and lets you provide that :)
+[23:30] &lt;Masterboy&gt; upload the best pr0n of yourself you have got hyper;P
+[23:30] &lt;duck&gt; ok
+[23:30] * Masterboy will try to do that too
+[23:30] &lt;hypercubus&gt; yeah, anyone running an open wiki is just asking for quality content ;-)
+[23:31] &lt;duck&gt; ok
+[23:31] * duck moves to #3
+[23:31] &lt;duck&gt; * 3) testnet status
+[23:31] &lt;Nightblade&gt; Airhook gracefully handles intermittent, unreliable, or delayed networks  &lt;&ndash; hehe not an
+optimistic description of I2P!
+[23:31] &lt;duck&gt; how has it been going?
+[23:32] &lt;duck&gt; lets put the datagram over i2p discussion to the end
+[23:32] &lt;tessier&gt; I love to run around to open wiki&rsquo;s and link to this: <a href="http://www.fissure.org/humour/pics/squirre">http://www.fissure.org/humour/pics/squirre</a>
+l.jpg
+[23:32] &lt;tessier&gt; airhook rocks
+[23:32] &lt;tessier&gt; I&rsquo;ve been looking at it for building a p2p network also.
+[23:32] &lt;Nightblade&gt; it seems to be reliable to me (#3)
+[23:32] &lt;Nightblade&gt; best i&rsquo;ve seen so far
+[23:33] &lt;duck&gt; yeah
+[23:33] &lt;mihi&gt; works well - at least for stop&amp;go audio streaming
+[23:33] &lt;duck&gt; I see quite impressive uptimes on irc
+[23:33] &lt;hypercubus&gt; agreed&hellip; seeing lots more blue guys in my router console
+[23:33] &lt;Nightblade&gt; mihi: are you listening to techno ? :)
+[23:33] &lt;duck&gt; but hard to tell since bogobot doesnt seem to handle connections that go over 00:00
+[23:33] &lt;tessier&gt; audio streaming works great for me but loading websites often takes a number of tries
+[23:33] &lt;Masterboy&gt; i have an opinion that i2p runs very good after 6 hours of use in the 6th hour i used the irc
+for 7 hours and so my router was running for 13hours
+[23:33] &lt;duck&gt; (<em>hint</em>)
+[23:34] &lt;hypercubus&gt; duck: er&hellip; heheh
+[23:34] &lt;hypercubus&gt; i could fix that i guess
+[23:34] &lt;hypercubus&gt; do you have the logging set for daily?
+[23:34] &lt;duck&gt; hypercubus++
+[23:34] &lt;hypercubus&gt; log rotation that is
+[23:34] &lt;duck&gt; oh yes
+[23:34] &lt;duck&gt; duck&ndash;
+[23:34] &lt;hypercubus&gt; that&rsquo;s why
+[23:34] &lt;Nightblade&gt; I was at work all day and turned on my computer and started i2p and was on duck&rsquo;s irc server
+in just a few minutes
+[23:35] &lt;duck&gt; I have been seeing some weird DNFs
+[23:35] &lt;duck&gt; even when connecting to my own eepsites
+[23:35] &lt;duck&gt; (<a href="http://dev.i2p.net/bugzilla/show_bug.cgi?id=74">http://dev.i2p.net/bugzilla/show_bug.cgi?id=74</a>)
+[23:35] &lt;duck&gt; I think that is what causes most problems now
+[23:35] &lt;hypercubus&gt; bogoparser will only analyze uptimes that occur wholly within a single logfile&hellip; so if the
+logfile encompasses only 24 hours, nobody will show up as connected longer than 24 hours
+[23:35] &lt;duck&gt; Masterboy and ughabugha did also have it I think&hellip;
+[23:36] &lt;Masterboy&gt; yup
+[23:36] &lt;duck&gt; (fix it and you will win next weeks trophy for sure!)
+[23:37] &lt;deer&gt; &lt;mihi&gt; bogobot is excited? ;)
+[23:37] &lt;Masterboy&gt; i tried my web site and sometimes when i hit refresh it takes the other route? and i have to
+wait for it to load but i never wait;P i hit it again and it shows instantly
+[23:37] &lt;deer&gt; &lt;mihi&gt; oops, sry. forgot that this is gated&hellip;
+[23:38] &lt;duck&gt; Masterboy: do the timeouts take 61 seconds?
+[23:39] &lt;duck&gt; mihi: bogobot set to weekly rotations now
+[23:39] * mihi has quit IRC (&ldquo;bye, and have a nice meeting&rdquo;)
+[23:40] &lt;Masterboy&gt; sorry i didn&rsquo;t check it on my web site when i can&rsquo;t reatch it instantly i just hit refresh
+and it loads instantly..
+[23:40] &lt;duck&gt; hm
+[23:40] &lt;duck&gt; well, it needs to be fixed
+[23:41] &lt;duck&gt; &hellip;. #4
+[23:41] &lt;Masterboy&gt; i think the route is given not the same eatch time
+[23:41] &lt;duck&gt; * 4) bounties
+[23:41] &lt;duck&gt; Masterboy: local connections should be cutted short
+[23:42] &lt;duck&gt; wilde had some bounty thoughts&hellip; you there?
+[23:42] &lt;Masterboy&gt; maybe it is a peer selection bug
+[23:42] &lt;wilde&gt; I&rsquo;m not sure that was for the agenda really
+[23:42] &lt;duck&gt; oh
+[23:42] &lt;wilde&gt; ok but the thoughts were something like:
+[23:42] &lt;Masterboy&gt; i think then we go public the bounty system will work better
+[23:43] &lt;Nightblade&gt; masterboy: yes there are two tunnels for each connection, or that is how i understand it
+from reading the router.config
+[23:43] &lt;wilde&gt; we could use this month to do some small advertising of i2p and increase the bounty pool a bit
+[23:43] &lt;Masterboy&gt; i can see that the Mute project is going good - they got 600$ and they didn&rsquo;t code a lot yet;P
+[23:44] &lt;wilde&gt; target against freedom communities, crypto people, etc
+[23:44] &lt;Nightblade&gt; I don&rsquo;t think jrandom wants advertising
+[23:44] &lt;wilde&gt; not public slashdot attention, no
+[23:44] &lt;hypercubus&gt; that&rsquo;s what i&rsquo;ve observed as well
+[23:44] &lt;Masterboy&gt; i want to push it again - when we go public the system will work a lot better;P
+[23:45] &lt;wilde&gt; Masterboy: bounties could speed up myi2p development for example
+[23:45] &lt;Masterboy&gt; and as jr said no public till 1.0 and only some attention after 0.4
+[23:45] &lt;Masterboy&gt; *wrote
+[23:45] &lt;wilde&gt; when we have like $500+ for a bounty people could actually survive for some weeks
+[23:46] &lt;hypercubus&gt; the tricky part is, even if we target a small dev community, like <em>cough</em> Mute devs, those
+guys might spread the word about i2p further than we&rsquo;d like
+[23:46] &lt;Nightblade&gt; someone could make a career out of fixing i2p bugs
+[23:46] &lt;hypercubus&gt; and too soon
+[23:46] &lt;wilde&gt; i2p links are already in many public places
+[23:46] &lt;Masterboy&gt; you google and you can find i2p</p>
+<p>[23:47] &lt;hypercubus&gt; obscure public places ;-) (i saw the i2p link on a freesite&hellip; i&rsquo;m lucky the damn freesite
+even loaded!)
+[23:47] &lt;wilde&gt; <a href="http://en.wikipedia.org/wiki/I2p">http://en.wikipedia.org/wiki/I2p</a>
+[23:47] &lt;Masterboy&gt; but i agree that no advertising till 0.4 is done
+[23:47] &lt;Masterboy&gt; wha???????
+[23:47] &lt;wilde&gt; <a href="http://www.ovmj.org/GNUnet/links.php3?xlang=English">http://www.ovmj.org/GNUnet/links.php3?xlang=English</a>
+[23:48] &lt;Masterboy&gt; protol0l does a great job;P
+[23:48] &lt;Masterboy&gt; ;))))))
+[23:48] &lt;hypercubus&gt; nice typo ;-)
+[23:48] &lt;wilde&gt; ok anyway, I agree we should still keep I2P private (jr read this log ;)
+[23:49] &lt;Masterboy&gt; who did that?
+[23:49] &lt;Masterboy&gt; i think the Freenet crew discussion gave more attention..
+[23:50] &lt;Masterboy&gt; and jr discussing with toad give a lot info to the big public..
+[23:50] &lt;Masterboy&gt; so as in ughas wiki - we can all blame jr for that;P
+[23:50] &lt;wilde&gt; ok anyway, we&rsquo;ll see if we can bring in some $ without bringing in /.
+[23:50] &lt;Masterboy&gt; agreed
+[23:50] &lt;hypercubus&gt; the freenet dev list is hardly what i call the &ldquo;big public&rdquo; ;-)
+[23:50] &lt;wilde&gt; .
+[23:51] &lt;hypercubus&gt; wilde: you&rsquo;ll have a lot of $ sooner than you think ;-)
+[23:51] &lt;wilde&gt; oh come on, even my mum subscribe to freenet-devl
+[23:51] &lt;duck&gt; my mum reads through gmame
+[23:51] &lt;deer&gt; &lt;clayboy&gt; freenet-devl is being taught in schools here
+[23:52] &lt;wilde&gt; .
+[23:52] &lt;Masterboy&gt; so we will see more bounties after we go 0.4 stable..
+[23:53] &lt;Masterboy&gt; that is after 2 months;P
+[23:53] &lt;wilde&gt; where did that duck go?
+[23:53] &lt;duck&gt; thanks wilde
+[23:53] &lt;hypercubus&gt; though as the only bounty claimant thus far, i have to say that the bounty money had no
+bearing on my decision to take up the challenge
+[23:54] &lt;wilde&gt; hehe, it would if it been 100x
+[23:54] &lt;duck&gt; wyou are too good for the world
+[23:54] &lt;Nightblade&gt; haha
+[23:54] * duck moves to #5
+[23:54] &lt;hypercubus&gt; wilde, $100 doesn&rsquo;t mean shit to me ;-)
+[23:54] &lt;duck&gt; 100 * 10 = 1000
+[23:55] * duck pops(&ldquo;5 airhook&rdquo;)
+[23:55] &lt;duck&gt; tessier: got any real-world experience with it
+[23:55] &lt;duck&gt; (<a href="http://www.airhook.org/">http://www.airhook.org/</a>)
+[23:55] * Masterboy will try dis out:P
+[23:56] &lt;duck&gt; java implementation (dunno if it even works) <a href="http://cvs.ofb.net/airhook-j/">http://cvs.ofb.net/airhook-j/</a>
+[23:56] &lt;duck&gt; python implementation (a mess, did work in the past) <a href="http://cvs.sourceforge.net/viewcvs.py/khashmir">http://cvs.sourceforge.net/viewcvs.py/khashmir</a>
+/khashmir/airhook.py
+[23:58] * duck opens the rant-valve
+[23:58] &lt;Nightblade&gt; j one is also gpl
+[23:58] &lt;duck&gt; port it to pubdomain
+[23:58] &lt;hypercubus&gt; amen
+[23:58] &lt;Nightblade&gt; the entire protocol doc is only about 3 pages - it can&rsquo;t be that hard
+[23:59] &lt;Masterboy&gt; nothing is hard
+[23:59] &lt;Masterboy&gt; it&rsquo;s just not easy
+[23:59] &lt;duck&gt; I dont think that it is fully specced though
+[23:59] * hypercubus takes away masterboy&rsquo;s fortune cookies
+[23:59] &lt;duck&gt; you might need to dive into the C code for a reference implementation
+[00:00] &lt;Nightblade&gt; I would do it myself but I am busy with other i2p stuff right now
+[00:00] &lt;Nightblade&gt; (and also my full-time job)
+[00:00] &lt;hypercubus&gt; duck: maybe a bounty for it?
+[00:00] &lt;Nightblade&gt; there already is
+[00:00] &lt;Masterboy&gt; ?
+[00:00] &lt;Masterboy&gt; ahh Pseudonyms
+[00:00] &lt;duck&gt; it could be used at 2 levels
+[00:00] &lt;duck&gt; 1) as a transport besides TCP
+[00:01] &lt;duck&gt; 2) as a protocol to handle datagrams inside i2cp/sam
+[00:01] &lt;hypercubus&gt; that&rsquo;s worth serious consideration then
+[00:01] &lt;hypercubus&gt; &lt;/obvious&gt;</p>
+<p>[00:02] &lt;Nightblade&gt; duck: i noticed that the repliable datagram in SAM has a maximum size of 31kb, whereas the
+stream has a maximum size of 32kb - making me think that the sender&rsquo;s destination is sent with each packet in
+repliable datagram mode, and only at the beginning for a stream mode -
+[00:02] &lt;Masterboy&gt; well airhook cvs is not very updated..
+[00:03] &lt;Nightblade&gt; making me think that it would be inefficient to make a protocol on top of the repliable
+datagrams through sam
+[00:03] &lt;duck&gt; airhooks message size is 256 bytes, i2cp&rsquo;s is 32kb, so you need to atleast change a bit
+[00:04] &lt;Nightblade&gt; actually if you wanted to do the protocol in SAM you could just use the anoymous datagram
+and have the first packet contain the sender&rsquo;s destination&hellip;. blah blah blah - i have lots of ideas but not
+enough time to code them
+[00:06] &lt;duck&gt; then again you have to problems to verify signatures
+[00:06] &lt;duck&gt; so someone could send fake packages to you
+[00:06] &lt;Masterboy&gt; topic:::: SAM
+[00:06] &lt;Masterboy&gt; ;P
+[00:07] &lt;Nightblade&gt; true
+[00:08] &lt;Nightblade&gt; but if you sent back to that destination and there was no acknowledgement you&rsquo;d know it was
+a faker
+[00:08] &lt;Nightblade&gt; there woudl have to be a handshake
+[00:08] &lt;duck&gt; but you&rsquo;ll need aapplication level handshakes for that
+[00:08] &lt;Nightblade&gt; no not really
+[00:09] &lt;Nightblade&gt; just put it in a library for accessing SAM
+[00:09] &lt;Nightblade&gt; that is a bad way of doing though
+[00:09] &lt;Nightblade&gt; doing it though
+[00:09] &lt;duck&gt; you could also use seperated tunnels
+[00:09] &lt;Nightblade&gt; it shuold be in the streaming lib
+[00:11] &lt;duck&gt; yup. makes sense
+[00:12] &lt;duck&gt; ok
+[00:12] &lt;duck&gt; I am feeling <em>baff</em>-y
+[00:13] &lt;Nightblade&gt; ja
+[00:13] * duck <em>baffs</em></p>
+</div>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

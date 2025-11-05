@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Vulnerability Response Process | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="I2P&#39;s security vulnerability reporting and response process">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="Vulnerability Response Process | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="I2P&#39;s security vulnerability reporting and response process">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/security-response/">
+
+    
+    <link rel="icon" type="image/png" href="../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../en/" class="logo-link">
+                    <img src="../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../en/about/">Overview</a></li>
+                            <li><a href="../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../en/about/media/">Press</a></li>
+                            <li><a href="../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../en/blog/" class="">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../en/security-response/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+
+<section class="security-hero">
+    <div class="container">
+        <div class="hero-icon">🔒</div>
+        <h1>Vulnerability Response Process</h1>
+        <p class="security-subtitle">I2P&#39;s security vulnerability reporting and response process</p>
+        <div class="security-contact-box">
+            <div class="contact-item">
+                <strong>Security Email:</strong>
+                <a href="mailto:security@i2p.net">security@i2p.net</a>
+            </div>
+            <div class="contact-item">
+                <strong>Response Time:</strong>
+                <span>Within 3 working days</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="security-content">
+    <div class="container">
+        <div class="security-grid">
+            <aside class="security-nav">
+                <h3>Quick Links</h3>
+                <nav>
+                    <a href="#contact">Report Vulnerability</a>
+                    <a href="#guidelines">Research Guidelines</a>
+                    <a href="#process">Response Process</a>
+                    <a href="#credit">Researcher Credit</a>
+                    <a href="#communication">Secure Communication</a>
+                    <a href="#timeline">Timeline</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#examples">What to Report</a>
+                </nav>
+            </aside>
+
+            <div class="content-wrapper">
+                <div id="contact"></div>
+<h2 id="report-a-vulnerability">Report a Vulnerability</h2>
+<p>Discovered a security issue? Report it to <strong><a href="mailto:security@i2p.net">security@i2p.net</a></strong> (PGP encouraged)</p>
+<p><a href="../../keys/i2p-security-public.asc" download class="pgp-key-btn">Download PGP Key</a> | GPG Key fingerprint: <code>40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941</code></p>
+<div id="guidelines"></div>
+<h2 id="research-guidelines">Research Guidelines</h2>
+<p><strong>Please DO NOT:</strong></p>
+<ul>
+<li>Exploit the live I2P network</li>
+<li>Conduct social engineering or attack I2P infrastructure</li>
+<li>Disrupt services for other users</li>
+</ul>
+<p><strong>Please DO:</strong></p>
+<ul>
+<li>Use isolated test networks when possible</li>
+<li>Follow coordinated disclosure practices</li>
+<li>Contact us before live network testing</li>
+</ul>
+<div id="process"></div>
+<h2 id="response-process">Response Process</h2>
+<h3 id="1-report-received">1. Report Received</h3>
+<ul>
+<li>Response within <strong>3 working days</strong></li>
+<li>Response Manager assigned</li>
+<li>Severity classification (HIGH/MEDIUM/LOW)</li>
+</ul>
+<h3 id="2-investigation--development">2. Investigation &amp; Development</h3>
+<ul>
+<li>Private patch development via encrypted channels</li>
+<li>Testing on isolated network</li>
+<li><strong>HIGH severity:</strong> Public notification within 3 days (no exploit details)</li>
+</ul>
+<h3 id="3-release--disclosure">3. Release &amp; Disclosure</h3>
+<ul>
+<li>Security update deployed</li>
+<li><strong>90-day maximum</strong> timeline to full disclosure</li>
+<li>Optional researcher credit in announcements</li>
+</ul>
+<h3 id="severity-levels">Severity Levels</h3>
+<p><strong>HIGH</strong> - Network-wide impact, immediate attention required
+<strong>MEDIUM</strong> - Individual routers, targeted exploitation
+<strong>LOW</strong> - Limited impact, theoretical scenarios</p>
+<div id="communication"></div>
+<h2 id="secure-communication">Secure Communication</h2>
+<p>Use PGP/GPG encryption for all security reports:</p>
+<pre tabindex="0"><code>Fingerprint: 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+</code></pre><p>Include in your report:</p>
+<ul>
+<li>Detailed technical description</li>
+<li>Steps to reproduce</li>
+<li>Proof-of-concept code (if applicable)</li>
+</ul>
+<div id="timeline"></div>
+<h2 id="timeline">Timeline</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Phase</th>
+          <th>Timeframe</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Initial Response</td>
+          <td>0-3 days</td>
+      </tr>
+      <tr>
+          <td>Investigation</td>
+          <td>1-2 weeks</td>
+      </tr>
+      <tr>
+          <td>Development &amp; Testing</td>
+          <td>2-6 weeks</td>
+      </tr>
+      <tr>
+          <td>Release</td>
+          <td>6-12 weeks</td>
+      </tr>
+      <tr>
+          <td>Full Disclosure</td>
+          <td>90 days max</td>
+      </tr>
+  </tbody>
+</table>
+<div id="faq"></div>
+<h2 id="faq">FAQ</h2>
+<p><strong>Will I get in trouble for reporting?</strong>
+No. Responsible disclosure is appreciated and protected.</p>
+<p><strong>Can I test on the live network?</strong>
+No. Use isolated test networks only.</p>
+<p><strong>Can I remain anonymous?</strong>
+Yes, though it may complicate communication.</p>
+<p><strong>Do you have a bug bounty?</strong>
+Not currently. I2P is volunteer-driven with limited resources.</p>
+<div id="examples"></div>
+<h2 id="what-to-report">What to Report</h2>
+<p><strong>In Scope:</strong></p>
+<ul>
+<li>I2P router vulnerabilities</li>
+<li>Protocol or cryptography flaws</li>
+<li>Network-level attacks</li>
+<li>De-anonymization techniques</li>
+<li>Denial of service issues</li>
+</ul>
+<p><strong>Out of Scope:</strong></p>
+<ul>
+<li>Third-party applications (contact developers)</li>
+<li>Social engineering or physical attacks</li>
+<li>Known/disclosed vulnerabilities</li>
+<li>Purely theoretical issues</li>
+</ul>
+<hr>
+<p><strong>Thank you for helping keep I2P secure!</strong></p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.security-hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+    padding: var(--spacing-xl) 0 var(--spacing-2xl);
+    text-align: center;
+}
+
+[data-theme="dark"] .security-hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 100%);
+}
+
+.hero-icon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.security-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: white;
+}
+
+.security-subtitle {
+    font-size: 1.125rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto var(--spacing-xl);
+}
+
+.security-contact-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    gap: var(--spacing-xl);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    font-size: 0.9375rem;
+}
+
+.contact-item strong {
+    opacity: 0.9;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.security-contact-box a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    transition: border-color var(--transition-fast);
+}
+
+.security-contact-box a:hover {
+    border-bottom-color: white;
+}
+
+.security-content {
+    padding: var(--spacing-2xl) 0;
+}
+
+.security-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: var(--spacing-2xl);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.security-nav {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.security-nav h3 {
+    font-size: 0.875rem;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.security-nav nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.security-nav a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    font-size: 0.9375rem;
+    border-left: 3px solid transparent;
+}
+
+.security-nav a:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-primary);
+    border-left-color: var(--color-primary);
+}
+
+.content-wrapper {
+    max-width: 800px;
+}
+
+.content-wrapper h2 {
+    font-size: 1.75rem;
+    color: var(--color-text);
+    margin-top: var(--spacing-3xl);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 3px solid var(--color-primary);
+    scroll-margin-top: 100px;
+}
+
+.content-wrapper h2:first-of-type {
+    margin-top: 0;
+}
+
+.content-wrapper h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+}
+
+.content-wrapper p {
+    line-height: 1.8;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1rem;
+}
+
+.content-wrapper ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.content-wrapper ul li {
+    padding: var(--spacing-md);
+    padding-left: calc(var(--spacing-lg) + var(--spacing-md));
+    position: relative;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-accent);
+}
+
+.content-wrapper ul li::before {
+    content: '→';
+    position: absolute;
+    left: var(--spacing-md);
+    color: var(--color-accent);
+    font-weight: bold;
+    font-size: 1.125rem;
+}
+
+.content-wrapper ol {
+    padding-left: 0;
+    margin-bottom: var(--spacing-xl);
+    counter-reset: item;
+    list-style: none;
+}
+
+.content-wrapper ol li {
+    padding: var(--spacing-md);
+    padding-left: calc(var(--spacing-2xl) + var(--spacing-sm));
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    line-height: 1.7;
+    color: var(--color-text);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    counter-increment: item;
+}
+
+.content-wrapper ol li::before {
+    content: counter(item);
+    position: absolute;
+    left: var(--spacing-md);
+    top: var(--spacing-md);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.content-wrapper strong {
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.content-wrapper a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.content-wrapper a:hover {
+    border-bottom-color: var(--color-primary);
+}
+
+.content-wrapper code {
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    font-weight: 600;
+}
+
+.content-wrapper pre {
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+    margin-bottom: var(--spacing-lg);
+    border: 2px solid var(--color-border);
+    position: relative;
+}
+
+.content-wrapper pre::before {
+    content: 'GPG FINGERPRINT';
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-md);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.content-wrapper pre code {
+    background: none;
+    padding: 0;
+    border: none;
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    display: block;
+}
+
+.content-wrapper table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.9375rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.content-wrapper table th {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: left;
+    font-weight: 600;
+}
+
+.content-wrapper table td {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+
+.content-wrapper table tr:last-child td {
+    border-bottom: none;
+}
+
+.content-wrapper table tr:nth-child(even) {
+    background: var(--color-bg-secondary);
+}
+
+.content-wrapper hr {
+    border: none;
+    border-top: 2px solid var(--color-border);
+    margin: var(--spacing-2xl) 0;
+}
+
+.gpg-download-btn {
+    display: inline-block;
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--color-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border: none;
+    transition: all var(--transition-base);
+}
+
+.gpg-download-btn:hover {
+    background: var(--color-primary-hover);
+    border-bottom-color: transparent;
+}
+
+@media (max-width: 968px) {
+    .security-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .security-nav {
+        position: static;
+        padding-bottom: var(--spacing-lg);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .security-nav nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .security-contact-box {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-icon {
+        font-size: 3rem;
+    }
+
+    .security-hero h1 {
+        font-size: 2rem;
+    }
+
+    .security-subtitle {
+        font-size: 1rem;
+    }
+
+    .content-wrapper h2 {
+        font-size: 1.5rem;
+    }
+
+    .content-wrapper h3 {
+        font-size: 1.125rem;
+    }
+
+    .content-wrapper table {
+        font-size: 0.875rem;
+    }
+
+    .content-wrapper table th,
+    .content-wrapper table td {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+}
+</style>
+
+<script>
+
+document.querySelectorAll('.security-nav a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            window.scrollTo({
+                top: target.offsetTop - 120,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+</script>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../en/privacy/">Privacy</a>
+                <a href="../../en/terms/">Terms</a>
+                <a href="../../en/impressum/">Impressum</a>
+                <a href="../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Tunnel Operations Guide | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="Unified specification for building, encrypting, and transporting traffic with I2P tunnels.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="Tunnel Operations Guide | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="Unified specification for building, encrypting, and transporting traffic with I2P tunnels.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/docs/specs/implementation/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../en/" class="logo-link">
+                    <img src="../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../en/docs/" class="active">Docs</a></li>
+                    <li><a href="../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../en/blog/" class="">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../en/docs/specs/implementation/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+
+<div class="docs-page">
+    <div class="container">
+        <div class="docs-layout">
+            
+            <aside class="docs-sidebar">
+                <div class="sidebar-header">
+                    <a href="../../../../en/docs/" class="sidebar-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Documentation
+                    </a>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <div class="nav-section">
+                        <div class="nav-section-title">Overview</div>
+                        <a href="../../../../en/docs/how/tech-intro/" class="nav-link">Technical Introduction</a>
+                        <a href="../../../../en/docs/how/intro/" class="nav-link">Less-Technical Intro</a>
+                        <a href="../../../../en/docs/how/threat-model/" class="nav-link">Threat Model</a>
+                        <a href="../../../../en/docs/protocol/" class="nav-link">Protocol Stack</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title">Application Layer</div>
+                        <a href="../../../../en/docs/naming/" class="nav-link">Naming &amp; Address Book</a>
+                        <a href="../../../../en/docs/plugins/" class="nav-link">Plugins Overview</a>
+                        <a href="../../../../en/docs/applications/supported/" class="nav-link">Supported Applications</a>
+                        <a href="../../../../en/docs/applications/managed-clients/" class="nav-link">Managed Clients</a>
+                        <a href="../../../../en/docs/applications/embedding/" class="nav-link">Embedding the Router</a>
+                        <a href="../../../../en/docs/applications/bittorrent/" class="nav-link">BitTorrent over I2P</a>
+                        <a href="../../../../en/docs/applications/irc/" class="nav-link">IRC Clients &amp; Servers</a>
+                        <a href="../../../../en/docs/applications/git/" class="nav-link">Git over I2P</a>
+                        <a href="../../../../en/docs/applications/git-bundle/" class="nav-link">Git Bundles</a>
+                        <a href="../../../../en/docs/applications/gitlab/" class="nav-link">GitLab Hosting</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title">APIs &amp; Protocols</div>
+                        <a href="../../../../en/docs/api/i2ptunnel/" class="nav-link">I2PTunnel</a>
+                        <a href="../../../../en/docs/protocol/i2cp/" class="nav-link">I2CP</a>
+                        <a href="../../../../en/docs/api/samv3/" class="nav-link">SAM v3</a>
+                        <a href="../../../../en/docs/protocol/i2np/" class="nav-link">I2NP</a>
+                        <a href="../../../../en/docs/api/socks/" class="nav-link">SOCKS Proxy (use with caution)</a>
+                        <a href="../../../../en/docs/api/streaming/" class="nav-link">Streaming Protocol</a>
+                        <a href="../../../../en/docs/api/datagrams/" class="nav-link">Datagram API</a>
+                        <a href="../../../../en/docs/api/v3dgsend/" class="nav-link">v3dgsend</a>
+                        <a href="../../../../en/docs/api/i2pcontrol/" class="nav-link">I2PControl JSON-RPC</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title">Specifications</div>
+                        <a href="../../../../en/spec/streaming/" class="nav-link">Streaming</a>
+                        <a href="../../../../en/spec/datagrams/" class="nav-link">Datagrams</a>
+                        <a href="../../../../en/spec/i2cp/" class="nav-link">I2CP</a>
+                        <a href="../../../../en/spec/i2np/" class="nav-link">I2NP</a>
+                        <a href="../../../../en/spec/ntcp2/" class="nav-link">NTCP2</a>
+                        <a href="../../../../en/spec/ssu2/" class="nav-link">SSU2</a>
+                        <a href="../../../../en/spec/tunnel-creation-ecies/" class="nav-link">Tunnel Creation (ECIES)</a>
+                        <a href="../../../../en/spec/tunnel-creation/" class="nav-link">Tunnel Creation (ElGamal)</a>
+                        <a href="../../../../en/spec/tunnel-message/" class="nav-link">Tunnel Messages</a>
+                        <a href="../../../../en/spec/updates/" class="nav-link">Software Updates</a>
+                        <a href="../../../../en/spec/plugin/" class="nav-link">Plugin Package Format</a>
+                        <a href="../../../../en/spec/filter-format/" class="nav-link">Access Filter Format</a>
+                        <a href="../../../../en/spec/blockfile/" class="nav-link">Blockfile</a>
+                        <a href="../../../../en/spec/configuration/" class="nav-link">Router Configuration</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title">Network &amp; Transport</div>
+                        <a href="../../../../en/docs/how/tunnel-routing/" class="nav-link">Tunnel Routing</a>
+                        <a href="../../../../en/docs/how/peer-selection/" class="nav-link">Peer Profiling &amp; Selection</a>
+                        <a href="../../../../en/docs/tunnels/implementation/" class="nav-link">Tunnel Implementation</a>
+                        <a href="../../../../en/docs/tunnels/unidirectional/" class="nav-link">Unidirectional Tunnels</a>
+                        <a href="../../../../en/docs/transport/" class="nav-link">Transport Overview</a>
+                        <a href="../../../../en/docs/ports/" class="nav-link">Port Assignments</a>
+                        <a href="../../../../en/spec/ntcp2/" class="nav-link">NTCP2 Specification</a>
+                        <a href="../../../../en/spec/ssu2/" class="nav-link">SSU2 Specification</a>
+                        <a href="../../../../en/docs/how/network-database/" class="nav-link">Network Database</a>
+                        <a href="../../../../en/docs/reseed/" class="nav-link">Reseed Hosts</a>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title">Legacy &amp; Archived</div>
+                        <a href="../../../../en/docs/api/bob/" class="nav-link">BOB Protocol (legacy)</a>
+                        <a href="../../../../en/docs/api/sam/" class="nav-link">SAM v1 (legacy)</a>
+                        <a href="../../../../en/docs/api/samv2/" class="nav-link">SAM v2 (legacy)</a>
+                        <a href="../../../../en/docs/transport/ntcp/" class="nav-link">NTCP (legacy)</a>
+                        <a href="../../../../en/docs/transport/ssu/" class="nav-link">SSU (legacy)</a>
+                        <a href="../../../../en/docs/tunnels/old-implementation/" class="nav-link">Old Tunnel Implementation</a>
+                    </div>
+                </nav>
+            </aside>
+
+            
+            <main class="docs-article">
+                
+                <nav class="breadcrumbs">
+                    <a href="../../../../en/docs/">Docs</a>
+                    <span class="separator">/</span>
+                    <span class="current">Tunnel Operations Guide</span>
+                </nav>
+
+                
+                <header class="article-header">
+                    <h1 class="article-title">Tunnel Operations Guide</h1>
+                    
+                        <p class="article-description">Unified specification for building, encrypting, and transporting traffic with I2P tunnels.</p>
+                    
+
+                    <div class="article-meta">
+                        
+                            <span class="meta-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Updated: 2025-10
+                            </span>
+                        
+                        
+                            <span class="meta-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Accurate for: 2.10.0
+                            </span>
+                        
+                    </div>
+                </header>
+
+                
+                
+                <details class="toc">
+                    <summary class="toc-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        On This Page
+                        <svg class="toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </summary>
+                    <div class="toc-content">
+                        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tunnel-model">Tunnel Model</a>
+      <ul>
+        <li><a href="#message-lifecycle">Message Lifecycle</a></li>
+        <li><a href="#roles">Roles at a Glance</a></li>
+        <li><a href="#encryption-workflow">Encryption Workflow</a></li>
+      </ul>
+    </li>
+    <li><a href="#tunnel-message-format">Tunnel Message Format</a>
+      <ul>
+        <li><a href="#encrypted-layout">Encrypted Layout</a></li>
+        <li><a href="#decrypted-layout">Decrypted Layout</a></li>
+        <li><a href="#processing-steps">Processing Steps</a></li>
+      </ul>
+    </li>
+    <li><a href="#tunnel-creation-ecies">Tunnel Creation (ECIES-X25519)</a></li>
+    <li><a href="#tunnel-creation-elgamal">Legacy Tunnel Creation (ElGamal-2048)</a></li>
+    <li><a href="#tunnel-pools">Tunnel Pools and Lifecycle</a></li>
+    <li><a href="#congestion">Congestion and Reliability</a></li>
+    <li><a href="#further-reading">Further Reading</a></li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+                
+
+                
+                <article class="article-content">
+                    <blockquote>
+<p><strong>Scope:</strong> This guide consolidates the tunnel implementation, message format, and both tunnel creation specifications (ECIES and legacy ElGamal). Existing deep links continue to work through the aliases above.</p></blockquote>
+<h2 id="tunnel-model">Tunnel Model</h2>
+<p>I2P forwards payloads through <em>unidirectional tunnels</em>: ordered sets of routers that carry traffic in a single direction. A full round trip between two destinations requires four tunnels (two outbound, two inbound).</p>
+<p>Start with the <a href="../../../../en/docs/overview/tunnel-routing/">Tunnel Overview</a> for terminology, then use this guide for the operational details.</p>
+<h3 id="message-lifecycle">Message Lifecycle</h3>
+<ol>
+<li>The tunnel <strong>gateway</strong> batches one or more I2NP messages, fragments them, and writes delivery instructions.</li>
+<li>The gateway encapsulates the payload in a fixed-size (1024 B) tunnel message, padding if necessary.</li>
+<li>Each <strong>participant</strong> verifies the previous hop, applies its encryption layer, and forwards <code>{nextTunnelId, nextIV, encryptedPayload}</code> to the next hop.</li>
+<li>The tunnel <strong>endpoint</strong> removes the final layer, consumes delivery instructions, reassembles fragments, and dispatches the reconstructed I2NP messages.</li>
+</ol>
+<p>Duplicate detection uses a decaying Bloom filter keyed by the XOR of the IV and first cipher block to stop tagging attacks based on IV swaps.</p>
+<h3 id="roles">Roles at a Glance</h3>
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Role</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Pre-processing</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Crypto Operation</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Post-processing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Outbound gateway (creator)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Fragment, batch, pad</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Iteratively <em>decrypt</em> using every hop’s keys (so downstream peers encrypt)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Forward to first hop</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Participant</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">—</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Encrypt IV and payload with hop keys</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Forward to next hop</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Outbound endpoint</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">—</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Encrypt once more to reveal plaintext payload</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deliver to target tunnel/destination</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Inbound gateway</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Fragment, batch, pad</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Encrypt with local keys</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Forward to next hop</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Inbound endpoint (creator)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">—</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Iteratively decrypt using stored hop keys</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reassemble and deliver locally</td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="encryption-workflow">Encryption Workflow</h3>
+<ul>
+<li><strong>Inbound tunnels:</strong> the gateway encrypts once with its layer key; downstream participants keep encrypting until the creator decrypts the final payload.</li>
+<li><strong>Outbound tunnels:</strong> the gateway pre-applies the inverse of each hop’s encryption so that each participant encrypts. When the endpoint encrypts, the gateway’s original plaintext is revealed.</li>
+</ul>
+<p>Both directions forward <code>{tunnelId, IV, encryptedPayload}</code> to the next hop.</p>
+<hr>
+<h2 id="tunnel-message-format">Tunnel Message Format</h2>
+<p>Tunnel gateways fragment I2NP messages into fixed-size envelopes to hide payload length and simplify per-hop processing.</p>
+<h3 id="encrypted-layout">Encrypted Layout</h3>
+<pre tabindex="0"><code>+----------------+----------------+-------------------+
+| Tunnel ID (4B) | IV (16B)       | Encrypted payload |
++----------------+----------------+-------------------+
+</code></pre><ul>
+<li><strong>Tunnel ID</strong> – 32-bit identifier for the next hop (non-zero, rotates each build cycle).</li>
+<li><strong>IV</strong> – 16-byte AES IV chosen per message.</li>
+<li><strong>Encrypted payload</strong> – 1008 bytes of AES-256-CBC ciphertext.</li>
+</ul>
+<p>Total size: 1028 bytes.</p>
+<h3 id="decrypted-layout">Decrypted Layout</h3>
+<p>After a hop removes its encryption layer:</p>
+<pre tabindex="0"><code>[Checksum (4B)][Padding ... 0x00 terminator]
+[Delivery Instructions 1][I2NP fragment 1]
+[Delivery Instructions 2][I2NP fragment 2]
+...
+</code></pre><ul>
+<li><strong>Checksum</strong> validates the decrypted block.</li>
+<li><strong>Padding</strong> is random non-zero bytes terminated by a zero byte.</li>
+<li><strong>Delivery instructions</strong> tell the endpoint how to handle each fragment (locally deliver, forward to another tunnel, etc.).</li>
+<li><strong>Fragments</strong> carry the underlying I2NP messages; the endpoint reassembles them before passing them to higher layers.</li>
+</ul>
+<h3 id="processing-steps">Processing Steps</h3>
+<ol>
+<li>Gateways fragment and queue I2NP messages, retaining partial fragments briefly for reassembly.</li>
+<li>The gateway encrypts the payload with the appropriate layer keys and installs the tunnel ID plus IV.</li>
+<li>Each participant encrypts the IV (AES-256/ECB) and then the payload (AES-256/CBC) before re-encrypting the IV and forwarding the message.</li>
+<li>The endpoint decrypts in reverse order, verifies the checksum, consumes delivery instructions, and reassembles the fragments.</li>
+</ol>
+<hr>
+<h2 id="tunnel-creation-ecies">Tunnel Creation (ECIES-X25519)</h2>
+<p>Modern routers build tunnels with ECIES-X25519 keys, shrinking build messages and enabling forward secrecy.</p>
+<ul>
+<li><strong>Build message:</strong> a single <code>TunnelBuild</code> (or <code>VariableTunnelBuild</code>) I2NP message carries 1–8 encrypted build records, one per hop.</li>
+<li><strong>Layer keys:</strong> creators derive per-hop layer, IV, and reply keys via HKDF using the hop’s static X25519 identity and the creator’s ephemeral key.</li>
+<li><strong>Processing:</strong> each hop decrypts its record, validates request flags, writes the reply block (success or detailed failure code), re-encrypts the remaining records, and forwards the message.</li>
+<li><strong>Replies:</strong> the creator receives a garlic-wrapped reply message. Records marked as failed include a severity code so the router can profile the peer.</li>
+<li><strong>Compatibility:</strong> routers may still accept legacy ElGamal builds for backward compatibility, but new tunnels default to ECIES.</li>
+</ul>
+<blockquote>
+<p>For field-by-field constants and key derivation notes, see the ECIES proposal history and router source; this guide covers the operational flow.</p></blockquote>
+<hr>
+<h2 id="tunnel-creation-elgamal">Legacy Tunnel Creation (ElGamal-2048)</h2>
+<p>The original tunnel build format used ElGamal public keys. Modern routers keep limited support for backward compatibility.</p>
+<blockquote>
+<p><strong>Status:</strong> Obsolete. Retained here for historical reference and for anyone maintaining legacy-compatible tooling.</p></blockquote>
+<ul>
+<li><strong>Non-interactive telescoping:</strong> a single build message traverses the entire path. Each hop decrypts its 528-byte record, updates the message, and forwards it.</li>
+<li><strong>Variable length:</strong> the Variable Tunnel Build Message (VTBM) permitted 1–8 records. The earlier fixed message always contained eight records to obscure tunnel length.</li>
+<li><strong>Request record layout:</strong></li>
+</ul>
+<pre tabindex="0"><code>Bytes 0–3    : Tunnel ID (receiving ID)
+Bytes 4–35   : Current hop router hash
+Bytes 36–39  : Next tunnel ID
+Bytes 40–71  : Next hop router hash
+Bytes 72–103 : AES-256 layer key
+Bytes 104–135: AES-256 IV key
+Bytes 136–167: AES-256 reply key
+Bytes 168–183: AES-256 reply IV
+Byte 184     : Flags (bit7=IBGW, bit6=OBEP)
+Bytes 185–188: Request time (hours since epoch)
+Bytes 189–192: Next message ID
+Bytes 193–221: Padding
+</code></pre><ul>
+<li><strong>Flags:</strong> bit 7 indicates an inbound gateway (IBGW); bit 6 marks an outbound endpoint (OBEP). They are mutually exclusive.</li>
+<li><strong>Encryption:</strong> each record is ElGamal-2048 encrypted with the hop’s public key. Symmetric AES-256-CBC layering ensures only the intended hop can read its record.</li>
+<li><strong>Key facts:</strong> tunnel IDs are non-zero 32-bit values; creators may insert dummy records to hide actual tunnel length; reliability depends on retrying failed builds.</li>
+</ul>
+<hr>
+<h2 id="tunnel-pools">Tunnel Pools and Lifecycle</h2>
+<p>Routers maintain independent inbound and outbound tunnel pools for exploratory traffic and for each I2CP session.</p>
+<ul>
+<li><strong>Peer selection:</strong> exploratory tunnels draw from the “active, not failing” peer bucket to encourage diversity; client tunnels prefer fast, high-capacity peers.</li>
+<li><strong>Deterministic ordering:</strong> peers are sorted by the XOR distance between <code>SHA256(peerHash || poolKey)</code> and the pool’s random key. The key rotates on restart, giving stability within a run while frustrating predecessor attacks across runs.</li>
+<li><strong>Lifecycle:</strong> routers track historical build times per <code>{mode, direction, length, variance}</code> tuple. As tunnels near expiration, replacements begin early; the router increases parallel builds when failures occur while capping outstanding attempts.</li>
+<li><strong>Configuration knobs:</strong> active/backup tunnel counts, hop length and variance, zero-hop allowances, and build rate limits are all tunable per pool.</li>
+</ul>
+<hr>
+<h2 id="congestion">Congestion and Reliability</h2>
+<p>Although tunnels resemble circuits, routers treat them as message queues. Weighted Random Early Discard (WRED) is used to keep latency bounded:</p>
+<ul>
+<li>Drop probability rises as utilisation nears configured limits.</li>
+<li>Participants consider fixed-size fragments; gateways/endpoints drop based on combined fragment size, penalising large payloads first.</li>
+<li>Outbound endpoints drop before other roles to waste the least network effort.</li>
+</ul>
+<p>Guaranteed delivery is left to higher layers such as the <a href="../../../../spec/api/streaming/">Streaming library</a>. Applications that require reliability must handle retransmission and acknowledgments themselves.</p>
+<hr>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="../../../../en/docs/legacy/unidirectional/">Unidirectional Tunnels (Historical)</a></li>
+<li><a href="../../../../en/docs/overview/tunnel-routing/#peer-selection/">Peer Selection</a></li>
+<li><a href="../../../../en/docs/overview/tunnel-routing/">Tunnel Overview</a></li>
+<li><a href="../../../../en/docs/legacy/old-implementation/">Old Tunnel Implementation</a></li>
+</ul>
+
+                </article>
+
+                
+                <nav class="page-nav">
+                    
+                        <a href="../../../../en/docs/specs/udp-bittorrent-announces/" class="page-nav-link prev">
+                            <span class="nav-label">← Previous</span>
+                            <span class="nav-title">UDP BitTorrent Announces</span>
+                        </a>
+                    
+                    
+                        <a href="../../../../en/docs/specs/streaming/" class="page-nav-link next">
+                            <span class="nav-label">Next →</span>
+                            <span class="nav-title">Streaming Protocol</span>
+                        </a>
+                    
+                </nav>
+
+                
+                <div class="docs-feedback">
+                    <p>Was this page helpful?</p>
+                    <div class="feedback-buttons">
+                        <button class="feedback-btn">👍 Yes</button>
+                        <button class="feedback-btn">👎 No</button>
+                    </div>
+                    <p class="feedback-note">
+                        Found an issue? <a href="https://i2pgit.org/I2P_Developers/i2p.www/issues">Report it on GitLab</a>
+                    </p>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<style>
+.docs-page {
+    min-height: 100vh;
+    padding: var(--spacing-xl) 0;
+}
+
+.docs-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+}
+
+ 
+.docs-sidebar {
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.sidebar-header {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.sidebar-title:hover {
+    color: var(--color-primary);
+}
+
+.nav-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.nav-section:last-child {
+    margin-bottom: 0;
+}
+
+.nav-section-title {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+}
+
+.nav-link {
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-size: 0.9375rem;
+    transition: all var(--transition-fast);
+}
+
+.nav-link:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-primary);
+}
+
+.nav-link.active {
+    background: var(--color-primary);
+    color: white;
+    font-weight: 600;
+}
+
+ 
+.docs-article {
+    max-width: 800px;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.breadcrumbs a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    color: var(--color-primary);
+}
+
+.separator {
+    color: var(--color-border);
+}
+
+.current {
+    color: var(--color-text);
+}
+
+.article-header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.article-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+}
+
+.article-description {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.article-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+}
+
+.meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+ 
+.toc {
+    margin-bottom: var(--spacing-xl);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-secondary);
+}
+
+.toc-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+}
+
+.toc .toc-chevron {
+    margin-left: auto;
+}
+
+.toc-content {
+    max-height: 380px;
+    overflow-y: auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.toc-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.toc-content::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+}
+
+.toc-content::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+}
+
+.toc-content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+}
+
+.toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.toc li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.toc ul ul {
+    padding-left: var(--spacing-md);
+    margin-top: var(--spacing-xs);
+}
+
+.toc a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: inline-block;
+    padding: 0.125rem 0;
+    transition: color var(--transition-fast);
+}
+
+.toc a:hover {
+    color: var(--color-primary);
+}
+
+ 
+.article-content {
+    line-height: 1.8;
+    color: var(--color-text);
+}
+
+.article-content h2 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+}
+
+.article-content h3 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.375rem;
+}
+
+.article-content p {
+    margin-bottom: var(--spacing-md);
+}
+
+.article-content ul,
+.article-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.article-content li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.article-content code {
+    background: var(--color-bg-secondary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875em;
+    font-family: 'Courier New', monospace;
+}
+
+.article-content pre {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    overflow-x: auto;
+    margin-bottom: var(--spacing-md);
+}
+
+.article-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin: var(--spacing-lg) 0;
+    display: block;
+}
+
+.article-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+}
+
+.article-content a:hover {
+    border-bottom-color: var(--color-primary);
+}
+
+ 
+.page-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.page-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: all var(--transition-fast);
+}
+
+.page-nav-link:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+}
+
+.page-nav .nav-label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+.page-nav .nav-title {
+    font-weight: 600;
+}
+
+ 
+.docs-feedback {
+    margin-top: var(--spacing-2xl);
+    padding: var(--spacing-lg);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+}
+
+.feedback-btn {
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+.feedback-btn:hover {
+    border-color: var(--color-primary);
+}
+
+ 
+@media (max-width: 1024px) {
+    .docs-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .docs-sidebar {
+        position: static;
+        max-height: none;
+        order: 2;
+    }
+}
+</style>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../en/privacy/">Privacy</a>
+                <a href="../../../../en/terms/">Terms</a>
+                <a href="../../../../en/impressum/">Impressum</a>
+                <a href="../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>

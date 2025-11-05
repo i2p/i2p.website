@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>I2P Dev Meeting - May 07, 2019 | I2P - The Invisible Internet Project</title>
+
+    <meta name="description" content="I2P development meeting log for May 07, 2019.">
+    <meta name="keywords" content="i2p, privacy, anonymity, dark net, encryption, security">
+
+    
+    <meta property="og:title" content="I2P Dev Meeting - May 07, 2019 | I2P - The Invisible Internet Project">
+    <meta property="og:description" content="I2P development meeting log for May 07, 2019.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="//localhost:1313/en/blog/2019/05/07/i2p-dev-meeting-may-07-2019/">
+
+    
+    <link rel="icon" type="image/png" href="../../../../../../images/i2plogo.png">
+
+    
+    
+    
+        
+        <link rel="stylesheet" href="../../../../../../css/main.min.css">
+    
+
+    
+    <link rel="stylesheet" href="https://feedback.stormycloud.org/widgets/styles.css">
+
+    
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
+    
+    <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track,openCheckout'
+    .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
+    :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
+    j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+    t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
+    for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
+    })(window,document,'script','FundraiseUp','AAYKECHT');</script>
+    
+
+    
+</head>
+<body>
+    <header class="site-header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="../../../../../../en/" class="logo-link">
+                    <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
+                    <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
+                </a>
+            </div>
+
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/about/" class="">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/about/">Overview</a></li>
+                            <li><a href="../../../../../../en/papers/">Research Papers</a></li>
+                            <li><a href="../../../../../../en/about/media/">Press</a></li>
+                            <li><a href="../../../../../../en/contact/">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../../../../../en/docs/" class="">Docs</a></li>
+                    <li><a href="../../../../../../en/downloads/" class="">Downloads</a></li>
+                    <li><a href="../../../../../../en/blog/" class="active">Blog</a></li>
+                    <li class="nav-dropdown">
+                        <a href="../../../../../../en/get-involved/" class="">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../../../en/get-involved/">Overview</a></li>
+                            <li><a href="../../../../../../en/feedback/">Feature Suggestions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    
+                    <div class="language-selector">
+                        <button class="language-toggle" aria-label="Select language" title="Language">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span class="current-lang">en</span>
+                        </button>
+                        <div class="language-dropdown">
+                            
+                            
+                            
+                                
+                                
+                                
+                                    
+                                    <a href="../../../../../../en/blog/2019/05/07/i2p-dev-meeting-may-07-2019/" class="lang-option active">English</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../es/" class="lang-option">Español</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../ko/" class="lang-option">한국어</a>
+                                
+                            
+                                
+                                
+                                
+                                    <a href="../../../../../../de/" class="lang-option">Deutsch</a>
+                                
+                            
+                        </div>
+                    </div>
+
+                    
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    
+                    <a href="#XTLSAXYD" style="display: none"></a>
+
+                    
+                    <a href="../../../../../../en/downloads/" class="btn btn-primary">Get I2P</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <main id="main-content">
+        
+<article class="blog-post">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-meta-row">
+                
+                <time class="post-date" datetime="2019-05-07">
+                    May 7, 2019
+                </time>
+                
+
+                
+                <div class="post-categories">
+                    
+                    <span class="category-badge">meeting</span>
+                    
+                </div>
+                
+            </div>
+
+            <h1 class="post-title">I2P Dev Meeting - May 07, 2019</h1>
+
+            
+            <div class="post-author">By zzz</div>
+            
+        </div>
+
+        <div class="post-content">
+            <h2 id="quick-recap">Quick recap</h2>
+<p class="attendees-inline"><strong>Present:</strong> chisana, eyedeekay, meeh, sadie, zlatinb, zzz</p>
+<h2 id="meeting-log">Meeting Log</h2>
+<div class="irc-log">
+20:00:00 &lt;zzz&gt; 0) Hi
+20:00:00 &lt;zzz&gt; 1) 0.9.39 release status remaining items (meeh, mhatta, nextloop, str4d)
+20:00:00 &lt;zzz&gt; 2) Fixed i2pbote-android release status (meeh)
+20:00:00 &lt;zzz&gt; 3) 0.9.40 dev status (zzz)
+20:00:00 &lt;zzz&gt; 4) LS2 status (zzz)
+20:00:00 &lt;zzz&gt; 5) Status scrum (zlatinb)
+20:00:04 &lt;zzz&gt; 0) Hi
+20:00:06 &lt;zzz&gt; hi
+20:00:10 &lt;meeh&gt; hi
+20:00:17 &lt;zlatinb&gt; hi
+20:00:51 &lt;zzz&gt; 1) 0.9.39 release status remaining items (meeh, mhatta, nextloop, str4d)
+20:00:55 &lt;eyedeekay&gt; hi
+20:01:07 &lt;zzz&gt; this agenda item was from the meeting last month...
+20:01:29 &lt;zzz&gt; where we were still missing debian, f-droid, and mavencentral
+20:01:40 &lt;zzz&gt; meeh you have an update for us on any of those items?
+20:02:33 &lt;meeh&gt; me and str4d will pair this release, meaning he walks over all the steps with me, which includes maven/f-droid. I'm contacting him today about this since we last discussed this a week or two ago.
+20:02:43 &lt;zzz&gt; and has anybody heard from mhatta re: debian?
+20:02:51 &lt;meeh&gt; that should cover fdroid, maven and googleplay
+20:03:15 &lt;zzz&gt; meeh this is about .39 - have f-droid and mavencentral releases for .39 been posted?
+20:03:33 &lt;sadie_&gt; hi
+20:03:34 &lt;meeh&gt; osx launcher will ofc be updated as well
+20:03:52 &lt;meeh&gt; no, but when I pair with str4d I learn how I can fix that
+20:03:59 &lt;meeh&gt; so then both 39 and 40 should be fixed 
+20:03:59 &lt;zzz&gt; we're talking .39 items from 7 weeks ago that were not complete at the last meeting 5 weeks ago
+20:04:17 &lt;meeh&gt; https://search.maven.org/search?q=g:net.i2p
+20:04:19 &lt;meeh&gt; maven is latest bt
+20:04:24 &lt;meeh&gt; w
+20:04:24 &lt;meeh&gt; .39
+20:04:48 &lt;zzz&gt; ok. so what's the ETA for "pairing" (don't let him infect you with zcash-speak)
+20:05:38 &lt;R4SAS&gt; :D
+20:05:39 &lt;zzz&gt; and I thought our f-droid problem was server dependency issues, not the know-how. Were those resolved?
+20:05:57 &lt;meeh&gt; my answer on that is when str4d have time for me for a quick walkthrough - which I took as he would find time for really quick when I spoke with him last. I'll update you on what he says today
+20:06:41 &lt;zzz&gt; for mavencentral, you have everything you need including the howto, right? you have all the permissions you need?
+20:06:58 &lt;meeh&gt; no howto
+20:07:19 &lt;zzz&gt; I'm asking because 'when str4d has time' means nothing unfortunately :(
+20:07:28 &lt;meeh&gt; we have some maven gradle script files in our repo, which I could *guess* how work and try, which I prefer not to mess up
+20:07:46 &lt;meeh&gt; I have hope in him this time
+20:08:09 &lt;meeh&gt; time to get rid of nagging, to free more time, - sounds something everyone would accept
+20:08:42 &lt;zzz&gt; sure, it's the long plan to remove str4d from all dependencies, we're almost there, keep pushing until it's done
+20:09:36 &lt;zzz&gt; ok back to mhatta - anybody heard from him? is it time to start calling him or where do we go from here?
+20:09:46 &lt;zzz&gt; zlatinb, any ideas?
+20:10:04 &lt;zzz&gt; and anybody heard from nextloop?
+20:10:15 &lt;zlatinb&gt; calling him last time didnt work, although he confirmed I had the right number
+20:10:27 &lt;zlatinb&gt; no ideas unfortunately
+20:10:39 &lt;zzz&gt; meeh, as I understand it you can also just put in some request to get into the real f-droid, we don't really need nextloop. Do you know how to do that?
+20:10:40 &lt;sadie_&gt; can anyone take on mhatta's tasks?
+20:11:15 &lt;zzz&gt; anyone who's an official Debian Developer... know any others with time?
+20:11:38 &lt;meeh&gt; I'm sorry to say I'm even less known with frdroid than android - I've only (at least in my memory) been the hoster of our private repo
+20:11:53 &lt;sadie_&gt; no - but we should start looking 
+20:11:57 &lt;meeh&gt; but I can ask str4d while I talk to him, he should know
+20:12:20 &lt;zzz&gt; ok meeh remember there's two fdroids, ours and the official fdroid.org, so please get the howto for both. Please try finding nextloop
+20:12:27 &lt;zzz&gt; twitter, email, etc
+20:13:13 &lt;meeh&gt; yea, our own is moved, and should in theory be working when I try those python commands to push it, - I'll test that out after speaking with str4d
+20:13:19 &lt;zzz&gt; anything else on 1) ? We didn'd do a great job on .39
+20:13:40 &lt;zzz&gt; so let's fix it quick for .40
+20:13:57 &lt;zzz&gt; releases is what we do, when we can't get the releases out, we've failed
+20:14:16 &lt;zzz&gt; anything else on 1) ?
+20:15:18 &lt;zzz&gt; 2) Fixed i2pbote-android release status (meeh)
+20:15:35 &lt;zzz&gt; meeh what's the status on the long-awaited bote android release?
+20:15:42 &lt;meeh&gt; currently it still hangs on "connecting"
+20:16:14 &lt;zzz&gt; but eyedeekay reports it works?
+20:16:36 &lt;zzz&gt; did you try it non-firewalled meeh?
+20:16:41 &lt;eyedeekay&gt; it works only if you use the built-in router. This is on a tablet
+20:16:44 &lt;meeh&gt; ok, I feel we have talked many times now about the release. please don't take me as rude, mean, or anything besides just "trying to be as clear as possible" - I do not release a broken product. Unless I can send a message from my bote-android to my desktop-android - I'm not releasing
+20:17:20 &lt;zzz&gt; this is a status meeting for everybody. Pretend you havent talked to me in a month, and tell everybody where we're at please. Youre not talking to me, you're reporting to the world
+20:17:41 &lt;meeh&gt; because uless that, what we release is per definition broken - and it would reflect badly back at us
+20:18:00 &lt;meeh&gt; ok sorry - but there it is ^ :)
+20:18:27 &lt;zzz&gt; so, what's the outlook or ETA or guess for getting it fixed and released?
+20:18:41 &lt;meeh&gt; but yea, I strongly feel that pushing a broken release would reflect badly at i2p - does anyone disagree on that statement?
+20:19:11 &lt;zzz&gt; I'm not pushing you to release. I'm asking when it will be released.
+20:19:26 &lt;zzz&gt; that's the purpose of this meeting, to report status
+20:19:34 &lt;meeh&gt; how long time would you think it would take to make bote connect via tcp socket instead of unix domain?
+20:19:46 &lt;zzz&gt; I dont know
+20:20:06 &lt;meeh&gt; because at best, which I hope, it's that we need to do.. if not, no clue at all :(
+20:20:32 &lt;meeh&gt; because if peers aren't the issue, and we still strugles to connect
+20:20:38 &lt;meeh&gt; and based upon my debug sessions
+20:20:48 &lt;meeh&gt; I suspect it's the IPC between the apps which make nonce
+20:20:56 &lt;meeh&gt; and destroy the com
+20:21:06 &lt;zzz&gt; ok. perhaps we can get some more testers from asking here in this channel... maybe cisiey
+20:21:15 &lt;meeh&gt; cause the tunnel and leases seems ok in my view
+20:21:39 &lt;meeh&gt; which my logical next place to look then is between router &lt;-&gt; bote
+20:21:46 &lt;zzz&gt; ok. but if it's trying to build a tunnel for bote, then it's not a problem with the i2cp socket
+20:21:57 &lt;meeh&gt; maybe the control socket work, but the data transfer stops
+20:22:07 &lt;zzz&gt; you're either talking to the router or you aren't. it's all over the same socket
+20:22:17 &lt;zzz&gt; (control and data)
+20:22:32 &lt;meeh&gt; maybe google do something we don't know - wouldn't be the first time
+20:22:50 &lt;zzz&gt; the good news is you're making progress, we've been stuck plenty of times before and always figured it out
+20:22:54 &lt;zzz&gt; thanks for the update
+20:22:57 &lt;zzz&gt; anything else on 2) ?
+20:23:07 &lt;meeh&gt; so i2cp works like tls, it configures and then goes to pure data transfer?
+20:23:34 &lt;zzz&gt; it's muxed control and data, all the time. it doesn't ever 'go to' pure data
+20:23:54 &lt;meeh&gt; okay, ascii encoded binary data then or?
+20:24:15 &lt;zzz&gt; I can walk you through how i2cp works after the meeting if you'd like
+20:24:21 &lt;meeh&gt; anyway - we can take impl. details later
+20:24:22 &lt;meeh&gt; yea
+20:24:27 &lt;zzz&gt; anything else on 2) ?
+20:25:02 &lt;zzz&gt; 3) 0.9.40 dev status (zzz)
+20:25:16 &lt;zzz&gt; 0.9.40 dev status is DONE!
+20:25:30 &lt;zzz&gt; we went for a short 6 1/2 week cycle and we released today
+20:25:32 &lt;chisana&gt; congrats!
+20:25:54 &lt;zzz&gt; in-net update is alive. Not sure if the English news has been updated though. The swarm seems a little small?
+20:26:05 &lt;zzz&gt; eche|off, have you investigated?
+20:26:25 &lt;zzz&gt; it's at least partially updating
+20:26:47 &lt;zzz&gt; we're going to watch this one closely because we disabled NTCP 1, which shouldn't have any ill effects, but we'll see
+20:27:19 &lt;zzz&gt; so, let's talk release items ETA. The in-net update is out, the website is updated. I'll do our PPA and deb repo tomorrow.
+20:27:45 &lt;zzz&gt; meeh what's the eta for the android router release?
+20:28:01 &lt;meeh&gt; again, I'll do this time with str4d
+20:28:23 &lt;meeh&gt; the whole "str4d part" of the release in one pack
+20:28:24 &lt;meeh&gt; :)
+20:28:28 &lt;zzz&gt; even for android router? you did it by yourself last time. 
+20:28:42 &lt;zzz&gt; I'd just like to depend on him for as little as possible
+20:28:42 &lt;meeh&gt; Yes, by hacking around maven
+20:28:50 &lt;meeh&gt; but the correct order is to deploy maven first
+20:29:05 &lt;meeh&gt; Yes, but the goal is that this is the last time we do that, &lt;ever&gt;
+20:29:24 &lt;zzz&gt; ok. we'll see if that comes true, hopefully so
+20:30:07 &lt;meeh&gt; for the record, I've already contacted him on DM @ twitter
+20:30:25 &lt;zzz&gt; ok let us know when you have an ETA
+20:30:26 &lt;meeh&gt; which is where I've been talking with him the past times
+20:31:02 &lt;zzz&gt; zlatinb, I guess you and I should send out to all 10 of mhatta's emails to try and get his attention? It's been two months since we've heard from him
+20:31:25 &lt;zzz&gt; would hate to have some old release in buster
+20:31:27 &lt;zlatinb&gt; sure, give me the emails and Ill blast something out
+20:31:38 &lt;zzz&gt; ok
+20:31:59 &lt;zzz&gt; eche|off, eche|on you here?
+20:32:39 &lt;zzz&gt; ok I guess that's it for 3) ?
+20:33:18 &lt;zzz&gt; 4) LS2 status (zzz)
+20:33:42 &lt;zzz&gt; I'll give a quick status on the 3 main proposals: 123, 144, and 150
+20:34:13 &lt;zzz&gt; 123 is the ls2 proposal. It's mostly done and we got a lot of the encrypted ls2 code into .40 where we can do more testing
+20:34:34 &lt;zzz&gt; the proposal itself hasn't changed much at all in the last month which is good
+20:35:05 &lt;zzz&gt; 144 is the new encryption proposal. It's seen zero activity in the last month while higher-priority things happened
+20:35:26 &lt;zzz&gt; but I've received a lot of comments on it. expect an updated draft in a week or two
+20:35:48 &lt;zzz&gt; I'd like to see some implementations of 144 in 4-6 months but we have a lot of work to do to get there
+20:36:05 &lt;zzz&gt; 150 is the new 'garlic farm' proposal based on raft, to manage massive multihoming.
+20:36:30 &lt;zzz&gt; it's a new proposal but it's gotten pretty good feedback, less complaints by far than 144!
+20:37:04 &lt;zzz&gt; zlatinb, when you think we might have an experimental plugin implementing 150? a couple of months?
+20:37:24 &lt;zzz&gt; I guess we need to talk about what we can squeeze into .41 to support it
+20:37:38 &lt;zlatinb&gt; depends on how we scope it; many of the listed features are really just nice-to-haves
+20:37:59 &lt;zzz&gt; yeah in my revision yesterday I marked a lot of it as not-first-release
+20:38:07 &lt;zlatinb&gt; if we cut everything to the absolute bare minimum maybe less than a few months
+20:38:47 &lt;zzz&gt; yeah we haven't had our roadmap meeting for .41 yet, so I'm not sure what's where priority-wise
+20:38:49 &lt;zlatinb&gt; its a medium-sized project I think
+20:39:18 &lt;zzz&gt; agreed
+20:39:37 &lt;zzz&gt; anybody have any questions on 4), ls2, or related proposals?
+20:39:52 &lt;zzz&gt; as usual, all are welcome at our meetings, Mondays 6:30 PM UTC in IRC #ls2
+20:40:27 &lt;chisana&gt; if i can get a "working/MVP" ECIES together, will that help with 144 completion?
+20:40:54 &lt;zzz&gt; of course
+20:41:37 &lt;zzz&gt; somebody has to be first. we've done integration testing with several other proposals, going back a year to NTCP 2.
+20:42:03 &lt;zzz&gt; somebody is done first, then somebody else, then you try to get them to talk, then you try to figure out who's right and who's wrong
+20:42:33 &lt;zzz&gt; it's hard and slow work but it's the only way to do it
+20:43:15 &lt;chisana&gt; for sure, 144 is where I'll be spending most of my time, so will be sure to come with frequent updates/questions
+20:43:25 &lt;zzz&gt; we've learned we're almost never done until we have two impls. that's the only way to 'test' the spec
+20:43:41 &lt;zzz&gt; great
+20:43:49 &lt;zzz&gt; anybody have any questions on 4), ls2, or related proposals?
+20:44:30 &lt;zzz&gt; 5) status scrum (zlatinb)
+20:44:36 &lt;zzz&gt; you have the floor zlatinb 
+20:45:15 &lt;zlatinb&gt; Hi.  The usual scum in parallel.  Please describe in a few words 1) what you have been doing since the last scrum 2) what you plan on doing next month 3) if you have any blockers or need help.  Say EOT when done
+20:45:49 &lt;zlatinb&gt; Me: 1) finishing touches on the advanced filter, work on garlic farm, outproxy tuning with arctic, some jogger tix 2) hopefully just garlic farm 3) no blockers EOT
+20:47:03 &lt;zzz&gt; 1) bug fixes; signed windows installer; switch to izpack 5; susidns import feature; implementation of encrypted ls2; .40 review and release; working on android I2CP issues
+20:47:38 &lt;meeh&gt; 1) I've been redesigning the osx launcher and upgraded swift code to 4.2 soon 5, cleaned up in the code, migrated more from objc. I've also been doing some improvements for the services I host for i2p inc. outproxy. and some android development and learning
+20:47:55 &lt;zzz&gt; 1 cont.) wrote garlic farm proposal, lots of garlic farm architecture stuff; ls2 meetings and discussions; work with sadie on icons etc.
+20:48:09 &lt;sadie_&gt; working on updating iconography for .40, will continue this for .41 and also updating logo with the logo created by Ura for console, site. Improvements to set up wizard, preparing for trip to RightsCon and outreach with TX, IFF EOT
+20:48:55 &lt;zzz&gt; 2) .40 PPA release; .41 roadmap; config splitting work with eyedeekay, garlic farm; ls2 meetings; bug fixes; maybe automate sybil detection -&gt; blacklisting?
+20:49:03 &lt;meeh&gt; 2) for the next month I plan to give our browser some love again, updating version to equal upstream, some i2p integration improvements if it's doable, make the osx native context menu -&gt; snark-share usable, and also look into more the issues with mattermost/irc/our-communication
+20:49:06 &lt;eyedeekay&gt; 1) Bote, bug fixes, writing guides 2) hopefully split configuration, bote, and bugfixes 3) no blockers EOR
+20:49:10 &lt;eyedeekay&gt; *EOT
+20:49:38 &lt;meeh&gt; 3) no hopefully not, only would now be awaiting str4d to suggest a time where we can pair and do the release
+20:49:48 &lt;sadie_&gt; outproxy docs /testing 
+20:49:50 &lt;meeh&gt; EOT
+20:49:56 &lt;zzz&gt; 3) blockers: mhatta for debian/tails stuff
+20:50:06 &lt;eyedeekay&gt; Oh also I'd like to spend some time with meeh on the browser as well in the next month.
+20:50:17 &lt;zzz&gt; EOT
+20:50:51 &lt;zlatinb&gt; Thanks, that completes the scrum.
+20:50:59 &lt;zzz&gt; ok thanks zlatinb 
+20:51:12 &lt;zzz&gt; a couple quick questions before we wrap up the meeting
+20:51:27 &lt;zzz&gt; does a 8 week cycle and a July 2 release date for .41 work? meeh?
+20:52:12 &lt;meeh&gt; no imidiate things saying it shouldn't work, I think it's ok
+20:52:26 &lt;zzz&gt; ok, that's what we'll pencil in until we hear from eche|off 
+20:52:57 &lt;zzz&gt; next, meeh, did you get the osx .40 build out? it's on the d/l page because it's triggered from the version number, but I didn't ask you if you'd done it yet
+20:53:16 &lt;zzz&gt; so that's a bug in our process
+20:53:24 &lt;meeh&gt; no I was thinking of starting that process now after the meeting
+20:53:37 &lt;meeh&gt; didn't get time in front
+20:54:06 &lt;zzz&gt; ok thanks. I'll fix our checklist so I don't bump the build on the d/l page until you're done, for next time
+20:54:33 &lt;zzz&gt; last question for meeh, do you plan to do a browser release to fix the firefox cert thing? or do you even need to?
+20:55:19 &lt;meeh&gt; could you eleberate the "firefox cert thing" please? :p
+20:55:21 &lt;zzz&gt; as you said, time for some love for the browser. At some point we should talk about whether the 'lab' project should graduate to something more, or be killed?
+20:55:48 &lt;zzz&gt; where the plugins like noscript broke. I'll fill you in later or look on twitter or ars technica
+20:55:48 &lt;meeh&gt; yes, why don't we take that as a topic on our next meeting then?
+20:55:54 &lt;meeh&gt; regarding RC or death
+20:55:58 &lt;zzz&gt; ok, will do
+20:56:09 &lt;zzz&gt; anybody have anything else for the meeting?
+20:56:27 &lt;meeh&gt; I'm gonna start the osx build now if it's not anything more
+20:56:44 * zzz looks for the baffer
+20:57:00 &lt;meeh&gt; next osx upgrade would auto-update (woho!)
+20:57:18 * zzz *bafffs* the meeting closed
+</div>
+
+        </div>
+
+        <div class="post-navigation">
+            <a href="../../../../../../en/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.blog-post {
+    padding: var(--spacing-2xl) 0;
+}
+
+.post-header {
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.post-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-categories {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.category-badge {
+    padding: 0.25rem 0.625rem;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.post-author {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+}
+
+.post-content {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
+    line-height: 1.8;
+    font-size: 1.0625rem;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.post-content h2 {
+    font-size: 1.875rem;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.post-content h3 {
+    font-size: 1.5rem;
+}
+
+.post-content h4 {
+    font-size: 1.25rem;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+}
+
+.post-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.post-content pre {
+    background-color: var(--color-bg-secondary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--color-border);
+}
+
+.post-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content :not(pre) > code {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+}
+
+.post-navigation {
+    max-width: 800px;
+    margin: var(--spacing-2xl) auto 0;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.back-to-blog {
+    color: var(--color-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: gap var(--transition-fast);
+}
+
+.back-to-blog:hover {
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .post-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post-content {
+        font-size: 1rem;
+    }
+}
+</style>
+
+    </main>
+
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <img src="../../../../../../images/i2plogo_lightmode.svg" alt="I2P Logo" class="footer-logo logo-light">
+                <img src="../../../../../../images/i2plogo_darkmode.svg" alt="I2P Logo" class="footer-logo logo-dark">
+                <p class="footer-tagline">Privacy. Security. Freedom.</p>
+                <p class="footer-description">The Invisible Internet Project - A privacy-focused, anonymous network layer</p>
+
+                <div class="footer-social-newsletter">
+                    <div class="social-links">
+                        <a href="https://mastodon.social/@i2p" target="_blank" rel="noopener" aria-label="Mastodon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21.327 8.566c0-4.339-2.843-5.61-2.843-5.61-1.433-.658-3.894-.935-6.451-.956h-.063c-2.557.021-5.016.298-6.45.956 0 0-2.843 1.272-2.843 5.61 0 .993-.019 2.181.012 3.441.103 4.243.778 8.425 4.701 9.463 1.809.479 3.362.579 4.612.51 2.268-.126 3.541-.809 3.541-.809l-.075-1.646s-1.621.511-3.441.449c-1.804-.062-3.707-.194-3.999-2.409a4.523 4.523 0 0 1-.04-.621s1.77.433 4.014.536c1.372.063 2.658-.08 3.965-.236 2.506-.299 4.688-1.843 4.962-3.254.434-2.223.398-5.424.398-5.424zm-3.353 5.59h-2.081V9.057c0-1.075-.452-1.62-1.357-1.62-1 0-1.501.647-1.501 1.927v2.791h-2.069V9.364c0-1.28-.501-1.927-1.502-1.927-.905 0-1.357.546-1.357 1.62v5.099H6.026V8.903c0-1.074.273-1.927.823-2.558.566-.631 1.307-.955 2.228-.955 1.065 0 1.872.409 2.405 1.228l.518.869.519-.869c.533-.819 1.34-1.228 2.405-1.228.92 0 1.662.324 2.228.955.549.631.822 1.484.822 2.558v5.253z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/GetI2P" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://old.reddit.com/r/i2p" target="_blank" rel="noopener" aria-label="Reddit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                            </svg>
+                        </a>
+                        <a href="https://signal.group/#CjQKIOSUTtxlhbumAKcRsthPFkxkTUrkWcX39bbN6njLEgAIEhCTNsR0KDuiehAXZnkt42v5" target="_blank" rel="noopener" aria-label="Signal" class="signal-link">
+                            <img src="../../../../../../images/Signal-Logo-Black.svg" alt="Signal" class="signal-logo signal-logo-light">
+                            <img src="../../../../../../images/Signal-Logo-White.svg" alt="Signal" class="signal-logo signal-logo-dark">
+                        </a>
+                    </div>
+
+                    
+                    <div class="footer-newsletter-inline">
+                        <p class="newsletter-description">Stay updated with I2P news:</p>
+                        <div id="mailing-list-widget"
+                             data-api-url="https://feedback.stormycloud.org"
+                             data-button-text="Subscribe"
+                             data-placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../../../../../en/financial-support/">Donate</a></li>
+                    <li><a href="../../../../../../en/docs/overview/intro/">I2P Introduction</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="../../../../../../en/get-involved/">Get Involved</a></li>
+                    <li><a href="../../../../../../en/blog/">Blog</a></li>
+                    <li><a href="http://i2pforum.net/" target="_blank" rel="noopener">Official Forums</a></li>
+                    <li><a href="../../../../../../en/contact/">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://i2p-metrics.np-tokumei.net/" target="_blank" rel="noopener">I2P Metrics</a></li>
+                    <li><a href="../../../../../../en/papers/">Research</a></li>
+                    <li><a href="https://i2pgit.org/" target="_blank" rel="noopener">GitLab</a></li>
+                    <li><a href="https://www.stormycloud.org/" target="_blank" rel="noopener">StormyCloud</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 The Invisible Internet Project. Licensed under Creative Commons.</p>
+            <div class="footer-links">
+                <a href="../../../../../../en/privacy/">Privacy</a>
+                <a href="../../../../../../en/terms/">Terms</a>
+                <a href="../../../../../../en/impressum/">Impressum</a>
+                <a href="../../../../../../en/about/media/">Press</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    
+    
+    
+        
+        <script src="../../../../../../js/main.min.js"></script>
+    
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/mailing-list.js"></script>
+
+    
+    <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    
+</body>
+</html>
