@@ -18,8 +18,6 @@ build:
     - mv hugo /usr/local/bin/hugo
     - /usr/local/bin/hugo version
   script:
-    - ls -la
-    - pwd
     - /usr/local/bin/hugo --minify --gc
   artifacts:
     paths:
