@@ -9,7 +9,7 @@ draft: false
 
 We're excited to share some important news: StormyCloud is officially joining forces with I2P in a more significant way.
 
-For years, StormyCloud has been a critical part of I2P's infrastructure, providing hosting and support that keeps the network running. Now we're formalizing that partnership and expanding what we can do together.
+For years, StormyCloud has been a critical part of I2P's infrastructure, providing hosting and support that keeps the network running smoothly. Now we're formalizing that partnership and expanding what we can do together.
 
 We're particularly glad to announce that Lance James and idk are joining StormyCloud's Board of Directors. Lance founded the Invisible Internet Project, which evolved into what we now know as I2P, and his experience building privacy-focused networks goes back decades. idk has been extensively involved in I2P development for years — if you use I2P, you've benefited from his work.
 
