@@ -34,6 +34,13 @@ defaultContentLanguageInSubdir = true
     title = 'I2P - Das Invisible Internet Project'
     weight = 4
 
+  [languages.zh]
+    contentDir = 'content/zh'
+    languageCode = 'zh-CN'
+    languageName = '中文'
+    title = 'I2P - 隐形互联网项目'
+    weight = 5
+
 # Pagination
 [pagination]
   pagerSize = 10
