@@ -44,7 +44,7 @@ TRANSLATION_HASHES_FILE = Path(__file__).resolve().parent / "translation_hashes.
 TRANSLATION_LOG = Path(__file__).resolve().parent / "translation_log.json"
 
 # Target languages for translation (can be modified as needed)
-TARGET_LANGUAGES = ["zh", "es", "ko"]
+TARGET_LANGUAGES = ["de", "es", "ko"]
 
 # Front matter keys that should NOT be translated
 NO_TRANSLATE_KEYS = {
