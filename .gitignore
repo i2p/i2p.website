@@ -1,9 +1,12 @@
 # Hugo build output
+public/
 hugo-site/public/
 hugo-site/resources/
+resources/
 
 # Hugo stats
 hugo_stats.json
+.hugo_build.lock
 
 # macOS files
 .DS_Store

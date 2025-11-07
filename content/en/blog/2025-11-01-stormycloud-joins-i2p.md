@@ -4,7 +4,6 @@ date: 2025-11-01
 author: "idk"
 categories: ["news"]
 description: "StormyCloud is officially joining forces with I2P in a more significant way, with Lance James and idk joining StormyCloud's Board of Directors."
-draft: false
 ---
 
 We're excited to share some important news: StormyCloud is officially joining forces with I2P in a more significant way.
