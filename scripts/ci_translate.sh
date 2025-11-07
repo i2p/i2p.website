@@ -203,8 +203,8 @@ if [ ${#FAILED_LANGUAGES[@]} -eq 0 ]; then
     if git diff --staged --quiet; then
         log_info "No changes to commit"
     else
-        # Commit with [skip ci] to avoid triggering another pipeline
-        git commit -m "Auto-translate: Update translations for changed content/en/ files [skip ci]" || {
+        # Commit translations - CI will detect this was made by GitLab CI and skip translate stage
+        git commit -m "Auto-translate: Update translations for changed content/en/ files" || {
             log_error "Failed to commit translated files"
             exit 1
         }
