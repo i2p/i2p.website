@@ -502,8 +502,11 @@ def translate_file(
         return True
 
     except Exception as exc:
+        # Always print errors to stderr, even in quiet mode
+        print(f"\n❌ Error translating {source_path}: {exc}", file=sys.stderr)
+        import traceback
         if verbose:
-            print(f"\n❌ Error translating {source_path}: {exc}", file=sys.stderr)
+            traceback.print_exc(file=sys.stderr)
         return False
 
 
@@ -537,47 +540,81 @@ def main() -> int:
 
     # Collect files
     files = []
-    if args.source:
-        source_path = Path(args.source).resolve()
-        if not source_path.exists():
-            print(f"Error: File not found: {source_path}", file=sys.stderr)
-            return 1
-        files.append(source_path)
-    elif args.source_dir:
-        source_dir = Path(args.source_dir).resolve()
-        if not source_dir.exists():
-            print(f"Error: Directory not found: {source_dir}", file=sys.stderr)
-            return 1
+    try:
+        if args.source:
+            source_path = Path(args.source).resolve()
+            if not source_path.exists():
+                print(f"Error: File not found: {source_path}", file=sys.stderr)
+                return 1
+            if not source_path.is_file():
+                print(f"Error: Source path is not a file: {source_path}", file=sys.stderr)
+                return 1
+            files.append(source_path)
+        elif args.source_dir:
+            source_dir = Path(args.source_dir).resolve()
+            if not source_dir.exists():
+                print(f"Error: Directory not found: {source_dir}", file=sys.stderr)
+                return 1
+            if not source_dir.is_dir():
+                print(f"Error: Source path is not a directory: {source_dir}", file=sys.stderr)
+                return 1
 
-        pattern = args.pattern or "*.md"
-        files = sorted(source_dir.glob(pattern))
+            pattern = args.pattern or "*.md"
+            files = sorted(source_dir.glob(pattern))
 
-        if not files:
-            print(f"Error: No files matching pattern '{pattern}' in {source_dir}", file=sys.stderr)
-            return 1
+            if not files:
+                print(f"Error: No files matching pattern '{pattern}' in {source_dir}", file=sys.stderr)
+                return 1
+    except Exception as exc:
+        print(f"Error collecting files: {exc}", file=sys.stderr)
+        import traceback
+        traceback.print_exc(file=sys.stderr)
+        return 1
 
     # Filter by hash if requested
     if args.check_hashes and not args.dry_run:
         base_dir = files[0].parent.parent.parent if files else Path.cwd()
+        original_count = len(files)
         files = get_files_to_translate(files, base_dir=base_dir)
         if not files:
             if not args.quiet:
                 print("No files need translation (all files already translated)")
+            else:
+                # In quiet mode, still log to stderr if files were filtered
+                print("No files need translation (all files already translated)", file=sys.stderr)
             return 0
+        if len(files) < original_count:
+            if not args.quiet:
+                print(f"Filtered {original_count - len(files)} file(s) that don't need translation")
+            else:
+                print(f"Filtered {original_count - len(files)} file(s) that don't need translation", file=sys.stderr)
 
     # Auto-detect output root
-    if args.output_root:
-        output_root = Path(args.output_root).resolve()
-    else:
-        parts = files[0].parts
-        try:
-            content_idx = parts.index("content")
-            output_root = Path(*parts[:content_idx])
-        except ValueError:
-            print("Error: Could not auto-detect output root. Use --output-root", file=sys.stderr)
-            return 1
+    try:
+        if args.output_root:
+            output_root = Path(args.output_root).resolve()
+        else:
+            parts = files[0].parts
+            try:
+                content_idx = parts.index("content")
+                output_root = Path(*parts[:content_idx])
+            except ValueError:
+                print("Error: Could not auto-detect output root. Use --output-root", file=sys.stderr)
+                print(f"  File path: {files[0]}", file=sys.stderr)
+                return 1
+    except Exception as exc:
+        print(f"Error determining output root: {exc}", file=sys.stderr)
+        import traceback
+        traceback.print_exc(file=sys.stderr)
+        return 1
 
-    translator = OpenAITranslator(api_key=api_key, model=args.model)
+    try:
+        translator = OpenAITranslator(api_key=api_key, model=args.model)
+    except Exception as exc:
+        print(f"Error initializing translator: {exc}", file=sys.stderr)
+        import traceback
+        traceback.print_exc(file=sys.stderr)
+        return 1
 
     if not args.quiet:
         print(f"\n{'='*60}")
