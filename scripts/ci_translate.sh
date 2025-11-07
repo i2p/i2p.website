@@ -116,7 +116,7 @@ for TARGET_LANG in $TARGET_LANGUAGES; do
         # Translate file using realtime API
         # Hash checking ensures we only translate if content actually changed
         log_info "  Running translation command..."
-        log_info "  Command: python3 $PYTHON_SCRIPT --source \"$FILE_PATH\" --target-lang \"$TARGET_LANG\" --model gpt-4o-mini --overwrite --check-hashes --output-root \"$REPO_ROOT\" --quiet"
+        log_info "  Command: python3 $PYTHON_SCRIPT --source \"$FILE_PATH\" --target-lang \"$TARGET_LANG\" --model gpt-5 --overwrite --check-hashes --output-root \"$REPO_ROOT\" --quiet"
 
         # Test if Python script exists and is readable
         if [ ! -f "$PYTHON_SCRIPT" ]; then
@@ -139,7 +139,7 @@ for TARGET_LANG in $TARGET_LANGUAGES; do
         python3 "$PYTHON_SCRIPT" \
             --source "$FILE_PATH" \
             --target-lang "$TARGET_LANG" \
-            --model gpt-4o-mini \
+            --model gpt-5 \
             --overwrite \
             --check-hashes \
             --output-root "$REPO_ROOT" \
