@@ -225,13 +225,11 @@ API_Translate: true
       <p>Monero provides the strongest privacy guarantees for donations. All transactions are confidential and untraceable.</p>
       <div class="crypto-address">85igd4Dw6ychvi8iUYADHfgLCmdT348SA6sMnYgxE86YZxX98Au6rsF9B9DmcqEXWRZWDcPdarufHUUqwP73GVrq6BaC9dr</div>
     </div>
-
     <div class="donation-method">
       <h4>Bitcoin (BTC)</h4>
       <p>Bitcoin donations are accepted for convenience, though they offer less privacy than Monero.</p>
       <div class="crypto-address">3JSSF45pAW5ujWbBuRFe25pBiwp1vjSRNb</div>
     </div>
-
     <div class="donation-method">
       <h4>Zcash (ZEC)</h4>
       <p>Zcash offers enhanced privacy features for those who prefer this cryptocurrency.</p>
