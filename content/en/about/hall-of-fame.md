@@ -24,25 +24,95 @@ We're grateful to everyone who has contributed to I2P over the years - whether t
 - JJE
 - JULLIAN
 - David
-
-</div>
-<div class="supporter-column">
-
 - Leonardo
 - pcboy
 - Stian Berger
 - susbarbatus
 - ComeIn3s
 - TimeTravelDuck
-
-</div>
-<div class="supporter-column">
-
 - Dr.Wax
 - foebrian
 - Scott
 - NaEaP
 - DuckDuckGo
+- Billionaire
+- Eol
+- ratsmack
+- bikenstrings
+- Julian
+- giv
+- first-leon
+- bandar-log
+- alu-anon
+
+</div>
+<div class="supporter-column">
+
+- maxkoda
+- DJ
+- Eugene Lautrec
+- Evgeny Ilin
+- dJavid84fr
+- Igor Gushchin
+- woodchips
+- Mozartito
+- bv-falcon
+- h2ik
+- magma
+- An anonymous secret society
+- society@mail.i2p
+- psychonaut
+- maxkoda.i2p
+- uglic
+- vention
+- Daniel Liabeuf
+- ReturningNovice
+- R.Schwabe
+- bernerbaer
+- neutron
+- russian donor
+- echelon
+- arne
+- bab
+
+</div>
+<div class="supporter-column">
+
+- G.Klaus
+- Cendre
+- M.Hilbig
+- Gilgongo
+- Amiga4000
+- DVT
+- bar
+- Peter
+- athena
+- postman
+- aum
+- Aurimas Fiseras
+- Doubtful
+- salmon
+- Chris Wong
+- Zlatin Balevsky
+- Dale Jefferson
+- David Hjelm
+- Marcus Felker
+- Sebastian Spaeth
+- Martin Stares
+- Nico Zimmerman
+- jnymo
+- Elliot Turner
+- modulus
+- Salvador Petit
+- Philip Bock
+- cervantes
+- nickster
+- protokol
+- Jeff Teitel
+- eco
+- wilde
+- bla
+- duck
 - [Your name here!]
 
 </div>
