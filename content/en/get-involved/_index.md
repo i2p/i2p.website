@@ -18,7 +18,7 @@ I2P is open source and we welcome contributions to the codebase. Whether you wan
 - **IRC channels**: #i2p-dev on IRC2P for development discussions
 
 ### Application Development
-Build applications that run on I2P! From chat apps to file sharing, email clients to social networks - the possibilities are endless.
+Build applications that run on I2P!
 
 - **API documentation**: Learn about [SAM, BOB, and I2PTunnel APIs](/en/docs/api)
 - **Streaming library**: Use the I2P streaming library for your apps
