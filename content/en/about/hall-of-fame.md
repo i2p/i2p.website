@@ -44,12 +44,12 @@ We're grateful to everyone who has contributed to I2P over the years - whether t
 - first-leon
 - bandar-log
 - alu-anon
+- maxkoda
+- DJ
 
 </div>
 <div class="supporter-column">
 
-- maxkoda
-- DJ
 - Eugene Lautrec
 - Evgeny Ilin
 - dJavid84fr
@@ -74,14 +74,14 @@ We're grateful to everyone who has contributed to I2P over the years - whether t
 - echelon
 - arne
 - bab
-
-</div>
-<div class="supporter-column">
-
 - G.Klaus
 - Cendre
 - M.Hilbig
 - Gilgongo
+
+</div>
+<div class="supporter-column">
+
 - Amiga4000
 - DVT
 - bar
