@@ -53,10 +53,6 @@ We're grateful to everyone who has contributed to I2P over the years - whether t
 - jrandom
 - Complication
 - mkvore
-
-</div>
-<div class="supporter-column">
-
 - redzara
 - striker
 - legion
@@ -64,6 +60,10 @@ We're grateful to everyone who has contributed to I2P over the years - whether t
 - mastiejaner
 - dust
 - susi23
+
+</div>
+<div class="supporter-column">
+
 - sirup
 - Ragnarok
 - Eugene Lautrec
@@ -92,10 +92,6 @@ We're grateful to everyone who has contributed to I2P over the years - whether t
 - bab
 - G.Klaus
 - Cendre
-
-</div>
-<div class="supporter-column">
-
 - M.Hilbig
 - Gilgongo
 - Amiga4000
@@ -110,6 +106,10 @@ We're grateful to everyone who has contributed to I2P over the years - whether t
 - salmon
 - Chris Wong
 - Zlatin Balevsky
+
+</div>
+<div class="supporter-column">
+
 - Dale Jefferson
 - David Hjelm
 - Marcus Felker
