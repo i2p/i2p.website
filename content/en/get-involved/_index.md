@@ -37,9 +37,9 @@ Help new users join the network by running infrastructure services:
 ### Improve Documentation
 Clear documentation helps everyone understand and use I2P better.
 
-- **Writing Guidelines**: Follow our [documentation writing guidelines](/docs/writing-guidelines/)
-- **Documentation Hub**: Browse and contribute to the [docs section](/docs/)
-- **Content Suggestions**: Have ideas? [Contact us](/contact/)
+- **Writing Guidelines**: Follow our [documentation writing guidelines](/en/docs/i2p-documentation-writing-guidelines/)
+- **Documentation Hub**: Browse and contribute to the [docs section](/en/docs/)
+- **Content Suggestions**: Have ideas? [Contact us](/en/contact/)
 
 ### Translation
 Make I2P accessible to more people by translating:
