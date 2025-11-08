@@ -46,10 +46,26 @@ We're grateful to everyone who has contributed to I2P over the years - whether t
 - alu-anon
 - maxkoda
 - DJ
+- Sadie
+- Mathiasdm
+- str4d
+- mihi
+- jrandom
+- Complication
+- mkvore
 
 </div>
 <div class="supporter-column">
 
+- redzara
+- striker
+- legion
+- Connely
+- mastiejaner
+- dust
+- susi23
+- sirup
+- Ragnarok
 - Eugene Lautrec
 - Evgeny Ilin
 - dJavid84fr
@@ -76,12 +92,12 @@ We're grateful to everyone who has contributed to I2P over the years - whether t
 - bab
 - G.Klaus
 - Cendre
-- M.Hilbig
-- Gilgongo
 
 </div>
 <div class="supporter-column">
 
+- M.Hilbig
+- Gilgongo
 - Amiga4000
 - DVT
 - bar
@@ -113,6 +129,28 @@ We're grateful to everyone who has contributed to I2P over the years - whether t
 - wilde
 - bla
 - duck
+- thecrypto
+- hypercubus
+- ugha
+- oOo
+- BrianR
+- shendaras
+- JAnonymous
+- jar
+- scintilla
+- smeghead
+- Nightblade
+- dinoman
+- DrWoo
+- dr|z3d
+- walking
+- monkeybrains
+- mixxy
+- rus
+- 4get
+- slow
+- thelastocde
+- hamada
 - [Your name here!]
 
 </div>
