@@ -8,7 +8,6 @@ accurateFor: "historical"
 aliases:
   - /docs/discussions/naming/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Context:** This page archives long-running debates from the early I2P design era. It captures why the project favoured locally trusted address books over DNS-style lookups or majority-vote registries. For current usage guidance, see the [Naming documentation](/docs/overview/naming/).

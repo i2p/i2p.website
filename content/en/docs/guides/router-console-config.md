@@ -5,7 +5,6 @@ slug: "router-console-config"
 lastUpdated: "2025-11"
 accurateFor: "2.10.0"
 type: docs
-API_Translate: true
 ---
 
 This guide provides an overview of the I2P Router Console and its configuration pages. Each section explains what the page does and what it's meant for, helping you understand how to monitor and configure your I2P router.

@@ -4,7 +4,6 @@ date: 2021-09-18
 author: "idk"
 description: "A new use case and a signal of growing acceptance"
 categories: ["general"]
-API_Translate: true
 ---
 
 An event months in the making, Bitcoin Core has added official support for I2P! Bitcoin-over-I2P nodes can interact fully with the rest of the Bitcoin nodes, using the help of nodes that operate within both I2P and the clearnet, making them first-class participants in the Bitcoin network. It's exciting to see large communities like Bitcoin taking notice of the advantages I2P can bring to them providing privacy and reachability to people all over the world.

@@ -4,7 +4,6 @@ date: 2006-10-10
 author: "jr"
 description: "0.6.1.26 release with positive feedback, Syndie 0.910a approaching 1.0, and distributed version control evaluation for Syndie"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, brief status notes this week

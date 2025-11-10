@@ -4,7 +4,6 @@ date: 2004-01-06
 author: "jrand0m"
 description: "I2P development meeting covering project updates and technical discussions"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 (Courtesy of the wayback machine http://www.archive.org/)

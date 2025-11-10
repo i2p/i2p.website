@@ -4,7 +4,6 @@ description: "I2P's security vulnerability reporting and response process"
 layout: "security-response"
 aliases:
   - /en/research/vrp
-API_Translate: true
 ---
 
 <div id="contact"></div>

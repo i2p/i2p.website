@@ -4,7 +4,6 @@ date: 2004-09-08
 author: "jr"
 description: "Weekly I2P status update covering 0.4 release, network capacity issues, website updates, and I2PTunnel interface improvements"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi all, sorry for being late...

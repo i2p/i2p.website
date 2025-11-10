@@ -10,7 +10,6 @@ aliases:
   - /spec/api/streaming/
   - /docs/specs/streaming/
   - /en/spec/streaming/
-API_Translate: true
 ---
 
 ## Overview

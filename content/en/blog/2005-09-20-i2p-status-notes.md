@@ -4,7 +4,6 @@ date: 2005-09-20
 author: "jr"
 description: "Weekly update covering 0.6.0.6 release success with SSU introductions, I2Phex 0.1.1.27 security update, and colo migration completion"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi gang, its tuesday again

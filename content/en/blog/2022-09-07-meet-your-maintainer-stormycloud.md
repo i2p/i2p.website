@@ -4,7 +4,6 @@ date: 2022-09-07
 author: "sadie"
 description: "An interview with the maintainers of the StormyCloud Outproxy"
 categories: ["general"]
-API_Translate: true
 ---
 
 ## A conversation with StormyCloud Inc.

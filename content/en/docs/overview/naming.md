@@ -10,7 +10,6 @@ aliases:
   - /spec/common-structures/naming/
   - /docs/overview/naming/
   - /en/docs/naming/
-API_Translate: true
 ---
 
 I2P addresses are long cryptographic keys. The naming system provides a friendlier layer on top of those keys **without introducing a central authority**.  

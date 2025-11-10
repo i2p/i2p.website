@@ -4,7 +4,6 @@ date: 2006-05-16
 author: "jr"
 description: "Brief update on upcoming release progress, meeting schedule changes, and ongoing development work"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hey y'all, quick meta-notes today. I've got to bolt for the evening and won't be back in time for the meeting, but will write up a set of status notes tomorrow (with the meeting next week, of course). Complication has been churning away with some neat mods in cvs, and there is some promising stuff coming up, so hopefully we'll have a release later this week. Not sure though.

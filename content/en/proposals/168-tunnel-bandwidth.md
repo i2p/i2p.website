@@ -7,7 +7,6 @@ lastupdated: "2024-12-10"
 status: "Closed"
 thread: "http://zzz.i2p/topics/3652"
 target: "0.9.65"
-API_Translate: true
 ---
 
 ## NOTE

@@ -4,7 +4,6 @@ date: 2004-11-02
 author: "jr"
 description: "Weekly I2P status update covering network status, core memory optimizations, tunnel routing security fixes, streaming library progress, and mail/BitTorrent developments"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time for the weekly update

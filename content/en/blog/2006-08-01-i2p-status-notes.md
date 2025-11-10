@@ -4,7 +4,6 @@ date: 2006-08-01
 author: "jr"
 description: "Strong network performance with high I2PSnark transfer rates, NTCP transport stability, and eepsite reachability clarifications"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time for a brief set of notes before tonight's meeting. I realize that you may have a variety of questions or issues to bring up, so we'll go in a more fluid format than usual. There are just a few things I want to mention first.

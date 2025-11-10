@@ -3,7 +3,6 @@ title: "I2P Mail (Anonymous Email over I2P)"
 description: "An overview of email systems inside the I2P network — history, options, and current status"
 slug: "i2p-mail"
 lastUpdated: "2025-10"
-API_Translate: true
 ---
 
 ## Introduction

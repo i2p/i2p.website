@@ -4,7 +4,6 @@ description: "Secure signed update mechanism and feed structure for I2P routers"
 slug: "updates"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-API_Translate: true
 ---
 
 ## Overview

@@ -4,7 +4,6 @@ date: 2023-07-10
 author: "idk"
 description: "Easy-Install for Windows 2.3.0 Released"
 categories: ["release"]
-API_Translate: true
 ---
 
 The I2P Easy-Install bundle for Windows version 2.3.0 has now been released.

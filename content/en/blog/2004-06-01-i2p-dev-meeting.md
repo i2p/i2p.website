@@ -4,7 +4,6 @@ date: 2004-06-01
 author: "duck"
 description: "I2P development meeting log for June 01, 2004."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

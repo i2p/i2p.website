@@ -4,7 +4,6 @@ date: 2005-02-01
 author: "jr"
 description: "Weekly I2P development status notes covering 0.5 tunnel encryption progress, new NNTP server, and technical proposals"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, weekly status time

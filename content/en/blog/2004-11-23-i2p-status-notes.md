@@ -4,7 +4,6 @@ date: 2004-11-23
 author: "jr"
 description: "Weekly I2P status update covering network recovery, streaming library testing progress, upcoming 0.4.2 release plans, and addressbook improvements"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time for a status update

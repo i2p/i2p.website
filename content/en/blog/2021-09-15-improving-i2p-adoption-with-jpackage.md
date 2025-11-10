@@ -4,7 +4,6 @@ date: 2021-09-15
 author: "idk"
 description: "Versatile and emerging ways of installing and embedding I2P in your application"
 categories: ["general"]
-API_Translate: true
 ---
 
 For the majority of I2P's existence, it's been an application that runs with the help of a Java Virtual Machine that is already installed on the platform. This has always been the normal way to distribute Java applications, but it leads to a complicated installation procedure for many people. To make things even more complicated, the "right answer" to making I2P easy to install on any given platform might not be the same as any other platform. For example, I2P is quite simple to install with standard tools on Debian and Ubuntu based operating systems, because we can simply list the required Java components as "Required" by our package, however on Windows or OSX, there is no such system allowing us to make sure that a compatible Java is installed.

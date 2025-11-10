@@ -6,7 +6,6 @@ lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 aliases:
   - /spec/encryptedleaseset/
-API_Translate: true
 ---
 
 

@@ -1,0 +1,15 @@
+---
+title: "I2P 开发者会议 - 2016年12月06日"
+date: 2016-12-06
+author: "zzz"
+description: "2016年12月6日的 I2P 开发会议记录。"
+categories: ["meeting"]
+---
+
+## 快速回顾
+
+<p class="attendees-inline"><strong>出席：</strong> echelon, manas, orignal, zzz</p>
+
+## 会议记录
+
+<div class="irc-log"> 20:00:02 &lt;zzz&gt; 0) 嗨 20:00:02 &lt;zzz&gt; 1) 33C3 筹备 20:00:02 &lt;zzz&gt; 2) 0.9.28 更新 (zzz) 20:00:02 &lt;zzz&gt; 3) Tails 维护者 (zzz) http://zzz.i2p/topics/2108 20:00:07 &lt;zzz&gt; 0) 嗨 20:00:09 &lt;zzz&gt; 嗨 20:00:16 &lt;i2pr&gt; [Slack/manas] 你好 :slightly_smiling_face: 20:00:44 &lt;zzz&gt; 1) 33C3 筹备 20:00:54 &lt;orignal_&gt; 嗨 20:01:08 &lt;zzz&gt; 好的，从今天起还有3周，还有什么需要讨论的吗？ 20:01:38 &lt;eche|on&gt; 至少可以通过 Twitter 联系到我 20:01:49 &lt;eche|on&gt; 我从12月26日起在汉堡 20:01:53 &lt;zzz&gt; 我认为我们会提前几天建好 Twitter 的私信（DM）群组 20:01:58 &lt;eche|on&gt; 我会带横幅、笔记本电脑和贴纸 20:02:10 &lt;i2pr&gt; [Slack/manas] 我将在12月26日下午抵达汉堡 20:02:11 &lt;zzz&gt; 我也会带贴纸。 20:02:21 &lt;zzz&gt; 别忘了带插线板 20:02:39 &lt;eche|on&gt; 票都已经付过款了，我会负责分发给大家 20:02:45 &lt;zzz&gt; 老规矩，26日到场的先占一张桌子 20:02:45 &lt;eche|on&gt; 好的 20:02:57 &lt;i2pr&gt; [Slack/manas] 对第一次去 CCC 的人有什么提示/建议吗？ 20:02:57 &lt;eche|on&gt; 有 20:03:12 &lt;zzz&gt; Monero 那边是 fluffypony + 1 20:03:29 &lt;eche|on&gt; manas：到场，多多汲取；把你的系统准备好 24/7 接受攻击；带个大硬盘，带点钱，对意料之外要有心理准备^^ 20:03:30 &lt;zzz&gt; 通用建议会在会后给你 20:03:35 &lt;i2pr&gt; [Slack/manas] :smile: 20:03:41 &lt;zzz&gt; 关于 1) 还有别的吗？ 20:04:48 &lt;zzz&gt; 2) 0.9.28 更新 20:04:55 &lt;eche|on&gt; 就一句：希望 33c3 顺利 20:05:19 &lt;zzz&gt; 0.9.28 按计划进行，代码提交和翻译截止到周五，预计下周初发布 20:05:35 &lt;zzz&gt; 请本周末帮忙审阅 diff 20:05:57 &lt;orignal_&gt; 有什么我需要注意的新东西吗？ 20:06:09 &lt;orignal_&gt; 我是说 0.9.28 20:06:09 &lt;eche|on&gt; 好的，我会在这儿忙到12月19日，从20日开始每天会上线一会儿 20:06:22 &lt;zzz&gt; 我觉得没有，orignal_ 20:06:28 &lt;zzz&gt; 关于 2) 还有别的吗？ 20:06:53 &lt;orignal_&gt; 谢谢 20:07:34 &lt;zzz&gt; 3) Tails 维护者 20:07:49 &lt;zzz&gt; 我们在 Tails 上的情况不太好。今年有 3 位维护者不再活跃了 20:08:23 &lt;zzz&gt; 部分 Tails 开发者希望从 Tails 中移除 I2P，原因是多年来工单无人跟进，且缺乏稳定维护 20:08:47 &lt;zzz&gt; sadie 今天早上发了条推文，收到了一条回复 20:09:26 &lt;zzz&gt; 我们可能需要 sadie 做一波大的公关（PR）推进……或者也许这位新志愿者能顶上 20:09:36 &lt;zzz&gt; 有人愿意做志愿者吗？有什么想法吗？ 20:10:34 &lt;zzz&gt; 好的，我会回复那位在 Twitter 上自荐的志愿者，看看进展如何 20:10:41 &lt;zzz&gt; 关于 3) 还有别的吗？ 20:11:34 &lt;zzz&gt; 本次会议还有别的吗？ 20:11:35 &lt;i2pr&gt; [Slack/manas] 我想帮忙，但我对这块不熟，需要大量阅读和学习。 20:11:46 &lt;i2pr&gt; [Slack/manas] 我已经把相关帖子找出来了，会去读 20:12:01 &lt;zzz&gt; 需要具备 I2P、Tails 和 Debian 打包经验 20:12:08 &lt;i2pr&gt; [Slack/manas] 我的 reseed（初始节点分发服务器）的 SSL 证书可能已经过期或快过期了，我会确保它们得到更新 20:12:19 &lt;orignal_&gt; I2P 应该比现在做更多 PR 20:12:54 &lt;zzz&gt; orignal_，我同意，请把你的任何想法转给 sadie 和 str4d 20:12:56 &lt;i2pr&gt; [Slack/manas] letskencrypt (now called acme-client) 经历了不少变更，但现在已经稳定了。我可以为各个 reseed 实现 SSL 证书的自动更新。 20:13:09 &lt;i2pr&gt; [Slack/manas] 所以 reseed 可能会暂时下线，但会恢复的 :slightly_smiling_face: 20:13:18 &lt;zzz&gt; manas，关于任何 reseed 问题，请与 backup@mail.i2p 配合 20:13:24 &lt;zzz&gt; 本次会议还有别的吗？ 20:13:28 &lt;i2pr&gt; [Slack/manas] 好的 20:14:44 &lt;zzz&gt; 一月第一周不召开会议。我们会在 CCC 进行线下面对面会议。请关注此频道获取详情，会议可能会临时安排 20:15:10 &lt;zzz&gt; 可能召开的会议清单在一个 zzz.i2p 主题帖里，如果要添加议题或申请远程加入，请在那儿发言 20:15:23 * zzz **bafs** 会议结束 </div>

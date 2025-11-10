@@ -4,7 +4,6 @@ date: 2021-12-11
 author: "idk, zzz"
 description: "I2P doesn't use log4j and is therefore unaffected by CVE-2021-44228"
 categories: ["security"]
-API_Translate: true
 ---
 
 I2P is not affected by the log4j 0-Day vulnerability which was published yesterday, CVE-2021-44228. I2P doesn't use log4j for logging, however we also needed to review our dependencies for log4j usage, especially jetty. This review has not revealed any vulnerabilities.

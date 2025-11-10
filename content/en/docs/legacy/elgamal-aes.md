@@ -8,7 +8,6 @@ aliases:
   - /docs/how/elgamal-aes/
   - /en/docs/specs/elgamal-aes/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Status:** This document describes the legacy ElGamal/AES+SessionTag encryption protocol. It remains supported only for backward compatibility, as modern I2P versions (2.10.0+) use [ECIES‑X25519‑AEAD‑Ratchet](/docs/specs/ecies/). The ElGamal protocol is deprecated and retained solely for historical and interoperability purposes.

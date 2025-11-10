@@ -3,7 +3,6 @@ title: "So You Want To Write A SAM Library"
 date: 2019-06-23
 author: "idk"
 description: "Beginners guide to writing a SAM library!"
-API_Translate: true
 ---
 
 *Or, talking to [i2p](https://geti2p.net) for people who aren't really used to reading specs*

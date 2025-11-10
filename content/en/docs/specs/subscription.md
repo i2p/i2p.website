@@ -4,7 +4,6 @@ description: "Extension to address subscription feeds enabling hostname holders 
 slug: "subscription"
 lastUpdated: "2025-10"
 accurateFor: "I2P 2.10.0"
-API_Translate: true
 ---
 
 ## Overview

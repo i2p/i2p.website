@@ -4,7 +4,6 @@ date: 2004-10-12
 author: "jr"
 description: "Weekly I2P status update covering 0.4.1.2 release, dynamic throttling experiments, 0.4.2 streaming library development, and email discussions"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi gang, time for our weekly update

@@ -8,7 +8,6 @@ aliases:
 layout: docs/single
 type: docs
 hideSidebar: true
-API_Translate: true
 ---
 
 <style>

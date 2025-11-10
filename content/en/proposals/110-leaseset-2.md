@@ -7,7 +7,6 @@ lastupdated: "2016-04-04"
 status: "Rejected"
 thread: "http://zzz.i2p/topics/1560"
 supercededby: "123"
-API_Translate: true
 ---
 
 ## Overview

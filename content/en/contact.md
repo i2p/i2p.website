@@ -3,7 +3,6 @@ title: "Contact Us"
 description: "Get in touch with the I2P project - email, forums, social media, IRC channels, and meet the team."
 type: "contact"
 layout: "contact"
-API_Translate: true
 ---
 
 ## Email {#email}

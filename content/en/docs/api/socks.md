@@ -6,7 +6,6 @@ lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 aliases:
   - /docs/api/socks/
-API_Translate: true
 ---
 
 > **Caution:** The SOCKS tunnel forwards application payloads without sanitizing them. Many protocols leak IPs, hostnames, or other identifiers. Only use SOCKS with software you have audited for anonymity.

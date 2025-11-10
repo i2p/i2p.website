@@ -3,7 +3,6 @@ title: "Installing I2P on Debian and Ubuntu"
 description: "Complete guide to installing I2P on Debian, Ubuntu, and their derivatives using official repositories"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-API_Translate: true
 ---
 
 The I2P project maintains official packages for Debian, Ubuntu, and their derivative distributions. This guide provides comprehensive instructions for installing I2P using our official repositories.

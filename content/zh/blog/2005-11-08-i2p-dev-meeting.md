@@ -1,0 +1,15 @@
+---
+title: "I2P 开发者会议 - 2005年11月08日"
+date: 2005-11-08
+author: "jrandom"
+description: "2005年11月08日的 I2P 开发会议记录。"
+categories: ["meeting"]
+---
+
+## 快速回顾
+
+<p class="attendees-inline"><strong>出席：</strong> bar, dust, frosk, jrandom, reliver, tealc\_, ZipTie</p>
+
+## 会议记录
+
+<div class="irc-log"> 15:21 &lt;jrandom&gt; 0) 嗨 15:21 &lt;jrandom&gt; 1) 网络状态/短期路线图 15:21 &lt;jrandom&gt; 2) I2Phex 15:21 &lt;jrandom&gt; 3) I2P-Rufus 15:21 &lt;jrandom&gt; 4) I2PSnarkGUI 15:21 &lt;jrandom&gt; 5) Syndie 15:22 &lt;jrandom&gt; 6) ??? 15:22 &lt;jrandom&gt; 0) 嗨 15:22  * jrandom 挥手 15:22 &lt;jrandom&gt; 每周状态说明在 http://dev.i2p.net/pipermail/i2p/2005-November/001206.html 15:22  * bar 在他/她那撮假的（？）胡子后面嘟囔着问好 15:23 &lt;jrandom&gt; 好，进入 1) 网络状态/短期路线图 15:23 &lt;jrandom&gt; 除了邮件里的内容之外没什么可说——希望本周晚些时候或周末会有一个新版本 15:24 &lt;jrandom&gt; cvs 里有一些新的优化，应该有助于提高可靠性；我做的测试里表现不错，不过在广泛部署之前大概不会有太大影响 15:25 &lt;jrandom&gt; 在继续推进到 0.6.2 之前，我也还没有拍板一个想要达到的吞吐量目标，不过直觉告诉我，优化应该持续进行，直到我能用每个 router 跳数的延迟来解释那些瓶颈为止 15:26 &lt;jrandom&gt; 不过就目前而言，那还不是我们的瓶颈，所以仍有工作要做。 15:26 &lt;jrandom&gt; 这方面我没什么更多可补充的——大家有问题/意见/担忧吗？ 15:28 &lt;jrandom&gt; 好，如果没有的话，继续到 2) I2Phex 15:28 &lt;jrandom&gt; 这部分除了邮件里说的之外也没什么可补充的。不过论坛上也有一堆讨论，去那儿看看会有更多消息和吐槽  15:31 &lt;jrandom&gt; 好，如果没有的话，跳到 3) I2P-Rufus 15:31 &lt;jrandom&gt; 这一条其实只是我重复了一个传闻，不过我们拭目以待 15:32 &lt;jrandom&gt; Rawn / defnax：你们有什么要补充的吗？ 15:35 &lt;tealc_&gt; i2p-rufus 是什么？ 15:35 &lt;jrandom&gt; 为 I2P 移植的 rufus BitTorrent 客户端 (http://rufus.sourceforge.net/) 15:36 &lt;jrandom&gt; 好，如果没别的，我们可以跳到另一个简短的传闻报道——4) I2PSnarkGUI 15:37 &lt;jrandom&gt; 除了说“嘿，酷啊”之外，我也没什么可补充的 :) 15:38 &lt;+bar&gt; 是啊，看起来不错 15:38 &lt;@frosk&gt; snark 又是一个 BT 客户端？ 15:38 &lt;jrandom&gt; 是的，不过 snark 是随 I2P 打包的 BitTorrent 客户端 :) 15:38 &lt;@frosk&gt; 哦对，没错 :) 15:38 &lt;jrandom&gt; （目前是命令行工具，但多 Torrent 和 Web 界面在路上了，不过不是立刻） 15:39 &lt;+fox&gt; &lt;ZipTie&gt; 是谁在为 snark 做稀有度优先（rarest-first）的获取策略？那个完成了吗？ 15:39 &lt;jrandom&gt; 嗯，Ragnarok 实现了那个 15:39 &lt;jrandom&gt; 已经在当前的 I2PSnark 里了 15:39 &lt;+fox&gt; &lt;ZipTie&gt; 酷 15:40 &lt;jrandom&gt; 嗯，确实 15:41 &lt;+fox&gt; &lt;ZipTie&gt; 那 i2p-bt 会因此退役，由 rufus 或 snark 取而代之吗？ 15:41 &lt;jrandom&gt; 那要由用户来决定 15:42 &lt;+fox&gt; &lt;ZipTie&gt; 或者从可维护性角度 :) 15:42 &lt;jrandom&gt; 就我个人而言，我觉得如果 snark 拥有 Web 界面、与 router 控制台集成、具备多 Torrent 能力，并且性能与其它客户端相当，那它的处境就会很好 15:43 &lt;jrandom&gt; 但实际上，你提到的才是关键——由谁来维护和开发才是驱动力 15:43  * jrandom 不维护 python 应用 15:44 &lt;jrandom&gt; 好，如果第 4 项没别的，我们继续到 5) Syndie 15:45 &lt;jrandom&gt; 我一直在做一些关于如何推进的可用性研究，我觉得我们已经有一个相当可行的 UI 在路上了，但如果你有意见，请发到 syndie 或论坛，我们希望能予以考虑 15:46 &lt;tealc_&gt; 啊，我还以为 i2phex 是用 java 写的……论坛上的东西提供了 .exe 安装程序，还有打包在 ZIP 里的 .exe 15:47 &lt;jrandom&gt; i2phex 是 java 15:47 &lt;jrandom&gt; 而且这个 .exe 在任何 java 能运行的平台上都能用 15:47 &lt;jrandom&gt; java -jar i2phex.exe 15:47 &lt;jrandom&gt; （真的） 15:49 &lt;jrandom&gt; （咳） 15:49 &lt;jrandom&gt; dust：关于 syndie 的东西还有要补充的吗？ 15:50 &lt;dust&gt; 没有 15:50 &lt;jrandom&gt; 好，酷。除非还有人对此有其他内容，否则我们就跳到老牌项目： 6) ??? 15:50 &lt;jrandom&gt; 还有什么想在会议上提出的吗？ 15:53 &lt;+fox&gt; &lt;reliver&gt; 西班牙海鲜饭准备好了吗？ ;-) 15:53  * jrandom 拿起一个勺叉 15:54 &lt;jrandom&gt; （说到这个……） 15:54 &lt;+fox&gt; &lt;reliver&gt; 还有那只猫还是闻起来像猫吗；？） 15:54  * jrandom 开始收场 15:54  * jrandom 用*baf*把会议结束了 </div>

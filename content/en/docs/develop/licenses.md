@@ -8,7 +8,6 @@ aliases:
   - "/en/get-involved/develop/licenses"
   - "/get-involved/develop/licenses"
 type: docs
-API_Translate: true
 ---
 
 <p>

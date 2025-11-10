@@ -4,7 +4,6 @@ date: 2005-03-01
 author: "jr"
 description: "Weekly I2P development status notes covering 0.5.0.1 bugs and upcoming 0.5.0.2, roadmap updates, addressbook editor, and i2p-bt updates"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time for our status update

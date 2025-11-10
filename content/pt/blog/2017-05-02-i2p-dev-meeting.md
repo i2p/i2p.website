@@ -1,0 +1,15 @@
+---
+title: "Reunião de Desenvolvedores do I2P - 02 de maio de 2017"
+date: 2017-05-02
+author: "zzz"
+description: "Registro da reunião de desenvolvimento do I2P de 2 de maio de 2017."
+categories: ["meeting"]
+---
+
+## Quick recap
+
+<p class="attendees-inline"><strong>Presentes:</strong> backup, manas, zzz</p>
+
+## Registro da reunião
+
+<div class="irc-log"> 20:00:01 &lt;zzz&gt; 0) Olá 20:00:01 &lt;zzz&gt; 1) atualização 0.9.30/.31 (zzz) 20:00:01 &lt;zzz&gt; 2) status do branch da UI - (str4d) 20:00:01 &lt;zzz&gt; 3) planos do I2P Summer Dev - (str4d) 20:00:01 &lt;zzz&gt; 4) atualização do EdDSA - (str4d) 20:00:05 &lt;zzz&gt; 0) Olá 20:00:07 &lt;zzz&gt; oi 20:00:23 &lt;zzz&gt; 1) atualização 0.9.30/.31 (zzz) 20:00:48 &lt;zzz&gt; alguns dias atrasado em relação ao cronograma devido a bugs do Jetty que precisei corrigir, mas vou terminar a revisão hoje à noite e fazer a compilação amanhã de manhã 20:00:58 &lt;manas&gt; Olá 20:01:19 &lt;zzz&gt; se o eche|on estiver por aqui amanhã, lançaremos a atualização dentro da rede, e eu vou trabalhar nas compilações do launchpad e deb para quinta e sexta 20:01:46 &lt;zzz&gt; a 31 eu agendei para o fim de junho ou início de julho 20:01:53 &lt;backup&gt; Oi 20:02:03 &lt;manas&gt; Oi backup! :D 20:02:15 &lt;zzz&gt; você pode ver o roadmap do que temos planejado (ou pelo menos esperávamos) para a 31 20:02:19 &lt;zzz&gt; mais algo em 1) ? 20:03:18 &lt;zzz&gt; 2) status do branch da UI - (str4d) 20:03:43 &lt;zzz&gt; str4d, é com você 20:04:13 &lt;zzz&gt; ok, esta vai ser a reunião mais curta de todas 20:04:27 &lt;backup&gt; Achei que éramos mais pessoas aqui :) 20:04:27 &lt;manas&gt; :P 20:04:33 &lt;zzz&gt; mais algo em 2), 3) ou 4), ou qualquer outro tópico para a reunião? 20:04:44 &lt;manas&gt; Eu queria destacar este tópico: http://trac.i2p2.i2p/ticket/1139 20:04:46 &lt;manas&gt; *ticket 20:04:54 &lt;manas&gt; Deveríamos tentar incluir essa mudança na nova UI 20:05:21 &lt;manas&gt; "Semi-shutdown": interromper temporariamente a aceitação de tunnels participantes. 20:05:57 &lt;manas&gt; backup: Você poderia me enviar por mensagem privada o novo link de status? 20:06:05 &lt;manas&gt; obrigado 20:06:08 &lt;zzz&gt; ok, talvez você possa adicionar suas razões de por que isso é importante ao ticket? 20:06:41 &lt;manas&gt; Eu estava interessado em saber mais sobre os planos de desenvolvimento de verão, mas acho que isso vai ter que esperar até o str4d aparecer 20:06:43 &lt;manas&gt; zzz: claro 20:06:43 &lt;zzz&gt; qualquer coisa de UI não crítica tem que esperar até mesclarmos o branch da UI, então, com sorte, isso virá em breve 20:06:49 &lt;zzz&gt; mais algo para a reunião? 20:07:06 &lt;zzz&gt; bom ver você aqui, backup 20:07:14 * zzz pega o baffer 20:07:40 &lt;manas&gt; Eu queria propor reuniões regulares de operadores de reseed 20:07:45 &lt;manas&gt; o que você acha, backup ? 20:08:19 &lt;zzz&gt; Eu daria +1 nisso 20:08:38 &lt;backup&gt; sim, boa ideia 20:08:44 &lt;zzz&gt; Vou deixar vocês continuarem a discussão, porém, por enquanto... 20:08:50 * zzz *bafs* encerra a reunião </div>

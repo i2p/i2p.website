@@ -4,7 +4,6 @@ date: 2017-08-01
 author: "zzz"
 description: "I2P development meeting log for August 01, 2017."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

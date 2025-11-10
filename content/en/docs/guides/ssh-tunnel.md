@@ -3,7 +3,6 @@ title: "Creating an SSH Tunnel to Access I2P Remotely"
 description: "Learn how to create secure SSH tunnels on Windows, Linux, and Mac to access your remote I2P router"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-API_Translate: true
 ---
 
 An SSH tunnel provides a secure, encrypted connection to access your remote I2P router's console or other services. This guide shows you how to create SSH tunnels on Windows, Linux, and Mac systems.

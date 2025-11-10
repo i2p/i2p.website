@@ -8,7 +8,6 @@ aliases:
   - "/en/docs/applications/GIT.md"
   - /en/docs/applications/gitlab/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 Cloning and pushing repositories inside I2P uses the same Git commands you already know—your client simply connects through I2P tunnels instead of TCP/IP. This guide walks through setting up an account, configuring tunnels, and dealing with slow links.

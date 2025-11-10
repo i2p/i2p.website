@@ -4,7 +4,6 @@ date: 2020-03-06
 author: "idk"
 description: "Git over I2P"
 categories: ["development"]
-API_Translate: true
 ---
 
 Tutorial for setting up git access through an I2P Tunnel. This tunnel will act as your access point to a single git service on I2P. It is part of the overall effort to transition I2P from monotone to Git.

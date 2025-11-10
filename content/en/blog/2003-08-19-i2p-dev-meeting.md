@@ -4,7 +4,6 @@ date: 2003-08-19
 author: "jrand0m"
 description: "54th I2P dev meeting covering SDK updates, I2NP review, crypto progress, and development status"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 <h2 id="quick-recap">Quick recap</h2>

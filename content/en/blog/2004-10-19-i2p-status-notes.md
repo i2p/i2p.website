@@ -4,7 +4,6 @@ date: 2004-10-19
 author: "jr"
 description: "Weekly I2P status update covering 0.4.1.3 release, tunnel performance improvements, streaming library progress, and files.i2p search engine"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, its tuesday again

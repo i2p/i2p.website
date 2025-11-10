@@ -4,7 +4,6 @@ date: 2005-03-08
 author: "jr"
 description: "Weekly I2P development status notes covering 0.5.0.2 release improvements, network reliability focus, and updates to mail and bittorrent services"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, weekly update time

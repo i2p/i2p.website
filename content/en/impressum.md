@@ -1,5 +1,4 @@
 ---
-API_Translate: true
 ---
 
 # Impressum

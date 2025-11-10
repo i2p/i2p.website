@@ -4,7 +4,6 @@ date: 2020-05-05
 author: "eyedeekay"
 description: "I2P development meeting log for May 05, 2020."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

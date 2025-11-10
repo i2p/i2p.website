@@ -4,7 +4,6 @@ date: 2019-06-02
 author: "idk"
 description: "Basic i2ptunnel Setup"
 categories: ["tutorial"]
-API_Translate: true
 ---
 
 Although the Java I2P router comes pre-configured with a static web server, jetty, to provide the user's first eepSite, many require more sophisticated functionality from their web server and would rather create an eepSite with a different server. This is of course possible, and actually is really easy once you've done it one time.

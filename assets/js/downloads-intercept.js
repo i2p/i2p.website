@@ -1,6 +1,6 @@
 /**
- * Downloads Page - Donation Interstitial Intercept
- * Redirects primary download buttons to the donation page
+ * Downloads Page - Thank You Page Redirect
+ * Starts download immediately and redirects to thank you page
  */
 
 (function() {
@@ -8,31 +8,67 @@
 
     // Configuration
     const DONATE_PAGE = '/en/donate/download/';
-    const ENABLE_INTERSTITIAL = true; // Set to false to disable globally
 
-    // Check if user donated recently (matches download-donate.js logic)
-    function hasRecentDonation() {
-        try {
-            const stored = localStorage.getItem('i2p_donated');
-            if (!stored) return false;
+    // Trigger download immediately
+    function triggerDownload(url) {
+        console.log('[I2P Downloads] Starting download:', url);
 
-            const data = JSON.parse(stored);
-            const expiryDate = new Date(data.expiry);
-            return new Date() < expiryDate;
-        } catch (e) {
-            return false;
-        }
+        // Use window.open with download as fallback
+        // Most browsers will open download directly without popup
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = ''; // Suggest download instead of navigation
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 
     // Intercept download button clicks
     function interceptDownloads() {
-        // Don't intercept if interstitial is disabled or user donated recently
-        if (!ENABLE_INTERSTITIAL || hasRecentDonation()) {
-            console.log('[I2P Downloads] Interstitial disabled or user donated recently');
-            return;
-        }
-
         console.log('[I2P Downloads] Intercepting download buttons...');
+
+        // Intercept mirror/torrent/i2p/tor links (alternative download methods)
+        document.querySelectorAll('.mirror-link, .alt-method').forEach(link => {
+            if (link.classList.contains('intercepted')) return; // Already intercepted
+
+            const href = link.getAttribute('href');
+            if (!href || href === '#' || href.startsWith('/')) {
+                return; // Skip empty, placeholder, or internal links
+            }
+
+            console.log('[I2P Downloads] Intercepting alt download link:', href);
+
+            link.classList.add('intercepted');
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('[I2P Downloads] Alt download link clicked!', href);
+
+                // Start download immediately
+                triggerDownload(href);
+
+                // Get platform from parent card
+                const card = this.closest('.platform-card') || this.closest('.detected-download');
+                const platform = card ? (card.dataset.platform || 'unknown') : 'unknown';
+                const version = card ? (card.querySelector('.platform-version')?.textContent.trim() || '2.10.0') : '2.10.0';
+
+                // Build thank-you page URL (include download URL)
+                const params = new URLSearchParams({
+                    file: platform,
+                    version: version.replace('v', ''),
+                    platform: platform,
+                    url: encodeURIComponent(href)
+                });
+
+                const redirectUrl = `${DONATE_PAGE}?${params.toString()}`;
+                console.log('[I2P Downloads] Redirecting to:', redirectUrl);
+
+                // Redirect to thank-you page after delay
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 5000);
+            });
+        });
 
         // Intercept platform card download buttons
         document.querySelectorAll('.btn-platform').forEach(btn => {
@@ -58,6 +94,9 @@
                 e.preventDefault();
                 console.log('[I2P Downloads] Download button clicked!', originalHref);
 
+                // Start download immediately
+                triggerDownload(originalHref);
+
                 // Get platform info from parent card
                 const card = this.closest('.platform-card');
                 const platform = card ? card.dataset.platform : 'unknown';
@@ -65,47 +104,58 @@
 
                 console.log('[I2P Downloads] Platform:', platform, 'Version:', version);
 
-                // Build donation page URL with parameters (include download URL)
+                // Build thank-you page URL with parameters (include download URL)
                 const params = new URLSearchParams({
                     file: platform,
                     version: version.replace('v', ''),
-                    url: encodeURIComponent(originalHref),
-                    platform: platform
+                    platform: platform,
+                    url: encodeURIComponent(originalHref)
                 });
 
                 const redirectUrl = `${DONATE_PAGE}?${params.toString()}`;
                 console.log('[I2P Downloads] Redirecting to:', redirectUrl);
 
-                // Redirect to thank-you page (download will start there)
-                window.location.href = redirectUrl;
+                // Redirect to thank-you page after delay (gives download time to start)
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 5000);
             });
         });
 
         // Intercept detected download button
         const detectedBtn = document.getElementById('detected-download-btn');
         if (detectedBtn && !detectedBtn.classList.contains('intercepted')) {
-            const originalHref = detectedBtn.getAttribute('href');
+            detectedBtn.classList.add('intercepted');
+            detectedBtn.addEventListener('click', function(e) {
+                e.preventDefault();
 
-            if (originalHref && originalHref !== '#') {
-                detectedBtn.classList.add('intercepted');
-                detectedBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
+                // Get current href (might have been changed by mirror selector)
+                const currentHref = this.getAttribute('href');
 
-                    const platform = document.getElementById('detected-name')?.textContent || 'unknown';
-                    const details = document.getElementById('detected-details')?.textContent || '';
-                    const version = details.match(/Version ([\d.]+)/)?.[1] || '2.10.0';
+                if (!currentHref || currentHref === '#') {
+                    console.error('[I2P Downloads] No valid download URL');
+                    return;
+                }
 
-                    const params = new URLSearchParams({
-                        file: platform.toLowerCase().replace('download for ', ''),
-                        version: version,
-                        url: encodeURIComponent(originalHref),
-                        platform: platform
-                    });
+                // Start download immediately with current href
+                triggerDownload(currentHref);
 
-                    // Redirect to thank-you page (download will start there)
-                    window.location.href = `${DONATE_PAGE}?${params.toString()}`;
+                const platform = document.getElementById('detected-name')?.textContent || 'unknown';
+                const details = document.getElementById('detected-details')?.textContent || '';
+                const version = details.match(/Version ([\d.]+)/)?.[1] || '2.10.0';
+
+                const params = new URLSearchParams({
+                    file: platform.toLowerCase().replace('download for ', ''),
+                    version: version,
+                    platform: platform,
+                    url: encodeURIComponent(currentHref)
                 });
-            }
+
+                // Redirect to thank-you page after delay (gives download time to start)
+                setTimeout(() => {
+                    window.location.href = `${DONATE_PAGE}?${params.toString()}`;
+                }, 5000);
+            });
         }
     }
 

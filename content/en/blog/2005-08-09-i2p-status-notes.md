@@ -4,7 +4,6 @@ date: 2005-08-09
 author: "jr"
 description: "Weekly update covering 0.6.0.2 release success with 110 upgraded users, roadmap update focusing on end user experience improvement"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, its that time of the week again

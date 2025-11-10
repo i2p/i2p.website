@@ -4,7 +4,6 @@ date: 2009-02-10
 author: "unixfr3ak"
 description: "I2P development meeting log for February 10, 2009."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

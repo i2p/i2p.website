@@ -8,7 +8,6 @@ accurateFor: "0.9.41"
 aliases:
   - /docs/discussions/tunnel/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Note:** This archive captures speculative design work predating I2P 0.9.41. For the production implementation, consult the [tunnel documentation](/docs/specs/implementation/).

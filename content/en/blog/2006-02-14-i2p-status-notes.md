@@ -4,7 +4,6 @@ date: 2006-02-14
 author: "jr"
 description: "0.6.1.10 release announcement with backwards incompatibility, PRE network progress, and increased Syndie activity"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, quick update today

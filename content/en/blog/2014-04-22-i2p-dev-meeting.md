@@ -4,7 +4,6 @@ date: 2014-04-22
 author: "str4d"
 description: "I2P development meeting log for April 22, 2014."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

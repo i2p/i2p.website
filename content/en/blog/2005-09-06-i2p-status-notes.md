@@ -4,7 +4,6 @@ date: 2005-09-06
 author: "jr"
 description: "Weekly update covering 0.6.0.5 release success, floodfill netDb performance, Syndie progress with RSS and pet names, and new susidns addressbook management application"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all,

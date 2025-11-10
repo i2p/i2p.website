@@ -4,7 +4,6 @@ date: 2005-10-25
 author: "jr"
 description: "Weekly update covering network growth to 400-500 peers, Fortuna PRNG integration, GCJ native compilation support, i2psnark lightweight torrent client, and tunnel bootstrap attack analysis"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, more news from the front

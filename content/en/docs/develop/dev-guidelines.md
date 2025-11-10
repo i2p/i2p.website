@@ -9,7 +9,6 @@ aliases:
   - "/get-involved/guides/dev-guidelines/"
   - "/en//get-involved/guides/dev-guidelines"
 type: docs
-API_Translate: true
 ---
 
 Read the New Developers Guide first: /docs/develop/new-developers/

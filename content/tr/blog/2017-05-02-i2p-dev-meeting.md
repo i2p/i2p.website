@@ -1,0 +1,15 @@
+---
+title: "I2P Geliştirici Toplantısı - 02 Mayıs 2017"
+date: 2017-05-02
+author: "zzz"
+description: "I2P geliştirme toplantısı tutanağı, 2 Mayıs 2017 tarihli."
+categories: ["meeting"]
+---
+
+## Kısa özet
+
+<p class="attendees-inline"><strong>Katılanlar:</strong> backup, manas, zzz</p>
+
+## Toplantı Günlüğü
+
+<div class="irc-log"> 20:00:01 &lt;zzz&gt; 0) Merhaba 20:00:01 &lt;zzz&gt; 1) 0.9.30/.31 güncellemesi (zzz) 20:00:01 &lt;zzz&gt; 2) UI dalının durumu - (str4d) 20:00:01 &lt;zzz&gt; 3) I2P Summer Dev planları - (str4d) 20:00:01 &lt;zzz&gt; 4) EdDSA güncellemesi - (str4d) 20:00:05 &lt;zzz&gt; 0) Merhaba 20:00:07 &lt;zzz&gt; merhaba 20:00:23 &lt;zzz&gt; 1) 0.9.30/.31 güncellemesi (zzz) 20:00:48 &lt;zzz&gt; jetty hatalarını yamalamak zorunda kaldığım için takvimin birkaç gün gerisindeyim, ama incelemeyi bu gece bitireceğim ve yarın sabah derleme yapacağım 20:00:58 &lt;manas&gt; Merhaba 20:01:19 &lt;zzz&gt; eche|on yarın buralarda olursa ağ içi güncellemeyi çıkarırız ve ben de Perşembe ve Cuma için Launchpad ve deb derlemeleri üzerinde çalışacağım 20:01:46 &lt;zzz&gt; 31'i Haziran sonu ya da Temmuz başı için planladım 20:01:53 &lt;backup&gt; Merhaba 20:02:03 &lt;manas&gt; Merhaba backup! :D 20:02:15 &lt;zzz&gt; 31 için planladıklarımızı (ya da en azından umduklarımızı) yol haritasında görebilirsiniz 20:02:19 &lt;zzz&gt; 1) hakkında başka bir şey var mı? 20:03:18 &lt;zzz&gt; 2) UI dalının durumu - (str4d) 20:03:43 &lt;zzz&gt; str4d, sıra sende 20:04:13 &lt;zzz&gt; tamam, bu şimdiye kadarki en kısa toplantı olacak 20:04:27 &lt;backup&gt; Burada biraz daha fazla kişi olduğumuzu sanmıştım :) 20:04:27 &lt;manas&gt; :P 20:04:33 &lt;zzz&gt; 2), 3) ya da 4) hakkında başka bir şey var mı, ya da toplantı için başka bir konu? 20:04:44 &lt;manas&gt; Şu konuyu belirtmek istedim: http://trac.i2p2.i2p/ticket/1139 20:04:46 &lt;manas&gt; *ticket 20:04:54 &lt;manas&gt; Bu değişikliği yeni UI'ye almaya çalışmalıyız 20:05:21 &lt;manas&gt; "Yarı kapatma": katılımcı tunnels kabulünü geçici olarak durdurma. 20:05:57 &lt;manas&gt; backup: Durum için yeni bağlantıyı bana özelden gönderir misin? 20:06:05 &lt;manas&gt; teşekkürler 20:06:08 &lt;zzz&gt; tamam, neden önemli olduğuna dair gerekçelerini ticket'e ekleyebilir misin? 20:06:41 &lt;manas&gt; yaz geliştirici planları hakkında daha fazla bilgi edinmekle ilgileniyordum ama sanırım bunun için str4d gelene kadar beklememiz gerekecek 20:06:43 &lt;manas&gt; zzz: tabii 20:06:43 &lt;zzz&gt; kritik olmayan UI işleri, UI dalını birleştirene kadar beklemek zorunda; umarım bu yakında olacak 20:06:49 &lt;zzz&gt; toplantı için başka bir şey var mı? 20:07:06 &lt;zzz&gt; burada seni görmek güzel backup 20:07:14 * zzz baffer'ı kapar 20:07:40 &lt;manas&gt; Düzenli reseed operatörü (bootstrap/reseed sunucusu işletmeni) toplantıları önermek istiyordum 20:07:45 &lt;manas&gt; ne dersin, backup ? 20:08:19 &lt;zzz&gt; Buna +1 20:08:38 &lt;backup&gt; evet, iyi fikir 20:08:44 &lt;zzz&gt; Bununla birlikte, şimdilik tartışmaya devam etmenize bırakıyorum... 20:08:50 * zzz *bafs* toplantıyı kapattı </div>

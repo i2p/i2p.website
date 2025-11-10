@@ -1,0 +1,15 @@
+---
+title: "Réunion des développeurs I2P - 20 février 2007"
+date: 2007-02-20
+author: "jrandom"
+description: "Compte rendu de la réunion de développement I2P du 20 février 2007."
+categories: ["meeting"]
+---
+
+## Récapitulatif rapide
+
+<p class="attendees-inline"><strong>Présents :</strong> bar, Complication, jrandom, void</p>
+
+## Journal de réunion
+
+<div class="irc-log"> 14:59 &lt;jrandom&gt; 0) salut 14:59 &lt;jrandom&gt; 1) État du réseau 14:59 &lt;jrandom&gt; 2) Statut du développement de Syndie 15:00 &lt;+void&gt; jrandom: pour info, la gestion des signets ne fonctionne pas depuis 8e18877de3908c52daae6d8a85fc8c671cdfb5d5 15:00 &lt;jrandom&gt; 3) ??? 15:00 &lt;jrandom&gt; 0) salut 15:00  * jrandom fait signe de la main 15:00 &lt;jrandom&gt; les notes d'état hebdomadaires sont publiées à http://dev.i2p.net/pipermail/i2p/2007-February/001336.html 15:01 &lt;jrandom&gt; void: le glisser-déposer sur les signets ne rafraîchit pas l'affichage actuellement (les signets sont ajoutés mais pas affichés) - je travaille là-dessus dans l'autre dwindow en ce moment :) 15:01 &lt;+void&gt; ah :) 15:01 &lt;jrandom&gt; si ce n'est pas de cela que tu parles, merci d'ouvrir un rapport de bug 15:01 &lt;+void&gt; (eh bien, j'ai déjà ouvert un rapport de bug pour ça 15:01 &lt;+void&gt; ) 15:02 &lt;jrandom&gt; w3wt 15:02 &lt;jrandom&gt; ok, passons directement à 1) État du réseau 15:02 &lt;jrandom&gt; je n'ai pas grand-chose à ajouter au-delà de ce qui est dans les notes d'état 15:04 &lt;jrandom&gt; quelqu'un a quelque chose à ajouter à propos de 1) État du réseau ? 15:06 &lt;jrandom&gt; sinon, passons en douceur à 2) Statut du développement de Syndie 15:06 &lt;bar&gt; jrandom: ouaip, la prise en charge du chinois traditionnel a corrigé le problème "china.i2p" et le chinois simplifié a corrigé ton billet "peace" 15:06 &lt;jrandom&gt; ah super bar 15:06 &lt;bar&gt; (oups, désolé !) 15:08 &lt;jrandom&gt; en théorie, on pourrait intégrer de vraies polices et les distribuer avec syndie (ce qui pourrait avoir du sens dans certaines situations, comme les CD/images préinstallés dont anonymous a récemment parlé) 15:10 &lt;jrandom&gt;  (précisément, dans le rapport de bug @ urn:syndie:channel:d7:channel44:Ffn4RhCunO6gwMfAYfOoPY7FGwPNDy65dS4DyuyorME=9:messageIdi1171666081846ee ) 15:10 &lt;jrandom&gt; bref, concernant le statut du développement de syndie, il s'y passe beaucoup de choses 15:10 &lt;jrandom&gt; je pense qu'on aura une nouvelle version plus tard cette semaine avec les dernières améliorations 15:12 &lt;jrandom&gt; comme toujours, continuez à envoyer vos rapports de bug et demandes de fonctionnalités, et on les traitera dès que possible 15:12 &lt;jrandom&gt; quelqu'un a quelque chose à ajouter à propos de 2) Statut du développement de Syndie ? 15:15 &lt;jrandom&gt; ok sinon, passons à 3) ??? 15:15 &lt;jrandom&gt; quelqu'un a autre chose à soulever pour la réunion ? 15:16 &lt;+Complication&gt; rien qui me vienne à l'esprit là tout de suite :) 15:18 &lt;+Complication&gt; (pas encore, en tout cas) 15:18 &lt;jrandom&gt; heh dans ce cas... 15:18  * jrandom prend son élan 15:18  * jrandom clôt la réunion d'un *baf* </div>

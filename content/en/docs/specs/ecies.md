@@ -8,7 +8,6 @@ toc: true
 aliases:
   - /en/docs/spec/ecies
   - /spec/ecies/
-API_Translate: true
 ---
 
 

@@ -4,7 +4,6 @@ date: 2018-02-11
 author: "str4d"
 description: "2018 will be the year of new protocols, new collaborations, and a more refined focus"
 categories: ["roadmap"]
-API_Translate: true
 ---
 
 One of the many things we discussed at 34C3 was what we should focus on for the coming year. In particular, we wanted a roadmap that was clear about what we want to ensure we get done, vs what would be really nice to have, and be able to help onboard newcomers to either category. Here is what we came up with:

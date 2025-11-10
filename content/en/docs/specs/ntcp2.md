@@ -9,7 +9,6 @@ aliases:
   - /spec/ntcp2/
   - /docs/specs/ntcp2/
   - /en/spec/ntcp2/
-API_Translate: true
 ---
 
 ## Overview

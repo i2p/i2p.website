@@ -4,7 +4,6 @@ date: 2004-10-05
 author: "jr"
 description: "Weekly I2P status update covering 0.4.1.1 release, network statistics analysis, 0.4.2 streaming library plans, and bundled eepserver"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, its weekly update time

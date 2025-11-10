@@ -4,7 +4,6 @@ date: 2003-11-11
 author: "jrand0m"
 description: "I2P development meeting covering router status, roadmap updates, native modPow implementation, GUI installer, and licensing discussions"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 (Courtesy of the wayback machine http://www.archive.org/)

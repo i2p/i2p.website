@@ -4,7 +4,6 @@ date: 2006-01-17
 author: "jr"
 description: "Network status with 0.6.1.9, tunnel creation crypto improvements, and Syndie blog interface updates"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, 'tis tuesday again

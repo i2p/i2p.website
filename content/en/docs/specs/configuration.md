@@ -10,7 +10,6 @@ aliases:
   - /docs/specs/configuration/
   - /en/spec/configuration/
 type: spec
-API_Translate: true
 ---
 ## Overview
 

@@ -9,7 +9,6 @@ aliases:
   - /en/docs/tunnels/implementation/
   - /en/docs/tunnels/old-implementation/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Legacy status:** This content is retained for historical reference only. It documents the tunnel system that shipped before I2P&nbsp;0.6.1.10 and should not be used for modern development. Refer to the [current implementation](/docs/specs/implementation/) for production guidance.

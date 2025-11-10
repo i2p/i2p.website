@@ -4,7 +4,6 @@ date: 2006-04-04
 author: "jr"
 description: "Upcoming 0.6.1.14 release, Syndie improvements and GUI revamps, and jbigi optimizations for amd64"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, tuesday rolls 'round again

@@ -4,7 +4,6 @@ date: 2005-11-01
 author: "jr"
 description: "Weekly update covering 0.6.1.4 release success, bootstrap attack analysis, I2Phex 0.1.1.34 security fixes, voi2p voice app development, and Syndie RSS feed integration"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, its that time of the week again

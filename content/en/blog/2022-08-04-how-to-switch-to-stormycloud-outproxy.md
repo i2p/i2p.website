@@ -4,7 +4,6 @@ date: 2022-08-04
 author: "idk"
 description: "How to Switch to the StormyCloud Outproxy Service"
 categories: ["general"]
-API_Translate: true
 ---
 
 ## How to Switch to the StormyCloud Outproxy Service

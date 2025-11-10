@@ -4,7 +4,6 @@ date: 2004-08-17
 author: "jrandom"
 description: "I2P development meeting log for August 17, 2004."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

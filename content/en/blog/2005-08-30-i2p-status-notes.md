@@ -4,7 +4,6 @@ date: 2005-08-30
 author: "jr"
 description: "Weekly update covering 0.6.0.3 network status with NAT issues, floodfill netDb deployment, and Syndie internationalization progress"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, its that time of the week again

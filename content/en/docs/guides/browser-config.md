@@ -6,7 +6,6 @@ lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 aliases:
 type: docs
-API_Translate: true
 ---
 
 This guide shows how to configure common browsers to send traffic through I2P's built‑in HTTP proxy. It covers Safari, Firefox, and Chrome/Chromium browsers with detailed step-by-step instructions.

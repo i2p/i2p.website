@@ -4,7 +4,6 @@ date: 2004-09-14
 author: "jr"
 description: "Weekly I2P status update covering 0.4.0.1 release, threat model updates, website improvements, roadmap changes, and client application development needs"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, its that time of the week again

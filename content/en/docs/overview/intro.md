@@ -8,7 +8,6 @@ reviewStatus: "needs-review"
 aliases:
   - /en/docs/how/intro/
   - /docs/how/intro/
-API_Translate: true
 ---
 
 ## What is I2P?

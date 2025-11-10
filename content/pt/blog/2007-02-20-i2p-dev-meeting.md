@@ -1,0 +1,15 @@
+---
+title: "Reunião de Desenvolvedores do I2P - 20 de fevereiro de 2007"
+date: 2007-02-20
+author: "jrandom"
+description: "Registro da reunião de desenvolvimento do I2P de 20 de fevereiro de 2007."
+categories: ["meeting"]
+---
+
+## Resumo rápido
+
+<p class="attendees-inline"><strong>Presentes:</strong> bar, Complication, jrandom, void</p>
+
+## Registro da reunião
+
+<div class="irc-log"> 14:59 &lt;jrandom&gt; 0) oi 14:59 &lt;jrandom&gt; 1) Estado da rede 14:59 &lt;jrandom&gt; 2) Status do desenvolvimento do Syndie 15:00 &lt;+void&gt; jrandom: só para avisar, o gerenciamento de favoritos não está funcionando desde 8e18877de3908c52daae6d8a85fc8c671cdfb5d5 15:00 &lt;jrandom&gt; 3) ??? 15:00 &lt;jrandom&gt; 0) oi 15:00  * jrandom acena 15:00 &lt;jrandom&gt; notas semanais de status publicadas em http://dev.i2p.net/pipermail/i2p/2007-February/001336.html 15:01 &lt;jrandom&gt; void: arrastar e soltar nos favoritos atualmente não atualiza a exibição (os favoritos são adicionados, mas não aparecem) - estou trabalhando nisso na outra dwindow no momento :) 15:01 &lt;+void&gt; ah :) 15:01 &lt;jrandom&gt; se não for isso ao que você está se referindo, por favor abra um relatório de bug 15:01 &lt;+void&gt; (bem, eu já abri um relatório de bug para isso 15:01 &lt;+void&gt; ) 15:02 &lt;jrandom&gt; w3wt 15:02 &lt;jrandom&gt; ok, vamos entrar em 1) Estado da rede 15:02 &lt;jrandom&gt; não tenho muito a acrescentar além do que está nas notas de status 15:04 &lt;jrandom&gt; alguém tem algo que gostaria de acrescentar sobre 1) Estado da rede? 15:06 &lt;jrandom&gt; se não, vamos passar para 2) Status do desenvolvimento do Syndie 15:06 &lt;bar&gt; jrandom: sim, o suporte ao idioma Chinês Tradicional corrigiu o problema do "china.i2p" e o Chinês Simplificado corrigiu sua postagem "peace" 15:06 &lt;jrandom&gt; ah, ótimo, bar 15:06 &lt;bar&gt; (ops, foi mal!) 15:08 &lt;jrandom&gt; em teoria, poderíamos empacotar fontes de fato e distribuí-las com o syndie (o que pode fazer sentido em algumas situações, como os CDs/imagens pré-instalados que o anonymous discutiu recentemente) 15:10 &lt;jrandom&gt;  (especificamente, no relatório de bug @ urn:syndie:channel:d7:channel44:Ffn4RhCunO6gwMfAYfOoPY7FGwPNDy65dS4DyuyorME=9:messageIdi1171666081846ee ) 15:10 &lt;jrandom&gt; enfim, sobre o status do desenvolvimento do syndie, muita coisa acontecendo por lá 15:10 &lt;jrandom&gt; espero que tenhamos um novo lançamento ainda esta semana com as últimas novidades 15:12 &lt;jrandom&gt; como sempre, continuem mandando relatórios de bug e solicitações de recursos, e vamos tratá-los o quanto antes 15:12 &lt;jrandom&gt; alguém tem algo a acrescentar sobre 2) Status do desenvolvimento do Syndie? 15:15 &lt;jrandom&gt; ok, se não, vamos passar para 3) ??? 15:15 &lt;jrandom&gt; alguém tem mais algo para trazer à reunião? 15:16 &lt;+Complication&gt; nada que eu me lembre às pressas :) 15:18 &lt;+Complication&gt; (ainda não, pelo menos) 15:18 &lt;jrandom&gt; hehe, nesse caso... 15:18  * jrandom se prepara 15:18  * jrandom *baf* encerra a reunião </div>

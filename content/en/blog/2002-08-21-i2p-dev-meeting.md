@@ -4,7 +4,6 @@ date: 2002-08-21
 author: "mids"
 description: "Informal I2P development meeting discussing anonymity, peer review, SILC integration, and new website preview."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 (Courtesy of the wayback machine http://www.archive.org/)

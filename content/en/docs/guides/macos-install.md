@@ -3,7 +3,6 @@ title: "Installing I2P on macOS (The Long Way)"
 description: "Step-by-step guide to manually installing I2P and its dependencies on macOS"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-API_Translate: true
 ---
 
 This guide walks you through manually installing I2P on macOS by separately installing Java and the I2P router. If you prefer a simpler installation method, check out the [Easy Install Bundle](/en/downloads).

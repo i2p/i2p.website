@@ -12,7 +12,6 @@ aliases:
   - /docs/overview/threat-model/
   - /docs/how/threat-model/
   - /en/docs/how/threat-model/
-API_Translate: true
 ---
 
 > **Status:**  

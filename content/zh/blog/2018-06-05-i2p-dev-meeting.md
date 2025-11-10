@@ -1,0 +1,15 @@
+---
+title: "I2P 开发者会议 - 2018年6月05日"
+date: 2018-06-05
+author: "zzz"
+description: "2018年6月5日的 I2P 开发会议记录。"
+categories: ["meeting"]
+---
+
+## 快速回顾
+
+<p class="attendees-inline"><strong>出席：</strong> echelon, obscuratus, zlatinb, zzz</p>
+
+## 会议记录
+
+<div class="irc-log"> 20:00:00 &lt;zzz&gt; 0) 嗨 20:00:00 &lt;zzz&gt; 1) 0.9.34 F-Droid 状态 (str4d, meeh, nextloop) 20:00:00 &lt;zzz&gt; 2) 0.9.35 更新 (zzz) 20:00:00 &lt;zzz&gt; 3) NTCP2 更新 (zzz) 20:00:00 &lt;zzz&gt; 4) 状态 scrum (zab) 20:00:03 &lt;zzz&gt; 0) 嗨 20:00:05 &lt;zzz&gt; 嗨 20:00:12 &lt;zzz&gt; 1) 0.9.34 F-Droid 状态 (str4d, meeh, nextloop) 20:00:20 &lt;zzz&gt; 有人联系到 nextloop 吗？  20:00:30 &lt;eche|on&gt; 没有 20:01:22 &lt;zzz&gt; 我会试着在 Twitter 上找到他，但目前 F-droid 还是没有更新 20:01:27 &lt;zzz&gt; 2) 0.9.35 更新 (zzz) 20:01:54 &lt;zzz&gt; 好的，35 进展顺利。我们把发布延后了一周。一周后标签冻结，两周半后提交截止 20:02:00 &lt;zzz&gt; 大约 3 周后发布 20:02:15 &lt;zzz&gt; 关于 2) 还有别的吗？ 20:02:40 &lt;eche|on&gt; 还没有 20:03:07 &lt;zzz&gt; 3) NTCP2 更新 (zzz) 20:03:37 &lt;zzz&gt; 我们仍在每周开会，但这些会议快要结束了。提案相当稳固，但（可能）仍会有一些改动，所以还未最终定稿 20:04:00 &lt;zzz&gt; 我在网络上架设了一个测试 router。计划是在 .36 中提供支持，默认禁用，并在 .37 中启用 20:04:28 &lt;eche|on&gt; 刚读到 orignal 的一条推文，说他在为 i2pd 做一些 ntcp2 的工作 20:04:37 &lt;zzz&gt; 我们计划很快对 LS2 提案采用同样的会议和决策流程 20:04:43 &lt;zzz&gt; 是的，所有的进展都在 #ntcp2 20:04:51 &lt;eche|on&gt; 好 20:04:58 &lt;zzz&gt; 关于 3) 还有别的吗？ 20:05:18 &lt;eche|on&gt; .37 会准备好使用 ntcp2 吗？ 20:05:40 &lt;eche|on&gt; 那就是 2018 年底 20:05:48 &lt;zzz&gt; 对，我们会在 36 里让手动启用它的用户进行测试。然后在 37 中默认启用 20:05:53 &lt;zlatinb&gt; 另一个问题：比如在 .36 里发布一个 bob-only 模式的计划吗？ 20:06:03 &lt;zzz&gt; 对。37 也许在 11 月 20:06:04 &lt;zlatinb&gt; 或者在 .35 里做个 bob-only，方便测试？ 20:06:14 &lt;zzz&gt; bob-only 是什么意思？ 20:06:28 &lt;zlatinb&gt; 只接收入站 tcp 连接 20:06:45 &lt;zzz&gt; 哦，只接收？是的，这主意不错。不过不会放到 35。  20:06:53 &lt;obscuratus&gt; 我可以在我的测试网络上开始测试 ntcp2 吗？ 20:06:54 &lt;zzz&gt; 取决于我们在 36 周期里能进行多少测试 20:07:14 &lt;zzz&gt; obscuratus，不行，完整支持要等 35 发布后才会提交进来。它还在开发中 20:07:29 &lt;eche|on&gt; 我想在 .35 发布后不久，代码就会合并到 trunk（主干分支） 20:07:32 &lt;zzz&gt; 目前 35 里的只是些存根 20:07:36 &lt;zzz&gt; 没错，eche|on  20:08:05 &lt;zzz&gt; 关于 3) 还有别的吗？ 20:09:01 &lt;zzz&gt; 4) 状态 scrum (zlatinb) 20:09:03 &lt;zzz&gt; zlatinb 请开始  20:09:33 &lt;zlatinb&gt; 嗨，  老规矩：1. 上个月你在做什么 2. 下个月你计划做什么 3. 有没有被谁阻塞，或者需要任何帮助 20:09:36 &lt;zlatinb&gt; zzz 先来 20:09:44 &lt;zzz&gt; 好 20:10:13 &lt;zzz&gt; 我这段时间的精力大致分在 NTCP2、修复 bug，以及收尾 35 的一些新特性（ssl 向导和 susimail 文件夹）之间 20:10:48 &lt;zzz&gt; 我预计下个月会继续做 NTCP2、修复 bug、进行 35 的发布（总是很花时间），并开始 LS2 20:11:01 &lt;zzz&gt; 没有阻碍；EOT 20:11:22 &lt;zlatinb&gt; 谢谢。  eche|on？ 20:11:37 &lt;eche|on&gt; 做了很多 IRC、论坛、资金管理，还在做加密货币系统 20:11:54 &lt;eche|on&gt; 这些工作都在持续进行，暂时没有阻碍，除了假期 ^^ 20:12:12 &lt;zlatinb&gt; 好的。  str4d 你在吗？ 20:12:40 &lt;zlatinb&gt; 看来不在。  meeh 你在吗？ 20:13:18 &lt;zlatinb&gt; 看来也不在。  sadie 来不了，mhatta 和 slumlord 也不在 20:13:26 &lt;zlatinb&gt; 好吧，就这些了 20:13:36 &lt;zlatinb&gt; eot 20:13:36 &lt;eche|on&gt; 假期时间影响到我们了.. 20:13:44 &lt;eche|on&gt; baffer？ 20:13:46 &lt;zzz&gt; 好的，大家对这次会议还有别的要说吗？ 20:14:31 &lt;zzz&gt; 是啊，到了 baffer 时间 20:14:52 &lt;zzz&gt; 会议很短，但事情很多，进展都不错 20:14:59 * zzz *bafs* 会议结束 20:15:01 &lt;zzz&gt; 谢谢大家 </div>

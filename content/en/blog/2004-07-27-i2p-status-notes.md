@@ -4,7 +4,6 @@ date: 2004-07-27
 author: "jr"
 description: "Weekly I2P status update covering 0.3.3 release performance issues and upcoming optimizations"
 categories: ["status"]
-API_Translate: true
 ---
 
 'lo all, time for the weekly rant session

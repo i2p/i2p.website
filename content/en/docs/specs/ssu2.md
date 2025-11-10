@@ -9,7 +9,6 @@ aliases:
   - /spec/ssu2/
   - /docs/specs/ssu2/
   - /en/spec/ssu2/
-API_Translate: true
 ---
 
 ## Status

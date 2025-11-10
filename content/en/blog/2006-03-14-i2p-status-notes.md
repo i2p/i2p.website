@@ -4,7 +4,6 @@ date: 2006-03-14
 author: "jr"
 description: "Network stability improvements, router uptime statistics, and upcoming release after hardware recovery"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, another quick update this week

@@ -9,7 +9,6 @@ aliases:
   - /en/docs/guides/plugins
   - /docs/plugins/
   - /en/docs/plugins/
-API_Translate: true
 ---
 
 I2P’s plugin framework lets you extend the router without touching the core installation. Available plugins cover mail, blogs, IRC, storage, wikis, monitoring tools, and more.

@@ -4,7 +4,6 @@ description: "Learn how I2P collects, uses, and protects your information when y
 type: "legal"
 layout: "legal"
 lastUpdated: "2025-10"
-API_Translate: true
 ---
 
 ## Overview

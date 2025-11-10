@@ -4,7 +4,6 @@ description: "Terms and conditions for using the I2P project website and softwar
 type: "legal"
 layout: "legal"
 lastUpdated: "2025-10"
-API_Translate: true
 ---
 
 ## Agreement to Terms

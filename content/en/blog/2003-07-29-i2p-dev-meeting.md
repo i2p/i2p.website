@@ -4,7 +4,6 @@ date: 2003-07-29
 author: "hezekiah"
 description: "I2P development meeting covering I2CP spec, SDK plans, cryptography discussions (ElGamal vs DSA vs RSA), network protocol status, and development roadmap."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

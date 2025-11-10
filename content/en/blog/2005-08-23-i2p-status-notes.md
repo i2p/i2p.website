@@ -4,7 +4,6 @@ date: 2005-08-23
 author: "jr"
 description: "Weekly update covering 0.6.0.3 release improvements, Irc2P network status, susibt web frontend for i2p-bt, and Syndie secure blogging"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time for the weekly status notes again

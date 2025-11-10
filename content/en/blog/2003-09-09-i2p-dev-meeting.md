@@ -4,7 +4,6 @@ date: 2003-09-09
 author: "jrand0m"
 description: "57th I2P dev meeting covering CVS hosting issues, naming service updates, development status, and spec questions"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 <h2 id="quick-recap">Quick recap</h2>

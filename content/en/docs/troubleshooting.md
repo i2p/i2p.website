@@ -5,7 +5,6 @@ slug: "troubleshooting"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs
-API_Translate: true
 ---
 
 I2P routers fail most commonly due to **port forwarding issues**, **insufficient bandwidth allocation**, and **inadequate bootstrap time**. These three factors account for over 70% of reported problems. The router requires at least **10-15 minutes** after startup to fully integrate into the network, **128 KB/sec minimum bandwidth** (256 KB/sec recommended), and proper **UDP/TCP port forwarding** to achieve non-firewalled status. New users often expect immediate connectivity and restart prematurely, which resets integration progress and creates a frustrating cycle. This guide provides detailed solutions for all major I2P issues affecting versions 2.10.0 and later.

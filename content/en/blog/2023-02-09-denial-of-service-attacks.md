@@ -4,7 +4,6 @@ date: 2023-02-09
 author: "idk, sadie"
 description: "I2P remains intact with impaired performance"
 categories: ["release"]
-API_Translate: true
 ---
 
 The I2P network is currently being affected by a Denial of Service attack.

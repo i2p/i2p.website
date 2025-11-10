@@ -4,7 +4,6 @@ date: 2005-01-25
 author: "jr"
 description: "Weekly I2P development status notes covering 0.5 tunnel routing progress, SAM .NET port, GCJ compilation, and UDP transport discussions"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, quick weekly status update

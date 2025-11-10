@@ -4,7 +4,6 @@ date: 2019-02-14
 author: "zlatinb"
 description: "I2P Laboratory - Home For Experimental Projects"
 categories: ["development"]
-API_Translate: true
 ---
 
 Hello everyone,

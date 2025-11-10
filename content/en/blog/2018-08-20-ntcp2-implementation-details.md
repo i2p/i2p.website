@@ -4,7 +4,6 @@ date: 2018-08-20
 author: "villain"
 description: "I2P's new transport protocol implementation details and technical specifications"
 categories: ["development"]
-API_Translate: true
 ---
 
 I2P's transport protocols were originally developed around 15 years ago. Back then, the main goal was to hide the transferred data, not to hide the fact that one was using the protocol itself. Nobody thought seriously about protecting against DPI (deep packets inspection) and protocols censorship. Times change, and even though original transport protocols are still providing strong security, there was a demand for a new transport protocol. NTCP2 is designed to resist current censorship threats. Mainly, DPI analysis of packets length. Plus, the new protocol uses the most modern cryptography developments. NTCP2 is based on the [Noise Protocol Framework](https://noiseprotocol.org/noise.html), with SHA256 as a hash function and x25519 as an elliptic curve Diffie-Hellman (DH) key exchange.

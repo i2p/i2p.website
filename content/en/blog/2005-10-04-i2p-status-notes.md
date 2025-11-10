@@ -4,7 +4,6 @@ date: 2005-10-04
 author: "jr"
 description: "Weekly update covering 0.6.1.1 release success with 3-400 peers, i2phex fork reconciliation efforts, and Syndie automation progress with pet names and scheduled pulls"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time for our weekly status notes (insert cheering here)

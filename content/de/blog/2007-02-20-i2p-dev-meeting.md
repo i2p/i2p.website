@@ -1,0 +1,15 @@
+---
+title: "I2P-Entwicklertreffen - 20. Februar 2007"
+date: 2007-02-20
+author: "jrandom"
+description: "Protokoll des I2P-Entwicklertreffens vom 20. Februar 2007."
+categories: ["meeting"]
+---
+
+## Kurzer Rückblick
+
+<p class="attendees-inline"><strong>Anwesend:</strong> bar, Complication, jrandom, void</p>
+
+## Sitzungsprotokoll
+
+<div class="irc-log"> 14:59 &lt;jrandom&gt; 0) hi 14:59 &lt;jrandom&gt; 1) Netzstatus 14:59 &lt;jrandom&gt; 2) Syndie-Entwicklungsstatus 15:00 &lt;+void&gt; jrandom: zur Info, die Lesezeichenverwaltung funktioniert seit 8e18877de3908c52daae6d8a85fc8c671cdfb5d5 nicht 15:00 &lt;jrandom&gt; 3) ??? 15:00 &lt;jrandom&gt; 0) hi 15:00  * jrandom winkt 15:00 &lt;jrandom&gt; wöchentliche Statusnotizen sind veröffentlicht unter http://dev.i2p.net/pipermail/i2p/2007-February/001336.html 15:01 &lt;jrandom&gt; void: Drag-and-Drop auf die Lesezeichen aktualisiert derzeit die Anzeige nicht (die Lesezeichen werden hinzugefügt, aber nicht angezeigt) - ich arbeite im anderen dwindow im Moment daran :) 15:01 &lt;+void&gt; ah :) 15:01 &lt;jrandom&gt; falls du dich nicht darauf beziehst, bitte einen Fehlerbericht einreichen 15:01 &lt;+void&gt; (naja, ich habe dafür schon einen Fehlerbericht eingereicht 15:01 &lt;+void&gt; ) 15:02 &lt;jrandom&gt; w3wt 15:02 &lt;jrandom&gt; ok, dann springen wir zu 1) Netzstatus 15:02 &lt;jrandom&gt; ich habe eigentlich nicht viel hinzuzufügen über das hinaus, was in den Statusnotizen steht 15:04 &lt;jrandom&gt; möchte jemand noch etwas zu 1) Netzstatus hinzufügen? 15:06 &lt;jrandom&gt; wenn nicht, dann schwingen wir rüber zu 2) Syndie-Entwicklungsstatus 15:06 &lt;bar&gt; jrandom: jep, die Unterstützung für Traditionelles Chinesisch hat das „china.i2p“-Problem behoben und Vereinfachtes Chinesisch hat deinen „peace“-Beitrag korrigiert 15:06 &lt;jrandom&gt; ah, großartig, bar 15:06 &lt;bar&gt; (ups, sry!) 15:08 &lt;jrandom&gt; theoretisch könnten wir echte Schriften bündeln und sie mit syndie ausliefern (was in manchen Situationen sinnvoll sein könnte, z. B. bei den vorinstallierten CDs/Images, über die anonymous kürzlich gesprochen hat) 15:10 &lt;jrandom&gt;  (konkret, im Fehlerbericht @ urn:syndie:channel:d7:channel44:Ffn4RhCunO6gwMfAYfOoPY7FGwPNDy65dS4DyuyorME=9:messageIdi1171666081846ee ) 15:10 &lt;jrandom&gt; wie auch immer, zum syndie dev status, da tut sich eine Menge 15:10 &lt;jrandom&gt; ich rechne damit, dass wir später diese Woche eine neue Version mit den neuesten Neuerungen herausbringen 15:12 &lt;jrandom&gt; wie immer: lasst die Fehlerberichte und Feature-Wünsche weiter fließen, und wir kümmern uns so schnell wie möglich darum 15:12 &lt;jrandom&gt; möchte jemand noch etwas zu 2) Syndie-Entwicklungsstatus hinzufügen? 15:15 &lt;jrandom&gt; ok, wenn nicht, rutschen wir zu 3) ??? 15:15 &lt;jrandom&gt; hat sonst noch jemand etwas für die Besprechung? 15:16 &lt;+Complication&gt; nichts, woran ich mich auf die Schnelle erinnern würde :) 15:18 &lt;+Complication&gt; (zumindest noch nicht) 15:18 &lt;jrandom&gt; heh, in dem Fall... 15:18  * jrandom holt aus 15:18  * jrandom *baf*t die Sitzung ab </div>

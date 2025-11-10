@@ -6,7 +6,6 @@ created: "2018-01-14"
 lastupdated: "2022-01-28"
 status: "Rejected"
 thread: "http://zzz.i2p/topics/2500"
-API_Translate: true
 ---
 
 ## Note

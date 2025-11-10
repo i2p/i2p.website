@@ -6,7 +6,6 @@ accurateFor: "2.10.0"
 aliases:
   - /en/docs/specs/ecies-hybrid/
   - /docs/specs/ecies-x25519-aead-ratchet-hybrid-encryption/
-API_Translate: true
 ---
 
 ## Implementation Status

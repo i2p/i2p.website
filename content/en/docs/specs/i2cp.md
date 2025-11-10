@@ -10,7 +10,6 @@ aliases:
   - /docs/specs/i2cp/
   - /en/spec/i2cp/
   - /en/docs/protocol/i2cp/
-API_Translate: true
 ---
 
 ## Overview

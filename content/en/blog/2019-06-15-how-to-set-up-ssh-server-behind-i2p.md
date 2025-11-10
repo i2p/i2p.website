@@ -3,7 +3,6 @@ title: "How to set up an ssh server behind I2P for personal access"
 date: 2019-06-15
 author: "idk"
 description: "SSH over I2P"
-API_Translate: true
 ---
 
 # How to set up an ssh server behind I2P for personal access

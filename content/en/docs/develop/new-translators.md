@@ -7,7 +7,6 @@ aliases:
   - "/en/get-involved/guides/new-translators/"
   - "/get-involved/guides/new-translators/"
 type: docs
-API_Translate: true
 ---
 
 Want to help make I2P accessible to more people around the world? Translation is one of the most valuable contributions you can make to the project. This guide will walk you through translating both the I2P website and the router console.

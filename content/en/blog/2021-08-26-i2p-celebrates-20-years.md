@@ -4,7 +4,6 @@ date: 2021-08-26
 author: "idk"
 description: "I2P has been around for 20 years, let's take a look back"
 categories: ["general"]
-API_Translate: true
 ---
 
 ## 20 Years of I2P

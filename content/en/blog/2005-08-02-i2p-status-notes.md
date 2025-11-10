@@ -4,7 +4,6 @@ date: 2005-08-02
 author: "jr"
 description: "Belated update covering 0.6 release status, PeerTest system, SSU introductions, I2PTunnel web interface fixes, and mnet over I2P"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, belated notes today,

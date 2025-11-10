@@ -4,7 +4,6 @@ date: 2003-10-07
 author: "jrand0m"
 description: "61st I2P dev meeting covering network testing and application development progress"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 <h2 id="quick-recap">Quick recap</h2>

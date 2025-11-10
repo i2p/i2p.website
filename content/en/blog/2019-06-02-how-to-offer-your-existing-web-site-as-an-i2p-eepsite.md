@@ -4,7 +4,6 @@ date: 2019-06-02
 author: "idk"
 description: "Offering an I2P Mirror"
 categories: ["tutorial"]
-API_Translate: true
 ---
 
 This blog post is intended as a general guide to running a mirror of a clear-net service as an eepSite. It elaborates on the previous blog post about basic I2PTunnel tunnels.

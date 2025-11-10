@@ -3,7 +3,6 @@ title: "Press & Media"
 description: "Presentations, videos, articles, and interviews about I2P organized chronologically"
 lastUpdated: "2024-09"
 layout: "single"
-API_Translate: true
 ---
 
 <div class="content-intro">

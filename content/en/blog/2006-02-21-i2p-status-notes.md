@@ -4,7 +4,6 @@ date: 2006-02-21
 author: "jr"
 description: "Network issues with 0.6.1.10 release, quick 0.6.1.11 follow-up release, and IE security concerns"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, 'tis tuesday again

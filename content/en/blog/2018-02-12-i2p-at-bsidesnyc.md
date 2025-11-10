@@ -4,7 +4,6 @@ date: 2018-02-12
 author: "sadie, str4d"
 description: "Trip report about the I2P meetup at BSidesNYC"
 categories: ["Meetup"]
-API_Translate: true
 ---
 
 Sadie and str4d attended BSidesNYC on Saturday January 20th. Thank you to the BSides Team for setting such a great conference!

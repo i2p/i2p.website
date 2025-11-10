@@ -4,7 +4,6 @@ date: 2006-06-13
 author: "jr"
 description: "Continued network performance challenges, upcoming 0.6.1.21 release with tunnel rejection improvements, and ongoing optimization work"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi gang, 'tis tuesday again,

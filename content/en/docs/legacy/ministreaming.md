@@ -6,7 +6,6 @@ lastUpdated: "2025-02"
 accurateFor: "historical"
 aliases:
   - /docs/api/ministreaming/
-API_Translate: true
 ---
 
 > **Deprecated:** The ministreaming library predates today’s [streaming library](/spec/api/streaming/). Modern applications must use the full streaming API or SAM v3. The information below is retained for developers reviewing legacy source code shipped in `ministreaming.jar`.

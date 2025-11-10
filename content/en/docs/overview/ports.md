@@ -7,7 +7,6 @@ accurateFor: "2.10.0"
 aliases:
   - /docs/ports/
   - /en/docs/ports/
-API_Translate: true
 ---
 
 > **Status:** Updated through I2P 2.10.0 (October 2025). This list consolidates all active, deprecated, and reserved ports used by the I2P Java Router, i2pd, and related plugins. All ports are listed in **numeric order** for consistency.

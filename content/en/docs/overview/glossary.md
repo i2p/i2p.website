@@ -3,7 +3,6 @@ title: "Glossary"
 description: "Common terms and definitions used in I2P documentation"
 lastUpdated: "2025-10"
 aliases: ["/en/about/glossary"]
-API_Translate: true
 ---
 
 This glossary defines common terms used throughout I2P documentation and discussions.

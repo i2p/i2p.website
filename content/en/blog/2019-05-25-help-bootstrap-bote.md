@@ -4,7 +4,6 @@ date: 2019-05-20
 author: "idk"
 description: "Help Bootstrap I2P-Bote!"
 categories: ["development"]
-API_Translate: true
 ---
 
 An easy way to help people message each other privately is to run an I2P-Bote peer which can be used by new bote users to bootstrap their own I2P-Bote peers. Unfortunately, until now, the process of setting up an I2P-Bote bootstrap peer has been much more obscure than it should be. It's actually extremely simple!

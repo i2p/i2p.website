@@ -4,7 +4,6 @@ date: 2005-06-21
 author: "jr"
 description: "Weekly update covering developer return from travel, SSU transport progress, unit test bounty completion, and service outage"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time to start back up our weekly status notes

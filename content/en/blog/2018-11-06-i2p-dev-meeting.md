@@ -4,7 +4,6 @@ date: 2018-11-06
 author: "eche|on"
 description: "I2P development meeting log for November 06, 2018."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

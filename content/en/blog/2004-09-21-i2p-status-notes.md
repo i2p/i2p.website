@@ -4,7 +4,6 @@ date: 2004-09-21
 author: "jr"
 description: "Weekly I2P status update covering development progress, TCP transport improvements, and new userhosts.txt feature"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi gang, quick update this week

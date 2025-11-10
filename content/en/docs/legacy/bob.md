@@ -9,7 +9,6 @@ aliases:
   - /docs/legacy/bob/
   - /en/docs/api/bob/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Warning:** BOB only supports the legacy DSA-SHA1 signature type. Java I2P stopped shipping BOB in **1.7.0 (2022-02)**; it remains only on installations that started with 1.6.1 or earlier and on some i2pd builds. New applications **must** use [SAM v3](/docs/api/samv3/).

@@ -4,7 +4,6 @@ date: 2003-08-05
 author: "nop"
 description: "52nd I2P dev meeting covering Java development status, crypto updates, and SDK progress"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 <h2 id="quick-recap">Quick recap</h2>

@@ -5,7 +5,6 @@ slug: "netdb"
 aliases:
   - /docs/discussions/netdb/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Note:** This archival discussion outlines historical approaches to the network database (netDb). Consult the [main netDb documentation](/docs/specs/common-structures/) for current behavior and guidance.

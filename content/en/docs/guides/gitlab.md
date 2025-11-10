@@ -4,7 +4,6 @@ description: "Deploying GitLab inside I2P using Docker and an I2P router"
 slug: "gitlab"
 lastUpdated: "2025-02"
 accurateFor: "2.5.0"
-API_Translate: true
 ---
 
 Hosting GitLab inside I2P is straightforward: run the GitLab omnibus container, expose it on loopback, and forward traffic through an I2P tunnel. The steps below mirror the configuration used for `git.idk.i2p` but work for any self-hosted instance.

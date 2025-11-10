@@ -4,7 +4,6 @@ date: 2005-07-05
 author: "jr"
 description: "Weekly update covering SSU transport progress, tunnel IV attack mitigation, and SSU MAC optimization with HMAC-MD5"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi gang, its that time of the week,

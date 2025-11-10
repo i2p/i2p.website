@@ -4,7 +4,6 @@ date: 2005-07-26
 author: "jr"
 description: "Brief update announcing upcoming 0.6 release with SSU transport, NOT backwards compatible, scheduled for Wednesday"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi gang, another brief update this week, but with some important stuff

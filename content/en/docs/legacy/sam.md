@@ -9,7 +9,6 @@ aliases:
   - /docs/legacy/sam/
   - /en/docs/api/sam/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Deprecated:** SAM v1 is retained for historical reference only. New applications should use [SAM v3](/docs/api/samv3/) or [BOB](/docs/legacy/bob/). The original bridge only supports DSA-SHA1 destinations and a limited option set.

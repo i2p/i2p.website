@@ -4,7 +4,6 @@ date: 2022-10-11
 author: "zzz"
 description: "SSU2 Transport"
 categories: ["development"]
-API_Translate: true
 ---
 
 ## Overview

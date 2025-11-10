@@ -4,7 +4,6 @@ date: 2005-01-18
 author: "jr"
 description: "Weekly I2P development status notes covering network status, 0.5 tunnel routing design, i2pmail.v2, and azneti2p_0.2 security fix"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, weekly update time

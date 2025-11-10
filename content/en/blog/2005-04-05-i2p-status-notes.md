@@ -4,7 +4,6 @@ date: 2005-04-05
 author: "jr"
 description: "Weekly update covering 0.5.0.5 release issues, Bayesian peer profiling research, and Q application progress"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time for the weekly update

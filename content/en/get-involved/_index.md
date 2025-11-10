@@ -2,7 +2,6 @@
 title: "Get Involved"
 description: "Join the I2P community and help build a more private, secure internet for everyone."
 layout: "get-involved"
-API_Translate: true
 ---
 
 The I2P network thrives because of our community. Whether you're a developer, translator, researcher, or enthusiast, there are many ways to contribute to the project.
@@ -37,7 +36,7 @@ Help new users join the network by running infrastructure services:
 ### Improve Documentation
 Clear documentation helps everyone understand and use I2P better.
 
-- **Writing Guidelines**: Follow our [documentation writing guidelines](/en/docs/i2p-documentation-writing-guidelines/)
+- **Writing Guidelines**: Follow our [documentation writing guidelines](/en/docs/writing-guidelines/)
 - **Documentation Hub**: Browse and contribute to the [docs section](/en/docs/)
 - **Content Suggestions**: Have ideas? [Contact us](/en/contact/)
 

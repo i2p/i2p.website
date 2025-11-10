@@ -6,7 +6,6 @@ created: "2019-01-23"
 lastupdated: "2019-01-24"
 status: "Open"
 thread: "http://zzz.i2p/topics/2418"
-API_Translate: true
 ---
 
 ## Motivation

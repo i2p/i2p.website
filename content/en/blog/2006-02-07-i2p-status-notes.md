@@ -4,7 +4,6 @@ date: 2006-02-07
 author: "jr"
 description: "PRE network testing progress, short exponent optimization for ElGamal encryption, and I2Phex 0.1.1.37 with gwebcache support"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, tuesday rolls around again

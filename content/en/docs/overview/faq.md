@@ -10,7 +10,6 @@ aliases:
   - "/en/faq/"
   - "/faq/"
 type: docs
-API_Translate: true
 ---
 
 <ol>

@@ -4,7 +4,6 @@ date: 2005-03-15
 author: "jr"
 description: "Weekly I2P development status notes covering network performance analysis, speed calculation improvements, and Feedspace development"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, weekly update time

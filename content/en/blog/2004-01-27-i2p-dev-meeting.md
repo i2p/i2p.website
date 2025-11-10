@@ -4,7 +4,6 @@ date: 2004-01-27
 author: "jrand0m"
 description: "I2P development meeting discussing the 0.2.3.6 router update, RTCP relay plans, and release scheduling."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

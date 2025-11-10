@@ -4,7 +4,6 @@ date: 2023-01-31
 author: "idk, sadie"
 description: "Easy Install Bundle for Mac is stalled"
 categories: ["release"]
-API_Translate: true
 ---
 
 The I2P Easy-Install Bundle for Mac has been experiencing stalled updates for the past 2 releases due to the departure of its maintainer.

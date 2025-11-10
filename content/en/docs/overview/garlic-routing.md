@@ -7,7 +7,6 @@ accurateFor: "2.10.0"
 aliases:
   - /docs/how/garlic-routing/
   - /docs/spec/garlic-routing/
-API_Translate: true
 ---
 
 ---

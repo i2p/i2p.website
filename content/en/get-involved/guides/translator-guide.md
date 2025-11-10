@@ -4,7 +4,6 @@ description: "Help make I2P accessible to users worldwide by translating the rou
 date: 2025-01-15
 layout: "single"
 type: "docs"
-API_Translate: true
 ---
 
 ## Overview

@@ -4,7 +4,6 @@ date: 2005-03-22
 author: "jr"
 description: "Weekly I2P development status notes covering 0.5.0.3 release, tunnel message batching implementation, and automatic update tools"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, quick status update

@@ -11,7 +11,6 @@ aliases:
   - "/about/restrictive-countries/"
 type: docs
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 This implementation of I2P (the Java implementation distributed on this site) includes a “Strict Countries List” used to adjust router behavior in regions where participating in routing for others may be restricted by law. While we are not aware of jurisdictions that prohibit using I2P, several have broad prohibitions on relaying traffic. Routers that appear to be in “strict” countries are automatically placed into Hidden mode.

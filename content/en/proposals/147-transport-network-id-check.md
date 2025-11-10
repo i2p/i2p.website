@@ -8,7 +8,6 @@ status: "Closed"
 thread: "http://zzz.i2p/topics/2687"
 target: "0.9.42"
 implementedin: "0.9.42"
-API_Translate: true
 ---
 
 ## Overview

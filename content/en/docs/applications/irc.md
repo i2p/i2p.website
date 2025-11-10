@@ -4,7 +4,6 @@ description: "Complete guide to I2P IRC networks, clients, tunnels, and server s
 slug: "irc"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-API_Translate: true
 ---
 
 ## Overview

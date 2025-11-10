@@ -4,7 +4,6 @@ date: 2005-11-08
 author: "jr"
 description: "Weekly update covering 0.6.1.4 stability, performance optimization roadmap, I2Phex 0.1.1.35 release, I2P-Rufus BT client development, I2PSnarkGUI progress, and Syndie UI revamps"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi gang, tuesday again

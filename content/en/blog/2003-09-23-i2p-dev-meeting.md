@@ -4,7 +4,6 @@ date: 2003-09-23
 author: "jrand0m"
 description: "59th I2P dev meeting covering development status, microroadmap, applications, naming service, IM, and administravia"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 <h2 id="quick-recap">Quick recap</h2>

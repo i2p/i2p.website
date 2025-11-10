@@ -1,0 +1,15 @@
+---
+title: "I2P Dev Meeting - April 10, 2007"
+date: 2007-04-10
+author: "jrandom"
+description: "I2P development meeting log for April 10, 2007."
+categories: ["meeting"]
+---
+
+## Quick recap
+
+<p class="attendees-inline"><strong>Present:</strong> Complication, jadeSerpent, jrandom, mrflibble</p>
+
+## Meeting Log
+
+<div class="irc-log"> 16:01 &lt;jrandom&gt; 0) hi 16:01 &lt;jrandom&gt; 1) Net status 16:01 &lt;jrandom&gt; 2) Syndie dev status 16:01 &lt;jrandom&gt; 3) ??? 16:01 &lt;jrandom&gt; 0) hi 16:01  * jrandom waves 16:01 &lt;jrandom&gt; the brief weekly status notes are posted up at http://dev.i2p.net/pipermail/i2p/2007-April/001343.html 16:01  * mrflibble waves back 16:03 &lt;jrandom&gt; as those notes are short enough, lets jump on in to 1) Net status 16:03 &lt;jrandom&gt; things seem to be going along fairly well lately 16:03 &lt;jrandom&gt; atm there aren't any major changes underway for the net (that i know of), so that will likely remain the case 16:03 &lt;jadeSerpent&gt; irc seems to have calmed down finally too 16:03 &lt;jrandom&gt; cool 16:05 &lt;jrandom&gt; i don't have much to add re: 1) net status, so unless anyone has anything for it, lets jump on over to 2) Syndie dev status 16:07 &lt;jrandom&gt; the next rev is taking longer than expected, but i'm hoping to get a new release out in the next 2-3 days 16:07 &lt;jrandom&gt; it won't be the desktop gui, but will include a number of improvements 16:08 &lt;Complication&gt; anything which helps syndication reliability would be wonderful 16:08 &lt;Complication&gt; it's been comparatively poor lately 16:08 &lt;jrandom&gt; aye, that trouble should be easy enough to sort out (to an extent) 16:09 &lt;jadeSerpent&gt; you know what's causing the failed fetches via i2p? 16:09 &lt;jrandom&gt; aye, low timeouts 16:10 &lt;jrandom&gt; (and low handler threads on the servers) 16:13 &lt;jrandom&gt; ok, if there isn't anything else on 2) Syndie dev status, lets jump over to 3) ??? 16:13 &lt;jrandom&gt; anyone have anything else to bring up for the meeting? 16:14  * mrflibble waves 16:14 &lt;mrflibble&gt; sorry, going back  to  point 1 again 16:15 &lt;mrflibble&gt; &lt;jadeSerpent&gt; irc seems to have calmed down finally too - is this for any particular reason do you think? 16:16 &lt;jrandom&gt; there were some network and hardware trouble on the irc servers, and most people have upgraded to the latest release now (giving us the benefit of zzz's improvements) 16:17 &lt;jrandom&gt; the #s for tunnel creation success rates look much better 16:17 &lt;mrflibble&gt; oh ok, was the servers themselves 16:17 &lt;mrflibble&gt; what were zzz's imporvements? 16:19 &lt;Complication&gt; message priorities, to allow tunnel build messages to take priority over tunnel traffic 16:19 &lt;Complication&gt; and streaming lib adjustments, and the usual array of I2PSnark fixes 16:19 &lt;mrflibble&gt; ah,  thanks 16:19 &lt;jrandom&gt; (what Complication said :) 16:22 &lt;jrandom&gt; ok, anyone have anything else for the meeting? 16:26 &lt;jrandom&gt; if not 16:26  * jrandom winds up 16:26  * jrandom *baf*s the meeting closed </div>

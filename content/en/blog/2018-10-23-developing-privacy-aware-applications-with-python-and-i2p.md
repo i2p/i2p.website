@@ -4,7 +4,6 @@ date: 2018-10-23
 author: "villain"
 description: "Basic concepts of I2P application development with Python"
 categories: ["development"]
-API_Translate: true
 ---
 
 ![i2plib](https://geti2p.net/images/blog/i2plib.jpeg)

@@ -24,7 +24,6 @@ aliases:
   - /spec/tunnel/tunnel-message/
   - /en/docs/spec/tunnel/tunnel-message/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Scope:** This guide consolidates the tunnel implementation, message format, and both tunnel creation specifications (ECIES and legacy ElGamal). Existing deep links continue to work through the aliases above.

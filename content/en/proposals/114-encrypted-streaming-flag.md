@@ -6,7 +6,6 @@ created: "2015-01-21"
 lastupdated: "2015-01-21"
 status: "Needs-Research"
 thread: "http://zzz.i2p/topics/1795"
-API_Translate: true
 ---
 
 ## Overview

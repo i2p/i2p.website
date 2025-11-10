@@ -4,7 +4,6 @@ description: "Detailed specification and ecosystem overview for BitTorrent withi
 slug: "bittorrent"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-API_Translate: true
 ---
 
 ## Overview

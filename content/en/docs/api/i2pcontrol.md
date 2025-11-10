@@ -7,7 +7,6 @@ accurateFor: "2.10.0"
 aliases:
   - /docs/api/i2pcontrol/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 # I2PControl API Documentation

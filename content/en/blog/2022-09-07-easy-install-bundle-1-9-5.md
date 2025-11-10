@@ -4,7 +4,6 @@ date: 2022-09-07
 author: "idk"
 description: "Windows Easy-Install Bundle 1.9.5"
 categories: ["release"]
-API_Translate: true
 ---
 
 ## Bug Fixing release for Windows 11 users

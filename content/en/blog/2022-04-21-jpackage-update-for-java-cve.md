@@ -4,7 +4,6 @@ date: 2022-04-21
 author: "idk"
 description: "Jpackage bundles released with fixes for Java CVE-2022-21449"
 categories: ["release"]
-API_Translate: true
 ---
 
 ## Update details

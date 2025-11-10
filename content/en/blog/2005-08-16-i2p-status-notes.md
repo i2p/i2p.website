@@ -4,7 +4,6 @@ date: 2005-08-16
 author: "jr"
 description: "Brief update covering PeerTest status, Irc2P network transition, Feedspace GUI progress, and meeting time change to 8PM GMT"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, brief notes today

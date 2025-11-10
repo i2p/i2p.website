@@ -4,7 +4,6 @@ date: 2004-08-24
 author: "jr"
 description: "Weekly I2P status update covering 0.3.4.3 release, new router console features, 0.4 progress, and various improvements"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi everyone, lots of updates today

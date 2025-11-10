@@ -18,7 +18,6 @@ aliases:
   - "/en/about/performance/history/"
   - "/about/performance/history/"
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 ## I2P Network Performance: Speed, Connections and Resource Management

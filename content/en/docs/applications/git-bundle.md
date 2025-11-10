@@ -4,7 +4,6 @@ description: "Fetching and distributing large repositories with git bundle and B
 slug: "git-bundle"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-API_Translate: true
 ---
 
 When network conditions make `git clone` unreliable, you can distribute repositories as **git bundles** over BitTorrent or any other file transport. A bundle is a single file containing the entire repository history. Once downloaded, you fetch from it locally and then switch back to the upstream remote.

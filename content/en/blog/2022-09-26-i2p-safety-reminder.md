@@ -4,7 +4,6 @@ date: 2022-09-26
 author: "idk"
 description: "A Reminder to be Safe as I2P Grows"
 categories: ["general"]
-API_Translate: true
 ---
 
 ## A Reminder to be Safe as I2P Grows

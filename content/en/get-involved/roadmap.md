@@ -1,7 +1,6 @@
 ---
 title: "I2P Development Roadmap"
 description: "Current development plans and historical milestones for the I2P network"
-API_Translate: true
 ---
 
 <div style="background: var(--color-bg-secondary); border-left: 4px solid var(--color-primary); padding: 1.5rem; margin-bottom: 2rem; border-radius: var(--radius-md);">

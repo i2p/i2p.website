@@ -4,7 +4,6 @@ date: 2006-05-16
 author: "cervantes"
 description: "I2P development meeting log for May 16, 2006."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

@@ -4,7 +4,6 @@ date: 2005-02-15
 author: "jr"
 description: "Weekly I2P development status notes covering network growth to 211 routers, 0.5 release preparations, and i2p-bt 0.1.7"
 categories: ["status"]
-API_Translate: true
 ---
 
 Bonjour, sa cette fois de la semaine encore,

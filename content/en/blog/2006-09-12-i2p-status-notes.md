@@ -4,7 +4,6 @@ date: 2006-09-12
 author: "jr"
 description: "0.6.1.25 release with network stability improvements, I2PSnark optimizations, and comprehensive Syndie redesign with offline distributed forums"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, here's our *cough* weekly status notes

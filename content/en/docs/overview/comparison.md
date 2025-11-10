@@ -4,7 +4,6 @@ description: "A modern technical and philosophical comparison highlighting I2Pâ€
 slug: "comparison"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-API_Translate: true
 ---
 
 ## Overview

@@ -6,7 +6,6 @@ aliases:
   - /en/research
   - /en/research/index
   - /en/research/questions
-API_Translate: true
 ---
 
 <div id="intro"></div>

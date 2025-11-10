@@ -8,7 +8,6 @@ aliases:
   - /en/docs/spec/common-structures
   - /spec/common-structures/
   - /en/docs/how/network-database/
-API_Translate: true
 ---
 
 ## Overview

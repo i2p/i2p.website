@@ -1,7 +1,6 @@
 ---
 title: "I2P Proposals"
 description: "Enhancement proposals and specifications for the I2P network"
-API_Translate: true
 ---
 
 # I2P Enhancement Proposals

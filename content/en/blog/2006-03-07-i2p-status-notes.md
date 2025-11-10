@@ -4,7 +4,6 @@ date: 2006-03-07
 author: "jr"
 description: "Network stability with 0.6.1.12 deployment, ongoing throttling optimizations, and hardware issues"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hey y'all, a brief weekly update this time

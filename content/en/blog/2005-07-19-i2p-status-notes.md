@@ -4,7 +4,6 @@ date: 2005-07-19
 author: "jr"
 description: "Brief update covering SSU testing progress with 20-30 participants and approaching 0.6 release readiness"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, brief update this week

@@ -4,7 +4,6 @@ date: 2006-02-28
 author: "jr"
 description: "Network improvements with 0.6.1.12, roadmap to 0.6.2 with new peer selection strategies, and mini project opportunities"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hey y'all, time for our tuesday ranting again

@@ -4,7 +4,6 @@ date: 2022-08-28
 author: "idk"
 description: "Windows Easy-Install Bundle 1.9.0 - Major Stability/Compatibility Improvements"
 categories: ["release"]
-API_Translate: true
 ---
 
 ## This update includes the new 1.9.0 router and major quality-of-life improvements for bundle users

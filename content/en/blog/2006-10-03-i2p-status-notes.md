@@ -4,7 +4,6 @@ date: 2006-10-03
 author: "jr"
 description: "Network performance analysis, CPU bottleneck investigation, Syndie 1.0 release planning, and distributed version control evaluation"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, a belated status notes this week

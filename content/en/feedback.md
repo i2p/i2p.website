@@ -2,7 +2,6 @@
 title: "Feature Requests & Feedback"
 description: "Share your ideas and help shape the future of I2P"
 layout: "feedback"
-API_Translate: true
 ---
 
 <div id="vote"></div>

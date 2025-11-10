@@ -4,7 +4,6 @@ date: 2023-01-13
 author: "idk"
 description: "Windows Easy-Install Bundle 2.1.0 released to improve stability, performance"
 categories: ["release"]
-API_Translate: true
 ---
 
 ## Update details

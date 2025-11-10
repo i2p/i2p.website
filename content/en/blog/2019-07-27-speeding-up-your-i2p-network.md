@@ -4,7 +4,6 @@ date: 2019-07-27
 author: "mhatta"
 description: "Speeding up your I2P network"
 categories: ["tutorial"]
-API_Translate: true
 ---
 
 *This post is adapted directly from material originally created for mhatta's* [medium blog](https://medium.com/@mhatta/speeding-up-your-i2p-network-c08ec9de225d) *.* *He deserves the credit for the OP. It has been updated in certain places where* *it refers to old versions of I2P as current and has undergone some light* *editing. -idk*

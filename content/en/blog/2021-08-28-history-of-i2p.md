@@ -4,7 +4,6 @@ date: 2021-08-28
 author: "sadie"
 description: "A history of I2P As We Know It"
 categories: ["general"]
-API_Translate: true
 ---
 
 ## Invisibility is the best defense: building an internet within an internet

@@ -4,7 +4,6 @@ date: 2013-02-19
 author: "KillYourTV"
 description: "I2P development meeting log for February 19, 2013."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

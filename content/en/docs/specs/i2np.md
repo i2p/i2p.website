@@ -10,7 +10,6 @@ aliases:
   - /docs/specs/i2np/
   - /en/spec/i2np/
   - /en/docs/protocol/i2np/
-API_Translate: true
 ---
 ## Overview
 

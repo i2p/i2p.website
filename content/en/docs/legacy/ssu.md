@@ -8,7 +8,6 @@ aliases:
   - /docs/transport/ssu/
   - /en/docs/transport/ssu/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Deprecated:** SSU was superseded by SSU2. Support was removed from i2pd 2.44.0 (API 0.9.56, Nov 2022) and from Java I2P 2.4.0 (API 0.9.61, Dec 2023).

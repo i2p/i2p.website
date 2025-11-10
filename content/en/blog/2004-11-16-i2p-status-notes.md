@@ -4,7 +4,6 @@ date: 2004-11-16
 author: "jr"
 description: "Weekly I2P status update covering network congestion issues, streaming library advances, BitTorrent progress, and upcoming release plans"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, its tuesday again

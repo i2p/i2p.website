@@ -4,7 +4,6 @@ date: 2022-11-23
 author: "idk"
 description: "Bugfixes, Stability/Compatibility Improvements and 2.0.0"
 categories: ["release"]
-API_Translate: true
 ---
 
 ## Update details

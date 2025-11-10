@@ -4,7 +4,6 @@ date: 2005-07-12
 author: "jr"
 description: "Weekly update covering service restoration, SSU testing progress, and I2CP crypto layer analysis for potential simplification"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, its that time of the week again

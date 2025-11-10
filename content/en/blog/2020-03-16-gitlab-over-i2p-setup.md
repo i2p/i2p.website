@@ -4,7 +4,6 @@ date: 2020-03-16
 author: "idk"
 description: "Mirror I2P Git repositories and Bridge Clearnet repositories for others"
 categories: ["development"]
-API_Translate: true
 ---
 
 This is the setup process I use for configuring Gitlab and I2P, with Docker in place to manage the service itself. Gitlab is very easy to host on I2P in this fashion, it can be administered by one person without much difficulty. These instructions should work on any Debian-based system and should easily translate to any system where Docker and an I2P router are available.

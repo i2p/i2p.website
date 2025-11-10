@@ -5,7 +5,6 @@ type: "downloads"
 layout: "downloads"
 current_version: "2.10.0"
 android_version: "2.10.1"
-API_Translate: true
 
 # Download Links Structure
 downloads:

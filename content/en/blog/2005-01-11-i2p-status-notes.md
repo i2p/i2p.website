@@ -4,7 +4,6 @@ date: 2005-01-11
 author: "jr"
 description: "Weekly I2P development status notes covering network status, 0.5 progress, 0.6 status, azneti2p, FreeBSD port, and hosts.txt as Web of Trust"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time for the weekly update

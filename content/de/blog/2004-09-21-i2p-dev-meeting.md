@@ -1,0 +1,15 @@
+---
+title: "I2P Entwicklertreffen - 21. September 2004"
+date: 2004-09-21
+author: "jrandom"
+description: "Protokoll des I2P-Entwicklertreffens vom 21. September 2004."
+categories: ["meeting"]
+---
+
+## Kurzer Überblick
+
+<p class="attendees-inline"><strong>Anwesend:</strong> deer, jrandom, protok0l</p>
+
+## Besprechungsprotokoll
+
+<div class="irc-log"> 14:06 &lt;jrandom&gt; 0) hallo 14:06 &lt;jrandom&gt; 1) Entwicklungsstatus 14:06 &lt;jrandom&gt; 2) Neu: userhosts.txt vs. hosts.txt 14:06 &lt;jrandom&gt; 3) ??? 14:06 &lt;jrandom&gt; 0) hallo 14:06  * jrandom winkt 14:06 &lt;jrandom&gt; kurze wöchentliche Statusnotizen @ http://dev.i2p.net/pipermail/i2p/2004-September/000449.html 14:06 &lt;jrandom&gt; (und vermutlich kurze Sitzungsprotokolle, die gepostet werden, sobald das hier vorbei ist ;) 14:07  * jrandom gibt euch allen gute 30 Sekunden, um diese Notizen zu lesen 14:07 &lt;jrandom&gt; wie auch immer, weiter zu 1) Entwicklungsstatus 14:07 &lt;jrandom&gt; eine grundlegende Übersicht darüber, was los ist, steht in dieser E-Mail 14:08 &lt;jrandom&gt; euch wird vielleicht auffallen, dass in meinen Texten nicht mehr zufällig Buchstaben fehlen, da mein Laptop in letzter Zeit ziemlich rumgezickt hat 14:09 &lt;jrandom&gt; deshalb ziehe ich gerade vollständig auf meinen Server um (mit dem Laptop als Backup für Windows-Tests usw.) 14:09 &lt;jrandom&gt; das ist alles, was ich dazu zu sagen habe 14:10 &lt;jrandom&gt; hat jemand etwas, das er/sie bezüglich 0.4.0.1 oder der Entwicklungsaktivität ansprechen möchte? 14:11 &lt;deer&gt; &lt;jrandom&gt; nein jrandom, wir lesen nur mit 14:11 &lt;jrandom&gt; ok, weiter zu 2) Neu: userhosts.txt vs. hosts.txt 14:11 &lt;protok0l&gt; juhu! 14:11 &lt;jrandom&gt; kleines neues Feature, damit Leute ihre lokale Namenszuordnung ändern können, während sie weiterhin hosts.txt herunterladen 14:12 &lt;protok0l&gt; welche Datei hat Vorrang, wenn sie in Konflikt geraten? user, würde ich annehmen 14:13 &lt;jrandom&gt; das wird im nächsten Release ausgerollt, also packt eure lokalen Änderungen einfach in userhosts.txt, da hosts.txt überschrieben wird 14:13 &lt;jrandom&gt; userhosts.txt hat Vorrang 14:15 &lt;jrandom&gt; ok, das ist alles, was ich zu 2 habe, also schnell weiter zu unserem letzten Punkt – 3) ??? 14:15 &lt;jrandom&gt; hat sonst noch jemand etwas, das er/sie besprechen möchte? 14:16 &lt;deer&gt; &lt;Pseudonym&gt; Zeitplan für 0.4.1? 14:17 &lt;jrandom&gt; sollte diese Woche rauskommen, aber vielleicht erst am Wochenende. 14:17 &lt;deer&gt; &lt;Pseudonym&gt; cool 14:17 &lt;jrandom&gt; ich habe den Kampf mit meinem Laptop schließlich aufgegeben, nachdem die Leertaste den Geist aufgegeben hat 14:17 &lt;jrandom&gt; (codingWithoutSpaces==lame;) 14:18 &lt;jrandom&gt; ok, hat noch jemand etwas, das er/sie ansprechen möchte?  ich glaube, wir steuern hier auf eine Rekord-Meetingdauer zu 14:18 &lt;jrandom&gt; (nicht, dass das ein Problem wäre) 14:19 &lt;jrandom&gt; ok, wenn nicht 14:19  * jrandom leitet den Abschluss ein 14:19  * jrandom *baf*t die Sitzung </div>

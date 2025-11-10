@@ -4,7 +4,6 @@ date: 2005-01-04
 author: "jr"
 description: "First weekly status notes of 2005 covering network growth to 160 routers, 0.4.2.6 features, and 0.5 development"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time for our first weekly status notes of 2005

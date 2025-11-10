@@ -8,7 +8,6 @@ aliases:
   - /docs/legacy/ntcp/
   - /en/docs/ntcp/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Note:** This archive captures discussion threads from March 2007. For up-to-date transport details see the [NTCP documentation](/docs/legacy/ntcp/).

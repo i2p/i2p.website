@@ -8,7 +8,6 @@ aliases:
   - /docs/tunnels/unidirectional/
   - /spec/tunnel/unidirectional/
   - /en/docs/tunnels/unidirectional/
-API_Translate: true
 ---
 
 > **Historical Notice:** This page preserves the legacy “Unidirectional Tunnels” discussion for reference. Consult the active [tunnel implementation documentation](/docs/specs/implementation/) for current behaviour.

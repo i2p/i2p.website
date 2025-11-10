@@ -4,7 +4,6 @@ date: 2003-11-30
 author: "jrand0m"
 description: "64th I2P dev meeting covering router status, roadmap changes, native modPow, GUI installer, IM, naming service, and licensing discussions"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 <h2 id="quick-recap">Quick recap</h2>

@@ -6,7 +6,6 @@ accurateFor: "2.10.0"
 aliases:
   - /en/docs/specs/udp-announces/
   - /docs/specs/udp-bittorrent-announces/
-API_Translate: true
 ---
 
 ## Overview

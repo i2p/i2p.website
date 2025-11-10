@@ -4,7 +4,6 @@ date: 2005-02-22
 author: "jr"
 description: "Weekly I2P development status notes covering 0.5 release success, upcoming 0.5.0.1 bugfix, tunnel peer ordering strategies, and azneti2p updates"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, weekly update time

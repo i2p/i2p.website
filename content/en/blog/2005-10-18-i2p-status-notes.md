@@ -4,7 +4,6 @@ date: 2005-10-18
 author: "jr"
 description: "Weekly update covering 0.6.1.3 release success, Freenet collaboration discussion, tunnel bootstrap attacks analysis, I2Phex upload bug progress, and symmetric NAT bounty"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, its Tuesday again

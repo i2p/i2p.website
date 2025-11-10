@@ -4,7 +4,6 @@ date: 2006-01-24
 author: "jr"
 description: "Network status update, new tunnel build process for 0.6.2, and reliability improvements"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, tuesday keeps coming back...

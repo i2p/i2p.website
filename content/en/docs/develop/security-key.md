@@ -8,7 +8,6 @@ aliases:
   - "/en/get-involved/develop/security-key"
   - "/get-involved/develop/security-key"
 type: docs
-API_Translate: true
 ---
 
 ## Security Contact

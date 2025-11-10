@@ -4,7 +4,6 @@ date: 2006-04-25
 author: "jr"
 description: "Weekly update covering 0.6.1.17 release with substantial tunnel build improvements, increased success rates by 1-2 orders of magnitude, and I2Phex bug fixes"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi gang, 'tis time for our pre-wednesday meeting

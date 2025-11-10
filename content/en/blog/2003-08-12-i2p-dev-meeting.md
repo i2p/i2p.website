@@ -4,7 +4,6 @@ date: 2003-08-12
 author: "jrand0m"
 description: "53rd I2P dev meeting covering SDK 0.1 release and project status updates"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 <h2 id="quick-recap">Quick recap</h2>

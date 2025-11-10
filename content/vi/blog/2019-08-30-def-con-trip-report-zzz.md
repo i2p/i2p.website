@@ -1,0 +1,23 @@
+---
+title: "Báo cáo chuyến đi Def Con- zzz"
+date: 2019-08-30
+author: "zzz"
+description: "Báo cáo chuyến đi Def Con- zzz"
+categories: ["conferences"]
+---
+
+## Def Con Trip Report
+
+idk và tôi đã tham dự DEFCON 27 và tổ chức hai buổi hội thảo về I2P dành cho các nhà phát triển ứng dụng, với sự hỗ trợ từ mhatta và Alex. Tôi phụ trách buổi hội thảo tại Monero Village và idk phụ trách buổi tại Crypto/Privacy Village. Tại đây, tôi sẽ tóm tắt hội thảo ở Monero Village, cũng như một bài nói về Tor do Roger Dingledine trình bày. idk sẽ đăng một báo cáo chuyến đi bao gồm hội thảo của mình.
+
+Chúng tôi có khoảng 8 người tham dự cho hội thảo Monero Village, với tiêu đề "I2P for Cryptocurrency Developers". Chúng tôi dự định thảo luận về nhu cầu kết nối mạng cụ thể của từng ứng dụng và tìm hiểu các tùy chọn i2ptunnel và SAM hiện có. Tuy nhiên, tất cả người tham dự đều tương đối chưa quen với I2P, nên chúng tôi đã chuyển hướng và giới thiệu tổng quan về I2P. Vì không ai trong số họ mang theo laptop, chúng tôi đã giúp một số người cài đặt I2P trên điện thoại Android của họ và hướng dẫn qua một số tính năng của ứng dụng. Với tất cả người dùng, ứng dụng dường như reseed và thiết lập tunnels khá nhanh.
+
+Một câu hỏi thường gặp sau khi cài đặt ứng dụng là "bây giờ tôi nên làm gì?". Ứng dụng không có mục 'các dịch vụ ẩn đáng quan tâm' hoặc trình hướng dẫn khởi chạy lần đầu như ứng dụng máy tính để bàn của chúng tôi, và hầu hết các mục trong sổ địa chỉ mặc định đã không còn hoạt động từ lâu. Chúng tôi có thể cải thiện trải nghiệm khởi chạy lần đầu. Ngoài ra, một số phần thú vị hơn của ứng dụng đang bị ẩn phía sau một cài đặt nâng cao; chúng tôi nên xem xét những mục đó và cân nhắc bỏ ẩn một số trong số chúng.
+
+Luôn hữu ích khi tham dự các bài nói về Tor, không hẳn để tìm hiểu họ đang làm gì, mà để nghe cách họ giải thích mọi thứ cho mọi người và họ dùng thuật ngữ gì. Bài nói của Roger "The Tor Censorship Arms Race" diễn ra trong một phòng lớn với khoảng hai nghìn người tham dự. Anh ấy đưa ra một phần giới thiệu rất ngắn về Tor chỉ với ba hoặc bốn slide. Anh ấy nói hiện họ có "hai đến tám triệu người dùng mỗi ngày". Phần lớn bài nói là điểm lại các nỗ lực chặn ở cấp quốc gia qua các năm, bắt đầu từ Thái Lan và Iran giai đoạn 2006–2007, rồi đến Tunisia, Trung Quốc và Ethiopia vào năm 2011. Anh ấy gọi các cầu nối Tor là một "cuộc chạy đua vũ trang tệ hại". Anh ấy cho thấy một biểu mẫu mới sẽ được hiển thị cho người dùng mới, với một ô chọn "Tor bị kiểm duyệt ở quốc gia của tôi".
+
+Cơ chế pluggable transport (cơ chế truyền tải có thể cắm thêm) mới "snowflake" của họ sử dụng kết hợp domain fronting, webrtc, javascript, broker và proxy để tiếp cận một Tor bridge. Roger chỉ có một slide về nó, và tôi chưa quen thuộc với nó, nên chúng ta nên nghiên cứu thêm để hiểu rõ nó nói về điều gì. Anh ấy có đề cập ngắn gọn một số thứ họ có thể sẽ làm tiếp theo, bao gồm phương thức phân phối cầu nối "salmon", FTE/Marionette, decoy routing, và "cupcake" là một phần mở rộng của snowflake. Mặc dù tôi không có thêm thông tin nào về chúng, chúng có thể là những thuật ngữ thời thượng đáng để chú ý trên các danh sách thư của họ.
+
+Phần lớn những vấn đề về kiểm duyệt mà Tor gặp phải là do mức độ phổ biến của Tor, nhưng quy trình bắt tay TLS của họ là một vấn đề đặc biệt và nó đã là trọng tâm của phần lớn cuộc "chạy đua vũ trang" trong nhiều năm qua. Ở một số phương diện, chúng tôi ở vị thế tốt hơn, vì chúng tôi đã lấy một số tính năng từ obfs4 pluggable transport (cơ chế truyền tải dạng pluggable obfs4) tốt nhất hiện nay của họ và tích hợp chúng vào NTCP2. Tuy nhiên, chúng tôi vẫn gặp vấn đề khi trang web và reseeds (các máy chủ reseed) của mình bị chặn, như Sadie và Phong sẽ trình bày tại USENIX FOCI trong tuần này.
+
+Ghi chú cho lần tới: Tôi thực sự khuyên nên tham dự DEFCON, miễn là chúng ta tìm được một Village để làm “nhà”. Đây là một hội nghị khổng lồ và các khu vực tụ tập chung vốn hạn chế thì lại quá đông nghẹt. Cả Monero Village và Crypto/Privacy Village đều là những đơn vị đăng cai tuyệt vời và tại mỗi địa điểm chúng ta có vài giờ để gặp gỡ mọi người. Chúng ta nên tìm thêm cơ hội hợp tác với cả hai tổ chức. Cũng có người của ZCash tại Monero Village và chúng ta cũng nên làm việc với họ. Bất kỳ hội thảo nào trong tương lai cũng nên nhắm tới đối tượng phổ thông hơn. Chúng ta thực sự cần một slide deck (bộ slide trình bày) chuẩn "Intro to I2P"; nó hẳn đã hữu ích tại các buổi hội thảo. Đừng kỳ vọng người tham dự mang theo laptop; hãy tập trung vào Android cho mọi bài thực hành. Ứng dụng Android của chúng ta còn một số điểm cần cải thiện. Uống thật nhiều nước khi ở Vegas... và tránh xa máy đánh bạc.

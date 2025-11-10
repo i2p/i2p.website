@@ -1,0 +1,15 @@
+---
+title: "I2P 开发者会议 - 2005年4月26日"
+date: 2005-04-26
+author: "@jrandom"
+description: "I2P 开发会议记录（2005年4月26日）。"
+categories: ["meeting"]
+---
+
+## 快速回顾
+
+<p class="attendees-inline"><strong>出席：</strong> bla、duck、jrandom、jrandom2p、laberhorst、Lorie、smeghead</p>
+
+## 会议日志
+
+<div class="irc-log"> 14:10 &lt;@jrandom&gt; 0) 嗨 14:10 &lt;@jrandom&gt; 1) 网络状态 14:10 &lt;@jrandom&gt; 2) SSU 状态 14:10 &lt;@jrandom&gt; 3) 单元测试赏金 14:10 &lt;@jrandom&gt; 4) ??? 14:10 &lt;@jrandom&gt; 0) 嗨 14:10  * jrandom 挥手 14:10 &lt;@jrandom&gt; （迟来的）每周状态说明已发布 @ http://dev.i2p.net/pipermail/i2p/2005-April/000723.html 14:10 &lt;bla&gt; 嗨 14:11 &lt;@jrandom&gt; 大家读那篇长文的同时，我们先进入 1) 网络状态 14:12 &lt;@jrandom&gt; 我们之前在 0.5.0.6 中看到的一些 eepsites 下线的问题似乎已经解决，不过仍有少数人遇到了他们站点的其他问题 14:13 &lt;@jrandom&gt; 我也注意到一些 tracker 上的种子活动有所增加，不过就我所见，这并没有在 irc 上引发任何问题 14:13 &lt;laberhorst&gt; 网络状态：除了不可达的问题外，整体还不错 :-) 14:13 &lt;@jrandom&gt; 呵 14:13 &lt;@jrandom&gt; 是啊，我仍然不确定你的站点发生了什么。会后我们可以再深入调试 14:14 &lt;@jrandom&gt; 除此之外，关于网络状态/0.5.0.7，大家还有其他问题/评论/担忧吗？ 14:16 &lt;@jrandom&gt; 好的，如果没有，我们继续 2) SSU 状态 14:16 &lt;@jrandom&gt; [在此挥手] 14:17 &lt;Lorie&gt; 早上好。 14:17 &lt;@jrandom&gt; 我知道，我没有更快地推出，多少有点拖延；就目前而言它的表现确实很好。不过还有一些让我不太放心的问题，所以测试期间还请大家多包涵 14:18 &lt;@smeghead&gt; 我赞赏你没有把垃圾软件强加给我们 :) 14:18 &lt;@jrandom&gt; 我希望这周我们能在真实网络上做一些进一步的测试（手指交叉） 14:19 &lt;@jrandom&gt; 唉，到目前为止我已经给大家强加了够多的 bug 了 14:19 &lt;Lorie&gt; 你在拖拖拉拉，是吗？ 14:19  * Lorie 看向 smeghead 14:19 &lt;bla&gt; jrandom：只是确认一下：我们甚至可以有一个过渡期，在此期间客户端既可以用 UDP 也可以用 TCP 吗？ 14:20 &lt;@jrandom&gt; bla：可以。我现在有个测试网络，有些仅 TCP，有些同时支持 TCP 和 UDP。让 tunnels 同时跑在两者之上还挺有意思的 :) 14:20 &lt;@jrandom&gt; 真实网络实际上也能处理这种情况，会忽略任何 UDP 地址（对于尚未支持它的人） 14:20 &lt;@smeghead&gt; 这已经给了我们大量的蛋白质，但我们可不想过度纵容自己 14:21 &lt;bla&gt; jrandom：不错！这有利于过渡 14:23 &lt;@jrandom&gt; 嗯，我们就是这么期望的。不过，仍然有很多工作要做[/obligatory] 14:23 &lt;@jrandom&gt; 虽然我们的传输是 SSU - "SEMIreliable Secure UDP" - 我们仍然需要尽量做到某种程度的可靠 14:24 &lt;@jrandom&gt; 我关注了网上一堆研究，看看哪些方法效果最好。虽然我们可以偷懒，发出去就不管，但通过做一些简单的、类似 TCP 的可靠性处理可以获益良多，这正是我目前在折腾的 14:25 &lt;@jrandom&gt; 另一方面，因为它只是半可靠的，如果没有被快速确认（ACK），我们可以直接丢弃消息，而不是丢弃连接 14:26 &lt;Lorie&gt; 是的 14:26 &lt;Lorie&gt; 务必做到可靠；时间是我们拥有的一种奢侈 14:27 &lt;@jrandom&gt; 关于 2) SSU 状态，我要说的大概就这些了。大家有任何问题/评论/担忧吗，或者我们进入 3) 单元测试赏金？ 14:28 &lt;jrandom2p&gt; 就当我们已经进入了吧 14:29 &lt;jrandom2p&gt; 好的，duck 前几天发了关于近况以及单元测试赏金重要性的一个不错的总结，站点上还引用了很多细节。 14:30 &lt;jrandom2p&gt; 这是个不错的机会，谁都可以稍微深入挖掘一下 i2p，同时还顺便拿点钱回来 ;) 14:30 &lt;jrandom2p&gt; 不过总之，那些内容大家都可以去看。对此有任何问题吗？ 14:31 &lt;jrandom2p&gt; 好的，如果没有，我们继续 4) ??? 14:32 &lt;@smeghead&gt; 有人试过那个 emma 代码覆盖率套件吗？ 14:32 &lt;jrandom2p&gt; 过去一周发生了很多事情，不过我不确定有哪些已经可以讨论。大家有什么想提的吗？ 14:33 &lt;jrandom2p&gt; 不是我 14:33 &lt;@duck&gt; *嗝* 14:34 &lt;@smeghead&gt; 不是 duck 喝醉了，就是他发现了一个乡巴佬 14:34 &lt;@duck&gt; !former 14:35 &lt;jrandom2p&gt; （把它当作 shell 命令还是 c/java 来求值…… ;)） 14:36 &lt;jrandom2p&gt; 还有谁有要在会议上提出的事吗？ 14:36  * jrandom2p 喜欢短会，这样留给写代码的时间更多 14:36 &lt;@smeghead&gt; 显然也包括喝酒 :) 14:36 &lt;@duck&gt; & 喝酒 14:37 &lt;@smeghead&gt; 唉，延迟 14:37 &lt;jrandom2p&gt; 呵 14:38 &lt;jrandom2p&gt; 好了，该回去喝^W工作了 14:38  * jrandom2p 做好准备 14:38  * jrandom2p *baf* 地宣布会议结束 </div>

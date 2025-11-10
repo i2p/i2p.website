@@ -4,7 +4,6 @@ date: 2024-04-25
 author: "idk"
 description: "Stormy Weather"
 categories: ["release"]
-API_Translate: true
 ---
 
 The I2P network is currently under a Denial-of-Service attack.

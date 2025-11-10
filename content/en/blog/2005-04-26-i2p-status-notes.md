@@ -4,7 +4,6 @@ date: 2005-04-26
 author: "jr"
 description: "Brief weekly update covering 0.5.0.7 network stability, SSU UDP transport progress with multi-network support, and unit test bounty funding"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, brief weekly status notes today

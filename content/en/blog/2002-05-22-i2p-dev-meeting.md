@@ -4,7 +4,6 @@ date: 2002-05-22
 author: "nop"
 description: "First I2P development meeting covering project status, website development, release roadmap, and documentation."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 (Courtesy of the wayback machine http://www.archive.org/)

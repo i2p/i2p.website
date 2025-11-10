@@ -10,7 +10,6 @@ aliases:
   - /docs/overview/tech-intro
   - /docs/overview/tech-intro/
   - /en/docs/how/tech-intro/
-API_Translate: true
 ---
 
 ## Introduction

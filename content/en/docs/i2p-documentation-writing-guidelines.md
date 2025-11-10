@@ -3,7 +3,6 @@ title: "I2P Documentation Writing Guidelines"
 description: "Maintain consistency, accuracy, and accessibility across I2P technical documentation"
 slug: "writing-guidelines"
 lastUpdated: "2025-10"
-API_Translate: true
 ---
 
 **Purpose:** Maintain consistency, accuracy, and accessibility across I2P technical documentation

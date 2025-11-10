@@ -4,7 +4,6 @@ date: 2006-03-28
 author: "jr"
 description: "0.6.1.13 release with bandwidth improvements, use case survey for anonymity needs, and ongoing hardware issues"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, tuesday rolls around again

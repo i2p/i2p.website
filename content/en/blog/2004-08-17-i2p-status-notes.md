@@ -4,7 +4,6 @@ date: 2004-08-17
 author: "jr"
 description: "Weekly I2P status update covering network performance issues, DoS attacks, and Stasher DHT development"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, update time

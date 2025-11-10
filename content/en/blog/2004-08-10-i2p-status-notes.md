@@ -4,7 +4,6 @@ date: 2004-08-10
 author: "jr"
 description: "Weekly I2P status update covering 0.3.4.1 release performance, outproxy load balancing, and documentation updates"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hey everyone, weekly update time

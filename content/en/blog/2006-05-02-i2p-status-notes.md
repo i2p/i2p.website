@@ -4,7 +4,6 @@ date: 2006-05-02
 author: "jr"
 description: "Network health improvements on 0.6.1.17, ongoing Syndie revamp progress, and upcoming router optimizations"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, tuesday rolls 'round one more time

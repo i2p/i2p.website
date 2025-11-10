@@ -4,7 +4,6 @@ date: 2006-05-30
 author: "jr"
 description: "Ongoing network performance issues, development of aggressive peer filtering system, and slow Syndie revamp progress"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, after a brief intermission, its time for our weekly status notes again (unsigned for system maintenance reasons)

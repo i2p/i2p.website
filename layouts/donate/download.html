@@ -1,47 +1,252 @@
 {{ define "main" }}
 
-<div class="thank-you-page">
-    <div class="container">
-        <div class="thank-you-content">
-            <!-- Thank You Mascot (light/dark mode) -->
-            <div class="thank-you-logo">
-                <picture>
-                    <source srcset="{{ relURL "images/thankyou-mascot_dark.png" }}" media="(prefers-color-scheme: dark)">
-                    <img src="{{ relURL "images/thankyou-mascot_light.png" }}" alt="Thank you from the I2P Team" height="200" class="theme-mascot">
-                </picture>
-            </div>
+<style>
+.thank-you-wrapper {
+    min-height: 100vh;
+    background: var(--color-bg);
+    padding: var(--spacing-xl) var(--spacing-md);
+}
 
+.thank-you-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.thank-you-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.thank-you-header img {
+    margin-bottom: var(--spacing-md);
+}
+
+.thank-you-header h1 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.download-status-bar {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.download-status-bar p {
+    margin: 0;
+    color: var(--color-text-secondary);
+}
+
+.download-link {
+    display: inline-block;
+    margin-top: var(--spacing-xs);
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+@media (max-width: 768px) {
+    .two-column-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.donate-column {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+}
+
+.donate-column h2 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+.content-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.content-box {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+}
+
+.content-box h3 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+    font-size: 1.25rem;
+}
+
+.content-box ol {
+    margin: 0;
+    padding-left: var(--spacing-lg);
+}
+
+.content-box li {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.6;
+}
+
+.crypto-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.crypto-box {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+}
+
+.crypto-box h4 {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: 0.9375rem;
+    color: var(--color-primary);
+}
+
+.crypto-box p {
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+}
+
+.crypto-address {
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.6875rem;
+    padding: var(--spacing-xs);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    word-break: break-all;
+    color: var(--color-primary);
+    user-select: all;
+    cursor: pointer;
+}
+
+.crypto-address:hover {
+    background: var(--color-bg);
+}
+
+.footer-links {
+    text-align: center;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-links a {
+    color: var(--color-primary);
+    text-decoration: none;
+    margin: 0 var(--spacing-sm);
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+</style>
+
+<div class="thank-you-wrapper">
+    <div class="thank-you-container">
+        <!-- Header -->
+        <div class="thank-you-header">
+            <picture>
+                <source srcset="{{ relURL "images/thankyou-mascot_dark.png" }}" media="(prefers-color-scheme: dark)">
+                <img src="{{ relURL "images/thankyou-mascot_light.png" }}" alt="Thank you from the I2P Team" height="150">
+            </picture>
             <h1>{{ .Title }}</h1>
+        </div>
 
-            <!-- Download Status -->
-            <div id="download-status" class="download-status">
-                <div class="status-icon">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+        <!-- Download Status -->
+        <div class="download-status-bar">
+            <p>Your download has started! If it doesn't begin automatically, <a href="#" id="manual-download-link" class="download-link">click here to download</a>.</p>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="two-column-layout">
+            <!-- Left Column: Donation Form -->
+            <div class="donate-column">
+                <h2>💜 Support I2P</h2>
+                <p style="margin-bottom: var(--spacing-lg); color: var(--color-text-secondary);">
+                    I2P is a free, open-source project with no corporate backing. Your donation helps us maintain infrastructure, develop new features, and keep I2P free for everyone.
+                </p>
+
+                <!-- FundraiseUp Form -->
+                <div id="fundraiseup-container">
+                    <p style="text-align: center; padding: var(--spacing-xl);">
+                        <a href="#XTKMQZHT" class="btn btn-primary" style="display: inline-block; background: var(--color-primary); color: white; padding: var(--spacing-md) var(--spacing-xl); border-radius: var(--radius-md); text-decoration: none; font-weight: 600;">
+                            💜 Donate Now
+                        </a>
+                    </p>
+                    <p style="text-align: center; font-size: 0.875rem; color: var(--color-text-secondary);">
+                        Click above to open the secure donation form
+                    </p>
                 </div>
-                <p class="status-message" id="status-message">
-                    <strong>Starting your download...</strong>
-                </p>
             </div>
 
-            {{ .Content }}
+            <!-- Right Column: Next Steps & Crypto -->
+            <div class="content-column">
+                <div class="content-box">
+                    <h3>Next Steps</h3>
+                    <ol>
+                        <li><strong>Install I2P</strong> - Follow our <a href="{{ relLangURL "docs/guides/" }}">installation guides</a></li>
+                        <li><strong>Configure Your Browser</strong> - <a href="{{ relLangURL "docs/guides/browser-config/" }}">Browser setup guide</a></li>
+                        <li><strong>Explore I2P Sites</strong> - Start browsing .i2p sites</li>
+                        <li><strong>Get Support</strong> - <a href="{{ relLangURL "contact/#forums" }}">Forums</a> or <a href="{{ relLangURL "contact/#irc" }}">IRC</a></li>
+                    </ol>
+                </div>
 
-            <div class="thank-you-footer">
-                <p>
-                    <a href="{{ relLangURL "coming-soon/" }}">Getting Started Guide</a>
-                    <span>•</span>
-                    <a href="{{ relLangURL "contact/#forums" }}">Get Support</a>
-                    <span>•</span>
-                    <a href="{{ relLangURL "downloads/" }}">Back to Downloads</a>
-                </p>
+                <div class="content-box">
+                    <h3>Donate with Cryptocurrency</h3>
+                    <div class="crypto-boxes">
+                        <div class="crypto-box">
+                            <h4>Monero (XMR) - Recommended</h4>
+                            <p>Private and untraceable</p>
+                            <div class="crypto-address">85igd4Dw6ychvi8iUYADHfgLCmdT348SA6sMnYgxE86YZxX98Au6rsF9B9DmcqEXWRZWDcPdarufHUUqwP73GVrq6BaC9dr</div>
+                        </div>
+                        <div class="crypto-box">
+                            <h4>Bitcoin (BTC)</h4>
+                            <div class="crypto-address">3JSSF45pAW5ujWbBuRFe25pBiwp1vjSRNb</div>
+                        </div>
+                        <div class="crypto-box">
+                            <h4>Zcash (ZEC)</h4>
+                            <div class="crypto-address">t1TwTuu4qU25aGvh59EMkCAZdmwJepkyQcD</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: var(--spacing-md); font-size: 0.875rem; text-align: center;">
+                        <a href="{{ relLangURL "financial-support/" }}">View all donation options →</a>
+                    </p>
+                </div>
             </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="footer-links">
+            <a href="{{ relLangURL "docs/guides/" }}">Getting Started</a>
+            <span>•</span>
+            <a href="{{ relLangURL "contact/#forums" }}">Get Support</a>
+            <span>•</span>
+            <a href="{{ relLangURL "downloads/" }}">Back to Downloads</a>
         </div>
     </div>
 </div>
-
-<!-- FundraiseUp Donation Form (opens after download) -->
-<a href="#FUNFTLUKCSN" id="donation-trigger" style="display: none"></a>
 
 {{ end }}
 

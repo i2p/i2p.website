@@ -4,7 +4,6 @@ date: 2004-08-31
 author: "jr"
 description: "Weekly I2P status update covering network performance degradation, 0.3.5 release planning, documentation needs, and Stasher DHT progress"
 categories: ["status"]
-API_Translate: true
 ---
 
 Well boys 'n girls, its Tuesday again!

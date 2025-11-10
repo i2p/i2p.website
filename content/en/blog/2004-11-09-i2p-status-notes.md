@@ -4,7 +4,6 @@ date: 2004-11-09
 author: "jr"
 description: "Weekly I2P status update covering 0.4.1.4 release performance improvements, streaming library progress, BitTorrent advances, and addressbook.py naming system"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hey everyone, weekly update time

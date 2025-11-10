@@ -4,7 +4,6 @@ date: 2005-06-28
 author: "jr"
 description: "Weekly update covering SSU transport deployment plans, unit test bounty completion and licensing considerations, and Kaffe Java status"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, weekly update time again

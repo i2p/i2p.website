@@ -4,7 +4,6 @@ date: 2004-11-30
 author: "jr"
 description: "Weekly I2P status update covering 0.4.2 and 0.4.2.1 releases, mail.i2p developments, i2p-bt progress, and eepsite security discussions"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all

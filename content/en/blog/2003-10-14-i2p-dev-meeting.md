@@ -4,7 +4,6 @@ date: 2003-10-14
 author: "jrand0m"
 description: "62nd I2P dev meeting covering protocol improvements and development roadmap"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 <h2 id="quick-recap">Quick recap</h2>

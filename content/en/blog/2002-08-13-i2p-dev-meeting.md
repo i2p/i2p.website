@@ -4,7 +4,6 @@ date: 2002-08-13
 author: "mids"
 description: "I2P development meeting covering RC2 status, Mac OS 9 port progress, website preview, and anonymous IRC channels."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 (Courtesy of the wayback machine http://www.archive.org/)

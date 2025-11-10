@@ -9,7 +9,6 @@ aliases:
   - "/get-involved/guides/new-developers/"
 type: docs
 notes: update translation part
-API_Translate: true
 ---
 
 So you want to start work on I2P? Great! Here's a quick guide to getting started on contributing to the website or the software, doing development, or creating translations.

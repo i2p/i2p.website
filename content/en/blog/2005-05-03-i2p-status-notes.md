@@ -4,7 +4,6 @@ date: 2005-05-03
 author: "jr"
 description: "Weekly update covering network stability, SSU UDP transport live testing success, i2phex file sharing progress, and upcoming 3-4 week absence"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, lots of stuff on the table this week

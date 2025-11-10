@@ -4,7 +4,6 @@ date: 2006-01-03
 author: "jr"
 description: "New year update covering 0.6.1.8 release stability, load testing results and peer profiling for throughput optimization, and comprehensive 2005 review with 2006 roadmap preview"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, happy new year! Lets jump back into our weekly status notes after a week without them -

@@ -9,7 +9,6 @@ aliases:
   - "/get-involved/guides/ides"
 type: docs
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 <p>

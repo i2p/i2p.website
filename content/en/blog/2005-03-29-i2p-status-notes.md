@@ -4,7 +4,6 @@ date: 2005-03-29
 author: "jr"
 description: "Weekly I2P development status notes covering 0.5.0.5 release with batching, UDP (SSU) transport protocol, and Q distributed store"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time for the weekly status notes

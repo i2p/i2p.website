@@ -4,7 +4,6 @@ date: 2004-08-03
 author: "jr"
 description: "Weekly I2P status update covering 0.3.4 release performance, new web console development, and various application projects"
 categories: ["status"]
-API_Translate: true
 ---
 
 hi y'all, lets get this status update out of the way

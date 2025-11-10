@@ -7,7 +7,6 @@ accurateFor: "2.10.0"
 toc: true
 aliases:
   - /docs/api/datagrams/
-API_Translate: true
 ---
 
 ## Overview

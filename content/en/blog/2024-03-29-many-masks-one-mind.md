@@ -4,7 +4,6 @@ date: 2024-03-29
 author: "idk"
 description: "Many Masks, One Mind: Securing the NetDB"
 categories: ["development"]
-API_Translate: true
 ---
 
 Author's note: the attacks referred to in this article are not possible against current versions of I2P.

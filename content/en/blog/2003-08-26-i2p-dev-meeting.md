@@ -4,7 +4,6 @@ date: 2003-08-26
 author: "jrand0m"
 description: "55th I2P dev meeting covering spec questions, ElGamal issues, SDK status, and release planning"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 <h2 id="quick-recap">Quick recap</h2>

@@ -4,7 +4,6 @@ date: 2005-02-08
 author: "jr"
 description: "Weekly I2P development status notes covering 0.4.2.6 updates, 0.5 tunnel progress with Bloom filters, i2p-bt 0.1.6, and Fortuna PRNG"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, update time again

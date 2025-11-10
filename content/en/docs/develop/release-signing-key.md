@@ -8,7 +8,6 @@ aliases:
   - "/en/get-involved/develop/release-signing-key"
   - "/get-involved/develop/release-signing-key"
 type: docs
-API_Translate: true
 ---
 
 <p>

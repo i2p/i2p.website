@@ -4,7 +4,6 @@ date: 2006-01-10
 author: "jr"
 description: "Weekly update covering throughput profiling algorithms, Syndie blog view improvements, HTTP persistent connections progress, and I2Phex gwebcache development"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, seems that tuesday has rolled around again

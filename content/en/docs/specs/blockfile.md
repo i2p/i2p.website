@@ -8,7 +8,6 @@ aliases:
   - /en/docs/specs/blockfile
   - /spec/blockfile/
 type: spec
-API_Translate: true
 ---
 
 ## Overview

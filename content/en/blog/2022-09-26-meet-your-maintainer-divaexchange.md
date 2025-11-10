@@ -4,7 +4,6 @@ date: 2022-09-26
 author: "sadie"
 description: "A conversation with DivaExchange"
 categories: ["general"]
-API_Translate: true
 ---
 
 *In this second installment of Meet Your Maintainer, I reached out to

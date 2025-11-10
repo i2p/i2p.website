@@ -4,7 +4,6 @@ date: 2005-04-12
 author: "jr"
 description: "Weekly update covering 0.5.0.6 netDb fixes, SSU UDP transport progress, Bayesian peer profiling results, and Q development"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, update time again

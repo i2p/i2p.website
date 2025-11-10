@@ -5,7 +5,6 @@ tagline: "The Invisible Internet Project"
 type: "about"
 layout: "about"
 established: "2002"
-API_Translate: true
 ---
 
 The Invisible Internet Project began in 2002. The vision for the project was for the I2P Network "to deliver full anonymity, privacy, and security at the highest level possible. Decentralized and peer to peer Internet means no more worrying about your ISP controlling your traffic. This will allow people to do seamless activities and change the way we look at security and even the Internet, utilizing public key cryptography, IP steganography, and message authentication. The Internet that should have been, will be soon."

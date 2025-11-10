@@ -1,0 +1,23 @@
+---
+title: "Def Con Seyahat Raporu- zzz"
+date: 2019-08-30
+author: "zzz"
+description: "Def Con Seyahat Raporu- zzz"
+categories: ["conferences"]
+---
+
+## Def Con Seyahat Raporu
+
+idk ve ben DEFCON 27'ye katıldık ve uygulama geliştiricileri için I2P üzerine iki atölye sunduk, mhatta ve Alex'in desteğiyle. Monero Village'deki atölyeyi ben verdim ve Crypto/Privacy Village'dekini idk verdi. Burada, Monero Village atölyesini ve Roger Dingledine'in Tor üzerine yaptığı bir konuşmayı özetleyeceğim. idk, kendi atölyesini kapsayan bir seyahat raporu yayımlayacak.
+
+Monero Village'deki "Kripto Para Geliştiricileri için I2P" başlıklı atölye çalışmamıza yaklaşık 8 kişi katıldı. Her uygulamanın kendine özgü ağ gereksinimlerini tartışmayı ve mevcut çeşitli i2ptunnel ve SAM seçeneklerini birlikte değerlendirmeyi planlamıştık. Ancak katılımcıların tümü I2P'ye nispeten aşina olmadığından, yön değiştirip I2P'ye genel bir bakış sunduk. Katılımcıların hiçbirinin yanında dizüstü bilgisayar olmadığı için, birkaçına Android telefonlarına I2P kurmalarında yardımcı olduk ve uygulamanın bazı özelliklerini birlikte inceledik. Tüm kullanıcılar için uygulamanın reseed (yeniden tohumlama) yapıp tunnel'ları oldukça hızlı bir şekilde oluşturduğu görüldü.
+
+Uygulamayı kurduktan sonra sıkça sorulan bir soru şuydu: "Şimdi ne yapmalıyım?" Uygulamada, masaüstü uygulamamızda olduğu gibi bir 'ilgi çekici gizli hizmetler' bölümü ya da ilk çalıştırma sihirbazı yok ve varsayılan adres defteri girdilerinin çoğu çoktan geçerliliğini yitirmiş. İlk çalıştırma deneyimine yönelik yapabileceğimiz iyileştirmeler var. Ayrıca, uygulamanın daha ilgi çekici kısımlarından bazıları gelişmiş bir ayarın arkasında gizli; bu öğeleri gözden geçirip bazılarını görünür hâle getirmeyi değerlendirmeliyiz.
+
+Tor sunumlarına gitmek her zaman yararlıdır; ne yaptıklarını öğrenmekten ziyade, insanlara konuları nasıl anlattıklarını ve hangi terminolojiyi kullandıklarını duymak için. Roger'ın "The Tor Censorship Arms Race" başlıklı konuşması, yaklaşık iki bin kişinin katıldığı büyük bir salonda yapıldı. Yalnızca üç-dört slaytla Tor'a çok kısa bir genel bakış sundu. Artık "günde iki ila sekiz milyon kullanıcı"ları olduğunu söylüyor. Konuşmanın büyük bölümü, yıllar içinde ulusal engelleme girişimlerinin bir değerlendirmesiydi; 2006-2007'de Tayland ve İran ile başlayıp 2011'de Tunus, Çin ve Etiyopya'ya kadar uzanıyordu. Tor köprülerini "berbat bir silahlanma yarışı" olarak nitelendirdi. Yeni kullanıcılara gösterilecek yeni bir form gösterdi; üzerinde "Ülkemde Tor sansürleniyor" onay kutusu vardı.
+
+Yeni pluggable transport'ları "snowflake", bir Tor köprüsüne ulaşmak için domain fronting, webrtc, javascript, aracılar ve proxy'lerin bir kombinasyonunu kullanıyor. Roger'ın bununla ilgili yalnızca bir slaytı vardı ve ben de buna aşina değildim, bu yüzden bunun neyle ilgili olduğu konusunda daha fazla araştırma yapmalıyız. Kısaca, sırada üzerinde çalışabilecekleri bazı şeylerden bahsetti; bunlara köprülerin "salmon" dağıtımı, FTE/Marionette, decoy routing ve snowflake'in bir uzantısı olan "cupcake" dahildi. Bunlar hakkında ek bilgim olmasa da, posta listelerinde dikkat edilmesi gereken iyi terimler olabilir.
+
+Tor'un sansürle ilgili sorunlarının büyük kısmı Tor'un popülerliğinden kaynaklanıyor; ancak onların TLS el sıkışması özellikle bir sorun ve yıllar içinde "silahlanma yarışı"nın odağı oldu. Bazı açılardan biz daha iyi durumdayız; çünkü onların hâlihazırdaki en iyi obfs4 pluggable transport (obfs4 takılabilir taşıma) özelliklerinin birkaçını alıp NTCP2'ye entegre ettik. Bununla birlikte, web sitemizin ve reseeds (başlangıç sunucuları) engellenmesiyle ilgili sorunlarımız var; nitekim Sadie ve Phong bunu bu hafta USENIX FOCI'de sunacaklar.
+
+Gelecek sefer için notlar: Kendimize yuva diyebileceğimiz bir Village bulduğumuz sürece DEFCON'u öneririm. Bu devasa bir konferans ve sınırlı sayıdaki genel sosyalleşme alanları aşırı kalabalık. Hem Monero Village hem de Crypto/Privacy Village harika ev sahipleriydi ve her iki noktada da insanlarla buluşmak için birkaç saatimiz oldu. Her iki organizasyonla da çalışmak için daha fazla fırsat bulmalıyız. Monero Village'da ZCash topluluğundan kişiler de vardı ve onlarla da çalışmalıyız. Gelecekteki atölyeler daha genel bir kitleyi hedeflemeli. Standart bir "Intro to I2P" slayt destesine gerçekten ihtiyacımız var; atölyelerde faydalı olurdu. Katılımcıların yanlarında dizüstü bilgisayar olacağını varsaymayın, uygulamalı çalışmalar için Android'e odaklanın. Android uygulamamızda yapılması gereken birkaç iyileştirme var. Vegas'ta bol su için... ve slot makinelerinden uzak durun.

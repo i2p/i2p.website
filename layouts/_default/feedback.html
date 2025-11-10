@@ -12,9 +12,9 @@
     <div class="container">
         <div class="feedback-grid">
             <aside class="feedback-nav">
-                <h3>Quick Links</h3>
+                <h3>{{ i18n "feedback.quickLinks" }}</h3>
                 <nav>
-                    <a href="#submit">Submit Feature Request</a>
+                    <a href="#submit">{{ i18n "feedback.submitFeatureRequest" }}</a>
                     <a href="{{ relLangURL "/get-involved/roadmap/" }}">View Roadmap</a>
                 </nav>
             </aside>
@@ -23,8 +23,8 @@
                 {{ .Content }}
 
                 <div id="submit"></div>
-                <h2>Submit a Feature Request</h2>
-                <p>Have an idea for improving I2P? Share your feature request and vote on existing suggestions.</p>
+                <h2>{{ i18n "feedback.submitFeatureRequestHeading" }}</h2>
+                <p>{{ i18n "feedback.submitFeatureRequestDesc" }}</p>
 
                 <!-- Feature Request Widget -->
                 <div id="features-widget"

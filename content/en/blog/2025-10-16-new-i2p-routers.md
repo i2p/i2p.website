@@ -4,44 +4,43 @@ date: 2025-10-16
 author: "idk"
 categories: ["community"]
 description: "Multiple new I2P router implementations are emerging, including emissary in Rust and go-i2p in Go, bringing new possibilities for embedding and network diversity."
-API_Translate: true
 ---
 
 It's an exciting time for I2P development, our community is growing and there are now multiple new, fully-functioning I2P router prototypes emerging on the scene! We're very excited about this development and about sharing the news with you.
 
 ## How does this help the network?
 
-Writing I2P routers helps us prove that our specification documents can be used to produce new I2P routers, opens up the code to new analysis tools, and generally improves the security and interoperability of the network. Multiple I2P routers means that potential bugs are not uniform, an attack on one router may not work on a different router, avoiding a monoculture problem. Perhaps the most exciting prospect in the long-term, however, is `embedding`.
+Writing I2P routers helps us prove that our specification documents can be used to produce new I2P routers, opens up the code to new analysis tools, and generally improves the security and interoperability of the network. Multiple I2P routers means that potential bugs are not uniform, an attack on one router may not work on a different router, avoiding a monoculture problem. Perhaps the most exciting prospect in the long-term, however, is embedding.
 
-## What is `embedding`?
+## What is embedding?
 
-In the context of I2P, `embedding` is a way of including an I2P router in another app directly, without requiring a freestanding router running in the background. This is a way we can make I2P easier to use, which makes the network easier to grow by making the software more accessible. Both Java and C++ suffer from being difficult to use outside of their own ecosystems, with C++ requiring brittle handwritten C bindings and in the case of Java, the pain of communicating with a JVM application from a non-JVM application.
+In the context of I2P, embedding is a way of including an I2P router in another app directly, without requiring a freestanding router running in the background. This is a way we can make I2P easier to use, which makes the network easier to grow by making the software more accessible. Both Java and C++ suffer from being difficult to use outside of their own ecosystems, with C++ requiring brittle handwritten C bindings and in the case of Java, the pain of communicating with a JVM application from a non-JVM application.
 
 While in many ways this situation is quite normal, I believe it can be improved to make I2P more accessible. Other languages have more elegant solutions to these problems. Of course, we should always consider and use the existing guidelines for the Java and C++ routers.
 
-## `emissary` appears from the darkness
+## emissary appears from the darkness
 
-Completely independent from our team, a developer called `altonen` has developed a Rust implementation of I2P called `emissary`. While it's quite new still, and Rust is unfamiliar to us, this intriguing project has great promise. Congratulations to altonen for creating `emissary`, we are quite impressed.
+Completely independent from our team, a developer called altonen has developed a Rust implementation of I2P called emissary. While it's quite new still, and Rust is unfamiliar to us, this intriguing project has great promise. Congratulations to altonen for creating emissary, we are quite impressed.
 
 ### Why Rust?
 
 The main reason to use Rust is basically the same as the reason to use Java or Go. Rust is a compiled programming language with memory management and a huge, highly enthusiastic community. Rust also offers advanced features for producing bindings to the C programming language which may be easier to maintain than in other languages while still inheriting Rust's strong memory-safety features.
 
-### Do you want to get involved with `emissary`?
+### Do you want to get involved with emissary?
 
-`emissary` is developed on Github by `altonen`. You can find the repository at: [altonen/emissary](https://github.com/altonen/emissary). Rust also suffers from a lack of comprehensive SAMv3 client libraries that are compatible with popular Rust networking stuff, writing a SAMv3 library is a great place to start.
+emissary is developed on Github by altonen. You can find the repository at: [altonen/emissary](https://github.com/altonen/emissary). Rust also suffers from a lack of comprehensive SAMv3 client libraries that are compatible with popular Rust networking stuff, writing a SAMv3 library is a great place to start.
 
-## `go-i2p` is getting closer to completion
+## go-i2p is getting closer to completion
 
-For about 3 years I've been working on `go-i2p`, trying to turn a fledgeling library into a fully-fledged I2P router in pure-Go, another memory-safe language. In the past 6 months or so, it has been drastically restructured to improve performance, reliability, and maintainability.
+For about 3 years I've been working on go-i2p, trying to turn a fledgeling library into a fully-fledged I2P router in pure-Go, another memory-safe language. In the past 6 months or so, it has been drastically restructured to improve performance, reliability, and maintainability.
 
 ### Why Go?
 
 While Rust and Go have many of the same advantages, in many ways Go is much simpler to learn. For years, there have been excellent libraries and applications for using I2P in the Go programming language, including the most complete implementations of the SAMv3.3 libraries. But without an I2P router we can manage automatically(such as an embedded router), it still presents a barrier to users. The point of go-i2p is bridge that gap, and to remove all the rough edges for I2P application developers who are working in Go.
 
-### Do you want to get involved with `go-i2p`?
+### Do you want to get involved with go-i2p?
 
-`go-i2p` is developed on Github, primarily by `eyedeekay` at this time and open to contributions from the community at [go-i2p](https://github.com/go-i2p/). Within this namespace exist many projects, such as:
+go-i2p is developed on Github, primarily by eyedeekay at this time and open to contributions from the community at [go-i2p](https://github.com/go-i2p/). Within this namespace exist many projects, such as:
 
 #### Router Libraries
 
@@ -61,7 +60,7 @@ We built these libraries to produce our I2P router libraries. They're spread out
 
 ## If you don't like Go or Rust and are thinking of writing an I2P Router, what should you do?
 
-Well there's a dormant project to write an [I2P router in C#](https://github.com/PeterZander/i2p-cs) if you want to run I2P on an XBox. Sounds pretty neat actually. If that's not your preference either, you could do like `altonen` did and develop a whole new one.
+Well there's a dormant project to write an [I2P router in C#](https://github.com/PeterZander/i2p-cs) if you want to run I2P on an XBox. Sounds pretty neat actually. If that's not your preference either, you could do like altonen did and develop a whole new one.
 
 ### Decide why you're writing it, who you're writing it for
 
@@ -72,7 +71,7 @@ You can write an I2P router for any reason, it's a free network, but it will hel
 Here are some reasons you might choose a language:
 
 - **C**: No need for binding-generation, supported everywhere, can be called from any language, lingua franca of modern computing
-- **Typescript**: Massive community, lots of applications, services, and libraries, works with `node` and `deno`, seems like it's everywhere right now
+- **Typescript**: Massive community, lots of applications, services, and libraries, works with node and deno, seems like it's everywhere right now
 - **D**: It's memory safe and not Rust or Go
 - **Vala**: It emits C code for the target platform, combining some of the advantages of memory-safe languages with the flexibility of C
 - **Python**: Everybody uses Python

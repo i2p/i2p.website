@@ -5,7 +5,6 @@ lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 aliases:
   - /en/docs/reseed/
-API_Translate: true
 ---
 
 Reseed hosts are crucial infrastructure for the I2P network, providing new routers with an initial group of nodes during the bootstrap process. This guide will walk you through setting up and running your own reseed server.

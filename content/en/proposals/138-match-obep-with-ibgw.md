@@ -6,7 +6,6 @@ created: "2017-04-10"
 lastupdated: "2017-04-10"
 status: "Open"
 thread: "http://zzz.i2p/topics/2294"
-API_Translate: true
 ---
 
 ## Overview

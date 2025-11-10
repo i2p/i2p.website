@@ -4,7 +4,6 @@ date: 2021-09-07
 author: "idk"
 description: "It has been said that I2P emphasizes Hidden Services, we examine one interpretation of this"
 categories: ["general"]
-API_Translate: true
 ---
 
 ## Level up your I2P Skills with Encrypted LeaseSets

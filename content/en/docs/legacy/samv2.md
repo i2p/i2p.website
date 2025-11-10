@@ -9,7 +9,6 @@ aliases:
   - /docs/legacy/samv2/
   - /en/docs/api/samv2/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Deprecated:** SAM v2 shipped with I2P 0.6.1.31 and is no longer maintained. Use [SAM v3](/docs/api/samv3/) for new development. v2’s only improvement over v1 was support for multiple sockets multiplexed over a single SAM connection.

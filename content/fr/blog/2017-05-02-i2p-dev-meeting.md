@@ -1,0 +1,15 @@
+---
+title: "Réunion des développeurs I2P - 2 mai 2017"
+date: 2017-05-02
+author: "zzz"
+description: "Compte rendu de la réunion de développement I2P du 2 mai 2017."
+categories: ["meeting"]
+---
+
+## Récapitulatif rapide
+
+<p class="attendees-inline"><strong>Présents :</strong> backup, manas, zzz</p>
+
+## Journal de réunion
+
+<div class="irc-log"> 20:00:01 &lt;zzz&gt; 0) Salut 20:00:01 &lt;zzz&gt; 1) mise à jour 0.9.30/.31 (zzz) 20:00:01 &lt;zzz&gt; 2) statut de la branche UI - (str4d) 20:00:01 &lt;zzz&gt; 3) plans pour I2P Summer Dev - (str4d) 20:00:01 &lt;zzz&gt; 4) mise à jour EdDSA - (str4d) 20:00:05 &lt;zzz&gt; 0) Salut 20:00:07 &lt;zzz&gt; salut 20:00:23 &lt;zzz&gt; 1) mise à jour 0.9.30/.31 (zzz) 20:00:48 &lt;zzz&gt; quelques jours de retard sur le planning à cause de bogues Jetty que j’ai dû patcher, mais je vais terminer la revue ce soir et faire la build demain matin 20:00:58 &lt;manas&gt; Bonjour 20:01:19 &lt;zzz&gt; si eche|on est là demain, nous publierons la mise à jour in-net, et je travaillerai sur Launchpad et les builds deb pour jeudi et vendredi 20:01:46 &lt;zzz&gt; la 31, je l’ai planifiée pour fin juin ou début juillet 20:01:53 &lt;backup&gt; Salut 20:02:03 &lt;manas&gt; Salut backup ! :D 20:02:15 &lt;zzz&gt; vous pouvez voir la feuille de route pour ce que nous avons prévu (ou du moins espéré) pour la 31 20:02:19 &lt;zzz&gt; autre chose sur 1) ? 20:03:18 &lt;zzz&gt; 2) statut de la branche UI - (str4d) 20:03:43 &lt;zzz&gt; str4d, à toi 20:04:13 &lt;zzz&gt; ok ça va être la réunion la plus courte de tous les temps 20:04:27 &lt;backup&gt; Je pensais qu’on était plus nombreux ici :) 20:04:27 &lt;manas&gt; :P 20:04:33 &lt;zzz&gt; autre chose sur 2), 3) ou 4), ou tout autre sujet pour la réunion ? 20:04:44 &lt;manas&gt; Je voulais signaler ce fil : http://trac.i2p2.i2p/ticket/1139 20:04:46 &lt;manas&gt; *ticket 20:04:54 &lt;manas&gt; Nous devrions essayer d’intégrer ce changement dans la nouvelle UI 20:05:21 &lt;manas&gt; "Semi-shutdown" : Arrêter temporairement d’accepter les tunnels participants. 20:05:57 &lt;manas&gt; backup : Peux-tu m’envoyer en MP le nouveau lien pour l’état ? 20:06:05 &lt;manas&gt; merci 20:06:08 &lt;zzz&gt; ok, peut-être peux-tu ajouter tes raisons expliquant pourquoi c’est important sur le ticket ? 20:06:41 &lt;manas&gt; J’étais intéressé pour en savoir plus sur les plans Summer Dev, mais j’imagine qu’il faudra attendre que str4d soit là 20:06:43 &lt;manas&gt; zzz : bien sûr 20:06:43 &lt;zzz&gt; tout ce qui n’est pas critique côté UI devra attendre que nous fusionnions la branche UI, donc avec un peu de chance, c’est pour bientôt 20:06:49 &lt;zzz&gt; autre chose pour la réunion ? 20:07:06 &lt;zzz&gt; ravi de te voir ici backup 20:07:14 * zzz attrape le maillet 20:07:40 &lt;manas&gt; Je voulais proposer des réunions régulières d’opérateurs de reseed 20:07:45 &lt;manas&gt; qu’en penses-tu, backup ? 20:08:19 &lt;zzz&gt; Je suis pour (+1) 20:08:38 &lt;backup&gt; oui, bonne idée 20:08:44 &lt;zzz&gt; Je vous laisse continuer la discussion, cependant, pour l’instant... 20:08:50 * zzz *bafs* la réunion est close </div>

@@ -4,7 +4,6 @@ date: 2016-06-13
 author: "str4d"
 description: "The I2P client libraries are now available on Maven Central!"
 categories: ["summer-dev"]
-API_Translate: true
 ---
 
 We're nearly half-way into the APIs month of Summer Dev, and making great progress on a number of fronts. I'm happy to announce that the first of these is complete: the I2P client libraries are now available on Maven Central!

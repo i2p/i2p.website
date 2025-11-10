@@ -4,7 +4,6 @@ date: 2005-10-11
 author: "jr"
 description: "Weekly update covering 0.6.1.2 release success, new I2PTunnelIRCClient proxy for filtering unsafe IRC messages, Syndie CLI and RSS-to-SML conversion, and I2Phex integration plans"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, its tuesday again

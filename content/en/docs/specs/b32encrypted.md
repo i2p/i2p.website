@@ -7,7 +7,6 @@ status: "Implemented"
 aliases:
   - /en/docs/specs/b32encrypted/
   - /docs/specs/b32-for-encrypted-leasesets/
-API_Translate: true
 ---
 
 ## Overview

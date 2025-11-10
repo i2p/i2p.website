@@ -4,7 +4,6 @@ date: 2006-04-18
 author: "jr"
 description: "0.6.1.16 network improvements, tunnel creation congestion collapse analysis, and Feedspace development updates"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, tuesday rolls around again for our weekly status notes

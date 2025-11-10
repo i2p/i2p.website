@@ -4,7 +4,6 @@ date: 2004-09-28
 author: "jr"
 description: "Weekly I2P status update covering new transport protocol implementation, IP autodetection, and 0.4.1 release progress"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, weekly update time

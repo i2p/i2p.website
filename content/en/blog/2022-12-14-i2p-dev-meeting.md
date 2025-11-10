@@ -4,7 +4,6 @@ date: 2022-12-14
 author: "eyedeekay"
 description: "I2P development meeting log for December 14, 2022."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

@@ -4,7 +4,6 @@ date: 2006-03-21
 author: "jr"
 description: "JRobin integration for network statistics, biff and toopie IRC bots, and new GPG key announcement"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, 'tis tuesday again

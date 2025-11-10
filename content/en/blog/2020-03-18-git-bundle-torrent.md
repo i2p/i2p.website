@@ -4,7 +4,6 @@ date: 2020-03-18
 author: "idk"
 description: "Download the I2P Source code via Bittorrent"
 categories: ["development"]
-API_Translate: true
 ---
 
 Cloning large software repositories over I2P can be difficult, and using git can sometimes make this harder. Fortunately, it can also sometimes make it easier. Git has a `git bundle` command which can be used to turn a git repository into a file which git can then clone, fetch, or import from a location on your local disk. By combining this capability with bittorrent downloads, we can solve our remaining problems with `git clone`.

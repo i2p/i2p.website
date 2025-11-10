@@ -4,7 +4,6 @@ date: 2014-12-01
 author: "str4d"
 description: "I2P Android 0.9.17 and Bote 0.3 have been released on the website, Google Play and F-Droid."
 categories: ["press"]
-API_Translate: true
 ---
 
 It has been some time since I last posted updates about our Android development, and several I2P releases have gone by without any matching Android releases. At last, the wait is over!

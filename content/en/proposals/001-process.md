@@ -6,7 +6,6 @@ created: "2016-04-10"
 lastupdated: "2017-04-07"
 status: "Meta"
 thread: "http://zzz.i2p/topics/1980"
-API_Translate: true
 ---
 
 ## Overview

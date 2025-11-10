@@ -4,7 +4,6 @@ date: 2012-12-04
 author: "lillith"
 description: "I2P development meeting log for December 04, 2012."
 categories: ["meeting"]
-API_Translate: true
 ---
 
 ## Quick recap

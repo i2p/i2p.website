@@ -8,7 +8,6 @@ type: docs
 aliases:
   - /spec/ssu/
 reviewStatus: "needs-review"
-API_Translate: true
 ---
 
 > **Deprecated:** SSU (Secure Semi-Reliable UDP) has been replaced by [SSU2](/docs/specs/ssu2/). Java I2P removed SSU in release 2.4.0 (API 0.9.61) and i2pd removed it in 2.44.0 (API 0.9.56). This document is retained for historical reference only.

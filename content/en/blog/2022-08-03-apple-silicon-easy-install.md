@@ -4,7 +4,6 @@ date: 2022-08-03
 author: "zlatinb"
 description: "Easy Install bundle BETA for Apple Silicon Macs available"
 categories: ["General"]
-API_Translate: true
 ---
 
 We are pleased to offer an Easy Install BETA bundle for Mac OS running on Apple Silicon hardware. You can download it here:

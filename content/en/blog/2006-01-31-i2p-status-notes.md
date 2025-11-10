@@ -4,7 +4,6 @@ date: 2006-01-31
 author: "jr"
 description: "Network reliability challenges, upcoming 0.6.1.10 release with new tunnel creation crypto, and backwards incompatibility changes"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, tuesday rolls around once again,

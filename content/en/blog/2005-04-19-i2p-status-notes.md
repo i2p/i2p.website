@@ -4,7 +4,6 @@ date: 2005-04-19
 author: "jr"
 description: "Weekly update covering 0.5.0.7 upcoming fixes, SSU UDP transport progress, roadmap changes moving 0.6 to June, and Q development"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, its that time of the week again,

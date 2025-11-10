@@ -4,7 +4,6 @@ description: "Updated practical guidance for bundling an I2P router with your ap
 slug: "embedding"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-API_Translate: true
 ---
 
 Bundling I2P with your application is a powerful way to onboard users—but only if the router is configured responsibly. 

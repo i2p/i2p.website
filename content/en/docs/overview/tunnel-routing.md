@@ -6,7 +6,6 @@ lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 aliases:
   - /en/docs/how/tunnel-routing/
-API_Translate: true
 ---
 
 > **Status:** Updated for I2P 2.10.0 (October 2025). Reflects the current dual ElGamal/ECIES tunnel architecture, short build messages, ChaCha20‑based encryption, and enhanced tunnel pooling logic.

@@ -4,7 +4,6 @@ description: "Operating reseed services and alternate bootstrap methods"
 slug: "reseed"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-API_Translate: true
 ---
 
 ## About Reseed Hosts

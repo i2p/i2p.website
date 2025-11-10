@@ -3,7 +3,6 @@ title: "GeoIP File Formats"
 description: "Legacy GeoIP file format specifications for IP to country lookups"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
-API_Translate: true
 ---
 
 ## Overview

@@ -4,7 +4,6 @@ date: 2003-09-16
 author: "jrand0m"
 description: "58th I2P dev meeting covering IM and naming service apps, development status, encryption key persistence, and spec updates"
 categories: ["meeting"]
-API_Translate: true
 ---
 
 <h2 id="quick-recap">Quick recap</h2>

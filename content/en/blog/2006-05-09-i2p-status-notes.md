@@ -4,7 +4,6 @@ date: 2006-05-09
 author: "jr"
 description: "0.6.1.18 release with network stability improvements, new development server 'baz', and GCJ Windows compatibility challenges"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, tuesday rolls 'round once again

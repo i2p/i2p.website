@@ -3,10 +3,13 @@ title: "Documentation"
 description: "Technical documentation for the I2P anonymous network"
 layout: "docs-home"
 reviewStatus: "needs-review"
+outputs:
+  - HTML
+  - RSS
+  - JSON
 aliases:
   - /en/docs/protocol/
   - /en/docs/specs/overview/
-API_Translate: true
 ---
 
 Welcome to the I2P documentation. This site provides guides, explanations, and technical specifications for developers and users.

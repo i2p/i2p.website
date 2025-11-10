@@ -4,7 +4,6 @@ date: 2005-09-13
 author: "jr"
 description: "Weekly update covering SSU introductions for NAT hole punching, unit test bounty progress, client app roadmap discussion, and removal of deprecated guaranteed delivery mode"
 categories: ["status"]
-API_Translate: true
 ---
 
 Hi y'all, time for the weekly status notes

@@ -4,7 +4,6 @@ date: 2004-07-20
 author: "jr"
 description: "Weekly status update covering 0.3.2.3 release, capacity changes, website updates, and security considerations"
 categories: ["status"]
-API_Translate: true
 ---
 
 **1) 0.3.2.3, 0.3.3, and the roadmap**
