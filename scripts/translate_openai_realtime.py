@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-"""Translate Hugo markdown files using OpenAI API with real-time results.
+"""Translate Hugo markdown and HTML files using OpenAI API with real-time results.
 
 This script uses the OpenAI API directly (not batch) for fast translation
 suitable for CI/CD pipelines. Use translate_openai_batch.py for mass
 translations when you can wait for batch processing (1-12 hours).
 
+For HTML files like papers.html that contain academic/data content:
+- The HTML file is COPIED (not translated) to maintain structure
+- UI elements are translated via layout templates with i18n
+- This keeps academic content in original language (standard practice)
+
 Example usage:
-    # Translate a single file
+    # Translate a single markdown file
     python3 translate_openai_realtime.py \
         --source content/en/blog/2025-10-16-new-i2p-routers.md \
         --target-lang de \
@@ -18,6 +23,12 @@ Example usage:
         --pattern "2025-*.md" \
         --target-lang de \
         --model gpt-4o-mini
+
+    # Copy HTML data files (like papers.html)
+    python3 translate_openai_realtime.py \
+        --source content/en/papers.html \
+        --target-lang de \
+        --copy-html
 
 Environment:
     OPENAI_API_KEY (required)
@@ -412,6 +423,62 @@ def reconstruct_markdown(fm_entries: List[FrontMatterEntry], tokens: List[Token]
     return "\n".join(output_lines)
 
 
+def copy_html_file(
+    source_path: Path,
+    target_lang: str,
+    output_root: Path,
+    source_lang: str = "en",
+    dry_run: bool = False,
+    overwrite: bool = False,
+    verbose: bool = True
+) -> bool:
+    """Copy an HTML file without translation (for data files like papers.html).
+
+    Returns:
+        True if copy was successful, False otherwise
+    """
+    if verbose:
+        print(f"\n{'='*60}")
+        print(f"Copying HTML file (no translation)")
+        print(f"Source: {source_path}")
+        print(f"Target language: {target_lang.upper()}")
+        print(f"{'='*60}\n")
+
+    try:
+        content = source_path.read_text(encoding="utf-8")
+
+        # Determine output path
+        rel_path = source_path.relative_to(output_root / "content" / source_lang)
+        output_path = output_root / "content" / target_lang / rel_path
+
+        if dry_run:
+            if verbose:
+                print(f"\n[DRY RUN] Would copy to: {output_path}")
+            return True
+
+        # Check if file exists
+        if output_path.exists() and not overwrite:
+            if verbose:
+                print(f"\n⚠️  File exists: {output_path}")
+                print("   Skipping (use --overwrite to replace)")
+            return False
+
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(content, encoding="utf-8")
+
+        if verbose:
+            print(f"\n✅ HTML file copied to: {output_path}")
+
+        return True
+
+    except Exception as exc:
+        print(f"\n❌ Error copying {source_path}: {exc}", file=sys.stderr)
+        import traceback
+        if verbose:
+            traceback.print_exc(file=sys.stderr)
+        return False
+
+
 def translate_file(
     source_path: Path,
     target_lang: str,
@@ -420,13 +487,33 @@ def translate_file(
     source_lang: str = "en",
     dry_run: bool = False,
     overwrite: bool = False,
-    verbose: bool = True
+    verbose: bool = True,
+    copy_html: bool = False
 ) -> bool:
-    """Translate a single markdown file.
-    
+    """Translate a single markdown file or copy an HTML file.
+
     Returns:
-        True if translation was successful, False otherwise
+        True if translation/copy was successful, False otherwise
     """
+    # Handle HTML files
+    if source_path.suffix.lower() == '.html':
+        if copy_html:
+            return copy_html_file(
+                source_path=source_path,
+                target_lang=target_lang,
+                output_root=output_root,
+                source_lang=source_lang,
+                dry_run=dry_run,
+                overwrite=overwrite,
+                verbose=verbose
+            )
+        else:
+            if verbose:
+                print(f"\n⚠️  Skipping HTML file: {source_path}")
+                print("   Use --copy-html to copy HTML files without translation")
+            return False
+
+    # Handle markdown files
     if verbose:
         print(f"\n{'='*60}")
         print(f"Source: {source_path}")
@@ -557,6 +644,7 @@ def main() -> int:
         parser.add_argument("--quiet", action="store_true", help="Reduce output verbosity")
         parser.add_argument("--update-hashes", action="store_true", default=True, help="Update translation hashes after successful translation (default: True)")
         parser.add_argument("--no-update-hashes", dest="update_hashes", action="store_false", help="Don't update translation hashes")
+        parser.add_argument("--copy-html", action="store_true", help="Copy HTML files without translation (for data files like papers.html)")
 
         print("DEBUG: Parsing arguments", file=sys.stderr)
         args = parser.parse_args()
@@ -681,7 +769,8 @@ def main() -> int:
             source_lang=args.source_lang,
             dry_run=args.dry_run,
             overwrite=args.overwrite,
-            verbose=not args.quiet
+            verbose=not args.quiet,
+            copy_html=args.copy_html
         )
         
         if success:

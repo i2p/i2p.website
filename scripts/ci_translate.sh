@@ -61,11 +61,11 @@ log_info "Detecting changed files in content/en/..."
 PREV_COMMIT="${CI_COMMIT_BEFORE_SHA:-HEAD~1}"
 CURRENT_COMMIT="${CI_COMMIT_SHA:-HEAD}"
 
-# Find changed .md files in content/en/
-CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR "$PREV_COMMIT" "$CURRENT_COMMIT" | grep '^content/en/.*\.md$' || true)
+# Find changed .md and .html files in content/en/
+CHANGED_FILES=$(git diff --name-only --diff-filter=ACMR "$PREV_COMMIT" "$CURRENT_COMMIT" | grep -E '^content/en/.*\.(md|html)$' || true)
 
 if [ -z "$CHANGED_FILES" ]; then
-    log_info "No changed .md files found in content/en/"
+    log_info "No changed .md or .html files found in content/en/"
     exit 0
 fi
 
@@ -115,8 +115,15 @@ for TARGET_LANG in $TARGET_LANGUAGES; do
 
         # Translate file using realtime API
         # Hash checking ensures we only translate if content actually changed
+        # For HTML files, add --copy-html flag to copy instead of translate
+        COPY_HTML_FLAG=""
+        if [[ "$FILE_PATH" == *.html ]]; then
+            COPY_HTML_FLAG="--copy-html"
+            log_info "  HTML file detected - will copy without translation"
+        fi
+
         log_info "  Running translation command..."
-        log_info "  Command: python3 $PYTHON_SCRIPT --source \"$FILE_PATH\" --target-lang \"$TARGET_LANG\" --model gpt-5 --overwrite --check-hashes --output-root \"$REPO_ROOT\" --quiet"
+        log_info "  Command: python3 $PYTHON_SCRIPT --source \"$FILE_PATH\" --target-lang \"$TARGET_LANG\" --model gpt-5 --overwrite --check-hashes --output-root \"$REPO_ROOT\" --quiet $COPY_HTML_FLAG"
 
         # Test if Python script exists and is readable
         if [ ! -f "$PYTHON_SCRIPT" ]; then
@@ -143,7 +150,8 @@ for TARGET_LANG in $TARGET_LANGUAGES; do
             --overwrite \
             --check-hashes \
             --output-root "$REPO_ROOT" \
-            --quiet
+            --quiet \
+            $COPY_HTML_FLAG
 
         TRANSLATE_EXIT=$?
         log_info "  Translation exit code: $TRANSLATE_EXIT"

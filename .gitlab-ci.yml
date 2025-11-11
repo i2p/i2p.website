@@ -29,6 +29,7 @@ variables:
 #   only:
 #     changes:
 #       - content/en/**/*.md
+#       - content/en/**/*.html
 #     refs:
 #       - main
 #   timeout: 1h 30m
