@@ -13,7 +13,7 @@
     <div class="container">
         <div id="detected-platform" class="detected-download" style="display: none;">
             <div class="detected-header">
-                <h2>Recommended for your system</h2>
+                <h2>{{ i18n "downloads.recommendedForYourSystem" }}</h2>
             </div>
             <div class="detected-content">
                 <div class="platform-icon-large" id="detected-icon">
@@ -27,10 +27,10 @@
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            Download Now
+                            {{ i18n "downloads.downloadNow" }}
                         </a>
                         <div class="mirror-selector">
-                            <label for="detected-mirror">Mirror:</label>
+                            <label for="detected-mirror">{{ i18n "downloads.mirrorLabel" }}</label>
                             <select id="detected-mirror" class="mirror-select">
                                 <option value="https://i2p.net/files/2.10.0/">I2P</option>
                                 <option value="https://mirror.stormycloud.org/2.10.0/">StormyCloud</option>
@@ -43,20 +43,20 @@
                                 <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
                                 <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2"/>
                             </svg>
-                            Torrent
+                            {{ i18n "downloads.torrent" }}
                         </a>
                         <a href="#" id="detected-i2p" class="alt-method" title="Download via I2P">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" stroke="currentColor" stroke-width="2"/>
                             </svg>
-                            I2P
+                            {{ i18n "downloads.i2p" }}
                         </a>
                         <a href="#" id="detected-tor" class="alt-method" title="Download via Tor">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
                                 <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/>
                             </svg>
-                            Tor
+                            {{ i18n "downloads.tor" }}
                         </a>
                         <span id="detected-checksum" class="checksum-badge" data-sha="" style="display: none;">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -73,7 +73,7 @@
 <!-- All Platforms Grid -->
 <section class="all-platforms">
     <div class="container">
-        <h2>All Platforms</h2>
+        <h2>{{ i18n "downloads.allPlatforms" }}</h2>
 
         <div class="platforms-grid">
             <!-- Windows -->
@@ -83,16 +83,16 @@
                         <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
                     </svg>
                 </div>
-                <h3>Windows</h3>
+                <h3>{{ i18n "downloads.windows" }}</h3>
                 <p class="platform-version">v{{ .Params.current_version }}</p>
                 <p class="platform-req">{{ .Params.downloads.windows.requirements }}</p>
                 <div class="platform-actions">
-                    <a href="{{ .Params.downloads.windows.links.primary }}" class="btn btn-platform">Download</a>
+                    <a href="{{ .Params.downloads.windows.links.primary }}" class="btn btn-platform">{{ i18n "downloads.download" }}</a>
                     <div class="platform-mirrors">
-                        {{ with .Params.downloads.windows.links.mirror }}<a href="{{ . }}" class="mirror-link" title="Mirror">Mirror</a>{{ end }}
-                        {{ with .Params.downloads.windows.links.torrent }}<a href="{{ . | safeURL }}" class="mirror-link" title="Torrent">Torrent</a>{{ end }}
-                        {{ with .Params.downloads.windows.links.i2p }}<a href="{{ . }}" class="mirror-link" title="I2P">I2P</a>{{ end }}
-                        {{ with .Params.downloads.windows.links.tor }}<a href="{{ . }}" class="mirror-link" title="Tor">Tor</a>{{ end }}
+                        {{ with .Params.downloads.windows.links.mirror }}<a href="{{ . }}" class="mirror-link" title="{{ i18n "downloads.mirror" }}">{{ i18n "downloads.mirror" }}</a>{{ end }}
+                        {{ with .Params.downloads.windows.links.torrent }}<a href="{{ . | safeURL }}" class="mirror-link" title="{{ i18n "downloads.torrent" }}">{{ i18n "downloads.torrent" }}</a>{{ end }}
+                        {{ with .Params.downloads.windows.links.i2p }}<a href="{{ . }}" class="mirror-link" title="{{ i18n "downloads.i2p" }}">{{ i18n "downloads.i2p" }}</a>{{ end }}
+                        {{ with .Params.downloads.windows.links.tor }}<a href="{{ . }}" class="mirror-link" title="{{ i18n "downloads.tor" }}">{{ i18n "downloads.tor" }}</a>{{ end }}
                         {{ with .Params.downloads.windows.sha256 }}
                         <span class="checksum-badge" data-sha="SHA256: {{ . }}">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -111,16 +111,16 @@
                         <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
                     </svg>
                 </div>
-                <h3>Windows Easy Installer <span class="beta-badge">Beta</span></h3>
+                <h3>{{ i18n "downloads.windowsEasyInstaller" }} <span class="beta-badge">{{ i18n "downloads.beta" }}</span></h3>
                 <p class="platform-version">v{{ .Params.current_version }}</p>
                 <p class="platform-req">{{ .Params.downloads.windows_easy_installer.requirements }}</p>
                 <div class="platform-actions">
-                    <a href="{{ .Params.downloads.windows_easy_installer.links.primary }}" class="btn btn-platform">Download</a>
+                    <a href="{{ .Params.downloads.windows_easy_installer.links.primary }}" class="btn btn-platform">{{ i18n "downloads.download" }}</a>
                     <div class="platform-mirrors">
-                        {{ with .Params.downloads.windows_easy_installer.links.mirror }}<a href="{{ . }}" class="mirror-link" title="Mirror">Mirror</a>{{ end }}
-                        {{ with .Params.downloads.windows_easy_installer.links.torrent }}<a href="{{ . | safeURL }}" class="mirror-link" title="Torrent">Torrent</a>{{ end }}
-                        {{ with .Params.downloads.windows_easy_installer.links.i2p }}<a href="{{ . }}" class="mirror-link" title="I2P">I2P</a>{{ end }}
-                        {{ with .Params.downloads.windows_easy_installer.links.tor }}<a href="{{ . }}" class="mirror-link" title="Tor">Tor</a>{{ end }}
+                        {{ with .Params.downloads.windows_easy_installer.links.mirror }}<a href="{{ . }}" class="mirror-link" title="{{ i18n "downloads.mirror" }}">{{ i18n "downloads.mirror" }}</a>{{ end }}
+                        {{ with .Params.downloads.windows_easy_installer.links.torrent }}<a href="{{ . | safeURL }}" class="mirror-link" title="{{ i18n "downloads.torrent" }}">{{ i18n "downloads.torrent" }}</a>{{ end }}
+                        {{ with .Params.downloads.windows_easy_installer.links.i2p }}<a href="{{ . }}" class="mirror-link" title="{{ i18n "downloads.i2p" }}">{{ i18n "downloads.i2p" }}</a>{{ end }}
+                        {{ with .Params.downloads.windows_easy_installer.links.tor }}<a href="{{ . }}" class="mirror-link" title="{{ i18n "downloads.tor" }}">{{ i18n "downloads.tor" }}</a>{{ end }}
                         {{ with .Params.downloads.windows_easy_installer.sha256 }}
                         <span class="checksum-badge" data-sha="SHA256: {{ . }}">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -139,16 +139,16 @@
                         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                     </svg>
                 </div>
-                <h3>macOS / Linux / BSD</h3>
+                <h3>{{ i18n "downloads.macOsLinuxBsd" }}</h3>
                 <p class="platform-version">v{{ .Params.current_version }}</p>
                 <p class="platform-req">{{ .Params.downloads.mac_linux.requirements }}</p>
                 <div class="platform-actions">
-                    <a href="{{ .Params.downloads.mac_linux.links.primary }}" class="btn btn-platform">Download</a>
+                    <a href="{{ .Params.downloads.mac_linux.links.primary }}" class="btn btn-platform">{{ i18n "downloads.download" }}</a>
                     <div class="platform-mirrors">
-                        {{ with .Params.downloads.mac_linux.links.mirror }}<a href="{{ . }}" class="mirror-link" title="Mirror">Mirror</a>{{ end }}
-                        {{ with .Params.downloads.mac_linux.links.torrent }}<a href="{{ . | safeURL }}" class="mirror-link" title="Torrent">Torrent</a>{{ end }}
-                        {{ with .Params.downloads.mac_linux.links.i2p }}<a href="{{ . }}" class="mirror-link" title="I2P">I2P</a>{{ end }}
-                        {{ with .Params.downloads.mac_linux.links.tor }}<a href="{{ . }}" class="mirror-link" title="Tor">Tor</a>{{ end }}
+                        {{ with .Params.downloads.mac_linux.links.mirror }}<a href="{{ . }}" class="mirror-link" title="{{ i18n "downloads.mirror" }}">{{ i18n "downloads.mirror" }}</a>{{ end }}
+                        {{ with .Params.downloads.mac_linux.links.torrent }}<a href="{{ . | safeURL }}" class="mirror-link" title="{{ i18n "downloads.torrent" }}">{{ i18n "downloads.torrent" }}</a>{{ end }}
+                        {{ with .Params.downloads.mac_linux.links.i2p }}<a href="{{ . }}" class="mirror-link" title="{{ i18n "downloads.i2p" }}">{{ i18n "downloads.i2p" }}</a>{{ end }}
+                        {{ with .Params.downloads.mac_linux.links.tor }}<a href="{{ . }}" class="mirror-link" title="{{ i18n "downloads.tor" }}">{{ i18n "downloads.tor" }}</a>{{ end }}
                         {{ with .Params.downloads.mac_linux.sha256 }}
                         <span class="checksum-badge" data-sha="SHA256: {{ . }}">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -167,14 +167,14 @@
                         <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 00-.83.22l-1.88 3.24a11.43 11.43 0 00-8.94 0L5.65 5.67a.643.643 0 00-.87-.2c-.28.18-.37.54-.22.83L6.4 9.48A10.81 10.81 0 001 18h22a10.81 10.81 0 00-5.4-8.52M7 15.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5m10 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z"/>
                     </svg>
                 </div>
-                <h3>Android</h3>
+                <h3>{{ i18n "downloads.android" }}</h3>
                 <p class="platform-version">v{{ .Params.android_version }}</p>
                 <p class="platform-req">{{ .Params.downloads.android.requirements }}</p>
                 <div class="platform-actions">
-                    <a href="{{ .Params.downloads.android.links.primary }}" class="btn btn-platform">Download APK</a>
+                    <a href="{{ .Params.downloads.android.links.primary }}" class="btn btn-platform">{{ i18n "downloads.downloadApk" }}</a>
                     <div class="platform-mirrors">
-                        {{ with .Params.downloads.android.links.torrent }}<a href="{{ . | safeURL }}" class="mirror-link" title="Torrent">Torrent</a>{{ end }}
-                        {{ with .Params.downloads.android.links.i2p }}<a href="{{ . }}" class="mirror-link" title="I2P">I2P</a>{{ end }}
+                        {{ with .Params.downloads.android.links.torrent }}<a href="{{ . | safeURL }}" class="mirror-link" title="{{ i18n "downloads.torrent" }}">{{ i18n "downloads.torrent" }}</a>{{ end }}
+                        {{ with .Params.downloads.android.links.i2p }}<a href="{{ . }}" class="mirror-link" title="{{ i18n "downloads.i2p" }}">{{ i18n "downloads.i2p" }}</a>{{ end }}
                         {{ with .Params.downloads.android.sha256 }}
                         <span class="checksum-badge" data-sha="SHA256: {{ . }}">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -193,11 +193,11 @@
                         <path d="M20.581 19.049c-.55-.446-.336-1.431-.907-1.917.553-3.365-.997-6.331-2.845-8.232-1.551-1.595-1.051-3.147-1.051-4.49 0-2.146-.881-4.41-3.55-4.41-2.853 0-3.635 2.38-3.663 3.738-.068 3.262.659 4.11-1.25 6.484-2.246 2.793-2.577 5.579-2.07 7.057-.237.276-.557.582-1.155.835-1.652.72-.441 1.925-.898 2.78-.13.243-.192.497-.192.74 0 .75.596 1.399 1.679 1.302 1.461-.13 2.809.905 3.681.905.77 0 1.402-.438 1.696-1.041 1.377-.339 3.077-.296 4.453.059.247.691.798 1.041 1.479 1.041.973 0 2.13-.901 3.299-.901 1.007 0 1.64.36 1.868.684.178.261.53.456 1.004.456.456 0 .924-.277 1.024-.757.15-.723-.809-1.318-1.624-2.076z"/>
                     </svg>
                 </div>
-                <h3>Debian / Ubuntu</h3>
+                <h3>{{ i18n "downloads.debianUbuntu" }}</h3>
                 <p class="platform-version">v{{ .Params.current_version }}</p>
-                <p class="platform-req">APT repository</p>
+                <p class="platform-req">{{ i18n "downloads.aptRepository" }}</p>
                 <div class="platform-actions">
-                    <a href="{{ relLangURL "docs/guides/installing-i2p-on-debian-and-ubuntu" }}" class="btn btn-platform">Install Guide</a>
+                    <a href="{{ relLangURL "docs/guides/installing-i2p-on-debian-and-ubuntu" }}" class="btn btn-platform">{{ i18n "downloads.installGuide" }}</a>
                 </div>
             </div>
 
@@ -208,11 +208,11 @@
                         <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.186.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.186.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.186.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338 0-.676.03-1.01.09-1.03-1.387-2.545-1.42-2.779-1.42h-.06c-.319.013-.511.053-.656.165a.114.114 0 00-.026.013.152.152 0 00-.055.11v.001a.054.054 0 00-.001.01c-.146.272-.282.624-.372 1.07-.125.614-.09 1.125.12 1.623-.214.257-.486.554-.832.746-.124.068-1.034.485-2.484.485-1.337 0-2.542-.038-3.644-.095-.009 0-.017.005-.026.007h-.005c-.021.003-.041.009-.062.015a.198.198 0 00-.018.005c-.029.007-.056.015-.082.024-.017.006-.032.014-.047.02-.02.01-.04.018-.058.028-.012.006-.023.014-.034.02-.017.011-.034.022-.049.034l-.027.02c-.012.01-.024.022-.034.034-.008.008-.015.015-.023.024-.01.012-.02.023-.027.036-.006.01-.013.019-.018.03-.007.014-.014.027-.02.041-.003.01-.007.02-.01.03-.004.013-.009.026-.012.04-.002.01-.004.02-.006.03-.002.013-.005.025-.006.038 0 .01-.003.02-.003.03 0 .013-.001.026-.001.04v.001c0 .014 0 .028.002.042 0 .009.002.018.003.027.002.015.004.03.007.044.003.01.006.018.01.027.005.015.011.03.018.043.005.01.01.018.016.027.007.014.016.027.024.04.007.01.014.017.022.026.01.013.022.025.033.037.01.01.018.017.028.026.012.012.025.023.039.033.01.008.02.015.03.022.014.01.029.02.044.029.012.007.023.012.036.018.015.008.031.015.048.022.013.005.025.01.038.014.016.006.033.011.05.016.013.004.027.007.04.01.018.005.036.008.055.011.013.003.027.005.04.007.02.003.039.005.059.006.011.002.023.002.034.003.02.002.04.003.06.004.012 0 .023.001.035.002.02.001.04.001.06.001h.01c.02 0 .04 0 .06-.002.012 0 .023-.001.035-.002.02-.001.04-.003.06-.004.011-.001.022-.001.034-.003.019-.001.039-.003.058-.006.014-.002.027-.004.04-.007.02-.003.037-.006.056-.01.013-.004.027-.007.04-.01.016-.005.033-.01.05-.017.012-.004.025-.009.037-.014.016-.007.032-.014.048-.022.012-.006.024-.012.036-.018.015-.01.03-.02.044-.029.01-.007.02-.014.03-.022.014-.01.027-.022.04-.033.01-.009.019-.017.027-.026.012-.012.023-.024.034-.037.008-.009.015-.017.022-.026.009-.013.017-.026.024-.04.006-.009.011-.017.016-.027.007-.013.013-.028.018-.043.004-.009.007-.018.01-.027.003-.015.005-.03.007-.044.001-.01.003-.019.003-.027.001-.014.002-.028.002-.042v-.001c0-.014-.001-.027-.001-.04 0-.01-.003-.02-.003-.03-.001-.013-.004-.025-.006-.038-.002-.01-.004-.02-.006-.03-.003-.014-.008-.027-.012-.04-.003-.01-.007-.02-.01-.03-.006-.014-.013-.027-.02-.041-.005-.011-.012-.02-.018-.03-.007-.013-.017-.024-.027-.036-.008-.009-.015-.016-.023-.024-.01-.012-.022-.024-.034-.034l-.027-.02c-.015-.012-.032-.023-.049-.034-.011-.006-.022-.014-.034-.02-.018-.01-.038-.018-.058-.028-.015-.006-.03-.014-.047-.02-.026-.009-.053-.017-.082-.024a.199.199 0 00-.018-.005c-.021-.006-.041-.012-.062-.015h-.005c-.009-.002-.017-.007-.026-.007-1.102-.057-2.307-.095-3.644-.095-1.45 0-2.36-.417-2.484-.485-.346-.192-.618-.489-.832-.746.21-.498.245-1.009.12-1.623-.09-.446-.226-.798-.372-1.07v-.001a.054.054 0 00-.001-.01.152.152 0 00-.055-.11.026.026 0 00-.026-.013c-.145-.112-.337-.152-.656-.165h-.06c-.234 0-1.749.033-2.779 1.42-.334-.06-.672-.09-1.01-.09-1.282 0-1.889.459-1.954.51A.214.214 0 000 10.077v.428c0 .058.023.113.063.154.063.065.16.073.234.018l.001-.001.002-.001c.002-.002.003-.003.005-.004l.011-.007.041-.028c.035-.024.086-.058.149-.097.124-.078.304-.191.535-.315.46-.247 1.096-.522 1.756-.616.517-.074 1.003-.05 1.42.076.11.033.206.07.29.11.083.041.147.083.197.125.1.084.146.165.176.25.03.085.035.171.035.259 0 .01 0 .02.001.03 0 .008 0 .016.001.024.003.056.012.11.027.163.008.028.018.054.03.08.012.025.027.05.044.074.034.048.08.093.139.133.117.08.28.134.49.134.21 0 .373-.055.49-.134.059-.04.105-.085.139-.133.017-.024.032-.05.044-.074.012-.026.022-.052.03-.08.015-.053.024-.107.027-.163 0-.008.001-.016.001-.024 0-.01.001-.02.001-.03 0-.088.005-.174.035-.26.03-.084.076-.165.176-.249.05-.042.114-.084.197-.125.084-.041.18-.077.29-.11.417-.126.903-.15 1.42-.076.66.094 1.296.369 1.756.616.231.124.411.237.535.315.063.04.114.073.149.097l.041.028.011.007.005.004.002.001.001.001c.074.055.171.047.234-.018a.214.214 0 00.063-.154v-.428a.214.214 0 00-.063-.154z"/>
                     </svg>
                 </div>
-                <h3>Docker</h3>
-                <p class="platform-version">Latest</p>
-                <p class="platform-req">Docker Hub</p>
+                <h3>{{ i18n "downloads.docker" }}</h3>
+                <p class="platform-version">{{ i18n "downloads.latest" }}</p>
+                <p class="platform-req">{{ i18n "downloads.dockerHub" }}</p>
                 <div class="platform-actions">
-                    <a href="https://hub.docker.com/r/geti2p/i2p" class="btn btn-platform">Docker Hub</a>
+                    <a href="https://hub.docker.com/r/geti2p/i2p" class="btn btn-platform">{{ i18n "downloads.dockerHub" }}</a>
                 </div>
             </div>
 
@@ -224,14 +224,14 @@
                         <polyline points="8 6 2 12 8 18"/>
                     </svg>
                 </div>
-                <h3>Source Code</h3>
+                <h3>{{ i18n "downloads.sourceCode" }}</h3>
                 <p class="platform-version">v{{ .Params.current_version }}</p>
-                <p class="platform-req">Build from source</p>
+                <p class="platform-req">{{ i18n "downloads.buildFromSource" }}</p>
                 <div class="platform-actions">
-                    <a href="{{ .Params.downloads.source.links.primary }}" class="btn btn-platform">Download</a>
+                    <a href="{{ .Params.downloads.source.links.primary }}" class="btn btn-platform">{{ i18n "downloads.download" }}</a>
                     <div class="platform-mirrors">
-                        {{ with .Params.downloads.source.links.torrent }}<a href="{{ . | safeURL }}" class="mirror-link" title="Torrent">Torrent</a>{{ end }}
-                        {{ with .Params.downloads.source.links.github }}<a href="{{ . }}" class="mirror-link" title="GitHub">GitHub</a>{{ end }}
+                        {{ with .Params.downloads.source.links.torrent }}<a href="{{ . | safeURL }}" class="mirror-link" title="{{ i18n "downloads.torrent" }}">{{ i18n "downloads.torrent" }}</a>{{ end }}
+                        {{ with .Params.downloads.source.links.github }}<a href="{{ . }}" class="mirror-link" title="{{ i18n "downloads.github" }}">{{ i18n "downloads.github" }}</a>{{ end }}
                         {{ with .Params.downloads.source.sha256 }}
                         <span class="checksum-badge" data-sha="SHA256: {{ . }}">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -251,29 +251,29 @@
     <div class="container">
         <div class="resources-grid">
             <div class="resource-card">
-                <h3>Installation Guides</h3>
+                <h3>{{ i18n "downloads.installationGuides" }}</h3>
                 <ul>
-                    <li><a href="{{ relLangURL "docs/install/windows/" }}">Windows Installation</a></li>
-                    <li><a href="{{ relLangURL "docs/install/macos/" }}">macOS Installation</a></li>
-                    <li><a href="{{ relLangURL "docs/guides/installing-i2p-on-debian-and-ubuntu/" }}">Linux Installation</a></li>
-                    <li><a href="{{ relLangURL "docs/install/android/" }}">Android Installation</a></li>
+                    <li><a href="{{ relLangURL "docs/install/windows/" }}">{{ i18n "downloads.windowsInstallation" }}</a></li>
+                    <li><a href="{{ relLangURL "docs/install/macos/" }}">{{ i18n "downloads.macOsInstallation" }}</a></li>
+                    <li><a href="{{ relLangURL "docs/guides/installing-i2p-on-debian-and-ubuntu/" }}">{{ i18n "downloads.linuxInstallation" }}</a></li>
+                    <li><a href="{{ relLangURL "docs/install/android/" }}">{{ i18n "downloads.androidInstallation" }}</a></li>
                 </ul>
             </div>
 
             <div class="resource-card">
-                <h3>Additional Downloads</h3>
+                <h3>{{ i18n "downloads.additionalDownloads" }}</h3>
                 <ul>
-                    <li><a href="https://mirror.stormycloud.org/">Historical Versions</a></li>
-                    <li><a href="{{ relLangURL "docs/develop/release-signing-key/" }}">PGP Keys & Verification</a></li>
+                    <li><a href="https://mirror.stormycloud.org/">{{ i18n "downloads.historicalVersions" }}</a></li>
+                    <li><a href="{{ relLangURL "docs/develop/release-signing-key/" }}">{{ i18n "downloads.pgpKeysVerification" }}</a></li>
                 </ul>
             </div>
 
             <div class="resource-card">
-                <h3>Need Help?</h3>
+                <h3>{{ i18n "downloads.needHelp" }}</h3>
                 <ul>
-                    <li><a href="{{ relLangURL "docs/overview/faq/" }}">Frequently Asked Questions</a></li>
-                    <li><a href="{{ relLangURL "docs/troubleshooting/" }}">Troubleshooting Guide</a></li>
-                    <li><a href="{{ relLangURL "contact/#forums" }}">Community Support</a></li>
+                    <li><a href="{{ relLangURL "docs/overview/faq/" }}">{{ i18n "downloads.faq" }}</a></li>
+                    <li><a href="{{ relLangURL "docs/troubleshooting/" }}">{{ i18n "downloads.troubleshootingGuide" }}</a></li>
+                    <li><a href="{{ relLangURL "contact/#forums" }}">{{ i18n "downloads.communitySupport" }}</a></li>
                 </ul>
             </div>
         </div>

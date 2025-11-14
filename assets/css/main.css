@@ -173,6 +173,120 @@ main {
 }
 
 /* ==========================================================================
+   Site Banner
+   ========================================================================== */
+
+.site-banner {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    color: #ffffff;
+    padding: var(--spacing-md) 0;
+    position: relative;
+    z-index: 1001;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+[data-theme="dark"] .site-banner {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0e7490 100%);
+}
+
+.site-banner.banner-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.site-banner .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.banner-message {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.banner-link {
+    color: #ffffff;
+    text-decoration: underline;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: opacity var(--transition-fast);
+}
+
+.banner-link:hover {
+    opacity: 0.85;
+    text-decoration: underline;
+}
+
+.banner-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #ffffff;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.banner-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.banner-close:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .site-banner {
+        padding: var(--spacing-sm) 0;
+    }
+
+    .site-banner .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+
+    .banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .banner-close {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-md);
+    }
+
+    .banner-message {
+        font-size: 0.875rem;
+        padding-right: 2.5rem;
+    }
+}
+
+/* ==========================================================================
    Header & Navigation
    ========================================================================== */
 
@@ -1973,6 +2087,148 @@ main {
 
 .btn-no-thanks:hover {
     color: var(--color-primary);
+}
+
+/* Poll Modal Styles */
+.poll-modal-content {
+    max-width: 600px;
+}
+
+.poll-loading {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+}
+
+.poll-error {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--color-error);
+    font-size: 1rem;
+}
+
+.poll-question {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+
+.poll-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.poll-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.poll-option {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    background: var(--color-bg-secondary);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.poll-option:hover {
+    border-color: var(--color-primary);
+    background: var(--color-bg-tertiary);
+}
+
+.poll-option input[type="radio"],
+.poll-option input[type="checkbox"] {
+    margin-right: var(--spacing-md);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.poll-option-text {
+    font-size: 1rem;
+    color: var(--color-text);
+    flex: 1;
+}
+
+.poll-submit {
+    margin-top: var(--spacing-md);
+}
+
+.poll-thanks {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-success);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.poll-results-chart {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.poll-result-item {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+}
+
+.poll-result-item.user-voted {
+    border: 2px solid var(--color-primary);
+    background: var(--color-bg-tertiary);
+}
+
+.poll-result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.poll-result-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.poll-result-percentage {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.poll-result-bar-container {
+    background: var(--color-border);
+    height: 8px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: var(--spacing-xs);
+}
+
+.poll-result-bar {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    height: 100%;
+    border-radius: var(--radius-sm);
+    transition: width var(--transition-base);
+}
+
+.poll-result-votes {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.poll-close-btn {
+    width: 100%;
 }
 
 /* Legacy donate-interstitial class for compatibility */

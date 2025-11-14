@@ -152,3 +152,66 @@ submitEmail = "يرجى إرسال إلى"
 preferBibtex = "يفضل أن يكون بتنسيق BibTeX."
 bibSource = "كود مصدر المراجع مقتبس من الـ"
 freeHavenBib = "قائمة مراجع الخصوصية في ملاذ حر"
+
+
+[downloads]
+recommendedForYourSystem = "موصى به لنظامك"
+downloadNow = "تحميل الآن"
+mirror = "مرآة"
+mirrorLabel = "مرآة:"
+i2p = "I2P"
+tor = "مستودع APT"
+allPlatforms = "جميع المنصات"
+windows = "ويندوز"
+download = "تحميل الآن"
+windowsEasyInstaller = "مثبت ويندوز السهل"
+macOsLinuxBsd = "macOS / لينكس / BSD"
+android = "تثبيت أندرويد"
+downloadApk = "تنزيل APK"
+debianUbuntu = "ديبيان / أوبونتو"
+aptRepository = "مستودع APT"
+installGuide = "دليل التثبيت"
+buildFromSource = "بناء من المصدر"
+github = "GitHub"
+installationGuides = "دليل التثبيت"
+windowsInstallation = "تثبيت ويندوز"
+macOsInstallation = "تثبيت macOS"
+linuxInstallation = "تثبيت لينوكس"
+androidInstallation = "تثبيت أندرويد"
+additionalDownloads = "التنزيلات الإضافية"
+historicalVersions = "النسخ التاريخية"
+pgpKeysVerification = "مفاتيح PGP والتحقق"
+needHelp = "بحاجة إلى مساعدة؟"
+faq = "الأسئلة المتكررة"
+troubleshootingGuide = "دليل استكشاف الأخطاء وإصلاحها"
+communitySupport = "دعم المجتمع"
+
+[banner]
+banner_message = "إعلان مهم: رسالة شريطية تجريبية"
+banner_link_text = "معرفة المزيد"
+banner_link_url = ""
+banner_close = "إغلاق الشريط"
+
+
+[donatePage]
+supportDescription = "I2P هو مشروع مجاني ومفتوح المصدر بدون دعم من الشركات. تساهم تبرعاتك في الحفاظ على البنية التحتية، وتطوير ميزات جديدة، والحفاظ على I2P مجانيًا للجميع."
+donateNow = "💜 تبرع الآن"
+clickToOpenForm = "انقر أعلاه لفتح نموذج التبرع الآمن"
+downloadStarted = "تم بدء تحميلك! إذا لم يبدأ تلقائيًا،"
+clickHereToDownload = "انقر هنا للتنزيل"
+nextSteps = "الخطوات التالية"
+installI2p = "تثبيت I2P"
+installationGuides = "أدلة التثبيت"
+configureYourBrowser = "إعداد المتصفح الخاص بك"
+exploreI2pSites = "استكشاف مواقع I2P"
+startBrowsing = "ابدأ تصفح مواقع .i2p"
+getSupport = "الحصول على الدعم"
+irc = "IRC"
+donateWithCrypto = "تبرع بالعملات المشفرة"
+moneroRecommended = "مونيرو (XMR) - موصى به"
+privateAndUntraceable = "خاص وغير قابل للتتبع"
+bitcoinBtc = "بتكوين (BTC)"
+zcashZec = "زكاش (ZEC)"
+viewAllOptions = "عرض جميع خيارات التبرع →"
+gettingStarted = "البدء"
+backToDownloads = "العودة إلى التنزيلات"

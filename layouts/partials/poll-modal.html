@@ -1,0 +1,52 @@
+{{ if .Site.Params.poll.enabled }}
+<div class="modal-overlay" id="poll-modal" data-poll-id="{{ .Site.Params.poll.pollId | default "1" }}">
+    <div class="modal-content poll-modal-content">
+        <button class="modal-close" id="poll-close" aria-label="{{ i18n "poll.close" | default "Close poll" }}">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="modal-header">
+            <h2>{{ i18n "poll.title" | default "Community Poll" }}</h2>
+            <p class="modal-subtitle">{{ i18n "poll.subtitle" | default "We'd love to hear from you" }}</p>
+        </div>
+
+        <div class="modal-body">
+            <!-- Poll Widget (exactly like feedback widget pattern) -->
+            <div id="poll-widget"
+                 data-poll-id="{{ .Site.Params.poll.pollId | default "1" }}"
+                 data-api-url="https://feedback.stormycloud.org"
+                 data-show-results="true">
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <p class="modal-disclaimer">
+                {{ i18n "poll.disclaimer" | default "Your vote helps shape the future of I2P." }}
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Network detection for poll widget (runs BEFORE widget script loads) -->
+<script>
+(function() {
+    const hostname = window.location.hostname;
+    let apiUrl = 'https://feedback.stormycloud.org';
+
+    // Detect I2P
+    if (hostname.endsWith('.i2p')) {
+        apiUrl = 'http://feedback.stormycloud.i2p';
+    }
+    // Detect Tor
+    else if (hostname.endsWith('.onion')) {
+        apiUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
+    }
+
+    // Update poll widget API URL
+    const widget = document.getElementById('poll-widget');
+    if (widget) {
+        widget.setAttribute('data-api-url', apiUrl);
+    }
+})();
+</script>
+{{ end }}

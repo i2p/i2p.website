@@ -50,6 +50,7 @@
     {{ block "head" . }}{{ end }}
 </head>
 <body>
+    {{ partial "banner.html" . }}
     {{ partial "header.html" . }}
 
     <main id="main-content">
@@ -57,6 +58,9 @@
     </main>
 
     {{ partial "footer.html" . }}
+
+    <!-- Poll Modal -->
+    {{ partial "poll-modal.html" . }}
 
     <!-- Scripts -->
     {{ $scripts := resources.Get "js/main.js" }}
@@ -70,6 +74,11 @@
 
     <!-- Feature Request Widget Script -->
     <script src="https://feedback.stormycloud.org/widgets/features.js"></script>
+
+    <!-- Poll Widget Script -->
+    {{ if .Site.Params.poll.enabled }}
+    <script src="https://feedback.stormycloud.org/widgets/voting.js"></script>
+    {{ end }}
 
     {{ block "scripts" . }}{{ end }}
 </body>

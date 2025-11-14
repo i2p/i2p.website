@@ -1,0 +1,19 @@
+{{ if .Site.Params.banner.enabled }}
+<div class="site-banner" id="site-banner" data-banner-id="{{ .Site.Params.banner.id | default "banner-default" }}" role="alert" aria-live="polite">
+    <div class="container">
+        <div class="banner-content">
+            <span class="banner-message">{{ i18n "banner.banner_message" }}</span>
+            {{ with i18n "banner.banner_link_url" }}
+                {{ if ne . "banner.banner_link_url" }}
+                <a href="{{ . }}" class="banner-link">{{ i18n "banner.banner_link_text" }}</a>
+                {{ end }}
+            {{ end }}
+        </div>
+        {{ if .Site.Params.banner.dismissible }}
+        <button class="banner-close" aria-label="{{ i18n "banner.banner_close" | default "Close banner" }}" title="{{ i18n "banner.banner_close" | default "Close banner" }}">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

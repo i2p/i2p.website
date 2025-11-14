@@ -305,6 +305,151 @@
     }
 
     // ========================================================================
+    // Site Banner Dismiss
+    // ========================================================================
+
+    function setupBanner() {
+        const banner = document.getElementById('site-banner');
+        if (!banner) return;
+
+        const bannerId = banner.getAttribute('data-banner-id');
+        const dismissBtn = banner.querySelector('.banner-close');
+
+        // Check if banner was previously dismissed
+        const dismissedBanners = JSON.parse(localStorage.getItem('dismissedBanners') || '[]');
+        if (dismissedBanners.includes(bannerId)) {
+            banner.remove();
+            return;
+        }
+
+        // Dismiss banner function
+        function dismissBanner() {
+            // Add hidden class for animation
+            banner.classList.add('banner-hidden');
+
+            // Wait for animation to complete before removing
+            setTimeout(() => {
+                banner.remove();
+            }, 250);
+
+            // Save to localStorage
+            dismissedBanners.push(bannerId);
+            localStorage.setItem('dismissedBanners', JSON.stringify(dismissedBanners));
+        }
+
+        // Dismiss button click handler
+        if (dismissBtn) {
+            dismissBtn.addEventListener('click', dismissBanner);
+        }
+
+        // Dismiss on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && banner && !banner.classList.contains('banner-hidden')) {
+                dismissBanner();
+            }
+        });
+    }
+
+    setupBanner();
+
+    // ========================================================================
+    // Poll Modal
+    // ========================================================================
+
+    function setupPoll() {
+        const pollModal = document.getElementById('poll-modal');
+        if (!pollModal) return;
+
+        const pollClose = document.getElementById('poll-close');
+        const pollContainer = document.getElementById('poll-widget-container');
+        let widgetLoaded = false;
+
+        // Load widget on first open
+        function loadWidget() {
+            if (widgetLoaded || !pollContainer) return;
+
+            const apiUrl = window.pollApiUrl || 'https://feedback.stormycloud.org';
+            const pollId = window.pollId || '1';
+
+            // Create widget div
+            const widgetDiv = document.createElement('div');
+            widgetDiv.id = 'poll-widget';
+            widgetDiv.setAttribute('data-poll-id', pollId);
+            widgetDiv.setAttribute('data-api-url', apiUrl);
+            widgetDiv.setAttribute('data-show-results', 'true');
+
+            // Replace container contents
+            pollContainer.innerHTML = '';
+            pollContainer.appendChild(widgetDiv);
+
+            // Load widget script
+            const script = document.createElement('script');
+            script.src = 'https://feedback.stormycloud.org/widgets/voting.js';
+            script.onload = function() {
+                console.log('[Poll] Widget loaded successfully');
+                widgetLoaded = true;
+            };
+            script.onerror = function() {
+                console.error('[Poll] Failed to load widget');
+                pollContainer.innerHTML = '<p class="poll-error">Failed to load poll. Please try again later.</p>';
+            };
+            document.body.appendChild(script);
+
+            widgetLoaded = true;
+        }
+
+        // Open modal
+        function openModal() {
+            // Load widget on first open
+            if (!widgetLoaded) {
+                loadWidget();
+            }
+
+            pollModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            pollModal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Event listeners
+        if (pollClose) {
+            pollClose.addEventListener('click', closeModal);
+        }
+
+        // Close on overlay click
+        pollModal.addEventListener('click', function(e) {
+            if (e.target === pollModal) {
+                closeModal();
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && pollModal.classList.contains('show')) {
+                closeModal();
+            }
+        });
+
+        // Listen for poll links (e.g., href="#poll")
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('a[href="#poll"], a[href*="#poll"]');
+            if (target) {
+                e.preventDefault();
+                openModal();
+            }
+        });
+
+        // Expose API
+        window.openPoll = openModal;
+    }
+
+    setupPoll();
+
+    // ========================================================================
     // Initialize
     // ========================================================================
 

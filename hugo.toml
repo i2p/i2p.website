@@ -122,6 +122,17 @@ defaultContentLanguageInSubdir = true
   gitlabRepo = "stormycloud-group/i-2-p-www-v-2"
   gitlabBranch = "main"
 
+  # Site-wide banner configuration
+  [params.banner]
+    enabled = true  # Set to true to display the banner
+    dismissible = true  # Allow users to dismiss the banner
+    id = "banner-1"  # Unique ID for localStorage (change to show new banner)
+
+  # Poll configuration
+  [params.poll]
+    enabled = true  # Set to true to enable the poll
+    pollId = "1"  # Poll ID from your backend system
+
 
 # Menu
 [[menu.main]]

@@ -176,27 +176,27 @@
 
         <!-- Download Status -->
         <div class="download-status-bar">
-            <p>Your download has started! If it doesn't begin automatically, <a href="#" id="manual-download-link" class="download-link">click here to download</a>.</p>
+            <p>{{ i18n "donatePage.downloadStarted" }} <a href="#" id="manual-download-link" class="download-link">{{ i18n "donatePage.clickHereToDownload" }}</a>.</p>
         </div>
 
         <!-- Two Column Layout -->
         <div class="two-column-layout">
             <!-- Left Column: Donation Form -->
             <div class="donate-column">
-                <h2>💜 Support I2P</h2>
+                <h2>{{ i18n "donatePage.supportI2p" }}</h2>
                 <p style="margin-bottom: var(--spacing-lg); color: var(--color-text-secondary);">
-                    I2P is a free, open-source project with no corporate backing. Your donation helps us maintain infrastructure, develop new features, and keep I2P free for everyone.
+                    {{ i18n "donatePage.supportDescription" }}
                 </p>
 
                 <!-- FundraiseUp Form -->
                 <div id="fundraiseup-container">
                     <p style="text-align: center; padding: var(--spacing-xl);">
                         <a href="#XTKMQZHT" class="btn btn-primary" style="display: inline-block; background: var(--color-primary); color: white; padding: var(--spacing-md) var(--spacing-xl); border-radius: var(--radius-md); text-decoration: none; font-weight: 600;">
-                            💜 Donate Now
+                            {{ i18n "donatePage.donateNow" }}
                         </a>
                     </p>
                     <p style="text-align: center; font-size: 0.875rem; color: var(--color-text-secondary);">
-                        Click above to open the secure donation form
+                        {{ i18n "donatePage.clickToOpenForm" }}
                     </p>
                 </div>
             </div>
@@ -204,34 +204,34 @@
             <!-- Right Column: Next Steps & Crypto -->
             <div class="content-column">
                 <div class="content-box">
-                    <h3>Next Steps</h3>
+                    <h3>{{ i18n "donatePage.nextSteps" }}</h3>
                     <ol>
-                        <li><strong>Install I2P</strong> - Follow our <a href="{{ relLangURL "docs/guides/" }}">installation guides</a></li>
-                        <li><strong>Configure Your Browser</strong> - <a href="{{ relLangURL "docs/guides/browser-config/" }}">Browser setup guide</a></li>
-                        <li><strong>Explore I2P Sites</strong> - Start browsing .i2p sites</li>
-                        <li><strong>Get Support</strong> - <a href="{{ relLangURL "contact/#forums" }}">Forums</a> or <a href="{{ relLangURL "contact/#irc" }}">IRC</a></li>
+                        <li><strong>{{ i18n "donatePage.installI2p" }}</strong> - Follow our <a href="{{ relLangURL "docs/guides/" }}">{{ i18n "donatePage.installationGuides" }}</a></li>
+                        <li><strong>{{ i18n "donatePage.configureYourBrowser" }}</strong> - <a href="{{ relLangURL "docs/guides/browser-config/" }}">{{ i18n "donatePage.browserSetupGuide" }}</a></li>
+                        <li><strong>{{ i18n "donatePage.exploreI2pSites" }}</strong> - {{ i18n "donatePage.startBrowsing" }}</li>
+                        <li><strong>{{ i18n "donatePage.getSupport" }}</strong> - <a href="{{ relLangURL "contact/#forums" }}">{{ i18n "donatePage.forums" }}</a> or <a href="{{ relLangURL "contact/#irc" }}">{{ i18n "donatePage.irc" }}</a></li>
                     </ol>
                 </div>
 
                 <div class="content-box">
-                    <h3>Donate with Cryptocurrency</h3>
+                    <h3>{{ i18n "donatePage.donateWithCrypto" }}</h3>
                     <div class="crypto-boxes">
                         <div class="crypto-box">
-                            <h4>Monero (XMR) - Recommended</h4>
-                            <p>Private and untraceable</p>
+                            <h4>{{ i18n "donatePage.moneroRecommended" }}</h4>
+                            <p>{{ i18n "donatePage.privateAndUntraceable" }}</p>
                             <div class="crypto-address">85igd4Dw6ychvi8iUYADHfgLCmdT348SA6sMnYgxE86YZxX98Au6rsF9B9DmcqEXWRZWDcPdarufHUUqwP73GVrq6BaC9dr</div>
                         </div>
                         <div class="crypto-box">
-                            <h4>Bitcoin (BTC)</h4>
+                            <h4>{{ i18n "donatePage.bitcoinBtc" }}</h4>
                             <div class="crypto-address">3JSSF45pAW5ujWbBuRFe25pBiwp1vjSRNb</div>
                         </div>
                         <div class="crypto-box">
-                            <h4>Zcash (ZEC)</h4>
+                            <h4>{{ i18n "donatePage.zcashZec" }}</h4>
                             <div class="crypto-address">t1TwTuu4qU25aGvh59EMkCAZdmwJepkyQcD</div>
                         </div>
                     </div>
                     <p style="margin-top: var(--spacing-md); font-size: 0.875rem; text-align: center;">
-                        <a href="{{ relLangURL "financial-support/" }}">View all donation options →</a>
+                        <a href="{{ relLangURL "financial-support/" }}">{{ i18n "donatePage.viewAllOptions" }}</a>
                     </p>
                 </div>
             </div>
@@ -239,11 +239,11 @@
 
         <!-- Footer Links -->
         <div class="footer-links">
-            <a href="{{ relLangURL "docs/guides/" }}">Getting Started</a>
+            <a href="{{ relLangURL "docs/guides/" }}">{{ i18n "donatePage.gettingStarted" }}</a>
             <span>•</span>
-            <a href="{{ relLangURL "contact/#forums" }}">Get Support</a>
+            <a href="{{ relLangURL "contact/#forums" }}">{{ i18n "donatePage.getSupport" }}</a>
             <span>•</span>
-            <a href="{{ relLangURL "downloads/" }}">Back to Downloads</a>
+            <a href="{{ relLangURL "downloads/" }}">{{ i18n "donatePage.backToDownloads" }}</a>
         </div>
     </div>
 </div>
