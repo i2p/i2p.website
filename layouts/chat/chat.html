@@ -1,5 +1,38 @@
 {{ define "main" }}
 
+<style>
+/* Override container max-width for chat page */
+.chat-page-wrapper {
+    max-width: none !important;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.chat-content-wrapper {
+    max-width: 95vw;
+    margin: 0 auto;
+}
+
+#irc-iframe {
+    border: none;
+    border-radius: 8px;
+    height: 80vh;
+    min-height: 600px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    #irc-iframe {
+        height: 70vh;
+        min-height: 500px;
+    }
+
+    .chat-content-wrapper {
+        max-width: 100%;
+    }
+}
+</style>
+
 <section class="contact-hero">
     <div class="container">
         <h1>{{ .Title }}</h1>
@@ -8,8 +41,8 @@
 </section>
 
 <section class="contact-content" style="padding-bottom: 2rem;">
-    <div class="container" style="max-width: 100%; padding: 0 1rem;">
-        <div style="max-width: 1400px; margin: 0 auto;">
+    <div class="container chat-page-wrapper">
+        <div class="chat-content-wrapper">
             {{ .Content }}
 
             <!-- Network Detection Message -->
@@ -23,8 +56,7 @@
                     id="irc-iframe"
                     src=""
                     width="100%"
-                    frameborder="0"
-                    style="border: none; border-radius: 8px; height: 80vh; min-height: 600px;">
+                    frameborder="0">
                 </iframe>
             </div>
         </div>
