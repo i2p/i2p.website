@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(winget install:*)",
+      "Bash(hugo version:*)",
+      "Bash(where:*)",
+      "Bash(refreshenv:*)",
+      "Bash($null)",
+      "Bash(\"/c/Users/admin/AppData/Local/Microsoft/WinGet/Links/hugo.exe\" version)",
+      "Bash(\"/c/Users/admin/AppData/Local/Microsoft/WinGet/Packages/Hugo.Hugo.Extended_Microsoft.Winget.Source_8wekyb3d8bbwe/hugo.exe\" version)",
+      "Bash(\"/c/Users/admin/AppData/Local/Microsoft/WinGet/Packages/Hugo.Hugo.Extended_Microsoft.Winget.Source_8wekyb3d8bbwe/hugo.exe\" server -D)",
+      "Bash(\"/c/Users/admin/AppData/Local/Microsoft/WinGet/Packages/Hugo.Hugo.Extended_Microsoft.Winget.Source_8wekyb3d8bbwe/hugo.exe\" server)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
