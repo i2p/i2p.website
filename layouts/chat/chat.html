@@ -1,122 +1,97 @@
-{{ define "main" }}
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "en" }}" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
 
-<style>
-/* Override container max-width for chat page */
-.chat-page-wrapper {
-    max-width: none !important;
-    width: 100%;
-    padding: 0 1rem;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.chat-content-wrapper {
-    max-width: 95vw;
-    margin: 0 auto;
-}
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
 
-#irc-iframe {
-    border: none;
-    border-radius: 8px;
-    height: 80vh;
-    min-height: 600px;
-    width: 100%;
-}
+        #irc-iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
 
-@media (max-width: 768px) {
-    #irc-iframe {
-        height: 70vh;
-        min-height: 500px;
-    }
+        #network-warning {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 2rem;
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            color: #856404;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
 
-    .chat-content-wrapper {
-        max-width: 100%;
-    }
-}
-</style>
-
-<section class="contact-hero">
-    <div class="container">
-        <h1>{{ .Title }}</h1>
-        <p class="contact-description">{{ .Description }}</p>
+    <!-- Network Detection Message -->
+    <div id="network-warning">
+        <strong>Notice:</strong> The IRC chat is only available on Clearnet. You are currently accessing this site from I2P or Tor network.
     </div>
-</section>
 
-<section class="contact-content" style="padding-bottom: 2rem;">
-    <div class="container chat-page-wrapper">
-        <div class="chat-content-wrapper">
-            {{ .Content }}
+    <!-- IRC Chat Iframe -->
+    <iframe id="irc-iframe" src=""></iframe>
 
-            <!-- Network Detection Message -->
-            <div id="network-warning" style="display: none; padding: 1rem; margin: 2rem 0; background-color: var(--color-warning-bg, #fff3cd); border: 1px solid var(--color-warning-border, #ffc107); border-radius: 8px; color: var(--color-warning-text, #856404);">
-                <strong>Notice:</strong> The IRC chat is only available on Clearnet. You are currently accessing this site from I2P or Tor network.
-            </div>
+    <script>
+    (function() {
+        'use strict';
 
-            <!-- IRC Chat Iframe Container -->
-            <div id="irc-container" style="margin-top: 2rem;">
-                <iframe
-                    id="irc-iframe"
-                    src=""
-                    width="100%"
-                    frameborder="0">
-                </iframe>
-            </div>
-        </div>
-    </div>
-</section>
+        // Detect network based on hostname
+        const hostname = window.location.hostname;
+        const isI2P = hostname.endsWith('.i2p');
+        const isTor = hostname.endsWith('.onion');
+        const isClearnet = !isI2P && !isTor;
 
-<script>
-(function() {
-    'use strict';
+        const networkWarning = document.getElementById('network-warning');
+        const iframeElement = document.getElementById('irc-iframe');
 
-    // Detect network based on hostname
-    const hostname = window.location.hostname;
-    const isI2P = hostname.endsWith('.i2p');
-    const isTor = hostname.endsWith('.onion');
-    const isClearnet = !isI2P && !isTor;
+        if (!isClearnet) {
+            // Show warning
+            networkWarning.style.display = 'block';
+            iframeElement.style.display = 'none';
+            console.log('[IRC Chat] Not on Clearnet - IRC chat disabled');
+        } else {
+            // Load IRC with theme detection
+            const getPreferredTheme = () => {
+                // Check localStorage first
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) return savedTheme;
 
-    const ircContainer = document.getElementById('irc-container');
-    const networkWarning = document.getElementById('network-warning');
-    const iframeElement = document.getElementById('irc-iframe');
+                // Check system preference
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            };
 
-    if (!isClearnet) {
-        // Show warning and hide IRC container
-        networkWarning.style.display = 'block';
-        ircContainer.style.display = 'none';
-        console.log('[IRC Chat] Not on Clearnet - IRC chat disabled');
-    } else {
-        // Get current theme from data-theme attribute
-        const getCurrentTheme = () => {
-            return document.documentElement.getAttribute('data-theme') || 'light';
-        };
-
-        // Update iframe source based on theme
-        const updateIframeSrc = () => {
-            const theme = getCurrentTheme();
+            const theme = getPreferredTheme();
             const iframeUrl = `https://irc.i2p.net?theme=${theme}`;
             iframeElement.src = iframeUrl;
-            console.log('[IRC Chat] Theme updated to:', theme);
-        };
 
-        // Initial load
-        updateIframeSrc();
-
-        // Watch for theme changes
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-                    updateIframeSrc();
-                }
-            });
-        });
-
-        // Start observing theme changes
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ['data-theme']
-        });
-
-        console.log('[IRC Chat] Clearnet detected - IRC chat enabled');
-    }
-})();
-</script>
-
-{{ end }}
+            console.log('[IRC Chat] Clearnet detected - IRC chat enabled with theme:', theme);
+        }
+    })();
+    </script>
+</body>
+</html>
