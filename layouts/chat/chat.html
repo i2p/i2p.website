@@ -1,6 +1,16 @@
 {{ define "main" }}
 
 <style>
+.chat-content-section {
+    padding: 2rem 0;
+}
+
+.chat-wide-container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
 #network-warning {
     display: none;
     padding: 1rem;
@@ -26,7 +36,18 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width: 1400px) {
+    .chat-wide-container {
+        max-width: 95%;
+    }
+}
+
 @media (max-width: 768px) {
+    .chat-wide-container {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
     #irc-iframe {
         height: 600px;
     }
@@ -43,7 +64,11 @@
 <section class="contact-content">
     <div class="container">
         {{ .Content }}
+    </div>
+</section>
 
+<section class="chat-content-section">
+    <div class="chat-wide-container">
         <!-- Network Detection Message -->
         <div id="network-warning">
             <strong>Notice:</strong> The IRC chat is only available on Clearnet. You are currently accessing this site from I2P or Tor network.
