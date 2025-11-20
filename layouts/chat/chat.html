@@ -1,22 +1,6 @@
 {{ define "main" }}
 
 <style>
-.chat-section {
-    padding: 0;
-    margin: 0;
-}
-
-.chat-container {
-    max-width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-.chat-wrapper {
-    width: 100%;
-    padding: 0 1rem;
-}
-
 #network-warning {
     display: none;
     padding: 1rem;
@@ -29,32 +13,44 @@
     text-align: center;
 }
 
+.irc-container {
+    margin: 2rem 0;
+}
+
 #irc-iframe {
     width: 100%;
-    height: 85vh;
-    min-height: 700px;
+    height: 700px;
     border: none;
     border-radius: 8px;
     display: block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
     #irc-iframe {
-        height: 75vh;
-        min-height: 500px;
+        height: 600px;
     }
 }
 </style>
 
-<section class="chat-section">
-    <div class="container chat-container">
-        <div class="chat-wrapper">
-            <!-- Network Detection Message -->
-            <div id="network-warning">
-                <strong>Notice:</strong> The IRC chat is only available on Clearnet. You are currently accessing this site from I2P or Tor network.
-            </div>
+<section class="contact-hero">
+    <div class="container">
+        <h1>{{ .Title }}</h1>
+        <p class="contact-description">{{ .Description }}</p>
+    </div>
+</section>
 
-            <!-- IRC Chat Iframe -->
+<section class="contact-content">
+    <div class="container">
+        {{ .Content }}
+
+        <!-- Network Detection Message -->
+        <div id="network-warning">
+            <strong>Notice:</strong> The IRC chat is only available on Clearnet. You are currently accessing this site from I2P or Tor network.
+        </div>
+
+        <!-- IRC Chat Iframe -->
+        <div class="irc-container">
             <iframe id="irc-iframe" src=""></iframe>
         </div>
     </div>
