@@ -12,7 +12,7 @@ target: "0.9.67"
 ## Status
 
 Approved at review 2025-06-24.
-Specification is at [UDP]_.
+Specification is at [UDP specification](/en/docs/spec/udp-bittorrent-announces/).
 Implementated in zzzot 0.20.0-beta2.
 Implementated in i2psnark as of API 0.9.67.
 Check documentation of other implementations for status.
@@ -25,12 +25,12 @@ This proposal is for implemention of UDP trackers in I2P.
 
 ### Change History
 
-A preliminary proposal for UDP trackers in I2P was posted on our bittorrent spec page [SPEC]_
+A preliminary proposal for UDP trackers in I2P was posted on our bittorrent spec page [/en/docs/applications/bittorrent/](/en/docs/applications/bittorrent/)
 in May 2014; this predated our formal proposal process, and it was never implemented.
 This proposal was created in early 2022 and simplifies the 2014 version.
 
 As this proposal relies on repliable datagrams, it was put on hold once we
-started working on the Datagram2 proposal [Prop163]_ in early 2023.
+started working on the Datagram2 proposal [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/) in early 2023.
 That proposal was approved in April 2025.
 
 The 2023 version of this proposal specified two modes, "compatibility" and "fast".
@@ -38,7 +38,7 @@ Further analysis revealed that the fast mode would be insecure, and would also
 be inefficient for clients with a large number of torrents.
 Further, BiglyBT indicated a preference for compatibility mode.
 This mode will be easier to implement for any tracker or client supporting
-standard [BEP15]_.
+standard [BEP 15](http://www.bittorrent.org/beps/bep_0015.html).
 
 While the compatibility mode is more complex to implement from-scratch
 on the client size, we do have preliminary code for it started in 2023.
@@ -46,7 +46,7 @@ on the client size, we do have preliminary code for it started in 2023.
 Therefore, the current version here is further simplified to remove fast mode,
 and remove the term "compatibility". The current version switches to
 the new Datagram2 format, and adds references to the UDP announce extenstion
-protocol [BEP41]_.
+protocol [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 
 Also, a connection ID lifetime field is added to the connect response,
 to extend the efficiency gains of this protocol.
@@ -57,7 +57,7 @@ to extend the efficiency gains of this protocol.
 As the user base in general and the number of bittorrent users specifically continues to grow,
 we need to make trackers and announces more efficient so that trackers are not overwhelemed.
 
-Bittorrent proposed UDP trackers in BEP 15 [BEP15]_ in 2008, and the vast majority
+Bittorrent proposed UDP trackers in BEP 15 [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) in 2008, and the vast majority
 of trackers on clearnet are now UDP-only.
 
 It is difficult to calculate the bandwidth savings of datagrams vs. streaming protocol.
@@ -70,7 +70,7 @@ for a tracker's outbound traffic.
 Additionally, there should be implementation-specific memory reductions,
 as datagrams require much less in-memory state than a streaming connection.
 
-Post-Quantum encryption and signatures as envisioned in [Prop169]_ will substantially
+Post-Quantum encryption and signatures as envisioned in [/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/) will substantially
 increase the overhead of encrypted and signed structures, including destinations,
 leasesets, streaming SYN and SYN ACK. It is important to minimize this
 overhead where possible before PQ crypto is adopted in I2P.
@@ -79,20 +79,18 @@ overhead where possible before PQ crypto is adopted in I2P.
 ## Design
 
 This proposal uses repliable datagram2, repliable datagram3, and raw datagrams,
-as defined in [DATAGRAMS]_.
+as defined in [/en/docs/spec/datagrams/](/en/docs/spec/datagrams/).
 Datagram2 and Datagram3 are new variants of repliable datagrams,
-defined in Proposal 163 [Prop163]_.
+defined in Proposal 163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/).
 Datagram2 adds replay resistance and offline signature support.
 Datagram3 is smaller than the old datagram format, but without authentication.
 
 
 ### BEP 15
 
-For reference, the message flow defined in [BEP15]_ is as follows:
+For reference, the message flow defined in [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) is as follows:
 
-.. raw:: html
-
-  {% highlight %}
+```
 Client                        Tracker
     Connect Req. ------------->
       <-------------- Connect Resp.
@@ -100,7 +98,7 @@ Client                        Tracker
       <-------------- Announce Resp.
     Announce Req. ------------->
       <-------------- Announce Resp.
-{% endhighlight %}
+```
 
 The connect phase is required to prevent IP address spoofing.
 The tracker returns a connection ID that the client uses in subsequent announces.
@@ -110,9 +108,7 @@ I2P will use the same message flow as BEP 15,
 for ease of adoption in existing UDP-capable client code bases:
 for efficiency, and for security reasons discussed below:
 
-.. raw:: html
-
-  {% highlight %}
+```
 Client                        Tracker
     Connect Req. ------------->       (Repliable Datagram2)
       <-------------- Connect Resp.   (Raw)
@@ -121,7 +117,7 @@ Client                        Tracker
     Announce Req. ------------->      (Repliable Datagram3)
       <-------------- Announce Resp.  (Raw)
              ...
-{% endhighlight %}
+```
 
 This potentially provides a large bandwidth savings over
 streaming (TCP) announces.
@@ -149,8 +145,7 @@ ZzzOT and i2psnark are expected to be the first tracker and client to implement 
 Non-integrated trackers and clients are discussed below.
 
 
-Trackers
-````````
+#### Trackers
 
 There are four known I2P tracker implementations:
 
@@ -169,10 +164,9 @@ These design decisions will depend heavily on the specific router and tracker im
 and are outside the scope of this proposal.
 
 
-Clients
-```````
+#### Clients
 External SAM-based torrent clients such as qbittorrent and other libtorrent-based clients
-would require SAM v3.3 [SAMv3]_ which is not supported by i2pd.
+would require SAM v3.3 [/en/docs/api/samv3/](/en/docs/api/samv3/) which is not supported by i2pd.
 This is also required for DHT support, and is complex enough that no known
 SAM torrent client has implemented it.
 No SAM-based implementations of this proposal are expected soon.
@@ -180,7 +174,7 @@ No SAM-based implementations of this proposal are expected soon.
 
 ### Connection Lifetime
 
-[BEP15]_ specifies that the connection ID expires in one minute at the client, and in two minutes at the tracker.
+[BEP 15](http://www.bittorrent.org/beps/bep_0015.html) specifies that the connection ID expires in one minute at the client, and in two minutes at the tracker.
 It is not configurable.
 That limits the potential efficiency gains, unless
 clients batched announces to do all of them within a one-minute window.
@@ -196,7 +190,7 @@ connection ID for one minute more.
 
 ### Compatibility with BEP 15
 
-This design maintains compatibility with [BEP15]_ as much as possible
+This design maintains compatibility with [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) as much as possible
 to limit changes required in existing clients and trackers.
 
 The only required change is the format of peer info in the announce response.
@@ -249,16 +243,16 @@ The request "from port" is the "to port" from the request.
 
 ### Announce URL
 
-The announce URL format is not specified in [BEP15]_,
+The announce URL format is not specified in [BEP 15](http://www.bittorrent.org/beps/bep_0015.html),
 but as in clearnet, UDP announce URLs are of the form "udp://host:port/path".
 The path is ignored and may be empty, but is typically "/announce" on clearnet.
 The :port part should always be present, however,
 if the ":port" part is omitted, use a default I2CP port of 6969,
 as that is the common port on clearnet.
 There may also be cgi parameters &a=b&c=d appended,
-those may be processed and provided in the announce request, see [BEP41]_.
+those may be processed and provided in the announce request, see [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 If there are no parameters or path, the trailing / may also be omitted,
-as implied in [BEP41]_.
+as implied in [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 
 
 ### Datagram Formats
@@ -269,40 +263,32 @@ Future extensions could increase the size of packets.
 
 
 
-Connect Request
-```````````````
+#### Connect Request
 
 Client to tracker.
-16 bytes. Must be repliable Datagram2. Same as in [BEP15]_. No changes.
+16 bytes. Must be repliable Datagram2. Same as in [BEP 15](http://www.bittorrent.org/beps/bep_0015.html). No changes.
 
-
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Name            Value
   0       64-bit integer  protocol_id     0x41727101980 // magic constant
   8       32-bit integer  action          0 // connect
   12      32-bit integer  transaction_id
-{% endhighlight %}
+```
 
 
 
-Connect Response
-````````````````
+#### Connect Response
 
 Tracker to client.
-16 or 18 bytes. Must be raw. Same as in [BEP15]_ except as noted below.
+16 or 18 bytes. Must be raw. Same as in [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) except as noted below.
 
-
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Name            Value
   0       32-bit integer  action          0 // connect
   4       32-bit integer  transaction_id
   8       64-bit integer  connection_id
   16      16-bit integer  lifetime        optional  // Change from BEP 15
-{% endhighlight %}
+```
 
 The response MUST be sent to the I2CP "to port" that was received as the request "from port".
 
@@ -313,19 +299,14 @@ The tracker should maintain the connection_id for 60 seconds more than the clien
 
 
 
-Announce Request
-````````````````
+#### Announce Request
 
 Client to tracker.
-98 bytes minimum. Must be repliable Datagram3. Same as in [BEP15]_ except as noted below.
+98 bytes minimum. Must be repliable Datagram3. Same as in [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) except as noted below.
 
 The connection_id is as received in the connect response.
 
-
-
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Name            Value
   0       64-bit integer  connection_id
   8       32-bit integer  action          1     // announce
@@ -341,30 +322,25 @@ Offset  Size            Name            Value
   92      32-bit integer  num_want        -1    // default
   96      16-bit integer  port
   98      varies          options     optional  // As specified in BEP 41
-{% endhighlight %}
+```
 
-Changes from [BEP15]_:
+Changes from [BEP 15](http://www.bittorrent.org/beps/bep_0015.html):
 
 - key is ignored
 - port is probably ignored
-- The options section, if present, is as defined in [BEP41]_
+- The options section, if present, is as defined in [BEP 41](http://www.bittorrent.org/beps/bep_0041.html)
 
 The response MUST be sent to the I2CP "to port" that was received as the request "from port".
 Do not use the port from the announce request.
 
 
 
-Announce Response
-`````````````````
+#### Announce Response
 
 Tracker to client.
-20 bytes minimum. Must be raw. Same as in [BEP15]_ except as noted below.
+20 bytes minimum. Must be raw. Same as in [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) except as noted below.
 
-
-
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Name            Value
   0           32-bit integer  action          1 // announce
   4           32-bit integer  transaction_id
@@ -373,9 +349,9 @@ Offset  Size            Name            Value
   16          32-bit integer  seeders
   20   32 * n 32-byte hash    binary hashes     // Change from BEP 15
   ...                                           // Change from BEP 15
-{% endhighlight %}
+```
 
-Changes from [BEP15]_:
+Changes from [BEP 15](http://www.bittorrent.org/beps/bep_0015.html):
 
 - Instead of 6-byte IPv4+port or 18-byte IPv6+port, we return
   a multiple of 32-byte "compact responses" with the SHA-256 binary peer hashes.
@@ -403,10 +379,9 @@ Trackers should reject announces from an all-zeros hash,
 although that hash is already banned by Java routers.
 
 
-Scrape
-``````
+#### Scrape
 
-Scrape request/response from [BEP15]_ is not required by this proposal,
+Scrape request/response from [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) is not required by this proposal,
 but may be implemented if desired, no changes required.
 The client must acquire a connection ID first.
 The scrape request is always repliable Datagram3.
@@ -414,23 +389,18 @@ The scrape response is always raw.
 
 
 
-Error Response
-``````````````
+#### Error Response
 
 Tracker to client.
 8 bytes minimum (if the message is empty).
-Must be raw. Same as in [BEP15]_. No changes.
+Must be raw. Same as in [BEP 15](http://www.bittorrent.org/beps/bep_0015.html). No changes.
 
-.. raw:: html
-
-  {% highlight %}
-
+```
 Offset  Size            Name            Value
   0       32-bit integer  action          3 // error
   4       32-bit integer  transaction_id
   8       string          message
-
-{% endhighlight %}
+```
 
 
 
@@ -439,14 +409,14 @@ Offset  Size            Name            Value
 Extension bits or a version field are not included.
 Clients and trackers should not assume packets to be of a certain size.
 This way, additional fields can be added without breaking compatibility.
-The extensions format defined in [BEP41]_ is recommended if required.
+The extensions format defined in [BEP 41](http://www.bittorrent.org/beps/bep_0041.html) is recommended if required.
 
 The connect response is modified to add an optional connection ID lifetime.
 
 If blinded destination support is required, we can either add the
 blinded 35-byte address to the end of the announce request,
 or request blinded hashes in the responses,
-using the [BEP41]_ format (paramters TBD).
+using the [BEP 41](http://www.bittorrent.org/beps/bep_0041.html) format (paramters TBD).
 The set of blinded 35-byte peer addresses could be added to the end of the announce reply,
 after an all-zeros 32-byte hash.
 
@@ -522,32 +492,3 @@ The first implementations are expected to be in ZzzOT and i2psnark.
 They will be used for testing and verification of this proposal.
 
 Other implementations will follow as desired after the testing and verification are complete.
-
-
-
-
-## References
-
-.. [BEP15]
-    http://www.bittorrent.org/beps/bep_0015.html
-
-.. [BEP41]
-    http://www.bittorrent.org/beps/bep_0041.html
-
-.. [DATAGRAMS]
-    {{ spec_url('datagrams') }}
-
-.. [Prop163]
-    {{ proposal_url('163') }}
-
-.. [Prop169]
-    {{ proposal_url('169') }}
-
-.. [SAMv3]
-    {{ site_url('docs/api/samv3') }}
-
-.. [SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [UDP]
-    {{ spec_url('udp-announces') }}
