@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "डाटाग्राम2 प्रोटोकॉल"
 number: "163"
@@ -370,4 +369,3 @@ SAM UDP एप्स: कोई ज्ञात नहीं
 .. [TUNMSG]
     {{ spec_url('tunnel-message') }}#notes
 
-```

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Nové záznamy netDB"
 number: "123"
@@ -505,4 +504,3 @@ Uznání
 
 Reference
 
-```

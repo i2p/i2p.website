@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "ECDSA密钥遮蔽"
 number: "151"
@@ -139,4 +138,3 @@ ECDSA的公钥是(X,Y)对，因此对于P256，例如，它是64字节，而不�
 
 .. [RF-5869]
     https://tools.ietf.org/html/rfc5869
-```

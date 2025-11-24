@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "नए netDB प्रविष्टियां"
 number: "123"

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "大蒜农场协议"
 number: "150"
@@ -561,4 +560,3 @@ Atomix 体积太大，不允许我们自定义从而通过 I2P 路由协议。�
 
 .. [WEBSOCKET]
     https://en.wikipedia.org/wiki/WebSocket
-```

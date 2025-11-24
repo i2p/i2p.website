@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Giao Thức Garlic Farm"
 number: "150"
@@ -672,4 +671,3 @@ Không có vấn đề tương thích ngược.
 
 .. [WEBSOCKET]
     https://en.wikipedia.org/wiki/WebSocket
-```

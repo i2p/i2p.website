@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Đường Hầm ECIES"
 number: "152"
@@ -850,4 +849,3 @@ Xem [Prop156](/en/proposals/156-ecies-routers/).
 
 .. [RFC-7748]
    https://tools.ietf.org/html/rfc7748
-```

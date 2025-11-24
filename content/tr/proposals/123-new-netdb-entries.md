@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Yeni netDB Girdileri"
 number: "123"
@@ -370,4 +369,3 @@ Notlar
    birinci anahtarı seçmektir.
   İstemciler şifreleme desteğe, göreli performans ve diğer faktörlere dayalı olarak
 
-`````

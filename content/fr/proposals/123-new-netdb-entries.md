@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Nouvelles entrées netDB"
 number: "123"

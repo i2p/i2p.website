@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "拥塞上限"
 number: "162"
@@ -116,4 +115,3 @@ D: 中度拥塞，或低性能路由器（如Android、树莓派）
 
 .. [NETDB]
     {{ site_url('docs/how/network-database', True) }}
-```

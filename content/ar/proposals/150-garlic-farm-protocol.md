@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "بروتوكول مزرعة الثوم"
 number: "150"
@@ -646,4 +645,3 @@ Atomix كبير جدًا ولن يسمح بالتخصيص لنا لتوجيه
 
 .. [WEBSOCKET]
     https://en.wikipedia.org/wiki/WebSocket
-```

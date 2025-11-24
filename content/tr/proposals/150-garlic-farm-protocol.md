@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Sarımsak Çiftliği Protokolü"
 number: "150"
@@ -574,4 +573,3 @@ Geriye dönük uyumluluk sorunları yoktur.
 
 .. [WEBSOCKET]
     https://en.wikipedia.org/wiki/WebSocket
-```

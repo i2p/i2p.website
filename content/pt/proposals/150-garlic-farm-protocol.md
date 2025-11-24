@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Protocolo da Fazenda de Alho"
 number: "150"
@@ -684,4 +683,3 @@ Sem problemas de compatibilidade retroativa.
 
 .. [WEBSOCKET]
     https://en.wikipedia.org/wiki/WebSocket
-```

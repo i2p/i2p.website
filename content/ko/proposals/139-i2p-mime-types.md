@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "I2P Mime Types"
 number: "139"
@@ -95,4 +94,3 @@ Debian 패키지에 포함합니다. 파일은 "debian/(패키지).sharedmimeinf
 ## 마이그레이션
 
 해당 사항 없음.
-```

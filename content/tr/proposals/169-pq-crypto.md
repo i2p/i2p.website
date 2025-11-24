@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Post-Kuantum Kripto Protokolleri"
 number: "169"

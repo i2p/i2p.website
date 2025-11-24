@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "موجهات ECIES"
 number: "156"

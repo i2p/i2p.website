@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Поиск в базе данных с параметрами ECIES"
 number: "154"
@@ -398,4 +397,3 @@ reply_key ::
 
 .. [Prop156]
     {{ proposal_url('156') }}
-```

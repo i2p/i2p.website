@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "ECIES-X25519-AEAD-Ratchet"
 number: "144"

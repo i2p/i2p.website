@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "RI और Destination Padding"
 number: "161"

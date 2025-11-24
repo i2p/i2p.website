@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "حدود الازدحام"
 number: "162"
@@ -133,4 +132,3 @@ D: ازدحام متوسط، أو موجه ذو أداء منخفض (مثل أن
 
 .. [NETDB]
     {{ site_url('docs/how/network-database', True) }}
-```

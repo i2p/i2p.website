@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "IPv6传输增强"
 number: "158"

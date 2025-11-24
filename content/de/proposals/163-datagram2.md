@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Datagram2-Protokoll"
 number: "163"
@@ -405,4 +404,3 @@ SAM-UDP-Anwendungen: Keine bekannt
 .. [TUNMSG]
     {{ spec_url('tunnel-message') }}#notes
 
-```
