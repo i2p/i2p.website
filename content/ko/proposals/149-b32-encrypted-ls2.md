@@ -13,7 +13,7 @@ implementedin: "0.9.40"
 ## 노트
 네트워크 배포 및 테스트 진행 중입니다.
 사소한 수정이 있을 수 있습니다.
-공식 사양은 [SPEC]_를 참조하세요.
+공식 사양은 [SPEC](/docs/specs/b32-for-encrypted-leasesets/)를 참조하세요.
 
 ## 개요
 
@@ -70,9 +70,7 @@ implementedin: "0.9.40"
 
 {56+ chars}.b32.i2p (35+ chars in binary)의 호스트 이름을 다음과 같이 구성합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 flag (1 byte)
     비트 0: 1바이트 서명 유형의 경우 0, 2바이트 서명 유형의 경우 1
     비트 1: 비밀이 필요 없는 경우 0, 필요한 경우 1
@@ -88,14 +86,11 @@ flag (1 byte)
 
   public key
     서명 유형에 의해 암시되는 바이트 수
-
-{% endhighlight %}
+```
 
 후처리 및 체크섬:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 위와 같이 이진 데이터를 구성합니다.
   체크섬은 little-endian으로 취급합니다.
   checksum = CRC-32(data[3:end])를 계산합니다.
@@ -104,16 +99,14 @@ flag (1 byte)
   data[2] ^= (byte) (checksum >> 16)
 
   hostname = Base32.encode(data) || ".b32.i2p"
-{% endhighlight %}
+```
 
 b32의 끝에 사용되지 않은 비트는 반드시 0이어야 합니다.
 표준 56문자(35바이트) 주소의 경우에는 사용되지 않은 비트가 없습니다.
 
 ### 디코딩 및 검증
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 호스트 이름에서 ".b32.i2p"를 제거합니다.
   data = Base32.decode(hostname)
   checksum = CRC-32(data[3:end])를 계산합니다.
@@ -126,7 +119,7 @@ b32의 끝에 사용되지 않은 비트는 반드시 0이어야 합니다.
     pubkey sigtype = data[1] ^ ((byte) (checksum >> 8)) || data[2] ^ ((byte) (checksum >> 16))
     blinded sigtype = data[3] || data[4]
   flag에 따라 나머지를 구문 분석하여 공개 키를 얻음
-{% endhighlight %}
+```
 
 ### 비밀 및 개인 키 비트
 
@@ -140,7 +133,7 @@ b32의 끝에 사용되지 않은 비트는 반드시 0이어야 합니다.
   호스트 이름은 {56 chars}.b32.i2p가 되며, 35바이트로 해석되어 Tor와 동일합니다.
 - Tor 2바이트 체크섬은 1/64K의 허위 부정률을 가지고 있습니다. 몇 개의 무시되는 바이트를 뺀 3바이트로,
   우리의 체크섬은 백만 분의 1에 접근합니다. 대부분의 플래그/서명 유형 조합이 무효하기 때문입니다.
-- Adler-32는 작은 입력에 적합하지 않으며, 작은 변경을 감지하는 데 좋지 않습니다 [ADLER32]_.
+- Adler-32는 작은 입력에 적합하지 않으며, 작은 변경을 감지하는 데 좋지 않습니다.
   대신 CRC-32를 사용합니다. CRC-32는 빠르고 널리 사용됩니다.
 
 ## 캐싱
@@ -163,12 +156,3 @@ b32의 끝에 사용되지 않은 비트는 반드시 0이어야 합니다.
 
 이전 호환성 문제는 없습니다. 더 긴 b32 주소는 이전 소프트웨어에서
 32바이트 해시로 변환되지 못합니다.
-
-## 참고 자료
-
-.. [ADLER32]
-    https://en.wikipedia.org/wiki/CRC-32
-    https://tools.ietf.org/html/rfc3309
-
-.. [SPEC]
-    {{ spec_url('b32encrypted') }}

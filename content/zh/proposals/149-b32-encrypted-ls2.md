@@ -13,7 +13,7 @@ implementedin: "0.9.40"
 ## 注意
 网络部署和测试正在进行中。
 可能会有小的修订。
-请参阅 [SPEC]_ 获取官方规范。
+请参阅 [SPEC](/docs/specs/b32-for-encrypted-leasesets/) 获取官方规范。
 
 ## 概述
 
@@ -72,9 +72,7 @@ base32地址中。此格式还必须包含
 
 构造一个主机名为{56+ 字符}.b32.i2p (35+ 字节二进制)，如下:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 flag (1 byte)
     bit 0: 0 表示一字节签名类型，1 表示两字节签名类型
     bit 1: 0 表示无秘密，1 表示需要秘密
@@ -91,13 +89,11 @@ flag (1 byte)
   public key 
     字节数量由签名类型隐含
 
-{% endhighlight %}
+```
 
 后处理和校验和:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 构造如上的二进制数据。
   将校验和视为小端。
   计算校验和 = CRC-32(data[3:end])
@@ -106,16 +102,14 @@ flag (1 byte)
   data[2] ^= (byte) (checksum >> 16)
 
   hostname = Base32.encode(data) || ".b32.i2p"
-{% endhighlight %}
+```
 
 b32末端的任何未使用位必须为0。
 对于标准的56字符（35字节）地址，没有未使用的位。
 
 ### 解码和验证
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 从主机名中去掉“.b32.i2p”
   data = Base32.decode(hostname)
   计算校验和 = CRC-32(data[3:end])
@@ -128,7 +122,7 @@ b32末端的任何未使用位必须为0。
     pubkey sigtype = data[1] ^ ((byte) (checksum >> 8)) || data[2] ^ ((byte) (checksum >> 16))
     blinded sigtype = data[3] || data[4]
   根据flags解析余下内容以获取公钥
-{% endhighlight %}
+```
 
 ### 秘密和私钥位
 
@@ -145,7 +139,7 @@ b32末端的任何未使用位必须为0。
 主机名将为{56字字符}.b32.i2p，解码为35字节，与Tor相同。
 - Tor 2字节校验和具有1/64K的错误否定率。通过3字节，减去一些忽略字节，
 我们的接近百万分之一，因为大多数标志/签名类型组合是无效的。
-- Adler-32对于小输入和检测小变化选择很差 [ADLER32]_。
+- Adler-32对于小输入和检测小变化选择很差 。
   改用CRC-32。CRC-32速度快且被广泛使用。
 
 ## 缓存
@@ -167,12 +161,3 @@ b32末端的任何未使用位必须为0。
 ## 迁移
 
 没有向后兼容的问题。旧软件中长的b32地址将无法转换为32字节的哈希。
-
-## 参考
-
-.. [ADLER32]
-    https://en.wikipedia.org/wiki/CRC-32
-    https://tools.ietf.org/html/rfc3309
-
-.. [SPEC]
-    {{ spec_url('b32encrypted') }}

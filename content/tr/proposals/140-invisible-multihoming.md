@@ -10,18 +10,18 @@ thread: "http://zzz.i2p/topics/2335"
 
 ## Genel Bakış
 
-Bu öneri, bir I2P istemcisi, hizmeti veya harici dengeleme sürecinin, tek bir [Destination]_ üzerinde birden fazla yönlendiricinin şeffaf bir şekilde yönetilmesini sağlayan bir protokol tasarımını özetlemektedir.
+Bu öneri, bir I2P istemcisi, hizmeti veya harici dengeleme sürecinin, tek bir [Destination](http://localhost:63465/en/docs/specs/common-structures/#destination) üzerinde birden fazla yönlendiricinin şeffaf bir şekilde yönetilmesini sağlayan bir protokol tasarımını özetlemektedir.
 
-Öneri şu anda somut bir uygulama belirtmemektedir. [I2CP]_ için bir uzantı ya da yeni bir protokol olarak uygulanabilir.
+Öneri şu anda somut bir uygulama belirtmemektedir. [I2CP](/en/docs/specs/i2cp/) için bir uzantı ya da yeni bir protokol olarak uygulanabilir.
 
 
 ## Motivasyon
 
-Multihoming, aynı Destination'ı barındırmak için birden fazla yönlendiricinin kullanıldığı durumdur. Şu anki I2P ile multihoming yapma yöntemi, her yönlendiricide bağımsız olarak aynı Destination'ı çalıştırmaktır; herhangi bir zamanda istemciler tarafından kullanılan yönlendirici, en son [LeaseSet]_ yayınlayandır.
+Multihoming, aynı Destination'ı barındırmak için birden fazla yönlendiricinin kullanıldığı durumdur. Şu anki I2P ile multihoming yapma yöntemi, her yönlendiricide bağımsız olarak aynı Destination'ı çalıştırmaktır; herhangi bir zamanda istemciler tarafından kullanılan yönlendirici, en son [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset) yayınlayandır.
 
 Bu yöntem bir hack olup, büyük ölçekli web siteleri için uygun değildir. Örneğin, her biri 16 tünel olan 100 multihoming yönlendiricimiz olduğunu varsayalım. Bu, her 10 dakikada bir 1600 LeaseSet yayını, yani saniyede neredeyse 3 yayın anlamına gelir. Yoğunluğun fazla olması anaforları boğar ve sınırlamalar devreye girer. Bahsetmediğimiz arama trafiğinden bile önce.
 
-[Prop123]_, 100 gerçek LeaseSet hash'ini listeleyen bir meta-LeaseSet ile bu sorunu çözer. Bir arama iki aşamalı bir işlem haline gelir: önce meta-LeaseSet, ardından adlandırılan LeaseSet’lerden biri aranır. Bu, arama trafiği sorununa iyi bir çözüm ancak kendiliğinden önemli bir gizlilik açığı oluşturur: Yayınlanan meta-LeaseSet'i izleyerek hangi multihoming yönlendiricilerin çevrimiçi olduğunu belirlemek mümkündür, çünkü her gerçek LeaseSet tek bir yönlendiriciye karşılık gelir.
+[Proposal 123](/en/proposals/123-new-netdb-entries/), 100 gerçek LeaseSet hash'ini listeleyen bir meta-LeaseSet ile bu sorunu çözer. Bir arama iki aşamalı bir işlem haline gelir: önce meta-LeaseSet, ardından adlandırılan LeaseSet’lerden biri aranır. Bu, arama trafiği sorununa iyi bir çözüm ancak kendiliğinden önemli bir gizlilik açığı oluşturur: Yayınlanan meta-LeaseSet'i izleyerek hangi multihoming yönlendiricilerin çevrimiçi olduğunu belirlemek mümkündür, çünkü her gerçek LeaseSet tek bir yönlendiriciye karşılık gelir.
 
 Bir I2P istemcisi ya da hizmeti için, bir Destination'ı birden fazla yönlendiriciye yayma yollarına ihtiyacımız var, LeaseSet'in perspektifinden tek bir yönlendirici kullanmaya ayırtedilemeyecek bir şekilde.
 
@@ -69,10 +69,8 @@ Aşağıdaki istenen konfigürasyonu hayal edin:
 - Tüm on iki tünel tek bir LeaseSet içinde yayımlanmalıdır.
 
 Tek istemci
-```````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Tünel 1]===\
                  |-{ [Tünel 2]====[Yönlendirici 1]-----
                  |-{ [Tünel 3]===/               \
@@ -88,13 +86,10 @@ Tek istemci
                  |-{ [Tünel 10]==\               /
                  |-{ [Tünel 11]===[Yönlendirici 4]-----
                   -{ [Tünel 12]==/
-{% endhighlight %}
 
 Çoklu istemci
-`````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Tünel 1]===\
                  |-{ [Tünel 2]====[Yönlendirici 1]---------[Ön uç 1]
                  |-{ [Tünel 3]===/          \                    \
@@ -110,10 +105,8 @@ Tek istemci
                  |-{ [Tünel 10]==\          /                    /
                  |-{ [Tünel 11]===[Yönlendirici 4]---------[Ön uç 4]
                   -{ [Tünel 12]==/
-{% endhighlight %}
 
-Genel istemci süreci
-````````````````````
+### Genel istemci süreci
 - Bir Destination yükleyin veya oluşturun.
 
 - Her yönlendiriciyle, Destination'a bağlı bir oturum açın.
@@ -132,9 +125,8 @@ Genel istemci süreci
 
   - LeaseSet'i bir veya daha çok yönlendirici aracılığıyla yayımlayın.
 
-I2CP'ye farklar
-```````````````
-Bu konfigürasyonu oluşturmak ve yönetmek için, istemcinin [I2CP]_ tarafından şu anda sağlanandan daha fazla yeni işlevselliğe ihtiyacı vardır:
+### I2CP'ye farklar
+Bu konfigürasyonu oluşturmak ve yönetmek için, istemcinin [I2CP](/en/docs/specs/i2cp/) tarafından şu anda sağlanandan daha fazla yeni işlevselliğe ihtiyacı vardır:
 
 - Bir LeaseSet oluşturmadan, bir yönlendiriciye tüneller inşa etmesini söylemek.
 - Gelen havuzdaki mevcut tünellerin bir listesini almak.
@@ -146,9 +138,7 @@ Ayrıca, istemcinin tünellerini yönetirken önemli bir esneklik sağlayacak ol
 
 ### Protokol taslağı
 
-.. raw:: html
-
-  {% highlight %}
+```
          İstemci                           Yönlendirici
 
                     --------------------->  Oturum Oluştur
@@ -163,10 +153,8 @@ Ayrıca, istemcinin tünellerini yönetirken önemli bir esneklik sağlayacak ol
                     --------------------->  Paket Gönder
       Gönderme Durumu  <---------------------
   Paket Alındı  <---------------------
-{% endhighlight %}
 
-Mesajlar
-````````
+### Mesajlar
     Oturum Oluştur
         Verilen Destination için bir oturum oluşturun.
 
@@ -263,7 +251,7 @@ IBGWs'yi bir eşler setinden seçerek azaltılabilir veya ortadan kaldırılabil
 
 ## Uyumluluk
 
-Bu tasarım ağ ile tamamen geriye dönük uyumludur, çünkü [LeaseSet]_ formatında
+Bu tasarım ağ ile tamamen geriye dönük uyumludur, çünkü [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset) formatında
 herhangi bir değişiklik yoktur. Tüm yönlendiricilerin yeni protokolden haberdar
 olması gerekecektir, ancak bunlar aynı kuruluş tarafından kontrol edildiğinden bu
 bir endişe değildir.
@@ -280,7 +268,7 @@ tünele ihtiyaç duyan Destinations için iki olası ağ değişikliği vardır:
   MTU'su tarafından tanımlanan maksimum uygulanabilir LeaseSet boyutu taşımaların
   ve dolayısıyla yaklaşık 16kB olur.
 
-- [Prop123]_ uygulaması ile katmanlı LeaseSet'ler. Bu öneriyle
+- [Proposal 123](/en/proposals/123-new-netdb-entries/) uygulaması ile katmanlı LeaseSet'ler. Bu öneriyle
   birlikte, alt-LeaseSet'lere olan Destinations, birden fazla yönlendiriciye
   yayılabilir ve bu da, temiz ağ hizmeti için birden fazla IP adresi gibi
   davranır.
@@ -289,21 +277,3 @@ tünele ihtiyaç duyan Destinations için iki olası ağ değişikliği vardır:
 ## Teşekkürler
 
 Bu öneriye yol açan tartışmadan dolayı psi'ye teşekkür ederiz.
-
-
-## Kaynaklar
-
-.. [Destination]
-    {{ ctags_url('Destination') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Leases]
-    {{ ctags_url('Lease') }}
-
-.. [LeaseSet]
-    {{ ctags_url('LeaseSet') }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}

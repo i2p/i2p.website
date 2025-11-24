@@ -13,7 +13,7 @@ implementedin: "0.9.40"
 ## Lưu ý
 Triển khai và thử nghiệm mạng đang được tiến hành.
 Có thể thay đổi nhỏ.
-Xem [SPEC]_ để biết đặc tả chính thức.
+Xem [SPEC](/docs/specs/b32-for-encrypted-leasesets/) để biết đặc tả chính thức.
 
 
 ## Tổng quan
@@ -76,9 +76,7 @@ như là địa chỉ "b33", định dạng mới thực tế vẫn giữ phần
 
 Tạo một tên máy chủ có {56+ ký tự}.b32.i2p (35+ ký tự trong nhị phân) như sau:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 cờ (1 byte)
     bit 0: 0 đối với loại chữ ký một byte, 1 đối với loại chữ ký hai byte
     bit 1: 0 nếu không có bí mật, 1 nếu yêu cầu bí mật
@@ -95,13 +93,11 @@ cờ (1 byte)
   khóa công khai
     Số byte như được ngụ ý bởi loại chữ ký
 
-{% endhighlight %}
+```
 
 Xử lý hậu mã hóa và mã kiểm:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 Tạo dữ liệu nhị phân như trên.
   Xử lý mã kiểm như little-endian.
   Tính toán mã kiểm = CRC-32(data[3:end])
@@ -110,7 +106,7 @@ Tạo dữ liệu nhị phân như trên.
   data[2] ^= (byte) (mã kiểm >> 16)
 
   tên máy chủ = Base32.encode(data) || ".b32.i2p"
-{% endhighlight %}
+```
 
 Bất kỳ bit nào không sử dụng ở cuối b32 phải là 0.
 Không có bit không sử dụng nào cho một địa chỉ chuẩn 56 ký tự (35 byte).
@@ -118,9 +114,7 @@ Không có bit không sử dụng nào cho một địa chỉ chuẩn 56 ký t�
 
 ### Giải mã và Xác minh
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 Xóa ".b32.i2p" khỏi tên máy chủ
   data = Base32.decode(tên máy chủ)
   Tính toán mã kiểm = CRC-32(data[3:end])
@@ -133,7 +127,7 @@ Xóa ".b32.i2p" khỏi tên máy chủ
     loại chữ ký khóa công khai = data[1] ^ ((byte) (mã kiểm >> 8)) || data[2] ^ ((byte) (mã kiểm >> 16))
     loại chữ ký bị che dấu = data[3] || data[4]
   phân tích cú pháp phần còn lại dựa trên cờ để lấy khóa công khai
-{% endhighlight %}
+```
 
 
 ### Bit Bí mật và Khóa Riêng
@@ -150,7 +144,7 @@ Các bit bí mật và khóa riêng được sử dụng để chỉ ra cho khá
   tên máy chủ sẽ là {56 ký tự}.b32.i2p, giải mã thành 35 byte, tương tự Tor.
 - Kiểm tra checksum 2 byte của Tor có tỷ lệ âm sai là 1/64K. Với 3 byte, trừ đi một vài byte bị bỏ qua,
   chúng tôi dự kiến sẽ tiến gần 1 trên một triệu, do hầu hết các kết hợp cờ/loại chữ ký không hợp lệ.
-- Adler-32 là lựa chọn kém cho các đầu vào nhỏ, và để phát hiện thay đổi nhỏ [ADLER32]_.
+- Adler-32 là lựa chọn kém cho các đầu vào nhỏ, và để phát hiện thay đổi nhỏ .
   Sử dụng CRC-32 thay thế. CRC-32 nhanh và có sẵn rộng rãi.
 
 ## Lưu trữ tạm thời
@@ -178,15 +172,3 @@ Mặc dù nằm ngoài phạm vi của đề xuất này, các router và/hoặc
 
 Không có vấn đề tương thích ngược. Các địa chỉ b32 dài hơn sẽ không thể chuyển đổi
 thành băm 32-bytes trong phần mềm cũ.
-
-
-
-
-## Tài liệu tham khảo
-
-.. [ADLER32]
-    https://en.wikipedia.org/wiki/CRC-32
-    https://tools.ietf.org/html/rfc3309
-
-.. [SPEC]
-    {{ spec_url('b32encrypted') }}

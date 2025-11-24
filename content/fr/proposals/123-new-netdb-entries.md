@@ -125,26 +125,20 @@ La colonne de bout en bout fait référence à si oui ou non les requêtes/répo
 
 Types existants :
 
-==================================  ============= ============
             Données NetDB           Type Lookup   Type Store 
-==================================  ============= ============
 any                                       0           any     
 LS                                        1            1      
 RI                                        2            0      
 exploratory                               3           DSRM    
-==================================  ============= ============
 
 Nouveaux types :
 
-==================================  ============= ============ ================== ==================
             Données NetDB           Type Lookup   Type Store   Entête LS2 Std.?   Envoyé de bout en bout ?
-==================================  ============= ============ ================== ==================
 LS2                                       1            3             yes                 yes
 LS2 chiffré                               1            5             no                  no
 Meta LS2                                  1            7             yes                 no
 Service Record                           n/a           9             yes                 no
 Service List                              4           11             no                  no
-==================================  ============= ============ ================== ==================
 
 
 
@@ -791,9 +785,7 @@ Le secret alpha et les clés masquées sont calculés comme suit.
 
 GENERATE_ALPHA(destination, date, secret), pour toutes les parties:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // le secret est optionnel, sinon de longueur zéro
@@ -806,13 +798,11 @@ GENERATE_ALPHA(destination, date, secret), pour toutes les parties:
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // traiter seed comme une valeur de 64 octets en petit-boutisme
   alpha = seed mod L
-{% endhighlight %}
+```
 
 BLIND_PRIVKEY(), pour le propriétaire publiant le leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -824,20 +814,18 @@ BLIND_PRIVKEY(), pour le propriétaire publiant le leaseset:
   // Addition en utilisant l'arithmétique scalaire
   clé privée de signature masquée = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   clé publique de signature masquée = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 BLIND_PUBKEY(), pour les clients récupérant le leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = clé publique de signature de la destination
   // Addition en utilisant des éléments de groupe (points sur la courbe)
   clé publique masquée = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 Les deux méthodes de calcul de A' donnent le même résultat, comme requis.
 
@@ -879,21 +867,17 @@ lors de la signature des mêmes données avec la même clé.
 
 Signature :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 T = 80 octets aléatoires
   r = H*(T || publickey || message)
   // le reste est le même que dans Ed25519
-{% endhighlight %}
+```
 
 Vérification :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // même que dans Ed25519
-{% endhighlight %}
+```
 
 
 
@@ -905,26 +889,22 @@ déchiffré par quelqu'un qui ne connaît pas la clé publique de signature corr
 La destination complète n'est pas requise.
 Pour y parvenir, nous dérivons une accréditation à partir de la clé publique de signature :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 A = clé publique de signature de la destination
   stA = type de signature de A, 2 octets big endian (0x0007 ou 0x000b)
   stA' = type de signature de A', 2 octets big endian (0x000b)
   keydata = A || stA || stA'
   credential = H("credential", keydata)
-{% endhighlight %}
+```
 
 La chaîne de personnalisation garantit que l'accréditation ne se heurte pas à un hachage utilisé
 comme clé de Lookup DHT, tel que le hachage simple de Destination.
 
 Pour une clé masquée donnée, nous pouvons alors dériver une souscréditation :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 subcredential = H("subcredential", credential || blindedPublicKey)
-{% endhighlight %}
+```
 
 La souscréditation est incluse dans les processus de dérivation de clé ci-dessous, ce qui lie ces
 clés à la connaissance de la clé publique de signature de Destination.
@@ -932,65 +912,51 @@ clés à la connaissance de la clé publique de signature de Destination.
 #### Chiffrement de la couche 1
 Tout d'abord, l'entrée au processus de dérivation de clé est préparée :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerInput = subcredential || publishedTimestamp
-{% endhighlight %}
+```
 
 Ensuite, un sel aléatoire est généré :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 Ensuite, la clé utilisée pour chiffrer la couche 1 est dérivée :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 Enfin, le texte en clair de la couche 1 est chiffré et sérialisé :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerCiphertext = outerSalt || ENCRYPT(outerKey, outerIV, outerPlaintext)
-{% endhighlight %}
+```
 
 #### Déchiffrement de la couche 1
 Le sel est analysé à partir du texte chiffré de la couche 1 :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerSalt = outerCiphertext[0:31]
-{% endhighlight %}
+```
 
 Ensuite, la clé utilisée pour chiffrer la couche 1 est dérivée :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerInput = subcredential || publishedTimestamp
   keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 Enfin, le texte chiffré de la couche 1 est déchiffré :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerPlaintext = DECRYPT(outerKey, outerIV, outerCiphertext[32:end])
-{% endhighlight %}
+```
 
 #### Chiffrement de la couche 2
 Lorsque l'autorisation du client est activée, ``authCookie`` est calculé comme décrit ci-dessous.
@@ -998,16 +964,14 @@ Lorsque l'autorisation du client est désactivée, ``authCookie`` est le tableau
 
 Le chiffrement se poursuit de manière similaire à la couche 1 :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 innerInput = authCookie || subcredential || publishedTimestamp
   innerSalt = CSRNG(32)
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerCiphertext = innerSalt || ENCRYPT(innerKey, innerIV, innerPlaintext)
-{% endhighlight %}
+```
 
 #### Déchiffrement de la couche 2
 Lorsque l'autorisation du client est activée, ``authCookie`` est calculé comme décrit ci-dessous.
@@ -1015,16 +979,14 @@ Lorsque l'autorisation du client est désactivée, ``authCookie`` est le tableau
 
 Le déchiffrement se poursuit de manière similaire à la couche 1 :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 innerInput = authCookie || subcredential || publishedTimestamp
   innerSalt = innerCiphertext[0:31]
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerPlaintext = DECRYPT(innerKey, innerIV, innerCiphertext[32:end])
-{% endhighlight %}
+```
 
 
 Autorisation par client
@@ -1044,19 +1006,15 @@ Traitement côté serveur
 ^^^^^^^^^^^^^^^^^
 Le serveur génère un nouveau ``authCookie`` et une paire de clés DH éphémère :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = CSRNG(32)
   esk = GENERATE_PRIVATE()
   epk = DERIVE_PUBLIC(esk)
-{% endhighlight %}
+```
 
 Ensuite, pour chaque client autorisé, le serveur chiffre ``authCookie`` vers sa clé publique :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 sharedSecret = DH(esk, cpk_i)
   authInput = sharedSecret || cpk_i || subcredential || publishedTimestamp
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
@@ -1064,7 +1022,7 @@ sharedSecret = DH(esk, cpk_i)
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 Le serveur place chaque couple ``[clientID_i, clientCookie_i]`` dans la couche 1 de
 LS2 chiffré, avec ``epk``.
@@ -1074,26 +1032,22 @@ Traitement côté client
 Le client utilise sa clé privée pour dériver son identifiant client ``clientID_i`` attendu,
 la clé de chiffrement ``clientKey_i``, et le IV de chiffrement ``clientIV_i`` :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 sharedSecret = DH(csk_i, epk)
   authInput = sharedSecret || cpk_i || subcredential || publishedTimestamp
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 Ensuite, le client recherche dans les données d'autorisation de couche 1 une entrée contenant
 ``clientID_i``. Si une entrée correspondante existe, le client la déchiffre pour obtenir
 ``authCookie`` :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### Authentification client par clé prépartagée
 Chaque client génère une clé secrète de 32 octets ``psk_i`` et l'envoie au serveur.
@@ -1104,25 +1058,21 @@ Traitement côté serveur
 ^^^^^^^^^^^^^^^^^
 Le serveur génère un nouveau ``authCookie`` et sel :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = CSRNG(32)
   authSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 Ensuite, pour chaque client autorisé, le serveur chiffre ``authCookie`` à sa clé prépartagée :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authInput = psk_i || subcredential || publishedTimestamp
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 Le serveur place chaque couple ``[clientID_i, clientCookie_i]`` dans la couche 1 de
 LS2 chiffré, avec ``authSalt``.
@@ -1132,25 +1082,21 @@ Traitement côté client
 Le client utilise sa clé prépartagée pour dériver son identifiant client ``clientID_i`` attendu,
 la clé de chiffrement ``clientKey_i``, et le IV de chiffrement ``clientIV_i`` :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authInput = psk_i || subcredential || publishedTimestamp
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 Ensuite, le client recherche dans les données d'autorisation de la couche 1 une entrée contenant
 ``clientID_i``. Si une entrée correspondante existe, le client la déchiffre pour obtenir
 ``authCookie`` :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### Considérations de sécurité
 Les deux mécanismes d'autorisation de client ci-dessus fournissent une confidentialité pour l'appartenance du client.

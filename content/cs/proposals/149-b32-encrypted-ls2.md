@@ -13,7 +13,7 @@ implementedin: "0.9.40"
 ## Poznámka
 Probíhá nasazení a testování v síti.
 Předmět drobných revizí.
-Viz [SPEC]_ pro oficiální specifikaci.
+Viz [SPEC](/docs/specs/b32-for-encrypted-leasesets/) pro oficiální specifikaci.
 
 
 ## Přehled
@@ -76,9 +76,7 @@ mluvili jako o adrese "b33", skutečný nový formát si zachovává obvyklou p�
 
 Sestavení hostname o {56+ znakech}.b32.i2p (35+ znaků v binární podobě) následujícím způsobem:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 flag (1 bajt)
     bit 0: 0 pro jedno-bytové typy podpisu, 1 pro dvou-bytové typy podpisu
     bit 1: 0 pokud není tajemství, 1 pokud je tajemství vyžadováno
@@ -95,13 +93,11 @@ flag (1 bajt)
   veřejný klíč
     Počet bajtů, jak je určeno typem podpisu
 
-{% endhighlight %}
+```
 
 Post-processing a kontrolní součet:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 Sestavte binární data, jak je uvedeno výše.
   Zacházejte s kontrolním součtem jako s little-endian.
   Vypočítejte kontrolní součet = CRC-32(data[3:end])
@@ -110,7 +106,7 @@ Sestavte binární data, jak je uvedeno výše.
   data[2] ^= (byte) (kontrolní součet >> 16)
 
   hostname = Base32.encode(data) || ".b32.i2p"
-{% endhighlight %}
+```
 
 Jakékoli nepoužité bity na konci b32 musí být 0.
 Neexistují žádné nepoužité bity pro standardní 56 znakovou (35 bajtovou) adresu.
@@ -118,9 +114,7 @@ Neexistují žádné nepoužité bity pro standardní 56 znakovou (35 bajtovou) 
 
 ### Dekódování a Ověřování
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 odstraňte ".b32.i2p" z hostname
   data = Base32.decode(hostname)
   Vypočítejte kontrolní součet = CRC-32(data[3:end])
@@ -133,7 +127,7 @@ odstraňte ".b32.i2p" z hostname
     typ podpisu veřejného klíče = data[1] ^ ((byte) (kontrolní součet >> 8)) || data[2] ^ ((byte) (kontrolní součet >> 16))
     typ zastřeného podpisu = data[3] || data[4]
   analyzujte zbytek na základě vlajek pro získání veřejného klíče
-{% endhighlight %}
+```
 
 
 ### Tajné a Privátní Klíčové Bity
@@ -153,7 +147,7 @@ požadovaných dat, nebo odmítnout pokusy o připojení, pokud požadovaná dat
   hostname bude mít {56 znaků}.b32.i2p, dekódování na 35 bajtů, stejně jako Tor.
 - Tor dvou-bytový kontrolní součet má 1/64K negativní míru falešnosti. S 3 bajty, minus několik ignorovaných bajtů,
   naše se blíží 1 ku milionu, protože většina kombinací vlajek/typů podpisu je neplatná.
-- Adler-32 je špatná volba pro malý vstup, a pro detekci malých změn [ADLER32]_.
+- Adler-32 je špatná volba pro malý vstup, a pro detekci malých změn .
   Použijte místo toho CRC-32. CRC-32 je rychlé a široce dostupné.
 
 ## Uchovávání do mezipaměti
@@ -181,15 +175,3 @@ I když je to mimo rozsah tohoto návrhu, směrovače a/nebo klienti si musí pa
 
 Žádné problémy s kompatibilitou zpětně. Delší b32 adresy se nepovedou převést
 na 32-bytové hashe v starém softwaru.
-
-
-
-
-## Reference
-
-.. [ADLER32]
-    https://en.wikipedia.org/wiki/CRC-32
-    https://tools.ietf.org/html/rfc3309
-
-.. [SPEC]
-    {{ spec_url('b32encrypted') }}

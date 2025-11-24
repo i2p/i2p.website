@@ -39,14 +39,14 @@ A solução é adicionar duas novas "capacidades" ou capacidades ao Router Info 
 
 ### Introduzidores IPv6
 
-Nossas especificações [SSU]_ e [SSU-SPEC]_ contêm erros e inconsistências sobre se
+Nossas especificações [SSU](/en/docs/transport/ssu/) e [SSU-SPEC](/en/docs/spec/ssu/) contêm erros e inconsistências sobre se
 introduzidores IPv6 são suportados para introduções IPv4.
 De qualquer forma, isso nunca foi implementado no Java I2P nem no i2pd.
 Isso precisa ser corrigido.
 
 ### Introduções IPv6
 
-Nossas especificações [SSU]_ e [SSU-SPEC]_ deixam claro que
+Nossas especificações [SSU](/en/docs/transport/ssu/) e [SSU-SPEC](/en/docs/spec/ssu/) deixam claro que
 introduções IPv6 não são suportadas.
 Isso foi com a suposição de que o IPv6 nunca é protegido por firewall.
 Isso claramente não é verdade, e precisamos melhorar o suporte para roteadores IPv6 com firewall.
@@ -57,64 +57,56 @@ Legenda: ----- é IPv4, ====== é IPv6
 
 Apenas IPv4 atual:
 
-.. raw:: html
-
-  {% highlight %}
-        Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+```
+      Alice                         Bob                  Charlie
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 
 Introdução IPv4, introduzidor IPv6
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 Introdução IPv6, introduzidor IPv6
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 Introdução IPv6, introduzidor IPv4
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 
 ## Design
@@ -131,7 +123,7 @@ Há três mudanças a serem implementadas.
 
 Isso foi originalmente implementado sem uma proposta formal, mas é necessário para
 introduções IPv6, por isso incluímos aqui.
-Veja também [CAPS]_.
+Veja também [CAPS](http://zzz.i2p/topics/3050).
 
 Duas novas capacidades "4" e "6" são definidas.
 Essas novas capacidades serão adicionadas à propriedade "caps" no Endereço do Roteador, não nas capacidades do Router Info.
@@ -195,7 +187,7 @@ Também descrevemos isso como "parte 1" da proposta.
 
 #### Alterações na Especificação
 
-[SSU]_ atualmente diz (notas de IPv6):
+[SSU](/en/docs/transport/ssu/) atualmente diz (notas de IPv6):
 
 IPv6 é suportado desde a versão 0.9.8. Endereços de retransmissão publicados podem ser IPv4 ou IPv6, e a comunicação Alice-Bob pode ser via IPv4 ou IPv6.
 
@@ -206,7 +198,7 @@ Versões anteriores de roteadores Java publicaram erroneamente a capacidade 'C' 
 mesmo que eles não atuassem realmente como um introduzidor via IPv6.
 Portanto, roteadores devem confiar apenas na capacidade 'C' em um endereço IPv6 se a versão do roteador for 0.9.50 ou superior.
 
-[SSU-SPEC]_ atualmente diz (Solicitação de Retransmissão):
+[SSU-SPEC](/en/docs/spec/ssu/) atualmente diz (Solicitação de Retransmissão):
 
 O endereço IP só é incluído se for diferente do endereço de origem e porta do pacote.
 Na implementação atual, o comprimento do IP é sempre 0 e a porta é sempre 0,
@@ -231,11 +223,11 @@ Também descrevemos isso como "parte 2" da proposta.
 
 #### Alterações na Especificação
 
-[SSU]_ atualmente diz (notas de IPv6):
+[SSU](/en/docs/transport/ssu/) atualmente diz (notas de IPv6):
 
 A comunicação Bob-Charlie e Alice-Charlie é via IPv4 apenas.
 
-[SSU-SPEC]_ atualmente diz (Solicitação de Retransmissão):
+[SSU-SPEC](/en/docs/spec/ssu/) atualmente diz (Solicitação de Retransmissão):
 
 Não há planos para implementar retransmissão para IPv6.
 
@@ -243,7 +235,7 @@ Alterar para:
 
 Retransmissão para IPv6 é suportada a partir da versão 0.9.xx
 
-[SSU-SPEC]_ atualmente diz (Resposta de Retransmissão):
+[SSU-SPEC](/en/docs/spec/ssu/) atualmente diz (Resposta de Retransmissão):
 
 O endereço IP de Charlie deve ser IPv4, pois é o endereço que Alice enviará a solicitação de sessão após o furo.
 Não há planos para implementar retransmissão para IPv6.
@@ -254,7 +246,7 @@ O endereço IP de Charlie pode ser IPv4 ou, a partir da versão 0.9.xx, IPv6.
 Esse é o endereço para o qual Alice enviará a solicitação de sessão após o furo.
 Retransmissão para IPv6 é suportada a partir da versão 0.9.xx
 
-[SSU-SPEC]_ atualmente diz (Introdução à Retransmissão):
+[SSU-SPEC](/en/docs/spec/ssu/) atualmente diz (Introdução à Retransmissão):
 
 O endereço IP de Alice é sempre 4 bytes na implementação atual, porque Alice está tentando se conectar a Charlie via IPv4.
 Esta mensagem deve ser enviada através de uma conexão IPv4 estabelecida,
@@ -278,17 +270,3 @@ A partir da versão 0.9.xx, qualquer endereço SSU publicado com introduzidores 
 Todos os roteadores antigos devem ignorar a propriedade caps no NTCP2 e caracteres de capacidade desconhecidos na propriedade caps do SSU.
 
 Qualquer endereço SSU com introduzidores que não contenha uma capacidade "4" ou "6" é assumido como sendo para introdução IPv4.
-
-## Referências
-
-.. [CAPS]
-    http://zzz.i2p/topics/3050
-
-.. [NTCP2]
-    {{ spec_url('ntcp2') }}
-
-.. [SSU]
-    {{ site_url('docs/transport/ssu', True) }}
-
-.. [SSU-SPEC]
-    {{ spec_url('ssu') }}

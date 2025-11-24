@@ -109,26 +109,20 @@ Uçtan uca sütun, sorguların/yanıtların bir Sarımsak Mesajındaki bir Hedef
 
 Mevcut türler:
 
-==================================  ============= ============
             NetDB Verileri            Arama Türü   Saklama Türü 
-==================================  ============= ============
 herhangi bir                          0           herhangi bir     
 LS                                    1            1      
 RI                                    2            0      
 keşif                               3           DSRM    
-==================================  ============= ============
 
 Yeni türler:
 
-==================================  ============= ============ ================== ==================
             NetDB Verileri            Arama Türü   Saklama Türü   Std. LS2 Başlığı?   Uçtan uca gönderilen?
-==================================  ============= ============ ================== ==================
 LS2                                   1            3             evet                 evet
 Şifrelenmiş LS2                       1            5             hayır                hayır
 Meta LS2                              1            7             evet                 hayır
 Hizmet Kaydı                         n/a           9             evet                 hayır
 Hizmet Listesi                        4           11             hayır                hayır
-==================================  ============= ============ ================== ==================
 
 
 

@@ -41,7 +41,7 @@ bu yüzden IPv4 destekli ve IPv6 destekli olmadığını varsayıyoruz.
 
 ### IPv6 Tanıtıcıları
 
-Spesifikasyonlarımız [SSU]_ ve [SSU-SPEC]_,
+Spesifikasyonlarımız [SSU](/en/docs/transport/ssu/) ve [SSU-SPEC](/en/docs/spec/ssu/),
 IPv6 tanıtıcılarının IPv4 tanıtımları için desteklenip desteklenmediği konusunda hatalar ve tutarsızlıklar içermektedir.
 Her durumda, bu ne Java I2P'de ne de i2pd'de uygulanmamıştır.
 Bu düzeltilmelidir.
@@ -49,7 +49,7 @@ Bu düzeltilmelidir.
 
 ### IPv6 Tanıtımları
 
-Spesifikasyonlarımız [SSU]_ ve [SSU-SPEC]_, 
+Spesifikasyonlarımız [SSU](/en/docs/transport/ssu/) ve [SSU-SPEC](/en/docs/spec/ssu/), 
 IPv6 tanıtımlarının desteklenmediğini açıkça belirtmektedir.
 Bu varsayım altında, IPv6'nın asla güvenlik duvarı arkasında olmayacağı düşünüldü.
 Bu açıkça doğru değil ve güvenlik duvarı arkasındaki IPv6 yönlendiricileri için desteğimizi geliştirmemiz gerekiyor.
@@ -61,65 +61,57 @@ Efsane: ----- IPv4, ====== IPv6'dır
 
 Mevcut ipv4 yalnızca:
 
-.. raw:: html
-
-  {% highlight %}
-        Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+```
+      Alice                         Bob                  Charlie
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 
 IPv4 tanıtımı, IPv6 tanıtıcı
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 IPv6 tanıtımı, IPv6 tanıtıcı
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 IPv6 tanıtımı, IPv4 tanıtıcı
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 
 ## Tasarım
@@ -137,7 +129,7 @@ Uygulanacak üç değişiklik bulunmaktadır.
 ### 4/6 Yetenek
 
 Bu başlangıçta resmi bir teklif olmadan uygulandı, ancak IPv6 tanıtımları için gerekli olduğu için burada ekliyoruz.
-Ayrıca bkz. [CAPS]_.
+Ayrıca bkz. [CAPS](http://zzz.i2p/topics/3050).
 
 
 İki yeni yetenek "4" ve "6" tanımlanmıştır.
@@ -204,7 +196,7 @@ Bunu ayrıca önerinin "birinci kısmı" olarak da tanımladık.
 
 #### Spesifikasyon Değişiklikleri
 
-[SSU]_ şu anda (IPv6 notları) diyor ki:
+[SSU](/en/docs/transport/ssu/) şu anda (IPv6 notları) diyor ki:
 
 IPv6, sürüm 0.9.8 itibariyle desteklenmektedir. Yayınlanan aktarıcı adresleri IPv4 veya IPv6 olabilir ve Alice-Bob iletişimi IPv4 veya IPv6 üzerinden olabilir.
 
@@ -217,7 +209,7 @@ Bu nedenle, yönlendiriciler bir IPv6 adresinde 'C' yeteneğine yalnızca yönle
 
 
 
-[SSU-SPEC]_ şu anda (Aktarım İsteği) diyor ki:
+[SSU-SPEC](/en/docs/spec/ssu/) şu anda (Aktarım İsteği) diyor ki:
 
 IP adresi yalnızca paket kaynağı adresi ve portundan farklı gelmesi durumunda dahil edilir.
 Mevcut uygulamada, IP uzunluğu her zaman 0 ve port her zaman 0'dır,
@@ -245,11 +237,11 @@ Bunu ayrıca önerinin "ikinci kısmı" olarak da tanımladık.
 
 #### Spesifikasyon Değişiklikleri
 
-[SSU]_ şu anda (IPv6 notları) diyor ki:
+[SSU](/en/docs/transport/ssu/) şu anda (IPv6 notları) diyor ki:
 
 Bob-Charlie ve Alice-Charlie iletişimi yalnızca IPv4 üzerinden yapılır.
 
-[SSU-SPEC]_ şu anda (Aktarım İsteği) diyor ki:
+[SSU-SPEC](/en/docs/spec/ssu/) şu anda (Aktarım İsteği) diyor ki:
 
 IPv6 için aktarıcı uygulama planları yoktur.
 
@@ -257,7 +249,7 @@ IPv6 için aktarıcı uygulama planları yoktur.
 
 IPv6 için aktarıcı desteği 0.9.xx sürümünden itibaren desteklenmektedir
 
-[SSU-SPEC]_ şu anda (Relay Response) diyor ki:
+[SSU-SPEC](/en/docs/spec/ssu/) şu anda (Relay Response) diyor ki:
 
 Charlie's IP adresi IPv4 olmalıdır, çünkü bu, Alice'in Hole Punch'tan sonra SessionRequest'i göndereceği adrestir.
 IPv6 için aktarıcı planları yoktur.
@@ -268,7 +260,7 @@ Charlie's IP adresi IPv4 olabilir ya da 0.9.xx sürümünden itibaren IPv6 olabi
 Bu, Alice'in Hole Punch'tan sonra SessionRequest'i göndereceği adrestir.
 IPv6 için aktarıcı desteği 0.9.xx sürümünden itibaren desteklenmektedir
 
-[SSU-SPEC]_ şu anda (Relay Intro) diyor ki:
+[SSU-SPEC](/en/docs/spec/ssu/) şu anda (Relay Intro) diyor ki:
 
 Alice'in IP adresi her zaman 4 bayt uzunluğundadır çünkü Alice, Charlie'ye IPv4 üzerinden bağlanmaya çalışmaktadır.
 Bu mesaj, Bob'un Alice'e RelayResponse içinde dönecek Charlie'nin IPv4 adresini bilmesinin tek yolu olan 
@@ -293,19 +285,3 @@ Ayrıca ekleyin:
 Tüm eski yönlendiriciler, NTCP2'de caps özelliğini ve SSU caps özelliğindeki bilinmeyen yetenek karakterlerini görmezden gelmelidir.
 
 Tanıtıcılarla bir SSU adresi içeren ve "4" veya "6" capa sahip olmayan herhangi bir adresin, IPv4 tanıtımı için olduğu varsayılır.
-
-
-
-## Referanslar
-
-.. [CAPS]
-    http://zzz.i2p/topics/3050
-
-.. [NTCP2]
-    {{ spec_url('ntcp2') }}
-
-.. [SSU]
-    {{ site_url('docs/transport/ssu', True) }}
-
-.. [SSU-SPEC]
-    {{ spec_url('ssu') }}

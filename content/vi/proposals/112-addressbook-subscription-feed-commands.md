@@ -12,7 +12,7 @@ implementedin: "0.9.26"
 
 ## Ghi chú
 Triển khai mạng đã hoàn thành.
-Xem [SPEC]_ để biết đặc tả chính thức.
+Xem [SPEC](/docs/specs/subscription/) để biết đặc tả chính thức.
 
 ## Tổng quan
 
@@ -20,9 +20,11 @@ Xem [SPEC]_ để biết đặc tả chính thức.
 
 ## Động lực
 
-Hiện tại, các máy chủ đăng ký hosts.txt chỉ gửi dữ liệu ở định dạng hosts.txt, như sau::
+Hiện tại, các máy chủ đăng ký hosts.txt chỉ gửi dữ liệu ở định dạng hosts.txt, như sau:
 
+    ```text
     example.i2p=b64destination
+    ```
 
 Có một số vấn đề với điều này:
 
@@ -48,16 +50,19 @@ Có sự gia tăng rủi ro liên quan đến việc mất quyền kiểm soát 
 
 Đề xuất này thêm hai loại dòng mới:
 
-1. Các lệnh Thêm và Thay đổi::
+1. Các lệnh Thêm và Thay đổi:
 
+     ```text
      example.i2p=b64destination#!key1=val1#key2=val2 ...
+     ```
 
-2. Các lệnh Xóa::
+2. Các lệnh Xóa:
 
+     ```text
      #!key1=val1#key2=val2 ...
+     ```
 
-Thứ tự
-````````
+#### Thứ tự
 Một nguồn cấp dữ liệu không nhất thiết phải theo thứ tự hoặc hoàn chỉnh. Ví dụ, một lệnh thay đổi có thể nằm trên một dòng trước lệnh thêm, hoặc không có lệnh thêm.
 
 Các khóa có thể ở bất kỳ thứ tự nào. Các khóa trùng lặp không được phép. Tất cả các khóa và giá trị là phân biệt chữ hoa chữ thường.
@@ -99,8 +104,7 @@ Tất cả các lệnh ngoại trừ lệnh "Thêm" phải chứa một cặp kh
 
 Các khóa được liệt kê là bắt buộc. Tất cả các lệnh có thể chứa thêm các mục khóa/giá trị không được định nghĩa ở đây.
 
-Thêm tên máy
-````````````
+#### Thêm tên máy
 Đi kèm trước bởi example.i2p=b64dest
   CÓ, đây là tên máy và đích mới.
 action
@@ -108,12 +112,13 @@ action
 sig
   chữ ký
 
-Ví dụ::
+Ví dụ:
 
+  ```text
   example.i2p=b64dest#!sig=b64sig
+  ```
 
-Thay đổi tên máy
-```````````````
+#### Thay đổi tên máy
 Đi kèm trước bởi example.i2p=b64dest
   CÓ, đây là tên máy mới và đích cũ.
 action
@@ -123,12 +128,13 @@ oldname
 sig
   chữ ký
 
-Ví dụ::
+Ví dụ:
 
+  ```text
   example.i2p=b64dest#!action=changename#oldname=oldhostname#sig=b64sig
+  ```
 
-Thay đổi đích
-`````````````
+#### Thay đổi đích
 Đi kèm trước bởi example.i2p=b64dest
   CÓ, đây là tên máy cũ và đích mới.
 action
@@ -140,12 +146,13 @@ oldsig
 sig
   chữ ký
 
-Ví dụ::
+Ví dụ:
 
+  ```text
   example.i2p=b64dest#!action=changedest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Thêm bí danh tên máy
-``````````````````
+#### Thêm bí danh tên máy
 Đi kèm trước bởi example.i2p=b64dest
   CÓ, đây là tên máy mới (bí danh) và đích cũ.
 action
@@ -155,12 +162,13 @@ oldname
 sig
   chữ ký
 
-Ví dụ::
+Ví dụ:
 
+  ```text
   example.i2p=b64dest#!action=addname#oldname=oldhostname#sig=b64sig
+  ```
 
-Thêm bí danh đích
-`````````````````
+#### Thêm bí danh đích
 (Sử dụng để nâng cấp mã hóa)
 
 Đi kèm trước bởi example.i2p=b64dest
@@ -174,12 +182,13 @@ oldsig
 sig
   chữ ký sử dụng dest
 
-Ví dụ::
+Ví dụ:
 
+  ```text
   example.i2p=b64dest#!action=adddest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Thêm tên miền phụ
-```````````````
+#### Thêm tên miền phụ
 Đi kèm trước bởi subdomain.example.i2p=b64dest
   CÓ, đây là tên máy con miền phụ mới và đích.
 action
@@ -193,12 +202,13 @@ oldsig
 sig
   chữ ký sử dụng dest
 
-Ví dụ::
+Ví dụ:
 
+  ```text
   subdomain.example.i2p=b64dest#!action=addsubdomain#oldname=example.i2p#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Cập nhật siêu dữ liệu
-```````````````
+#### Cập nhật siêu dữ liệu
 Đi kèm trước bởi example.i2p=b64dest
   CÓ, đây là tên máy và đích cũ.
 action
@@ -208,12 +218,13 @@ sig
 
 (thêm bất kỳ khóa cập nhật nào tại đây)
 
-Ví dụ::
+Ví dụ:
 
+  ```text
   example.i2p=b64dest#!action=update#k1=v1#k2=v2#sig=b64sig
+  ```
 
-Xóa tên máy
-```````````
+#### Xóa tên máy
 Đi kèm trước bởi example.i2p=b64dest
   KHÔNG, những cái này được chỉ định trong tùy chọn
 action
@@ -225,12 +236,13 @@ dest
 sig
   chữ ký
 
-Ví dụ::
+Ví dụ:
 
+  ```text
   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+  ```
 
-Xóa tất cả với đích này
-```````````````````````
+#### Xóa tất cả với đích này
 Đi kèm trước bởi example.i2p=b64dest
   KHÔNG, những cái này được chỉ định trong tùy chọn
 action
@@ -242,9 +254,11 @@ dest
 sig
   chữ ký
 
-Ví dụ::
+Ví dụ:
 
+  ```text
   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+  ```
 
 ### Chữ ký
 
@@ -258,8 +272,7 @@ Trong một số lệnh thêm hoặc chỉnh sửa, có thể có một đích t
 
 oldsig luôn là chữ ký "bên trong". Ký và xác minh không có các khóa 'oldsig' hoặc 'sig'. sig luôn là chữ ký "bên ngoài". Ký và xác minh với khóa 'oldsig' có mặt, nhưng không có khóa 'sig'.
 
-Đầu vào cho các chữ ký
-``````````````````````
+#### Đầu vào cho các chữ ký
 Để tạo một chuỗi byte tạo hoặc xác thực chữ ký, tuần tự hóa như sau:
 
 - Loại bỏ khóa "sig"
@@ -283,8 +296,3 @@ Ghi chú
 Tất cả các dòng mới trong định dạng hosts.txt được triển khai sử dụng các ký tự bình luận dẫn đầu, vì vậy tất cả các phiên bản I2P cũ hơn sẽ diễn giải các lệnh mới là bình luận.
 
 Khi các bộ định tuyến I2P cập nhật theo đặc tả mới, họ sẽ không diễn giải lại các bình luận cũ, mà sẽ bắt đầu lắng nghe các lệnh mới trong các lần truy xuất sau của nguồn cung cấp đăng ký của họ. Vì vậy, điều quan trọng là các máy chủ tên cần tiếp tục các mục lệnh theo một cách nào đó, hoặc kích hoạt hỗ trợ etag để các bộ định tuyến có thể truy xuất tất cả các lệnh đã qua.
-
-## Tài liệu tham khảo
-
-.. [SPEC]
-    {{ spec_url('subscription') }}

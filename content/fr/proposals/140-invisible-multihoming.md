@@ -10,17 +10,17 @@ thread: "http://zzz.i2p/topics/2335"
 
 ## Vue d'ensemble
 
-Cette proposition présente un design pour un protocole permettant à un client I2P, un service ou un processus de répartition externe de gérer plusieurs routeurs hébergeant de manière transparente une seule [Destination]_.
+Cette proposition présente un design pour un protocole permettant à un client I2P, un service ou un processus de répartition externe de gérer plusieurs routeurs hébergeant de manière transparente une seule [Destination](http://localhost:63465/en/docs/specs/common-structures/#destination).
 
-La proposition ne spécifie actuellement pas une implémentation concrète. Elle pourrait être implémentée comme une extension de [I2CP]_ ou comme un nouveau protocole.
+La proposition ne spécifie actuellement pas une implémentation concrète. Elle pourrait être implémentée comme une extension de [I2CP](/en/docs/specs/i2cp/) ou comme un nouveau protocole.
 
 ## Motivation
 
-L'hébergement multiple consiste à utiliser plusieurs routeurs pour héberger la même destination. La manière actuelle de procéder avec I2P est de faire fonctionner la même destination sur chaque routeur de manière indépendante ; le routeur utilisé par les clients à un moment donné est le dernier à publier un [LeaseSet]_.
+L'hébergement multiple consiste à utiliser plusieurs routeurs pour héberger la même destination. La manière actuelle de procéder avec I2P est de faire fonctionner la même destination sur chaque routeur de manière indépendante ; le routeur utilisé par les clients à un moment donné est le dernier à publier un [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset).
 
 C'est un hack et cela ne fonctionne probablement pas pour des sites web de grande taille. Disons que nous avions 100 routeurs d'hébergement multiple chacun avec 16 tunnels. Cela ferait 1600 publications de LeaseSet toutes les 10 minutes, soit presque 3 par seconde. Les floodfills seraient submergés et des limitations interviendraient. Et cela avant même de mentionner le trafic de recherche.
 
-[Prop123]_ résout ce problème avec un meta-LeaseSet, qui liste les 100 vrais hachages de LeaseSet. Une recherche devient un processus en deux étapes : d'abord rechercher le meta-LeaseSet, puis l'un des LeaseSet nommés. C'est une bonne solution au problème du trafic de recherche, mais à elle seule elle crée une fuite de confidentialité importante : il est possible de déterminer quels routeurs d'hébergement multiple sont en ligne en surveillant le meta-LeaseSet publié, car chaque vrai LeaseSet correspond à un seul routeur.
+[Proposal 123](/en/proposals/123-new-netdb-entries/) résout ce problème avec un meta-LeaseSet, qui liste les 100 vrais hachages de LeaseSet. Une recherche devient un processus en deux étapes : d'abord rechercher le meta-LeaseSet, puis l'un des LeaseSet nommés. C'est une bonne solution au problème du trafic de recherche, mais à elle seule elle crée une fuite de confidentialité importante : il est possible de déterminer quels routeurs d'hébergement multiple sont en ligne en surveillant le meta-LeaseSet publié, car chaque vrai LeaseSet correspond à un seul routeur.
 
 Nous avons besoin d'un moyen pour qu'un client ou service I2P puisse répartir une seule destination sur plusieurs routeurs, de manière indiscernable de l'utilisation d'un seul routeur (du point de vue du LeaseSet lui-même).
 
@@ -67,10 +67,8 @@ Imaginez la configuration souhaitée suivante :
 - Tous les douze tunnels devraient être publiés dans un seul LeaseSet.
 
 Single-client
-`````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Tunnel 1]===\
                  |-{ [Tunnel 2]====[Router 1]-----
                  |-{ [Tunnel 3]===/               \
@@ -86,13 +84,10 @@ Single-client
                  |-{ [Tunnel 10]==\               /
                  |-{ [Tunnel 11]===[Router 4]-----
                   -{ [Tunnel 12]==/
-{% endhighlight %}
 
 Multi-client
-````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Tunnel 1]===\
                  |-{ [Tunnel 2]====[Router 1]---------[Frontend 1]
                  |-{ [Tunnel 3]===/          \                    \
@@ -108,10 +103,8 @@ Multi-client
                  |-{ [Tunnel 10]==\          /                    /
                  |-{ [Tunnel 11]===[Router 4]---------[Frontend 4]
                   -{ [Tunnel 12]==/
-{% endhighlight %}
 
-Processus général client
-````````````````````````
+### Processus général client
 - Charger ou générer une destination.
 
 - Ouvrir une session avec chaque routeur, liée à la destination.
@@ -131,10 +124,9 @@ de la survie des tunnels) :
 
   - Publier le LeaseSet par l'intermédiaire d'un ou plusieurs des routeurs.
 
-Différences avec I2CP
-`````````````````````
+### Différences avec I2CP
 Pour créer et gérer cette configuration, le client a besoin des nouvelles fonctionnalités suivantes 
-au-delà de ce qui est actuellement fourni par [I2CP]_ :
+au-delà de ce qui est actuellement fourni par [I2CP](/en/docs/specs/i2cp/) :
 
 - Dire à un routeur de construire des tunnels, sans créer de LeaseSet pour eux.
 - Obtenir une liste des tunnels actuels dans le pool entrant.
@@ -147,9 +139,7 @@ dont le client gère ses tunnels :
 
 ### Plan du protocole
 
-.. raw:: html
-
-  {% highlight %}
+```
          Client                           Router
 
                     --------------------->  Créer une session
@@ -164,10 +154,8 @@ dont le client gère ses tunnels :
                     --------------------->  Envoyer un paquet
       État de l'envoi  <---------------------
   Paquet reçu  <---------------------
-{% endhighlight %}
 
-Messages
-````````
+### Messages
     Créer une session
         Créer une session pour la destination donnée.
 
@@ -246,33 +234,16 @@ Comme le client a un contrôle total sur les pairs qu'il sélectionne, cette fui
 
 ## Compatibilité
 
-Ce design est complètement compatible à rebours avec le réseau, car il n'y a aucun changement dans le format du [LeaseSet]_. Tous les routeurs devraient être conscients du nouveau protocole, mais ce n'est pas un problème car ils seraient tous contrôlés par la même entité.
+Ce design est complètement compatible à rebours avec le réseau, car il n'y a aucun changement dans le format du [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset). Tous les routeurs devraient être conscients du nouveau protocole, mais ce n'est pas un problème car ils seraient tous contrôlés par la même entité.
 
 ## Notes de performance et de scalabilité
 
-La limite supérieure de 16 [Leases]_ par LeaseSet n'est pas modifiée par cette proposition. Pour les destinations qui nécessitent plus de tunnels que cela, il y a deux modifications possibles du réseau :
+La limite supérieure de 16 [Lease](http://localhost:63465/en/docs/specs/common-structures/#lease) par LeaseSet n'est pas modifiée par cette proposition. Pour les destinations qui nécessitent plus de tunnels que cela, il y a deux modifications possibles du réseau :
 
 - Augmenter la limite supérieure sur la taille des LeaseSets. Cela serait le plus simple à implémenter (bien que cela nécessiterait encore un support réseau répandu avant d'être largement utilisé), mais pourrait entraîner des recherches plus lentes en raison de la taille plus importante des paquets. La taille maximale réalisable d'un LeaseSet est définie par le MTU des transports sous-jacents, et est donc d'environ 16 kB.
 
-- Mettre en œuvre [Prop123]_ pour les LeaseSets hiérarchisés. En combinaison avec cette proposition, les destinations pour les sous-LeaseSets pourraient être réparties sur plusieurs routeurs, agissant effectivement comme plusieurs adresses IP pour un service en clair.
+- Mettre en œuvre [Proposal 123](/en/proposals/123-new-netdb-entries/) pour les LeaseSets hiérarchisés. En combinaison avec cette proposition, les destinations pour les sous-LeaseSets pourraient être réparties sur plusieurs routeurs, agissant effectivement comme plusieurs adresses IP pour un service en clair.
 
 ## Remerciements
 
 Merci à psi pour la discussion qui a conduit à cette proposition.
-
-## Références
-
-.. [Destination]
-    {{ ctags_url('Destination') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Leases]
-    {{ ctags_url('Lease') }}
-
-.. [LeaseSet]
-    {{ ctags_url('LeaseSet') }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}

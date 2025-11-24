@@ -12,7 +12,7 @@ implementedin: "0.9.26"
 
 ## Poznámka
 Nasazení v síti dokončeno.
-Viz [SPEC]_ pro oficiální specifikaci.
+Viz [SPEC](/docs/specs/subscription/) pro oficiální specifikaci.
 
 ## Přehled
 
@@ -73,8 +73,7 @@ Tento návrh přidává dva nové typy řádků:
 
      #!key1=val1#key2=val2 ...
 
-Pořadí
-````````
+#### Pořadí
 Kanál nemusí být nutně v pořadí nebo kompletní. Například příkaz změny
 může být na řádku před příkazem přidání, nebo bez příkazu přidání.
 
@@ -121,8 +120,7 @@ hodnoty jsou zahrnuty v části klíč/hodnota.
 Uvedené klíče jsou povinné. Všechny příkazy mohou obsahovat další klíč/hodnota položky
 nejsou zde definovány.
 
-Přidat hostname
-````````````
+#### Přidat hostname
 Předcházena example.i2p=b64dest
   ANO, to je nové jméno hostitele a cílové místo.
 action
@@ -130,12 +128,13 @@ action
 sig
   podpis
 
-Příklad::
+Příklad:
 
+  ```text
   example.i2p=b64dest#!sig=b64sig
+  ```
 
-Změna hostname
-```````````````
+#### Změna hostname
 Předcházena example.i2p=b64dest
   ANO, to je nové jméno hostitele a staré cílové místo.
 action
@@ -145,12 +144,13 @@ oldname
 sig
   podpis
 
-Příklad::
+Příklad:
 
+  ```text
   example.i2p=b64dest#!action=changename#oldname=oldhostname#sig=b64sig
+  ```
 
-Změna cílového místa
-``````````````````
+#### Změna cílového místa
 Předcházena example.i2p=b64dest
   ANO, to je staré jméno hostitele a nové cílové místo.
 action
@@ -162,12 +162,13 @@ oldsig
 sig
   podpis
 
-Příklad::
+Příklad:
 
+  ```text
   example.i2p=b64dest#!action=changedest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Přidat alias hostname
-``````````````````
+#### Přidat alias hostname
 Předcházena example.i2p=b64dest
   ANO, to je nové (alias) jméno hostitele a staré cílové místo.
 action
@@ -177,12 +178,13 @@ oldname
 sig
   podpis
 
-Příklad::
+Příklad:
 
+  ```text
   example.i2p=b64dest#!action=addname#oldname=oldhostname#sig=b64sig
+  ```
 
-Přidat alias cílového místa
-`````````````````````
+#### Přidat alias cílového místa
 (Používá se pro upgrade krypta)
 
 Předcházena example.i2p=b64dest
@@ -196,12 +198,13 @@ oldsig
 sig
   podpis využívající dest
 
-Příklad::
+Příklad:
 
+  ```text
   example.i2p=b64dest#!action=adddest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Přidat subdoménu
-`````````````
+#### Přidat subdoménu
 Předcházena subdomain.example.i2p=b64dest
   ANO, to je nové jméno hostitele subdomény a cílové místo.
 action
@@ -215,12 +218,13 @@ oldsig
 sig
   podpis využívající dest
 
-Příklad::
+Příklad:
 
+  ```text
   subdomain.example.i2p=b64dest#!action=addsubdomain#oldname=example.i2p#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Aktualizovat metadata
-```````````````
+#### Aktualizovat metadata
 Předcházena example.i2p=b64dest
   ANO, to je staré jméno hostitele a cílové místo.
 action
@@ -230,12 +234,13 @@ sig
 
 (přidat jakékoliv aktualizované klíče zde)
 
-Příklad::
+Příklad:
 
+  ```text
   example.i2p=b64dest#!action=update#k1=v1#k2=v2#sig=b64sig
+  ```
 
-Odstranit hostname
-```````````````
+#### Odstranit hostname
 Předcházena example.i2p=b64dest
   NE, jsou specifikována v možnostech
 action
@@ -247,12 +252,13 @@ dest
 sig
   podpis
 
-Příklad::
+Příklad:
 
+  ```text
   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+  ```
 
-Odstranit vše s tímto cílovým místem
-````````````````````````````````
+#### Odstranit vše s tímto cílovým místem
 Předcházena example.i2p=b64dest
   NE, jsou specifikována v možnostech
 action
@@ -264,9 +270,11 @@ dest
 sig
   podpis
 
-Příklad::
+Příklad:
 
+  ```text
   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+  ```
 
 ### Podpisy
 
@@ -290,8 +298,7 @@ oldsig je vždy "vnitřní" podpis. Podepište a ověřte bez přítomnosti klí
 'sig'. sig je vždy "vnější" podpis. Podepište a ověřte s klíčem 'oldsig'
 přítomným, ale nikoli klíčem 'sig'.
 
-Vstupy pro podpisy
-```````````````````
+#### Vstupy pro podpisy
 Pro generování byte streamu k vytvoření nebo ověření podpisu serializujte
 následujícím způsobem:
 
@@ -323,8 +330,3 @@ interpretovat staré komentáře, ale začnou poslouchat nové příkazy v
 následných načítáních jejich odběrových kanálů. Proto je důležité, aby
 jmenné servery uchovaly příkazy nějakým způsobem, nebo umožnily podporu
 etag, aby routery mohly načíst všechny minulé příkazy.
-
-## Reference
-
-.. [SPEC]
-    {{ spec_url('subscription') }}

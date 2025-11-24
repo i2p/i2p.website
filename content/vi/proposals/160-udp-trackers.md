@@ -12,7 +12,7 @@ target: "0.9.67"
 ## Trạng thái
 
 Đã được phê duyệt trong cuộc họp ngày 24-06-2025. 
-Quy cách tại [UDP]_. 
+Quy cách tại [UDP specification](/en/docs/spec/udp-bittorrent-announces/). 
 Đã được triển khai trong zzzot 0.20.0-beta2. 
 Đã được triển khai trong i2psnark tính đến API 0.9.67. 
 Kiểm tra tài liệu của các triển khai khác để biết trạng thái.
@@ -25,12 +25,12 @@ Kiểm tra tài liệu của các triển khai khác để biết trạng thái.
 
 ### Lịch sử thay đổi
 
-Một đề xuất sơ bộ về các tracker UDP trong I2P đã được đăng trên trang quy cách bittorrent của chúng tôi [SPEC]_
+Một đề xuất sơ bộ về các tracker UDP trong I2P đã được đăng trên trang quy cách bittorrent của chúng tôi [/en/docs/applications/bittorrent/](/en/docs/applications/bittorrent/)
 vào tháng 5 năm 2014; điều này tiền đề quy trình đề xuất chính thức của chúng tôi, và nó chưa bao giờ được triển khai.
 Đề xuất này được tạo ra vào đầu năm 2022 và đơn giản hóa phiên bản 2014.
 
 Do đề xuất này phụ thuộc vào datagram có thể trả lời, nên nó được tạm hoãn khi chúng tôi 
-bắt đầu làm việc trên đề xuất Datagram2 [Prop163]_ vào đầu năm 2023. 
+bắt đầu làm việc trên đề xuất Datagram2 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/) vào đầu năm 2023. 
 Đề xuất đó đã được phê duyệt vào tháng 4 năm 2025.
 
 Phiên bản 2023 của đề xuất này đã chỉ định hai chế độ, "tương thích" và "nhanh".
@@ -38,14 +38,14 @@ Phân tích thêm đã chỉ ra rằng chế độ nhanh sẽ không an toàn v�
 không hiệu quả với các khách hàng có số lượng torrents lớn.
 Hơn nữa, BiglyBT đã chỉ ra sự ưu tiên cho chế độ tương thích.
 Chế độ này sẽ dễ triển khai hơn cho bất kỳ tracker hoặc khách hàng nào hỗ trợ 
-chuẩn [BEP15]_.
+chuẩn [BEP 15](http://www.bittorrent.org/beps/bep_0015.html).
 
 Mặc dù chế độ tương thích phức tạp hơn khi triển khai từ đầu 
 về phía khách hàng, chúng tôi đã có mã sơ bộ cho nó bắt đầu từ năm 2023.
 
 Vì vậy, phiên bản hiện tại này được đơn giản hóa hơn nữa để loại bỏ chế độ nhanh,
 và loại bỏ thuật ngữ "tương thích". Phiên bản hiện tại chuyển sang
-định dạng Datagram2 mới, và thêm các tham chiếu đến giao thức mở rộng thông báo UDP [BEP41]_.
+định dạng Datagram2 mới, và thêm các tham chiếu đến giao thức mở rộng thông báo UDP [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 
 Cũng vậy, một phần đời sống ID kết nối được thêm vào phản hồi kết nối,
 để mở rộng các lợi ích hiệu quả của giao thức này.
@@ -56,7 +56,7 @@ Cũng vậy, một phần đời sống ID kết nối được thêm vào phả
 Khi số lượng người dùng nói chung và số lượng người dùng bittorrent cụ thể tiếp tục tăng,
 chúng tôi cần làm cho các tracker và thông báo thông minh hơn để tránh quá tải cho các tracker.
 
-Bittorrent đã đề xuất các tracker UDP trong BEP 15 [BEP15]_ vào năm 2008, và phần lớn
+Bittorrent đã đề xuất các tracker UDP trong BEP 15 [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) vào năm 2008, và phần lớn
 các tracker trên clearnet hiện giờ chỉ có UDP.
 
 Thật khó để tính toán phạm vi băng thông tiết kiệm giữa giao thức datagram và giao thức streaming.
@@ -68,7 +68,7 @@ khối lượng dữ liệu đi ra ngoài của tracker.
 Ngoài ra, có thể có những giảm bộ nhớ cụ thể trong triển khai,
 vì datagram yêu cầu ít trạng thái trong bộ nhớ hơn so với kết nối streaming.
 
-Mã hóa và chữ ký hậu lượng tử như dự tính trong [Prop169]_ sẽ tăng đáng kể
+Mã hóa và chữ ký hậu lượng tử như dự tính trong [/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/) sẽ tăng đáng kể
 overhead của các cấu trúc được mã hóa và ký, bao gồm các điểm đến,
 leaseset, streaming SYN và SYN ACK. Quan trọng là giảm thiểu điều này
 trước khi mã hóa PQ được áp dụng trong I2P.
@@ -77,20 +77,18 @@ trước khi mã hóa PQ được áp dụng trong I2P.
 ## Thiết kế
 
 Đề xuất này sử dụng datagram có thể trả lời Datagram2, datagram có thể trả lời Datagram3, và datagram thô,
-như định nghĩa trong [DATAGRAMS]_.
+như định nghĩa trong [/en/docs/spec/datagrams/](/en/docs/spec/datagrams/).
 Datagram2 và Datagram3 là các biến thể mới của datagram có thể trả lời,
-được định nghĩa trong Đề xuất 163 [Prop163]_.
+được định nghĩa trong Đề xuất 163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/).
 Datagram2 thêm khả năng chống lại phát lại và hỗ trợ chữ ký ngoại tuyến.
 Datagram3 nhỏ hơn định dạng datagram cũ, nhưng không có xác thực.
 
 
 ### BEP 15
 
-Để tham khảo, luồng tin nhắn được định nghĩa trong [BEP15]_ như sau:
+Để tham khảo, luồng tin nhắn được định nghĩa trong [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) như sau:
 
-.. raw:: html
-
-  {% highlight %}
+```
 Client                        Tracker
     Connect Req. ------------->
       <-------------- Connect Resp.
@@ -98,7 +96,7 @@ Client                        Tracker
       <-------------- Announce Resp.
     Announce Req. ------------->
       <-------------- Announce Resp.
-{% endhighlight %}
+```
 
 Giai đoạn kết nối là cần thiết để ngăn chặn giả mạo địa chỉ IP.
 Tracker trả về một ID kết nối mà khách hàng sử dụng trong các thông báo tiếp theo.
@@ -108,9 +106,7 @@ I2P sẽ sử dụng cùng luồng tin nhắn như BEP 15,
 để dễ dàng áp dụng trong các mã cơ sở khách hàng có khả năng UDP hiện tại:
 để tăng hiệu quả, và vì các lý do bảo mật được thảo luận dưới đây:
 
-.. raw:: html
-
-  {% highlight %}
+```
 Client                        Tracker
     Connect Req. ------------->       (Repliable Datagram2)
       <-------------- Connect Resp.   (Raw)
@@ -119,7 +115,7 @@ Client                        Tracker
     Announce Req. ------------->      (Repliable Datagram3)
       <-------------- Announce Resp.  (Raw)
              ...
-{% endhighlight %}
+```
 
 Điều này có thể cung cấp tiết kiệm băng thông lớn hơn
 so với thông báo streaming (TCP).
@@ -170,14 +166,14 @@ Clients
 ```````
 
 Các khách hàng torrent bên ngoài dựa trên SAM như qbittorrent và các khách hàng dựa trên libtorrent khác
-sẽ yêu cầu SAM v3.3 [SAMv3]_ mà không được hỗ trợ bởi i2pd.
+sẽ yêu cầu SAM v3.3 [/en/docs/api/samv3/](/en/docs/api/samv3/) mà không được hỗ trợ bởi i2pd.
 Đây cũng là yêu cầu cho hỗ trợ DHT, và đủ phức tạp để không khách hàng torrent SAM nào đã thực hiện nó.
 Không mong đợi bất kỳ triển khai nào dựa trên SAM của đề xuất này sớm.
 
 
 ### Thời hạn kết nối
 
-[BEP15]_ chỉ định rằng ID kết nối hết hạn trong một phút tại khách hàng, và trong hai phút tại tracker.
+[BEP 15](http://www.bittorrent.org/beps/bep_0015.html) chỉ định rằng ID kết nối hết hạn trong một phút tại khách hàng, và trong hai phút tại tracker.
 Nó không điều chỉnh được.
 Điều này hạn chế các lợi thế hiệu quả có thể, trừ khi
 các khách hàng ghép thông báo để thực hiện tất cả chúng trong cửa sổ một phút.
@@ -193,7 +189,7 @@ ID kết nối thêm một phút nữa.
 
 ### Tương thích với BEP 15
 
-Thiết kế này duy trì sự tương thích với [BEP15]_ càng nhiều càng tốt
+Thiết kế này duy trì sự tương thích với [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) càng nhiều càng tốt
 để giảm thiểu thay đổi yêu cầu trong các khách hàng và trackers hiện tại.
 
 Thay đổi duy nhất được yêu cầu là định dạng thông tin peer trong phản hồi thông báo.
@@ -246,16 +242,16 @@ Phản hồi sử dụng "cổng đến" I2CP từ yêu cầu.
 
 ### URL thông báo
 
-Định dạng URL thông báo không được chỉ định trong [BEP15]_,
+Định dạng URL thông báo không được chỉ định trong [BEP 15](http://www.bittorrent.org/beps/bep_0015.html),
 nhưng như trên clearnet, URL thông báo UDP là dưới dạng "udp://host:port/path".
 Đường dẫn bị bỏ qua và có thể để trống, nhưng thường là "/announce" trên clearnet.
 Phần ":port" nên luôn có mặt, tuy nhiên,
 nếu phần ":port" bị bỏ qua, sử dụng cổng mặc định I2CP là 6969,
 vì đó là cổng phổ biến trên clearnet.
 Cũng có thể có các tham số cgi &a=b&c=d đính kèm,
-được có thể xử lý và cung cấp trong yêu cầu thông báo, xem [BEP41]_.
+được có thể xử lý và cung cấp trong yêu cầu thông báo, xem [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 Nếu không có tham số hay đường dẫn, có thể bỏ qua dấu gạch chéo phía sau,
-như được ngụ ý trong [BEP41]_.
+như được ngụ ý trong [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 
 
 ### Định dạng Datagram
@@ -270,17 +266,15 @@ Yêu cầu Kết nối
 ```````````````
 
 Khách hàng đến tracker.
-16 byte. Phải là Datagram2 có thể trả lời. Tương tự như trong [BEP15]_. Không có thay đổi.
+16 byte. Phải là Datagram2 có thể trả lời. Tương tự như trong [BEP 15](http://www.bittorrent.org/beps/bep_0015.html). Không có thay đổi.
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Name            Value
   0       64-bit integer  protocol_id     0x41727101980 // hằng số phép màu
   8       32-bit integer  action          0 // kết nối
   12      32-bit integer  transaction_id
-{% endhighlight %}
+```
 
 
 
@@ -288,18 +282,16 @@ Phản hồi Kết nối
 ````````````````
 
 Tracker đến khách hàng.
-16 hoặc 18 byte. Phải là thô. Tương tự như trong [BEP15]_ ngoại trừ được ghi chú dưới đây.
+16 hoặc 18 byte. Phải là thô. Tương tự như trong [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) ngoại trừ được ghi chú dưới đây.
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Name            Giá trị
   0       32-bit integer  action          0 // kết nối
   4       32-bit integer  transaction_id
   8       64-bit integer  connection_id
   16      16-bit integer  lifetime        tùy chọn // Thay đổi từ BEP 15
-{% endhighlight %}
+```
 
 Phản hồi PHẢI được gửi đến "to port" của I2CP đã nhận được như là "from port" của yêu cầu.
 
@@ -314,15 +306,13 @@ Yêu cầu Thông báo
 ````````````````
 
 Khách hàng đến tracker.
-98 byte tối thiểu. Phải là Datagram3 có thể trả lời. Tương tự như trong [BEP15]_ ngoại trừ được ghi chú dưới đây.
+98 byte tối thiểu. Phải là Datagram3 có thể trả lời. Tương tự như trong [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) ngoại trừ được ghi chú dưới đây.
 
 Connection_id là như nhận được trong phản hồi kết nối.
 
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Name            Giá trị
   0       64-bit integer  connection_id
   8       32-bit integer  action          1     // thông báo
@@ -338,13 +328,13 @@ Offset  Size            Name            Giá trị
   92      32-bit integer  num_want        -1    // mặc định
   96      16-bit integer  port
   98      varies          options     tùy chọn  // Như được chỉ định trong BEP 41
-{% endhighlight %}
+```
 
-Thay đổi từ [BEP15]_:
+Thay đổi từ [BEP 15](http://www.bittorrent.org/beps/bep_0015.html):
 
 - key bị bỏ qua
 - port có lẽ bị bỏ qua
-- Phần cài đặt tùy chọn, nếu có, được định nghĩa trong [BEP41]_
+- Phần cài đặt tùy chọn, nếu có, được định nghĩa trong [BEP 41](http://www.bittorrent.org/beps/bep_0041.html)
 
 Phản hồi PHẢI được gửi đến "to port" của I2CP đã nhận được như là "from port" của yêu cầu.
 Không sử dụng cổng của yêu cầu thông báo.
@@ -355,13 +345,11 @@ Phản hồi Thông báo
 `````````````````
 
 Tracker đến khách hàng.
-20 byte tối thiểu. Phải là thô. Tương tự như trong [BEP15]_ ngoại trừ được ghi chú dưới đây.
+20 byte tối thiểu. Phải là thô. Tương tự như trong [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) ngoại trừ được ghi chú dưới đây.
 
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Name            Giá trị
   0           32-bit integer  action          1 // thông báo
   4           32-bit integer  transaction_id
@@ -370,9 +358,9 @@ Offset  Size            Name            Giá trị
   16          32-bit integer  seeders
   20   32 * n 32-byte hash    binary hashes     // Thay đổi từ BEP 15
   ...                                           // Thay đổi từ BEP 15
-{% endhighlight %}
+```
 
-Thay đổi từ [BEP15]_:
+Thay đổi từ [BEP 15](http://www.bittorrent.org/beps/bep_0015.html):
 
 - Thay vì 6-byte IPv4+port hoặc 18-byte IPv6+port, chúng tôi trả về
   một bội số của các "phản hồi ngắn" 32-byte với các hash peer nhị phân SHA-256.
@@ -403,7 +391,7 @@ dù hash đó đã bị cấm bởi các router Java.
 Scrape
 ``````
 
-Yêu cầu/phản hồi scrape từ [BEP15]_ không được yêu cầu bởi đề xuất này,
+Yêu cầu/phản hồi scrape từ [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) không được yêu cầu bởi đề xuất này,
 nhưng có thể được thực hiện nếu cần, không cần thay đổi.
 Khách hàng phải chiếm lấy một ID kết nối trước tiên.
 Yêu cầu scrape luôn là Datagram3 có thể trả lời.
@@ -416,18 +404,16 @@ Phản hồi Lỗi
 
 Tracker đến khách hàng.
 8 byte tối thiểu (nếu thông điệp trống).
-Phải là thô. Tương tự như trong [BEP15]_. Không có thay đổi.
+Phải là thô. Tương tự như trong [BEP 15](http://www.bittorrent.org/beps/bep_0015.html). Không có thay đổi.
 
-.. raw:: html
-
-  {% highlight %}
+```
 
 Offset  Size            Name            Value
   0       32-bit integer  action          3 // error
   4       32-bit integer  transaction_id
   8       string          message
 
-{% endhighlight %}
+```
 
 
 
@@ -436,14 +422,14 @@ Offset  Size            Name            Value
 Các bit mở rộng hoặc trường phiên bản không được bao gồm.
 Khách hàng và trackers không nên giả định các packets sẽ có kích thước cố định.
 Bằng cách này, các trường bổ sung có thể được thêm vào mà không phá vỡ tính tương thích.
-Định dạng các phần mở rộng được định nghĩa trong [BEP41]_ được khuyến khích nếu cần thiết.
+Định dạng các phần mở rộng được định nghĩa trong [BEP 41](http://www.bittorrent.org/beps/bep_0041.html) được khuyến khích nếu cần thiết.
 
 Phản hồi kết nối được sửa đổi để thêm một trường thời gian sống ID kết nối tùy chọn.
 
 Nếu hỗ trợ các điểm đến huyền bí là cần thiết, chúng ta có thể thêm
 địa chỉ mù 35-byte vào cuối yêu cầu thông báo,
 hoặc yêu cầu các hashes mù trong phản hồi,
-sử dụng định dạng [BEP41]_ (tham số TBD).
+sử dụng định dạng [BEP 41](http://www.bittorrent.org/beps/bep_0041.html) (tham số TBD).
 Tập hợp các địa chỉ peer mù 35-byte có thể được thêm vào cuối phản hồi thông báo,
 sau một hash 32-byte toàn số không.
 
@@ -523,28 +509,3 @@ Các triển khai khác sẽ theo sau khi các kiểm tra và xác minh hoàn t�
 
 
 
-## Tham khảo
-
-.. [BEP15]
-    http://www.bittorrent.org/beps/bep_0015.html
-
-.. [BEP41]
-    http://www.bittorrent.org/beps/bep_0041.html
-
-.. [DATAGRAMS]
-    {{ spec_url('datagrams') }}
-
-.. [Prop163]
-    {{ proposal_url('163') }}
-
-.. [Prop169]
-    {{ proposal_url('169') }}
-
-.. [SAMv3]
-    {{ site_url('docs/api/samv3') }}
-
-.. [SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [UDP]
-    {{ spec_url('udp-announces') }}

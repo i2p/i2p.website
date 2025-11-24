@@ -10,17 +10,17 @@ thread: "http://zzz.i2p/topics/2335"
 
 ## Visão Geral
 
-Esta proposta descreve um design para um protocolo que permite a um cliente, serviço ou processo externo de balanceamento do I2P gerenciar múltiplos roteadores que hospedam de forma transparente um único [Destino]_.
+Esta proposta descreve um design para um protocolo que permite a um cliente, serviço ou processo externo de balanceamento do I2P gerenciar múltiplos roteadores que hospedam de forma transparente um único [Destino](http://localhost:63465/en/docs/specs/common-structures/#destination).
 
-A proposta atualmente não especifica uma implementação concreta. Ela poderia ser implementada como uma extensão ao [I2CP]_, ou como um novo protocolo.
+A proposta atualmente não especifica uma implementação concreta. Ela poderia ser implementada como uma extensão ao [I2CP](/en/docs/specs/i2cp/), ou como um novo protocolo.
 
 ## Motivação
 
-Multihoming é quando vários roteadores são usados para hospedar o mesmo Destino. A maneira atual de fazer multihoming com o I2P é executar o mesmo Destino em cada roteador de forma independente; o roteador que é usado pelos clientes em qualquer momento é o último que publica um [LeaseSet]_.
+Multihoming é quando vários roteadores são usados para hospedar o mesmo Destino. A maneira atual de fazer multihoming com o I2P é executar o mesmo Destino em cada roteador de forma independente; o roteador que é usado pelos clientes em qualquer momento é o último que publica um [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset).
 
 Isso é um improviso e presumivelmente não funcionará para grandes sites em escala. Suponha que tivéssemos 100 roteadores multihoming cada um com 16 túneis. São 1600 publicações de LeaseSet a cada 10 minutos, ou quase 3 por segundo. Os floodfills ficariam sobrecarregados e os controles de limitação entrariam em ação. E isso antes mesmo de mencionarmos o tráfego de procura.
 
-[Prop123]_ resolve este problema com um meta-LeaseSet, que lista os 100 hashes reais de LeaseSet. Uma consulta torna-se um processo de duas etapas: primeiro procurando o meta-LeaseSet, e depois um dos LeaseSets nomeados. Esta é uma boa solução para o problema de tráfego de consulta, mas por si só cria um vazamento significativo de privacidade: é possível determinar quais roteadores multihoming estão online ao monitorar o meta-LeaseSet publicado, porque cada LeaseSet real corresponde a um único roteador.
+[Proposal 123](/en/proposals/123-new-netdb-entries/) resolve este problema com um meta-LeaseSet, que lista os 100 hashes reais de LeaseSet. Uma consulta torna-se um processo de duas etapas: primeiro procurando o meta-LeaseSet, e depois um dos LeaseSets nomeados. Esta é uma boa solução para o problema de tráfego de consulta, mas por si só cria um vazamento significativo de privacidade: é possível determinar quais roteadores multihoming estão online ao monitorar o meta-LeaseSet publicado, porque cada LeaseSet real corresponde a um único roteador.
 
 Precisamos de uma maneira para que um cliente ou serviço do I2P espalhe um único Destino por vários roteadores, de uma forma que seja indistinguível do uso de um único roteador (do ponto de vista do próprio LeaseSet).
 
@@ -57,10 +57,8 @@ Imagine a seguinte configuração desejada:
 - Todos os doze túneis devem ser publicados em um único LeaseSet.
 
 Cliente único
-`````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Túnel 1]===\
                  |-{ [Túnel 2]====[Roteador 1]-----
                  |-{ [Túnel 3]===/               \
@@ -76,13 +74,10 @@ Cliente único
                  |-{ [Túnel 10]==\               /
                  |-{ [Túnel 11]===[Roteador 4]-----
                   -{ [Túnel 12]==/
-{% endhighlight %}
 
 Multi-cliente
-````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Túnel 1]===\
                  |-{ [Túnel 2]====[Roteador 1]---------[Frontend 1]
                  |-{ [Túnel 3]===/          \                    \
@@ -98,10 +93,8 @@ Multi-cliente
                  |-{ [Túnel 10]==\          /                    /
                  |-{ [Túnel 11]===[Roteador 4]---------[Frontend 4]
                   -{ [Túnel 12]==/
-{% endhighlight %}
 
-Processo geral do cliente
-````````````````````````
+### Processo geral do cliente
 - Carregar ou gerar um Destino.
 
 - Abrir uma sessão com cada roteador, vinculada ao Destino.
@@ -118,9 +111,8 @@ Processo geral do cliente
 
   - Publicar o LeaseSet através de um ou mais dos roteadores.
 
-Diferenças para o I2CP
-``````````````````````
-Para criar e gerenciar essa configuração, o cliente precisa da seguinte nova funcionalidade além do que é atualmente fornecido pelo [I2CP]_:
+### Diferenças para o I2CP
+Para criar e gerenciar essa configuração, o cliente precisa da seguinte nova funcionalidade além do que é atualmente fornecido pelo [I2CP](/en/docs/specs/i2cp/):
 
 - Informar a um roteador para construir túneis, sem criar um LeaseSet para eles.
 - Obter uma lista dos túneis atuais no pool de entrada.
@@ -132,9 +124,7 @@ Além disso, a seguinte funcionalidade permitiria flexibilidade significativa em
 
 ### Resumo do protocolo
 
-.. raw:: html
-
-  {% highlight %}
+```
          Cliente                           Roteador
 
                     --------------------->  Criar Sessão
@@ -149,10 +139,8 @@ Além disso, a seguinte funcionalidade permitiria flexibilidade significativa em
                     --------------------->  Enviar Pacote
       Status de Envio  <---------------------
   Pacote Recebido  <---------------------
-{% endhighlight %}
 
-Mensagens
-````````
+### Mensagens
     Criar Sessão
         Criar uma sessão para o Destino dado.
 
@@ -220,33 +208,16 @@ Como o cliente tem controle total sobre quais pares seleciona, esse vazamento de
 
 ## Compatibilidade
 
-Este design é completamente compatível com versões anteriores da rede, porque não há alterações no formato do [LeaseSet]_. Todos os roteadores precisariam estar cientes do novo protocolo, mas isso não é uma preocupação, já que eles seriam todos controlados pela mesma entidade.
+Este design é completamente compatível com versões anteriores da rede, porque não há alterações no formato do [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset). Todos os roteadores precisariam estar cientes do novo protocolo, mas isso não é uma preocupação, já que eles seriam todos controlados pela mesma entidade.
 
 ## Notas de desempenho e escalabilidade
 
-O limite superior de 16 [Leases]_ por LeaseSet não é alterado por esta proposta. Para Destinos que exigem mais túneis do que isso, há duas modificações de rede possíveis:
+O limite superior de 16 [Lease](http://localhost:63465/en/docs/specs/common-structures/#lease) por LeaseSet não é alterado por esta proposta. Para Destinos que exigem mais túneis do que isso, há duas modificações de rede possíveis:
 
 - Aumentar o limite superior no tamanho do LeaseSets. Isso seria o mais simples de implementar (embora ainda exigisse suporte generalizado na rede antes de ser amplamente usado), mas poderia resultar em buscas mais lentas devido aos tamanhos de pacote maiores. O tamanho máximo viável do LeaseSet é definido pelo MTU dos transportes subjacentes, e é, portanto, em torno de 16kB.
 
-- Implementar [Prop123]_ para LeaseSets em camadas. Em combinação com esta proposta, os Destinos para os sub-LeaseSets poderiam ser espalhados por vários roteadores, agindo efetivamente como múltiplos endereços IP para um serviço clearnet.
+- Implementar [Proposal 123](/en/proposals/123-new-netdb-entries/) para LeaseSets em camadas. Em combinação com esta proposta, os Destinos para os sub-LeaseSets poderiam ser espalhados por vários roteadores, agindo efetivamente como múltiplos endereços IP para um serviço clearnet.
 
 ## Agradecimentos
 
 Agradecimentos ao psi pela discussão que levou a esta proposta.
-
-## Referências
-
-.. [Destino]
-    {{ ctags_url('Destination') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Leases]
-    {{ ctags_url('Lease') }}
-
-.. [LeaseSet]
-    {{ ctags_url('LeaseSet') }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}

@@ -13,7 +13,7 @@ target: "0.9.51"
 Implementado desde la versión API 0.9.51.
 Despliegue y prueba de red en progreso.
 Sujeto a revisiones menores.
-Ver [I2NP]_ y [Tunnel-Creation-ECIES]_ para la especificación final.
+Ver [I2NP](/en/docs/spec/i2np/) y [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) para la especificación final.
 
 
 
@@ -26,7 +26,7 @@ El tamaño actual de los registros de Solicitud y Respuesta de Construcción de 
 Para los mensajes típicos de Construcción de Túneles Variables y Respuesta de Construcción de Túneles Variables,
 el tamaño total es de 2113 bytes. Este mensaje se fragmenta en tres mensajes de túnel de 1KB para el camino inverso.
 
-Los cambios al formato de registro de 528 bytes para los enrutadores ECIES-X25519 se especifican en [Prop152]_ y [Tunnel-Creation-ECIES]_.
+Los cambios al formato de registro de 528 bytes para los enrutadores ECIES-X25519 se especifican en [Prop152](/en/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
 Para una mezcla de enrutadores ElGamal y ECIES-X25519 en un túnel, el tamaño del registro debe permanecer
 en 528 bytes. Sin embargo, si todos los enrutadores en un túnel son ECIES-X25519, es posible un nuevo registro de construcción más pequeño, ya que el cifrado ECIES-X25519 tiene mucho menos sobrecarga que ElGamal.
 
@@ -42,13 +42,13 @@ Se espera que esto suceda para finales de 2021.
 
 ### Objetivos
 
-Ver [Prop152]_ y [Prop156]_ para objetivos adicionales.
+Ver [Prop152](/en/proposals/152-ecies-tunnels/) y [Prop156](/en/proposals/156-ecies-routers/) para objetivos adicionales.
 
 - Registros y mensajes más pequeños
-- Mantener suficiente espacio para futuras opciones, como en [Prop152]_ y [Tunnel-Creation-ECIES]_
+- Mantener suficiente espacio para futuras opciones, como en [Prop152](/en/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)
 - Ajustarse en un solo mensaje de túnel para el camino inverso
 - Soportar solo saltos ECIES
-- Mantener mejoras implementadas en [Prop152]_ y [Tunnel-Creation-ECIES]_
+- Mantener mejoras implementadas en [Prop152](/en/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)
 - Maximizar la compatibilidad con la red actual
 - Ocultar mensajes de construcción entrantes del OBEP
 - Ocultar mensajes de respuesta de construcción salientes del IBGW
@@ -59,10 +59,10 @@ Ver [Prop152]_ y [Prop156]_ para objetivos adicionales.
 
 ### No Objetivos
 
-Ver [Prop156]_ para no objetivos adicionales.
+Ver [Prop156](/en/proposals/156-ecies-routers/) para no objetivos adicionales.
 
 - Sin requisito para túneles mixtos ElGamal/ECIES
-- Cambios en el cifrado de capa, para eso ver [Prop153]_
+- Cambios en el cifrado de capa, para eso ver [Prop153](/en/proposals/153-chacha20-layer-encryption/)
 - Sin aceleraciones de operaciones criptográficas. Se asume que ChaCha20 y AES son similares,
   incluso con AESNI, al menos para los pequeños tamaños de datos en cuestión.
 
@@ -78,11 +78,11 @@ Los registros de solicitud y respuesta cifrados serán de 218 bytes, comparados 
 
 Los registros de solicitud en texto claro serán de 154 bytes,
 comparados con 222 bytes para registros ElGamal,
-y 464 bytes para registros ECIES como se define en [Prop152]_ y [Tunnel-Creation-ECIES]_.
+y 464 bytes para registros ECIES como se define en [Prop152](/en/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
 
 Los registros de respuesta en texto claro serán de 202 bytes,
 comparados con 496 bytes para registros ElGamal,
-y 512 bytes para registros ECIES como se define en [Prop152]_ y [Tunnel-Creation-ECIES]_.
+y 512 bytes para registros ECIES como se define en [Prop152](/en/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
 
 El cifrado de respuesta será ChaCha20 (NO ChaCha20/Poly1305),
 por lo que los registros de texto claro no necesitan ser múltiplos de 16 bytes.
@@ -135,7 +135,6 @@ problema de compatibilidad en el IBGW y OBEP de los túneles emparejados.
 
 ### Flujo de Mensajes
 
-.. raw:: html
 
   {% highlight %}
 STBM: Mensaje de construcción de túnel corto (tipo 25)
@@ -184,7 +183,7 @@ STBM: Mensaje de construcción de túnel corto (tipo 25)
 
 ### Cifrado de Registro
 
-Cifrado de registro de solicitud y respuesta: como se define en [Prop152]_ y [Tunnel-Creation-ECIES]_.
+Cifrado de registro de solicitud y respuesta: como se define en [Prop152](/en/proposals/152-ecies-tunnels/) y [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
 
 Cifrado de registro de respuesta para otras ranuras: ChaCha20.
 
@@ -222,7 +221,7 @@ Registro de Solicitud Corto Sin Cifrar
 ```````````````````````````````````````
 
 Esta es la especificación propuesta del registro de solicitud de construcción de túneles para los enrutadores ECIES-X25519.
-Resumen de cambios de [Tunnel-Creation-ECIES]_:
+Resumen de cambios de [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
 
 - Cambiar longitud sin cifrar de 464 a 154 bytes
 - Cambiar longitud cifrada de 528 a 218 bytes
@@ -236,7 +235,6 @@ Todos los campos son big-endian.
 
 Tamaño sin cifrar: 154 bytes.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -256,7 +254,7 @@ bytes     0-3: ID del túnel para recibir mensajes, no cero
 {% endhighlight %}
 
 
-El campo de banderas es el mismo que se define en [Tunnel-Creation]_ y contiene lo siguiente::
+El campo de banderas es el mismo que se define en [Tunnel-Creation](/en/docs/spec/tunnel-creation/) y contiene lo siguiente::
 
  Orden de bits: 76543210 (el bit 7 es el MSB)
  bit 7: si está establecido, permitir mensajes de cualquiera
@@ -279,7 +277,7 @@ Se usa para el KDF para las claves y IVs de capa y respuesta del IBGW.
 Esto solo se incluye en el registro de texto claro en un mensaje de Construcción de Túnel Entrante.
 Es necesario porque no hay DH en esta capa para el registro de construcción.
 
-Las opciones de construcción de túnel son una estructura Mapping como se define en [Common]_.
+Las opciones de construcción de túnel son una estructura Mapping como se define en [Common](/en/docs/spec/common-structures/).
 Esto es para uso futuro. Actualmente no se definen opciones.
 Si la estructura Mapping está vacía, estos son dos bytes 0x00 0x00.
 El tamaño máximo del Mapping (incluyendo el campo de longitud) es 98 bytes,
@@ -294,7 +292,6 @@ Todos los campos son big-endian excepto la clave pública efímera que es little
 
 Tamaño cifrado: 218 bytes
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -313,7 +310,7 @@ bytes    0-15: hash truncado de identidad del salto
 Registro de Respuesta Corto Sin Cifrar
 `````````````````````````````````````
 Esta es la especificación propuesta del registro de ShortBuildReply para los enrutadores ECIES-X25519.
-Resumen de cambios de [Tunnel-Creation-ECIES]_:
+Resumen de cambios de [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
 
 - Cambiar longitud sin cifrar de 512 a 202 bytes
 - Cambiar longitud cifrada de 528 a 218 bytes
@@ -325,7 +322,6 @@ Todos los campos son big-endian.
 
 Tamaño sin cifrar: 202 bytes.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -336,14 +332,14 @@ bytes    0-x: Opciones de Respuesta de Construcción de Túnel (Mapping)
 
 {% endhighlight %}
 
-Las opciones de respuesta de construcción de túnel son una estructura Mapping como se define en [Common]_.
+Las opciones de respuesta de construcción de túnel son una estructura Mapping como se define en [Common](/en/docs/spec/common-structures/).
 Esto es para uso futuro. Actualmente no se definen opciones.
 Si la estructura Mapping está vacía, estos son dos bytes 0x00 0x00.
 El tamaño máximo del Mapping (incluyendo el campo de longitud) es 201 bytes,
 y el valor máximo del campo de longitud de Mapping es 199.
 
 El byte de respuesta es uno de los siguientes valores
-como se define en [Tunnel-Creation]_ para evitar la identificación:
+como se define en [Tunnel-Creation](/en/docs/spec/tunnel-creation/) para evitar la identificación:
 
 - 0x00 (aceptar)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -354,7 +350,6 @@ Registro de Respuesta Corto Cifrado
 
 Tamaño cifrado: 218 bytes
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -371,7 +366,6 @@ Ver sección KDF abajo.
 
 
 
-.. _msg-ShortTunnelBuild:
 
 ### ShortTunnelBuild
 I2NP Tipo 25
@@ -382,7 +376,6 @@ Cuando lo recibe el OBEP, se transforma en un OutboundTunnelBuildReply,
 envuelto con ajo, y se envía al originador.
 
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
@@ -403,7 +396,6 @@ Notas
 
 
 
-.. _msg-OutboundTunnelBuildReply:
 
 ### OutboundTunnelBuildReply
 I2NP Tipo 26
@@ -412,7 +404,6 @@ Este mensaje solo se envía por el OBEP al IBEP (creador) a través de un túnel
 No puede enviarse a ningún otro salto.
 Siempre está cifrado con ajo.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
@@ -451,7 +442,6 @@ A diferencia de los registros largos, no podemos usar la parte izquierda de ck p
 La clave de respuesta se usa para cifrar la respuesta de ese registro usando AEAD/ChaCha20/Poly1305 y ChaCha20 para responder a otros registros.
 Ambos usan la misma clave, el nonce es la posición del registro en el mensaje comenzando desde 0.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
@@ -547,7 +537,6 @@ Sin sobrecarga de ajo para STBM entrante no cifrado,
 si no usamos ITBM:
 
 
-.. raw:: html
 
   {% highlight lang='text' %}
 Tamaño actual de 4 ranuras: 4 * 528 + sobrecarga = 3 mensajes de túnel
@@ -584,7 +573,6 @@ Tamaño actual de 4 ranuras: 4 * 528 + sobrecarga = 3 mensajes de túnel
 Con sobrecarga de ajo para el patrón de ruido 'N' para cifrar STBM entrante,
 si no usamos ITBM:
 
-.. raw:: html
 
   {% highlight lang='text' %}
 Tamaño actual de 4 ranuras: 4 * 528 + sobrecarga = 3 mensajes de túnel
@@ -649,41 +637,4 @@ usa una etiqueta de 8 bytes en lugar de la clave efímera de 32 bytes para un me
 
 
 
-## Referencias
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [ECIES]
-   {{ spec_url('ecies') }}
-
-.. [I2NP]
-    {{ spec_url('i2np') }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop144]
-    {{ proposal_url('144') }}
-
-.. [Prop145]
-    {{ proposal_url('145') }}
-
-.. [Prop152]
-    {{ proposal_url('152') }}
-
-.. [Prop153]
-    {{ proposal_url('153') }}
-
-.. [Prop154]
-    {{ proposal_url('154') }}
-
-.. [Prop156]
-    {{ proposal_url('156') }}
-
-.. [Tunnel-Creation]
-    {{ spec_url('tunnel-creation') }}
-
-.. [Tunnel-Creation-ECIES]
-    {{ spec_url('tunnel-creation-ecies') }}
 

@@ -22,7 +22,7 @@ una lista de puertas de enlace y llaves para que los clientes puedan conectarse 
 
 Entonces, los conjuntos de arrendamiento son algo así como un registro DNS. Pero actualmente no hay ninguna facilidad para
 determinar si ese host admite algún servicio, ya sea en ese destino o en otro diferente,
-de una manera similar a los registros DNS SRV [SRV]_ [RFC2782]_.
+de una manera similar a los registros DNS SRV [SRV](https://en.wikipedia.org/wiki/SRV_record) [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782).
 
 La primera aplicación para esto podría ser el correo electrónico peer-to-peer.
 Otras aplicaciones posibles: DNS, GNS, servidores de claves, autoridades de certificación, servidores de tiempo,
@@ -33,7 +33,7 @@ bittorrent, criptomonedas, otras aplicaciones peer-to-peer.
 
 ### Listas de Servicios
 
-La propuesta LS2 123 [Prop123]_ definió 'registros de servicio' que indicaban que un destino
+La propuesta LS2 123 [Prop123](/en/proposals/123-new-netdb-entries/) definió 'registros de servicio' que indicaban que un destino
 participaba en un servicio global. Los floodfills agruparían estos registros
 en 'listas de servicios' globales.
 Esto nunca se implementó debido a su complejidad, falta de autenticación,
@@ -44,13 +44,13 @@ no un grupo global de destinos para algún servicio global.
 
 ### GNS
 
-GNS [GNS]_ propone que todos ejecuten su propio servidor DNS.
+GNS [GNS](http://zzz.i2p/topcs/1545) propone que todos ejecuten su propio servidor DNS.
 Esta propuesta es complementaria, en cuanto a que podríamos usar registros de servicio para especificar
 que GNS (o DNS) es compatible, con un nombre de servicio estándar de "domain" en el puerto 53.
 
 ### Dot well-known
 
-En [DOTWELLKNOWN]_ se propone que los servicios se busquen mediante una solicitud HTTP a
+En [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) se propone que los servicios se busquen mediante una solicitud HTTP a
 /.well-known/i2pmail.key. Esto requiere que cada servicio tenga un sitio web relacionado para
 alojar la llave. La mayoría de los usuarios no ejecutan sitios web.
 
@@ -70,10 +70,10 @@ por sí solos no proporcionan un registro genérico para cualquier servicio.
 
 ## Diseño
 
-Los registros de servicio se ubican en la sección de opciones en LS2 [LS2]_.
+Los registros de servicio se ubican en la sección de opciones en LS2 [LS2](/en/docs/spec/common-structures/).
 La sección de opciones de LS2 está actualmente sin uso.
 No es compatible con LS1.
-Esto es similar a la propuesta de ancho de banda de túnel [Prop168]_,
+Esto es similar a la propuesta de ancho de banda de túnel [Prop168](/en/proposals/168-tunnel-bandwidth/),
 que define opciones para registros de construcción de túneles.
 
 Para buscar una dirección de servicio para un nombre de host o b32 específico, el router obtiene el
@@ -106,7 +106,7 @@ Definido de la siguiente manera:
 - optionkey := _service._proto
 - service := El nombre simbólico del servicio deseado. Debe estar en minúsculas. Ejemplo: "smtp".
   Se permiten caracteres [a-z0-9-] y no debe empezar o terminar con un '-'.
-  Los identificadores estándar de [REGISTRY]_ o Linux /etc/services deben ser utilizados si están definidos allí.
+  Los identificadores estándar de [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) o Linux /etc/services deben ser utilizados si están definidos allí.
 - proto := El protocolo de transporte del servicio deseado. Debe estar en minúsculas, ya sea "tcp" o "udp".
   "tcp" significa streaming y "udp" significa datagramas replegables.
   Los indicadores de protocolo para datagramas sin procesar y datagram2 pueden definirse más tarde.
@@ -122,13 +122,13 @@ Definido de la siguiente manera:
   Solo es útil si hay más de un registro, pero es obligatorio incluso si solo hay un registro.
 - port := El puerto I2CP en el que se encontrará el servicio. Entero no negativo. Ejemplo: "25"
   El puerto 0 es compatible pero no recomendado.
-- target := El nombre de host o b32 del destino que proporciona el servicio. Un nombre de host válido como en [NAMING]_. Debe estar en minúsculas.
+- target := El nombre de host o b32 del destino que proporciona el servicio. Un nombre de host válido como en [NAMING](/en/docs/naming/). Debe estar en minúsculas.
   Ejemplo: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" o "example.i2p".
   b32 se recomienda a menos que el nombre de host sea "bien conocido", es decir, en los libros de direcciones oficiales o predeterminados.
 - appoptions := texto arbitrario específico para la aplicación, no debe contener " " o ",". La codificación es UTF-8.
 
-Ejemplos
-``````````
+### Ejemplos
+
 
 En LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apuntando a un servidor SMTP:
 
@@ -147,8 +147,8 @@ Formato posible para redireccionamiento de correo electrónico (ver abajo):
 "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
-Límites
-```````
+### Límites
+
 
 El formato de estructura de datos Mapping utilizado para las opciones LS2 limita las claves y los valores a un máximo de 255 bytes (no caracteres).
 Con un objetivo b32, el optionvalue tiene alrededor de 67 bytes, por lo que solo cabrían 3 registros.
@@ -156,8 +156,8 @@ Tal vez solo uno o dos con un campo appoptions largo, o hasta cuatro o cinco con
 Esto debería ser suficiente; múltiples registros deberían ser raros.
 
 
-Diferencias de [RFC2782]_
-````````````````````````````
+### Diferencias de [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)
+
 
 - Sin puntos finales
 - Sin nombre después del proto
@@ -167,8 +167,8 @@ Diferencias de [RFC2782]_
 - Campo adicional appoptions
 
 
-Notas
-`````
+### Notas
+
 
 No se permite el uso de comodines como (asterisco), (asterisco)._tcp, o _tcp.
 Cada servicio compatible debe tener su propio registro.
@@ -177,15 +177,15 @@ Cada servicio compatible debe tener su propio registro.
 
 ### Registro de Nombre de Servicio
 
-Los identificadores no estándar que no están listados en [REGISTRY]_ o Linux /etc/services
-pueden ser solicitados y añadidos a la especificación de estructuras comunes [LS2]_.
+Los identificadores no estándar que no están listados en [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) o Linux /etc/services
+pueden ser solicitados y añadidos a la especificación de estructuras comunes [LS2](/en/docs/spec/common-structures/).
 
 Los formatos de appoptions específicas de servicio también pueden ser añadidos allí.
 
 
 ### Especificación I2CP
 
-El protocolo [I2CP]_ debe ser extendido para soportar búsquedas de servicio.
+El protocolo [I2CP](/en/docs/spec/i2cp/) debe ser extendido para soportar búsquedas de servicio.
 Se requieren códigos de error adicionales de MessageStatusMessage y/o HostReplyMessage relacionados con la búsqueda de servicio.
 Para hacer que la facilidad de búsqueda sea general, no solo específica para registros de servicio,
 el diseño es para soportar la recuperación de todas las opciones de LS2.
@@ -201,8 +201,8 @@ Los registros de servicio pueden ser almacenados en caché hasta el TTL especifi
 
 Extender la especificación de la siguiente manera:
 
-Opciones de configuración
-`````````````````````````
+### Opciones de configuración
+
 Añadir lo siguiente a [I2CP-OPTIONS]
 
 i2cp.leaseSetOption.nnn
@@ -215,8 +215,8 @@ Ejemplo:
 i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
-Mensaje de Búsqueda de Host
-````````````````````````````
+### Mensaje de Búsqueda de Host
+
 
 - Tipo de búsqueda 2: Búsqueda de hash, solicitud de mapeo de opciones
 - Tipo de búsqueda 3: Búsqueda de nombre de host, solicitud de mapeo de opciones
@@ -226,8 +226,8 @@ Para el tipo de búsqueda 4, el ítem 5 es un Destino.
 
 
 
-Mensaje de Respuesta de Host
-``````````````````````````````
+### Mensaje de Respuesta de Host
+
 
 Para búsquedas de tipos 2-4, el router debe obtener el conjunto de arrendamiento,
 incluso si la clave de búsqueda está en la libreta de direcciones.
@@ -253,7 +253,7 @@ la respuesta contendrá un nuevo código de error 7 (tipo de búsqueda no compat
 
 ### Especificación SAM
 
-El protocolo [SAMv3]_ debe ser extendido para soportar búsquedas de servicio.
+El protocolo [SAMv3](/en/docs/api/samv3/) debe ser extendido para soportar búsquedas de servicio.
 
 Extender NAMING LOOKUP de la siguiente manera:
 
@@ -284,7 +284,7 @@ Si OPTIONS=true estaba en la búsqueda, y el conjunto de arrendamiento no se enc
 
 Se consideró un diseño alternativo, para soportar búsquedas de servicios
 como un nombre de host completo, por ejemplo _smtp._tcp.example.i2p,
-al actualizar [NAMING]_ para especificar el manejo de nombres de host que comienzan con '_'.
+al actualizar [NAMING](/en/docs/naming/) para especificar el manejo de nombres de host que comienzan con '_'.
 Esto fue rechazado por dos razones:
 
 - Todavía serían necesarios los cambios en I2CP y SAM para pasar información TTL y de puerto al cliente.
@@ -326,7 +326,7 @@ TODO cómo hacer esto de una manera genérica
 
 ### Cambios requeridos para el Correo Electrónico
 
-Fuera del alcance de esta propuesta. Ver [DOTWELLKNOWN]_ para una discusión.
+Fuera del alcance de esta propuesta. Ver [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) para una discusión.
 
 
 ## Notas de Implementación
@@ -373,47 +373,3 @@ Los clientes de SAM no obtendrán los valores adicionales en la respuesta a meno
 No debería ser necesario un aumento de versión.
 
 
-## Migración
-
-Las implementaciones pueden añadir soporte en cualquier momento, no se necesita coordinación,
-excepto por un acuerdo sobre la versión efectiva de la API para los cambios de I2CP.
-Las versiones de compatibilidad de SAM para cada implementación serán documentadas en la especificación de SAM.
-
-
-## Referencias
-
-.. [DOTWELLKNOWN]
-    http://i2pforum.i2p/viewtopic.php?p=3102
-
-.. [I2CP]
-    {{ spec_url('i2cp') }}
-
-.. [I2CP-OPTIONS]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [LS2]
-    {{ spec_url('common-structures') }}
-
-.. [GNS]
-    http://zzz.i2p/topcs/1545
-
-.. [NAMING]
-    {{ site_url('docs/naming', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop168]
-    {{ proposal_url('168') }}
-
-.. [REGISTRY]
-    http://www.dns-sd.org/ServiceTypes.html
-
-.. [RFC2782]
-    https://datatracker.ietf.org/doc/html/rfc2782
-
-.. [SAMv3]
-    {{ site_url('docs/api/samv3') }}
-
-.. [SRV]
-    https://en.wikipedia.org/wiki/SRV_record

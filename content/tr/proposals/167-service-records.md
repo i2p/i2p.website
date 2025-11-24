@@ -23,7 +23,7 @@ ağ geçitleri ve anahtarlar listesi içerir, böylece müşteriler bu destinasy
 Bu bağlamda, kiralama setleri bir nevi DNS kaydı gibidir. Ancak, şu anda bu hostun
 herhangi bir hizmeti destekleyip desteklemediğini öğrenmek için bir kolaylık yoktur,
 ya o destinasyonda ya da farklı bir destinasyonda, DNS SRV kayıtlarına benzer bir
-biçimde [SRV]_ [RFC2782]_.
+biçimde [SRV](https://en.wikipedia.org/wiki/SRV_record) [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782).
 
 Bunun için ilk başvuru eşler arası e-posta olabilir.
 Diğer potansiyel uygulamalar: DNS, GNS, anahtar sunucuları, sertifika yetkilileri, zaman sunucuları,
@@ -34,7 +34,7 @@ bittorrent, kripto paralar, diğer eşler arası uygulamalar.
 
 ### Servis Listeleri
 
-LS2 önerisi 123 [Prop123]_ bir destinasyonun
+LS2 önerisi 123 [Prop123](/en/proposals/123-new-netdb-entries/) bir destinasyonun
 küresel bir hizmete katıldığını belirten 'servis kayıtlarını' tanımlamıştır.
 Bu kayıtları küresel 'servis listeleri' içine
 toplayacaktı. Bu, karmaşıklık, kimlik doğrulama eksikliği,
@@ -45,13 +45,13 @@ bazı küresel hizmetler için küresel bir destinasyon havuzu değil.
 
 ### GNS
 
-GNS [GNS]_, herkesin kendi DNS sunucusunu çalıştırması gerektiğini önermektedir.
+GNS [GNS](http://zzz.i2p/topcs/1545), herkesin kendi DNS sunucusunu çalıştırması gerektiğini önermektedir.
 Bu öneri tamamlayıcıdır, çünkü GNS'nin (veya DNS'nin) desteklendiğini belirtmek için
 standart bir servis adı "domain" olarak 53 numaralı portta servis kayıtlarını kullanabiliriz.
 
 ### Dot well-known
 
-[DOTWELLKNOWN]_ içinde, hizmetlerin bir HTTP isteği ile aranması önerilmektedir
+[DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) içinde, hizmetlerin bir HTTP isteği ile aranması önerilmektedir
 /.well-known/i2pmail.key. Bu, her hizmetin
 anahtarı barındıracak bir ilişkili web sitesi olması gerektiği anlamına gelir. Çoğu kullanıcı web sitesi çalıştırmaz.
 
@@ -72,10 +72,10 @@ herhangi bir hizmet için genel bir kayıt sağlamaz.
 
 ## Tasarım
 
-Servis kayıtları LS2 içinde seçenekler bölümüne yerleştirilir [LS2]_.
+Servis kayıtları LS2 içinde seçenekler bölümüne yerleştirilir [LS2](/en/docs/spec/common-structures/).
 LS2 seçenekler bölümü şu anda kullanılmamaktadır.
 LS1 için desteklenmemektedir.
-Bu, tünel bant genişliği önerisine [Prop168]_ benzerdir,
+Bu, tünel bant genişliği önerisine [Prop168](/en/proposals/168-tunnel-bandwidth/) benzerdir,
 tünel yapı kayıtları için seçenekler tanımlar.
 
 Belirli bir hostname veya b32 için bir servis adresi aramak için, router
@@ -106,7 +106,7 @@ Aşağıdaki gibi tanımlanır:
 - seçenek anahtarı := _service._proto
 - hizmet := İstenen hizmetin sembolik adı. Küçük harf olmalıdır. Örnek: "smtp".
   İzin verilen karakterler [a-z0-9-] ve '-' ile başlamamalı veya bitmemelidir.
-  [REGISTRY]_ veya Linux /etc/services tanımlandığı yerlerde standart tanımlayıcılar kullanılmalıdır.
+  [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) veya Linux /etc/services tanımlandığı yerlerde standart tanımlayıcılar kullanılmalıdır.
 - proto := İstenen hizmetin taşıma protokolü. Küçük harf olmalı, ya "tcp" ya da "udp".
   "tcp", akış anlamına gelir ve "udp", yanıt verilebilir datagram anlamına gelir.
   Ham datagramlar ve datagram2 için protokol göstergeleri daha sonra tanımlanabilir.
@@ -122,13 +122,13 @@ Aşağıdaki gibi tanımlanır:
   Sadece birden fazla kayıt varsa yararlıdır, ancak tek kayıt bile olsa gereklidir.
 - port := Hizmetin bulunacağı I2CP portu. Negatif olmayan bir tam sayı. Örnek: "25"
   Port 0 desteklenir ancak önerilmez.
-- hedef := Hizmeti sağlayan hedefin hostname veya b32. Geçerli bir hostname olarak [NAMING]_ içinde tanımlanmıştır. Küçük harf olmalıdır.
+- hedef := Hizmeti sağlayan hedefin hostname veya b32. Geçerli bir hostname olarak [NAMING](/en/docs/naming/) içinde tanımlanmıştır. Küçük harf olmalıdır.
   Örnek: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" ya da "example.i2p".
   b32 önerilir, hostname "iyi bilinen," yani resmi veya varsayılan adres defterlerindeyse.
 - app seçenekleri := uygulamaya özgü rastgele metin, " " veya "," içeremez. Kodlama UTF-8'dir.
 
-Örnekler
-``````````
+### Örnekler
+
 
 Tek bir SMTP sunucusuna işaret eden aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için LS2'de:
 
@@ -147,8 +147,8 @@ E-posta yönlendirmesi için olası format (aşağıya bakınız):
 "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
-Sınırlar
-```````
+### Sınırlar
+
 
 LS2 seçenekleri için kullanılan Veri Yapısı Formatı anahtarları ve değerleri maksimum 255 byte (karakter değil) ile sınırlandırır.
 Bir b32 hedefi ile, bilgi değeri yaklaşık 67 byte olur, bu nedenle sadece 3 kayıt sığabilir.
@@ -156,8 +156,8 @@ Belki uzun bir app seçenekleri alanıyla sadece bir veya iki, ya da kısa bir h
 Bu yeterli olmalıdır; birden fazla kayıt nadir olmalıdır.
 
 
-[RFC2782] ile Farklılıklar
-````````````````````````````
+### [RFC2782] ile Farklılıklar
+
 
 - Sonunda nokta yok
 - Proto ardından isim yok
@@ -167,8 +167,8 @@ Bu yeterli olmalıdır; birden fazla kayıt nadir olmalıdır.
 - Ek app seçenekleri alanı
 
 
-Notlar
-`````
+### Notlar
+
 
 (asterisk) ve (asterisk)._tcp gibi genel wildcard'lama izin verilmez.
 Her desteklenen hizmetin kendi kaydı olmalıdır.
@@ -177,15 +177,15 @@ Her desteklenen hizmetin kendi kaydı olmalıdır.
 
 ### Servis Adı Kaydı
 
-[REGISTRY]_ veya Linux /etc/services'te listelenmeyen standart olmayan tanımlayıcılar
-talep edilebilir ve ortak yapılar belirtimine [LS2]_ eklenebilir.
+[REGISTRY](http://www.dns-sd.org/ServiceTypes.html) veya Linux /etc/services'te listelenmeyen standart olmayan tanımlayıcılar
+talep edilebilir ve ortak yapılar belirtimine [LS2](/en/docs/spec/common-structures/) eklenebilir.
 
 Hizmete özgü app seçenek formatları da oraya eklenebilir.
 
 
 ### I2CP Belirtimi
 
-[I2CP]_ protokolü, hizmet aramalarını destekleyecek şekilde genişletilmelidir.
+[I2CP](/en/docs/spec/i2cp/) protokolü, hizmet aramalarını destekleyecek şekilde genişletilmelidir.
 Servis aramasıyla ilgili ek MessageStatusMessage ve / veya HostReplyMessage hata kodları gereklidir.
 Hizmet kaydı özellikli olup olmadığını belirtmek için arama kolaylığının genel olması amaçlanmıştır,
 tüm LS2 seçeneklerinin alınmasını desteklemek için tasarlanmıştır.
@@ -200,8 +200,8 @@ Hizmet kayıtları uygulama, müşteri veya router tarafından belirtilen TTL'ye
 
 Belirtileri aşağıdaki gibi genişletin:
 
-Yapılandırma seçenekleri
-```````````````````````
+### Yapılandırma seçenekleri
+
 
 [I2CP-OPTIONS]'a aşağıdakileri ekleyin
 
@@ -215,8 +215,8 @@ nnn, 0 ile başlar. Seçenek değeri "anahtar=değer" içerir.
 i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
-HostLookup Mesajı
-``````````````````
+### HostLookup Mesajı
+
 
 - Görünüm tipi 2: Hash görünümü, seçenekler haritalama talebi
 - Görünüm tipi 3: Hostname görünümü, seçenekler haritalama talebi
@@ -226,8 +226,8 @@ Görünüm tipi 4 için, öğe 5 bir Destinasyondur.
 
 
 
-HostReply Mesajı
-``````````````````
+### HostReply Mesajı
+
 
 Görünüm türleri 2-4 için, router kiralama setini çekmelidir,
 anahtar, adres defterinde olsa bile.
@@ -253,7 +253,7 @@ yanıt yeni hata kodu 7 (görünüm türü desteklenmiyor) içerecektir.
 
 ### SAM Beliritimi
 
-[SAMv3]_ protokolü, hizmet aramaları için genişletilmelidir.
+[SAMv3](/en/docs/api/samv3/) protokolü, hizmet aramaları için genişletilmelidir.
 
 NAMING LOOKUP'ı aşağıdaki gibi genişletin:
 
@@ -328,7 +328,7 @@ Bunu nasıl genel bir şekilde yapılacağı hakkında TODO
 
 ### E-posta İçin Gerekli Değişiklikler
 
-Bu önerinin kapsamı dışındadır. Daha fazla bilgi için [DOTWELLKNOWN]_ tartışmasına bakınız.
+Bu önerinin kapsamı dışındadır. Daha fazla bilgi için [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) tartışmasına bakınız.
 
 
 ## Uygulama Notları
@@ -378,47 +378,3 @@ SAM istemcileri, yalnızca OPTIONS=true ile talep edildiklerinde yanıtta ek de�
 Herhangi bir sürüm artışı gerekli görünmemektedir.
 
 
-## Geçiş
-
-Uygulamalar her zaman destek ekleyebilir, herhangi bir koordinasyon gerekmez,
-sadece I2CP değişikliklerinin etkili API versiyonu konusunda bir anlaşma gereklidir.
-SAM uyumluluk versiyonları her bir uygulama için SAM belirtiminde belgelenecektir.
-
-
-## Kaynaklar
-
-.. [DOTWELLKNOWN]
-    http://i2pforum.i2p/viewtopic.php?p=3102
-
-.. [I2CP]
-    {{ spec_url('i2cp') }}
-
-.. [I2CP-OPTIONS]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [LS2]
-    {{ spec_url('common-structures') }}
-
-.. [GNS]
-    http://zzz.i2p/topcs/1545
-
-.. [NAMING]
-    {{ site_url('docs/naming', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop168]
-    {{ proposal_url('168') }}
-
-.. [REGISTRY]
-    http://www.dns-sd.org/ServiceTypes.html
-
-.. [RFC2782]
-    https://datatracker.ietf.org/doc/html/rfc2782
-
-.. [SAMv3]
-    {{ site_url('docs/api/samv3') }}
-
-.. [SRV]
-    https://en.wikipedia.org/wiki/SRV_record

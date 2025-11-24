@@ -13,7 +13,7 @@ target: "0.9.67"
 ## Stav
 
 Schváleno při revizi 2025-06-24.
-Specifikace je na [UDP]_.
+Specifikace je na [UDP specification](/en/docs/spec/udp-bittorrent-announces/).
 Implementováno v zzzot 0.20.0-beta2.
 Implementováno v i2psnark od API 0.9.67.
 Prozkoumejte dokumentaci jiných implementací pro stav.
@@ -26,12 +26,12 @@ Tento návrh je pro implementaci UDP trackerů v I2P.
 
 ### Historie změn
 
-Předběžný návrh pro UDP trackery v I2P byl zveřejněn na naší stránce specifikací bittorrent [SPEC]_
+Předběžný návrh pro UDP trackery v I2P byl zveřejněn na naší stránce specifikací bittorrent [/en/docs/applications/bittorrent/](/en/docs/applications/bittorrent/)
 v květnu 2014; to předcházelo našemu formálnímu procesu návrhů a nikdy nebyl implementován.
 Tento návrh byl vytvořen na začátku roku 2022 a zjednodušuje verzi z roku 2014.
 
 Protože tento návrh závisí na odpovědných datagramech, byl pozdržen, jakmile jsme
-začali pracovat na návrhu Datagram2 [Prop163]_ na začátku roku 2023.
+začali pracovat na návrhu Datagram2 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/) na začátku roku 2023.
 Tento návrh byl schválen v dubnu 2025.
 
 Verze tohoto návrhu z roku 2023 specifikovala dva režimy, "kompatibilitu" a "rychlý".
@@ -39,14 +39,14 @@ Další analýza ukázala, že rychlý režim by byl nebezpečný a navíc
 by byl neefektivní pro klienty s velkým počtem torrentů.
 Dále BiglyBT vyjádřil preferenci pro režim kompatibility.
 Tento režim bude snadnější implementovat pro jakýkoli tracker nebo klient podporující
-standard [BEP15]_.
+standard [BEP 15](http://www.bittorrent.org/beps/bep_0015.html).
 
 Ačkoli je režim kompatibility složitější implementovat od začátku
 na straně klienta, máme již předběžný kód, který začal v roce 2023.
 
 Proto je současná verze zde dále zjednodušena tím, že odstraní rychlý režim
 a odstraní termín "kompatibilita". Současná verze přechází
-k novému formátu Datagram2 a přidává odkazy na protokol oznámení UDP [BEP41]_.
+k novému formátu Datagram2 a přidává odkazy na protokol oznámení UDP [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 
 Do odpovědi o spojení je také přidáno pole s dobou životnosti ID spojení,
 pro rozšíření efektivity tohoto protokolu.
@@ -57,7 +57,7 @@ pro rozšíření efektivity tohoto protokolu.
 Jak se uživatelská základna obecně a počet uživatelů bittorrentu konkrétně stále rozrůstá,
 musíme učinit trackery a oznámení efektivnější, aby trackery nebyly přetíženy.
 
-Bittorrent navrhnul UDP trackery v BEP 15 [BEP15]_ v roce 2008 a drtivá většina
+Bittorrent navrhnul UDP trackery v BEP 15 [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) v roce 2008 a drtivá většina
 trackerů na clearnetu je nyní pouze UDP.
 
 Je obtížné vypočítat úspory šířky pásma datagramů vs. streamovací protokol.
@@ -70,7 +70,7 @@ pro odchozí provoz trackeru.
 Kromě toho by mělo dojít k specifickým implementačním úsporám paměti,
 protože datagramy vyžadují mnohem menší stav v paměti než streamingové připojení.
 
-Post-kvantové šifrování a podpisy, jak bylo zamýšleno v [Prop169]_, výrazně
+Post-kvantové šifrování a podpisy, jak bylo zamýšleno v [/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/), výrazně
 zvýší režijní náklady na šifrované a podepsané struktury, včetně destinací,
 leasesets, streamovacích SYN a SYN ACK. Je důležité minimalizovat tuto
 režii, kde je to možné, před tím, než bude v I2P přijata PQ krypto.
@@ -79,20 +79,18 @@ režii, kde je to možné, před tím, než bude v I2P přijata PQ krypto.
 ## Design
 
 Tento návrh používá odpovědný datagram2, odpovědný datagram3 a surové datagramy,
-jak je definováno v [DATAGRAMS]_.
+jak je definováno v [/en/docs/spec/datagrams/](/en/docs/spec/datagrams/).
 Datagram2 a Datagram3 jsou nové varianty odpovědných datagramů,
-definované v Návrhu 163 [Prop163]_.
+definované v Návrhu 163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/).
 Datagram2 přidává odolnost proti opakování a podporu offline podpisu.
 Datagram3 je menší než starý formát datagramu, ale bez autentizace.
 
 
 ### BEP 15
 
-Pro referenci, tok zpráv definovaný v [BEP15]_ je následující:
+Pro referenci, tok zpráv definovaný v [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) je následující:
 
-.. raw:: html
-
-  {% highlight %}
+```
 Klient                        Tracker
     Požadavek spojení ------------->
       <-------------- Odpověď spojení
@@ -100,7 +98,7 @@ Klient                        Tracker
       <-------------- Odpověď oznámení
     Požadavek oznámení ------------->
       <-------------- Odpověď oznámení
-{% endhighlight %}
+```
 
 Fáze spojení je vyžadována k zabránění podvržení IP adresy.
 Tracker vrací ID spojení, které klient používá v následujících oznámeních.
@@ -110,9 +108,7 @@ I2P použije stejný tok zpráv jako BEP 15,
 pro snadné přijetí v existujících klientských kódových základnách podporujících UDP:
 pro efektivnost a z bezpečnostních důvodů, které budou uvedeny níže:
 
-.. raw:: html
-
-  {% highlight %}
+```
 Klient                        Tracker
     Požadavek spojení ------------->       (Odpovědný Datagram2)
       <-------------- Odpověď spojení   (Surový)
@@ -121,7 +117,7 @@ Klient                        Tracker
     Požadavek oznámení ------------->      (Odpovědný Datagram3)
       <-------------- Odpověď oznámení  (Surový)
              ...
-{% endhighlight %}
+```
 
 To potenciálně poskytuje velké úspory šířky pásma oproti
 streamování (TCP) oznámení.
@@ -172,7 +168,7 @@ a jsou mimo rozsah tohoto návrhu.
 Klienti
 ```````
 Externí torrent klienti založení na SAM jako například qbittorrent a další klienti založení na libtorrentu
-by vyžadovali SAM v3.3 [SAMv3]_, který není podporován i2pd.
+by vyžadovali SAM v3.3 [/en/docs/api/samv3/](/en/docs/api/samv3/), který není podporován i2pd.
 To je také vyžadováno pro podporu DHT a je dostatečně složité, že žádný známý
 torrent klient založený na SAMu jej neimplementoval.
 Žádné implementace tohoto návrhu založené na SAM se nečekají brzy.
@@ -180,7 +176,7 @@ torrent klient založený na SAMu jej neimplementoval.
 
 ### Životnost spojení
 
-[BEP15]_ specifikuje, že ID spojení vyprší za jednu minutu u klienta a za dvě minuty u trackeru.
+[BEP 15](http://www.bittorrent.org/beps/bep_0015.html) specifikuje, že ID spojení vyprší za jednu minutu u klienta a za dvě minuty u trackeru.
 Není to konfigurovatelné.
 To omezuje možné zisky efektivity, pokud
 klienti nesdružují oznámení, aby je uskutečnili všechny v rámci jednoho minutového okna.
@@ -195,7 +191,7 @@ v sekundách, bude použita klientem, a tracker bude udržovat ID spojení o jed
 
 ### Kompatibilita s BEP 15
 
-Tento návrh udržuje kompatibilitu s [BEP15]_ co nejvíce
+Tento návrh udržuje kompatibilitu s [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) co nejvíce
 kladním způsobem, aby se omezily změny požadované v existujících klientech a trackerech.
 
 Jedinou požadovanou změnou je formát informací o peeru v odpovědi na oznámení.
@@ -248,16 +244,16 @@ Port "from" je port "to" z požadavku.
 
 ### URL pro oznámení
 
-Formát URL pro oznámení není specifikován v [BEP15]_,
+Formát URL pro oznámení není specifikován v [BEP 15](http://www.bittorrent.org/beps/bep_0015.html),
 ale jako na internetu, UDP URL oznámení jsou formátu "udp://host:port/path".
 Cesta je ignorována a může být prázdná, ale typicky je "/announce" na internetu.
 Část :port by měla být vždy přítomna, nicméně,
 pokud je část ":port" vynechána, použijte výchozí port I2CP 6969,
 protože to je běžný port na internetu.
 Mohou být také připojeny parametry cgi &a=b&c=d, které mohou být zpracovány
-a poskytnuty v požadavku na oznámení, viz [BEP41]_.
+a poskytnuty v požadavku na oznámení, viz [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 Pokud nejsou žádné parametry nebo cesta, může být taky vynechána koncová /
-jak je naznačeno v [BEP41]_.
+jak je naznačeno v [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 
 
 ### Formáty datagramů
@@ -272,17 +268,15 @@ Požadavek na spojení
 `````````````````````
 
 Klient na tracker.
-16 bajtů. Musí být odpovědný Datagram2. Stejné jako v [BEP15]_. Žádné změny.
+16 bajtů. Musí být odpovědný Datagram2. Stejné jako v [BEP 15](http://www.bittorrent.org/beps/bep_0015.html). Žádné změny.
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Velikost       Jméno            Hodnota
   0       64bit celé číslo  protocol_id     0x41727101980 // magická konstanta
   8       32bit celé číslo  akce            0 // spojení
   12      32bit celé číslo  transaction_id
-{% endhighlight %}
+```
 
 
 
@@ -290,18 +284,16 @@ Odpověď na spojení
 `````````````````
 
 Tracker na klienta.
-16 nebo 18 bajtů. Musí být surová. Stejné jako v [BEP15]_ vyjma níže uvedeného.
+16 nebo 18 bajtů. Musí být surová. Stejné jako v [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) vyjma níže uvedeného.
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Velikost       Jméno            Hodnota
   0       32bit celé číslo  akce            0 // spojení
   4       32bit celé číslo  transaction_id
   8       64bit celé číslo  connection_id
   16      16bit celé číslo  lifetime        volitelný  // Změna z BEP 15
-{% endhighlight %}
+```
 
 Odpověď musí být odeslána na port I2CP "to", který byl přijat jako port "from" v požadavku.
 
@@ -316,15 +308,13 @@ Požadavek na oznámení
 ````````````````````
 
 Klient na tracker.
-98 bajtů minimálně. Musí být odpovědný Datagram3. Stejné jako v [BEP15]_ s vyjma níže.
+98 bajtů minimálně. Musí být odpovědný Datagram3. Stejné jako v [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) s vyjma níže.
 
 connection_id je, jak bylo přijato v odpovědi o spojení.
 
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Velikost       Jméno            Hodnota
   0       64bit celé číslo  connection_id
   8       32bit celé číslo  akce            1     // oznámení
@@ -340,13 +330,13 @@ Offset  Velikost       Jméno            Hodnota
   92      32bit celé číslo  num_want       -1    // výchozí
   96      16bit celé číslo  port
   98      různé           možnosti          volitelný  // Jak je specifikováno v BEP 41
-{% endhighlight %}
+```
 
-Změny z [BEP15]_:
+Změny z [BEP 15](http://www.bittorrent.org/beps/bep_0015.html):
 
 - klíč je ignorován
 - port je pravděpodobně ignorován
-- Sekce možností, pokud je přítomna, je definována v [BEP41]_
+- Sekce možností, pokud je přítomna, je definována v [BEP 41](http://www.bittorrent.org/beps/bep_0041.html)
 
 Odpověď musí být odeslána na port I2CP "to", který byl přijat jako port "from" v požadavku.
 Nepoužívejte port z požadavku na oznámení.
@@ -357,13 +347,11 @@ Odpověď na oznámení
 ``````````````````
 
 Tracker na klienta.
-20 bajtů minimálně. Musí být surová. Stejné jako v [BEP15]_ s vyjma níže.
+20 bajtů minimálně. Musí být surová. Stejné jako v [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) s vyjma níže.
 
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Velikost       Jméno            Hodnota
   0           32bit celé číslo  akce            1 // oznámení
   4           32bit celé číslo  transaction_id
@@ -372,9 +360,9 @@ Offset  Velikost       Jméno            Hodnota
   16          32bit celé číslo  seeders
   20   32 * n 32-bajtský hash  binární hashe     // Změna z BEP 15
   ...                                          // Změna z BEP 15
-{% endhighlight %}
+```
 
-Změny z [BEP15]_:
+Změny z [BEP 15](http://www.bittorrent.org/beps/bep_0015.html):
 
 - Místo 6-bajtské IPv4+port nebo 18-bajtské IPv6+port, vracíme
   násobek 32-bajtových "kompaktních odpovědí" s SHA-256 binárními hash peery.
@@ -405,7 +393,7 @@ i když tento hash je již zakázán Javovými routery.
 Scrape
 ``````
 
-Scrape požadavek/odpověď z [BEP15]_ není povinná tímto návrhem,
+Scrape požadavek/odpověď z [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) není povinná tímto návrhem,
 ale může být implementována, pokud je to žádoucí, žádné změny nejsou potřeba.
 Klient musí nejprve získat ID spojení.
 Požadavek scrape je vždy odpovědný Datagram3.
@@ -418,18 +406,16 @@ Chybová odpověď
 
 Tracker na klienta.
 8 bajtů minimálně (pokud je zpráva prázdná).
-Musí být surová. Stejné jako v [BEP15]_. Žádné změny.
+Musí být surová. Stejné jako v [BEP 15](http://www.bittorrent.org/beps/bep_0015.html). Žádné změny.
 
-.. raw:: html
-
-  {% highlight %}
+```
 
 Offset  Velikost       Jméno            Hodnota
   0       32bit celé číslo  akce          3 // error
   4       32bit celé číslo  transaction_id
   8       řetězec          zpráva
 
-{% endhighlight %}
+```
 
 
 
@@ -438,14 +424,14 @@ Offset  Velikost       Jméno            Hodnota
 Rozšiřující bity nebo pole verze nejsou zahrnuty.
 Klienti a trackery by neměli předpokládat, že pakety budou určité velikosti.
 Tímto způsobem mohou být přidána další pole bez narušení kompatibility.
-Rozšířovací formát definovaný v [BEP41]_ je doporučován, pokud je potřeba.
+Rozšířovací formát definovaný v [BEP 41](http://www.bittorrent.org/beps/bep_0041.html) je doporučován, pokud je potřeba.
 
 Odpověď na spojení je změněna, aby přidala volitelné pole životnosti ID spojení.
 
 Pokud je potřeba podpora oslepených destinací, můžeme buď přidat
 oslepenou 35-bajtovou adresu na konec požadavku na oznámení,
 nebo požadovat oslepené hash odpovědí,
-používající formát [BEP41]_ (parametry TBD).
+používající formát [BEP 41](http://www.bittorrent.org/beps/bep_0041.html) (parametry TBD).
 Sada oslepených 35-bajtových adres peerů může být přidána na konec odpovědi na oznámení,
 po kompletně nulovém 32-bajtovém hashi.
 
@@ -525,29 +511,4 @@ Ostatní implementace budou následovat, jakmile budou dokončeny testování a 
 
 
 
-## Reference
-
-.. [BEP15]
-    http://www.bittorrent.org/beps/bep_0015.html
-
-.. [BEP41]
-    http://www.bittorrent.org/beps/bep_0041.html
-
-.. [DATAGRAMS]
-    {{ spec_url('datagrams') }}
-
-.. [Prop163]
-    {{ proposal_url('163') }}
-
-.. [Prop169]
-    {{ proposal_url('169') }}
-
-.. [SAMv3]
-    {{ site_url('docs/api/samv3') }}
-
-.. [SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [UDP]
-    {{ spec_url('udp-announces') }}
 ```

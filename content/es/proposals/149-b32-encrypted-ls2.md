@@ -13,7 +13,7 @@ implementedin: "0.9.40"
 ## Nota
 Despliegue y prueba en red en progreso.
 Sujeto a revisiones menores.
-Ver [SPEC]_ para la especificación oficial.
+Ver [SPEC](/docs/specs/b32-for-encrypted-leasesets/) para la especificación oficial.
 
 
 ## Resumen
@@ -76,9 +76,7 @@ como una dirección "b33", el nuevo formato real conserva el sufijo habitual ".b
 
 Construir un nombre de host de {56+ caracteres}.b32.i2p (35+ caracteres en binario) de la siguiente manera:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 flag (1 byte)
     bit 0: 0 para tipos de firma de un byte, 1 para tipos de firma de dos bytes
     bit 1: 0 para sin secreto, 1 si se requiere secreto
@@ -94,14 +92,11 @@ flag (1 byte)
 
   public key
     Número de bytes según lo implica el tipo de firma
-
-{% endhighlight %}
+```
 
 Post-procesamiento y suma de verificación:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 Construir los datos binarios como arriba.
   Tratar la suma de verificación como little-endian.
   Calcular suma de verificación = CRC-32(data[3:end])
@@ -110,7 +105,7 @@ Construir los datos binarios como arriba.
   data[2] ^= (byte) (checksum >> 16)
 
   hostname = Base32.encode(data) || ".b32.i2p"
-{% endhighlight %}
+```
 
 Cualquier bit no utilizado al final del b32 debe ser 0.
 No hay bits no utilizados para una dirección estándar de 56 caracteres (35 bytes).
@@ -118,9 +113,7 @@ No hay bits no utilizados para una dirección estándar de 56 caracteres (35 byt
 
 ### Decodificación y Verificación
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 eliminar el ".b32.i2p" del nombre de host
   data = Base32.decode(hostname)
   Calcular suma de verificación = CRC-32(data[3:end])
@@ -133,7 +126,7 @@ eliminar el ".b32.i2p" del nombre de host
     pubkey sigtype = data[1] ^ ((byte) (checksum >> 8)) || data[2] ^ ((byte) (checksum >> 16))
     blinded sigtype = data[3] || data[4]
   analizar el resto según las flags para obtener la clave pública
-{% endhighlight %}
+```
 
 
 ### Bits de Secreto y Clave Privada
@@ -153,7 +146,7 @@ datos requeridos, o rechazar los intentos de conexión si faltan los datos neces
   el nombre de host será {56 caracteres}.b32.i2p, decodificándose a 35 bytes, igual que Tor.
 - El checksum de 2 bytes de Tor tiene una tasa de falsos negativos de 1/64K. Con 3 bytes, menos algunos bytes ignorados,
   el nuestro se aproxima a 1 en un millón, ya que la mayoría de las combinaciones flag/sigtype son inválidas.
-- Adler-32 es una mala elección para entradas pequeñas, y para detectar cambios pequeños [ADLER32]_.
+- Adler-32 es una mala elección para entradas pequeñas, y para detectar cambios pequeños.
   Usar CRC-32 en su lugar. CRC-32 es rápido y está ampliamente disponible.
 
 ## Caching
@@ -181,15 +174,3 @@ Aunque está fuera del alcance de esta propuesta, los routers y/o clientes deben
 
 No hay problemas de compatibilidad hacia atrás. Las direcciones b32 más largas fallarán al ser convertidas
 a hashes de 32 bytes en software antiguo.
-
-
-
-
-## Referencias
-
-.. [ADLER32]
-    https://en.wikipedia.org/wiki/CRC-32
-    https://tools.ietf.org/html/rfc3309
-
-.. [SPEC]
-    {{ spec_url('b32encrypted') }}

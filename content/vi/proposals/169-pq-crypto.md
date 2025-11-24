@@ -13,13 +13,13 @@ target: "0.9.80"
 
 Mặc dù nghiên cứu và cạnh tranh mã hóa hậu lượng tử (PQ) đã được tiến hành suốt một thập kỷ, các lựa chọn không trở nên rõ ràng cho đến gần đây.
 
-Chúng tôi bắt đầu xem xét các tiềm năng của mã hóa PQ vào năm 2022 [FORUM]_.
+Chúng tôi bắt đầu xem xét các tiềm năng của mã hóa PQ vào năm 2022 [FORUM](http://zzz.i2p/topics/3294).
 
-Tiêu chuẩn TLS đã thêm hỗ trợ mã hóa lai trong hai năm qua và hiện nay được sử dụng cho một phần đáng kể của lưu lượng mã hóa trên internet nhờ hỗ trợ trong Chrome và Firefox [CLOUDFLARE]_.
+Tiêu chuẩn TLS đã thêm hỗ trợ mã hóa lai trong hai năm qua và hiện nay được sử dụng cho một phần đáng kể của lưu lượng mã hóa trên internet nhờ hỗ trợ trong Chrome và Firefox [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/).
 
-NIST gần đây đã hoàn tất và công bố các thuật toán được khuyến nghị cho mã hóa hậu lượng tử [NIST-PQ]_. Một số thư viện mã hóa thông dụng hiện nay đã hỗ trợ tiêu chuẩn NIST hoặc sẽ phát hành hỗ trợ trong thời gian tới.
+NIST gần đây đã hoàn tất và công bố các thuật toán được khuyến nghị cho mã hóa hậu lượng tử [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). Một số thư viện mã hóa thông dụng hiện nay đã hỗ trợ tiêu chuẩn NIST hoặc sẽ phát hành hỗ trợ trong thời gian tới.
 
-Cả [CLOUDFLARE]_ và [NIST-PQ]_ đều khuyến nghị rằng quá trình di chuyển nên bắt đầu ngay lập tức. Cũng xem phần Câu hỏi thường gặp về PQ năm 2022 của NSA [NSA-PQ]_. I2P nên là người dẫn đầu trong bảo mật và mã hóa. Bây giờ là thời điểm để triển khai các thuật toán được khuyến nghị. Sử dụng hệ thống loại mật mã và loại chữ ký linh hoạt của chúng ta, chúng ta sẽ thêm các loại cho mật mã lai, và cho chữ ký PQ và lai.
+Cả [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/) và [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) đều khuyến nghị rằng quá trình di chuyển nên bắt đầu ngay lập tức. Cũng xem phần Câu hỏi thường gặp về PQ năm 2022 của NSA [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF). I2P nên là người dẫn đầu trong bảo mật và mã hóa. Bây giờ là thời điểm để triển khai các thuật toán được khuyến nghị. Sử dụng hệ thống loại mật mã và loại chữ ký linh hoạt của chúng ta, chúng ta sẽ thêm các loại cho mật mã lai, và cho chữ ký PQ và lai.
 
 ## Mục Tiêu
 

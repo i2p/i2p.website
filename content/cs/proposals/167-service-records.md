@@ -22,7 +22,7 @@ seznamy bran a klíčů, takže klienti mohou připojit k té destinaci.
 
 Lease sety jsou tedy v určitém smyslu jako záznamy DNS. Momentálně však chybí možnost zjistit,
 zda daný host podporuje nějaké služby, buď na té destinaci nebo na jiné,
-podobně jako DNS SRV záznamy [SRV]_ [RFC2782]_.
+podobně jako DNS SRV záznamy [SRV](https://en.wikipedia.org/wiki/SRV_record) [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782).
 
 První aplikací pro toto může být peer-to-peer email.
 Další možné aplikace: DNS, GNS, klíčové servery, certifikační autority, časové servery,
@@ -33,7 +33,7 @@ bittorrent, kryptoměny, jiné peer-to-peer aplikace.
 
 ### Seznamy služeb
 
-Návrh LS2 č. 123 [Prop123]_ definoval 'záznamy služeb', které indikují, že destinace
+Návrh LS2 č. 123 [Prop123](/en/proposals/123-new-netdb-entries/) definoval 'záznamy služeb', které indikují, že destinace
 participuje v globální službě. Floodfill servery by agregovaly tyto záznamy
 do globálních 'seznamů služeb'.
 To nebylo nikdy implementováno kvůli komplexnosti, nedostatku autentizace,
@@ -44,13 +44,13 @@ ne globální pool destinací pro nějakou globální službu.
 
 ### GNS
 
-GNS [GNS]_ navrhuje, aby každý provozoval svůj vlastní DNS server.
+GNS [GNS](http://zzz.i2p/topcs/1545) navrhuje, aby každý provozoval svůj vlastní DNS server.
 Tento návrh je komplementární, protože bychom mohli použít záznamy služeb ke specifikaci,
 že GNS (nebo DNS) je podporováno, se standardním názvem služby "domain" na portu 53.
 
 ### Dot well-known
 
-V [DOTWELLKNOWN]_ je navrhováno, že služby by měly být vyhledány prostřednictvím HTTP požadavku na
+V [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) je navrhováno, že služby by měly být vyhledány prostřednictvím HTTP požadavku na
 /.well-known/i2pmail.key. To vyžaduje, aby každá služba měla spojenou
 webovou stránku pro hostování klíče. Většina uživatelů neprovozuje webové stránky.
 
@@ -71,10 +71,10 @@ neposkytují obecný záznam pro jakoukoli službu.
 
 ## Návrh
 
-Záznamy služeb jsou umístěny v sekci možností v LS2 [LS2]_.
+Záznamy služeb jsou umístěny v sekci možností v LS2 [LS2](/en/docs/spec/common-structures/).
 Sekce možností LS2 je momentálně nevyužitá.
 Nepodporováno pro LS1.
-To je podobné návrhu šířky pásma tunelu [Prop168]_,
+To je podobné návrhu šířky pásma tunelu [Prop168](/en/proposals/168-tunnel-bandwidth/),
 který definuje možnosti pro záznamy sestavení tunelu.
 
 Aby bylo možné vyhledat adresu služby pro konkrétní hostname nebo b32, router získá
@@ -107,7 +107,7 @@ Definováno následujícím způsobem:
 - optionkey := _service._proto
 - service := Symbolický název požadované služby. Musí být malými písmeny. Příklad: "smtp".
   Povoleny jsou znaky [a-z0-9-] a nesmí začínat nebo končit znakem '-'.
-  Standardní identifikátory z [REGISTRY]_ nebo Linux /etc/services musí být použity, pokud jsou tam definovány.
+  Standardní identifikátory z [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) nebo Linux /etc/services musí být použity, pokud jsou tam definovány.
 - proto := Transportní protokol požadované služby. Musí být malými písmeny, buď "tcp" nebo "udp".
   "tcp" znamená streaming a "udp" znamená odpovídající datagramy.
   Ukazatele protokolu pro surové datagramy a datagram2 mohou být definovány později.
@@ -123,13 +123,13 @@ Definováno následujícím způsobem:
   Užitečné pouze pokud existuje více než jeden záznam, ale požadováno i pokud je pouze jeden záznam.
 - port := I2CP port, na kterém je služba nalezena. Nezáporné celé číslo. Příklad: "25"
   Port 0 je podporován, ale nedoporučuje se.
-- target := Hostname nebo b32 destinace poskytující služby. Platný hostname jako v [NAMING]_. Musí být malými písmeny.
+- target := Hostname nebo b32 destinace poskytující služby. Platný hostname jako v [NAMING](/en/docs/naming/). Musí být malými písmeny.
   Příklad: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" nebo "example.i2p".
   b32 je doporučeno, pokud hostname není "dobře známé", tj. v oficiálních nebo výchozích adresářích.
 - appoptions := libovolný text specifický pro aplikaci, nesmí obsahovat " " nebo ",". Kódování je UTF-8.
 
-Příklady
-``````````
+### Příklady
+
 
 V LS2 pro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, ukazující na jeden SMTP server:
 
@@ -148,8 +148,8 @@ Možný formát pro přesměrování emailu (viz níže):
 "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
-Limity
-```````
+### Limity
+
 
 Formát datové struktury Mapping používaný pro možnosti LS2 omezuje klíče a hodnoty na maximálně 255 bajtů (ne znaků).
 U b32 cíle je optionvalue asi 67 bajtů, takže se vejdou pouze 3 záznamy.
@@ -157,8 +157,8 @@ Možná jen jeden nebo dva s dlouhým polem appoptions, nebo až čtyři nebo p�
 To by mělo být dostačující; více záznamů by mělo být vzácné.
 
 
-Rozdíly oproti [RFC2782]_
-````````````````````````````
+### Rozdíly oproti [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)
+
 
 - Žádné koncové tečky
 - Žádné jméno po proto
@@ -168,8 +168,8 @@ Rozdíly oproti [RFC2782]_
 - Další pole appoptions
 
 
-Poznámky
-`````
+### Poznámky
+
 
 Není povoleno žádné zástupné znakování jako hvězdička, hvězdička._tcp nebo _tcp.
 Každá podporovaná služba musí mít svůj vlastní záznam.
@@ -178,15 +178,15 @@ Každá podporovaná služba musí mít svůj vlastní záznam.
 
 ### Registr názvů služeb
 
-Nestandardní identifikátory, které nejsou uvedeny v [REGISTRY]_ nebo Linux /etc/services
-mohou být požadovány a přidány do specifikace obecných struktur [LS2]_.
+Nestandardní identifikátory, které nejsou uvedeny v [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) nebo Linux /etc/services
+mohou být požadovány a přidány do specifikace obecných struktur [LS2](/en/docs/spec/common-structures/).
 
 Formáty appoptions specifické pro služby mohou být také tam přidány.
 
 
 ### Specifikace I2CP
 
-Protokol [I2CP]_ musí být rozšířen, aby podporoval vyhledávání služeb.
+Protokol [I2CP](/en/docs/spec/i2cp/) musí být rozšířen, aby podporoval vyhledávání služeb.
 Další MessageStatusMessage a/nebo HostReplyMessage chybové kódy související s vyhledáváním služeb
 jsou vyžadovány.
 Aby bylo vyhledávací zařízení obecné, nejen specifické pro záznamy služby,
@@ -203,8 +203,8 @@ Záznamy služeb mohou být kešovány až do TTL specifikovaného aplikací, kl
 
 Rozšíření specifikace následovně:
 
-Konfigurační možnosti
-`````````````````````
+### Konfigurační možnosti
+
 Přidat následující do [I2CP-OPTIONS]
 
 i2cp.leaseSetOption.nnn
@@ -217,8 +217,8 @@ Příklad:
 i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
-HostLookup Message
-``````````````````
+### HostLookup Message
+
 
 - Typ vyhledávání 2: Vyhledání pomocí hashe, požadavek na mapování možností
 - Typ vyhledávání 3: Vyhledání pomocí hostname, požadavek na mapování možností
@@ -228,8 +228,8 @@ Pro typ vyhledávání 4, item 5 je Destinace.
 
 
 
-HostReply Message
-``````````````````
+### HostReply Message
+
 
 Pro typy vyhledávání 2-4, router musí získat leaseset,
 i když je vyhledávací klíč v adresáři.
@@ -255,7 +255,7 @@ odpověď bude obsahovat nový chybový kód 7 (typ vyhledávání nepodporován
 
 ### Specifikace SAM
 
-Protokol [SAMv3]_ musí být rozšířen, aby podporoval vyhledávání služeb.
+Protokol [SAMv3](/en/docs/api/samv3/) musí být rozšířen, aby podporoval vyhledávání služeb.
 
 Rozšíření NAMING LOOKUP následujícím způsobem:
 
@@ -286,7 +286,7 @@ Pokud OPTIONS=true bylo v vyhledávání a leaseset není nalezen, bude vrácen�
 
 Byl zvažován alternativní návrh, jak podporovat vyhledávání služeb
 jako plného hostname, například _smtp._tcp.example.i2p,
-aktualizací [NAMING]_ pro specifikaci zpracování hostname začínajících '_'.
+aktualizací [NAMING](/en/docs/naming/) pro specifikaci zpracování hostname začínajících '_'.
 To bylo odmítnuto ze dvou důvodů:
 
 - Změny I2CP a SAM by byly stále nezbytné pro průchod TTL a informací o portu k klientovi.
@@ -328,7 +328,7 @@ TODO jak to udělat obecně
 
 ### Změny nutné pro Email
 
-Mimo rozsah tohoto návrhu. Viz [DOTWELLKNOWN]_ pro diskusi.
+Mimo rozsah tohoto návrhu. Viz [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) pro diskusi.
 
 
 ## Poznámky k implementaci
@@ -375,47 +375,3 @@ SAM klienti nebudou dostávat další hodnoty v odpovědi, pokud nejsou požadov
 Žádné zvýšení verze by nemělo být nutné.
 
 
-## Migrace
-
-Implementace mohou přidat podporu kdykoliv, žádná koordinace není potřebná,
-kromě dohody na efektivní verzi API pro změny I2CP.
-Verze kompatibility SAM pro každou implementaci budou zdokumentovány ve specifikaci SAM.
-
-
-## Reference
-
-.. [DOTWELLKNOWN]
-    http://i2pforum.i2p/viewtopic.php?p=3102
-
-.. [I2CP]
-    {{ spec_url('i2cp') }}
-
-.. [I2CP-OPTIONS]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [LS2]
-    {{ spec_url('common-structures') }}
-
-.. [GNS]
-    http://zzz.i2p/topcs/1545
-
-.. [NAMING]
-    {{ site_url('docs/naming', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop168]
-    {{ proposal_url('168') }}
-
-.. [REGISTRY]
-    http://www.dns-sd.org/ServiceTypes.html
-
-.. [RFC2782]
-    https://datatracker.ietf.org/doc/html/rfc2782
-
-.. [SAMv3]
-    {{ site_url('docs/api/samv3') }}
-
-.. [SRV]
-    https://en.wikipedia.org/wiki/SRV_record

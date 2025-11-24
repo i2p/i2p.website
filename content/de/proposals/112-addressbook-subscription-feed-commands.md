@@ -12,7 +12,7 @@ implementedin: "0.9.26"
 
 ## Hinweis
 Netzwerkbereitstellung abgeschlossen.
-Siehe [SPEC]_ für die offizielle Spezifikation.
+Siehe [SPEC](/docs/specs/subscription/) für die offizielle Spezifikation.
 
 
 ## Übersicht
@@ -25,9 +25,11 @@ Implementiert in 0.9.26.
 ## Motivation
 
 Derzeit senden die hosts.txt-Abonnementserver Daten im hosts.txt
-Format, das wie folgt aussieht::
+Format, das wie folgt aussieht:
 
-    example.i2p=b64destination
+  ```text
+  example.i2p=b64destination
+  ```
 
 Es gibt mehrere Probleme damit:
 
@@ -67,16 +69,19 @@ dass die Destination kompromittiert wurde; dies ist mit dem aktuellen System unm
 
 Dieser Vorschlag fügt zwei neue Zeilentypen hinzu:
 
-1. Hinzufügen und Ändern von Befehlen::
+1. Hinzufügen und Ändern von Befehlen:
 
+     ```text
      example.i2p=b64destination#!key1=val1#key2=val2 ...
+     ```
 
-2. Entfernen von Befehlen::
+2. Entfernen von Befehlen:
 
+     ```text
      #!key1=val1#key2=val2 ...
+     ```
 
-Reihenfolge
-``````````
+#### Reihenfolge
 Ein Feed ist nicht unbedingt in Reihenfolge oder vollständig. Zum Beispiel kann ein Änderungsbefehl
 vor einem Hinzufügebefehl stehen oder ohne einen Hinzufügebefehl.
 
@@ -124,8 +129,7 @@ werden im Schlüssel/Wert-Bereich aufgenommen.
 Aufgelistete Schlüssel sind erforderlich. Alle Befehle können zusätzliche Schlüssel/Wert-Paare enthalten,
 die hier nicht definiert sind.
 
-Hostname hinzufügen
-````````````````
+#### Hostname hinzufügen
 Vorangegangen von example.i2p=b64dest
   JA, dies ist der neue Hostname und die Destination.
 action
@@ -133,12 +137,13 @@ action
 sig
   Signatur
 
-Beispiel::
+Beispiel:
 
+  ```text
   example.i2p=b64dest#!sig=b64sig
+  ```
 
-Hostname ändern
-```````````````
+#### Hostname ändern
 Vorangegangen von example.i2p=b64dest
   JA, dies ist der neue Hostname und die alte Destination.
 action
@@ -148,12 +153,13 @@ oldname
 sig
   Signatur
 
-Beispiel::
+Beispiel:
 
+  ```text
   example.i2p=b64dest#!action=changename#oldname=oldhostname#sig=b64sig
+  ```
 
-Destination ändern
-``````````````````
+#### Destination ändern
 Vorangegangen von example.i2p=b64dest
   JA, dies ist der alte Hostname und die neue Destination.
 action
@@ -165,12 +171,13 @@ oldsig
 sig
   Signatur
 
-Beispiel::
+Beispiel:
 
+  ```text
   example.i2p=b64dest#!action=changedest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Hostname-Alias hinzufügen
-````````````````````
+#### Hostname-Alias hinzufügen
 Vorangegangen von example.i2p=b64dest
   JA, dies ist der neue (Alias-)Hostname und die alte Destination.
 action
@@ -180,12 +187,13 @@ oldname
 sig
   Signatur
 
-Beispiel::
+Beispiel:
 
+  ```text
   example.i2p=b64dest#!action=addname#oldname=oldhostname#sig=b64sig
+  ```
 
-Destination-Alias hinzufügen
-`````````````````````````
+#### Destination-Alias hinzufügen
 (Wird für Kryptografie-Upgrade verwendet)
 
 Vorangegangen von example.i2p=b64dest
@@ -199,12 +207,13 @@ oldsig
 sig
   Signatur, die dest benutzt
 
-Beispiel::
+Beispiel:
 
+  ```text
   example.i2p=b64dest#!action=adddest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Subdomain hinzufügen
-`````````````
+#### Subdomain hinzufügen
 Vorangegangen von subdomain.example.i2p=b64dest
   JA, dies ist der neue Host-Subdomain-Name und die Destination.
 action
@@ -218,12 +227,13 @@ oldsig
 sig
   Signatur, die dest benutzt
 
-Beispiel::
+Beispiel:
 
+  ```text
   subdomain.example.i2p=b64dest#!action=addsubdomain#oldname=example.i2p#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Metadaten aktualisieren
-```````````````
+#### Metadaten aktualisieren
 Vorangegangen von example.i2p=b64dest
   JA, dies ist der alte Hostname und die Destination.
 action
@@ -233,12 +243,13 @@ sig
 
 (alle aktualisierten Schlüssel hier hinzufügen)
 
-Beispiel::
+Beispiel:
 
+  ```text
   example.i2p=b64dest#!action=update#k1=v1#k2=v2#sig=b64sig
+  ```
 
-Hostname entfernen
-```````````````
+#### Hostname entfernen
 Vorangegangen von example.i2p=b64dest
   NEIN, diese sind in den Optionen angegeben
 action
@@ -250,12 +261,13 @@ dest
 sig
   Signatur
 
-Beispiel::
+Beispiel:
 
+  ```text
   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+  ```
 
-Alle mit dieser Destination entfernen
-``````````````````````````````````````
+#### Alle mit dieser Destination entfernen
 Vorangegangen von example.i2p=b64dest
   NEIN, diese sind in den Optionen angegeben
 action
@@ -267,9 +279,11 @@ dest
 sig
   Signatur
 
-Beispiel::
+Beispiel:
 
+  ```text
   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+  ```
 
 
 ### Signaturen
@@ -294,8 +308,7 @@ oldsig ist immer die "innere" Signatur. Signieren und Verifizieren ohne die 'old
 'sig'-Schlüssel. sig ist immer die "äußere" Signatur. Signieren und Verifizieren mit
 dem 'oldsig'-Schlüssel vorhanden, aber nicht dem 'sig'-Schlüssel.
 
-Eingabe für Signaturen
-``````````````````````
+#### Eingabe für Signaturen
 Um einen Byte-Stream zur Erstellung oder Verifikation der Signatur zu generieren, serialisieren Sie wie folgt:
 
 - Entfernen Sie den "sig"-Schlüssel
@@ -327,7 +340,3 @@ Daher ist es wichtig, dass Namensserver Befehls-Einträge in irgendeiner Weise a
 etag-Unterstützung aktivieren, damit Router alle vergangenen Befehle abrufen können.
 
 
-## Referenzen
-
-.. [SPEC]
-    {{ spec_url('subscription') }}

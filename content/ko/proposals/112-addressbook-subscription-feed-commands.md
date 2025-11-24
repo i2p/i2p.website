@@ -12,7 +12,7 @@ implementedin: "0.9.26"
 
 ## 노트
 네트워크 배포 완료.
-공식 명세는 [SPEC]_를 참조하십시오.
+공식 명세는 [SPEC](/docs/specs/subscription/)를 참조하십시오.
 
 
 ## 개요
@@ -23,9 +23,11 @@ implementedin: "0.9.26"
 
 ## 동기
 
-현재 hosts.txt 구독 서버는 hosts.txt 형식으로 데이터를 전송할 뿐입니다, 이는 다음과 같습니다::
+현재 hosts.txt 구독 서버는 hosts.txt 형식으로 데이터를 전송할 뿐입니다, 이는 다음과 같습니다:
 
-    example.i2p=b64destination
+  ```text
+  example.i2p=b64destination
+  ```
 
 여기에는 몇 가지 문제가 있습니다:
 
@@ -57,16 +59,19 @@ implementedin: "0.9.26"
 
 이 제안서는 두 개의 새로운 행 유형을 추가합니다:
 
-1. 추가 및 변경 명령어::
+1. 추가 및 변경 명령어:
 
+     ```text
      example.i2p=b64destination#!key1=val1#key2=val2 ...
+     ```
 
-2. 제거 명령어::
+2. 제거 명령어:
 
+     ```text
      #!key1=val1#key2=val2 ...
+     ```
 
-정렬
-````````
+#### 정렬
 피드는 반드시 순서 대로이거나 완전하지는 않습니다. 예를 들어, 변경 명령이 추가 명령 앞에 있을 수 있으며, 추가 명령 없이 있을 수 있습니다.
 
 키는 어느 순서로든 나올 수 있습니다. 중복 키는 허용되지 않습니다. 모든 키와 값은 대소문자를 구분합니다.
@@ -110,8 +115,7 @@ expires
 
 나열된 키는 필수입니다. 모든 명령어는 여기 정의되지 않은 추가적인 키/값 항목을 포함할 수 있습니다.
 
-호스트명 추가
-````````````
+#### 호스트명 추가
 example.i2p=b64dest로 시작
   예, 이는 새로운 호스트명과 대상입니다.
 action
@@ -119,12 +123,13 @@ action
 sig
   서명
 
-예시::
+예시:
 
+  ```text
   example.i2p=b64dest#!sig=b64sig
+  ```
 
-호스트명 변경
-`````````````
+#### 호스트명 변경
 example.i2p=b64dest로 시작
   예, 이는 새로운 호스트명과 오래된 대상입니다.
 action
@@ -134,12 +139,13 @@ oldname
 sig
   서명
 
-예시::
+예시:
 
+  ```text
   example.i2p=b64dest#!action=changename#oldname=oldhostname#sig=b64sig
+  ```
 
-대상 변경
-``````````````````
+#### 대상 변경
 example.i2p=b64dest로 시작
   예, 이는 오래된 호스트명과 새로운 대상입니다.
 action
@@ -151,12 +157,13 @@ oldsig
 sig
   서명
 
-예시::
+예시:
 
+  ```text
   example.i2p=b64dest#!action=changedest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-호스트명 별칭 추가
-``````````````````
+#### 호스트명 별칭 추가
 example.i2p=b64dest로 시작
   예, 이는 새로운 (별칭) 호스트명과 오래된 대상입니다.
 action
@@ -166,12 +173,13 @@ oldname
 sig
   서명
 
-예시::
+예시:
 
+  ```text
   example.i2p=b64dest#!action=addname#oldname=oldhostname#sig=b64sig
+  ```
 
-대상 별칭 추가
-`````````````````````
+#### 대상 별칭 추가
 (암호 업그레이드를 위해 사용됨)
 
 example.i2p=b64dest로 시작
@@ -185,12 +193,13 @@ oldsig
 sig
   dest을 사용한 서명
 
-예시::
+예시:
 
+  ```text
   example.i2p=b64dest#!action=adddest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-서브도메인 추가
-`````````````
+#### 서브도메인 추가
 subdomain.example.i2p=b64dest로 시작
   예, 이는 새로운 호스트 서브도메인명과 대상입니다.
 action
@@ -204,12 +213,13 @@ oldsig
 sig
   dest을 사용한 서명
 
-예시::
+예시:
 
+  ```text
   subdomain.example.i2p=b64dest#!action=addsubdomain#oldname=example.i2p#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-메타데이터 업데이트
-```````````````
+#### 메타데이터 업데이트
 example.i2p=b64dest로 시작
   예, 이는 오래된 호스트명과 대상입니다.
 action
@@ -219,12 +229,13 @@ sig
 
 (업데이트된 키를 여기에 추가)
 
-예시::
+예시:
 
+  ```text
   example.i2p=b64dest#!action=update#k1=v1#k2=v2#sig=b64sig
+  ```
 
-호스트명 제거
-`````````````
+#### 호스트명 제거
 example.i2p=b64dest로 시작
   아니오, 옵션에서 지정됩니다
 action
@@ -236,12 +247,13 @@ dest
 sig
   서명
 
-예시::
+예시:
 
+  ```text
   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+  ```
 
-이 대상을 가진 모든 항목 제거
-````````````````````````````````
+#### 이 대상을 가진 모든 항목 제거
 example.i2p=b64dest로 시작
   아니오, 옵션에서 지정됩니다
 action
@@ -253,9 +265,11 @@ dest
 sig
   서명
 
-예시::
+예시:
 
+  ```text
   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+  ```
 
 
 ### 서명
@@ -270,8 +284,7 @@ sig
 
 oldsig는 항상 "내부" 서명입니다. 'oldsig' 또는 'sig' 키가 없는 상태에서 서명하고 검증하세요. sig는 항상 "외부" 서명입니다. 'oldsig' 키는 있지만 'sig' 키는 없는 상태에서 서명하고 검증합니다.
 
-서명을 위한 입력
-````````````````````
+#### 서명을 위한 입력
 서명을 생성하거나 서명을 확인하기 위해 바이트 스트림을 생성하려면 다음과 같이 시리얼화하세요:
 
 - "sig" 키를 제거합니다
@@ -298,7 +311,3 @@ I2P 라우터가 새로운 명세로 업데이트되면, 이전 주석을 다시
 
 
 
-## 참고 문서
-
-.. [SPEC]
-    {{ spec_url('subscription') }}

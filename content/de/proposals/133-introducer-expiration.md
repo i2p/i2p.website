@@ -12,38 +12,34 @@ implementedin: "0.9.30"
 
 ## Übersicht
 
-Dieser Vorschlag bezieht sich auf die Verbesserung der Erfolgsrate bei Einführungen. Siehe
-[TRAC-TICKET]_.
+Dieser Vorschlag bezieht sich auf die Verbesserung der Erfolgsrate bei Einführungen.
 
 
 ## Motivation
 
 Einführer verfallen nach einer bestimmten Zeit, aber diese Info wird nicht in der
-[RouterInfo]_ veröffentlicht. Router müssen derzeit Heuristiken verwenden, um zu schätzen, wann ein
+RouterInfo veröffentlicht. Router müssen derzeit Heuristiken verwenden, um zu schätzen, wann ein
 Einführer nicht mehr gültig ist.
 
 
 ## Design
 
-In einer SSU [RouterAddress]_, die Einführer enthält, kann der Herausgeber optional
+In einer SSU RouterAddress, die Einführer enthält, kann der Herausgeber optional
 Ablaufzeiten für jeden Einführer angeben.
 
 
 ## Spezifikation
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```
 iexp{X}={nnnnnnnnnn}
 
-  X :: Die Einführer-Nummer (0-2)
+X :: Die Einführer-Nummer (0-2)
 
-  nnnnnnnnnn :: Die Zeit in Sekunden (nicht ms) seit der Epoche.
-{% endhighlight %}
+nnnnnnnnnn :: Die Zeit in Sekunden (nicht ms) seit der Epoche.
+```
 
-Hinweise
-`````
-* Jeder Ablauf muss größer sein als das Veröffentlichungsdatum der [RouterInfo]_
+### Hinweise
+* Jeder Ablauf muss größer sein als das Veröffentlichungsdatum der RouterInfo
   und weniger als 6 Stunden nach dem Veröffentlichungsdatum der RouterInfo.
 
 * Herausgeber von Routern und Einführern sollten versuchen, den Einführer bis zum Ablauf gültig zu halten,
@@ -51,26 +47,13 @@ Hinweise
 
 * Router sollten einen veröffentlichten Einführer nach dessen Ablauf nicht mehr verwenden.
 
-* Die Einführerabläufe befinden sich in der [RouterAddress]_ Zuordnung.
-  Sie sind nicht das (derzeit ungenutzte) 8-Byte-Ablauf-Feld in der [RouterAddress]_.
+* Die Einführerabläufe befinden sich in der RouterAddress Zuordnung.
+  Sie sind nicht das (derzeit ungenutzte) 8-Byte-Ablauf-Feld in der RouterAddress.
 
-Beispiel: ``iexp0=1486309470``
+**Beispiel:** `iexp0=1486309470`
 
 
 ## Migration
 
 Keine Probleme. Die Implementierung ist optional.
 Abwärtskompatibilität ist sichergestellt, da ältere Router unbekannte Parameter ignorieren.
-
-
-
-## Referenzen
-
-.. [RouterAddress]
-    {{ ctags_url('RouterAddress') }}
-
-.. [RouterInfo]
-    {{ ctags_url('RouterInfo') }}
-
-.. [TRAC-TICKET]
-    http://{{ i2pconv('trac.i2p2.i2p') }}/ticket/1352

@@ -42,7 +42,7 @@ Die Lösung besteht darin, zwei neue "Caps" oder Fähigkeiten zu den Router-Info
 
 ### IPv6-Vermittler
 
-Unsere Spezifikationen [SSU]_ und [SSU-SPEC]_ enthalten Fehler und Inkonsistenzen darüber, ob
+Unsere Spezifikationen [SSU](/en/docs/transport/ssu/) und [SSU-SPEC](/en/docs/spec/ssu/) enthalten Fehler und Inkonsistenzen darüber, ob
 IPv6-Vermittler für IPv4-Vermittlungen unterstützt werden.
 In jedem Fall wurde dies weder in Java I2P noch in i2pd jemals implementiert.
 Dies muss korrigiert werden.
@@ -50,7 +50,7 @@ Dies muss korrigiert werden.
 
 ### IPv6-Vermittlungen
 
-Unsere Spezifikationen [SSU]_ und [SSU-SPEC]_ machen deutlich, dass
+Unsere Spezifikationen [SSU](/en/docs/transport/ssu/) und [SSU-SPEC](/en/docs/spec/ssu/) machen deutlich, dass
 IPv6-Vermittlungen nicht unterstützt werden.
 Dies geschah unter der Annahme, dass IPv6 niemals hinter einer Firewall steht.
 Dies ist eindeutig nicht wahr, und wir müssen die Unterstützung für Router hinter einer Firewall mit IPv6 verbessern.
@@ -62,65 +62,57 @@ Legende: ----- ist IPv4, ====== ist IPv6
 
 Aktuell nur IPv4:
 
-.. raw:: html
-
-  {% highlight %}
-        Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+```
+      Alice                         Bob                  Charlie
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 
 IPv4-Vermittlung, IPv6-Vermittler
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 IPv6-Vermittlung, IPv6-Vermittler
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 IPv6-Vermittlung, IPv4-Vermittler
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 
 ## Design
@@ -139,7 +131,7 @@ Es gibt drei Änderungen, die implementiert werden sollen.
 
 Dies wurde ursprünglich ohne formellen Vorschlag implementiert, ist aber erforderlich für
 IPv6-Vermittlungen, daher fügen wir es hier hinzu.
-Siehe auch [CAPS]_.
+Siehe auch [CAPS](http://zzz.i2p/topics/3050).
 
 
 Zwei neue Fähigkeiten "4" und "6" sind definiert.
@@ -207,7 +199,7 @@ Wir haben dies auch als "Teil 1" des Vorschlags beschrieben.
 
 #### Spezifikationsänderungen
 
-[SSU]_ sagt derzeit (IPv6-Anmerkungen):
+[SSU](/en/docs/transport/ssu/) sagt derzeit (IPv6-Anmerkungen):
 
 IPv6 wird ab Version 0.9.8 unterstützt. Veröffentlichte Relay-Adressen können IPv4 oder IPv6 sein, und die Kommunikation zwischen Alice und Bob kann über IPv4 oder IPv6 erfolgen.
 
@@ -220,7 +212,7 @@ Daher sollten Router der "C"-Fähigkeit auf einer IPv6-Adresse nur vertrauen, we
 
 
 
-[SSU-SPEC]_ sagt derzeit (Relay-Anfrage):
+[SSU-SPEC](/en/docs/spec/ssu/) sagt derzeit (Relay-Anfrage):
 
 Die IP-Adresse ist nur enthalten, wenn sie sich von der Quelladresse und dem Port des Pakets unterscheidet.
 In der aktuellen Implementierung ist die IP-Länge immer 0 und der Port ist immer 0,
@@ -248,11 +240,11 @@ Wir haben dies auch als "Teil 2" des Vorschlags beschrieben.
 
 #### Spezifikationsänderungen
 
-[SSU]_ sagt derzeit (IPv6-Anmerkungen):
+[SSU](/en/docs/transport/ssu/) sagt derzeit (IPv6-Anmerkungen):
 
 Die Kommunikation zwischen Bob-Charlie und Alice-Charlie erfolgt nur über IPv4.
 
-[SSU-SPEC]_ sagt derzeit (Relay-Anfrage):
+[SSU-SPEC](/en/docs/spec/ssu/) sagt derzeit (Relay-Anfrage):
 
 Es gibt keine Pläne, Relaying für IPv6 zu implementieren.
 
@@ -260,7 +252,7 @@ Es gibt keine Pläne, Relaying für IPv6 zu implementieren.
 
 Relaying für IPv6 wird ab Veröffentlichung 0.9.xx unterstützt
 
-[SSU-SPEC]_ sagt derzeit (Relay Response):
+[SSU-SPEC](/en/docs/spec/ssu/) sagt derzeit (Relay Response):
 
 Charlies IP-Adresse muss IPv4 sein, da das die Adresse ist, an die Alice die Session-Anfrage nach dem Hole-Punch senden wird.
 Es gibt keine Pläne, Relaying für IPv6 zu implementieren.
@@ -271,7 +263,7 @@ Charlies IP-Adresse kann IPv4 oder, ab Veröffentlichung 0.9.xx, IPv6 sein.
 Das ist die Adresse, an die Alice die Session-Anfrage nach dem Hole-Punch senden wird.
 Relaying für IPv6 wird ab Veröffentlichung 0.9.xx unterstützt
 
-[SSU-SPEC]_ sagt derzeit (Relay Intro):
+[SSU-SPEC](/en/docs/spec/ssu/) sagt derzeit (Relay Intro):
 
 Alices IP-Adresse ist in der aktuellen Implementierung immer 4 Byte, da Alice versucht, Charlie über IPv4 zu verbinden.
 Diese Nachricht muss über eine etablierte IPv4-Verbindung gesendet werden,
@@ -296,21 +288,3 @@ Ab Veröffentlichung 0.9.xx muss jede über Vermittler veröffentlichte SSU-Adre
 Alle alten Router sollten die Eigenschaft "caps" in NTCP2 und unbekannte Fähigkeitszeichen in der SSU-Caps-Eigenschaft ignorieren.
 
 Jede SSU-Adresse mit Vermittlern, die keinen "4"- oder "6"-Cap enthält, wird als für die IPv4-Vermittlung angenommen.
-
-
-
-
-
-## Referenzen
-
-.. [CAPS]
-    http://zzz.i2p/topics/3050
-
-.. [NTCP2]
-    {{ spec_url('ntcp2') }}
-
-.. [SSU]
-    {{ site_url('docs/transport/ssu', True) }}
-
-.. [SSU-SPEC]
-    {{ spec_url('ssu') }}

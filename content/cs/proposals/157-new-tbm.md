@@ -13,7 +13,7 @@ target: "0.9.51"
 Implementováno od verze API 0.9.51.
 Probíhá testování a nasazení v síti.
 Předmět drobných úprav.
-Pro konečnou specifikaci vizte [I2NP]_ a [Tunnel-Creation-ECIES]_.
+Pro konečnou specifikaci vizte [I2NP](/en/docs/spec/i2np/) a [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
 
 
 
@@ -27,7 +27,7 @@ U typických zpráv proměnných konstrukcí tunelu a odpovědí na proměnné k
 je celková velikost 2113 bajtů. Tato zpráva je rozdělena na tři 1KB tunelové zprávy
 pro zpětnou cestu.
 
-Změny formátu 528-bajtového záznamu pro směrovače ECIES-X25519 jsou specifikovány v [Prop152]_ a [Tunnel-Creation-ECIES]_.
+Změny formátu 528-bajtového záznamu pro směrovače ECIES-X25519 jsou specifikovány v [Prop152](/en/proposals/152-ecies-tunnels/) a [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
 Pro směs směrovačů ElGamal a ECIES-X25519 v tunelu musí velikost záznamu zůstat
 528 bajtů. Avšak pokud jsou všechny směrovače v tunelu ECIES-X25519, je možné vytvořit nový, menší záznam konstrukce, protože šifrování ECIES-X25519 má mnohem menší režii
 než ElGamal.
@@ -44,13 +44,13 @@ To se očekává na konci roku 2021.
 
 ### Cíle
 
-Další cíle vizte [Prop152]_ a [Prop156]_.
+Další cíle vizte [Prop152](/en/proposals/152-ecies-tunnels/) a [Prop156](/en/proposals/156-ecies-routers/).
 
 - Menší záznamy a zprávy
-- Zachovat dostatečný prostor pro budoucí možnosti, jak je definováno v [Prop152]_ a [Tunnel-Creation-ECIES]_
+- Zachovat dostatečný prostor pro budoucí možnosti, jak je definováno v [Prop152](/en/proposals/152-ecies-tunnels/) a [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)
 - Vejít se do jedné tunelové zprávy pro zpětnou cestu
 - Podporovat pouze přeskoky ECIES
-- Zachovat vylepšení implementovaná v [Prop152]_ a [Tunnel-Creation-ECIES]_
+- Zachovat vylepšení implementovaná v [Prop152](/en/proposals/152-ecies-tunnels/) a [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)
 - Maximalizovat kompatibilitu se současnou sítí
 - Skrýt příchozí stavební zprávy před OBEP
 - Skrýt odchozí stavební odpovědní zprávy před IBGW
@@ -61,10 +61,10 @@ Další cíle vizte [Prop152]_ a [Prop156]_.
 
 ### Nekritické cíle
 
-Další nekritické cíle naleznete v [Prop156]_.
+Další nekritické cíle naleznete v [Prop156](/en/proposals/156-ecies-routers/).
 
 - Neexistuje požadavek na směsné tunely ElGamal/ECIES
-- Změny ve vrstvovém šifrování, viz [Prop153]_
+- Změny ve vrstvovém šifrování, viz [Prop153](/en/proposals/153-chacha20-layer-encryption/)
 - Žádné zrychlení kryptografických operací. Předpokládá se, že ChaCha20 a AES jsou podobné,
   dokonce i s AESNI, alespoň pro malé velikosti dat v otázce.
 
@@ -80,11 +80,11 @@ Zašifrované záznamy požadavků a odpovědí budou mít 218 bajtů v porovná
 
 Otevřené záznamy požadavků budou mít 154 bajtů,
 v porovnání s 222 bajty pro záznamy ElGamal
-a 464 bajty pro záznamy ECIES, jak je definováno v [Prop152]_ a [Tunnel-Creation-ECIES]_.
+a 464 bajty pro záznamy ECIES, jak je definováno v [Prop152](/en/proposals/152-ecies-tunnels/) a [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
 
 Otevřené záznamy odpovědí budou mít 202 bajtů,
 v porovnání s 496 bajty pro záznamy ElGamal
-a 512 bajtů pro záznamy ECIES, jak je definováno v [Prop152]_ a [Tunnel-Creation-ECIES]_.
+a 512 bajtů pro záznamy ECIES, jak je definováno v [Prop152](/en/proposals/152-ecies-tunnels/) a [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
 
 Šifrování odpovědí bude ChaCha20 (NE ChaCha20/Poly1305),
 takže otevřené záznamy nemusí být násobkem 16 bajtů.
@@ -142,7 +142,6 @@ problémům s kompatibilitou na IBGW a OBEP spárovaných tunelů.
 
 ### Tok zprávy
 
-.. raw:: html
 
   {% highlight %}
 STBM: Krátká zpráva o stavbě tunelu (typ 25)
@@ -189,7 +188,7 @@ STBM: Krátká zpráva o stavbě tunelu (typ 25)
 
 ### Šifrování záznamů
 
-Šifrování záznamů požadavků a odpovědí: jak je definováno v [Prop152]_ a [Tunnel-Creation-ECIES]_.
+Šifrování záznamů požadavků a odpovědí: jak je definováno v [Prop152](/en/proposals/152-ecies-tunnels/) a [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
 
 Šifrování záznamů odpovědí pro jiné sloty: ChaCha20.
 
@@ -226,7 +225,7 @@ Krátký nezakódovaný záznam požadavku
 `````````````````````````````````````
 
 Toto je navrhovaná specifikace pro BuildRequestRecord tunelu pro směrovače ECIES-X25519.
-Shrnutí změn z [Tunnel-Creation-ECIES]_:
+Shrnutí změn z [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
 
 - Změnit nezakódovanou délku z 464 na 154 bajtů
 - Změnit zakódovanou délku z 528 na 218 bajtů
@@ -240,7 +239,6 @@ Všechna pole jsou big-endian.
 
 Nezakódovaná velikost: 154 bajtů.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -260,7 +258,7 @@ bytes     0-3: ID tunelu pro příjem zpráv jako, nenulové
 {% endhighlight %}
 
 
-Pole vlajek je stejné, jak je definováno v [Tunnel-Creation]_ a obsahuje následující::
+Pole vlajek je stejné, jak je definováno v [Tunnel-Creation](/en/docs/spec/tunnel-creation/) a obsahuje následující::
 
  Bitový pořadí: 76543210 (bit 7 je MSB)
  bit 7: pokud je nastaven, povolit zprávy od kohokoli
@@ -280,7 +278,7 @@ Prozatím je jediná podporovaná hodnota 600 (10 minut).
 
 Tento klíč je vyžadován, protože na této vrstvě neexistuje DH pro stavební záznam.
 
-Volby konstrukce tunelu je struktura Mapping, jak je definováno v [Common]_.
+Volby konstrukce tunelu je struktura Mapping, jak je definováno v [Common](/en/docs/spec/common-structures/).
 Toto je pro budoucí použití. Žádné volby nejsou aktuálně definovány.
 Pokud je struktura Mapping prázdná, jedná se o dva bajty 0x00 0x00.
 Maximální velikost Mappingu (včetně pole délky) je 98 bajtů,
@@ -295,7 +293,6 @@ Všechna pole jsou big-endian kromě efemérního veřejného klíče, který je
 
 Zakódovaná velikost: 218 bajtů
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -314,7 +311,7 @@ bytes    0-15: Zkrácený hash identity hopa
 Krátký nezakódovaný záznam odpovědi
 `````````````````````````````````````
 Toto je navrhovaná specifikace pro ShortBuildReplyRecord tunelu pro směrovače ECIES-X25519.
-Shrnutí změn z [Tunnel-Creation-ECIES]_:
+Shrnutí změn z [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
 
 - Změnit nezakódovanou délku z 512 na 202 bajtů
 - Změnit zakódovanou délku z 528 na 218 bajtů
@@ -326,7 +323,6 @@ Všechna pole jsou big-endian.
 
 Nezakódovaná velikost: 202 bajtů.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -337,14 +333,14 @@ bytes    0-x: Možnosti odpovědi na konstrukci tunelu (Mapping)
 
 {% endhighlight %}
 
-Možnosti odpovědi na konstrukci tunelu je struktura Mapping, jak je definováno v [Common]_.
+Možnosti odpovědi na konstrukci tunelu je struktura Mapping, jak je definováno v [Common](/en/docs/spec/common-structures/).
 Toto je pro budoucí použití. Žádné volby nejsou aktuálně definovány.
 Pokud je struktura Mapping prázdná, je to dvoubajtové 0x00 0x00.
 Maximální velikost struktury Mapping (včetně pole délky) je 201 bajtů,
 a maximální hodnota pole délky Mapping je 199.
 
 Byte odpovědi je jednou z následujících hodnot
-jak je definováno v [Tunnel-Creation]_ pro zabránění rozpoznávání otisků prstů:
+jak je definováno v [Tunnel-Creation](/en/docs/spec/tunnel-creation/) pro zabránění rozpoznávání otisků prstů:
 
 - 0x00 (přijmout)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -355,7 +351,6 @@ Zašifrovaný krátký záznam odpovědi
 
 Zakódovaná velikost: 218 bajtů
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -372,7 +367,6 @@ Viz níže uvedená sekce KDF.
 
 
 
-.. _msg-ShortTunnelBuild:
 
 ### ShortTunnelBuild
 I2NP Typ 25
@@ -383,7 +377,6 @@ Při přijetí OBEP se transformuje na OutboundTunnelBuildReply,
 zabalenou česnekem, a odesílá se autorovi.
 
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
@@ -404,7 +397,6 @@ Poznámky
 
 
 
-.. _msg-OutboundTunnelBuildReply:
 
 ### OutboundTunnelBuildReply
 I2NP Typ 26
@@ -413,7 +405,6 @@ Tato zpráva je odesílána pouze OBEP směrem k IBEP (vytvořiteli) prostředni
 Nesmí být odeslána žádnému jinému přeskoku.
 Vždy je zašifrován česnekem.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
@@ -452,7 +443,6 @@ Na rozdíl od dlouhých záznamů nemůžeme použít levou část ck pro klíč
 Klíč odpovědi je používán ke šifrování odpovědi pomocí AEAD/ChaCha20/Poly1305 a ChaCha20 k odpovědi na jiné záznamy.
 Oba používají stejný klíč, nonce je pozice záznamu ve zprávě počínaje od 0.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
@@ -548,7 +538,6 @@ Bez režie česnekem pro nešifrovaný příchozí STBM,
 pokud nepoužíváme ITBM:
 
 
-.. raw:: html
 
   {% highlight lang='text' %}
 Aktuální velikost pro 4 sloty: 4 * 528 + režie = 3 tunelové zprávy
@@ -585,7 +574,6 @@ Aktuální velikost pro 4 sloty: 4 * 528 + režie = 3 tunelové zprávy
 S režie česnekem pro 'N' vzorec šumu pro šifrování příchozího STBM,
 pokud nepoužíváme ITBM:
 
-.. raw:: html
 
   {% highlight lang='text' %}
 Aktuální velikost pro 4 sloty: 4 * 528 + režie = 3 tunelové zprávy
@@ -651,40 +639,3 @@ používá 8-bajtový tag místo 32-bajtového efemérního klíče pro plné 'N
 
 
 ## Odkazy
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [ECIES]
-   {{ spec_url('ecies') }}
-
-.. [I2NP]
-    {{ spec_url('i2np') }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop144]
-    {{ proposal_url('144') }}
-
-.. [Prop145]
-    {{ proposal_url('145') }}
-
-.. [Prop152]
-    {{ proposal_url('152') }}
-
-.. [Prop153]
-    {{ proposal_url('153') }}
-
-.. [Prop154]
-    {{ proposal_url('154') }}
-
-.. [Prop156]
-    {{ proposal_url('156') }}
-
-.. [Tunnel-Creation]
-    {{ spec_url('tunnel-creation') }}
-
-.. [Tunnel-Creation-ECIES]
-    {{ spec_url('tunnel-creation-ecies') }}
-

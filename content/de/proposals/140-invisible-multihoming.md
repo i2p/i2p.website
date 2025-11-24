@@ -10,18 +10,18 @@ thread: "http://zzz.i2p/topics/2335"
 
 ## Übersicht
 
-Dieser Vorschlag umreißt ein Design für ein Protokoll, das es einem I2P-Client, Dienst oder externen Lastenausgleichsprozess ermöglicht, mehrere Router zu verwalten, die transparent ein einzelnes [Destination]_ hosten.
+Dieser Vorschlag umreißt ein Design für ein Protokoll, das es einem I2P-Client, Dienst oder externen Lastenausgleichsprozess ermöglicht, mehrere Router zu verwalten, die transparent ein einzelnes [Destination](http://localhost:63465/en/docs/specs/common-structures/#destination) hosten.
 
-Der Vorschlag spezifiziert derzeit keine konkrete Implementierung. Es könnte als Erweiterung zu [I2CP]_ oder als neues Protokoll implementiert werden.
+Der Vorschlag spezifiziert derzeit keine konkrete Implementierung. Es könnte als Erweiterung zu [I2CP](/en/docs/specs/i2cp/) oder als neues Protokoll implementiert werden.
 
 
 ## Motivation
 
-Multihoming bedeutet, dass mehrere Router verwendet werden, um dasselbe Destination zu hosten. Die derzeitige Art, wie man mit I2P Multihoming betreibt, ist das Ausführen des gleichen Destinations auf jedem Router unabhängig; der Router, der zu jedem bestimmten Zeitpunkt von Clients verwendet wird, ist der letzte, der ein [LeaseSet]_ veröffentlicht.
+Multihoming bedeutet, dass mehrere Router verwendet werden, um dasselbe Destination zu hosten. Die derzeitige Art, wie man mit I2P Multihoming betreibt, ist das Ausführen des gleichen Destinations auf jedem Router unabhängig; der Router, der zu jedem bestimmten Zeitpunkt von Clients verwendet wird, ist der letzte, der ein [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset) veröffentlicht.
 
 Dies ist ein Hack und funktioniert vermutlich nicht für große Websites im Maßstab. Sagen wir, wir hätten 100 Multihoming-Router, jeder mit 16 Tunneln. Das sind 1600 LeaseSet-Veröffentlichungen alle 10 Minuten oder fast 3 pro Sekunde. Die Floodfills würden überfordert und Drosselungen würden aktiviert. Und das bevor wir überhaupt den Suchverkehr erwähnen.
 
-[Prop123]_ löst dieses Problem mit einem Meta-LeaseSet, das die 100 echten LeaseSet-Hashes auflistet. Eine Suche wird zu einem zweistufigen Prozess: zuerst das Meta-LeaseSet suchen und dann eines der benannten LeaseSets. Dies ist eine gute Lösung für das Problem des Suchverkehrs, aber alleine schafft es ein erhebliches Datenschutzleck: Es ist möglich, zu bestimmen, welche Multihoming-Router online sind, indem man das veröffentlichte Meta-LeaseSet überwacht, da jedes reale LeaseSet einem einzelnen Router entspricht.
+[Proposal 123](/en/proposals/123-new-netdb-entries/) löst dieses Problem mit einem Meta-LeaseSet, das die 100 echten LeaseSet-Hashes auflistet. Eine Suche wird zu einem zweistufigen Prozess: zuerst das Meta-LeaseSet suchen und dann eines der benannten LeaseSets. Dies ist eine gute Lösung für das Problem des Suchverkehrs, aber alleine schafft es ein erhebliches Datenschutzleck: Es ist möglich, zu bestimmen, welche Multihoming-Router online sind, indem man das veröffentlichte Meta-LeaseSet überwacht, da jedes reale LeaseSet einem einzelnen Router entspricht.
 
 Wir benötigen eine Möglichkeit für einen I2P-Client oder -Dienst, ein einzelnes Destination auf mehrere Router zu verteilen, auf eine Art, die ununterscheidbar von der Verwendung eines einzelnen Routers ist (aus der Perspektive des LeaseSet selbst).
 
@@ -59,10 +59,8 @@ Stellen Sie sich die folgende gewünschte Konfiguration vor:
 - Alle zwölf Tunnel sollten in einem einzigen LeaseSet veröffentlicht werden.
 
 Einzel-Client
-`````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Tunnel 1]===\
                  |-{ [Tunnel 2]====[Router 1]-----
                  |-{ [Tunnel 3]===/               \
@@ -78,13 +76,10 @@ Einzel-Client
                  |-{ [Tunnel 10]==\               /
                  |-{ [Tunnel 11]===[Router 4]-----
                   -{ [Tunnel 12]==/
-{% endhighlight %}
 
 Multi-Client
-````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Tunnel 1]===\
                  |-{ [Tunnel 2]====[Router 1]---------[Frontend 1]
                  |-{ [Tunnel 3]===/          \                    \
@@ -100,10 +95,8 @@ Multi-Client
                  |-{ [Tunnel 10]==\          /                    /
                  |-{ [Tunnel 11]===[Router 4]---------[Frontend 4]
                   -{ [Tunnel 12]==/
-{% endhighlight %}
 
-Allgemeiner Client-Prozess
-``````````````````````````
+### Allgemeiner Client-Prozess
 - Laden oder generieren Sie ein Destination.
 
 - Eröffnen Sie eine Sitzung mit jedem Router, gebunden an das Destination.
@@ -120,9 +113,8 @@ Allgemeiner Client-Prozess
 
   - Veröffentlichen Sie das LeaseSet über einen oder mehrere der Router.
 
-Unterschiede zu I2CP
-```````````````````
-Um diese Konfiguration zu erstellen und zu verwalten, benötigt der Client die folgende neue Funktionalität über das hinaus, was derzeit von [I2CP]_ bereitgestellt wird:
+### Unterschiede zu I2CP
+Um diese Konfiguration zu erstellen und zu verwalten, benötigt der Client die folgende neue Funktionalität über das hinaus, was derzeit von [I2CP](/en/docs/specs/i2cp/) bereitgestellt wird:
 
 - Weisen Sie einen Router an, Tunnel zu bauen, ohne ein LeaseSet dafür zu erstellen.
 - Holen Sie sich eine Liste der aktuellen Tunnel im eingehenden Pool.
@@ -134,9 +126,7 @@ Zusätzlich würde die folgende Funktionalität erhebliche Flexibilität ermögl
 
 ### Protokollumriss
 
-.. raw:: html
-
-  {% highlight %}
+```
          Client                           Router
 
                     --------------------->  Erstellen Session
@@ -151,10 +141,8 @@ Zusätzlich würde die folgende Funktionalität erhebliche Flexibilität ermögl
                     --------------------->  Senden Paket
     Sende Status  <---------------------
  Paketempfang  <---------------------
-{% endhighlight %}
 
-Nachrichten
-````````
+### Nachrichten
     Erstellen Session
         Erstellen einer Sitzung für das gegebene Destination.
 
@@ -224,36 +212,18 @@ Da der Client die volle Kontrolle darüber hat, welche Peers er auswählt, könn
 
 ## Kompatibilität
 
-Dieses Design ist vollständig rückwärtskompatibel mit dem Netzwerk, da es keine Änderungen am [LeaseSet]_-Format gibt. Alle Router müssten sich des neuen Protokolls bewusst sein, aber dies ist kein Problem, da sie alle von derselben Entität kontrolliert werden.
+Dieses Design ist vollständig rückwärtskompatibel mit dem Netzwerk, da es keine Änderungen am [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset)-Format gibt. Alle Router müssten sich des neuen Protokolls bewusst sein, aber dies ist kein Problem, da sie alle von derselben Entität kontrolliert werden.
 
 
 ## Leistungs- und Skalierungsnotizen
 
-Das obere Limit von 16 [Leases]_ pro LeaseSet bleibt von diesem Vorschlag unverändert. Für Destinations, die mehr Tunnel benötigen als dies, gibt es zwei mögliche Netzwerkmodifikationen:
+Das obere Limit von 16 [Lease](http://localhost:63465/en/docs/specs/common-structures/#lease) pro LeaseSet bleibt von diesem Vorschlag unverändert. Für Destinations, die mehr Tunnel benötigen als dies, gibt es zwei mögliche Netzwerkmodifikationen:
 
 - Erhöhung des oberen Limits der Größe von LeaseSets. Dies wäre das Einfachste umzusetzen (obwohl es noch umfassende Netzwerkunterstützung erfordern würde, bevor es breit eingesetzt werden könnte), könnte aber zu langsameren Suchvorgängen aufgrund der größeren Paketgrößen führen. Die maximal machbare LeaseSet-Größe wird durch die MTU der zugrunde liegenden Transports definiert und beträgt daher etwa 16kB.
 
-- Implementierung von [Prop123]_ für gestaffelte LeaseSets. In Kombination mit diesem Vorschlag könnten die Destinations für die Sub-LeaseSets über mehrere Router verteilt werden, was effektiv wie mehrere IP-Adressen für einen Clearnet-Dienst wirkt.
+- Implementierung von [Proposal 123](/en/proposals/123-new-netdb-entries/) für gestaffelte LeaseSets. In Kombination mit diesem Vorschlag könnten die Destinations für die Sub-LeaseSets über mehrere Router verteilt werden, was effektiv wie mehrere IP-Adressen für einen Clearnet-Dienst wirkt.
 
 
 ## Danksagungen
 
 Danke an psi für die Diskussion, die zu diesem Vorschlag führte.
-
-
-## Referenzen
-
-.. [Destination]
-    {{ ctags_url('Destination') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Leases]
-    {{ ctags_url('Lease') }}
-
-.. [LeaseSet]
-    {{ ctags_url('LeaseSet') }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}

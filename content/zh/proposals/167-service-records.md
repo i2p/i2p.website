@@ -16,7 +16,7 @@ target: "0.9.66"
 
 I2P缺乏一个集中的DNS系统。然而，地址簿与b32主机名系统相结合，使路由器能够查找完整的终点并获取租约集，租约集包含网关和密钥的列表，以便客户端可以连接到该终点。
 
-因此，租约集有点像DNS记录。但目前没有设施可以查找该主机是否支持任何服务，无论是在该终点还是其他终点上，以类似于DNS SRV记录的方式支持服务[SRV]_ [RFC2782]_。
+因此，租约集有点像DNS记录。但目前没有设施可以查找该主机是否支持任何服务，无论是在该终点还是其他终点上，以类似于DNS SRV记录的方式支持服务[SRV](https://en.wikipedia.org/wiki/SRV_record) [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)。
 
 第一个应用可能是点对点邮件。其他可能的应用：DNS、GNS、密钥服务器、证书颁发机构、时间服务器、BT、加密货币及其他点对点应用。
 
@@ -24,19 +24,19 @@ I2P缺乏一个集中的DNS系统。然而，地址簿与b32主机名系统相�
 
 ### 服务列表
 
-LS2提案123 [Prop123]_ 定义了“服务记录”，指示某个终点参与某项全球服务。填充路由器会将这些记录聚合成全球“服务列表”。
+LS2提案123 [Prop123](/en/proposals/123-new-netdb-entries/) 定义了“服务记录”，指示某个终点参与某项全球服务。填充路由器会将这些记录聚合成全球“服务列表”。
 由于复杂性、认证缺乏、安全性和垃圾邮件问题，这一提案从未实现。
 
 此提案不同之处在于，它提供了针对特定终点的服务查找，而不是针对某一全球服务的全球终点池。
 
 ### GNS
 
-GNS [GNS]_ 建议每个人都运行他们自己的DNS服务器。
+GNS [GNS](http://zzz.i2p/topcs/1545) 建议每个人都运行他们自己的DNS服务器。
 这个提案是补充的，因为我们可以使用服务记录来指定GNS（或DNS）支持，以标准服务名为"domain"，端口为53。
 
 ### Dot well-known
 
-在[DOTWELLKNOWN]_中，建议通过对/.well-known/i2pmail.key的HTTP请求来查找服务。这要求每个服务都必须有相关的网站来托管密钥。大多数用户不运行网站。
+在[DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102)中，建议通过对/.well-known/i2pmail.key的HTTP请求来查找服务。这要求每个服务都必须有相关的网站来托管密钥。大多数用户不运行网站。
 
 一个解决方法是我们可以假设对一个b32地址的服务实际上运行在那个b32地址上。所以，寻找example.i2p的服务需要从http://example.i2p/.well-known/i2pmail.key进行HTTP获取，但针对aaa...aaa.b32.i2p的服务不需要该查找，可以直接连接。
 
@@ -50,9 +50,9 @@ SRV记录只是MX记录的一种通用版本，适用于任何服务。
 
 ## 设计
 
-服务记录位于LS2[LS2]_的选项部分。LS2的选项部分目前未使用。
+服务记录位于LS2[LS2](/en/docs/spec/common-structures/)的选项部分。LS2的选项部分目前未使用。
 不支持LS1。
-类似于隧道带宽提案[Prop168]_，定义隧道构建记录的选项。
+类似于隧道带宽提案[Prop168](/en/proposals/168-tunnel-bandwidth/)，定义隧道构建记录的选项。
 
 要查找特定主机名或b32的服务地址，路由器会获取租约集并在属性中查找服务记录。
 
@@ -76,7 +76,7 @@ LS2选项必须按键排序，因此签名是不变的。
 - optionkey := _service._proto
 - service := 所需服务的符号名称。必须小写。例如："smtp"。
   允许的字符为[a-z0-9-]，不得以"-"开头或结尾。
-  必须使用[REGISTRY]_或Linux /etc/services中定义的标准标识符。
+  必须使用[REGISTRY](http://www.dns-sd.org/ServiceTypes.html)或Linux /etc/services中定义的标准标识符。
 - proto := 所需服务的传输协议。必须小写，"tcp"或"udp"。
   "tcp"表示流式，"udp"表示可重传数据报。
   原始数据报和数据报2的协议指示符可能会在以后定义。
@@ -92,13 +92,13 @@ LS2选项必须按键排序，因此签名是不变的。
   仅在多于一个记录时有用，但即使只有一个记录也需要。
 - port := 服务所在的I2CP端口。非负整数。例如："25"。
   支持端口0但不推荐使用。
-- target := 提供该服务的终点的主机名或b32。有效的主机名如[NAMING]_。必须小写。
+- target := 提供该服务的终点的主机名或b32。有效的主机名如[NAMING](/en/docs/naming/)。必须小写。
   例如："aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p"或"example.i2p"。
   除非主机名是“众所周知”的，即在官方或默认地址簿中，否则建议使用b32。
 - appoptions := 特定于应用的任意文本，不得包含" "或","。编码为UTF-8。
 
-示例：
-``````````
+### 示例：
+
 
 在aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p的LS2中，指向一个SMTP服务器：
 
@@ -116,16 +116,16 @@ LS2选项必须按键排序，因此签名是不变的。
 
 "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
-限制：
-```````
+### 限制：
+
 
 LS2选项中使用的映射数据结构格式将键和值限制为最大255字节（而不是字符）。
 对于b32目标，optionvalue约为67字节，因此只能容纳3条记录。
 可能只有一两条记录带有长的appoptions字段，或者最多四或五条带有短的主机名。
 这应该是足够的；多条记录应该是罕见的。
 
-与[RFC2782]_的差异
-````````````````````
+### 与[RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)的差异
+
 
 - 没有尾部点
 - 没有与proto一起的名称
@@ -134,21 +134,21 @@ LS2选项中使用的映射数据结构格式将键和值限制为最大255字�
 - 不同的记录类型指示符
 - 增加了appoptions字段
 
-注意事项：
-`````
+### 注意事项：
+
 
 不允许使用通配符(如星号) (asterisk)._tcp 或 _tcp。
 每个支持的服务必须有自己的记录。
 
 ### 服务名称注册
 
-不在[REGISTRY]_或Linux /etc/services中列出的非标准标识符可以被请求并添加到[LS2]_的共同结构说明中。
+不在[REGISTRY](http://www.dns-sd.org/ServiceTypes.html)或Linux /etc/services中列出的非标准标识符可以被请求并添加到[LS2](/en/docs/spec/common-structures/)的共同结构说明中。
 
 特定服务的appoptions格式也可以被添加到那里。
 
 ### I2CP规格
 
-[I2CP]_协议必须扩展以支持服务查找。
+[I2CP](/en/docs/spec/i2cp/)协议必须扩展以支持服务查找。
 需要关于服务查找的其他MessageStatusMessage和/或HostReplyMessage错误代码。
 为了使查找功能通用，而不仅仅是特定于服务记录，
 设计是支持所有LS2选项的检索。
@@ -163,8 +163,8 @@ LS2选项用于哈希、主机名和终点（请求类型2-4）。
 
 规范扩展如下：
 
-配置选项
-`````````````````````
+### 配置选项
+
 将以下内容添加到[I2CP-OPTIONS]
 
 i2cp.leaseSetOption.nnn
@@ -176,8 +176,8 @@ nnn从0开始。选项值包含“key=value”。
 例如：
 i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
-HostLookup消息
-```````````````
+### HostLookup消息
+
 
 - 查找类型2：哈希查找，请求选项映射
 - 查找类型3：主机名查找，请求选项映射
@@ -185,8 +185,8 @@ HostLookup消息
 
 对于查找类型4，第5项是一个Destination。
 
-HostReply消息
-```````````````````
+### HostReply消息
+
 
 对于查找类型2-4，路由器必须获取租约集，
 即使查找键在地址簿中。
@@ -237,7 +237,7 @@ NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86
 
 ## 名称查找替代方案
 
-考虑了一种替代设计，以支持对服务的完整主机名查找，例如_smtp._tcp.example.i2p，通过更新[NAMING]_以指定处理以'_'开头的主机名。
+考虑了一种替代设计，以支持对服务的完整主机名查找，例如_smtp._tcp.example.i2p，通过更新[NAMING](/en/docs/naming/)以指定处理以'_'开头的主机名。
 这被拒绝的原因有两个：
 
 - 仍然需要I2CP和SAM更改以将TTL和端口信息传递给客户端。
@@ -272,7 +272,7 @@ NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86
 
 ### 电子邮件的更改
 
-此提案范围之外的问题。参见[DOTWELLKNOWN]_进行讨论。
+此提案范围之外的问题。参见[DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102)进行讨论。
 
 ## 实施注意事项
 
@@ -311,46 +311,3 @@ i2pd也应如此，有待验证。
 SAM客户端只有在使用OPTIONS=true请求时才能获取回复中的附加值。
 不应需要版本提升。
 
-## 迁移
-
-实现可以在任何时刻添加支持，无需协调，
-只需就I2CP更改的有效API版本达成一致。
-每个实现的SAM兼容性版本将在SAM规范中记录。
-
-## 参考资料
-
-.. [DOTWELLKNOWN]
-    http://i2pforum.i2p/viewtopic.php?p=3102
-
-.. [I2CP]
-    {{ spec_url('i2cp') }}
-
-.. [I2CP-OPTIONS]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [LS2]
-    {{ spec_url('common-structures') }}
-
-.. [GNS]
-    http://zzz.i2p/topcs/1545
-
-.. [NAMING]
-    {{ site_url('docs/naming', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop168]
-    {{ proposal_url('168') }}
-
-.. [REGISTRY]
-    http://www.dns-sd.org/ServiceTypes.html
-
-.. [RFC2782]
-    https://datatracker.ietf.org/doc/html/rfc2782
-
-.. [SAMv3]
-    {{ site_url('docs/api/samv3') }}
-
-.. [SRV]
-    https://en.wikipedia.org/wiki/SRV_record

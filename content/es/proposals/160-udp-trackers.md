@@ -12,7 +12,7 @@ target: "0.9.67"
 ## Estado
 
 Aprobado en revisión el 2025-06-24.
-Especificación está en [UDP]_.
+Especificación está en [UDP specification](/en/docs/spec/udp-bittorrent-announces/).
 Implementado en zzzot 0.20.0-beta2.
 Implementado en i2psnark a partir de API 0.9.67.
 Revisar documentación de otras implementaciones para ver su estado.
@@ -25,12 +25,12 @@ Esta propuesta es para la implementación de rastreadores UDP en I2P.
 
 ### Historia de Cambios
 
-Una propuesta preliminar para rastreadores UDP en I2P se publicó en nuestra página de especificaciones de bittorrent [SPEC]_
+Una propuesta preliminar para rastreadores UDP en I2P se publicó en nuestra página de especificaciones de bittorrent [/en/docs/applications/bittorrent/](/en/docs/applications/bittorrent/)
 en mayo de 2014; esto fue antes de nuestro proceso formal de propuestas, y nunca se implementó.
 Esta propuesta se creó a principios de 2022 y simplifica la versión de 2014.
 
 Como esta propuesta depende de datagramas replicables, se puso en espera una vez que
-comenzamos a trabajar en la propuesta Datagram2 [Prop163]_ a principios de 2023.
+comenzamos a trabajar en la propuesta Datagram2 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/) a principios de 2023.
 Esa propuesta fue aprobada en abril de 2025.
 
 La versión de 2023 de esta propuesta especificaba dos modos, "compatibilidad" y "rápido".
@@ -38,7 +38,7 @@ Un análisis más detallado reveló que el modo rápido sería inseguro y tambi�
 ineficiente para clientes con un gran número de torrents.
 Además, BiglyBT indicó una preferencia por el modo de compatibilidad.
 Este modo será más fácil de implementar para cualquier rastreador o cliente que soporte
-el estándar [BEP15]_.
+el estándar [BEP 15](http://www.bittorrent.org/beps/bep_0015.html).
 
 Aunque el modo de compatibilidad es más complejo de implementar desde cero
 tamaño del cliente, tenemos código preliminar para ello iniciado en 2023.
@@ -46,7 +46,7 @@ tamaño del cliente, tenemos código preliminar para ello iniciado en 2023.
 Por lo tanto, la versión actual aquí es aún más simple para eliminar el modo rápido,
 y eliminar el término "compatibilidad". La versión actual cambia al
 nuevo formato Datagram2, y añade referencias al protocolo de extensión de anuncio UDP
-[BEP41]_.
+[BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 
 Además, se añade un campo de duración de ID de conexión a la respuesta de conexión,
 para extender las eficiencias de este protocolo.
@@ -57,7 +57,7 @@ para extender las eficiencias de este protocolo.
 A medida que la base de usuarios en general y el número de usuarios de bittorrent específicamente continúa creciendo,
 necesitamos hacer que rastreadores y anuncios sean más eficientes para que los rastreadores no se saturen.
 
-Bittorrent propuso rastreadores UDP en BEP 15 [BEP15]_ en 2008, y la gran mayoría
+Bittorrent propuso rastreadores UDP en BEP 15 [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) en 2008, y la gran mayoría
 de los rastreadores en clearnet son ahora solo UDP.
 
 Es difícil calcular el ahorro de ancho de banda de los datagramas frente al protocolo de transmisión.
@@ -70,7 +70,7 @@ para el tráfico saliente de un rastreador.
 Además, deberían haber reducciones específicas de implementación en la memoria,
 ya que los datagramas requieren mucho menos estado en memoria que una conexión de transmisión.
 
-El cifrado post-cuántico y las firmas como se prevé en [Prop169]_ aumentarán sustancialmente
+El cifrado post-cuántico y las firmas como se prevé en [/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/) aumentarán sustancialmente
 la sobrecarga de estructuras cifradas y firmadas, incluyendo destinos,
 leasesets, SYN de transmisión y SYN ACK. Es importante minimizar esta
 sobrecarga donde sea posible antes de que la criptografía PQ sea adoptada en I2P.
@@ -79,20 +79,18 @@ sobrecarga donde sea posible antes de que la criptografía PQ sea adoptada en I2
 ## Diseño
 
 Esta propuesta utiliza datagramas replicables2, datagramas replicables3, y datagramas en bruto,
-como se define en [DATAGRAMS]_.
+como se define en [/en/docs/spec/datagrams/](/en/docs/spec/datagrams/).
 Datagrama2 y Datagrama3 son nuevas variantes de datagramas replicables,
-definidas en la Propuesta 163 [Prop163]_.
+definidas en la Propuesta 163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/).
 Datagram2 añade resistencia al repetido y soporte de firma offline.
 Datagram3 es más pequeño que el antiguo formato de datagrama, pero sin autenticación.
 
 
 ### BEP 15
 
-Para referencia, el flujo de mensajes definido en [BEP15]_ es como sigue:
+Para referencia, el flujo de mensajes definido en [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) es como sigue:
 
-.. raw:: html
-
-  {% highlight %}
+```
 Cliente                        Rastreador
     Solicitud de conexión ------------->
       <-------------- Respuesta de conexión
@@ -100,7 +98,7 @@ Cliente                        Rastreador
       <-------------- Respuesta de anuncio
     Solicitud de anuncio ------------->
       <-------------- Respuesta de anuncio
-{% endhighlight %}
+```
 
 La fase de conexión es necesaria para prevenir suplantación de dirección IP.
 El rastreador devuelve un ID de conexión que el cliente utiliza en anuncios subsecuentes.
@@ -110,9 +108,7 @@ I2P utilizará el mismo flujo de mensajes que BEP 15,
 para facilitar la adopción en bases de código de clientes existentes compatibles con UDP:
 para eficiencia, y por razones de seguridad discutidas a continuación:
 
-.. raw:: html
-
-  {% highlight %}
+```
 Cliente                        Rastreador
     Solicitud de conexión ------------->       (Datagrama replicable2)
       <-------------- Respuesta de conexión   (En bruto)
@@ -121,7 +117,7 @@ Cliente                        Rastreador
     Solicitud de anuncio ------------->       (Datagrama replicable3)
       <-------------- Respuesta de anuncio    (En bruto)
              ...
-{% endhighlight %}
+```
 
 Esto potencialmente proporciona un gran ahorro de ancho de banda sobre
 anuncios de transmisión (TCP).
@@ -172,14 +168,14 @@ y están fuera del alcance de esta propuesta.
 Clientes
 ```````
 Los clientes de torrent basados en SAM externos como qbittorrent y otros clientes basados en libtorrent
-requerirían SAM v3.3 [SAMv3]_ que no es soportado por i2pd.
+requerirían SAM v3.3 [/en/docs/api/samv3/](/en/docs/api/samv3/) que no es soportado por i2pd.
 Esto también es necesario para el soporte DHT, y es lo suficientemente complejo como para que no se haya implementado
 ninguna implementación de cliente SAM de esta propuesta hasta el momento.
 
 
 ### Vida Útil de la Conexión
 
-[BEP15]_ especifica que el ID de conexión expira en un minuto en el cliente, y en dos minutos en el rastreador.
+[BEP 15](http://www.bittorrent.org/beps/bep_0015.html) especifica que el ID de conexión expira en un minuto en el cliente, y en dos minutos en el rastreador.
 No es configurable.
 Eso limita las posibles ganancias de eficiencia, a menos que
 los clientes agrupen anuncios para hacer todos ellos dentro de una ventana de un minuto.
@@ -195,7 +191,7 @@ ID de conexión durante un minuto más.
 
 ### Compatibilidad con BEP 15
 
-Este diseño mantiene la compatibilidad con [BEP15]_ tanto como sea posible
+Este diseño mantiene la compatibilidad con [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) tanto como sea posible
 para limitar los cambios requeridos en clientes y rastreadores existentes.
 
 El único cambio requerido es el formato de información del par en la respuesta de anuncio.
@@ -244,16 +240,16 @@ El "from port" de la solicitud es el "to port" de la solicitud.
 
 ### URL de Anuncio
 
-El formato de URL de anuncio no está especificado en [BEP15]_,
+El formato de URL de anuncio no está especificado en [BEP 15](http://www.bittorrent.org/beps/bep_0015.html),
 pero como en clearnet, las URLs de anuncio UDP son del form "udp://host:port/path".
 La ruta es ignorada y puede estar vacía, pero típicamente es "/announce" en clearnet.
 La parte :port siempre debería estar presente, sin embargo,
 si se omite la parte ":port", usar un puerto I2CP predeterminado de 6969,
 ya que es el puerto común en clearnet.
 También pueden haber parámetros CGI &a=b&c=d añadidos,
-esos pueden ser procesados y proporcionados en la solicitud de anuncio, ver [BEP41]_.
+esos pueden ser procesados y proporcionados en la solicitud de anuncio, ver [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 Si no hay parámetros o rutas, también se puede omitir la barra final,
-como se implica en [BEP41]_.
+como se implica en [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
 
 
 ### Formatos de Datagramas
@@ -267,17 +263,15 @@ Solicitud de Conexión
 ```````````````````
 
 Cliente a rastreador.
-16 bytes. Debe ser un Datagram2 replicable. Igual que en [BEP15]_. Sin cambios.
+16 bytes. Debe ser un Datagram2 replicable. Igual que en [BEP 15](http://www.bittorrent.org/beps/bep_0015.html). Sin cambios.
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Nombre            Valor
   0       64-bit integer  protocol_id     0x41727101980 // constante mágica
   8       32-bit integer  acción          0 // conectar
   12      32-bit integer  transaction_id
-{% endhighlight %}
+```
 
 
 
@@ -285,18 +279,16 @@ Respuesta de Conexión
 ````````````````
 
 Rastreador al cliente.
-16 o 18 bytes. Debe ser en bruto. Igual que en [BEP15]_ excepto como se señala a continuación.
+16 o 18 bytes. Debe ser en bruto. Igual que en [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) excepto como se señala a continuación.
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Nombre            Valor
   0       32-bit integer  acción          0 // conectar
   4       32-bit integer  transaction_id
   8       64-bit integer  connection_id
   16      16-bit integer  duración        opcional  // Cambio de BEP 15
-{% endhighlight %}
+```
 
 La respuesta DEBE ser enviada al "to port" de I2CP que se recibió como el "from port" de la solicitud.
 
@@ -310,15 +302,13 @@ Solicitud de Anuncio
 ````````````````
 
 Cliente a rastreador.
-98 bytes como mínimo. Debe ser un Datagram3 replicable. Igual que en [BEP15]_ excepto como se señala a continuación.
+98 bytes como mínimo. Debe ser un Datagram3 replicable. Igual que en [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) excepto como se señala a continuación.
 
 El ID de conexión es como se recibe en la respuesta de conexión.
 
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Nombre            Valor
   0       64-bit integer  connection_id
   8       32-bit integer  acción          1     // anunciar
@@ -334,13 +324,13 @@ Offset  Size            Nombre            Valor
   92      32-bit integer  num_want        -1    // por defecto
   96      16-bit integer  puerto
   98      varía           opciones     opcional  // Según lo especificado en BEP 41
-{% endhighlight %}
+```
 
-Cambios de [BEP15]_:
+Cambios de [BEP 15](http://www.bittorrent.org/beps/bep_0015.html):
 
 - clave es ignorada
 - puerto probablemente es ignorado
-- La sección de opciones, si está presente, es como se define en [BEP41]_
+- La sección de opciones, si está presente, es como se define en [BEP 41](http://www.bittorrent.org/beps/bep_0041.html)
 
 La respuesta DEBE ser enviada al "to port" de I2CP que se recibió como el "from port" de la solicitud.
 No utilice el puerto de la solicitud de anuncio.
@@ -350,13 +340,11 @@ Respuesta de Anuncio
 ````````````````
 
 Rastreador al cliente.
-20 bytes como mínimo. Debe ser en bruto. Igual que en [BEP15]_ excepto como se señala a continuación.
+20 bytes como mínimo. Debe ser en bruto. Igual que en [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) excepto como se señala a continuación.
 
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Size            Nombre            Valor
   0           32-bit integer  acción          1 // anunciar
   4           32-bit integer  transaction_id
@@ -365,9 +353,9 @@ Offset  Size            Nombre            Valor
   16          32-bit integer  seeders
   20   32 * n 32-byte hash    hashes binarios     // Cambio de BEP 15
   ...                                             // Cambio de BEP 15
-{% endhighlight %}
+```
 
-Cambios de [BEP15]_:
+Cambios de [BEP 15](http://www.bittorrent.org/beps/bep_0015.html):
 
 - En lugar de IPv4+puerto de 6 bytes o IPv6+puerto de 18 bytes, devolvemos
   un múltiplo de respuestas "compactas" de 32 bytes con los hashes binarios SHA-256 de los pares.
@@ -398,7 +386,7 @@ aunque ese hash ya está prohibido por los enrutadores Java.
 Scrape
 ``````
 
-La solicitud/respuesta de Scrape de [BEP15]_ no es requerida por esta propuesta,
+La solicitud/respuesta de Scrape de [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) no es requerida por esta propuesta,
 pero puede ser implementada si se desea, no se requieren cambios.
 El cliente debe adquirir un ID de conexión primero.
 La solicitud de Scrape es siempre un Datagram3 replicable.
@@ -410,18 +398,16 @@ Respuesta de Error
 
 Rastreador al cliente.
 8 bytes como mínimo (si el mensaje está vacío).
-Debe ser en bruto. Igual que en [BEP15]_. Sin cambios.
+Debe ser en bruto. Igual que en [BEP 15](http://www.bittorrent.org/beps/bep_0015.html). Sin cambios.
 
-.. raw:: html
-
-  {% highlight %}
+```
 
 Offset  Size            Nombre            Valor
   0       32-bit integer  acción          3 // error
   4       32-bit integer  transaction_id
   8       string          mensaje
 
-{% endhighlight %}
+```
 
 
 
@@ -430,14 +416,14 @@ Offset  Size            Nombre            Valor
 No se incluyen bits de extensión o un campo de versión.
 Los clientes y rastreadores no deberían asumir que los paquetes tienen un cierto tamaño.
 De esta manera, se pueden añadir campos adicionales sin romper la compatibilidad.
-El formato de extensiones definido en [BEP41]_ se recomienda si es necesario.
+El formato de extensiones definido en [BEP 41](http://www.bittorrent.org/beps/bep_0041.html) se recomienda si es necesario.
 
 La respuesta de conexión se modifica para añadir un campo de duración de ID de conexión opcional.
 
 Si se requiere soporte para destinos cegados, podemos ya sea añadir la
 dirección de 35 bytes cegada al final de la solicitud de anuncio,
 o solicitar hashes cegados en las respuestas,
-utilizando el formato [BEP41]_ (parámetros TBD).
+utilizando el formato [BEP 41](http://www.bittorrent.org/beps/bep_0041.html) (parámetros TBD).
 El conjunto de direcciones de pares de 35 bytes cegadas podría añadirse al final de la respuesta de anuncio,
 tras un hash de 32 bytes de todos ceros.
 
@@ -513,28 +499,3 @@ Serán utilizados para pruebas y verificación de esta propuesta.
 Otras implementaciones seguirán como se desee después de que las pruebas y la verificación estén completas.
 
 
-## Referencias
-
-.. [BEP15]
-    http://www.bittorrent.org/beps/bep_0015.html
-
-.. [BEP41]
-    http://www.bittorrent.org/beps/bep_0041.html
-
-.. [DATAGRAMS]
-    {{ spec_url('datagrams') }}
-
-.. [Prop163]
-    {{ proposal_url('163') }}
-
-.. [Prop169]
-    {{ proposal_url('169') }}
-
-.. [SAMv3]
-    {{ site_url('docs/api/samv3') }}
-
-.. [SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [UDP]
-    {{ spec_url('udp-announces') }}

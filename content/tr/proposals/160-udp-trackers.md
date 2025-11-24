@@ -23,11 +23,11 @@ Bu teklif, I2P'de UDP izleyicilerinin uygulanması içindir.
 
 ### Değişiklik Geçmişi
 
-Mayıs 2014'te I2P'de UDP izleyicilerine ilişkin ön bir teklif bittorrent spesifikasyon sayfamıza [SPEC]_
+Mayıs 2014'te I2P'de UDP izleyicilerine ilişkin ön bir teklif bittorrent spesifikasyon sayfamıza [/en/docs/applications/bittorrent/](/en/docs/applications/bittorrent/)
 yüklendi; bu, resmi teklif sürecimizden öncesine aitti ve hiçbir zaman uygulanmadı.
 Bu teklif 2022'nin başlarında oluşturuldu ve 2014 versiyonunu basitleştiriyor.
 
-Bu teklif, yanıt verilebilir datagramlara dayandığı için 2023 başlarında Datagram2 teklifi [Prop163]_ üzerinde
+Bu teklif, yanıt verilebilir datagramlara dayandığı için 2023 başlarında Datagram2 teklifi [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/) üzerinde
 çalışmaya başladığımızda askıya alındı.
 Bu teklif Nisan 2025'te onaylandı.
 
@@ -35,14 +35,14 @@ Bu teklif Nisan 2025'te onaylandı.
 Daha fazla analiz, hızlı modun güvensiz olacağını ve çok sayıda torrente sahip
 olan istemciler için verimsiz olacağını ortaya çıkardı.
 Ayrıca, BiglyBT uyumluluk modunu tercih ettiğini belirtti.
-Bu mod, standart [BEP15]_ destekleyen herhangi bir izleyici veya istemci için daha kolay uygulanır.
+Bu mod, standart [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) destekleyen herhangi bir izleyici veya istemci için daha kolay uygulanır.
 
 Uyumluluk modu, istemciden sıfırdan uygulamak için daha karmaşık olmasına rağmen,
 2023'te başlamış olan ön kodumuz bulunmaktadır.
 
 Bu nedenle, buradaki mevcut versiyon daha da sadeleştirildi ve hızlı
 mod kaldırıldı, "uyumluluk" terimi de kaldırıldı. Mevcut versiyon yeni Datagram2
-formatına geçiyor ve UDP duyuru uzantı protokolüne [BEP41]_ referanslar ekliyor.
+formatına geçiyor ve UDP duyuru uzantı protokolüne [BEP 41](http://www.bittorrent.org/beps/bep_0041.html) referanslar ekliyor.
 
 Ayrıca, protokolün verimlilik kazançlarını artırmak için bağlantı ID'si ömrü alanı
 bağlantı yanıtına eklenmiştir.
@@ -53,7 +53,7 @@ Kullanıcı tabanı genel olarak ve özellikle bittorrent kullanıcılarının s
 izleyicilerin ve duyuruların daha verimli hale getirilmesi gerekmektedir aksi halde izleyiciler
 ağır yük altına girerler.
 
-Bittorrent, 2008'de BEP 15'te [BEP15]_ UDP izleyicilerini önerdi ve şu anda açık internetteki
+Bittorrent, 2008'de BEP 15'te [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) UDP izleyicilerini önerdi ve şu anda açık internetteki
 izleyicilerin büyük çoğunluğu yalnızca UDP'dir.
 
 Datagramların ve akış protokolünün bant genişliği tasarrufunu hesaplamak zordur.
@@ -76,18 +76,16 @@ azaltmak önemlidir.
 
 Bu öneri [DATAGRAMS]'de tanımlandığı gibi yanıt verilebilir datagram2, yanıt verilebilir datagram3
 ve ham datagramları kullanır.
-Datagram2 ve Datagram3, Öneri 163'te [Prop163]_ tanımlanan yeni yanıt verilebilir datagram
+Datagram2 ve Datagram3, Öneri 163'te [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/) tanımlanan yeni yanıt verilebilir datagram
 türevleridir.
 Datagram2, tekrar saldırısına direnç ve çevrimdışı imza desteği ekler.
 Datagram3, eski datagram formatından daha küçüktür ancak kimlik doğrulama içermez.
 
 ### BEP 15
 
-Referans olması için, [BEP15]_ tarafından tanımlanan mesaj akışı şu şekildedir:
+Referans olması için, [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) tarafından tanımlanan mesaj akışı şu şekildedir:
 
-.. raw:: html
-
-  {% highlight %}
+```
 İstemci                         İzleyici
     Bağlantı İst. ------------->
       <-------------- Bağlantı Yanıtı
@@ -95,7 +93,7 @@ Referans olması için, [BEP15]_ tarafından tanımlanan mesaj akışı şu şek
       <-------------- Duyuru Yanıtı
     Duyuru İst. ------------->
       <-------------- Duyuru Yanıtı
-{% endhighlight %}
+```
 
 Bağlantı aşaması IP adresi sahteciliğini önlemek için gereklidir.
 İzleyici, istemcinin sonraki duyurularında kullanacağı bir bağlantı ID'si döner.
@@ -104,9 +102,7 @@ Bu bağlantı ID'si, istemcide bir dakikada, izleyicide iki dakikada sona erer.
 I2P, mevcut UDP yetenekli istemci kod tabanlarında benimsenmesi kolay olması için
 BEP 15 ile aynı mesaj akışını, verimlilik için ve aşağıda tartışılan güvenlik nedenleriyle kullanacaktır:
 
-.. raw:: html
-
-  {% highlight %}
+```
 İstemci                         İzleyici
     Bağlantı İst. ------------->       (Yanıt Verilebilir Datagram2)
       <-------------- Bağlantı Yanıtı   (Ham)
@@ -115,7 +111,7 @@ BEP 15 ile aynı mesaj akışını, verimlilik için ve aşağıda tartışılan
     Duyuru İst. ------------->      (Yanıt Verilebilir Datagram3)
       <-------------- Duyuru Yanıtı  (Ham)
              ...
-{% endhighlight %}
+```
 
 Bu, potansiyel olarak
 akışlı (TCP) duyurulara karşı büyük bant genişliği tasarrufu sağlar.
@@ -163,14 +159,14 @@ bağlı olacak ve bu teklifin kapsamı dışındadır.
 İstemciler
 `````````
 qbittorrent gibi dış SAM tabanlı torrent istemcileri ve diğer libtorrent tabanlı istemciler
-i2pd tarafından desteklenmeyen SAM v3.3 [SAMv3]_ gerektirecektir.
+i2pd tarafından desteklenmeyen SAM v3.3 [/en/docs/api/samv3/](/en/docs/api/samv3/) gerektirecektir.
 Bu ayrıca DHT desteği için gereklidir ve bilinen hiçbir
 SAM torrent istemcisi bunu uygulamamıştır.
 Bu teklifin herhangi bir SAM tabanlı uygulamasının yakın zamanda beklenmemesi gerekir.
 
 ### Bağlantı Ömrü
 
-[BEP15]_ bağlantı ID'sinin istemcide bir dakika, izleyicide iki dakika içinde sona erdiğini belirtir.
+[BEP 15](http://www.bittorrent.org/beps/bep_0015.html) bağlantı ID'sinin istemcide bir dakika, izleyicide iki dakika içinde sona erdiğini belirtir.
 Bu yapılandırılamaz.
 Bu olası verimlilik kazanımlarını sınırlar, aksi takdirde 
 istemciler bir dakikalık bir pencere içinde tüm duyuruları yapmak için duyuruları toplardı.
@@ -186,7 +182,7 @@ bağlantı ID'sini istemci ömrünün bir dakikasının ötesine saklayacaktır.
 ### BEP 15 ile Uyumluluk
 
 Bu tasarım mevcut istemcilerde ve izleyicilerde
-gereken değişiklikleri sınırlamak için [BEP15]_ ile
+gereken değişiklikleri sınırlamak için [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) ile
 mümkün olduğunca uyumluluğu korur.
 
 Tek gerektiren değişiklik, yanıt duyuru içindeki eş bilgisi formatıdır.
@@ -228,15 +224,15 @@ Yanıtlar, duyurudan alınan istekteki I2CP "to port"u kullanır.
 
 ### Duyuru URL
 
-Duyuru URL formatı [BEP15]_ içinde tanımlanmamıştır,
+Duyuru URL formatı [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) içinde tanımlanmamıştır,
 ama açık internette olduğu gibi, UDP duyuru URL'leri "udp://host:port/path" şeklindedir.
 Yol dikkate alınmaz ve boş olabilir, ancak tipik olarak açık internette "/announce" dür.
 :port bölümü daima bulunmalıdır, ama
 :port kısmı eksikse, I2CP portu 6969 olarak varsayılan şekilde düşünülmelidir.
 Bu, açık internetteki yaygın bir porttur.
 Ayrıca cgi parametreleri &a=b&c=d eklenebilir,
-bu parametreler işlenebilir ve duyuru isteğinde sağlanabilir, bkz. [BEP41]_.
-Eğer parametre veya yol yoksa, son /, belirtildiği gibi [BEP41]_ atlanabilir.
+bu parametreler işlenebilir ve duyuru isteğinde sağlanabilir, bkz. [BEP 41](http://www.bittorrent.org/beps/bep_0041.html).
+Eğer parametre veya yol yoksa, son /, belirtildiği gibi [BEP 41](http://www.bittorrent.org/beps/bep_0041.html) atlanabilir.
 
 ### Datagram Formatları
 
@@ -248,33 +244,29 @@ Bağlantı İsteği
 ```````````````
 
 İstemciden izleyiciye.
-16 bayt. Yanıt Verilebilir Datagram2 olmalı. [BEP15]_'teki ile aynı. Hiçbir değişiklik yoktur.
+16 bayt. Yanıt Verilebilir Datagram2 olmalı. [BEP 15](http://www.bittorrent.org/beps/bep_0015.html)'teki ile aynı. Hiçbir değişiklik yoktur.
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Boyut            İsim            Değer
   0       64-bit integer  protocol_id     0x41727101980 // sihirli sabit
   8       32-bit integer  action          0 // bağlantı
   12      32-bit integer  transaction_id
-{% endhighlight %}
+```
 
 
 Bağlantı Yanıtı
 ``````````````
 
 İzleyiciden istemciye.
-16 veya 18 bayt. Ham olmalı. [BEP15]_'teki ile aynı, aşağıda belirtilen farklar hariç.
+16 veya 18 bayt. Ham olmalı. [BEP 15](http://www.bittorrent.org/beps/bep_0015.html)'teki ile aynı, aşağıda belirtilen farklar hariç.
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Boyut            İsim            Değer
   0       32-bit integer  action          0 // bağlantı
   4       32-bit integer  transaction_id
   8       64-bit integer  connection_id
   16      16-bit integer  lifetime        optional  // BEP 15'ten Değişiklik
-{% endhighlight %}
+```
 
 Yanıt, istek "from port" olarak alınan I2CP "to port"una gönderilmelidir.
 
@@ -287,13 +279,11 @@ Duyuru İsteği
 ````````````
 
 İstemciden izleyiciye.
-En az 98 bayt. Yanıt Verilebilir Datagram3 olmalı. [BEP15]_'teki ile aynı, aşağıda belirtilen farklar hariç.
+En az 98 bayt. Yanıt Verilebilir Datagram3 olmalı. [BEP 15](http://www.bittorrent.org/beps/bep_0015.html)'teki ile aynı, aşağıda belirtilen farklar hariç.
 
 Bağlantı_ID, bağlantı yanıtında alındığı gibidir.
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Boyut            İsim            Değer
   0       64-bit integer  connection_id
   8       32-bit integer  action          1     // duyuru
@@ -309,13 +299,13 @@ Offset  Boyut            İsim            Değer
   92      32-bit integer  num_want        -1    // varsayılan
   96      16-bit integer  port
   98      değişken         options     optional  // BEP 41'de belirtildiği gibi
-{% endhighlight %}
+```
 
-[BEP15]_ değiştirilmiş kullanımları:
+[BEP 15](http://www.bittorrent.org/beps/bep_0015.html) değiştirilmiş kullanımları:
 
 - Anahtar yok sayılır
 - Port muhtemelen yok sayılır
-- Opsiyonel bölümü, varsa, [BEP41]_ 'de zaten tanımlandığı gibi
+- Opsiyonel bölümü, varsa, [BEP 41](http://www.bittorrent.org/beps/bep_0041.html) 'de zaten tanımlandığı gibi
 The response MUST be sent to the I2CP "to port" that was received as the request "from port".
 Yanıt, istek "from port" olarak belirtilen I2CP "to port"una gönderilmelidir.
 Duyuru isteğindeki port kullanılmamalıdır.
@@ -324,11 +314,9 @@ Duyuru Yanıtı
 ```````````
 
 İzleyiciden istemciye.
-En az 20 bayt. Ham olmalı. [BEP15]_ 'teki ile aynı, aşağıda belirtilen farklar hariç.
+En az 20 bayt. Ham olmalı. [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) 'teki ile aynı, aşağıda belirtilen farklar hariç.
 
-.. raw:: html
-
-  {% highlight %}
+```
 Offset  Boyut            İsim            Değer
   0           32-bit integer  action          1 // duyuru
   4           32-bit integer  transaction_id
@@ -337,7 +325,7 @@ Offset  Boyut            İsim            Değer
   16          32-bit integer  seeders
   20   32 * n 32-byte hash    binary hashes     // BEP 15'ten Değişiklik
   ...                                           // BEP 15'ten Değişiklik
-{% endhighlight %}
+```
 
 [BEP15]'ten Değişiklikler:
 

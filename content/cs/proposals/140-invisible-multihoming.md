@@ -10,18 +10,18 @@ thread: "http://zzz.i2p/topics/2335"
 
 ## Přehled
 
-Tento návrh načrtává design protokolu umožňujícího I2P klientovi, službě nebo externímu balancer procesu spravovat více routerů, které neviditelně hostují jediný [Destination]_.
+Tento návrh načrtává design protokolu umožňujícího I2P klientovi, službě nebo externímu balancer procesu spravovat více routerů, které neviditelně hostují jediný [Destination](http://localhost:63465/en/docs/specs/common-structures/#destination).
 
-Návrh momentálně nespecifikuje konkrétní implementaci. Mohl by být implementován jako rozšíření [I2CP]_, nebo jako nový protokol.
+Návrh momentálně nespecifikuje konkrétní implementaci. Mohl by být implementován jako rozšíření [I2CP](/en/docs/specs/i2cp/), nebo jako nový protokol.
 
 
 ## Motivace
 
-Multihoming spočívá ve využití více routerů k hostování stejného destinace. Současný způsob, jak v I2P provádět multihoming, je provozovat stejnou destinaci na každém routeru nezávisle; router, který je právě používán klienty, je ten poslední, který publikoval [LeaseSet]_.
+Multihoming spočívá ve využití více routerů k hostování stejného destinace. Současný způsob, jak v I2P provádět multihoming, je provozovat stejnou destinaci na každém routeru nezávisle; router, který je právě používán klienty, je ten poslední, který publikoval [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset).
 
 To je hack a pravděpodobně nebude fungovat pro rozsáhlé webové stránky. Řekněme, že máme 100 multihoming routerů, každý s 16 tunely. To je 1600 publikovaných LeaseSet každých 10 minut, což je téměř 3 za sekundu. Floodfill routery by byly zahlcené a aktivovaly by se omezovače. A to ještě předtím, než zmíníme lookup trafic.
 
-[Prop123]_ řeší tento problém pomocí meta-LeaseSet, který uvádí 100 skutečných hashů LeaseSet. Lookup se stává dvoufázovým procesem: nejdříve hledání meta-LeaseSet a poté jednoho z uvedených LeaseSets. To je dobré řešení problému s lookup trafficem, ale samo o sobě vytváří významný únik soukromí: Je možné určit, které multihoming routery jsou online sledováním publikovaného meta-LeaseSet, protože každý skutečný LeaseSet odpovídá jednomu routeru.
+[Proposal 123](/en/proposals/123-new-netdb-entries/) řeší tento problém pomocí meta-LeaseSet, který uvádí 100 skutečných hashů LeaseSet. Lookup se stává dvoufázovým procesem: nejdříve hledání meta-LeaseSet a poté jednoho z uvedených LeaseSets. To je dobré řešení problému s lookup trafficem, ale samo o sobě vytváří významný únik soukromí: Je možné určit, které multihoming routery jsou online sledováním publikovaného meta-LeaseSet, protože každý skutečný LeaseSet odpovídá jednomu routeru.
 
 Potřebujeme způsob, jakým by I2P klient nebo služba mohla rozprostřít jedinou Destinaci mezi více routerů tak, aby to bylo nerozeznatelné od používání jednoho routeru (z pohledu LeaseSet samotného).
 
@@ -59,10 +59,8 @@ Představte si následující požadovanou konfiguraci:
 - Všechny dvanáct tunelů by měly být publikovány v jednom LeaseSet.
 
 Jednokanálový klient
-```````````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Tunel 1]===\
                  |-{ [Tunel 2]====[Router 1]-----
                  |-{ [Tunel 3]===/               \
@@ -78,13 +76,10 @@ Jednokanálový klient
                  |-{ [Tunel 10]==\               /
                  |-{ [Tunel 11]===[Router 4]-----
                   -{ [Tunel 12]==/
-{% endhighlight %}
 
 Vícekanálový klient
-````````````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Tunel 1]===\
                  |-{ [Tunel 2]====[Router 1]---------[Frontend 1]
                  |-{ [Tunel 3]===/          \                    \
@@ -100,10 +95,8 @@ Vícekanálový klient
                  |-{ [Tunel 10]==\          /                    /
                  |-{ [Tunel 11]===[Router 4]---------[Frontend 4]
                   -{ [Tunel 12]==/
-{% endhighlight %}
 
-Obecný proces klienta
-``````````````````````
+### Obecný proces klienta
 - Načíst nebo vygenerovat Destinaci.
 
 - Otevřít sezení s každým routerem, svázané s Destinací.
@@ -120,9 +113,8 @@ Obecný proces klienta
 
   - Publikovat LeaseSet prostřednictvím jednoho nebo více routerů.
 
-Rozdíly oproti I2CP
-```````````````````
-Pro vytvoření a správu této konfigurace potřebuje klient následující novou funkcionalitu nad rámec toho, co je aktuálně poskytováno [I2CP]_:
+### Rozdíly oproti I2CP
+Pro vytvoření a správu této konfigurace potřebuje klient následující novou funkcionalitu nad rámec toho, co je aktuálně poskytováno [I2CP](/en/docs/specs/i2cp/):
 
 - Povědět routeru, aby vybudoval tunely, aniž by pro ně vytvořil LeaseSet.
 - Získat seznam aktuálních tunelů v příchozí skupině.
@@ -134,9 +126,7 @@ Navíc by následující funkce umožnily významnou flexibilitu v tom, jak klie
 
 ### Náčrt protokolu
 
-.. raw:: html
-
-  {% highlight %}
+```
          Klient                           Router
 
                     --------------------->  Vytvořit Sezení
@@ -151,10 +141,8 @@ Navíc by následující funkce umožnily významnou flexibilitu v tom, jak klie
                     --------------------->  Odeslat Paket
      Stav Odeslání <---------------------
      Obdržený Paket  <---------------------
-{% endhighlight %}
 
-Zprávy
-```````
+### Zprávy
     Vytvořit Sezení
         Vytvořit sezení pro danou Destinaci.
 
@@ -224,36 +212,18 @@ Protože klient má plnou kontrolu nad výběrem peerů, mohl by tento únik inf
 
 ## Kompatibilita
 
-Tento design je plně zpětně kompatibilní se sítí, protože nejsou provedeny žádné změny formátu [LeaseSet]_. Všechny routery by musely být obeznámeny s novým protokolem, ale to není problém, jelikož by všechny byly řízeny stejnou entitou.
+Tento design je plně zpětně kompatibilní se sítí, protože nejsou provedeny žádné změny formátu [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset). Všechny routery by musely být obeznámeny s novým protokolem, ale to není problém, jelikož by všechny byly řízeny stejnou entitou.
 
 
 ## Poznámky k výkonu a škálovatelnosti
 
-Horní limit 16 [Lease]_ na LeaseSet není tímto návrhem změněn. Pro Destinace, které vyžadují více tunelů než tohle, existují dvě možné úpravy sítě:
+Horní limit 16 [Lease](http://localhost:63465/en/docs/specs/common-structures/#lease) na LeaseSet není tímto návrhem změněn. Pro Destinace, které vyžadují více tunelů než tohle, existují dvě možné úpravy sítě:
 
 - Zvýšit horní limit velikosti LeaseSetů. Toto by bylo nejjednodušší implementovat (i když by to stále vyžadovalo kompletní podporu napříč sítí, než by to mohlo být široce použito), ale mohlo by to vést k pomalejšímu vyhledávání kvůli větší velikosti paketů. Maximální proveditelná velikost LeaseSetu je definována MTU podkladových transportů a proto je kolem 16 kB.
 
-- Implementovat [Prop123]_ pro hierarchické LeaseSety. V kombinaci s tímto návrhem by Destinace pro podřízené LeaseSety mohly být rozloženy napříč více routery, efektivně fungující jako více IP adres pro službu na clearnetu.
+- Implementovat [Proposal 123](/en/proposals/123-new-netdb-entries/) pro hierarchické LeaseSety. V kombinaci s tímto návrhem by Destinace pro podřízené LeaseSety mohly být rozloženy napříč více routery, efektivně fungující jako více IP adres pro službu na clearnetu.
 
 
 ## Poděkování
 
 Díky psi za diskusi, která vedla k tomuto návrhu.
-
-
-## Reference
-
-.. [Destination]
-    {{ ctags_url('Destination') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Leases]
-    {{ ctags_url('Lease') }}
-
-.. [LeaseSet]
-    {{ ctags_url('LeaseSet') }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}

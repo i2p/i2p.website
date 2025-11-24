@@ -12,7 +12,7 @@ implementedin: "0.9.26"
 
 ## Not
 Ağ dağıtımı tamamlandı.
-Resmi spesifikasyonu görmek için [SPEC]_ bağlantısını takip edin.
+Resmi spesifikasyonu görmek için [SPEC](/docs/specs/subscription/) bağlantısını takip edin.
 
 ## Genel Bakış
 
@@ -20,9 +20,11 @@ Bu öneri, adres aboneliği akışının komutlarla genişletilmesi hakkındadı
 
 ## Motivasyon
 
-Şu anda, hosts.txt abonelik sunucuları sadece hosts.txt formatında veri gönderiyor; bu format aşağıdaki gibidir::
+Şu anda, hosts.txt abonelik sunucuları sadece hosts.txt formatında veri gönderiyor; bu format aşağıdaki gibidir:
 
+    ```text
     example.i2p=b64destination
+    ```
 
 Bununla ilgili birkaç problem var:
 
@@ -48,16 +50,19 @@ Bir Hedef anahtarının kontrolünü kaybetme riski artmaktadır; çünkü birin
 
 Bu öneri iki yeni satır tipi ekler:
 
-1. Ekle ve Değiştir komutları::
+1. Ekle ve Değiştir komutları:
 
+     ```text
      example.i2p=b64destination#!key1=val1#key2=val2 ...
+     ```
 
-2. Kaldır komutları::
+2. Kaldır komutları:
 
+     ```text
      #!key1=val1#key2=val2 ...
+     ```
 
-Sıralama
-````````
+#### Sıralama
 Bir akış sıralı veya eksiksiz olmak zorunda değildir. Örneğin, bir değişiklik komutu, bir ekleme komutundan önce veya ekleme komutu olmadan bir satırda olabilir.
 
 Anahtarlar herhangi bir sırada olabilir. Yinelenen anahtarlara izin verilmez. Tüm anahtarlar ve değerler büyük-küçük harfe duyarlıdır.
@@ -100,8 +105,7 @@ Eski istemcilerle uyumluluk için, çoğu komut example.i2p=b64dest ile başlar,
 
 Listelenen anahtarlar zorunludur. Tüm komutlar burada tanımlanmayan ek anahtar/değer öğeleri içerebilir.
 
-Ana makine adı ekleme
-````````````````````
+#### Ana makine adı ekleme
 example.i2p=b64dest ile başlar
   EVET, bu yeni ana makine adı ve hedeftir.
 action
@@ -109,12 +113,13 @@ action
 sig
   imza
 
-Örnek::
+Örnek:
 
+  ```text
   example.i2p=b64dest#!sig=b64sig
+  ```
 
-Ana makine adını değiştirme
-`````````````````````````
+#### Ana makine adını değiştirme
 example.i2p=b64dest ile başlar
   EVET, bu yeni ana makine adı ve eski hedeftir.
 action
@@ -124,12 +129,13 @@ oldname
 sig
   imza
 
-Örnek::
+Örnek:
 
+  ```text
   example.i2p=b64dest#!action=changename#oldname=oldhostname#sig=b64sig
+  ```
 
-Hedefi değiştirme
-`````````````````
+#### Hedefi değiştirme
 example.i2p=b64dest ile başlar
   EVET, bu eski host adı ve yeni hedeftir.
 action
@@ -141,12 +147,13 @@ oldsig
 sig
   imza
 
-Örnek::
+Örnek:
 
+  ```text
   example.i2p=b64dest#!action=changedest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Ana makine adı takma ismi ekleme
-````````````````````````````````
+#### Ana makine adı takma ismi ekleme
 example.i2p=b64dest ile başlar
   EVET, bu yeni (takma) ana makine adı ve eski hedeftir.
 action
@@ -156,12 +163,13 @@ oldname
 sig
   imza
 
-Örnek::
+Örnek:
 
+  ```text
   example.i2p=b64dest#!action=addname#oldname=oldhostname#sig=b64sig
+  ```
 
-Hedef takma ismi ekle
-`````````````````````
+#### Hedef takma ismi ekle
 (Kripto yükseltme için kullanılır)
 
 example.i2p=b64dest ile başlar
@@ -175,12 +183,13 @@ oldsig
 sig
   hedef kullanılarak imza
 
-Örnek::
+Örnek:
 
+  ```text
   example.i2p=b64dest#!action=adddest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Alt alan adı ekleme
-```````````````````
+#### Alt alan adı ekleme
 subdomain.example.i2p=b64dest ile başlar
   EVET, bu yeni ana makine alt alan adı ve hedeftir.
 action
@@ -194,12 +203,13 @@ oldsig
 sig
   hedef kullanılarak imza
 
-Örnek::
+Örnek:
 
+  ```text
   subdomain.example.i2p=b64dest#!action=addsubdomain#oldname=example.i2p#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+  ```
 
-Meta verileri güncelle
-```````````````````````
+#### Meta verileri güncelle
 example.i2p=b64dest ile başlar
   EVET, bu eski ana bilgisayar adı ve hedeftir.
 action
@@ -209,12 +219,13 @@ sig
 
 (güncellenen anahtarları buraya ekleyin)
 
-Örnek::
+Örnek:
 
+  ```text
   example.i2p=b64dest#!action=update#k1=v1#k2=v2#sig=b64sig
+  ```
 
-Ana makine adını kaldır
-```````````````````````
+#### Ana makine adını kaldır
 example.i2p=b64dest ile başlar
   HAYIR, bunlar seçeneklerde belirtilmiştir
 action
@@ -226,12 +237,13 @@ dest
 sig
   imza
 
-Örnek::
+Örnek:
 
+  ```text
   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+  ```
 
-Bu hedefle tümünü kaldır
-```````````````````````
+#### Bu hedefle tümünü kaldır
 example.i2p=b64dest ile başlar
   HAYIR, bunlar seçeneklerde belirtilmiştir
 action
@@ -243,9 +255,11 @@ dest
 sig
   imza
 
-Örnek::
+Örnek:
 
+  ```text
   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+  ```
 
 
 ### İmzalar
@@ -260,8 +274,7 @@ Bazı ekleme veya düzenleme komutlarında, bir alias eklemek veya bir hedefi ve
 
 oldsig her zaman "iç" imzadır. 'oldsig' veya 'sig' anahtarları olmadan imzalayın ve doğrulayın. sig her zaman "dış" imzadır. 'sig' anahtarı olmadan 'oldsig' anahtarıyla imzalanır ve doğrulanır.
 
-İmzalar için giriş
-```````````````````
+#### İmzalar için giriş
 İmza oluşturmak veya doğrulamak için bir bayt akışı oluşturmak için şöyle sıralayın:
 
 - "sig" anahtarını kaldırın
@@ -286,8 +299,3 @@ Notlar
 hosts.txt formatındaki tüm yeni satırlar, önünde yorum karakterleri kullanılarak uygulanmaktadır, böylece eski I2P sürümlerinin tüm yeni komutları yorum olarak yorumlamasına olanak tanır.
 
 I2P router'ları yeni spesifikasyona güncellendiğinde, eski yorumları yeniden yorumlamayacak ancak abonelik akışlarının sonraki indirmelerinde yeni komutları dinlemeye başlayacaktır. Bu nedenle, isim sunucularının komut girdilerini bir şekilde kalıcı hale getirmesi veya etag desteğini etkinleştirmesi önemlidir, böylece router'lar tüm geçmiş komutları çekebilir.
-
-## Referanslar
-
-.. [SPEC]
-    {{ spec_url('subscription') }}

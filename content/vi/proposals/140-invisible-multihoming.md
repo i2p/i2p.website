@@ -14,18 +14,18 @@ thread: "http://zzz.i2p/topics/2335"
 hoặc quy trình cân bằng bên ngoài để quản lý nhiều bộ định tuyến lưu trữ một
 [Destination] duy nhất một cách minh bạch.
 
-Hiện tại đề xuất không chỉ rõ một hiện thực cụ thể. Nó có thể được hiện thực hóa như một phần mở rộng của [I2CP]_, hoặc như một giao thức mới.
+Hiện tại đề xuất không chỉ rõ một hiện thực cụ thể. Nó có thể được hiện thực hóa như một phần mở rộng của [I2CP](/en/docs/specs/i2cp/), hoặc như một giao thức mới.
 
 
 ## Động cơ
 
 Điều hướng đa điểm là nơi mà nhiều bộ định tuyến được sử dụng để lưu trữ cùng một Destination.
 Cách hiện tại để điều hướng đa điểm với I2P là chạy cùng Destination trên mỗi
-bộ định tuyến độc lập; bộ định tuyến mà khách hàng sử dụng vào bất kỳ thời điểm nào là bộ định tuyến cuối cùng công bố một [LeaseSet]_.
+bộ định tuyến độc lập; bộ định tuyến mà khách hàng sử dụng vào bất kỳ thời điểm nào là bộ định tuyến cuối cùng công bố một [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset).
 
 Đây là một cách tạm thời và có lẽ sẽ không hiệu quả cho những trang web lớn có quy mô. Giả sử chúng ta có 100 bộ định tuyến đa điểm, mỗi bộ với 16 đường hầm. Đó là 1600 lần công bố LeaseSet mỗi 10 phút, hoặc gần 3 lần mỗi giây. Các floodfill sẽ bị quá tải và việc giới hạn sẽ bắt đầu. Và đó là trước khi chúng ta thậm chí đề cập đến lưu lượng trông.
 
-[Prop123]_ giải quyết vấn đề này với một meta-LeaseSet, liệt kê 100 băm LeaseSet thật. Một lượt trông trở thành một quá trình hai giai đoạn: đầu tiên trông tìm meta-LeaseSet, và sau đó là một trong các LeaseSet được đặt tên. Đây là một giải pháp tốt cho vấn đề lưu lượng trông, nhưng nó tạo ra một rò rỉ quyền riêng tư đáng kể: Có thể xác định những bộ định tuyến đa điểm nào đang trực tuyến bằng cách theo dõi meta-LeaseSet đã công bố, vì mỗi LeaseSet thật có tương ứng với một bộ định tuyến duy nhất.
+[Proposal 123](/en/proposals/123-new-netdb-entries/) giải quyết vấn đề này với một meta-LeaseSet, liệt kê 100 băm LeaseSet thật. Một lượt trông trở thành một quá trình hai giai đoạn: đầu tiên trông tìm meta-LeaseSet, và sau đó là một trong các LeaseSet được đặt tên. Đây là một giải pháp tốt cho vấn đề lưu lượng trông, nhưng nó tạo ra một rò rỉ quyền riêng tư đáng kể: Có thể xác định những bộ định tuyến đa điểm nào đang trực tuyến bằng cách theo dõi meta-LeaseSet đã công bố, vì mỗi LeaseSet thật có tương ứng với một bộ định tuyến duy nhất.
 
 Chúng ta cần một cách để một khách hàng hoặc dịch vụ I2P phân phối một Destination duy nhất trên nhiều bộ định tuyến, theo cách không thể phân biệt với việc sử dụng một bộ định tuyến duy nhất (từ góc nhìn của LeaseSet).
 
@@ -73,10 +73,8 @@ Hãy tưởng tượng cấu hình mong muốn sau:
 - Tất cả mười hai đường hầm nên được công bố trong một LeaseSet duy nhất.
 
 Khách hàng đơn
-```````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Đường hầm 1]===\
                  |-{ [Đường hầm 2]====[Bộ định tuyến 1]-----
                  |-{ [Đường hầm 3]===/               \
@@ -92,13 +90,10 @@ Khách hàng đơn
                  |-{ [Đường hầm 10]==\               /
                  |-{ [Đường hầm 11]===[Bộ định tuyến 4]-----
                   -{ [Đường hầm 12]==/
-{% endhighlight %}
 
 Khách hàng đa
-``````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Đường hầm 1]===\
                  |-{ [Đường hầm 2]====[Bộ định tuyến 1]---------[Giao diện 1]
                  |-{ [Đường hầm 3]===/          \                    \
@@ -114,10 +109,8 @@ Khách hàng đa
                  |-{ [Đường hầm 10]==\          /                    /
                  |-{ [Đường hầm 11]===[Bộ định tuyến 4]---------[Giao diện 4]
                   -{ [Đường hầm 12]==/
-{% endhighlight %}
 
-Quy trình khách hàng tổng quát
-```````````````````````````````
+### Quy trình khách hàng tổng quát
 - Tải hoặc tạo một Destination.
 
 - Mở một phiên với mỗi bộ định tuyến, gắn với Destination.
@@ -138,9 +131,8 @@ Quy trình khách hàng tổng quát
 
   - Công bố LeaseSet thông qua một hoặc nhiều bộ định tuyến.
 
-Sự khác biệt với I2CP
-````````````````````````
-Để tạo và quản lý cấu hình này, khách hàng cần các chức năng mới sau đây so với những gì hiện tại do [I2CP]_ cung cấp:
+### Sự khác biệt với I2CP
+Để tạo và quản lý cấu hình này, khách hàng cần các chức năng mới sau đây so với những gì hiện tại do [I2CP](/en/docs/specs/i2cp/) cung cấp:
 
 - Bảo bộ định tuyến xây dựng đường hầm, mà không tạo LeaseSet cho chúng.
 - Lấy danh sách các đường hầm hiện tại trong bể đường hầm vào.
@@ -152,9 +144,7 @@ Ngoài ra, các chức năng sau đây sẽ cho phép sự linh hoạt đáng k�
 
 ### Phác thảo giao thức
 
-.. raw:: html
-
-  {% highlight %}
+```
          Khách hàng                           Bộ định tuyến
 
                     --------------------->  Tạo phiên
@@ -169,10 +159,8 @@ Ngoài ra, các chức năng sau đây sẽ cho phép sự linh hoạt đáng k�
                     --------------------->  Gửi gói
       Trạng thái gửi  <---------------------
   Gói nhận được  <---------------------
-{% endhighlight %}
 
-Thông điệp
-``````````
+### Thông điệp
     Tạo phiên
         Tạo một phiên cho Destination được chỉ định.
 
@@ -264,13 +252,13 @@ Vì khách hàng có toàn quyền kiểm soát đối với việc chọn lựa
 ## Tương thích
 
 Thiết kế này hoàn toàn tương thích ngược với mạng, vì không
-có thay đổi nào đối với định dạng [LeaseSet]_. Tất cả các bộ định tuyến sẽ cần nhận thức được
+có thay đổi nào đối với định dạng [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset). Tất cả các bộ định tuyến sẽ cần nhận thức được
 giao thức mới, nhưng điều này không phải là một mối lo ngại vì tất cả bọn chúng sẽ được
 kiểm soát bởi cùng một thực thể.
 
 ## Ghi chú về hiệu suất và khả năng mở rộng
 
-Giới hạn trên của 16 [Leases]_ mỗi LeaseSet không bị thay đổi bởi đề xuất này.
+Giới hạn trên của 16 [Lease](http://localhost:63465/en/docs/specs/common-structures/#lease) mỗi LeaseSet không bị thay đổi bởi đề xuất này.
 Đối với các Destination yêu cầu nhiều đường hầm hơn, có hai sửa đổi khả thi
 đối với mạng:
 
@@ -280,27 +268,10 @@ Giới hạn trên của 16 [Leases]_ mỗi LeaseSet không bị thay đổi b�
   do kích thước gói lớn hơn. Kích thước tối đa khả thi của LeaseSet được xác định
   bởi MTU của các phương tiện vận chuyển bên dưới, và vì vậy vào khoảng 16kB.
 
-- Hiện thực hóa [Prop123]_ cho LeaseSets có từng cấp. Kết hợp với đề xuất này,
+- Hiện thực hóa [Proposal 123](/en/proposals/123-new-netdb-entries/) cho LeaseSets có từng cấp. Kết hợp với đề xuất này,
   các Destination cho các sub-LeaseSets có thể được phân phối trên nhiều bộ định tuyến,
   thực tế hoạt động như nhiều địa chỉ IP cho một dịch vụ trên mạng sạch.
 
 ## Sự công nhận
 
 Cảm ơn psi vì cuộc thảo luận dẫn đến đề xuất này.
-
-## Tham khảo
-
-.. [Destination]
-    {{ ctags_url('Destination') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Leases]
-    {{ ctags_url('Lease') }}
-
-.. [LeaseSet]
-    {{ ctags_url('LeaseSet') }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}

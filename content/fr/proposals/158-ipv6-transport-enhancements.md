@@ -41,7 +41,7 @@ La solution consiste à ajouter deux nouvelles "caps" ou capacités aux Informat
 
 ### Initiateurs IPv6
 
-Nos spécifications [SSU]_ et [SSU-SPEC]_ contiennent des erreurs et des incohérences concernant le support
+Nos spécifications [SSU](/en/docs/transport/ssu/) et [SSU-SPEC](/en/docs/spec/ssu/) contiennent des erreurs et des incohérences concernant le support
 des initiateurs IPv6 pour les introductions IPv4.
 Dans tous les cas, cela n'a jamais été mis en œuvre dans I2P Java ou i2pd.
 Cela doit être corrigé.
@@ -49,7 +49,7 @@ Cela doit être corrigé.
 
 ### Introductions IPv6
 
-Nos spécifications [SSU]_ et [SSU-SPEC]_ indiquent clairement que
+Nos spécifications [SSU](/en/docs/transport/ssu/) et [SSU-SPEC](/en/docs/spec/ssu/) indiquent clairement que
 les introductions IPv6 ne sont pas prises en charge.
 Cela était basé sur l'hypothèse qu'IPv6 n'est jamais derrière un pare-feu.
 Cela est clairement faux, et nous devons améliorer le support pour les routeurs IPv6 derrière un pare-feu.
@@ -61,65 +61,57 @@ Légende : ----- est IPv4, ====== est IPv6
 
 Actuel IPv4 uniquement :
 
-.. raw:: html
-
-  {% highlight %}
-        Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+```
+      Alice                         Bob                  Charlie
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 
 Introduction IPv4, initiateur IPv6
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 Introduction IPv6, initiateur IPv6
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 Introduction IPv6, initiateur IPv4
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 
 ## Conception
@@ -138,7 +130,7 @@ Trois changements doivent être mis en œuvre.
 
 Cela a été initialement mis en œuvre sans proposition formelle, mais c'est requis pour
 les introductions IPv6, nous l'incluons donc ici.
-Voir aussi [CAPS]_.
+Voir aussi [CAPS](http://zzz.i2p/topics/3050).
 
 
 Deux nouvelles capacités "4" et "6" sont définies.
@@ -206,7 +198,7 @@ Nous avons également décrit cela comme "partie 1" de la proposition.
 
 #### Changements de Spécifications
 
-[SSU]_ indique actuellement (notes IPv6) :
+[SSU](/en/docs/transport/ssu/) indique actuellement (notes IPv6) :
 
 IPv6 est pris en charge depuis la version 0.9.8. Les adresses de relais publiées peuvent être IPv4 ou IPv6, et la communication Alice-Bob peut se faire via IPv4 ou IPv6.
 
@@ -219,7 +211,7 @@ Par conséquent, les routeurs ne doivent faire confiance à la capacité 'C' d'u
 
 
 
-[SSU-SPEC]_ indique actuellement (Demande de Relais) :
+[SSU-SPEC](/en/docs/spec/ssu/) indique actuellement (Demande de Relais) :
 
 L'adresse IP est uniquement incluse si elle est différente de l'adresse source du paquet et du port.
 Dans l'implémentation actuelle, la longueur de l'IP est toujours 0 et le port est toujours 0,
@@ -247,11 +239,11 @@ Nous avons également décrit cela comme "partie 2" de la proposition.
 
 #### Changements de Spécifications
 
-[SSU]_ indique actuellement (notes IPv6) :
+[SSU](/en/docs/transport/ssu/) indique actuellement (notes IPv6) :
 
 La communication Bob-Charlie et Alice-Charlie se fait uniquement via IPv4.
 
-[SSU-SPEC]_ indique actuellement (Demande de Relais) :
+[SSU-SPEC](/en/docs/spec/ssu/) indique actuellement (Demande de Relais) :
 
 Il n'est pas prévu de mettre en œuvre le relais pour IPv6.
 
@@ -259,7 +251,7 @@ Changer pour dire :
 
 Le relais pour IPv6 est pris en charge à partir de la version 0.9.xx
 
-[SSU-SPEC]_ indique actuellement (Réponse de Relais) :
+[SSU-SPEC](/en/docs/spec/ssu/) indique actuellement (Réponse de Relais) :
 
 L'adresse IP de Charlie doit être IPv4, car c'est l'adresse à laquelle Alice enverra la SessionRequest après le Hole Punch.
 Il n'est pas prévu de mettre en œuvre le relais pour IPv6.
@@ -270,7 +262,7 @@ L'adresse IP de Charlie peut être IPv4 ou, à partir de la version 0.9.xx, IPv6
 C'est l'adresse à laquelle Alice enverra la SessionRequest après le Hole Punch.
 Le relais pour IPv6 est pris en charge à partir de la version 0.9.xx
 
-[SSU-SPEC]_ indique actuellement (Introduction de Relais) :
+[SSU-SPEC](/en/docs/spec/ssu/) indique actuellement (Introduction de Relais) :
 
 L'adresse IP d'Alice est toujours de 4 octets dans l'implémentation actuelle, car Alice essaie de se connecter à Charlie via IPv4.
 Ce message doit être envoyé via une connexion IPv4 établie,
@@ -295,21 +287,3 @@ Ajouter aussi :
 Tous les anciens routeurs devraient ignorer la propriété caps dans NTCP2, et les caractères inconnus de capacité dans la propriété caps SSU.
 
 Toute adresse SSU avec initiateurs qui ne contient pas un cap "4" ou "6" est supposée être pour une introduction IPv4.
-
-
-
-
-
-## Références
-
-.. [CAPS]
-    http://zzz.i2p/topics/3050
-
-.. [NTCP2]
-    {{ spec_url('ntcp2') }}
-
-.. [SSU]
-    {{ site_url('docs/transport/ssu', True) }}
-
-.. [SSU-SPEC]
-    {{ spec_url('ssu') }}

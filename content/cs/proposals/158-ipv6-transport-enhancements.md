@@ -42,7 +42,7 @@ takže předpokládáme, že je schopný IPv4, ale ne schopný IPv6.
 
 ### IPv6 Introductors
 
-Naše specifikace [SSU]_ a [SSU-SPEC]_ obsahují chyby a nesrovnalosti ohledně toho,
+Naše specifikace [SSU](/en/docs/transport/ssu/) a [SSU-SPEC](/en/docs/spec/ssu/) obsahují chyby a nesrovnalosti ohledně toho,
 zda jsou podpůrci IPv6 podporovány pro úvody IPv4.
 V každém případě to nikdy nebylo implementováno v Java I2P ani i2pd.
 To je třeba napravit.
@@ -50,7 +50,7 @@ To je třeba napravit.
 
 ### IPv6 Introductory
 
-Naše specifikace [SSU]_ a [SSU-SPEC]_ jasně uvádějí, že
+Naše specifikace [SSU](/en/docs/transport/ssu/) a [SSU-SPEC](/en/docs/spec/ssu/) jasně uvádějí, že
 Úvody IPv6 nejsou podporovány.
 To bylo pod předpokladem, že IPv6 není nikdy za firewallem.
 Což zjevně není pravda, a potřebujeme zlepšit podporu pro směrovače IPv6, které jsou za firewallem.
@@ -62,65 +62,57 @@ Legenda: ----- je IPv4, ====== je IPv6
 
 Aktuální pouze IPv4:
 
-.. raw:: html
-
-  {% highlight %}
-        Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+```
+      Alice                         Bob                  Charlie
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 
 Úvod IPv4, zavaděč IPv6
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 Úvod IPv6, zavaděč IPv6
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 Úvod IPv6, zavaděč IPv4
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 
 ## Design
@@ -139,7 +131,7 @@ Budou implementovány tři změny.
 
 To bylo původně implementováno bez formálního návrhu, ale je to vyžadováno pro
 úvody IPv6, takže to zde zahrnujeme.
-Viz také [CAPS]_.
+Viz také [CAPS](http://zzz.i2p/topics/3050).
 
 
 Jsou definovány dvě nové schopnosti "4" a "6".
@@ -207,7 +199,7 @@ Toto jsme také popsali jako "část 1" návrhu.
 
 #### Změny specifikace
 
-[SSU]_ momentálně říká (poznámky k IPv6):
+[SSU](/en/docs/transport/ssu/) momentálně říká (poznámky k IPv6):
 
 IPv6 je podporováno od verze 0.9.8. Publikované adresy relé mohou být IPv4 nebo IPv6, a komunikace Alice-Bob může probíhat přes IPv4 nebo IPv6.
 
@@ -220,7 +212,7 @@ Proto by routery měly důvěřovat schopnosti 'C' na IPv6 adresách pouze, poku
 
 
 
-[SSU-SPEC]_ momentálně říká (Relay Request):
+[SSU-SPEC](/en/docs/spec/ssu/) momentálně říká (Relay Request):
 
 IP adresa je zahrnuta pouze pokud je odlišná od zdrojové adresy a portu paketu.
 V aktuální implementaci je délka IP vždy 0 a port je vždy 0,
@@ -248,11 +240,11 @@ Toto jsme také popsali jako "část 2" návrhu.
 
 #### Změny specifikace
 
-[SSU]_ momentálně říká (poznámky k IPv6):
+[SSU](/en/docs/transport/ssu/) momentálně říká (poznámky k IPv6):
 
 Komunikace Bob-Charlie a Alice-Charlie probíhá pouze přes IPv4.
 
-[SSU-SPEC]_ momentálně říká (Relay Request):
+[SSU-SPEC](/en/docs/spec/ssu/) momentálně říká (Relay Request):
 
 Neexistují žádné plány na implementaci přenosu pro IPv6.
 
@@ -260,7 +252,7 @@ Změňte na:
 
 Přenos pro IPv6 je podporován od verze 0.9.xx
 
-[SSU-SPEC]_ momentálně říká (Relay Response):
+[SSU-SPEC](/en/docs/spec/ssu/) momentálně říká (Relay Response):
 
 Adresa Charlieho musí být IPv4, protože to je adresa, na kterou Alice pošle SessionRequest po Hole Punch.
 Neexistují žádné plány na implementaci přenosu pro IPv6.
@@ -271,7 +263,7 @@ Adresa Charlieho může být IPv4 nebo, od verze 0.9.xx, IPv6.
 To je adresa, na kterou Alice pošle SessionRequest po Hole Punch.
 Přenos pro IPv6 je podporován od verze 0.9.xx
 
-[SSU-SPEC]_ momentálně říká (Relay Intro):
+[SSU-SPEC](/en/docs/spec/ssu/) momentálně říká (Relay Intro):
 
 Adresa Alice má v aktuální implementaci vždy 4 byty, protože Alice se snaží připojit k Charliemu přes IPv4.
 Tato zpráva musí být odeslána přes etablované připojení IPv4,
@@ -296,21 +288,3 @@ Od verze 0.9.xx musí každá SSU adresa publikovaná se zavaděči obsahovat "4
 Všechny staré routery by měly ignorovat vlastnost caps u NTCP2 a neznámé znaky schopností v vlastnosti SSU caps.
 
 Jakákoli adresa SSU se zavaděči, která neobsahuje cap "4" nebo "6", se považuje za určenou pro úvod IPv4.
-
-
-
-
-
-## Reference
-
-.. [CAPS]
-    http://zzz.i2p/topics/3050
-
-.. [NTCP2]
-    {{ spec_url('ntcp2') }}
-
-.. [SSU]
-    {{ site_url('docs/transport/ssu', True) }}
-
-.. [SSU-SPEC]
-    {{ spec_url('ssu') }}

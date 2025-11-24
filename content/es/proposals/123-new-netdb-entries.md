@@ -133,26 +133,20 @@ se envían a un Destino en un Mensaje de Ajo.
 
 Tipos existentes:
 
-==================================  ============= ============
             Datos NetDB               Tipo Búsqueda   Tipo Almacen   
-==================================  ============= ============
 cualquiera                                0            cualquiera     
 LS                                        1             1      
 RI                                        2             0      
 exploratorio                              3            DSRM    
-==================================  ============= ============
 
 Nuevos tipos:
 
-==================================  ============= ============ ================== ==================
             Datos NetDB               Tipo Búsqueda   Tipo Almacenamiento   ¿Encabezado LS2 Estándar?   ¿Enviado de extremo a extremo?
-==================================  ============= ============ ================== ==================
 LS2                                       1             3             sí                 sí
 LS2 Encriptado                            1             5             no                  no
 Meta LS2                                  1             7             sí                 no
 Registro de Servicio                      n/a           9             sí                 no
 Lista de Servicios                        4            11             no                 no
-==================================  ============= ============ ================== ==================
 
 
 
@@ -813,9 +807,7 @@ El secreto alfa y las claves cegadas se calculan como sigue.
 
 GENERATE_ALPHA(destination, date, secret), para todas las partes:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // El secreto es opcional, de lo contrario de longitud cero
@@ -828,13 +820,11 @@ GENERATE_ALPHA(destination, date, secret), para todas las partes:
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // trata la seed como un valor little-endian de 64 bytes
   alpha = seed mod L
-{% endhighlight %}
+```
 
 BLIND_PRIVKEY(), para el propietario que publica el leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -846,20 +836,18 @@ BLIND_PRIVKEY(), para el propietario que publica el leaseset:
   // Adición utilizando aritmética escalar
   clave privada de firma cegada = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   clave pública de firma cegada = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 BLIND_PUBKEY(), para los clientes que recuperan el leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = clave pública de firma del destino
   // Adición utilizando elementos del grupo (puntos en la curva)
   clave pública cegada = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 Ambos métodos de calcular A' producen el mismo resultado, como se requiere.
 
@@ -901,21 +889,17 @@ al firmar los mismos datos con la misma clave.
 
 Firmando:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 T = 80 bytes aleatorios
   r = H*(T || clave pública || mensaje)
   // el resto es igual que en Ed25519
-{% endhighlight %}
+```
 
 Verificación:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // igual que en Ed25519
-{% endhighlight %}
+```
 
 
 
@@ -928,26 +912,22 @@ del Destino.
 El destino completo no es requerido.
 Para lograr esto, derivamos una credencial de la clave pública de firma:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 A = clave pública de firma del destino
   stA = tipo de firma de A, 2 bytes big endian (0x0007 o 0x000b)
   stA' = tipo de firma de A', 2 bytes big endian (0x000b)
   keydata = A || stA || stA'
   credential = H("credential", keydata)
-{% endhighlight %}
+```
 
 La cadena de personalización asegura que la credencial no colisione con ningún hash 
 usado como clave de búsqueda DHT, como el hash de Destino simple.
 
 Para una clave cegada dada, entonces podemos derivar una subcredencial:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 subcredential = H("subcredential", credential || clavePublicaCegada)
-{% endhighlight %}
+```
 
 La subcredencial se incluye en los procesos de derivación de clave a continuación, lo que une esas
 claves al conocimiento de la clave pública de firma del Destino.
@@ -955,65 +935,51 @@ claves al conocimiento de la clave pública de firma del Destino.
 #### Cifrado de la Capa 1
 Primero, se prepara la entrada al proceso de derivación de clave:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerInput = subcredential || marcaDeTiempoPublicada
-{% endhighlight %}
+```
 
 Luego, se genera una sal aleatoria:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 Luego, se deriva la clave utilizada para cifrar la capa 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 Finalmente, se encripta y se serialize el texto plano de la capa 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerCiphertext = outerSalt || ENCRYPT(outerKey, outerIV, outerPlaintext)
-{% endhighlight %}
+```
 
 #### Descifrado de la Capa 1
 La sal se analiza del texto cifrado de la capa 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerSalt = outerCiphertext[0:31]
-{% endhighlight %}
+```
 
 Luego, se deriva la clave usada para cifrar la capa 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerInput = subcredential || marcaDeTiempoPublicada
   keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 Finalmente, se descifra el texto cifrado de la capa 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerPlaintext = DECRYPT(outerKey, outerIV, outerCiphertext[32:end])
-{% endhighlight %}
+```
 
 #### Cifrado de la Capa 2
 Cuando la autorización de cliente está habilitada, ``authCookie`` se calcula como se describe a continuación.
@@ -1021,16 +987,14 @@ Cuando la autorización de cliente está deshabilitada, ``authCookie`` es el arr
 
 El cifrado procede de forma similar a la capa 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 innerInput = authCookie || subcredential || marcaDeTiempoPublicada
   innerSalt = CSRNG(32)
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerCiphertext = innerSalt || ENCRYPT(innerKey, innerIV, innerPlaintext)
-{% endhighlight %}
+```
 
 #### Descifrado de la Capa 2
 Cuando la autorización de cliente está habilitada, ``authCookie`` se calcula como se describe a continuación.
@@ -1038,16 +1002,14 @@ Cuando la autorización de cliente está deshabilitada, ``authCookie`` es el arr
 
 El descifrado procede de forma similar a la capa 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 innerInput = authCookie || subcredential || marcaDeTiempoPublicada
   innerSalt = innerCiphertext[0:31]
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerPlaintext = DECRYPT(innerKey, innerIV, innerCiphertext[32:end])
-{% endhighlight %}
+```
 
 
 Autorización por cliente
@@ -1067,19 +1029,15 @@ Procesamiento del servidor
 ^^^^^^^^^^^^^^^^^
 El servidor genera un nuevo ``authCookie`` y un par de claves DH efímero:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = CSRNG(32)
   esk = GENERATE_PRIVATE()
   epk = DERIVE_PUBLIC(esk)
-{% endhighlight %}
+```
 
 Luego, para cada cliente autorizado, el servidor encripta ``authCookie`` a su clave pública:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 sharedSecret = DH(esk, cpk_i)
   authInput = sharedSecret || cpk_i || subcredential || marcaDeTiempoPublicada
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
@@ -1087,7 +1045,7 @@ sharedSecret = DH(esk, cpk_i)
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 El servidor coloca cada tupla ``[clientID_i, clientCookie_i]`` en la capa 1 del
 LS2 encriptado, junto con ``epk``.
@@ -1097,26 +1055,22 @@ Procesamiento del cliente
 El cliente utiliza su clave privada para derivar su identificador de cliente esperado ``clientID_i``,
 clave de cifrado ``clientKey_i``, y IV de cifrado ``clientIV_i``:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 sharedSecret = DH(csk_i, epk)
   authInput = sharedSecret || cpk_i || subcredential || marcaDeTiempoPublicada
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 Luego el cliente busca en los datos de autorización de la capa 1 una entrada que contenga
 ``clientID_i``. Si existe una entrada coincidente, el cliente la descifra para obtener
 ``authCookie``:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### Autorización de cliente con clave precompartida
 Cada cliente genera una clave secreta de 32 bytes ``psk_i``, y la envía al servidor.
@@ -1127,25 +1081,21 @@ Procesamiento del servidor
 ^^^^^^^^^^^^^^^^^
 El servidor genera un nuevo ``authCookie`` y una sal:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = CSRNG(32)
   authSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 Luego, para cada cliente autorizado, el servidor encripta ``authCookie`` a su clave precompartida:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authInput = psk_i || subcredential || marcaDeTiempoPublicada
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 El servidor coloca cada tupla ``[clientID_i, clientCookie_i]`` en la capa 1 del
 LS2 encriptado, junto con ``authSalt``.
@@ -1155,25 +1105,21 @@ Procesamiento del cliente
 El cliente usa su clave precompartida para derivar su identificador de cliente esperado ``clientID_i``,
 clave de cifrado ``clientKey_i``, y IV de cifrado ``clientIV_i``:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authInput = psk_i || subcredential || marcaDeTiempoPublicada
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 Luego el cliente busca en los datos de autorización de la capa 1 una entrada que contenga
 ``clientID_i``. Si existe una entrada coincidente, el cliente la descifra para obtener
 ``authCookie``:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### Consideraciones de seguridad
 Ambos mecanismos de autorización de cliente anteriores proporcionan privacidad para la membresía de cliente.

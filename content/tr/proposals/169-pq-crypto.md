@@ -14,14 +14,14 @@ target: "0.9.80"
 
 Uygun post-kuantum (PQ) kriptografisi için araştırma ve rekabet on yılı aşkın süredir devam etmekte olsa da, seçimler ancak son zamanlarda netleşmiştir.
 
-PQ kriptosunun etkilerine 2022 yılında bakmaya başladık [FORUM]_.
+PQ kriptosunun etkilerine 2022 yılında bakmaya başladık [FORUM](http://zzz.i2p/topics/3294).
 
-TLS standartları son iki yılda hibrit şifreleme desteği ekledi ve şu anda internetteki şifreli trafiğin önemli bir kısmında Chrome ve Firefox desteği sayesinde kullanılmaktadır [CLOUDFLARE]_.
+TLS standartları son iki yılda hibrit şifreleme desteği ekledi ve şu anda internetteki şifreli trafiğin önemli bir kısmında Chrome ve Firefox desteği sayesinde kullanılmaktadır [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/).
 
-NIST, kısa süre önce post-kuantum kriptografisi için önerilen algoritmaları nihayetlendirdi ve yayınladı [NIST-PQ]_.
+NIST, kısa süre önce post-kuantum kriptografisi için önerilen algoritmaları nihayetlendirdi ve yayınladı [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards).
 Birkaç ortak kriptografi kütüphanesi artık NIST standartlarını desteklemekte veya yakında destek vereceklerdir.
 
-Hem [CLOUDFLARE]_ hem de [NIST-PQ]_ göçün hemen başlamasını öneriyor. Ayrıca 2022 NSA PQ SSS'e bakınız [NSA-PQ]_.
+Hem [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/) hem de [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) göçün hemen başlamasını öneriyor. Ayrıca 2022 NSA PQ SSS'e bakınız [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF).
 I2P güvenlik ve kriptografide öncü olmalıdır.
 Tavsiye edilen algoritmaları uygulamanın zamanı geldi.
 Esnek kripto tipi ve imza tipi sistemimizi kullanarak, hibrit kripto ve PQ ile hibrit imzalar için tipler ekleyeceğiz.
@@ -56,22 +56,21 @@ Genel dağıtım muhtemelen 2025 sonundan 2027 ortalarına kadar sürecektir.
 Detaylar için aşağıdaki Öncelikler ve Dağıtım bölümüne bakınız.
 
 ```
-==================================  ======
-Protokol / Özellik                  Durum
-==================================  ======
-Hibrit MLKEM Ratchet ve LS          2026-06'da Onaylandı; beta hedefi 2025-08; sürüm hedefi 2025-11
-Hibrit MLKEM NTCP2                  Bazı detaylar nihayetlendirilecek
-Hibrit MLKEM SSU2                   Bazı detaylar nihayetlendirilecek
-MLDSA İmzalı Tipler 12-14           Teklif kararlı ama 2026'ya kadar nihayetlenmemiş olabilir
-MLDSA Hedefler                      Canlı ağda test edildi, floodfill desteği için net yükseltme gerektirir
-Hibrit İmzalı Tipler 15-17          İlk
-Hibrit Hedefler
-==================================  ======
+| Protokol / Özellik | Durum |
+| ------------------ | ----- |
+| Hibrit MLKEM Ratchet ve LS | 2026-0 |
+| Hibrit MLKEM NTCP2 | Bazı d |
+| Hibrit MLKEM SSU2 | Bazı d |
+| MLDSA İmzalı Tipler 12-14 | Teklif |
+| MLDSA Hedefler | Canlı |
+| Hibrit İmzalı Tipler 15-17 | İlk |
+| Hibrit Hedefler |  |
+
 ```
 
 ## Tasarım
 
-NIST FIPS 203 ve 204 standartlarını destekleyeceğiz [FIPS203]_ [FIPS204]_
+NIST FIPS 203 ve 204 standartlarını destekleyeceğiz [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
 ki bunlar baz alınmış ancak
 CRYSTALS-Kyber ve CRYSTALS-Dilithium ile uyumlu DEĞİLDİR (sürümler 3.1, 3 ve eski).
 
@@ -80,15 +79,14 @@ CRYSTALS-Kyber ve CRYSTALS-Dilithium ile uyumlu DEĞİLDİR (sürümler 3.1, 3 v
 Aşağıdaki protokollerde hibrit anahtar değişimini destekleyeceğiz:
 
 ```
-=======  ==========  ================  ===============
-Protokol    Gürültü Türü  Yalnızca PQ Destekler mi?  Hibrit Destekler mi?
-=======  ==========  ================  ===============
-NTCP2       XK       hayır              evet
-SSU2        XK       hayır              evet
-Ratchet     IK       hayır              evet
-TBM          N       hayır              hayır
-NetDB        N       hayır              hayır
-=======  ==========  ================  ===============
+| Protoko | Gürültü | ürü  Yalnızca PQ | estekler mi?  H |
+| ------- | ------- | ---------------- | --------------- |
+| NTCP2 | XK | hayır | evet |
+| SSU2 | XK | hayır | evet |
+| Ratchet | IK | hayır | evet |
+| TBM | N | hayır | hayır |
+| NetDB | N | hayır | hayır |
+
 ```
 
 PQ KEM yalnızca geçici anahtarlar sağlar ve statik anahtar el sıkışmalarını doğrudan desteklemez
@@ -97,19 +95,18 @@ Noise XK ve IK gibi.
 Noise N iki yönlü anahtar değişimi kullanmaz ve bu nedenle hibrit şifreleme için uygun değildir.
 
 Bu yüzden sadece NTCP2, SSU2 ve Ratchet için hibrit şifreleme destekleyeceğiz.
-[FIPS203]_ gibi üç yeni şifreleme türü için üç ML-KEM varyantını tanımlayacağız.
+[FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) gibi üç yeni şifreleme türü için üç ML-KEM varyantını tanımlayacağız.
 Hibrit türler yalnızca X25519 ile kombinasyon halinde tanımlanacak.
 
 Yeni şifreleme türleri şunlardır:
 
 ```
-================  ====
- Tip               Kod
-================  ====
-MLKEM512_X25519     5
-MLKEM768_X25519     6
-MLKEM1024_X25519    7
-================  ====
+| Tip | Kod |
+| --- | --- |
+| MLKEM512_X25519 | 5 |
+| MLKEM768_X25519 | 6 |
+| MLKEM1024_X25519 | 7 |
+
 ```
 
 Aşırı yük önemli ölçüde artacaktır. Tipik mesaj 1 ve 2 boyutları (XK ve IK için)
@@ -121,46 +118,44 @@ Bu, algoritmaya bağlı olarak 8x ila 15x artacaktır.
 Aşağıdaki yapılarda PQ ve hibrit imzaları destekleyeceğiz:
 
 ```
-==========================  ================  ===============
-Tür                            Yalnızca PQ Destekler mi?  Hibrit Destekler mi?
-==========================  ================  ===============
-Yönlendirme Bilgileri             evet               evet
-LeaseSet                          evet               evet
-Akış SYN/SYNACK/Kapat             evet               evet
-Cevaplanabilir Datagramlar        evet               evet
-Datagram2 (öneri 163)             evet               evet
-I2CP oturum oluşturma mesajı      evet               evet
-SU3 dosyaları                     evet               evet
-X.509 sertifikaları               evet               evet
-Java anahtar depoları              evet               evet
-==========================  ================  ===============
+| Tür | Yalnızca PQ D | tekler mi?  Hib |
+| --- | ------------- | --------------- |
+| Yönlendirme Bilgileri | evet | evet |
+| LeaseSet | evet | evet |
+| Akış SYN/SYNACK/Kapat | evet | evet |
+| Cevaplanabilir Datagramlar | evet | evet |
+| Datagram2 (öneri 163) | evet | evet |
+| I2CP oturum oluşturma mesa | evet | evet |
+| SU3 dosyaları | evet | evet |
+| X.509 sertifikaları | evet | evet |
+| Java anahtar depoları | evet | evet |
+
 ```
 
 Bu yüzden hem yalnızca PQ hem de hibrit imzaları destekleyeceğiz.
-[FIPS204]_ gibi üç ML-DSA varyantını tanımlayacağız,
+[FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) gibi üç ML-DSA varyantını tanımlayacağız,
 Ed25519 ile üç hibrit varyant ve yalnızca SU3 dosyaları için ön hash ile üç yalnızca PQ varyantı,
 toplamda 9 yeni imza türü için.
 Hibrit türler yalnızca Ed25519 ile kombinasyon halinde tanımlanacak.
 SU3 dosyaları hariç standart ML-DSA'yı, ön-hash (HashML-DSA) varyantlarını KULLANMAYACAĞIZ.
 
 ```
-============================  ====
-        Tip                  Kod
-============================  ====
-MLDSA44                        12
-MLDSA65                        13
-MLDSA87                        14
-MLDSA44_EdDSA_SHA512_Ed25519   15
-MLDSA65_EdDSA_SHA512_Ed25519   16
-MLDSA87_EdDSA_SHA512_Ed25519   17
-MLDSA44ph                      18
-MLDSA65ph                      19
-MLDSA87ph                      20
-============================  ====
+| Tip | od |
+| --- | --- |
+| MLDSA44 | 12 |
+| MLDSA65 | 13 |
+| MLDSA87 | 14 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 15 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 16 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 17 |
+| MLDSA44ph | 18 |
+| MLDSA65ph | 19 |
+| MLDSA87ph | 20 |
+
 ```
 
 X.509 sertifikaları ve diğer DER kodlamaları
-[COMPOSITE-SIGS]_ 'de tanımlanan bileşik yapıları ve OID'leri kullanacaktır.
+[COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ounsworth-pq-composite-sigs/) 'de tanımlanan bileşik yapıları ve OID'leri kullanacaktır.
 
 Aşırı yük önemli ölçüde artacaktır. Tipik Ed25519 hedef ve yönlendirici kimliği boyutları 391 bayttır.
 Bunlar algoritmaya bağlı olarak 3,5x ila 6,8x artacaktır.
@@ -185,8 +180,8 @@ Anahtar sertifikasındaki şifreleme türü tür 4 olarak kalacaktır.
 
 ### Yeni Kripto Gereklilikleri
 
-- ML-KEM (eski adıyla CRYSTALS-Kyber) [FIPS203]_
-- ML-DSA (eski adıyla CRYSTALS-Dilithium) [FIPS204]_
+- ML-KEM (eski adıyla CRYSTALS-Kyber) [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+- ML-DSA (eski adıyla CRYSTALS-Dilithium) [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
 - SHA3-128 (eski adıyla Keccak-256) [FIPS202]_ yalnızca SHAKE128 için kullanılır
 - SHA3-256 (eski adıyla Keccak-512) [FIPS202]_
 - SHAKE128 ve SHAKE256 (SHA3-128 ve SHA3-256'nın XOF uzantıları) [FIPS202]_
@@ -227,7 +222,7 @@ ve biz de fikir ve ilham almak için gözden geçireceğiz. TODO.
 
 ### Genel Yapılar
 
-[COMMON]_'daki bölümleri ve tabloları şu şekilde güncelleyin:
+[COMMON](https://geti2p.net/spec/common-structures)'daki bölümleri ve tabloları şu şekilde güncelleyin:
 
 Genel Anahtar
 ````````````````
@@ -235,25 +230,24 @@ Genel Anahtar
 Yeni Genel Anahtar türleri şunlardır:
 
 ```
-================    ================= ======  =====
-  Tür               Genel Anahtar Uzunluğu O Şu Tarihten İtibaren  Kullanım
-================    ================= ======  =====
-MLKEM512_X25519                 32      0.9.xx  Teklif 169 için, yalnızca Leaseset'ler için, RI veya Hedefler için değil
-MLKEM768_X25519                 32      0.9.xx  Teklif 169 için, yalnızca Leaseset'ler için, RI veya Hedefler için değil
-MLKEM1024_X25519                32      0.9.xx  Teklif 169 için, yalnızca Leaseset'ler için, RI veya Hedefler için değil
-MLKEM512                       800      0.9.xx  Teklif 169 için, yalnızca Tokalaşmalar için, Leaseset'ler, RI veya Hedefler için değil
-MLKEM768                      1184      0.9.xx  Teklif 169 için, yalnızca Tokalaşmalar için, Leaseset'ler, RI veya Hedefler için değil
-MLKEM1024                     1568      0.9.xx  Teklif 169 için, yalnızca Tokalaşmalar için, Leaseset'ler, RI veya Hedefler için değil
-MLKEM512_CT                    768      0.9.xx  Teklif 169 için, yalnızca Tokalaşmalar için, Leaseset'ler, RI veya Hedefler için değil
-MLKEM768_CT                   1088      0.9.xx  Teklif 169 için, yalnızca Tokalaşmalar için, Leaseset'ler, RI veya Hedefler için değil
-MLKEM1024_CT                  1568      0.9.xx  Teklif 169 için, yalnızca Tokalaşmalar için, Leaseset'ler, RI veya Hedefler için değil
-YOK                             0      0.9.xx  Teklif 169 için, yalnızca PQ imza türleri ile hedefler için, RI veya Leaseset'ler için değil
-================    ================= ======  =====
+| Tür | Genel Anahtar Uzu | luğu O | u Tar |
+| --- | ----------------- | ------ | ----- |
+| MLKEM512_X25519 | 32 | 0.9. | Tek |
+| MLKEM768_X25519 | 32 | 0.9. | Tek |
+| MLKEM1024_X25519 | 32 | 0.9. | Tek |
+| MLKEM512 | 800 | 0.9. | Tek |
+| MLKEM768 | 1184 | 0.9. | Tek |
+| MLKEM1024 | 1568 | 0.9. | Tek |
+| MLKEM512_CT | 768 | 0.9. | Tek |
+| MLKEM768_CT | 1088 | 0.9. | Tek |
+| MLKEM1024_CT | 1568 | 0.9. | Tek |
+| YOK | 0 | 0.9.x | Tekl |
+
 ```
 
 Hibrit genel anahtarlar X25519 anahtarıdır.
 KEM genel anahtarları Alice'ten Bob'a gönderilen geçici PQ anahtarıdır.
-Kodlama ve bayt sırası [FIPS203]_ 'de tanımlanmıştır.
+Kodlama ve bayt sırası [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) 'de tanımlanmıştır.
 
 MLKEM*_CT anahtarları gerçekten genel anahtarlar değil, Noise el sıkışmasında Bob'dan Alice'e gönderilen "şifreli metin" dir.
 Tamlık için burada listelenmiştir.
@@ -264,21 +258,20 @@ Tamlık için burada listelenmiştir.
 Yeni Özel Anahtar türleri şunlardır:
 
 ```
-================    ================== ======  =====
-  Tür               Özel Anahtar Uzunluğu  O Şu Tarihten İtibaren  Kullanım
-================    ================== ======  =====
-MLKEM512_X25519               32       0.9.xx  Teklif 169 için, yalnızca Leaseset'ler için, RI veya Hedefler için değil
-MLKEM768_X25519               32       0.9.xx  Teklif 169 için, yalnızca Leaseset'ler için, RI veya Hedefler için değil
-MLKEM1024_X25519              32       0.9.xx  Teklif 169 için, yalnızca Leaseset'ler için, RI veya Hedefler için değil
-MLKEM512                    1632       0.9.xx  Teklif 169 için, yalnızca Tokalaşmalar için, Leaseset'ler, RI veya Hedefler için değil
-MLKEM768                    2400       0.9.xx  Teklif 169 için, yalnızca Tokalaşmalar için, Leaseset'ler, RI veya Hedefler için değil
-MLKEM1024                   3168       0.9.xx  Teklif 169 için, yalnızca Tokalaşmalar için, Leaseset'ler, RI veya Hedefler için değil
-================    ================== ======  =====
+| Tür | Özel Anahtar Uzunl | ğu  O | Tari |
+| --- | ------------------ | ----- | ---- |
+| MLKEM512_X25519 | 32 | 0.9.xx | Tekli |
+| MLKEM768_X25519 | 32 | 0.9.xx | Tekli |
+| MLKEM1024_X25519 | 32 | 0.9.xx | Tekli |
+| MLKEM512 | 1632 | 0.9.xx | Tekli |
+| MLKEM768 | 2400 | 0.9.xx | Tekli |
+| MLKEM1024 | 3168 | 0.9.xx | Tekli |
+
 ```
 
 Hibrit özel anahtarlar X25519 anahtarlarıdır.
 KEM özel anahtarları yalnızca Alice içindir.
-KEM kodlaması ve bayt sırası [FIPS203]_ 'de tanımlanmıştır.
+KEM kodlaması ve bayt sırası [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) 'de tanımlanmıştır.
 
 İmza Genel Anahtar
 ````````````````
@@ -286,23 +279,22 @@ KEM kodlaması ve bayt sırası [FIPS203]_ 'de tanımlanmıştır.
 Yeni İmza Genel Anahtar türleri şunlardır:
 
 ```
-============================   ==============  ======  =====
-        Tür                    Uzunluk (bayt)   O Şu Tarihten İtibaren  Kullanım
-============================   ==============  ======  =====
-MLDSA44                              1312      0.9.xx  Teklif 169
-MLDSA65                              1952      0.9.xx  Teklif 169
-MLDSA87                              2592      0.9.xx  Teklif 169
-MLDSA44_EdDSA_SHA512_Ed25519         1344      0.9.xx  Teklif 169
-MLDSA65_EdDSA_SHA512_Ed25519         1984      0.9.xx  Teklif 169
-MLDSA87_EdDSA_SHA512_Ed25519         2624      0.9.xx  Teklif 169
-MLDSA44ph                            1344      0.9.xx  Yalnızca SU3 dosyaları için, netdb yapıları için değil
-MLDSA65ph                            1984      0.9.xx  Yalnızca SU3 dosyaları için, netdb yapıları için değil
-MLDSA87ph                            2624      0.9.xx  Yalnızca SU3 dosyaları için, netdb yapıları için değil
-============================   ==============  ======  =====
+| Tür | Uzunluk (bayt) | O Şu | rihte |
+| --- | -------------- | ---- | ----- |
+| MLDSA44 | 1312 | 0.9.xx | Tekli |
+| MLDSA65 | 1952 | 0.9.xx | Tekli |
+| MLDSA87 | 2592 | 0.9.xx | Tekli |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 0.9.xx | Tekli |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 0.9.xx | Tekli |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 0.9.xx | Tekli |
+| MLDSA44ph | 1344 | 0.9.xx | Yalnı |
+| MLDSA65ph | 1984 | 0.9.xx | Yalnı |
+| MLDSA87ph | 2624 | 0.9.xx | Yalnı |
+
 ```
 
-Hibrit imza genel anahtarları [COMPOSITE-SIGS]_ 'de tanımlandığı gibi Ed25519 anahtarı ardından PQ anahtarıdır.
-Kodlama ve bayt sırası [FIPS204]_ 'de tanımlanmıştır.
+Hibrit imza genel anahtarları [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ounsworth-pq-composite-sigs/) 'de tanımlandığı gibi Ed25519 anahtarı ardından PQ anahtarıdır.
+Kodlama ve bayt sırası [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 'de tanımlanmıştır.
 
 İmza Özel Anahtar
 ````````````````
@@ -310,23 +302,22 @@ Kodlama ve bayt sırası [FIPS204]_ 'de tanımlanmıştır.
 Yeni İmza Özel Anahtar türleri şunlardır:
 
 ```
-============================   ==============  ======  =====
-         Tür                   Uzunluk (bayt)   O Şu Tarihten İtibaren  Kullanım
-============================   ==============  ======  =====
-MLDSA44                              2560      0.9.xx  Teklif 169
-MLDSA65                              4032      0.9.xx  Teklif 169
-MLDSA87                              4896      0.9.xx  Teklif 169
-MLDSA44_EdDSA_SHA512_Ed25519         2592      0.9.xx  Teklif 169
-MLDSA65_EdDSA_SHA512_Ed25519         4064      0.9.xx  Teklif 169
-MLDSA87_EdDSA_SHA512_Ed25519         4928      0.9.xx  Teklif 169
-MLDSA44ph                            2592      0.9.xx  Yalnızca SU3 dosyaları için, netdb yapıları için değil
-MLDSA65ph                            4064      0.9.xx  Yalnızca SU3 dosyaları için, netdb yapıları için değil
-MLDSA87ph                            4928      0.9.xx  Yalnızca SU3 dosyaları için, netdb yapıları için değil
-============================   ==============  ======  =====
+| Tür | Uzunluk (bayt) | O Şu | rihte |
+| --- | -------------- | ---- | ----- |
+| MLDSA44 | 2560 | 0.9.xx | Tekli |
+| MLDSA65 | 4032 | 0.9.xx | Tekli |
+| MLDSA87 | 4896 | 0.9.xx | Tekli |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 2592 | 0.9.xx | Tekli |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 4064 | 0.9.xx | Tekli |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 4928 | 0.9.xx | Tekli |
+| MLDSA44ph | 2592 | 0.9.xx | Yalnı |
+| MLDSA65ph | 4064 | 0.9.xx | Yalnı |
+| MLDSA87ph | 4928 | 0.9.xx | Yalnı |
+
 ```
 
-Hibrit imza özel anahtarları [COMPOSITE-SIGS]_ 'de tanımlandığı gibi Ed25519 anahtarı ardından PQ anahtarıdır.
-Kodlama ve bayt sırası [FIPS204]_ 'de tanımlanmıştır.
+Hibrit imza özel anahtarları [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ounsworth-pq-composite-sigs/) 'de tanımlandığı gibi Ed25519 anahtarı ardından PQ anahtarıdır.
+Kodlama ve bayt sırası [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 'de tanımlanmıştır.
 
 İmza
 ``````````
@@ -334,24 +325,23 @@ Kodlama ve bayt sırası [FIPS204]_ 'de tanımlanmıştır.
 Yeni İmza türleri şunlardır:
 
 ```
-============================   ==============  ======  =====
-         Tür                   Uzunluk (bayt)   O Şu Tarihten İtibaren  Kullanım
-============================   ==============  ======  =====
-MLDSA44                              2420      0.9.xx  Teklif 169
-MLDSA65                              3309      0.9.xx  Teklif 169
-MLDSA87                              4627      0.9.xx  Teklif 169
-MLDSA44_EdDSA_SHA512_Ed25519         2484      0.9.xx  Teklif 169
-MLDSA65_EdDSA_SHA512_Ed25519         3373      0.9.xx  Teklif 169
-MLDSA87_EdDSA_SHA512_Ed25519         4691      0.9.xx  Teklif 169
-MLDSA44ph                            2484      0.9.xx  Yalnızca SU3 dosyaları için, netdb yapıları için değil
-MLDSA65ph                            3373      0.9.xx  Yalnızca SU3 dosyaları için, netdb yapıları için değil
-MLDSA87ph                            4691      0.9.xx  Yalnızca SU3 dosyaları için, netdb yapıları için değil
-============================   ==============  ======  =====
+| Tür | Uzunluk (bayt) | O Şu | rihte |
+| --- | -------------- | ---- | ----- |
+| MLDSA44 | 2420 | 0.9.xx | Tekli |
+| MLDSA65 | 3309 | 0.9.xx | Tekli |
+| MLDSA87 | 4627 | 0.9.xx | Tekli |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 2484 | 0.9.xx | Tekli |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 3373 | 0.9.xx | Tekli |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 4691 | 0.9.xx | Tekli |
+| MLDSA44ph | 2484 | 0.9.xx | Yalnı |
+| MLDSA65ph | 3373 | 0.9.xx | Yalnı |
+| MLDSA87ph | 4691 | 0.9.xx | Yalnı |
+
 ```
 
-Hibrit imzalar, [COMPOSITE-SIGS]_ 'de olduğu gibi Ed25519 imzası ardından PQ imzasıdır.
+Hibrit imzalar, [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ounsworth-pq-composite-sigs/) 'de olduğu gibi Ed25519 imzası ardından PQ imzasıdır.
 Hibrit imzalar, her iki imza doğrulanarak doğrulanır ve biri başarısız olursa başarısız olur.
-Kodlama ve bayt sırası [FIPS204]_ 'de tanımlanmıştır.
+Kodlama ve bayt sırası [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 'de tanımlanmıştır.
 
 Anahtar Sertifikaları
 ``````````````````````
@@ -359,32 +349,30 @@ Anahtar Sertifikaları
 Yeni İmza Genel Anahtar türleri şunlardır:
 
 ```
-============================  ===========  =======================  ======  =====
-        Tür                  Tür Kodu    Toplam Genel Anahtar Uzunluğu  O Şu Tarihten İtibaren   Kullanım
-============================  ===========  =======================  ======  =====
-MLDSA44                           12                 1312           0.9.xx  Teklif 169
-MLDSA65                           13                 1952           0.9.xx  Teklif 169
-MLDSA87                           14                 2592           0.9.xx  Teklif 169
-MLDSA44_EdDSA_SHA512_Ed25519      15                 1344           0.9.xx  Teklif 169
-MLDSA65_EdDSA_SHA512_Ed25519      16                 1984           0.9.xx  Teklif 169
-MLDSA87_EdDSA_SHA512_Ed25519      17                 2624           0.9.xx  Teklif 169
-MLDSA44ph                         18                  n/a           0.9.xx  Yalnızca SU3 dosyaları için
-MLDSA65ph                         19                  n/a           0.9.xx  Yalnızca SU3 dosyaları için
-MLDSA87ph                         20                  n/a           0.9.xx  Yalnızca SU3 dosyaları için
-============================  ===========  =======================  ======  =====
+| Tür | ür Kodu | plam Genel Anahtar Uzun | ğu  O | Tari |
+| --- | ------- | ----------------------- | ----- | ---- |
+| MLDSA44 | 12 | 1312 | 0.9.xx | Tekli |
+| MLDSA65 | 13 | 1952 | 0.9.xx | Tekli |
+| MLDSA87 | 14 | 2592 | 0.9.xx | Tekli |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 0.9.xx | Tekli |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 0.9.xx | Tekli |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 0.9.xx | Tekli |
+| MLDSA44ph | 18 | n/a | 0.9.xx | Yalnı |
+| MLDSA65ph | 19 | n/a | 0.9.xx | Yalnı |
+| MLDSA87ph | 20 | n/a | 0.9.xx | Yalnı |
+
 ```
 
 Yeni Kripto Genel Anahtar türleri şunlardır:
 
 ```
-================    ===========  =======================  ======  =====
-  Tür               Tür Kodu     Toplam Genel Anahtar Uzunluğu  O Şu Tarihten İtibaren   Kullanım
-================    ===========  =======================  ======  =====
-MLKEM512_X25519          5                 32            0.9.xx  Teklif 169 için, yalnızca Leaseset'ler için, RI veya Hedefler için değil
-MLKEM768_X25519          6                 32            0.9.xx  Teklif 169 için, yalnızca Leaseset'ler için, RI veya Hedefler için değil
-MLKEM1024_X25519         7                 32            0.9.xx  Teklif 169 için, yalnızca Leaseset'ler için, RI veya Hedefler için değil
-YOK                      255               0            0.9.xx  Teklif 169
-================    ===========  =======================  ======  =====
+| Tür | Tür Kodu | Toplam Genel Anahtar Uz | luğu | Şu Ta |
+| --- | -------- | ----------------------- | ---- | ----- |
+| MLKEM512_X25519 | 5 | 32 | .9.xx | eklif |
+| MLKEM768_X25519 | 6 | 32 | .9.xx | eklif |
+| MLKEM1024_X25519 | 7 | 32 | .9.xx | eklif |
+| YOK | 255 | 0 | 9.xx | klif |
+
 ```
 
 Hibrit anahtar türleri asla anahtar sertifikalarında dahil edilmez; yalnızca leaseset'lerde.
@@ -412,16 +400,15 @@ Anahtar sertifikası uzunluğu 4 + fazla anahtar uzunluğudur.
 skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 
 ```
-============================  ===========  =======================  ======  ======  =====
-        Tür                  Tür Kodu    Toplam Genel Anahtar Uzunluğu  Ana    Fazla  Toplam Hedef Uzunluğu
-============================  ===========  =======================  ======  ======  =====
-MLDSA44                           12                 1312           384      928    1319
-MLDSA65                           13                 1952           384     1568    1959
-MLDSA87                           14                 2592           384     2208    2599
-MLDSA44_EdDSA_SHA512_Ed25519      15                 1344           384      960    1351
-MLDSA65_EdDSA_SHA512_Ed25519      16                 1984           384     1600    1991
-MLDSA87_EdDSA_SHA512_Ed25519      17                 2624           384     2240    2631
-============================  ===========  =======================  ======  ======  =====
+| Tür | ür Kodu | plam Genel Anahtar Uzun | ğu  An | Faz | Top |
+| --- | ------- | ----------------------- | ------ | --- | --- |
+| MLDSA44 | 12 | 1312 | 384 | 928 | 1319 |
+| MLDSA65 | 13 | 1952 | 384 | 1568 | 1959 |
+| MLDSA87 | 14 | 2592 | 384 | 2208 | 2599 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 384 | 960 | 1351 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 384 | 1600 | 1991 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 384 | 2240 | 2631 |
+
 ```
 
 Yönlendirici Kimlik boyutları
@@ -439,16 +426,15 @@ Anahtar sertifikası uzunluğu 4 + fazla anahtar uzunluğudur.
 enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 
 ```
-============================  ===========  =======================  ======  ======  =====
-        Tür                  Tür Kodu    Toplam Genel Anahtar Uzunluğu  Ana    Fazla  Toplam Yönlendirici Kimlik Uzunluğu
-============================  ===========  =======================  ======  ======  =====
-MLDSA44                           12                 1312           352      960    1351
-MLDSA65                           13                 1952           352     1600    1991
-MLDSA87                           14                 2592           352     2240    2631
-MLDSA44_EdDSA_SHA512_Ed25519      15                 1344           352      992    1383
-MLDSA65_EdDSA_SHA512_Ed25519      16                 1984           352     1632    2023
-MLDSA87_EdDSA_SHA512_Ed25519      17                 2624           352     2272    2663
-============================  ===========  =======================  ======  ======  =====
+| Tür | ür Kodu | plam Genel Anahtar Uzun | ğu  An | Faz | Top |
+| --- | ------- | ----------------------- | ------ | --- | --- |
+| MLDSA44 | 12 | 1312 | 352 | 960 | 1351 |
+| MLDSA65 | 13 | 1952 | 352 | 1600 | 1991 |
+| MLDSA87 | 14 | 2592 | 352 | 2240 | 2631 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 352 | 992 | 1383 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 352 | 1632 | 2023 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
+
 ```
 ### Tokalaşma Modelleri
 
@@ -465,9 +451,7 @@ Aşağıdaki harf eşlemesi kullanılır:
 XK ve IK için hibrit forward gizliliği (hfs) için aşağıdaki modifikasyonlar
 [Noise-Hybrid]_ bölüm 5'de belirtildiği gibi yapılmaktadır:
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 
 XK:                       XKhfs:
    <- s                      <- s
@@ -489,13 +473,11 @@ IK:                       IKhfs:
 e1 ve ekem1 şifrelidir. Aşağıdaki model tanımlamalarına bakınız.
 NOT: e1 ve ekem1 farklı büyüklüklerdedir (X25519'dan farklı olarak)
 
-{% endhighlight %}
+```
 
 e1 modeli aşağıdaki gibi tanımlanmıştır ve [Noise-Hybrid]_ bölüm 4'te belirtilmiştir:
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 
 Alice için:
    (encap_key, decap_key) = PQ_KEYGEN()
@@ -512,13 +494,11 @@ Bob için:
    n++
    MixHash(şifreli metin)
 
-{% endhighlight %}
+```
 
 ekem1 modeli aşağıdaki gibi tanımlanmıştır ve [Noise-Hybrid]_ bölüm 4'te belirtilmiştir:
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 
 Bob için:
 
@@ -541,7 +521,7 @@ Alice için:
    kem_shared_key = DECAPS(kem_ciphertext, decap_key)
    MixKey(kem_shared_key)
 
-{% endhighlight %}
+```
 
 ### Noise Tokalaşma KDF
 
@@ -578,7 +558,7 @@ Tanımlı ML-KEM Operasyonları
 ```````````````````````````
 
 Kullanılan kriptografik yapı taşlarına karşı gelen aşağıdaki işlevleri tanımlıyoruz
-[FIPS203]_ 'de tanımlandığı gibi.
+[FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) 'de tanımlandığı gibi.
 
 (encap_key, decap_key) = PQ_KEYGEN()
 Alice kaplama ve ayırma anahtarlarını oluşturur
@@ -612,9 +592,7 @@ VEYA
 
 IK için: 'es' mesaj modelinden sonra ve 's' mesaj modelinden önce ekleyin:
 
-.. raw:: html
-
-{% highlight lang='text' %}
+```text
 Bu "e1" mesaj modeli:
 (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -635,7 +613,7 @@ NOT: Bir sonraki bölüm için (XK için yük veya IK için statik anahtar),
 keydata ve zincir anahtarı aynı kalır,
 ve n artık 1'e eşittir (hibrit olmayan için 0 yerine).
 
-{% endhighlight %}
+```
 
 Bob KDF için Mesaj 1
 ````````````````````
@@ -646,9 +624,7 @@ VEYA
 
 IK için: 'es' mesaj modelinden sonra ve 's' mesaj modelinden önce ekleyin:
 
-.. raw:: html
-
-{% highlight lang='text' %}
+```text
 Bu "e1" mesaj modeli:
 
 // DecryptAndHash(encap_key_bölümü)
@@ -668,7 +644,7 @@ NOT: Bir sonraki bölüm için (XK için yük veya IK için statik anahtar),
 keydata ve zincir anahtarı aynı kalır,
 ve n artık 1'e eşittir (hibrit olmayan için 0 yerine).
 
-{% endhighlight %}
+```
 
 Bob KDF için Mesaj 2
 ````````````````````
@@ -679,9 +655,7 @@ VEYA
 
 IK için: 'ee' mesaj modelinden sonra ve 'se' mesaj modelinden önce ekleyin:
 
-.. raw:: html
-
-{% highlight lang='text' %}
+```text
 Bu "ekem1" mesaj modeli:
 
 (kem_ciphertext, kem_shared_key) = ENCAPS(encap_key)
@@ -702,16 +676,14 @@ chainKey = keydata[0:31]
 
 "ekem1" mesaj modelinin sonu.
 
-{% endhighlight %}
+```
 
 Alice KDF Mesaj 2
 ````````````````````
 
 'ee' mesaj modelinden sonra (IK için 'ss' mesaj modelinden önce):
 
-.. raw:: html
-
-{% highlight lang='text' %}
+```text
 Bu "ekem1" mesaj modeli:
 
 // DecryptAndHash(kem_ciphertext_section)
@@ -731,7 +703,7 @@ chainKey = keydata[0:31]
 
 "ekem1" mesaj modelinin sonu.
 
-{% endhighlight %}
+```
 
 KDF Mesaj 3 (sadece XK)
 ```````````````````````
@@ -743,7 +715,7 @@ değişmeden
 
 ### Ratchet
 
-ECIES-Ratchet spesifikasyonunu [ECIES]_ olarak güncelleyin:
+ECIES-Ratchet spesifikasyonunu [ECIES](https://geti2p.net/spec/ecies) olarak güncelleyin:
 
 Gürültü tanımlayıcıları
 ```````````````````
@@ -764,9 +736,7 @@ ML-KEM ile artık üç bölüm var.
 
 Şifrelenmiş format:
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -812,13 +782,11 @@ ML-KEM ile artık üç bölüm var.
   +         Yük Bölümü için (MAC)         +
   |             16 bayt                   |
   +----+----+----+----+----+----+----+----+
-{% endhighlight %}
+```
 
 Şifre çözülmüş format:
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 Yük Bölüm 1:
 
   +----+----+----+----+----+----+----+----+
@@ -854,19 +822,18 @@ Yük Bölüm 1:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-{% endhighlight %}
+```
 
 Boyutlar:
 
 ```
-================    =========  =====  =========  =============  =============  ==========  =======
-  Tür               Tür Kodu   X len  Mesaj 1 Long  Mesaj 1 Şifreli Long Mesaj 1 Şifre Çözdü Long PQ anahtarı len  pl len
-================    =========  =====  =========  =============  =============  ==========  =======
-X25519                   4       32     96+pl        64+pl             pl           --       pl
-MLKEM512_X25519          5       32    912+pl       880+pl         800+pl          800       pl
-MLKEM768_X25519          6       32   1296+pl      1360+pl        1184+pl         1184       pl
-MLKEM1024_X25519         7       32   1680+pl      1648+pl        1568+pl         1568       pl
-================    =========  =====  =========  =============  =============  ==========  =======
+| Tür | Tür Kodu | X len | Mesaj 1 L | g  Mesaj 1 Şi | eli Long Mesa | 1 Şifre Çö | ü Long |
+| --- | -------- | ----- | --------- | ------------- | ------------- | ---------- | ------ |
+| X25519 | 4 | 32 | 96+pl | 64+pl | pl | -- | pl |
+| MLKEM512_X25519 | 5 | 32 | 912+pl | 880+pl | 800+pl | 800 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1296+pl | 1360+pl | 1184+pl | 1184 | pl |
+| MLKEM1024_X25519 | 7 | 32 | 1680+pl | 1648+pl | 1568+pl | 1568 | pl |
+
 ```
 
 Not: yük mutlaka DateTime blok içermelidir, bu yüzden minimum yük boyutu 7'dir.
@@ -884,9 +851,7 @@ ML-KEM ile artık üç bölüm var.
 
 Şifreli format:
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |       Oturum Etiketi 8 bayt          |
   +----+----+----+----+----+----+----+----+
@@ -948,28 +913,27 @@ Yük Bölüm 1:
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-{% endhighlight %}
+```
 
 Boyutlar:
 
 ```
-================    =========  =====  =========  =============  =============  ==========  =======
-  Tür               Tür Kodu   Y len  Mesaj 2 Long  Mesaj 2 Şifreli Long Mesaj 2 Şifre Çözdü Long PQ HX len   opsyonel len
-================    =========  =====  =========  =============  =============  ==========  =======
-X25519                   4       32     72+pl        32+pl             pl           --       pl
-MLKEM512_X25519          5       32    856+pl       816+pl         768+pl          768       pl
-MLKEM768_X25519          6       32   1176+pl      1136+pl        1088+pl         1088       pl
-MLKEM1024_X25519         7       32   1656+pl      1616+pl        1568+pl         1568       pl
-================    =========  =====  =========  =============  =============  ==========  =======
+| Tür | Tür Kodu | Y len | Mesaj 2 L | g  Mesaj 2 Şi | eli Long Mesa | 2 Şifre Çö | ü Long |
+| --- | -------- | ----- | --------- | ------------- | ------------- | ---------- | ------ |
+| X25519 | 4 | 32 | 72+pl | 32+pl | pl | -- | pl |
+| MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
+
 ```
 
 Not: ikinci mesaj genellikle boş olmayan bir yükleme sahiptir,
-ratchet spesifikasyonu ise [ECIES]_ gerekli olmadığını belirtir, bu yüzden minimum yük büyüklüğü 0'dır.
+ratchet spesifikasyonu ise [ECIES](https://geti2p.net/spec/ecies) gerekli olmadığını belirtir, bu yüzden minimum yük büyüklüğü 0'dır.
 İkinci mesajın minimum uzunlukları buna göre hesaplanabilir.
 
 ### NTCP2
 
-NTCP2 spesifikasyonunu [NTCP2]_ olarak güncelleyin:
+NTCP2 spesifikasyonunu [NTCP2](https://geti2p.net/spec/ntcp2) olarak güncelleyin:
 
 Gürültü tanımlayıcıları
 ```````````````````
@@ -986,9 +950,7 @@ ML-KEM ile, ChaCha bölümü ayrıca şifreli PQ genel anahtarını içerecektir
 
 Ham içerik:
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |                                       |
   +        RH_B ile gizlenmiş             +
@@ -1021,13 +983,11 @@ Ham içerik:
 
   Öncekinin aynısı, sadece ikinci bir ChaChaPoly çerçeve ekleyin
 
-{% endhighlight %}
+```
 
 Şifre çözülmüş veri (Poly1305 otantifikasyon etiketi gösterilmemiştir):
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -1051,19 +1011,18 @@ Ham içerik:
   ~              .   .   .                ~
   |     uzunluk                           |
   +----+----+----+----+----+----+----+----+
-{% endhighlight %}
+```
 
 Boyutlar:
 
 ```
-================    =========  =====  =========  =============  =============  ==========  =======
-  Tür               Tür Kodu   X len  Mesaj 1 Long  Mesaj 1 Şifreli Long Mesaj 1 Şifre Çözdü Long PQ anahtarı len  opsyonlu len
-================    =========  =====  =========  =============  =============  ==========  =======
-X25519                   4       32     64+pad       32              16           --         16
-MLKEM512_X25519          5       32    880+pad      848             816          800         16
-MLKEM768_X25519          6       32   1264+pad     1232            1200         1184         16
-MLKEM1024_X25519         7       32   1648+pad     1616            1584         1568         16
-================    =========  =====  =========  =============  =============  ==========  =======
+| Tür | Tür Kodu | X len | Mesaj 1 L | g  Mesaj 1 Şi | eli Long Mesa | 1 Şifre Çö | ü Long |
+| --- | -------- | ----- | --------- | ------------- | ------------- | ---------- | ------ |
+| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
+| MLKEM512_X25519 | 5 | 32 | 880+pad | 848 | 816 | 800 | 16 |
+| MLKEM768_X25519 | 6 | 32 | 1264+pad | 1232 | 1200 | 1184 | 16 |
+| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |
+
 ```
 
 Not: Tür kodları sadece dahili kullanım içindir. Yönlendiriciler tür 4 olarak kalacak,
@@ -1077,9 +1036,7 @@ ML-KEM ile, ChaCha bölümü ayrıca şifreli PQ genel anahtarını içerecektir
 
 Ham içerik:
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |                                       |
   +        RH_B ile gizlenmiş             +
@@ -1116,13 +1073,11 @@ Ham içerik:
 
   Öncekinin aynısı, sadece ikinci bir ChaChaPoly çerçeve ekleyin
 
-{% endhighlight %}
+```
 
 Şifre çözülmüş veri (Poly1305 otantifikasyon etiketi gösterilmemiştir):
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -1146,19 +1101,18 @@ Ham içerik:
   ~              .   .   .                ~
   |     uzunluk                           |
   +----+----+----+----+----+----+----+----+
-{% endhighlight %}
+```
 
 Boyutlar:
 
 ```
-================    =========  =====  =========  =============  =============  ==========  =======
-  Tür               Tür Kodu   Y len  Mesaj 2 Long  Mesaj 2 Şifreli Long Mesaj 2 Şifre Çözdü Long PQ CT len   opsyonel len
-================    =========  =====  =========  =============  =============  ==========  =======
-X25519                   4       32     64+pad       32              16           --         16
-MLKEM512_X25519          5       32    848+pad      816             784          768         16
-MLKEM768_X25519          6       32   1136+pad     1104            1072         1088         16
-MLKEM1024_X25519         7       32   1616+pad     1584            1552         1568         16
-================    =========  =====  =========  =============  =============  ==========  =======
+| Tür | Tür Kodu | Y len | Mesaj 2 L | g  Mesaj 2 Şi | eli Long Mesa | 2 Şifre Çö | ü Long |
+| --- | -------- | ----- | --------- | ------------- | ------------- | ---------- | ------ |
+| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
+| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |
+| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1072 | 1088 | 16 |
+| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1552 | 1568 | 16 |
+
 ```
 
 Not: Tür kodları sadece dahili kullanım içindir. Yönlendiriciler tür 4 olarak kalacak,
@@ -1176,7 +1130,7 @@ Değişmeden
 
 ### SSU2
 
-SSU2 spesifikasyonunu [SSU2]_ olarak güncelleyin:
+SSU2 spesifikasyonunu [SSU2](https://geti2p.net/spec/ssu2) olarak güncelleyin:
 
 Gürültü tanımlayıcıları
 ```````````````````
@@ -1196,9 +1150,7 @@ Bunu sadece tür 0 ve 1 için mi, yoksa tüm 6 tür için mi yapıyoruz?
 
 Başlık şifrelemesi öncesi:
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 
 +----+----+----+----+----+----+----+----+
   |      Hedef Bağlantı Kimliği           |
@@ -1227,7 +1179,7 @@ Başlık şifrelemesi öncesi:
 
   Token :: 8 bayt, imzasız büyük endian tamsayı
 
-{% endhighlight %}
+```
 
 Kısa Başlık
 ````````
@@ -1242,9 +1194,7 @@ ML-KEM ile ChaCha bölümü ayrıca şifreli PQ genel anahtarını içerecektir.
 
 Ham içerik:
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |  Uzun Başlık bayt 0-15, ChaCha20 ile |
   +  Bob giriş anahtarı ile şifrelenmiş  +
@@ -1282,13 +1232,11 @@ Ham içerik:
   +        Poly1305 MAC (16 bayt)         +
   |                                       |
   +----+----+----+----+----+----+----+----+
-{% endhighlight %}
+```
 
 Şifre çözülmüş veri (Poly1305 kimlik doğrulama etiketi gösterilmemiştir):
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |      Hedef Bağlantı Kimliği           |
   +----+----+----+----+----+----+----+----+
@@ -1315,19 +1263,18 @@ Ham içerik:
   |     aşağıdaki izin verilen bloklara   |
   |     bakın                             |
   +----+----+----+----+----+----+----+----+
-{% endhighlight %}
+```
 
 Boyutlar, IP yükü dahil değildir:
 
 ```
-================    =========  =====  =========  =============  =============  ==========  =======
-  Tür               Tür Kodu   X len  Mesaj 1 Long  Mesaj 1 Şifreli Long Mesaj 1 Şifre Çözdü Long PQ anahtarı len  pl len
-================    =========  =====  =========  =============  =============  ==========  =======
-X25519                   4       32     80+pl        16+pl             pl         --         pl
-MLKEM512_X25519          5       32    896+pl       832+pl         800+pl        800         pl
-MLKEM768_X25519          6       32   1280+pl      1216+pl        1184+pl       1184         pl
-MLKEM1024_X25519         7      n/a   çok büyük
-================    =========  =====  =========  =============  =============  ==========  =======
+| Tür | Tür Kodu | X len | Mesaj 1 L | g  Mesaj 1 Şi | eli Long Mesa | 1 Şifre Çö | ü Long |
+| --- | -------- | ----- | --------- | ------------- | ------------- | ---------- | ------ |
+| X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
+| MLKEM512_X25519 | 5 | 32 | 896+pl | 832+pl | 800+pl | 800 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1280+pl | 1216+pl | 1184+pl | 1184 | pl |
+| MLKEM1024_X25519 | 7 | n/a | çok büyük |  |  |  |  |
+
 ```
 
 Not: Tür kodları sadece dahili kullanım içindir. Yönlendiriciler tür 4 olarak kalacak,
@@ -1344,9 +1291,7 @@ ML-KEM ile, ChaCha bölümü ayrıca şifreli PQ genel anahtarını içerecektir
 
 Ham içerik:
 
-.. raw:: html
-
-{% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |  Uzun Başlık bayt 0-15, ChaCha20 ile |
   +  Bob giriş anahtarı ve               +
@@ -1393,6 +1338,6 @@ Ham içerik:
   +        Poly1305 MAC (16 bayt)          +
   |                                       |
   +----+----+----+----+----+----+----+----+
-{% endhighlight %}
+```
 
 Şifre çözülmüş veri (Poly1305 kim

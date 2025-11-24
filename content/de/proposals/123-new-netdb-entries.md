@@ -124,26 +124,20 @@ Die End-to-End-Spalte bezieht sich darauf, ob Abfragen/Antworten an ein Ziel in 
 
 Bestehende Typen:
 
-==================================  ============= ============
             NetDB-Daten               Suche Typ    Speicher Typ 
-==================================  ============= ============
 beliebig                                0           beliebig  
 LS                                       1            1      
 RI                                       2            0      
 erkundend                                3           DSRM    
-==================================  ============= ============
 
 Neue Typen:
 
-==================================  ============= ============ ================== ==================
             NetDB-Daten               Suche Typ    Speicher Typ   Std. LS2 Header?   End-to-End versendet?
-==================================  ============= ============ ================== ==================
 LS2                                      1            3             ja                  ja
 Verschlüsseltes LS2                      1            5             nein                 nein
 Meta LS2                                 1            7             ja                  nein
 Service Record                          n/a           9             ja                  nein
 Service List                             4           11             nein                 nein
-==================================  ============= ============ ================== ==================
 
 
 
@@ -783,9 +777,7 @@ Das geheime Alpha und die verschleierten Schlüssel werden wie folgt berechnet.
 
 GENERATE_ALPHA(destination, date, secret), für alle Parteien:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // secret ist optional, sonst null-Länge
@@ -798,13 +790,11 @@ GENERATE_ALPHA(destination, date, secret), für alle Parteien:
   seed = HKDF(H("I2PGenerateAlpha", keydata), datenstring || secret, "i2pblinding1", 64)
   // behandel Seed als ein 64-Byte-Little-Endian Wert
   alpha = seed mod L
-{% endhighlight %}
+```
 
 BLIND_PRIVKEY(), für den Eigentümer, der das Leaseset veröffentlicht:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -816,20 +806,18 @@ BLIND_PRIVKEY(), für den Eigentümer, der das Leaseset veröffentlicht:
   // Addition durch Skalararithmetik
   verschleierter privater Signierungsschlüssel = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   verschleierter öffentlicher Signierungsschlüssel = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 BLIND_PUBKEY(), für die Clients, die das Leaseset abrufen:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = öffentlicher Signierungsschlüssel des Ziels
   // Addition durch Gruppenelemente (Punkte auf der Kurve)
   verschleierter öffentlicher Schlüssel = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 Beide Methoden zur Berechnung von A' ergeben dasselbe Ergebnis, wie erforderlich.
 
@@ -864,21 +852,17 @@ In Red25519 verwendet die Berechnung von r für das Signieren zusätzliche Zufal
 
 Unterzeichnung:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 T = 80 Zufallsbytes
   r = H*(T || öffentlicher Schlüssel || Nachricht)
   // der Rest ist derselbe wie in Ed25519
-{% endhighlight %}
+```
 
 Überprüfung:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // gleich wie in Ed25519
-{% endhighlight %}
+```
 
 
 
@@ -888,90 +872,72 @@ Verschlüsselung und Bearbeitung
 Im Rahmen des Verschleierungsvorgangs müssen wir sicherstellen, dass ein verschlüsseltes LS2 nur von jemandem entschlüsselt werden kann, der den entsprechenden öffentlichen Signierungsschlüssel des Ziels kennt. Das vollständige Ziel ist nicht erforderlich.
 Um dies zu erreichen, leiten wir ein Credential vom öffentlichen Signierungsschlüssel ab:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 A = öffentlicher Signierungsschlüssel des Ziels
   stA = Signaturtyp von A, 2 Bytes Big Endian (0x0007 oder 0x000b)
   stA' = Signaturtyp von A', 2 Bytes Big Endian (0x000b)
   keydata = A || stA || stA'
   credential = H("credential", keydata)
-{% endhighlight %}
+```
 
 Der Personalisierungs-String stellt sicher, dass das Credential nicht mit einem Hash kollidiert, der als DHT-Lookup-Schlüssel verwendet wird, wie der einfache Ziel-Hash.
 
 Für einen gegebenen verschleierten Schlüssel können wir dann ein Subcredential ableiten:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 subcredential = H("subcredential", credential || verschleierter öffentlicher Schlüssel)
-{% endhighlight %}
+```
 
 Das Subcredential wird in die untenstehenden Schlüsselderivationsprozesse eingeführt, die diese Schlüssel an die Kenntnis des öffentlichen Signierungsschlüssels des Ziels binden.
 
 #### Schicht-1-Verschlüsselung
 Zuerst wird der Eingang für den Schlüsselderivationsprozess vorbereitet:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerInput = subcredential || veröffentlicht-Zeitstempel
-{% endhighlight %}
+```
 
 Als nächstes wird ein zufälliges Salt generiert:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 Dann wird der Schlüssel, der zur Verschlüsselung von Schicht 1 verwendet wird, abgeleitet:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 Abschließend wird der Schicht-1-Klartext verschlüsselt und serialisiert:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerCiphertext = outerSalt || ENCRYPT(outerKey, outerIV, outerPlaintext)
-{% endhighlight %}
+```
 
 #### Schicht-1-Entschlüsselung
 Das Salt wird aus dem Schicht-1-Chiffretext analysiert:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerSalt = outerCiphertext[0:31]
-{% endhighlight %}
+```
 
 Dann wird der Schlüssel, der zur Verschlüsselung von Schicht 1 verwendet wurde, abgeleitet:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerInput = subcredential || veröffentlicht-Zeitstempel
   keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 Abschließend wird der Schicht-1-Chiffretext entschlüsselt:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerPlaintext = DECRYPT(outerKey, outerIV, outerCiphertext[32:end])
-{% endhighlight %}
+```
 
 #### Schicht-2-Verschlüsselung
 Wenn die Client-Autorisierung aktiviert ist, wird ``authCookie`` wie unten beschrieben berechnet.
@@ -979,16 +945,14 @@ Wenn die Client-Autorisierung deaktiviert ist, ist ``authCookie`` das null-Läng
 
 Die Verschlüsselung erfolgt auf ähnliche Weise wie bei Schicht 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 innerInput = authCookie || subcredential || veröffentlicht-Zeitstempel
   innerSalt = CSRNG(32)
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerCiphertext = innerSalt || ENCRYPT(innerKey, innerIV, innerPlaintext)
-{% endhighlight %}
+```
 
 #### Schicht-2-Entschlüsselung
 Wenn die Client-Autorisierung aktiviert ist, wird ``authCookie`` wie unten beschrieben berechnet.
@@ -996,16 +960,14 @@ Wenn die Client-Autorisierung deaktiviert ist, ist ``authCookie`` das null-Läng
 
 Die Entschlüsselung erfolgt auf ähnliche Weise wie bei Schicht 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 innerInput = authCookie || subcredential || veröffentlicht-Zeitstempel
   innerSalt = innerCiphertext[0:31]
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerPlaintext = DECRYPT(innerKey, innerIV, innerCiphertext[32:end])
-{% endhighlight %}
+```
 
 
 Client-spezifische Autorisierung
@@ -1025,19 +987,15 @@ Serververarbeitung
 ^^^^^^^^^^^^^^^^^
 Der Server generiert ein neues ``authCookie`` und ein ephemeres DH-Schlüsselpaar:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = CSRNG(32)
   esk = GENERATE_PRIVATE()
   epk = DERIVE_PUBLIC(esk)
-{% endhighlight %}
+```
 
 Dann verschlüsselt der Server für jeden autorisierten Client ``authCookie`` zu seinem öffentlichen Schlüssel:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 sharedSecret = DH(esk, cpk_i)
   authInput = sharedSecret || cpk_i || subcredential || veröffentlicht-Zeitstempel
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
@@ -1045,7 +1003,7 @@ sharedSecret = DH(esk, cpk_i)
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 Der Server platziert jedes ``[clientID_i, clientCookie_i]`` Tuple in Schicht 1 des
 verschlüsselten LS2, zusammen mit ``epk``.
@@ -1055,26 +1013,22 @@ Client-Verarbeitung
 Der Client verwendet seinen privaten Schlüssel, um seine erwartete Client-ID ``clientID_i`` zu ermitteln,
 Verschlüsselungsschlüssel ``clientKey_i`` und Verschlüsselungs-IV ``clientIV_i``:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 sharedSecret = DH(csk_i, epk)
   authInput = sharedSecret || cpk_i || subcredential || veröffentlicht-Zeitstempel
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 Dann sucht der Client in den Schicht-1-Autorisierungsdaten nach einem Eintrag, der
 ``clientID_i`` enthält. Wenn ein passender Eintrag existiert, entschlüsselt der Client ihn, um
 ``authCookie`` zu erhalten:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### Pre-shared key Client-Autorisierung
 Jeder Client generiert einen geheimen 32-Byte-Schlüssel ``psk_i`` und sendet ihn an den Server.
@@ -1085,25 +1039,21 @@ Serververarbeitung
 ^^^^^^^^^^^^^^^^^
 Der Server generiert ein neues ``authCookie`` und Salt:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = CSRNG(32)
   authSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 Dann verschlüsselt der Server für jeden autorisierten Client ``authCookie`` zu seinem Pre-shared key:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authInput = psk_i || subcredential || veröffentlicht-Zeitstempel
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 Der Server platziert jedes ``[clientID_i, clientCookie_i]`` Tuple in Schicht 1 des
 verschlüsselten LS2, zusammen mit ``authSalt``.
@@ -1113,25 +1063,21 @@ Client-Verarbeitung
 Der Client nutzt seinen pre-shared key, um seine erwartete Client-ID ``clientID_i`` zu ermitteln,
 Verschlüsselungsschlüssel ``clientKey_i`` und Verschlüsselungs-IV ``clientIV_i``:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authInput = psk_i || subcredential || veröffentlicht-Zeitstempel
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 Dann sucht der Client in den Schicht-1-Autorisierungsdaten nach einem Eintrag, der
 ``clientID_i`` enthält. Wenn ein passender Eintrag existiert, entschlüsselt der Client ihn, um
 ``authCookie`` zu erhalten:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### Sicherheitsüberlegungen
 Beide oben genannten Methoden für Client-Authentifizierungsmechanismen bieten Privatsphäre für die Mitgliedschaft der Clients.

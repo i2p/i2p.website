@@ -142,7 +142,6 @@ problemas potenciais de compatibilidade no IBGW e OBEP dos túneis emparelhados.
 
 ### Fluxo de Mensagem
 
-.. raw:: html
 
   {% highlight %}
 STBM: Mensagem de construção de túnel curto (tipo 25)
@@ -243,7 +242,6 @@ Todos os campos estão em big-endian.
 
 Tamanho não criptografado: 154 bytes.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -301,7 +299,6 @@ Todos os campos são big-endian, exceto a chave pública efêmera, que é little
 
 Tamanho criptografado: 218 bytes
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -332,7 +329,6 @@ Todos os campos são big-endian.
 
 Tamanho não criptografado: 202 bytes.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -350,7 +346,7 @@ O tamanho máximo do Mapeamento (incluindo o campo de comprimento) é 201 bytes,
 e o valor máximo do campo de comprimento do Mapeamento é 199.
 
 O byte de resposta é um dos seguintes valores
-como definido em [Tunnel-Creation]_ para evitar fingerprinting:
+como definido em [Tunnel-Creation](/en/docs/spec/tunnel-creation/) para evitar fingerprinting:
 
 - 0x00 (aceitar)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -361,7 +357,6 @@ Registro de Resposta Curta Criptografado
 
 Tamanho criptografado: 218 bytes
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 
@@ -378,7 +373,6 @@ Veja a seção KDF abaixo.
 
 
 
-.. _msg-ShortTunnelBuild:
 
 ### ShortTunnelBuild
 I2NP Tipo 25
@@ -389,7 +383,6 @@ Quando recebida pelo OBEP, ela é transformada em uma OutboundTunnelBuildReply,
 criptografada com alho, e enviada ao originador.
 
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
@@ -410,7 +403,6 @@ Notas
 
 
 
-.. _msg-OutboundTunnelBuildReply:
 
 ### OutboundTunnelBuildReply
 I2NP Tipo 26
@@ -419,7 +411,6 @@ Esta mensagem é enviada apenas pelo OBEP ao IBEP (criador) através de um túne
 Não pode ser enviada a qualquer outro salto.
 Ela é sempre criptografada com alho.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
@@ -458,7 +449,6 @@ Diferente dos registros longos, não podemos usar a parte esquerda de ck para a 
 A chave de resposta é usada para criptografar a resposta usando AEAD/Chaha20/Poly1305 e ChaCha20 para responder a outros registros.
 Ambos usam a mesma chave, nonce é a posição do registro na mensagem começando de 0.
 
-.. raw:: html
 
   {% highlight lang='dataspec' %}
 keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
@@ -554,7 +544,6 @@ Sem sobrecarga de alho para STBM de entrada não criptografada,
 se não usarmos ITBM:
 
 
-.. raw:: html
 
   {% highlight lang='text' %}
 Tamanho atual de 4 slots: 4 * 528 + sobrecarga = 3 mensagens de túnel
@@ -590,7 +579,6 @@ Tamanho atual de 4 slots: 4 * 528 + sobrecarga = 3 mensagens de túnel
 
 Com sobrecarga de alho para o padrão de ruído 'N' para criptografar STBM de entrada, se não usarmos ITBM:
 
-.. raw:: html
 
   {% highlight lang='text' %}
 Tamanho atual de 4 slots: 4 * 528 + sobrecarga = 3 mensagens de túnel
@@ -655,41 +643,4 @@ ele usa uma tag de 8 bytes em vez da chave efêmera de 32 bytes para uma mensage
 
 
 
-## Referências
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [ECIES]
-   {{ spec_url('ecies') }}
-
-.. [I2NP]
-    {{ spec_url('i2np') }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop144]
-    {{ proposal_url('144') }}
-
-.. [Prop145]
-    {{ proposal_url('145') }}
-
-.. [Prop152]
-    {{ proposal_url('152') }}
-
-.. [Prop153]
-    {{ proposal_url('153') }}
-
-.. [Prop154]
-    {{ proposal_url('154') }}
-
-.. [Prop156]
-    {{ proposal_url('156') }}
-
-.. [Tunnel-Creation]
-    {{ spec_url('tunnel-creation') }}
-
-.. [Tunnel-Creation-ECIES]
-    {{ spec_url('tunnel-creation-ecies') }}
 

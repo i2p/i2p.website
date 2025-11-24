@@ -22,7 +22,7 @@ danh sách các cổng và khóa để khách hàng có thể kết nối đến
 
 Vậy nên, các bộ cho thuê tương tự như một bản ghi DNS. Nhưng hiện tại không có cách nào
 để biết nếu máy chủ đó hỗ trợ bất kỳ dịch vụ nào, dù ở đích đó hay ở một đích khác,
-theo kiểu tương tự như bản ghi DNS SRV [SRV]_ [RFC2782]_.
+theo kiểu tương tự như bản ghi DNS SRV [SRV](https://en.wikipedia.org/wiki/SRV_record) [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782).
 
 Ứng dụng đầu tiên có thể là email ngang hàng.
 Các ứng dụng khả thi khác: DNS, GNS, máy chủ khóa, cơ quan chứng nhận, máy chủ thời gian,
@@ -33,7 +33,7 @@ bittorrent, tiền điện tử, các ứng dụng ngang hàng khác.
 
 ### Danh Sách Dịch Vụ
 
-Đề xuất LS2 123 [Prop123]_ đã định nghĩa 'hồ sơ dịch vụ' mà biểu thị một đích đến
+Đề xuất LS2 123 [Prop123](/en/proposals/123-new-netdb-entries/) đã định nghĩa 'hồ sơ dịch vụ' mà biểu thị một đích đến
 đang tham gia vào một dịch vụ toàn cầu. Các floodfill sẽ tổng hợp các hồ sơ này
 thành các 'danh sách dịch vụ' toàn cầu.
 Điều này chưa từng được triển khai vì độ phức tạp, thiếu xác thực,
@@ -44,13 +44,13 @@ không phải một nhóm các đích toàn cầu cho một dịch vụ toàn c�
 
 ### GNS
 
-GNS [GNS]_ đề xuất rằng mọi người điều hành máy chủ DNS của riêng họ.
+GNS [GNS](http://zzz.i2p/topcs/1545) đề xuất rằng mọi người điều hành máy chủ DNS của riêng họ.
 Đề xuất này mang tính bổ sung, với khả năng sử dụng hồ sơ dịch vụ để chỉ rõ
 rằng GNS (hoặc DNS) được hỗ trợ, với tên dịch vụ chuẩn là "domain" trên cổng 53.
 
 ### Dot well-known
 
-Trong [DOTWELLKNOWN]_ có đề xuất rằng dịch vụ được tra cứu qua một yêu cầu HTTP tới
+Trong [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) có đề xuất rằng dịch vụ được tra cứu qua một yêu cầu HTTP tới
 /.well-known/i2pmail.key. Điều này yêu cầu rằng mỗi dịch vụ phải có một trang web liên quan
 để lưu trữ khóa. Hầu hết người dùng không chạy các trang web.
 
@@ -71,10 +71,10 @@ không đơn độc cung cấp một bản ghi tổng quát cho bất kỳ dịc
 
 ## Thiết Kế
 
-Hồ sơ dịch vụ được đặt trong phần tùy chọn trong LS2 [LS2]_.
+Hồ sơ dịch vụ được đặt trong phần tùy chọn trong LS2 [LS2](/en/docs/spec/common-structures/).
 Phần tùy chọn LS2 hiện đang không được sử dụng.
 Không được hỗ trợ cho LS1.
-Điều này tương tự như đề xuất băng thông đường hầm [Prop168]_,
+Điều này tương tự như đề xuất băng thông đường hầm [Prop168](/en/proposals/168-tunnel-bandwidth/),
 định nghĩa các tùy chọn cho các bản ghi dịch xây dựng đường hầm.
 
 Để tra cứu địa chỉ dịch vụ cho một hostname cụ thể hoặc b32, router lấy
@@ -107,7 +107,7 @@ Các tùy chọn của LS2 PHẢI được sắp xếp theo khóa, để chữ k
 - khóaTùyChọn := _service._proto
 - dịch vụ := Tên tượng trưng của dịch vụ mong muốn. Phải viết bằng chữ thường. Ví dụ: "smtp".
   Các ký tự được phép là [a-z0-9-] và không được bắt đầu hoặc kết thúc bằng '-'.
-  Các nhận dạng chuẩn từ [REGISTRY]_ hoặc Linux /etc/services phải được sử dụng nếu có định nghĩa trong đó.
+  Các nhận dạng chuẩn từ [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) hoặc Linux /etc/services phải được sử dụng nếu có định nghĩa trong đó.
 - proto := Giao thức truyền của dịch vụ mong muốn. Phải viết bằng chữ thường, hoặc "tcp" hoặc "udp".
   "tcp" có nghĩa là truyền tải dòng và "udp" có nghĩa là gói dữ liệu có thể đối đáp.
   Các chỉ thị giao thức cho gói dữ liệu thô và datagram2 có thể được định nghĩa sau.
@@ -123,13 +123,13 @@ Các tùy chọn của LS2 PHẢI được sắp xếp theo khóa, để chữ k
   Chỉ hữu ích nếu có nhiều hơn một bản ghi, nhưng vẫn cần ngay cả khi chỉ có một bản ghi.
 - port := Cổng I2CP mà dịch vụ được tìm thấy. Số nguyên không âm. Ví dụ: "25"
   Cổng 0 được hỗ trợ nhưng không được khuyến nghị.
-- target := Hostname hoặc b32 của đích cung cấp dịch vụ. Một hostname hợp lệ như trong [NAMING]_. Phải viết bằng chữ thường.
+- target := Hostname hoặc b32 của đích cung cấp dịch vụ. Một hostname hợp lệ như trong [NAMING](/en/docs/naming/). Phải viết bằng chữ thường.
   Ví dụ: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" hoặc "example.i2p".
   b32 được khuyến khích trừ khi hostname là "rất quen thuộc", ví dụ trong sổ địa chỉ chính thức hoặc mặc định.
 - appoptions := văn bản tùy ý cụ thể cho ứng dụng, không được chứa " " hoặc ",". Mã hóa là UTF-8.
 
-Ví dụ
-``````````
+### Ví dụ
+
 
 Trong LS2 cho aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, chỉ về một máy chủ SMTP:
 
@@ -148,8 +148,8 @@ Trong LS2 cho bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, chỉ về c
 "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
-Giới Hạn
-`````````
+### Giới Hạn
+
 
 Định dạng cấu trúc dữ liệu Mapping được sử dụng cho các tùy chọn LS2 giới hạn các khóa và giá trị ở mức tối đa 255 byte (không phải ký tự).
 Với một mục tiêu b32, giá trịTùyChọn khoảng 67 byte, nên chỉ có 3 bản ghi sẽ phù hợp.
@@ -157,8 +157,8 @@ Có thể chỉ một hoặc hai bản ghi với một trường appoptions dài
 Điều này nên đủ; nhiều bản ghi nên hiếm.
 
 
-Khác biệt so với [RFC2782]_
-````````````````````````````
+### Khác biệt so với [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)
+
 
 - Không có dấu chấm ở cuối
 - Không có tên sau proto
@@ -168,8 +168,8 @@ Khác biệt so với [RFC2782]_
 - Thêm trường appoptions
 
 
-Ghi chú
-`````
+### Ghi chú
+
 
 Không cho phép wildcard như (dấu sao), (dấu sao)._tcp, hay _tcp.
 Mỗi dịch vụ được hỗ trợ phải có bản ghi riêng của mình.
@@ -178,15 +178,15 @@ Mỗi dịch vụ được hỗ trợ phải có bản ghi riêng của mình.
 
 ### Đăng Ký Tên Dịch Vụ
 
-Các định danh không chuẩn mà không được liệt kê trong [REGISTRY]_ hoặc Linux /etc/services
-có thể được yêu cầu và thêm vào đặc tả cấu trúc chung [LS2]_.
+Các định danh không chuẩn mà không được liệt kê trong [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) hoặc Linux /etc/services
+có thể được yêu cầu và thêm vào đặc tả cấu trúc chung [LS2](/en/docs/spec/common-structures/).
 
 Các định dạng appoptions cụ thể cho dịch vụ cũng có thể được thêm vào đó.
 
 
 ### Đặc Tả I2CP
 
-Giao thức [I2CP]_ phải được mở rộng để hỗ trợ tra cứu dịch vụ.
+Giao thức [I2CP](/en/docs/spec/i2cp/) phải được mở rộng để hỗ trợ tra cứu dịch vụ.
 Các mã lỗi MessageStatusMessage và/hoặc HostReplyMessage liên quan đến tra cứu dịch vụ
 cần thiết.
 Để làm cho cơ sở tra cứu trở nên tổng quát, không chỉ hồ sơ dịch vụ cụ thể,
@@ -203,8 +203,8 @@ Các hồ sơ dịch vụ có thể được lưu đệm tối đa TTL được 
 
 Mở rộng đặc tả như sau:
 
-Tùy chọn cấu hình
-```````````````````
+### Tùy chọn cấu hình
+
 Thêm những mục sau vào [I2CP-OPTIONS]
 
 i2cp.leaseSetOption.nnn
@@ -217,8 +217,8 @@ Ví dụ:
 i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
-Bản Tin HostLookup
-````````````````````
+### Bản Tin HostLookup
+
 
 - Loại tra cứu 2: Tra cứu Hash, yêu cầu ánh xạ tùy chọn
 - Loại tra cứu 3: Tra cứu Hostname, yêu cầu ánh xạ tùy chọn
@@ -228,8 +228,8 @@ Bản Tin HostLookup
 
 
 
-Bản Tin HostReply
-``````````````````
+### Bản Tin HostReply
+
 
 Đối với các loại tra cứu 2-4, router phải lấy bộ cho thuê,
 ngay cả khi khóa tra cứu có trong sổ địa chỉ.
@@ -255,7 +255,7 @@ câu trả lời sẽ chứa một mã lỗi mới 7 (lookup type unsupported).
 
 ### Đặc Tả SAM
 
-Giao thức [SAMv3]_ phải được mở rộng để hỗ trợ tra cứu dịch vụ.
+Giao thức [SAMv3](/en/docs/api/samv3/) phải được mở rộng để hỗ trợ tra cứu dịch vụ.
 
 Mở rộng NAMING LOOKUP như sau:
 
@@ -286,7 +286,7 @@ Nếu OPTIONS=true có trong tra cứu, và bộ cho thuê không được tìm 
 
 Một thiết kế thay thế đã được xem xét, để hỗ trợ tra cứu các dịch vụ
 như một hostname đầy đủ, ví dụ: _smtp._tcp.example.i2p,
-bằng cách cập nhật [NAMING]_ để chỉ định cách xử lý các hostname bắt đầu với '_'.
+bằng cách cập nhật [NAMING](/en/docs/naming/) để chỉ định cách xử lý các hostname bắt đầu với '_'.
 Điều này đã bị từ chối vì hai lý do:
 
 - Các thay đổi I2CP và SAM vẫn cần thiết để truyền qua thông tin TTL và cổng cho khách hàng.
@@ -328,7 +328,7 @@ TODO làm thế nào để làm điều này theo cách tổng quát
 
 ### Các thay đổi cần thiết cho Email
 
-Ngoài phạm vi của đề xuất này. Xem [DOTWELLKNOWN]_ để có thảo luận.
+Ngoài phạm vi của đề xuất này. Xem [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) để có thảo luận.
 
 
 ## Ghi Chú Triển Khai
@@ -375,47 +375,3 @@ Khách hàng SAM sẽ không nhận được các giá trị bổ sung trong câ
 Không cần tăng phiên bản.
 
 
-## Di Cư
-
-Các triển khai có thể thêm hỗ trợ bất cứ lúc nào, không cần sự phối hợp,
-ngoại trừ một thỏa thuận về phiên bản API hiệu quả cho các thay đổi I2CP.
-Các phiên bản tương thích SAM cho mỗi triển khai sẽ được ghi nhận trong đặc tả SAM.
-
-
-## Tài Liệu Tham Khảo
-
-.. [DOTWELLKNOWN]
-    http://i2pforum.i2p/viewtopic.php?p=3102
-
-.. [I2CP]
-    {{ spec_url('i2cp') }}
-
-.. [I2CP-OPTIONS]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [LS2]
-    {{ spec_url('common-structures') }}
-
-.. [GNS]
-    http://zzz.i2p/topcs/1545
-
-.. [NAMING]
-    {{ site_url('docs/naming', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop168]
-    {{ proposal_url('168') }}
-
-.. [REGISTRY]
-    http://www.dns-sd.org/ServiceTypes.html
-
-.. [RFC2782]
-    https://datatracker.ietf.org/doc/html/rfc2782
-
-.. [SAMv3]
-    {{ site_url('docs/api/samv3') }}
-
-.. [SRV]
-    https://en.wikipedia.org/wiki/SRV_record

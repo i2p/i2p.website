@@ -22,7 +22,7 @@ eine Liste von Gateways und Schlüsseln enthalten, damit Clients eine Verbindung
 
 Somit ähneln Lease-Sets in gewisser Hinsicht einem DNS-Eintrag. Aktuell gibt es jedoch keine Möglichkeit,
 herauszufinden, ob dieser Host irgendwelche Dienste unterstützt, entweder an diesem Zielort oder einem anderen,
-ähnlich DNS SRV-Einträgen [SRV]_ [RFC2782]_.
+ähnlich DNS SRV-Einträgen [SRV](https://en.wikipedia.org/wiki/SRV_record) [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782).
 
 Die erste Anwendung hierfür könnte Peer-to-Peer-E-Mail sein.
 Weitere mögliche Anwendungen: DNS, GNS, Key-Server, Zertifizierungsstellen, Zeitserver,
@@ -33,7 +33,7 @@ Bittorrent, Kryptowährungen, andere Peer-to-Peer-Anwendungen.
 
 ### Service-Listen
 
-Der LS2-Vorschlag 123 [Prop123]_ definierte 'Serviceaufzeichnungen', die anzeigten, dass ein Ziel an einem globalen Dienst teilnimmt. Die Floodfills würden diese Aufzeichnungen
+Der LS2-Vorschlag 123 [Prop123](/en/proposals/123-new-netdb-entries/) definierte 'Serviceaufzeichnungen', die anzeigten, dass ein Ziel an einem globalen Dienst teilnimmt. Die Floodfills würden diese Aufzeichnungen
 zu globalen 'Service-Listen' zusammenführen.
 Dies wurde aufgrund von Komplexität, mangelnder Authentifizierung,
 Sicherheits- und Spam-Bedenken nie implementiert.
@@ -43,13 +43,13 @@ nicht einen globalen Pool von Zielen für einen globalen Dienst.
 
 ### GNS
 
-GNS [GNS]_ schlägt vor, dass jeder seinen eigenen DNS-Server betreibt.
+GNS [GNS](http://zzz.i2p/topcs/1545) schlägt vor, dass jeder seinen eigenen DNS-Server betreibt.
 Dieser Vorschlag ist komplementär, da wir Serviceaufzeichnungen verwenden könnten, um anzugeben,
 dass GNS (oder DNS) unterstützt wird, mit einem standardisierten Dienstnamen "domain" auf Port 53.
 
 ### Dot well-known
 
-In [DOTWELLKNOWN]_ wird vorgeschlagen, dass Dienste über eine HTTP-Anfrage
+In [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) wird vorgeschlagen, dass Dienste über eine HTTP-Anfrage
 an /.well-known/i2pmail.key nachgeschlagen werden. Dies erfordert, dass jeder Dienst eine zugehörige
 Website haben muss, um den Schlüssel zu hosten. Die meisten Benutzer betreiben keine Websites.
 
@@ -70,10 +70,10 @@ bieten keinen generischen Eintrag für jeden Dienst.
 
 ## Design
 
-Service-Einträge werden im Optionsabschnitt in LS2 [LS2]_ platziert.
+Service-Einträge werden im Optionsabschnitt in LS2 [LS2](/en/docs/spec/common-structures/) platziert.
 Der LS2-Optionsabschnitt wird derzeit nicht verwendet.
 Nicht unterstützt für LS1.
-Dies ähnelt dem Tunnelbandbreiten-Vorschlag [Prop168]_,
+Dies ähnelt dem Tunnelbandbreiten-Vorschlag [Prop168](/en/proposals/168-tunnel-bandwidth/),
 
 der Optionen für Tunnel-Bau-Einträge definiert.
 
@@ -107,7 +107,7 @@ Definiert wie folgt:
 - optionkey := _service._proto
 - service := Der symbolische Name des gewünschten Dienstes. Muss kleingeschrieben sein. Beispiel: "smtp".
   Erlaubte Zeichen sind [a-z0-9-] und dürfen nicht mit einem '-' beginnen oder enden.
-  Standardkennungen aus [REGISTRY]_ oder Linux /etc/services müssen verwendet werden, wenn dort definiert.
+  Standardkennungen aus [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) oder Linux /etc/services müssen verwendet werden, wenn dort definiert.
 - proto := Das Transportprotokoll des gewünschten Dienstes. Muss kleingeschrieben sein, entweder "tcp" oder "udp".
   "tcp" bedeutet Streaming und "udp" bedeutet beantwortbare Datagramme.
   Protokollindikatoren für rohe Datagramme und datagram2 können später definiert werden.
@@ -123,13 +123,13 @@ Definiert wie folgt:
   Nur nützlich, wenn mehr als ein Eintrag, aber erforderlich, auch wenn nur ein Eintrag.
 - port := Der I2CP-Port, auf dem der Dienst zu finden ist. Nichtnegative ganze Zahl. Beispiel: "25"
   Port 0 wird unterstützt, aber nicht empfohlen.
-- target := Der Hostname oder b32 des Ziels, das den Dienst bereitstellt. Ein gültiger Hostname wie in [NAMING]_. Muss klein geschrieben sein.
+- target := Der Hostname oder b32 des Ziels, das den Dienst bereitstellt. Ein gültiger Hostname wie in [NAMING](/en/docs/naming/). Muss klein geschrieben sein.
   Beispiel: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" oder "example.i2p".
   b32 wird empfohlen, es sei denn, der Hostname ist "gut bekannt", d.h. in offiziellen oder Standard-Adressbüchern.
 - appoptions := beliebiger Text, der speziell für die Anwendung ist, darf kein " " oder "," enthalten. Die Kodierung erfolgt in UTF-8.
 
-Beispiele
-``````````
+### Beispiele
+
 
 In LS2 für aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, zeigt auf einen SMTP-Server:
 
@@ -148,8 +148,8 @@ Mögliches Format für das Weiterleiten von E-Mails (siehe unten):
 "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
-Grenzen
-````````
+### Grenzen
+
 
 Das für LS2-Optionen verwendete Mapping-Datenstrukturformat begrenzt Schlüssel und Werte auf maximal 255 Byte (nicht Zeichen).
 Mit einem b32-Ziel beträgt der optionvalue etwa 67 Byte, sodass nur 3 Einträge passen würden.
@@ -157,8 +157,8 @@ Vielleicht nur einer oder zwei mit einem langen appoptions-Feld oder bis zu vier
 Dies sollte ausreichend sein; mehrere Einträge sollten selten sein.
 
 
-Unterschiede zu [RFC2782]_
-`````````````````````````
+### Unterschiede zu [RFC2782](https://datatracker.ietf.org/doc/html/rfc2782)
+
 
 - Keine abschließenden Punkte
 - Kein Name nach dem Protokoll
@@ -168,8 +168,8 @@ Unterschiede zu [RFC2782]_
 - Zusätzlicher appoptions-Feld
 
 
-Hinweise
-````````
+### Hinweise
+
 
 Kein Wildcarding wie (Sternchen), (Sternchen)._tcp oder _tcp ist erlaubt.
 Jeder unterstützte Dienst muss seinen eigenen Eintrag haben.
@@ -178,15 +178,15 @@ Jeder unterstützte Dienst muss seinen eigenen Eintrag haben.
 
 ### Dienstnamen-Registry
 
-Nicht standardisierte Kennungen, die nicht in [REGISTRY]_ oder Linux /etc/services aufgelistet sind,
-können angefordert und zur gemeinsamen Strukturspezifikation [LS2]_ hinzugefügt werden.
+Nicht standardisierte Kennungen, die nicht in [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) oder Linux /etc/services aufgelistet sind,
+können angefordert und zur gemeinsamen Strukturspezifikation [LS2](/en/docs/spec/common-structures/) hinzugefügt werden.
 
 Anwendungsspezifische Appoptions-Formate können dort ebenfalls hinzugefügt werden.
 
 
 ### I2CP-Spezifikation
 
-Das [I2CP]_ Protokoll muss erweitert werden, um Dienstabfragen zu unterstützen.
+Das [I2CP](/en/docs/spec/i2cp/) Protokoll muss erweitert werden, um Dienstabfragen zu unterstützen.
 Zusätzliche MessageStatusMessage und/oder HostReplyMessage-Fehlercodes im Zusammenhang mit Dienstabfragen sind erforderlich.
 Um die Nachschlagefunktion allgemein zu gestalten, nicht nur dienstaufzeichnungsspezifisch,
 ist das Design so ausgelegt, dass der Abruf aller LS2-Optionen unterstützt wird.
@@ -201,8 +201,8 @@ Die Service-Aufzeichnungen können bis zur von der Anwendung, dem Client oder de
 
 Erweiterung der Spezifikation wie folgt:
 
-Konfigurationsoptionen
-```````````````````````
+### Konfigurationsoptionen
+
 
 Hinzufügen des folgenden zu [I2CP-OPTIONS]
 
@@ -216,8 +216,8 @@ Beispiel:
 i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
-HostLookup-Nachricht
-````````````````````
+### HostLookup-Nachricht
+
 
 - Nachschlagetyp 2: Hash-Nachschlage, Anforderung des Options-Mappings
 - Nachschlagetyp 3: Hostnamen-Nachschlage, Anforderung des Options-Mappings
@@ -253,7 +253,7 @@ enthält die Antwort einen neuen Fehlercode 7 (Nachschlagetyp nicht unterstützt
 
 ### SAM-Spezifikation
 
-Das [SAMv3]_ Protokoll muss erweitert werden, um Dienstabfragen zu unterstützen.
+Das [SAMv3](/en/docs/api/samv3/) Protokoll muss erweitert werden, um Dienstabfragen zu unterstützen.
 
 NAMING LOOKUP wie folgt erweitern:
 
@@ -284,7 +284,7 @@ Wenn OPTIONS=true in der Nachschlage enthalten war und das Lease-Set nicht gefun
 
 Ein alternatives Design wurde erwogen, um die Nachschlage von Diensten
 als vollständigen Hostnamen zu unterstützen, zum Beispiel _smtp._tcp.example.i2p,
-durch Aktualisieren von [NAMING]_ zur Spezifikation der Behandlung von Hostnamen, die mit '_' beginnen.
+durch Aktualisieren von [NAMING](/en/docs/naming/) zur Spezifikation der Behandlung von Hostnamen, die mit '_' beginnen.
 Dies wurde aus zwei Gründen abgelehnt:
 
 - I2CP- und SAM-Änderungen wären dennoch notwendig, um die TTL- und Port-Informationen an den Client weiterzugeben.
@@ -324,7 +324,7 @@ TODO wie man dies auf generische Weise macht
 
 ### Erforderliche Änderungen für E-Mails
 
-Nicht im Umfang dieses Vorschlags. Siehe [DOTWELLKNOWN]_ für eine Diskussion.
+Nicht im Umfang dieses Vorschlags. Siehe [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102) für eine Diskussion.
 
 
 ## Implementierungsnotizen
@@ -371,47 +371,3 @@ SAM-Clients erhalten die zusätzlichen Werte in der Antwort nur, wenn sie mit OP
 Ein Versionssprung sollte nicht notwendig sein.
 
 
-## Migration
-
-Implementierungen können jederzeit Unterstützung hinzufügen, keine Koordination ist erforderlich,
-außer der Vereinbarung über die effektive API-Version für die I2CP-Änderungen.
-SAM-Kompatibilitätsversionen für jede Implementierung werden in der SAM-Spezifikation dokumentiert.
-
-
-## Verweise
-
-.. [DOTWELLKNOWN]
-    http://i2pforum.i2p/viewtopic.php?p=3102
-
-.. [I2CP]
-    {{ spec_url('i2cp') }}
-
-.. [I2CP-OPTIONS]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [LS2]
-    {{ spec_url('common-structures') }}
-
-.. [GNS]
-    http://zzz.i2p/topcs/1545
-
-.. [NAMING]
-    {{ site_url('docs/naming', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop168]
-    {{ proposal_url('168') }}
-
-.. [REGISTRY]
-    http://www.dns-sd.org/ServiceTypes.html
-
-.. [RFC2782]
-    https://datatracker.ietf.org/doc/html/rfc2782
-
-.. [SAMv3]
-    {{ site_url('docs/api/samv3') }}
-
-.. [SRV]
-    https://en.wikipedia.org/wiki/SRV_record

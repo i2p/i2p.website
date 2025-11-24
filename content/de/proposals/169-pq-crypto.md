@@ -13,13 +13,13 @@ target: "0.9.80"
 
 Während die Forschung und der Wettbewerb um geeignete Post-Quanten- (PQ) Kryptografie seit einem Jahrzehnt voranschreiten, sind die Entscheidungen erst kürzlich klarer geworden.
 
-Wir begannen 2022 mit der Untersuchung der Implikationen der PQ-Kryptografie [FORUM]_.
+Wir begannen 2022 mit der Untersuchung der Implikationen der PQ-Kryptografie [FORUM](http://zzz.i2p/topics/3294).
 
-TLS-Standards haben in den letzten zwei Jahren Unterstützung für Hybridverschlüsselung hinzugefügt und werden jetzt für einen erheblichen Teil des verschlüsselten Verkehrs im Internet verwendet, dank der Unterstützung in Chrome und Firefox [CLOUDFLARE]_.
+TLS-Standards haben in den letzten zwei Jahren Unterstützung für Hybridverschlüsselung hinzugefügt und werden jetzt für einen erheblichen Teil des verschlüsselten Verkehrs im Internet verwendet, dank der Unterstützung in Chrome und Firefox [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/).
 
-NIST hat kürzlich die empfohlenen Algorithmen für Post-Quanten-Kryptografie finalisiert und veröffentlicht [NIST-PQ]_. Mehrere gängige Kryptografie-Bibliotheken unterstützen jetzt die NIST-Standards oder werden bald Unterstützung veröffentlichen.
+NIST hat kürzlich die empfohlenen Algorithmen für Post-Quanten-Kryptografie finalisiert und veröffentlicht [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). Mehrere gängige Kryptografie-Bibliotheken unterstützen jetzt die NIST-Standards oder werden bald Unterstützung veröffentlichen.
 
-Sowohl [CLOUDFLARE]_ als auch [NIST-PQ]_ empfehlen, dass die Migration sofort beginnen sollte. Siehe auch die NSA-PQ-FAQ von 2022 [NSA-PQ]_. I2P sollte ein Vorreiter in Sachen Sicherheit und Kryptografie sein. Jetzt ist die Zeit, die empfohlenen Algorithmen zu implementieren. Mit unserem flexiblen Krypto- und Signatur-Typsystem werden wir Typen für Hybrid-Krypto sowie für PQ- und Hybridsignaturen hinzufügen.
+Sowohl [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/) als auch [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) empfehlen, dass die Migration sofort beginnen sollte. Siehe auch die NSA-PQ-FAQ von 2022 [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF). I2P sollte ein Vorreiter in Sachen Sicherheit und Kryptografie sein. Jetzt ist die Zeit, die empfohlenen Algorithmen zu implementieren. Mit unserem flexiblen Krypto- und Signatur-Typsystem werden wir Typen für Hybrid-Krypto sowie für PQ- und Hybridsignaturen hinzufügen.
 
 
 ## Ziele
@@ -50,23 +50,22 @@ Sowohl [CLOUDFLARE]_ als auch [NIST-PQ]_ empfehlen, dass die Migration sofort be
 Wir werden die folgenden Protokolle ändern, grob in der Reihenfolge der Entwicklung. Die Gesamtumsetzung wird wahrscheinlich von Ende 2025 bis Mitte 2027 dauern. Siehe den Abschnitt „Prioritäten und Rollout“ unten für Details.
 
 
-==================================  ======
-Protokoll / Funktion               Status
-==================================  ======
-Hybrid MLKEM Ratchet und LS        Genehmigt 2026-06; Beta-Ziel 2025-08; Release-Ziel 2025-11
-Hybrid MLKEM NTCP2                 Einige Details müssen noch finalisiert werden
-Hybrid MLKEM SSU2                  Einige Details müssen noch finalisiert werden
-MLDSA SigTypes 12-14               Vorschlag ist stabil, aber möglicherweise nicht vor 2026 finalisiert
-MLDSA Dests                        Getestet im Live-Netz, erfordert Net-Upgrade zur Flutfüll-Unterstützung
-Hybrid SigTypes 15-17              Vorläufig
-Hybrid Dests
-==================================  ======
+| Protokoll / Funktion | tatus |
+| -------------------- | ----- |
+| Hybrid MLKEM Ratchet und LS | enehmi |
+| Hybrid MLKEM NTCP2 | inige |
+| Hybrid MLKEM SSU2 | inige |
+| MLDSA SigTypes 12-14 | orschl |
+| MLDSA Dests | eteste |
+| Hybrid SigTypes 15-17 | orläuf |
+| Hybrid Dests |  |
+
 
 
 
 ## Design
 
-Wir werden die NIST FIPS 203 und 204 Standards [FIPS203]_ [FIPS204]_ unterstützen, die auf CRYSTALS-Kyber und CRYSTALS-Dilithium (Versionen 3.1, 3 und älter) basieren, aber NICHT kompatibel mit ihnen sind.
+Wir werden die NIST FIPS 203 und 204 Standards [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) unterstützen, die auf CRYSTALS-Kyber und CRYSTALS-Dilithium (Versionen 3.1, 3 und älter) basieren, aber NICHT kompatibel mit ihnen sind.
 
 
 
@@ -74,32 +73,30 @@ Wir werden die NIST FIPS 203 und 204 Standards [FIPS203]_ [FIPS204]_ unterstütz
 
 Wir werden hybriden Schlüsselaustausch in den folgenden Protokollen unterstützen:
 
-=======  ==========  ================  ===============
-Proto    Noise-Typ   Unterstützt nur PQ?  Unterstützt Hybrid?
-=======  ==========  ================  ===============
-NTCP2       XK       nein                ja
-SSU2        XK       nein                ja
-Ratchet     IK       nein                ja
-TBM          N       nein                nein
-NetDB        N       nein                nein
-=======  ==========  ================  ===============
+| Proto | Noise-Typ | Unterstützt nur | ?  Unterstützt |
+| ----- | --------- | --------------- | -------------- |
+| NTCP2 | XK | nein | ja |
+| SSU2 | XK | nein | ja |
+| Ratchet | IK | nein | ja |
+| TBM | N | nein | nein |
+| NetDB | N | nein | nein |
+
 
 PQ KEM bietet nur flüchtige Schlüssel und unterstützt nicht direkt statische Key-Handshakes wie Noise XK und IK.
 
 Noise N verwendet keinen bidirektionalen Schlüsselaustausch und ist daher nicht für Hybridverschlüsselung geeignet.
 
-Daher werden wir nur hybride Verschlüsselung für NTCP2, SSU2 und Ratchet unterstützen. Wir werden die drei ML-KEM-Varianten wie in [FIPS203]_ definieren, für insgesamt 3 neue Verschlüsselungstypen.
+Daher werden wir nur hybride Verschlüsselung für NTCP2, SSU2 und Ratchet unterstützen. Wir werden die drei ML-KEM-Varianten wie in [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) definieren, für insgesamt 3 neue Verschlüsselungstypen.
 Hybride Typen werden nur in Kombination mit X25519 definiert.
 
 Die neuen Verschlüsselungstypen sind:
 
-================  ====
-  Typ             Code
-================  ====
-MLKEM512_X25519     5
-MLKEM768_X25519     6
-MLKEM1024_X25519    7
-================  ====
+| Typ | Code |
+| --- | ---- |
+| MLKEM512_X25519 | 5 |
+| MLKEM768_X25519 | 6 |
+| MLKEM1024_X25519 | 7 |
+
 
 Der Overhead wird beträchtlich sein. Die typischen Nachrichtengrößen 1 und 2 (für XK und IK) liegen derzeit bei etwa 100 Byte (vor jeglichem zusätzlichen Payload). Dies wird sich je nach Algorithmus um 8x bis 15x erhöhen.
 
@@ -108,45 +105,43 @@ Der Overhead wird beträchtlich sein. Die typischen Nachrichtengrößen 1 und 2 
 
 Wir werden PQ- und Hybridsignaturen in den folgenden Strukturen unterstützen:
 
-==========================  ================  ===============
-Typ                         Unterstützt nur PQ?  Unterstützt Hybrid?
-==========================  ================  ===============
-RouterInfo                  ja               ja
-LeaseSet                    ja               ja
-Streaming SYN/SYNACK/Close  ja               ja
-Repliable Datagrams         ja               ja
-Datagram2 (prop. 163)       ja               ja
-I2CP create session msg     ja               ja
-SU3 files                   ja               ja
-X.509 certificates          ja               ja
-Java keystores              ja               ja
-==========================  ================  ===============
+| Typ | Unterstützt nur | ?  Unterstützt |
+| --- | --------------- | -------------- |
+| RouterInfo | ja | a |
+| LeaseSet | ja | a |
+| Streaming SYN/SYNACK/Close | ja | a |
+| Repliable Datagrams | ja | a |
+| Datagram2 (prop. 163) | ja | a |
+| I2CP create session msg | ja | a |
+| SU3 files | ja | a |
+| X.509 certificates | ja | a |
+| Java keystores | ja | a |
 
 
-So werden wir sowohl PQ-only als auch Hybridsignaturen unterstützen. Wir werden die drei ML-DSA Variationen wie in [FIPS204]_ definieren, drei Hybridvarianten mit Ed25519 und drei PQ-only Varianten mit Prehash nur für SU3-Dateien, für insgesamt 9 neue Signaturtypen.
+
+So werden wir sowohl PQ-only als auch Hybridsignaturen unterstützen. Wir werden die drei ML-DSA Variationen wie in [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) definieren, drei Hybridvarianten mit Ed25519 und drei PQ-only Varianten mit Prehash nur für SU3-Dateien, für insgesamt 9 neue Signaturtypen.
 Hybride Typen werden nur in Kombination mit Ed25519 definiert.
 Wir werden die standardmäßige ML-DSA verwenden, NICHT die Pre-Hash-Varianten (HashML-DSA), außer für SU3-Dateien.
 
-Wir werden die "hedged" oder randomisierte Signaturvariante verwenden, nicht die "deterministische" Variante, wie in [FIPS204]_ Abschnitt 3.4 definiert. Dies stellt sicher, dass jede Signatur unterschiedlich ist, selbst bei gleichen Daten, und bietet zusätzlichen Schutz vor Seitenkanalangriffen. Siehe den Abschnitt Implementierungshinweise unten für zusätzliche Details zur Auswahl des Algorithmus einschließlich Codierung und Kontext.
+Wir werden die "hedged" oder randomisierte Signaturvariante verwenden, nicht die "deterministische" Variante, wie in [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Abschnitt 3.4 definiert. Dies stellt sicher, dass jede Signatur unterschiedlich ist, selbst bei gleichen Daten, und bietet zusätzlichen Schutz vor Seitenkanalangriffen. Siehe den Abschnitt Implementierungshinweise unten für zusätzliche Details zur Auswahl des Algorithmus einschließlich Codierung und Kontext.
 
 
 Die neuen Signaturtypen sind:
 
-============================  ====
-        Typ                  Code
-============================  ====
-MLDSA44                        12
-MLDSA65                        13
-MLDSA87                        14
-MLDSA44_EdDSA_SHA512_Ed25519   15
-MLDSA65_EdDSA_SHA512_Ed25519   16
-MLDSA87_EdDSA_SHA512_Ed25519   17
-MLDSA44ph                      18
-MLDSA65ph                      19
-MLDSA87ph                      20
-============================  ====
+| Typ | ode |
+| --- | --- |
+| MLDSA44 | 12 |
+| MLDSA65 | 13 |
+| MLDSA87 | 14 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 15 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 16 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 17 |
+| MLDSA44ph | 18 |
+| MLDSA65ph | 19 |
+| MLDSA87ph | 20 |
 
-X.509-Zertifikate und andere DER-Codierungen verwenden die in [COMPOSITE-SIGS]_ definierten zusammengesetzten Strukturen und OIDs.
+
+X.509-Zertifikate und andere DER-Codierungen verwenden die in [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ounsworth-pq-composite-sigs/) definierten zusammengesetzten Strukturen und OIDs.
 
 Der Overhead wird beträchtlich sein. Die typischen Ziel- und Routeridentity-Größen von Ed25519 liegen bei 391 Byte. Diese werden sich je nach Algorithmus um das 3,5- bis 6,8-fache erhöhen. Ed25519-Signaturen sind 64 Byte. Diese werden sich je nach Algorithmus um das 38- bis 76-fache erhöhen. Typische signierte RouterInfo, LeaseSet, repliable Datagrams und signierte Streaming-Nachrichten sind etwa 1KB. Diese werden sich je nach Algorithmus um das 3- bis 8-fache erhöhen.
 
@@ -164,8 +159,8 @@ Für RouterIdentitäten ist der ElGamal-Verschlüsselungstyp veraltet. Die neuen
 
 ### Erforderliche neue Kryptografie
 
-- ML-KEM (früher CRYSTALS-Kyber) [FIPS203]_
-- ML-DSA (früher CRYSTALS-Dilithium) [FIPS204]_
+- ML-KEM (früher CRYSTALS-Kyber) [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+- ML-DSA (früher CRYSTALS-Dilithium) [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
 - SHA3-128 (früher Keccak-256) [FIPS202]_ Nur für SHAKE128 verwendet
 - SHA3-256 (früher Keccak-512) [FIPS202]_
 - SHAKE128 und SHAKE256 (XOF-Erweiterungen zu SHA3-128 und SHA3-256) [FIPS202]_
@@ -201,7 +196,7 @@ Das Whitepaper enthält viele gute Informationen, und wir werden es für Ideen u
 
 ### Allgemeine Strukturen
 
-Aktualisieren Sie die Abschnitte und Tabellen im Dokument „Allgemeine Strukturen“ [COMMON]_ wie folgt:
+Aktualisieren Sie die Abschnitte und Tabellen im Dokument „Allgemeine Strukturen“ [COMMON](https://geti2p.net/spec/common-structures) wie folgt:
 
 
 Öffentlicher Schlüssel
@@ -209,24 +204,23 @@ Aktualisieren Sie die Abschnitte und Tabellen im Dokument „Allgemeine Struktur
 
 Die neuen Typen für öffentliche Schlüssel sind:
 
-================    ================= ======  =====
-  Typ               Öffentlicher Schlüssellänge Seit   Verwendung
-================    ================= ======  =====
-MLKEM512_X25519               32      0.9.xx  Siehe Vorschlag 169, nur für Leasesets, nicht für RIs oder Ziele
-MLKEM768_X25519               32      0.9.xx  Siehe Vorschlag 169, nur für Leasesets, nicht für RIs oder Ziele
-MLKEM1024_X25519              32      0.9.xx  Siehe Vorschlag 169, nur für Leasesets, nicht für RIs oder Ziele
-MLKEM512                     800      0.9.xx  Siehe Vorschlag 169, nur für Handschläge, nicht für Leasesets, RIs oder Ziele
-MLKEM768                    1184      0.9.xx  Siehe Vorschlag 169, nur für Handschläge, nicht für Leasesets, RIs oder Ziele
-MLKEM1024                   1568      0.9.xx  Siehe Vorschlag 169, nur für Handschläge, nicht für Leasesets, RIs oder Ziele
-MLKEM512_CT                  768      0.9.xx  Siehe Vorschlag 169, nur für Handschläge, nicht für Leasesets, RIs oder Ziele
-MLKEM768_CT                 1088      0.9.xx  Siehe Vorschlag 169, nur für Handschläge, nicht für Leasesets, RIs oder Ziele
-MLKEM1024_CT                1568      0.9.xx  Siehe Vorschlag 169, nur für Handschläge, nicht für Leasesets, RIs oder Ziele
-NONE                           0      0.9.xx  Siehe Vorschlag 169, für Ziele nur mit PQ-Signaturtypen, nicht für RIs oder Leasesets
-================    ================= ======  =====
+| Typ | Öffentlicher Schl | ssellä | e Sei |
+| --- | ----------------- | ------ | ----- |
+| MLKEM512_X25519 | 32 | 0.9.xx | Siehe |
+| MLKEM768_X25519 | 32 | 0.9.xx | Siehe |
+| MLKEM1024_X25519 | 32 | 0.9.xx | Siehe |
+| MLKEM512 | 800 | 0.9.xx | Siehe |
+| MLKEM768 | 1184 | 0.9.xx | Siehe |
+| MLKEM1024 | 1568 | 0.9.xx | Siehe |
+| MLKEM512_CT | 768 | 0.9.xx | Siehe |
+| MLKEM768_CT | 1088 | 0.9.xx | Siehe |
+| MLKEM1024_CT | 1568 | 0.9.xx | Siehe |
+| NONE | 0 | 0.9.xx | Siehe |
+
 
 Hybride öffentliche Schlüssel sind der X25519-Schlüssel.
 KEM öffentliche Schlüssel sind die flüchtigen PQ-Schlüssel, die von Alice zu Bob gesendet werden.
-Codierung und Byte-Reihenfolge sind in [FIPS203]_ definiert.
+Codierung und Byte-Reihenfolge sind in [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) definiert.
 
 MLKEM*_CT-Schlüssel sind keine echten öffentlichen Schlüssel, sie sind der "Chiffrat", der von Bob zu Alice im Noise-Handshake gesendet wird.
 Sie sind hier der Vollständigkeit halber aufgeführt.
@@ -238,20 +232,19 @@ Privatschlüssel
 
 Die neuen Typen für Privatschlüssel sind:
 
-================    ================== ======  =====
-  Typ               Privatschlüssellänge Seit   Verwendung
-================    ================== ======  =====
-MLKEM512_X25519               32       0.9.xx  Siehe Vorschlag 169, nur für Leasesets, nicht für RIs oder Ziele
-MLKEM768_X25519               32       0.9.xx  Siehe Vorschlag 169, nur für Leasesets, nicht für RIs oder Ziele
-MLKEM1024_X25519              32       0.9.xx  Siehe Vorschlag 169, nur für Leasesets, nicht für RIs oder Ziele
-MLKEM512                    1632       0.9.xx  Siehe Vorschlag 169, nur für Handschläge, nicht für Leasesets, RIs oder Ziele
-MLKEM768                    2400       0.9.xx  Siehe Vorschlag 169, nur für Handschläge, nicht für Leasesets, RIs oder Ziele
-MLKEM1024                   3168       0.9.xx  Siehe Vorschlag 169, nur für Handschläge, nicht für Leasesets, RIs oder Ziele
-================    ================== ======  =====
+| Typ | Privatschlüssellän | e Seit | Verw |
+| --- | ------------------ | ------ | ---- |
+| MLKEM512_X25519 | 32 | 0.9.xx | Siehe |
+| MLKEM768_X25519 | 32 | 0.9.xx | Siehe |
+| MLKEM1024_X25519 | 32 | 0.9.xx | Siehe |
+| MLKEM512 | 1632 | 0.9.xx | Siehe |
+| MLKEM768 | 2400 | 0.9.xx | Siehe |
+| MLKEM1024 | 3168 | 0.9.xx | Siehe |
+
 
 Hybride Privatschlüssel sind die X25519-Schlüssel.
 KEM-Privatschlüssel sind nur für Alice.
-KEM-Codierung und Byte-Reihenfolge sind in [FIPS203]_ definiert.
+KEM-Codierung und Byte-Reihenfolge sind in [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) definiert.
 
 
 
@@ -261,22 +254,21 @@ Signaturöffentlicher Schlüssel
 
 Die neuen Typen für signaturöffentliche Schlüssel sind:
 
-============================   ==============  ======  =====
-         Typ                   Länge (Bytes)  Seit    Verwendung
-============================   ==============  ======  =====
-MLDSA44                              1312      0.9.xx  Siehe Vorschlag 169
-MLDSA65                              1952      0.9.xx  Siehe Vorschlag 169
-MLDSA87                              2592      0.9.xx  Siehe Vorschlag 169
-MLDSA44_EdDSA_SHA512_Ed25519         1344      0.9.xx  Siehe Vorschlag 169
-MLDSA65_EdDSA_SHA512_Ed25519         1984      0.9.xx  Siehe Vorschlag 169
-MLDSA87_EdDSA_SHA512_Ed25519         2624      0.9.xx  Siehe Vorschlag 169
-MLDSA44ph                            1344      0.9.xx  Nur für SU3-Dateien, nicht für netdb-Strukturen
-MLDSA65ph                            1984      0.9.xx  Nur für SU3-Dateien, nicht für netdb-Strukturen
-MLDSA87ph                            2624      0.9.xx  Nur für SU3-Dateien, nicht für netdb-Strukturen
-============================   ==============  ======  =====
+| Typ | Länge (Bytes) | eit | erwen |
+| --- | ------------- | --- | ----- |
+| MLDSA44 | 1312 | 0.9.xx | Siehe |
+| MLDSA65 | 1952 | 0.9.xx | Siehe |
+| MLDSA87 | 2592 | 0.9.xx | Siehe |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 1344 | 0.9.xx | Siehe |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 1984 | 0.9.xx | Siehe |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 0.9.xx | Siehe |
+| MLDSA44ph | 1344 | 0.9.xx | Nur f |
+| MLDSA65ph | 1984 | 0.9.xx | Nur f |
+| MLDSA87ph | 2624 | 0.9.xx | Nur f |
 
-Hybride Signaturöffentliche Schlüssel sind der Ed25519-Schlüssel gefolgt vom PQ-Schlüssel, wie in [COMPOSITE-SIGS]_.
-Codierung und Byte-Reihenfolge sind in [FIPS204]_ definiert.
+
+Hybride Signaturöffentliche Schlüssel sind der Ed25519-Schlüssel gefolgt vom PQ-Schlüssel, wie in [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ounsworth-pq-composite-sigs/).
+Codierung und Byte-Reihenfolge sind in [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) definiert.
 
 
 Signaturprivatschlüssel
@@ -284,22 +276,21 @@ Signaturprivatschlüssel
 
 Die neuen Typen für Signaturprivatschlüssel sind:
 
-============================   ==============  ======  =====
-         Typ                   Länge (Bytes)  Seit    Verwendung
-============================   ==============  ======  =====
-MLDSA44                              2560      0.9.xx  Siehe Vorschlag 169
-MLDSA65                              4032      0.9.xx  Siehe Vorschlag 169
-MLDSA87                              4896      0.9.xx  Siehe Vorschlag 169
-MLDSA44_EdDSA_SHA512_Ed25519         2592      0.9.xx  Siehe Vorschlag 169
-MLDSA65_EdDSA_SHA512_Ed25519         4064      0.9.xx  Siehe Vorschlag 169
-MLDSA87_EdDSA_SHA512_Ed25519         4928      0.9.xx  Siehe Vorschlag 169
-MLDSA44ph                            2592      0.9.xx  Nur für SU3-Dateien, nicht für netdb-Strukturen. Siehe Vorschlag 169
-MLDSA65ph                            4064      0.9.xx  Nur für SU3-Dateien, nicht für netdb-Strukturen. Siehe Vorschlag 169
-MLDSA87ph                            4928      0.9.xx  Nur für SU3-Dateien, nicht für netdb-Strukturen. Siehe Vorschlag 169
-============================   ==============  ======  =====
+| Typ | Länge (Bytes) | eit | erwen |
+| --- | ------------- | --- | ----- |
+| MLDSA44 | 2560 | 0.9.xx | Siehe |
+| MLDSA65 | 4032 | 0.9.xx | Siehe |
+| MLDSA87 | 4896 | 0.9.xx | Siehe |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 2592 | 0.9.xx | Siehe |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 4064 | 0.9.xx | Siehe |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 4928 | 0.9.xx | Siehe |
+| MLDSA44ph | 2592 | 0.9.xx | Nur f |
+| MLDSA65ph | 4064 | 0.9.xx | Nur f |
+| MLDSA87ph | 4928 | 0.9.xx | Nur f |
 
-Hybride Signaturprivatschlüssel sind der Ed25519-Schlüssel gefolgt vom PQ-Schlüssel, wie in [COMPOSITE-SIGS]_.
-Codierung und Byte-Reihenfolge sind in [FIPS204]_ definiert.
+
+Hybride Signaturprivatschlüssel sind der Ed25519-Schlüssel gefolgt vom PQ-Schlüssel, wie in [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ounsworth-pq-composite-sigs/).
+Codierung und Byte-Reihenfolge sind in [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) definiert.
 
 
 Signatur
@@ -307,23 +298,22 @@ Signatur
 
 Die neuen Signaturtypen sind:
 
-============================   ==============  ======  =====
-         Typ                   Länge (Bytes)  Seit    Verwendung
-============================   ==============  ======  =====
-MLDSA44                              2420      0.9.xx  Siehe Vorschlag 169
-MLDSA65                              3309      0.9.xx  Siehe Vorschlag 169
-MLDSA87                              4627      0.9.xx  Siehe Vorschlag 169
-MLDSA44_EdDSA_SHA512_Ed25519         2484      0.9.xx  Siehe Vorschlag 169
-MLDSA65_EdDSA_SHA512_Ed25519         3373      0.9.xx  Siehe Vorschlag 169
-MLDSA87_EdDSA_SHA512_Ed25519         4691      0.9.xx  Siehe Vorschlag 169
-MLDSA44ph                            2484      0.9.xx  Nur für SU3-Dateien, nicht für netdb-Strukturen. Siehe Vorschlag 169
-MLDSA65ph                            3373      0.9.xx  Nur für SU3-Dateien, nicht für netdb-Strukturen. Siehe Vorschlag 169
-MLDSA87ph                            4691      0.9.xx  Nur für SU3-Dateien, nicht für netdb-Strukturen. Siehe Vorschlag 169
-============================   ==============  ======  =====
+| Typ | Länge (Bytes) | eit | erwen |
+| --- | ------------- | --- | ----- |
+| MLDSA44 | 2420 | 0.9.xx | Siehe |
+| MLDSA65 | 3309 | 0.9.xx | Siehe |
+| MLDSA87 | 4627 | 0.9.xx | Siehe |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 2484 | 0.9.xx | Siehe |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 3373 | 0.9.xx | Siehe |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 4691 | 0.9.xx | Siehe |
+| MLDSA44ph | 2484 | 0.9.xx | Nur f |
+| MLDSA65ph | 3373 | 0.9.xx | Nur f |
+| MLDSA87ph | 4691 | 0.9.xx | Nur f |
 
-Hybride Signaturen sind die Ed25519-Signatur gefolgt von der PQ-Signatur, wie in [COMPOSITE-SIGS]_.
+
+Hybride Signaturen sind die Ed25519-Signatur gefolgt von der PQ-Signatur, wie in [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ounsworth-pq-composite-sigs/).
 Hybride Signaturen werden durch Überprüfung beider Signaturen verifiziert und fehlschlagen, wenn eine davon fehlschlägt.
-Codierung und Byte-Reihenfolge sind in [FIPS204]_ definiert.
+Codierung und Byte-Reihenfolge sind in [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) definiert.
 
 
 
@@ -332,32 +322,30 @@ Schlüsselzertifikate
 
 Die neuen Typen für Signaturöffentliche Schlüssel sind:
 
-============================  ===========  =======================  ======  =====
-        Typ                   Code-Typ     Gesamtlänge öffentlicher Schlüssel Seit    Verwendung
-============================  ===========  =======================  ======  =====
-MLDSA44                           12                 1312           0.9.xx  Siehe Vorschlag 169
-MLDSA65                           13                 1952           0.9.xx  Siehe Vorschlag 169
-MLDSA87                           14                 2592           0.9.xx  Siehe Vorschlag 169
-MLDSA44_EdDSA_SHA512_Ed25519      15                 1344           0.9.xx  Siehe Vorschlag 169
-MLDSA65_EdDSA_SHA512_Ed25519      16                 1984           0.9.xx  Siehe Vorschlag 169
-MLDSA87_EdDSA_SHA512_Ed25519      17                 2624           0.9.xx  Siehe Vorschlag 169
-MLDSA44ph                         18                  n/a           0.9.xx  Nur für SU3-Dateien
-MLDSA65ph                         19                  n/a           0.9.xx  Nur für SU3-Dateien
-MLDSA87ph                         20                  n/a           0.9.xx  Nur für SU3-Dateien
-============================  ===========  =======================  ======  =====
+| Typ | Code-Typ | Gesamtlänge öffentliche | Schlüs | l Sei |
+| --- | -------- | ----------------------- | ------ | ----- |
+| MLDSA44 | 12 | 1312 | 0.9.xx | Siehe |
+| MLDSA65 | 13 | 1952 | 0.9.xx | Siehe |
+| MLDSA87 | 14 | 2592 | 0.9.xx | Siehe |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 0.9.xx | Siehe |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 0.9.xx | Siehe |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 0.9.xx | Siehe |
+| MLDSA44ph | 18 | n/a | 0.9.xx | Nur f |
+| MLDSA65ph | 19 | n/a | 0.9.xx | Nur f |
+| MLDSA87ph | 20 | n/a | 0.9.xx | Nur f |
+
 
 
 
 Die neuen Crypto-Publik-Schlüsseltypen sind:
 
-================    ===========  ======================= ======  =====
-  Typ               Code-Typ     Gesamtlänge öffentlicher Schlüssel Seit   Verwendung
-================    ===========  ======================= ======  =====
-MLKEM512_X25519          5                 32            0.9.xx  Siehe Vorschlag 169, nur für Leasesets, nicht für RIs oder Ziele
-MLKEM768_X25519          6                 32            0.9.xx  Siehe Vorschlag 169, nur für Leasesets, nicht für RIs oder Ziele
-MLKEM1024_X25519         7                 32            0.9.xx  Siehe Vorschlag 169, nur für Leasesets, nicht für RIs oder Ziele
-NONE                   255                  0            0.9.xx  Siehe Vorschlag 169
-================    ===========  ======================= ======  =====
+| Typ | Code-Typ | Gesamtlänge öffentliche | Schlü | el Se |
+| --- | -------- | ----------------------- | ----- | ----- |
+| MLKEM512_X25519 | 5 | 32 | 0.9.xx | Siehe |
+| MLKEM768_X25519 | 6 | 32 | 0.9.xx | Siehe |
+| MLKEM1024_X25519 | 7 | 32 | 0.9.xx | Siehe |
+| NONE | 255 | 0 | 0.9.xx | Siehe |
+
 
 
 Hybride Schlüsseltypen werden NIE in Schlüsselzertifikate aufgenommen; nur in Leasesets.
@@ -378,16 +366,15 @@ skey[0:383] 5 (932 >> 8) (932 & 0xff) 00 12 00 255 skey[384:1311]
 
 
 
-============================  ===========  =======================  ======  ======  =====
-        Typ                   Code-Typ     Gesamtlänge öffentlicher Schlüssel Haupt    Überschuss  Gesamte Zieldauer
-============================  ===========  =======================  ======  ======  =====
-MLDSA44                           12                 1312           384      928    1319
-MLDSA65                           13                 1952           384     1568    1959
-MLDSA87                           14                 2592           384     2208    2599
-MLDSA44_EdDSA_SHA512_Ed25519      15                 1344           384      960    1351
-MLDSA65_EdDSA_SHA512_Ed25519      16                 1984           384     1600    1991
-MLDSA87_EdDSA_SHA512_Ed25519      17                 2624           384     2240    2631
-============================  ===========  =======================  ======  ======  =====
+| Typ | Code-Typ | Gesamtlänge öffentliche | Schlüs | l Haup | Üb |
+| --- | -------- | ----------------------- | ------ | ------ | --- |
+| MLDSA44 | 12 | 1312 | 384 | 928 | 1319 |
+| MLDSA65 | 13 | 1952 | 384 | 1568 | 1959 |
+| MLDSA87 | 14 | 2592 | 384 | 2208 | 2599 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 384 | 960 | 1351 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 384 | 1600 | 1991 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 384 | 2240 | 2631 |
+
 
 
 
@@ -402,16 +389,15 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 
 
 
-============================  ===========  =======================  ======  ======  =====
-        Typ                   Code-Typ     Gesamtlänge öffentlicher Schlüssel Haupt    Überschuss  Gesamte RouterIdent-Dauer
-============================  ===========  =======================  ======  ======  =====
-MLDSA44                           12                 1312           352      960    1351
-MLDSA65                           13                 1952           352     1600    1991
-MLDSA87                           14                 2592           352     2240    2631
-MLDSA44_EdDSA_SHA512_Ed25519      15                 1344           352      992    1383
-MLDSA65_EdDSA_SHA512_Ed25519      16                 1984           352     1632    2023
-MLDSA87_EdDSA_SHA512_Ed25519      17                 2624           352     2272    2663
-============================  ===========  =======================  ======  ======  =====
+| Typ | Code-Typ | Gesamtlänge öffentliche | Schlüs | l Haup | Üb |
+| --- | -------- | ----------------------- | ------ | ------ | --- |
+| MLDSA44 | 12 | 1312 | 352 | 960 | 1351 |
+| MLDSA65 | 13 | 1952 | 352 | 1600 | 1991 |
+| MLDSA87 | 14 | 2592 | 352 | 2240 | 2631 |
+| MLDSA44_EdDSA_SHA512_Ed25519 | 15 | 1344 | 352 | 992 | 1383 |
+| MLDSA65_EdDSA_SHA512_Ed25519 | 16 | 1984 | 352 | 1632 | 2023 |
+| MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
+
 
 
 
@@ -429,9 +415,7 @@ Die folgende Buchstaben-Zuordnung wird verwendet:
 
 Die folgenden Modifikationen zu XK und IK für hybrides Vorwärtsgeheimnis (hfs) sind wie in [Noise-Hybrid]_ Abschnitt 5 spezifiziert:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 
 XK:                       XKhfs:
   <- s                      <- s
@@ -454,13 +438,11 @@ XK:                       XKhfs:
   e1 und ekem1 sind verschlüsselt. Siehe Musterdefinitionen unten.
   HINWEIS: e1 und ekem1 haben unterschiedliche Größen (anders als X25519)
 
-{% endhighlight %}
+```
 
 Das e1-Muster ist wie folgt definiert, wie in [Noise-Hybrid]_ Abschnitt 4 spezifiziert:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 
 Für Alice:
   (encap_key, decap_key) = PQ_KEYGEN()
@@ -478,14 +460,12 @@ Für Alice:
   MixHash(ciphertext)
 
 
-{% endhighlight %}
+```
 
 
 Das ekem1-Muster ist wie folgt definiert, wie in [Noise-Hybrid]_ Abschnitt 4 spezifiziert:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 
 Für Bob:
 
@@ -510,7 +490,7 @@ Für Bob:
   MixKey(kem_shared_key)
 
 
-{% endhighlight %}
+```
 
 
 
@@ -540,7 +520,7 @@ Die zweite Nachricht, von Bob zu Alice, enthält ekem1, den Chiffrat, vor der Na
 Definierte ML-KEM Operationen
 `````````````````````````
 
-Wir definieren die folgenden Funktionen, die den kryptografischen Bausteinen entsprechen, die in [FIPS203]_ definiert sind.
+Wir definieren die folgenden Funktionen, die den kryptografischen Bausteinen entsprechen, die in [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) definiert sind.
 
 (encap_key, decap_key) = PQ_KEYGEN()
     Alice erstellt die Einkapselungs- und Entkapselungsschlüssel
@@ -573,9 +553,7 @@ ODER
 
 Für IK: Nach dem 'es'-Nachrichtenmuster und vor dem 's'-Nachrichtenmuster hinzufügen:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 Dies ist das "e1"-Nachrichtenmuster:
   (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -597,7 +575,7 @@ Dies ist das "e1"-Nachrichtenmuster:
   bleiben die keydata und der Kettenschlüssel gleich,
   und n beträgt jetzt 1 (anstatt 0 für nicht-hybrid).
 
-{% endhighlight %}
+```
 
 
 Bob KDF für Nachricht 1
@@ -609,9 +587,7 @@ ODER
 
 Für IK: Nach dem 'es'-Nachrichtenmuster und vor dem 's'-Nachrichtenmuster hinzufügen:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 Dies ist das "e1"-Nachrichtenmuster:
 
   // DecryptAndHash(encap_key_section)
@@ -631,7 +607,7 @@ Dies ist das "e1"-Nachrichtenmuster:
   bleiben die keydata und der Kettenschlüssel gleich,
   und n beträgt jetzt 1 (anstatt 0 für nicht-hybrid).
 
-{% endhighlight %}
+```
 
 
 Bob KDF für Nachricht 2
@@ -643,9 +619,7 @@ ODER
 
 Für IK: Nach dem 'ee'-Nachrichtenmuster und vor dem 'se'-Nachrichtenmuster hinzufügen:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 Dies ist das "ekem1"-Nachrichtenmuster:
 
   (kem_ciphertext, kem_shared_key) = ENCAPS(encap_key)
@@ -666,7 +640,7 @@ Dies ist das "ekem1"-Nachrichtenmuster:
 
   Ende des "ekem1"-Nachrichtenmusters.
 
-{% endhighlight %}
+```
 
 
 Alice KDF für Nachricht 2
@@ -674,9 +648,7 @@ Alice KDF für Nachricht 2
 
 Nach dem 'ee'-Nachrichtenmuster (und vor dem 'ss'-Nachrichtenmuster für IK) hinzufügen:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 Dies ist das "ekem1"-Nachrichtenmuster:
 
   // DecryptAndHash(kem_ciphertext_section)
@@ -696,7 +668,7 @@ Dies ist das "ekem1"-Nachrichtenmuster:
 
   Ende des "ekem1"-Nachrichtenmusters.
 
-{% endhighlight %}
+```
 
 
 KDF für Nachricht 3 (nur für XK)
@@ -712,7 +684,7 @@ unverändert
 
 ### Ratchet
 
-Aktualisieren Sie die ECIES-Ratchet-Spezifikation [ECIES]_ wie folgt:
+Aktualisieren Sie die ECIES-Ratchet-Spezifikation [ECIES](https://geti2p.net/spec/ecies) wie folgt:
 
 
 Noise-Identifikatoren
@@ -733,9 +705,7 @@ und die Payload im zweiten Abschnitt. Mit ML-KEM gibt es jetzt drei Abschnitte. 
 
 Verschlüsseltes Format:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -783,13 +753,11 @@ Verschlüsseltes Format:
   +----+----+----+----+----+----+----+----+
 
 
-{% endhighlight %}
+```
 
 Entschlüsseltes Format:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 Payload Teil 1:
 
   +----+----+----+----+----+----+----+----+
@@ -826,18 +794,17 @@ Payload Teil 1:
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-{% endhighlight %}
+```
 
 Größen:
 
-================    =========  =====  =========  =============  =============  ==========  =======
-  Typ               Typcode    X len  Msg 1 len  Msg 1 Enc len  Msg 1 Dec len  PQ key len  pl len
-================    =========  =====  =========  =============  =============  ==========  =======
-X25519                   4       32     96+pl        64+pl             pl           --       pl
-MLKEM512_X25519          5       32    912+pl       880+pl         800+pl          800       pl
-MLKEM768_X25519          6       32   1296+pl      1360+pl        1184+pl         1184       pl
-MLKEM1024_X25519         7       32   1680+pl      1648+pl        1568+pl         1568       pl
-================    =========  =====  =========  =============  =============  ==========  =======
+| Typ | Typcode | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | pl len |
+| --- | ------- | ----- | --------- | ------------- | ------------- | ---------- | ------ |
+| X25519 | 4 | 32 | 96+pl | 64+pl | pl | -- | pl |
+| MLKEM512_X25519 | 5 | 32 | 912+pl | 880+pl | 800+pl | 800 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1296+pl | 1360+pl | 1184+pl | 1184 | pl |
+| MLKEM1024_X25519 | 7 | 32 | 1680+pl | 1648+pl | 1568+pl | 1568 | pl |
+
 
 Beachten Sie, dass die Payload einen DateTime-Block enthalten muss, sodass die minimale Payload-Größe 7 ist. Die minimalen Nachrichten1-Größen können entsprechend berechnet werden.
 
@@ -851,9 +818,7 @@ Beachten Sie, dass die Payload einen DateTime-Block enthalten muss, sodass die m
 
 Verschlüsseltes Format:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |       Sitzungs-Tag   8 Bytes           |
   +----+----+----+----+----+----+----+----+
@@ -895,13 +860,11 @@ Verschlüsseltes Format:
   +----+----+----+----+----+----+----+----+
 
 
-{% endhighlight %}
+```
 
 Entschlüsseltes Format:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 Payload Teil 1:
 
 
@@ -931,26 +894,25 @@ Payload Teil 1:
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-{% endhighlight %}
+```
 
 Größen:
 
-================    =========  =====  =========  =============  =============  ==========  =======
-  Typ               Typcode    Y len  Msg 2 len  Msg 2 Enc len  Msg 2 Dec len  PQ CT len   opt len
-================    =========  =====  =========  =============  =============  ==========  =======
-X25519                   4       32     72+pl        32+pl             pl           --       pl
-MLKEM512_X25519          5       32    856+pl       816+pl         768+pl          768       pl
-MLKEM768_X25519          6       32   1176+pl      1136+pl        1088+pl         1088       pl
-MLKEM1024_X25519         7       32   1656+pl      1616+pl        1568+pl         1568       pl
-================    =========  =====  =========  =============  =============  ==========  =======
+| Typ | Typcode | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |
+| --- | ------- | ----- | --------- | ------------- | ------------- | --------- | ------- |
+| X25519 | 4 | 32 | 72+pl | 32+pl | pl | -- | pl |
+| MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
 
-Beachten Sie, dass Nachrichten 2 normalerweise eine nicht null Payload haben, die Ratchet-Spezifikation [ECIES]_ dies jedoch nicht erfordert, sodass die minimale Payload-Größe 0 ist. Die minimalen Nachrichten 2-Größen können entsprechend berechnet werden.
+
+Beachten Sie, dass Nachrichten 2 normalerweise eine nicht null Payload haben, die Ratchet-Spezifikation [ECIES](https://geti2p.net/spec/ecies) dies jedoch nicht erfordert, sodass die minimale Payload-Größe 0 ist. Die minimalen Nachrichten 2-Größen können entsprechend berechnet werden.
 
 
 
 ### NTCP2
 
-Aktualisieren Sie die NTCP2-Spezifikation [NTCP2]_ wie folgt:
+Aktualisieren Sie die NTCP2-Spezifikation [NTCP2](https://geti2p.net/spec/ntcp2) wie folgt:
 
 
 Noise-Identifikatoren
@@ -969,9 +931,7 @@ Noise-Identifikatoren
 
 Roh-Inhalte:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |                                       |
   +        verschleiert mit RH_B           +
@@ -1004,13 +964,11 @@ Roh-Inhalte:
   Wie zuvor, außer dass ein zweiter ChaChaPoly-Rahmen hinzugefügt wird
 
 
-{% endhighlight %}
+```
 
 Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht dargestellt):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -1037,18 +995,17 @@ Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht dargestellt):
 
 
 
-{% endhighlight %}
+```
 
 Größen:
 
-================    =========  =====  =========  =============  =============  ==========  =======
-  Typ               Typcode    X len  Msg 1 len  Msg 1 Enc len  Msg 1 Dec len  PQ key len  opt len
-================    =========  =====  =========  =============  =============  ==========  =======
-X25519                   4       32     64+pad       32              16           --         16
-MLKEM512_X25519          5       32    880+pad      848             816          800         16
-MLKEM768_X25519          6       32   1264+pad     1232            1200         1184         16
-MLKEM1024_X25519         7       32   1648+pad     1616            1584         1568         16
-================    =========  =====  =========  =============  =============  ==========  =======
+| Typ | Typcode | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | opt len |
+| --- | ------- | ----- | --------- | ------------- | ------------- | ---------- | ------- |
+| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
+| MLKEM512_X25519 | 5 | 32 | 880+pad | 848 | 816 | 800 | 16 |
+| MLKEM768_X25519 | 6 | 32 | 1264+pad | 1232 | 1200 | 1184 | 16 |
+| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |
+
 
 Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
 
@@ -1061,9 +1018,7 @@ Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben T
 
 Roh-Inhalte:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |                                       |
   +        verschleiert mit RH_B           +
@@ -1098,13 +1053,11 @@ Roh-Inhalte:
 
   Wie zuvor, außer dass ein zweiter ChaChaPoly-Rahmen hinzugefügt wird
 
-{% endhighlight %}
+```
 
 Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht dargestellt):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -1129,18 +1082,17 @@ Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht dargestellt):
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-{% endhighlight %}
+```
 
 Größen:
 
-================    =========  =====  =========  =============  =============  ==========  =======
-  Typ               Typcode    Y len  Msg 2 len  Msg 2 Enc len  Msg 2 Dec len  PQ CT len   opt len
-================    =========  =====  =========  =============  =============  ==========  =======
-X25519                   4       32     64+pad       32              16           --         16
-MLKEM512_X25519          5       32    848+pad      816             784          768         16
-MLKEM768_X25519          6       32   1136+pad     1104            1104         1088         16
-MLKEM1024_X25519         7       32   1616+pad     1584            1584         1568         16
-================    =========  =====  =========  =============  =============  ==========  =======
+| Typ | Typcode | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |
+| --- | ------- | ----- | --------- | ------------- | ------------- | --------- | ------- |
+| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
+| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |
+| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |
+| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |
+
 
 Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
 
@@ -1162,7 +1114,7 @@ Unverändert
 
 ### SSU2
 
-Aktualisieren Sie die SSU2-Spezifikation [SSU2]_ wie folgt:
+Aktualisieren Sie die SSU2-Spezifikation [SSU2](https://geti2p.net/spec/ssu2) wie folgt:
 
 
 Noise-Identifikatoren
@@ -1182,9 +1134,7 @@ TODO: Wir könnten das Versionsfeld intern verwenden und 3 für MLKEM512 und 4 f
 
 Vor der Header-Verschlüsselung:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 
 +----+----+----+----+----+----+----+----+
   |      Zielverbindungskennung        |
@@ -1213,7 +1163,7 @@ Vor der Header-Verschlüsselung:
 
   Token :: 8 Bytes, unsignierte big endian integer
 
-{% endhighlight %}
+```
 
 
 Kurzer Header
@@ -1230,9 +1180,7 @@ Mit ML-KEM enthält der ChaCha-Abschnitt auch den verschlüsselten PQ-öffentlic
 
 Roh-Inhalte:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |  Lange Header-Bytes 0-15, ChaCha20     |
   +  verschlüsselt mit Bob intro key         +
@@ -1272,13 +1220,11 @@ Roh-Inhalte:
   +----+----+----+----+----+----+----+----+
 
 
-{% endhighlight %}
+```
 
 Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht dargestellt):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |      Zielverbindungskennung        |
   +----+----+----+----+----+----+----+----+
@@ -1306,18 +1252,17 @@ Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht dargestellt):
   +----+----+----+----+----+----+----+----+
 
 
-{% endhighlight %}
+```
 
 Größen, ohne IP-Overhead:
 
-================    =========  =====  =========  =============  =============  ==========  =======
-  Typ               Typcode    X len  Msg 1 len  Msg 1 Enc len  Msg 1 Dec len  PQ key len  pl len
-================    =========  =====  =========  =============  =============  ==========  =======
-X25519                   4       32     80+pl        16+pl             pl         --         pl
-MLKEM512_X25519          5       32    896+pl       832+pl         800+pl        800         pl
-MLKEM768_X25519          6       32   1280+pl      1216+pl        1184+pl       1184         pl
-MLKEM1024_X25519         7      n/a   zu groß
-================    =========  =====  =========  =============  =============  ==========  =======
+| Typ | Typcode | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | pl len |
+| --- | ------- | ----- | --------- | ------------- | ------------- | ---------- | ------ |
+| X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
+| MLKEM512_X25519 | 5 | 32 | 896+pl | 832+pl | 800+pl | 800 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1280+pl | 1216+pl | 1184+pl | 1184 | pl |
+| MLKEM1024_X25519 | 7 | n/a | zu groß |  |  |  |  |
+
 
 Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4,
 und die Unterstützung wird in den Router-Adressen angegeben.
@@ -1334,9 +1279,7 @@ Mit ML-KEM wird auch der verschlüsselte PQ-öffentliche Schlüssel im ChaCha-Ab
 
 Roh-Inhalte:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |  Lange Header-Bytes 0-15, ChaCha20     |
   +  verschlüsselt mit Bob intro key und     +
@@ -1376,13 +1319,11 @@ Roh-Inhalte:
   +----+----+----+----+----+----+----+----+
 
 
-{% endhighlight %}
+```
 
 Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht dargestellt):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```dataspec
 +----+----+----+----+----+----+----+----+
   |      Zielverbindungskennung        |
   +----+----+----+----+----+----+----+----+
@@ -1409,18 +1350,17 @@ Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht dargestellt):
   |      siehe unten für erlaubte Blöcke     |
   +----+----+----+----+----+----+----+----+
 
-{% endhighlight %}
+```
 
 Größen, ohne IP-Overhead:
 
-================    =========  =====  =========  =============  =============  ==========  =======
-  Typ               Typcode    Y len  Msg 2 len  Msg 2 Enc len  Msg 2 Dec len  PQ CT len   pl len
-================    =========  =====  =========  =============  =============  ==========  =======
-X25519                   4       32     80+pl        16+pl             pl         --         pl
-MLKEM512_X25519          5       32    864+pl       800+pl         768+pl        768         pl
-MLKEM768_X25519          6       32   1184+pl      1118+pl        1088+pl       1088         pl
-MLKEM1024_X25519         7      n/a   zu groß
-================    =========  =====  =========  =============  =============  ==========  =======
+| Typ | Typcode | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
+| --- | ------- | ----- | --------- | ------------- | ------------- | --------- | ------ |
+| X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
+| MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | n/a | zu groß |  |  |  |  |
+
 
 Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4,
 und die Unterstützung wird in den Router-Adressen angegeben.

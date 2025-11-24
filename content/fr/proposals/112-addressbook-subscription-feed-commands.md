@@ -12,7 +12,7 @@ implementedin: "0.9.26"
 
 ## Remarque
 Déploiement du réseau terminé.
-Voir [SPEC]_ pour la spécification officielle.
+Voir [SPEC](/docs/specs/subscription/) pour la spécification officielle.
 
 
 ## Vue d'ensemble
@@ -68,8 +68,7 @@ Cette proposition ajoute deux nouveaux types de lignes :
 
      #!key1=val1#key2=val2 ...
 
-Ordre
-````````
+#### Ordre
 Un flux n'est pas nécessairement ordonné ou complet. Par exemple, une commande de modification
 peut être sur une ligne avant une commande d'ajout, ou sans commande d'ajout.
 
@@ -116,8 +115,7 @@ sont incluses dans la section clé/valeur.
 
 Les clés listées sont obligatoires. Toutes les commandes peuvent contenir des éléments supplémentaires de clé/valeur non définis ici.
 
-Ajouter un nom d'hôte
-````````````
+#### Ajouter un nom d'hôte
 Précédée par example.i2p=b64dest
   OUI, ceci est le nouveau nom d'hôte et la nouvelle destination.
 action
@@ -129,8 +127,7 @@ Exemple :
 
   example.i2p=b64dest#!sig=b64sig
 
-Modifier le nom d'hôte
-`````````````````````
+#### Modifier le nom d'hôte
 Précédée par example.i2p=b64dest
   OUI, ceci est le nouveau nom d'hôte et l'ancienne destination.
 action
@@ -144,8 +141,7 @@ Exemple :
 
   example.i2p=b64dest#!action=changename#oldname=oldhostname#sig=b64sig
 
-Modifier la destination
-``````````````````
+#### Modifier la destination
 Précédée par example.i2p=b64dest
   OUI, ceci est l'ancien nom d'hôte et la nouvelle destination.
 action
@@ -161,8 +157,7 @@ Exemple :
 
   example.i2p=b64dest#!action=changedest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
 
-Ajouter un alias de nom d'hôte
-``````````````````
+#### Ajouter un alias de nom d'hôte
 Précédée par example.i2p=b64dest
   OUI, ceci est le nouveau (alias) nom d'hôte et l'ancienne destination.
 action
@@ -176,8 +171,7 @@ Exemple :
 
   example.i2p=b64dest#!action=addname#oldname=oldhostname#sig=b64sig
 
-Ajouter un alias de destination
-`````````````````````
+#### Ajouter un alias de destination
 (Utilisé pour la mise à niveau cryptographique)
 
 Précédée par example.i2p=b64dest
@@ -195,8 +189,7 @@ Exemple :
 
   example.i2p=b64dest#!action=adddest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
 
-Ajouter un sous-domaine
-```````````````
+#### Ajouter un sous-domaine
 Précédée par subdomain.example.i2p=b64dest
   OUI, ceci est le nouveau nom de sous-domaine d'hôte et la nouvelle destination.
 action
@@ -214,8 +207,7 @@ Exemple :
 
   subdomain.example.i2p=b64dest#!action=addsubdomain#oldname=example.i2p#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
 
-Mettre à jour les métadonnées
-```````````````
+#### Mettre à jour les métadonnées
 Précédée par example.i2p=b64dest
   OUI, ceci est l'ancien nom et la destination d'hôte.
 action
@@ -229,8 +221,7 @@ Exemple :
 
   example.i2p=b64dest#!action=update#k1=v1#k2=v2#sig=b64sig
 
-Supprimer le nom d'hôte
-```````````````
+#### Supprimer le nom d'hôte
 Précédée par example.i2p=b64dest
   NON, ceux-ci sont spécifiés dans les options
 action
@@ -246,8 +237,7 @@ Exemple :
 
   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
 
-Supprimer tout avec cette destination
-````````````````````````````````
+#### Supprimer tout avec cette destination
 Précédée par example.i2p=b64dest
   NON, ceux-ci sont spécifiés dans les options
 action
@@ -281,8 +271,7 @@ oldsig est toujours la signature "interne". Signer et vérifier sans les clés '
 'sig' présentes. sig est toujours la signature "externe". Signer et vérifier avec la
 clé 'oldsig' présente mais pas la clé 'sig'.
 
-Entrée pour les signatures
-````````````````````
+#### Entrée pour les signatures
 Pour générer un flux d'octets pour créer ou vérifier la signature, sérialiser comme suit :
 
 - Retirer la clé "sig"
@@ -312,10 +301,3 @@ les anciens commentaires, mais commenceront à écouter les nouvelles commandes 
 leurs flux d'abonnement. Il est donc important que les serveurs de noms conservent
 les entrées de commande d'une certaine manière, ou activent le support etag pour que les routeurs puissent
 récupérer toutes les commandes passées.
-
-
-
-## Références
-
-.. [SPEC]
-    {{ spec_url('subscription') }}

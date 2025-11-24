@@ -116,26 +116,20 @@ Meta LS2는 유연하고, 효율적이며, 효과적이고 대규모 멀티호�
 
 기존 유형:
 
-==================================  ============= ============
             NetDB 데이터              조회 유형     저장 유형 
-==================================  ============= ============
 any                                       0           any     
 LS                                        1            1      
 RI                                        2            0      
 탐색적                                    3           DSRM    
-==================================  ============= ============
 
 새 유형:
 
-==================================  ============= ============ ================== ==================
             NetDB 데이터              조회 유형     저장 유형   표준 LS2 헤더 있음? 종단 간 전송됨?
-==================================  ============= ============ ================== ==================
 LS2                                       1            3             예                  예
 암호화된 LS2                              1            5             아니오                아니오
 Meta LS2                                  1            7             예                  아니오
 서비스 기록                              n/a           9             예                  아니오
 서비스 목록                              4           11             아니오                아니오
-==================================  ============= ============ ================== ==================
 
 
 
@@ -729,9 +723,9 @@ alpha
     목적지를 알고 있는 사람과 선택적인 암호를 알고 있는 사람들이
     가지고 있는 32바이트 랜덤한 숫자입니다.
 ```
-{% highlight lang='text' %}
+```text
 buck converter for level shifters
-{% endhighlight %}`
+````
 
 GENERATE_ALPHA(destination, date, secret)
     현재 날짜에 대한 알파를 생성하며, 목적지와 비밀을 알고 있는 사람들이 가능합니다.
@@ -768,9 +762,7 @@ H*(x)
 
 GENERATE_ALPHA(destination, date, secret): 모든 당사자에 대해::
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // secret is optional, else zero-length
@@ -783,13 +775,11 @@ GENERATE_ALPHA(destination, date, secret): 모든 당사자에 대해::
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // treat seed as a 64 byte little-endian value
   alpha = seed mod L
-{% endhighlight %}
+```
 
 BLIND_PRIVKEY(), 소유자가 리스셋을 게시하는 경우::
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -801,20 +791,18 @@ BLIND_PRIVKEY(), 소유자가 리스셋을 게시하는 경우::
   // Addition using scalar arithmentic
   blinded signing private key = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   blinded signing public key = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 BLIND_PUBKEY(), 클라이언트가 리스셋을 검색할 때::
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = destination's signing public key
   // Addition using group elements (points on the curve)
   blinded public key = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 A'의 두 경우의 계산 방식은 필요한 동일한 결과를 내야 합니다.
 
@@ -856,21 +844,17 @@ Red25519에서는 서명용 r계산에서 추가적인 랜덤 데이터를 사�
 
 서명:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 T = 80 random bytes
   r = H*(T || publickey || message)
   // rest is the same as in Ed25519
-{% endhighlight %}
+```
 
 검증:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // same as in Ed25519
-{% endhighlight %}
+```
 
 암호화 및 처리
 `````````````````````````
@@ -881,26 +865,22 @@ T = 80 random bytes
 전체 목적지를 외울 필요는 없습니다.
 이를 달성하기 위해, 우리는 서명 공개 키에서 인증자를 도출합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 A = destination's signing public key
   stA = signature type of A, 2 bytes big endian (0x0007 or 0x000b)
   stA' = signature type of A', 2 bytes big endian (0x000b)
   keydata = A || stA || stA'
   credential = H("credential", keydata)
-{% endhighlight %}
+```
 
 개인화된 문자열은 인증자가 DHT 조회 키로 사용되는 
 어떤 해시와도 충돌하지 않도록 보장합니다, 예: 단순 목적지 해시.
 
 주어진 블라인딩 키에 대해, 우리는 다음과 같은 방식으로 하위 인증자를 도출할 수 있습니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 subcredential = H("subcredential", credential || blindedPublicKey)
-{% endhighlight %}
+```
 
 하위 인증자는 아래의 키 도출 과정에서 포함되며, 
 이는 이러한 키가 목적지의 서명 공개 키와 결합되어 있다는 것을 보장합니다.
@@ -908,65 +888,51 @@ subcredential = H("subcredential", credential || blindedPublicKey)
 #### 레이어 1 암호화
 먼저, 키 도출 과정에 대한 입력 준비를 합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerInput = subcredential || publishedTimestamp
-{% endhighlight %}
+```
 
 다음으로, 랜덤한 소금을 생성합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 그다음, 레이어 1을 암호화할 때 사용되는 키를 도출합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 마지막으로, 레이어 1의 평문을 암호화하고 직렬화합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerCiphertext = outerSalt || ENCRYPT(outerKey, outerIV, outerPlaintext)
-{% endhighlight %}
+```
 
 #### 레이어 1 복호화
 소금은 레이어 1 암호문에서 해석됩니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerSalt = outerCiphertext[0:31]
-{% endhighlight %}
+```
 
 그다음, 레이어 1을 암호화할 때 사용된 키를 도출합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerInput = subcredential || publishedTimestamp
   keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 마지막으로, 레이어 1 암호문을 복호화합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerPlaintext = DECRYPT(outerKey, outerIV, outerCiphertext[32:end])
-{% endhighlight %}
+```
 
 #### 레이어 2 암호화
 클라이언트 인증이 활성화된 경우, `authCookie`는 아래 설명된 대로 계산됩니다.
@@ -974,16 +940,14 @@ outerPlaintext = DECRYPT(outerKey, outerIV, outerCiphertext[32:end])
 
 암호화는 레이어 1과 유사하게 진행됩니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 innerInput = authCookie || subcredential || publishedTimestamp
   innerSalt = CSRNG(32)
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerCiphertext = innerSalt || ENCRYPT(innerKey, innerIV, innerPlaintext)
-{% endhighlight %}
+```
 
 #### 레이어 2 복호화
 클라이언트 인증이 활성화된 경우, `authCookie`는 아래 설명된 대로 계산됩니다.
@@ -991,16 +955,14 @@ innerInput = authCookie || subcredential || publishedTimestamp
 
 복호화는 레이어 1과 유사하게 진행됩니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 innerInput = authCookie || subcredential || publishedTimestamp
   innerSalt = innerCiphertext[0:31]
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerPlaintext = DECRYPT(innerKey, innerIV, innerCiphertext[32:end])
-{% endhighlight %}
+```
 
 
 클라이언트별 인증
@@ -1021,20 +983,16 @@ innerInput = authCookie || subcredential || publishedTimestamp
 ^^^^^^^^^^^^^^^^^
 서버는 새로운 `authCookie`와 임시 DH 키 쌍을 생성합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = CSRNG(32)
   esk = GENERATE_PRIVATE()
   epk = DERIVE_PUBLIC(esk)
-{% endhighlight %}
+```
 
 그리고 각 인증받은 클라이언트에 대해, 서버는 
 `authCookie`를 해당 클라이언트의 공개키로 암호화합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 sharedSecret = DH(esk, cpk_i)
   authInput = sharedSecret || cpk_i || subcredential || publishedTimestamp
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
@@ -1042,7 +1000,7 @@ sharedSecret = DH(esk, cpk_i)
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 서버는 각각의 `[clientID_i, clientCookie_i]` 쌍을 
 암호화된 LS2의 레이어 1에 배치합니다, `epk`와 함께.
@@ -1053,27 +1011,23 @@ sharedSecret = DH(esk, cpk_i)
 기대 클라이언트 식별자 `clientID_i`, 
 암호화 키 `clientKey_i`, 암호화 IV `clientIV_i`를 도출합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 sharedSecret = DH(csk_i, epk)
   authInput = sharedSecret || cpk_i || subcredential || publishedTimestamp
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 그런 다음, 클라이언트는 레이어 1 인증 데이터에서 
 `clientID_i`를 포함하는 항목을 검색합니다. 
 일치하는 항목이 있으면, 클라이언트는 이것을 복호화하여 
 `authCookie`를 얻습니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### 사전 공유 키 클라이언트 인증
 각 클라이언트는 32바이트 비밀 키 `psk_i`를 생성하고,
@@ -1086,26 +1040,22 @@ authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
 ^^^^^^^^^^^^^^^^^
 서버는 새로운 `authCookie`와 소금을 생성합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = CSRNG(32)
   authSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 그리고 각 인증받은 클라이언트에 대해, 서버는 
 `authCookie`를 사전 공유 키로 암호화합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authInput = psk_i || subcredential || publishedTimestamp
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 서버는 각각의 `[clientID_i, clientCookie_i]` 쌍을 
 암호화된 LS2의 레이어 1에 배치합니다, `authSalt`와 함께.
@@ -1116,26 +1066,22 @@ authInput = psk_i || subcredential || publishedTimestamp
 기대 클라이언트 식별자 `clientID_i`, 
 암호화 키 `clientKey_i`, 암호화 IV `clientIV_i`를 도출합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authInput = psk_i || subcredential || publishedTimestamp
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 그 다음, 클라이언트는 레이어 1 인증 데이터에서 
 `clientID_i`를 포함하는 항목을 검색합니다. 
 일치하는 항목을 찾으면, 클라이언트는 `authCookie`를 얻기 위해 
 이를 복호화합니다:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### 보안 고려사항
 위의 클라이언트 인증 메커니즘은 모두 클라이언트 구성원의 

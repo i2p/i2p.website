@@ -13,7 +13,7 @@ implementedin: "0.9.40"
 ## Remarque
 Déploiement et test réseau en cours.
 Sujet à de légères révisions.
-Voir [SPEC]_ pour la spécification officielle.
+Voir [SPEC](/docs/specs/b32-for-encrypted-leasesets/) pour la spécification officielle.
 
 
 ## Aperçu
@@ -76,9 +76,7 @@ comme une adresse "b33", le nouveau format conserve le suffixe habituel ".b32.i2
 
 Construire un nom d'hôte de {56+ chars}.b32.i2p (35+ chars en binaire) comme suit :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 drapeau (1 octet)
     bit 0 : 0 pour les types de signature sur un octet, 1 pour les types de signature sur deux octets
     bit 1 : 0 pour aucun secret, 1 si un secret est requis
@@ -95,13 +93,11 @@ drapeau (1 octet)
   clé publique
     Nombre d'octets comme impliqué par le type de signature
 
-{% endhighlight %}
+```
 
 Post-traitement et somme de contrôle :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 Construire les données binaires comme ci-dessus.
   Traiter la somme de contrôle comme little-endian.
   Calculer la somme de contrôle = CRC-32(données[3:fin])
@@ -110,7 +106,7 @@ Construire les données binaires comme ci-dessus.
   données[2] ^= (octet) (somme de contrôle >> 16)
 
   nom d'hôte = Base32.encode(données) || ".b32.i2p"
-{% endhighlight %}
+```
 
 Tous les bits non utilisés à la fin du b32 doivent être 0.
 Il n’y a pas de bits inutilisés pour une adresse standard de 56 caractères (35 octets).
@@ -118,9 +114,7 @@ Il n’y a pas de bits inutilisés pour une adresse standard de 56 caractères (
 
 ### Décodage et Vérification
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 enlever le ".b32.i2p" du nom d'hôte
   données = Base32.decode(nom d'hôte)
   Calculer la somme de contrôle = CRC-32(données[3:fin])
@@ -133,7 +127,7 @@ enlever le ".b32.i2p" du nom d'hôte
     type sig clé publique = données[1] ^ ((octet) (somme de contrôle >> 8)) || données[2] ^ ((octet) (somme de contrôle >> 16))
     type sig masquée = données[3] || données[4]
   analyser le reste basé sur les drapeaux pour obtenir la clé publique
-{% endhighlight %}
+```
 
 
 ### Secret et Bits de Clé Privée
@@ -153,7 +147,7 @@ données requises, ou rejeter les tentatives de connexion si les données requis
   le nom d'hôte sera {56 caractères}.b32.i2p, décodant à 35 octets, comme Tor.
 - La somme de contrôle sur 2 octets de Tor a un taux de false négatif de 1/64K. Avec 3 octets, moins quelques octets ignorés,
   la nôtre approche de 1 sur un million, car la plupart des combinaisons drapeaux/type sig sont invalides.
-- Adler-32 est un mauvais choix pour les petites entrées, et pour détecter les petits changements [ADLER32]_.
+- Adler-32 est un mauvais choix pour les petites entrées, et pour détecter les petits changements .
   Utiliser CRC-32 à la place. CRC-32 est rapide et largement disponible.
 
 ## Mise en cache
@@ -181,15 +175,3 @@ Bien qu'en dehors du champ de cette proposition, les routeurs et/ou les clients 
 
 Aucun problème de compatibilité ascendante. Les adresses b32 plus longues échoueront à être converties
 en haches de 32 octets dans les anciens logiciels.
-
-
-
-
-## Références
-
-.. [ADLER32]
-    https://fr.wikipedia.org/wiki/CRC-32
-    https://tools.ietf.org/html/rfc3309
-
-.. [SPEC]
-    {{ spec_url('b32encrypted') }}

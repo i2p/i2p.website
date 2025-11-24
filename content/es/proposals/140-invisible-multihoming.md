@@ -10,17 +10,17 @@ thread: "http://zzz.i2p/topics/2335"
 
 ## Visión general
 
-Esta propuesta describe un diseño para un protocolo que permite que un cliente de I2P, servicio o proceso equilibrador externo gestione múltiples enrutadores que albergan de manera transparente un único [Destino]_.
+Esta propuesta describe un diseño para un protocolo que permite que un cliente de I2P, servicio o proceso equilibrador externo gestione múltiples enrutadores que albergan de manera transparente un único [Destino](http://localhost:63465/en/docs/specs/common-structures/#destination).
 
-La propuesta actualmente no especifica una implementación concreta. Podría implementarse como una extensión de [I2CP]_, o como un nuevo protocolo.
+La propuesta actualmente no especifica una implementación concreta. Podría implementarse como una extensión de [I2CP](/en/docs/specs/i2cp/), o como un nuevo protocolo.
 
 ## Motivación
 
-El multihoming es cuando se utilizan múltiples enrutadores para alojar el mismo Destino. La forma actual de realizar multihoming con I2P es ejecutar el mismo Destino en cada enrutador de manera independiente; el enrutador que es utilizado por los clientes en cualquier momento es el último que publica un [LeaseSet]_.
+El multihoming es cuando se utilizan múltiples enrutadores para alojar el mismo Destino. La forma actual de realizar multihoming con I2P es ejecutar el mismo Destino en cada enrutador de manera independiente; el enrutador que es utilizado por los clientes en cualquier momento es el último que publica un [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset).
 
 Esto es un truco y probablemente no funcionará para grandes sitios web a gran escala. Supongamos que tuviéramos 100 enrutadores de multihoming cada uno con 16 túneles. Serían 1600 publicaciones de LeaseSet cada 10 minutos, o casi 3 por segundo. Los floodfills se verían abrumados y entrarían en acción los mecanismos de limitación. Y eso antes de mencionar siquiera el tráfico de búsqueda.
 
-[Prop123]_ resuelve este problema con un meta-LeaseSet, que enumera los 100 hashes de LeaseSet reales. Una búsqueda se convierte en un proceso de dos etapas: primero buscando el meta-LeaseSet, y luego uno de los LeaseSets nombrados. Esta es una buena solución para el problema de tráfico de búsqueda, pero por sí sola crea una fuga de privacidad significativa: Es posible determinar qué enrutadores de multihoming están en línea mediante la monitorización del meta-LeaseSet publicado, ya que cada LeaseSet real corresponde a un único enrutador.
+[Proposal 123](/en/proposals/123-new-netdb-entries/) resuelve este problema con un meta-LeaseSet, que enumera los 100 hashes de LeaseSet reales. Una búsqueda se convierte en un proceso de dos etapas: primero buscando el meta-LeaseSet, y luego uno de los LeaseSets nombrados. Esta es una buena solución para el problema de tráfico de búsqueda, pero por sí sola crea una fuga de privacidad significativa: Es posible determinar qué enrutadores de multihoming están en línea mediante la monitorización del meta-LeaseSet publicado, ya que cada LeaseSet real corresponde a un único enrutador.
 
 Necesitamos una manera para que un cliente o servicio de I2P distribuya un único Destino a través de múltiples enrutadores, de una forma que sea indistinguible de usar un único enrutador (desde la perspectiva del propio LeaseSet).
 
@@ -71,10 +71,8 @@ Imagine la siguiente configuración deseada:
 - Los doce túneles deben publicarse en un único LeaseSet.
 
 Cliente único
-`````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Túnel 1]===\
                  |-{ [Túnel 2]====[Enrutador 1]-----
                  |-{ [Túnel 3]===/               \
@@ -90,13 +88,10 @@ Cliente único
                  |-{ [Túnel 10]==\               /
                  |-{ [Túnel 11]===[Enrutador 4]-----
                   -{ [Túnel 12]==/
-{% endhighlight %}
 
 Multi-cliente
-````````````
-.. raw:: html
 
-  {% highlight lang='text' %}
+```
                 -{ [Túnel 1]===\
                  |-{ [Túnel 2]====[Enrutador 1]---------[Frontend 1]
                  |-{ [Túnel 3]===/          \                    \
@@ -112,10 +107,8 @@ Multi-cliente
                  |-{ [Túnel 10]==\          /                    /
                  |-{ [Túnel 11]===[Enrutador 4]---------[Frontend 4]
                   -{ [Túnel 12]==/
-{% endhighlight %}
 
-Proceso general del cliente
-``````````````````````````
+### Proceso general del cliente
 - Cargar o generar un Destino.
 
 - Abrir una sesión con cada enrutador, vinculada al Destino.
@@ -137,10 +130,9 @@ Proceso general del cliente
 
   - Publicar el LeaseSet a través de uno o más de los enrutadores.
 
-Diferencias con I2CP
-```````````````````
+### Diferencias con I2CP
 Para crear y gestionar esta configuración, el cliente necesita la siguiente
-nueva funcionalidad más allá de lo que actualmente proporciona [I2CP]_:
+nueva funcionalidad más allá de lo que actualmente proporciona [I2CP](/en/docs/specs/i2cp/):
 
 - Decirle a un enrutador que construya túneles, sin crear un LeaseSet para
   ellos.
@@ -155,9 +147,7 @@ cómo el cliente gestiona sus túneles:
 
 ### Esquema del protocolo
 
-.. raw:: html
-
-  {% highlight %}
+```
          Cliente                           Enrutador
 
                     --------------------->  Crear Sesión
@@ -172,10 +162,8 @@ cómo el cliente gestiona sus túneles:
                     --------------------->  Enviar Paquete
       Estado de Envío  <---------------------
   Paquete Recibido  <---------------------
-{% endhighlight %}
 
-Mensajes
-````````
+### Mensajes
     Crear Sesión
         Crear una sesión para el Destino dado.
 
@@ -274,13 +262,13 @@ reducido de pares.
 ## Compatibilidad
 
 Este diseño es completamente compatible con versiones anteriores de la red, porque
-no hay cambios en el formato del [LeaseSet]_. Todos los enrutadores necesitarían ser
+no hay cambios en el formato del [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset). Todos los enrutadores necesitarían ser
 conscientes del nuevo protocolo, pero esto no es una preocupación ya que todos serían
 controlados por la misma entidad.
 
 ## Notas de rendimiento y escalabilidad
 
-El límite superior de 16 [Arrendamientos]_ por LeaseSet no se ve alterado por esta
+El límite superior de 16 [Arrendamiento](http://localhost:63465/en/docs/specs/common-structures/#lease) por LeaseSet no se ve alterado por esta
 propuesta. Para los Destinos que requieran más túneles que esto, existen dos
 posibles modificaciones de red:
 
@@ -291,7 +279,7 @@ posibles modificaciones de red:
   LeaseSet está definido por la MTU de los transportes subyacentes, y es por lo
   tanto alrededor de 16kB.
 
-- Implementar [Prop123]_ para LeaseSets escalonados. En combinación con esta
+- Implementar [Proposal 123](/en/proposals/123-new-netdb-entries/) para LeaseSets escalonados. En combinación con esta
   propuesta, los Destinos para los sub-LeaseSets podrían distribuirse a través de
   múltiples enrutadores, actuando efectivamente como múltiples direcciones IP para
   un servicio en la red pública.
@@ -299,20 +287,3 @@ posibles modificaciones de red:
 ## Agradecimientos
 
 Gracias a psi por la discusión que llevó a esta propuesta.
-
-## Referencias
-
-.. [Destino] 
-    {{ ctags_url('Destination') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Arrendamientos]
-    {{ ctags_url('Lease') }}
-
-.. [LeaseSet]
-    {{ ctags_url('LeaseSet') }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}

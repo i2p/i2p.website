@@ -12,53 +12,39 @@ implementedin: "0.9.30"
 
 ## 概述
 
-该提案旨在提高引导成功率。见 [TRAC-TICKET]_。
+该提案旨在提高引导成功率。
 
 ## 动机
 
-引导者在一定时间后会过期，但该信息未发布在 [RouterInfo]_ 中。目前路由器必须使用启发式方法来估计引导者何时不再有效。
+引导者在一定时间后会过期，但该信息未发布在 RouterInfo 中。目前路由器必须使用启发式方法来估计引导者何时不再有效。
 
 ## 设计
 
-在包含引导者的SSU [RouterAddress]_ 中，发布者可以选择为每个引导者包含到期时间。
+在包含引导者的SSU RouterAddress 中，发布者可以选择为每个引导者包含到期时间。
 
 ## 规格
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```
 iexp{X}={nnnnnnnnnn}
 
-  X :: 引导者编号 (0-2)
+X :: 引导者编号 (0-2)
 
-  nnnnnnnnnn :: 自纪元起始的时间，以秒为单位（不是毫秒）。
-{% endhighlight %}
+nnnnnnnnnn :: 自纪元起始的时间，以秒为单位（不是毫秒）。
+```
 
-备注
-`````
-* 每个到期时间必须大于 [RouterInfo]_ 的发布日期，并且小于发布日期后的6小时。
+### 备注
+* 每个到期时间必须大于 RouterInfo 的发布日期，并且小于发布日期后的6小时。
 
 * 发布路由器和引导者应尝试保持引导者有效直到到期，但无法保证这一点。
 
 * 路由器不应在引导者到期后使用已发布的引导者。
 
-* 引导者到期信息位于 [RouterAddress]_ 映射中。
-  它们不是 [RouterAddress]_ 中当前未使用的8字节到期字段。
+* 引导者到期信息位于 RouterAddress 映射中。
+  它们不是 RouterAddress 中当前未使用的8字节到期字段。
 
-示例：``iexp0=1486309470``
+**示例：** `iexp0=1486309470`
 
 ## 迁移
 
 没有问题。实现是可选的。
 向后兼容性有保障，因为旧路由器会忽略未知参数。
-
-## 参考文献
-
-.. [RouterAddress]
-    {{ ctags_url('RouterAddress') }}
-
-.. [RouterInfo]
-    {{ ctags_url('RouterInfo') }}
-
-.. [TRAC-TICKET]
-    http://{{ i2pconv('trac.i2p2.i2p') }}/ticket/1352

@@ -13,7 +13,7 @@ implementedin: "0.9.40"
 ## Not
 Ağ dağıtımı ve test sürecinde.
 Küçük revizyonlara tabi olabilir.
-Resmi spesifikasyon için bkz. [SPEC]_.
+Resmi spesifikasyon için bkz. [SPEC](/docs/specs/b32-for-encrypted-leasesets/).
 
 
 ## Genel Bakış
@@ -76,9 +76,7 @@ alışılmış ".b32.i2p" ekini korur.
 
 {56+ karakter}.b32.i2p (ikili 35+ karakter) şeklinde bir ana bilgisayar adı oluştur:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 bayrak (1 bayt)
     bit 0: 1 bayt imza tipi için 0, 2 bayt imza tipi için 1
     bit 1: gizli yok, gizli gerekiyorsa 1
@@ -95,13 +93,11 @@ bayrak (1 bayt)
   genel anahtar
     İmza türü tarafından belirlenen bayt sayısı
 
-{% endhighlight %}
+```
 
 Son işleme ve denetim toplamı:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 Yukarıdaki gibi ikili verileri oluştur.
   Denetim toplamını küçük-endian olarak işle.
   Denetim toplamını hesapla = CRC-32(data[3:end])
@@ -110,7 +106,7 @@ Yukarıdaki gibi ikili verileri oluştur.
   data[2] ^= (byte) (denetim toplamı >> 16)
 
   hostname = Base32.encode(data) || ".b32.i2p"
-{% endhighlight %}
+```
 
 b32'nin sonundaki kullanılmayan bitlerin hepsi 0 olmalıdır.
 Standart bir 56 karakterlik (35 bayt) adres için kullanılmayan bit yoktur.
@@ -118,9 +114,7 @@ Standart bir 56 karakterlik (35 bayt) adres için kullanılmayan bit yoktur.
 
 ### Kod Çözme ve Doğrulama
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 hostname'den ".b32.i2p" çıkar
   data = Base32.decode(hostname)
   Denetim toplamını hesapla = CRC-32(data[3:end])
@@ -133,7 +127,7 @@ hostname'den ".b32.i2p" çıkar
     pubkey imza türü = data[1] ^ ((byte) (denetim toplamı >> 8)) || data[2] ^ ((byte) (denetim toplamı >> 16))
     körlenmiş imza türü = data[3] || data[4]
   bayraklara göre geri kalanını çözerek genel anahtarı elde et
-{% endhighlight %}
+```
 
 
 ### Gizli ve Özel Anahtar Bitleri
@@ -161,7 +155,7 @@ veya gerekli veriler eksikse bağlantı girişimlerini reddedebilir.
   bizimki bir milyona yaklaşıyor, çünkü çoğu bayrak/imza türü
   kombinasyonu geçersiz.
 - Adler-32 küçük girdiler için kötü bir seçimdir ve küçük
-  değişiklikleri tespit etmek için kötü bir seçimdir [ADLER32]_.
+  değişiklikleri tespit etmek için kötü bir seçimdir .
   Bunun yerine CRC-32 kullan. CRC-32 hızlıdır ve yaygın olarak bulunur.
 
 ## Önbellekleme
@@ -194,15 +188,3 @@ kalıcı olarak) hatırlamalı ve önbelleğe almalıdırlar.
 
 Geriye dönük uyumluluk sorunları yok. Daha uzun b32 adresleri, eski
 yazılımdaki 32 baytlık karmalara dönüştürülemeyecektir.
-
-
-
-
-## Referanslar
-
-.. [ADLER32]
-    https://en.wikipedia.org/wiki/CRC-32
-    https://tools.ietf.org/html/rfc3309
-
-.. [SPEC]
-    {{ spec_url('b32encrypted') }}

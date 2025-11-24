@@ -97,26 +97,20 @@ Sloupec end-to-end se týká toho, zda jsou dotazy / odpovědi poslány do desti
 
 Existující typy:
 
-==================================  ============= ============
             NetDB Data               Lookup Type   Store Type 
-==================================  ============= ============
 any                                       0           any     
 LS                                        1            1      
 RI                                        2            0      
 exploratory                               3           DSRM    
-==================================  ============= ============
 
 Nové typy:
 
-==================================  ============= ============ ================== ==================
             NetDB Data               Lookup Type   Store Type   Std. LS2 Header?   Sent end-to-end?
-==================================  ============= ============ ================== ==================
 LS2                                       1            3             yes                 yes
 Šifrované LS2                             1            5             no                  no
 Meta LS2                                  1            7             yes                 no
 Záznam služby                           n/a           9             yes                 no
 Seznam služeb                              4           11             no                 no
-==================================  ============= ============ ================== ==================
 
 Poznámky
 - Lookup typy jsou aktuálně bity 3-2 v zprávě Database Lookup. 

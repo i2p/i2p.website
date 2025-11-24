@@ -114,26 +114,20 @@ có được gửi đến một Đích đến trong một Tin nhắn Garlic hay 
 
 Loại hiện có:
 
-==================================  ============= ============
             Dữ Liệu NetDB               Lookup Type   Store Type 
-==================================  ============= ============
 any                                       0           any     
 LS                                        1            1      
 RI                                        2            0      
 exploratory                               3           DSRM    
-==================================  ============= ============
 
 Loại mới:
 
-==================================  ============= ============ ================== ==================
             Dữ Liệu NetDB               Lookup Type   Store Type   Std. LS2 Header?   Sent end-to-end?
-==================================  ============= ============ ================== ==================
 LS2                                       1            3             yes                 yes
 LS2 Mã hóa                                1            5             no                  no
 Meta LS2                                  1            7             yes                 no
 Ghi Nhớ Dịch Vụ                          n/a          9             yes                 no
 Danh Sách Dịch Vụ                         4           11             no                  no
-==================================  ============= ============ ================== ==================
 
 
 Ghi Chú
@@ -766,9 +760,7 @@ Alpha bí mật và các khóa bị mờ được tính như sau.
 
 GENERATE_ALPHA(destination, date, secret), cho tất cả các bên:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // secret là tùy chọn, nếu không thì là độ dài bằng không
@@ -781,13 +773,11 @@ GENERATE_ALPHA(destination, date, secret), cho tất cả các bên:
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // đối xử seed như là một giá trị 64 byte little-endian
   alpha = seed mod L
-{% endhighlight %}
+```
 
 BLIND_PRIVKEY(), cho chủ sở hữu công bố leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -799,20 +789,18 @@ BLIND_PRIVKEY(), cho chủ sở hữu công bố leaseset:
   // Cộng thêm sử dụng số học đẳng cấp
   private key ký bị mờ = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   khóa công khai ký bị mờ = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 BLIND_PUBKEY(), cho các khách hàng truy cập leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = khóa công khai ký của destination
   // Cộng thêm sử dụng phần tử nhóm (điểm trên đường cong)
   khóa công khai bị mờ = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 Cả hai phương pháp tính toán A' đều mang lại cùng kết quả, như yêu cầu.
 
@@ -853,21 +841,17 @@ khi ký cùng dữ liệu với cùng khóa.
 
 Ký:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 T = 80 byte ngẫu nhiên
   r = H*(T || khóa công khai || message)
   // phần còn lại là giống như trong Ed25519
-{% endhighlight %}
+```
 
 Xác minh:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 // giống như trong Ed25519
-{% endhighlight %}
+```
 
 
 
@@ -879,26 +863,22 @@ Như một phần của quá trình làm mờ, chúng tôi cần đảm bảo r�
 Full Destination không cần thiết.
 Để đạt được điều này, chúng tôi dẫn ra một credential từ khóa công khai ký:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 A = khóa công khai ký của destination
   stA = loại chữ ký của A, 2 bytes big endian (0x0007 hoặc 0x000b)
   stA' = loại chữ ký của khóa công khai bị mờ A', 2 bytes big endian (0x000b)
   keydata = A || stA || stA'
   credential = H("credential", keydata)
-{% endhighlight %}
+```
 
 Chuỗi cá nhân hóa đảm bảo rằng credential không va chạm với bất kỳ hàm băm nào được sử dụng
 như là một khóa tra cứu DHT, chẳng hạn như hàm băm Destination đơn giản.
 
 Đối với khóa bị mờ, chúng tôi sau đó có thể dẫn ra một subcredential:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 subcredential = H("subcredential", credential || khóa công khai bị mờ)
-{% endhighlight %}
+```
 
 Subcredential này được bao gồm trong các quá trình tạo khóa bên dưới, điều này liên kết các
 khóa đó với kiến thức về khóa công khai ký của destination.
@@ -906,65 +886,51 @@ khóa đó với kiến thức về khóa công khai ký của destination.
 #### Mã hóa lớp 1
 Đầu tiên, đầu vào cho quá trình tạo khóa được chuẩn bị:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerInput = subcredential || publishedTimestamp
-{% endhighlight %}
+```
 
 Tiếp theo, một muối ngẫu nhiên được tạo ra:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 Sau đó, khóa được sử dụng để mã hóa lớp 1 được tạo ra:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 Cuối cùng, plaintext lớp 1 được mã hóa và chuỗi hóa:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerCiphertext = outerSalt || ENCRYPT(outerKey, outerIV, outerPlaintext)
-{% endhighlight %}
+```
 
 #### Giải mã lớp 1
 Muối được phân tích từ ciphertext lớp 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerSalt = outerCiphertext[0:31]
-{% endhighlight %}
+```
 
 Sau đó, khóa được sử dụng để mã hóa lớp 1 được tạo ra:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerInput = subcredential || publishedTimestamp
   keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 Cuối cùng, ciphertext lớp 1 được giải mã:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 outerPlaintext = DECRYPT(outerKey, outerIV, outerCiphertext[32:end])
-{% endhighlight %}
+```
 
 #### Mã hóa lớp 2
 Khi xác thực client được kích hoạt, ``authCookie`` được tính toán như được mô tả bên dưới.
@@ -972,16 +938,14 @@ Khi xác thực client không được kích hoạt, ``authCookie`` là chuỗi 
 
 Mã hóa tiến hành tương tự như cho lớp 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 innerInput = authCookie || subcredential || publishedTimestamp
   innerSalt = CSRNG(32)
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerCiphertext = innerSalt || ENCRYPT(innerKey, innerIV, innerPlaintext)
-{% endhighlight %}
+```
 
 #### Giải mã lớp 2
 Khi xác thực client được kích hoạt, ``authCookie`` được tính toán như được mô tả bên dưới.
@@ -989,16 +953,14 @@ Khi xác thực client không được kích hoạt, ``authCookie`` là chuỗi 
 
 Giải mã tiến hành tương tự như cho lớp 1:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 innerInput = authCookie || subcredential || publishedTimestamp
   innerSalt = innerCiphertext[0:31]
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerPlaintext = DECRYPT(innerKey, innerIV, innerCiphertext[32:end])
-{% endhighlight %}
+```
 
 
 Xác thực theo từng client
@@ -1018,19 +980,15 @@ Xử lý trên máy chủ
 ^^^^^^^^^^^^^^^^^
 Máy chủ tạo ra một ``authCookie`` mới và một cặp khóa DH đơn thuần
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = CSRNG(32)
   esk = GENERATE_PRIVATE()
   epk = DERIVE_PUBLIC(esk)
-{% endhighlight %}
+```
 
 Sau đó cho mỗi client được ủy quyền, máy chủ mã hóa ``authCookie`` với khóa công khai của nó
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 sharedSecret = DH(esk, cpk_i)
   authInput = sharedSecret || cpk_i || subcredential || publishedTimestamp
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
@@ -1038,7 +996,7 @@ sharedSecret = DH(esk, cpk_i)
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 Máy chủ đặt từng cặp ``[clientID_i, clientCookie_i]`` vào lớp 1 của
 LS2 mã hóa, cùng với ``epk``.
@@ -1048,26 +1006,22 @@ Xử lý trên client
 Client sử dụng khóa riêng của nó để tạo ra định danh client mong đợi ``clientID_i``,
 khóa mã hóa ``clientKey_i``, và ``clientIV_i`` với mã hóa:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 sharedSecret = DH(csk_i, epk)
   authInput = sharedSecret || cpk_i || subcredential || publishedTimestamp
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 Sau đó, client tìm kiếm dữ liệu xác thực lớp 1 cho một đầu mà chứa
 ``clientID_i``. Nếu có một đầu số phù hợp tồn tại, client giải mã
 nó để lấy ``authCookie``:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### Xác thực client Pre-shared key
 Mỗi client tạo ra một khóa bí mật 32-byte ``psk_i``, và gửi nó đến máy chủ.
@@ -1078,25 +1032,21 @@ Xử lý trên máy chủ
 ^^^^^^^^^^^^^^^^^
 Máy chủ tạo ra một ``authCookie`` mới và muối:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = CSRNG(32)
   authSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 Sau đó cho mỗi client được ủy quyền, máy chủ mã hóa ``authCookie`` với khóa pre-shared của nó
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authInput = psk_i || subcredential || publishedTimestamp
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 Máy chủ đặt từng cặp ``[clientID_i, clientCookie_i]`` vào lớp 1 của
 LS2 mã hóa, cùng với ``authSalt``.
@@ -1106,25 +1056,21 @@ Xử lý trên client
 Client sử dụng khóa pre-shared để tạo ra định danh client mong đợi
 ``clientID_i``, khóa mã hóa ``clientKey_i``, và ``clientIV_i`` với mã hóa:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authInput = psk_i || subcredential || publishedTimestamp
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 Sau đó, client tìm kiếm dữ liệu xác thực lớp 1 cho một đầu mà chứa
 ``clientID_i``. Nếu có một đầu số phù hợp tồn tại, client giải mã
 nó để lấy ``authCookie``:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+  ```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### Các cân nhắc về bảo mật
 Cả hai cơ chế xác thực client trên đều cung cấp quyền riêng tư về tư cách thành viên khách hàng.

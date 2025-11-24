@@ -116,26 +116,20 @@ Meta LS2 提供了灵活、高效、有效和大规模的多宿主。
 
 已有类型：
 
-==================================  ============= ============
             NetDB 数据               查找类型     存储类型 
-==================================  ============= ============
 任何                                     0           任何     
 LS                                      1            1      
 RI                                      2            0      
 探索                                     3           DSRM    
-==================================  ============= ============
 
 新类型：
 
-==================================  ============= ============ ================== ==================
             NetDB 数据               查找类型     存储类型   标准 LS2 头部？   端到端发送？
-==================================  ============= ============ ================== ==================
 LS2                                     1            3             是                    是
 加密的 LS2                              1            5             否                    否
 Meta LS2                                1            7             是                    否
 服务记录                               n/a           9             是                    否
 服务列表                                4           11             否                    否
-==================================  ============= ============ ================== ==================
 
 
 
@@ -752,7 +746,7 @@ H*(x)
 密钥和盲化密钥的计算如下。
 
 显著目的地(目标, 日期, secret)，适用于所有各方：
-{% highlight lang='text' %}
+```text
 
 // 生成alpha(目标, 日期, secret)
 
@@ -766,11 +760,11 @@ H*(x)
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   //将种子视为64字节little-endian值
   alpha = seed mod L
-{% endhighlight %}
+```
 
 BLIND_PRIVKEY()，适用于发布leaseset的所有者：
 
-{% highlight lang='text' %}
+```text
 
 // BLIND_PRIVKEY()
 
@@ -783,11 +777,11 @@ BLIND_PRIVKEY()，适用于发布leaseset的所有者：
   // 使用标量算术的加法
   盲化签名私钥 = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   盲化签名公钥 = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 BLIND_PUBKEY()，适用于检索leaseset的客户端：
 
-{% highlight lang='text' %}
+```text
 
 // BLIND_PUBKEY()
 
@@ -795,7 +789,7 @@ BLIND_PUBKEY()，适用于检索leaseset的客户端：
   A = 目标的签名公钥
   // 加法使用群元素（曲线上的点）
   盲化公钥 = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 两种方法计算 A' 均产出相同结果，这是必需的。
 
@@ -838,17 +832,17 @@ Ed25519 私钥由随机数生成，然后使用对字节 0 和 31 的逐位掩�
 
 ..
 
-{% highlight lang='text' %}
+```text
 T = 80随机字节
   r = H*(T || 公钥 || 消息)
   // 其余的和Ed25519一样
-{% endhighlight %}
+```
 
 验证：
 
-{% highlight lang='text' %}
+```text
 // 与在Ed25519中相同
-{% endhighlight %}
+```
 
 加密和处理
 ``````````````````````````
@@ -861,13 +855,13 @@ T = 80随机字节
 
 .. 
 
-{% highlight lang='text' %}
+```text
 A = 目的地签名公钥
   stA = A 的签名类型, 2字节大端 (0x0007 或 0x000b)
   stA' = A' 的签名类型, 2字节大端 (0x000b)
   keydata = A || stA || stA'
   凭据 = H("credential", keydata)
-{% endhighlight %}
+```
 
 个性化字符串可确保凭据不与任何散列用于DHT查找键如明文目标哈希混淆。
 
@@ -875,9 +869,9 @@ A = 目的地签名公钥
 
 ..
 
-{% highlight lang='text' %}
+```text
 subcredential = H("subcredential", credential || blindedPublicKey)
-{% endhighlight %}
+```
 
 该衍生出凭据包含在下面的密钥衍生过程中，使这些
 密钥绑定到目的地签名公钥的知识。
@@ -888,63 +882,63 @@ subcredential = H("subcredential", credential || blindedPublicKey)
 
 ..
 
-{% highlight lang='text' %}
+```text
 outerInput = subcredential || 发布的 时间戳
-{% endhighlight %}
+```
 
 接着，生成一个随机盐：
 
 ..
 
-{% highlight lang='text' %}
+```text
 outerSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 然后使用衍生出内层1加密的密钥：
 
 ..
 
-{% highlight lang='text' %}
+```text
 keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 最后，加密内层1的明文并对其进行序列化：
 
 ..
 
-{% highlight lang='text' %}
+```text
 outerCiphertext = outerSalt || ENCRYPT(outerKey, outerIV, outerPlaintext)
-{% endhighlight %}
+```
 
 #### Layer 1 解密
 该盐在innerCiphertext 里将被解析：
 
 ..
 
-{% highlight lang='text' %}
+```text
 outerSalt = outerCiphertext[0:31]
-{% endhighlight %}
+```
 
 猜测曾用的密钥来进行内层1加密：
 
 ..
 
-{% highlight lang='text' %}
+```text
 outerInput = subcredential || 发布的 时间戳
   keys = HKDF(outerSalt, outerInput, "ELS2_L1K", 44)
   outerKey = keys[0:31]
   outerIV = keys[32:43]
-{% endhighlight %}
+```
 
 最后，解密innerCiphertext：
 
 ..
 
-{%highlight lang='text' %}
+```text
 outerPlaintext = DECRYPT(outerKey, outerIV, outerCiphertext[32:end])
-{% endhighlight %}
+```
 
 #### Layer 2 加密
 当客户端授权启用时, ``authCookie`` 是通过如下描述的方式来进行计算。
@@ -954,14 +948,14 @@ outerPlaintext = DECRYPT(outerKey, outerIV, outerCiphertext[32:end])
 
 ..
 
-{%highlight lang='text' %}
+```text
 innerInput = authCookie || subcredential || 发布的 时间戳
   innerSalt = CSRNG(32)
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerCiphertext = innerSalt || ENCRYPT(innerKey, innerIV, innerPlaintext)
-{% endhighlight %}
+```
 
 #### Layer 2 解密
 当客户端授权启用时, ``authCookie`` 是通过如下描述的方式来进行计算。
@@ -971,14 +965,14 @@ innerInput = authCookie || subcredential || 发布的 时间戳
 
 ..
 `
-{% highlight lang='text' %}
+```text
 innerInput = authCookie || subcredential || 发布的 时间戳
   innerSalt = innerCiphertext[0:31]
   keys = HKDF(innerSalt, innerInput, "ELS2_L2K", 44)
   innerKey = keys[0:31]
   innerIV = keys[32:43]
   innerPlaintext = DECRYPT(innerKey, innerIV, innerCiphertext[32:end])
-{% endhighlight %}
+```
 
 每个客户端授权
 ```````````````````````
@@ -998,17 +992,17 @@ innerInput = authCookie || subcredential || 发布的 时间戳
 
 ..
 
-{% highlight lang='text' %}
+```text
 authCookie = CSRNG(32)
   esk = 生成私钥()
   epk = DERIVE_PUBLIC(esk)
-{% endhighlight %}
+```
 
 然后对于每个授权的客户端，服务器将`authCookie`加密给该公钥：
 
 ..
 
-{% highlight lang='text' %}
+```text
 sharedSecret = DH(esk, cpk_i)
   authInput = sharedSecret || cpk_i || subcredential || 发布的 时间戳
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
@@ -1016,7 +1010,7 @@ sharedSecret = DH(esk, cpk_i)
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 在 layer 1 中服务器存储此``[clientID_i, clientCookie_i]`` 存放授权身份
 加密的 LS2 和``epk``。
@@ -1028,23 +1022,23 @@ sharedSecret = DH(esk, cpk_i)
 
 ..
 
-{% highlight lang='text' %}
+```text
 sharedSecret = DH(csk_i, epk)
   authInput = sharedSecret || cpk_i || subcredential || 发布的 时间戳
   okm = HKDF(epk, authInput, "ELS2_XCA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 然后客户在层1安装的数据中查找一个包含 clientID_i 的条目。
 如果存在匹配条目，则客户端可以进行解密，获取 authCookie：
 
 ..
 
-{% highlight lang='text' %}
+```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### 预共享密钥客户端授权
 每个客户生成一个秘密的32字节的密钥``psk_i``, 并发生给服务器。
@@ -1056,23 +1050,23 @@ authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
 
 ..
 
-{% highlight lang='text' %}
+```text
 authCookie = CSRNG(32)
   authSalt = CSRNG(32)
-{% endhighlight %}
+```
 
 每个授权的客户，服务器加密 authCookie 到它的预共享密钥：
 
 ..
 
-{% highlight lang='text' %}
+```text
 authInput = psk_i || subcredential || 发布的 时间戳
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
   clientCookie_i = ENCRYPT(clientKey_i, clientIV_i, authCookie)
-{% endhighlight %}
+```
 
 在 layer 1 中服务器放置每个``[clientID_i, clientCookie_i]`` 的记录
 加密的LS2连同authSalt储存
@@ -1084,22 +1078,22 @@ authInput = psk_i || subcredential || 发布的 时间戳
 
 ..
 
-{% highlight lang='text' %}
+```text
 authInput = psk_i || subcredential || 发布的 时间戳
   okm = HKDF(authSalt, authInput, "ELS2PSKA", 52)
   clientKey_i = okm[0:31]
   clientIV_i = okm[32:43]
   clientID_i = okm[44:51]
-{% endhighlight %}
+```
 
 然后客户在层1安装的数据中查找一个包含 clientID_i 的条目。
 如果存在匹配条目，则客户会解密以获取 authCookie：
 
 ..
 
-{% highlight lang='text' %}
+```text
 authCookie = DECRYPT(clientKey_i, clientIV_i, clientCookie_i)
-{% endhighlight %}
+```
 
 #### 安全考虑
 上述两个客户端认证机制均可为成员提供隐私。

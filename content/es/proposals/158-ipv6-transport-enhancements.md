@@ -38,14 +38,14 @@ La solución es añadir dos nuevas "capacidades" o capacidades a la Información
 
 ### Presentadores IPv6
 
-Nuestras especificaciones [SSU]_ y [SSU-SPEC]_ contienen errores e inconsistencias sobre si los presentadores IPv6 son compatibles para presentaciones IPv4.
+Nuestras especificaciones [SSU](/en/docs/transport/ssu/) y [SSU-SPEC](/en/docs/spec/ssu/) contienen errores e inconsistencias sobre si los presentadores IPv6 son compatibles para presentaciones IPv4.
 En cualquier caso, esto nunca se ha implementado ni en Java I2P ni en i2pd.
 Esto necesita ser corregido.
 
 
 ### Presentaciones IPv6
 
-Nuestras especificaciones [SSU]_ y [SSU-SPEC]_ dejan claro que
+Nuestras especificaciones [SSU](/en/docs/transport/ssu/) y [SSU-SPEC](/en/docs/spec/ssu/) dejan claro que
 las presentaciones IPv6 no son compatibles.
 Esto fue bajo la suposición de que IPv6 nunca está tras un cortafuegos.
 Esto claramente no es cierto, y necesitamos mejorar el soporte para routers IPv6 tras un cortafuegos.
@@ -57,65 +57,57 @@ Leyenda: ----- es IPv4, ====== es IPv6
 
 Actualmente solo IPv4:
 
-.. raw:: html
-
-  {% highlight %}
-        Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+```
+      Alice                         Bob                  Charlie
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 
 Introducción IPv4, presentador IPv6
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 Introducción IPv6, presentador IPv6
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 Introducción IPv6, presentador IPv4
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 
 ## Diseño
@@ -133,7 +125,7 @@ Hay tres cambios que se implementarán.
 ### Cap 4/6
 
 Esto se implementó originalmente sin una propuesta formal, pero es necesario para presentaciones IPv6, así que lo incluimos aquí.
-Ver también [CAPS]_.
+Ver también [CAPS](http://zzz.i2p/topics/3050).
 
 
 Se definen dos nuevas capacidades "4" y "6".
@@ -200,7 +192,7 @@ También hemos descrito esto como "parte 1" de la propuesta.
 
 #### Cambios en la Especificación
 
-[SSU]_ dice actualmente (notas IPv6):
+[SSU](/en/docs/transport/ssu/) dice actualmente (notas IPv6):
 
 IPv6 es soportado desde la versión 0.9.8. Las direcciones de retransmisión publicadas pueden ser IPv4 o IPv6, y la comunicación Alice-Bob puede ser a través de IPv4 o IPv6.
 
@@ -213,7 +205,7 @@ Por lo tanto, los routers solo deberían confiar en la capacidad 'C' en una dire
 
 
 
-[SSU-SPEC]_ dice actualmente (Solicitud de retransmisión):
+[SSU-SPEC](/en/docs/spec/ssu/) dice actualmente (Solicitud de retransmisión):
 
 La dirección IP solo se incluye si es diferente de la dirección y puerto de origen del paquete.
 En la implementación actual, la longitud de IP es siempre 0 y el puerto es siempre 0,
@@ -240,11 +232,11 @@ También hemos descrito esto como "parte 2" de la propuesta.
 
 #### Cambios en la Especificación
 
-[SSU]_ dice actualmente (notas IPv6):
+[SSU](/en/docs/transport/ssu/) dice actualmente (notas IPv6):
 
 La comunicación Bob-Charlie y Alice-Charlie es solo a través de IPv4.
 
-[SSU-SPEC]_ dice actualmente (Solicitud de retransmisión):
+[SSU-SPEC](/en/docs/spec/ssu/) dice actualmente (Solicitud de retransmisión):
 
 No hay planes para implementar retransmisión para IPv6.
 
@@ -252,7 +244,7 @@ Cambiar para decir:
 
 La retransmisión para IPv6 es soportada desde la versión 0.9.xx
 
-[SSU-SPEC]_ dice actualmente (Respuesta de retransmisión):
+[SSU-SPEC](/en/docs/spec/ssu/) dice actualmente (Respuesta de retransmisión):
 
 La dirección IP de Charlie debe ser IPv4, ya que esa es la dirección a la que Alice enviará la Solicitud de Sesión después del Hole Punch. No hay planes para implementar retransmisión para IPv6.
 
@@ -262,7 +254,7 @@ La dirección IP de Charlie puede ser IPv4 o, desde la versión 0.9.xx, IPv6.
 Esa es la dirección a la que Alice enviará la Solicitud de Sesión después del Hole Punch.
 La retransmisión para IPv6 es soportada desde la versión 0.9.xx
 
-[SSU-SPEC]_ dice actualmente (Introducción de retransmisión):
+[SSU-SPEC](/en/docs/spec/ssu/) dice actualmente (Introducción de retransmisión):
 
 La dirección IP de Alice siempre es de 4 bytes en la implementación actual, porque Alice está tratando de conectarse a Charlie vía IPv4.
 Este mensaje debe enviarse a través de una conexión IPv4 establecida,
@@ -287,21 +279,3 @@ Desde la versión 0.9.xx, cualquier dirección SSU publicada con presentadores d
 Todos los routers antiguos deben ignorar la propiedad caps en NTCP2 y los caracteres de capacidad desconocidos en la propiedad caps de SSU.
 
 Cualquier dirección SSU con presentadores que no contenga una cap "4" o "6" se asume que es para introducción IPv4.
-
-
-
-
-
-## Referencias
-
-.. [CAPS]
-    http://zzz.i2p/topics/3050
-
-.. [NTCP2]
-    {{ spec_url('ntcp2') }}
-
-.. [SSU]
-    {{ site_url('docs/transport/ssu', True) }}
-
-.. [SSU-SPEC]
-    {{ spec_url('ssu') }}

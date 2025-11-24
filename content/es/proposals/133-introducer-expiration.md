@@ -12,38 +12,34 @@ implementedin: "0.9.30"
 
 ## Descripción
 
-Esta propuesta trata sobre mejorar la tasa de éxito para las presentaciones. Ver
-[TRAC-TICKET]_.
+Esta propuesta trata sobre mejorar la tasa de éxito para las presentaciones.
 
 
 ## Motivación
 
 Los presentadores expiran después de un cierto tiempo, pero esa información no se publica en el
-[RouterInfo]_. Los routers actualmente deben usar heurísticas para estimar cuándo un
+RouterInfo. Los routers actualmente deben usar heurísticas para estimar cuándo un
 presentador ya no es válido.
 
 
 ## Diseño
 
-En una [RouterAddress]_ SSU que contiene presentadores, el publicador puede incluir opcionalmente
+En una RouterAddress SSU que contiene presentadores, el publicador puede incluir opcionalmente
 tiempos de expiración para cada presentador.
 
 
 ## Especificación
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```
 iexp{X}={nnnnnnnnnn}
 
-  X :: El número del presentador (0-2)
+X :: El número del presentador (0-2)
 
-  nnnnnnnnnn :: El tiempo en segundos (no ms) desde la época.
-{% endhighlight %}
+nnnnnnnnnn :: El tiempo en segundos (no ms) desde la época.
+```
 
-Notas
-`````
-* Cada expiración debe ser mayor que la fecha de publicación del [RouterInfo]_,
+### Notas
+* Cada expiración debe ser mayor que la fecha de publicación del RouterInfo,
   y menos de 6 horas después de la fecha de publicación del RouterInfo.
 
 * Los routers publicadores y presentadores deben intentar mantener al presentador válido
@@ -51,26 +47,13 @@ Notas
 
 * Los routers no deben usar un presentador publicado después de su expiración.
 
-* Las expiraciones de los presentadores están en el mapeo de [RouterAddress]_.
-  No son el campo de expiración de 8 bytes (actualmente no utilizado) en el [RouterAddress]_.
+* Las expiraciones de los presentadores están en el mapeo de RouterAddress.
+  No son el campo de expiración de 8 bytes (actualmente no utilizado) en el RouterAddress.
 
-Ejemplo: ``iexp0=1486309470``
+**Ejemplo:** `iexp0=1486309470`
 
 
 ## Migración
 
 No hay problemas. La implementación es opcional.
 La compatibilidad con versiones anteriores está asegurada, ya que los routers antiguos ignorarán parámetros desconocidos.
-
-
-
-## Referencias
-
-.. [RouterAddress]
-    {{ ctags_url('RouterAddress') }}
-
-.. [RouterInfo]
-    {{ ctags_url('RouterInfo') }}
-
-.. [TRAC-TICKET]
-    http://{{ i2pconv('trac.i2p2.i2p') }}/ticket/1352

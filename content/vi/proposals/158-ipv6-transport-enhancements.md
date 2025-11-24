@@ -42,7 +42,7 @@ Giải pháp là thêm hai "cap" mới hoặc khả năng vào Thông tin Router
 
 ### Người giới thiệu IPv6
 
-Các đặc tả [SSU]_ và [SSU-SPEC]_ của chúng tôi chứa các lỗi và sự không nhất quán về việc liệu
+Các đặc tả [SSU](/en/docs/transport/ssu/) và [SSU-SPEC](/en/docs/spec/ssu/) của chúng tôi chứa các lỗi và sự không nhất quán về việc liệu
 những người giới thiệu IPv6 có được hỗ trợ cho công việc giới thiệu IPv4 hay không.
 Trong mọi trường hợp, điều này chưa bao giờ được triển khai trong Java I2P hay i2pd.
 Điều này cần được sửa chữa.
@@ -50,7 +50,7 @@ Trong mọi trường hợp, điều này chưa bao giờ được triển khai 
 
 ### Giới thiệu IPv6
 
-Các đặc tả [SSU]_ và [SSU-SPEC]_ của chúng tôi làm rõ rằng
+Các đặc tả [SSU](/en/docs/transport/ssu/) và [SSU-SPEC](/en/docs/spec/ssu/) của chúng tôi làm rõ rằng
 giới thiệu IPv6 không được hỗ trợ.
 Điều này được đặt ra dưới giả định rằng IPv6 không bao giờ bị tường lửa bảo vệ.
 Đây là điều không đúng, và chúng ta cần cải thiện hỗ trợ cho các router IPv6 bị tường lửa bảo vệ.
@@ -62,65 +62,57 @@ Huyền thoại: ----- là IPv4, ====== là IPv6
 
 Chỉ IPv4 hiện tại:
 
-.. raw:: html
-
-  {% highlight %}
-        Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+```
+      Alice                         Bob                  Charlie
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 
 Giới thiệu IPv4, người giới thiệu IPv6
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ----------->
-         <-------------------------------------------- HolePunch
-    SessionRequest -------------------------------------------->
-         <-------------------------------------------- SessionCreated
-    SessionConfirmed ------------------------------------------>
-    Data <--------------------------------------------------> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ----------->
+       <-------------------------------------------- HolePunch
+  SessionRequest -------------------------------------------->
+       <-------------------------------------------- SessionCreated
+  SessionConfirmed ------------------------------------------>
+  Data <--------------------------------------------------> Data
+```
 
 Giới thiệu IPv6, người giới thiệu IPv6
 
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ======================>
-         <============== RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ======================>
+       <============== RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 Giới thiệu IPv6, người giới thiệu IPv4
 
-.. raw:: html
-
-  {% highlight %}
+```
 Alice                         Bob                  Charlie
-    RelayRequest ---------------------->
-         <-------------- RelayResponse    RelayIntro ===========>
-         <============================================ HolePunch
-    SessionRequest ============================================>
-         <============================================ SessionCreated
-    SessionConfirmed ==========================================>
-    Data <==================================================> Data
-{% endhighlight %}
+  RelayRequest ---------------------->
+       <-------------- RelayResponse    RelayIntro ===========>
+       <============================================ HolePunch
+  SessionRequest ============================================>
+       <============================================ SessionCreated
+  SessionConfirmed ==========================================>
+  Data <==================================================> Data
+```
 
 
 ## Thiết kế
@@ -139,7 +131,7 @@ Có ba thay đổi cần được thực hiện.
 
 Điều này ban đầu được triển khai mà không có đề xuất chính thức, nhưng nó là cần thiết cho
 giới thiệu IPv6, vì vậy chúng tôi bao gồm nó ở đây.
-Xem thêm [CAPS]_.
+Xem thêm [CAPS](http://zzz.i2p/topics/3050).
 
 Hai khả năng mới "4" và "6" được định nghĩa.
 Những khả năng mới này sẽ được thêm vào thuộc tính "caps" trong Địa chỉ Router, không phải trong khả năng Thông tin Router.
@@ -206,7 +198,7 @@ Chúng tôi cũng mô tả điều này như "phần 1" của đề xuất.
 
 #### Thay đổi đặc tả
 
-[SSU]_ hiện tại nói (ghi chú IPv6):
+[SSU](/en/docs/transport/ssu/) hiện tại nói (ghi chú IPv6):
 
 IPv6 được hỗ trợ kể từ phiên bản 0.9.8. Địa chỉ relay công bố có thể là IPv4 hoặc IPv6, và giao tiếp Alice-Bob có thể qua IPv4 hoặc IPv6.
 
@@ -219,7 +211,7 @@ Do đó, các router chỉ nên tin tưởng khả năng 'C' trên một địa 
 
 
 
-[SSU-SPEC]_ hiện tại nói (Relay Request):
+[SSU-SPEC](/en/docs/spec/ssu/) hiện tại nói (Relay Request):
 
 Địa chỉ IP chỉ được bao gồm nếu nó khác với địa chỉ nguồn của gói tin và cổng.
 Trong triển khai hiện tại, độ dài IP luôn là 0 và cổng luôn là 0,
@@ -247,11 +239,11 @@ Chúng tôi cũng mô tả điều này như "phần 2" của đề xuất.
 
 #### Thay đổi đặc tả
 
-[SSU]_ hiện tại nói (ghi chú IPv6):
+[SSU](/en/docs/transport/ssu/) hiện tại nói (ghi chú IPv6):
 
 Giao tiếp Bob-Charlie và Alice-Charlie chỉ qua IPv4.
 
-[SSU-SPEC]_ hiện tại nói (Relay Request):
+[SSU-SPEC](/en/docs/spec/ssu/) hiện tại nói (Relay Request):
 
 Không có kế hoạch triển khai relay cho IPv6.
 
@@ -259,7 +251,7 @@ Thay đổi để nói:
 
 Relay cho IPv6 được hỗ trợ kể từ phiên bản 0.9.xx
 
-[SSU-SPEC]_ hiện tại nói (Relay Response):
+[SSU-SPEC](/en/docs/spec/ssu/) hiện tại nói (Relay Response):
 
 Địa chỉ IP của Charlie phải là IPv4, vì đó là địa chỉ mà Alice sẽ gửi Yêu cầu Phiên tới sau khi thực hiện Hole Punch.
 Không có kế hoạch triển khai relay cho IPv6.
@@ -270,7 +262,7 @@ Thay đổi để nói:
 Đó là địa chỉ mà Alice sẽ gửi Yêu cầu Phiên tới sau khi thực hiện Hole Punch.
 Relay cho IPv6 được hỗ trợ kể từ phiên bản 0.9.xx
 
-[SSU-SPEC]_ hiện tại nói (Relay Intro):
+[SSU-SPEC](/en/docs/spec/ssu/) hiện tại nói (Relay Intro):
 
 Địa chỉ IP của Alice luôn là 4 byte trong triển khai hiện tại, bởi vì Alice đang cố gắng kết nối tới Charlie qua IPv4.
 Thông điệp này phải được gửi qua một kết nối IPv4 đã được thiết lập,
@@ -295,21 +287,3 @@ Kể từ phiên bản 0.9.xx, bất kỳ địa chỉ SSU nào được công b
 Tất cả các router cũ nên bỏ qua thuộc tính caps trong NTCP2, và các ký tự khả năng không xác định trong thuộc tính caps của SSU.
 
 Bất kỳ địa chỉ SSU nào có người giới thiệu mà không chứa khả năng "4" hoặc "6" được giả định là cho việc giới thiệu IPv4.
-
-
-
-
-
-## Tham khảo
-
-.. [CAPS]
-    http://zzz.i2p/topics/3050
-
-.. [NTCP2]
-    {{ spec_url('ntcp2') }}
-
-.. [SSU]
-    {{ site_url('docs/transport/ssu', True) }}
-
-.. [SSU-SPEC]
-    {{ spec_url('ssu') }}
