@@ -361,52 +361,76 @@
         if (!pollModal) return;
 
         const pollClose = document.getElementById('poll-close');
-        const pollContainer = document.getElementById('poll-widget-container');
-        let widgetLoaded = false;
+        const pollWidget = document.getElementById('poll-widget');
+        let widgetScriptLoaded = false;
 
-        // Load widget on first open
-        function loadWidget() {
-            if (widgetLoaded || !pollContainer) return;
+        // Load widget script dynamically when needed
+        function loadWidgetScript() {
+            // Check if script is already loaded
+            if (widgetScriptLoaded || document.querySelector('script[src*="voting.js"]')) {
+                widgetScriptLoaded = true;
+                return Promise.resolve();
+            }
 
-            const apiUrl = window.pollApiUrl || 'https://feedback.i2p.net';
-            const pollId = window.pollId || '1';
+            return new Promise(function(resolve, reject) {
+                const script = document.createElement('script');
+                script.src = 'https://feedback.i2p.net/widgets/voting.js';
+                script.async = true;
+                script.onload = function() {
+                    console.log('[Poll] Widget script loaded successfully');
+                    widgetScriptLoaded = true;
+                    resolve();
+                };
+                script.onerror = function() {
+                    console.error('[Poll] Failed to load widget script');
+                    reject(new Error('Failed to load voting widget script'));
+                };
+                document.body.appendChild(script);
+            });
+        }
 
-            // Create widget div
-            const widgetDiv = document.createElement('div');
-            widgetDiv.id = 'poll-widget';
-            widgetDiv.setAttribute('data-poll-id', pollId);
-            widgetDiv.setAttribute('data-api-url', apiUrl);
-            widgetDiv.setAttribute('data-show-results', 'true');
+        // Initialize widget when modal opens
+        function initializeWidget() {
+            if (!pollWidget) {
+                console.error('[Poll] Widget element not found');
+                return;
+            }
 
-            // Replace container contents
-            pollContainer.innerHTML = '';
-            pollContainer.appendChild(widgetDiv);
+            // Get API URL and poll ID from data attributes or defaults
+            const apiUrl = pollWidget.getAttribute('data-api-url') || window.pollApiUrl || 'https://feedback.i2p.net';
+            const pollId = pollWidget.getAttribute('data-poll-id') || window.pollId || '1';
 
-            // Load widget script
-            const script = document.createElement('script');
-            script.src = 'https://feedback.i2p.net/widgets/voting.js';
-            script.onload = function() {
-                console.log('[Poll] Widget loaded successfully');
-                widgetLoaded = true;
-            };
-            script.onerror = function() {
-                console.error('[Poll] Failed to load widget');
-                pollContainer.innerHTML = '<p class="poll-error">Failed to load poll. Please try again later.</p>';
-            };
-            document.body.appendChild(script);
+            // Update attributes if needed
+            pollWidget.setAttribute('data-poll-id', pollId);
+            pollWidget.setAttribute('data-api-url', apiUrl);
+            pollWidget.setAttribute('data-show-results', 'true');
 
-            widgetLoaded = true;
+            console.log('[Poll] Widget element ready, poll ID:', pollId, 'API URL:', apiUrl);
+            
+            // Force a reflow to help trigger any observers that might be watching for visibility
+            void pollWidget.offsetHeight;
         }
 
         // Open modal
         function openModal() {
-            // Load widget on first open
-            if (!widgetLoaded) {
-                loadWidget();
-            }
-
             pollModal.classList.add('show');
             document.body.style.overflow = 'hidden';
+            
+            // Load widget script and initialize when modal is shown
+            // Use a small delay to ensure the modal is visible and CSS transitions complete
+            setTimeout(function() {
+                loadWidgetScript()
+                    .then(function() {
+                        // Script loaded, now initialize the widget
+                        initializeWidget();
+                    })
+                    .catch(function(error) {
+                        console.error('[Poll] Error loading widget:', error);
+                        if (pollWidget) {
+                            pollWidget.innerHTML = '<p class="poll-error">Failed to load poll. Please try again later.</p>';
+                        }
+                    });
+            }, 150);
         }
 
         // Close modal

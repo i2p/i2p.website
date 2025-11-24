@@ -75,10 +75,7 @@
     <!-- Feature Request Widget Script -->
     <script src="https://feedback.i2p.net/widgets/features.js"></script>
 
-    <!-- Poll Widget Script -->
-    {{ if .Site.Params.poll.enabled }}
-    <script src="https://feedback.i2p.net/widgets/voting.js"></script>
-    {{ end }}
+    <!-- Poll Widget Script is loaded dynamically when the modal opens -->
 
     {{ block "scripts" . }}{{ end }}
 </body>
