@@ -13,15 +13,15 @@ implementedin: "0.9.48"
 ## Remarque
 Déploiement et test du réseau en cours.
 Sujet à des révisions mineures.
-Voir [SPEC]_ pour les spécifications officielles.
+Voir [SPEC](/en/docs/spec/) pour les spécifications officielles.
 
 
 ## Vue d'ensemble
 
 Ce document propose des changements à l'encryption du message de construction de tunnel
-en utilisant les primitives cryptographiques introduites par [ECIES-X25519]_.
+en utilisant les primitives cryptographiques introduites par [ECIES-X25519](/en/docs/spec/ecies/).
 Cela fait partie de la proposition globale
-[Prop156]_ pour convertir les routeurs d'ElGamal à des clés ECIES-X25519.
+[Prop156](/en/proposals/156-ecies-routers/) pour convertir les routeurs d'ElGamal à des clés ECIES-X25519.
 
 Dans le but de faire passer le réseau d'ElGamal + AES256 à ECIES + ChaCha20,
 des tunnels avec des routeurs ElGamal et ECIES mixtes sont nécessaires.
@@ -32,27 +32,27 @@ Les créateurs de tunnels ElGamal devront créer des paires de clés X25519 éph
 suivre cette spécification pour créer des tunnels contenant des sauts ECIES.
 
 Cette proposition spécifie les changements nécessaires pour la construction de tunnels ECIES-X25519.
-Pour un aperçu de tous les changements requis pour les routeurs ECIES, voir la proposition 156 [Prop156]_.
+Pour un aperçu de tous les changements requis pour les routeurs ECIES, voir la proposition 156 [Prop156](/en/proposals/156-ecies-routers/).
 
 Cette proposition maintient la même taille pour les enregistrements de construction de tunnel,
 comme requis pour la compatibilité. Des enregistrements et messages de construction plus petits seront
-implémentés ultérieurement - voir [Prop157]_.
+implémentés ultérieurement - voir [Prop157](/en/proposals/157-new-tbm/).
 
 
 ### Primitives cryptographiques
 
 Aucune nouvelle primitive cryptographique n'est introduite. Les primitives nécessaires pour implémenter cette proposition sont :
 
-- AES-256-CBC comme dans [Cryptography]_
+- AES-256-CBC comme dans [Cryptography](/en/docs/spec/cryptography/)
 - Fonctions STREAM ChaCha20/Poly1305 :
-  ENCRYPT(k, n, plaintexte, ad) et DECRYPT(k, n, chiffretexte, ad) - comme dans [NTCP2]_ [ECIES-X25519]_ et [RFC-7539]_
-- Fonctions DH X25519 - comme dans [NTCP2]_ et [ECIES-X25519]_
-- HKDF(salt, ikm, info, n) - comme dans [NTCP2]_ et [ECIES-X25519]_
+  ENCRYPT(k, n, plaintexte, ad) et DECRYPT(k, n, chiffretexte, ad) - comme dans [NTCP2](/en/docs/spec/ntcp2/) [ECIES-X25519](/en/docs/spec/ecies/) et [RFC-7539](https://tools.ietf.org/html/rfc7539)
+- Fonctions DH X25519 - comme dans [NTCP2](/en/docs/spec/ntcp2/) et [ECIES-X25519](/en/docs/spec/ecies/)
+- HKDF(salt, ikm, info, n) - comme dans [NTCP2](/en/docs/spec/ntcp2/) et [ECIES-X25519](/en/docs/spec/ecies/)
 
 Autres fonctions Noise définies ailleurs :
 
-- MixHash(d) - comme dans [NTCP2]_ et [ECIES-X25519]_
-- MixKey(d) - comme dans [NTCP2]_ et [ECIES-X25519]_
+- MixHash(d) - comme dans [NTCP2](/en/docs/spec/ntcp2/) et [ECIES-X25519](/en/docs/spec/ecies/)
+- MixKey(d) - comme dans [NTCP2](/en/docs/spec/ntcp2/) et [ECIES-X25519](/en/docs/spec/ecies/)
 
 
 ### Objectifs
@@ -76,7 +76,7 @@ Autres fonctions Noise définies ailleurs :
   car il se peut qu'ils n'aient pas l'RI du prochain saut à ce moment-là
 - Maximiser la compatibilité avec le réseau actuel
 - Pas de changement à l'encryption de requête/réponse AES de construction de tunnel pour les routeurs ElGamal
-- Pas de changement à l'encryption AES "couche" de tunnel, pour cela voir [Prop153]_
+- Pas de changement à l'encryption AES "couche" de tunnel, pour cela voir [Prop153](/en/proposals/153-chacha20-layer-encryption/)
 - Continuer à supporter la taille variable 8-record TBM/TBRM et VTBM/VTBRM
 - Ne pas exiger la mise à jour de l'intégralité du réseau pour un "jour du drapeau"
 
@@ -85,9 +85,9 @@ Autres fonctions Noise définies ailleurs :
 
 - Redesign complet des messages de construction de tunnel nécessitant un "jour du drapeau".
 - Réduction de la taille des messages de construction de tunnel (nécessite tous les sauts ECIES et une nouvelle proposition)
-- Utilisation des options de construction de tunnel comme définies dans [Prop143]_, seulement nécessaires pour les petits messages
-- Tunnels bidirectionnels - pour cela voir [Prop119]_
-- Messages de construction de tunnel plus petits - pour cela voir [Prop157]_
+- Utilisation des options de construction de tunnel comme définies dans [Prop143](/en/proposals/143-build-message-options/), seulement nécessaires pour les petits messages
+- Tunnels bidirectionnels - pour cela voir [Prop119](/en/proposals/119-bidirectional-tunnels/)
+- Messages de construction de tunnel plus petits - pour cela voir [Prop157](/en/proposals/157-new-tbm/)
 
 
 ## Modèle de menace
@@ -146,7 +146,7 @@ TODO: La conception actuelle empêche-t-elle toutes ces attaques?
 ### Cadre du protocole Noise
 
 Cette proposition fournit les exigences basées sur le cadre du protocole Noise
-[NOISE]_ (Révision 34, 2018-07-11).
+[NOISE](https://noiseprotocol.org/noise.html) (Révision 34, 2018-07-11).
 Dans le parlance Noise, Alice est l'initiateur, et Bob est le répondeur.
 
 Cette proposition est basée sur le protocole Noise Noise_N_25519_ChaChaPoly_SHA256.
@@ -156,12 +156,12 @@ Ce protocole Noise utilise les primitives suivantes :
   Alice ne transmet pas sa clé statique à Bob (N)
 
 - Fonction DH : X25519  
-  X25519 DH avec une longueur de clé de 32 octets comme spécifié dans [RFC-7748]_.
+  X25519 DH avec une longueur de clé de 32 octets comme spécifié dans [RFC-7748](https://tools.ietf.org/html/rfc7748).
 
 - Fonction de chiffrement : ChaChaPoly  
-  AEAD_CHACHA20_POLY1305 comme spécifié dans [RFC-7539]_ section 2.8.
+  AEAD_CHACHA20_POLY1305 comme spécifié dans [RFC-7539](https://tools.ietf.org/html/rfc7539) section 2.8.
   Nonce de 12 octets, avec les premiers 4 octets mis à zéro.
-  Identique à celle dans [NTCP2]_.
+  Identique à celle dans [NTCP2](/en/docs/spec/ntcp2/).
 
 - Fonction de hachage : SHA256  
   Hachage standard de 32 octets, déjà utilisé extensivement dans I2P.
@@ -184,23 +184,26 @@ La cartographie de lettres suivante est utilisée :
 - p = chargement du message
 
 La demande de construction est identique au modèle Noise N.
-Ceci est également identique au premier message (Demande de session) dans le modèle XK utilisé dans [NTCP2]_.
+Ceci est également identique au premier message (Demande de session) dans le modèle XK utilisé dans [NTCP2](/en/docs/spec/ntcp2/).
 
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es p ->
 
-{% endhighlight %}
+
+
+
+
+  ```
 
 
 ### Chiffrement des demandes
 
 Les enregistrements de demande de construction sont créés par le créateur de tunnel et asymétriquement encryptés pour le saut individuel.
-Cette encryption asymétrique des enregistrements de demande est actuellement ElGamal comme défini dans [Cryptography]_
+Cette encryption asymétrique des enregistrements de demande est actuellement ElGamal comme défini dans [Cryptography](/en/docs/spec/cryptography/)
 et contient une somme de contrôle SHA-256. Cette conception n'est pas secrète en avant.
 
 La nouvelle conception utilisera le modèle Noise unidirectionnel "N" avec ECIES-X25519 DH éphémère-statique, avec un HKDF, et
@@ -210,9 +213,8 @@ Alice est le demandeur de construction de tunnel. Chaque saut dans le tunnel est
 
 (Propriétés de sécurité du chargement)
 
-.. raw:: html
+  ```text
 
-  {% highlight lang='text' %}
 N:                      Authentification   Confidentialité
     -> e, es                  0                2
 
@@ -236,7 +238,10 @@ N:                      Authentification   Confidentialité
 
 
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
@@ -271,17 +276,16 @@ Les enregistrements BuildRequest encryptés ont une taille de 528 octets pour El
 Enregistrement de requête non encrypté (ElGamal)
 ```````````````````````````````````````````
 
-A titre de référence, voici la spécification actuelle de l'enregistrement BuildRequest de tunnel pour les routeurs ElGamal, tirée de [I2NP]_.
+A titre de référence, voici la spécification actuelle de l'enregistrement BuildRequest de tunnel pour les routeurs ElGamal, tirée de [I2NP](/en/docs/spec/i2np/).
 Les données non encryptées sont précédées d'un octet non nul et du hash SHA-256 des données avant l'encryption,
-comme défini dans [Cryptography]_.
+comme défini dans [Cryptography](/en/docs/spec/cryptography/).
 
 Tous les champs sont en big-endian.
 
 Taille non encryptée : 222 octets
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 octets     0-3: ID de tunnel pour recevoir les messages, non nul
   octets    4-35: hash d'identité du routeur local
@@ -296,24 +300,29 @@ octets     0-3: ID de tunnel pour recevoir les messages, non nul
   octets 189-192: prochain ID de message
   octets 193-221: remplissage aléatoire / non interprété
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 Enregistrement de requête encrypté (ElGamal)
 ```````````````````````````````````````````
 
-A titre de référence, voici la spécification actuelle de l'enregistrement BuildRequest de tunnel pour les routeurs ElGamal, tirée de [I2NP]_.
+A titre de référence, voici la spécification actuelle de l'enregistrement BuildRequest de tunnel pour les routeurs ElGamal, tirée de [I2NP](/en/docs/spec/i2np/).
 
 Taille encryptée : 528 octets
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 octets    0-15: hash d'identité tronqué du saut
   octets  16-528: BuildRequestRecord encrypté avec ElGamal
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
@@ -339,9 +348,8 @@ Tous les champs sont en big-endian.
 
 Taille non encryptée : 464 octets
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 octets     0-3: ID de tunnel pour recevoir les messages, non nul
   octets     4-7: prochain ID de tunnel, non nul
@@ -359,9 +367,12 @@ octets     0-3: ID de tunnel pour recevoir les messages, non nul
   octets     x-x: autres données comme impliquées par les drapeaux ou options
   octets   x-463: remplissage aléatoire
 
-{% endhighlight %}
 
-Le champ de drapeaux est le même que celui défini dans [Tunnel-Creation]_ et contient ce qui suit ::
+
+
+  ```
+
+Le champ de drapeaux est le même que celui défini dans [Tunnel-Creation](/en/docs/spec/tunnel-creation/) et contient ce qui suit ::
 
  Ordre des bits : 76543210 (bit 7 est MSB)
  bit 7: si configuré, permet les messages de tout le monde
@@ -376,7 +387,7 @@ attribué, le saut sera un participant intermédiaire. Les deux ne peuvent pas �
 L'expiration de la demande est pour la durée variable future du tunnel.
 Pour le moment, la seule valeur prise en charge est 600 (10 minutes).
 
-Les options de construction de tunnel sont une structure de Mapping comme définie dans [Common]_.
+Les options de construction de tunnel sont une structure de Mapping comme définie dans [Common](/en/docs/spec/common-structures/).
 C'est pour une utilisation future. Aucune option n'est actuellement définie.
 Si la structure de Mapping est vide, cela correspond à deux octets 0x00 0x00.
 La taille maximale du Mapping (y compris le champ de longueur) est de 296 octets,
@@ -391,16 +402,18 @@ Tous les champs sont en big-endian sauf pour la clé publique éphémère qui es
 
 Taille encryptée : 528 octets
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 octets    0-15: hash d'identité tronqué du saut
   octets   16-47: clé publique X25519 éphémère de l'expéditeur
   octets  48-511: BuildRequestRecord encrypté avec ChaCha20
   octets 512-527: MAC Poly1305
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
@@ -417,9 +430,8 @@ Tous les champs sont en big-endian.
 
 Taille non encryptée : 528 octets
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 octets   0-31: Hash SHA-256 des octets 32-527
   octets 32-526: données aléatoires
@@ -427,7 +439,10 @@ octets   0-31: Hash SHA-256 des octets 32-527
 
   longueur totale : 528
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 Enregistrement de réponse non encrypté (ECIES)
@@ -444,25 +459,27 @@ Tous les champs sont en big-endian.
 
 Taille non encryptée : 512 octets
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 octets    0-x: Options de réponse de construction de tunnel (Mapping)
   octets    x-x: autres données comme impliquées par les options
   octets  x-510: Remplissage aléatoire
   octet     511: Octet de réponse
 
-{% endhighlight %}
 
-Les options de réponse de construction de tunnel sont une structure de Mapping comme définie dans [Common]_.
+
+
+  ```
+
+Les options de réponse de construction de tunnel sont une structure de Mapping comme définie dans [Common](/en/docs/spec/common-structures/).
 C'est pour une utilisation future. Aucune option n'est actuellement définie.
 Si la structure de Mapping est vide, cela correspond à deux octets 0x00 0x00.
 La taille maximale du Mapping (y compris le champ de longueur) est de 511 octets,
 et la valeur maximale du champ de longueur du Mapping est de 509.
 
 L'octet de réponse est l'une des valeurs suivantes
-comme défini dans [Tunnel-Creation]_ pour éviter l'empreinte digitale :
+comme défini dans [Tunnel-Creation](/en/docs/spec/tunnel-creation/) pour éviter l'empreinte digitale :
 
 - 0x00 (acceptation)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -473,14 +490,16 @@ Enregistrement de réponse encrypté (ECIES)
 
 Taille encryptée : 528 octets
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 octets   0-511: BuildReplyRecord encrypté avec ChaCha20
   octets 512-527: MAC Poly1305
 
-{% endhighlight %}
+
+
+
+  ```
 
 Après la transition complète vers les enregistrements ECIES, les règles de remplissage en plage sont les mêmes que pour les enregistrements de demande.
 
@@ -514,7 +533,7 @@ du BuildRequestRecord sur le type d'encryption du saut actuel et précédent.
 Chaque saut utilisera son propre type d'encryption pour l'encryption des BuildReplyRecords, et des autres
 enregistrements dans le VariableTunnelBuildMessage (VTBM).
 
-Sur le chemin de retour, le point final (l'émetteur) devra annuler le [Multiple-Encryption]_, en utilisant la clé de réponse de chaque saut.
+Sur le chemin de retour, le point final (l'émetteur) devra annuler le [Multiple-Encryption](https://en.wikipedia.org/wiki/Multiple_encryption), en utilisant la clé de réponse de chaque saut.
 
 En tant qu'exemple clarificateur, examinons un tunnel sortant avec ECIES entouré par ElGamal :
 
@@ -581,7 +600,7 @@ Le créateur du tunnel, c'est-à-dire le point final entrant (IBEP), post-traite
 Ces clés sont explicitement incluses dans les BuildRequestRecords ElGamal.
 Pour les BuildRequestRecords ECIES, les clés de tunnel et les clés de réponse AES sont incluses,
 mais les clés de réponse ChaCha sont dérivées de l'échange DH.
-Voir [Prop156]_ pour les détails des clés ECIES statiques de routeur.
+Voir [Prop156](/en/proposals/156-ecies-routers/) pour les détails des clés ECIES statiques de routeur.
 
 Ci-dessous est une description de comment dériver les clés précédemment transmises dans les enregistrements de demande.
 
@@ -589,11 +608,10 @@ Ci-dessous est une description de comment dériver les clés précédemment tran
 KDF pour le ck et h initial
 ``````````````````````````
 
-Ceci est le standard [NOISE]_ pour le modèle "N" avec un nom de protocole standard.
+Ceci est le standard [NOISE](https://noiseprotocol.org/noise.html) pour le modèle "N" avec un nom de protocole standard.
 
-.. raw:: html
+  ```text
 
-  {% highlight lang='text' %}
 Ceci est le modèle de message "e" :
 
   // Définir protocol_name.
@@ -612,7 +630,10 @@ Ceci est le modèle de message "e" :
 
   // jusque-là, peut être précalculé par tous les routeurs.
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 KDF pour l'enregistrement de demande
@@ -623,7 +644,7 @@ saut ECIES dans le tunnel, et utilisent le schéma ci-dessus pour chiffrer leur 
 Les créateurs de tunnels ElGamal utiliseront le schéma avant cette spécification pour chiffrer des sauts ElGamal.
 
 Les créateurs de tunnels ECIES devront chiffrer avec la clé publique de chaque saut ElGamal en utilisant le
-schéma défini dans [Tunnel-Creation]_. Les créateurs de tunnels ECIES utiliseront le schéma ci-dessus pour chiffrer
+schéma défini dans [Tunnel-Creation](/en/docs/spec/tunnel-creation/). Les créateurs de tunnels ECIES utiliseront le schéma ci-dessus pour chiffrer
 des sauts ECIES.
 
 Cela signifie que les sauts de tunnel verront seulement les enregistrements chiffrés avec leur même type de chiffrement.
@@ -636,9 +657,8 @@ Les clés éphémères doivent être uniques par saut ECIES et par enregistremen
 Le fait de ne pas utiliser des clés uniques ouvre une vecteur d'attaque pour des sauts collusoires pour confirmer qu'ils sont dans le même tunnel.
 
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 // Chaque paire de clés statiques X25519 de saut (hesk, hepk) depuis l'identité du routeur
   hesk = GENERATE_PRIVATE()
@@ -688,7 +708,11 @@ Le fait de ne pas utiliser des clés uniques ouvre une vecteur d'attaque pour de
   // Sauvegarder pour KDF de l'enregistrement de réponse
   h = SHA256(h || ciphertext)
 
-{% endhighlight %}
+
+
+
+
+  ```
 
 ``replyKey``, ``layerKey`` et ``layerIV`` doivent encore être incluses dans les enregistrements ElGamal,
 et peuvent être générées aléatoirement.
@@ -696,7 +720,7 @@ et peuvent être générées aléatoirement.
 
 ### Chiffrement des enregistrements de demande (ElGamal)
 
-Comme défini dans [Tunnel-Creation]_.
+Comme défini dans [Tunnel-Creation](/en/docs/spec/tunnel-creation/).
 Il n'y a aucun changement à l'encryption pour les sauts ElGamal.
 
 
@@ -706,9 +730,8 @@ Il n'y a aucun changement à l'encryption pour les sauts ElGamal.
 
 L'enregistrement de réponse est encrypté ChaCha20/Poly1305.
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 // Paramètres AEAD
   k = chainkey de la demande de construction
@@ -718,13 +741,16 @@ L'enregistrement de réponse est encrypté ChaCha20/Poly1305.
 
   ciphertext = ENCRYPT(k, n, plaintext, ad)
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
 ### Chiffrement des enregistrements de réponse (ElGamal)
 
-Comme défini dans [Tunnel-Creation]_.
+Comme défini dans [Tunnel-Creation](/en/docs/spec/tunnel-creation/).
 Il n'y a aucun changement à l'encryption pour les sauts ElGamal.
 
 
@@ -769,7 +795,7 @@ Cette conception minimise le risque.
 
 ## Migration
 
-Voir [Prop156]_.
+Voir [Prop156](/en/proposals/156-ecies-routers/).
 
 
 

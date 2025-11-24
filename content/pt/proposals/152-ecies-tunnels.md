@@ -13,15 +13,15 @@ implementedin: "0.9.48"
 ## Nota
 Implantação e teste na rede em andamento.
 Sujeito a revisões menores.
-Veja [SPEC]_ para a especificação oficial.
+Veja [SPEC](/en/docs/spec/) para a especificação oficial.
 
 
 ## Visão Geral
 
 Este documento propõe mudanças na criptografia de mensagem de Construção de Túneis
-usando primitivas criptográficas introduzidas por [ECIES-X25519]_.
+usando primitivas criptográficas introduzidas por [ECIES-X25519](/en/docs/spec/ecies/).
 É uma parte da proposta geral
-[Prop156]_ para converter roteadores de chaves ElGamal para ECIES-X25519.
+[Prop156](/en/proposals/156-ecies-routers/) para converter roteadores de chaves ElGamal para ECIES-X25519.
 
 Para os propósitos de transição da rede de ElGamal + AES256 para ECIES + ChaCha20,
 são necessários túneis com roteadores ElGamal e ECIES mistos.
@@ -32,27 +32,27 @@ Criadores de túneis ElGamal precisarão criar pares de chaves X25519 efêmeras 
 seguir esta especificação para criar túneis contendo saltos ECIES.
 
 Esta proposta especifica as mudanças necessárias para Construção de Túneis ECIES-X25519.
-Para uma visão geral de todas as mudanças necessárias para roteadores ECIES, veja a proposta 156 [Prop156]_.
+Para uma visão geral de todas as mudanças necessárias para roteadores ECIES, veja a proposta 156 [Prop156](/en/proposals/156-ecies-routers/).
 
 Esta proposta mantém o mesmo tamanho para registros de construção de túneis,
 como exigido para compatibilidade. Registros e mensagens de construção menores serão
-implementados mais tarde - veja [Prop157]_.
+implementados mais tarde - veja [Prop157](/en/proposals/157-new-tbm/).
 
 
 ### Primitivas Criptográficas
 
 Não são introduzidas novas primitivas criptográficas. As primitivas necessárias para implementar esta proposta são:
 
-- AES-256-CBC como em [Criptografia]_
+- AES-256-CBC como em [Criptografia](/en/docs/spec/cryptography/)
 - Funções STREAM ChaCha20/Poly1305:
-  ENCRYPT(k, n, plaintext, ad) e DECRYPT(k, n, ciphertext, ad) - como em [NTCP2]_ [ECIES-X25519]_ e [RFC-7539]_
-- Funções DH X25519 - como em [NTCP2]_ e [ECIES-X25519]_
-- HKDF(salt, ikm, info, n) - como em [NTCP2]_ e [ECIES-X25519]_
+  ENCRYPT(k, n, plaintext, ad) e DECRYPT(k, n, ciphertext, ad) - como em [NTCP2](/en/docs/spec/ntcp2/) [ECIES-X25519](/en/docs/spec/ecies/) e [RFC-7539](https://tools.ietf.org/html/rfc7539)
+- Funções DH X25519 - como em [NTCP2](/en/docs/spec/ntcp2/) e [ECIES-X25519](/en/docs/spec/ecies/)
+- HKDF(salt, ikm, info, n) - como em [NTCP2](/en/docs/spec/ntcp2/) e [ECIES-X25519](/en/docs/spec/ecies/)
 
 Outras funções Noise definidas em outros lugares:
 
-- MixHash(d) - como em [NTCP2]_ e [ECIES-X25519]_
-- MixKey(d) - como em [NTCP2]_ e [ECIES-X25519]_
+- MixHash(d) - como em [NTCP2](/en/docs/spec/ntcp2/) e [ECIES-X25519](/en/docs/spec/ecies/)
+- MixKey(d) - como em [NTCP2](/en/docs/spec/ntcp2/) e [ECIES-X25519](/en/docs/spec/ecies/)
 
 
 ### Objetivos
@@ -76,7 +76,7 @@ Outras funções Noise definidas em outros lugares:
   pois podem não ter o RI do próximo salto naquele momento
 - Maximizar compatibilidade com a rede atual
 - Sem alterações na criptografia de solicitação/resposta AES de construção de túnel para roteadores ElGamal
-- Sem alteração na criptografia "de camada" AES de túnel, para isso veja [Prop153]_
+- Sem alteração na criptografia "de camada" AES de túnel, para isso veja [Prop153](/en/proposals/153-chacha20-layer-encryption/)
 - Continuar a suportar tanto TBM/TBRM de 8 registros quanto VTBM/VTBRM de tamanho variável
 - Não exigir atualização de "dia da bandeira" para toda a rede
 
@@ -85,9 +85,9 @@ Outras funções Noise definidas em outros lugares:
 
 - Redesenho completo de mensagens de construção de túnel requerendo um "dia da bandeira".
 - Encolhimento de mensagens de construção de túnel (requer todos os saltos ECIES e uma nova proposta)
-- Uso de opções de construção de túnel como definido em [Prop143]_, só necessário para mensagens pequenas
-- Túneis bidirecionais - para isso veja [Prop119]_
-- Mensagens de construção de túnel menores - para isso veja [Prop157]_
+- Uso de opções de construção de túnel como definido em [Prop143](/en/proposals/143-build-message-options/), só necessário para mensagens pequenas
+- Túneis bidirecionais - para isso veja [Prop119](/en/proposals/119-bidirectional-tunnels/)
+- Mensagens de construção de túnel menores - para isso veja [Prop157](/en/proposals/157-new-tbm/)
 
 
 ## Modelo de Ameaças
@@ -146,7 +146,7 @@ TODO: O design atual previne todos esses ataques?
 ### Estrutura do Protocolo Noise
 
 Esta proposta fornece os requisitos com base na Estrutura do Protocolo Noise
-[NOISE]_ (Revisão 34, 2018-07-11).
+[NOISE](https://noiseprotocol.org/noise.html) (Revisão 34, 2018-07-11).
 Na linguagem Noise, Alice é a iniciadora, e Bob é o respondedor.
 
 Esta proposta baseia-se no protocolo Noise Noise_N_25519_ChaChaPoly_SHA256.
@@ -156,12 +156,12 @@ Este protocolo Noise usa as seguintes primitivas:
   Alice não transmite sua chave estática para Bob (N)
 
 - Função DH: X25519
-  X25519 DH com um comprimento de chave de 32 bytes conforme especificado em [RFC-7748]_.
+  X25519 DH com um comprimento de chave de 32 bytes conforme especificado em [RFC-7748](https://tools.ietf.org/html/rfc7748).
 
 - Função de Cifra: ChaChaPoly
-  AEAD_CHACHA20_POLY1305 conforme especificado em [RFC-7539]_ seção 2.8.
+  AEAD_CHACHA20_POLY1305 conforme especificado em [RFC-7539](https://tools.ietf.org/html/rfc7539) seção 2.8.
   Nonce de 12 bytes, com os primeiros 4 bytes definidos como zero.
-  Idêntico ao em [NTCP2]_.
+  Idêntico ao em [NTCP2](/en/docs/spec/ntcp2/).
 
 - Função de Hash: SHA256
   Hash padrão de 32 bytes, já usado extensivamente no I2P.
@@ -175,7 +175,7 @@ Nenhuma.
 
 ### Padrões de Handshake
 
-Os handshakes usam padrões de handshake [Noise]_.
+Os handshakes usam padrões de handshake [Noise](https://noiseprotocol.org/noise.html).
 
 A seguinte correspondência de letras é usada:
 
@@ -184,23 +184,26 @@ A seguinte correspondência de letras é usada:
 - p = payload de mensagem
 
 A solicitação de construção é idêntica ao padrão Noise N.
-Isso também é idêntico à primeira mensagem (Solicitação de Sessão) no padrão XK usado em [NTCP2]_.
+Isso também é idêntico à primeira mensagem (Solicitação de Sessão) no padrão XK usado em [NTCP2](/en/docs/spec/ntcp2/).
 
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es p ->
 
-{% endhighlight %}
+
+
+
+
+  ```
 
 
 ### Criptografia de Solicitação
 
 Registros de Solicitação de Construção são criados pelo criador do túnel e assimetricamente criptografados para o salto individual.
-Esta criptografia assimétrica dos registros de solicitação atualmente é ElGamal conforme definido em [Criptografia]_
+Esta criptografia assimétrica dos registros de solicitação atualmente é ElGamal conforme definido em [Criptografia](/en/docs/spec/cryptography/)
 e contém um checksum SHA-256. Este design não é sigilo futuro.
 
 O novo design usará o padrão One-Way "N" do Noise com ECIES-X25519 efêmero-estático DH, com um HKDF, e
@@ -210,9 +213,8 @@ Alice é a solicitante de construção de túnel. Cada salto no túnel é um Bob
 
 (Propriedades de Segurança do Payload)
 
-.. raw:: html
+  ```text
 
-  {% highlight lang='text' %}
 N:                      Autenticação   Confidencialidade
     -> e, es                  0                2
 
@@ -234,7 +236,10 @@ N:                      Autenticação   Confidencialidade
           derivar um novo ck e k, e n é configurado para zero.
 
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
@@ -269,17 +274,16 @@ BuildRequestRecords criptografados são 528 bytes para ambos ElGamal e ECIES, pa
 Registro de Solicitação Não Criptografado (ElGamal)
 ``````````````````````````````````````````````````
 
-Para referência, esta é a especificação atual do BuildRequestRecord de túnel para roteadores ElGamal, retirada de [I2NP]_.
+Para referência, esta é a especificação atual do BuildRequestRecord de túnel para roteadores ElGamal, retirada de [I2NP](/en/docs/spec/i2np/).
 Os dados não criptografados são precedidos por um byte não zero e o hash SHA-256 dos dados antes da criptografia,
-conforme definido em [Criptografia]_.
+conforme definido em [Criptografia](/en/docs/spec/cryptography/).
 
 Todos os campos são em big-endian.
 
 Tamanho não criptografado: 222 bytes
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes     0-3: ID do túnel para receber mensagens, não zero
   bytes    4-35: hash da identidade do roteador local
@@ -294,24 +298,29 @@ bytes     0-3: ID do túnel para receber mensagens, não zero
   bytes 189-192: ID da próxima mensagem
   bytes 193-221: preenchimento aleatório / não interpretado
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 Registro de Solicitação Criptografado (ElGamal)
 ```````````````````````````````````````````````
 
-Para referência, esta é a especificação atual do BuildRequestRecord de túnel para roteadores ElGamal, retirada de [I2NP]_.
+Para referência, esta é a especificação atual do BuildRequestRecord de túnel para roteadores ElGamal, retirada de [I2NP](/en/docs/spec/i2np/).
 
 Tamanho criptografado: 528 bytes
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes    0-15: Hash truncado da identidade do salto
   bytes  16-528: BuildRequestRecord criptografado com ElGamal
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
@@ -337,9 +346,8 @@ Todos os campos são em big-endian.
 
 Tamanho não criptografado: 464 bytes
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes     0-3: ID do túnel para receber mensagens, não zero
   bytes     4-7: id do próximo túnel, não zero
@@ -357,9 +365,12 @@ bytes     0-3: ID do túnel para receber mensagens, não zero
   bytes     x-x: outros dados conforme indicado por bandeiras ou opções
   bytes   x-463: preenchimento aleatório
 
-{% endhighlight %}
 
-O campo de bandeiras é o mesmo definido em [Tunnel-Creation]_ e contém o seguinte::
+
+
+  ```
+
+O campo de bandeiras é o mesmo definido em [Tunnel-Creation](/en/docs/spec/tunnel-creation/) e contém o seguinte::
 
  Ordem de bits: 76543210 (bit 7 é o MSB)
  bit 7: se configurado, permitir mensagens de qualquer pessoa
@@ -374,7 +385,7 @@ definido, o salto será um participante intermediário. Ambos não podem ser con
 A expiração da solicitação é para futura duração variável do túnel.
 Por enquanto, o único valor suportado é 600 (10 minutos).
 
-As opções de construção de túnel são uma estrutura de Mapeamento conforme definido em [Common]_.
+As opções de construção de túnel são uma estrutura de Mapeamento conforme definido em [Common](/en/docs/spec/common-structures/).
 Isso é para uso futuro. Nenhuma opção está atualmente definida.
 Se a estrutura de Mapeamento estiver vazia, são dois bytes 0x00 0x00.
 O tamanho máximo do Mapeamento (incluindo o campo de comprimento) é 296 bytes,
@@ -389,16 +400,18 @@ Todos os campos são em big-endian, exceto para a chave pública efêmera que é
 
 Tamanho criptografado: 528 bytes
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes    0-15: Hash truncado da identidade do salto
   bytes   16-47: Chave pública efêmera X25519 do remetente
   bytes  48-511: BuildRequestRecord criptografado com ChaCha20
   bytes 512-527: MAC Poly1305
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
@@ -415,9 +428,8 @@ Todos os campos são em big-endian.
 
 Tamanho não criptografado: 528 bytes
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes   0-31: Hash SHA-256 dos bytes 32-527
   bytes 32-526: dados aleatórios
@@ -425,7 +437,10 @@ bytes   0-31: Hash SHA-256 dos bytes 32-527
 
   comprimento total: 528
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 Registro de Resposta Não Criptografado (ECIES)
@@ -442,25 +457,27 @@ Todos os campos são em big-endian.
 
 Tamanho não criptografado: 512 bytes
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes    0-x: Opções de Resposta de Construção de Túnel (Mapeamento)
   bytes    x-x: outros dados conforme indicado por opções
   bytes  x-510: Preenchimento aleatório
   byte     511: Byte de Resposta
 
-{% endhighlight %}
 
-O campo de opções de resposta de construção de túnel é uma estrutura de Mapeamento conforme definido em [Common]_.
+
+
+  ```
+
+O campo de opções de resposta de construção de túnel é uma estrutura de Mapeamento conforme definido em [Common](/en/docs/spec/common-structures/).
 Isso é para uso futuro. Nenhuma opção está atualmente definida.
 Se a estrutura de Mapeamento estiver vazia, são dois bytes 0x00 0x00.
 O tamanho máximo do Mapeamento (incluindo o campo de comprimento) é 511 bytes,
 e o valor máximo do campo de comprimento do Mapeamento é 509.
 
 O byte de resposta é um dos seguintes valores
-conforme definido em [Tunnel-Creation]_ para evitar impressão digital:
+conforme definido em [Tunnel-Creation](/en/docs/spec/tunnel-creation/) para evitar impressão digital:
 
 - 0x00 (aceitar)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -471,14 +488,16 @@ Registro de Resposta Criptografado (ECIES)
 
 Tamanho criptografado: 528 bytes
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes   0-511: BuildReplyRecord criptografado com ChaCha20
   bytes 512-527: MAC Poly1305
 
-{% endhighlight %}
+
+
+
+  ```
 
 Após transição completa para registros ECIES, as regras de preenchimento variado são as mesmas para registros de solicitação.
 
@@ -512,7 +531,7 @@ do BuildRequestRecord no tipo de criptografia do hop atual e do anterior.
 Cada salto usará seu próprio tipo de criptografia para criptografar BuildReplyRecords e os outros
 registros na VariableTunnelBuildMessage (VTBM).
 
-No caminho de resposta, o endpoint (remetente) precisará desfazer a [Multiple-Encryption]_, usando a chave de resposta de cada salto.
+No caminho de resposta, o endpoint (remetente) precisará desfazer a [Multiple-Encryption](https://en.wikipedia.org/wiki/Multiple_encryption), usando a chave de resposta de cada salto.
 
 Como exemplo esclarecedor, vamos observar um túnel de saída com ECIES cercado por ElGamal:
 
@@ -579,7 +598,7 @@ O criador do túnel, também conhecido como Endpoint de Entrada (IBEP), pós-pro
 Essas chaves estão explicitamente incluídas nos BuildRequestRecords ElGamal.
 Para BuildRequestRecords ECIES, as chaves do túnel e chaves de resposta AES estão incluídas,
 mas as chaves de resposta ChaCha são derivadas da troca DH.
-Veja [Prop156]_ para detalhes sobre as chaves estáticas do roteador ECIES.
+Veja [Prop156](/en/proposals/156-ecies-routers/) para detalhes sobre as chaves estáticas do roteador ECIES.
 
 Abaixo está uma descrição de como derivar as chaves anteriormente transmitidas em registros de solicitação.
 
@@ -587,11 +606,10 @@ Abaixo está uma descrição de como derivar as chaves anteriormente transmitida
 KDF para ck e h Iniciais
 ````````````````````````
 
-Isso é padrão [NOISE]_ para o padrão "N" com um nome de protocolo padrão.
+Isso é padrão [NOISE](https://noiseprotocol.org/noise.html) para o padrão "N" com um nome de protocolo padrão.
 
-.. raw:: html
+  ```text
 
-  {% highlight lang='text' %}
 Este é o padrão de mensagem "e":
 
   // Definir protocol_name.
@@ -610,7 +628,10 @@ Este é o padrão de mensagem "e":
 
   // até aqui, pode ser pré-calculado por todos os roteadores.
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 KDF para Registro de Solicitação
@@ -621,7 +642,7 @@ salto ECIES no túnel, e usam o esquema acima para criptografar seu BuildRequest
 Criadores de túnel ElGamal usarão o esquema anterior a esta especificação para criptografar saltos ElGamal.
 
 Criadores de túneis ECIES precisarão criptografar para a chave pública de cada salto ElGamal usando o
-esquema definido em [Tunnel-Creation]_. Criadores de túneis ECIES usarão o esquema acima para criptografar
+esquema definido em [Tunnel-Creation](/en/docs/spec/tunnel-creation/). Criadores de túneis ECIES usarão o esquema acima para criptografar
 saltos ECIES.
 
 Isso significa que saltos de túnel verão apenas registros criptografados do mesmo tipo de criptografia.
@@ -634,9 +655,8 @@ As chaves efêmeras devem ser exclusivas por salto ECIES e por registro de const
 Falhar em usar chaves exclusivas abre um vetor de ataque para saltos coniventes confirmarem que estão no mesmo túnel.
 
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 // Cada par de chaves estáticas X25519 do salto (hesk, hepk) da Identidade do Roteador
   hesk = GENERATE_PRIVATE()
@@ -686,7 +706,11 @@ Falhar em usar chaves exclusivas abre um vetor de ataque para saltos coniventes 
   // Salvar para KDF de Registro de Resposta
   h = SHA256(h || ciphertext)
 
-{% endhighlight %}
+
+
+
+
+  ```
 
 ``replyKey``, ``layerKey`` e ``layerIV`` ainda devem ser incluídos dentro de registros ElGamal,
 e podem ser gerados aleatoriamente.
@@ -694,7 +718,7 @@ e podem ser gerados aleatoriamente.
 
 ### Criptografia de Registro de Solicitação (ElGamal)
 
-Conforme definido em [Tunnel-Creation]_.
+Conforme definido em [Tunnel-Creation](/en/docs/spec/tunnel-creation/).
 Não há alterações na criptografia para saltos ElGamal.
 
 
@@ -704,9 +728,8 @@ Não há alterações na criptografia para saltos ElGamal.
 
 O registro de resposta é criptografado com ChaCha20/Poly1305.
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 // parâmetros AEAD
   k = chave de encadeamento do registro de solicitação
@@ -716,13 +739,16 @@ O registro de resposta é criptografado com ChaCha20/Poly1305.
 
   ciphertext = ENCRYPT(k, n, plaintext, ad)
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
 ### Criptografia de Registro de Resposta (ElGamal)
 
-Conforme definido em [Tunnel-Creation]_.
+Conforme definido em [Tunnel-Creation](/en/docs/spec/tunnel-creation/).
 Não há alterações na criptografia para saltos ElGamal.
 
 
@@ -767,57 +793,7 @@ Este design minimiza o risco.
 
 ## Migração
 
-Veja [Prop156]_.
+Veja [Prop156](/en/proposals/156-ecies-routers/).
 
 
 
-
-## Referências
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [Criptografia]
-   {{ spec_url('cryptography') }}
-
-.. [ECIES-X25519]
-   {{ spec_url('ecies') }}
-
-.. [I2NP]
-   {{ spec_url('i2np') }}
-
-.. [NOISE]
-    https://noiseprotocol.org/noise.html
-
-.. [NTCP2]
-   {{ spec_url('ntcp2') }}
-
-.. [Prop119]
-   {{ proposal_url('119') }}
-
-.. [Prop143]
-   {{ proposal_url('143') }}
-
-.. [Prop153]
-    {{ proposal_url('153') }}
-
-.. [Prop156]
-    {{ proposal_url('156') }}
-
-.. [Prop157]
-    {{ proposal_url('157') }}
-
-.. [SPEC]
-   {{ spec_url('tunnel-creation-ecies') }}
-
-.. [Tunnel-Creation]
-   {{ spec_url('tunnel-creation') }}
-
-.. [Multiple-Encryption]
-   https://en.wikipedia.org/wiki/Multiple_encryption
-
-.. [RFC-7539]
-   https://tools.ietf.org/html/rfc7539
-
-.. [RFC-7748]
-   https://tools.ietf.org/html/rfc7748

@@ -174,7 +174,7 @@ None.
 
 ### Handshake Patterns
 
-Handshakes use [Noise]_ handshake patterns.
+Handshakes use [Noise](https://noiseprotocol.org/noise.html) handshake patterns.
 
 The following letter mapping is used:
 

@@ -13,14 +13,14 @@ implementedin: "0.9.48"
 ## 注意
 网络部署和测试正在进行中。
 可能会有小的修订。
-参见 [SPEC]_ 获取官方规范。
+参见 [SPEC](/en/docs/spec/) 获取官方规范。
 
 
 ## 总览
 
 本文档提出对隧道建立消息加密的更改，
-使用 [ECIES-X25519]_ 引入的加密原语。
-这是整个提案 [Prop156]_ 的一部分，
+使用 [ECIES-X25519](/en/docs/spec/ecies/) 引入的加密原语。
+这是整个提案 [Prop156](/en/proposals/156-ecies-routers/) 的一部分，
 用于将路由器从 ElGamal 转换为 ECIES-X25519 密钥。
 
 为了将网络从 ElGamal + AES256 过渡到 ECIES + ChaCha20，
@@ -32,26 +32,26 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 并遵循此规格来创建包含 ECIES 跳点的隧道。
 
 该提案指定了 ECIES-X25519 隧道构建所需的更改。
-有关 ECIES 路由器所需的所有更改的概述，请参阅提案 156 [Prop156]_。
+有关 ECIES 路由器所需的所有更改的概述，请参阅提案 156 [Prop156](/en/proposals/156-ecies-routers/)。
 
 此提案保持隧道构建记录的相同大小，
-以确保兼容性。较小的构建记录和消息将在之后实现 —— 参见 [Prop157]_。
+以确保兼容性。较小的构建记录和消息将在之后实现 —— 参见 [Prop157](/en/proposals/157-new-tbm/)。
 
 
 ### 加密原语
 
 没有引入新的加密原语。实现此提案所需的原语是：
 
-- 如 [Cryptography]_ 中所示的 AES-256-CBC
+- 如 [Cryptography](/en/docs/spec/cryptography/) 中所示的 AES-256-CBC
 - STREAM ChaCha20/Poly1305 函数：
-  ENCRYPT(k, n, plaintext, ad) 和 DECRYPT(k, n, ciphertext, ad) —— 如 [NTCP2]_ [ECIES-X25519]_ 和 [RFC-7539]_ 中所示
-- X25519 DH 函数 —— 如 [NTCP2]_ 和 [ECIES-X25519]_ 中所示
-- HKDF(salt, ikm, info, n) —— 如 [NTCP2]_ 和 [ECIES-X25519]_ 中所示
+  ENCRYPT(k, n, plaintext, ad) 和 DECRYPT(k, n, ciphertext, ad) —— 如 [NTCP2](/en/docs/spec/ntcp2/) [ECIES-X25519](/en/docs/spec/ecies/) 和 [RFC-7539](https://tools.ietf.org/html/rfc7539) 中所示
+- X25519 DH 函数 —— 如 [NTCP2](/en/docs/spec/ntcp2/) 和 [ECIES-X25519](/en/docs/spec/ecies/) 中所示
+- HKDF(salt, ikm, info, n) —— 如 [NTCP2](/en/docs/spec/ntcp2/) 和 [ECIES-X25519](/en/docs/spec/ecies/) 中所示
 
 其他在别处定义的 Noise 函数：
 
-- MixHash(d) —— 如 [NTCP2]_ 和 [ECIES-X25519]_ 中所示
-- MixKey(d) —— 如 [NTCP2]_ 和 [ECIES-X25519]_ 中所示
+- MixHash(d) —— 如 [NTCP2](/en/docs/spec/ntcp2/) 和 [ECIES-X25519](/en/docs/spec/ecies/) 中所示
+- MixKey(d) —— 如 [NTCP2](/en/docs/spec/ntcp2/) 和 [ECIES-X25519](/en/docs/spec/ecies/) 中所示
 
 
 ### 目标
@@ -75,7 +75,7 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 因为它们可能在那时没有下一个跳点的 RI
 - 最大限度地与当前网络兼容
 - 对于 ElGamal 路由器，对隧道构建 AES 请求/回复加密不进行更改
-- 对隧道 AES“层”加密不进行更改，请参阅 [Prop153]_
+- 对隧道 AES“层”加密不进行更改，请参阅 [Prop153](/en/proposals/153-chacha20-layer-encryption/)
 - 继续支持 8 记录 TBM/TBRM 和可变大小的 VTBM/VTBRM
 - 不要求整个网络进行“旗日”升级
 
@@ -84,9 +84,9 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 
 - 需要“旗日”的隧道构建消息的完全重新设计。
 - 缩小隧道构建消息（需要全部为 ECIES 的跳点和一个新的提案）
-- 使用 [Prop143]_ 中定义的隧道构建选项，仅用于小消息
-- 双向隧道，参见 [Prop119]_
-- 更小的隧道构建消息，参见 [Prop157]_
+- 使用 [Prop143](/en/proposals/143-build-message-options/) 中定义的隧道构建选项，仅用于小消息
+- 双向隧道，参见 [Prop119](/en/proposals/119-bidirectional-tunnels/)
+- 更小的隧道构建消息，参见 [Prop157](/en/proposals/157-new-tbm/)
 
 
 ## 威胁模型
@@ -132,7 +132,7 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 
 ### Noise 协议框架
 
-本提案根据 Noise 协议框架 [NOISE]_ (修订版 34, 2018-07-11) 提供需求。
+本提案根据 Noise 协议框架 [NOISE](https://noiseprotocol.org/noise.html) (修订版 34, 2018-07-11) 提供需求。
 在 Noise 术语中，Alice 是发起者，而 Bob 是响应者。
 
 本提案基于 Noise 协议 Noise_N_25519_ChaChaPoly_SHA256。
@@ -142,12 +142,12 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
   Alice 不将她的静态密钥传输给 Bob (N)
 
 - DH 函数：X25519
-  长度为 32 字节的 X25519 DH，如 [RFC-7748]_ 中所述。
+  长度为 32 字节的 X25519 DH，如 [RFC-7748](https://tools.ietf.org/html/rfc7748) 中所述。
 
 - 密码函数：ChaChaPoly
-  AEAD_CHACHA20_POLY1305 如 [RFC-7539]_ 第 2.8 节所述。
+  AEAD_CHACHA20_POLY1305 如 [RFC-7539](https://tools.ietf.org/html/rfc7539) 第 2.8 节所述。
   12 字节的 nonce，前 4 个字节设为零。
-  与 [NTCP2]_ 中的相同。
+  与 [NTCP2](/en/docs/spec/ntcp2/) 中的相同。
 
 - 哈希函数：SHA256
   标准 32 字节哈希，已在 I2P 中广泛使用。
@@ -160,7 +160,7 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 
 ### 握手模式
 
-握手使用 [Noise]_ 握手模式。
+握手使用 [Noise](https://noiseprotocol.org/noise.html) 握手模式。
 
 使用以下字母映射：
 
@@ -169,22 +169,24 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 - p = 消息载荷
 
 构建请求与 Noise N 模式相同。
-这也与 [NTCP2]_ 中使用的 XK 模式的第一个（会话请求）消息相同。
+这也与 [NTCP2](/en/docs/spec/ntcp2/) 中使用的 XK 模式的第一个（会话请求）消息相同。
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es p ->
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 ### 请求加密
 
 构建请求记录由隧道创建者创建，并以非对称方式加密到单个跳点。
-请求记录的这种非对称加密目前为 [Cryptography]_ 中定义的 ElGamal，并包含一个 SHA-256 校验和。这个设计不是前向保密的。
+请求记录的这种非对称加密目前为 [Cryptography](/en/docs/spec/cryptography/) 中定义的 ElGamal，并包含一个 SHA-256 校验和。这个设计不是前向保密的。
 
 新设计将使用单向 Noise 模式 "N"，采用 ECIES-X25519 临时-静态 DH 和 HKDF，
 ChaCha20/Poly1305 AEAD 以实现前向保密、完整性和认证。
@@ -192,9 +194,8 @@ Alice 是隧道构建请求者。隧道中的每个跳点是 Bob。
 
 (Payload Security Properties)
 
-.. raw:: html
+  ```text
 
-  {% highlight lang='text' %}
 N:                      Authentication   Confidentiality
     -> e, es                  0                2
 
@@ -212,7 +213,10 @@ N:                      Authentication   Confidentiality
     “es”: 在 Alice 的临时密钥对和 Bob 的静态密钥对之间执行 DH。
           结果与旧 ck 一起进行哈希以派生新的 ck 和 k，并将 n 设为 0。
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
@@ -245,16 +249,15 @@ N:                      Authentication   Confidentiality
 请求记录未加密（ElGamal）
 ```````````````````````````````````````
 
-作为参考，这是从 [I2NP]_ 中取来的 ElGamal 路由器的隧道 BuildRequestRecord 的当前规格。
-未加密的数据在加密前被前置一个非零字节和数据的 SHA-256 哈希， 如 [Cryptography]_ 中定义。
+作为参考，这是从 [I2NP](/en/docs/spec/i2np/) 中取来的 ElGamal 路由器的隧道 BuildRequestRecord 的当前规格。
+未加密的数据在加密前被前置一个非零字节和数据的 SHA-256 哈希， 如 [Cryptography](/en/docs/spec/cryptography/) 中定义。
 
 所有字段都是大端。
 
 未加密大小：222 字节
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes     0-3: 作为消息接收隧道 ID，非零
   bytes    4-35: 本地路由器标识哈希
@@ -269,24 +272,29 @@ bytes     0-3: 作为消息接收隧道 ID，非零
   bytes 189-192: 下一个消息 ID
   bytes 193-221: 未解释 / 随机填充
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 请求记录加密（ElGamal）
 `````````````````````````````````````
 
-作为参考，这是从 [I2NP]_ 中取来的 ElGamal 路由器的隧道 BuildRequestRecord 的当前规格。
+作为参考，这是从 [I2NP](/en/docs/spec/i2np/) 中取来的 ElGamal 路由器的隧道 BuildRequestRecord 的当前规格。
 
 加密大小：528 字节
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes    0-15: 跳点截断的标识哈希
   bytes  16-528: ElGamal 加密的 BuildRequestRecord
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
@@ -312,9 +320,8 @@ bytes    0-15: 跳点截断的标识哈希
 
 未加密大小：464 字节
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes     0-3: 作为消息接收隧道 ID，非零
   bytes     4-7: 下一个隧道 ID，非零
@@ -332,9 +339,12 @@ bytes     0-3: 作为消息接收隧道 ID，非零
   bytes     x-x: 其他数据，如由标志或选项暗示
   bytes   x-463: 随机填充
 
-{% endhighlight %}
 
-标志字段与 [Tunnel-Creation]_ 中定义的相同，包含以下内容：
+
+
+  ```
+
+标志字段与 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义的相同，包含以下内容：
 
  位次序：76543210（位 7 是 MSB）
  位 7: 如果设置，允许来自任何人的消息
@@ -347,7 +357,7 @@ bytes     0-3: 作为消息接收隧道 ID，非零
 请求到期是用于未来的可变隧道持续时间。
 目前，唯一支持的值是 600（10 分钟）。
 
-隧道构建选项是 [Common]_ 中定义的映射结构。
+隧道构建选项是 [Common](/en/docs/spec/common-structures/) 中定义的映射结构。
 这是用于未来用途。目前未定义任何选项。
 如果 Mapping 结构为空，则为两个字节 0x00 0x00。
 映射（包括长度字段）的最大大小为 296 字节，
@@ -363,16 +373,18 @@ bytes     0-3: 作为消息接收隧道 ID，非零
 
 加密大小：528 字节
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes    0-15: 跳点截断的标识哈希
   bytes   16-47: 发送者的临时 X25519 公钥
   bytes  48-511: ChaCha20 加密的 BuildRequestRecord
   bytes 512-527: Poly1305 MAC
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
@@ -389,9 +401,8 @@ ElGamal 回复被 AES 加密。
 
 未加密大小：528 字节
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes   0-31: 字节 32-527 的 SHA-256 校验和
   bytes 32-526: 随机数据
@@ -399,7 +410,10 @@ bytes   0-31: 字节 32-527 的 SHA-256 校验和
 
   总长度: 528
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 回复记录未加密（ECIES）
@@ -416,25 +430,27 @@ ECIES 回复通过 ChaCha20/Poly1305 加密。
 
 未加密大小：512 字节
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes    0-x: 隧道构建回复选项（映射）
   bytes    x-x: 其他数据，如由选项暗示
   bytes  x-510: 随机填充
   byte     511: 回复字节
 
-{% endhighlight %}
 
-隧道构建回复选项是 [Common]_ 中定义的映射结构。
+
+
+  ```
+
+隧道构建回复选项是 [Common](/en/docs/spec/common-structures/) 中定义的映射结构。
 这是用于未来用途。目前未定义任何选项。
 如果 Mapping 结构为空，则为两个字节 0x00 0x00。
 映射（包括长度字段）的最大大小为 511 字节，
 映射长度字段的最大值为 509。
 
 回复字节是一个以下值
-如 [Tunnel-Creation]_ 中定义，以避免指纹：
+如 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义，以避免指纹：
 
 - 0x00 (接受)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -445,14 +461,16 @@ bytes    0-x: 隧道构建回复选项（映射）
 
 加密大小：528 字节
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 bytes   0-511: ChaCha20 加密的 BuildReplyRecord
   bytes 512-527: Poly1305 MAC
 
-{% endhighlight %}
+
+
+
+  ```
 
 在完全过渡到 ECIES 记录后，范围填充规则与请求记录相同。
 
@@ -486,7 +504,7 @@ bytes   0-511: ChaCha20 加密的 BuildReplyRecord
 每个跳点将使用自己的加密类型来加密 BuildReplyRecords，
 以及 VariableTunnelBuildMessage (VTBM) 中的其他记录。
 
-在回复路径上，端点（发送者）将需要撤销[多重加密]_，使用每个跳点的回复密钥。
+在回复路径上，端点（发送者）将需要撤销[多重加密](https://en.wikipedia.org/wiki/Multiple_encryption)，使用每个跳点的回复密钥。
 
 作为一个清楚的示例，让我们看看一个 ECIES 被 ElGamal 包围的出站隧道：
 
@@ -553,7 +571,7 @@ bytes   0-511: ChaCha20 加密的 BuildReplyRecord
 这些密钥在 ElGamal BuildRequestRecords 中是显式包含的。
 对于 ECIES BuildRequestRecords，隧道密钥和 AES 回复密钥被包含，
 但 ChaCha 回复密钥是从 DH 交换中派生的。
-见 [Prop156]_ 了解路由器静态 ECIES 密钥的详细信息。
+见 [Prop156](/en/proposals/156-ecies-routers/) 了解路由器静态 ECIES 密钥的详细信息。
 
 以下描述了如何派生以前在请求记录中传输的密钥。
 
@@ -561,11 +579,10 @@ bytes   0-511: ChaCha20 加密的 BuildReplyRecord
 初始 ck 和 h 的 KDF
 ````````````````````````
 
-这是 [NOISE]_ 模式 "N" 的标准，具有标准协议名。
+这是 [NOISE](https://noiseprotocol.org/noise.html) 模式 "N" 的标准，具有标准协议名。
 
-.. raw:: html
+  ```text
 
-  {% highlight lang='text' %}
 这是“e”消息模式：
 
   // 定义 protocol_name。
@@ -584,7 +601,10 @@ bytes   0-511: ChaCha20 加密的 BuildReplyRecord
 
   // 自此之后，所有路由器都可以预先计算。
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 请求记录的 KDF
@@ -595,7 +615,7 @@ ElGamal 隧道创建者为隧道中的每个 ECIES 跳点生成一个临时 X255
 ElGamal 隧道创建者将使用此规范之前的方案加密到 ElGamal 跳点。
 
 ECIES 隧道创建者需要使用
-[Tunnel-Creation]_ 中定义的方案来加密到每个 ElGamal 跳点的公钥。 ECIES 隧道创建者将使用上述方案加密到 ECIES 跳点。
+[Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义的方案来加密到每个 ElGamal 跳点的公钥。 ECIES 隧道创建者将使用上述方案加密到 ECIES 跳点。
 
 这意味着隧道跳点将只会看到来自其相同加密类型的加密记录。
 
@@ -605,9 +625,8 @@ ECIES 隧道创建者需要使用
 临时密钥必须在每个 ECIES 跳点和每个构建记录中唯一。
 未能使用唯一的密钥将为合谋的跳点打开一个攻击向量，以确认它们处在同一个隧道中。
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 // 每个跳点的 X25519 静态密钥对（hesk, hepk）来自路由器身份
   hesk = GENERATE_PRIVATE()
@@ -656,7 +675,10 @@ ECIES 隧道创建者需要使用
   // 保存以供回复记录 KDF 使用
   h = SHA256(h || ciphertext)
 
-{% endhighlight %}
+
+
+
+  ```
 
 ``replyKey``、``layerKey`` 和 ``layerIV`` 仍必须包含在 ElGamal 记录中，
 并且可以随机生成。
@@ -664,7 +686,7 @@ ECIES 隧道创建者需要使用
 
 ### 请求记录加密（ElGamal）
 
-如 [Tunnel-Creation]_ 中定义。
+如 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义。
 ElGamal 跳点的加密没有更改。
 
 
@@ -674,9 +696,8 @@ ElGamal 跳点的加密没有更改。
 
 回复记录是通过 ChaCha20/Poly1305 加密的。
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 // AEAD 参数
   k = 构建请求中的 chainkey
@@ -686,13 +707,16 @@ ElGamal 跳点的加密没有更改。
 
   ciphertext = ENCRYPT(k, n, plaintext, ad)
 
-{% endhighlight %}
+
+
+
+  ```
 
 
 
 ### 回复记录加密（ElGamal）
 
-如 [Tunnel-Creation]_ 中定义。
+如 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义。
 ElGamal 跳点的加密没有更改。
 
 
@@ -736,57 +760,7 @@ ChaCha20Poly1305 提供 AEAD 加密，允许接收者在尝试解密前验证消
 
 ## 迁移
 
-请参阅 [Prop156]_。
+请参阅 [Prop156](/en/proposals/156-ecies-routers/)。
 
 
 
-
-## 参考文献
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [Cryptography]
-   {{ spec_url('cryptography') }}
-
-.. [ECIES-X25519]
-   {{ spec_url('ecies') }}
-
-.. [I2NP]
-   {{ spec_url('i2np') }}
-
-.. [NOISE]
-    https://noiseprotocol.org/noise.html
-
-.. [NTCP2]
-   {{ spec_url('ntcp2') }}
-
-.. [Prop119]
-   {{ proposal_url('119') }}
-
-.. [Prop143]
-   {{ proposal_url('143') }}
-
-.. [Prop153]
-    {{ proposal_url('153') }}
-
-.. [Prop156]
-    {{ proposal_url('156') }}
-
-.. [Prop157]
-    {{ proposal_url('157') }}
-
-.. [SPEC]
-   {{ spec_url('tunnel-creation-ecies') }}
-
-.. [Tunnel-Creation]
-   {{ spec_url('tunnel-creation') }}
-
-.. [Multiple-Encryption]
-   https://en.wikipedia.org/wiki/Multiple_encryption
-
-.. [RFC-7539]
-   https://tools.ietf.org/html/rfc7539
-
-.. [RFC-7748]
-   https://tools.ietf.org/html/rfc7748

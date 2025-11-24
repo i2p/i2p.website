@@ -14,9 +14,9 @@ Déploiement et tests réseau en cours.
 Sujet à révision.
 Statut :
 
-- Routeurs ECIES implémentés depuis la version 0.9.48, voir [Common]_.
-- Construction de tunnels implémentée depuis la version 0.9.48, voir [Tunnel-Creation-ECIES]_.
-- Messages cryptés aux routeurs ECIES implémentés depuis la version 0.9.49, voir [ECIES-ROUTERS]_.
+- Routeurs ECIES implémentés depuis la version 0.9.48, voir [Common](/en/docs/spec/common-structures/).
+- Construction de tunnels implémentée depuis la version 0.9.48, voir [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
+- Messages cryptés aux routeurs ECIES implémentés depuis la version 0.9.49, voir [ECIES-ROUTERS](/en/docs/spec/ecies-routers/).
 - Nouveaux messages de construction de tunnels implémentés depuis la version 0.9.51.
 
 
@@ -31,8 +31,8 @@ Les identités des routeurs contiennent actuellement une clé de chiffrement ElG
 Ceci est la norme depuis les débuts d'I2P.
 ElGamal est lent et doit être remplacé partout où il est utilisé.
 
-Les propositions pour LS2 [Prop123]_ et ECIES-X25519-AEAD-Ratchet [Prop144]_
-(maintenant spécifiées dans [ECIES]_) ont défini le remplacement d'ElGamal par ECIES
+Les propositions pour LS2 [Prop123](/en/proposals/123-new-netdb-entries/) et ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/)
+(maintenant spécifiées dans [ECIES](/en/docs/spec/ecies/)) ont défini le remplacement d'ElGamal par ECIES
 pour les destinations.
 
 Cette proposition définit le remplacement d'ElGamal par ECIES-X25519 pour les routeurs.
@@ -43,7 +43,7 @@ Voir la section de référence pour les liens.
 
 ### Objectifs
 
-Voir [Prop152]_ pour des objectifs supplémentaires.
+Voir [Prop152](/en/proposals/152-ecies-tunnels/) pour des objectifs supplémentaires.
 
 - Remplacer ElGamal par ECIES-X25519 dans les identités des routeurs
 - Réutiliser les primitives cryptographiques existantes
@@ -57,10 +57,10 @@ Voir [Prop152]_ pour des objectifs supplémentaires.
 
 ### Non-Objectifs
 
-Voir [Prop152]_ pour des non-objectifs supplémentaires.
+Voir [Prop152](/en/proposals/152-ecies-tunnels/) pour des non-objectifs supplémentaires.
 
 - Pas de nécessité pour des routeurs à double clé
-- Changements de chiffrement de couche, pour cela voir [Prop153]_
+- Changements de chiffrement de couche, pour cela voir [Prop153](/en/proposals/153-chacha20-layer-encryption/)
 
 
 ## Conception
@@ -72,17 +72,17 @@ Pour les destinations, la clé est dans le leaseset, pas dans la destination, et
 nous prenons en charge plusieurs types de cryptage dans le même leaseset.
 
 Aucun de cela n'est nécessaire pour les routeurs. La clé de chiffrement du routeur
-se trouve dans son identité de routeur. Voir la spécification des structures communes [Common]_.
+se trouve dans son identité de routeur. Voir la spécification des structures communes [Common](/en/docs/spec/common-structures/).
 
 Pour les routeurs, nous remplacerons la clé ElGamal de 256 octets dans l'identité du routeur
 par une clé X25519 de 32 octets et 224 octets de remplissage.
 Ceci sera indiqué par le type de crypto dans le certificat de clé.
 Le type de crypto (le même que celui utilisé dans le LS2) est 4.
 Cela indique une clé publique X25519 de 32 octets en little-endian.
-C'est la construction standard telle que définie dans la spécification des structures communes [Common]_.
+C'est la construction standard telle que définie dans la spécification des structures communes [Common](/en/docs/spec/common-structures/).
 
 C'est identique à la méthode proposée pour ECIES-P256
-pour les types de cryptos 1-3 dans la proposition 145 [Prop145]_.
+pour les types de cryptos 1-3 dans la proposition 145 [Prop145](/en/proposals/145-ecies/).
 Bien que cette proposition n'ait jamais été adoptée, les développeurs de l'implémentation Java se sont préparés aux
 types de cryptos dans les certificats de clé d'identité de routeur en ajoutant des vérifications à plusieurs
 endroits dans la base de code. La plupart de ce travail a été effectué à la mi-2019.
@@ -90,7 +90,7 @@ endroits dans la base de code. La plupart de ce travail a été effectué à la 
 
 ### Message de construction de tunnel
 
-Plusieurs changements à la spécification de création de tunnel [Tunnel-Creation]_
+Plusieurs changements à la spécification de création de tunnel [Tunnel-Creation](/en/docs/spec/tunnel-creation/)
 sont nécessaires pour utiliser ECIES au lieu d'ElGamal.
 De plus, nous apporterons des améliorations aux messages de construction de tunnel
 pour accroître la sécurité.
@@ -98,14 +98,14 @@ pour accroître la sécurité.
 Dans la phase 1, nous changerons le format et le chiffrement du
 Record de demande de construction et du Record de réponse de construction pour les sauts ECIES.
 Ces changements seront compatibles avec les routeurs ElGamal existants.
-Ces changements sont définis dans la proposition 152 [Prop152]_.
+Ces changements sont définis dans la proposition 152 [Prop152](/en/proposals/152-ecies-tunnels/).
 
 Dans la phase 2, nous ajouterons une nouvelle version du
 Message de demande de construction, Message de réponse de construction,
 Record de demande de construction, et Record de réponse de construction.
 La taille sera réduite pour plus d'efficacité.
 Ces changements doivent être pris en charge par tous les sauts dans un tunnel, et tous les sauts doivent être ECIES.
-Ces changements sont définis dans la proposition 157 [Prop157]_.
+Ces changements sont définis dans la proposition 157 [Prop157](/en/proposals/157-new-tbm/).
 
 
 
@@ -123,7 +123,7 @@ l'expéditeur envoyait uniquement des clés éphémères, pas de clé statique.
 Le message n'était pas lié à l'identité de l'expéditeur.
 
 Ensuite, nous avons conçu le SKM à cliquet ECIES dans
-ECIES-X25519-AEAD-Ratchet [Prop144]_, maintenant spécifié dans [ECIES]_.
+ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/), maintenant spécifié dans [ECIES](/en/docs/spec/ecies/).
 Cette conception était spécifiée en utilisant le modèle Noise "IK", qui incluait la clé
 statique de l'expéditeur dans le premier message. Ce protocole est utilisé pour les destinations (type 4) ECIES.
 Le modèle IK ne permet pas des expéditeurs anonymes.
@@ -168,27 +168,27 @@ Objectifs non-visés du cas d'utilisation des routeurs :
 - Pas besoin de messages non anonymes
 - Pas besoin d'envoyer des messages via des tunnels exploratoires entrants (un routeur ne publie pas de leasesets exploratoires)
 - Pas besoin de trafic soutenu de messages utilisant des tags
-- Pas besoin d'exécuter des gestionnaires de clés de session "à double clé" comme décrit dans [ECIES]_ pour les destinations. Les routeurs n'ont qu'une seule clé publique.
+- Pas besoin d'exécuter des gestionnaires de clés de session "à double clé" comme décrit dans [ECIES](/en/docs/spec/ecies/) pour les destinations. Les routeurs n'ont qu'une seule clé publique.
 
 
 Conclusion de la conception
 ```````````````````````````
 
-Le SKM de routeur ECIES n'a pas besoin d'un SKM à cliquet complet tel que spécifié dans [ECIES]_ pour les destinations.
+Le SKM de routeur ECIES n'a pas besoin d'un SKM à cliquet complet tel que spécifié dans [ECIES](/en/docs/spec/ecies/) pour les destinations.
 Il n'y a pas de besoin de messages non-anonymes utilisant le modèle IK.
 Le modèle de menace ne nécessite pas de clés éphémères encodées Elligator2.
 
 Par conséquent, le SKM du routeur utilisera le modèle Noise "N", le même que spécifié
-dans [Prop152]_ pour la construction de tunnels.
-Il utilisera le même format de charge utile que spécifié dans [ECIES]_ pour les destinations.
-Le mode à clé statique zéro (pas de liaison ou session) de IK spécifié dans [ECIES]_ ne sera pas utilisé.
+dans [Prop152](/en/proposals/152-ecies-tunnels/) pour la construction de tunnels.
+Il utilisera le même format de charge utile que spécifié dans [ECIES](/en/docs/spec/ecies/) pour les destinations.
+Le mode à clé statique zéro (pas de liaison ou session) de IK spécifié dans [ECIES](/en/docs/spec/ecies/) ne sera pas utilisé.
 
 Les réponses aux recherches seront chiffrées avec un tag à cliquet si demandé dans la recherche.
-C'est comme documenté dans [Prop154]_, maintenant spécifié dans [I2NP]_.
+C'est comme documenté dans [Prop154](/en/proposals/154-ecies-lookups/), maintenant spécifié dans [I2NP](/en/docs/spec/i2np/).
 
 La conception permet au routeur d'avoir un seul gestionnaire de clé de session ECIES.
 Il n'est pas nécessaire d'exécuter des gestionnaires de clés de session "à double clé" tel que
-décrit dans [ECIES]_ pour les destinations.
+décrit dans [ECIES](/en/docs/spec/ecies/) pour les destinations.
 Les routeurs n'ont qu'une seule clé publique.
 
 Un routeur ECIES n'a pas de clé statique ElGamal.
@@ -198,7 +198,7 @@ Le routeur a encore besoin d'une implémentation d'ElGamal pour construire des t
 Un routeur ECIES PEUT nécessiter un gestionnaire de clé de session partiel ElGamal pour
 recevoir des messages marqués ElGamal reçus en tant que réponses aux recherches NetDB
 des routeurs floodfill antérieurs à la version 0.9.46, car ces routeurs n'ont pas
-une implémentation de réponses marquées ECIES tel que spécifié dans [Prop152]_.
+une implémentation de réponses marquées ECIES tel que spécifié dans [Prop152](/en/proposals/152-ecies-tunnels/).
 Sinon, un routeur ECIES ne peut pas demander une réponse cryptée d'un
 routeur floodfill antérieur à la version 0.9.46.
 
@@ -211,27 +211,27 @@ et peut dépendre de la portion du réseau ayant été mise à niveau vers
 
 ## Spécification
 
-X25519 : Voir [ECIES]_.
+X25519 : Voir [ECIES](/en/docs/spec/ecies/).
 
-Identité de routeur et certificat de clé : Voir [Common]_.
+Identité de routeur et certificat de clé : Voir [Common](/en/docs/spec/common-structures/).
 
-Construction de tunnels : Voir [Prop152]_.
+Construction de tunnels : Voir [Prop152](/en/proposals/152-ecies-tunnels/).
 
-Nouveau message de construction de tunnels : Voir [Prop157]_.
+Nouveau message de construction de tunnels : Voir [Prop157](/en/proposals/157-new-tbm/).
 
 
 ### Chiffrement des requêtes
 
-Le chiffrement des demandes est le même que celui spécifié dans [Tunnel-Creation-ECIES]_ et [Prop152]_,
+Le chiffrement des demandes est le même que celui spécifié dans [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) et [Prop152](/en/proposals/152-ecies-tunnels/),
 utilisant le modèle Noise "N".
 
 Les réponses aux recherches seront chiffrées avec un tag à cliquet si demandé dans la recherche.
 Les messages de demande de recherche de base de données contiennent la clé de réponse de 32 octets et le tag de réponse de 8 octets
-tels que spécifiés dans [I2NP]_ et [Prop154]_. La clé et le tag sont utilisés pour chiffrer la réponse.
+tels que spécifiés dans [I2NP](/en/docs/spec/i2np/) et [Prop154](/en/proposals/154-ecies-lookups/). La clé et le tag sont utilisés pour chiffrer la réponse.
 
 Les ensembles de tags ne sont pas créés.
 Le schéma à clé statique zéro spécifié dans
-ECIES-X25519-AEAD-Ratchet [Prop144]_ et [ECIES]_ ne sera pas utilisé.
+ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/) et [ECIES](/en/docs/spec/ecies/) ne sera pas utilisé.
 Les clés éphémères ne seront pas encodées en Elligator2.
 
 En général, ce seront des messages de nouvelle session et seront envoyés avec une clé statique zéro
@@ -241,13 +241,12 @@ En général, ce seront des messages de nouvelle session et seront envoyés avec
 KDF pour ck et h initiaux
 ````````````````````````
 
-Cela fait partie du standard [NOISE]_ pour le modèle "N" avec un nom de protocole standard.
-C'est le même que spécifié dans [Tunnel-Creation-ECIES]_ et [Prop152]_ pour les messages de construction de tunnel.
+Cela fait partie du standard [NOISE](https://noiseprotocol.org/noise.html) pour le modèle "N" avec un nom de protocole standard.
+C'est le même que spécifié dans [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) et [Prop152](/en/proposals/152-ecies-tunnels/) pour les messages de construction de tunnel.
 
 
-.. raw:: html
+  ```text
 
-  {% highlight lang='text' %}
 C'est le modèle de message "e" :
 
   // Définir protocol_name.
@@ -266,7 +265,11 @@ C'est le modèle de message "e" :
 
   // jusqu'ici, tout peut être précalculé par tous les routeurs.
 
-{% endhighlight %}
+
+
+
+
+  ```
 
 
 KDF pour les messages
@@ -274,12 +277,11 @@ KDF pour les messages
 
 Les créateurs de message génèrent une paire de clés éphémères X25519 pour chaque message.
 Les clés éphémères doivent être uniques par message.
-C'est le même que spécifié dans [Tunnel-Creation-ECIES]_ et [Prop152]_ pour les messages de construction de tunnel.
+C'est le même que spécifié dans [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) et [Prop152](/en/proposals/152-ecies-tunnels/) pour les messages de construction de tunnel.
 
 
-.. raw:: html
+  ```dataspec
 
-  {% highlight lang='dataspec' %}
 
 // Clé statique de l'itinéraire cible X25519 (hesk, hepk) de l'identité du routeur
   hesk = GENERATE_PRIVATE()
@@ -328,14 +330,18 @@ C'est le même que spécifié dans [Tunnel-Creation-ECIES]_ et [Prop152]_ pour l
   // MixHash(ciphertext) n'est pas requis
   //h = SHA256(h || ciphertext)
 
-{% endhighlight %}
+
+
+
+
+  ```
 
 
 
 Charge utile
 ````````````````````````
 
-La charge utile est le même format de bloc que défini dans [ECIES]_ et [Prop144]_.
+La charge utile est le même format de bloc que défini dans [ECIES](/en/docs/spec/ecies/) et [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/).
 Tous les messages doivent contenir un bloc DateTime pour la prévention de la relecture.
 
 
@@ -344,7 +350,7 @@ Tous les messages doivent contenir un bloc DateTime pour la prévention de la re
 Les réponses aux messages de recherche de base de données sont des messages de stockage de base de données ou de réponse de recherche de base de données.
 Ils sont chiffrés en tant que messages de session existants avec
 la clé de réponse de 32 octets et le tag de réponse de 8 octets
-tel que spécifié dans [I2NP]_ et [Prop154]_.
+tel que spécifié dans [I2NP](/en/docs/spec/i2np/) et [Prop154](/en/proposals/154-ecies-lookups/).
 
 
 Il n'y a pas de réponses explicites aux messages de stockage de base de données. L'expéditeur peut intégrer sa
@@ -374,8 +380,8 @@ dès que possible, pour réduire l'utilisation du processeur.
 
 ## Problèmes
 
-La proposition 145 [Prop145]_ pourrait ou non être réécrite pour être principalement compatible avec
-la proposition 152 [Prop152]_.
+La proposition 145 [Prop145](/en/proposals/145-ecies/) pourrait ou non être réécrite pour être principalement compatible avec
+la proposition 152 [Prop152](/en/proposals/152-ecies-tunnels/).
 
 
 
@@ -395,7 +401,7 @@ chaque implémentation I2P.
 
 Les routeurs ECIES peuvent se connecter et recevoir des connexions des routeurs ElGamal.
 Cela devrait être possible maintenant, car plusieurs vérifications ont été ajoutées à la base de code Java
-à la mi-2019 en réaction à la proposition 145 [Prop145]_ inachevée.
+à la mi-2019 en réaction à la proposition 145 [Prop145](/en/proposals/145-ecies/) inachevée.
 Veillez à ce qu'il n'y ait rien dans les bases de code
 qui empêche les connexions point à point vers des routeurs non-ElGamal.
 
@@ -423,7 +429,7 @@ Version cible, si des modifications sont nécessaires : 0.9.48
 
 Assurez-vous que les infos de routeur ECIES puissent être stockées et récupérées à partir des floodfills ElGamal.
 Cela devrait être possible maintenant, car plusieurs vérifications ont été ajoutées à la base de code Java
-à la mi-2019 en réaction à la proposition 145 [Prop145]_ inachevée.
+à la mi-2019 en réaction à la proposition 145 [Prop145](/en/proposals/145-ecies/) inachevée.
 Assurez-vous qu'il n'y a rien dans les bases de code
 qui empêche le stockage d'info de routeur non-ElGamal dans la base de données du réseau.
 
@@ -433,7 +439,7 @@ Version cible, si des modifications sont nécessaires : 0.9.48
 
 ### Construction de tunnel
 
-Implémentez la construction de tunnel telle que définie dans la proposition 152 [Prop152]_.
+Implémentez la construction de tunnel telle que définie dans la proposition 152 [Prop152](/en/proposals/152-ecies-tunnels/).
 Commencez par faire construire aux routeurs ECIES des tunnels avec tous les sauts ElGamal ;
 utilisez leur propre enregistrement de demande de construction pour un tunnel entrant à tester et déboguer.
 
@@ -450,7 +456,7 @@ Version cible : 0.9.48, fin 2020
 ### Messages à cliquet aux floodfills ECIES
 
 Implémentez et testez la réception des messages ECIES (avec clé statique zéro) par les floodfills ECIES,
-tels que définis dans la proposition 144 [Prop144]_.
+tels que définis dans la proposition 144 [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/).
 Implémentez et testez la réception des réponses chiffrées AEAD aux messages de recherche de base de données par les routeurs ECIES.
 
 Activez l'auto-floodfill par les routeurs ECIES.
@@ -490,7 +496,7 @@ fin 2021 pour que la majorité du réseau soit reconfigurée.
 
 ### Nouveau message de construction de tunnel (Phase 2)
 
-Implémentez et testez le nouveau message de construction de tunnel tel que défini dans la proposition 157 [Prop157]_.
+Implémentez et testez le nouveau message de construction de tunnel tel que défini dans la proposition 157 [Prop157](/en/proposals/157-new-tbm/).
 Déployer la prise en charge dans la version 0.9.51.
 Faire des tests supplémentaires, puis activer dans la version 0.9.52.
 

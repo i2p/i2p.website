@@ -71,3 +71,9 @@ http://localhost:1313/zh/proposals/162-congestion-caps/
   http://localhost:1313/fr/proposals/160-udp-trackers/
   http://localhost:1313/hi/proposals/160-udp-trackers/
   http://localhost:1313/ar/proposals/160-udp-trackers/
+  http://localhost:1313/ar/proposals/156-ecies-routers/
+  http://localhost:1313/ar/proposals/152-ecies-tunnels/
+  http://localhost:1313/hi/proposals/152-ecies-tunnels/
+  http://localhost:1313/vi/proposals/152-ecies-tunnels/
+  http://localhost:1313/ru/proposals/152-ecies-tunnels/
+  
