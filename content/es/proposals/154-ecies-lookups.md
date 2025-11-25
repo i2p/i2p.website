@@ -255,7 +255,7 @@ tag :: etiqueta de respuesta de 8 bytes
 _destino ECIES_ o _enrutador_ envía una búsqueda a un _enrutador ECIES_, con claves de respuesta incluidas.
 Soportado a partir de la 0.9.49.
 
-Los enrutadores ECIES se introdujeron en la 0.9.48, véase [Prop156]_.
+Los enrutadores ECIES se introdujeron en la 0.9.48, véase [Prop156](/en/proposals/156-ecies-routers/).
 A partir de la 0.9.49, los destinos y enrutadores ECIES pueden utilizar el mismo formato que en
 la sección "ECIES a ElG" arriba, con claves de respuesta incluidas en la solicitud.
 La búsqueda utilizará el "formato de una sola vez" en [ECIES]_

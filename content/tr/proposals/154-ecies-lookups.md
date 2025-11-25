@@ -221,7 +221,7 @@ tag :: 8 bayt reply_tag
 ECIES hedefi veya routerı, bir ECIES routerına eklenmiş cevap anahtarlarıyla bir arama gönderir.
 0.9.49 itibarıyla desteklenir.
 
-ECIES routerları 0.9.48'de tanıtıldı, bkz. [Prop156]_.
+ECIES routerları 0.9.48'de tanıtıldı, bkz. [Prop156](/en/proposals/156-ecies-routers/).
 0.9.49 itibarıyla, ECIES hedefleri ve routerlar "ECIES’den ElG’ye" bölümündeki ile aynı formatı kullanabilir, istek içinde cevap anahtarları dahil edilmiştir.
 Arama, talep sahibinin anonim olduğu için [ECIES]'deki "tek seferlik format"ı kullanacaktır.
 

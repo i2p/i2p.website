@@ -33,7 +33,7 @@ Lý do:
 
 ### Chiến lược
 
-Làm như GPG/OpenPGP đã làm. Mã hóa đối xứng một khóa bất đối xứng cho mỗi người nhận. Dữ liệu được giải mã bằng khóa bất đối xứng đó. Xem ví dụ [RFC-4880-S5.1]_
+Làm như GPG/OpenPGP đã làm. Mã hóa đối xứng một khóa bất đối xứng cho mỗi người nhận. Dữ liệu được giải mã bằng khóa bất đối xứng đó. Xem ví dụ [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
 NẾU chúng ta có thể tìm thấy một thuật toán nhỏ và nhanh.
 
 Thủ thuật là tìm một mã hóa bất đối xứng nhỏ và nhanh. ElGamal với 514 byte có chút khó khăn ở đây. Chúng ta có thể làm tốt hơn.

@@ -380,7 +380,7 @@ Solicitud de Sincronización de Instantánea          5
 
 #### Aplicación
 
-Los contenidos de la aplicación están codificados en UTF-8 [JSON]_.
+Los contenidos de la aplicación están codificados en UTF-8 [JSON](https://www.json.org/).
 Consulte la sección de Capa de Aplicación a continuación.
 
 
@@ -517,7 +517,7 @@ El editor del Meta LS2 NO es necesariamente el Líder de Raft.
 
 ### Contenidos de Datos de Aplicación
 
-Los contenidos de la aplicación están codificados en UTF-8 [JSON]_,
+Los contenidos de la aplicación están codificados en UTF-8 [JSON](https://www.json.org/),
 para simplicidad y extensibilidad.
 La especificación completa está TDB.
 El objetivo es proporcionar suficientes datos para escribir un algoritmo para determinar el "mejor"

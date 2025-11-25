@@ -325,7 +325,7 @@ Anlık Görüntü Eşitleme İsteği 5
 
 #### Uygulama
 
-Uygulama içeriği, basitlik ve genişletilebilirlik için UTF-8 kodlamalı [JSON]_ formatındadır. Aşağıdaki Uygulama Katmanı bölümüne bakın.
+Uygulama içeriği, basitlik ve genişletilebilirlik için UTF-8 kodlamalı [JSON](https://www.json.org/) formatındadır. Aşağıdaki Uygulama Katmanı bölümüne bakın.
 
 #### Yapılandırma
 
@@ -436,7 +436,7 @@ Her Sunucu, bir İstemci İsteği içinde periyodik olarak Uygulama verilerini g
 
 ### Uygulama Veri İçeriği
 
-Uygulama içeriği, basitlik ve genişletilebilirlik için UTF-8 kodlamalı [JSON]_ formatındadır. Tam spesifikasyon TBD (Henüz Belirlenmedi). Amaç, Meta LS2'yi yayınlamak için "en iyi" yönlendiriciyi belirlemek üzere bir algoritma yazmak için yeterli veriyi sağlamak ve yayıncının Meta LS2'deki Hedefleri ağırlıklandırması için yeterli bilgiye sahip olmasını sağlamaktır. Veriler hem yönlendirici hem de Hedef istatistiklerini içerecektir.
+Uygulama içeriği, basitlik ve genişletilebilirlik için UTF-8 kodlamalı [JSON](https://www.json.org/) formatındadır. Tam spesifikasyon TBD (Henüz Belirlenmedi). Amaç, Meta LS2'yi yayınlamak için "en iyi" yönlendiriciyi belirlemek üzere bir algoritma yazmak için yeterli veriyi sağlamak ve yayıncının Meta LS2'deki Hedefleri ağırlıklandırması için yeterli bilgiye sahip olmasını sağlamaktır. Veriler hem yönlendirici hem de Hedef istatistiklerini içerecektir.
 
 Veriler, diğer sunucuların sağlığı ve Meta LS'nin alınma kabiliyeti hakkında uzaktan algılama verileri içerebilir. Bu veriler ilk sürümde desteklenmeyecektir.
 

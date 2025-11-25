@@ -13,7 +13,7 @@ implementedin: "0.9.46"
 ## Hinweis
 Netzwerkbereitstellung und -tests im Gange.
 Unterliegt geringfügigen Überarbeitungen.
-Siehe [SPEC]_ für die offizielle Spezifikation.
+Siehe [SPEC](/en/docs/spec/ecies/) für die offizielle Spezifikation.
 
 Die folgenden Funktionen sind ab Version 0.9.46 nicht implementiert:
 
@@ -25,21 +25,21 @@ Die folgenden Funktionen sind ab Version 0.9.46 nicht implementiert:
 ## Übersicht
 
 Dies ist ein Vorschlag für den ersten neuen End-to-End-Verschlüsserungstyp
-seit dem Beginn von I2P, um ElGamal/AES+SessionTags [Elg-AES]_ zu ersetzen.
+seit dem Beginn von I2P, um ElGamal/AES+SessionTags [Elg-AES](/en/docs/spec/elgamal-aes/) zu ersetzen.
 
 Er basiert auf früheren Arbeiten wie folgt:
 
-- Spezifikation der gemeinsamen Strukturen [Common]_
-- [I2NP]_ Spezifikation einschließlich LS2
-- ElGamal/AES+Session Tags [Elg-AES]_
+- Spezifikation der gemeinsamen Strukturen [Common](/en/docs/spec/common-structures/)
+- [I2NP](/en/docs/spec/i2np/) Spezifikation einschließlich LS2
+- ElGamal/AES+Session Tags [Elg-AES](/en/docs/spec/elgamal-aes/)
 - http://zzz.i2p/topics/1768 Neue Übersicht über asymmetrische Kryptografie
-- Übersicht über kryptografische Grundlagen [CRYPTO-ELG]_
+- Übersicht über kryptografische Grundlagen [CRYPTO-ELG](/en/docs/how/cryptography/)
 - ECIES http://zzz.i2p/topics/2418
-- [NTCP2]_ [Prop111]_
+- [NTCP2](/en/docs/transport/ntcp2/) [Prop111](/en/proposals/111-ntcp2/)
 - 123 Neue netDB-Einträge
 - 142 Neues Krypto-Template
-- [Noise]_ Protokoll
-- [Signal]_ doppelter Ratschenschlüssel-Algorithmus
+- [Noise](https://noiseprotocol.org/noise.html) Protokoll
+- [Signal](https://signal.org/docs/specifications/doubleratchet/) doppelter Ratschenschlüssel-Algorithmus
 
 Ziel ist es, neue Verschlüsselung für die End-to-End-,
 Ziel-zu-Ziel-Kommunikation zu unterstützen.
@@ -76,7 +76,7 @@ Als Rückblick:
 Wir haben Unterstützung für Verschlüsselungstypen hinzugefügt, als wir Unterstützung für Signaturtypen hinzugefügt haben.
 Das Verschlüsselungsfeld ist sowohl in Zielen als auch in RouterIdentities stets null.
 Ob das jemals geändert werden soll, ist noch zu klären.
-Verweise siehe Spezifikation der gemeinsamen Strukturen [Common]_.
+Verweise siehe Spezifikation der gemeinsamen Strukturen [Common](/en/docs/spec/common-structures/).
 
 ### Verwendungen asymmetrischer Kryptografie
 
@@ -84,7 +84,7 @@ Als Rückblick: Wir verwenden ElGamal für:
 
 1) Tunnelbau-Nachrichten (Schlüssel ist in RouterIdentity)
    Eine Ersetzung ist in diesem Vorschlag nicht enthalten.
-   Siehe Vorschlag 152 [Prop152]_.
+   Siehe Vorschlag 152 [Prop152](/en/proposals/152-ecies-tunnels/).
 
 2) Router-zu-Router-Verschlüsselung von netdb und anderen I2NP-Nachrichten (Schlüssel ist in RouterIdentity)
    Hängt von diesem Vorschlag ab.
@@ -151,9 +151,9 @@ Verschiedene Probleme mit Session-Tags beseitigen, einschließlich:
 - Änderungen am LS2-Format (Vorschlag 123 ist abgeschlossen)
 - Neuer DHT-Rotationsalgorithmus oder gemeinsame zufällige Generierung
 - Neue Verschlüsselung für den Tunnelaufbau.
-  Siehe Vorschlag 152 [Prop152]_.
+  Siehe Vorschlag 152 [Prop152](/en/proposals/152-ecies-tunnels/).
 - Neue Verschlüsselung für die Tunnel-Layer-Verschlüsselung.
-  Siehe Vorschlag 153 [Prop153]_.
+  Siehe Vorschlag 153 [Prop153](/en/proposals/153-ecies-garlic/).
 - Methoden der Verschlüsselung, Übertragung und Empfang von I2NP DLM / DSM / DSRM-Nachrichten.
   Keine Änderung.
 - Keine LS1-zu-LS2- oder ElGamal/AES-zu-diesem Vorschlags-Kommunikation wird unterstützt.
@@ -190,7 +190,7 @@ Für ein typisches Tag-Set von 32 Tags sind dies 1 KB.
 Dies beseitigt auch die Speicherung von Session-Tags auf der Sendeseite und halbiert damit die Speicheranforderungen.
 
 Ein vollständiger bidirektionaler Handshake, ähnlich dem Noise IK-Muster, ist erforderlich, um Angriffe auf die Schlüsselkompromittierung zu vermeiden.
-Siehe die Noise "Payload Security Properties"-Tabelle in [NOISE]_.
+Siehe die Noise "Payload Security Properties"-Tabelle in [NOISE](https://noiseprotocol.org/noise.html).
 Weitere Informationen zu KCI finden Sie im Paper https://www.usenix.org/system/files/conference/woot15/woot15-paper-hlauschek.pdf
 
 ### Bedrohungsmodell
@@ -233,7 +233,7 @@ die für aktuelle I2P-Protokolle nicht erforderlich sind:
 - ECIES (aber das ist im Wesentlichen X25519)
 - Elligator2
 
-Bestehende I2P-Router-Implementierungen, die noch nicht [NTCP2]_ ([Prop111]_) implementiert haben,
+Bestehende I2P-Router-Implementierungen, die noch nicht [NTCP2](/en/docs/transport/ntcp2/) ([Prop111](/en/proposals/111-ntcp2/)) implementiert haben,
 werden auch Implementierungen benötigen für:
 
 - X25519-Schlüsselerzeugung und DH
@@ -247,14 +247,14 @@ Dies zeigt einen little-endian 32-Byte-X25519-öffentlichen Schlüssel an,
 und das hier spezifizierte End-to-End-Protokoll.
 
 Kryptotyp 0 ist ElGamal.
-Kryptotypen 1-3 sind reserviert für ECIES-ECDH-AES-SessionTag, siehe Vorschlag 145 [Prop145]_.
+Kryptotypen 1-3 sind reserviert für ECIES-ECDH-AES-SessionTag, siehe Vorschlag 145 [Prop145](/en/proposals/145-ecies/).
 
 ### Noise-Protokoll-Framework
 
 Dieser Vorschlag bietet die Anforderungen basierend auf dem Noise-Protokoll-Framework
-[NOISE]_ (Revision 34, 2018-07-11).
+[NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11).
 Noise weist ähnliche Eigenschaften wie das Station-To-Station-Protokoll
-[STS]_ auf, das die Grundlage für das [SSU]_ Protokoll ist. In Noise-Terminologie ist Alice
+[STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) auf, das die Grundlage für das [SSU](/en/docs/transport/ssu/) Protokoll ist. In Noise-Terminologie ist Alice
 die Initiatorin und Bob der Responder.
 
 Dieser Vorschlag basiert auf dem Noise-Protokoll Noise_IK_25519_ChaChaPoly_SHA256.
@@ -271,12 +271,12 @@ Dieses Noise-Protokoll verwendet die folgenden Primitive:
   Alice überträgt ihren statischen Schlüssel nicht an Bob (N)
 
 - DH-Funktion: X25519
-  X25519 DH mit einer Schlüssellänge von 32 Bytes, wie in [RFC-7748]_ spezifiziert.
+  X25519 DH mit einer Schlüssellänge von 32 Bytes, wie in [RFC-7748](https://tools.ietf.org/html/rfc7748) spezifiziert.
 
 - Chiffre-Funktion: ChaChaPoly
-  AEAD_CHACHA20_POLY1305 wie in [RFC-7539]_ Abschnitt 2.8 spezifiziert.
+  AEAD_CHACHA20_POLY1305 wie in [RFC-7539](https://tools.ietf.org/html/rfc7539) Abschnitt 2.8 spezifiziert.
   12-Byte-Nonce, wobei die ersten 4 Bytes auf Null gesetzt sind.
-  Identisch mit dem in [NTCP2]_.
+  Identisch mit dem in [NTCP2](/en/docs/transport/ntcp2/).
 
 - Hash-Funktion: SHA256
   Standardmäßiger 32-Byte-Hash, der in I2P ausgiebig verwendet wird.
@@ -286,21 +286,21 @@ Ergänzungen zum Framework
 
 Dieser Vorschlag definiert die folgenden Erweiterungen
 Noise_IK_25519_ChaChaPoly_SHA256. Diese folgen im Allgemeinen den Richtlinien in
-[NOISE]_ Abschnitt 13.
+[NOISE](https://noiseprotocol.org/noise.html) Abschnitt 13.
 
-1) Klartext-ephemere Schlüssel werden mit [Elligator2]_ codiert.
+1) Klartext-ephemere Schlüssel werden mit [Elligator2](https://elligator.org/) codiert.
 
 2) Die Antwort wird mit einem Klartext-Tag versehen.
 
 3) Das Payload-Format ist für die Nachrichten 1, 2 und die Datenphase definiert.
    Natürlich ist dies in Noise nicht definiert.
 
-Alle Nachrichten enthalten einen [I2NP]_ Garlic-Nachrichtenheader.
+Alle Nachrichten enthalten einen [I2NP](/en/docs/spec/i2np/) Garlic-Nachrichtenheader.
 Die Datenphase verwendet eine Verschlüsselung, die der in der Noise-Datenphase ähnlich ist, aber nicht kompatibel ist.
 
 ### Handshake-Muster
 
-Handshakes verwenden [Noise]_ Handshake-Muster.
+Handshakes verwenden [Noise](https://noiseprotocol.org/noise.html) Handshake-Muster.
 
 Das folgende Buchstabenmapping wird verwendet:
 
@@ -310,20 +310,19 @@ Das folgende Buchstabenmapping wird verwendet:
 
 Einmalige und ungebundene Sitzungen sind dem Noise-N-Muster ähnlich.
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es p ->
 
-{% endhighlight %}
+
+```
 
 Gebundene Sitzungen sind dem Noise-IK-Muster ähnlich.
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es s ss p ->
@@ -331,7 +330,8 @@ Gebundene Sitzungen sind dem Noise-IK-Muster ähnlich.
   <- p
   p ->
 
-{% endhighlight %}
+
+```
 
 ### Sitzungen
 
@@ -478,7 +478,7 @@ CSRNG(n)
 H(p, d)
     SHA-256-Hash-Funktion, die eine Personalisierungszeichenkette p und Daten d übernimmt und
     eine Ausgabe von 32 Byte Länge produziert.
-    Wie in [NOISE]_ definiert.
+    Wie in [NOISE](https://noiseprotocol.org/noise.html) definiert.
     || unten bedeutet Anhängen.
 
     Verwenden Sie SHA-256 wie folgt::
@@ -495,7 +495,7 @@ MixHash(d)
         MixHash(d) := h = SHA-256(h || d)
 
 STREAM
-    Der ChaCha20/Poly1305 AEAD wie in [RFC-7539]_ spezifiziert.
+    Der ChaCha20/Poly1305 AEAD wie in [RFC-7539](https://tools.ietf.org/html/rfc7539) spezifiziert.
     S_KEY_LEN = 32 und S_IV_LEN = 12.
 
     ENCRYPT(k, n, Klartext, ad)
@@ -545,13 +545,13 @@ HKDF(salt, ikm, info, n)
     mit einer Länge von 32 Bytes, und einen kontextspezifischen 'info'-Wert übernimmt und eine Ausgabe
     von n Bytes erzeugt, die sich als Schlüsselmaterieal eignet.
 
-    Verwenden Sie HKDF wie in [RFC-5869]_ spezifiziert, mit der HMAC-Hash-Funktion SHA-256
-    wie in [RFC-2104]_ spezifiziert. Das bedeutet, dass SALT_LEN maximal 32 Bytes ist.
+    Verwenden Sie HKDF wie in [RFC-5869](https://tools.ietf.org/html/rfc5869) spezifiziert, mit der HMAC-Hash-Funktion SHA-256
+    wie in [RFC-2104](https://tools.ietf.org/html/rfc2104) spezifiziert. Das bedeutet, dass SALT_LEN maximal 32 Bytes ist.
 
 MixKey(d)
     Verwenden Sie HKDF() mit einem vorherigen chainKey und neuen Daten d und
     legt den neuen chainKey und k fest.
-    Wie in [NOISE]_ definiert.
+    Wie in [NOISE](https://noiseprotocol.org/noise.html) definiert.
 
     Verwenden Sie HKDF wie folgt::
 
@@ -564,7 +564,7 @@ MixKey(d)
 Übersicht des aktuellen Nachrichtenformats
 ````````````````````````````````````````````
 
-Die Garlic-Nachricht, wie in [I2NP]_ spezifiziert, ist wie folgt.
+Die Garlic-Nachricht, wie in [I2NP](/en/docs/spec/i2np/) spezifiziert, ist wie folgt.
 Da ein Designziel darin besteht, dass Zwischenhops neue von alten Krypto nicht unterscheiden können,
 kann sich dieses Format nicht ändern, obwohl das Längenfeld redundant ist.
 Das Format wird mit dem vollständigen 16-Byte-Header angezeigt, obwohl der
@@ -572,11 +572,10 @@ tatsächliche Header in einem anderen Format vorliegen kann, abhängig vom verwe
 
 Wenn die Daten entschlüsselt werden, enthalten sie eine Serie von Garlic-Cloves und zusätzliche Daten, auch bekannt als Clove-Set.
 
-Siehe [I2NP]_ für Details und eine vollständige Spezifikation.
+Siehe [I2NP](/en/docs/spec/i2np/) für Details und eine vollständige Spezifikation.
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |type|      msg_id       |  expiration
   +----+----+----+----+----+----+----+----+
@@ -590,7 +589,8 @@ Siehe [I2NP]_ für Details und eine vollständige Spezifikation.
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-{% endhighlight %}
+
+```
 
 Übersicht des verschlüsselten Datenformats
 ````````````````````````````````````````````
@@ -675,9 +675,8 @@ Die New Session-Nachricht ist dem Einweg-Noise-[NOISE]-Muster "N" (wenn der stat
 Die Länge beträgt 96 + Payload-Länge.
 Verschlüsseltes Format:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -720,7 +719,8 @@ Verschlüsseltes Format:
 
   MAC :: Poly1305-Nachrichtenauthentifizierungscode, 16 Bytes
 
-{% endhighlight %}
+
+```
 
 Neuer Sitzung-ephemerer Schlüssel
 ```````````````````````````
@@ -749,9 +749,8 @@ Wenn keine Antwort erforderlich ist, wird kein statischer Schlüssel gesendet.
 Die Länge beträgt 96 + Payload-Länge.
 Verschlüsseltes Format:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -794,7 +793,8 @@ Verschlüsseltes Format:
 
   MAC :: Poly1305-Nachrichtenauthentifizierungscode, 16 Bytes
 
-{% endhighlight %}
+
+```
 
 Neuer Sitzung-ephemerer Schlüssel
 ```````````````````````````
@@ -831,9 +831,8 @@ ist kein Sitzungs-Setup oder statischer Schlüssel erforderlich.
 Die Länge beträgt 96 + Payload-Länge.
 Verschlüsseltes Format:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -876,7 +875,8 @@ Verschlüsseltes Format:
 
   MAC :: Poly1305-Nachrichtenauthentifizierungscode, 16 Bytes
 
-{% endhighlight %}
+
+```
 
 Neuer Sitzungseinmaliger Schlüssel
 ````````````````````````````````
@@ -896,9 +896,8 @@ handelt, indem er prüft, ob die 32 Bytes alle Null sind.
 
 TODO: Irgendwelche Flags hier benötigt?
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -911,7 +910,8 @@ TODO: Irgendwelche Flags hier benötigt?
 
   Nullen:: Alles Null, 32 Bytes.
 
-{% endhighlight %}
+
+```
 
 Payload
 ```````
@@ -926,7 +926,7 @@ Siehe den Payload-Abschnitt unten für das Format und zusätzliche Anforderungen
 KDF für den Initial-ChainKey
 ``````````````````````````
 
-Dies ist standardmäßiges [NOISE]_ für IK mit einem modifizierten Protokollnamen.
+Dies ist standardmäßiges [NOISE](https://noiseprotocol.org/noise.html) für IK mit einem modifizierten Protokollnamen.
 Beachten Sie, dass wir denselben Initialisierer sowohl für das IK-Muster (gebundene Sitzungen) als auch für das N-Muster (ungebundene Sitzungen) verwenden.
 
 Der Protokollname wird aus zwei Gründen modifiziert.
@@ -934,9 +934,8 @@ Erstens, um anzuzeigen, dass die ephemeren Schlüssel mit Elligator2 codiert sin
 und zweitens, um anzuzeigen, dass MixHash() vor der zweiten Nachricht aufgerufen wird,
 um den Tag-Wert zu vermischen.
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Dies ist das "e"-Muster:
 
   // Protokollname definieren.
@@ -954,14 +953,14 @@ Dies ist das "e"-Muster:
 
   // bis hierhin, kann alles von Alice im Voraus berechnet werden für alle ausgehenden Verbindungen
 
-{% endhighlight %}
+
+```
 
 KDF für Flag-/Statischer Schlüsselbereich verschlüsselte Inhalte
 `````````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Dies ist das "e"-Muster:
 
   // Bobs X25519 static keys
@@ -1026,14 +1025,14 @@ Dies ist das "e"-Muster:
 
   Ende des "s"-Muster.
 
-{% endhighlight %}
+
+```
 
 KDF für den Payload-Bereich (mit Alices statischem Schlüssel)
 `````````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Dies ist das "ss"-Muster:
 
   // Noise ss
@@ -1059,7 +1058,8 @@ Dies ist das "ss"-Muster:
   // Gespeichert für die New Session Reply KDF
   h = SHA256(h || ciphertext)
 
-{% endhighlight %}
+
+```
 
 KDF für den Payload-Bereich (ohne Alices statischen Schlüssel)
 `````````````````````````````````````````````````
@@ -1073,16 +1073,16 @@ Daher muss der Empfänger die "IK"-Zustandsmaschine für alle
 neuen Sitzungsnachrichten verwenden.
 Wenn der statische Schlüssel alle Nullen enthält, muss das "ss"-Muster übersprungen werden.
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 chainKey = from Flag-/Statischer Schlüsselbereich
   k = from Flag-/Statischer Schlüsselbereich
   n = 1
   ad = h from Flag-/Statischer Schlüsselbereich
   ciphertext = ENCRYPT(k, n, payload, ad)
 
-{% endhighlight %}
+
+```
 
 ### 1g) Neues Sitzungsantwortformat
 
@@ -1098,9 +1098,8 @@ Die Länge des zweiten Teils beträgt 16 + Payload-Länge.
 Gesamtlänge ist 72 + Payload-Länge.
 Verschlüsseltes Format:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |       Session Tag   8 Bytes           |
   +----+----+----+----+----+----+----+----+
@@ -1140,7 +1139,8 @@ Verschlüsseltes Format:
 
   MAC :: Poly1305-Nachrichtenauthentifizierungscode, 16 Bytes
 
-{% endhighlight %}
+
+```
 
 Sitzungstag
 ```````````
@@ -1171,21 +1171,20 @@ KDF für Reply TagSet
 Eines oder mehrere Tags werden aus dem TagSet generiert, das mit dem
 KDF unten initialisiert wird, das den chainKey aus der neuen Sitzung verwendet.
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // Tagset generieren
   tagsetKey = HKDF(chainKey, ZEROLEN, "SessionReplyTags", 32)
   tagset_nsr = DH_INITIALIZE(chainKey, tagsetKey)
 
-{% endhighlight %}
+
+```
 
 KDF für Reply Key-Bereich verschlüsselte Inhalte
 ``````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 
 // Schlüssel aus der neuen Sitzung Nachricht
   // Alices X25519-Schlüssel
@@ -1257,7 +1256,8 @@ KDF für Reply Key-Bereich verschlüsselte Inhalte
 
   chainKey wird in der Ratchet unten verwendet.
 
-{% endhighlight %}
+
+```
 
 KDF für Payload-Bereich verschlüsselte Inhalte
 ``````````````````````````````````````
@@ -1267,9 +1267,8 @@ nach dem Split, jedoch ohne ein separates Tag.
 Zusätzlich verwenden wir den Hash von oben, um
 den Payload an die NSR-Nachricht zu binden.
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 
 // split()
   keydata = HKDF(chainKey, ZEROLEN, "", 64)
@@ -1283,7 +1282,8 @@ den Payload an die NSR-Nachricht zu binden.
   n = 0
   ad = h
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+
+```
 
 ### Hinweise
 
@@ -1308,9 +1308,8 @@ Format
 ``````
 Verschlüsselt:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |       Session Tag                     |
   +----+----+----+----+----+----+----+----+
@@ -1333,7 +1332,8 @@ Verschlüsselt:
 
   MAC :: Poly1305-Nachrichtenauthentifizierungscode, 16 Bytes
 
-{% endhighlight %}
+
+```
 
 Payload
 ```````
@@ -1344,9 +1344,8 @@ Siehe den Payload-Abschnitt unten für Format und Anforderungen.
 KDF
 ```
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Siehe AEAD-Abschnitt unten.
 
   // AEAD-Parameter für bestehenden Sitzung-Payload
@@ -1354,13 +1353,14 @@ Siehe AEAD-Abschnitt unten.
   n = Die Nachrichtenummer N in der aktuellen Kette, wie sie aus dem zugehörigen Session-Tag abgerufen wird.
   ad = Das Session-Tag, 8 Bytes
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+
+```
 
 ### 2) ECIES-X25519
 
 Format: 32-Byte öffentliche und private Schlüssel, little-endian.
 
-Rechtfertigung: Wird in [NTCP2]_.
+Rechtfertigung: Wird in [NTCP2](/en/docs/transport/ntcp2/).
 
 ### 2a) Elligator2
 
@@ -1368,13 +1368,13 @@ In standardmäßigen Noise-Handshakes beginnen die anfänglichen Handshake-Nachr
 ephemeren Schlüsseln, die Klartext übertragen werden.
 Da gültige X25519-Schlüssel von Zufall zu unterscheiden sind, könnte ein Man-in-the-Middle den Unterschied zwischen diesen Nachrichten machen
 und bestehenden Sitzungsnachrichten erkennen, die mit zufälligen Session-Tags beginnen.
-In [NTCP2]_ ([Prop111]_) haben wir eine mit geringem Aufwand XOR-Funktion verwendet, die den out-of-band Static-Schlüssel benutzt, um
+In [NTCP2](/en/docs/transport/ntcp2/) ([Prop111](/en/proposals/111-ntcp2/)) haben wir eine mit geringem Aufwand XOR-Funktion verwendet, die den out-of-band Static-Schlüssel benutzt, um
 den Schlüssel zu verschleiern.
 Doch da das Bedrohungsmodell hier anders ist; wollen wir keiner MitM die Möglichkeit geben
 irgendeine Methode zu verwenden, um das Ziel des Verkehrs zu bestätigen oder um zu unterscheiden,
 ob die anfänglichen Handshake-Nachrichten von bestehenden Sitzungsnachrichten kommen.
 
-Daher wird [Elligator2]_ verwendet, um die ephemeren Schlüssel in den New Session und New Session Reply Nachrichten
+Daher wird [Elligator2](https://elligator.org/) verwendet, um die ephemeren Schlüssel in den New Session und New Session Reply Nachrichten
 so zu transformieren, dass sie von einheitlichen Zufallstrings nicht zu unterscheiden sind.
 
 Format
@@ -1383,14 +1383,13 @@ Format
 32-Byte öffentliche und private Schlüssel.
 Kodierte Schlüssel sind little endian.
 
-Wie in [Elligator2]_ definiert, sind die kodierten Schlüssel von 254 Zufallsbits nicht zu unterscheiden.
+Wie in [Elligator2](https://elligator.org/) definiert, sind die kodierten Schlüssel von 254 Zufallsbits nicht zu unterscheiden.
 Wir benötigen 256 Zufallsbits (32 Bytes). Daher sind die Kodierung und Dekodierung definiert wie folgt:
 
 Kodierung:
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 ENCODE_ELG2() Definition
 
   // Kodieren wie in der Elligator2-Spezifikation definiert
@@ -1398,20 +1397,21 @@ ENCODE_ELG2() Definition
   // XOR mit 2 zufälligen Bits zur MSB
   randomByte = CSRNG(1)
   encodedKey[31] |= (randomByte & 0xc0)
-{% endhighlight %}
+
+```
 
 Dekodierung:
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 DECODE_ELG2() Definition
 
   // Entmaskieren von 2 zufälligen Bits aus der MSB
   encodedKey[31] &= 0x3f
   // Kodieren wie in der Elligator2-Spezifikation definiert
   pubkey = dekodieren(encodedKey)
-{% endhighlight %}
+
+```
 
 Rechtfertigung
 ``````````````
@@ -1434,14 +1434,14 @@ Der Generator sollte daher das Ergebnis der ENCODE_ELG2()
 speichern, damit es nicht erneut berechnet werden muss.
 
 Zusätzlich können die ungeeigneten Schlüssel dem Pool von Schlüsseln
-hinzugefügt werden, die für [NTCP2]_ verwendet werden, wo Elligator2 nicht verwendet wird.
+hinzugefügt werden, die für [NTCP2](/en/docs/transport/ntcp2/) verwendet werden, wo Elligator2 nicht verwendet wird.
 Die Sicherheitsprobleme die damit verbunden sind, sind TBD.
 
 ### 3) AEAD (ChaChaPoly)
 
-AEAD mit ChaCha20 und Poly1305, identisch mit in [NTCP2]_.
-Dies entspricht [RFC-7539]_, das auch
-ähnlich in TLS [RFC-7905]_ verwendet wird.
+AEAD mit ChaCha20 und Poly1305, identisch mit in [NTCP2](/en/docs/transport/ntcp2/).
+Dies entspricht [RFC-7539](https://tools.ietf.org/html/rfc7539), das auch
+ähnlich in TLS [RFC-7905](https://tools.ietf.org/html/rfc7905) verwendet wird.
 
 Neue Sitzungs- und neue Sitzungsantwort-Eingaben
 ````````````````````````````````````````````````````````
@@ -1449,9 +1449,8 @@ Neue Sitzungs- und neue Sitzungsantwort-Eingaben
 Eingaben in die Verschlüsselungs-/Entschlüsselungsfunktionen
 für einen AEAD-Block in einer neuen Sitzung Nachricht:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 k :: 32 Byte Chiffre-Schlüssel
        Siehe New Session und New Session Reply KDFs oben.
 
@@ -1463,7 +1462,8 @@ k :: 32 Byte Chiffre-Schlüssel
 
   data :: Klartext-Daten, 0 oder mehr Bytes
 
-{% endhighlight %}
+
+```
 
 Bestehende Sitzungseingaben
 ```````````````````````````
@@ -1471,9 +1471,8 @@ Bestehende Sitzungseingaben
 Eingaben in die Verschlüsselungs-/Entschlüsselungsfunktionen
 für einen AEAD-Block in einer bestehenden Sitzung-Nachricht:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 k :: 32 Byte Session-Schlüssel
        Wie beim zugehörigen Sitzungstag nachgeschlagen.
 
@@ -1491,16 +1490,16 @@ k :: 32 Byte Session-Schlüssel
         Das Sitzungstag
 
   data :: Klartext-Daten, 0 oder mehr Bytes
-{% endhighlight %}
+
+```
 
 Verschlüsseltes Format
 ``````````````````````
 
 Ausgabe der Verschlüssungsfunktion, Eingabe in die Entschlüsselungsfunktion:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -1517,7 +1516,8 @@ Ausgabe der Verschlüssungsfunktion, Eingabe in die Entschlüsselungsfunktion:
 
   MAC :: Poly1305-Nachrichtenauthentifizierungscode, 16 Bytes
 
-{% endhighlight %}
+
+```
 
 Hinweise
 ````````
@@ -1543,7 +1543,7 @@ Es wird keine Antwort zurückgegeben.
 Justification
 ``````````````
 
-In [NTCP2]_ verwendet.
+In [NTCP2](/en/docs/transport/ntcp2/) verwendet.
 
 ### 4) Ratschenschlüssel
 

@@ -38,7 +38,7 @@ Reasons:
 ### Strategy
 
 Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
-recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1]_
+recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
 IF we can find an algo that's small and fast.
 
 Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
@@ -61,9 +61,3 @@ distribute keys to multiple people if you like).
 - Signature
 
 Encrypted data could be prefixed with some enctype specifier, or not.
-
-
-## References
-
-.. [RFC-4880-S5.1]
-    https://tools.ietf.org/html/rfc4880#section-5.1

@@ -36,7 +36,7 @@ Gründe:
 
 ### Strategie
 
-Mach es wie GPG/OpenPGP. Asymmetrisch einen symmetrischen Schlüssel für jeden Empfänger verschlüsseln. Daten werden mit diesem asymmetrischen Schlüssel entschlüsselt. Siehe z.B. [RFC-4880-S5.1]_
+Mach es wie GPG/OpenPGP. Asymmetrisch einen symmetrischen Schlüssel für jeden Empfänger verschlüsseln. Daten werden mit diesem asymmetrischen Schlüssel entschlüsselt. Siehe z.B. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
 WENN wir einen Algorithmus finden, der klein und schnell ist.
 
 Der Trick besteht darin, eine asymmetrische Verschlüsselung zu finden, die klein und schnell ist. ElGamal mit 514 Bytes ist hier etwas schmerzhaft. Wir können es besser machen.

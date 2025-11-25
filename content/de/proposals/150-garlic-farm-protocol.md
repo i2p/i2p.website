@@ -335,7 +335,7 @@ SnapshotSyncRequest          5
 
 #### Anwendung
 
-Anwendungsinhalte sind UTF-8-codiert [JSON]_. Siehe den Abschnitt Anwendungsebene unten.
+Anwendungsinhalte sind UTF-8-codiert [JSON](https://www.json.org/). Siehe den Abschnitt Anwendungsebene unten.
 
 
 #### Konfiguration
@@ -459,7 +459,7 @@ Jeder Server veröffentlicht regelmäßig Anwendungsdaten im Log in einer Client
 
 ### Inhalte der Anwendungsdaten
 
-Anwendungsinhalte sind UTF-8-codiert [JSON]_, der Einfachheit und Erweiterbarkeit halber. Die vollständige Spezifikation ist TBD. Das Ziel ist es, genügend Daten zur Verfügung zu stellen, um einen Algorithmus zu schreiben, der den "besten" Router zur Veröffentlichung des Meta LS2 bestimmt, und für den Herausgeber, genügend Informationen zu haben, um die Ziele im Meta LS2 zu gewichten. Die Daten enthalten sowohl Router- als auch Zielstatistiken.
+Anwendungsinhalte sind UTF-8-codiert [JSON](https://www.json.org/), der Einfachheit und Erweiterbarkeit halber. Die vollständige Spezifikation ist TBD. Das Ziel ist es, genügend Daten zur Verfügung zu stellen, um einen Algorithmus zu schreiben, der den "besten" Router zur Veröffentlichung des Meta LS2 bestimmt, und für den Herausgeber, genügend Informationen zu haben, um die Ziele im Meta LS2 zu gewichten. Die Daten enthalten sowohl Router- als auch Zielstatistiken.
 
 Die Daten können optional Fernerkundungsdaten über die Gesundheit der anderen Server und die Möglichkeit, das Meta LS abzurufen, enthalten. Diese Daten würden in der ersten Veröffentlichung nicht unterstützt werden.
 

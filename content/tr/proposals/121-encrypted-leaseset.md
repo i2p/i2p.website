@@ -36,7 +36,7 @@ Nedenler:
 
 ### Strateji
 
-GPG/OpenPGP'ye benzer şekilde yapın. Her alıcı için simetrik bir anahtarı asimetrik olarak şifreleyin. Veri, bu asimetrik anahtarla çözülecek. Bkz. örneğin [RFC-4880-S5.1]_
+GPG/OpenPGP'ye benzer şekilde yapın. Her alıcı için simetrik bir anahtarı asimetrik olarak şifreleyin. Veri, bu asimetrik anahtarla çözülecek. Bkz. örneğin [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
 Eğer küçük ve hızlı bir algoritma bulabilirsek.
 
 Küçük ve hızlı olan bir asimetrik şifreleme bulmak zor. ElGamal 514 bayt'ta bu durumda biraz sıkıntılı. Daha iyisini yapabiliriz.

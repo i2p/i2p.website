@@ -353,7 +353,7 @@ All values are unsigned big-endian.
 
 #### Application
 
-Application contents are UTF-8 encoded [JSON]_.
+Application contents are UTF-8 encoded [JSON](https://www.json.org/).
 See the Application Layer section below.
 
 

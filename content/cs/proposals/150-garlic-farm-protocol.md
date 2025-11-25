@@ -334,7 +334,7 @@ SnapshotSyncRequest        5
 
 #### Aplikace
 
-Aplikační obsah je kódován UTF-8 [JSON]_. Viz sekce Aplikační vrstva níže.
+Aplikační obsah je kódován UTF-8 [JSON](https://www.json.org/). Viz sekce Aplikační vrstva níže.
 
 
 #### Konfigurace
@@ -459,7 +459,7 @@ Každý Server periodicky ukládá Aplikační data do logu v ClientRequest. Apl
 
 ### Obsah aplikačních dat
 
-Aplikační obsah je kódován UTF-8 [JSON]_, pro jednoduchost a rozšiřitelnost. Plná specifikace je TBD. Cílem je poskytnout dostatek dat k napsání algoritmu k určení "nejlepšího" routeru k publikování Meta LS2, a aby publisher měl dostatečné informace k zvážení Destinací v Meta LS2. Data budou obsahovat jak statistiky routeru, tak Destinace.
+Aplikační obsah je kódován UTF-8 [JSON](https://www.json.org/), pro jednoduchost a rozšiřitelnost. Plná specifikace je TBD. Cílem je poskytnout dostatek dat k napsání algoritmu k určení "nejlepšího" routeru k publikování Meta LS2, a aby publisher měl dostatečné informace k zvážení Destinací v Meta LS2. Data budou obsahovat jak statistiky routeru, tak Destinace.
 
 Data mohou volitelně obsahovat vzdálená data o zdraví ostatních serverů, a možnost získání Meta LS. Tato data nebudou podporována v první verzi.
 

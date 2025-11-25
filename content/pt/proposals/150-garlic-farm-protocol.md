@@ -382,7 +382,7 @@ Pedido de Sincronização de Snapshot  5
 
 #### Aplicação
 
-Os conteúdos da aplicação são codificados em UTF-8 [JSON]_.
+Os conteúdos da aplicação são codificados em UTF-8 [JSON](https://www.json.org/).
 Veja a seção da Camada de Aplicação abaixo.
 
 
@@ -520,7 +520,7 @@ O publicador do Meta LS2 NÃO é necessariamente o Líder Raft.
 
 ### Conteúdo dos Dados de Aplicação
 
-Os conteúdos da aplicação são codificados em UTF-8 [JSON]_,
+Os conteúdos da aplicação são codificados em UTF-8 [JSON](https://www.json.org/),
 para simplicidade e extensibilidade.
 A especificação completa está a ser definida.
 O objetivo é fornecer dados suficientes para escrever um algoritmo para determinar o "melhor"

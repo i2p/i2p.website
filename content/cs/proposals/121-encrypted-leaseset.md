@@ -36,7 +36,7 @@ Důvody:
 
 ### Strategie
 
-Postupovat jako GPG/OpenPGP. Asymetricky zašifrovat symetrický klíč pro každého příjemce. Data se dešifrují pomocí tohoto asymetrického klíče. Viz např. [RFC-4880-S5.1]_
+Postupovat jako GPG/OpenPGP. Asymetricky zašifrovat symetrický klíč pro každého příjemce. Data se dešifrují pomocí tohoto asymetrického klíče. Viz např. [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
 POKUD najdeme algoritmus, který je malý a rychlý.
 
 Trik je najít asymetrické šifrování, které je malé a rychlé. ElGamal o velikosti 514 bajtů je zde trochu bolestivé. Můžeme si vést lépe.

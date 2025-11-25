@@ -13,7 +13,7 @@ implementedin: "0.9.46"
 ## Not
 Ağ dağıtımı ve testleri devam ediyor.
 Küçük revizyonlar yapılabilir.
-Resmi spesifikasyon için [SPEC]_ görebilirsiniz.
+Resmi spesifikasyon için [SPEC](/en/docs/spec/ecies/) görebilirsiniz.
 
 0.9.46 itibariyle uygulanmamış olan özellikler şunlardır:
 
@@ -25,21 +25,21 @@ Resmi spesifikasyon için [SPEC]_ görebilirsiniz.
 
 ## Genel Bakış
 
-Bu, I2P'nin başlangıcından bu yana ilk yeni uçtan-uca şifreleme türü için bir öneridir ve ElGamal/AES+Oturum Etiketleri yerine kullanılacaktır [Elg-AES]_.
+Bu, I2P'nin başlangıcından bu yana ilk yeni uçtan-uca şifreleme türü için bir öneridir ve ElGamal/AES+Oturum Etiketleri yerine kullanılacaktır [Elg-AES](/en/docs/spec/elgamal-aes/).
 
 Aşağıdaki gibi önceki çalışmalara dayanır:
 
-- Ortak yapılar spesifikasyonu [Common]_
-- LS2 dahil olmak üzere [I2NP]_ spesifikasyonu
-- ElGamal/AES+Oturum Etiketler [Elg-AES]_
+- Ortak yapılar spesifikasyonu [Common](/en/docs/spec/common-structures/)
+- LS2 dahil olmak üzere [I2NP](/en/docs/spec/i2np/) spesifikasyonu
+- ElGamal/AES+Oturum Etiketler [Elg-AES](/en/docs/spec/elgamal-aes/)
 - http://zzz.i2p/topics/1768 yeni asimetrik şifreleme genel bakış
-- Alt seviye kripto genel bakış [CRYPTO-ELG]_
+- Alt seviye kripto genel bakış [CRYPTO-ELG](/en/docs/how/cryptography/)
 - ECIES http://zzz.i2p/topics/2418
-- [NTCP2]_ [Prop111]_
+- [NTCP2](/en/docs/transport/ntcp2/) [Prop111](/en/proposals/111-ntcp2/)
 - 123 Yeni netDB Girişleri
 - 142 Yeni Kripto Şablonu
-- [Noise]_ protokolü
-- [Signal]_ çift yönlü ratchet algoritması
+- [Noise](https://noiseprotocol.org/noise.html) protokolü
+- [Signal](https://signal.org/docs/specifications/doubleratchet/) çift yönlü ratchet algoritması
 
 Amaç, uçtan uca, hedefe-hedef iletişimini yeni şifreleme ile desteklemektir.
 
@@ -78,7 +78,7 @@ Bir gözden geçirme olarak,
 şifreleme türlerine destek eklediğimizde imza türlerine destek ekledik.
 Şifreleme türü alanı her zaman sıfırdır, hem Destinasyonlar hem de RouterKimliklerinde.
 Bunun ne zaman değiştirileceği konusundaki karar verilecektir.
-Ortak yapılar spesifikasyonuna [Common]_ başvurun.
+Ortak yapılar spesifikasyonuna [Common](/en/docs/spec/common-structures/) başvurun.
 
 
 
@@ -89,7 +89,7 @@ Bir gözden geçirme olarak, ElGamal'ı kullanıyoruz:
 
 1) Tünel Oluşturma mesajları (anahtar RouterIdentity içindedir)
    Bu öneri kapsamında yer almıyor.
-   152 numaralı öneriye bakın [Prop152]_.
+   152 numaralı öneriye bakın [Prop152](/en/proposals/152-ecies-tunnels/).
 
 2) Ağ veritabanı ve diğer I2NP mesajlarının yönlendiriciye-yönlendirici şifrelemesi (Anahtar RouterIdentity içindedir)
    Bu öneriye bağlıdır.
@@ -156,9 +156,9 @@ Bir gözden geçirme olarak, ElGamal'ı kullanıyoruz:
 - LS2 formatı değişiklikleri (öneri 123 tamamlandı)
 - Yeni DHT rotasyon algoritması veya paylaşımlı rastgele üretim
 - Tünel oluşturma için yeni şifreleme.
-  152 numaralı öneriye bakın [Prop152]_.
+  152 numaralı öneriye bakın [Prop152](/en/proposals/152-ecies-tunnels/).
 - Tünel katmanı şifrelemesi için yeni şifreleme.
-  153 numaralı öneriye bakın [Prop153]_.
+  153 numaralı öneriye bakın [Prop153](/en/proposals/153-ecies-garlic/).
 - I2NP DLM / DSM / DSRM mesajlarının şifreleme, iletim ve alım yöntemleri.
   Değişiklik yok.
 - LS1 an LS2 veya ElGamal/AES'ten bu öneriye iletişim desteklenmiyor.
@@ -195,7 +195,7 @@ Bu ayrıca, gönderici tarafında oturum etiketlerinin saklanmasını ortadan ka
 böylece depolama gereksinimlerini yarıya indirir.
 
 Key Compromise Impersonation (KCI) saldırılarından kaçınmak için, Noise IK desenine benzer tam bir iki yönlü el sıkışma gereklidir.
-[NOISE]_ içindeki Noise "Payload Security Properties" tablosuna bakın.
+[NOISE](https://noiseprotocol.org/noise.html) içindeki Noise "Payload Security Properties" tablosuna bakın.
 KCI hakkında daha fazla bilgi için makaleye bakın: https://www.usenix.org/system/files/conference/woot15/woot15-paper-hlauschek.pdf
 
 
@@ -243,7 +243,7 @@ aşağıdaki standart kriptografik ilkel yapı taşları için uygulamalar gerek
 - ECIES (ama bu aslında X25519'dur)
 - Elligator2
 
-Mevcut I2P yönlendirici uygulamaları henüz [NTCP2]'yi ([Prop111]_) uygulamayanlar da gerektirecektir:
+Mevcut I2P yönlendirici uygulamaları henüz [NTCP2]'yi ([Prop111](/en/proposals/111-ntcp2/)) uygulamayanlar da gerektirecektir:
 
 - X25519 anahtar üretimi ve DH
 - AEAD_ChaCha20_Poly1305 (aşağıda ChaChaPoly olarak kısaltılmıştır)
@@ -257,14 +257,14 @@ Bu, küçük endian 32 bayt X25519 ortak anahtarını
 ve burada belirtilen uçtan uca protokolü gösterir.
 
 Kripto türü 0 ElGamal'dır.
-1-3 numaralı kripto türleri ECIES-ECDH-AES-SessionTag için ayrılmıştır, 145 numaralı öneriye bakın [Prop145]_.
+1-3 numaralı kripto türleri ECIES-ECDH-AES-SessionTag için ayrılmıştır, 145 numaralı öneriye bakın [Prop145](/en/proposals/145-ecies/).
 
 
 ### Noise Protokol Çerçevesi
 
-Bu öneri, Noise Protokol Çerçevesine [NOISE]_ (Sürüm 34, 2018-07-11) dayalı gereksinimleri sağlar.
-Noise, İstasyon-İstasyon protokolüne [STS]_ benzer özelliklere sahiptir
-ve bu da [SSU]_ protokolünün temelini oluşturur. Noise dilinde, Alice
+Bu öneri, Noise Protokol Çerçevesine [NOISE](https://noiseprotocol.org/noise.html) (Sürüm 34, 2018-07-11) dayalı gereksinimleri sağlar.
+Noise, İstasyon-İstasyon protokolüne [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) benzer özelliklere sahiptir
+ve bu da [SSU](/en/docs/transport/ssu/) protokolünün temelini oluşturur. Noise dilinde, Alice
 başlatıcı, Bob ise yanıtlayıcıdır.
 
 Bu öneri, Noise protokolü Noise_IK_25519_ChaChaPoly_SHA256'ye dayanır.
@@ -281,10 +281,10 @@ Bu Noise protokolü aşağıdaki ilkel yapı taşlarını kullanır:
   Alice statik anahtarını Bob'a göndermez (N)
 
 - DH Fonksiyonu: X25519
-  X25519 DH, [RFC-7748]_ de tanımlandığı gibi 32 bayt uzunluğunda
+  X25519 DH, [RFC-7748](https://tools.ietf.org/html/rfc7748) de tanımlandığı gibi 32 bayt uzunluğunda
 
 - Şifreleme Fonksiyonu: ChaChaPoly
-  [RFC-7539]_'da tanımlandığı gibi AEAD_CHACHA20_POLY1305, bölüm 2.8.
+  [RFC-7539](https://tools.ietf.org/html/rfc7539)'da tanımlandığı gibi AEAD_CHACHA20_POLY1305, bölüm 2.8.
   Anahtar k 32 byte, nonce n 12 byte ile
   Mesaj sırası numarası ve ilişkili verilerle (10 bayt toplam)
   NTCP2'nin tanımladığı gibi AEAD ile aynı ancak ücretsiz olup olmadığını
@@ -299,22 +299,22 @@ Bu Noise protokolü aşağıdaki ilkel yapı taşlarını kullanır:
 ```````````````````````````````````
 
 Bu öneri, Noise_IK_25519_ChaChaPoly_SHA256'ya aşağıdaki iyileştirmeleri tanımlar.  Genel olarak
-[NOISE]_ bölüm 13'teki yönergeleri takip ediyorlar.
+[NOISE](https://noiseprotocol.org/noise.html) bölüm 13'teki yönergeleri takip ediyorlar.
 
-1) Net geçiş rastgele anahtarları [Elligator2]_ ile kodlanmıştır.
+1) Net geçiş rastgele anahtarları [Elligator2](https://elligator.org/) ile kodlanmıştır.
 
 2) Yanıt açık metin etiketi ile önceden belirtilmiştir.
 
 3) Mesaj 1 ve 2 ve veri aşaması için yük formatı tanımlanmıştır.
    Elbette, bu Noise'da tanımlıdır.
 
-Tüm mesajlar bir [I2NP]_ Sarımsak Mesaj başlığını içerir.
+Tüm mesajlar bir [I2NP](/en/docs/spec/i2np/) Sarımsak Mesaj başlığını içerir.
 Veri aşaması, Noise veri aşaması ile benzer şekilde ancak uyumsuz bir şekilde şifreleme kullanır.
 
 
 ### El Sıkışma Desenleri
 
-El sıkışmalar [Noise]_ el sıkışma desenlerini kullanır.
+El sıkışmalar [Noise](https://noiseprotocol.org/noise.html) el sıkışma desenlerini kullanır.
 
 Aşağıdaki harf eşleme kullanılır:
 
@@ -324,20 +324,19 @@ Aşağıdaki harf eşleme kullanılır:
 
 Tek seferlik ve Bağlı olmayan oturumlar Noise N desenine benzer.
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es p ->
 
-{% endhighlight %}
+
+```
 
 Bağlı oturumlar Noise IK desenine benzer.
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es s ss p ->
@@ -345,7 +344,8 @@ Bağlı oturumlar Noise IK desenine benzer.
   <- p
   p ->
 
-{% endhighlight %}
+
+```
 
 
 ### Oturumlar
@@ -505,7 +505,7 @@ CSRNG(n)
 H(p, d)
     SHA-256 hash fonksiyonu, bir kişiselleştirme dizgesi p ve veri d alır,
     ve 32 byte uzunluğunda bir çıktı üretir.
-    [NOISE]_ 'de tanımlandığı gibi. 
+    [NOISE](https://noiseprotocol.org/noise.html) 'de tanımlandığı gibi. 
     || aşağıda ekle anlamına gelir.
 
     SHA-256'yı aşağıdaki gibi kullanın::
@@ -522,7 +522,7 @@ MixHash(d)
         MixHash(d) := h = SHA-256(h || d)
 
 STREAM
-    [RFC-7539]_'da tanımlandığı gibi ChaCha20/Poly1305 AEAD.
+    [RFC-7539](https://tools.ietf.org/html/rfc7539)'da tanımlandığı gibi ChaCha20/Poly1305 AEAD.
     S_KEY_LEN = 32 ve S_IV_LEN = 12.
 
     ENCRYPT(k, n, plaintext, ad)
@@ -587,14 +587,14 @@ HKDF(salt, ikm, info, n)
     ve anahtar materyali olarak kullanılmaya uygun bir 
     n baytlık çıktı üretir.
 
-    HKDF 'yi [RFC-5869]_ 'da tanımlandığı gibi kullanın, HMAC hash 
-    fonksiyonu SHA-256 gibi kullanın [RFC-2104]_'da tanımlandığı gibi. 
+    HKDF 'yi [RFC-5869](https://tools.ietf.org/html/rfc5869) 'da tanımlandığı gibi kullanın, HMAC hash 
+    fonksiyonu SHA-256 gibi kullanın [RFC-2104](https://tools.ietf.org/html/rfc2104)'da tanımlandığı gibi. 
     Bu demektir ki SALT_LEN maksimum 32 bayttır.
 
 MixKey(d)
     Önceki zincirKey ve yeni veri d ile birlikte kullanılır, 
     ve yeni chainKey ve k a ayarlar. 
-    [NOISE]_ 'de tanımlandığı gibi.
+    [NOISE](https://noiseprotocol.org/noise.html) 'de tanımlandığı gibi.
 
     HKDF 'yi aşağıdaki gibi kullanın::
 
@@ -610,7 +610,7 @@ MixKey(d)
 Aydı MSözde Mevcut Mesaj Biçimi
 ````````````````````````````````
 
-[I2NP]_ 'de belirtildiği gibi Sarımsak Mesajı şu şekildedir.
+[I2NP](/en/docs/spec/i2np/) 'de belirtildiği gibi Sarımsak Mesajı şu şekildedir.
 Orta aşamalarda yeni ve eski kriptoyu ayırt edemeyecek 
 şekilde bir tasarım amacı olarak bu format değiştirilemez, 
 geri kalan kısmı dahil ki uzunluk alanı gereksizdir.
@@ -622,13 +622,12 @@ format içinde olabilir.
 Karışıkları ve ek veriler, başka bir deyişle 
 Karışık Seti bulunur.
 
-[I2NP]_ daha fazla ayrıntı ve tam bir spesifikasyon hakkında 
+[I2NP](/en/docs/spec/i2np/) daha fazla ayrıntı ve tam bir spesifikasyon hakkında 
 bilgi verir.
 
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |tip|      msg_id       |  son kullanma tarihi
   +----+----+----+----+----+----+----+----+
@@ -642,7 +641,8 @@ bilgi verir.
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-{% endhighlight %}
+
+```
 
 
 Şifreli Veri Biçiminin Gözden Geçirilmesi
@@ -739,7 +739,7 @@ Statik anahtar dahil edilmeli, yanıtlar beklenirse,
 özellikle akış ve yanıt alan veriagramlar için.
 Ham veriagramlar için dahil edilmemelidir.
 
-Yeni Oturum mesajı Noise [NOISE]_ desen (desen) "N" ye (statik anahtar gönderilmezse),
+Yeni Oturum mesajı Noise [NOISE](https://noiseprotocol.org/noise.html) desen (desen) "N" ye (statik anahtar gönderilmezse),
 veya iki yönlü desen "IK" (statik anahtar gönderilirse) benzer.
 
 
@@ -749,9 +749,8 @@ veya iki yönlü desen "IK" (statik anahtar gönderilirse) benzer.
 Uzunluk 96 + yük uzunluğudur.
 Şifreli format:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -794,7 +793,8 @@ Uzunluk 96 + yük uzunluğudur.
 
   MAC :: Poly1305 mesaj kimlik doğrulama kodu, 16 bayt
 
-{% endhighlight %}
+
+```
 
 
 Yeni Oturum Geçici Anahtar
@@ -830,9 +830,8 @@ Hiçbir yanıt gerekli değilse, hiçbir statik anahtar gönderilmez.
 Uzunluk 96 + yük uzunluğudur.
 Şifreli format:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -875,7 +874,8 @@ Uzunluk 96 + yük uzunluğudur.
 
   MAC :: Poly1305 mesaj kimlik doğrulama kodu, 16 bayt
 
-{% endhighlight %}
+
+```
 
 Yeni Oturum Geçici Anahtar
 ``````````````````````````
@@ -921,9 +921,8 @@ hiçbir oturum kurulumu veya statik anahtar gerekmez.
 Uzunluk 96 + yük uzunluğudur.
 Şifreli format:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -966,7 +965,8 @@ Uzunluk 96 + yük uzunluğudur.
 
   MAC :: Poly1305 mesaj kimlik doğrulama kodu, 16 bayt
 
-{% endhighlight %}
+
+```
 
 
 Yeni Oturum Bir Kez Anahtar
@@ -991,9 +991,8 @@ test eder.
 
 TODO burada gerekli herhangi bir bayrak var mı?
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -1006,7 +1005,8 @@ TODO burada gerekli herhangi bir bayrak var mı?
 
   sıfırlar:: Tamamı sıfır, 32 bayt.
 
-{% endhighlight %}
+
+```
 
 
 Yük
@@ -1025,7 +1025,7 @@ Format ve ek gereksinimler için yük bölümüne bakın.
 Başlangıç Zincir Anahtarı için KDF
 ````````````````````````````````
 
-Bu, IK için standart [NOISE]_ 'dir, 
+Bu, IK için standart [NOISE](https://noiseprotocol.org/noise.html) 'dir, 
 modifiye edilmiş bir protokol adı ile.
 İlk oturumların (bağlı oturumlar)
 ve N desenleri (bağlanmamış oturumlar) için
@@ -1038,9 +1038,8 @@ belirtmek için ve ikinci olarak,
 etiket değerinin karıştırılması için MixHash()'in çağrıldığını
 belirtmek için.
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Bu "e" mesaj desenidir:
 
   // Protokol_ad tanımını yapın.
@@ -1058,15 +1057,15 @@ Bu "e" mesaj desenidir:
 
   // buraya kadar, Alice tüm giden bağlantılar için önceden hesaplayabilir
 
-{% endhighlight %}
+
+```
 
 
 Bayraklar/Statik Anahtar Bölümü Şifreli İçerik için KDF
 ````````````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Bu "e" mesaj desenidir:
 
   // Bob'un X25519 statik anahtarları
@@ -1129,16 +1128,16 @@ Bu "e" mesaj desenidir:
 
   "s" mesaj deseninin.
 
-{% endhighlight %}
+
+```
 
 
 
 Statik Anahtarlı Yük Bölümü için KDF
 ``````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Bu "ss" mesaj deseni:
 
   // Noise ss
@@ -1164,7 +1163,8 @@ Bu "ss" mesaj deseni:
   // Yeni Oturum Yanıtı KDF için kaydedin
   h = SHA256(h || şifrelenmişMetin)
 
-{% endhighlight %}
+
+```
 
 
 Statik Anahtarsız Yük Bölümü için KDF
@@ -1180,16 +1180,16 @@ değiştirildiği görülene kadar şifrelenmiştir
 ve statik anahtar olarak ele alındığı için
 Bayraklar/Statik anahtar bölümünden ad çıkarılacaktır.
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 zincirAnahtarı = Bayraklar/Statik anahtar bölümünden
   k = Bayraklar/Statik anahtar bölümünden
   n = 1
   ad = Bayraklar/Statik anahtar bölümünden h
   şifrelenmişMetin = ENCRYPT(k, n, yük, ad)
 
-{% endhighlight %}
+
+```
 
 
 
@@ -1210,9 +1210,8 @@ Noise IK el sıkışmasının tamamlanmasıdır.
 Toplam uzunluk 72 + yük uzunluğudur.
 Şifreli format:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |       Oturum Etiketi 8 bayt          |
   +----+----+----+----+----+----+----+----+
@@ -1252,7 +1251,8 @@ Toplam uzunluk 72 + yük uzunluğudur.
 
   MAC :: Poly1305 mesaj kimlik doğrulama kodu, 16 bayt
 
-{% endhighlight %}
+
+```
 
 Oturum Etiketi
 ```````````
@@ -1289,22 +1289,21 @@ yeni bir TagSet için KDF kullanılarak,
 aşağıdaki ilk zincir anahtarı ile başlangıç ​​olarak,
 DH Başlatma işlemi belirtilmiştir.
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // tagset oluştur
   tagsetKey = HKDF(zincirAnahtarı, ZEROLEN, "SessionReplyTags", 32)
   tagset_nsr = DH_INITIALIZE(zincirAnahtarı, tagsetKey)
 
-{% endhighlight %}
+
+```
 
 
 Yanıt Anahtar Bölümü Şifreli İçerikler için KDF
 ````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // Anahtarlar Yeni Oturum mesajından
   // Alice'in X25519 anahtarları
   // apk ve aepk orijinal Yeni Oturum mesajında gönderilir
@@ -1374,7 +1373,8 @@ Yanıt Anahtar Bölümü Şifreli İçerikler için KDF
 
   zincirAnahtarı aşağıdaki ratchet'ta kullanılır.
 
-{% endhighlight %}
+
+```
 
 
 Yük Bölümü Şifreli İçerik için KDF
@@ -1384,9 +1384,8 @@ Bu, ilk Mevcut Oturum mesajının altında çalışır,
 ancak ayrıca NSR mesajına bağlamak için yukarıdaki hash'i kullanır.
 
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // split()
   anahtarVerisi = HKDF(zincirAnahtarı, ZEROLEN, "", 64)
   k_ab = anahtarVerisi[0:31]
@@ -1399,7 +1398,8 @@ ancak ayrıca NSR mesajına bağlamak için yukarıdaki hash'i kullanır.
   n = 0
   ad = h
   şifrelenmişMetin = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+
+```
 
 
 ### Notlar
@@ -1431,9 +1431,8 @@ Format
 ```````
 Şifreli:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |       Oturum Etiketi                   |
   +----+----+----+----+----+----+----+----+
@@ -1456,7 +1455,8 @@ Format
 
   MAC :: Poly1305 mesaj kimlik doğrulama kodu, 16 bayt
 
-{% endhighlight %}
+
+```
 
 
 Yük
@@ -1469,9 +1469,8 @@ Format ve gereksinimler için yük bölümüne bakın.
 KDF
 ```
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Bkz. AAZD bölümü aşağıda.
 
   // Mevcut Oturum yükü için AEAD parametreleri
@@ -1479,7 +1478,8 @@ Bkz. AAZD bölümü aşağıda.
   n = Mevcut zincirdeki mesaj numarası N, ilgili Oturum Etiketinden alınan.
   ad = Oturum etiketi, 8 bayt
   şifrelenmişMetin = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+
+```
 
 
 
@@ -1488,7 +1488,7 @@ Bkz. AAZD bölümü aşağıda.
 
 Format: 32 bayt ortak ve özel anahtarlar, küçük endian.
 
-Gerekçelendirme: [NTCP2]_ içinde kullanılır.
+Gerekçelendirme: [NTCP2](/en/docs/transport/ntcp2/) içinde kullanılır.
 
 
 
@@ -1498,13 +1498,13 @@ Standart Noise el sıkışmalarında, her iki yönde de ilk el sıkışma mesajl
 şifrelenmiş olmayan geçici anahtarlarla başlar.
 Geçerli X25519 anahtarlarının rastgelelerden ayırt edilebilir olması nedeniyle,
 bir kişinin araya girmesi bu mesajları Mevcut Oturum mesajlarından ayırt edebilir.
-[NTCP2]_ ([Prop111]_) içinde, [NTCP2]_ 'de kullanılmayan bir yerde [Elligator2]_ ilavel bir kararla,
+[NTCP2](/en/docs/transport/ntcp2/) ([Prop111](/en/proposals/111-ntcp2/)) içinde, [NTCP2](/en/docs/transport/ntcp2/) 'de kullanılmayan bir yerde [Elligator2](https://elligator.org/) ilavel bir kararla,
 anahtarı bulanıklaştırmak için bant dışında statik bir anahtar kullanılmıştır.
 Ancak,
 tehdit modeli burada farklıdır; başka bir MitM adlı mesajın hedefini doğrulamanı ve 
 başlangıç el sıkışma mesajlarının Mevcut Oturum mesajlarından ayırt edilmesini önlemek istiyoruz.
 
-Bu nedenle, [Elligator2]_ Yeni Oturum ve Yeni Oturum Yanıtı mesajlarındaki geçici anahtarları dönüştürmek
+Bu nedenle, [Elligator2](https://elligator.org/) Yeni Oturum ve Yeni Oturum Yanıtı mesajlarındaki geçici anahtarları dönüştürmek
 için kullanılır, böylece bunlar üniform rastgele dizilerden ayırt edilemez hale gelir.
 
 
@@ -1515,15 +1515,14 @@ Format
 32 bayt ortak ve özel anahtarlar.
 Kodlanmış anahtarlar küçük endian'dır.
 
-[Elligator2]_ içinde tanımlandığı gibi, kodlanmış anahtarlar 254 rastgele bitten ayırt edilemez.
+[Elligator2](https://elligator.org/) içinde tanımlandığı gibi, kodlanmış anahtarlar 254 rastgele bitten ayırt edilemez.
 256 rastgele bite (32 bayt) gerektiririz. Bu nedenle 
 kodlama ve kod çözme aşağıdaki şekilde tanımlanmıştır:
 
 Kodlama:
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 ENCODE_ELG2() Tanımı
 
   // Elligator2 spesifikasyonunda tanımlandığı gibi kodlayın
@@ -1532,21 +1531,22 @@ ENCODE_ELG2() Tanımı
 
   rastgeleBayt = CSRNG(1)
   kodluAnahtar[31] |= (rastgeleBayt & 0xc0)
-{% endhighlight %}
+
+```
 
 
 Kod çözme:
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 DECODE_ELG2() Tanımı
 
   // MSB'den 2 rastgele biti maskeleyin
   kodluAnahtar[31] &= 0x3f
   // Elligator2 spesifikasyonunda tanımlandığı gibi dekodlayın
   pubkey = kod çöz(kodluAnahtar)
-{% endhighlight %}
+
+```
 
 
 
@@ -1585,9 +1585,9 @@ Bunun yapılmasının güvenlik sorunları TBD.
 
 ### 3) AEAD (ChaChaPoly)
 
-AEAD, [NTCP2]_'de olduğu gibi ChaCha20 ve Poly1305 kullanarak.
-Bu [RFC-7539]_ ile uyuşur,
-TLS [RFC-7905]_ 'te benzer şekildenir.
+AEAD, [NTCP2](/en/docs/transport/ntcp2/)'de olduğu gibi ChaCha20 ve Poly1305 kullanarak.
+Bu [RFC-7539](https://tools.ietf.org/html/rfc7539) ile uyuşur,
+TLS [RFC-7905](https://tools.ietf.org/html/rfc7905) 'te benzer şekildenir.
 
 
 
@@ -1597,9 +1597,8 @@ Yeni Oturum ve Yeni Oturum Yanıtı Girişleri
 Bir AEAD bloğundaki şifreleme/deşifreleme fonksiyonları
 için girişler, Yeni Oturum mesajında:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 k :: 32 bayt şifreleme anahtarı
        Yukarıdaki Yeni Oturum ve Yeni Oturum Yanıtı KDF'lerine bakın.
 
@@ -1612,7 +1611,8 @@ k :: 32 bayt şifreleme anahtarı
 
   data :: Düz metin verileri, 0 veya daha fazla bayt
 
-{% endhighlight %}
+
+```
 
 
 Mevcut Oturum Girişleri

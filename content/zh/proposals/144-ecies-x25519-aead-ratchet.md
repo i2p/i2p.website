@@ -13,7 +13,7 @@ implementedin: "0.9.46"
 ## 注意
 网络部署和测试正在进行中。
 可能会有小幅修订。
-请参阅 [SPEC]_ 了解官方规范。
+请参阅 [SPEC](/en/docs/spec/ecies/) 了解官方规范。
 
 截至 0.9.46，以下功能尚未实现：
 
@@ -24,21 +24,21 @@ implementedin: "0.9.46"
 
 ## 概述
 
-这是一个关于自 I2P 开始以来第一个新的端到端加密类型的提案，它旨在取代 ElGamal/AES+SessionTags [Elg-AES]_。
+这是一个关于自 I2P 开始以来第一个新的端到端加密类型的提案，它旨在取代 ElGamal/AES+SessionTags [Elg-AES](/en/docs/spec/elgamal-aes/)。
 
 该提案依赖于以下先前的工作：
 
-- 通用结构规范 [Common]_
-- 包括 LS2 的 [I2NP]_ 规范
-- ElGamal/AES+Session Tags [Elg-AES]_
+- 通用结构规范 [Common](/en/docs/spec/common-structures/)
+- 包括 LS2 的 [I2NP](/en/docs/spec/i2np/) 规范
+- ElGamal/AES+Session Tags [Elg-AES](/en/docs/spec/elgamal-aes/)
 - http://zzz.i2p/topics/1768 新的非对称加密概述
-- 底层加密概述 [CRYPTO-ELG]_
+- 底层加密概述 [CRYPTO-ELG](/en/docs/how/cryptography/)
 - ECIES http://zzz.i2p/topics/2418
-- [NTCP2]_ [Prop111]_
+- [NTCP2](/en/docs/transport/ntcp2/) [Prop111](/en/proposals/111-ntcp2/)
 - 123 新 netDB 条目
 - 142 新加密模板
-- [Noise]_ 协议
-- [Signal]_ 双密码算法
+- [Noise](https://noiseprotocol.org/noise.html) 协议
+- [Signal](https://signal.org/docs/specifications/doubleratchet/) 双密码算法
 
 目标是支持新的加密，用于端到端、目的地到目的地的通信。
 
@@ -70,7 +70,7 @@ implementedin: "0.9.46"
 回顾一下，当我们添加对签名类型的支持时，我们还添加了对加密类型的支持。
 在目的地和路由器身份中的加密类型字段始终为零。
 是否更改尚待决定。
-参考通用结构规范 [Common]_。
+参考通用结构规范 [Common](/en/docs/spec/common-structures/)。
 
 ### 非对称加密的用途
 
@@ -78,7 +78,7 @@ implementedin: "0.9.46"
 
 1) 隧道生成消息（密钥在 RouterIdentity 中）
    此提案未涵盖如何替换。
-   请参阅提案 152 [Prop152]_。
+   请参阅提案 152 [Prop152](/en/proposals/152-ecies-tunnels/)。
 
 2) 路由器到路由器的 netdb 和其他 I2NP 消息加密（密钥在 RouterIdentity 中）
    取决于本提案。
@@ -141,9 +141,9 @@ implementedin: "0.9.46"
 - LS2 格式更改（提案 123 完成）
 - 新的 DHT 旋转算法或共享的随机生成
 - 建筑隧道的新加密。
-  请参阅提案 152 [Prop152]_。
+  请参阅提案 152 [Prop152](/en/proposals/152-ecies-tunnels/)。
 - 隧道层加密的新加密。
-  请参阅提案 153 [Prop153]_。
+  请参阅提案 153 [Prop153](/en/proposals/153-ecies-garlic/)。
 - I2NP DLM / DSM / DSRM 消息的加密、传输和接收方法。
   不改变。
 - 不支持 LS1 到 LS2 或 ElGamal/AES 到此提案的通信。
@@ -169,7 +169,7 @@ ElGamal/AES+SessionTag 大约是我们唯一的端到端协议，大约 15 年�
 这也消除了发送方存储会话标签的需求，从而将存储要求减半。
 
 需要一个完整的双向握手，类似于 Noise IK 模式来避免密钥泄漏模拟攻击（KCI）攻击。
-请参阅[NOISE]_中的 Noise “Payload Security Properties” 表。
+请参阅[NOISE](https://noiseprotocol.org/noise.html)中的 Noise “Payload Security Properties” 表。
 有关 KCI 的更多信息，请参阅论文 https://www.usenix.org/system/files/conference/woot15/woot15-paper-hlauschek.pdf
 
 ### 威胁模型
@@ -202,7 +202,7 @@ ElGamal/AES+SessionTag 大约是我们唯一的端到端协议，大约 15 年�
 - ECIES（但这实质上是 X25519）
 - Elligator2
 
-尚未实施 [NTCP2]_([Prop111]_) 的现有 I2P 路由器实现也将需要实现：
+尚未实施 [NTCP2](/en/docs/transport/ntcp2/)([Prop111](/en/proposals/111-ntcp2/)) 的现有 I2P 路由器实现也将需要实现：
 
 - X25519 密钥生成和 DH
 - AEAD_ChaCha20_Poly1305（简称 ChaChaPoly）
@@ -214,14 +214,14 @@ ElGamal/AES+SessionTag 大约是我们唯一的端到端协议，大约 15 年�
 这表示一个小端 32 字节的 X25519 公钥，以及此处指定的端到端协议。
 
 加密类型 0 是 ElGamal。
-加密类型 1-3 保留用于 ECIES-ECDH-AES-SessionTag，请参阅提案 145 [Prop145]_。
+加密类型 1-3 保留用于 ECIES-ECDH-AES-SessionTag，请参阅提案 145 [Prop145](/en/proposals/145-ecies/)。
 
 ### Noise 协议框架
 
 该提案提供基于 Noise 协议框架的需求
-[NOISE]_（Revision 34, 2018-07-11）。
+[NOISE](https://noiseprotocol.org/noise.html)（Revision 34, 2018-07-11）。
 Noise 的特性类似于站对站协议
-[STS]_，它是 [SSU]_ 协议的基础。 在 Noise 中，Alice
+[STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol)，它是 [SSU](/en/docs/transport/ssu/) 协议的基础。 在 Noise 中，Alice
 是发起者，Bob 是响应者。
 
 该提案基于 Noise 协议 Noise_IK_25519_ChaChaPoly_SHA256。
@@ -238,12 +238,12 @@ Noise 的特性类似于站对站协议
   Alice 不将其静态密钥传输给 Bob（N）
 
 - DH 函数：X25519
-  X25519 DH，密钥长度为 32 字节，规范见 [RFC-7748]_。
+  X25519 DH，密钥长度为 32 字节，规范见 [RFC-7748](https://tools.ietf.org/html/rfc7748)。
 
 - 密码函数：ChaChaPoly
-  AEAD_CHACHA20_POLY1305，规范见 [RFC-7539]_ 第 2.8 节。
+  AEAD_CHACHA20_POLY1305，规范见 [RFC-7539](https://tools.ietf.org/html/rfc7539) 第 2.8 节。
   12 字节的 nonce，前 4 个字节设置为零。
-  与 [NTCP2]_ 中相同。
+  与 [NTCP2](/en/docs/transport/ntcp2/) 中相同。
 
 - 哈希函数：SHA256
   标准 32 字节哈希，在 I2P 中已经广泛使用。
@@ -252,21 +252,21 @@ Noise 的特性类似于站对站协议
 ```````````````````````````
 
 该提案定义了以下增强 Noise_IK_25519_ChaChaPoly_SHA256。 这些通常遵循
-[NOISE]_ 第 13 节中的指南。
+[NOISE](https://noiseprotocol.org/noise.html) 第 13 节中的指南。
 
-1) 用 [Elligator2]_ 编码的明文临时密钥。
+1) 用 [Elligator2](https://elligator.org/) 编码的明文临时密钥。
 
 2) 回复以明文标签作为前缀。
 
 3) 消息 1、2 和数据阶段定义的有效负载格式。
    当然，这在 Noise 中没有定义。
 
-所有消息都包括一个 [I2NP]_ 大蒜消息头。
+所有消息都包括一个 [I2NP](/en/docs/spec/i2np/) 大蒜消息头。
 数据阶段使用类似但与 Noise 数据阶段不兼容的加密。
 
 ### 握手模式
 
-握手使用 [Noise]_ 握手模式。
+握手使用 [Noise](https://noiseprotocol.org/noise.html) 握手模式。
 
 使用以下字母映射：
 
@@ -276,21 +276,20 @@ Noise 的特性类似于站对站协议
 
 一次性和不绑定的会话类似于 Noise N 模式。
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es p ->
 
-{% endhighlight %}
+
+```
 
 
 绑定会话类似于 Noise IK 模式。
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es s ss p ->
@@ -298,7 +297,8 @@ Noise 的特性类似于站对站协议
   <- p
   p ->
 
-{% endhighlight %}
+
+```
 
 ### 会话
 
@@ -437,7 +437,7 @@ CSRNG(n)
 H(p, d)
     采用个性化字符串 p 和数据 d 的 SHA-256 哈希函数，并
     产生长度为 32 字节的输出。
-    如在 [NOISE]_ 中定义。
+    如在 [NOISE](https://noiseprotocol.org/noise.html) 中定义。
     || 表示附加。
 
     使用 SHA-256，如下所示：
@@ -454,7 +454,7 @@ MixHash(d)
         MixHash(d) := h = SHA-256(h || d)
 
 STREAM
-    如在 [RFC-7539]_ 中指定的 ChaCha20/Poly1305 AEAD。
+    如在 [RFC-7539](https://tools.ietf.org/html/rfc7539) 中指定的 ChaCha20/Poly1305 AEAD。
     S_KEY_LEN = 32 和 S_IV_LEN = 12。
 
     ENCRYPT(k, n, plaintext, ad)
@@ -499,13 +499,13 @@ DH
 HKDF(salt, ikm, info, n)
     一个密码密钥派生函数，接收一些输入密钥材料 ikm（应具有良好的熵，但不要求是均匀随机字符串），一个长度为 32 字节的 salt 和一个上下文特定的 'info' 值，生成一个 n 字节的输出，适用于用作密钥材料。
 
-    使用 HKDF 如 [RFC-5869]_ 中指定的，使用 HMAC 哈希函数 SHA-256
-    如 [RFC-2104]_ 中指定的。这意味着 SALT_LEN 最大为 32 字节。
+    使用 HKDF 如 [RFC-5869](https://tools.ietf.org/html/rfc5869) 中指定的，使用 HMAC 哈希函数 SHA-256
+    如 [RFC-2104](https://tools.ietf.org/html/rfc2104) 中指定的。这意味着 SALT_LEN 最大为 32 字节。
 
 MixKey(d)
     使用 HKDF() 和一个先前的 chainKey 和新的数据 d，并
     设置新的 chainKey 和 k。
-    如在 [NOISE]_ 中定义。
+    如在 [NOISE](https://noiseprotocol.org/noise.html) 中定义。
 
     使用 HKDF，如下所示：
 
@@ -518,7 +518,7 @@ MixKey(d)
 当前消息格式回顾
 ````````````````````````
 
-如 [I2NP]_ 中指定的 Garlic Message 如下。
+如 [I2NP](/en/docs/spec/i2np/) 中指定的 Garlic Message 如下。
 作为一个设计目标，无法区分中间跳的旧加密消息和新加密消息，
 此格式不能更改，即使长度字段是多余的。
 使用完整的 16 字节标头显示格式，尽管
@@ -527,11 +527,10 @@ MixKey(d)
 解密后数据包含一系列大蒜块和其他
 数据，也称为 Clove Set。
 
-有关详细信息和完整规范，请参阅 [I2NP]_。
+有关详细信息和完整规范，请参阅 [I2NP](/en/docs/spec/i2np/)。
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |type|      msg_id       |  expiration
   +----+----+----+----+----+----+----+----+
@@ -545,7 +544,8 @@ MixKey(d)
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-{% endhighlight %}
+
+```
 
 加密数据格式回顾
 `````````````````````````
@@ -621,7 +621,7 @@ N 最多可能为 128，但 32 或更少可能是更好的选择。
 如果期望有回复，即用于流式数据和可回复的数据报，则应包含静态密钥。
 对于原始数据报不应包含。
 
-新会话消息类似于单向 Noise [NOISE]_ 模式
+新会话消息类似于单向 Noise [NOISE](https://noiseprotocol.org/noise.html) 模式
 “N”（如果不发送静态密钥），
 或双向模式“IK”（如果发送静态密钥）。
 
@@ -630,9 +630,8 @@ N 最多可能为 128，但 32 或更少可能是更好的选择。
 长度为 96 + 负载长度。
 加密格式：
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -675,7 +674,8 @@ N 最多可能为 128，但 32 或更少可能是更好的选择。
 
   MAC :: Poly1305 message authentication code, 16 bytes
 
-{% endhighlight %}
+
+```
 
 新会话临时密钥
 `````````````````````````
@@ -703,9 +703,8 @@ N 最多可能为 128，但 32 或更少可能是更好的选择。
 长度为 96 + 负载长度。
 加密格式：
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -748,7 +747,8 @@ N 最多可能为 128，但 32 或更少可能是更好的选择。
 
   MAC :: Poly1305 message authentication code, 16 bytes
 
-{% endhighlight %}
+
+```
 
 新会话临时密钥
 `````````````````````````
@@ -781,9 +781,8 @@ TODO 这里是否需要任何标志？
 长度为 96 + 负载长度。
 加密格式：
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -826,7 +825,8 @@ TODO 这里是否需要任何标志？
 
   MAC :: Poly1305 message authentication code, 16 bytes
 
-{% endhighlight %}
+
+```
 
 新会话一次性密钥
 `````````````````````````
@@ -843,9 +843,8 @@ Bob 通过测试 32 个字节是否全为零来确定它是静态密钥还是标
 
 TODO 这里是否需要任何标志？
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -858,7 +857,8 @@ TODO 这里是否需要任何标志？
 
   zeros:: All zeros, 32 bytes.
 
-{% endhighlight %}
+
+```
 
 有效负载
 `````````
@@ -873,16 +873,15 @@ TODO 这里是否需要任何标志？
 初始 ChainKey 的 KDF
 ````````````````````````
 
-这是标准 [NOISE]_ 的 IK，带有一个修改的协议名称。
+这是标准 [NOISE](https://noiseprotocol.org/noise.html) 的 IK，带有一个修改的协议名称。
 请注意，我们对绑定会话（绑定会话）的 IK 模式和不绑定的会话（unbound 会话）的模式使用相同的初始化器。
 
 协议名称被修改的原因有两个。
 首先，表明临时密钥用 Elligator2 编码，
 其次，说明在第二个消息之前调用 MixHash() 来混合标签值。
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 这是 "e" 消息模式：
 
   // 定义 protocol_name。
@@ -900,14 +899,14 @@ TODO 这里是否需要任何标志？
 
   // 到此为止，Alice 为所有传出连接预先计算
 
-{% endhighlight %}
+
+```
 
 用于标志/静态键部分加密内容的 KDF
 ```````````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 这是 "e" 消息模式：
 
   // Bob 的 X25519 静态密钥
@@ -971,14 +970,14 @@ TODO 这里是否需要任何标志？
 
   "s" 消息模式结束。
 
-{% endhighlight %}
+
+```
 
 左旋消息负载部分的 KDF
 `````````````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 这是 "ss" 消息模式：
 
   // Noise ss
@@ -1004,7 +1003,8 @@ TODO 这里是否需要任何标志？
   // 用于新会话回复 KDF 的保存
   h = SHA256(h || ciphertext)
 
-{% endhighlight %}
+
+```
 
 左旋消息负载部分的 KDF（无 Alice 静态密钥）
 ```````````````````````````````````````````````````````
@@ -1016,16 +1016,16 @@ TODO 这里是否需要任何标志？
 新的大蒜消息密钥。
 如果静态密钥为全零，则必须跳过 "ss" 消息模式。
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 chainKey = 来自标记/静态密钥部分
   k = from 标记/静态密钥部分
   n = 1
   ad = h from 标记/静态密钥部分
   ciphertext = ENCRYPT(k, n, payload, ad)
 
-{% endhighlight %}
+
+```
 
 ### 1g) 新会话回复格式
 
@@ -1041,9 +1041,8 @@ chainKey = 来自标记/静态密钥部分
 总长度为 72 + 负载长度。
 加密格式：
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |       Session Tag   8 bytes           |
   +----+----+----+----+----+----+----+----+
@@ -1083,7 +1082,8 @@ chainKey = 来自标记/静态密钥部分
 
   MAC :: Poly1305 message authentication code, 16 bytes
 
-{% endhighlight %}
+
+```
 
 会话标签
 ```````````
@@ -1110,21 +1110,20 @@ Bob 的临时密钥。
 
 根据下面的 KDF，使用从新会话消息派生的 DH 根密钥初始化的 tag set。
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // 生成标签集
   tagsetKey = HKDF(chainKey, ZEROLEN, "SessionReplyTags", 32)
   tagset_nsr = DH_INITIALIZE(chainKey, tagsetKey)
 
-{% endhighlight %}
+
+```
 
 用于回复密钥部分加密内容的 KDF
 ````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // 钥匙来自新会话消息
   // Alice 的 X25519 密钥
   // apk 和 aepk 在原始新会话消息中发送
@@ -1195,7 +1194,8 @@ Bob 的临时密钥。
 
   chainKey 用于下面的棘轮。
 
-{% endhighlight %}
+
+```
 
 负载部分加密内容的 KDF
 ``````````````````````````````````````````
@@ -1204,9 +1204,8 @@ Bob 的临时密钥。
 此外，我们使用上面的散列将
 有效载荷绑定到 NSR 消息。
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // split()
   keydata = HKDF(chainKey, ZEROLEN, "", 64)
   k_ab = keydata[0:31]
@@ -1219,7 +1218,8 @@ Bob 的临时密钥。
   n = 0
   ad = h
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+
+```
 
 ### 备注
 
@@ -1245,9 +1245,8 @@ Bob 只需保留从 Alice 接收的 ES 消息的现有会话。
 
 加密：
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |       Session Tag                     |
   +----+----+----+----+----+----+----+----+
@@ -1270,7 +1269,8 @@ Bob 只需保留从 Alice 接收的 ES 消息的现有会话。
 
   MAC :: Poly1305 message authentication code, 16 bytes
 
-{% endhighlight %}
+
+```
 
 有效负载
 ```````
@@ -1281,9 +1281,8 @@ Bob 只需保留从 Alice 接收的 ES 消息的现有会话。
 KDF
 ```
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 参见下面的 AEAD 部分。
 
   // 现有会话负载的 AEAD 参数
@@ -1291,24 +1290,25 @@ KDF
   n = 当前链中的消息数 N，作为从关联的会话标签中检索。
   ad = 会话标签，8 字节
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+
+```
 
 ### 2) ECIES-X25519
 
 格式：32 字节公钥和私钥，little-endian。
 
-理由：用于 [NTCP2]_。
+理由：用于 [NTCP2](/en/docs/transport/ntcp2/)。
 
 ### 2a) Elligator2
 
 在标准 Noise 握手中，每个方向的初始握手消息以
 以明文传输的临时密钥开始。
 由于有效的 X25519 密钥可以与随机区分，Man-in-the-middle 可以将这些消息与现有会话消息区分开来，这些现有会话消息以随机会话标签开始。
-在 [NTCP2]_ ([Prop111]_) 中，我们使用了一种低开销的 XOR 函数，该函数使用带外的静态密钥来混淆
+在 [NTCP2](/en/docs/transport/ntcp2/) ([Prop111](/en/proposals/111-ntcp2/)) 中，我们使用了一种低开销的 XOR 函数，该函数使用带外的静态密钥来混淆
 密钥。然而，此处的威胁模型有所不同；我们不希望允许任何 MitM 使用任何方式来确认流量的目的地，或者
 从现有会话消息中区分初始握手消息。
 
-因此，使用 [Elligator2]_ 将新会话和新会话回复消息中的临时密钥
+因此，使用 [Elligator2](https://elligator.org/) 将新会话和新会话回复消息中的临时密钥
 转换为与均匀随机字符串不可区分的形式。
 
 格式
@@ -1317,14 +1317,13 @@ KDF
 32 字节公钥和私钥。
 编码的密钥是小端。
 
-如 [Elligator2]_ 中定义的，编码的密钥与 254 位随机数不可区分。
+如 [Elligator2](https://elligator.org/) 中定义的，编码的密钥与 254 位随机数不可区分。
 我们需要 256 位的随机数（32 字节）。因此，编码和解码定义如下：
 
 编码：
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 ENCODE_ELG2() 定义
 
   // 编码如 Elligator2 规范中定义
@@ -1332,20 +1331,21 @@ ENCODE_ELG2() 定义
   // 在 MSB 中 OR 上 2 个随机位
   randomByte = CSRNG(1)
   encodedKey[31] |= (randomByte & 0xc0)
-{% endhighlight %}
+
+```
 
 解码：
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 DECODE_ELG2() 定义
 
   // 从 MSB 中屏蔽掉 2 个随机位
   encodedKey[31] &= 0x3f
   // 解码为 Elligator2 规范中定义
   pubkey = decode(encodedKey)
-{% endhighlight %}
+
+```
 
 理由
 ````````````
@@ -1363,14 +1363,14 @@ Elligator2 使平均密钥生成时间翻倍，原因是生成的一半私钥导
 生成器执行 ENCODE_ELG2() 函数以确定适用性。
 因此，生成器应存储 ENCODE_ELG2() 的结果，以便不必再次计算。
 
-此外，适用的密钥可能会被添加到用于 [NTCP2]_ 的密钥池中，不使用 Elligator2 的情况下。
+此外，适用的密钥可能会被添加到用于 [NTCP2](/en/docs/transport/ntcp2/) 的密钥池中，不使用 Elligator2 的情况下。
 这样做的安全性问题还有待确定。
 
 ### 3) AEAD (ChaChaPoly)
 
-使用 ChaCha20 和 Poly1305 的 AEAD，与 [NTCP2]_ 相同。
-这对应于 [RFC-7539]_，亦如
-在 TLS [RFC-7905]_ 中类似使用。
+使用 ChaCha20 和 Poly1305 的 AEAD，与 [NTCP2](/en/docs/transport/ntcp2/) 相同。
+这对应于 [RFC-7539](https://tools.ietf.org/html/rfc7539)，亦如
+在 TLS [RFC-7905](https://tools.ietf.org/html/rfc7905) 中类似使用。
 
 新会话和新会话回复输入
 ````````````````````````
@@ -1378,9 +1378,8 @@ Elligator2 使平均密钥生成时间翻倍，原因是生成的一半私钥导
 用于加密/解密函数
 在新会话消息中的 AEAD 块：
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 k :: 32 字节密码密钥
        参见上面的新会话和新会话回复 KDF。
 
@@ -1392,7 +1391,8 @@ k :: 32 字节密码密钥
 
   数据 :: 明文数据，0 个字节或更多字节
 
-{% endhighlight %}
+
+```
 
 现有会话输入
 `````````````
@@ -1400,9 +1400,8 @@ k :: 32 字节密码密钥
 用于加密/解密函数
 在现有会话消息中的 AEAD 块：
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 k :: 32 字节会话密钥
        作为伴随会话标签查找。
 
@@ -1421,16 +1420,16 @@ k :: 32 字节会话密钥
 
   数据 :: 明文数据，0 个字节或更多字节
 
-{% endhighlight %}
+
+```
 
 加密格式
 ``````````
 
 加密函数的输出，解密函数的输入：
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -1447,7 +1446,8 @@ k :: 32 字节会话密钥
 
   MAC :: Poly1305 消息验证码，16 字节
 
-{% endhighlight %}
+
+```
 
 备注
 `````
@@ -1471,7 +1471,7 @@ AEAD 错误处理
 理由
 ``````````````
 
-在 [NTCP2]_ 中使用。
+在 [NTCP2](/en/docs/transport/ntcp2/) 中使用。
 
 ### 4) 棘轮
 

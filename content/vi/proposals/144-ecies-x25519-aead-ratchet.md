@@ -13,7 +13,7 @@ implementedin: "0.9.46"
 ## Lưu ý
 Việc triển khai và thử nghiệm mạng lưới đang diễn ra.
 Có thể có những điều chỉnh nhỏ.
-Xem [SPEC]_ để biết đặc tả chính thức.
+Xem [SPEC](/en/docs/spec/ecies/) để biết đặc tả chính thức.
 
 Các tính năng sau chưa được triển khai tính đến 0.9.46:
 
@@ -26,21 +26,21 @@ Các tính năng sau chưa được triển khai tính đến 0.9.46:
 ## Tổng quan
 
 Đây là một đề xuất cho loại mã hóa đầu-cuối mới đầu tiên
-kể từ khi bắt đầu I2P, thay thế cho ElGamal/AES+SessionTags [Elg-AES]_.
+kể từ khi bắt đầu I2P, thay thế cho ElGamal/AES+SessionTags [Elg-AES](/en/docs/spec/elgamal-aes/).
 
 Nó dựa vào công việc trước đây như sau:
 
-- Spec các cấu trúc chung [Common]_
-- [I2NP]_ spec bao gồm LS2
-- ElGamal/AES+Session Tags [Elg-AES]_
+- Spec các cấu trúc chung [Common](/en/docs/spec/common-structures/)
+- [I2NP](/en/docs/spec/i2np/) spec bao gồm LS2
+- ElGamal/AES+Session Tags [Elg-AES](/en/docs/spec/elgamal-aes/)
 - http://zzz.i2p/topics/1768 tổng quan về mã hóa bất đối xứng mới
-- Tổng quan về mã hóa mức thấp [CRYPTO-ELG]_
+- Tổng quan về mã hóa mức thấp [CRYPTO-ELG](/en/docs/how/cryptography/)
 - ECIES http://zzz.i2p/topics/2418
-- [NTCP2]_ [Prop111]_
+- [NTCP2](/en/docs/transport/ntcp2/) [Prop111](/en/proposals/111-ntcp2/)
 - 123 Mục netDB mới
 - 142 Mẫu Mã Hóa Mới
-- Giao thức [Noise]_
-- Thuật toán dấu kép của [Signal]_
+- Giao thức [Noise](https://noiseprotocol.org/noise.html)
+- Thuật toán dấu kép của [Signal](https://signal.org/docs/specifications/doubleratchet/)
 
 Mục tiêu là hỗ trợ mã hóa mới cho
 giao tiếp đầu-cuối, từ điểm đến đến điểm đến.
@@ -81,7 +81,7 @@ Tham khảo đặc tả cấu trúc chung.
 chúng tôi đã thêm hỗ trợ cho các loại mã hóa khi chúng tôi thêm hỗ trợ cho các loại chữ ký.
 Trường loại mã hóa luôn có giá trị bằng không, cả trong Destinations và RouterIdentities.
 Việc có nên thay đổi điều đó là TBD.
-Tham khảo đặc tả cấu trúc chung [Common]_.
+Tham khảo đặc tả cấu trúc chung [Common](/en/docs/spec/common-structures/).
 
 
 
@@ -92,7 +92,7 @@ Tham khảo đặc tả cấu trúc chung [Common]_.
 
 1) Các thông điệp Xây dựng Đường hầm (khóa có trong RouterIdentity)
    Thay thế không được bao gồm trong đề xuất này.
-   Xem đề xuất 152 [Prop152]_.
+   Xem đề xuất 152 [Prop152](/en/proposals/152-ecies-tunnels/).
 
 2) Mã hóa từ router đến router của các thông điệp netdb và I2NP khác (Khóa có trong RouterIdentity)
    Phụ thuộc vào đề xuất này.
@@ -164,9 +164,9 @@ Loại bỏ một số vấn đề với thẻ phiên, bao gồm:
 - Thay đổi định dạng LS2 (đề xuất 123 đã xong)
 - Thuật toán xoay vòng DHT mới hoặc tạo ra số ngẫu nhiên chia sẻ
 - Mã hóa mới cho việc xây dựng đường hầm.
-  Xem đề xuất 152 [Prop152]_.
+  Xem đề xuất 152 [Prop152](/en/proposals/152-ecies-tunnels/).
 - Mã hóa mới cho mã hóa lớp đường hầm.
-  Xem đề xuất 153 [Prop153]_.
+  Xem đề xuất 153 [Prop153](/en/proposals/153-ecies-garlic/).
 - Phương thức mã hóa, truyền và tiếp nhận các thông điệp I2NP DLM / DSM / DSRM.
   Không thay đổi.
 - Không có giao tiếp LS1-to-LS2 hoặc ElGamal/AES-to-đề-xuất này được hỗ trợ.
@@ -205,7 +205,7 @@ trong thông điệp Phiên mới và các thông điệp tiếp theo khi cần.
 do đó cắt giảm yêu cầu lưu trữ một nửa.
 
 Một thao tác bắt tay hai chiều đầy đủ, tương tự như mẫu Noise IK, cần thiết để tránh các cuộc tấn công Key Compromise Impersonation (KCI).
-Xem bảng "Payload Security Properties" của Noise trong [NOISE]_.
+Xem bảng "Payload Security Properties" của Noise trong [NOISE](https://noiseprotocol.org/noise.html).
 Để biết thêm thông tin về KCI, xem tài liệu https://www.usenix.org/system/files/conference/woot15/woot15-paper-hlauschek.pdf
 
 
@@ -255,7 +255,7 @@ mà không cần cho các giao thức I2P hiện tại:
 - ECIES (nhưng điều này thực chất là X25519)
 - Elligator2
 
-Các triển khai router I2P hiện tại chưa triển khai [NTCP2]_ ([Prop111]_)
+Các triển khai router I2P hiện tại chưa triển khai [NTCP2](/en/docs/transport/ntcp2/) ([Prop111](/en/proposals/111-ntcp2/))
 cũng sẽ yêu cầu triển khai cho:
 
 - X25519 key generation and DH
@@ -270,15 +270,15 @@ Loại mã hóa (sử dụng trong LS2) là 4.
 và giao thức đầu-cuối được chỉ định ở đây.
 
 Loại mã hóa 0 là ElGamal.
-Các loại mã hóa 1-3 được dành riêng cho ECIES-ECDH-AES-SessionTag, xem đề xuất 145 [Prop145]_.
+Các loại mã hóa 1-3 được dành riêng cho ECIES-ECDH-AES-SessionTag, xem đề xuất 145 [Prop145](/en/proposals/145-ecies/).
 
 
 ### Khung Giao thức Noise
 
 Đề xuất này cung cấp yêu cầu dựa trên Noise Protocol Framework
-[NOISE]_ (Phiên bản 34, 2018-07-11).
+[NOISE](https://noiseprotocol.org/noise.html) (Phiên bản 34, 2018-07-11).
 Noise có các tính chất tương tự như giao thức Đứng Quá Gian Đoạn
-[STS]_, cái mà là cơ sở cho giao thức [SSU]_. Trong thuật ngữ của Noise, Alice
+[STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), cái mà là cơ sở cho giao thức [SSU](/en/docs/transport/ssu/). Trong thuật ngữ của Noise, Alice
 là người khởi xướng, và Bob là người phản hồi.
 
 Đề xuất này dựa trên giao thức Noise_IK_25519_ChaChaPoly_SHA256.
@@ -295,12 +295,12 @@ Giao thức Noise này sử dụng các nguyên thủy sau:
   Alice không truyền khóa tĩnh của cô đến Bob (N)
 
 - DH Function: X25519
-  X25519 DH với độ dài khóa là 32 byte như được chỉ định trong [RFC-7748]_.
+  X25519 DH với độ dài khóa là 32 byte như được chỉ định trong [RFC-7748](https://tools.ietf.org/html/rfc7748).
 
 - Cipher Function: ChaChaPoly
-  AEAD_CHACHA20_POLY1305 như được chỉ định trong [RFC-7539]_ phần 2.8.
+  AEAD_CHACHA20_POLY1305 như được chỉ định trong [RFC-7539](https://tools.ietf.org/html/rfc7539) phần 2.8.
   Nonce 12 byte, với 4 byte đầu tiên được đặt thành không.
-  Giống hệt như trong [NTCP2]_.
+  Giống hệt như trong [NTCP2](/en/docs/transport/ntcp2/).
 
 - Hash Function: SHA256
   Hash chuẩn 32-byte, đã được sử dụng rộng rãi trong I2P.
@@ -311,22 +311,22 @@ Các Bổ sung cho Khung
 
 Đề xuất này định nghĩa các cải tiến sau đây cho
 Noise_IK_25519_ChaChaPoly_SHA256. Các cải tiến này thường theo hướng dẫn trong
-[NOISE]_ phần 13.
+[NOISE](https://noiseprotocol.org/noise.html) phần 13.
 
-1) Các khóa tạm thời rõ ràng được mã hóa với [Elligator2]_.
+1) Các khóa tạm thời rõ ràng được mã hóa với [Elligator2](https://elligator.org/).
 
 2) Phản hồi được tiền tố với một thẻ rõ ràng.
 
 3) Định dạng tải không được mã hóa cho thông điệp 1, 2 và giai đoạn dữ liệu.
    Tất nhiên, điều này không được định nghĩa trong Noise.
 
-Tất cả các thông điệp bao gồm một phần tiêu đề Garlic Message [I2NP]_.
+Tất cả các thông điệp bao gồm một phần tiêu đề Garlic Message [I2NP](/en/docs/spec/i2np/).
 Giai đoạn dữ liệu sử dụng mã hóa tương tự như, nhưng không tương thích với, giai đoạn dữ liệu Noise.
 
 
 ### Thao tác Bắt tay
 
-Các bắt tay sử dụng mẫu thao tác bắt tay [Noise]_.
+Các bắt tay sử dụng mẫu thao tác bắt tay [Noise](https://noiseprotocol.org/noise.html).
 
 Sơ đồ chữ cái sau được sử dụng:
 
@@ -336,20 +336,19 @@ Sơ đồ chữ cái sau được sử dụng:
 
 Các phiên Một lần và Không bị rằng buộc tương tự như mẫu Noise N.
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es p ->
 
-{% endhighlight %}
+
+```
 
 Các phiên rằng buộc tương tự như mẫu Noise IK.
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es s ss p ->
@@ -357,7 +356,8 @@ Các phiên rằng buộc tương tự như mẫu Noise IK.
   <- p
   p ->
 
-{% endhighlight %}
+
+```
 
 
 ### Phiên
@@ -520,7 +520,7 @@ CSRNG(n)
 H(p, d)
     Hàm băm SHA-256 nhận một chuỗi cá nhân hóa p và dữ liệu d, và
     tạo ra một đầu ra có độ dài 32 byte.
-    Như được định nghĩa trong [NOISE]_. || dưới đây có nghĩa là nối.
+    Như được định nghĩa trong [NOISE](https://noiseprotocol.org/noise.html). || dưới đây có nghĩa là nối.
 
     Sử dụng SHA-256 như sau::
 
@@ -536,7 +536,7 @@ MixHash(d)
         MixHash(d) := h = SHA-256(h || d)
 
 STREAM
-    AEAD ChaCha20/Poly1305 như được chỉ định trong [RFC-7539]_.
+    AEAD ChaCha20/Poly1305 như được chỉ định trong [RFC-7539](https://tools.ietf.org/html/rfc7539).
     S_KEY_LEN = 32 và S_IV_LEN = 12.
 
     ENCRYPT(k, n, plaintext, ad)
@@ -585,13 +585,13 @@ HKDF(salt, ikm, info, n)
     một muối có độ dài 32 bytes, và một giá trị 'info' cụ thể cho ngữ cảnh, và tạo ra một đầu ra
     n byte phù hợp để sử dụng làm động cơ khóa.
 
-    Sử dụng HKDF như được chỉ định trong [RFC-5869]_, sử dụng hàm băm HMAC SHA-256
-    như được chỉ định trong [RFC-2104]_.
+    Sử dụng HKDF như được chỉ định trong [RFC-5869](https://tools.ietf.org/html/rfc5869), sử dụng hàm băm HMAC SHA-256
+    như được chỉ định trong [RFC-2104](https://tools.ietf.org/html/rfc2104).
 
 MixKey(d)
     Sử dụng HKDF() với hóa chuỗi trước đó và dữ liệu mới d, và
     đặt hóa chuỗi mới và k.
-    Như được định nghĩa trong [NOISE]_.
+    Như được định nghĩa trong [NOISE](https://noiseprotocol.org/noise.html).
 
     Sử dụng HKDF như sau::
 
@@ -607,7 +607,7 @@ MixKey(d)
 Xem xét lại Định dạng thông điệp hiện tại
 ``````````````````````````````````
 
-Garlic Message như được chỉ định trong [I2NP]_ như sau.
+Garlic Message như được chỉ định trong [I2NP](/en/docs/spec/i2np/) như sau.
 Vì mục tiêu thiết kế là các bước trung gian không thể phân biệt mã hóa mới so với mã hóa cũ,
 định dạng này không thể thay đổi, mặc dù trường độ dài là dư thừa.
 Định dạng được hiển thị với tiêu đề đầy đủ 16 byte, mặc dù tiêu đề
@@ -616,12 +616,11 @@ thực tế có thể ở một định dạng khác nhau, tùy thuộc vào v�
 Khi được giải mã, dữ liệu chứa một loạt Garlic Clove và dữ liệu bổ sung,
 còn được gọi là Bộ Clove.
 
-Xem [I2NP]_ để biết chi tiết và đặc tả đầy đủ.
+Xem [I2NP](/en/docs/spec/i2np/) để biết chi tiết và đặc tả đầy đủ.
 
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |type|      msg_id       |  expiration
   +----+----+----+----+----+----+----+----+
@@ -635,7 +634,8 @@ Xem [I2NP]_ để biết chi tiết và đặc tả đầy đủ.
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-{% endhighlight %}
+
+```
 
 
 Xem xét lại Định dạng Dữ liệu Mã hóa
@@ -720,7 +720,7 @@ Khóa tĩnh cần được bao gồm nếu dự kiến có phản hồi,
 tức là cho luồng dữ liệu và gói dữ liệu có thể phản hồi.
 Nó không nên được bao gồm cho các gói dữ liệu thô.
 
-Thông điệp Phiên Mới tương tự như mẫu [NOISE]_ một chiều
+Thông điệp Phiên Mới tương tự như mẫu [NOISE](https://noiseprotocol.org/noise.html) một chiều
 "N" (nếu khóa tĩnh không được gửi),
 hoặc mẫu hai chiều "IK" (nếu khóa tĩnh được gửi).
 
@@ -731,9 +731,8 @@ hoặc mẫu hai chiều "IK" (nếu khóa tĩnh được gửi).
 Độ dài là 96 + độ dài tải.
 Định dạng mã hóa:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -776,7 +775,8 @@ hoặc mẫu hai chiều "IK" (nếu khóa tĩnh được gửi).
 
   MAC :: Poly1305 message authentication code, 16 bytes
 
-{% endhighlight %}
+
+```
 
 
 Khóa Tạm thời Phiên Mới
@@ -810,9 +810,8 @@ Nếu không yêu cầu phản hồi, không có khóa tĩnh nào được gửi
 Độ dài là 96 + độ dài tải.
 Định dạng mã hóa:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -855,7 +854,8 @@ Nếu không yêu cầu phản hồi, không có khóa tĩnh nào được gửi
 
   MAC :: Poly1305 message authentication code, 16 bytes
 
-{% endhighlight %}
+
+```
 
 Khóa Tạm thời Phiên Mới
 `````````````````````````
@@ -897,9 +897,8 @@ không cần thiết lập phiên hoặc khóa tĩnh.
 Độ dài là 96 + độ dài tải.
 Định dạng mã hóa:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -942,7 +941,8 @@ không cần thiết lập phiên hoặc khóa tĩnh.
 
   MAC :: Poly1305 message authentication code, 16 bytes
 
-{% endhighlight %}
+
+```
 
 
 Khóa Một Lần Của Phiên Mới
@@ -964,9 +964,8 @@ bằng cách kiểm tra xem 32 byte có phải là tất cả các số 0 không
 
 TODO có cần cờ nào ở đây không?
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -979,7 +978,8 @@ TODO có cần cờ nào ở đây không?
 
   zeros:: All zeros, 32 bytes.
 
-{% endhighlight %}
+
+```
 
 
 Tải
@@ -997,7 +997,7 @@ Xem phần tải dưới đây để biết định dạng và yêu cầu bổ s
 KDF cho Chuỗi Khởi Tạo ChainKey
 ````````````````````````````````
 
-Đây là [NOISE]_ tiêu chuẩn cho IK với tên giao thức đã được sửa đổi.
+Đây là [NOISE](https://noiseprotocol.org/noise.html) tiêu chuẩn cho IK với tên giao thức đã được sửa đổi.
 Lưu ý rằng chúng tôi sử dụng cùng một công cụ khởi tạo cho mẫu IK (các phiên đã gắn kết)
 và cho mẫu N (các phiên không gắn kết).
 
@@ -1006,9 +1006,8 @@ Tên giao thức được sửa đổi vì hai lý do.
 và thứ hai, để chỉ ra rằng MixHash() được gọi trước thông điệp thứ hai
 để kết hợp giá trị thẻ.
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Đây là mẫu thông điệp "e":
 
   // Định nghĩa protocol_name.
@@ -1026,15 +1025,15 @@ và thứ hai, để chỉ ra rằng MixHash() được gọi trước thông đ
 
   // cho đến đây, có thể được tính toán trước bởi Alice cho tất cả các kết nối đi
 
-{% endhighlight %}
+
+```
 
 
 KDF cho Nội Dung Mã hóa Phần Khóa/Cờ
 ``````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Đây là mẫu thông điệp "e":
 
   // Các khóa tĩnh X25519 của Bob
@@ -1100,16 +1099,16 @@ KDF cho Nội Dung Mã hóa Phần Khóa/Cờ
   Hết mẫu thông điệp "s".
 
 
-{% endhighlight %}
+
+```
 
 
 
 KDF cho Phân Đoạn Tải (với khóa tĩnh của Alice)
 ```````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Đây là mẫu thông điệp "ss":
 
   // Noise ss
@@ -1135,7 +1134,8 @@ KDF cho Phân Đoạn Tải (với khóa tĩnh của Alice)
   // Lưu lại cho KDF của Thư trả lời Phiên Mới
   h = SHA256(h || ciphertext)
 
-{% endhighlight %}
+
+```
 
 
 KDF cho Phân Đoạn Tải (không có khóa tĩnh của Alice)
@@ -1152,16 +1152,16 @@ Nếu khóa tĩnh là tất cả số không, mẫu thông điệp "ss" phải �
 
 
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 chainKey = from Flags/Static key section
   k = from Flags/Static key section
   n = 1
   ad = h from Flags/Static key section
   ciphertext = ENCRYPT(k, n, payload, ad)
 
-{% endhighlight %}
+
+```
 
 
 
@@ -1179,9 +1179,8 @@ Phần thứ hai là phân đoạn tải dữ liệu.
 Tổng độ dài là 72 + độ dài tải.
 Định dạng mã hóa:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |       Session Tag   8 bytes           |
   +----+----+----+----+----+----+----+----+
@@ -1221,7 +1220,8 @@ Tổng độ dài là 72 + độ dài tải.
 
   MAC :: Poly1305 message authentication code, 16 bytes
 
-{% endhighlight %}
+
+```
 
 Thẻ Phiên
 ```````````
@@ -1254,22 +1254,21 @@ KDF cho Bộ Thẻ Phản hồi
 Một hoặc nhiều thẻ được tạo từ Bộ Thẻ, được khởi tạo bởi
 KDF dưới đây, sử dụng chainKey từ thông điệp Phiên Mới.
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // Tạo bộ thẻ
   tagsetKey = HKDF(chainKey, ZEROLEN, "SessionReplyTags", 32)
   tagset_nsr = DH_INITIALIZE(chainKey, tagsetKey)
 
-{% endhighlight %}
+
+```
 
 
 KDF cho Nội dung Mã hóa Phần Khóa Phản hồi
 ``````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // Các khóa từ thông điệp Phiên Mới
   // Các khóa X25519 của Alice
   // apk và tạm thời aepk được gửi trong thông điệp Phiên Mới gốc
@@ -1340,7 +1339,8 @@ KDF cho Nội dung Mã hóa Phần Khóa Phản hồi
 
   chainKey được sử dụng trong ratchet dưới đây.
 
-{% endhighlight %}
+
+```
 
 
 KDF cho Nội Dung Mã hóa Phân Đoạn Tải
@@ -1352,9 +1352,8 @@ Ngoài ra, chúng tôi sử dụng băm từ trên để liên kết
 tải với thông điệp NSR.
 
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // split()
   keydata = HKDF(chainKey, ZEROLEN, "", 64)
   k_ab = keydata[0:31]
@@ -1367,7 +1366,8 @@ tải với thông điệp NSR.
   n = 0
   ad = h
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+
+```
 
 
 ### Lưu ý
@@ -1398,9 +1398,8 @@ Dữ liệu và MAC đã mã hóa (xem phần 3 dưới đây)
 ``````
 Mã hóa:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |       Session Tag                     |
   +----+----+----+----+----+----+----+----+
@@ -1423,7 +1422,8 @@ Mã hóa:
 
   MAC :: Poly1305 message authentication code, 16 bytes
 
-{% endhighlight %}
+
+```
 
 
 Tải
@@ -1436,9 +1436,8 @@ Xem phần tải dưới đây để biết định dạng và yêu cầu.
 KDF
 ```
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Xem phần AEAD bên dưới.
 
   // các thông số AEAD cho tải Phiên Có Sẵn
@@ -1446,7 +1445,8 @@ Xem phần AEAD bên dưới.
   n = The message number N in the current chain, as retrieved from the associated Session Tag.
   ad = The session tag, 8 bytes
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+
+```
 
 
 
@@ -1455,7 +1455,7 @@ Xem phần AEAD bên dưới.
 
 Định dạng: khóa công khai và khóa riêng 32-byte, little-endian.
 
-Lý do để sử dụng: Được sử dụng trong [NTCP2]_.
+Lý do để sử dụng: Được sử dụng trong [NTCP2](/en/docs/transport/ntcp2/).
 
 
 
@@ -1465,12 +1465,12 @@ Trong thao tác bắt tay Noise chuẩn, các tin nhắn bắt tay ban đầu tr
 các khóa tạm thời mà được truyền đi dưới dạng chuỗi rõ ràng.
 Vì các khóa X25519 hợp lệ có thể phân biệt từ ngẫu nhiên, một man-in-the-middle có thể phân biệt
 những tin nhắn này từ các tin nhắn Phiên Hiện Có thường bắt đầu với các thẻ phiên ngẫu nhiên.
-Trong [NTCP2]_ ([Prop111]_), chúng tôi đã sử dụng một hàm XOR có chi phí thấp sử dụng khóa tĩnh ngoài băng để làm mờ
+Trong [NTCP2](/en/docs/transport/ntcp2/) ([Prop111](/en/proposals/111-ntcp2/)), chúng tôi đã sử dụng một hàm XOR có chi phí thấp sử dụng khóa tĩnh ngoài băng để làm mờ
 khóa này. Tuy nhiên, mô hình đe dọa ở đây là khác nhau; chúng tôi không muốn cho phép bất kỳ MitM nào
 sử dụng bất kỳ phương tiện nào để xác nhận điểm đến của lưu lượng, hoặc để phân biệt
 các tin nhắn bắt tay ban đầu từ các tin nhắn Phiên Hiện Có.
 
-Do đó, [Elligator2]_ được sử dụng để chuyển đổi các khóa tạm thời trong các tin nhắn Phiên Mới và Thư trả lời Phiên Mới
+Do đó, [Elligator2](https://elligator.org/) được sử dụng để chuyển đổi các khóa tạm thời trong các tin nhắn Phiên Mới và Thư trả lời Phiên Mới
 để chúng không phân biệt được với các chuỗi ngẫu nhiên đều.
 
 
@@ -1481,15 +1481,14 @@ Do đó, [Elligator2]_ được sử dụng để chuyển đổi các khóa t�
 Các khóa công khai và khóa riêng 32-byte.
 Các khóa được mã hóa là little endian.
 
-Như được định nghĩa trong [Elligator2]_, các khóa được mã hóa không phân biệt được với 254 bit ngẫu nhiên.
+Như được định nghĩa trong [Elligator2](https://elligator.org/), các khóa được mã hóa không phân biệt được với 254 bit ngẫu nhiên.
 Chúng tôi yêu cầu 256 bit ngẫu nhiên (32 byte). Do đó, việc mã hóa và giải mã
 được định nghĩa như sau:
 
 Mã hóa:
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Định nghĩa ENCODE_ELG2()
 
   // Mã hóa như được định nghĩa trong tài liệu Elligator2
@@ -1497,21 +1496,22 @@ Mã hóa:
   // HOẶC với 2 bit ngẫu nhiên với MSB
   randomByte = CSRNG(1)
   encodedKey[31] |= (randomByte & 0xc0)
-{% endhighlight %}
+
+```
 
 
 Giải mã:
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Định nghĩa DECODE_ELG2()
 
   // Bịt ngoài 2 bit ngẫu nhiên từ MSB
   encodedKey[31] &= 0x3f
   // Giải mã như được định nghĩa trong tài liệu Elligator2
   pubkey = decode(encodedKey)
-{% endhighlight %}
+
+```
 
 
 Lý do để sử dụng
@@ -1536,16 +1536,16 @@ Do đó, người tạo khóa nên lưu trữ kết quả của hàm ENCODE_ELG2
 để không cần phải tính toán lại.
 
 Ngoài ra, các khóa không phù hợp có thể được thêm vào hồ chứa khóa
-sử dụng cho [NTCP2]_, nơi mà Elligator2 không được sử dụng.
+sử dụng cho [NTCP2](/en/docs/transport/ntcp2/), nơi mà Elligator2 không được sử dụng.
 Các vấn đề về an ninh của việc làm như vậy đang được xem xét.
 
 
 
 ### 3) AEAD (ChaChaPoly)
 
-AEAD sử dụng ChaCha20 và Poly1305, giống như trong [NTCP2]_.
-Điều này tương ứng với [RFC-7539]_, cũng được
-sử dụng tương tự trong TLS [RFC-7905]_.
+AEAD sử dụng ChaCha20 và Poly1305, giống như trong [NTCP2](/en/docs/transport/ntcp2/).
+Điều này tương ứng với [RFC-7539](https://tools.ietf.org/html/rfc7539), cũng được
+sử dụng tương tự trong TLS [RFC-7905](https://tools.ietf.org/html/rfc7905).
 
 
 
@@ -1556,9 +1556,8 @@ sử dụng tương tự trong TLS [RFC-7905]_.
 Đầu vào cho các hàm mã hóa/giải mã
 cho một khối AEAD trong thông điệp Phiên Mới:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 k :: 32 byte cipher key
        Xem KDFs của Phiên Mới và Thư trả lời Phiên Mới bên trên.
 
@@ -1570,7 +1569,8 @@ k :: 32 byte cipher key
 
   data :: Plaintext data, 0 or more bytes
 
-{% endhighlight %}
+
+```
 
 
 Đầu vào của Phiên Hiện Có
@@ -1579,9 +1579,8 @@ k :: 32 byte cipher key
 Đầu vào cho các hàm mã hóa/giải mã
 cho một khối AEAD trong thông điệp Phiên Hiện Có:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 k :: 32 byte session key
        Nhìn từ thẻ phiên đi kèm.
 
@@ -1600,7 +1599,8 @@ k :: 32 byte session key
 
   data :: Plaintext data, 0 or more bytes
 
-{% endhighlight %}
+
+```
 
 
 Định dạng mã hóa
@@ -1608,9 +1608,8 @@ k :: 32 byte session key
 
 Đầu ra của hàm mã hóa, đầu vào của hàm giải mã:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -1627,7 +1626,8 @@ k :: 32 byte session key
 
   MAC :: Poly1305 message authentication code, 16 bytes
 
-{% endhighlight %}
+
+```
 
 Ghi chú
 `````
@@ -1654,7 +1654,7 @@ Không có phản hồi nào được gửi trở lại.
 Lý do để sử dụng
 ```````````````
 
-Sử dụng trong [NTCP2]_.
+Sử dụng trong [NTCP2](/en/docs/transport/ntcp2/).
 
 
 

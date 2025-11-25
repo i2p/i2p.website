@@ -256,7 +256,7 @@ tag :: 8 byte reply_tag
 Destino ou roteador ECIES envia uma consulta para um roteador ECIES, com chaves de resposta incluídas.
 Suportado a partir da versão 0.9.49.
 
-Roteadores ECIES foram introduzidos na versão 0.9.48, veja [Prop156]_.
+Roteadores ECIES foram introduzidos na versão 0.9.48, veja [Prop156](/en/proposals/156-ecies-routers/).
 A partir da versão 0.9.49, destinos e roteadores ECIES podem usar o mesmo formato da seção
 "ECIES para ElG" acima, com chaves de resposta incluídas na solicitação.
 A consulta usará o "formato de uma vez" em [ECIES]_

@@ -382,7 +382,7 @@ SnapshotSyncRequest          5
 
 #### Application
 
-Les contenus d'application sont encodés en UTF-8 [JSON]_.
+Les contenus d'application sont encodés en UTF-8 [JSON](https://www.json.org/).
 Voir la section Couche d'application ci-dessous.
 
 
@@ -520,7 +520,7 @@ L'éditeur du Meta LS2 n'est PAS nécessairement le Leader Raft.
 
 ### Contenu des données d'application
 
-Les contenus d'application sont encodés en UTF-8 [JSON]_,
+Les contenus d'application sont encodés en UTF-8 [JSON](https://www.json.org/),
 pour la simplicité et l'extensibilité.
 La spécification complète est à déterminer (TBD).
 L'objectif est de fournir suffisamment de données pour écrire un algorithme déterminant quel est le "meilleur"

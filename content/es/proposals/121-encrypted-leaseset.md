@@ -38,7 +38,7 @@ Razones:
 ### Estrategia
 
 Hacerlo como lo hace GPG/OpenPGP. Encriptar asimétricamente una clave simétrica para cada
-destinatario. Los datos se deseencriptan con esa clave asimétrica. Ver por ejemplo [RFC-4880-S5.1]_
+destinatario. Los datos se deseencriptan con esa clave asimétrica. Ver por ejemplo [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
 SI podemos encontrar un algoritmo que sea pequeño y rápido.
 
 El truco es encontrar una encriptación asimétrica que sea pequeña y rápida. ElGamal con 514

@@ -13,7 +13,7 @@ implementedin: "0.9.46"
 ## Poznámka
 Probíhá nasazení a testování sítě.
 Předmětem drobných úprav.
-Viz [SPEC]_ pro oficiální specifikaci.
+Viz [SPEC](/en/docs/spec/ecies/) pro oficiální specifikaci.
 
 Následující funkce nejsou implementovány k verzi 0.9.46:
 
@@ -25,21 +25,21 @@ Následující funkce nejsou implementovány k verzi 0.9.46:
 
 ## Přehled
 
-Toto je návrh nového typu šifrování typu end-to-end od začátku I2P, který má nahradit ElGamal/AES+SessionTags [Elg-AES]_.
+Toto je návrh nového typu šifrování typu end-to-end od začátku I2P, který má nahradit ElGamal/AES+SessionTags [Elg-AES](/en/docs/spec/elgamal-aes/).
 
 Opírá se o předchozí práci, jak následuje:
 
-- Společné struktury specifikace [Common]_
-- Specifikace [I2NP]_ včetně LS2
-- ElGamal/AES+Session Tags [Elg-AES]_
+- Společné struktury specifikace [Common](/en/docs/spec/common-structures/)
+- Specifikace [I2NP](/en/docs/spec/i2np/) včetně LS2
+- ElGamal/AES+Session Tags [Elg-AES](/en/docs/spec/elgamal-aes/)
 - Přehled nové asymetrické kryptografie http://zzz.i2p/topics/1768
-- Přehled nízkoúrovňové kryptografie [CRYPTO-ELG]_
+- Přehled nízkoúrovňové kryptografie [CRYPTO-ELG](/en/docs/how/cryptography/)
 - ECIES http://zzz.i2p/topics/2418
-- [NTCP2]_ [Prop111]_
+- [NTCP2](/en/docs/transport/ntcp2/) [Prop111](/en/proposals/111-ntcp2/)
 - 123 Nové položky netDB
 - 142 Nová šablona kryptografie
-- [Noise]_ protokol
-- Dvojitý algoritmus ratchet [Signal]_
+- [Noise](https://noiseprotocol.org/noise.html) protokol
+- Dvojitý algoritmus ratchet [Signal](https://signal.org/docs/specifications/doubleratchet/)
 
 Cílem je podpora nového šifrování pro komunikaci typu end-to-end, destination-to-destination.
 
@@ -78,7 +78,7 @@ Jako připomínka,
 přidali jsme podporu typů šifrování, když jsme přidali podporu typů podpisů.
 Pole typu šifrování je vždy nula, jak v Destinations, tak v RouterIdentities.
 Zda to někdy změnit, je TBD.
-Odkazujte na specifikace společných struktur [Common]_.
+Odkazujte na specifikace společných struktur [Common](/en/docs/spec/common-structures/).
 
 
 
@@ -89,7 +89,7 @@ Jako připomínka, používáme ElGamal pro:
 
 1) Zprávy pro vytvoření tunelu (klíč je v RouterIdentity)
    Náhrada není pokryta v tomto návrhu.
-   Viz návrh 152 [Prop152]_.
+   Viz návrh 152 [Prop152](/en/proposals/152-ecies-tunnels/).
 
 2) Šifrování netdb a dalších I2NP zpráv mezi routery (Klíč je v RouterIdentity)
    Závisí na tomto návrhu.
@@ -156,9 +156,9 @@ Odstranění několika problémů se session tagy, včetně:
 - Změny formátu LS2 (návrh 123 je hotov)
 - Nový algoritmus rotace DHT nebo generování sdíleného náhodného čísla
 - Nové šifrování pro sestavení tunelu.
-  Viz návrh 152 [Prop152]_.
+  Viz návrh 152 [Prop152](/en/proposals/152-ecies-tunnels/).
 - Nové šifrování pro vrstvu tunelu.
-  Viz návrh 153 [Prop153]_.
+  Viz návrh 153 [Prop153](/en/proposals/153-ecies-garlic/).
 - Metody šifrování, přenosu a příjmu zpráv I2NP DLM / DSM / DSRM.
   Nezměněno.
 - Žádná komunikace LS1-to-LS2 nebo ElGamal/AES-to-tento-návrh není podporována.
@@ -197,7 +197,7 @@ Tímto také eliminujeme úložiště session tagů na odesílající straně,
 což snižuje požadavky na úložiště na polovinu.
 
 Úplný obousměrný handshake, podobný Noise IK patternu, je potřebný pro zamezení útoků Key Compromise Impersonation (KCI).
-Viz tabulka "Payload Security Properties" v [NOISE]_.
+Viz tabulka "Payload Security Properties" v [NOISE](https://noiseprotocol.org/noise.html).
 Pro více informací o KCI viz článek https://www.usenix.org/system/files/conference/woot15/woot15-paper-hlauschek.pdf
 
 
@@ -245,7 +245,7 @@ které nejsou vyžadovány pro aktuální I2P protokoly:
 - ECIES (ale to je v podstatě X25519)
 - Elligator2
 
-Stávající implementace routeru I2P, které dosud neimplementovaly [NTCP2]_ ([Prop111]_
+Stávající implementace routeru I2P, které dosud neimplementovaly [NTCP2](/en/docs/transport/ntcp2/) ([Prop111](/en/proposals/111-ntcp2/)
   budou rovněž vyžadovat implementace pro:
 
 - X25519 generování klíčů a DH
@@ -260,15 +260,15 @@ To znamená little-endian 32-bytový X25519 veřejný klíč,
 a end-to-end protokol specifikovaný zde.
 
 Crypto typ 0 je ElGamal.
-Crypto typy 1-3 jsou vyhrazeny pro ECIES-ECDH-AES-SessionTag, viz návrh 145 [Prop145]_.
+Crypto typy 1-3 jsou vyhrazeny pro ECIES-ECDH-AES-SessionTag, viz návrh 145 [Prop145](/en/proposals/145-ecies/).
 
 
 ### Noise Protocol Framework
 
 Tento návrh poskytuje požadavky založené na Noise Protocol Framework
-[NOISE]_ (Revize 34, 2018-07-11).
+[NOISE](https://noiseprotocol.org/noise.html) (Revize 34, 2018-07-11).
 Noise má podobné vlastnosti jako protokol Station-To-Station
-[STS]_, který je základem pro protokol [SSU]_. V terminologii Noise je Alice
+[STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), který je základem pro protokol [SSU](/en/docs/transport/ssu/). V terminologii Noise je Alice
 iniciátor a Bob je respondent.
 
 Tento návrh je založen na Noise protokolu Noise_IK_25519_ChaChaPoly_SHA256.
@@ -285,12 +285,12 @@ Tento Noise protokol používá následující primitiva:
   Alice nepřenáší svůj statický klíč Bobovi (N)
 
 - DH funkce: X25519
-  X25519 DH s délkou klíče 32 bajtů, jak je specifikováno v [RFC-7748]_.
+  X25519 DH s délkou klíče 32 bajtů, jak je specifikováno v [RFC-7748](https://tools.ietf.org/html/rfc7748).
 
 - Funktion šifry: ChaChaPoly
-  AEAD_CHACHA20_POLY1305, jak je specifikováno v [RFC-7539]_ sekce 2.8.
+  AEAD_CHACHA20_POLY1305, jak je specifikováno v [RFC-7539](https://tools.ietf.org/html/rfc7539) sekce 2.8.
   12-bytový nonce s prvními 4 bajty nastavenými na nulu.
-  Identické s tím v [NTCP2]_.
+  Identické s tím v [NTCP2](/en/docs/transport/ntcp2/).
 
 - Hash funkce: SHA256
   Standardní 32-bytový hash, již široce používaný v I2P.
@@ -301,22 +301,22 @@ Doplnění k Framework
 
 Tento návrh definuje následující vylepšení
 Noise_IK_25519_ChaChaPoly_SHA256. Tyto postupují podle pokynů v
-[NOISE]_ sekce 13.
+[NOISE](https://noiseprotocol.org/noise.html) sekce 13.
 
-1) Efemérní klíče jsou kódovány pomocí [Elligator2]_.
+1) Efemérní klíče jsou kódovány pomocí [Elligator2](https://elligator.org/).
 
 2) Odpověď je předponována s čitelným tagem.
 
 3) Formát payloadu je definován pro zprávy 1, 2 a datovou fázi.
    Samozřejmě, toto není definováno v Noise.
 
-Všechny zprávy zahrnují záhlaví [I2NP]_ Garlic Message.
+Všechny zprávy zahrnují záhlaví [I2NP](/en/docs/spec/i2np/) Garlic Message.
 Datová fáze používá šifrování podobné, ale neslučitelné s fázou dat Noise.
 
 
 ### Handshake Patterns
 
-Handshakes používají [Noise]_ handshake patterns.
+Handshakes používají [Noise](https://noiseprotocol.org/noise.html) handshake patterns.
 
 Používá se následující mapování písmen:
 
@@ -326,20 +326,19 @@ Používá se následující mapování písmen:
 
 Jednorázové a nevázané relace jsou podobné Noise N patternu.
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es p ->
 
-{% endhighlight %}
+
+```
 
 Vázané relace jsou podobné Noise IK patternu.
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 <- s
   ...
   e es s ss p ->
@@ -347,7 +346,8 @@ Vázané relace jsou podobné Noise IK patternu.
   <- p
   p ->
 
-{% endhighlight %}
+
+```
 
 
 ### Relace
@@ -500,7 +500,7 @@ CSRNG(n)
 H(p, d)
     SHA-256 hash funkce, která bere personalizační řetězec p a data d, a
     generuje výstup o délce 32 bajtů.
-    Jak je definováno v [NOISE]_.
+    Jak je definováno v [NOISE](https://noiseprotocol.org/noise.html).
     || níže znamená připojení.
 
     Použijte SHA-256 následovně::
@@ -517,7 +517,7 @@ MixHash(d)
         MixHash(d) := h = SHA-256(h || d)
 
 STREAM
-    ChaCha20/Poly1305 AEAD, jak je specifikováno ve [RFC-7539]_.
+    ChaCha20/Poly1305 AEAD, jak je specifikováno ve [RFC-7539](https://tools.ietf.org/html/rfc7539).
     S_KEY_LEN = 32 and S_IV_LEN = 12.
 
     ENCRYPT(k, n, plaintext, ad)
@@ -566,13 +566,13 @@ HKDF(salt, ikm, info, n)
     o délce 32 bajtů a kontextové 'info' hodnoty, a produkuje výstup
     o délce n bajtů vhodný pro použití jako klíčový materiál.
 
-    Použijte HKDF, jak je specifikováno v [RFC-5869]_, pomocí hashové funkce HMAC SHA-256
-    jak je specifikováno v [RFC-2104]_. To znamená, že SALT_LEN má maximálně 32 bajtů.
+    Použijte HKDF, jak je specifikováno v [RFC-5869](https://tools.ietf.org/html/rfc5869), pomocí hashové funkce HMAC SHA-256
+    jak je specifikováno v [RFC-2104](https://tools.ietf.org/html/rfc2104). To znamená, že SALT_LEN má maximálně 32 bajtů.
 
 MixKey(d)
     Použijte HKDF() s předchozí chainKey a nová data d, a
     nastaví novou chainKey a k.
-    Jak je definováno v [NOISE]_.
+    Jak je definováno v [NOISE](https://noiseprotocol.org/noise.html).
 
     Použijte HKDF následovně::
 
@@ -588,7 +588,7 @@ MixKey(d)
 Přehled stávajícího formátu zprávy
 ``````````````````````````````````
 
-Garlic Message, jak je specifikováno v [I2NP]_ je následující.
+Garlic Message, jak je specifikováno v [I2NP](/en/docs/spec/i2np/) je následující.
 Vzhledem k tomu, že designový cíl je, aby mezilehlé uzly nemohly rozlišovat mezi novou a starou kryptografií,
 tento formát se nemění, i když je redundantní pole délky.
 Formát je zobrazen s plným 16-bytovým záhlavím, i když
@@ -597,12 +597,11 @@ skutečné záhlaví může být v odlišném formátu v závislosti na použit�
 Po dešifrování data obsahují řadu Garlic Cloves a další
 data, také známá jako Clove Set.
 
-Viz [I2NP]_ pro podrobnosti a plnou specifikaci.
+Viz [I2NP](/en/docs/spec/i2np/) pro podrobnosti a plnou specifikaci.
 
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |type|      msg_id       |  expiration
   +----+----+----+----+----+----+----+----+
@@ -616,7 +615,8 @@ Viz [I2NP]_ pro podrobnosti a plnou specifikaci.
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-{% endhighlight %}
+
+```
 
 
 Přehled formátu šifrovaných dat
@@ -699,7 +699,7 @@ Statický klíč by měl být zahrnut, pokud se očekávají odpovědi,
 tj. pro streamování a repliable datagramy.
 Neměl by být zahrnut pro hrubé datagramy.
 
-Zpráva New Session je podobná jednocestnému Noise [NOISE]_ patternu
+Zpráva New Session je podobná jednocestnému Noise [NOISE](https://noiseprotocol.org/noise.html) patternu
 "N" (pokud není statický klíč poslán),
 nebo dvoucestnému patternu "IK" (pokud je statický klíč odeslán).
 
@@ -710,9 +710,8 @@ nebo dvoucestnému patternu "IK" (pokud je statický klíč odeslán).
 Délka je 96 + délka payloadu.
 Šifrovaný formát:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -755,7 +754,8 @@ Délka je 96 + délka payloadu.
 
   MAC :: Poly1305 ověřovací kód zprávy, 16 bytes
 
-{% endhighlight %}
+
+```
 
 
 Nový Session Efemérní Klíč
@@ -788,9 +788,8 @@ Pokud se nevyžaduje odpověď, není odeslán žádný statický klíč.
 Délka je 96 + délka užitku převodová.
 Šifrovaný formát:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -833,7 +832,8 @@ Délka je 96 + délka užitku převodová.
 
   MAC :: Poly1305 ověřovací kód zprávy, 16 bytes
 
-{% endhighlight %}
+
+```
 
 Nový Session Efemérní Klíč
 ```````````````````````````
@@ -873,9 +873,8 @@ Pokud se očekává odeslání pouze jedné zprávy, není potřeba žádné nas
 Délka je 96 + payload délka.
 Šifrovaný formát:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -918,7 +917,8 @@ Délka je 96 + payload délka.
 
   MAC :: Poly1305 ověřovací kód zprávy, 16 bytes
 
-{% endhighlight %}
+
+```
 
 
 Nový Session Jeden časový Klíč
@@ -940,9 +940,8 @@ testováním, zda je všech 32 bajtů nulových.
 
 TODO pokud bude potřebný nějaký flags?
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |                                       |
   +                                       +
@@ -955,7 +954,8 @@ TODO pokud bude potřebný nějaký flags?
 
   nuly:: Samé nuly, 32 bytes.
 
-{% endhighlight %}
+
+```
 
 
 Užitek Převodová
@@ -973,7 +973,7 @@ Viz sekce payloadu níže pro formát a další požadavky.
 KDF pro Iniciální ChainKey
 ````````````````````````````
 
-Toto je standardní [NOISE]_ pro IK s upraveným názvem protokolu.
+Toto je standardní [NOISE](https://noiseprotocol.org/noise.html) pro IK s upraveným názvem protokolu.
 Všimněte si, že používáme stejný inicializátor pro pattern IK (vázané relace)
 a pro pattern N (nevázané relace).
 
@@ -982,9 +982,8 @@ Za prvé, k označení, že efemérní klíče jsou kódovány pomocí Elligator
 a za druhé, k označení, že MixHash() je volán před druhou zprávou,
 aby se smíchala hodnota tagu.
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Toto je "e" pattern zprávy:
 
   // Definujte protocol_name.
@@ -1002,15 +1001,15 @@ Toto je "e" pattern zprávy:
 
   // až sem lze vše předpočítat Alica pro všechny odchozí spojení
 
-{% endhighlight %}
+
+```
 
 
 KDF pro zašifrovaný obsah sekce Flags/Static Key
 ``````````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Toto je "e" pattern zprávy:
 
   // Bobovy X25519 statické klíče
@@ -1076,16 +1075,16 @@ Toto je "e" pattern zprávy:
   Konec "s" pattern zprávy.
 
 
-{% endhighlight %}
+
+```
 
 
 
 KDF pro Payload sekci (s Aliciným statickým klíčem)
 ```````````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Toto je "ss" pattern zprávy:
 
   // Noise ss
@@ -1111,7 +1110,8 @@ Toto je "ss" pattern zprávy:
   // Uložit pro New Session Reply KDF
   h = SHA256(h || ciphertext)
 
-{% endhighlight %}
+
+```
 
 
 KDF pro Payload Sekci (bez Aliciného statického klíče)
@@ -1127,16 +1127,16 @@ Nové Session zprávy.
 Pokud je statický klíč samé nuly, "ss" pattern zprávy musí být přeskočeno.
 
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 chainKey = ze sekce Flags/Static key
   k = ze sekce Flags/Static key
   n = 1
   ad = h ze sekce Flags/Static key
   ciphertext = ENCRYPT(k, n, payload, ad)
 
-{% endhighlight %}
+
+```
 
 
 
@@ -1154,9 +1154,8 @@ Délka druhé části je 16 + délka payloadu.
 Celková délka je 72 + délka payloadu.
 Šifrovaný formát:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |       Session Tag   8 bytes           |
   +----+----+----+----+----+----+----+----+
@@ -1196,7 +1195,8 @@ Celková délka je 72 + délka payloadu.
 
   MAC :: Poly1305 ověřovací kód zprávy, 16 bytes
 
-{% endhighlight %}
+
+```
 
 Session Tag
 ```````````
@@ -1228,22 +1228,21 @@ KDF pro Odpovědní TagSet
 Jeden nebo více tagů je vytvořeno z TagSet, který je inicializován pomocí
 KDF níže, používající chainKey z New Session zprávy.
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // Generování tagset
   tagsetKey = HKDF(chainKey, ZEROLEN, "SessionReplyTags", 32)
   tagset_nsr = DH_INITIALIZE(chainKey, tagsetKey)
 
-{% endhighlight %}
+
+```
 
 
 KDF pro Zašifrovaný Obsah Sekce Klíč Odpovědi
 ``````````````````````````````````````````````
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // Klíče ze zprávy New Session
   // Aliciny X25519 klíče
   // apk a aepk jsou zaslány v původní zprávě New Session
@@ -1314,7 +1313,8 @@ KDF pro Zašifrovaný Obsah Sekce Klíč Odpovědi
 
   chainKey je použit v ratchetu níže.
 
-{% endhighlight %}
+
+```
 
 
 KDF pro Zašifrovaný Obsah Sekce Užitku
@@ -1326,9 +1326,8 @@ Navíc používáme hash z výše uvedeného pro vázání
 užitku na NSR zprávu.
 
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 // split()
   keydata = HKDF(chainKey, ZEROLEN, "", 64)
   k_ab = keydata[0:31]
@@ -1341,7 +1340,8 @@ užitku na NSR zprávu.
   n = 0
   ad = h
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+
+```
 
 
 ### Poznámky
@@ -1372,9 +1372,8 @@ Formát
 ```````
 Šifrované:
 
-.. raw:: html
+```dataspec
 
-  {% highlight lang='dataspec' %}
 +----+----+----+----+----+----+----+----+
   |       Session Tag                     |
   +----+----+----+----+----+----+----+----+
@@ -1397,7 +1396,8 @@ Formát
 
   MAC :: Poly1305 ověřovací kód zprávy, 16 bytes
 
-{% endhighlight %}
+
+```
 
 
 Užitek Převodová
@@ -1411,9 +1411,8 @@ Viz sekce payloadu níže pro formát a požadavky.
 KDF
 ```
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Viz AEAD sekci níže.
 
   // AEAD parametry pro payload Existující Session
@@ -1421,7 +1420,8 @@ Viz AEAD sekci níže.
   n = Číslo zprávy N v aktuálním řetězci, jaké je uloženo s příslušným Session Tag.
   ad = session tag, 8 bytes
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+
+```
 
 
 
@@ -1430,7 +1430,7 @@ Viz AEAD sekci níže.
 
 Formát: 32-bytové veřejné a soukromé klíče, malé-endian.
 
-Odůvodnění: Používá se v [NTCP2]_.
+Odůvodnění: Používá se v [NTCP2](/en/docs/transport/ntcp2/).
 
 
 
@@ -1439,12 +1439,12 @@ Odůvodnění: Používá se v [NTCP2]_.
 Ve standardních handshakes Noise zpráv, inicializační handshake zprávy v každém směru začínají
 efemérními klíči, které se přenášejí v čitelném textu.
 Protože platné klíče X25519 jsou rozlišitelné od náhod, Man-in-the-middle může tyto zprávy rozlišit od Existujících Session zpráv, které začínají náhodnými session tagy.
-V [NTCP2]_ ([Prop111]_), jsme použili nízko-režijní XOR funkci s použitím statického klíče mimo pásmo k obfuscování
+V [NTCP2](/en/docs/transport/ntcp2/) ([Prop111](/en/proposals/111-ntcp2/)), jsme použili nízko-režijní XOR funkci s použitím statického klíče mimo pásmo k obfuscování
 klíče. Nicméně, model ohrožení je zde jiný; nechceme umožnit žádným MitM
 jakýmikoli prostředky potvrdit cí destination provozu, nebo rozlišit
 inicializační handshake zprávy od Existujících Session zpráv.
 
-Proto je použit [Elligator2]_ k transformování efemérních klíčů ve zprávách Nové Session a Nové Session Reply
+Proto je použit [Elligator2](https://elligator.org/) k transformování efemérních klíčů ve zprávách Nové Session a Nové Session Reply
 tak, aby byly nerozlišitelné od jednotně náhodných řetězců.
 
 
@@ -1455,15 +1455,14 @@ Formát
 32-byte veřejné a soukromé klíče.
 Zakódované klíče jsou malé endianové.
 
-Jak je definováno v [Elligator2]_, zakódované klíče jsou nerozlišitelné od 254 náhodných bitů.
+Jak je definováno v [Elligator2](https://elligator.org/), zakódované klíče jsou nerozlišitelné od 254 náhodných bitů.
 Vyžadujeme 256 náhodných bitů (32 bytes). Proto jsou kódování a dekódování
 definovány následujícím způsobem:
 
 Kódování:
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Definice ENCODE_ELG2()
 
   // Kódování, jak je definováno ve specifikaci Elligator2
@@ -1471,21 +1470,22 @@ Definice ENCODE_ELG2()
   // OR do 2 náhodných bitů do MSB
   randomByte = CSRNG(1)
   encodedKey[31] |= (randomByte & 0xc0)
-{% endhighlight %}
+
+```
 
 
 Dekódování:
 
-.. raw:: html
+```text
 
-  {% highlight lang='text' %}
 Definice DECODE_ELG2()
 
   // Maska 2 náhodných bitů z MSB
   encodedKey[31] &= 0x3f
   // Dekódování, jak je definováno ve specifikaci Elligator2
   pubkey = decode(encodedKey)
-{% endhighlight %}
+
+```
 
 
 
@@ -1512,5 +1512,5 @@ Proto by generátor měl uchovávat výsledek ENCODE_ELG2()
 tak, aby jej nemusel znovu vypočítávat.
 
 Navíc, nevhodné klíče mohou být přidány k poolu klíčů
-používaných v [NTCP2]_, kde Elligator2 není používán.
+používaných v [NTCP2](/en/docs/transport/ntcp2/), kde Elligator2 není používán.
 Bezpečnostní otázky s tím spojené jsou

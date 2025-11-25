@@ -35,7 +35,7 @@ Raisons :
 ### Stratégie
 
 Faire comme le fait GPG/OpenPGP. Chiffrer asymétriquement une clé symétrique pour chaque
-destinataire. Les données sont déchiffrées avec cette clé asymétrique. Voir par exemple [RFC-4880-S5.1]_
+destinataire. Les données sont déchiffrées avec cette clé asymétrique. Voir par exemple [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
 SI nous pouvons trouver un algo qui soit petit et rapide.
 
 Le défi est de trouver un chiffrement asymétrique qui soit petit et rapide. ElGamal à 514
@@ -57,8 +57,3 @@ distribuer des clés à plusieurs personnes si vous le souhaitez).
 - Signature
 
 Les données chiffrées pourraient être précédées d'un spécificateur enctype, ou non.
-
-## Références
-
-.. [RFC-4880-S5.1]
-    https://tools.ietf.org/html/rfc4880#section-5.1

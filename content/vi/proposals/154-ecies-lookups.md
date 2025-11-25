@@ -258,7 +258,7 @@ tag :: 8 byte reply_tag
 Đích hoặc bộ định tuyến ECIES gửi một tra cứu đến một bộ định tuyến ECIES, với các khóa phản hồi đi kèm.
 Hỗ trợ kể từ 0.9.49.
 
-Các bộ định tuyến ECIES đã được giới thiệu trong 0.9.48, xem [Prop156]_.
+Các bộ định tuyến ECIES đã được giới thiệu trong 0.9.48, xem [Prop156](/en/proposals/156-ecies-routers/).
 Kể từ 0.9.49, các đích và bộ định tuyến ECIES có thể sử dụng cùng định dạng như trong
 phần "ECIES đến ElG" ở trên, với các khóa phản hồi được bao gồm trong yêu cầu.
 Tra cứu sẽ sử dụng "định dạng một lần" trong [ECIES]_
