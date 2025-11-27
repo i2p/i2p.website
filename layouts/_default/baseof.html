@@ -26,8 +26,7 @@
         <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
     {{ end }}
 
-    <!-- Mailing List Widget Styles -->
-    <link rel="stylesheet" href="https://feedback.i2p.net/widgets/styles.css">
+    <!-- Mailing List Widget Styles (loaded dynamically based on network) -->
 
     <!-- Theme Script (prevent flash) -->
     <script>
@@ -69,11 +68,74 @@
         <script src="{{ $scripts.RelPermalink }}"></script>
     {{ end }}
 
-    <!-- Mailing List Widget Script -->
-    <script src="https://feedback.i2p.net/widgets/mailing-list.js"></script>
-
-    <!-- Feature Request Widget Script -->
-    <script src="https://feedback.i2p.net/widgets/features.js"></script>
+    <!-- Feedback Widgets (loaded dynamically based on network) -->
+    <script>
+    (function() {
+        'use strict';
+        
+        // Detect network based on hostname
+        const hostname = window.location.hostname;
+        let baseUrl;
+        
+        // Check for I2P (both .i2p and .b32.i2p addresses)
+        if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
+            baseUrl = 'http://feedback.stormycloud.i2p';
+            console.log('[Network Detector] I2P network detected, using:', baseUrl);
+        } else if (hostname.endsWith('.onion')) {
+            baseUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
+            console.log('[Network Detector] Tor network detected, using:', baseUrl);
+        } else {
+            baseUrl = 'https://feedback.i2p.net';
+            console.log('[Network Detector] Clearnet detected, using:', baseUrl);
+        }
+        
+        // Store base URL for use by other scripts
+        window.feedbackBaseUrl = baseUrl;
+        
+        // Load stylesheet
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = baseUrl + '/widgets/styles.css';
+        document.head.appendChild(link);
+        
+        // Load mailing-list.js
+        const mailingListScript = document.createElement('script');
+        mailingListScript.src = baseUrl + '/widgets/mailing-list.js';
+        mailingListScript.async = true;
+        mailingListScript.onerror = function() {
+            console.error('[Network Detector] Failed to load mailing-list.js from:', baseUrl);
+        };
+        document.body.appendChild(mailingListScript);
+        
+        // Load features.js
+        const featuresScript = document.createElement('script');
+        featuresScript.src = baseUrl + '/widgets/features.js';
+        featuresScript.async = true;
+        featuresScript.onerror = function() {
+            console.error('[Network Detector] Failed to load features.js from:', baseUrl);
+        };
+        document.body.appendChild(featuresScript);
+        
+        // Update any existing widgets with data-api-url attributes
+        function updateWidgetApiUrls() {
+            const widgets = document.querySelectorAll('[data-api-url]');
+            widgets.forEach(function(widget) {
+                const currentUrl = widget.getAttribute('data-api-url');
+                // Only update if it's still pointing to the default clearnet URL
+                if (currentUrl === 'https://feedback.i2p.net' || currentUrl.startsWith('https://feedback.i2p.net/')) {
+                    widget.setAttribute('data-api-url', baseUrl);
+                }
+            });
+        }
+        
+        // Update immediately if DOM is ready, otherwise wait
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateWidgetApiUrls);
+        } else {
+            updateWidgetApiUrls();
+        }
+    })();
+    </script>
 
     <!-- Poll Widget Script is loaded dynamically when the modal opens -->
 

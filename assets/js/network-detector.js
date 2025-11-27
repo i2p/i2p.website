@@ -10,7 +10,8 @@
     const hostname = window.location.hostname;
     let scriptSrc;
 
-    if (hostname.endsWith('.i2p')) {
+    // Check for I2P (both .i2p and .b32.i2p addresses)
+    if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
         // I2P network
         scriptSrc = 'http://feedback.stormycloud.i2p/widgets/docs-feedback.js';
         console.log('[Network Detector] I2P network detected');

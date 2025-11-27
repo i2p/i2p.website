@@ -680,7 +680,33 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<!-- Feedback Form Handler -->
-<script src="https://feedback.i2p.net/widgets/docs-feedback.js"></script>
+<!-- Feedback Form Handler (loaded dynamically based on network) -->
+<script>
+(function() {
+    'use strict';
+    
+    // Use window.feedbackBaseUrl if available (set by baseof.html), otherwise detect
+    let baseUrl = window.feedbackBaseUrl;
+    if (!baseUrl) {
+        const hostname = window.location.hostname;
+        // Check for I2P (both .i2p and .b32.i2p addresses)
+        if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
+            baseUrl = 'http://feedback.stormycloud.i2p';
+        } else if (hostname.endsWith('.onion')) {
+            baseUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
+        } else {
+            baseUrl = 'https://feedback.i2p.net';
+        }
+    }
+    
+    const script = document.createElement('script');
+    script.src = baseUrl + '/widgets/docs-feedback.js';
+    script.async = true;
+    script.onerror = function() {
+        console.error('[Docs Feedback] Failed to load docs-feedback.js from:', baseUrl);
+    };
+    document.body.appendChild(script);
+})();
+</script>
 
 {{ end }}

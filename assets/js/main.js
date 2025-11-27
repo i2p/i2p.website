@@ -372,17 +372,32 @@
                 return Promise.resolve();
             }
 
+            // Detect network to determine base URL
+            // Use window.feedbackBaseUrl if available (set by baseof.html), otherwise detect
+            let baseUrl = window.feedbackBaseUrl;
+            if (!baseUrl) {
+                const hostname = window.location.hostname;
+                // Check for I2P (both .i2p and .b32.i2p addresses)
+                if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
+                    baseUrl = 'http://feedback.stormycloud.i2p';
+                } else if (hostname.endsWith('.onion')) {
+                    baseUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
+                } else {
+                    baseUrl = 'https://feedback.i2p.net';
+                }
+            }
+
             return new Promise(function(resolve, reject) {
                 const script = document.createElement('script');
-                script.src = 'https://feedback.i2p.net/widgets/voting.js';
+                script.src = baseUrl + '/widgets/voting.js';
                 script.async = true;
                 script.onload = function() {
-                    console.log('[Poll] Widget script loaded successfully');
+                    console.log('[Poll] Widget script loaded successfully from:', baseUrl);
                     widgetScriptLoaded = true;
                     resolve();
                 };
                 script.onerror = function() {
-                    console.error('[Poll] Failed to load widget script');
+                    console.error('[Poll] Failed to load widget script from:', baseUrl);
                     reject(new Error('Failed to load voting widget script'));
                 };
                 document.body.appendChild(script);

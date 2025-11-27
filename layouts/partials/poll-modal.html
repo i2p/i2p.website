@@ -33,8 +33,8 @@
     const hostname = window.location.hostname;
     let apiUrl = 'https://feedback.i2p.net';
 
-    // Detect I2P
-    if (hostname.endsWith('.i2p')) {
+    // Check for I2P (both .i2p and .b32.i2p addresses)
+    if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
         apiUrl = 'http://feedback.stormycloud.i2p';
     }
     // Detect Tor

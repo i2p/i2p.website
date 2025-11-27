@@ -81,7 +81,8 @@
 
     // Detect network based on hostname
     const hostname = window.location.hostname;
-    const isI2P = hostname.endsWith('.i2p');
+    // Check for I2P (both .i2p and .b32.i2p addresses)
+    const isI2P = hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p');
     const isTor = hostname.endsWith('.onion');
     const isClearnet = !isI2P && !isTor;
 
