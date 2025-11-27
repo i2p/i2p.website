@@ -12,7 +12,7 @@ implementedin: "0.9.46"
 
 ## ملاحظة
 تم تنفيذ ECIES إلى ElG في الإصدار 0.9.46 وتمت إغلاق مرحلة الاقتراح.
-انظر [I2NP]_ للحصول على المواصفات الرسمية.
+انظر [I2NP](/docs/specs/i2np/) للحصول على المواصفات الرسمية.
 قد يتم الرجوع إلى هذا الاقتراح للحصول على معلومات خلفية.
 تم تنفيذ ECIES إلى ECIES مع تضمين المفاتيح بدءاً من الإصدار 0.9.48.
 قد يتم إعادة فتح قسم ECIES-to-ECIES (المفاتيح المشتقة) أو دمجه في اقتراح مستقبلي.
@@ -27,7 +27,7 @@ implementedin: "0.9.46"
 - DSRM: رسالة رد بحث قاعدة بيانات I2NP
 - ECIES: ECIES-X25519-AEAD-Ratchet (الاقتراح 144)
 - ElG: ElGamal
-- ENCRYPT(k, n, payload, ad): كما هو معرّف في [ECIES]_
+- ENCRYPT(k, n, payload, ad): كما هو معرّف في [ECIES](/docs/specs/ecies/)
 - LS: مجموعة التأجير
 - lookup: رسالة DLM لـ I2NP
 - reply: DSM أو DSRM لـ I2NP
@@ -103,9 +103,7 @@ implementedin: "0.9.46"
 
 أضف علم البت 4 "ECIESFlag" لخيارات التشفير الجديدة.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 flags ::
        bit 4: ECIESFlag
                قبل الإصدار 0.9.46 غير محكمة
@@ -113,7 +111,7 @@ flags ::
                0  => إرسال رد غير مشفر أو ElGamal
                1  => إرسال رد مشفر بـ ChaCha/Poly باستخدام المفتاح المرفق
                      (سواء كانت العلامة مرفقة يعتمد على البت 1)
-{% endhighlight %}
+```
 
 يستخدم علم البت 4 بالاشتراك مع البت 1 لتحديد وضع تشفير الرد.
 يجب تعيين علم البت 4 فقط عند الإرسال إلى أجهزة التوجيه بإصدار 0.9.46 أو أحدث.
@@ -143,18 +141,14 @@ Flag bits 4,1  From Dest  To Router  Reply   DH?  notes
 
 توليد مفتاح طالب الخدمة (إيضاح):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32 بايت من البيانات العشوائية
 reply_tags :: Each is CSRNG(32) 32 بايت من البيانات العشوائية
-{% endhighlight %}
+```
 
 تنسيق الرسالة (أضف تحقق من ECIESFlag):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 بايت `SessionKey` بتسلسل كبير
        فقط إذا كان encryptionFlag == 1 AND ECIESFlag == 0، فقط اعتبارًا من الإصدار 0.9.7
@@ -168,7 +162,7 @@ tags ::
 reply_tags ::
        واحدة أو أكثر من 32 بايت `SessionTag`s (عادة واحدة)
        فقط إذا كان encryptionFlag == 1 AND ECIESFlag == 0، فقط اعتبارًا من الإصدار 0.9.7
-{% endhighlight %}
+```
 
 ### ECIES إلى ElG
 
@@ -179,19 +173,15 @@ reply_tags ::
 
 توليد مفتاح طالب الخدمة:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32 بايت من البيانات العشوائية
 reply_tags :: Each is CSRNG(8) 8 بايت من البيانات العشوائية
-{% endhighlight %}
+```
 
 تنسيق الرسالة:
 أعد تعريف حقول reply_key و reply_tags كما يلي:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 بايت `SessionKey` ECIES بتسلسل كبير
        فقط إذا كان encryptionFlag == 0 AND ECIESFlag == 1، فقط اعتبارًا من الإصدار 0.9.46
@@ -205,14 +195,11 @@ tags ::
 reply_tags ::
        8 بايت `SessionTag` ECIES
        فقط إذا كان encryptionFlag == 0 AND ECIESFlag == 1، فقط اعتبارًا من الإصدار 0.9.46
+```
 
-{% endhighlight %}
+الرد هو رسالة جلسة قائمة على ECIES، كما هو معرّف في [ECIES](/docs/specs/ecies/).
 
-الرد هو رسالة جلسة قائمة على ECIES، كما هو معرّف في [ECIES]_.
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 tag :: 8 بايت reply_tag
 
 k :: 32 بايت مفتاح الجلسة
@@ -225,8 +212,7 @@ ad :: 8 بايت reply_tag
 payload :: بيانات نصية عادية، DSM أو DSRM.
 
 ciphertext = ENCRYPT(k, n, payload, ad)
-
-{% endhighlight %}
+```
 
 ### ECIES إلى ECIES (0.9.49)
 
@@ -236,7 +222,7 @@ ciphertext = ENCRYPT(k, n, payload, ad)
 تم تقديم أجهزة التوجيه ECIES في الإصدار 0.9.48، انظر [Prop156](/en/proposals/156-ecies-routers/).
 اعتبارًا من الإصدار 0.9.49، يمكن أن تستخدم وجهات وأجهزة توجيه ECIES نفس التنسيق كما في
 قسم "ECIES إلى ElG" أعلاه، مع تضمين مفاتيح الرد في الطلب.
-سوف يستخدم البحث "تنسيق المرة الواحدة" في [ECIES]_
+سوف يستخدم البحث "تنسيق المرة الواحدة" في [ECIES](/docs/specs/ecies/)
 نظرًا لأن طالب الخدمة مجهول.
 
 لطريقة جديدة باستخدام المفاتيح المشتقة، انظر القسم التالي.
@@ -246,7 +232,7 @@ ciphertext = ENCRYPT(k, n, payload, ad)
 وجهة أو جهاز توجيه ECIES يرسل بحثًا إلى جهاز توجيه ECIES، ويتم اشتقاق مفاتيح الرد من DH.
 لم يتم تعريفه بالكامل أو دعمه، التنفيذ TBD.
 
-سوف يستخدم البحث "تنسيق المرة الواحدة" في [ECIES]_
+سوف يستخدم البحث "تنسيق المرة الواحدة" في [ECIES](/docs/specs/ecies/)
 نظرًا لأن طالب الخدمة مجهول.
 
 إعادة تعريف حقل reply_key كما يلي. لا توجد علامات مرتبطة.
@@ -254,21 +240,16 @@ ciphertext = ENCRYPT(k, n, payload, ad)
 
 هذا القسم غير مكتمل ويتطلب دراسة أكبر.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 بايت X25519 `PublicKey` وقتي للطالب، بتسلسل صغير
        فقط إذا كان encryptionFlag == 1 AND ECIESFlag == 1، فقط اعتبارًا من الإصدار 0.9.TBD
+```
 
-{% endhighlight %}
+الرد هو رسالة جلسة ECIES قائمة، كما هو معرّف في [ECIES](/docs/specs/ecies/).
+انظر [ECIES](/docs/specs/ecies/) لجميع التعريفات.
 
-الرد هو رسالة جلسة ECIES قائمة، كما هو معرّف في [ECIES]_.
-انظر [ECIES]_ لجميع التعريفات.
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 // مفاتيح X25519 المؤقتة لـ Alice
   // aesk = مفتاح خاص وقتي لـ Alice
   aesk = توليد_خاص()
@@ -306,9 +287,9 @@ reply_key ::
   sessTag_ck = keydata[0:31]
   symmKey_ck = keydata[32:63]
 
-  tag :: علامة بحجم 8 بايت كما تم توليدها من RATCHET_TAG() في [ECIES]_
+  tag :: علامة بحجم 8 بايت كما تم توليدها من RATCHET_TAG() في [ECIES](/docs/specs/ecies/)
 
-  k :: مفتاح بحجم 32 بايت كما تم توليده من RATCHET_KEY() في [ECIES]_
+  k :: مفتاح بحجم 32 بايت كما تم توليده من RATCHET_KEY() في [ECIES](/docs/specs/ecies/)
 
   n :: فهرس العلامة. عادة 0.
 
@@ -317,16 +298,14 @@ reply_key ::
   payload :: بيانات نصية عادية، DSM أو DSRM.
 
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+```
 
 ### تنسيق الرد
 
 هذه هي رسالة الجلسة الحالية،
 نفسها في [ECIES]، منسوخة أدناه كمرجع.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 +----+----+----+----+----+----+----+----+
   |        علامة الجلسة                     |
   +----+----+----+----+----+----+----+----+
@@ -348,8 +327,7 @@ reply_key ::
   بيانات قسم الحمولة المشفرة :: البيانات المتبقية ناقص 16 بايت
 
   MAC :: رمز تحقق الرسائل بـ Poly1305، 16 بايت
-
-{% endhighlight %}
+```
 
 ## التبرير
 
@@ -379,12 +357,3 @@ reply_key ::
 وسيتم إرسال الرد غير مشفر.
 
 ## المراجع
-
-.. [ECIES]
-   {{ spec_url('ecies') }}
-
-.. [I2NP]
-    {{ spec_url('i2np') }}
-
-.. [Prop156]
-    {{ proposal_url('156') }}

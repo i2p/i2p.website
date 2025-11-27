@@ -138,16 +138,14 @@ In the table below,
 "DH yes" means that the reply keys are derived from the DH operation.
 
 
-=============  =========  =========  ======  ===  =======
-Flag bits 4,1  From Dest  To Router  Reply   DH?  notes
-=============  =========  =========  ======  ===  =======
-0 0            Any        Any        no enc  n/a  current
-0 1            ElG        ElG        AES     no   current
-0 1            ECIES      ElG        AES     no   i2pd workaround
-1 0            ECIES      ElG        AEAD    no   this proposal
-1 0            ECIES      ECIES      AEAD    no   0.9.49
-1 1            ECIES      ECIES      AEAD    yes  future
-=============  =========  =========  ======  ===  =======
+| Flag bits 4,1 | From Dest | To Router | Reply | DH? | notes |
+|---------------|-----------|-----------|-------|-----|-------|
+| 0 0            | Any       | Any       | no enc| n/a | current |
+| 0 1            | ElG       | ElG       | AES   | no  | current |
+| 0 1            | ECIES     | ElG       | AES   | no  | i2pd workaround |
+| 1 0            | ECIES     | ElG       | AEAD  | no  | this proposal |
+| 1 0            | ECIES     | ECIES     | AEAD  | no  | 0.9.49 |
+| 1 1            | ECIES     | ECIES     | AEAD  | yes | future |
 
 
 ### ElG to ElG

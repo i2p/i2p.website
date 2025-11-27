@@ -12,7 +12,7 @@ implementedin: "0.9.46"
 
 ## 注意
 ECIES到ElG在0.9.46中已实现，并且提案阶段已关闭。
-请参见[I2NP]_以获取官方规范。
+请参见[I2NP](/docs/specs/i2np/)以获取官方规范。
 此提案仍可作为背景信息参考。
 包含密钥的ECIES到ECIES已在0.9.48版中实现。
 ECIES到ECIES（派生密钥）部分可能会在未来的提案中重新开放或合并。
@@ -27,7 +27,7 @@ ECIES到ECIES（派生密钥）部分可能会在未来的提案中重新开放�
 - DSRM: I2NP数据库搜索回复消息
 - ECIES: ECIES-X25519-AEAD-Ratchet（提案144）
 - ElG: ElGamal
-- ENCRYPT(k, n, payload, ad): 如[ECIES]_中定义
+- ENCRYPT(k, n, payload, ad): 如[ECIES](/docs/specs/ecies/)中定义
 - LS: 租约集
 - 查找: I2NP DLM
 - 回复: I2NP DSM或DSRM
@@ -40,7 +40,7 @@ ECIES到ECIES（派生密钥）部分可能会在未来的提案中重新开放�
 在0.9.7中，指定AES加密回复是为了最小化ElG的巨大加密开销，并因为它复用了ElGamal/AES+SessionTags中的标签/AES工具。
 然而，由于没有认证，并且这些回复不是前向保密的，AES回复可能在IBEP处被篡改。
 
-对于[ECIES]_目的地，提案144的目的是不再支持32字节标签和AES解密。
+对于[ECIES](/docs/specs/ecies/)目的地，提案144的目的是不再支持32字节标签和AES解密。
 具体细节在该提案中有意未被包含。
 
 此提案记录了一种请求ECIES加密回复的DLM的新选项。
@@ -80,7 +80,7 @@ i2pd尚未实现双加密目的地。
 ## 设计
 
 - 新的DLM格式将在标志字段中添加一个位来指定ECIES加密回复。
-  ECIES加密回复将使用[ECIES]_现有会话消息格式，附加一个标签和ChaCha/Poly载荷和MAC。
+  ECIES加密回复将使用[ECIES](/docs/specs/ecies/)现有会话消息格式，附加一个标签和ChaCha/Poly载荷和MAC。
 
 - 定义两个变体。一个用于ElG路由器，其中DH操作不可用，另一个用于未来的ECIES路由器，其中DH操作可用并可能提供额外安全性。需要进一步研究。
 
@@ -88,13 +88,11 @@ i2pd尚未实现双加密目的地。
 
 ## 规范
 
-在[I2NP]_ DLM（DatabaseLookup）规范中，做出以下更改。
+在[I2NP](/docs/specs/i2np/) DLM（DatabaseLookup）规范中，做出以下更改。
 
 添加标志位4“ECIESFlag”以供新的加密选项使用。
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 flags ::
        bit 4: ECIESFlag
                发行0.9.46之前被忽略
@@ -102,7 +100,7 @@ flags ::
                0  => 发送未加密或ElGamal回复
                1  => 使用包含的密钥发送ChaCha/Poly加密回复
                      （是否包括标签取决于第1位）
-{% endhighlight %}
+```
 
 标志位4与第1位结合使用以确定回复加密模式。
 标志位4仅可在向版本0.9.46或更高版本的路由器发送时设置。
@@ -132,18 +130,14 @@ ElG目的地向ElG路由器发送查找。
 
 请求者密钥生成（澄清）：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32字节随机数据
   reply_tags :: 每个为CSRNG(32) 32字节随机数据
-{% endhighlight %}
+```
 
 消息格式（添加ECIESFlag检查）：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32字节 `SessionKey` 大端
        仅在加密Flag == 1 AND ECIESFlag == 0时包括，仅从发行版0.9.7开始
@@ -157,7 +151,7 @@ reply_key ::
   reply_tags ::
        一个或多个32字节 `SessionTag`（通常一个）
        仅在加密Flag == 1 AND ECIESFlag == 0时包括，仅从发行版0.9.7开始
-{% endhighlight %}
+```
 
 ### ECIES to ElG
 
@@ -168,19 +162,15 @@ ECIES目的地向ElG路由器发送查找。
 
 请求者密钥生成：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32字节随机数据
   reply_tags :: 每个为CSRNG(8) 8字节随机数据
-{% endhighlight %}
+```
 
 消息格式：
 重新定义reply_key和reply_tags字段如下：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32字节 ECIES `SessionKey` 大端
        仅在加密Flag == 0 AND ECIESFlag == 1时包括，仅从发行版0.9.46开始
@@ -194,14 +184,11 @@ reply_key ::
   reply_tags ::
        一个8字节 ECIES `SessionTag`
        仅在加密Flag == 0 AND ECIESFlag == 1时包括，仅从发行版0.9.46开始
+```
 
-{% endhighlight %}
+回复是一个ECIES现有会话消息，如[ECIES](/docs/specs/ecies/)中定义。
 
-回复是一个ECIES现有会话消息，如[ECIES]_中定义。
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 tag :: 8字节 reply_tag
 
   k :: 32字节 session key
@@ -214,8 +201,7 @@ tag :: 8字节 reply_tag
   payload :: 明文数据，DSM 或 DSRM。
 
   ciphertext = ENCRYPT(k, n, payload, ad)
-
-{% endhighlight %}
+```
 
 ### ECIES to ECIES (0.9.49)
 
@@ -224,7 +210,7 @@ ECIES目的地或路由器向ECIES路由器发送查找，附带回复密钥。
 
 ECIES路由器在0.9.48中引入，参见[Prop156](/en/proposals/156-ecies-routers/)。
 从0.9.49开始，ECIES目的地和路由器可以使用与上述“ECIES to ElG”部分相同的格式，在请求中包括回复密钥。
-查找将使用[ECIES]_中的“一次性格式”，因为请求者是匿名的。
+查找将使用[ECIES](/docs/specs/ecies/)中的“一次性格式”，因为请求者是匿名的。
 
 对于使用派生密钥的新方法，请参见下一节。
 
@@ -233,28 +219,23 @@ ECIES路由器在0.9.48中引入，参见[Prop156](/en/proposals/156-ecies-route
 ECIES目的地或路由器向ECIES路由器发送查找，并从DH派生回复密钥。
 尚未完全定义或支持，实现TBD。
 
-查找将使用[ECIES]_中的“一次性格式”，因为请求者是匿名的。
+查找将使用[ECIES](/docs/specs/ecies/)中的“一次性格式”，因为请求者是匿名的。
 
 重新定义reply_key字段如下。没有关联的标签。
 标签将在下面的KDF中生成。
 
 此部分不完整，需要进一步研究。
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32字节X25519临时`PublicKey`的请求者，小端
        仅在加密Flag == 1 AND ECIESFlag == 1时包括，仅从发行版0.9.TBD开始
+```
 
-{% endhighlight %}
+回复是一个ECIES现有会话消息，如[ECIES](/docs/specs/ecies/)中定义。
+参见[ECIES](/docs/specs/ecies/)获取全部定义。
 
-回复是一个ECIES现有会话消息，如[ECIES]_中定义。
-参见[ECIES]_获取全部定义。
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 // Alice的X25519临时密钥
   // aesk = Alice临时私钥
   aesk = GENERATE_PRIVATE()
@@ -291,9 +272,9 @@ reply_key ::
   sessTag_ck = keydata[0:31]
   symmKey_ck = keydata[32:63]
 
-  tag :: 从[ECIES]_中的RATCHET_TAG()生成的8字节标签
+  tag :: 从[ECIES](/docs/specs/ecies/)中的RATCHET_TAG()生成的8字节标签
 
-  k :: 从[ECIES]_中的RATCHET_KEY()生成的32字节密钥
+  k :: 从[ECIES](/docs/specs/ecies/)中的RATCHET_KEY()生成的32字节密钥
 
   n :: 标签的索引。通常为0。
 
@@ -302,15 +283,13 @@ reply_key ::
   payload :: 明文数据，DSM或DSRM。
 
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+```
 
 ### 回复格式
 
-这是现有的会话消息，与[ECIES]_中相同，下面为参考复制。
+这是现有的会话消息，与[ECIES](/docs/specs/ecies/)中相同，下面为参考复制。
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 +----+----+----+----+----+----+----+----+
   |       会话标签                      |
   +----+----+----+----+----+----+----+----+
@@ -332,8 +311,7 @@ reply_key ::
   负载部分加密数据 :: 剩余数据减去16字节
 
   MAC :: Poly1305消息认证码，16字节
-
-{% endhighlight %}
+```
 
 ## 正当性
 
@@ -358,14 +336,3 @@ reply_key ::
 没有向后兼容性问题。路由器在其RouterInfo中宣布0.9.46或更高版本的router.version时必须支持此功能。
 路由器不得向版本低于0.9.46的路由器发送包含新标志的DatabaseLookup。
 如果误将带有第4位设定且第1位未设置的数据库查找消息发送给不支持的路由器，它可能会忽略提供的密钥和标签，并发送未加密的回复。
-
-## 参考
-
-.. [ECIES]
-   {{ spec_url('ecies') }}
-
-.. [I2NP]
-    {{ spec_url('i2np') }}
-
-.. [Prop156]
-    {{ proposal_url('156') }}

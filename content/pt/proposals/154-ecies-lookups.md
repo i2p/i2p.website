@@ -12,7 +12,7 @@ implementedin: "0.9.46"
 
 ## Nota
 ECIES para ElG está implementado na versão 0.9.46 e a fase de propostas está encerrada.
-Veja [I2NP]_ para a especificação oficial.
+Veja [I2NP](/docs/specs/i2np/) para a especificação oficial.
 Esta proposta ainda pode ser referenciada como informação de fundo.
 ECIES para ECIES com chaves inclusas está implementado a partir da versão 0.9.48.
 A seção ECIES-to-ECIES (chaves derivadas) pode ser reaberta ou incorporada
@@ -29,7 +29,7 @@ a uma proposta futura.
 - DSRM: Mensagem de Resposta de Pesquisa de Banco de Dados I2NP
 - ECIES: ECIES-X25519-AEAD-Ratchet (proposta 144)
 - ElG: ElGamal
-- ENCRYPT(k, n, payload, ad): Conforme definido em [ECIES]_
+- ENCRYPT(k, n, payload, ad): Conforme definido em [ECIES](/docs/specs/ecies/)
 - LS: Leaseset
 - lookup: DLM I2NP
 - reply: DSM ou DSRM I2NP
@@ -44,7 +44,7 @@ O suporte para respostas criptografadas com AES foi adicionado na versão 0.9.7.
 Respostas criptografadas com AES foram especificadas na versão 0.9.7 para minimizar a grande sobrecarga criptográfica do ElG, e porque reutilizava a facilidade de tags/AES
 em ElGamal/AES+SessionTags. No entanto, respostas AES podem ser adulteradas no IBEP, pois não há autenticação, e as respostas não são secretas para o futuro.
 
-Com destinos [ECIES]_, a intenção da proposta 144 é que
+Com destinos [ECIES](/docs/specs/ecies/), a intenção da proposta 144 é que
 os destinos não suportem mais tags de 32 bytes e decriptação AES.
 Os detalhes não foram intencionalmente incluídos nessa proposta.
 
@@ -94,7 +94,7 @@ i2pd ainda não implementou destinos de criptografia dupla.
 ## Design
 
 - Novo formato DLM adicionará um bit ao campo de flags para especificar respostas criptografadas com ECIES.
-  Respostas criptografadas com ECIES usarão o formato de mensagem de Sessão Existente [ECIES]_,
+  Respostas criptografadas com ECIES usarão o formato de mensagem de Sessão Existente [ECIES](/docs/specs/ecies/),
   com uma tag anteposta e um payload e MAC ChaCha/Poly.
 
 - Definir duas variantes. Uma para roteadores ElG, onde uma operação DH não é possível,
@@ -109,14 +109,12 @@ uma chave pública X25519.
 
 ## Especificação
 
-Na especificação [I2NP]_ DLM (Consulta ao Banco de Dados), faça as seguintes alterações.
+Na especificação [I2NP](/docs/specs/i2np/) DLM (Consulta ao Banco de Dados), faça as seguintes alterações.
 
 
 Adicione o bit de flag 4 "ECIESFlag" para as novas opções de criptografia.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 flags ::
        bit 4: ECIESFlag
                antes da versão 0.9.46 ignorado
@@ -124,7 +122,7 @@ flags ::
                0  => enviar resposta não criptografada ou ElGamal
                1  => enviar resposta criptografada ChaCha/Poly usando chave incluída
                      (se a tag está incluída depende do bit 1)
-{% endhighlight %}
+```
 
 O bit de flag 4 é usado em combinação com o bit 1 para determinar o modo de criptografia da resposta.
 O bit de flag 4 deve ser definido somente ao enviar para roteadores com versão 0.9.46 ou superior.
@@ -136,16 +134,14 @@ Na tabela abaixo,
 "DH sim" significa que as chaves de resposta são derivadas da operação DH.
 
 
-=============  =========  =========  ======  ===  =======
-Flag bits 4,1  Do Dest    Para Router  Resposta  DH?  notas
-=============  =========  =========  ======  ===  =======
-0 0            Qualquer   Qualquer    sem cripto  n/a  atual
-0 1            ElG        ElG        AES     não   atual
-0 1            ECIES      ElG        AES     não   i2pd solução alternativa
-1 0            ECIES      ElG        AEAD    não   esta proposta
-1 0            ECIES      ECIES      AEAD    não   0.9.49
-1 1            ECIES      ECIES      AEAD    sim   futuro
-=============  =========  =========  ======  ===  =======
+| Flag bits 4,1 | Do Dest | Para Router | Resposta | DH? | notas |
+|---------------|---------|-------------|----------|-----|-------|
+| 0 0            | Qualquer| Qualquer    | sem cripto| n/a | atual |
+| 0 1            | ElG     | ElG         | AES      | não | atual |
+| 0 1            | ECIES   | ElG         | AES      | não | i2pd solução alternativa |
+| 1 0            | ECIES   | ElG         | AEAD     | não | esta proposta |
+| 1 0            | ECIES   | ECIES       | AEAD     | não | 0.9.49 |
+| 1 1            | ECIES   | ECIES       | AEAD     | sim | futuro |
 
 
 ### ElG para ElG
@@ -158,18 +154,14 @@ Nenhuma mudança no formato binário existente.
 
 Geração de chave do solicitante (esclarecimento):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32 bytes de dados aleatórios
   reply_tags :: Cada um é CSRNG(32) 32 bytes de dados aleatórios
-{% endhighlight %}
+```
 
 Formato da mensagem (adicionar verificação para ECIESFlag):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 byte `SessionKey` big-endian
        somente incluído se encryptionFlag == 1 E ECIESFlag == 0, somente a partir da versão 0.9.7
@@ -183,7 +175,7 @@ reply_key ::
   reply_tags ::
        uma ou mais 32 bytes `SessionTag`s (normalmente um)
        somente incluído se encryptionFlag == 1 E ECIESFlag == 0, somente a partir da versão 0.9.7
-{% endhighlight %}
+```
 
 
 
@@ -197,19 +189,15 @@ Os campos reply_key e reply_tags são redefinidos para uma resposta criptografad
 
 Geração de chave do solicitante:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32 bytes de dados aleatórios
   reply_tags :: Cada um é CSRNG(8) 8 bytes de dados aleatórios
-{% endhighlight %}
+```
 
 Formato da mensagem:
 Redefina os campos reply_key e reply_tags da seguinte forma:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 byte ECIES `SessionKey` big-endian
        somente incluído se encryptionFlag == 0 E ECIESFlag == 1, somente a partir da versão 0.9.46
@@ -223,15 +211,12 @@ reply_key ::
   reply_tags ::
        uma 8 byte ECIES `SessionTag`
        somente incluído se encryptionFlag == 0 E ECIESFlag == 1, somente a partir da versão 0.9.46
+```
 
-{% endhighlight %}
 
+A resposta é uma mensagem de Sessão Existente ECIES, conforme definido em [ECIES](/docs/specs/ecies/).
 
-A resposta é uma mensagem de Sessão Existente ECIES, conforme definido em [ECIES]_.
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 tag :: 8 byte reply_tag
 
   k :: 32 byte session key
@@ -244,8 +229,7 @@ tag :: 8 byte reply_tag
   payload :: Dados em texto simples, o DSM ou DSRM.
 
   ciphertext = ENCRYPT(k, n, payload, ad)
-
-{% endhighlight %}
+```
 
 
 
@@ -259,7 +243,7 @@ Suportado a partir da versão 0.9.49.
 Roteadores ECIES foram introduzidos na versão 0.9.48, veja [Prop156](/en/proposals/156-ecies-routers/).
 A partir da versão 0.9.49, destinos e roteadores ECIES podem usar o mesmo formato da seção
 "ECIES para ElG" acima, com chaves de resposta incluídas na solicitação.
-A consulta usará o "formato de uma vez" em [ECIES]_
+A consulta usará o "formato de uma vez" em [ECIES](/docs/specs/ecies/)
 já que o solicitante é anônimo.
 
 Para um novo método com chaves derivadas, veja a próxima seção.
@@ -272,7 +256,7 @@ Para um novo método com chaves derivadas, veja a próxima seção.
 Destino ou roteador ECIES envia uma consulta para um roteador ECIES, e as chaves de resposta são derivadas do DH.
 Não totalmente definido ou suportado, implementação ainda será feita.
 
-A consulta usará o "formato de uma vez" em [ECIES]_
+A consulta usará o "formato de uma vez" em [ECIES](/docs/specs/ecies/)
 já que o solicitante é anônimo.
 
 Redefina o campo reply_key como segue. Não há tags associadas.
@@ -281,22 +265,17 @@ As tags serão geradas no KDF abaixo.
 Esta seção está incompleta e requer estudo adicional.
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 byte X25519 efêmero `PublicKey` do solicitante, little-endian
        somente incluído se encryptionFlag == 1 E ECIESFlag == 1, somente a partir da versão 0.9.TBD
+```
 
-{% endhighlight %}
-
-A resposta é uma mensagem de Sessão Existente ECIES, conforme definido em [ECIES]_.
-Veja [ECIES]_ para todas as definições.
+A resposta é uma mensagem de Sessão Existente ECIES, conforme definido em [ECIES](/docs/specs/ecies/).
+Veja [ECIES](/docs/specs/ecies/) para todas as definições.
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 // Chaves efêmeras X25519 de Alice
   // aesk = chave privada efêmera de Alice
   aesk = GENERATE_PRIVATE()
@@ -334,9 +313,9 @@ Veja [ECIES]_ para todas as definições.
   sessTag_ck = keydata[0:31]
   symmKey_ck = keydata[32:63]
 
-  tag :: 8 byte tag como gerado por RATCHET_TAG() em [ECIES]_
+  tag :: 8 byte tag como gerado por RATCHET_TAG() em [ECIES](/docs/specs/ecies/)
 
-  k :: 32 byte key como gerado por RATCHET_KEY() em [ECIES]_
+  k :: 32 byte key como gerado por RATCHET_KEY() em [ECIES](/docs/specs/ecies/)
 
   n :: O índice da tag. Normalmente 0.
 
@@ -345,18 +324,16 @@ Veja [ECIES]_ para todas as definições.
   payload :: Dados em texto simples, o DSM ou DSRM.
 
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+```
 
 
 
 ### Formato de resposta
 
 Esta é a mensagem de sessão existente,
-mesma de [ECIES]_, copiada abaixo para referência.
+mesma de [ECIES](/docs/specs/ecies/), copiada abaixo para referência.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 +----+----+----+----+----+----+----+----+
   |       Session Tag                     |
   +----+----+----+----+----+----+----+----+
@@ -378,8 +355,7 @@ mesma de [ECIES]_, copiada abaixo para referência.
   Dados criptografados da seção de payload :: dados restantes menos 16 bytes
 
   MAC :: Código de autenticação de mensagem Poly1305, 16 bytes
-
-{% endhighlight %}
+```
 
 
 ## Justificação
@@ -415,14 +391,3 @@ Roteadores não devem enviar um DatabaseLookup com as novas flags para roteadore
 Se uma mensagem de consulta ao banco de dados for enviada erroneamente com o bit 4 definido e o bit 1 não definido para
 um roteador sem suporte, provavelmente ignorará a chave e a tag fornecidas, e
 enviará a resposta não criptografada.
-
-## Referências
-
-.. [ECIES]
-   {{ spec_url('ecies') }}
-
-.. [I2NP]
-    {{ spec_url('i2np') }}
-
-.. [Prop156]
-    {{ proposal_url('156') }}

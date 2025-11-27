@@ -12,7 +12,7 @@ implementedin: "0.9.46"
 
 ## Hinweis
 ECIES zu ElG wurde in 0.9.46 implementiert und die Vorschlagsphase ist abgeschlossen.
-Siehe [I2NP]_ für die offizielle Spezifikation.
+Siehe [I2NP](/docs/specs/i2np/) für die offizielle Spezifikation.
 Dieser Vorschlag kann dennoch für Hintergrundinformation herangezogen werden.
 ECIES zu ECIES mit enthaltenen Schlüsseln ist ab Version 0.9.48 implementiert.
 Der Abschnitt ECIES-zu-ECIES (abgeleitete Schlüssel) kann in einem zukünftigen Vorschlag
@@ -29,7 +29,7 @@ wiedereröffnet oder integriert werden.
 - DSRM: I2NP Database Search Reply Message
 - ECIES: ECIES-X25519-AEAD-Ratchet (Vorschlag 144)
 - ElG: ElGamal
-- ENCRYPT(k, n, payload, ad): Wie definiert in [ECIES]_
+- ENCRYPT(k, n, payload, ad): Wie definiert in [ECIES](/docs/specs/ecies/)
 - LS: Leaseset
 - lookup: I2NP DLM
 - reply: I2NP DSM oder DSRM
@@ -43,7 +43,7 @@ werden soll. Unterstützung für AES-verschlüsselte Antworten wurde in 0.9.7 hi
 
 AES-verschlüsselte Antworten wurden in 0.9.7 spezifiziert, um den großen Krypto-Overhead von ElG zu minimieren, da sie die Tags/AES-Funktionalität in ElGamal/AES+SessionTags wieder verwendeten. Allerdings können AES-Antworten am IBEP manipuliert werden, da es keine Authentifizierung gibt, und die Antworten sind nicht vorwärtsgeheim.
 
-Mit [ECIES]_ Zielen ist die Absicht von Vorschlag 144, dass
+Mit [ECIES](/docs/specs/ecies/) Zielen ist die Absicht von Vorschlag 144, dass
 die Ziele keine 32-Byte-Tags und AES-Entschlüsselung mehr unterstützen.
 Die Einzelheiten wurden in diesem Vorschlag absichtlich nicht enthalten.
 
@@ -92,7 +92,7 @@ i2pd hat duale Krypto-Ziele noch nicht implementiert.
 ## Design
 
 - Neues DLM-Format wird ein Bit zum Flags-Feld hinzufügen, um ECIES-verschlüsselte Antworten zu spezifizieren.
-  ECIES-verschlüsselte Antworten werden das [ECIES]_ Existing Session Nachrichtenformat verwenden,
+  ECIES-verschlüsselte Antworten werden das [ECIES](/docs/specs/ecies/) Existing Session Nachrichtenformat verwenden,
   mit einem vorangestellten Tag und einer ChaCha/Poly-Nutzlast und MAC.
 
 - Zwei Varianten definieren. Eine für ElG-Router, wo ein DH-Vorgang nicht möglich ist,
@@ -106,13 +106,11 @@ X25519-öffentlichen Schlüssel veröffentlichen.
 
 ## Spezifikation
 
-Im [I2NP]_ DLM (DatabaseLookup) Spezifikation folgende Änderungen vornehmen.
+Im [I2NP](/docs/specs/i2np/) DLM (DatabaseLookup) Spezifikation folgende Änderungen vornehmen.
 
 Bit 4 "ECIESFlag" für die neuen Verschlüsselungsoptionen hinzufügen.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 flags ::
        bit 4: ECIESFlag
                vor Veröffentlichung 0.9.46 ignoriert
@@ -120,7 +118,7 @@ flags ::
                0  => unverschlüsselte oder ElGamal-Antwort senden
                1  => ChaCha/Poly-verschlüsselte Antwort mit eingeschlossenem Schlüssel senden
                      (ob Tag eingeschlossen ist, hängt von Bit 1 ab)
-{% endhighlight %}
+```
 
 Flag-Bit 4 wird in Kombination mit Bit 1 verwendet, um den Antwort-Verschlüsselungsmodus zu bestimmen.
 Flag-Bit 4 darf nur beim Senden an Router mit Version 0.9.46 oder höher gesetzt werden.
@@ -132,16 +130,14 @@ In der untenstehenden Tabelle bedeutet
 "DH ja" bedeutet, dass die Antwortschlüssel aus dem DH-Vorgang abgeleitet sind.
 
 
-=============  =========  =========  ======  ===  =======
-Flag-Bits 4,1  Von Ziel  Zu Router  Antwort DH?  Anmerkungen
-=============  =========  =========  ======  ===  =======
-0 0            Beliebig  Beliebig   keine   n/a  aktuell
-0 1            ElG       ElG        AES     nein  aktuell
-0 1            ECIES     ElG        AES     nein  i2pd-Workaround
-1 0            ECIES     ElG        AEAD    nein  dieser Vorschlag
-1 0            ECIES     ECIES      AEAD    nein  0.9.49
-1 1            ECIES     ECIES      AEAD    ja    zukünftig
-=============  =========  =========  ======  ===  =======
+| Flag-Bits 4,1 | Von Ziel | Zu Router | Antwort | DH? | Anmerkungen |
+|---------------|----------|-----------|---------|-----|-------------|
+| 0 0            | Beliebig | Beliebig  | keine   | n/a | aktuell |
+| 0 1            | ElG      | ElG       | AES     | nein| aktuell |
+| 0 1            | ECIES    | ElG       | AES     | nein| i2pd-Workaround |
+| 1 0            | ECIES    | ElG       | AEAD    | nein| dieser Vorschlag |
+| 1 0            | ECIES    | ECIES     | AEAD    | nein| 0.9.49 |
+| 1 1            | ECIES    | ECIES     | AEAD    | ja  | zukünftig |
 
 
 ### ElG zu ElG
@@ -154,18 +150,14 @@ Keine Änderungen am bestehenden Binärformat.
 
 Schlüsselerzeugung des Anfragenden (Klarstellung):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32 Byte Zufallsdaten
   reply_tags :: Jeder ist CSRNG(32) 32 Byte Zufallsdaten
-{% endhighlight %}
+```
 
 Nachrichtenformat (Prüfung auf ECIESFlag hinzufügen):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 Byte `SessionKey` Big-Endian
        nur enthalten, wenn encryptionFlag == 1 UND ECIESFlag == 0, nur ab Veröffentlichung 0.9.7
@@ -179,7 +171,7 @@ reply_key ::
   reply_tags ::
        eines oder mehrere 32 Byte `SessionTag`s (typischerweise eines)
        nur enthalten, wenn encryptionFlag == 1 UND ECIESFlag == 0, nur ab Veröffentlichung 0.9.7
-{% endhighlight %}
+```
 
 
 
@@ -193,19 +185,15 @@ Die Felder reply_key und reply_tags sind für eine ECIES-verschlüsselte Antwort
 
 Schlüsselerzeugung des Anfragenden:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32 Byte Zufallsdaten
   reply_tags :: Jeder ist CSRNG(8) 8 Byte Zufallsdaten
-{% endhighlight %}
+```
 
 Nachrichtenformat:
 Felder reply_key und reply_tags wie folgt neu definieren:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 Byte ECIES `SessionKey` Big-Endian
        nur enthalten, wenn encryptionFlag == 0 UND ECIESFlag == 1, nur ab Veröffentlichung 0.9.46
@@ -219,15 +207,12 @@ reply_key ::
   reply_tags ::
        ein 8 Byte ECIES `SessionTag`
        nur enthalten, wenn encryptionFlag == 0 UND ECIESFlag == 1, nur ab Veröffentlichung 0.9.46
+```
 
-{% endhighlight %}
 
+Die Antwort ist eine ECIES Existing Session Nachricht, wie definiert in [ECIES](/docs/specs/ecies/).
 
-Die Antwort ist eine ECIES Existing Session Nachricht, wie definiert in [ECIES]_.
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 tag :: 8 Byte reply_tag
 
   k :: 32 Byte Sitzungsschlüssel
@@ -240,8 +225,7 @@ tag :: 8 Byte reply_tag
   payload :: Klartextdaten, das DSM oder DSRM.
 
   ciphertext = ENCRYPT(k, n, payload, ad)
-
-{% endhighlight %}
+```
 
 
 
@@ -255,7 +239,7 @@ Unterstützt ab 0.9.49.
 ECIES-Router wurden in 0.9.48 eingeführt, siehe [Prop156](/en/proposals/156-ecies-routers/).
 Ab 0.9.49 können ECIES-Ziele und -Router dasselbe Format wie im
 Abschnitt "ECIES zu ElG" oben verwenden, mit Antwortschlüsseln, die in der Anfrage enthalten sind.
-Die Abfrage wird das "one time format" in [ECIES]_ verwenden,
+Die Abfrage wird das "one time format" in [ECIES](/docs/specs/ecies/) verwenden,
 da der Anfragende anonym ist.
 
 Für eine neue Methode mit abgeleiteten Schlüsseln, siehe den nächsten Abschnitt.
@@ -268,7 +252,7 @@ Für eine neue Methode mit abgeleiteten Schlüsseln, siehe den nächsten Abschni
 ECIES-Ziel oder -Router sendet eine Abfrage an einen ECIES-Router, und die Antwortschlüssel werden aus dem DH abgeleitet.
 Nicht vollständig definiert oder unterstützt, Implementierung noch festzulegen.
 
-Die Abfrage wird das "one time format" in [ECIES]_ verwenden,
+Die Abfrage wird das "one time format" in [ECIES](/docs/specs/ecies/) verwenden,
 da der Anfragende anonym ist.
 
 Feld reply_key wie folgt neu definieren. Es gibt keine zugehörigen Tags.
@@ -277,22 +261,17 @@ Die Tags werden im untenstehenden KDF generiert.
 Dieser Abschnitt ist unvollständig und erfordert weitere Untersuchungen.
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 Byte X25519 ephemerer `PublicKey` des Anfragenden, Little-Endian
        nur enthalten, wenn encryptionFlag == 1 UND ECIESFlag == 1, nur ab Veröffentlichung 0.9.TBD
+```
 
-{% endhighlight %}
-
-Die Antwort ist eine ECIES Existing Session Nachricht, wie definiert in [ECIES]_.
-Siehe [ECIES]_ für alle Definitionen.
+Die Antwort ist eine ECIES Existing Session Nachricht, wie definiert in [ECIES](/docs/specs/ecies/).
+Siehe [ECIES](/docs/specs/ecies/) für alle Definitionen.
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 // Alices X25519 ephemere Schlüssel
   // aesk = Alice ephemerer privater Schlüssel
   aesk = GENERATE_PRIVATE()
@@ -330,9 +309,9 @@ Siehe [ECIES]_ für alle Definitionen.
   sessTag_ck = keydata[0:31]
   symmKey_ck = keydata[32:63]
 
-  tag :: 8 Byte Tag wie generiert von RATCHET_TAG() in [ECIES]_
+  tag :: 8 Byte Tag wie generiert von RATCHET_TAG() in [ECIES](/docs/specs/ecies/)
 
-  k :: 32 Byte Schlüssel wie generiert von RATCHET_KEY() in [ECIES]_
+  k :: 32 Byte Schlüssel wie generiert von RATCHET_KEY() in [ECIES](/docs/specs/ecies/)
 
   n :: Der Index des Tags. Typischerweise 0.
 
@@ -341,41 +320,38 @@ Siehe [ECIES]_ für alle Definitionen.
   payload :: Klartextdaten, das DSM oder DSRM.
 
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+```
 
 
 
 ### Antwortformat
 
 Dies ist die vorhandene Sitzungsnachricht,
-gleich wie in [ECIES]_, unten zur Referenz kopiert.
+gleich wie in [ECIES](/docs/specs/ecies/), unten zur Referenz kopiert.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 +----+----+----+----+----+----+----+----+
-  |       Sitzungstag                     |
+  |       Session Tag                     |
   +----+----+----+----+----+----+----+----+
   |                                       |
-  +            Nutzlastabschnitt          +
-  |      ChaCha20-verschlüsselte Daten     |
+  +            Payload Section            +
+  |       ChaCha20 encrypted data         |
   ~                                       ~
   |                                       |
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |  Poly1305-Nachrichtenauthentifizierungscode |
+  |  Poly1305 Message Authentication Code |
   +              (MAC)                    +
-  |             16 Byte                   |
+  |             16 bytes                  |
   +----+----+----+----+----+----+----+----+
 
-  Sitzungstag :: 8 Byte, Klartext
+  Session Tag :: 8 bytes, cleartext
 
-  Verschlüsselte Daten im Nutzlastabschnitt:: restliche Daten minus 16 Byte
+  Payload Section encrypted data :: remaining data minus 16 bytes
 
-  MAC :: Poly1305-Nachrichtenauthentifizierungscode, 16 Byte
-
-{% endhighlight %}
+  MAC :: Poly1305 message authentication code, 16 bytes
+```
 
 
 ## Begründung
@@ -410,14 +386,3 @@ Router dürfen keine DatabaseLookup mit den neuen Flags an Router mit einer Vers
 Wenn eine Datenbank-Abfragenachricht mit Bit 4 gesetzt und Bit 1 nicht gesetzt irrtümlich an
 einen Router ohne Unterstützung gesendet wird, wird dieser wahrscheinlich den bereitgestellten Schlüssel und Tag ignorieren und
 die Antwort unverschlüsselt senden.
-
-## Referenzen
-
-.. [ECIES]
-   {{ spec_url('ecies') }}
-
-.. [I2NP]
-    {{ spec_url('i2np') }}
-
-.. [Prop156]
-    {{ proposal_url('156') }}

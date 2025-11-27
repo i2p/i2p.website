@@ -11,7 +11,7 @@ implementedin: "0.9.46"
 ---  
 
 ## Poznámka  
-ECIES to ElG je implementováno v 0.9.46 a fáze návrhu je uzavřena. Viz [I2NP]_ pro oficiální specifikaci. Tento návrh může být stále používán jako pozadí pro informace. ECIES to ECIES s přiloženými klíči je implementováno od verze 0.9.48. Sekce ECIES-to-ECIES (odvozené klíče) může být znovu otevřena nebo začleněna do budoucího návrhu.  
+ECIES to ElG je implementováno v 0.9.46 a fáze návrhu je uzavřena. Viz [I2NP](/docs/specs/i2np/) pro oficiální specifikaci. Tento návrh může být stále používán jako pozadí pro informace. ECIES to ECIES s přiloženými klíči je implementováno od verze 0.9.48. Sekce ECIES-to-ECIES (odvozené klíče) může být znovu otevřena nebo začleněna do budoucího návrhu.  
 
 ## Přehled  
 
@@ -23,7 +23,7 @@ ECIES to ElG je implementováno v 0.9.46 a fáze návrhu je uzavřena. Viz [I2NP
 - DSRM: I2NP Database Search Reply Message  
 - ECIES: ECIES-X25519-AEAD-Ratchet (návrh 144)  
 - ElG: ElGamal  
-- ENCRYPT(k, n, payload, ad): Jak je definováno v [ECIES]_  
+- ENCRYPT(k, n, payload, ad): Jak je definováno v [ECIES](/docs/specs/ecies/)  
 - LS: Leaseset  
 - lookup: I2NP DLM  
 - reply: I2NP DSM nebo DSRM  
@@ -34,7 +34,7 @@ Při odesílání DLM pro LS do floodfill, DLM obvykle specifikuje, že odpově�
 
 AES-zašifrované odpovědi byly specifikovány v 0.9.7, aby se minimalizovala velká kryptografická zátěž ElG, a protože znovu použitá funkce tagů/AES v ElGamal/AES+SessionTags. Avšak AES odpovědi mohou být zfalšovány na IBEP, protože neexistuje žádná autentifikace, a odpovědi nejsou dopředu tajné.  
 
-S cíli [ECIES]_ je záměr návrhu 144, že cíle již nepodporují 32-bytové tagy a AES dešifrování. Specifika byla záměrně neobsažena v tomto návrhu. Tento návrh dokumentuje novou možnost v DLM požadovat ECIES-zašifrované odpovědi.  
+S cíli [ECIES](/docs/specs/ecies/) je záměr návrhu 144, že cíle již nepodporují 32-bytové tagy a AES dešifrování. Specifika byla záměrně neobsažena v tomto návrhu. Tento návrh dokumentuje novou možnost v DLM požadovat ECIES-zašifrované odpovědi.  
 
 ### Cíle  
 
@@ -69,7 +69,7 @@ i2pd ještě neimplementoval duální kryptografické cíle.
 ## Návrh  
 
 - Nový formát DLM přidá bit do pole vlajek k určení ECIES-zašifrovaných odpovědí.  
-  ECIES-zašifrované odpovědi budou využívat formát zprávy [ECIES]_ Existing Session s předem připojeným tagem a ChaCha/Poly užitečným zatížením a MAC.  
+  ECIES-zašifrované odpovědi budou využívat formát zprávy [ECIES](/docs/specs/ecies/) Existing Session s předem připojeným tagem a ChaCha/Poly užitečným zatížením a MAC.  
 
 - Definovat dvě varianty. Jednu pro ElG směrovače, kde není možná DH operace,  
   a jednu pro budoucí ECIES směrovače, kde je možná DH operace a může poskytnout
@@ -80,13 +80,11 @@ veřejný klíč X25519.
 
 ## Specifikace  
 
-Ve specifikaci [I2NP]_ DLM (DatabaseLookup) provést následující změny.  
+Ve specifikaci [I2NP](/docs/specs/i2np/) DLM (DatabaseLookup) provést následující změny.  
 
 Přidat bit vlajky 4 "ECIESFlag" pro nové možnosti šifrování.  
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 flags ::
        bit 4: ECIESFlag
                před vydáním 0.9.46 ignorováno
@@ -94,7 +92,7 @@ flags ::
                0  => odeslat nezašifrovanou nebo ElGamal odpověď
                1  => odeslat ChaCha/Poly zašifrovanou odpověď s použitím přiloženého klíče
                      (zda je tag přiložen, závisí na bitu 1)
-{% endhighlight %}
+```
 
 Bit vlajky 4 je použit v kombinaci s bitem 1 k určení režimu šifrování odpovědi.
 Bit vlajky 4 musí být nastaven pouze při odesílání do směrovačů verze 0.9.46 nebo vyšší.
@@ -124,18 +122,14 @@ Menší změny v specifikaci pro kontrolu nové vlajky 4.
 
 Generování klíče požadovatele (objasnění):  
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32 bajty náhodných dat
   reply_tags :: Každý je CSRNG(32) 32 bajty náhodných dat
-{% endhighlight %}
+```
 
 Formát zprávy (přidat kontrolu ECIESFlag):  
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 bajty `SessionKey` big-endian
        zahrnuty pouze pokud encryptionFlag == 1 AND ECIESFlag == 0, pouze jako od vydání 0.9.7
@@ -149,7 +143,7 @@ reply_key ::
   reply_tags ::
        jeden nebo více 32bajtových `SessionTag`s (typicky jeden)
        pouze zahrnuty pokud encryptionFlag == 1 AND ECIESFlag == 0, pouze jako od vydání 0.9.7
-{% endhighlight %}
+```
 
 ### ECIES to ElG  
 
@@ -160,18 +154,14 @@ Pole reply_key a reply_tags jsou předefinovány pro ECIES-zašifrovanou odpově
 
 Generování klíče požadovatele:  
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32 bajty náhodných dat
   reply_tags :: Každý je CSRNG(8) 8 bajtů náhodných dat
-{% endhighlight %}
+```
 
 Formát zprávy: Předefinovat pole reply_key a reply_tags takto:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32-bajtový ECIES `SessionKey` big-endian
        zahrnut pouze pokud encryptionFlag == 0 AND ECIESFlag == 1, pouze od vydání 0.9.46
@@ -185,14 +175,11 @@ reply_key ::
   reply_tags ::
        8-bajtový ECIES `SessionTag`
        pouze zahrnut pokud encryptionFlag == 0 AND ECIESFlag == 1, pouze od vydání 0.9.46
+```
 
-{% endhighlight %}
+Odpověď je ECIES Existing Session zprávou, jak je definováno v [ECIES](/docs/specs/ecies/).  
 
-Odpověď je ECIES Existing Session zprávou, jak je definováno v [ECIES]_.  
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 tag :: 8-bajtový reply_tag
 
   k :: 32-bajtový session key
@@ -205,8 +192,7 @@ tag :: 8-bajtový reply_tag
   payload :: Plaintext data, DSM nebo DSRM.
 
   ciphertext = ENCRYPT(k, n, payload, ad)
-
-{% endhighlight %}
+```
 
 ### ECIES to ECIES (0.9.49)  
 
@@ -215,7 +201,7 @@ Podporováno od 0.9.49.
 
 ECIES směrovače byly představeny ve verzi 0.9.48, viz [Prop156](/en/proposals/156-ecies-routers/).  
 Od verze 0.9.49, ECIES cíle a směrovače mohou používat stejný formát jako v sekci "ECIES to ElG", uvedený výše, s odpovědními klíči zahrnutými v požadavku.  
-Vyhledávání použije "one time format" v [ECIES]_  
+Vyhledávání použije "one time format" v [ECIES](/docs/specs/ecies/)  
 protože je požadovatel anonymní.  
 
 Pro novou metodu s odvozenými klíči, viz další sekci.  
@@ -225,7 +211,7 @@ Pro novou metodu s odvozenými klíči, viz další sekci.
 ECIES cíl nebo směrovač odešle vyhledávání do ECIES směrovače, a odpovědní klíče jsou odvozeny z DH.
 Není plně definováno nebo podporováno, implementace je TBD.  
 
-Vyhledávání použije "one time format" v [ECIES]_  
+Vyhledávání použije "one time format" v [ECIES](/docs/specs/ecies/)  
 protože je požadovatel anonymní.  
 
 Předefinovat pole reply_key takto. Neexistují žádné přidružené tagy.  
@@ -233,21 +219,16 @@ Tagy budou generovány v KDF níže.
 
 Tato sekce je neúplná a vyžaduje další studium.  
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32-bajtový X25519 efemérní `PublicKey` požadovatele, little-endian
        pouze zahrnut pokud encryptionFlag == 1 AND ECIESFlag == 1, pouze jako od vydání 0.9.TBD
+```
 
-{% endhighlight %}
+Odpověď je ECIES Existing Session zprávou, jak je definováno v [ECIES](/docs/specs/ecies/).  
+Viz [ECIES](/docs/specs/ecies/) pro všechny definice.  
 
-Odpověď je ECIES Existing Session zprávou, jak je definováno v [ECIES]_.  
-Viz [ECIES]_ pro všechny definice.  
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 // Alice's X25519 efemérní klíče
   // aesk = Alice efemérní soukromý klíč
   aesk = GENERATE_PRIVATE()
@@ -285,9 +266,9 @@ Viz [ECIES]_ pro všechny definice.
   sessTag_ck = keydata[0:31]
   symmKey_ck = keydata[32:63]
 
-  tag :: 8-bajtový tag, jak je generován z RATCHET_TAG() v [ECIES]_
+  tag :: 8-bajtový tag, jak je generován z RATCHET_TAG() v [ECIES](/docs/specs/ecies/)
 
-  k :: 32-bajtový klíč, jak je generován z RATCHET_KEY() v [ECIES]_
+  k :: 32-bajtový klíč, jak je generován z RATCHET_KEY() v [ECIES](/docs/specs/ecies/)
 
   n :: Indikátor tagu. Typicky 0.
 
@@ -296,16 +277,14 @@ Viz [ECIES]_ pro všechny definice.
   payload :: Plaintext data, DSM nebo DSRM.
 
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+```
 
 ### Formát odpovědi  
 
 Toto je zpráva existujícího sezení,  
-stejná jako v [ECIES]_, zkopírováno níže pro referenci.  
+stejná jako v [ECIES](/docs/specs/ecies/), zkopírováno níže pro referenci.  
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 +----+----+----+----+----+----+----+----+
   |  Session Tag                       |
   +----+----+----+----+----+----+----+----+
@@ -326,9 +305,8 @@ stejná jako v [ECIES]_, zkopírováno níže pro referenci.
 
   Payload Section zašifrovaná data :: zbývající data mínus 16 bajtů  
 
-  MAC :: Poly1305 obnova autentizačního kódu, 16 bajtů  
-
-{% endhighlight %}
+  MAC :: Poly1305 obnova autentizačního kódu, 16 bajtů
+```
 
 ## Odůvodnění  
 
@@ -357,15 +335,4 @@ v jejich RouterInfo musí podporovat tuto funkci.
 Směrovače nesmí odeslat DatabaseLookup s novými vlajkami směrem ke směrovačům s verzí nižší než 0.9.46.  
 Pokud je databázová vyhledávací zpráva s nastaveným bitem 4 a nezapnutým bitem 1 omylem odeslána do  
 směrovače bez podpory, pravděpodobně ignoruje dodaný klíč a tag, a  
-odesílá odpověď nezašifrovanou.  
-
-## Reference  
-
-.. [ECIES]  
-   {{ spec_url('ecies') }}  
-
-.. [I2NP]  
-    {{ spec_url('i2np') }}  
-
-.. [Prop156]  
-    {{ proposal_url('156') }}  
+odesílá odpověď nezašifrovanou.

@@ -124,26 +124,22 @@ The end-to-end column refers to whether queries/responses are sent to a Destinat
 
 Existing types:
 
-==================================  ============= ============
-            NetDB Data               Lookup Type   Store Type 
-==================================  ============= ============
-any                                       0           any     
-LS                                        1            1      
-RI                                        2            0      
-exploratory                               3           DSRM    
-==================================  ============= ============
+| NetDB Data | Lookup Type | Store Type |
+|------------|-------------|------------|
+| any        | 0           | any        |
+| LS         | 1           | 1          |
+| RI         | 2           | 0          |
+| exploratory| 3           | DSRM       |
 
 New types:
 
-==================================  ============= ============ ================== ==================
-            NetDB Data               Lookup Type   Store Type   Std. LS2 Header?   Sent end-to-end?
-==================================  ============= ============ ================== ==================
-LS2                                       1            3             yes                 yes
-Encrypted LS2                             1            5             no                  no
-Meta LS2                                  1            7             yes                 no
-Service Record                           n/a           9             yes                 no
-Service List                              4           11             no                  no
-==================================  ============= ============ ================== ==================
+| NetDB Data     | Lookup Type | Store Type | Std. LS2 Header? | Sent end-to-end? |
+|----------------|-------------|------------|------------------|------------------|
+| LS2            | 1           | 3          | yes              | yes              |
+| Encrypted LS2  | 1           | 5          | no               | no               |
+| Meta LS2       | 1           | 7          | yes              | no               |
+| Service Record | n/a         | 9          | yes              | no               |
+| Service List   | 4           | 11         | no               | no               |
 
 
 
@@ -2012,22 +2008,24 @@ Note that in the SESSION CREATE DESTINATION=$privkey,
   - Signature of above three fields by offline key
     (length as specified by destination sig type)
   - Transient Signing Private key (length as specified by transient sig type)
-
-  Note that offline signatures are only supported for STREAM and RAW,
-  not for DATAGRAM (until we define a new DATAGRAM protocol).
-
-  Note that the SESSION STATUS will return a Signing Private Key of all zeros and
-  the Offline Signature data exactly as supplied in the SESSION CREATE.
-
-  Note that DEST GENERATE and SESSION CREATE DESTINATION=TRANSIENT
-  may not be used to create an offline signed destination.
 ```
+
+Note that offline signatures are only supported for STREAM and RAW,
+not for DATAGRAM (until we define a new DATAGRAM protocol).
+
+Note that the SESSION STATUS will return a Signing Private Key of all zeros and
+the Offline Signature data exactly as supplied in the SESSION CREATE.
+
+Note that DEST GENERATE and SESSION CREATE DESTINATION=TRANSIENT
+may not be used to create an offline signed destination.
 
 
 ### Issues
-- Bump version to 3.4, or leave it at 3.1/3.2/3.3 so it can be added
-  without requiring all the 3.2/3.3 stuff?
-- Other changes TBD. See I2CP Host Reply Message section above.
+
+Bump version to 3.4, or leave it at 3.1/3.2/3.3 so it can be added
+without requiring all the 3.2/3.3 stuff?
+
+Other changes TBD. See I2CP Host Reply Message section above.
 
 
 

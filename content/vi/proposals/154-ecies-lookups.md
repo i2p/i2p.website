@@ -12,7 +12,7 @@ implementedin: "0.9.46"
 
 ## Lưu ý
 ECIES đến ElG đã được triển khai trong 0.9.46 và giai đoạn đề xuất đã khép lại.
-Xem [I2NP]_ để biết thông số kỹ thuật chính thức.
+Xem [I2NP](/docs/specs/i2np/) để biết thông số kỹ thuật chính thức.
 Đề xuất này vẫn có thể được tham khảo để có thông tin nền tảng.
 ECIES đến ECIES với các khóa được bao gồm đã được thực hiện kể từ 0.9.48.
 Phần ECIES-to-ECIES (khóa dẫn xuất) có thể được mở lại hoặc kết hợp
@@ -29,7 +29,7 @@ trong một đề xuất tương lai.
 - DSRM: Thông báo phản hồi tìm kiếm cơ sở dữ liệu I2NP
 - ECIES: ECIES-X25519-AEAD-Ratchet (đề xuất 144)
 - ElG: ElGamal
-- ENCRYPT(k, n, payload, ad): Như đã định nghĩa trong [ECIES]_
+- ENCRYPT(k, n, payload, ad): Như đã định nghĩa trong [ECIES](/docs/specs/ecies/)
 - LS: Leaseset
 - tra cứu: DLM I2NP
 - phản hồi: DSM hoặc DSRM I2NP
@@ -47,7 +47,7 @@ trong ElGamal/AES+SessionTags.
 Tuy nhiên, phản hồi AES có thể bị sửa đổi tại IBEP vì không có xác thực,
 và phản hồi không có bảo mật chuyển tiếp.
 
-Với các đích đến [ECIES]_, ý định của đề xuất 144 là
+Với các đích đến [ECIES](/docs/specs/ecies/), ý định của đề xuất 144 là
 các đích không còn hỗ trợ các thẻ 32 byte và giải mã AES.
 Các chi tiết đã được cố ý không bao gồm trong đề xuất đó.
 
@@ -97,7 +97,7 @@ i2pd chưa thực hiện các đích đến mã hóa kép.
 ## Thiết kế
 
 - Định dạng DLM mới sẽ thêm một bit vào trường cờ để chỉ định phản hồi mã hóa ECIES.
-  Các phản hồi mã hóa ECIES sẽ sử dụng định dạng thông điệp Phiên hiện có [ECIES]_,
+  Các phản hồi mã hóa ECIES sẽ sử dụng định dạng thông điệp Phiên hiện có [ECIES](/docs/specs/ecies/),
   với một thẻ đi kèm và một payload và MAC ChaCha/Poly.
 
 - Định nghĩa hai biến thể. Một dành cho các bộ định tuyến ElG, nơi mà một thao tác DH không thể thực hiện,
@@ -112,13 +112,11 @@ một khóa công khai X25519.
 
 ## Thông số kỹ thuật
 
-Trong thông số kỹ thuật DLM (DatabaseLookup) [I2NP]_, thực hiện các thay đổi sau đây.
+Trong thông số kỹ thuật DLM (DatabaseLookup) [I2NP](/docs/specs/i2np/), thực hiện các thay đổi sau đây.
 
 Thêm bit 4 "ECIESFlag" cho các tùy chọn mã hóa mới.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 flags ::
        bit 4: ECIESFlag
                trước bản phát hành 0.9.46 bị bỏ qua
@@ -126,7 +124,7 @@ flags ::
                0  => gửi phản hồi không mã hóa hoặc ElGamal
                1  => gửi phản hồi mã hóa ChaCha/Poly sử dụng khóa kèm theo
                      (thẻ có được đính kèm hay không phụ thuộc vào bit 1)
-{% endhighlight %}
+```
 
 Bit cờ 4 được sử dụng kết hợp với bit 1 để xác định chế độ mã hóa phản hồi.
 Bit cờ 4 chỉ nên được thiết lập khi gửi đến các bộ định tuyến phiên bản 0.9.46 hoặc cao hơn.
@@ -138,16 +136,14 @@ Trong bảng dưới,
 "DH có" nghĩa là các khóa phản hồi được dẫn xuất từ thao tác DH.
 
 
-=============  =========  =========  ======  ===  =======
-Bits cờ 4,1  Từ Đích  Đến Bộ định tuyến  Phản hồi   DH?  ghi chú
-=============  =========  =========  ======  ===  =======
-0 0            Bất kỳ        Bất kỳ        không mã hóa  n/a  hiện tại
-0 1            ElG        ElG        AES     không   hiện tại
-0 1            ECIES      ElG        AES     không   i2pd giải pháp tạm thời
-1 0            ECIES      ElG        AEAD    không   đề xuất này
-1 0            ECIES      ECIES      AEAD    không   0.9.49
-1 1            ECIES      ECIES      AEAD    có   tương lai
-=============  =========  =========  ======  ===  =======
+| Bits cờ 4,1 | Từ Đích | Đến Bộ định tuyến | Phản hồi | DH? | ghi chú |
+|-------------|---------|-------------------|----------|-----|---------|
+| 0 0          | Bất kỳ  | Bất kỳ            | không mã hóa | n/a | hiện tại |
+| 0 1          | ElG     | ElG               | AES      | không | hiện tại |
+| 0 1          | ECIES   | ElG               | AES      | không | i2pd giải pháp tạm thời |
+| 1 0          | ECIES   | ElG               | AEAD     | không | đề xuất này |
+| 1 0          | ECIES   | ECIES             | AEAD     | không | 0.9.49 |
+| 1 1          | ECIES   | ECIES             | AEAD     | có   | tương lai |
 
 
 ### ElG đến ElG
@@ -160,18 +156,14 @@ Không có thay đổi nào đối với định dạng nhị phân hiện có.
 
 Tạo khóa người yêu cầu (làm rõ):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32 byte dữ liệu ngẫu nhiên
   reply_tags :: Mỗi cái là CSRNG(32) 32 byte dữ liệu ngẫu nhiên
-{% endhighlight %}
+```
 
 Định dạng thông điệp (thêm kiểm tra ECIESFlag):
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 byte `SessionKey` big-endian
        chỉ bao gồm nếu encryptionFlag == 1 VÀ ECIESFlag == 0, chỉ kể từ bản phát hành 0.9.7
@@ -185,7 +177,7 @@ reply_key ::
   reply_tags ::
        một hoặc nhiều 32 byte `SessionTag`s (thường là một)
        chỉ bao gồm nếu encryptionFlag == 1 VÀ ECIESFlag == 0, chỉ kể từ bản phát hành 0.9.7
-{% endhighlight %}
+```
 
 
 
@@ -199,19 +191,15 @@ Các trường reply_key và reply_tags được định nghĩa lại cho một 
 
 Tạo khóa người yêu cầu:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key :: CSRNG(32) 32 byte dữ liệu ngẫu nhiên
   reply_tags :: Mỗi cái là CSRNG(8) 8 byte dữ liệu ngẫu nhiên
-{% endhighlight %}
+```
 
 Định dạng thông điệp:
 Định nghĩa lại các trường reply_key và reply_tags như sau:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 byte ECIES `SessionKey` big-endian
        chỉ bao gồm nếu encryptionFlag == 0 VÀ ECIESFlag == 1, chỉ kể từ bản phát hành 0.9.46
@@ -225,15 +213,12 @@ reply_key ::
   reply_tags ::
        một 8 byte ECIES `SessionTag`
        chỉ bao gồm nếu encryptionFlag == 0 VÀ ECIESFlag == 1, chỉ kể từ bản phát hành 0.9.46
+```
 
-{% endhighlight %}
 
+Phản hồi là một thông điệp Phiên hiện có ECIES, như đã định nghĩa trong [ECIES](/docs/specs/ecies/).
 
-Phản hồi là một thông điệp Phiên hiện có ECIES, như đã định nghĩa trong [ECIES]_.
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 tag :: 8 byte reply_tag
 
   k :: 32 byte session key
@@ -246,8 +231,7 @@ tag :: 8 byte reply_tag
   payload :: Dữ liệu văn bản thuần túy, DSM hoặc DSRM.
 
   ciphertext = ENCRYPT(k, n, payload, ad)
-
-{% endhighlight %}
+```
 
 
 
@@ -261,7 +245,7 @@ Hỗ trợ kể từ 0.9.49.
 Các bộ định tuyến ECIES đã được giới thiệu trong 0.9.48, xem [Prop156](/en/proposals/156-ecies-routers/).
 Kể từ 0.9.49, các đích và bộ định tuyến ECIES có thể sử dụng cùng định dạng như trong
 phần "ECIES đến ElG" ở trên, với các khóa phản hồi được bao gồm trong yêu cầu.
-Tra cứu sẽ sử dụng "định dạng một lần" trong [ECIES]_
+Tra cứu sẽ sử dụng "định dạng một lần" trong [ECIES](/docs/specs/ecies/)
 do người yêu cầu là ẩn danh.
 
 Đối với một phương pháp mới với các khóa dẫn xuất, xem phần tiếp theo.
@@ -274,7 +258,7 @@ do người yêu cầu là ẩn danh.
 Đích hoặc bộ định tuyến ECIES gửi một tra cứu đến một bộ định tuyến ECIES, và các khóa phản hồi được dẫn xuất từ DH.
 Chưa được định nghĩa đầy đủ hoặc hỗ trợ, triển khai là TBD.
 
-Tra cứu sẽ sử dụng "định dạng một lần" trong [ECIES]_
+Tra cứu sẽ sử dụng "định dạng một lần" trong [ECIES](/docs/specs/ecies/)
 do người yêu cầu là ẩn danh.
 
 Định nghĩa lại trường reply_key như sau. Không có thẻ đi kèm nào.
@@ -283,22 +267,17 @@ Thẻ sẽ được tạo trong KDF dưới đây.
 Phần này chưa hoàn chỉnh và cần nghiên cứu thêm.
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 reply_key ::
        32 byte khóa công khai X25519 tạm thời của người yêu cầu, little-endian
        chỉ bao gồm nếu encryptionFlag == 1 VÀ ECIESFlag == 1, chỉ kể từ bản phát hành 0.9.TBD
+```
 
-{% endhighlight %}
-
-Phản hồi là một thông điệp Phiên hiện có ECIES, như đã định nghĩa trong [ECIES]_.
-Xem [ECIES]_ để biết tất cả các định nghĩa.
+Phản hồi là một thông điệp Phiên hiện có ECIES, như đã định nghĩa trong [ECIES](/docs/specs/ecies/).
+Xem [ECIES](/docs/specs/ecies/) để biết tất cả các định nghĩa.
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 // Khóa tạm thời X25519 của Alice
   // aesk = khóa riêng tạm thời của Alice
   aesk = GENERATE_PRIVATE()
@@ -336,9 +315,9 @@ Xem [ECIES]_ để biết tất cả các định nghĩa.
   sessTag_ck = keydata[0:31]
   symmKey_ck = keydata[32:63]
 
-  tag :: 8 byte thẻ sinh ra từ RATCHET_TAG() trong [ECIES]_
+  tag :: 8 byte thẻ sinh ra từ RATCHET_TAG() trong [ECIES](/docs/specs/ecies/)
 
-  k :: 32 byte khóa sinh ra từ RATCHET_KEY() trong [ECIES]_
+  k :: 32 byte khóa sinh ra từ RATCHET_KEY() trong [ECIES](/docs/specs/ecies/)
 
   n :: Chỉ số của thẻ. Thường là 0.
 
@@ -347,18 +326,16 @@ Xem [ECIES]_ để biết tất cả các định nghĩa.
   payload :: Dữ liệu văn bản thuần túy, DSM hoặc DSRM.
 
   ciphertext = ENCRYPT(k, n, payload, ad)
-{% endhighlight %}
+```
 
 
 
 ### Định dạng phản hồi
 
 Đây là thông điệp phiên hiện có,
-giống như trong [ECIES]_, được sao chép bên dưới để tham khảo.
+giống như trong [ECIES](/docs/specs/ecies/), được sao chép bên dưới để tham khảo.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 +----+----+----+----+----+----+----+----+
   |       Thẻ Phiên                      |
   +----+----+----+----+----+----+----+----+
@@ -380,8 +357,7 @@ giống như trong [ECIES]_, được sao chép bên dưới để tham khảo.
   Dữ liệu mã hóa Phần Payload :: dữ liệu còn lại trừ 16 byte
 
   MAC :: mã xác thực thông điệp Poly1305, 16 byte
-
-{% endhighlight %}
+```
 
 
 ## Lý do
@@ -417,14 +393,3 @@ Các bộ định tuyến không được gửi một DatabaseLookup với các 
 Nếu một thông điệp tra cứu cơ sở dữ liệu với bit 4 được thiết lập và bit 1 không thiết lập được gửi nhầm đến
 một bộ định tuyến không có hỗ trợ, có thể nó sẽ bỏ qua khóa và thẻ được cung cấp, và
 gửi phản hồi không mã hóa.
-
-## Tài liệu tham khảo
-
-.. [ECIES]
-   {{ spec_url('ecies') }}
-
-.. [I2NP]
-    {{ spec_url('i2np') }}
-
-.. [Prop156]
-    {{ proposal_url('156') }}

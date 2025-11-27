@@ -13,14 +13,14 @@ implementedin: "0.9.48"
 ## 注意
 网络部署和测试正在进行中。
 可能会有小的修订。
-参见 [SPEC](/en/docs/spec/) 获取官方规范。
+参见 [SPEC](/docs/specs/implementation/) 获取官方规范。
 
 
 ## 总览
 
 本文档提出对隧道建立消息加密的更改，
-使用 [ECIES-X25519](/en/docs/spec/ecies/) 引入的加密原语。
-这是整个提案 [Prop156](/en/proposals/156-ecies-routers/) 的一部分，
+使用 [ECIES-X25519](/docs/specs/ecies/) 引入的加密原语。
+这是整个提案 [Prop156](/proposals/156-ecies-routers/) 的一部分，
 用于将路由器从 ElGamal 转换为 ECIES-X25519 密钥。
 
 为了将网络从 ElGamal + AES256 过渡到 ECIES + ChaCha20，
@@ -32,26 +32,26 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 并遵循此规格来创建包含 ECIES 跳点的隧道。
 
 该提案指定了 ECIES-X25519 隧道构建所需的更改。
-有关 ECIES 路由器所需的所有更改的概述，请参阅提案 156 [Prop156](/en/proposals/156-ecies-routers/)。
+有关 ECIES 路由器所需的所有更改的概述，请参阅提案 156 [Prop156](/proposals/156-ecies-routers/)。
 
 此提案保持隧道构建记录的相同大小，
-以确保兼容性。较小的构建记录和消息将在之后实现 —— 参见 [Prop157](/en/proposals/157-new-tbm/)。
+以确保兼容性。较小的构建记录和消息将在之后实现 —— 参见 [Prop157](/proposals/157-new-tbm/)。
 
 
 ### 加密原语
 
 没有引入新的加密原语。实现此提案所需的原语是：
 
-- 如 [Cryptography](/en/docs/spec/cryptography/) 中所示的 AES-256-CBC
+- 如 [Cryptography](/docs/specs/cryptography/) 中所示的 AES-256-CBC
 - STREAM ChaCha20/Poly1305 函数：
-  ENCRYPT(k, n, plaintext, ad) 和 DECRYPT(k, n, ciphertext, ad) —— 如 [NTCP2](/en/docs/spec/ntcp2/) [ECIES-X25519](/en/docs/spec/ecies/) 和 [RFC-7539](https://tools.ietf.org/html/rfc7539) 中所示
-- X25519 DH 函数 —— 如 [NTCP2](/en/docs/spec/ntcp2/) 和 [ECIES-X25519](/en/docs/spec/ecies/) 中所示
-- HKDF(salt, ikm, info, n) —— 如 [NTCP2](/en/docs/spec/ntcp2/) 和 [ECIES-X25519](/en/docs/spec/ecies/) 中所示
+  ENCRYPT(k, n, plaintext, ad) 和 DECRYPT(k, n, ciphertext, ad) —— 如 [NTCP2](/docs/specs/ntcp2/) [ECIES-X25519](/docs/specs/ecies/) 和 [RFC-7539](https://tools.ietf.org/html/rfc7539) 中所示
+- X25519 DH 函数 —— 如 [NTCP2](/docs/specs/ntcp2/) 和 [ECIES-X25519](/docs/specs/ecies/) 中所示
+- HKDF(salt, ikm, info, n) —— 如 [NTCP2](/docs/specs/ntcp2/) 和 [ECIES-X25519](/docs/specs/ecies/) 中所示
 
 其他在别处定义的 Noise 函数：
 
-- MixHash(d) —— 如 [NTCP2](/en/docs/spec/ntcp2/) 和 [ECIES-X25519](/en/docs/spec/ecies/) 中所示
-- MixKey(d) —— 如 [NTCP2](/en/docs/spec/ntcp2/) 和 [ECIES-X25519](/en/docs/spec/ecies/) 中所示
+- MixHash(d) —— 如 [NTCP2](/docs/specs/ntcp2/) 和 [ECIES-X25519](/docs/specs/ecies/) 中所示
+- MixKey(d) —— 如 [NTCP2](/docs/specs/ntcp2/) 和 [ECIES-X25519](/docs/specs/ecies/) 中所示
 
 
 ### 目标
@@ -75,7 +75,7 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 因为它们可能在那时没有下一个跳点的 RI
 - 最大限度地与当前网络兼容
 - 对于 ElGamal 路由器，对隧道构建 AES 请求/回复加密不进行更改
-- 对隧道 AES“层”加密不进行更改，请参阅 [Prop153](/en/proposals/153-chacha20-layer-encryption/)
+- 对隧道 AES“层”加密不进行更改，请参阅 [Prop153](/proposals/153-chacha20-layer-encryption/)
 - 继续支持 8 记录 TBM/TBRM 和可变大小的 VTBM/VTBRM
 - 不要求整个网络进行“旗日”升级
 
@@ -84,9 +84,9 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 
 - 需要“旗日”的隧道构建消息的完全重新设计。
 - 缩小隧道构建消息（需要全部为 ECIES 的跳点和一个新的提案）
-- 使用 [Prop143](/en/proposals/143-build-message-options/) 中定义的隧道构建选项，仅用于小消息
-- 双向隧道，参见 [Prop119](/en/proposals/119-bidirectional-tunnels/)
-- 更小的隧道构建消息，参见 [Prop157](/en/proposals/157-new-tbm/)
+- 使用 [Prop143](/proposals/143-build-message-options/) 中定义的隧道构建选项，仅用于小消息
+- 双向隧道，参见 [Prop119](/proposals/119-bidirectional-tunnels/)
+- 更小的隧道构建消息，参见 [Prop157](/proposals/157-new-tbm/)
 
 
 ## 威胁模型
@@ -147,7 +147,7 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 - 密码函数：ChaChaPoly
   AEAD_CHACHA20_POLY1305 如 [RFC-7539](https://tools.ietf.org/html/rfc7539) 第 2.8 节所述。
   12 字节的 nonce，前 4 个字节设为零。
-  与 [NTCP2](/en/docs/spec/ntcp2/) 中的相同。
+  与 [NTCP2](/docs/specs/ntcp2/) 中的相同。
 
 - 哈希函数：SHA256
   标准 32 字节哈希，已在 I2P 中广泛使用。
@@ -169,9 +169,9 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 - p = 消息载荷
 
 构建请求与 Noise N 模式相同。
-这也与 [NTCP2](/en/docs/spec/ntcp2/) 中使用的 XK 模式的第一个（会话请求）消息相同。
+这也与 [NTCP2](/docs/specs/ntcp2/) 中使用的 XK 模式的第一个（会话请求）消息相同。
 
-  ```dataspec
+  ```text
 
 <- s
   ...
@@ -186,7 +186,7 @@ ElGamal 隧道创建者需要为每个跳点创建临时 X25519 密钥对，
 ### 请求加密
 
 构建请求记录由隧道创建者创建，并以非对称方式加密到单个跳点。
-请求记录的这种非对称加密目前为 [Cryptography](/en/docs/spec/cryptography/) 中定义的 ElGamal，并包含一个 SHA-256 校验和。这个设计不是前向保密的。
+请求记录的这种非对称加密目前为 [Cryptography](/docs/specs/cryptography/) 中定义的 ElGamal，并包含一个 SHA-256 校验和。这个设计不是前向保密的。
 
 新设计将使用单向 Noise 模式 "N"，采用 ECIES-X25519 临时-静态 DH 和 HKDF，
 ChaCha20/Poly1305 AEAD 以实现前向保密、完整性和认证。
@@ -249,14 +249,14 @@ N:                      Authentication   Confidentiality
 请求记录未加密（ElGamal）
 ```````````````````````````````````````
 
-作为参考，这是从 [I2NP](/en/docs/spec/i2np/) 中取来的 ElGamal 路由器的隧道 BuildRequestRecord 的当前规格。
-未加密的数据在加密前被前置一个非零字节和数据的 SHA-256 哈希， 如 [Cryptography](/en/docs/spec/cryptography/) 中定义。
+作为参考，这是从 [I2NP](/docs/specs/i2np/) 中取来的 ElGamal 路由器的隧道 BuildRequestRecord 的当前规格。
+未加密的数据在加密前被前置一个非零字节和数据的 SHA-256 哈希， 如 [Cryptography](/docs/specs/cryptography/) 中定义。
 
 所有字段都是大端。
 
 未加密大小：222 字节
 
-  ```dataspec
+  ```text
 
 
 bytes     0-3: 作为消息接收隧道 ID，非零
@@ -281,11 +281,11 @@ bytes     0-3: 作为消息接收隧道 ID，非零
 请求记录加密（ElGamal）
 `````````````````````````````````````
 
-作为参考，这是从 [I2NP](/en/docs/spec/i2np/) 中取来的 ElGamal 路由器的隧道 BuildRequestRecord 的当前规格。
+作为参考，这是从 [I2NP](/docs/specs/i2np/) 中取来的 ElGamal 路由器的隧道 BuildRequestRecord 的当前规格。
 
 加密大小：528 字节
 
-  ```dataspec
+  ```text
 
 
 bytes    0-15: 跳点截断的标识哈希
@@ -320,7 +320,7 @@ bytes    0-15: 跳点截断的标识哈希
 
 未加密大小：464 字节
 
-  ```dataspec
+  ```text
 
 
 bytes     0-3: 作为消息接收隧道 ID，非零
@@ -344,7 +344,7 @@ bytes     0-3: 作为消息接收隧道 ID，非零
 
   ```
 
-标志字段与 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义的相同，包含以下内容：
+标志字段与 [Tunnel-Creation](/docs/specs/tunnel-creation/) 中定义的相同，包含以下内容：
 
  位次序：76543210（位 7 是 MSB）
  位 7: 如果设置，允许来自任何人的消息
@@ -357,7 +357,7 @@ bytes     0-3: 作为消息接收隧道 ID，非零
 请求到期是用于未来的可变隧道持续时间。
 目前，唯一支持的值是 600（10 分钟）。
 
-隧道构建选项是 [Common](/en/docs/spec/common-structures/) 中定义的映射结构。
+隧道构建选项是 [Common](/docs/specs/common-structures/) 中定义的映射结构。
 这是用于未来用途。目前未定义任何选项。
 如果 Mapping 结构为空，则为两个字节 0x00 0x00。
 映射（包括长度字段）的最大大小为 296 字节，
@@ -373,7 +373,7 @@ bytes     0-3: 作为消息接收隧道 ID，非零
 
 加密大小：528 字节
 
-  ```dataspec
+  ```text
 
 
 bytes    0-15: 跳点截断的标识哈希
@@ -401,7 +401,7 @@ ElGamal 回复被 AES 加密。
 
 未加密大小：528 字节
 
-  ```dataspec
+  ```text
 
 
 bytes   0-31: 字节 32-527 的 SHA-256 校验和
@@ -430,7 +430,7 @@ ECIES 回复通过 ChaCha20/Poly1305 加密。
 
 未加密大小：512 字节
 
-  ```dataspec
+  ```text
 
 
 bytes    0-x: 隧道构建回复选项（映射）
@@ -443,14 +443,14 @@ bytes    0-x: 隧道构建回复选项（映射）
 
   ```
 
-隧道构建回复选项是 [Common](/en/docs/spec/common-structures/) 中定义的映射结构。
+隧道构建回复选项是 [Common](/docs/specs/common-structures/) 中定义的映射结构。
 这是用于未来用途。目前未定义任何选项。
 如果 Mapping 结构为空，则为两个字节 0x00 0x00。
 映射（包括长度字段）的最大大小为 511 字节，
 映射长度字段的最大值为 509。
 
 回复字节是一个以下值
-如 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义，以避免指纹：
+如 [Tunnel-Creation](/docs/specs/tunnel-creation/) 中定义，以避免指纹：
 
 - 0x00 (接受)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -461,7 +461,7 @@ bytes    0-x: 隧道构建回复选项（映射）
 
 加密大小：528 字节
 
-  ```dataspec
+  ```text
 
 
 bytes   0-511: ChaCha20 加密的 BuildReplyRecord
@@ -571,7 +571,7 @@ bytes   0-511: ChaCha20 加密的 BuildReplyRecord
 这些密钥在 ElGamal BuildRequestRecords 中是显式包含的。
 对于 ECIES BuildRequestRecords，隧道密钥和 AES 回复密钥被包含，
 但 ChaCha 回复密钥是从 DH 交换中派生的。
-见 [Prop156](/en/proposals/156-ecies-routers/) 了解路由器静态 ECIES 密钥的详细信息。
+见 [Prop156](/proposals/156-ecies-routers/) 了解路由器静态 ECIES 密钥的详细信息。
 
 以下描述了如何派生以前在请求记录中传输的密钥。
 
@@ -615,7 +615,7 @@ ElGamal 隧道创建者为隧道中的每个 ECIES 跳点生成一个临时 X255
 ElGamal 隧道创建者将使用此规范之前的方案加密到 ElGamal 跳点。
 
 ECIES 隧道创建者需要使用
-[Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义的方案来加密到每个 ElGamal 跳点的公钥。 ECIES 隧道创建者将使用上述方案加密到 ECIES 跳点。
+[Tunnel-Creation](/docs/specs/tunnel-creation/) 中定义的方案来加密到每个 ElGamal 跳点的公钥。 ECIES 隧道创建者将使用上述方案加密到 ECIES 跳点。
 
 这意味着隧道跳点将只会看到来自其相同加密类型的加密记录。
 
@@ -625,7 +625,7 @@ ECIES 隧道创建者需要使用
 临时密钥必须在每个 ECIES 跳点和每个构建记录中唯一。
 未能使用唯一的密钥将为合谋的跳点打开一个攻击向量，以确认它们处在同一个隧道中。
 
-  ```dataspec
+  ```text
 
 
 // 每个跳点的 X25519 静态密钥对（hesk, hepk）来自路由器身份
@@ -686,7 +686,7 @@ ECIES 隧道创建者需要使用
 
 ### 请求记录加密（ElGamal）
 
-如 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义。
+如 [Tunnel-Creation](/docs/specs/tunnel-creation/) 中定义。
 ElGamal 跳点的加密没有更改。
 
 
@@ -696,7 +696,7 @@ ElGamal 跳点的加密没有更改。
 
 回复记录是通过 ChaCha20/Poly1305 加密的。
 
-  ```dataspec
+  ```text
 
 
 // AEAD 参数
@@ -716,7 +716,7 @@ ElGamal 跳点的加密没有更改。
 
 ### 回复记录加密（ElGamal）
 
-如 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义。
+如 [Tunnel-Creation](/docs/specs/tunnel-creation/) 中定义。
 ElGamal 跳点的加密没有更改。
 
 
@@ -760,7 +760,4 @@ ChaCha20Poly1305 提供 AEAD 加密，允许接收者在尝试解密前验证消
 
 ## 迁移
 
-请参阅 [Prop156](/en/proposals/156-ecies-routers/)。
-
-
-
+请参阅 [Prop156](/proposals/156-ecies-routers/)。

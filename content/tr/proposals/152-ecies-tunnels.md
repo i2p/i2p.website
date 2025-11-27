@@ -13,13 +13,13 @@ implementedin: "0.9.48"
 ## Not
 Ağ dağıtımı ve testi devam ediyor.
 Küçük revizyonlar yapılabilir.
-Resmi spesifikasyon için [SPEC](/en/docs/spec/) adresine bakın.
+Resmi spesifikasyon için [SPEC](/docs/specs/implementation/) adresine bakın.
 
 
 ## Genel Bakış
 
-Bu belge, [ECIES-X25519](/en/docs/spec/ecies/) tarafından tanıtılan kripto ilkeleri kullanarak Tünel Oluşturma mesajı şifrelemesinde değişiklikler önermektedir.
-Bu, yönlendiricileri ElGamal'dan ECIES-X25519 anahtarlarına dönüştürme önerisinin bir parçasıdır [Prop156](/en/proposals/156-ecies-routers/).
+Bu belge, [ECIES-X25519](/docs/specs/ecies/) tarafından tanıtılan kripto ilkeleri kullanarak Tünel Oluşturma mesajı şifrelemesinde değişiklikler önermektedir.
+Bu, yönlendiricileri ElGamal'dan ECIES-X25519 anahtarlarına dönüştürme önerisinin bir parçasıdır [Prop156](/proposals/156-ecies-routers/).
 
 Ağın ElGamal + AES256'dan ECIES + ChaCha20'ya geçişi için,
 karışık ElGamal ve ECIES yönlendiricileri olan tüneller gereklidir.
@@ -30,26 +30,26 @@ ElGamal tünel oluşturucuları, her atlama başına geçici X25519 anahtar çif
 ECIES atlamaları içeren tünel oluşturmak için bu standardı takip etmelidir.
 
 Bu öneri, ECIES-X25519 Tünel Oluşturma için gereken değişiklikleri belirtir.
-ECIES yönlendiricileri için gerekli tüm değişikliklerin genel bir görünümü için, öneri 156'ya [Prop156](/en/proposals/156-ecies-routers/) bakın.
+ECIES yönlendiricileri için gerekli tüm değişikliklerin genel bir görünümü için, öneri 156'ya [Prop156](/proposals/156-ecies-routers/) bakın.
 
 Bu öneri, uyumluluk için tünel oluşturma kayıtlarının aynı boyutta kalmasını sağlar. Daha küçük oluşturma kayıtları ve mesajlar
-daha sonra uygulanacaktır - bkz. [Prop157](/en/proposals/157-new-tbm/).
+daha sonra uygulanacaktır - bkz. [Prop157](/proposals/157-new-tbm/).
 
 
 ### Kriptografik İkinciller
 
 Yeni kriptografik ikinciller tanıtılmamıştır. Bu öneriyi uygulamak için gereken ikinciller:
 
-- [Cryptography](/en/docs/spec/cryptography/) içinde olduğu gibi AES-256-CBC
+- [Cryptography](/docs/specs/cryptography/) içinde olduğu gibi AES-256-CBC
 - STREAM ChaCha20/Poly1305 fonksiyonları:
-  ENCRYPT(k, n, plaintext, ad) ve DECRYPT(k, n, ciphertext, ad) - [NTCP2](/en/docs/spec/ntcp2/) [ECIES-X25519](/en/docs/spec/ecies/) ve [RFC-7539](https://tools.ietf.org/html/rfc7539) içinde olduğu gibi
-- [NTCP2](/en/docs/spec/ntcp2/) ve [ECIES-X25519](/en/docs/spec/ecies/) içinde olduğu gibi X25519 DH fonksiyonları
-- HKDF(salt, ikm, info, n) - [NTCP2](/en/docs/spec/ntcp2/) ve [ECIES-X25519](/en/docs/spec/ecies/) içinde olduğu gibi
+  ENCRYPT(k, n, plaintext, ad) ve DECRYPT(k, n, ciphertext, ad) - [NTCP2](/docs/specs/ntcp2/) [ECIES-X25519](/docs/specs/ecies/) ve [RFC-7539](https://tools.ietf.org/html/rfc7539) içinde olduğu gibi
+- [NTCP2](/docs/specs/ntcp2/) ve [ECIES-X25519](/docs/specs/ecies/) içinde olduğu gibi X25519 DH fonksiyonları
+- HKDF(salt, ikm, info, n) - [NTCP2](/docs/specs/ntcp2/) ve [ECIES-X25519](/docs/specs/ecies/) içinde olduğu gibi
 
 Başka yerlerde tanımlanmış Noise fonksiyonları:
 
-- MixHash(d) - [NTCP2](/en/docs/spec/ntcp2/) ve [ECIES-X25519](/en/docs/spec/ecies/) içinde olduğu gibi
-- MixKey(d) - [NTCP2](/en/docs/spec/ntcp2/) ve [ECIES-X25519](/en/docs/spec/ecies/) içinde olduğu gibi
+- MixHash(d) - [NTCP2](/docs/specs/ntcp2/) ve [ECIES-X25519](/docs/specs/ecies/) içinde olduğu gibi
+- MixKey(d) - [NTCP2](/docs/specs/ntcp2/) ve [ECIES-X25519](/docs/specs/ecies/) içinde olduğu gibi
 
 
 ### Hedefler
@@ -73,7 +73,7 @@ Başka yerlerde tanımlanmış Noise fonksiyonları:
   çünkü o anda bir sonraki atlamanın RI bilgisine sahip olmayabilirler
 - Mevcut ağ ile maksimum uyumluluk sağlanması
 - ElGamal yönlendiriciler için tünel oluşturma AES istek/cevap şifrelemesinde değişiklik yapılmaması
-- Tünel AES "katman" şifrelemesinde değişiklik yapılmaması, bu konuda [Prop153](/en/proposals/153-chacha20-layer-encryption/) adresine bakınız
+- Tünel AES "katman" şifrelemesinde değişiklik yapılmaması, bu konuda [Prop153](/proposals/153-chacha20-layer-encryption/) adresine bakınız
 - Hem 8 kayıtlı TBM/TBRM hem de değişken boyutlu VTBM/VTBRM'yi desteklemeye devam etme
 - Tüm ağa bir "flag day" yükseltmesi gerektirmemesi
 
@@ -82,9 +82,9 @@ Başka yerlerde tanımlanmış Noise fonksiyonları:
 
 - Bir "flag day" gerektiren tünel oluşturma mesajlarının tamamen yeniden tasarlanması.
 - Tünel oluşturma mesajlarını küçültmek (tüm ECIES atlamalarını ve yeni bir öneri gerektirir)
-- Sadece küçük mesajlar için gerekli olan [Prop143](/en/proposals/143-build-message-options/) tarafından tanımlanan tünel oluşturma seçeneklerinin kullanımı
-- İki yönlü tüneller - bunun için bkz. [Prop119](/en/proposals/119-bidirectional-tunnels/)
-- Daha küçük tünel oluşturma mesajları - bunun için bkz. [Prop157](/en/proposals/157-new-tbm/)
+- Sadece küçük mesajlar için gerekli olan [Prop143](/proposals/143-build-message-options/) tarafından tanımlanan tünel oluşturma seçeneklerinin kullanımı
+- İki yönlü tüneller - bunun için bkz. [Prop119](/proposals/119-bidirectional-tunnels/)
+- Daha küçük tünel oluşturma mesajları - bunun için bkz. [Prop157](/proposals/157-new-tbm/)
 
 
 ## Tehdit Modeli
@@ -142,7 +142,7 @@ Bu Noise protokolü aşağıdaki ikincilleri kullanır:
 - Şifre Fonksiyonu: ChaChaPoly
   AEAD_CHACHA20_POLY1305 [RFC-7539](https://tools.ietf.org/html/rfc7539) bölüm 2.8'de belirtildiği gibi.
   İlk 4 baytı sıfıra ayarlanmış 12 baytlık nonce.
-  [NTCP2](/en/docs/spec/ntcp2/) içinde olanla aynı.
+  [NTCP2](/docs/specs/ntcp2/) içinde olanla aynı.
 
 - Karmalama Fonksiyonu: SHA256
   I2P'de yaygın olarak kullanılan standart 32 baytlık karma.
@@ -165,10 +165,10 @@ Aşağıdaki harf eşlemesi kullanılır:
 - p = mesaj yükü
 
 Oluşturma isteği, Noise N şeması ile aynıdır.
-Bu aynı zamanda [NTCP2](/en/docs/spec/ntcp2/) içinde kullanılan XK şemasındaki ilk (Oturum İsteği) mesajıdır.
+Bu aynı zamanda [NTCP2](/docs/specs/ntcp2/) içinde kullanılan XK şemasındaki ilk (Oturum İsteği) mesajıdır.
 
 
-  ```dataspec
+  ```text
 
 <- s
   ...
@@ -184,7 +184,7 @@ Bu aynı zamanda [NTCP2](/en/docs/spec/ntcp2/) içinde kullanılan XK şemasınd
 ### İstek Şifreleme
 
 Oluşturma isteği kayıtları, tünel oluşturucu tarafından oluşturulur ve bireysel hattın üzerinde asimetrik olarak şifrelenir.
-Şu anda bu istek kayıtlarının asimetrik şifrelemesi, [Cryptography](/en/docs/spec/cryptography/) içinde tanımlandığı gibi ElGamal'dır ve bir SHA-256 kontrol toplamı içerir. Bu tasarım iletim gizli değil.
+Şu anda bu istek kayıtlarının asimetrik şifrelemesi, [Cryptography](/docs/specs/cryptography/) içinde tanımlandığı gibi ElGamal'dır ve bir SHA-256 kontrol toplamı içerir. Bu tasarım iletim gizli değil.
 
 Yeni tasarım, iletim gizliliği, bütünlük ve kimlik doğrulama için bir KDF ile birlikte Noise "N" örüntüsünü, ECIES-X25519 geçici-statik DH, ve ChaCha20/Poly1305 AEAD kullanacaktır.
 Alice, tünel oluşturma isteği yapan kişidir. Tüneldeki her atlama bir Bob'dur.
@@ -254,14 +254,14 @@ Yanıt kayıtları, başka bir DH ile tam asimetrik şifreleme gerektirmez.
 İstek Kaydı Şifrelenmemiş (ElGamal)
 `````````````````````````````````````````
 
-Referans için, bu [I2NP](/en/docs/spec/i2np/) alınmış ElGamal yönlendiriciler için tünel BuildRequestRecord'un mevcut spesifikasyonudur.
-Şifrelenmeden önce veriyle birlikte şifreli olmayan bir bayt ve verinin SHA-256 karması eklenir, [Cryptography](/en/docs/spec/cryptography/) içinde tanımlandığı gibi.
+Referans için, bu [I2NP](/docs/specs/i2np/) alınmış ElGamal yönlendiriciler için tünel BuildRequestRecord'un mevcut spesifikasyonudur.
+Şifrelenmeden önce veriyle birlikte şifreli olmayan bir bayt ve verinin SHA-256 karması eklenir, [Cryptography](/docs/specs/cryptography/) içinde tanımlandığı gibi.
 
 Tüm alanlar büyük endian formatındadır.
 
 Şifrelenmemiş boyut: 222 bayt
 
-  ```dataspec
+  ```text
 
 
 bytes     0-3: mesajları almak için gerekli tünel ID'si, sıfır olmayan
@@ -286,11 +286,11 @@ bytes     0-3: mesajları almak için gerekli tünel ID'si, sıfır olmayan
 İstek Kaydı Şifrelenmiş (ElGamal)
 `````````````````````````````````````
 
-Referans için, bu [I2NP](/en/docs/spec/i2np/) alınmış ElGamal yönlendiriciler için tünel BuildRequestRecord'un mevcut spesifikasyonudur.
+Referans için, bu [I2NP](/docs/specs/i2np/) alınmış ElGamal yönlendiriciler için tünel BuildRequestRecord'un mevcut spesifikasyonudur.
 
 Şifrelenmiş boyut: 528 bayt
 
-  ```dataspec
+  ```text
 
 
 bytes    0-15: Atlama kesilmiş kimlik karması
@@ -326,7 +326,7 @@ Tüm alanlar büyük endian formatındadır.
 
 Şifrelenmemiş boyut: 464 bayt
 
-  ```dataspec
+  ```text
 
 
 bytes     0-3: mesajları almak için gerekli tünel ID'si, sıfır olmayan
@@ -350,7 +350,7 @@ bytes     0-3: mesajları almak için gerekli tünel ID'si, sıfır olmayan
 
   ```
 
-Bayraklar alanı [Tunnel-Creation](/en/docs/spec/tunnel-creation/) içinde tanımlandığı gibi olup, aşağıdaki içeriğe sahiptir::
+Bayraklar alanı [Tunnel-Creation](/docs/specs/tunnel-creation/) içinde tanımlandığı gibi olup, aşağıdaki içeriğe sahiptir::
 
  Bit sırası: 76543210 (bit 7 MSB'dir)
  bit 7: ayarlıysa, herkesten mesaj alımına izin ver
@@ -366,7 +366,7 @@ birlikte ayarlanamaz.
 İstek bitişi gelecekte değişken tünel süreleri için geçerlidir.
 Şimdilik, desteklenen tek değer 600'dür (10 dakika).
 
-Tünel oluşturma seçenekleri, [Common](/en/docs/spec/common-structures/) içinde tanımlandığı gibi bir Haritalama yapısıdır.
+Tünel oluşturma seçenekleri, [Common](/docs/specs/common-structures/) içinde tanımlandığı gibi bir Haritalama yapısıdır.
 Bu, gelecekteki kullanım içindir. Şu anda tanımlı herhangi bir seçenek yoktur.
 Haritalama yapısı boşsa, bu iki bayttır 0x00 0x00.
 Haritalama uzunluğunun (uzunluk alanı dahil) maksimum boyutu 296 bayt,
@@ -381,7 +381,7 @@ Tüm alanlar büyük endian, geçici ortak anahtar ise küçük endian formatın
 
 Şifrelenmiş boyut: 528 bayt
 
-  ```dataspec
+  ```text
 
 
 bytes    0-15: Atlama kesilmiş kimlik karması
@@ -409,7 +409,7 @@ Tüm alanlar büyük endian formatındadır.
 
 Şifrelenmemiş boyut: 528 bayt
 
-  ```dataspec
+  ```text
 
 
 bytes   0-31: Bayt 32-527'nin SHA-256 Karması
@@ -438,7 +438,7 @@ Tüm alanlar büyük endian formatındadır.
 
 Şifrelenmemiş boyut: 512 bayt
 
-  ```dataspec
+  ```text
 
 
 bytes    0-x: Tünel Oluşturma Yanıt Seçenekleri (Haritalama)
@@ -451,13 +451,13 @@ bytes    0-x: Tünel Oluşturma Yanıt Seçenekleri (Haritalama)
 
   ```
 
-Tünel oluşturma yanıt seçenekleri, [Common](/en/docs/spec/common-structures/) içinde tanımlandığı gibi bir Haritalama yapısıdır.
+Tünel oluşturma yanıt seçenekleri, [Common](/docs/specs/common-structures/) içinde tanımlandığı gibi bir Haritalama yapısıdır.
 Bu, gelecekteki kullanım içindir. Şu anda tanımlı herhangi bir seçenek yoktur.
 Haritalama yapısı boşsa, bu iki bayttır 0x00 0x00.
 Haritalamanın (uzunluk alanı dahil) maksimum boyutu 511 bayt,
 ve Haritalama uzunluk alanının maksimum değeri 509'dur.
 
-Yanıt baytı, parmak izi alınmamak için [Tunnel-Creation](/en/docs/spec/tunnel-creation/) içinde tanımlanan şu değerlerden biridir:
+Yanıt baytı, parmak izi alınmamak için [Tunnel-Creation](/docs/specs/tunnel-creation/) içinde tanımlanan şu değerlerden biridir:
 
 - 0x00 (kabul)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -468,7 +468,7 @@ Yanıt Kaydı Şifrelenmiş (ECIES)
 
 Şifrelenmiş boyut: 528 bayt
 
-  ```dataspec
+  ```text
 
 
 bytes   0-511: ChaCha20 şifrelenmiş BuildReplyRecord
@@ -576,7 +576,7 @@ Tünel yaratıcı, yani İç Uç Nokta (IBEP), yanıtı aşağıdaki gibi işler
 
 Bu anahtarlar, ElGamal BuildRequestRecord'larda açıkça yer alır.
 ECIES BuildRequestRecords için, tünel anahtarları ve AES yanıt anahtarları yer alır, ancak ChaCha yanıt anahtarları DH değişiminden türetilir.
-Yönlendirici statik ECIES anahtarları için ayrıntılar ve detaylar için [Prop156](/en/proposals/156-ecies-routers/) adresine bakınız.
+Yönlendirici statik ECIES anahtarları için ayrıntılar ve detaylar için [Prop156](/proposals/156-ecies-routers/) adresine bakınız.
 
 Aşağıda, daha önce istek kayıtlarında iletilen anahtarların nasıl türetileceğine ilişkin bir açıklama bulunmaktadır.
 
@@ -620,7 +620,7 @@ ElGamal tünel oluşturucuları, tünelin her bir ECIES hattı için bir geçici
 ElGamal tünel oluşturucuları, ElGamal atlamalarına şifreleme yaparken bu standart öncesi şemayı kullanacaklardır.
 
 ECIES tünel oluşturucuları, ElGamal hattının genel anahtarına şifreleme yaparken
-[Tunnel-Creation](/en/docs/spec/tunnel-creation/) içinde tanımlanan standart kullanacaklardır. ECIES tünel oluşturucuları,
+[Tunnel-Creation](/docs/specs/tunnel-creation/) içinde tanımlanan standart kullanacaklardır. ECIES tünel oluşturucuları,
 ECIES atlamalarına şifreleme yaparken yukarıdaki şemayı kullanacaklardır.
 
 Bu, tünel atlamalarının şifreleme türünden yalnızca kendi türlerine ait olan şifrelenmiş kayıtlarını görecekleri anlamına gelir.
@@ -634,7 +634,7 @@ Benzersiz anahtarlar kullanılmaması, işbirlikçi atlamaların aynı tünelde 
 için bir saldırı vektörünü açar.
 
 
-  ```dataspec
+  ```text
 
 
 // Her atlamanın yönlendirici kimliğinden alınan X25519 statik anahtar çifti (hesk, hepk)
@@ -697,7 +697,7 @@ ve rastgele olarak üretilebilir.
 
 ### İstek Kaydı Şifreleme (ElGamal)
 
-[Tunnel-Creation](/en/docs/spec/tunnel-creation/) içinde tanımlandığı gibi.
+[Tunnel-Creation](/docs/specs/tunnel-creation/) içinde tanımlandığı gibi.
 ElGamal atlamalarına şifreleme için herhangi bir değişiklik yoktur.
 
 
@@ -707,7 +707,7 @@ ElGamal atlamalarına şifreleme için herhangi bir değişiklik yoktur.
 
 Yanıt kaydı ChaCha20/Poly1305 ile şifrelenmiştir.
 
-  ```dataspec
+  ```text
 
 
 // AEAD parametreleri
@@ -727,7 +727,7 @@ Yanıt kaydı ChaCha20/Poly1305 ile şifrelenmiştir.
 
 ### Yanıt Kaydı Şifreleme (ElGamal)
 
-[Tunnel-Creation](/en/docs/spec/tunnel-creation/) içinde tanımlandığı gibi.
+[Tunnel-Creation](/docs/specs/tunnel-creation/) içinde tanımlandığı gibi.
 ElGamal atlamalarına şifreleme için herhangi bir değişiklik yoktur.
 
 
@@ -770,7 +770,4 @@ Bu tasarım, riski en aza indirir.
 
 ## Geçiş
 
-Bkz. [Prop156](/en/proposals/156-ecies-routers/).
-
-
-
+Bkz. [Prop156](/proposals/156-ecies-routers/).
