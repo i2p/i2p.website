@@ -13,7 +13,7 @@
     // Check for I2P (both .i2p and .b32.i2p addresses)
     if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
         // I2P network
-        scriptSrc = 'http://feedback.stormycloud.i2p/widgets/docs-feedback.js';
+        scriptSrc = 'http://5kwyynf3eetgqa2nors6ctwo7doi7yu73k7uvypy5eqmm326zkiq.b32.i2p/widgets/docs-feedback.js';
         console.log('[Network Detector] I2P network detected');
     } else if (hostname.endsWith('.onion')) {
         // Tor network

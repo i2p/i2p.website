@@ -379,7 +379,7 @@
                 const hostname = window.location.hostname;
                 // Check for I2P (both .i2p and .b32.i2p addresses)
                 if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
-                    baseUrl = 'http://feedback.stormycloud.i2p';
+                    baseUrl = 'http://5kwyynf3eetgqa2nors6ctwo7doi7yu73k7uvypy5eqmm326zkiq.b32.i2p';
                 } else if (hostname.endsWith('.onion')) {
                     baseUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
                 } else {
