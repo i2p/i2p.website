@@ -82,6 +82,24 @@
             </div>
         </header>
 
+        <!-- Table of Contents (if enabled via toc: true in front matter) -->
+        {{ if and (.Params.toc) (gt (len .TableOfContents) 100) }}
+        <details class="toc" open>
+            <summary class="toc-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                On This Page
+                <svg class="toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </summary>
+            <div class="toc-content">
+                {{ .TableOfContents }}
+            </div>
+        </details>
+        {{ end }}
+
         <!-- Main Content -->
         <article class="proposal-content">
             {{ .Content }}
@@ -307,6 +325,93 @@
 
 .relationship-value {
     color: var(--color-text);
+}
+
+/* Table of Contents */
+.toc {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.toc-title {
+    font-weight: 700;
+    padding: var(--spacing-md) var(--spacing-lg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    user-select: none;
+    list-style: none;
+}
+
+.toc-title::-webkit-details-marker {
+    display: none;
+}
+
+.toc-title:hover {
+    background: var(--color-bg-tertiary);
+}
+
+.toc-chevron {
+    margin-left: auto;
+    transition: transform var(--transition-fast);
+}
+
+.toc[open] .toc-chevron {
+    transform: rotate(180deg);
+}
+
+.toc-content {
+    padding: 0 var(--spacing-lg) var(--spacing-md) var(--spacing-lg);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.toc-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.toc-content::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+}
+
+.toc-content::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+}
+
+.toc-content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+}
+
+.toc ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.toc li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.toc ul ul {
+    padding-left: var(--spacing-md);
+    margin-top: var(--spacing-xs);
+}
+
+.toc a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: inline-block;
+    padding: 0.125rem 0;
+    transition: color var(--transition-fast);
+}
+
+.toc a:hover {
+    color: var(--color-primary);
 }
 
 /* Proposal Content */

@@ -7,19 +7,20 @@ lastupdated: "2025-06-12"
 status: "مفتوح"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
+toc: true
 ---
 
 ## نظرة عامة
 
 بينما كانت الأبحاث والمنافسة على تشفير ما بعد الكم (PQ) المناسب تسير لمدة عقد من الزمن، لم تصبح الخيارات واضحة حتى وقت قريب.
 
-بدأنا في النظر إلى تداعيات التشفير المقاوم للكم في عام 2022 [http://zzz.i2p/topics/3294](http://zzz.i2p/topics/3294).
+بدأنا في النظر إلى تداعيات التشفير المقاوم للكم في عام 2022 [zzz.i2p](http://zzz.i2p/topics/3294).
 
-أضافت معايير TLS دعم التشفير الهجين في العامين الماضيين وهي تُستخدم الآن لجزء كبير من حركة البيانات المشفرة على الإنترنت بسبب الدعم في Chrome و Firefox [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/).
+أضافت معايير TLS دعم التشفير الهجين في العامين الماضيين وهي تُستخدم الآن لجزء كبير من حركة البيانات المشفرة على الإنترنت بسبب الدعم في Chrome و Firefox [Cloudflare](https://blog.cloudflare.com/pq-2024/).
 
-أصدر معهد NIST مؤخراً ونشر الخوارزميات الموصى بها للتشفير ما بعد الكمي [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). تدعم عدة مكتبات تشفير شائعة الآن معايير NIST أو ستصدر الدعم في المستقبل القريب.
+أصدر معهد NIST مؤخراً ونشر الخوارزميات الموصى بها للتشفير ما بعد الكمي [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). تدعم عدة مكتبات تشفير شائعة الآن معايير NIST أو ستصدر الدعم في المستقبل القريب.
 
-كل من [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/) و [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) يوصيان ببدء الهجرة فوراً. انظر أيضاً الأسئلة الشائعة لـ NSA PQ لعام 2022 [https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF). يجب أن يكون I2P رائداً في الأمان والتشفير. الآن هو الوقت المناسب لتنفيذ الخوارزميات الموصى بها. باستخدام نظام نوع التشفير المرن ونظام نوع التوقيع لدينا، سنضيف أنواعاً للتشفير الهجين، وللـ PQ والتوقيعات الهجينة.
+كل من [Cloudflare](https://blog.cloudflare.com/pq-2024/) و [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) يوصيان ببدء الهجرة فوراً. انظر أيضاً الأسئلة الشائعة لـ NSA PQ لعام 2022 [NSA](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF). يجب أن يكون I2P رائداً في الأمان والتشفير. الآن هو الوقت المناسب لتنفيذ الخوارزميات الموصى بها. باستخدام نظام نوع التشفير المرن ونظام نوع التوقيع لدينا، سنضيف أنواعاً للتشفير الهجين، وللـ PQ والتوقيعات الهجينة.
 
 ## الأهداف
 
@@ -59,7 +60,7 @@ target: "0.9.80"
 | Hybrid Dests | |
 ## التصميم
 
-سندعم معايير NIST FIPS 203 و 204 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) والتي تستند إلى، ولكنها غير متوافقة مع، CRYSTALS-Kyber و CRYSTALS-Dilithium (الإصدارات 3.1، 3، والإصدارات الأقدم).
+سندعم معايير NIST FIPS 203 و 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) والتي تستند إلى، ولكنها غير متوافقة مع، CRYSTALS-Kyber و CRYSTALS-Dilithium (الإصدارات 3.1، 3، والإصدارات الأقدم).
 
 ### Key Exchange
 
@@ -76,7 +77,7 @@ target: "0.9.80"
 
 Noise N لا يستخدم تبادل مفاتيح ثنائي الاتجاه وبالتالي فهو غير مناسب للتشفير المختلط.
 
-لذلك سنقوم بدعم التشفير المختلط فقط، لـ NTCP2 و SSU2 و Ratchet. سنقوم بتعريف متغيرات ML-KEM الثلاثة كما هو موضح في [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)، لإجمالي 3 أنواع تشفير جديدة. الأنواع المختلطة ستُعرّف فقط بالاقتران مع X25519.
+لذلك سنقوم بدعم التشفير المختلط فقط، لـ NTCP2 و SSU2 و Ratchet. سنقوم بتعريف متغيرات ML-KEM الثلاثة كما هو موضح في [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)، لإجمالي 3 أنواع تشفير جديدة. الأنواع المختلطة ستُعرّف فقط بالاقتران مع X25519.
 
 أنواع التشفير الجديدة هي:
 
@@ -102,9 +103,9 @@ Noise N لا يستخدم تبادل مفاتيح ثنائي الاتجاه وب
 | SU3 files | yes | yes |
 | X.509 certificates | yes | yes |
 | Java keystores | yes | yes |
-لذلك سندعم التوقيعات PQ-only والهجينة على حد سواء. سنحدد المتغيرات الثلاثة لـ ML-DSA كما هو موضح في [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)، وثلاثة متغيرات هجينة مع Ed25519، وثلاثة متغيرات PQ-only مع prehash لملفات SU3 فقط، بإجمالي 9 أنواع توقيع جديدة. ستُحدد الأنواع الهجينة فقط بالتركيب مع Ed25519. سنستخدم ML-DSA المعياري، وليس متغيرات pre-hash (HashML-DSA)، باستثناء ملفات SU3.
+لذلك سندعم التوقيعات PQ-only والهجينة على حد سواء. سنحدد المتغيرات الثلاثة لـ ML-DSA كما هو موضح في [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)، وثلاثة متغيرات هجينة مع Ed25519، وثلاثة متغيرات PQ-only مع prehash لملفات SU3 فقط، بإجمالي 9 أنواع توقيع جديدة. ستُحدد الأنواع الهجينة فقط بالتركيب مع Ed25519. سنستخدم ML-DSA المعياري، وليس متغيرات pre-hash (HashML-DSA)، باستثناء ملفات SU3.
 
-سنستخدم متغير التوقيع "المُحوَّط" أو العشوائي، وليس المتغير "الحتمي"، كما هو محدد في [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) القسم 3.4. هذا يضمن أن كل توقيع مختلف، حتى عند التوقيع على نفس البيانات، ويوفر حماية إضافية ضد هجمات القنوات الجانبية. راجع قسم ملاحظات التنفيذ أدناه للحصول على تفاصيل إضافية حول اختيارات الخوارزمية بما في ذلك التشفير والسياق.
+سنستخدم متغير التوقيع "المُحوَّط" أو العشوائي، وليس المتغير "الحتمي"، كما هو محدد في [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) القسم 3.4. هذا يضمن أن كل توقيع مختلف، حتى عند التوقيع على نفس البيانات، ويوفر حماية إضافية ضد هجمات القنوات الجانبية. راجع قسم ملاحظات التنفيذ أدناه للحصول على تفاصيل إضافية حول اختيارات الخوارزمية بما في ذلك التشفير والسياق.
 
 أنواع التوقيع الجديدة هي:
 
@@ -119,7 +120,7 @@ Noise N لا يستخدم تبادل مفاتيح ثنائي الاتجاه وب
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-شهادات X.509 وترميزات DER الأخرى ستستخدم البُنى المركبة ومعرفات الكائنات المحددة في [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+شهادات X.509 وترميزات DER الأخرى ستستخدم البُنى المركبة ومعرفات الكائنات المحددة في [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 الحمولة الإضافية ستكون كبيرة. أحجام الوجهة النموذجية Ed25519 وهوية router هي 391 بايت. ستزيد هذه بمقدار 3.5x إلى 6.8x حسب الخوارزمية. توقيعات Ed25519 هي 64 بايت. ستزيد هذه بمقدار 38x إلى 76x حسب الخوارزمية. RouterInfo الموقع، وLeaseSet، والرسائل القابلة للرد، ورسائل التدفق الموقعة النموذجية تبلغ حوالي 1KB. ستزيد هذه بمقدار 3x إلى 8x حسب الخوارزمية.
 
@@ -133,23 +134,23 @@ Noise N لا يستخدم تبادل مفاتيح ثنائي الاتجاه وب
 
 ### New Crypto Required
 
-- ML-KEM (المعروف سابقاً باسم CRYSTALS-Kyber) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-- ML-DSA (المعروف سابقاً باسم CRYSTALS-Dilithium) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-- SHA3-128 (المعروف سابقاً باسم Keccak-256) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) يُستخدم فقط مع SHAKE128
-- SHA3-256 (المعروف سابقاً باسم Keccak-512) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
-- SHAKE128 و SHAKE256 (امتدادات XOF لـ SHA3-128 و SHA3-256) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- ML-KEM (المعروف سابقاً باسم CRYSTALS-Kyber) [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+- ML-DSA (المعروف سابقاً باسم CRYSTALS-Dilithium) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+- SHA3-128 (المعروف سابقاً باسم Keccak-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) يُستخدم فقط مع SHAKE128
+- SHA3-256 (المعروف سابقاً باسم Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- SHAKE128 و SHAKE256 (امتدادات XOF لـ SHA3-128 و SHA3-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 
-متجهات الاختبار لـ SHA3-256 و SHAKE128 و SHAKE256 متوفرة في [https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
+متجهات الاختبار لـ SHA3-256 و SHAKE128 و SHAKE256 متوفرة في [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
 
-لاحظ أن مكتبة Java bouncycastle تدعم جميع ما سبق. دعم مكتبة C++ متوفر في OpenSSL 3.5 [https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+لاحظ أن مكتبة Java bouncycastle تدعم جميع ما سبق. دعم مكتبة C++ متوفر في OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 ### Alternatives
 
-لن ندعم [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+)، فهو أبطأ بكثير وأكبر من ML-DSA. لن ندعم FIPS206 القادم (Falcon)، لأنه لم يتم توحيده معياريًا بعد. لن ندعم NTRU أو مرشحي PQ الآخرين الذين لم يتم توحيدهم معياريًا من قبل NIST.
+لن ندعم [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+)، فهو أبطأ بكثير وأكبر من ML-DSA. لن ندعم FIPS206 القادم (Falcon)، لأنه لم يتم توحيده معياريًا بعد. لن ندعم NTRU أو مرشحي PQ الآخرين الذين لم يتم توحيدهم معياريًا من قبل NIST.
 
 ### Rosenpass
 
-هناك بعض الأبحاث [https://eprint.iacr.org/2020/379.pdf](https://eprint.iacr.org/2020/379.pdf) حول تكييف Wireguard (IK) للتشفير PQ الخالص، ولكن توجد عدة أسئلة مفتوحة في تلك الورقة. لاحقاً، تم تنفيذ هذا النهج باسم Rosenpass [https://rosenpass.eu/](https://rosenpass.eu/) [https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) لـ PQ Wireguard.
+هناك بعض الأبحاث [paper](https://eprint.iacr.org/2020/379.pdf) حول تكييف Wireguard (IK) للتشفير PQ الخالص، ولكن توجد عدة أسئلة مفتوحة في تلك الورقة. لاحقاً، تم تنفيذ هذا النهج باسم Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) لـ PQ Wireguard.
 
 يستخدم Rosenpass مصافحة مشابهة لـ Noise KK مع مفاتيح Classic McEliece 460896 ثابتة مُشتركة مسبقاً (500 كيلوبايت لكل منها) ومفاتيح Kyber-512 (في الأساس MLKEM-512) مؤقتة. نظراً لأن النصوص المشفرة لـ Classic McEliece تبلغ 188 بايت فقط، ومفاتيح Kyber-512 العامة والنصوص المشفرة معقولة، فإن كلا رسائل المصافحة تتسع في MTU قياسي لـ UDP. يُستخدم المفتاح المشترك الناتج (osk) من مصافحة PQ KK كمفتاح مُشارك مسبقاً مدخل (psk) لمصافحة Wireguard IK القياسية. لذلك هناك مصافحتان كاملتان إجمالاً، واحدة PQ خالصة وأخرى X25519 خالصة.
 
@@ -183,7 +184,7 @@ Noise N لا يستخدم تبادل مفاتيح ثنائي الاتجاه وب
 | MLKEM768_CT | 1088 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024_CT | 1568 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | NONE | 0 | 0.9.xx | See proposal 169, for destinations with PQ sig types only, not for RIs or Leasesets |
-المفاتيح العامة الهجينة هي مفتاح X25519. مفاتيح KEM العامة هي مفتاح PQ المؤقت المرسل من Alice إلى Bob. التشفير وترتيب البايتات محددان في [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+المفاتيح العامة الهجينة هي مفتاح X25519. مفاتيح KEM العامة هي مفتاح PQ المؤقت المرسل من Alice إلى Bob. التشفير وترتيب البايتات محددان في [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 مفاتيح MLKEM*_CT ليست في الواقع مفاتيح عامة، بل هي "النص المشفر" المرسل من Bob إلى Alice في مصافحة Noise. تم إدراجها هنا للاكتمال.
 
@@ -199,7 +200,7 @@ Noise N لا يستخدم تبادل مفاتيح ثنائي الاتجاه وب
 | MLKEM512 | 1632 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM768 | 2400 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024 | 3168 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-المفاتيح الخاصة الهجينة هي مفاتيح X25519. مفاتيح KEM الخاصة مخصصة لـ Alice فقط. تشفير KEM وترتيب البايتات محددان في [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+المفاتيح الخاصة الهجينة هي مفاتيح X25519. مفاتيح KEM الخاصة مخصصة لـ Alice فقط. تشفير KEM وترتيب البايتات محددان في [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 ### مطلوب تشفير جديد
 
@@ -216,7 +217,7 @@ Noise N لا يستخدم تبادل مفاتيح ثنائي الاتجاه وب
 | MLDSA44ph | 1344 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA65ph | 1984 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA87ph | 2624 | 0.9.xx | Only for SU3 files, not for netdb structures |
-المفاتيح العامة الهجينة للتوقيع هي مفتاح Ed25519 متبوعًا بمفتاح PQ، كما هو موضح في [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). يتم تعريف التشفير وترتيب البايتات في [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+المفاتيح العامة الهجينة للتوقيع هي مفتاح Ed25519 متبوعًا بمفتاح PQ، كما هو موضح في [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). يتم تعريف التشفير وترتيب البايتات في [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### البدائل
 
@@ -233,7 +234,7 @@ Noise N لا يستخدم تبادل مفاتيح ثنائي الاتجاه وب
 | MLDSA44ph | 2592 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 4064 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-المفاتيح الخاصة للتوقيع الهجين هي مفتاح Ed25519 متبوعاً بمفتاح PQ، كما هو موضح في [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). التشفير وترتيب البايت محددان في [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+المفاتيح الخاصة للتوقيع الهجين هي مفتاح Ed25519 متبوعاً بمفتاح PQ، كما هو موضح في [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). التشفير وترتيب البايت محددان في [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### Rosenpass
 
@@ -250,7 +251,7 @@ Noise N لا يستخدم تبادل مفاتيح ثنائي الاتجاه وب
 | MLDSA44ph | 2484 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 3373 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4691 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-التوقيعات الهجينة هي توقيع Ed25519 متبوعاً بتوقيع PQ، كما هو موضح في [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). يتم التحقق من التوقيعات الهجينة عن طريق التحقق من كلا التوقيعين، والفشل في حالة فشل أي منهما. التشفير وترتيب البايت محددان في [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+التوقيعات الهجينة هي توقيع Ed25519 متبوعاً بتوقيع PQ، كما هو موضح في [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). يتم التحقق من التوقيعات الهجينة عن طريق التحقق من كلا التوقيعين، والفشل في حالة فشل أي منهما. التشفير وترتيب البايت محددان في [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### Key Certificates
 
@@ -315,7 +316,7 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
 ### مفتاح خاص
 
-تستخدم المصافحات أنماط المصافحة من [https://noiseprotocol.org/noise.html](https://noiseprotocol.org/noise.html).
+تستخدم المصافحات أنماط المصافحة من [Noise Protocol](https://noiseprotocol.org/noise.html).
 
 يتم استخدام تخطيط الأحرف التالي:
 
@@ -325,7 +326,7 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 - e1 = مفتاح PQ مؤقت لمرة واحدة، يُرسل من Alice إلى Bob
 - ekem1 = نص KEM المشفر، يُرسل من Bob إلى Alice
 
-التعديلات التالية على XK و IK للسرية المستقبلية المختلطة (hfs) كما هو محدد في [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) القسم 5:
+التعديلات التالية على XK و IK للسرية المستقبلية المختلطة (hfs) كما هو محدد في [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) القسم 5:
 
 ```
 XK:                       XKhfs:
@@ -349,7 +350,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-نمط e1 محدد كما يلي، كما هو موضح في [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) القسم 4:
+نمط e1 محدد كما يلي، كما هو موضح في [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) القسم 4:
 
 ```
 For Alice:
@@ -367,7 +368,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-يتم تعريف نمط ekem1 كما يلي، كما هو محدد في [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) القسم 4:
+يتم تعريف نمط ekem1 كما يلي، كما هو محدد في [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) القسم 4:
 
 ```
 For Bob:
@@ -396,10 +397,10 @@ For Bob:
 
 #### Issues
 
-- هل يجب أن نغير دالة hash للمصافحة؟ انظر [https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
+- هل يجب أن نغير دالة hash للمصافحة؟ انظر [comparison](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
   SHA256 ليس عرضة لـ PQ، ولكن إذا كنا نريد ترقية
   دالة hash الخاصة بنا، فالآن هو الوقت المناسب، بينما نغير أشياء أخرى.
-  اقتراح IETF SSH الحالي [https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) هو استخدام MLKEM768
+  اقتراح IETF SSH الحالي [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) هو استخدام MLKEM768
   مع SHA256، و MLKEM1024 مع SHA384. يتضمن هذا الاقتراح
   نقاش حول الاعتبارات الأمنية.
 - هل يجب أن نتوقف عن إرسال بيانات ratchet من نوع 0-RTT (غير الـ LS)؟
@@ -409,13 +410,13 @@ For Bob:
 
 يسري هذا القسم على كل من بروتوكولي IK و XK.
 
-يتم تعريف المصافحة الهجين في [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). الرسالة الأولى، من Alice إلى Bob، تحتوي على e1، مفتاح التغليف، قبل حمولة الرسالة. يتم التعامل مع هذا كمفتاح ثابت إضافي؛ استدع `EncryptAndHash()` عليه (كـ Alice) أو `DecryptAndHash()` (كـ Bob). ثم قم بمعالجة حمولة الرسالة كالمعتاد.
+يتم تعريف المصافحة الهجين في [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). الرسالة الأولى، من Alice إلى Bob، تحتوي على e1، مفتاح التغليف، قبل حمولة الرسالة. يتم التعامل مع هذا كمفتاح ثابت إضافي؛ استدع `EncryptAndHash()` عليه (كـ Alice) أو `DecryptAndHash()` (كـ Bob). ثم قم بمعالجة حمولة الرسالة كالمعتاد.
 
 الرسالة الثانية، من Bob إلى Alice، تحتوي على ekem1، النص المشفر، قبل حمولة الرسالة. يتم التعامل مع هذا كمفتاح ثابت إضافي؛ استدع EncryptAndHash() عليه (كـ Bob) أو DecryptAndHash() (كـ Alice). ثم، احسب kem_shared_key واستدع MixKey(kem_shared_key). ثم عالج حمولة الرسالة كالمعتاد.
 
 #### Defined ML-KEM Operations
 
-نحدد الوظائف التالية المقابلة للعناصر الأساسية للتشفير المستخدمة كما هو محدد في [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+نحدد الوظائف التالية المقابلة للعناصر الأساسية للتشفير المستخدمة كما هو محدد في [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -1192,9 +1193,9 @@ TODO: هل توجد طريقة أكثر كفاءة لتعريف التوقيع/�
 
 قائمة المهام
 
-[https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) القسم 8.1 يمنع HashML-DSA في شهادات X.509 ولا يخصص OIDs لـ HashML-DSA، بسبب تعقيدات التنفيذ والأمان المنخفض.
+[IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) القسم 8.1 يمنع HashML-DSA في شهادات X.509 ولا يخصص OIDs لـ HashML-DSA، بسبب تعقيدات التنفيذ والأمان المنخفض.
 
-بالنسبة للتوقيعات PQ-only لملفات SU3، استخدم معرفات الكائنات (OIDs) المعرّفة في [https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) للمتغيرات non-prehash للشهادات. نحن لا نعرّف التوقيعات الهجينة لملفات SU3، لأنه قد يتوجب علينا حساب hash للملفات مرتين (على الرغم من أن HashML-DSA و X2559 يستخدمان نفس دالة hash وهي SHA512). أيضاً، ربط مفتاحين وتوقيعين في شهادة X.509 سيكون غير معياري تماماً.
+بالنسبة للتوقيعات PQ-only لملفات SU3، استخدم معرفات الكائنات (OIDs) المعرّفة في [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) للمتغيرات non-prehash للشهادات. نحن لا نعرّف التوقيعات الهجينة لملفات SU3، لأنه قد يتوجب علينا حساب hash للملفات مرتين (على الرغم من أن HashML-DSA و X2559 يستخدمان نفس دالة hash وهي SHA512). أيضاً، ربط مفتاحين وتوقيعين في شهادة X.509 سيكون غير معياري تماماً.
 
 لاحظ أننا نمنع توقيع Ed25519 لملفات SU3، وبينما قمنا بتعريف توقيع Ed25519ph، لم نتفق أبداً على OID له، أو نستخدمه.
 
@@ -1225,7 +1226,7 @@ TODO: هل توجد طريقة أكثر كفاءة لتعريف التوقيع/�
 | MLKEM1024_X25519 | +1584 | +1584 |
 السرعة:
 
-السرعات كما ورد في [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/):
+السرعات كما ورد في [Cloudflare](https://blog.cloudflare.com/pq-2024/):
 
 | Type | Relative speed |
 |------|----------------|
@@ -1262,7 +1263,7 @@ TODO: هل توجد طريقة أكثر كفاءة لتعريف التوقيع/�
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
 السرعة:
 
-السرعات كما أُبلغ عنها من قبل [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/):
+السرعات كما أُبلغ عنها من قبل [Cloudflare](https://blog.cloudflare.com/pq-2024/):
 
 | Type | Relative speed sign | verify |
 |------|---------------------|--------|
@@ -1280,7 +1281,7 @@ TODO: هل توجد طريقة أكثر كفاءة لتعريف التوقيع/�
 | MLDSA87 | 11.1x slower | 1.5x slower | same |
 ## Security Analysis
 
-فئات أمان NIST ملخصة في [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) الشريحة 10. المعايير الأولية: الحد الأدنى لفئة أمان NIST يجب أن يكون 2 للبروتوكولات المختلطة و 3 لـ PQ فقط.
+فئات أمان NIST ملخصة في [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) الشريحة 10. المعايير الأولية: الحد الأدنى لفئة أمان NIST يجب أن يكون 2 للبروتوكولات المختلطة و 3 لـ PQ فقط.
 
 | Category | As Secure As |
 |----------|--------------|
@@ -1293,7 +1294,7 @@ TODO: هل توجد طريقة أكثر كفاءة لتعريف التوقيع/�
 
 هذه كلها بروتوكولات هجينة. من المحتمل أن نحتاج إلى تفضيل MLKEM768؛ MLKEM512 ليس آمناً بما فيه الكفاية.
 
-فئات أمان NIST [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
+فئات أمان NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1304,7 +1305,7 @@ TODO: هل توجد طريقة أكثر كفاءة لتعريف التوقيع/�
 
 يحدد هذا الاقتراح أنواع التوقيع المختلطة وأنواع التوقيع PQ-only. MLDSA44 المختلط أفضل من MLDSA65 PQ-only. أحجام المفاتيح والتوقيعات لـ MLDSA65 و MLDSA87 كبيرة جداً بالنسبة لنا، على الأقل في البداية.
 
-فئات الأمان NIST [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
+فئات الأمان NIST [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1333,15 +1334,15 @@ TODO: هل توجد طريقة أكثر كفاءة لتعريف التوقيع/�
 
 ### Library Support
 
-مكتبات Bouncycastle و BoringSSL و WolfSSL تدعم الآن MLKEM و MLDSA. دعم OpenSSL سيكون في إصدارهم 3.5 في 8 أبريل 2025 [https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+مكتبات Bouncycastle و BoringSSL و WolfSSL تدعم الآن MLKEM و MLDSA. دعم OpenSSL سيكون في إصدارهم 3.5 في 8 أبريل 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
-مكتبة Noise الخاصة بـ southernstorm.com والمُحدثة بواسطة Java I2P احتوت على دعم أولي للمصافحات الهجينة، لكننا أزلناها لعدم استخدامها؛ سيتعين علينا إعادة إضافتها وتحديثها لتتطابق مع [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
+مكتبة Noise الخاصة بـ southernstorm.com والمُحدثة بواسطة Java I2P احتوت على دعم أولي للمصافحات الهجينة، لكننا أزلناها لعدم استخدامها؛ سيتعين علينا إعادة إضافتها وتحديثها لتتطابق مع [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
 
 ### Signing Variants
 
-سنستخدم المتغير "المحوط" أو العشوائي للتوقيع، وليس المتغير "الحتمي"، كما هو محدد في [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) القسم 3.4. هذا يضمن أن كل توقيع مختلف، حتى عندما يكون على نفس البيانات، ويوفر حماية إضافية ضد هجمات القنوات الجانبية. بينما يحدد [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) أن المتغير "المحوط" هو الافتراضي، قد يكون هذا صحيحاً أو غير صحيح في مختلف المكتبات. يجب على المطورين التأكد من استخدام المتغير "المحوط" للتوقيع.
+سنستخدم المتغير "المحوط" أو العشوائي للتوقيع، وليس المتغير "الحتمي"، كما هو محدد في [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) القسم 3.4. هذا يضمن أن كل توقيع مختلف، حتى عندما يكون على نفس البيانات، ويوفر حماية إضافية ضد هجمات القنوات الجانبية. بينما يحدد [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) أن المتغير "المحوط" هو الافتراضي، قد يكون هذا صحيحاً أو غير صحيح في مختلف المكتبات. يجب على المطورين التأكد من استخدام المتغير "المحوط" للتوقيع.
 
-نستخدم عملية التوقيع العادية (تُسمى Pure ML-DSA Signature Generation) والتي تُرمز الرسالة داخلياً كـ 0x00 || len(ctx) || ctx || message، حيث ctx هي قيمة اختيارية بحجم 0x00..0xFF. نحن لا نستخدم أي سياق اختياري. len(ctx) == 0. هذه العملية محددة في [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algorithm 2 step 10 و Algorithm 3 step 5. لاحظ أن بعض متجهات الاختبار المنشورة قد تتطلب تعيين وضع حيث لا يتم ترميز الرسالة.
+نستخدم عملية التوقيع العادية (تُسمى Pure ML-DSA Signature Generation) والتي تُرمز الرسالة داخلياً كـ 0x00 || len(ctx) || ctx || message، حيث ctx هي قيمة اختيارية بحجم 0x00..0xFF. نحن لا نستخدم أي سياق اختياري. len(ctx) == 0. هذه العملية محددة في [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algorithm 2 step 10 و Algorithm 3 step 5. لاحظ أن بعض متجهات الاختبار المنشورة قد تتطلب تعيين وضع حيث لا يتم ترميز الرسالة.
 
 ### Reliability
 
@@ -1503,7 +1504,7 @@ MLKEM أو MLDSA أو كلاهما على نفس الوجهة، سيزيد بش�
 
 Ratchet له الأولوية العليا. Transports تأتي بعد ذلك. Signatures لها أقل أولوية.
 
-سيكون طرح التوقيعات أيضاً متأخراً بسنة أو أكثر عن طرح التشفير، لأنه لا يمكن تحقيق التوافق مع الإصدارات السابقة. كما أن اعتماد MLDSA في الصناعة سيتم توحيده من قبل منتدى CA/Browser وسلطات الشهادات. تحتاج سلطات الشهادات أولاً إلى دعم وحدة الأمان المجهزة (HSM)، والذي غير متوفر حالياً [https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). نتوقع أن يقود منتدى CA/Browser القرارات حول اختيارات المعاملات المحددة، بما في ذلك ما إذا كان سيتم دعم أو طلب التوقيعات المركبة [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+سيكون طرح التوقيعات أيضاً متأخراً بسنة أو أكثر عن طرح التشفير، لأنه لا يمكن تحقيق التوافق مع الإصدارات السابقة. كما أن اعتماد MLDSA في الصناعة سيتم توحيده من قبل منتدى CA/Browser وسلطات الشهادات. تحتاج سلطات الشهادات أولاً إلى دعم وحدة الأمان المجهزة (HSM)، والذي غير متوفر حالياً [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). نتوقع أن يقود منتدى CA/Browser القرارات حول اختيارات المعاملات المحددة، بما في ذلك ما إذا كان سيتم دعم أو طلب التوقيعات المركبة [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 | Milestone | Target |
 |-----------|--------|
@@ -1530,7 +1531,7 @@ Ratchet له الأولوية العليا. Transports تأتي بعد ذلك. S
 
 - اختيار Noise Hash - البقاء مع SHA256 أم الترقية؟
   SHA256 يجب أن يكون جيداً لـ 20-30 سنة أخرى، غير مهدد بواسطة PQ،
-  انظر [https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) و [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+  انظر [NIST presentation](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) و [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
   إذا تم كسر SHA256 فلدينا مشاكل أسوأ (netdb).
 - NTCP2 منفذ منفصل، عنوان router منفصل
 - SSU2 ترحيل / اختبار الند

@@ -7,19 +7,20 @@ lastupdated: "2025-06-12"
 status: "열기"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
+toc: true
 ---
 
 ## 개요
 
 적합한 포스트 퀀텀(PQ) 암호화에 대한 연구와 경쟁이 10년간 진행되어 왔지만, 선택지들이 명확해진 것은 최근의 일입니다.
 
-2022년에 PQ 암호화의 함의를 살펴보기 시작했습니다 [http://zzz.i2p/topics/3294](http://zzz.i2p/topics/3294).
+2022년에 PQ 암호화의 함의를 살펴보기 시작했습니다 [zzz.i2p](http://zzz.i2p/topics/3294).
 
-TLS 표준은 지난 2년간 하이브리드 암호화 지원을 추가했으며, Chrome과 Firefox의 지원으로 인해 현재 인터넷상의 암호화된 트래픽의 상당 부분에 사용되고 있습니다 [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/).
+TLS 표준은 지난 2년간 하이브리드 암호화 지원을 추가했으며, Chrome과 Firefox의 지원으로 인해 현재 인터넷상의 암호화된 트래픽의 상당 부분에 사용되고 있습니다 [Cloudflare](https://blog.cloudflare.com/pq-2024/).
 
-NIST는 최근 양자 후 암호학(post-quantum cryptography)을 위한 권장 알고리즘을 확정하여 발표했습니다 [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). 여러 일반적인 암호학 라이브러리들이 현재 NIST 표준을 지원하거나 가까운 미래에 지원을 출시할 예정입니다.
+NIST는 최근 양자 후 암호학(post-quantum cryptography)을 위한 권장 알고리즘을 확정하여 발표했습니다 [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). 여러 일반적인 암호학 라이브러리들이 현재 NIST 표준을 지원하거나 가까운 미래에 지원을 출시할 예정입니다.
 
-[https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/)와 [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) 모두 즉시 마이그레이션을 시작할 것을 권장합니다. 2022년 NSA PQ FAQ [https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)도 참조하십시오. I2P는 보안과 암호화 분야의 리더가 되어야 합니다. 지금이 권장 알고리즘을 구현할 때입니다. 유연한 암호화 타입과 서명 타입 시스템을 사용하여 하이브리드 암호화와 PQ 및 하이브리드 서명을 위한 타입을 추가할 것입니다.
+[Cloudflare](https://blog.cloudflare.com/pq-2024/)와 [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) 모두 즉시 마이그레이션을 시작할 것을 권장합니다. 2022년 NSA PQ FAQ [NSA](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)도 참조하십시오. I2P는 보안과 암호화 분야의 리더가 되어야 합니다. 지금이 권장 알고리즘을 구현할 때입니다. 유연한 암호화 타입과 서명 타입 시스템을 사용하여 하이브리드 암호화와 PQ 및 하이브리드 서명을 위한 타입을 추가할 것입니다.
 
 ## 목표
 
@@ -59,7 +60,7 @@ NIST는 최근 양자 후 암호학(post-quantum cryptography)을 위한 권장 
 | Hybrid Dests | |
 ## 설계
 
-우리는 NIST FIPS 203 및 204 표준 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)을 지원할 예정입니다. 이 표준들은 CRYSTALS-Kyber 및 CRYSTALS-Dilithium(버전 3.1, 3 및 이전 버전)을 기반으로 하지만 호환되지 않습니다.
+우리는 NIST FIPS 203 및 204 표준 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)을 지원할 예정입니다. 이 표준들은 CRYSTALS-Kyber 및 CRYSTALS-Dilithium(버전 3.1, 3 및 이전 버전)을 기반으로 하지만 호환되지 않습니다.
 
 ### Key Exchange
 
@@ -76,7 +77,7 @@ PQ KEM은 임시 키만 제공하며, Noise XK 및 IK와 같은 정적 키 핸�
 
 Noise N은 양방향 키 교환을 사용하지 않으므로 하이브리드 암호화에 적합하지 않습니다.
 
-따라서 우리는 NTCP2, SSU2, 그리고 Ratchet에 대해 하이브리드 암호화만을 지원할 것입니다. [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)에서와 같이 세 가지 ML-KEM 변형을 정의하여 총 3개의 새로운 암호화 유형을 만들 것입니다. 하이브리드 유형은 X25519와 결합된 경우에만 정의됩니다.
+따라서 우리는 NTCP2, SSU2, 그리고 Ratchet에 대해 하이브리드 암호화만을 지원할 것입니다. [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)에서와 같이 세 가지 ML-KEM 변형을 정의하여 총 3개의 새로운 암호화 유형을 만들 것입니다. 하이브리드 유형은 X25519와 결합된 경우에만 정의됩니다.
 
 새로운 암호화 유형은 다음과 같습니다:
 
@@ -102,9 +103,9 @@ Noise N은 양방향 키 교환을 사용하지 않으므로 하이브리드 암
 | SU3 files | yes | yes |
 | X.509 certificates | yes | yes |
 | Java keystores | yes | yes |
-따라서 우리는 PQ 전용 및 하이브리드 서명을 모두 지원할 예정입니다. [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)에 정의된 대로 세 가지 ML-DSA 변형, Ed25519와의 세 가지 하이브리드 변형, 그리고 SU3 파일에만 사용되는 prehash를 포함한 세 가지 PQ 전용 변형을 정의하여 총 9가지의 새로운 서명 유형을 제공할 예정입니다. 하이브리드 유형은 Ed25519와의 조합으로만 정의됩니다. SU3 파일을 제외하고는 pre-hash 변형(HashML-DSA)이 아닌 표준 ML-DSA를 사용할 예정입니다.
+따라서 우리는 PQ 전용 및 하이브리드 서명을 모두 지원할 예정입니다. [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)에 정의된 대로 세 가지 ML-DSA 변형, Ed25519와의 세 가지 하이브리드 변형, 그리고 SU3 파일에만 사용되는 prehash를 포함한 세 가지 PQ 전용 변형을 정의하여 총 9가지의 새로운 서명 유형을 제공할 예정입니다. 하이브리드 유형은 Ed25519와의 조합으로만 정의됩니다. SU3 파일을 제외하고는 pre-hash 변형(HashML-DSA)이 아닌 표준 ML-DSA를 사용할 예정입니다.
 
-[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 섹션 3.4에서 정의된 "결정론적" 변형이 아닌 "헤지드" 또는 무작위화 서명 변형을 사용할 것입니다. 이는 동일한 데이터에 대해서도 각 서명이 다르도록 보장하며, 사이드 채널 공격에 대한 추가적인 보호를 제공합니다. 인코딩 및 컨텍스트를 포함한 알고리즘 선택에 대한 추가 세부사항은 아래 구현 노트 섹션을 참조하십시오.
+[FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 섹션 3.4에서 정의된 "결정론적" 변형이 아닌 "헤지드" 또는 무작위화 서명 변형을 사용할 것입니다. 이는 동일한 데이터에 대해서도 각 서명이 다르도록 보장하며, 사이드 채널 공격에 대한 추가적인 보호를 제공합니다. 인코딩 및 컨텍스트를 포함한 알고리즘 선택에 대한 추가 세부사항은 아래 구현 노트 섹션을 참조하십시오.
 
 새로운 서명 타입들은 다음과 같습니다:
 
@@ -119,7 +120,7 @@ Noise N은 양방향 키 교환을 사용하지 않으므로 하이브리드 암
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-X.509 인증서와 기타 DER 인코딩은 [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)에 정의된 복합 구조와 OID를 사용합니다.
+X.509 인증서와 기타 DER 인코딩은 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)에 정의된 복합 구조와 OID를 사용합니다.
 
 오버헤드가 상당할 것입니다. 일반적인 Ed25519 destination과 router identity 크기는 391바이트입니다. 이들은 알고리즘에 따라 3.5배에서 6.8배까지 증가할 것입니다. Ed25519 서명은 64바이트입니다. 이들은 알고리즘에 따라 38배에서 76배까지 증가할 것입니다. 일반적으로 서명된 RouterInfo, LeaseSet, 응답 가능한 데이터그램, 그리고 서명된 스트리밍 메시지는 약 1KB입니다. 이들은 알고리즘에 따라 3배에서 8배까지 증가할 것입니다.
 
@@ -133,23 +134,23 @@ RouterIdentity의 경우, ElGamal 암호화 타입은 더 이상 사용되지 �
 
 ### New Crypto Required
 
-- ML-KEM (이전 명칭: CRYSTALS-Kyber) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-- ML-DSA (이전 명칭: CRYSTALS-Dilithium) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-- SHA3-128 (이전 명칭: Keccak-256) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) SHAKE128에만 사용됨
-- SHA3-256 (이전 명칭: Keccak-512) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
-- SHAKE128 및 SHAKE256 (SHA3-128과 SHA3-256의 XOF 확장) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- ML-KEM (이전 명칭: CRYSTALS-Kyber) [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+- ML-DSA (이전 명칭: CRYSTALS-Dilithium) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+- SHA3-128 (이전 명칭: Keccak-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) SHAKE128에만 사용됨
+- SHA3-256 (이전 명칭: Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- SHAKE128 및 SHAKE256 (SHA3-128과 SHA3-256의 XOF 확장) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 
-SHA3-256, SHAKE128, 그리고 SHAKE256에 대한 테스트 벡터는 [https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values)에서 확인할 수 있습니다.
+SHA3-256, SHAKE128, 그리고 SHAKE256에 대한 테스트 벡터는 [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values)에서 확인할 수 있습니다.
 
-Java bouncycastle 라이브러리는 위의 모든 기능을 지원합니다. C++ 라이브러리 지원은 OpenSSL 3.5 [https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)에서 제공됩니다.
+Java bouncycastle 라이브러리는 위의 모든 기능을 지원합니다. C++ 라이브러리 지원은 OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)에서 제공됩니다.
 
 ### Alternatives
 
-[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+)는 지원하지 않을 예정입니다. ML-DSA보다 훨씬 느리고 크기가 큽니다. 곧 출시될 FIPS206 (Falcon)도 지원하지 않을 예정입니다. 아직 표준화되지 않았기 때문입니다. NIST에서 표준화하지 않은 NTRU나 기타 PQ 후보들도 지원하지 않을 예정입니다.
+[FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+)는 지원하지 않을 예정입니다. ML-DSA보다 훨씬 느리고 크기가 큽니다. 곧 출시될 FIPS206 (Falcon)도 지원하지 않을 예정입니다. 아직 표준화되지 않았기 때문입니다. NIST에서 표준화하지 않은 NTRU나 기타 PQ 후보들도 지원하지 않을 예정입니다.
 
 ### Rosenpass
 
-Wireguard (IK)를 순수 PQ 암호화에 적용하는 연구 [https://eprint.iacr.org/2020/379.pdf](https://eprint.iacr.org/2020/379.pdf)가 있지만, 해당 논문에는 여러 미해결 질문들이 있습니다. 나중에 이 접근법은 PQ Wireguard용 Rosenpass [https://rosenpass.eu/](https://rosenpass.eu/) [https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)로 구현되었습니다.
+Wireguard (IK)를 순수 PQ 암호화에 적용하는 연구 [paper](https://eprint.iacr.org/2020/379.pdf)가 있지만, 해당 논문에는 여러 미해결 질문들이 있습니다. 나중에 이 접근법은 PQ Wireguard용 Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)로 구현되었습니다.
 
 Rosenpass는 사전 공유된 Classic McEliece 460896 정적 키(각각 500 KB)와 Kyber-512(본질적으로 MLKEM-512) 임시 키를 사용하는 Noise KK와 유사한 핸드셰이크를 사용합니다. Classic McEliece 암호문은 188바이트에 불과하고 Kyber-512 공개 키와 암호문은 적절한 크기이므로 두 핸드셰이크 메시지 모두 표준 UDP MTU에 맞습니다. PQ KK 핸드셰이크에서 나온 출력 공유 키(osk)는 표준 Wireguard IK 핸드셰이크의 입력 사전 공유 키(psk)로 사용됩니다. 따라서 총 두 개의 완전한 핸드셰이크가 있으며, 하나는 순수 PQ이고 하나는 순수 X25519입니다.
 
@@ -183,7 +184,7 @@ Rosenpass는 사전 공유된 Classic McEliece 460896 정적 키(각각 500 KB)�
 | MLKEM768_CT | 1088 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024_CT | 1568 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | NONE | 0 | 0.9.xx | See proposal 169, for destinations with PQ sig types only, not for RIs or Leasesets |
-하이브리드 공개키는 X25519 키입니다. KEM 공개키는 Alice에서 Bob으로 전송되는 임시 PQ 키입니다. 인코딩과 바이트 순서는 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)에 정의되어 있습니다.
+하이브리드 공개키는 X25519 키입니다. KEM 공개키는 Alice에서 Bob으로 전송되는 임시 PQ 키입니다. 인코딩과 바이트 순서는 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)에 정의되어 있습니다.
 
 MLKEM*_CT 키는 실제로는 공개키가 아니라, Noise 핸드셰이크에서 Bob이 Alice에게 보내는 "암호문"입니다. 완성도를 위해 여기에 나열되어 있습니다.
 
@@ -199,7 +200,7 @@ MLKEM*_CT 키는 실제로는 공개키가 아니라, Noise 핸드셰이크에�
 | MLKEM512 | 1632 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM768 | 2400 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024 | 3168 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-하이브리드 개인키는 X25519 키입니다. KEM 개인키는 Alice 전용입니다. KEM 인코딩 및 바이트 순서는 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)에 정의되어 있습니다.
+하이브리드 개인키는 X25519 키입니다. KEM 개인키는 Alice 전용입니다. KEM 인코딩 및 바이트 순서는 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)에 정의되어 있습니다.
 
 ### 새로운 암호화 필요
 
@@ -216,7 +217,7 @@ MLKEM*_CT 키는 실제로는 공개키가 아니라, Noise 핸드셰이크에�
 | MLDSA44ph | 1344 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA65ph | 1984 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA87ph | 2624 | 0.9.xx | Only for SU3 files, not for netdb structures |
-하이브리드 서명 공개 키는 [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)에서와 같이 Ed25519 키 다음에 PQ 키가 오는 형태입니다. 인코딩과 바이트 순서는 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)에서 정의됩니다.
+하이브리드 서명 공개 키는 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)에서와 같이 Ed25519 키 다음에 PQ 키가 오는 형태입니다. 인코딩과 바이트 순서는 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)에서 정의됩니다.
 
 ### 대안
 
@@ -233,7 +234,7 @@ MLKEM*_CT 키는 실제로는 공개키가 아니라, Noise 핸드셰이크에�
 | MLDSA44ph | 2592 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 4064 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-하이브리드 서명 개인 키는 [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)에서와 같이 Ed25519 키 다음에 PQ 키가 오는 형태입니다. 인코딩과 바이트 순서는 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)에 정의되어 있습니다.
+하이브리드 서명 개인 키는 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)에서와 같이 Ed25519 키 다음에 PQ 키가 오는 형태입니다. 인코딩과 바이트 순서는 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)에 정의되어 있습니다.
 
 ### Rosenpass
 
@@ -250,7 +251,7 @@ MLKEM*_CT 키는 실제로는 공개키가 아니라, Noise 핸드셰이크에�
 | MLDSA44ph | 2484 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 3373 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4691 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-하이브리드 서명은 [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)에서와 같이 Ed25519 서명에 이어 PQ 서명이 따라오는 형태입니다. 하이브리드 서명은 두 서명을 모두 검증하여 확인되며, 둘 중 하나라도 실패하면 전체가 실패합니다. 인코딩과 바이트 순서는 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)에 정의되어 있습니다.
+하이브리드 서명은 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)에서와 같이 Ed25519 서명에 이어 PQ 서명이 따라오는 형태입니다. 하이브리드 서명은 두 서명을 모두 검증하여 확인되며, 둘 중 하나라도 실패하면 전체가 실패합니다. 인코딩과 바이트 순서는 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)에 정의되어 있습니다.
 
 ### Key Certificates
 
@@ -315,7 +316,7 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
 ### PrivateKey
 
-핸드셰이크는 [https://noiseprotocol.org/noise.html](https://noiseprotocol.org/noise.html) 핸드셰이크 패턴을 사용합니다.
+핸드셰이크는 [Noise Protocol](https://noiseprotocol.org/noise.html) 핸드셰이크 패턴을 사용합니다.
 
 다음 문자 매핑이 사용됩니다:
 
@@ -325,7 +326,7 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 - e1 = 일회용 임시 PQ 키, Alice에서 Bob으로 전송
 - ekem1 = KEM 암호문, Bob에서 Alice로 전송
 
-하이브리드 순방향 보안(hfs)을 위한 XK와 IK에 대한 다음 수정 사항들은 [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 섹션 5에 명시된 바와 같습니다:
+하이브리드 순방향 보안(hfs)을 위한 XK와 IK에 대한 다음 수정 사항들은 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 섹션 5에 명시된 바와 같습니다:
 
 ```
 XK:                       XKhfs:
@@ -349,7 +350,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-e1 패턴은 [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 섹션 4에 명시된 대로 다음과 같이 정의됩니다:
+e1 패턴은 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 섹션 4에 명시된 대로 다음과 같이 정의됩니다:
 
 ```
 For Alice:
@@ -367,7 +368,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-ekem1 패턴은 [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 섹션 4에 명시된 바와 같이 다음과 같이 정의됩니다:
+ekem1 패턴은 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 섹션 4에 명시된 바와 같이 다음과 같이 정의됩니다:
 
 ```
 For Bob:
@@ -396,10 +397,10 @@ For Bob:
 
 #### Issues
 
-- handshake 해시 함수를 변경해야 할까요? [https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)을 참조하세요.
+- handshake 해시 함수를 변경해야 할까요? [comparison](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)을 참조하세요.
   SHA256은 PQ에 취약하지 않지만, 해시 함수를 업그레이드하려고 한다면
   다른 것들을 변경하고 있는 지금이 적절한 시기입니다.
-  현재 IETF SSH 제안 [https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/)은 MLKEM768과
+  현재 IETF SSH 제안 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/)은 MLKEM768과
   SHA256을 사용하고, MLKEM1024와 SHA384를 사용하는 것입니다. 해당 제안에는
   보안 고려 사항에 대한 논의가 포함되어 있습니다.
 - 0-RTT ratchet 데이터 전송을 중단해야 할까요 (LS 제외)?
@@ -409,13 +410,13 @@ For Bob:
 
 이 섹션은 IK와 XK 프로토콜 모두에 적용됩니다.
 
-하이브리드 핸드셰이크는 [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)에 정의되어 있습니다. Alice에서 Bob으로의 첫 번째 메시지는 메시지 페이로드 앞에 캡슐화 키인 e1을 포함합니다. 이것은 추가적인 정적 키로 처리되며, (Alice로서) `EncryptAndHash()`를 호출하거나 (Bob으로서) `DecryptAndHash()`를 호출합니다. 그런 다음 메시지 페이로드를 평상시와 같이 처리합니다.
+하이브리드 핸드셰이크는 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)에 정의되어 있습니다. Alice에서 Bob으로의 첫 번째 메시지는 메시지 페이로드 앞에 캡슐화 키인 e1을 포함합니다. 이것은 추가적인 정적 키로 처리되며, (Alice로서) `EncryptAndHash()`를 호출하거나 (Bob으로서) `DecryptAndHash()`를 호출합니다. 그런 다음 메시지 페이로드를 평상시와 같이 처리합니다.
 
 Bob에서 Alice로의 두 번째 메시지는 메시지 페이로드 앞에 ekem1인 암호문을 포함합니다. 이것은 추가적인 정적 키로 처리됩니다. (Bob으로서) EncryptAndHash()를 호출하거나 (Alice로서) DecryptAndHash()를 호출합니다. 그런 다음 kem_shared_key를 계산하고 MixKey(kem_shared_key)를 호출합니다. 그 후 메시지 페이로드를 평소와 같이 처리합니다.
 
 #### Defined ML-KEM Operations
 
-다음과 같이 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)에서 정의된 암호학적 구성 요소에 해당하는 함수들을 정의합니다.
+다음과 같이 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)에서 정의된 암호학적 구성 요소에 해당하는 함수들을 정의합니다.
 
 (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -1190,9 +1191,9 @@ TODO: signature를 복사하지 않고 signing/verification을 정의하는 더 
 
 할 일
 
-[https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) 섹션 8.1은 구현 복잡성과 보안성 저하로 인해 X.509 인증서에서 HashML-DSA를 허용하지 않으며 HashML-DSA에 대한 OID를 할당하지 않습니다.
+[IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) 섹션 8.1은 구현 복잡성과 보안성 저하로 인해 X.509 인증서에서 HashML-DSA를 허용하지 않으며 HashML-DSA에 대한 OID를 할당하지 않습니다.
 
-SU3 파일의 PQ 전용 서명의 경우, 인증서에 대해 [https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)에서 정의된 non-prehash 변형의 OID를 사용합니다. 파일을 두 번 해시해야 할 수 있기 때문에(HashML-DSA와 X2559가 동일한 해시 함수 SHA512를 사용하더라도) SU3 파일의 하이브리드 서명은 정의하지 않습니다. 또한 X.509 인증서에서 두 개의 키와 서명을 연결하는 것은 완전히 비표준입니다.
+SU3 파일의 PQ 전용 서명의 경우, 인증서에 대해 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)에서 정의된 non-prehash 변형의 OID를 사용합니다. 파일을 두 번 해시해야 할 수 있기 때문에(HashML-DSA와 X2559가 동일한 해시 함수 SHA512를 사용하더라도) SU3 파일의 하이브리드 서명은 정의하지 않습니다. 또한 X.509 인증서에서 두 개의 키와 서명을 연결하는 것은 완전히 비표준입니다.
 
 SU3 파일의 Ed25519 서명은 허용하지 않으며, Ed25519ph 서명을 정의했지만 이에 대한 OID에 합의한 적이 없고 사용한 적도 없습니다.
 
@@ -1223,7 +1224,7 @@ Destination 크기에 대한 지침을 제공하는 다른 문서들을 업데�
 | MLKEM1024_X25519 | +1584 | +1584 |
 속도:
 
-[https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/)에서 보고된 속도:
+[Cloudflare](https://blog.cloudflare.com/pq-2024/)에서 보고된 속도:
 
 | Type | Relative speed |
 |------|----------------|
@@ -1260,7 +1261,7 @@ Java 예비 테스트 결과:
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
 속도:
 
-[https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/)에서 보고된 속도:
+[Cloudflare](https://blog.cloudflare.com/pq-2024/)에서 보고된 속도:
 
 | Type | Relative speed sign | verify |
 |------|---------------------|--------|
@@ -1278,7 +1279,7 @@ Java에서의 예비 테스트 결과:
 | MLDSA87 | 11.1x slower | 1.5x slower | same |
 ## Security Analysis
 
-NIST 보안 카테고리는 [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) 슬라이드 10에 요약되어 있습니다. 예비 기준: 하이브리드 프로토콜의 경우 최소 NIST 보안 카테고리는 2여야 하고, PQ 전용의 경우 3이어야 합니다.
+NIST 보안 카테고리는 [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) 슬라이드 10에 요약되어 있습니다. 예비 기준: 하이브리드 프로토콜의 경우 최소 NIST 보안 카테고리는 2여야 하고, PQ 전용의 경우 3이어야 합니다.
 
 | Category | As Secure As |
 |----------|--------------|
@@ -1291,7 +1292,7 @@ NIST 보안 카테고리는 [https://www.nccoe.nist.gov/sites/default/files/2023
 
 이것들은 모두 하이브리드 프로토콜입니다. 아마도 MLKEM768을 선호해야 할 것입니다. MLKEM512는 충분히 안전하지 않습니다.
 
-NIST 보안 카테고리 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
+NIST 보안 카테고리 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1302,7 +1303,7 @@ NIST 보안 카테고리 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.p
 
 이 제안서는 하이브리드 및 PQ 전용 서명 유형을 모두 정의합니다. MLDSA44 하이브리드가 MLDSA65 PQ 전용보다 바람직합니다. MLDSA65와 MLDSA87의 키 및 서명 크기는 적어도 처음에는 우리에게 너무 클 것 같습니다.
 
-NIST 보안 카테고리 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
+NIST 보안 카테고리 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1331,15 +1332,15 @@ NIST 보안 카테고리 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.p
 
 ### Library Support
 
-Bouncycastle, BoringSSL, WolfSSL 라이브러리들이 현재 MLKEM과 MLDSA를 지원합니다. OpenSSL 지원은 2025년 4월 8일 3.5 릴리스에서 제공될 예정입니다 [https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Bouncycastle, BoringSSL, WolfSSL 라이브러리들이 현재 MLKEM과 MLDSA를 지원합니다. OpenSSL 지원은 2025년 4월 8일 3.5 릴리스에서 제공될 예정입니다 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
-Java I2P에서 적용한 southernstorm.com Noise 라이브러리는 하이브리드 핸드셰이크에 대한 예비 지원을 포함하고 있었지만, 사용되지 않아 제거했습니다. [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)에 맞춰 다시 추가하고 업데이트해야 할 것입니다.
+Java I2P에서 적용한 southernstorm.com Noise 라이브러리는 하이브리드 핸드셰이크에 대한 예비 지원을 포함하고 있었지만, 사용되지 않아 제거했습니다. [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)에 맞춰 다시 추가하고 업데이트해야 할 것입니다.
 
 ### Signing Variants
 
-[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 섹션 3.4에 정의된 바와 같이 "determinstic" 변형이 아닌 "hedged" 또는 무작위화된 서명 변형을 사용할 것입니다. 이는 동일한 데이터에 대해서도 각 서명이 다르도록 보장하며, 사이드 채널 공격에 대한 추가적인 보호를 제공합니다. [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)에서 "hedged" 변형이 기본값이라고 명시하고 있지만, 다양한 라이브러리에서는 그렇지 않을 수도 있습니다. 구현자들은 서명에 "hedged" 변형이 사용되도록 반드시 확인해야 합니다.
+[FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 섹션 3.4에 정의된 바와 같이 "determinstic" 변형이 아닌 "hedged" 또는 무작위화된 서명 변형을 사용할 것입니다. 이는 동일한 데이터에 대해서도 각 서명이 다르도록 보장하며, 사이드 채널 공격에 대한 추가적인 보호를 제공합니다. [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)에서 "hedged" 변형이 기본값이라고 명시하고 있지만, 다양한 라이브러리에서는 그렇지 않을 수도 있습니다. 구현자들은 서명에 "hedged" 변형이 사용되도록 반드시 확인해야 합니다.
 
-우리는 메시지를 내부적으로 0x00 || len(ctx) || ctx || message로 인코딩하는 일반적인 서명 프로세스(Pure ML-DSA Signature Generation이라고 함)를 사용합니다. 여기서 ctx는 0x00..0xFF 크기의 선택적 값입니다. 우리는 선택적 컨텍스트를 사용하지 않습니다. len(ctx) == 0입니다. 이 프로세스는 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algorithm 2 step 10과 Algorithm 3 step 5에 정의되어 있습니다. 일부 공개된 테스트 벡터는 메시지가 인코딩되지 않는 모드 설정이 필요할 수 있다는 점에 유의하십시오.
+우리는 메시지를 내부적으로 0x00 || len(ctx) || ctx || message로 인코딩하는 일반적인 서명 프로세스(Pure ML-DSA Signature Generation이라고 함)를 사용합니다. 여기서 ctx는 0x00..0xFF 크기의 선택적 값입니다. 우리는 선택적 컨텍스트를 사용하지 않습니다. len(ctx) == 0입니다. 이 프로세스는 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algorithm 2 step 10과 Algorithm 3 step 5에 정의되어 있습니다. 일부 공개된 테스트 벡터는 메시지가 인코딩되지 않는 모드 설정이 필요할 수 있다는 점에 유의하십시오.
 
 ### Reliability
 
@@ -1501,7 +1502,7 @@ Router들은 leaseSet 서명을 검증하므로 타입 12-17 목적지에 대해
 
 Ratchet이 가장 높은 우선순위입니다. Transport가 그 다음이고, Signature가 가장 낮은 우선순위입니다.
 
-서명 도입은 암호화 도입보다 1년 이상 늦어질 예정입니다. 역호환성이 불가능하기 때문입니다. 또한 업계의 MLDSA 채택은 CA/Browser Forum과 인증 기관에 의해 표준화될 것입니다. CA는 먼저 하드웨어 보안 모듈(HSM) 지원이 필요하지만, 현재는 사용할 수 없습니다 [https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). CA/Browser Forum이 복합 서명 지원 또는 요구 여부를 포함하여 구체적인 매개변수 선택에 대한 결정을 주도할 것으로 예상합니다 [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+서명 도입은 암호화 도입보다 1년 이상 늦어질 예정입니다. 역호환성이 불가능하기 때문입니다. 또한 업계의 MLDSA 채택은 CA/Browser Forum과 인증 기관에 의해 표준화될 것입니다. CA는 먼저 하드웨어 보안 모듈(HSM) 지원이 필요하지만, 현재는 사용할 수 없습니다 [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). CA/Browser Forum이 복합 서명 지원 또는 요구 여부를 포함하여 구체적인 매개변수 선택에 대한 결정을 주도할 것으로 예상합니다 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 | Milestone | Target |
 |-----------|--------|
@@ -1528,7 +1529,7 @@ X25519에서 했던 것처럼, 하나씩 차례로 시도해보면 되는 것으
 
 - Noise Hash 선택 - SHA256을 유지할지 아니면 업그레이드할지?
   SHA256은 향후 20-30년간 안전할 것이며, PQ에 의해 위협받지 않음,
-  [https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) 및 [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) 참조.
+  [NIST presentation](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) 및 [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) 참조.
   SHA256이 손상되면 더 심각한 문제가 있음 (netDb).
 - NTCP2 별도 포트, 별도 router 주소
 - SSU2 중계 / 피어 테스트

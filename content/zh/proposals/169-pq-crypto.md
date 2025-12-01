@@ -7,19 +7,20 @@ lastupdated: "2025-06-12"
 status: "打开"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
+toc: true
 ---
 
 ## 概述
 
 虽然对合适的后量子(PQ)密码学的研究和竞争已经进行了十年，但直到最近选择才变得明确。
 
-我们在 2022 年开始研究 PQ 密码学的影响 [http://zzz.i2p/topics/3294](http://zzz.i2p/topics/3294)。
+我们在 2022 年开始研究 PQ 密码学的影响 [zzz.i2p](http://zzz.i2p/topics/3294)。
 
-在过去两年中，TLS 标准增加了混合加密支持，由于 Chrome 和 Firefox 的支持，现在它已被用于互联网上很大一部分的加密流量 [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/)。
+在过去两年中，TLS 标准增加了混合加密支持，由于 Chrome 和 Firefox 的支持，现在它已被用于互联网上很大一部分的加密流量 [Cloudflare](https://blog.cloudflare.com/pq-2024/)。
 
-美国国家标准与技术研究院（NIST）最近完成并发布了后量子密码学的推荐算法 [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)。多个常见的密码学库现已支持NIST标准，或将在不久的将来发布相关支持。
+美国国家标准与技术研究院（NIST）最近完成并发布了后量子密码学的推荐算法 [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)。多个常见的密码学库现已支持NIST标准，或将在不久的将来发布相关支持。
 
-[https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/) 和 [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) 都建议立即开始迁移。另请参阅2022年NSA后量子常见问题解答 [https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)。I2P应该在安全和密码学方面成为领导者。现在是实施推荐算法的时候了。使用我们灵活的加密类型和签名类型系统，我们将为混合加密以及后量子和混合签名添加类型。
+[Cloudflare](https://blog.cloudflare.com/pq-2024/) 和 [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) 都建议立即开始迁移。另请参阅2022年NSA后量子常见问题解答 [NSA](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)。I2P应该在安全和密码学方面成为领导者。现在是实施推荐算法的时候了。使用我们灵活的加密类型和签名类型系统，我们将为混合加密以及后量子和混合签名添加类型。
 
 ## 目标
 
@@ -59,7 +60,7 @@ target: "0.9.80"
 | Hybrid Dests | |
 ## 设计
 
-我们将支持 NIST FIPS 203 和 204 标准 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)，这些标准基于 CRYSTALS-Kyber 和 CRYSTALS-Dilithium（版本 3.1、3 及更早版本），但与其不兼容。
+我们将支持 NIST FIPS 203 和 204 标准 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)，这些标准基于 CRYSTALS-Kyber 和 CRYSTALS-Dilithium（版本 3.1、3 及更早版本），但与其不兼容。
 
 ### Key Exchange
 
@@ -76,7 +77,7 @@ PQ KEM 仅提供临时密钥，不直接支持静态密钥握手，如 Noise XK 
 
 Noise N 不使用双向密钥交换，因此不适用于混合加密。
 
-因此，我们将仅支持混合加密，用于 NTCP2、SSU2 和 Ratchet。我们将按照 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) 中的定义来定义三种 ML-KEM 变体，总共新增 3 种加密类型。混合类型仅与 X25519 结合定义。
+因此，我们将仅支持混合加密，用于 NTCP2、SSU2 和 Ratchet。我们将按照 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) 中的定义来定义三种 ML-KEM 变体，总共新增 3 种加密类型。混合类型仅与 X25519 结合定义。
 
 新的加密类型包括：
 
@@ -102,9 +103,9 @@ Noise N 不使用双向密钥交换，因此不适用于混合加密。
 | SU3 files | yes | yes |
 | X.509 certificates | yes | yes |
 | Java keystores | yes | yes |
-因此我们将支持仅PQ和混合签名两种方式。我们将定义三个ML-DSA变体，如[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)中所述，三个与Ed25519结合的混合变体，以及三个仅用于SU3文件的带预哈希的仅PQ变体，总共9种新的签名类型。混合类型仅与Ed25519结合定义。我们将使用标准ML-DSA，而非预哈希变体(HashML-DSA)，除了SU3文件。
+因此我们将支持仅PQ和混合签名两种方式。我们将定义三个ML-DSA变体，如[FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)中所述，三个与Ed25519结合的混合变体，以及三个仅用于SU3文件的带预哈希的仅PQ变体，总共9种新的签名类型。混合类型仅与Ed25519结合定义。我们将使用标准ML-DSA，而非预哈希变体(HashML-DSA)，除了SU3文件。
 
-我们将使用"对冲"或随机化签名变体，而不是"确定性"变体，如 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 第3.4节所定义。这确保了每个签名都是不同的，即使是对相同数据进行签名，并提供了针对侧信道攻击的额外保护。有关算法选择（包括编码和上下文）的更多详细信息，请参阅下面的实现说明部分。
+我们将使用"对冲"或随机化签名变体，而不是"确定性"变体，如 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 第3.4节所定义。这确保了每个签名都是不同的，即使是对相同数据进行签名，并提供了针对侧信道攻击的额外保护。有关算法选择（包括编码和上下文）的更多详细信息，请参阅下面的实现说明部分。
 
 新的签名类型包括：
 
@@ -119,7 +120,7 @@ Noise N 不使用双向密钥交换，因此不适用于混合加密。
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-X.509证书和其他DER编码将使用[https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)中定义的复合结构和OID。
+X.509证书和其他DER编码将使用[IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)中定义的复合结构和OID。
 
 开销将会相当大。典型的 Ed25519 destination 和 router identity 大小为 391 字节。根据算法不同，这些将增加 3.5 倍到 6.8 倍。Ed25519 签名为 64 字节。根据算法不同，这些将增加 38 倍到 76 倍。典型的已签名 RouterInfo、LeaseSet、可回复数据报和已签名流消息约为 1KB。根据算法不同，这些将增加 3 倍到 8 倍。
 
@@ -133,23 +134,23 @@ X.509证书和其他DER编码将使用[https://datatracker.ietf.org/doc/draft-ie
 
 ### New Crypto Required
 
-- ML-KEM（原名 CRYSTALS-Kyber）[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-- ML-DSA（原名 CRYSTALS-Dilithium）[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-- SHA3-128（原名 Keccak-256）[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) 仅用于 SHAKE128
-- SHA3-256（原名 Keccak-512）[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
-- SHAKE128 和 SHAKE256（SHA3-128 和 SHA3-256 的 XOF 扩展）[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- ML-KEM（原名 CRYSTALS-Kyber）[FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+- ML-DSA（原名 CRYSTALS-Dilithium）[FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+- SHA3-128（原名 Keccak-256）[FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) 仅用于 SHAKE128
+- SHA3-256（原名 Keccak-512）[FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- SHAKE128 和 SHAKE256（SHA3-128 和 SHA3-256 的 XOF 扩展）[FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 
-SHA3-256、SHAKE128 和 SHAKE256 的测试向量可在 [https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values) 找到。
+SHA3-256、SHAKE128 和 SHAKE256 的测试向量可在 [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values) 找到。
 
-请注意，Java bouncycastle库支持以上所有功能。C++库支持已包含在OpenSSL 3.5中[https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)。
+请注意，Java bouncycastle库支持以上所有功能。C++库支持已包含在OpenSSL 3.5中[OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)。
 
 ### Alternatives
 
-我们不会支持 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+)，它比 ML-DSA 慢得多且体积大得多。我们不会支持即将推出的 FIPS206 (Falcon)，它尚未标准化。我们不会支持 NTRU 或其他未被 NIST 标准化的 PQ 候选方案。
+我们不会支持 [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+)，它比 ML-DSA 慢得多且体积大得多。我们不会支持即将推出的 FIPS206 (Falcon)，它尚未标准化。我们不会支持 NTRU 或其他未被 NIST 标准化的 PQ 候选方案。
 
 ### Rosenpass
 
-有一些研究 [https://eprint.iacr.org/2020/379.pdf](https://eprint.iacr.org/2020/379.pdf) 关于将 Wireguard (IK) 适配为纯后量子密码学，但该论文中存在几个开放性问题。后来，这种方法被实现为 Rosenpass [https://rosenpass.eu/](https://rosenpass.eu/) [https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)，用于后量子 Wireguard。
+有一些研究 [paper](https://eprint.iacr.org/2020/379.pdf) 关于将 Wireguard (IK) 适配为纯后量子密码学，但该论文中存在几个开放性问题。后来，这种方法被实现为 Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)，用于后量子 Wireguard。
 
 Rosenpass 使用类似 Noise KK 的握手，配合预共享的 Classic McEliece 460896 静态密钥（每个 500 KB）和 Kyber-512（本质上是 MLKEM-512）临时密钥。由于 Classic McEliece 密文只有 188 字节，而 Kyber-512 公钥和密文大小合理，两个握手消息都能适合标准 UDP MTU。PQ KK 握手输出的共享密钥（osk）被用作标准 Wireguard IK 握手的输入预共享密钥（psk）。因此总共有两个完整的握手过程，一个是纯 PQ 的，一个是纯 X25519 的。
 
@@ -183,7 +184,7 @@ Rosenpass 使用类似 Noise KK 的握手，配合预共享的 Classic McEliece 
 | MLKEM768_CT | 1088 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024_CT | 1568 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | NONE | 0 | 0.9.xx | See proposal 169, for destinations with PQ sig types only, not for RIs or Leasesets |
-混合公钥是 X25519 密钥。KEM 公钥是从 Alice 发送到 Bob 的临时 PQ 密钥。编码和字节序在 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) 中定义。
+混合公钥是 X25519 密钥。KEM 公钥是从 Alice 发送到 Bob 的临时 PQ 密钥。编码和字节序在 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) 中定义。
 
 MLKEM*_CT 密钥实际上并不是公钥，它们是在 Noise 握手过程中从 Bob 发送给 Alice 的"密文"。这里列出它们是为了完整性。
 
@@ -199,7 +200,7 @@ MLKEM*_CT 密钥实际上并不是公钥，它们是在 Noise 握手过程中从
 | MLKEM512 | 1632 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM768 | 2400 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024 | 3168 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-混合私钥是 X25519 密钥。KEM 私钥仅供 Alice 使用。KEM 编码和字节序在 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) 中定义。
+混合私钥是 X25519 密钥。KEM 私钥仅供 Alice 使用。KEM 编码和字节序在 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) 中定义。
 
 ### 需要新的加密算法
 
@@ -216,7 +217,7 @@ MLKEM*_CT 密钥实际上并不是公钥，它们是在 Noise 握手过程中从
 | MLDSA44ph | 1344 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA65ph | 1984 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA87ph | 2624 | 0.9.xx | Only for SU3 files, not for netdb structures |
-混合签名公钥是 Ed25519 密钥后跟 PQ 密钥，如 [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) 中所述。编码和字节顺序在 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 中定义。
+混合签名公钥是 Ed25519 密钥后跟 PQ 密钥，如 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) 中所述。编码和字节顺序在 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 中定义。
 
 ### 替代方案
 
@@ -233,7 +234,7 @@ MLKEM*_CT 密钥实际上并不是公钥，它们是在 Noise 握手过程中从
 | MLDSA44ph | 2592 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 4064 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-混合签名私钥是 Ed25519 密钥后跟 PQ 密钥，如 [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) 所述。编码和字节序在 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 中定义。
+混合签名私钥是 Ed25519 密钥后跟 PQ 密钥，如 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) 所述。编码和字节序在 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 中定义。
 
 ### Rosenpass
 
@@ -250,7 +251,7 @@ MLKEM*_CT 密钥实际上并不是公钥，它们是在 Noise 握手过程中从
 | MLDSA44ph | 2484 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 3373 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4691 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-混合签名是 Ed25519 签名后跟 PQ 签名，如 [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) 中所述。混合签名通过验证两个签名来进行验证，如果其中任何一个失败则验证失败。编码和字节顺序在 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 中定义。
+混合签名是 Ed25519 签名后跟 PQ 签名，如 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) 中所述。混合签名通过验证两个签名来进行验证，如果其中任何一个失败则验证失败。编码和字节顺序在 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 中定义。
 
 ### Key Certificates
 
@@ -315,7 +316,7 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
 ### 私钥
 
-握手使用 [https://noiseprotocol.org/noise.html](https://noiseprotocol.org/noise.html) 握手模式。
+握手使用 [Noise Protocol](https://noiseprotocol.org/noise.html) 握手模式。
 
 使用以下字母映射：
 
@@ -325,7 +326,7 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 - e1 = 一次性临时 PQ 密钥，从 Alice 发送到 Bob
 - ekem1 = KEM 密文，从 Bob 发送到 Alice
 
-针对混合前向保密 (hfs) 对 XK 和 IK 的以下修改如 [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 第 5 节所述：
+针对混合前向保密 (hfs) 对 XK 和 IK 的以下修改如 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 第 5 节所述：
 
 ```
 XK:                       XKhfs:
@@ -349,7 +350,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-e1 模式定义如下，如 [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 第 4 节所述：
+e1 模式定义如下，如 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 第 4 节所述：
 
 ```
 For Alice:
@@ -367,7 +368,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-ekem1 模式定义如下，具体规范见 [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 第 4 节：
+ekem1 模式定义如下，具体规范见 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 第 4 节：
 
 ```
 For Bob:
@@ -396,10 +397,10 @@ For Bob:
 
 #### Issues
 
-- 我们是否应该更改握手哈希函数？参见 [https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)。
+- 我们是否应该更改握手哈希函数？参见 [comparison](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)。
   SHA256 对后量子攻击并不脆弱，但如果我们确实想升级
   哈希函数，现在是时候了，趁着我们正在更改其他东西。
-  当前的 IETF SSH 提案 [https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) 是使用 MLKEM768
+  当前的 IETF SSH 提案 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) 是使用 MLKEM768
   配合 SHA256，以及 MLKEM1024 配合 SHA384。该提案包含
   安全考虑的讨论。
 - 我们是否应该停止发送 0-RTT ratchet 数据（除了 leaseSet）？
@@ -409,13 +410,13 @@ For Bob:
 
 本节适用于 IK 和 XK 协议。
 
-混合握手在 [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 中定义。第一条消息从 Alice 发送到 Bob，在消息载荷之前包含 e1（封装密钥）。这被视为额外的静态密钥；对其调用 EncryptAndHash()（作为 Alice）或 DecryptAndHash()（作为 Bob）。然后按常规方式处理消息载荷。
+混合握手在 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) 中定义。第一条消息从 Alice 发送到 Bob，在消息载荷之前包含 e1（封装密钥）。这被视为额外的静态密钥；对其调用 EncryptAndHash()（作为 Alice）或 DecryptAndHash()（作为 Bob）。然后按常规方式处理消息载荷。
 
 第二条消息，从 Bob 到 Alice，在消息载荷之前包含 ekem1 和密文。这被视为一个额外的静态密钥；对其调用 EncryptAndHash()（作为 Bob）或 DecryptAndHash()（作为 Alice）。然后，计算 kem_shared_key 并调用 MixKey(kem_shared_key)。接着按常规方式处理消息载荷。
 
 #### Defined ML-KEM Operations
 
-我们定义以下函数，对应于 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) 中定义的密码学构建块。
+我们定义以下函数，对应于 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) 中定义的密码学构建块。
 
 (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -1190,9 +1191,9 @@ TODO: 是否有更高效的方式来定义签名/验证以避免复制签名？
 
 待办事项
 
-[https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) 第 8.1 节不允许在 X.509 证书中使用 HashML-DSA，并且不为 HashML-DSA 分配 OID，这是由于实现复杂性和安全性降低的原因。
+[IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) 第 8.1 节不允许在 X.509 证书中使用 HashML-DSA，并且不为 HashML-DSA 分配 OID，这是由于实现复杂性和安全性降低的原因。
 
-对于 SU3 文件的 PQ-only 签名，使用证书中定义在 [https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) 的非预哈希变体的 OID。我们不定义 SU3 文件的混合签名，因为我们可能需要对文件进行两次哈希（尽管 HashML-DSA 和 X2559 使用相同的哈希函数 SHA512）。此外，在 X.509 证书中连接两个密钥和签名将是完全非标准的。
+对于 SU3 文件的 PQ-only 签名，使用证书中定义在 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) 的非预哈希变体的 OID。我们不定义 SU3 文件的混合签名，因为我们可能需要对文件进行两次哈希（尽管 HashML-DSA 和 X2559 使用相同的哈希函数 SHA512）。此外，在 X.509 证书中连接两个密钥和签名将是完全非标准的。
 
 请注意，我们不允许对 SU3 文件进行 Ed25519 签名，虽然我们已经定义了 Ed25519ph 签名，但我们从未就其 OID 达成一致，也从未使用过它。
 
@@ -1223,7 +1224,7 @@ TODO: 是否有更高效的方式来定义签名/验证以避免复制签名？
 | MLKEM1024_X25519 | +1584 | +1584 |
 速度：
 
-根据 [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/) 报告的速度：
+根据 [Cloudflare](https://blog.cloudflare.com/pq-2024/) 报告的速度：
 
 | Type | Relative speed |
 |------|----------------|
@@ -1260,7 +1261,7 @@ Java 中的初步测试结果：
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
 速度：
 
-据 [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/) 报告的速度：
+据 [Cloudflare](https://blog.cloudflare.com/pq-2024/) 报告的速度：
 
 | Type | Relative speed sign | verify |
 |------|---------------------|--------|
@@ -1278,7 +1279,7 @@ Java 初步测试结果：
 | MLDSA87 | 11.1x slower | 1.5x slower | same |
 ## Security Analysis
 
-NIST 安全类别在 [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) 第 10 页幻灯片中有总结。初步标准：对于混合协议，我们的最低 NIST 安全类别应为 2 级，对于纯 PQ 协议应为 3 级。
+NIST 安全类别在 [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) 第 10 页幻灯片中有总结。初步标准：对于混合协议，我们的最低 NIST 安全类别应为 2 级，对于纯 PQ 协议应为 3 级。
 
 | Category | As Secure As |
 |----------|--------------|
@@ -1291,7 +1292,7 @@ NIST 安全类别在 [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc
 
 这些都是混合协议。可能需要优先选择 MLKEM768；MLKEM512 的安全性不够。
 
-NIST 安全类别 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
+NIST 安全类别 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1302,7 +1303,7 @@ NIST 安全类别 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](htt
 
 该提案定义了混合和仅 PQ 的签名类型。MLDSA44 混合类型比 MLDSA65 仅 PQ 类型更可取。MLDSA65 和 MLDSA87 的密钥和签名大小对我们来说可能太大了，至少在最初阶段是如此。
 
-NIST 安全类别 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)：
+NIST 安全类别 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)：
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1331,15 +1332,15 @@ NIST 安全类别 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](htt
 
 ### Library Support
 
-Bouncycastle、BoringSSL 和 WolfSSL 库现在支持 MLKEM 和 MLDSA。OpenSSL 支持将在 2025 年 4 月 8 日的 3.5 版本中提供 [https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)。
+Bouncycastle、BoringSSL 和 WolfSSL 库现在支持 MLKEM 和 MLDSA。OpenSSL 支持将在 2025 年 4 月 8 日的 3.5 版本中提供 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)。
 
-Java I2P 所采用的 southernstorm.com Noise 库包含了对混合握手的初步支持，但我们将其作为未使用功能删除了；我们将需要重新添加并更新它以匹配 [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)。
+Java I2P 所采用的 southernstorm.com Noise 库包含了对混合握手的初步支持，但我们将其作为未使用功能删除了；我们将需要重新添加并更新它以匹配 [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)。
 
 ### Signing Variants
 
-我们将使用"对冲"或随机化签名变体，而不是"确定性"变体，如 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 第3.4节所定义。这确保了每个签名都是不同的，即使对相同数据进行签名，并提供针对侧信道攻击的额外保护。虽然 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 规定"对冲"变体是默认值，但在各种库中这可能是也可能不是真实情况。实现者必须确保使用"对冲"变体进行签名。
+我们将使用"对冲"或随机化签名变体，而不是"确定性"变体，如 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 第3.4节所定义。这确保了每个签名都是不同的，即使对相同数据进行签名，并提供针对侧信道攻击的额外保护。虽然 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 规定"对冲"变体是默认值，但在各种库中这可能是也可能不是真实情况。实现者必须确保使用"对冲"变体进行签名。
 
-我们使用标准签名过程（称为 Pure ML-DSA Signature Generation），该过程内部将消息编码为 0x00 || len(ctx) || ctx || message，其中 ctx 是一些大小为 0x00..0xFF 的可选值。我们没有使用任何可选上下文。len(ctx) == 0。此过程在 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 算法 2 第 10 步和算法 3 第 5 步中定义。注意，某些已发布的测试向量可能需要设置一种模式，其中消息不被编码。
+我们使用标准签名过程（称为 Pure ML-DSA Signature Generation），该过程内部将消息编码为 0x00 || len(ctx) || ctx || message，其中 ctx 是一些大小为 0x00..0xFF 的可选值。我们没有使用任何可选上下文。len(ctx) == 0。此过程在 [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) 算法 2 第 10 步和算法 3 第 5 步中定义。注意，某些已发布的测试向量可能需要设置一种模式，其中消息不被编码。
 
 ### Reliability
 
@@ -1501,7 +1502,7 @@ PQ威胁模型是在合理时间内（比如几个月内）破解认证密钥，
 
 Ratchet 是最高优先级。传输协议次之。签名是最低优先级。
 
-签名推出也将比加密推出晚一年或更长时间，因为无法实现向后兼容性。此外，MLDSA在行业中的采用将由CA/Browser Forum和证书颁发机构标准化。CA首先需要硬件安全模块(HSM)支持，但目前尚不可用 [https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)。我们期望CA/Browser Forum推动特定参数选择的决策，包括是否支持或要求复合签名 [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)。
+签名推出也将比加密推出晚一年或更长时间，因为无法实现向后兼容性。此外，MLDSA在行业中的采用将由CA/Browser Forum和证书颁发机构标准化。CA首先需要硬件安全模块(HSM)支持，但目前尚不可用 [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)。我们期望CA/Browser Forum推动特定参数选择的决策，包括是否支持或要求复合签名 [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)。
 
 | Milestone | Target |
 |-----------|--------|
@@ -1528,7 +1529,7 @@ Ratchet 是最高优先级。传输协议次之。签名是最低优先级。
 
 - Noise 哈希选择 - 继续使用 SHA256 还是升级？
   SHA256 在未来 20-30 年应该都是安全的，不会受到后量子算法威胁，
-  参见 [https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) 和 [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)。
+  参见 [NIST presentation](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) 和 [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)。
   如果 SHA256 被破解，我们面临的问题会更严重（netdb）。
 - NTCP2 独立端口，独立 router 地址
 - SSU2 中继 / 节点测试

@@ -7,19 +7,20 @@ lastupdated: "2025-06-12"
 status: "Otevřít"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
+toc: true
 ---
 
 ## Přehled
 
 Zatímco výzkum a soutěž o vhodnou post-kvantovou (PQ) kryptografii probíhají již celou dekádu, možnosti se staly jasné teprve nedávno.
 
-Začali jsme zkoumat důsledky PQ kryptografie v roce 2022 [http://zzz.i2p/topics/3294](http://zzz.i2p/topics/3294).
+Začali jsme zkoumat důsledky PQ kryptografie v roce 2022 [zzz.i2p](http://zzz.i2p/topics/3294).
 
-Standardy TLS přidaly podporu hybridního šifrování v posledních dvou letech a nyní se používá pro významnou část šifrovaného provozu na internetu díky podpoře v Chrome a Firefox [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/).
+Standardy TLS přidaly podporu hybridního šifrování v posledních dvou letech a nyní se používá pro významnou část šifrovaného provozu na internetu díky podpoře v Chrome a Firefox [Cloudflare](https://blog.cloudflare.com/pq-2024/).
 
-NIST nedávno dokončil a publikoval doporučené algoritmy pro post-kvantovou kryptografii [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). Několik běžných kryptografických knihoven nyní podporuje standardy NIST nebo v blízké budoucnosti vydá tuto podporu.
+NIST nedávno dokončil a publikoval doporučené algoritmy pro post-kvantovou kryptografii [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). Několik běžných kryptografických knihoven nyní podporuje standardy NIST nebo v blízké budoucnosti vydá tuto podporu.
 
-Jak [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/), tak [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) doporučují, aby migrace začala okamžitě. Viz také NSA PQ FAQ z roku 2022 [https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF). I2P by měl být lídrem v oblasti bezpečnosti a kryptografie. Nyní je čas implementovat doporučené algoritmy. Pomocí našeho flexibilního systému typů kryptografie a typů podpisů přidáme typy pro hybridní kryptografii a pro PQ a hybridní podpisy.
+Jak [Cloudflare](https://blog.cloudflare.com/pq-2024/), tak [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) doporučují, aby migrace začala okamžitě. Viz také NSA PQ FAQ z roku 2022 [NSA](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF). I2P by měl být lídrem v oblasti bezpečnosti a kryptografie. Nyní je čas implementovat doporučené algoritmy. Pomocí našeho flexibilního systému typů kryptografie a typů podpisů přidáme typy pro hybridní kryptografii a pro PQ a hybridní podpisy.
 
 ## Cíle
 
@@ -59,7 +60,7 @@ Upravíme následující protokoly, zhruba v pořadí vývoje. Celkové nasazen�
 | Hybrid Dests | |
 ## Návrh
 
-Budeme podporovat standardy NIST FIPS 203 a 204 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), které jsou založeny na, ale NEJSOU kompatibilní s, CRYSTALS-Kyber a CRYSTALS-Dilithium (verze 3.1, 3 a starší).
+Budeme podporovat standardy NIST FIPS 203 a 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), které jsou založeny na, ale NEJSOU kompatibilní s, CRYSTALS-Kyber a CRYSTALS-Dilithium (verze 3.1, 3 a starší).
 
 ### Key Exchange
 
@@ -76,7 +77,7 @@ PQ KEM poskytuje pouze dočasné klíče a přímo nepodporuje handshaky se stat
 
 Noise N nepoužívá obousměrnou výměnu klíčů, a proto není vhodný pro hybridní šifrování.
 
-Takže budeme podporovat pouze hybridní šifrování pro NTCP2, SSU2 a Ratchet. Definujeme tři varianty ML-KEM podle [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), celkem pro 3 nové typy šifrování. Hybridní typy budou definovány pouze v kombinaci s X25519.
+Takže budeme podporovat pouze hybridní šifrování pro NTCP2, SSU2 a Ratchet. Definujeme tři varianty ML-KEM podle [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), celkem pro 3 nové typy šifrování. Hybridní typy budou definovány pouze v kombinaci s X25519.
 
 Nové typy šifrování jsou:
 
@@ -102,9 +103,9 @@ Budeme podporovat PQ a hybridní podpisy v následujících strukturách:
 | SU3 files | yes | yes |
 | X.509 certificates | yes | yes |
 | Java keystores | yes | yes |
-Takže budeme podporovat jak PQ-only, tak hybridní podpisy. Definujeme tři varianty ML-DSA podle [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), tři hybridní varianty s Ed25519 a tři PQ-only varianty s prehash pouze pro SU3 soubory, celkem tedy 9 nových typů podpisů. Hybridní typy budou definovány pouze v kombinaci s Ed25519. Použijeme standardní ML-DSA, NIKOLI varianty pre-hash (HashML-DSA), kromě SU3 souborů.
+Takže budeme podporovat jak PQ-only, tak hybridní podpisy. Definujeme tři varianty ML-DSA podle [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), tři hybridní varianty s Ed25519 a tři PQ-only varianty s prehash pouze pro SU3 soubory, celkem tedy 9 nových typů podpisů. Hybridní typy budou definovány pouze v kombinaci s Ed25519. Použijeme standardní ML-DSA, NIKOLI varianty pre-hash (HashML-DSA), kromě SU3 souborů.
 
-Použijeme "hedged" neboli randomizovanou variantu podpisování, nikoliv "deterministickou" variantu, jak je definována v [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) sekce 3.4. Tím je zajištěno, že každý podpis je odlišný, i když se týká stejných dat, a poskytuje dodatečnou ochranu proti útokům postranním kanálem. Další podrobnosti o volbách algoritmů včetně kódování a kontextu naleznete v sekci poznámek k implementaci níže.
+Použijeme "hedged" neboli randomizovanou variantu podpisování, nikoliv "deterministickou" variantu, jak je definována v [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) sekce 3.4. Tím je zajištěno, že každý podpis je odlišný, i když se týká stejných dat, a poskytuje dodatečnou ochranu proti útokům postranním kanálem. Další podrobnosti o volbách algoritmů včetně kódování a kontextu naleznete v sekci poznámek k implementaci níže.
 
 Nové typy podpisů jsou:
 
@@ -119,7 +120,7 @@ Nové typy podpisů jsou:
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-X.509 certifikáty a další DER kódování budou používat kompozitní struktury a OID definované v [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+X.509 certifikáty a další DER kódování budou používat kompozitní struktury a OID definované v [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 Režie bude značná. Typické velikosti Ed25519 destination a router identity jsou 391 bajtů. Tyto se zvýší 3,5x až 6,8x v závislosti na algoritmu. Ed25519 podpisy mají 64 bajtů. Tyto se zvýší 38x až 76x v závislosti na algoritmu. Typické podepsané RouterInfo, LeaseSet, odpovědní datagramy a podepsané streaming zprávy mají asi 1KB. Tyto se zvýší 3x až 8x v závislosti na algoritmu.
 
@@ -133,23 +134,23 @@ Pro RouterIdentities je typ šifrování ElGamal zastaralý. Nové typy podpisů
 
 ### New Crypto Required
 
-- ML-KEM (dříve CRYSTALS-Kyber) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-- ML-DSA (dříve CRYSTALS-Dilithium) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-- SHA3-128 (dříve Keccak-256) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) Používá se pouze pro SHAKE128
-- SHA3-256 (dříve Keccak-512) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
-- SHAKE128 a SHAKE256 (XOF rozšíření pro SHA3-128 a SHA3-256) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- ML-KEM (dříve CRYSTALS-Kyber) [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+- ML-DSA (dříve CRYSTALS-Dilithium) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+- SHA3-128 (dříve Keccak-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) Používá se pouze pro SHAKE128
+- SHA3-256 (dříve Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- SHAKE128 a SHAKE256 (XOF rozšíření pro SHA3-128 a SHA3-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 
-Testovací vektory pro SHA3-256, SHAKE128 a SHAKE256 jsou dostupné na [https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
+Testovací vektory pro SHA3-256, SHAKE128 a SHAKE256 jsou dostupné na [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
 
-Poznámka: Java bouncycastle knihovna podporuje všechny výše uvedené. Podpora C++ knihovny je v OpenSSL 3.5 [https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Poznámka: Java bouncycastle knihovna podporuje všechny výše uvedené. Podpora C++ knihovny je v OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 ### Alternatives
 
-Nebudeme podporovat [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), je mnohem mnohem pomalejší a větší než ML-DSA. Nebudeme podporovat nadcházející FIPS206 (Falcon), ještě není standardizován. Nebudeme podporovat NTRU nebo jiné PQ kandidáty, které nebyly standardizovány NIST.
+Nebudeme podporovat [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), je mnohem mnohem pomalejší a větší než ML-DSA. Nebudeme podporovat nadcházející FIPS206 (Falcon), ještě není standardizován. Nebudeme podporovat NTRU nebo jiné PQ kandidáty, které nebyly standardizovány NIST.
 
 ### Rosenpass
 
-Existuje nějaký výzkum [https://eprint.iacr.org/2020/379.pdf](https://eprint.iacr.org/2020/379.pdf) o adaptaci Wireguard (IK) pro čistou PQ kryptografii, ale v tomto článku je několik otevřených otázek. Později byl tento přístup implementován jako Rosenpass [https://rosenpass.eu/](https://rosenpass.eu/) [https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) pro PQ Wireguard.
+Existuje nějaký výzkum [paper](https://eprint.iacr.org/2020/379.pdf) o adaptaci Wireguard (IK) pro čistou PQ kryptografii, ale v tomto článku je několik otevřených otázek. Později byl tento přístup implementován jako Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) pro PQ Wireguard.
 
 Rosenpass používá handshake podobný Noise KK s předsdílenými statickými klíči Classic McEliece 460896 (každý 500 KB) a efemérními klíči Kyber-512 (v podstatě MLKEM-512). Jelikož šifrotexty Classic McEliece mají pouze 188 bajtů a veřejné klíče a šifrotexty Kyber-512 mají rozumnou velikost, obě handshake zprávy se vejdou do standardního UDP MTU. Výstupní sdílený klíč (osk) z PQ KK handshake se používá jako vstupní předsdílený klíč (psk) pro standardní Wireguard IK handshake. Celkem tak probíhají dva kompletní handshaky, jeden čistě PQ a jeden čistě X25519.
 
@@ -183,7 +184,7 @@ Nové typy veřejných klíčů jsou:
 | MLKEM768_CT | 1088 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024_CT | 1568 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | NONE | 0 | 0.9.xx | See proposal 169, for destinations with PQ sig types only, not for RIs or Leasesets |
-Hybridní veřejné klíče jsou klíče X25519. Veřejné klíče KEM jsou dočasné PQ klíče odeslané od Alice k Bobovi. Kódování a pořadí bytů jsou definovány v [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Hybridní veřejné klíče jsou klíče X25519. Veřejné klíče KEM jsou dočasné PQ klíče odeslané od Alice k Bobovi. Kódování a pořadí bytů jsou definovány v [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 MLKEM*_CT klíče nejsou ve skutečnosti veřejné klíče, jsou to "šifrovaný text" odeslaný od Boba k Alici v Noise handshake. Jsou zde uvedeny pro úplnost.
 
@@ -199,7 +200,7 @@ Nové typy Private Key jsou:
 | MLKEM512 | 1632 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM768 | 2400 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024 | 3168 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-Hybridní privátní klíče jsou X25519 klíče. KEM privátní klíče jsou pouze pro Alice. KEM kódování a pořadí bajtů jsou definovány v [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Hybridní privátní klíče jsou X25519 klíče. KEM privátní klíče jsou pouze pro Alice. KEM kódování a pořadí bajtů jsou definovány v [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 ### Vyžadována nová kryptografie
 
@@ -216,7 +217,7 @@ Nové typy podpisových veřejných klíčů jsou:
 | MLDSA44ph | 1344 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA65ph | 1984 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA87ph | 2624 | 0.9.xx | Only for SU3 files, not for netdb structures |
-Hybridní veřejné klíče pro podepisování jsou klíč Ed25519 následovaný PQ klíčem, jak je uvedeno v [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Kódování a pořadí bajtů jsou definovány v [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Hybridní veřejné klíče pro podepisování jsou klíč Ed25519 následovaný PQ klíčem, jak je uvedeno v [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Kódování a pořadí bajtů jsou definovány v [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### Alternativy
 
@@ -233,7 +234,7 @@ Nové typy Signing Private Key jsou:
 | MLDSA44ph | 2592 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 4064 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-Hybridní podpisové privátní klíče jsou Ed25519 klíč následovaný PQ klíčem, jak je uvedeno v [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Kódování a pořadí bajtů jsou definovány v [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Hybridní podpisové privátní klíče jsou Ed25519 klíč následovaný PQ klíčem, jak je uvedeno v [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Kódování a pořadí bajtů jsou definovány v [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### Rosenpass
 
@@ -250,7 +251,7 @@ Nové typy Signature jsou:
 | MLDSA44ph | 2484 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 3373 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4691 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-Hybridní podpisy jsou podpis Ed25519 následovaný PQ podpisem, jak je uvedeno v [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Hybridní podpisy jsou ověřovány ověřením obou podpisů a selhávají, pokud selže kterýkoliv z nich. Kódování a pořadí bajtů jsou definovány v [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Hybridní podpisy jsou podpis Ed25519 následovaný PQ podpisem, jak je uvedeno v [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Hybridní podpisy jsou ověřovány ověřením obou podpisů a selhávají, pokud selže kterýkoliv z nich. Kódování a pořadí bajtů jsou definovány v [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### Key Certificates
 
@@ -315,7 +316,7 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
 ### PrivateKey
 
-Handshaky používají [https://noiseprotocol.org/noise.html](https://noiseprotocol.org/noise.html) handshake vzory.
+Handshaky používají [Noise Protocol](https://noiseprotocol.org/noise.html) handshake vzory.
 
 Používá se následující mapování písmen:
 
@@ -325,7 +326,7 @@ Používá se následující mapování písmen:
 - e1 = jednorázový dočasný PQ klíč, poslaný od Alice k Bobovi
 - ekem1 = KEM šifrový text, poslaný od Boba k Alici
 
-Následující modifikace XK a IK pro hybridní forward secrecy (hfs) jsou specifikovány v [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekce 5:
+Následující modifikace XK a IK pro hybridní forward secrecy (hfs) jsou specifikovány v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekce 5:
 
 ```
 XK:                       XKhfs:
@@ -349,7 +350,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-Vzor e1 je definován následovně, jak je specifikováno v [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekci 4:
+Vzor e1 je definován následovně, jak je specifikováno v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekci 4:
 
 ```
 For Alice:
@@ -367,7 +368,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-Vzor ekem1 je definován následovně, jak je specifikováno v [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekci 4:
+Vzor ekem1 je definován následovně, jak je specifikováno v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) sekci 4:
 
 ```
 For Bob:
@@ -396,10 +397,10 @@ For Bob:
 
 #### Issues
 
-- Měli bychom změnit hash funkci pro handshake? Viz [https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
+- Měli bychom změnit hash funkci pro handshake? Viz [comparison](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
   SHA256 není zranitelná vůči PQ, ale pokud chceme upgradovat
   naši hash funkci, nyní je ten správný čas, zatímco měníme další věci.
-  Aktuální IETF SSH návrh [https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) je používat MLKEM768
+  Aktuální IETF SSH návrh [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) je používat MLKEM768
   s SHA256 a MLKEM1024 s SHA384. Tento návrh zahrnuje
   diskusi bezpečnostních hledisek.
 - Měli bychom přestat odesílat 0-RTT ratchet data (kromě LS)?
@@ -409,13 +410,13 @@ For Bob:
 
 Tato sekce se vztahuje na protokoly IK i XK.
 
-Hybridní handshake je definován v [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). První zpráva, od Alice k Bobovi, obsahuje e1, enkapsulační klíč, před datovou částí zprávy. Tento je považován za dodatečný statický klíč; zavolejte na něj EncryptAndHash() (jako Alice) nebo DecryptAndHash() (jako Bob). Poté zpracujte datovou část zprávy jako obvykle.
+Hybridní handshake je definován v [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). První zpráva, od Alice k Bobovi, obsahuje e1, enkapsulační klíč, před datovou částí zprávy. Tento je považován za dodatečný statický klíč; zavolejte na něj EncryptAndHash() (jako Alice) nebo DecryptAndHash() (jako Bob). Poté zpracujte datovou část zprávy jako obvykle.
 
 Druhá zpráva, od Boba k Alici, obsahuje ekem1, šifrovaný text, před užitečným obsahem zprávy. To je považováno za dodatečný statický klíč; zavolejte na něj EncryptAndHash() (jako Bob) nebo DecryptAndHash() (jako Alice). Poté vypočítejte kem_shared_key a zavolejte MixKey(kem_shared_key). Následně zpracujte užitečný obsah zprávy jako obvykle.
 
 #### Defined ML-KEM Operations
 
-Definujeme následující funkce odpovídající kryptografickým stavebním blokům použitým podle definice v [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Definujeme následující funkce odpovídající kryptografickým stavebním blokům použitým podle definice v [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -1190,9 +1191,9 @@ TODO: Existuje efektivnější způsob, jak definovat podepisování/ověřován
 
 TODO
 
-[https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) sekce 8.1 zakazuje HashML-DSA v X.509 certifikátech a nepřiřazuje OID pro HashML-DSA kvůli implementačním složitostem a snížené bezpečnosti.
+[IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) sekce 8.1 zakazuje HashML-DSA v X.509 certifikátech a nepřiřazuje OID pro HashML-DSA kvůli implementačním složitostem a snížené bezpečnosti.
 
-Pro PQ-only podpisy SU3 souborů používejte OID definované v [https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) pro non-prehash varianty certifikátů. Nedefinujeme hybridní podpisy SU3 souborů, protože bychom mohli muset hashovat soubory dvakrát (ačkoliv HashML-DSA a X2559 používají stejnou hash funkci SHA512). Také by zřetězení dvou klíčů a podpisů v X.509 certifikátu bylo zcela nestandardní.
+Pro PQ-only podpisy SU3 souborů používejte OID definované v [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) pro non-prehash varianty certifikátů. Nedefinujeme hybridní podpisy SU3 souborů, protože bychom mohli muset hashovat soubory dvakrát (ačkoliv HashML-DSA a X2559 používají stejnou hash funkci SHA512). Také by zřetězení dvou klíčů a podpisů v X.509 certifikátu bylo zcela nestandardní.
 
 Upozorňujeme, že zakazujeme Ed25519 podepisování SU3 souborů, a ačkoli jsme definovali Ed25519ph podepisování, nikdy jsme se nedohodli na OID pro něj ani ho nepoužívali.
 
@@ -1223,7 +1224,7 @@ Zvětšení velikosti (bajty):
 | MLKEM1024_X25519 | +1584 | +1584 |
 Rychlost:
 
-Rychlosti podle zprávy [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/):
+Rychlosti podle zprávy [Cloudflare](https://blog.cloudflare.com/pq-2024/):
 
 | Type | Relative speed |
 |------|----------------|
@@ -1260,7 +1261,7 @@ Typické velikosti klíčů, podpisů, RIdent, Dest nebo zvýšení velikosti (E
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
 Rychlost:
 
-Rychlosti dle zprávy na [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/):
+Rychlosti dle zprávy na [Cloudflare](https://blog.cloudflare.com/pq-2024/):
 
 | Type | Relative speed sign | verify |
 |------|---------------------|--------|
@@ -1278,7 +1279,7 @@ Předběžné výsledky testů v Javě:
 | MLDSA87 | 11.1x slower | 1.5x slower | same |
 ## Security Analysis
 
-Bezpečnostní kategorie NIST jsou shrnuty v [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slide 10. Předběžná kritéria: Naše minimální bezpečnostní kategorie NIST by měla být 2 pro hybridní protokoly a 3 pro PQ-only.
+Bezpečnostní kategorie NIST jsou shrnuty v [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slide 10. Předběžná kritéria: Naše minimální bezpečnostní kategorie NIST by měla být 2 pro hybridní protokoly a 3 pro PQ-only.
 
 | Category | As Secure As |
 |----------|--------------|
@@ -1291,7 +1292,7 @@ Bezpečnostní kategorie NIST jsou shrnuty v [https://www.nccoe.nist.gov/sites/d
 
 Všechny tyto protokoly jsou hybridní. Pravděpodobně je třeba upřednostnit MLKEM768; MLKEM512 není dostatečně bezpečný.
 
-Bezpečnostní kategorie NIST [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
+Bezpečnostní kategorie NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1302,7 +1303,7 @@ Bezpečnostní kategorie NIST [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.
 
 Tento návrh definuje jak hybridní, tak čistě PQ typy podpisů. MLDSA44 hybridní je vhodnější než MLDSA65 čistě PQ. Velikosti klíčů a podpisů pro MLDSA65 a MLDSA87 jsou pro nás pravděpodobně příliš velké, alespoň zpočátku.
 
-Bezpečnostní kategorie NIST [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
+Bezpečnostní kategorie NIST [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1331,15 +1332,15 @@ Podpisy: MLDSA87 a hybridní varianta pravděpodobně příliš velké; MLDSA65 
 
 ### Library Support
 
-Knihovny Bouncycastle, BoringSSL a WolfSSL nyní podporují MLKEM a MLDSA. Podpora OpenSSL bude v jejich vydání 3.5 dne 8. dubna 2025 [https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Knihovny Bouncycastle, BoringSSL a WolfSSL nyní podporují MLKEM a MLDSA. Podpora OpenSSL bude v jejich vydání 3.5 dne 8. dubna 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
-Noise knihovna ze southernstorm.com adaptovaná pro Java I2P obsahovala předběžnou podporu pro hybridní handshaky, ale odstranili jsme ji jako nepoužívanou; budeme ji muset přidat zpět a aktualizovat tak, aby odpovídala [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
+Noise knihovna ze southernstorm.com adaptovaná pro Java I2P obsahovala předběžnou podporu pro hybridní handshaky, ale odstranili jsme ji jako nepoužívanou; budeme ji muset přidat zpět a aktualizovat tak, aby odpovídala [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
 
 ### Signing Variants
 
-Použijeme variantu "hedged" nebo randomizovaného podepisování, nikoliv "deterministickou" variantu, jak je definováno v [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) sekce 3.4. Tím je zajištěno, že každý podpis je odlišný, i když je nad stejnými daty, a poskytuje dodatečnou ochranu proti útokům pomocí postranních kanálů. Zatímco [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) specifikuje, že varianta "hedged" je výchozí, to nemusí být pravda v různých knihovnách. Implementátoři musí zajistit, aby byla pro podepisování použita varianta "hedged".
+Použijeme variantu "hedged" nebo randomizovaného podepisování, nikoliv "deterministickou" variantu, jak je definováno v [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) sekce 3.4. Tím je zajištěno, že každý podpis je odlišný, i když je nad stejnými daty, a poskytuje dodatečnou ochranu proti útokům pomocí postranních kanálů. Zatímco [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) specifikuje, že varianta "hedged" je výchozí, to nemusí být pravda v různých knihovnách. Implementátoři musí zajistit, aby byla pro podepisování použita varianta "hedged".
 
-Používáme normální proces podepisování (nazývaný Pure ML-DSA Signature Generation), který kóduje zprávu interně jako 0x00 || len(ctx) || ctx || message, kde ctx je nějaká volitelná hodnota o velikosti 0x00..0xFF. Nepoužíváme žádný volitelný kontext. len(ctx) == 0. Tento proces je definován v [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algoritmus 2 krok 10 a Algoritmus 3 krok 5. Upozorňujeme, že některé publikované testovací vektory mohou vyžadovat nastavení režimu, kde zpráva není kódována.
+Používáme normální proces podepisování (nazývaný Pure ML-DSA Signature Generation), který kóduje zprávu interně jako 0x00 || len(ctx) || ctx || message, kde ctx je nějaká volitelná hodnota o velikosti 0x00..0xFF. Nepoužíváme žádný volitelný kontext. len(ctx) == 0. Tento proces je definován v [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algoritmus 2 krok 10 a Algoritmus 3 krok 5. Upozorňujeme, že některé publikované testovací vektory mohou vyžadovat nastavení režimu, kde zpráva není kódována.
 
 ### Reliability
 
@@ -1501,7 +1502,7 @@ Takže nejčasnější PQ model hrozby je OBEP/IBGW ukládající provoz pro poz
 
 Ratchet má nejvyšší prioritu. Transporty jsou další. Podpisy mají nejnižší prioritu.
 
-Zavedení podpisů bude také o rok nebo více později než zavedení šifrování, protože zpětná kompatibilita není možná. Také přijetí MLDSA v průmyslu bude standardizováno CA/Browser Forum a certifikačními autoritami. CA nejprve potřebují podporu hardwarového bezpečnostního modulu (HSM), která v současnosti není dostupná [https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Očekáváme, že CA/Browser Forum bude řídit rozhodnutí o konkrétních parametrických volbách, včetně toho, zda podporovat nebo vyžadovat kompozitní podpisy [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Zavedení podpisů bude také o rok nebo více později než zavedení šifrování, protože zpětná kompatibilita není možná. Také přijetí MLDSA v průmyslu bude standardizováno CA/Browser Forum a certifikačními autoritami. CA nejprve potřebují podporu hardwarového bezpečnostního modulu (HSM), která v současnosti není dostupná [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Očekáváme, že CA/Browser Forum bude řídit rozhodnutí o konkrétních parametrických volbách, včetně toho, zda podporovat nebo vyžadovat kompozitní podpisy [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 | Milestone | Target |
 |-----------|--------|
@@ -1528,7 +1529,7 @@ Měli bychom být schopni zkusit jen jeden-pak-druhý, jak jsme to udělali s X2
 
 - Výběr Noise Hash - zůstat u SHA256 nebo upgradovat?
   SHA256 by měl být dobrý dalších 20-30 let, není ohrožen PQ,
-  Viz [https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) a [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+  Viz [NIST presentation](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) a [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
   Pokud bude SHA256 prolomeno, budeme mít horší problémy (netdb).
 - NTCP2 separátní port, separátní router adresa
 - SSU2 relay / peer test

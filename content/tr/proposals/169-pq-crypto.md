@@ -7,19 +7,20 @@ lastupdated: "2025-06-12"
 status: "Aç"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
+toc: true
 ---
 
 ## Genel Bakış
 
 Uygun kuantum sonrası (PQ) kriptografi için araştırma ve rekabet on yıldır sürmekte olmasına rağmen, seçimler yakın zamana kadar net hale gelmemişti.
 
-2022 yılında PQ kriptografisinin etkilerini incelemeye başladık [http://zzz.i2p/topics/3294](http://zzz.i2p/topics/3294).
+2022 yılında PQ kriptografisinin etkilerini incelemeye başladık [zzz.i2p](http://zzz.i2p/topics/3294).
 
-TLS standartları son iki yılda hibrit şifreleme desteği ekledi ve Chrome ve Firefox'taki destek sayesinde artık internetteki şifreli trafiğin önemli bir bölümü için kullanılıyor [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/).
+TLS standartları son iki yılda hibrit şifreleme desteği ekledi ve Chrome ve Firefox'taki destek sayesinde artık internetteki şifreli trafiğin önemli bir bölümü için kullanılıyor [Cloudflare](https://blog.cloudflare.com/pq-2024/).
 
-NIST yakın zamanda kuantum sonrası kriptografi için önerilen algoritmaları kesinleştirdi ve yayınladı [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). Birçok yaygın kriptografi kütüphanesi artık NIST standartlarını destekliyor veya yakın gelecekte destek yayınlayacak.
+NIST yakın zamanda kuantum sonrası kriptografi için önerilen algoritmaları kesinleştirdi ve yayınladı [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). Birçok yaygın kriptografi kütüphanesi artık NIST standartlarını destekliyor veya yakın gelecekte destek yayınlayacak.
 
-Hem [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/) hem de [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) göçün derhal başlamasını öneriyor. Ayrıca 2022 NSA PQ SSS [https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF) dokümanına da bakın. I2P güvenlik ve kriptografi alanında lider olmalıdır. Önerilen algoritmaları uygulamanın zamanı gelmiştir. Esnek kripto türü ve imza türü sistemimizi kullanarak, hibrit kripto için ve PQ ve hibrit imzalar için türler ekleyeceğiz.
+Hem [Cloudflare](https://blog.cloudflare.com/pq-2024/) hem de [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) göçün derhal başlamasını öneriyor. Ayrıca 2022 NSA PQ SSS [NSA](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF) dokümanına da bakın. I2P güvenlik ve kriptografi alanında lider olmalıdır. Önerilen algoritmaları uygulamanın zamanı gelmiştir. Esnek kripto türü ve imza türü sistemimizi kullanarak, hibrit kripto için ve PQ ve hibrit imzalar için türler ekleyeceğiz.
 
 ## Hedefler
 
@@ -59,7 +60,7 @@ Aşağıdaki protokolleri kabaca geliştirme sırasına göre değiştireceğiz.
 | Hybrid Dests | |
 ## Tasarım
 
-NIST FIPS 203 ve 204 standartlarını destekleyeceğiz [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) - bunlar CRYSTALS-Kyber ve CRYSTALS-Dilithium'a (sürüm 3.1, 3 ve daha eskiler) dayanmakla birlikte bunlarla uyumlu DEĞİLDİR.
+NIST FIPS 203 ve 204 standartlarını destekleyeceğiz [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) - bunlar CRYSTALS-Kyber ve CRYSTALS-Dilithium'a (sürüm 3.1, 3 ve daha eskiler) dayanmakla birlikte bunlarla uyumlu DEĞİLDİR.
 
 ### Key Exchange
 
@@ -76,7 +77,7 @@ PQ KEM yalnızca geçici anahtarlar sağlar ve Noise XK ve IK gibi statik anahta
 
 Noise N iki yönlü anahtar değişimi kullanmaz ve bu nedenle hibrit şifreleme için uygun değildir.
 
-Bu nedenle yalnızca hibrit şifrelemeyi destekleyeceğiz, NTCP2, SSU2 ve Ratchet için. [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) adresinde belirtildiği gibi üç ML-KEM varyantını tanımlayacağız, toplamda 3 yeni şifreleme türü için. Hibrit türler yalnızca X25519 ile kombinasyon halinde tanımlanacak.
+Bu nedenle yalnızca hibrit şifrelemeyi destekleyeceğiz, NTCP2, SSU2 ve Ratchet için. [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) adresinde belirtildiği gibi üç ML-KEM varyantını tanımlayacağız, toplamda 3 yeni şifreleme türü için. Hibrit türler yalnızca X25519 ile kombinasyon halinde tanımlanacak.
 
 Yeni şifreleme türleri şunlardır:
 
@@ -102,9 +103,9 @@ Aşağıdaki yapılarda PQ ve hibrit imzaları destekleyeceğiz:
 | SU3 files | yes | yes |
 | X.509 certificates | yes | yes |
 | Java keystores | yes | yes |
-Bu nedenle hem PQ-only hem de hibrit imzaları destekleyeceğiz. [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) adresinde belirtildiği gibi üç ML-DSA varyantını, Ed25519 ile üç hibrit varyantı ve sadece SU3 dosyaları için prehash ile üç PQ-only varyantı tanımlayacağız, toplamda 9 yeni imza tipi olacak. Hibrit tipler yalnızca Ed25519 ile kombinasyon halinde tanımlanacak. SU3 dosyaları hariç, pre-hash varyantları (HashML-DSA) değil, standart ML-DSA kullanacağız.
+Bu nedenle hem PQ-only hem de hibrit imzaları destekleyeceğiz. [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) adresinde belirtildiği gibi üç ML-DSA varyantını, Ed25519 ile üç hibrit varyantı ve sadece SU3 dosyaları için prehash ile üç PQ-only varyantı tanımlayacağız, toplamda 9 yeni imza tipi olacak. Hibrit tipler yalnızca Ed25519 ile kombinasyon halinde tanımlanacak. SU3 dosyaları hariç, pre-hash varyantları (HashML-DSA) değil, standart ML-DSA kullanacağız.
 
-[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) bölüm 3.4'te tanımlandığı şekilde "deterministik" varyant değil, "hedged" veya rastgele imzalama varyantını kullanacağız. Bu, aynı veri üzerinde olsa bile her imzanın farklı olmasını sağlar ve yan kanal saldırılarına karşı ek koruma sunar. Kodlama ve bağlam dahil olmak üzere algoritma seçimleri hakkında ek ayrıntılar için aşağıdaki uygulama notları bölümüne bakın.
+[FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) bölüm 3.4'te tanımlandığı şekilde "deterministik" varyant değil, "hedged" veya rastgele imzalama varyantını kullanacağız. Bu, aynı veri üzerinde olsa bile her imzanın farklı olmasını sağlar ve yan kanal saldırılarına karşı ek koruma sunar. Kodlama ve bağlam dahil olmak üzere algoritma seçimleri hakkında ek ayrıntılar için aşağıdaki uygulama notları bölümüne bakın.
 
 Yeni imza türleri şunlardır:
 
@@ -119,7 +120,7 @@ Yeni imza türleri şunlardır:
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-X.509 sertifikaları ve diğer DER kodlamaları, [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) adresinde tanımlanan bileşik yapıları ve OID'leri kullanacaktır.
+X.509 sertifikaları ve diğer DER kodlamaları, [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) adresinde tanımlanan bileşik yapıları ve OID'leri kullanacaktır.
 
 Ek yük önemli ölçüde olacaktır. Tipik Ed25519 hedef ve router kimlik boyutları 391 bayttır. Bunlar algoritmaya bağlı olarak 3,5x ile 6,8x arasında artacaktır. Ed25519 imzaları 64 bayttır. Bunlar algoritmaya bağlı olarak 38x ile 76x arasında artacaktır. Tipik imzalı RouterInfo, LeaseSet, yanıtlanabilir datagramlar ve imzalı akış mesajları yaklaşık 1KB'dir. Bunlar algoritmaya bağlı olarak 3x ile 8x arasında artacaktır.
 
@@ -133,23 +134,23 @@ RouterIdentities için ElGamal şifreleme türü kullanımdan kaldırılmıştı
 
 ### New Crypto Required
 
-- ML-KEM (eski adıyla CRYSTALS-Kyber) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-- ML-DSA (eski adıyla CRYSTALS-Dilithium) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-- SHA3-128 (eski adıyla Keccak-256) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) Yalnızca SHAKE128 için kullanılır
-- SHA3-256 (eski adıyla Keccak-512) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
-- SHAKE128 ve SHAKE256 (SHA3-128 ve SHA3-256'nın XOF uzantıları) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- ML-KEM (eski adıyla CRYSTALS-Kyber) [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+- ML-DSA (eski adıyla CRYSTALS-Dilithium) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+- SHA3-128 (eski adıyla Keccak-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) Yalnızca SHAKE128 için kullanılır
+- SHA3-256 (eski adıyla Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- SHAKE128 ve SHAKE256 (SHA3-128 ve SHA3-256'nın XOF uzantıları) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 
-SHA3-256, SHAKE128 ve SHAKE256 için test vektörleri [https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values) adresinde bulunmaktadır.
+SHA3-256, SHAKE128 ve SHAKE256 için test vektörleri [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values) adresinde bulunmaktadır.
 
-Java bouncycastle kütüphanesinin yukarıdakilerin tümünü desteklediğini unutmayın. C++ kütüphane desteği OpenSSL 3.5'te mevcuttur [https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Java bouncycastle kütüphanesinin yukarıdakilerin tümünü desteklediğini unutmayın. C++ kütüphane desteği OpenSSL 3.5'te mevcuttur [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 ### Alternatives
 
-[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+) desteklemeyeceğiz, ML-DSA'dan çok çok daha yavaş ve büyük. Yakında çıkacak olan FIPS206 (Falcon) desteklemeyeceğiz, henüz standartlaştırılmadı. NIST tarafından standartlaştırılmamış NTRU veya diğer PQ adaylarını desteklemeyeceğiz.
+[FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+) desteklemeyeceğiz, ML-DSA'dan çok çok daha yavaş ve büyük. Yakında çıkacak olan FIPS206 (Falcon) desteklemeyeceğiz, henüz standartlaştırılmadı. NIST tarafından standartlaştırılmamış NTRU veya diğer PQ adaylarını desteklemeyeceğiz.
 
 ### Rosenpass
 
-Wireguard'ı (IK) saf PQ kriptografiye uyarlama konusunda bazı araştırmalar [https://eprint.iacr.org/2020/379.pdf](https://eprint.iacr.org/2020/379.pdf) bulunmakta, ancak bu makalede çeşitli açık sorular var. Daha sonra, bu yaklaşım PQ Wireguard için Rosenpass [https://rosenpass.eu/](https://rosenpass.eu/) [https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) olarak uygulandı.
+Wireguard'ı (IK) saf PQ kriptografiye uyarlama konusunda bazı araştırmalar [paper](https://eprint.iacr.org/2020/379.pdf) bulunmakta, ancak bu makalede çeşitli açık sorular var. Daha sonra, bu yaklaşım PQ Wireguard için Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) olarak uygulandı.
 
 Rosenpass, önceden paylaşılmış Classic McEliece 460896 statik anahtarları (her biri 500 KB) ve Kyber-512 (esasen MLKEM-512) geçici anahtarları ile Noise KK benzeri bir el sıkışma kullanır. Classic McEliece şifreli metinleri yalnızca 188 bayt olduğundan ve Kyber-512 genel anahtarları ile şifreli metinleri makul boyutta olduğundan, her iki el sıkışma mesajı da standart bir UDP MTU'ya sığar. PQ KK el sıkışmasından çıkan paylaşılan anahtar (osk), standart Wireguard IK el sıkışması için giriş önceden paylaşılmış anahtar (psk) olarak kullanılır. Böylece toplamda iki tam el sıkışma vardır, biri tamamen PQ ve diğeri tamamen X25519.
 
@@ -183,7 +184,7 @@ Yeni Açık Anahtar türleri şunlardır:
 | MLKEM768_CT | 1088 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024_CT | 1568 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | NONE | 0 | 0.9.xx | See proposal 169, for destinations with PQ sig types only, not for RIs or Leasesets |
-Hibrit genel anahtarlar X25519 anahtarıdır. KEM genel anahtarları Alice'ten Bob'a gönderilen geçici PQ anahtarıdır. Kodlama ve bayt sırası [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) adresinde tanımlanmıştır.
+Hibrit genel anahtarlar X25519 anahtarıdır. KEM genel anahtarları Alice'ten Bob'a gönderilen geçici PQ anahtarıdır. Kodlama ve bayt sırası [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) adresinde tanımlanmıştır.
 
 MLKEM*_CT anahtarları gerçekte public anahtarlar değildir, bunlar Noise handshake'inde Bob'dan Alice'e gönderilen "ciphertext"lerdir. Eksiksizlik için burada listelenmiştir.
 
@@ -199,7 +200,7 @@ Yeni Private Key türleri şunlardır:
 | MLKEM512 | 1632 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM768 | 2400 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024 | 3168 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-Hibrit özel anahtarlar X25519 anahtarlarıdır. KEM özel anahtarlar yalnızca Alice içindir. KEM kodlaması ve bayt sırası [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) adresinde tanımlanmıştır.
+Hibrit özel anahtarlar X25519 anahtarlarıdır. KEM özel anahtarlar yalnızca Alice içindir. KEM kodlaması ve bayt sırası [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) adresinde tanımlanmıştır.
 
 ### Yeni Kripto Gerekli
 
@@ -216,7 +217,7 @@ Yeni İmzalama Genel Anahtarı türleri şunlardır:
 | MLDSA44ph | 1344 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA65ph | 1984 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA87ph | 2624 | 0.9.xx | Only for SU3 files, not for netdb structures |
-Hibrit imzalama genel anahtarları, [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) adresinde belirtildiği gibi, Ed25519 anahtarının ardından PQ anahtarının gelmesiyle oluşur. Kodlama ve bayt sırası [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) adresinde tanımlanmıştır.
+Hibrit imzalama genel anahtarları, [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) adresinde belirtildiği gibi, Ed25519 anahtarının ardından PQ anahtarının gelmesiyle oluşur. Kodlama ve bayt sırası [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) adresinde tanımlanmıştır.
 
 ### Alternatifler
 
@@ -233,7 +234,7 @@ Yeni İmzalama Özel Anahtar türleri şunlardır:
 | MLDSA44ph | 2592 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 4064 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-Hibrit imzalama özel anahtarları, [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) adresinde belirtildiği gibi Ed25519 anahtarını takip eden PQ anahtarıdır. Kodlama ve bayt sırası [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) adresinde tanımlanmıştır.
+Hibrit imzalama özel anahtarları, [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) adresinde belirtildiği gibi Ed25519 anahtarını takip eden PQ anahtarıdır. Kodlama ve bayt sırası [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) adresinde tanımlanmıştır.
 
 ### Rosenpass
 
@@ -250,7 +251,7 @@ Yeni imza türleri şunlardır:
 | MLDSA44ph | 2484 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 3373 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4691 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-Hibrit imzalar, [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) adresinde belirtildiği gibi Ed25519 imzasının ardından PQ imzasının gelmesiyle oluşur. Hibrit imzalar her iki imzayı da doğrulayarak ve bunlardan herhangi biri başarısız olursa başarısız olarak sonuçlanır şekilde doğrulanır. Kodlama ve bayt sırası [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) adresinde tanımlanmıştır.
+Hibrit imzalar, [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/) adresinde belirtildiği gibi Ed25519 imzasının ardından PQ imzasının gelmesiyle oluşur. Hibrit imzalar her iki imzayı da doğrulayarak ve bunlardan herhangi biri başarısız olursa başarısız olarak sonuçlanır şekilde doğrulanır. Kodlama ve bayt sırası [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) adresinde tanımlanmıştır.
 
 ### Key Certificates
 
@@ -315,7 +316,7 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
 ### PrivateKey
 
-El sıkışmalar [https://noiseprotocol.org/noise.html](https://noiseprotocol.org/noise.html) handshake kalıplarını kullanır.
+El sıkışmalar [Noise Protocol](https://noiseprotocol.org/noise.html) handshake kalıplarını kullanır.
 
 Aşağıdaki harf eşleştirmesi kullanılmaktadır:
 
@@ -325,7 +326,7 @@ Aşağıdaki harf eşleştirmesi kullanılmaktadır:
 - e1 = tek kullanımlık geçici PQ anahtarı, Alice'den Bob'a gönderilen
 - ekem1 = KEM şifreli metin, Bob'dan Alice'e gönderilen
 
-Hibrit ileri gizlilik (hfs) için XK ve IK'ye yapılan aşağıdaki değişiklikler [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) bölüm 5'te belirtildiği gibidir:
+Hibrit ileri gizlilik (hfs) için XK ve IK'ye yapılan aşağıdaki değişiklikler [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) bölüm 5'te belirtildiği gibidir:
 
 ```
 XK:                       XKhfs:
@@ -349,7 +350,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-e1 kalıbı, [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) bölüm 4'te belirtildiği üzere şu şekilde tanımlanır:
+e1 kalıbı, [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) bölüm 4'te belirtildiği üzere şu şekilde tanımlanır:
 
 ```
 For Alice:
@@ -367,7 +368,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-ekem1 deseni aşağıdaki gibi tanımlanmıştır, [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) bölüm 4'te belirtildiği üzere:
+ekem1 deseni aşağıdaki gibi tanımlanmıştır, [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) bölüm 4'te belirtildiği üzere:
 
 ```
 For Bob:
@@ -396,10 +397,10 @@ For Bob:
 
 #### Issues
 
-- Handshake hash fonksiyonunu değiştirmeli miyiz? Bkz. [https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
+- Handshake hash fonksiyonunu değiştirmeli miyiz? Bkz. [comparison](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
   SHA256, PQ'ya karşı savunmasız değil, ancak hash fonksiyonumuzu yükseltmek istiyorsak,
   diğer şeyleri değiştirirken şimdi tam zamanı.
-  Mevcut IETF SSH önerisi [https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) SHA256 ile MLKEM768
+  Mevcut IETF SSH önerisi [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) SHA256 ile MLKEM768
   ve SHA384 ile MLKEM1024 kullanmak. Bu öneri
   güvenlik hususlarının tartışmasını da içeriyor.
 - 0-RTT ratchet verisini (leaseSet dışında) göndermeyi bırakmalı mıyız?
@@ -409,13 +410,13 @@ For Bob:
 
 Bu bölüm hem IK hem de XK protokolleri için geçerlidir.
 
-Hibrit el sıkışma [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) adresinde tanımlanmıştır. Alice'den Bob'a gönderilen ilk mesaj, mesaj yükünden önce e1 enkapsülasyon anahtarını içerir. Bu ek bir statik anahtar olarak ele alınır; (Alice olarak) EncryptAndHash() veya (Bob olarak) DecryptAndHash() çağrısı yapın. Ardından mesaj yükünü her zamanki gibi işleyin.
+Hibrit el sıkışma [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) adresinde tanımlanmıştır. Alice'den Bob'a gönderilen ilk mesaj, mesaj yükünden önce e1 enkapsülasyon anahtarını içerir. Bu ek bir statik anahtar olarak ele alınır; (Alice olarak) EncryptAndHash() veya (Bob olarak) DecryptAndHash() çağrısı yapın. Ardından mesaj yükünü her zamanki gibi işleyin.
 
 Bob'dan Alice'e gönderilen ikinci mesaj, mesaj yükünden önce ekem1 ve ciphertext'i içerir. Bu, ek bir statik anahtar olarak ele alınır; (Bob olarak) EncryptAndHash() veya (Alice olarak) DecryptAndHash() çağırın. Ardından, kem_shared_key'i hesaplayın ve MixKey(kem_shared_key) çağırın. Daha sonra mesaj yükünü her zamanki gibi işleyin.
 
 #### Defined ML-KEM Operations
 
-[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) adresinde tanımlandığı şekilde kullanılan kriptografik yapı taşlarına karşılık gelen aşağıdaki fonksiyonları tanımlarız.
+[FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) adresinde tanımlandığı şekilde kullanılan kriptografik yapı taşlarına karşılık gelen aşağıdaki fonksiyonları tanımlarız.
 
 (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -1190,9 +1191,9 @@ TODO: İmzalama/doğrulama işlemlerini imzayı kopyalamaktan kaçınacak şekil
 
 YAPILACAKLAR
 
-[https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) bölüm 8.1, uygulama karmaşıklıkları ve azaltılmış güvenlik nedeniyle HashML-DSA'nın X.509 sertifikalarında kullanılmasını yasaklar ve HashML-DSA için OID atamaz.
+[IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) bölüm 8.1, uygulama karmaşıklıkları ve azaltılmış güvenlik nedeniyle HashML-DSA'nın X.509 sertifikalarında kullanılmasını yasaklar ve HashML-DSA için OID atamaz.
 
-SU3 dosyalarının PQ-only imzaları için, sertifikalarda non-prehash varyantlarının [https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) adresinde tanımlanan OID'lerini kullanın. SU3 dosyalarının hibrit imzalarını tanımlamıyoruz, çünkü dosyaları iki kez hash'lememiz gerekebilir (HashML-DSA ve X2559 aynı hash fonksiyonu SHA512'yi kullansa da). Ayrıca, X.509 sertifikasında iki anahtarı ve imzayı birleştirmek tamamen standart dışı olurdu.
+SU3 dosyalarının PQ-only imzaları için, sertifikalarda non-prehash varyantlarının [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) adresinde tanımlanan OID'lerini kullanın. SU3 dosyalarının hibrit imzalarını tanımlamıyoruz, çünkü dosyaları iki kez hash'lememiz gerekebilir (HashML-DSA ve X2559 aynı hash fonksiyonu SHA512'yi kullansa da). Ayrıca, X.509 sertifikasında iki anahtarı ve imzayı birleştirmek tamamen standart dışı olurdu.
 
 SU3 dosyalarının Ed25519 imzalanmasına izin vermediğimizi ve Ed25519ph imzalamayı tanımlamış olmamıza rağmen, bunun için hiçbir zaman bir OID üzerinde anlaşmaya varmadığımızı veya kullanmadığımızı unutmayın.
 
@@ -1223,7 +1224,7 @@ Boyut artışı (bayt):
 | MLKEM1024_X25519 | +1584 | +1584 |
 Hız:
 
-[https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/) tarafından bildirilen hızlar:
+[Cloudflare](https://blog.cloudflare.com/pq-2024/) tarafından bildirilen hızlar:
 
 | Type | Relative speed |
 |------|----------------|
@@ -1260,7 +1261,7 @@ Tipik anahtar, imza, RIdent, Dest boyutları veya boyut artışları (Ed25519 re
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
 Hız:
 
-[https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/) tarafından bildirilen hızlar:
+[Cloudflare](https://blog.cloudflare.com/pq-2024/) tarafından bildirilen hızlar:
 
 | Type | Relative speed sign | verify |
 |------|---------------------|--------|
@@ -1278,7 +1279,7 @@ Java'da ön test sonuçları:
 | MLDSA87 | 11.1x slower | 1.5x slower | same |
 ## Security Analysis
 
-NIST güvenlik kategorileri [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slayt 10'da özetlenmiştir. Ön kriterler: Hibrit protokoller için minimum NIST güvenlik kategorimiz 2, yalnızca PQ için 3 olmalıdır.
+NIST güvenlik kategorileri [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slayt 10'da özetlenmiştir. Ön kriterler: Hibrit protokoller için minimum NIST güvenlik kategorimiz 2, yalnızca PQ için 3 olmalıdır.
 
 | Category | As Secure As |
 |----------|--------------|
@@ -1291,7 +1292,7 @@ NIST güvenlik kategorileri [https://www.nccoe.nist.gov/sites/default/files/2023
 
 Bunların hepsi hibrit protokollerdir. Muhtemelen MLKEM768'i tercih etmek gerekir; MLKEM512 yeterince güvenli değildir.
 
-NIST güvenlik kategorileri [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
+NIST güvenlik kategorileri [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1302,7 +1303,7 @@ NIST güvenlik kategorileri [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.20
 
 Bu öneri hem hibrit hem de yalnızca PQ imza türlerini tanımlar. MLDSA44 hibrit, yalnızca PQ olan MLDSA65'ten daha tercih edilebilirdir. MLDSA65 ve MLDSA87 için anahtar ve imza boyutları bizim için muhtemelen çok büyük, en azından başlangıçta.
 
-NIST güvenlik kategorileri [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
+NIST güvenlik kategorileri [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1331,15 +1332,15 @@ Bir yıl veya daha fazla geliştirme sürecinden sonra, her kullanım durumu iç
 
 ### Library Support
 
-Bouncycastle, BoringSSL ve WolfSSL kütüphaneleri artık MLKEM ve MLDSA'yı destekliyor. OpenSSL desteği 8 Nisan 2025'teki 3.5 sürümlerinde olacak [https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Bouncycastle, BoringSSL ve WolfSSL kütüphaneleri artık MLKEM ve MLDSA'yı destekliyor. OpenSSL desteği 8 Nisan 2025'teki 3.5 sürümlerinde olacak [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
-Java I2P tarafından uyarlanan southernstorm.com Noise kütüphanesi hibrit handshake'ler için ön destek içeriyordu, ancak kullanılmadığı için kaldırdık; bunu geri eklemek ve [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) ile eşleşecek şekilde güncellemek zorunda kalacağız.
+Java I2P tarafından uyarlanan southernstorm.com Noise kütüphanesi hibrit handshake'ler için ön destek içeriyordu, ancak kullanılmadığı için kaldırdık; bunu geri eklemek ve [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) ile eşleşecek şekilde güncellemek zorunda kalacağız.
 
 ### Signing Variants
 
-[https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) bölüm 3.4'te tanımlandığı gibi "deterministik" varyant değil, "hedged" veya randomize edilmiş imzalama varyantını kullanacağız. Bu, aynı veri üzerinde olsa bile her imzanın farklı olmasını sağlar ve yan kanal saldırılarına karşı ek koruma sağlar. [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) "hedged" varyantının varsayılan olduğunu belirtse de, bu durum çeşitli kütüphanelerde geçerli olabilir veya olmayabilir. Geliştiriciler imzalama için "hedged" varyantının kullanıldığından emin olmalıdır.
+[FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) bölüm 3.4'te tanımlandığı gibi "deterministik" varyant değil, "hedged" veya randomize edilmiş imzalama varyantını kullanacağız. Bu, aynı veri üzerinde olsa bile her imzanın farklı olmasını sağlar ve yan kanal saldırılarına karşı ek koruma sağlar. [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) "hedged" varyantının varsayılan olduğunu belirtse de, bu durum çeşitli kütüphanelerde geçerli olabilir veya olmayabilir. Geliştiriciler imzalama için "hedged" varyantının kullanıldığından emin olmalıdır.
 
-Normal imzalama sürecini (Pure ML-DSA Signature Generation olarak adlandırılır) kullanıyoruz, bu süreç mesajı dahili olarak 0x00 || len(ctx) || ctx || message şeklinde kodlar, burada ctx 0x00..0xFF boyutunda isteğe bağlı bir değerdir. Herhangi bir isteğe bağlı bağlam kullanmıyoruz. len(ctx) == 0. Bu süreç [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algorithm 2 adım 10 ve Algorithm 3 adım 5'te tanımlanmıştır. Yayımlanmış bazı test vektörlerinin mesajın kodlanmadığı bir mod ayarlama gerektirebileceğini unutmayın.
+Normal imzalama sürecini (Pure ML-DSA Signature Generation olarak adlandırılır) kullanıyoruz, bu süreç mesajı dahili olarak 0x00 || len(ctx) || ctx || message şeklinde kodlar, burada ctx 0x00..0xFF boyutunda isteğe bağlı bir değerdir. Herhangi bir isteğe bağlı bağlam kullanmıyoruz. len(ctx) == 0. Bu süreç [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Algorithm 2 adım 10 ve Algorithm 3 adım 5'te tanımlanmıştır. Yayımlanmış bazı test vektörlerinin mesajın kodlanmadığı bir mod ayarlama gerektirebileceğini unutmayın.
 
 ### Reliability
 
@@ -1501,7 +1502,7 @@ Dolayısıyla, en erken PQ tehdit modeli OBEP/IBGW'nin trafiği daha sonra şifr
 
 Ratchet en yüksek önceliktir. Transport'lar bir sonrakidir. İmzalar en düşük önceliktir.
 
-İmza dağıtımı da şifreleme dağıtımından bir yıl veya daha fazla sonra olacak, çünkü geriye dönük uyumluluk mümkün değil. Ayrıca, endüstride MLDSA benimsenmesi CA/Browser Forum ve Sertifika Otoriteleri tarafından standartlaştırılacak. CA'ların önce donanım güvenlik modülü (HSM) desteğine ihtiyacı var, bu da şu anda mevcut değil [https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). CA/Browser Forum'un kompozit imzaların desteklenmesi veya zorunlu kılınması da dahil olmak üzere belirli parametre seçimlerinde kararları yönlendirmesini bekliyoruz [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+İmza dağıtımı da şifreleme dağıtımından bir yıl veya daha fazla sonra olacak, çünkü geriye dönük uyumluluk mümkün değil. Ayrıca, endüstride MLDSA benimsenmesi CA/Browser Forum ve Sertifika Otoriteleri tarafından standartlaştırılacak. CA'ların önce donanım güvenlik modülü (HSM) desteğine ihtiyacı var, bu da şu anda mevcut değil [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). CA/Browser Forum'un kompozit imzaların desteklenmesi veya zorunlu kılınması da dahil olmak üzere belirli parametre seçimlerinde kararları yönlendirmesini bekliyoruz [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 | Milestone | Target |
 |-----------|--------|
@@ -1528,7 +1529,7 @@ X25519'da yaptığımız gibi, kanıtlanması için sadece birini-sonra-diğerin
 
 - Noise Hash seçimi - SHA256 ile devam et mi yoksa yükseltme yapılsın mı?
   SHA256 20-30 yıl daha iyi olmalı, PQ tarafından tehdit edilmiyor,
-  Bkz. [https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) ve [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+  Bkz. [NIST presentation](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) ve [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
   SHA256 kırılırsa daha kötü sorunlarımız var (netdb).
 - NTCP2 ayrı port, ayrı router adresi
 - SSU2 relay / peer test

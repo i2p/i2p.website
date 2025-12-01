@@ -7,19 +7,20 @@ lastupdated: "2025-06-12"
 status: "Mở"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
+toc: true
 ---
 
 ## Tổng quan
 
 Trong khi nghiên cứu và cạnh tranh để tìm ra mật mã học hậu lượng tử (PQ) phù hợp đã diễn ra trong một thập kỷ, các lựa chọn vẫn chưa trở nên rõ ràng cho đến gần đây.
 
-Chúng tôi bắt đầu xem xét những tác động của mật mã PQ vào năm 2022 [http://zzz.i2p/topics/3294](http://zzz.i2p/topics/3294).
+Chúng tôi bắt đầu xem xét những tác động của mật mã PQ vào năm 2022 [zzz.i2p](http://zzz.i2p/topics/3294).
 
-Các tiêu chuẩn TLS đã bổ sung hỗ trợ mã hóa lai trong hai năm qua và hiện tại được sử dụng cho một phần đáng kể lưu lượng mã hóa trên internet nhờ vào sự hỗ trợ trong Chrome và Firefox [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/).
+Các tiêu chuẩn TLS đã bổ sung hỗ trợ mã hóa lai trong hai năm qua và hiện tại được sử dụng cho một phần đáng kể lưu lượng mã hóa trên internet nhờ vào sự hỗ trợ trong Chrome và Firefox [Cloudflare](https://blog.cloudflare.com/pq-2024/).
 
-NIST gần đây đã hoàn thiện và công bố các thuật toán được khuyến nghị cho mật mã hậu lượng tử [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). Một số thư viện mật mã phổ biến hiện đã hỗ trợ các tiêu chuẩn NIST hoặc sẽ phát hành hỗ trợ trong tương lai gần.
+NIST gần đây đã hoàn thiện và công bố các thuật toán được khuyến nghị cho mật mã hậu lượng tử [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards). Một số thư viện mật mã phổ biến hiện đã hỗ trợ các tiêu chuẩn NIST hoặc sẽ phát hành hỗ trợ trong tương lai gần.
 
-Cả [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/) và [https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) đều khuyến nghị việc di chuyển nên bắt đầu ngay lập tức. Xem thêm NSA PQ FAQ năm 2022 [https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF). I2P nên dẫn đầu trong lĩnh vực bảo mật và mật mã học. Đây là thời điểm thích hợp để triển khai các thuật toán được khuyến nghị. Sử dụng hệ thống loại mã hóa và loại chữ ký linh hoạt của chúng tôi, chúng tôi sẽ thêm các loại cho mã hóa hybrid, và cho chữ ký PQ và hybrid.
+Cả [Cloudflare](https://blog.cloudflare.com/pq-2024/) và [NIST](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards) đều khuyến nghị việc di chuyển nên bắt đầu ngay lập tức. Xem thêm NSA PQ FAQ năm 2022 [NSA](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF). I2P nên dẫn đầu trong lĩnh vực bảo mật và mật mã học. Đây là thời điểm thích hợp để triển khai các thuật toán được khuyến nghị. Sử dụng hệ thống loại mã hóa và loại chữ ký linh hoạt của chúng tôi, chúng tôi sẽ thêm các loại cho mã hóa hybrid, và cho chữ ký PQ và hybrid.
 
 ## Mục tiêu
 
@@ -59,7 +60,7 @@ Chúng tôi sẽ sửa đổi các giao thức sau đây, theo thứ tự phát 
 | Hybrid Dests | |
 ## Thiết kế
 
-Chúng tôi sẽ hỗ trợ các tiêu chuẩn NIST FIPS 203 và 204 [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) dựa trên, nhưng KHÔNG tương thích với, CRYSTALS-Kyber và CRYSTALS-Dilithium (phiên bản 3.1, 3, và các phiên bản cũ hơn).
+Chúng tôi sẽ hỗ trợ các tiêu chuẩn NIST FIPS 203 và 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) dựa trên, nhưng KHÔNG tương thích với, CRYSTALS-Kyber và CRYSTALS-Dilithium (phiên bản 3.1, 3, và các phiên bản cũ hơn).
 
 ### Key Exchange
 
@@ -76,7 +77,7 @@ PQ KEM chỉ cung cấp các khóa tạm thời và không hỗ trợ trực ti�
 
 Noise N không sử dụng trao đổi khóa hai chiều và do đó không phù hợp cho mã hóa hybrid.
 
-Vậy nên chúng tôi sẽ chỉ hỗ trợ mã hóa hybrid, cho NTCP2, SSU2, và Ratchet. Chúng tôi sẽ định nghĩa ba biến thể ML-KEM như trong [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), cho tổng cộng 3 loại mã hóa mới. Các loại hybrid sẽ chỉ được định nghĩa kết hợp với X25519.
+Vậy nên chúng tôi sẽ chỉ hỗ trợ mã hóa hybrid, cho NTCP2, SSU2, và Ratchet. Chúng tôi sẽ định nghĩa ba biến thể ML-KEM như trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), cho tổng cộng 3 loại mã hóa mới. Các loại hybrid sẽ chỉ được định nghĩa kết hợp với X25519.
 
 Các loại mã hóa mới là:
 
@@ -102,9 +103,9 @@ Chúng tôi sẽ hỗ trợ chữ ký PQ và hybrid trong các cấu trúc sau:
 | SU3 files | yes | yes |
 | X.509 certificates | yes | yes |
 | Java keystores | yes | yes |
-Vậy nên chúng tôi sẽ hỗ trợ cả chữ ký chỉ PQ và hybrid. Chúng tôi sẽ định nghĩa ba biến thể ML-DSA như trong [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), ba biến thể hybrid với Ed25519, và ba biến thể chỉ PQ với prehash chỉ dành cho file SU3, tổng cộng 9 loại chữ ký mới. Các loại hybrid sẽ chỉ được định nghĩa kết hợp với Ed25519. Chúng tôi sẽ sử dụng ML-DSA tiêu chuẩn, KHÔNG phải các biến thể pre-hash (HashML-DSA), trừ file SU3.
+Vậy nên chúng tôi sẽ hỗ trợ cả chữ ký chỉ PQ và hybrid. Chúng tôi sẽ định nghĩa ba biến thể ML-DSA như trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf), ba biến thể hybrid với Ed25519, và ba biến thể chỉ PQ với prehash chỉ dành cho file SU3, tổng cộng 9 loại chữ ký mới. Các loại hybrid sẽ chỉ được định nghĩa kết hợp với Ed25519. Chúng tôi sẽ sử dụng ML-DSA tiêu chuẩn, KHÔNG phải các biến thể pre-hash (HashML-DSA), trừ file SU3.
 
-Chúng tôi sẽ sử dụng biến thể ký "hedged" hoặc ngẫu nhiên hóa, không phải biến thể "determinstic", như được định nghĩa trong [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) mục 3.4. Điều này đảm bảo rằng mỗi chữ ký sẽ khác nhau, ngay cả khi ký trên cùng một dữ liệu, và cung cấp bảo vệ bổ sung chống lại các cuộc tấn công kênh phụ. Xem phần ghi chú triển khai bên dưới để biết thêm chi tiết về các lựa chọn thuật toán bao gồm mã hóa và ngữ cảnh.
+Chúng tôi sẽ sử dụng biến thể ký "hedged" hoặc ngẫu nhiên hóa, không phải biến thể "determinstic", như được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) mục 3.4. Điều này đảm bảo rằng mỗi chữ ký sẽ khác nhau, ngay cả khi ký trên cùng một dữ liệu, và cung cấp bảo vệ bổ sung chống lại các cuộc tấn công kênh phụ. Xem phần ghi chú triển khai bên dưới để biết thêm chi tiết về các lựa chọn thuật toán bao gồm mã hóa và ngữ cảnh.
 
 Các loại chữ ký mới là:
 
@@ -119,7 +120,7 @@ Các loại chữ ký mới là:
 | MLDSA44ph | 18 |
 | MLDSA65ph | 19 |
 | MLDSA87ph | 20 |
-Chứng chỉ X.509 và các mã hóa DER khác sẽ sử dụng các cấu trúc tổng hợp và OID được định nghĩa trong [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Chứng chỉ X.509 và các mã hóa DER khác sẽ sử dụng các cấu trúc tổng hợp và OID được định nghĩa trong [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 Overhead sẽ đáng kể. Kích thước điển hình của destination Ed25519 và router identity là 391 byte. Chúng sẽ tăng từ 3.5x đến 6.8x tùy thuộc vào thuật toán. Chữ ký Ed25519 có kích thước 64 byte. Chúng sẽ tăng từ 38x đến 76x tùy thuộc vào thuật toán. RouterInfo đã ký, LeaseSet, datagram có thể phản hồi, và streaming message đã ký điển hình có kích thước khoảng 1KB. Chúng sẽ tăng từ 3x đến 8x tùy thuộc vào thuật toán.
 
@@ -133,23 +134,23 @@ Vì các loại định danh đích và router mới sẽ không chứa padding,
 
 ### New Crypto Required
 
-- ML-KEM (trước đây là CRYSTALS-Kyber) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
-- ML-DSA (trước đây là CRYSTALS-Dilithium) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
-- SHA3-128 (trước đây là Keccak-256) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) Chỉ được sử dụng cho SHAKE128
-- SHA3-256 (trước đây là Keccak-512) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
-- SHAKE128 và SHAKE256 (phần mở rộng XOF cho SHA3-128 và SHA3-256) [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- ML-KEM (trước đây là CRYSTALS-Kyber) [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+- ML-DSA (trước đây là CRYSTALS-Dilithium) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+- SHA3-128 (trước đây là Keccak-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) Chỉ được sử dụng cho SHAKE128
+- SHA3-256 (trước đây là Keccak-512) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+- SHAKE128 và SHAKE256 (phần mở rộng XOF cho SHA3-128 và SHA3-256) [FIPS 202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 
-Các test vector cho SHA3-256, SHAKE128, và SHAKE256 có tại [https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
+Các test vector cho SHA3-256, SHAKE128, và SHAKE256 có tại [NIST](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values).
 
-Lưu ý rằng thư viện Java bouncycastle hỗ trợ tất cả các thuật toán trên. Hỗ trợ thư viện C++ có trong OpenSSL 3.5 [https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Lưu ý rằng thư viện Java bouncycastle hỗ trợ tất cả các thuật toán trên. Hỗ trợ thư viện C++ có trong OpenSSL 3.5 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
 ### Alternatives
 
-Chúng tôi sẽ không hỗ trợ [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), vì nó chậm hơn và lớn hơn ML-DSA rất nhiều. Chúng tôi sẽ không hỗ trợ FIPS206 sắp tới (Falcon), vì nó chưa được tiêu chuẩn hóa. Chúng tôi sẽ không hỗ trợ NTRU hoặc các ứng viên PQ khác không được NIST tiêu chuẩn hóa.
+Chúng tôi sẽ không hỗ trợ [FIPS 205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf) (Sphincs+), vì nó chậm hơn và lớn hơn ML-DSA rất nhiều. Chúng tôi sẽ không hỗ trợ FIPS206 sắp tới (Falcon), vì nó chưa được tiêu chuẩn hóa. Chúng tôi sẽ không hỗ trợ NTRU hoặc các ứng viên PQ khác không được NIST tiêu chuẩn hóa.
 
 ### Rosenpass
 
-Có một số nghiên cứu [https://eprint.iacr.org/2020/379.pdf](https://eprint.iacr.org/2020/379.pdf) về việc điều chỉnh Wireguard (IK) cho mã hóa PQ thuần túy, nhưng có một số câu hỏi mở trong bài báo đó. Sau đó, cách tiếp cận này đã được triển khai dưới dạng Rosenpass [https://rosenpass.eu/](https://rosenpass.eu/) [https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) cho PQ Wireguard.
+Có một số nghiên cứu [paper](https://eprint.iacr.org/2020/379.pdf) về việc điều chỉnh Wireguard (IK) cho mã hóa PQ thuần túy, nhưng có một số câu hỏi mở trong bài báo đó. Sau đó, cách tiếp cận này đã được triển khai dưới dạng Rosenpass [Rosenpass](https://rosenpass.eu/) [whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf) cho PQ Wireguard.
 
 Rosenpass sử dụng một bắt tay giống Noise KK với các khóa tĩnh Classic McEliece 460896 được chia sẻ trước (mỗi khóa 500 KB) và các khóa tạm thời Kyber-512 (về cơ bản là MLKEM-512). Vì các bản mã hóa Classic McEliece chỉ có 188 byte, và các khóa công khai cùng bản mã hóa Kyber-512 có kích thước hợp lý, cả hai thông điệp bắt tay đều vừa với MTU UDP tiêu chuẩn. Khóa chia sẻ đầu ra (osk) từ bắt tay PQ KK được sử dụng làm khóa chia sẻ trước đầu vào (psk) cho bắt tay Wireguard IK tiêu chuẩn. Vậy tổng cộng có hai bắt tay hoàn chỉnh, một bắt tay PQ thuần túy và một bắt tay X25519 thuần túy.
 
@@ -183,7 +184,7 @@ Các loại Public Key mới là:
 | MLKEM768_CT | 1088 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024_CT | 1568 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | NONE | 0 | 0.9.xx | See proposal 169, for destinations with PQ sig types only, not for RIs or Leasesets |
-Khóa công khai hybrid là khóa X25519. Khóa công khai KEM là khóa PQ tạm thời được gửi từ Alice đến Bob. Mã hóa và thứ tự byte được định nghĩa trong [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Khóa công khai hybrid là khóa X25519. Khóa công khai KEM là khóa PQ tạm thời được gửi từ Alice đến Bob. Mã hóa và thứ tự byte được định nghĩa trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 Các khóa MLKEM*_CT không thực sự là khóa công khai, chúng là "ciphertext" được gửi từ Bob đến Alice trong quá trình bắt tay Noise. Chúng được liệt kê ở đây để hoàn thiện thông tin.
 
@@ -199,7 +200,7 @@ Các loại Private Key mới là:
 | MLKEM512 | 1632 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM768 | 2400 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
 | MLKEM1024 | 3168 | 0.9.xx | See proposal 169, for handshakes only, not for Leasesets, RIs or Destinations |
-Các khóa riêng tư hybrid là các khóa X25519. Các khóa riêng tư KEM chỉ dành cho Alice. Mã hóa KEM và thứ tự byte được định nghĩa trong [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Các khóa riêng tư hybrid là các khóa X25519. Các khóa riêng tư KEM chỉ dành cho Alice. Mã hóa KEM và thứ tự byte được định nghĩa trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 ### Yêu Cầu Mã Hóa Mới
 
@@ -216,7 +217,7 @@ Các loại Signing Public Key mới là:
 | MLDSA44ph | 1344 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA65ph | 1984 | 0.9.xx | Only for SU3 files, not for netdb structures |
 | MLDSA87ph | 2624 | 0.9.xx | Only for SU3 files, not for netdb structures |
-Khóa công khai ký lai (hybrid signing public keys) là khóa Ed25519 theo sau bởi khóa PQ, như trong [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Mã hóa và thứ tự byte được định nghĩa trong [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Khóa công khai ký lai (hybrid signing public keys) là khóa Ed25519 theo sau bởi khóa PQ, như trong [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Mã hóa và thứ tự byte được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### Các Phương Án Thay Thế
 
@@ -233,7 +234,7 @@ Các loại Signing Private Key mới là:
 | MLDSA44ph | 2592 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 4064 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4928 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-Khóa riêng tư ký lai (hybrid signing private keys) là khóa Ed25519 theo sau bởi khóa PQ, như trong [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Mã hóa và thứ tự byte được định nghĩa trong [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Khóa riêng tư ký lai (hybrid signing private keys) là khóa Ed25519 theo sau bởi khóa PQ, như trong [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Mã hóa và thứ tự byte được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### Rosenpass
 
@@ -250,7 +251,7 @@ Các loại Signature mới là:
 | MLDSA44ph | 2484 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA65ph | 3373 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
 | MLDSA87ph | 4691 | 0.9.xx | Only for SU3 files, not for netdb structures. See proposal 169 |
-Chữ ký hybrid là chữ ký Ed25519 theo sau bởi chữ ký PQ, như trong [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Chữ ký hybrid được xác minh bằng cách xác minh cả hai chữ ký, và sẽ thất bại nếu một trong hai thất bại. Mã hóa và thứ tự byte được định nghĩa trong [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
+Chữ ký hybrid là chữ ký Ed25519 theo sau bởi chữ ký PQ, như trong [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/). Chữ ký hybrid được xác minh bằng cách xác minh cả hai chữ ký, và sẽ thất bại nếu một trong hai thất bại. Mã hóa và thứ tự byte được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf).
 
 ### Key Certificates
 
@@ -315,7 +316,7 @@ enckey[0:31] skey[0:351] 5 (960 >> 8) (960 & 0xff) 00 12 00 4 skey[352:1311]
 | MLDSA87_EdDSA_SHA512_Ed25519 | 17 | 2624 | 352 | 2272 | 2663 |
 ### PrivateKey
 
-Việc bắt tay sử dụng các mẫu bắt tay [https://noiseprotocol.org/noise.html](https://noiseprotocol.org/noise.html).
+Việc bắt tay sử dụng các mẫu bắt tay [Noise Protocol](https://noiseprotocol.org/noise.html).
 
 Ánh xạ chữ cái sau đây được sử dụng:
 
@@ -325,7 +326,7 @@ Việc bắt tay sử dụng các mẫu bắt tay [https://noiseprotocol.org/noi
 - e1 = khóa PQ ephemeral một lần, gửi từ Alice đến Bob
 - ekem1 = KEM ciphertext, gửi từ Bob đến Alice
 
-Các thay đổi sau đối với XK và IK cho hybrid forward secrecy (hfs) được quy định trong [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) phần 5:
+Các thay đổi sau đối với XK và IK cho hybrid forward secrecy (hfs) được quy định trong [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) phần 5:
 
 ```
 XK:                       XKhfs:
@@ -349,7 +350,7 @@ XK:                       XKhfs:
   e1 and ekem1 are encrypted. See pattern definitions below.
   NOTE: e1 and ekem1 are different sizes (unlike X25519)
 ```
-Mẫu e1 được định nghĩa như sau, như được chỉ định trong [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) mục 4:
+Mẫu e1 được định nghĩa như sau, như được chỉ định trong [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) mục 4:
 
 ```
 For Alice:
@@ -367,7 +368,7 @@ For Alice:
   n++
   MixHash(ciphertext)
 ```
-Mẫu ekem1 được định nghĩa như sau, theo quy định trong [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) phần 4:
+Mẫu ekem1 được định nghĩa như sau, theo quy định trong [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf) phần 4:
 
 ```
 For Bob:
@@ -396,10 +397,10 @@ For Bob:
 
 #### Issues
 
-- Chúng ta có nên thay đổi hàm hash handshake không? Xem [https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
+- Chúng ta có nên thay đổi hàm hash handshake không? Xem [comparison](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
   SHA256 không dễ bị tấn công bởi PQ, nhưng nếu chúng ta muốn nâng cấp
   hàm hash, bây giờ là lúc thích hợp, trong khi chúng ta đang thay đổi những thứ khác.
-  Đề xuất SSH IETF hiện tại [https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) là sử dụng MLKEM768
+  Đề xuất SSH IETF hiện tại [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/) là sử dụng MLKEM768
   với SHA256, và MLKEM1024 với SHA384. Đề xuất đó bao gồm
   một cuộc thảo luận về các cân nhắc bảo mật.
 - Chúng ta có nên ngừng gửi dữ liệu ratchet 0-RTT (ngoài LS) không?
@@ -409,13 +410,13 @@ For Bob:
 
 Phần này áp dụng cho cả hai giao thức IK và XK.
 
-Handshake hybrid được định nghĩa trong [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). Tin nhắn đầu tiên, từ Alice đến Bob, chứa e1, khóa đóng gói, trước payload của tin nhắn. Điều này được xử lý như một khóa tĩnh bổ sung; gọi EncryptAndHash() trên nó (với tư cách Alice) hoặc DecryptAndHash() (với tư cách Bob). Sau đó xử lý payload tin nhắn như thường lệ.
+Handshake hybrid được định nghĩa trong [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf). Tin nhắn đầu tiên, từ Alice đến Bob, chứa e1, khóa đóng gói, trước payload của tin nhắn. Điều này được xử lý như một khóa tĩnh bổ sung; gọi EncryptAndHash() trên nó (với tư cách Alice) hoặc DecryptAndHash() (với tư cách Bob). Sau đó xử lý payload tin nhắn như thường lệ.
 
 Thông điệp thứ hai, từ Bob đến Alice, chứa ekem1, bản mã hóa, trước tải trọng thông điệp. Điều này được xử lý như một khóa tĩnh bổ sung; gọi EncryptAndHash() trên nó (với vai trò Bob) hoặc DecryptAndHash() (với vai trò Alice). Sau đó, tính toán kem_shared_key và gọi MixKey(kem_shared_key). Tiếp theo xử lý tải trọng thông điệp như thường lệ.
 
 #### Defined ML-KEM Operations
 
-Chúng tôi định nghĩa các hàm sau tương ứng với các khối xây dựng mật mã được sử dụng như được định nghĩa trong [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
+Chúng tôi định nghĩa các hàm sau tương ứng với các khối xây dựng mật mã được sử dụng như được định nghĩa trong [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf).
 
 (encap_key, decap_key) = PQ_KEYGEN()
 
@@ -1190,9 +1191,9 @@ TODO: Có cách nào hiệu quả hơn để định nghĩa signing/verification
 
 CẦN LÀM
 
-[https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) mục 8.1 không cho phép HashML-DSA trong chứng chỉ X.509 và không gán OID cho HashML-DSA, do tính phức tạp trong triển khai và bảo mật giảm.
+[IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) mục 8.1 không cho phép HashML-DSA trong chứng chỉ X.509 và không gán OID cho HashML-DSA, do tính phức tạp trong triển khai và bảo mật giảm.
 
-Đối với chữ ký PQ-only của các file SU3, sử dụng các OID được định nghĩa trong [https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) của các biến thể non-prehash cho các certificate. Chúng tôi không định nghĩa chữ ký hybrid của các file SU3, vì chúng tôi có thể phải hash các file hai lần (mặc dù HashML-DSA và X2559 sử dụng cùng hàm hash SHA512). Ngoài ra, việc nối hai key và chữ ký trong một certificate X.509 sẽ hoàn toàn không tuân chuẩn.
+Đối với chữ ký PQ-only của các file SU3, sử dụng các OID được định nghĩa trong [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) của các biến thể non-prehash cho các certificate. Chúng tôi không định nghĩa chữ ký hybrid của các file SU3, vì chúng tôi có thể phải hash các file hai lần (mặc dù HashML-DSA và X2559 sử dụng cùng hàm hash SHA512). Ngoài ra, việc nối hai key và chữ ký trong một certificate X.509 sẽ hoàn toàn không tuân chuẩn.
 
 Lưu ý rằng chúng tôi không cho phép ký Ed25519 đối với các file SU3, và mặc dù chúng tôi đã định nghĩa việc ký Ed25519ph, chúng tôi chưa bao giờ thống nhất về một OID cho nó, hoặc sử dụng nó.
 
@@ -1223,7 +1224,7 @@ Tăng kích thước (bytes):
 | MLKEM1024_X25519 | +1584 | +1584 |
 Tốc độ:
 
-Tốc độ theo báo cáo từ [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/):
+Tốc độ theo báo cáo từ [Cloudflare](https://blog.cloudflare.com/pq-2024/):
 
 | Type | Relative speed |
 |------|----------------|
@@ -1260,7 +1261,7 @@ Các kích thước điển hình của key, sig, RIdent, Dest hoặc mức tăn
 | MLDSA87_EdDSA_SHA512_Ed25519 | 2624 | 4691 | 7315 | 2663 | 2631 | +7488 | +7456 |
 Tốc độ:
 
-Tốc độ như được báo cáo bởi [https://blog.cloudflare.com/pq-2024/](https://blog.cloudflare.com/pq-2024/):
+Tốc độ như được báo cáo bởi [Cloudflare](https://blog.cloudflare.com/pq-2024/):
 
 | Type | Relative speed sign | verify |
 |------|---------------------|--------|
@@ -1278,7 +1279,7 @@ Kết quả kiểm tra sơ bộ trong Java:
 | MLDSA87 | 11.1x slower | 1.5x slower | same |
 ## Security Analysis
 
-Các danh mục bảo mật NIST được tóm tắt trong [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slide 10. Tiêu chí sơ bộ: Danh mục bảo mật NIST tối thiểu của chúng ta nên là 2 cho các giao thức lai và 3 cho PQ-only.
+Các danh mục bảo mật NIST được tóm tắt trong [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) slide 10. Tiêu chí sơ bộ: Danh mục bảo mật NIST tối thiểu của chúng ta nên là 2 cho các giao thức lai và 3 cho PQ-only.
 
 | Category | As Secure As |
 |----------|--------------|
@@ -1291,7 +1292,7 @@ Các danh mục bảo mật NIST được tóm tắt trong [https://www.nccoe.ni
 
 Đây là tất cả các giao thức lai. Có lẽ cần ưu tiên MLKEM768; MLKEM512 không đủ bảo mật.
 
-Các danh mục bảo mật NIST [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
+Các danh mục bảo mật NIST [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1302,7 +1303,7 @@ Các danh mục bảo mật NIST [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FI
 
 Đề xuất này định nghĩa cả hai loại chữ ký hybrid và chỉ PQ. MLDSA44 hybrid được ưa chuộng hơn so với MLDSA65 chỉ PQ. Kích thước keys và sig cho MLDSA65 và MLDSA87 có lẽ quá lớn đối với chúng ta, ít nhất là lúc đầu.
 
-Các danh mục bảo mật NIST [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
+Các danh mục bảo mật NIST [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf):
 
 | Algorithm | Security Category |
 |-----------|-------------------|
@@ -1331,15 +1332,15 @@ Chữ ký: MLDSA87 và biến thể hybrid có thể quá lớn; MLDSA65 và bi�
 
 ### Library Support
 
-Các thư viện Bouncycastle, BoringSSL và WolfSSL hiện đã hỗ trợ MLKEM và MLDSA. Hỗ trợ OpenSSL sẽ có trong phiên bản 3.5 của họ vào ngày 8 tháng 4 năm 2025 [https://openssl-library.org/post/2025-02-04-release-announcement-3.5/](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
+Các thư viện Bouncycastle, BoringSSL và WolfSSL hiện đã hỗ trợ MLKEM và MLDSA. Hỗ trợ OpenSSL sẽ có trong phiên bản 3.5 của họ vào ngày 8 tháng 4 năm 2025 [OpenSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/).
 
-Thư viện Noise của southernstorm.com được Java I2P điều chỉnh có chứa hỗ trợ sơ bộ cho hybrid handshakes, nhưng chúng tôi đã loại bỏ nó vì không sử dụng; chúng tôi sẽ phải thêm lại và cập nhật để khớp với [https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
+Thư viện Noise của southernstorm.com được Java I2P điều chỉnh có chứa hỗ trợ sơ bộ cho hybrid handshakes, nhưng chúng tôi đã loại bỏ nó vì không sử dụng; chúng tôi sẽ phải thêm lại và cập nhật để khớp với [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf).
 
 ### Signing Variants
 
-Chúng tôi sẽ sử dụng biến thể ký "hedged" hoặc ngẫu nhiên hóa, không phải biến thể "determinstic", như được định nghĩa trong [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) mục 3.4. Điều này đảm bảo rằng mỗi chữ ký đều khác nhau, ngay cả khi ký trên cùng một dữ liệu, và cung cấp bảo vệ bổ sung chống lại các cuộc tấn công kênh phụ. Mặc dù [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) chỉ định rằng biến thể "hedged" là mặc định, điều này có thể đúng hoặc không đúng trong các thư viện khác nhau. Những người thực hiện phải đảm bảo rằng biến thể "hedged" được sử dụng để ký.
+Chúng tôi sẽ sử dụng biến thể ký "hedged" hoặc ngẫu nhiên hóa, không phải biến thể "determinstic", như được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) mục 3.4. Điều này đảm bảo rằng mỗi chữ ký đều khác nhau, ngay cả khi ký trên cùng một dữ liệu, và cung cấp bảo vệ bổ sung chống lại các cuộc tấn công kênh phụ. Mặc dù [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) chỉ định rằng biến thể "hedged" là mặc định, điều này có thể đúng hoặc không đúng trong các thư viện khác nhau. Những người thực hiện phải đảm bảo rằng biến thể "hedged" được sử dụng để ký.
 
-Chúng tôi sử dụng quy trình ký bình thường (gọi là Pure ML-DSA Signature Generation) mà mã hóa thông điệp nội bộ thành 0x00 || len(ctx) || ctx || message, trong đó ctx là một giá trị tùy chọn có kích thước 0x00..0xFF. Chúng tôi không sử dụng bất kỳ ngữ cảnh tùy chọn nào. len(ctx) == 0. Quy trình này được định nghĩa trong [https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Thuật toán 2 bước 10 và Thuật toán 3 bước 5. Lưu ý rằng một số test vector đã được xuất bản có thể yêu cầu thiết lập một chế độ trong đó thông điệp không được mã hóa.
+Chúng tôi sử dụng quy trình ký bình thường (gọi là Pure ML-DSA Signature Generation) mà mã hóa thông điệp nội bộ thành 0x00 || len(ctx) || ctx || message, trong đó ctx là một giá trị tùy chọn có kích thước 0x00..0xFF. Chúng tôi không sử dụng bất kỳ ngữ cảnh tùy chọn nào. len(ctx) == 0. Quy trình này được định nghĩa trong [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) Thuật toán 2 bước 10 và Thuật toán 3 bước 5. Lưu ý rằng một số test vector đã được xuất bản có thể yêu cầu thiết lập một chế độ trong đó thông điệp không được mã hóa.
 
 ### Reliability
 
@@ -1501,7 +1502,7 @@ Vậy nên, mô hình đe dọa PQ sớm nhất là OBEP/IBGW lưu trữ lưu l�
 
 Ratchet có mức ưu tiên cao nhất. Các transport đứng thứ hai. Signature có mức ưu tiên thấp nhất.
 
-Việc triển khai chữ ký cũng sẽ muộn hơn việc triển khai mã hóa một năm hoặc hơn, vì không thể có khả năng tương thích ngược. Ngoài ra, việc áp dụng MLDSA trong ngành sẽ được tiêu chuẩn hóa bởi CA/Browser Forum và các Certificate Authority. Các CA cần hỗ trợ hardware security module (HSM) trước tiên, điều này hiện tại chưa có sẵn [https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Chúng tôi kỳ vọng CA/Browser Forum sẽ thúc đẩy các quyết định về lựa chọn tham số cụ thể, bao gồm việc có hỗ trợ hay yêu cầu composite signatures hay không [https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
+Việc triển khai chữ ký cũng sẽ muộn hơn việc triển khai mã hóa một năm hoặc hơn, vì không thể có khả năng tương thích ngược. Ngoài ra, việc áp dụng MLDSA trong ngành sẽ được tiêu chuẩn hóa bởi CA/Browser Forum và các Certificate Authority. Các CA cần hỗ trợ hardware security module (HSM) trước tiên, điều này hiện tại chưa có sẵn [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Chúng tôi kỳ vọng CA/Browser Forum sẽ thúc đẩy các quyết định về lựa chọn tham số cụ thể, bao gồm việc có hỗ trợ hay yêu cầu composite signatures hay không [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/).
 
 | Milestone | Target |
 |-----------|--------|
@@ -1528,7 +1529,7 @@ Chúng ta sẽ có thể thử cái này-rồi-cái kia, như chúng ta đã là
 
 - Lựa chọn Noise Hash - tiếp tục với SHA256 hay nâng cấp?
   SHA256 nên tốt trong 20-30 năm nữa, không bị đe dọa bởi PQ,
-  Xem [https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) và [https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+  Xem [NIST presentation](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) và [NIST presentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
   Nếu SHA256 bị phá thì chúng ta có những vấn đề tồi tệ hơn (netdb).
 - NTCP2 cổng riêng biệt, địa chỉ router riêng biệt
 - SSU2 relay / peer test
