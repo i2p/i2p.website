@@ -171,20 +171,20 @@ This specification is accurate for I2P version 0.9.47 (August 2020) through vers
 ## References
 
 **CRC-32**
-- [https://en.wikipedia.org/wiki/CRC-32](https://en.wikipedia.org/wiki/CRC-32)
-- [https://tools.ietf.org/html/rfc3309](https://tools.ietf.org/html/rfc3309)
+- [CRC-32 (Wikipedia)](https://en.wikipedia.org/wiki/CRC-32)
+- [RFC 3309: Stream Control Transmission Protocol Checksum](https://tools.ietf.org/html/rfc3309)
 
 **I2P Specifications**
-- Encrypted LeaseSet Specification: [/docs/specs/encryptedleaseset/](/docs/specs/encryptedleaseset/)
-- Proposal 123 (New netDB Entries): [/proposals/123-new-netdb-entries/](/proposals/123-new-netdb-entries/)
-- Proposal 149 (B32 for Encrypted LS2): [/proposals/149-b32-encrypted-ls2/](/proposals/149-b32-encrypted-ls2/)
-- Common Structures Specification: [/docs/specs/common-structures/](/docs/specs/common-structures/)
-- Naming and Address Book: [/docs/overview/naming/](/docs/overview/naming/)
+- [Encrypted LeaseSet Specification](/docs/specs/encryptedleaseset/)
+- [Proposal 123: New netDB Entries](/proposals/123-new-netdb-entries/)
+- [Proposal 149: B32 for Encrypted LS2](/proposals/149-b32-encrypted-ls2/)
+- [Common Structures Specification](/docs/specs/common-structures/)
+- [Naming and Address Book](/docs/overview/naming/)
 
 **Tor Comparison**
-- Tor discussion thread (design context): [https://lists.torproject.org/pipermail/tor-dev/2017-January/011816.html](https://lists.torproject.org/pipermail/tor-dev/2017-January/011816.html)
+- [Tor discussion thread (design context)](https://lists.torproject.org/pipermail/tor-dev/2017-January/011816.html)
 
 **Additional Resources**
-- I2P Project: [/](/)
-- I2P Forum: [https://i2pforum.net](https://i2pforum.net)
-- Java API Documentation: [http://docs.i2p-projekt.de/javadoc/](http://docs.i2p-projekt.de/javadoc/)
+- [I2P Project](/)
+- [I2P Forum](https://i2pforum.net)
+- [Java API Documentation](http://docs.i2p-projekt.de/javadoc/)

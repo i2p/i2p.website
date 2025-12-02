@@ -454,24 +454,33 @@ Versions parsed as dot/dash/underscore-separated components:
 
 The following JARs from `$I2P/lib` are always in classpath for I2P 0.9.30+:
 
-| JAR | Contents | Plugin Usage |
-|-----|----------|--------------|
-| `i2p.jar` | Core API | Required for all plugins |
-| `mstreaming.jar` | Streaming API | Most plugins need |
-| `streaming.jar` | Streaming implementation | Most plugins need |
-| `i2ptunnel.jar` | I2PTunnel | HTTP/server plugins |
-| `router.jar` | Router internals | Rarely needed, avoid if possible |
-| `javax.servlet.jar` | Servlet 3.1, JSP 2.3 API | Plugins with servlets/JSPs |
-| `jasper-runtime.jar` | Jasper compiler/runtime | Plugins with JSPs |
-| `commons-el.jar` | EL 3.0 API | JSPs using expression language |
-| `jetty-i2p.jar` | Jetty utilities | Plugins starting Jetty |
-| `org.mortbay.jetty.jar` | Jetty 9 base | Custom Jetty instances |
-| `sam.jar` | SAM API | Rarely needed |
-| `addressbook.jar` | Subscription/blockfile | Use NamingService instead |
-| `routerconsole.jar` | Console libraries | Not public API, avoid |
-| `jbigi.jar` | Native crypto | Plugins should not need |
-| `systray.jar` | URL launcher | Rarely needed |
-| `wrapper.jar` | Service wrapper | Plugins should not need |
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">JAR</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Plugin Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Core API</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Required for all plugins</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>mstreaming.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Streaming API</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Most plugins need</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>streaming.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Streaming implementation</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Most plugins need</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2ptunnel.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">I2PTunnel</td><td style="border:1px solid var(--color-border); padding:0.6rem;">HTTP/server plugins</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>router.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Router internals</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Rarely needed, avoid if possible</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>javax.servlet.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Servlet 3.1, JSP 2.3 API</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Plugins with servlets/JSPs</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>jasper-runtime.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Jasper compiler/runtime</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Plugins with JSPs</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>commons-el.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">EL 3.0 API</td><td style="border:1px solid var(--color-border); padding:0.6rem;">JSPs using expression language</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>jetty-i2p.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Jetty utilities</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Plugins starting Jetty</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>org.mortbay.jetty.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Jetty 9 base</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Custom Jetty instances</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>sam.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">SAM API</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Rarely needed</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>addressbook.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Subscription/blockfile</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Use NamingService instead</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>routerconsole.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Console libraries</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Not public API, avoid</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>jbigi.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Native crypto</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Plugins should not need</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>systray.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">URL launcher</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Rarely needed</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>wrapper.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Service wrapper</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Plugins should not need</td></tr>
+  </tbody>
+</table>
 
 ### Special Notes
 
@@ -489,10 +498,19 @@ The following JARs from `$I2P/lib` are always in classpath for I2P 0.9.30+:
 
 ### Not in Classpath (Must Specify)
 
-| JAR | Contents | Usage |
-|-----|----------|-------|
-| `jstl.jar` | Standard Taglib | JSP tag libraries |
-| `standard.jar` | Standard Taglib | JSP tag libraries |
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">JAR</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>jstl.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Standard Taglib</td><td style="border:1px solid var(--color-border); padding:0.6rem;">JSP tag libraries</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>standard.jar</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Standard Taglib</td><td style="border:1px solid var(--color-border); padding:0.6rem;">JSP tag libraries</td></tr>
+  </tbody>
+</table>
 
 ### Classpath Specification
 
@@ -989,10 +1007,10 @@ Check logs:
 
 ### Official Specifications
 
-- **Plugin Specification:** /docs/specs/plugin/
-- **Configuration Format:** /docs/specs/configuration/
-- **Update Specification:** /docs/specs/updates/
-- **Cryptography:** /docs/specs/cryptography/
+- [Plugin Specification](/docs/specs/plugin/)
+- [Configuration Format](/docs/specs/configuration/)
+- [Update Specification](/docs/specs/updates/)
+- [Cryptography](/docs/specs/cryptography/)
 
 ### I2P Version History
 
@@ -1036,15 +1054,12 @@ Check logs:
 ### Community Support
 
 **Forums:**
-- I2P Forum: https://i2pforum.net/
-- zzz.i2p: http://zzz.i2p/ (I2P-internal)
+- [I2P Forum](https://i2pforum.net/)
+- [zzz.i2p](http://zzz.i2p/) (I2P-internal)
 
 **IRC/Chat:**
 - #i2p-dev on OFTC
 - I2P IRC within network
-
-**Mailing Lists:**
-- i2p-dev@i2p2.de
 
 ---
 
@@ -1185,23 +1200,3 @@ plugin.example.startOnLoad=true
 - [ ] Add comprehensive logging
 - [ ] Write automated tests
 
----
-
-## Document Changelog
-
-**Version 2.0 (October 2025):**
-- Verified all content against I2P 2.10.0
-- Added critical Pack200 deprecation warning
-- Updated Java version requirements with 2.11.0 timeline
-- Clarified DSA signature obsolescence
-- Updated I2P version numbering (0.9.x → 2.x series)
-- Confirmed all existing mechanisms remain valid
-- Added troubleshooting section
-- Expanded examples and best practices
-- Verified all URLs and references
-
-**Version 1.0 (January 2022):**
-- Original specification for I2P 0.9.53
-- Documented ShellService feature
-- Documented variable substitution in update URLs
-- Comprehensive coverage of plugin system

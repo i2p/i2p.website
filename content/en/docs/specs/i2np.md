@@ -2244,33 +2244,3 @@ Total size: 1 + ($num × 218) bytes
 6. **Expiration handling** - Short format wraps on February 7, 2106
 7. **Checksum generation** - Still required even if not verified
 
----
-
-## Document History
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Version</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Date</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Changes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;">1.0</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">October 2025</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;">
-        <ul style="margin:0; padding-left:1.25rem;">
-          <li>Initial corrected version based on research</li>
-          <li>Fixed release date: 2.10.0 = September 8, 2025</li>
-          <li>Added version numbering system explanation</li>
-          <li>Added release-to-API version mapping table</li>
-          <li>Verified all technical specifications</li>
-          <li>Added source code references</li>
-          <li>Added appendices with network statistics</li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>

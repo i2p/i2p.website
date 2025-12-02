@@ -90,7 +90,7 @@ Test vectors for SHA3-256, SHAKE128, and SHAKE256 are available in the [NIST Cry
 
 ### Common Structures
 
-See the [Common Structures Specification](https://geti2p.net/spec/common-structures) for key lengths and identifiers.
+See the [Common Structures Specification](/docs/specs/common-structures/) for key lengths and identifiers.
 
 ### Handshake Patterns
 
