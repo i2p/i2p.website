@@ -11,7 +11,7 @@ aliases:
 
 I2PTunnel is a core I2P component for interfacing with and providing services on the I2P network. It enables TCP-based and media streaming applications to operate anonymously through tunnel abstraction. A tunnel’s destination can be defined by a [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), or a full destination key. 
 
-Each established tunnel listens locally (e.g., `localhost:port`) and connects internally to I2P destinations. To host a service, create a tunnel pointing to the desired IP and port. A corresponding I2P destination key is generated, allowing the service to become globally reachable within the I2P network. The I2PTunnel web interface is available at [localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/).
+Each established tunnel listens locally (e.g., `localhost:port`) and connects internally to I2P destinations. To host a service, create a tunnel pointing to the desired IP and port. A corresponding I2P destination key is generated, allowing the service to become globally reachable within the I2P network. The I2PTunnel web interface is available at [I2P Router Tunnel Manager](http://localhost:7657/i2ptunnel/).
 
 ---
 
