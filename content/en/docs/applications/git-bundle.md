@@ -214,8 +214,3 @@ git fetch --unshallow
 
 **Solution**: Either fetch prerequisite commits or use the base bundle first, then apply incremental updates.
 
-## Additional Resources
-
-For comprehensive Git over I2P setup, SSH tunnel configuration, and hosting your own repositories, see the [Git over I2P guide](https://geti2p.net/en/docs/applications/git/) at the official I2P documentation site.
-
-For I2P installation and setup, visit [geti2p.net](https://geti2p.net).
