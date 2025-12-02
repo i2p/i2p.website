@@ -10,7 +10,7 @@ aliases:
 reviewStatus: "needs-review"
 ---
 
-> **Note:** This archive captures discussion threads from March 2007. For up-to-date transport details see the [NTCP documentation](/docs/legacy/ntcp/).
+
 
 ## NTCP vs. SSU Discussion (March 2007)
 

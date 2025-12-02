@@ -1,5 +1,5 @@
 ---
-title: "[Needs Review] New Developer's Guide"
+title: "New Developer's Guide"
 description: "How to start contributing to I2P: study materials, source code, building, ideas, publishing, community, translations, and tools"
 slug: "new-developers"
 lastUpdated: "2025-10"
@@ -13,7 +13,7 @@ notes: update translation part
 
 So you want to start work on I2P? Great! Here's a quick guide to getting started on contributing to the website or the software, doing development, or creating translations.
 
-Not quite ready for coding? Try getting involved first: /get-involved/
+Not quite ready for coding? Try [getting involved](/get-involved/) first.
 
 ## Get to Know Java
 
@@ -46,7 +46,7 @@ git clone https://i2pgit.org/I2P_Developers/i2p.i2p.git
 
 A read‑only mirror is also available at GitHub:
 
-- GitHub mirror: https://github.com/i2p/i2p.i2p
+- GitHub mirror: [github.com/i2p/i2p.i2p](https://github.com/i2p/i2p.i2p)
 
 ```
 git clone https://github.com/i2p/i2p.i2p.git
@@ -58,27 +58,27 @@ To compile the code, you need the Sun/Oracle Java Development Kit 6 or higher, o
 
 To build or work on console translations, you need the `xgettext`, `msgfmt`, and `msgmerge` tools from the GNU gettext package.
 
-For development on new applications, see the application development guide: /get-involved/develop/applications/
+For development on new applications, see the [application development guide](/get-involved/develop/applications/).
 
 ## Development Ideas
 
 See the project TODO list or the issue list on GitLab for ideas:
 
-- GitLab issues: https://i2pgit.org/I2P_Developers/i2p.i2p/issues
+- GitLab issues: [i2pgit.org/I2P_Developers/i2p.i2p/issues](https://i2pgit.org/I2P_Developers/i2p.i2p/issues)
 
 ## Making the Results Available
 
 See the bottom of the licenses page for commit privilege requirements. You need these to put code into `i2p.i2p` (not required for the website!).
 
-- Licenses page: /get-involved/develop/licenses#commit
+- [Licenses page](/get-involved/develop/licenses#commit)
 
 ## Get to Know Us!
 
-The developers hang around on IRC. They can be reached on various networks and on the I2P internal networks. The usual place to look is `#i2p-dev`. Join the channel and say hi! We also have additional guidelines for regular developers: /docs/develop/dev-guidelines/
+The developers hang around on IRC. They can be reached on various networks and on the I2P internal networks. The usual place to look is `#i2p-dev`. Join the channel and say hi! We also have additional [guidelines for regular developers](/docs/develop/dev-guidelines/).
 
 ## Translations
 
-Website and router console translators: See the New Translator's Guide for next steps: /get-involved/guides/new-translators/
+Website and router console translators: See the [New Translator's Guide](/get-involved/guides/new-translators/) for next steps.
 
 ## Tools
 
@@ -86,5 +86,5 @@ I2P is open source software that is mostly developed using open‑source toolkit
 
 YourKit is kindly supporting open source projects with its full‑featured profilers. YourKit, LLC is the creator of innovative and intelligent tools for profiling Java and .NET applications. Take a look at YourKit's leading software products:
 
-- YourKit Java Profiler: http://www.yourkit.com/java/profiler/index.jsp
-- YourKit .NET Profiler: http://www.yourkit.com/.net/profiler/index.jsp
+- [YourKit Java Profiler](http://www.yourkit.com/java/profiler/index.jsp)
+- [YourKit .NET Profiler](http://www.yourkit.com/.net/profiler/index.jsp)

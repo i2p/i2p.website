@@ -18,8 +18,8 @@ This document specifies the fundamental data structures used across all I2P prot
 
 - ElGamal and DSA-SHA1 deprecated for Router Identities (use X25519 + EdDSA)
 - Post-quantum ML-KEM support in beta testing (opt-in as of 2.10.0)
-- Service record options standardized (Proposal 167, implemented 0.9.66)
-- Compressible padding specifications finalized (Proposal 161, implemented 0.9.57)
+- Service record options standardized ([Proposal 167](/proposals/167-service-records/), implemented 0.9.66)
+- Compressible padding specifications finalized ([Proposal 161](/proposals/161-padding-generation/), implemented 0.9.57)
 
 ---
 
@@ -739,7 +739,7 @@ For larger keys (e.g., RSA_4096):
   Total = 384 + 3 + 4 + excess_key_data_length
 ```
 
-### Padding Generation Guidelines (Proposal 161)
+### Padding Generation Guidelines ([Proposal 161](/proposals/161-padding-generation/))
 
 **Implementation Version:** 0.9.57 (January 2023, release 2.1.0)
 
@@ -821,7 +821,7 @@ Compression savings: ~320 bytes when compressed
 3. **Typical Size:**
    - X25519 + EdDSA with Key Certificate = 391 bytes
    - 32 bytes X25519 public key
-   - 320 bytes padding (compressible per Proposal 161)
+   - 320 bytes padding (compressible per [Proposal 161](/proposals/161-padding-generation/))
    - 32 bytes EdDSA public key
    - 7 bytes certificate (3-byte header + 4-byte key types)
 
@@ -836,7 +836,7 @@ Compression savings: ~320 bytes when compressed
 - Hash computed over full 391+ byte structure (including padding)
 
 **See Also:**
-- Padding generation guidelines (Proposal 161)
+- Padding generation guidelines ([Proposal 161](/proposals/161-padding-generation/))
 - Key Certificate specification above
 
 **JavaDoc:** [RouterIdentity](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html)
@@ -864,7 +864,7 @@ Compression savings: ~320 bytes when compressed
 
 2. **Encryption Key:**
    - Field is unused but must be present
-   - **Recommended:** Fill with random data per Proposal 161 (compressible)
+   - **Recommended:** Fill with random data per [Proposal 161](/proposals/161-padding-generation/) (compressible)
    - Size: Always 256 bytes (ElGamal slot, even though not used for ElGamal)
 
 3. **Certificate:**
@@ -1498,7 +1498,7 @@ Key 1: ElGamal (type 0, 256 bytes)       [Legacy compatibility]
 - Sorting ensures signature invariance
 - Duplicate keys NOT allowed
 
-**Standard Format (Proposal 167):**
+**Standard Format ([Proposal 167](/proposals/167-service-records/)):**
 
 As of API 0.9.66 (June 2025, release 2.9.0), service record options follow a standardized format. See [Proposal 167](/proposals/167-service-records/) for complete specification.
 
@@ -1872,7 +1872,7 @@ MetaLeaseSet uses LeaseSet2Header with maximum expires=65535 seconds (~18.2 hour
 **Options Mapping:**
 
 - Use same format as LeaseSet2 options
-- Can include service records (Proposal 167)
+- Can include service records ([Proposal 167](/proposals/167-service-records/))
 - MUST be sorted by key
 - Service records typically describe the ultimate service, not the indirection structure
 
@@ -1904,7 +1904,7 @@ MetaLeaseSet uses LeaseSet2Header with maximum expires=65535 seconds (~18.2 hour
 
 **Implementation Status:**
 
-Proposal 123 notes portions remain "in development." Implementers should:
+[Proposal 123](/proposals/123-new-netdb-entries/) notes portions remain "in development." Implementers should:
 - Verify production readiness in target I2P version
 - Test MetaLeaseSet support before deployment
 - Check for updated specifications in newer I2P releases
@@ -2611,7 +2611,7 @@ Encryption: X25519 (type 4, 32 bytes)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per Proposal 161
+Padding: Compressible per [Proposal 161](/proposals/161-padding-generation/)
 ```
 
 **For New Destinations:**
@@ -2620,7 +2620,7 @@ Unused Public Key Field: 256 bytes random (compressible)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per Proposal 161
+Padding: Compressible per [Proposal 161](/proposals/161-padding-generation/)
 ```
 
 **For New LeaseSets:**
@@ -2628,7 +2628,7 @@ Padding: Compressible per Proposal 161
 Type: LeaseSet2 (type 3)
 Encryption Keys: X25519 (type 4, 32 bytes)
 Leases: At least 1, typically 3-5
-Options: Include service records per Proposal 167
+Options: Include service records per [Proposal 167](/proposals/167-service-records/)
 Signature: EdDSA (64 bytes)
 ```
 
@@ -2697,7 +2697,7 @@ Authorization: Per-client encryption keys
 **Backward Compatibility:**
 - ElGamal and DSA_SHA1 still supported for legacy routers
 - Deprecated key types remain functional but discouraged
-- Compressible padding (Proposal 161) backward compatible to 0.6
+- Compressible padding ([Proposal 161](/proposals/161-padding-generation/)) backward compatible to 0.6
 
 **Forward Compatibility:**
 - Unknown key types can be parsed using length fields
@@ -2738,66 +2738,66 @@ Authorization: Per-client encryption keys
 
 ### Specifications
 
-- **I2NP Protocol:** [/docs/specs/i2np/](/docs/specs/i2np/)
-- **I2CP Protocol:** [/docs/specs/i2cp/](/docs/specs/i2cp/)
-- **SSU2 Transport:** [/docs/specs/ssu2/](/docs/specs/ssu2/)
-- **NTCP2 Transport:** [/docs/specs/ntcp2/](/docs/specs/ntcp2/)
-- **Tunnel Protocol:** [/docs/specs/implementation/](/docs/specs/implementation/)
-- **Datagram Protocol:** [/docs/api/datagrams/](/docs/api/datagrams/)
+- [I2NP Protocol](/docs/specs/i2np/)
+- [I2CP Protocol](/docs/specs/i2cp/)
+- [SSU2 Transport](/docs/specs/ssu2/)
+- [NTCP2 Transport](/docs/specs/ntcp2/)
+- [Tunnel Protocol](/docs/specs/implementation/)
+- [Datagram Protocol](/docs/api/datagrams/)
 
 ### Cryptography
 
-- **Cryptography Overview:** [/docs/specs/cryptography/](/docs/specs/cryptography/)
-- **ElGamal/AES Encryption:** [/docs/legacy/elgamal-aes/](/docs/legacy/elgamal-aes/)
-- **ECIES-X25519 Encryption:** [/docs/specs/ecies/](/docs/specs/ecies/)
-- **ECIES for Routers:** [/docs/specs/ecies/#routers](/docs/specs/ecies/#routers)
-- **ECIES Hybrid (Post-Quantum):** [/docs/specs/ecies/#hybrid](/docs/specs/ecies/#hybrid)
-- **Red25519 Signatures:** [//docs/specs/red25519-signature-scheme/(//docs/specs/red25519-signature-scheme/
-- **Encrypted LeaseSet:** [/docs/specs/encryptedleaseset/](/docs/specs/encryptedleaseset/)
+- [Cryptography Overview](/docs/specs/cryptography/)
+- [ElGamal/AES Encryption](/docs/legacy/elgamal-aes/)
+- [ECIES-X25519 Encryption](/docs/specs/ecies/)
+- [ECIES for Routers](/docs/specs/ecies/#routers)
+- [ECIES Hybrid (Post-Quantum)](/docs/specs/ecies/#hybrid)
+- [Red25519 Signatures](/docs/specs/red25519-signature-scheme/)
+- [Encrypted LeaseSet](/docs/specs/encryptedleaseset/)
 
 ### Proposals
 
-- **Proposal 123 (New netDB Entries):** [/proposals/123-new-netdb-entries/](/proposals/123-new-netdb-entries/)
-- **Proposal 134 (GOST Sig Types):** [//spec/proposals/134-gost](//spec/proposals/134-gost)
-- **Proposal 136 (Experimental Sig Types):** [/proposals/136-experimental-sigtypes/](/proposals/136-experimental-sigtypes/)
-- **Proposal 145 (ECIES-P256):** Referenced in specification
-- **Proposal 156 (ECIES Routers):** Referenced in specification
-- **Proposal 161 (Padding Generation):** Referenced in KeysAndCert section
-- **Proposal 167 (Service Records):** [/proposals/167-service-records/](/proposals/167-service-records/)
-- **Proposal 169 (Post-Quantum Crypto):** [/proposals/169-pq-crypto/](/proposals/169-pq-crypto/)
-- **All Proposals Index:** [//spec/proposals](//spec/proposals)
+- [Proposal 123: New netDB Entries](/proposals/123-new-netdb-entries/)
+- [Proposal 134: GOST Signature Types](/proposals/134-gost-signature-types/)
+- [Proposal 136: Experimental Signature Types](/proposals/136-experimental-sigtypes/)
+- [Proposal 145: ECIES-P256](/proposals/145-ecies-p256/)
+- [Proposal 156: ECIES Routers](/proposals/156-ecies-routers/)
+- [Proposal 161: Padding Generation](/proposals/161-padding-generation/)
+- [Proposal 167: Service Records](/proposals/167-service-records/)
+- [Proposal 169: Post-Quantum Crypto](/proposals/169-pq-crypto/)
+- [All Proposals Index](/proposals/)
 
 ### Network Database
 
-- **Network Database Overview:** [/docs/specs/common-structures/](/docs/specs/common-structures/)
-- **RouterInfo Standard Options:** [/docs/specs/common-structures/#routerInfo](/docs/specs/common-structures/#routerInfo)
+- [Network Database Overview](/docs/specs/common-structures/)
+- [RouterInfo Standard Options](/docs/specs/common-structures/#routerInfo)
 
 ### JavaDoc API Reference
 
-- **Core Data Package:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/](http://docs.i2p-projekt.de/javadoc/net/i2p/data/)
-- **PublicKey:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html)
-- **PrivateKey:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html)
-- **SessionKey:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html)
-- **SigningPublicKey:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html)
-- **SigningPrivateKey:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html)
-- **Signature:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html)
-- **Hash:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html)
-- **SessionTag:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html)
-- **TunnelId:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html)
-- **Certificate:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html)
-- **DataHelper:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html)
-- **KeysAndCert:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html)
-- **RouterIdentity:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html)
-- **Destination:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html)
-- **Lease:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html)
-- **LeaseSet:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html)
-- **Lease2:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html)
-- **LeaseSet2:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html)
-- **MetaLease:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html)
-- **MetaLeaseSet:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html)
-- **EncryptedLeaseSet:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html)
-- **RouterAddress:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.html)
-- **RouterInfo:** [http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html)
+- [Core Data Package](http://docs.i2p-projekt.de/javadoc/net/i2p/data/)
+- [PublicKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html)
+- [PrivateKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html)
+- [SessionKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html)
+- [SigningPublicKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html)
+- [SigningPrivateKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html)
+- [Signature](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html)
+- [Hash](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html)
+- [SessionTag](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html)
+- [TunnelId](http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html)
+- [Certificate](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html)
+- [DataHelper](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html)
+- [KeysAndCert](http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html)
+- [RouterIdentity](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html)
+- [Destination](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html)
+- [Lease](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html)
+- [LeaseSet](http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html)
+- [Lease2](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html)
+- [LeaseSet2](http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html)
+- [MetaLease](http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html)
+- [MetaLeaseSet](http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html)
+- [EncryptedLeaseSet](http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html)
+- [RouterAddress](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.html)
+- [RouterInfo](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html)
 
 ### External Standards
 
@@ -2806,21 +2806,21 @@ Authorization: Per-client encryption keys
 - **RFC 4648 (Base64):** The Base16, Base32, and Base64 Data Encodings
 - **FIPS 180-4 (SHA-256):** Secure Hash Standard
 - **FIPS 204 (ML-DSA):** Module-Lattice-Based Digital Signature Standard
-- **IANA Service Registry:** [http://www.dns-sd.org/ServiceTypes.html](http://www.dns-sd.org/ServiceTypes.html)
+- [IANA Service Registry](http://www.dns-sd.org/ServiceTypes.html)
 
 ### Community Resources
 
-- **I2P Website:** [/](/)
-- **I2P Forum:** [https://i2pforum.net](https://i2pforum.net)
-- **I2P Gitea:** [https://i2pgit.org/I2P_Developers/i2p.i2p](https://i2pgit.org/I2P_Developers/i2p.i2p)
-- **I2P GitHub Mirror:** [https://github.com/i2p/i2p.i2p](https://github.com/i2p/i2p.i2p)
-- **Technical Documentation Index:** [/docs/](/docs/)
+- [I2P Website](/)
+- [I2P Forum](https://i2pforum.net)
+- [I2P GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p)
+- [I2P GitHub Mirror](https://github.com/i2p/i2p.i2p)
+- [Technical Documentation Index](/docs/)
 
 ### Release Information
 
-- **I2P 2.10.0 Release:** [/blog/2025-09-08-i2p-2-10-0-release/](/blog/2025-09-08-i2p-2-10-0-release/)
-- **Release History:** [https://github.com/i2p/i2p.i2p/blob/master/history.txt](https://github.com/i2p/i2p.i2p/blob/master/history.txt)
-- **Changelog:** [https://github.com/i2p/i2p.i2p/blob/master/debian/changelog](https://github.com/i2p/i2p.i2p/blob/master/debian/changelog)
+- [I2P 2.10.0 Release](/blog/2025-09-08-i2p-2-10-0-release/)
+- [Release History](https://github.com/i2p/i2p.i2p/blob/master/history.txt)
+- [Changelog](https://github.com/i2p/i2p.i2p/blob/master/debian/changelog)
 
 ---
 
@@ -2937,9 +2937,9 @@ Authorization: Per-client encryption keys
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jul 2020</td><td style="border:1px solid var(--color-border); padding:0.5rem;">X25519 for Router Identities</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2021</td><td style="border:1px solid var(--color-border); padding:0.5rem;">NTCP removed</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2022</td><td style="border:1px solid var(--color-border); padding:0.5rem;">SSU2 testing</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Proposal 161 padding (release 2.1.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/161-padding-generation/">Proposal 161</a> padding (release 2.1.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mar 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ElGamal/DSA deprecated for RIs (2.2.0)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Proposal 167 service records (2.9.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/167-service-records/">Proposal 167</a> service records (2.9.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Sep 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ML-KEM beta support (2.10.0)</td></tr>
   </tbody>
 </table>

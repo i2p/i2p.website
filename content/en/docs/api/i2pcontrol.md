@@ -404,14 +404,40 @@ curl -s -H "Content-Type: application/json" \
 
 In addition to standard JSON-RPC errors (`-32700`, `-32600`, etc.), I2PControl defines:
 
-| Code | Meaning |
-|---|----------|
-| -32001 | Invalid password |
-| -32002 | Missing token |
-| -32003 | Token does not exist |
-| -32004 | Token expired |
-| -32005 | API version missing |
-| -32006 | API version unsupported |
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32001</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid password</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32002</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Missing token</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32003</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Token does not exist</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32004</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Token expired</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32005</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">API version missing</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32006</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">API version unsupported</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 

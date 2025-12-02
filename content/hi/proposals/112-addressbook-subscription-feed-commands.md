@@ -292,3 +292,7 @@ signature बनाने या verify करने के लिए byte strea
 hosts.txt फॉर्मेट में सभी नई लाइनें leading comment characters का उपयोग करके implemented की गई हैं, इसलिए I2P के सभी पुराने versions नए commands को comments के रूप में interpret करेंगे।
 
 जब I2P router नई specification पर update होते हैं, तो वे पुराने comments की फिर से व्याख्या नहीं करेंगे, लेकिन अपनी subscription feeds के बाद के fetches में नए commands को सुनना शुरू कर देंगे। इसलिए name servers के लिए यह महत्वपूर्ण है कि वे command entries को किसी तरीके से persist करें, या etag support को enable करें ताकि router सभी पिछले commands को fetch कर सकें।
+
+## References
+
+* [SPEC](/docs/specs/subscription/)

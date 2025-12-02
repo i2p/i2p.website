@@ -9,7 +9,7 @@ aliases:
 type: docs
 ---
 
-Want to help make I2P accessible to more people around the world? Translation is one of the most valuable contributions you can make to the project. This guide will walk you through translating both the I2P website and the router console.
+Want to help make I2P accessible to more people around the world? Translation is one of the most valuable contributions you can make to the project. This guide will walk you through translating the router console.
 
 ## Translation Methods
 
@@ -38,67 +38,6 @@ For translators who prefer working with git and local files, or for languages no
 1. Join [#i2p-dev on IRC](/contact/#irc) and introduce yourself
 2. Update translation status on the wiki (ask in IRC for access)
 3. Clone the appropriate repository (see sections below)
-
----
-
-## Website Translation
-
-The I2P website includes documentation, blog posts, and general information pages.
-
-### Using Transifex (Recommended)
-
-1. Go to [I2P on Transifex](https://www.transifex.com/otf/I2P/)
-2. Select the website project
-3. Choose your language (or request a new one)
-4. Start translating strings in the web interface
-
-### Manual Website Translation
-
-**Prerequisites:**
-```bash
-# Install required tools (Debian/Ubuntu)
-sudo apt-get install git gettext
-
-# Install required tools (macOS)
-brew install git gettext
-```
-
-**Clone the website repository:**
-```bash
-git clone https://i2pgit.org/i2p-hackers/i2p.www.git
-cd i2p.www
-```
-
-**Generate translation template:**
-```bash
-# Extract translatable strings
-./update-messages.sh
-```
-
-**Create or update your language's .po file:**
-```bash
-# For a new language (replace 'es' with your language code)
-msginit -i i2p2www/translations/messages.pot -o i2p2www/translations/es/LC_MESSAGES/messages.po -l es
-
-# For updating an existing language
-msgmerge -U i2p2www/translations/es/LC_MESSAGES/messages.po i2p2www/translations/messages.pot
-```
-
-**Translate using POEdit:**
-1. Install [POEdit](https://poedit.net/)
-2. Open your language's `messages.po` file
-3. Translate the strings
-4. Save the file
-
-**Submit your translations:**
-```bash
-# Commit your changes
-git add i2p2www/translations/[your-language]/
-git commit -m "Updated [language] translations"
-
-# Submit via merge request on GitLab
-# Or send your .po file to the development team
-```
 
 ---
 
@@ -248,7 +187,6 @@ For manual translation, you'll need basic command-line knowledge, but no coding 
 
 ### How long does it take?
 
-- **Website:** Depends on size, typically 10-30 hours for initial translation
 - **Router console:** Approximately 15-20 hours for all files
 - **Maintenance:** A few hours per month to update new strings
 
@@ -265,13 +203,6 @@ Request it on Transifex or contact the team on IRC. The development team can set
 
 ### How do I test my translations before submitting?
 
-For website:
-```bash
-# Run local development server
-python i2p2www/manage.py runserver
-```
-
-For router console:
 - Build I2P from source with your translations
 - Install and run it locally
 - Change language in console settings
@@ -321,12 +252,8 @@ Ready to start translating?
    - Quick start: [Sign up on Transifex](https://www.transifex.com/otf/I2P/)
    - Manual approach: Join [#i2p-dev on IRC](/contact/#irc)
 
-2. **Pick a project:**
-   - Website (documentation, blog posts)
-   - Router console (user interface)
+2. **Start small:** Translate a few strings to get familiar with the process
 
-3. **Start small:** Translate a few strings to get familiar with the process
-
-4. **Ask for help:** Don't hesitate to reach out on IRC or forums
+3. **Ask for help:** Don't hesitate to reach out on IRC or forums
 
 **Thank you for helping make I2P accessible to everyone!**

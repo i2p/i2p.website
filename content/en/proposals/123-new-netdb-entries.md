@@ -2079,3 +2079,18 @@ and b32 support for encrypted LS2.
 
 The encrypted LS2 design is heavily influenced by [Tor's v3 hidden service descriptors](https://spec.torproject.org/rend-spec-v3),
 which had similar design goals.
+
+
+## References
+
+* [ED25519-REFS] "High-speed high-security signatures" by Daniel J. Bernstein, Niels Duif, Tanja Lange, Peter Schwabe, and Bo-Yin Yang. https://ed25519.cr.yp.to/
+* [KEYBLIND-PROOF](https://lists.torproject.org/pipermail/tor-dev/2013-December/005943.html)
+* [KEYBLIND-REFS] https://gitlab.torproject.org/tpo/core/tor/-/issues/8106
+* [PRNG-REFS] http://projectbullrun.org/dual-ec/ext-rand.html
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)
+* [RFC-7539-S2.4](https://tools.ietf.org/html/rfc7539#section-2.4)
+* [TOR-REND-SPEC-V3](https://spec.torproject.org/rend-spec-v3)
+* [UNSCIENTIFIC-KDF-SPEEDS](https://www.lvh.io/posts/secure-key-derivation-performance.html)
+* [ZCASH](https://github.com/zcash/zips/tree/master/protocol/protocol.pdf)

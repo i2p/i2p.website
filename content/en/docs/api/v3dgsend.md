@@ -32,7 +32,7 @@ Refer to your distribution’s packaging or `--help` output for exact flags.
 
 ## See Also
 
-- Datagram API: /docs/api/datagrams/
-- SAM v3: /docs/api/samv3/
-- Streaming (alternative to datagrams): /docs/api/streaming/
+- [Datagram API](/docs/api/datagrams/)
+- [SAM v3](/docs/api/samv3/)
+- [Streaming Library](/docs/api/streaming/) (alternative to datagrams)
 

@@ -348,4 +348,7 @@ command entries in some fashion, or enable etag support so that routers can
 fetch all past commands.
 
 
+## References
+
+* [SPEC](/docs/specs/subscription/)
 

@@ -191,10 +191,10 @@ Package `net.i2p.client.datagram` includes:
 
 `I2PSessionMuxedImpl` (`net.i2p.client.impl.I2PSessionMuxedImpl`) manages protocol and port multiplexing for apps sharing a Destination.
 
-**Javadoc access:**   
-- `http://idk.i2p/javadoc-i2p/` (I2P network only)  
-- [https://eyedeekay.github.io/javadoc-i2p/](https://eyedeekay.github.io/javadoc-i2p/) (clearnet mirror)  
-- [http://docs.i2p-projekt.de/javadoc/](http://docs.i2p-projekt.de/javadoc/) (official docs)
+**Javadoc access:**
+- [idk.i2p Javadoc](http://idk.i2p/javadoc-i2p/) (I2P network only)
+- [Javadoc Mirror](https://eyedeekay.github.io/javadoc-i2p/) (clearnet mirror)
+- [Official Javadocs](http://docs.i2p-projekt.de/javadoc/) (official docs)
 
 ### SAM v3 Support
 - SAM 3.2 (2016): added PORT and PROTOCOL parameters.  

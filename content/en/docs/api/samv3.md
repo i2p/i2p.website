@@ -160,12 +160,12 @@ QUIT
 
 ## 8. References and Specifications
 
-- /docs/api/samv3/
-- /docs/legacy/samv2/
-- /docs/specs/streaming/
-- /docs/api/datagrams/
-- /docs/
-- https://i2pd.website/docs
+- [SAM v3 Specification](/docs/api/samv3/)
+- [SAM v2 (Legacy)](/docs/legacy/samv2/)
+- [Streaming Specification](/docs/specs/streaming/)
+- [Datagrams](/docs/api/datagrams/)
+- [Documentation Hub](/docs/)
+- [i2pd Documentation](https://i2pd.website/docs)
 
 ## 9. Summary
 

@@ -11,7 +11,7 @@ aliases:
 type: docs
 ---
 
-Read the New Developers Guide first: /docs/develop/new-developers/
+Read the [New Developers Guide](/docs/develop/new-developers/) first.
 
 ## Basic Guidelines and Coding Style
 
@@ -93,6 +93,6 @@ The following guidelines apply to the router, webapps, and all plugins.
 
 ### Bugs
 
-- Managing issues is everybody's job; please help. Monitor GitLab for issues you can help with: https://i2pgit.org/I2P_Developers/i2p.i2p/issues. Comment on, fix, and close issues if you can.
+- Managing issues is everybody's job; please help. Monitor [GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p/issues) for issues you can help with. Comment on, fix, and close issues if you can.
 - New developers should start by fixing issues. When you have a fix, attach your patch to the issue and add the keyword `review-needed`. Do not close the issue until it's been successfully reviewed and you've checked your changes in. Once you've done this smoothly for a couple of tickets, you may follow the normal procedure above.
 - Close an issue when you think you've fixed it. We don't have a test department to verify and close tickets. If you aren’t sure you fixed it, close it and add a note saying "I think I fixed it, please test and reopen if it's still broken". Add a comment with the dev build number or revision and set the milestone to the next release.

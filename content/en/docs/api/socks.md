@@ -112,7 +112,7 @@ SOCKS support was included for compatibility but is not recommended for producti
 
 ### Java I2P
 
-1. Open the I2PTunnel manager at [http://localhost:7657/i2ptunnel](http://localhost:7657/i2ptunnel)  
+1. Open the [I2PTunnel Manager](http://127.0.0.1:7657/i2ptunnel)  
 2. Create a new client tunnel of type **“SOCKS 4/4a/5”**  
 3. Configure options:  
    - Local port (any available)  

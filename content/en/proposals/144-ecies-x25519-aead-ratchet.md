@@ -3446,3 +3446,33 @@ to 0.9.46 to get encrypted lookup replies. See [Proposal 154](/proposals/154-eci
 
 ECIES-only destinations can only connect with other destinations that are
 either ECIES-only, or dual-key.
+
+
+## References
+
+* [Common](/docs/specs/common-structures/)
+* [CRYPTO-ELG](/docs/how/cryptography/#elgamal)
+* [ElG-AES](/docs/how/elgamal-aes/)
+* [Elligator2](https://elligator.cr.yp.to/elligator-20130828.pdf)
+* [GARLICSPEC](/docs/how/garlic-routing/)
+* [I2CP](/docs/specs/i2cp/)
+* [I2NP](/docs/specs/i2np/)
+* [NTCP2](/docs/specs/ntcp2/)
+* [NOISE](https://noiseprotocol.org/noise.html)
+* [Prop111](/proposals/111-ntcp-2/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop142](/proposals/142-new-crypto-template/)
+* [Prop145](/proposals/145-ecies/)
+* [Prop152](/proposals/152-ecies-tunnels/)
+* [Prop153](/proposals/153-chacha20-layer-encryption/)
+* [Prop154](/proposals/154-ecies-lookups/)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)
+* [RFC-7539](https://tools.ietf.org/html/rfc7539)
+* [RFC-7748](https://tools.ietf.org/html/rfc7748)
+* [RFC-7905](https://tools.ietf.org/html/rfc7905)
+* [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
+* [Signal](https://signal.org/docs/specifications/doubleratchet/)
+* [SPEC](/docs/specs/ecies/)
+* [SSU](/docs/transport/ssu/)
+* [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol)
