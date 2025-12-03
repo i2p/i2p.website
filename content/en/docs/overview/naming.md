@@ -158,7 +158,7 @@ Following RFC 9476, I2P registered **`.i2p.alt`** with the GNUnet Assigned Numbe
 
 ---
 
-## 7. Technical Specifications (Verified 2025)
+## 7. Technical Specifications 
 
 - **Destination keys:** 516–616 bytes (Base64)  
 - **Hostnames:** Max 67 characters (including `.i2p`)  
@@ -167,8 +167,6 @@ Following RFC 9476, I2P registered **`.i2p.alt`** with the GNUnet Assigned Numbe
 - **ETag and Last-Modified:** actively used to minimize bandwidth  
 - **Average hosts.txt size:** ~400 KB for ~800 hosts (example figure)  
 - **Bandwidth use:** ~10 bytes/sec if fetched every 12 hours  
-
-All specifications have been verified against the official documentation and current router behavior as of October 2025.
 
 ---
 

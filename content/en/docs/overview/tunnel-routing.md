@@ -8,7 +8,6 @@ aliases:
   - /en/docs/how/tunnel-routing/
 ---
 
-> **Status:** Updated for I2P 2.10.0 (October 2025). Reflects the current dual ElGamal/ECIES tunnel architecture, short build messages, ChaCha20‑based encryption, and enhanced tunnel pooling logic.
 
 ## Overview
 
@@ -26,7 +25,7 @@ D: Inbound Gateway
 E: Inbound Participant  
 F: Inbound Endpoint (Bob)
 
-Tunnels have a fixed lifetime of 10 minutes and carry fixed‑size messages of 1024 bytes (1028 bytes including the tunnel header) to prevent traffic analysis based on message size or timing patterns 【66†research.txt†L1-L20】.
+Tunnels have a fixed lifetime of 10 minutes and carry fixed‑size messages of 1024 bytes (1028 bytes including the tunnel header) to prevent traffic analysis based on message size or timing patterns.
 
 ## Tunnel Vocabulary
 
@@ -46,7 +45,7 @@ Routers filling gateway, participant, and endpoint roles receive d
 Modern I2P supports two methods:  
 
 - **ElGamal** (legacy, 528‑byte records)  
-- **ECIES‑X25519** (current, 218‑byte records via Short Tunnel Build Message – STBM) 【66†research.txt†L20-L40】  
+- **ECIES‑X25519** (current, 218‑byte records via Short Tunnel Build Message – STBM)  
 
 ### Information Distributed to Participants
 
@@ -71,7 +70,7 @@ For full details see the [Tunnel Creation Specification](/docs/spe
 
 ## Tunnel Pooling
 
-Routers group tunnels into **tunnel pools** for redundancy and load distribution. Each pool maintains multiple parallel tunnels, allowing failover when one fails. Pools used internally are **exploratory tunnels**, while application‑specific pools are **client tunnels** 【66†research.txt†L60-L80】.
+Routers group tunnels into **tunnel pools** for redundancy and load distribution. Each pool maintains multiple parallel tunnels, allowing failover when one fails. Pools used internally are **exploratory tunnels**, while application‑specific pools are **client tunnels**.
 
 Each destination maintains separate inbound and outbound pools configured by I2CP options (tunnel count, backup count, length, and QoS parameters). Routers monitor tunnel health, run periodic tests, and rebuild failed tunnels automatically to maintain pool size.
 
@@ -95,12 +94,12 @@ Routers use **2‑hop** exploratory tunnels and application‑specif
 ## Tunnel Testing
 
 Routers periodically test tunnels by sending a `DeliveryStatusMessage` through an outbound tunnel to an inbound tunnel.  
-If the test fails, both tunnels receive negative profile weight. Consecutive failures mark a tunnel unusable; the router then rebuilds a replacement and publishes a new LeaseSet. Results feed into peer capacity metrics used by the [peer selection system](/docs/overview/tunnel-routing/) 【66†research.txt†L80-L110】.
+If the test fails, both tunnels receive negative profile weight. Consecutive failures mark a tunnel unusable; the router then rebuilds a replacement and publishes a new LeaseSet. Results feed into peer capacity metrics used by the [peer selection system](/docs/overview/tunnel-routing/).
 
 ## Tunnel Creation
 
 Routers construct tunnels using a non‑interactive **telescoping** method: a single Tunnel Build Message propagates hop‑by‑hop.  
-Each hop decrypts its record, adds its reply, and forwards the message on. The final hop returns the aggregate build reply via a different path, preventing correlation. Modern implementations use **Short Tunnel Build Messages (STBM)** for ECIES and **Variable Tunnel Build Messages (VTBM)** for legacy paths. Each record is encrypted per‑hop using ElGamal or ECIES‑X25519 【66†research.txt†L110-L150】.
+Each hop decrypts its record, adds its reply, and forwards the message on. The final hop returns the aggregate build reply via a different path, preventing correlation. Modern implementations use **Short Tunnel Build Messages (STBM)** for ECIES and **Variable Tunnel Build Messages (VTBM)** for legacy paths. Each record is encrypted per‑hop using ElGamal or ECIES‑X25519.
 
 ## Tunnel Encryption
 
@@ -111,7 +110,7 @@ Tunnel traffic uses multi‑layer encryption. Each hop adds or�
 
 Each hop has two keys: a **layer key** and an **IV key**. Routers decrypt the IV, use it to process the payload, then re‑encrypt the IV before forwarding. This double IV scheme prevents message tagging.  
 
-Outbound gateways pre‑decrypt all layers so that endpoints receive plaintext after all participants have added encryption. Inbound tunnels encrypt in the opposite direction. Participants cannot determine tunnel direction or length 【66†research.txt†L150-L180】.
+Outbound gateways pre‑decrypt all layers so that endpoints receive plaintext after all participants have added encryption. Inbound tunnels encrypt in the opposite direction. Participants cannot determine tunnel direction or length.
 
 ## Ongoing Development
 

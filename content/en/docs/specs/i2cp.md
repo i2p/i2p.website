@@ -32,7 +32,7 @@ All communication flows over a single TCP socket (optionally TLS-wrapped), enabl
 The reference implementation is in Java I2P:
 - Client SDK: `i2p.jar` package
 - Router implementation: `router.jar` package
-- Javadocs: http://docs.i2p-projekt.de/javadoc/
+- [Javadocs](http://docs.i2p-projekt.de/javadoc/)
 
 When client and router run in the same JVM, I2CP messages are passed as Java objects without serialization. External clients use the serialized protocol over TCP.
 
@@ -1514,21 +1514,21 @@ Always use SendMessageExpires (not SendMessage) to set explicit expiration. This
 
 ## Proposals Referenced
 
-- **Proposal 123**: Encrypted LeaseSets and authentication
-- **Proposal 144**: ECIES-X25519-AEAD-Ratchet
-- **Proposal 149**: Blinded address format (b33)
-- **Proposal 152**: X25519 tunnel creation
-- **Proposal 154**: Database lookups from ECIES destinations
-- **Proposal 156**: Router migration to ECIES-X25519
-- **Proposal 161**: Destination padding compression
-- **Proposal 167**: LeaseSet service records
-- **Proposal 169**: Post-quantum hybrid cryptography (ML-KEM)
+- [Proposal 123](/proposals/123-new-netdb-entries/): Encrypted LeaseSets and authentication
+- [Proposal 144](/proposals/144-ecies-x25519-aead-ratchet/): ECIES-X25519-AEAD-Ratchet
+- [Proposal 149](/proposals/149-b32-encrypted-ls2/): Blinded address format (b33)
+- [Proposal 152](/proposals/152-ecies-tunnels/): X25519 tunnel creation
+- [Proposal 154](/proposals/154-ecies-lookups/): Database lookups from ECIES destinations
+- [Proposal 156](/proposals/156-ecies-routers/): Router migration to ECIES-X25519
+- [Proposal 161](/proposals/161-ri-dest-padding/): Destination padding compression
+- [Proposal 167](/proposals/167-service-records/): LeaseSet service records
+- [Proposal 169](/proposals/169-pq-crypto/): Post-quantum hybrid cryptography (ML-KEM)
 
 ## Javadocs Reference
 
-- I2CP Package: http://docs.i2p-projekt.de/javadoc/net/i2p/data/i2cp/package-summary.html
-- MessageStatusMessage: http://docs.i2p-projekt.de/javadoc/net/i2p/data/i2cp/MessageStatusMessage.html
-- Client API: http://docs.i2p-projekt.de/javadoc/net/i2p/client/package-summary.html
+- [I2CP Package](http://docs.i2p-projekt.de/javadoc/net/i2p/data/i2cp/package-summary.html)
+- [MessageStatusMessage](http://docs.i2p-projekt.de/javadoc/net/i2p/data/i2cp/MessageStatusMessage.html)
+- [Client API](http://docs.i2p-projekt.de/javadoc/net/i2p/client/package-summary.html)
 
 ## Deprecation Summary
 

@@ -200,7 +200,7 @@ Package `net.i2p.client.datagram` includes:
 - SAM 3.2 (2016): added PORT and PROTOCOL parameters.  
 - SAM 3.3 (2016): introduced PRIMARY/subsession model; allows streams + datagrams on one Destination.  
 - Support for Datagram2 / 3 session styles added spec 2025 (implementation pending).  
-- Official spec: </docs/api/samv3/>
+- Official spec: [SAM v3 Specification](/docs/api/samv3/)
 
 ### i2ptunnel Modules
 - **udpTunnel:** Fully functional base for I2P UDP apps (`net.i2p.i2ptunnel.udpTunnel`).  
@@ -389,14 +389,23 @@ This change will substantially increase datagram overhead and reduce effective p
 
 ## 12. Change Log Highlights (2019 – 2025)
 
-| Year | Release | Change |
-|------|:-------:|--------|
-| 2019 | 0.9.43 | Datagram API stabilization |
-| 2021 | 0.9.50 | Protocol port handling reworked |
-| 2022 | 2.0.0 | SSU2 adoption completed |
-| 2024 | 2.6.0 | Legacy transport removal simplified UDP code |
-| 2025 | 2.9.0 | Datagram2/3 support added (Java API) |
-| 2025 | 2.10.0 | UDP Tracker implementation released |
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Year</th>
+      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Release</th>
+      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">2019</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.43</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Datagram API stabilization</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">2021</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Protocol port handling reworked</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">2022</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2.0.0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">SSU2 adoption completed</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">2024</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2.6.0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Legacy transport removal simplified UDP code</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">2025</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2.9.0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Datagram2/3 support added (Java API)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">2025</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2.10.0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">UDP Tracker implementation released</td></tr>
+  </tbody>
+</table>
 
 ---
 

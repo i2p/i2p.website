@@ -96,10 +96,27 @@ Use `git utccommit` instead of `git commit` when privacy matters.
 
 ## 6. Troubleshooting
 
-| Symptom | Fix |
-| --- | --- |
-| `connection closed` during clone | Retry with `--depth 1`, add backup tunnels, or increase tunnel quantities. |
-| `ssh: connect to host 127.0.0.1 port …: Connection refused` | Ensure the I2PTunnel client is running and SAM is enabled. |
-| Slow performance | Lower tunnel length, increase bandwidth limits, or schedule large fetches during off-peak hours. |
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Symptom</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Fix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>connection closed</code> during clone</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Retry with <code>--depth 1</code>, add backup tunnels, or increase tunnel quantities.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>ssh: connect to host 127.0.0.1 port …: Connection refused</code></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Ensure the I2PTunnel client is running and SAM is enabled.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Slow performance</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Lower tunnel length, increase bandwidth limits, or schedule large fetches during off-peak hours.</td>
+    </tr>
+  </tbody>
+</table>
 
 For advanced scenarios (mirroring external repos, seeding bundles), see the companion guides: [Git bundle workflows](/docs/applications/git-bundle/) and [Hosting GitLab over I2P](/docs/guides/gitlab/).

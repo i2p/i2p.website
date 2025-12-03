@@ -321,12 +321,12 @@ Transparency about these limits is intentional — it prevents users from over-e
 
 ---
 
-## 14  Key References (Verified 2025)
+## 14  Key References
 
 - *Practical Attacks Against the I2P Network* (Egger et al., RAID 2013)  
 - *Privacy Implications of Performance-Based Peer Selection* (Herrmann & Grothoff, PETS 2011)  
 - *Resilience of the Invisible Internet Project* (Muntaka et al., Wiley 2025)  
-- I2P official documentation </docs/overview/threat-model/>  
+- [I2P Official Documentation](/docs/)  
 
 ---
 

@@ -90,7 +90,7 @@ Test vectors for SHA3-256, SHAKE128, and SHAKE256 are available in the [NIST Cry
 
 ### Common Structures
 
-See the [Common Structures Specification](https://geti2p.net/spec/common-structures) for key lengths and identifiers.
+See the [Common Structures Specification](/docs/specs/common-structures/) for key lengths and identifiers.
 
 ### Handshake Patterns
 
@@ -620,14 +620,14 @@ This specification references protocol version 0.9.67, which corresponds to rout
 
 ## References
 
-- **[ECIES]**: [ECIES-X25519-AEAD-Ratchet specification](/docs/specs/ecies/)
-- **[Prop169]**: [I2P Post-Quantum Cryptography Proposal](/proposals/169-pq-crypto/)
-- **[FIPS203]**: [NIST FIPS 203 - Module-Lattice-Based Key-Encapsulation Mechanism Standard](https://csrc.nist.gov/pubs/fips/203/final)
-- **[FIPS202]**: [NIST FIPS 202 - SHA-3 Standard: Permutation-Based Hash and Extendable-Output Functions](https://csrc.nist.gov/pubs/fips/202/final)
-- **[Noise]**: [The Noise Protocol Framework](https://noiseprotocol.org/noise.html)
-- **[COMMON]**: [I2P Common Structures Specification](/docs/specs/common-structures/)
-- **[RFC7539]**: [ChaCha20 and Poly1305 for IETF Protocols](https://www.rfc-editor.org/rfc/rfc7539)
-- **[RFC5869]**: [HMAC-based Extract-and-Expand Key Derivation Function (HKDF)](https://www.rfc-editor.org/rfc/rfc5869)
+- **[ECIES]**: [ECIES-X25519-AEAD-Ratchet Specification](/docs/specs/ecies/)
+- **[Prop169]**: [Proposal 169: Post-Quantum Cryptography](/proposals/169-pq-crypto/)
+- **[FIPS203]**: [NIST FIPS 203 - ML-KEM Standard](https://csrc.nist.gov/pubs/fips/203/final)
+- **[FIPS202]**: [NIST FIPS 202 - SHA-3 Standard](https://csrc.nist.gov/pubs/fips/202/final)
+- **[Noise]**: [Noise Protocol Framework](https://noiseprotocol.org/noise.html)
+- **[COMMON]**: [Common Structures Specification](/docs/specs/common-structures/)
+- **[RFC7539]**: [RFC 7539 - ChaCha20 and Poly1305](https://www.rfc-editor.org/rfc/rfc7539)
+- **[RFC5869]**: [RFC 5869 - HKDF](https://www.rfc-editor.org/rfc/rfc5869)
 - **[OpenSSL]**: [OpenSSL 3.5 ML-KEM Documentation](https://docs.openssl.org/3.5/man7/EVP_KEM-ML-KEM/)
 - **[Bouncycastle]**: [Bouncycastle Java Cryptography Library](https://www.bouncycastle.org/)
 

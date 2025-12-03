@@ -15,12 +15,6 @@ aliases:
 
 NTCP2 replaces the legacy NTCP transport with a Noise-based handshake that resists traffic fingerprinting, encrypts length fields, and supports modern cipher suites. Routers may run NTCP2 alongside SSU2 as the two mandatory transport protocols in the I2P network. NTCP (version 1) was deprecated in 0.9.40 (May 2019) and completely removed in 0.9.50 (May 2021).
 
-**Current Status (October 2025):**
-- Latest I2P Version: **2.10.0** (released September 9, 2025)
-- NTCP2 is **mandatory** (one of two required transports alongside SSU2)
-- Protocol introduced in I2P **0.9.36** (August 2018)
-- Stable since 0.9.50 with no breaking changes
-
 ## Noise Protocol Framework
 
 NTCP2 uses the Noise Protocol Framework [Revision 33, 2017-10-04](https://noiseprotocol.org/noise.html) with I2P-specific extensions:

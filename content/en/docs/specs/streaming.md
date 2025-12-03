@@ -14,7 +14,7 @@ aliases:
 
 ## Overview
 
-The I2P Streaming Library provides reliable, in-order, and authenticated data delivery on top of I2P’s unreliable message layer — analogous to TCP over IP【46†source】. It is used by nearly all interactive I2P applications such as web browsing, IRC, email, and file sharing.
+The I2P Streaming Library provides reliable, in-order, and authenticated data delivery on top of I2P's unreliable message layer — analogous to TCP over IP. It is used by nearly all interactive I2P applications such as web browsing, IRC, email, and file sharing.
 
 It ensures reliable transmission, congestion control, retransmission, and flow control across I2P’s high-latency anonymous tunnels. Each stream is fully encrypted end-to-end between destinations.
 
@@ -22,15 +22,15 @@ It ensures reliable transmission, congestion control, retransmission, and flow c
 
 ## Core Design Principles
 
-The streaming library implements a **one-phase connection setup**, where SYN, ACK, and FIN flags may carry data payloads in the same message. This minimizes round-trips in high-latency environments — a small HTTP transaction can complete in a single round-trip【46†source】.
+The streaming library implements a **one-phase connection setup**, where SYN, ACK, and FIN flags may carry data payloads in the same message. This minimizes round-trips in high-latency environments — a small HTTP transaction can complete in a single round-trip.
 
-Congestion control and retransmission are modeled after TCP but adapted for I2P’s environment. Window sizes are message-based, not byte-based, and tuned for tunnel latency and overhead. The protocol supports slow start, congestion avoidance, and exponential backoff similar to TCP’s AIMD algorithm【46†source】.
+Congestion control and retransmission are modeled after TCP but adapted for I2P's environment. Window sizes are message-based, not byte-based, and tuned for tunnel latency and overhead. The protocol supports slow start, congestion avoidance, and exponential backoff similar to TCP's AIMD algorithm.
 
 ---
 
 ## Architecture
 
-The streaming library operates between applications and the I2CP interface【46†source】.
+The streaming library operates between applications and the I2CP interface.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -131,7 +131,7 @@ Most users access it via I2PSocketManager, I2PTunnel, or SAMv3. The library tran
 
 ## Flow Control and Reliability
 
-Streaming uses **message-based windowing**, unlike TCP’s byte-based approach. The number of unacknowledged packets allowed in flight equals the current window size (default 128)【46†source】.
+Streaming uses **message-based windowing**, unlike TCP's byte-based approach. The number of unacknowledged packets allowed in flight equals the current window size (default 128).
 
 ### Mechanisms
 

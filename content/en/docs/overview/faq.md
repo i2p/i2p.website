@@ -328,7 +328,7 @@ These are described in detail below.
     </ul>
   </li>
   <li>Local I2P ports, listening only to local connections by default, except where noted:<br>
-    <table >
+    <table class="table table-striped table-bordered">
       <tr>
         <th>
           PORT

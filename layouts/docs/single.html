@@ -1,34 +1,44 @@
 {{ define "main" }}
 
+{{ $hasToc := and (ne .Params.toc false) (gt (len .TableOfContents) 100) }}
 {{ $hideSidebar := .Param "hideSidebar" }}
 
 <div class="docs-page">
     <div class="container">
-        <div class="docs-layout{{ if $hideSidebar }} docs-layout--no-sidebar{{ end }}">
-            <!-- Sidebar Navigation -->
-            {{ if not $hideSidebar }}
-            {{ partial "docs-sidebar.html" . }}
+        <!-- Main Layout: Sidebar TOC + Content -->
+        <div class="docs-layout{{ if $hasToc }} docs-layout--with-toc{{ end }}">
+            <!-- Sidebar TOC (if enabled) -->
+            {{ if $hasToc }}
+            <aside class="docs-toc-sidebar">
+                <nav class="toc-nav">
+                    <div class="toc-header">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        On This Page
+                    </div>
+                    <div class="toc-content">
+                        {{ .TableOfContents }}
+                    </div>
+                </nav>
+            </aside>
             {{ end }}
 
             <!-- Main Content -->
-            <main class="docs-article{{ if $hideSidebar }} docs-article--wide{{ end }}">
+            <div class="docs-main">
                 <!-- Breadcrumbs -->
                 <nav class="breadcrumbs">
                     <a href="{{ relLangURL "/" }}">Home</a>
                     <span class="separator">/</span>
-                    {{ if $hideSidebar }}
-                        <span class="current">{{ .Title }}</span>
-                    {{ else }}
-                        <a href="{{ relLangURL "docs/" }}">Docs</a>
-                        {{ with .Parent }}
-                            {{ if not (or (eq .RelPermalink "/docs/") (eq .RelPermalink "/en/docs/") (eq .RelPermalink "/es/docs/")) }}
-                                <span class="separator">/</span>
-                                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                            {{ end }}
+                    <a href="{{ relLangURL "docs/" }}">Docs</a>
+                    {{ with .Parent }}
+                        {{ if not (or (eq .RelPermalink "/docs/") (eq .RelPermalink "/en/docs/") (eq .RelPermalink "/es/docs/")) }}
+                            <span class="separator">/</span>
+                            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
                         {{ end }}
-                        <span class="separator">/</span>
-                        <span class="current">{{ .Title }}</span>
                     {{ end }}
+                    <span class="separator">/</span>
+                    <span class="current">{{ .Title }}</span>
                 </nav>
 
                 <!-- Article Header -->
@@ -57,24 +67,6 @@
                         {{ end }}
                     </div>
                 </header>
-
-                <!-- Table of Contents (if enabled) -->
-                {{ if and (gt (len .TableOfContents) 100) (ne .Params.toc false) }}
-                <details class="toc">
-                    <summary class="toc-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        On This Page
-                        <svg class="toc-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                            <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </summary>
-                    <div class="toc-content">
-                        {{ .TableOfContents }}
-                    </div>
-                </details>
-                {{ end }}
 
                 <!-- Article Content -->
                 <article class="article-content">
@@ -143,7 +135,7 @@
                         Found an issue? <a href="https://gitlab.com/{{ .Site.Params.gitlabRepo }}/-/blob/{{ .Site.Params.gitlabBranch }}/hugo-site/content/{{ .Language.Lang }}/{{ .File.Path }}?ref_type=heads" target="_blank">Edit this page on GitLab</a>
                     </p>
                 </div>
-            </main>
+            </div>
         </div>
     </div>
 </div>
@@ -152,102 +144,6 @@
 .docs-page {
     min-height: 100vh;
     padding: var(--spacing-xl) 0;
-}
-
-.docs-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: var(--spacing-2xl);
-    align-items: start;
-}
-
-.docs-layout.docs-layout--no-sidebar {
-    grid-template-columns: minmax(0, 1fr);
-}
-
-.docs-article.docs-article--wide,
-.docs-layout.docs-layout--no-sidebar .docs-article {
-    max-width: 960px;
-    margin: 0 auto;
-}
-
-.docs-layout.docs-layout--no-sidebar .breadcrumbs {
-    margin-bottom: var(--spacing-xl);
-}
-
-/* Sidebar */
-.docs-sidebar {
-    position: sticky;
-    top: 100px;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
-}
-
-.sidebar-header {
-    margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-md);
-    border-bottom: 1px solid var(--color-border);
-}
-
-.sidebar-title {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    font-weight: 700;
-    font-size: 1.125rem;
-    color: var(--color-text);
-    text-decoration: none;
-}
-
-.sidebar-title:hover {
-    color: var(--color-primary);
-}
-
-.nav-section {
-    margin-bottom: var(--spacing-lg);
-}
-
-.nav-section:last-child {
-    margin-bottom: 0;
-}
-
-.nav-section-title {
-    font-weight: 700;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-text-muted);
-    margin-bottom: var(--spacing-sm);
-}
-
-.nav-link {
-    display: block;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    color: var(--color-text);
-    text-decoration: none;
-    border-radius: var(--radius-md);
-    font-size: 0.9375rem;
-    transition: all var(--transition-fast);
-}
-
-.nav-link:hover {
-    background: var(--color-bg-secondary);
-    color: var(--color-primary);
-}
-
-.nav-link.active {
-    background: var(--color-primary);
-    color: white;
-    font-weight: 600;
-}
-
-/* Main Article */
-.docs-article {
-    max-width: 800px;
 }
 
 .breadcrumbs {
@@ -262,6 +158,7 @@
 .breadcrumbs a {
     color: var(--color-text-muted);
     text-decoration: none;
+    transition: color var(--transition-fast);
 }
 
 .breadcrumbs a:hover {
@@ -276,13 +173,14 @@
     color: var(--color-text);
 }
 
+/* Article Header */
 .article-header {
     margin-bottom: var(--spacing-2xl);
 }
 
 .article-title {
     font-size: 2.5rem;
-    margin-bottom: var(--spacing-md);
+    margin: 0 0 var(--spacing-md) 0;
     color: var(--color-text);
 }
 
@@ -310,91 +208,102 @@
     color: var(--color-primary);
 }
 
-/* TOC */
-.toc {
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    margin-bottom: var(--spacing-xl);
+/* Two-column Layout */
+.docs-layout {
+    display: block;
 }
 
-.toc-title {
-    font-weight: 700;
-    padding: var(--spacing-md) var(--spacing-lg);
-    cursor: pointer;
+.docs-layout--with-toc {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+}
+
+/* Sidebar TOC */
+.docs-toc-sidebar {
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.toc-nav {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+}
+
+.toc-header {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    user-select: none;
-    list-style: none;
-}
-
-.toc-title::-webkit-details-marker {
-    display: none;
-}
-
-.toc-title:hover {
-    background: var(--color-bg-tertiary);
-}
-
-.toc-chevron {
-    margin-left: auto;
-    transition: transform var(--transition-fast);
-}
-
-.toc[open] .toc-chevron {
-    transform: rotate(180deg);
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--color-text);
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .toc-content {
-    padding: 0 var(--spacing-lg) var(--spacing-md) var(--spacing-lg);
-    max-height: 400px;
+    max-height: calc(100vh - 250px);
     overflow-y: auto;
 }
 
 .toc-content::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
 }
 
 .toc-content::-webkit-scrollbar-track {
-    background: var(--color-bg-secondary);
+    background: transparent;
 }
 
 .toc-content::-webkit-scrollbar-thumb {
     background: var(--color-border);
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 .toc-content::-webkit-scrollbar-thumb:hover {
     background: var(--color-text-muted);
 }
 
-.toc ul {
+.toc-nav ul {
     list-style: none;
     padding-left: 0;
     margin: 0;
 }
 
-.toc li {
-    margin-bottom: var(--spacing-xs);
+.toc-nav li {
+    margin-bottom: 0.25rem;
 }
 
-.toc ul ul {
+.toc-nav ul ul {
     padding-left: var(--spacing-md);
-    margin-top: var(--spacing-xs);
+    margin-top: 0.25rem;
 }
 
-.toc a {
+.toc-nav a {
     color: var(--color-text-secondary);
     text-decoration: none;
-    font-size: 0.875rem;
-    display: inline-block;
-    padding: 0.125rem 0;
-    transition: color var(--transition-fast);
+    font-size: 0.8125rem;
+    display: block;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    line-height: 1.4;
 }
 
-.toc a:hover {
+.toc-nav a:hover {
     color: var(--color-primary);
+    background: var(--color-bg-tertiary);
+}
+
+/* Main Content Area */
+.docs-main {
+    min-width: 0;
+    max-width: 900px;
 }
 
 /* Article Content */
@@ -407,12 +316,21 @@
     margin-top: var(--spacing-2xl);
     margin-bottom: var(--spacing-md);
     font-size: 1.75rem;
+    scroll-margin-top: 100px;
 }
 
 .article-content h3 {
     margin-top: var(--spacing-xl);
     margin-bottom: var(--spacing-sm);
     font-size: 1.375rem;
+    scroll-margin-top: 100px;
+}
+
+.article-content h4 {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.125rem;
+    scroll-margin-top: 100px;
 }
 
 .article-content p {
@@ -652,33 +570,74 @@
 }
 
 /* Responsive */
-@media (max-width: 968px) {
-    .docs-layout {
+@media (max-width: 1024px) {
+    .docs-layout--with-toc {
         grid-template-columns: 1fr;
     }
 
-    .docs-sidebar {
+    .docs-toc-sidebar {
         position: static;
         max-height: none;
+        margin-bottom: var(--spacing-xl);
     }
 
+    .toc-content {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
     .article-title {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 }
 </style>
 
-<!-- Highlight active nav link -->
+<!-- Highlight active TOC link on scroll -->
+{{ if $hasToc }}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const currentPath = window.location.pathname;
-    document.querySelectorAll('.nav-link').forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
-            link.classList.add('active');
+    const tocLinks = document.querySelectorAll('.toc-nav a');
+    const headings = [];
+
+    tocLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            const heading = document.getElementById(href.slice(1));
+            if (heading) {
+                headings.push({ element: heading, link: link });
+            }
         }
     });
+
+    function updateActiveLink() {
+        const scrollPos = window.scrollY + 120;
+        let activeIndex = 0;
+
+        for (let i = 0; i < headings.length; i++) {
+            if (headings[i].element.offsetTop <= scrollPos) {
+                activeIndex = i;
+            }
+        }
+
+        tocLinks.forEach(link => link.classList.remove('active'));
+        if (headings[activeIndex]) {
+            headings[activeIndex].link.classList.add('active');
+        }
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink();
 });
 </script>
+<style>
+.toc-nav a.active {
+    color: var(--color-primary);
+    background: var(--color-bg-tertiary);
+    font-weight: 600;
+}
+</style>
+{{ end }}
 
 <!-- Feedback Form Handler (loaded dynamically based on network) -->
 <script>

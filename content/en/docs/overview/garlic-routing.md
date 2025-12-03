@@ -202,11 +202,11 @@ Garlic routing is thus both a *method of encryption layering* and a *network mes
 I2P's documentation hub is [available here](/docs/), maintained continuously.  
 Relevant living specifications include:
 
-- [/spec/ecies](/docs/specs/ecies) — ECIES‑X25519‑AEAD‑Ratchet  
-- [/spec/tunnel-creation-ecies](/spec/tunnel/creation-ecies) — modern tunnel build protocol  
-- [/spec/i2np](/spec/i2np) — I2NP message formats  
-- [/spec/ssu2](/docs/specs/ssu2) — SSU2 UDP transport  
-- [/docs/specs/common-structures](/docs/specs/common-structures) — netDb and floodfill behavior
+- [ECIES Specification](/docs/specs/ecies) — ECIES‑X25519‑AEAD‑Ratchet
+- [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies) — modern tunnel build protocol
+- [I2NP Specification](/spec/i2np) — I2NP message formats
+- [SSU2 Specification](/docs/specs/ssu2) — SSU2 UDP transport
+- [Common Structures](/docs/specs/common-structures) — netDb and floodfill behavior
 
 Academic validation:  
 Hoang et al. (IMC 2018, USENIX FOCI 2019) and Muntaka et al. (2025) confirm the architectural stability and operational resilience of I2P’s design.
@@ -235,7 +235,3 @@ Future adaptations may include additional message delay strategies or multi-tunn
 - Goldschlag, D. M., Reed, M. G., Syverson, P. F. (1996). *Hiding Routing Information.* NRL Publication.
 
 ---
-
-**Summary:**  
-Garlic routing remains architecturally unchanged from 2014 to 2025 — continuing to define I2P’s unique approach to message confidentiality and unidirectional anonymity.  
-However, its **cryptographic foundation** is now entirely ECIES-based, delivering forward secrecy, lower overhead, and compatibility with future post-quantum security standards.

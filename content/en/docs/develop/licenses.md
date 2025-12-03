@@ -307,7 +307,6 @@ resource packaging may be changed if the repository is reorganized.
 </p>
 
 <h2><a id="website"></a></h2>
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="" /></a>
 
 <p>
 Except where otherwise noted, content on this site is licensed under a

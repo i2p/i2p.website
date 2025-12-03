@@ -252,9 +252,9 @@ This protocol was approved on June 24, 2025 and is fully operational on the I2P 
 
 ## References
 
-- **[BEP15]**: BitTorrent UDP Tracker Protocol - [http://www.bittorrent.org/beps/bep_0015.html](http://www.bittorrent.org/beps/bep_0015.html)
-- **[BEP41]**: UDP Tracker Protocol Extensions - [http://www.bittorrent.org/beps/bep_0041.html](http://www.bittorrent.org/beps/bep_0041.html)
-- **[DATAGRAMS]**: I2P Datagrams Specification - [/docs/api/datagrams/](/docs/api/datagrams/)
-- **[Prop160]**: UDP Trackers Proposal - [/proposals/160-udp-trackers/](/proposals/160-udp-trackers/)
-- **[Prop163]**: Datagram2 Proposal - [/proposals/163-datagram2/](/proposals/163-datagram2/)
-- **[SPEC]**: BitTorrent over I2P - [/docs/applications/bittorrent/](/docs/applications/bittorrent/)
+- **[BEP15]**: [BitTorrent UDP Tracker Protocol](http://www.bittorrent.org/beps/bep_0015.html)
+- **[BEP41]**: [UDP Tracker Protocol Extensions](http://www.bittorrent.org/beps/bep_0041.html)
+- **[DATAGRAMS]**: [I2P Datagrams Specification](/docs/api/datagrams/)
+- **[Prop160]**: [UDP Trackers Proposal](/proposals/160-udp-trackers/)
+- **[Prop163]**: [Datagram2 Proposal](/proposals/163-datagram2/)
+- **[SPEC]**: [BitTorrent over I2P](/docs/applications/bittorrent/)
