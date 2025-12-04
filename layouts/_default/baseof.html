@@ -98,5 +98,32 @@
     <!-- Poll Widget Script is loaded dynamically when the modal opens -->
 
     {{ block "scripts" . }}{{ end }}
+
+    <!-- =====================================================================
+         Matomo Analytics - CLEARNET ONLY
+         To disable: Remove or comment out this entire block
+         ===================================================================== -->
+    <script>
+    (function() {
+      var hostname = window.location.hostname;
+      if (hostname.endsWith('.i2p') || hostname.endsWith('.b32.i2p') || hostname.endsWith('.onion')) {
+        return; // Skip analytics on anonymous networks
+      }
+      var _paq = window._paq = window._paq || [];
+      _paq.push(["setCookieDomain", "*.i2p.net"]);
+      _paq.push(["setDoNotTrack", true]);
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://i2p.matomo.cloud/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src='https://cdn.matomo.cloud/i2p.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    })();
+    </script>
+    <noscript><p><img referrerpolicy="no-referrer-when-downgrade" src="https://i2p.matomo.cloud/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+    <!-- End Matomo Code -->
 </body>
 </html>
