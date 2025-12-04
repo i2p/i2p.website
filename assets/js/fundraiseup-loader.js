@@ -20,11 +20,20 @@
 
     var loaded = false;
     var scriptReady = false;
+    var pendingCampaign = null;
 
-    function loadFundraiseUp(campaignCode, callback) {
-        // If script is fully ready, just run callback
+    function loadFundraiseUp(campaignCode) {
+        // Store the campaign to open after load
+        if (campaignCode) {
+            pendingCampaign = campaignCode;
+        }
+
+        // If script is fully ready, open the checkout now
         if (scriptReady) {
-            if (callback) callback();
+            if (pendingCampaign && window.FundraiseUp) {
+                window.FundraiseUp.openCheckout(pendingCampaign);
+                pendingCampaign = null;
+            }
             return;
         }
 
@@ -41,20 +50,16 @@
                 // Give FundraiseUp time to fully initialize
                 setTimeout(function() {
                     scriptReady = true;
-                    if (callback) callback();
-                }, 300);
+                    // Open pending checkout if any
+                    if (pendingCampaign && window.FundraiseUp) {
+                        window.FundraiseUp.openCheckout(pendingCampaign);
+                        pendingCampaign = null;
+                    }
+                }, 500);
             };
             t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
             for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
             })(window,document,'script','FundraiseUp','AAYKECHT');
-        } else {
-            // Script is loading, wait for it
-            var checkReady = setInterval(function() {
-                if (scriptReady) {
-                    clearInterval(checkReady);
-                    if (callback) callback();
-                }
-            }, 50);
         }
     }
 
@@ -71,16 +76,10 @@
             var campaignCode = link.getAttribute('href').substring(1); // Remove #
 
             if (!scriptReady) {
-                // Prevent default, load script, then open checkout
+                // Prevent default, load script
                 e.preventDefault();
                 e.stopPropagation();
-
-                loadFundraiseUp(campaignCode, function() {
-                    // Use FundraiseUp API to open checkout
-                    if (window.FundraiseUp && window.FundraiseUp.openCheckout) {
-                        window.FundraiseUp.openCheckout(campaignCode);
-                    }
-                });
+                loadFundraiseUp(campaignCode);
             }
             // If already loaded, let FundraiseUp handle the click naturally
         }
