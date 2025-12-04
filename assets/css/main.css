@@ -621,6 +621,27 @@ main {
     color: white;
 }
 
+.btn-donate {
+    background-color: #8b5cf6;
+    color: white;
+    height: 39px;
+    padding: 0 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.btn-donate:hover {
+    background-color: #7c3aed;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-donate svg {
+    flex-shrink: 0;
+}
+
 /* ==========================================================================
    Footer
    ========================================================================== */

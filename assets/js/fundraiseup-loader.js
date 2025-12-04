@@ -19,9 +19,13 @@
     }
 
     var loaded = false;
+    var pendingClick = null;
 
-    function loadFundraiseUp() {
-        if (loaded) return;
+    function loadFundraiseUp(callback) {
+        if (loaded) {
+            if (callback) callback();
+            return;
+        }
         loaded = true;
 
         // FundraiseUp initialization code
@@ -29,6 +33,12 @@
         .split(','),i,o=function(n){return'function'==typeof n?o.l.push([arguments])&&o
         :function(){return o.l.push([n,arguments])&&o}},t=d.getElementsByTagName(s)[0],
         j=d.createElement(s);j.async=!0;j.src='https://cdn.fundraiseup.com/widget/'+a+'';
+        j.onload = function() {
+            if (callback) {
+                // Give FundraiseUp a moment to initialize
+                setTimeout(callback, 100);
+            }
+        };
         t.parentNode.insertBefore(j,t);o.s=Date.now();o.v=5;o.h=w.location.href;o.l=[];
         for(i=0;i<8;i++)o[l[i]]=o(l[i]);w[n]=o}
         })(window,document,'script','FundraiseUp','AAYKECHT');
@@ -40,11 +50,22 @@
         loadFundraiseUp();
     }
 
-    // Load on donate button click
+    // Load on donate button click, then trigger the modal
     document.addEventListener('click', function(e) {
         var link = e.target.closest('a[href^="#X"]');
         if (link && link.href && link.href.match(/#X[A-Z0-9]+$/)) {
-            loadFundraiseUp();
+            if (!loaded) {
+                // Prevent default navigation, load script, then re-trigger
+                e.preventDefault();
+                e.stopPropagation();
+
+                var targetHash = link.getAttribute('href');
+                loadFundraiseUp(function() {
+                    // Re-click the link after FundraiseUp is loaded
+                    link.click();
+                });
+            }
+            // If already loaded, let FundraiseUp handle the click naturally
         }
-    });
+    }, true); // Use capture phase to intercept before FundraiseUp
 })();
