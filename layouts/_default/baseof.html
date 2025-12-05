@@ -96,31 +96,12 @@
 
     {{ block "scripts" . }}{{ end }}
 
-    <!-- =====================================================================
-         Swetrix Analytics - CLEARNET ONLY
-         To disable: Remove or comment out this entire block
-         ===================================================================== -->
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://analytics.i2p.net/js/pa-J0oDwI6-r_JiUHyk7Ufct.js"></script>
     <script>
-        (function () {
-            var hostname = window.location.hostname;
-            if (hostname.endsWith('.i2p') || hostname.endsWith('.b32.i2p') || hostname.endsWith('.onion')) {
-                return; // Skip analytics on anonymous networks
-            }
-            var s = document.createElement('script');
-            s.src = 'https://swetrix.org/swetrix.js';
-            s.defer = true;
-            s.onload = function () {
-                swetrix.init('rTX4Esd3R9oj');
-                swetrix.trackViews();
-            };
-            document.head.appendChild(s);
-        })();
+        window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+        plausible.init()
     </script>
-    <noscript>
-        <img src="https://api.swetrix.com/log/noscript?pid=rTX4Esd3R9oj" alt=""
-            referrerpolicy="no-referrer-when-downgrade" />
-    </noscript>
-    <!-- End Swetrix Code -->
 </body>
 
 </html>
