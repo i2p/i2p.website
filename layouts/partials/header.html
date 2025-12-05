@@ -2,7 +2,7 @@
     <div class="container">
         <nav class="main-nav">
             <div class="nav-brand">
-                <a href="{{ "/" | relLangURL }}" class="logo-link">
+                <a href="{{ " /" | relLangURL }}" class="logo-link">
                     <img src="/images/i2plogo_lightmode.svg" alt="I2P Logo" class="logo logo-light">
                     <img src="/images/i2plogo_darkmode.svg" alt="I2P Logo" class="logo logo-dark">
                 </a>
@@ -16,22 +16,27 @@
             <div class="nav-menu">
                 <ul class="nav-links">
                     <li class="nav-dropdown">
-                        <a href="{{ relLangURL "/about/" }}" class="{{ if eq .Section "about" }}active{{ end }}">{{ i18n "nav.about" }}</a>
+                        <a href="{{ relLangURL " /about/" }}" class="{{ if eq .Section " about" }}active{{ end }}">{{
+                            i18n "nav.about" }}</a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ relLangURL "/about/" }}">{{ i18n "nav.overview" }}</a></li>
-                            <li><a href="{{ relLangURL "/papers/" }}">{{ i18n "nav.researchPapers" }}</a></li>
-                            <li><a href="{{ relLangURL "/about/media/" }}">{{ i18n "nav.press" }}</a></li>
-                            <li><a href="{{ relLangURL "/contact/" }}">{{ i18n "nav.contactUs" }}</a></li>
+                            <li><a href="{{ relLangURL " /about/" }}">{{ i18n "nav.overview" }}</a></li>
+                            <li><a href="{{ relLangURL " /papers/" }}">{{ i18n "nav.researchPapers" }}</a></li>
+                            <li><a href="{{ relLangURL " /about/media/" }}">{{ i18n "nav.press" }}</a></li>
+                            <li><a href="{{ relLangURL " /contact/" }}">{{ i18n "nav.contactUs" }}</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ relLangURL "/docs/" }}" class="{{ if eq .Section "docs" }}active{{ end }}">{{ i18n "nav.docs" }}</a></li>
-                    <li><a href="{{ relLangURL "/downloads/" }}" class="{{ if eq .Section "downloads" }}active{{ end }}">{{ i18n "nav.downloads" }}</a></li>
-                    <li><a href="{{ relLangURL "/blog/" }}" class="{{ if eq .Section "blog" }}active{{ end }}">{{ i18n "nav.blog" }}</a></li>
+                    <li><a href="{{ relLangURL " /docs/" }}" class="{{ if eq .Section " docs" }}active{{ end }}">{{ i18n
+                            "nav.docs" }}</a></li>
+                    <li><a href="{{ relLangURL " /downloads/" }}" class="{{ if eq .Section " downloads" }}active{{ end
+                            }}">{{ i18n "nav.downloads" }}</a></li>
+                    <li><a href="{{ relLangURL " /blog/" }}" class="{{ if eq .Section " blog" }}active{{ end }}">{{ i18n
+                            "nav.blog" }}</a></li>
                     <li class="nav-dropdown">
-                        <a href="{{ relLangURL "/get-involved/" }}" class="{{ if eq .Section "get-involved" }}active{{ end }}">{{ i18n "nav.getInvolved" }}</a>
+                        <a href="{{ relLangURL " /get-involved/" }}" class="{{ if eq .Section " get-involved" }}active{{
+                            end }}">{{ i18n "nav.getInvolved" }}</a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ relLangURL "/get-involved/" }}">{{ i18n "nav.overview" }}</a></li>
-                            <li><a href="{{ relLangURL "/feedback/" }}">{{ i18n "nav.featureSuggestions" }}</a></li>
+                            <li><a href="{{ relLangURL " /get-involved/" }}">{{ i18n "nav.overview" }}</a></li>
+                            <li><a href="{{ relLangURL " /feedback/" }}">{{ i18n "nav.featureSuggestions" }}</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -40,9 +45,12 @@
                     <!-- Language Selector -->
                     <div class="language-selector">
                         <button class="language-toggle" aria-label="Select language" title="Language">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                                <path
+                                    d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"
+                                    stroke="currentColor" stroke-width="2" />
                             </svg>
                             <span class="current-lang">{{ .Site.Language.Lang }}</span>
                         </button>
@@ -50,38 +58,50 @@
                             {{ $page := . }}
                             {{ $translations := $page.AllTranslations }}
                             {{ range .Site.Languages }}
-                                {{ $lang := . }}
-                                {{ $langName := i18n (printf "languages.%s" $lang.Lang) }}
-                                {{ if not $langName }}
-                                    {{ $langName = $lang.LanguageName }}
-                                {{ end }}
-                                {{ $matches := where $translations "Lang" $lang.Lang }}
-                                {{ if gt (len $matches) 0 }}
-                                    {{ $target := index $matches 0 }}
-                                    <a href="{{ $target.RelPermalink }}" class="lang-option{{ if eq $lang.Lang $page.Site.Language.Lang }} active{{ end }}">{{ $langName }}</a>
-                                {{ else }}
-                                    <a href="{{ printf "/%s/" $lang.Lang }}" class="lang-option{{ if eq $lang.Lang $page.Site.Language.Lang }} active{{ end }}">{{ $langName }}</a>
-                                {{ end }}
+                            {{ $lang := . }}
+                            {{ $langName := i18n (printf "languages.%s" $lang.Lang) }}
+                            {{ if not $langName }}
+                            {{ $langName = $lang.LanguageName }}
+                            {{ end }}
+                            {{ $matches := where $translations "Lang" $lang.Lang }}
+                            {{ if gt (len $matches) 0 }}
+                            {{ $target := index $matches 0 }}
+                            <a href="{{ $target.RelPermalink }}"
+                                class="lang-option{{ if eq $lang.Lang $page.Site.Language.Lang }} active{{ end }}">{{
+                                $langName }}</a>
+                            {{ else }}
+                            <a href="{{ printf " /%s/" $lang.Lang }}"
+                                class="lang-option{{ if eq $lang.Lang $page.Site.Language.Lang }} active{{ end }}">{{
+                                $langName }}</a>
+                            {{ end }}
                             {{ end }}
                         </div>
                     </div>
 
                     <!-- Theme toggle -->
                     <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
-                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
-                            <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2" />
+                            <path
+                                d="M10 2V4M10 16V18M18 10H16M4 10H2M15.657 4.343L14.243 5.757M5.757 14.243L4.343 15.657M15.657 15.657L14.243 14.243M5.757 5.757L4.343 4.343"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                         </svg>
-                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                                stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
                         </svg>
                     </button>
 
                     <!-- Donate Button (hidden on I2P/Tor by fundraiseup-loader.js) -->
-                    <a href="#XTLSAXYD" class="btn btn-primary" id="donate-btn">Donate</a>
+                    <!-- Hidden FundraiseUp anchor - will be clicked programmatically after script loads -->
+                    <a href="#XTLSAXYD" id="fundraiseup-trigger" style="display: none;"></a>
+                    <!-- Visible donate button that triggers our lazy loader -->
+                    <button type="button" class="btn btn-primary" id="donate-btn">Donate</button>
 
                     <!-- CTA Button -->
-                    <a href="{{ relLangURL "/downloads/" }}" class="btn btn-primary">{{ i18n "nav.getI2P" }}</a>
+                    <a href="{{ relLangURL " /downloads/" }}" class="btn btn-primary">{{ i18n "nav.getI2P" }}</a>
                 </div>
             </div>
         </nav>
