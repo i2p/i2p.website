@@ -38,8 +38,9 @@
         // If not yet started loading, start now
         if (!loaded) {
             loaded = true;
+            console.log("FundraiseUp Loader: Starting load...");
 
-            // FundraiseUp initialization code
+            // FundraiseUp initialization code - MODIFIED with local logging
             (function (w, d, s, n, a) {
                 if (!w[n]) {
                     var l = 'call,catch,on,once,set,then,track,openCheckout'
@@ -47,17 +48,28 @@
                             return 'function' == typeof n ? o.l.push([arguments]) && o
                                 : function () { return o.l.push([n, arguments]) && o }
                         }, t = d.getElementsByTagName(s)[0],
-                    j = d.createElement(s); j.async = !0; j.src = 'https://cdn.fundraiseup.com/widget/' + a + '';
+                        j = d.createElement(s); j.async = !0; j.src = 'https://cdn.fundraiseup.com/widget/' + a + '';
+
+                    // Re-add onload for safety/debugging
+                    j.onload = function () {
+                        console.log("FundraiseUp Loader: Script loaded.");
+                        // Safety check: if pendingCampaign is still set (meaning it wasn't opened), try again?
+                        // But we don't store pendingCampaign globally anymore? 
+                        // Let's just log for now to see order of events.
+                    };
+
                     t.parentNode.insertBefore(j, t); o.s = Date.now(); o.v = 5; o.h = w.location.href; o.l = [];
                     for (i = 0; i < 8; i++)o[l[i]] = o(l[i]); w[n] = o
                 }
             })(window, document, 'script', 'FundraiseUp', 'AAYKECHT');
         }
 
+        console.log("FundraiseUp Loader: Calling openCheckout via Proxy with ID:", campaignId);
         // The snippet above creates a Proxy 'window.FundraiseUp' which queues calls.
-        // We can safely call openCheckout immediately.
         if (window.FundraiseUp && window.FundraiseUp.openCheckout) {
             window.FundraiseUp.openCheckout(campaignId);
+        } else {
+            console.error("FundraiseUp Loader: openCheckout missing!");
         }
     }
 
