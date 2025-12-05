@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Lang | default "en" }}" data-theme="light">
+<html lang="{{ .Site.Language.Lang | default " en" }}" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,14 +24,14 @@
     <!-- Styles -->
     {{ $styles := resources.Get "css/main.css" }}
     {{ if $styles }}
-        {{ $styles = $styles | resources.Minify | resources.Fingerprint }}
-        <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
+    {{ $styles = $styles | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
     {{ end }}
 
 
     <!-- Theme Script (prevent flash) -->
     <script>
-        (function() {
+        (function () {
             const theme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', theme);
         })();
@@ -38,6 +39,7 @@
 
     {{ block "head" . }}{{ end }}
 </head>
+
 <body>
     {{ partial "banner.html" . }}
     {{ partial "header.html" . }}
@@ -54,45 +56,40 @@
     <!-- Scripts -->
     {{ $scripts := resources.Get "js/main.js" }}
     {{ if $scripts }}
-        {{ $scripts = $scripts | resources.Minify | resources.Fingerprint }}
-        <script src="{{ $scripts.RelPermalink }}" integrity="{{ $scripts.Data.Integrity }}"></script>
+    {{ $scripts = $scripts | resources.Minify | resources.Fingerprint }}
+    <script src="{{ $scripts.RelPermalink }}" integrity="{{ $scripts.Data.Integrity }}"></script>
     {{ end }}
 
-    <!-- FundraiseUp Lazy Loader - loads only when needed for privacy -->
-    {{ $fundraiseup := resources.Get "js/fundraiseup-loader.js" }}
-    {{ if $fundraiseup }}
-        {{ $fundraiseup = $fundraiseup | resources.Minify | resources.Fingerprint }}
-        <script src="{{ $fundraiseup.RelPermalink }}" integrity="{{ $fundraiseup.Data.Integrity }}"></script>
-    {{ end }}
+
 
     <!-- Feedback Widgets - Network-aware loading -->
     <script>
-    (function() {
-        'use strict';
-        var hostname = window.location.hostname;
-        var baseUrl;
-        
-        // Detect network
-        if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
-            baseUrl = 'http://5kwyynf3eetgqa2nors6ctwo7doi7yu73k7uvypy5eqmm326zkiq.b32.i2p';
-        } else if (hostname.endsWith('.onion')) {
-            baseUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
-        } else {
-            baseUrl = 'https://feedback.i2p.net';
-        }
-        
-        window.feedbackBaseUrl = baseUrl;
-        
-        // Update widget API URLs before scripts load
-        document.querySelectorAll('[data-api-url]').forEach(function(widget) {
-            widget.setAttribute('data-api-url', baseUrl);
-        });
-        
-        // Write script tags synchronously so they load in order
-        document.write('<link rel="stylesheet" href="' + baseUrl + '/widgets/styles.css">');
-        document.write('<script src="' + baseUrl + '/widgets/mailing-list.js"><\/script>');
-        document.write('<script src="' + baseUrl + '/widgets/features.js"><\/script>');
-    })();
+        (function () {
+            'use strict';
+            var hostname = window.location.hostname;
+            var baseUrl;
+
+            // Detect network
+            if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
+                baseUrl = 'http://5kwyynf3eetgqa2nors6ctwo7doi7yu73k7uvypy5eqmm326zkiq.b32.i2p';
+            } else if (hostname.endsWith('.onion')) {
+                baseUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
+            } else {
+                baseUrl = 'https://feedback.i2p.net';
+            }
+
+            window.feedbackBaseUrl = baseUrl;
+
+            // Update widget API URLs before scripts load
+            document.querySelectorAll('[data-api-url]').forEach(function (widget) {
+                widget.setAttribute('data-api-url', baseUrl);
+            });
+
+            // Write script tags synchronously so they load in order
+            document.write('<link rel="stylesheet" href="' + baseUrl + '/widgets/styles.css">');
+            document.write('<script src="' + baseUrl + '/widgets/mailing-list.js"><\/script>');
+            document.write('<script src="' + baseUrl + '/widgets/features.js"><\/script>');
+        })();
     </script>
 
     <!-- Poll Widget Script is loaded dynamically when the modal opens -->
@@ -104,24 +101,26 @@
          To disable: Remove or comment out this entire block
          ===================================================================== -->
     <script>
-    (function() {
-      var hostname = window.location.hostname;
-      if (hostname.endsWith('.i2p') || hostname.endsWith('.b32.i2p') || hostname.endsWith('.onion')) {
-        return; // Skip analytics on anonymous networks
-      }
-      var s = document.createElement('script');
-      s.src = 'https://swetrix.org/swetrix.js';
-      s.defer = true;
-      s.onload = function() {
-        swetrix.init('rTX4Esd3R9oj');
-        swetrix.trackViews();
-      };
-      document.head.appendChild(s);
-    })();
+        (function () {
+            var hostname = window.location.hostname;
+            if (hostname.endsWith('.i2p') || hostname.endsWith('.b32.i2p') || hostname.endsWith('.onion')) {
+                return; // Skip analytics on anonymous networks
+            }
+            var s = document.createElement('script');
+            s.src = 'https://swetrix.org/swetrix.js';
+            s.defer = true;
+            s.onload = function () {
+                swetrix.init('rTX4Esd3R9oj');
+                swetrix.trackViews();
+            };
+            document.head.appendChild(s);
+        })();
     </script>
     <noscript>
-      <img src="https://api.swetrix.com/log/noscript?pid=rTX4Esd3R9oj" alt="" referrerpolicy="no-referrer-when-downgrade" />
+        <img src="https://api.swetrix.com/log/noscript?pid=rTX4Esd3R9oj" alt=""
+            referrerpolicy="no-referrer-when-downgrade" />
     </noscript>
     <!-- End Swetrix Code -->
 </body>
+
 </html>
