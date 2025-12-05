@@ -48,7 +48,7 @@
                             return 'function' == typeof n ? o.l.push([arguments]) && o
                                 : function () { return o.l.push([n, arguments]) && o }
                         }, t = d.getElementsByTagName(s)[0],
-                        j = d.createElement(s); j.async = !0; j.src = 'https://cdn.fundraiseup.com/widget/' + a + '';
+                        j = d.createElement(s); j.async = !0; j.src = '/js/fundraiseup-widget.js';
 
                     // Re-add onload for safety/debugging
                     j.onload = function () {
