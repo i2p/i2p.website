@@ -19,7 +19,7 @@ defaultContentLanguageInSubdir = true
   [params.banner]
     enabled = true  # Set to true to display the banner
     dismissible = true  # Allow users to dismiss the banner
-    id = "banner-2"  # Unique ID for localStorage (increment number (eg 1 > 2 > 3) to display new banner)
+    id = "banner-3"  # Unique ID for localStorage (increment number (eg 1 > 2 > 3) to display new banner)
 
 # Multilingual Configuration
 [languages]

@@ -192,7 +192,7 @@ troubleshootingGuide = "Guide de dépannage"
 communitySupport = "Soutien Communautaire"
 
 [banner]
-banner_message = "Le nouveau site bêta I2P est maintenant en ligne !"
+banner_message = "Site Bêta I2P Maintenant En Ligne Signaler les problèmes e-mail à stormycloud@mail.i2p"
 banner_link_text = "Learn more"
 banner_link_url = ""
 banner_close = "Fermer la bannière"

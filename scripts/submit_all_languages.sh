@@ -41,3 +41,4 @@ echo ""
 echo "To check all batches, run:"
 echo "  python3 translate_claude_batch.py --check-all"
 
+

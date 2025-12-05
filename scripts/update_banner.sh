@@ -138,3 +138,4 @@ echo -e "  2. Rebuild the site:   ${YELLOW}hugo${NC}"
 echo -e "  3. Commit the changes: ${YELLOW}git add -A && git commit -m \"Update banner\"${NC}"
 echo ""
 
+

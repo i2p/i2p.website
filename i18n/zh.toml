@@ -192,7 +192,7 @@ troubleshootingGuide = "故障排查指南"
 communitySupport = "社区支持"
 
 [banner]
-banner_message = "新的 I2P Beta 网站现已上线！"
+banner_message = "I2P 测试版网站现已上线 电子邮件问题请发送至 stormycloud@mail.i2p"
 banner_link_text = "Learn more"
 banner_link_url = ""
 banner_close = "关闭横幅"

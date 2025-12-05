@@ -187,7 +187,7 @@ troubleshootingGuide = "دليل استكشاف الأخطاء وإصلاحها"
 communitySupport = "دعم المجتمع"
 
 [banner]
-banner_message = "موقع I2P التجريبي الجديد متاح الآن!"
+banner_message = "موقع I2P التجريبي متاح الآن - أرسل المشاكل إلى stormycloud@mail.i2p"
 banner_link_text = "Learn more"
 banner_link_url = ""
 banner_close = "إغلاق الشريط"

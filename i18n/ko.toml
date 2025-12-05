@@ -191,7 +191,7 @@ troubleshootingGuide = "문제 해결 가이드"
 communitySupport = "커뮤니티 지원"
 
 [banner]
-banner_message = "새로운 I2P 베타 사이트가 오픈되었습니다!"
+banner_message = "I2P 베타 사이트 현재 운영 중 문의사항은 stormycloud@mail.i2p로 이메일 주세요"
 banner_link_text = "Learn more"
 banner_link_url = ""
 banner_close = "배너 닫기"

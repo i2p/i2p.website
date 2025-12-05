@@ -190,7 +190,7 @@ troubleshootingGuide = "Příručka pro odstraňování problémů"
 communitySupport = "Podpora komunity"
 
 [banner]
-banner_message = "Nová I2P Beta stránka je nyní spuštěna!"
+banner_message = "I2P Beta stránky jsou nyní spuštěny. Problémy s e-mailem hlaste na stormycloud@mail.i2p"
 banner_link_text = "Learn more"
 banner_link_url = ""
 banner_close = "Zavřít banner"
