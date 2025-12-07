@@ -60,7 +60,7 @@
 
     /* Layout */
     --container-max: 1280px;
-    --header-height: 72px;
+    --header-height: 88px;
 }
 
 /* Dark Mode */
@@ -104,7 +104,7 @@ html {
 
 body {
     font-family: var(--font-sans);
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.6;
     color: var(--color-text);
     background-color: var(--color-bg);
