@@ -4,12 +4,6 @@ description: "How I2P maps human-readable hostnames to destinations"
 slug: "naming"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /en/docs/naming
-  - /naming/
-  - /spec/common-structures/naming/
-  - /docs/overview/naming/
-  - /en/docs/naming/
 ---
 
 I2P addresses are long cryptographic keys. The naming system provides a friendlier layer on top of those keys **without introducing a central authority**.  

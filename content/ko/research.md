@@ -2,10 +2,6 @@
 title: "학술 연구"
 description: "I2P 네트워크에 관한 학술 연구를 위한 정보와 지침"
 layout: "research"
-aliases:
-  - /en/research
-  - /en/research/index
-  - /en/research/questions
 ---
 
 <div id="intro"></div>

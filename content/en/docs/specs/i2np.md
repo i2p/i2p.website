@@ -4,12 +4,6 @@ description: "Router-to-router message formats, priorities, and size limits insi
 slug: "i2np"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /docs/protocol/i2np/
-  - /spec/i2np/
-  - /docs/specs/i2np/
-  - /en/spec/i2np/
-  - /en/docs/protocol/i2np/
 ---
 ## Overview
 

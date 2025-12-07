@@ -2,10 +2,6 @@
 title: "Nghiên Cứu Học Thuật"
 description: "Thông tin và hướng dẫn cho nghiên cứu học thuật trên mạng I2P"
 layout: "research"
-aliases:
-  - /en/research
-  - /en/research/index
-  - /en/research/questions
 ---
 
 <div id="intro"></div>

@@ -4,7 +4,6 @@ date: 2004-03-23
 author: "jrand0m"
 description: "Ata da reunião de desenvolvimento do I2P de 23 de março de 2004."
 categories: ["meeting"]
-aliases: 
 ---
 
 ## Quick recap

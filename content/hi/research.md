@@ -3,10 +3,6 @@
 title: "शैक्षणिक अनुसंधान"
 description: "I2P नेटवर्क पर शैक्षणिक अनुसंधान के लिए जानकारी और मार्गदर्शन"
 layout: "अनुसंधान"
-aliases:
-  - /en/research
-  - /en/research/index
-  - /en/research/questions
 ---
 
 <div id="intro"></div>

@@ -4,9 +4,6 @@ description: "Set up Eclipse and NetBeans for developing I2P with Gradle and bun
 slug: "ides"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - "/en/get-involved/guides/ides"
-  - "/get-involved/guides/ides"
 type: docs
 reviewStatus: "needs-review"
 ---

@@ -4,10 +4,6 @@ description: "Shared data types and serialization formats used across I2P specs"
 slug: "common-structures"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /en/docs/spec/common-structures
-  - /spec/common-structures/
-  - /en/docs/how/network-database/
 ---
 
 ## Overview

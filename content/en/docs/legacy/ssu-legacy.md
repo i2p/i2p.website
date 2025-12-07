@@ -5,8 +5,6 @@ slug: "ssu"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"
 type: docs
-aliases:
-  - /spec/ssu/
 reviewStatus: "needs-review"
 ---
 

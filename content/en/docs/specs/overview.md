@@ -4,8 +4,6 @@ description: "Summary of the symmetric, asymmetric, and signature primitives use
 slug: "cryptography"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /docs/how/cryptography/
 reviewStatus: "needs-review"
 ---
 

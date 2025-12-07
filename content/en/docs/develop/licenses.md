@@ -4,9 +4,6 @@ description: "License policy and component licenses for software bundled with I2
 slug: "licenses"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - "/en/get-involved/develop/licenses"
-  - "/get-involved/develop/licenses"
 type: docs
 ---
 

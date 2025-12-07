@@ -4,8 +4,6 @@ date: 2004-03-23
 author: "jrand0m"
 description: "I2P development meeting log for March 23, 2004."
 categories: ["meeting"]
-aliases:
-  - /blog/2004/03/23/i2p-dev-meeting-march-23-2004/
 ---
 
 ## Quick recap

@@ -1,7 +1,6 @@
 ---
 title: "支持 I2P"
 slug: "financial-support"
-aliases: 
 layout: docs/single
 type: 文档
 hideSidebar: true

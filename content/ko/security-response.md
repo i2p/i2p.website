@@ -2,8 +2,6 @@
 title: "취약점 대응 프로세스"
 description: "I2P의 보안 취약점 보고 및 대응 프로세스"
 layout: "security-response"
-aliases:
-  - /en/research/vrp
 ---
 
 <div id="contact"></div>

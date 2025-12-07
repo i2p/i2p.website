@@ -1,7 +1,6 @@
 ---
 title: "Podpořte I2P"
 slug: "financial-support"
-aliases: 
 layout: docs/single
 type: dokumentace
 hideSidebar: true

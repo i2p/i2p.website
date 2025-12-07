@@ -2,10 +2,6 @@
 title: "Akademik Araştırma"
 description: "I2P ağı üzerinde akademik araştırmalar için bilgi ve yönergeler"
 layout: "research"
-aliases:
-  - /en/research
-  - /en/research/index
-  - /en/research/questions
 ---
 
 <div id="intro"></div>

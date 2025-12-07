@@ -2,10 +2,6 @@
 title: "Investigación Académica"
 description: "Información y pautas para la investigación académica en la red I2P"
 layout: "research"
-aliases:
-  - /en/research
-  - /en/research/index
-  - /en/research/questions
 ---
 
 <div id="intro"></div>

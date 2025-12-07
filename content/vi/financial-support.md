@@ -1,7 +1,6 @@
 ---
 title: "Ủng hộ I2P"
 slug: "financial-support"
-aliases: 
 layout: docs/single
 type: tài liệu
 hideSidebar: đúng

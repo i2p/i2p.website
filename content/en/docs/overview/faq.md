@@ -4,11 +4,6 @@ description: "Comprehensive I2P FAQ: router help, configuration, reseeds, privac
 slug: "faq"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - "/en/faq"
-  - "/faq"
-  - "/en/faq/"
-  - "/faq/"
 type: docs
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: "I2P unterstützen"
 slug: "financial-support"
-aliases: 
 layout: docs/single
 type: Dokumentation
 hideSidebar: wahr

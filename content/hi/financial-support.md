@@ -1,7 +1,6 @@
 ---
 title: "I2P का समर्थन करें"
 slug: "financial-support"
-aliases: 
 layout: docs/single
 type: प्रलेखन
 hideSidebar: सत्य

@@ -1,7 +1,6 @@
 ---
 title: "I2P 지원"
 slug: "financial-support"
-aliases: 
 layout: docs/single
 type: 문서
 hideSidebar: 참

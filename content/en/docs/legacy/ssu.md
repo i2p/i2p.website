@@ -4,9 +4,6 @@ description: "Original Secure Semireliable UDP transport"
 slug: "ssu"
 lastUpdated: "2025-01"
 accurateFor: "0.9.64"
-aliases:
-  - /docs/transport/ssu/
-  - /en/docs/transport/ssu/
 reviewStatus: "needs-review"
 ---
 

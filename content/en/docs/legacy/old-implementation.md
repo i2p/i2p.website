@@ -4,10 +4,6 @@ description: "Archived description of the tunnel design used prior to I2P 0.6.1.
 slug: "old-implementation"
 lastUpdated: "2005-06"
 accurateFor: "0.6.1"
-aliases:
-  - /docs/tunnels/old-implementation/
-  - /en/docs/tunnels/implementation/
-  - /en/docs/tunnels/old-implementation/
 reviewStatus: "needs-review"
 ---
 

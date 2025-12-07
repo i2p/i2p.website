@@ -4,7 +4,6 @@ date: 2004-03-16
 author: " jrandom"
 description: "2004年3月16日的 I2P 开发会议记录。"
 categories: ["meeting"]
-aliases: 
 ---
 
 ## 快速回顾

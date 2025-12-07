@@ -4,7 +4,6 @@ date: 2004-03-23
 author: "jrand0m"
 description: "Registro de la reunión de desarrollo de I2P del 23 de marzo de 2004."
 categories: ["meeting"]
-aliases: 
 ---
 
 ## Resumen rápido

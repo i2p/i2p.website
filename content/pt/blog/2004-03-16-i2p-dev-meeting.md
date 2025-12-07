@@ -4,7 +4,6 @@ date: 2004-03-16
 author: " jrandom"
 description: "Registro da reunião de desenvolvimento do I2P de 16 de março de 2004."
 categories: ["meeting"]
-aliases: 
 ---
 
 ## Quick recap

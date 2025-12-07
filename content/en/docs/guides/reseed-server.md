@@ -3,8 +3,6 @@ title: "Creating and Running an I2P Reseed Server"
 description: "Complete guide to setting up and operating an I2P reseed server to help new routers join the network"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /en/docs/reseed/
 ---
 
 Reseed hosts are crucial infrastructure for the I2P network, providing new routers with an initial group of nodes during the bootstrap process. This guide will walk you through setting up and running your own reseed server.

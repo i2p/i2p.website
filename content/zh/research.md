@@ -2,10 +2,6 @@
 title: "学术研究"
 description: "有关 I2P 网络学术研究的信息和指南"
 layout: "research"
-aliases:
-  - /en/research
-  - /en/research/index
-  - /en/research/questions
 ---
 
 <div id="intro"></div>

@@ -3,9 +3,6 @@ title: "New Translator's Guide"
 description: "How to contribute translations to the I2P website and router console using Transifex or manual methods"
 slug: "new-translators"
 lastUpdated: "2025-10"
-aliases:
-  - "/en/get-involved/guides/new-translators/"
-  - "/get-involved/guides/new-translators/"
 type: docs
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: "I2P'yi Destekleyin"
 slug: "financial-support"
-aliases: 
 layout: docs/single
 type: Dokümantasyon
 hideSidebar: doğru

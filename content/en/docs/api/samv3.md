@@ -4,8 +4,6 @@ description: "Stable bridge protocol for non-Java I2P applications"
 slug: "samv3"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /docs/api/samv3/
 ---
 
 SAM v3 (“Simple Anonymous Messaging”) is the current **stable, router agnostic API** that allows external applications to communicate with the I2P network without embedding the router itself. It provides unified access to **streams**, **datagrams**, and **raw messages**, and remains the canonical bridge layer for non-Java software.

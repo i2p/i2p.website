@@ -2,9 +2,6 @@
 title: "Support I2P"
 
 slug: "financial-support"
-aliases:
-  - /docs/donate/
-  - /donate/
 layout: docs/single
 type: docs
 hideSidebar: true

@@ -5,8 +5,6 @@ slug: "filter-format"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs
-aliases:
-  - /spec/filter-format/
 ---
 
 Access filters let I2PTunnel server operators allow, deny, or throttle inbound connections based on the source Destination and recent connection rate. The filter is a plain text file of rules. The file is read top to bottom and the **first matching rule wins**.

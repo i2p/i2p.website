@@ -4,7 +4,6 @@ date: 2004-03-16
 author: " jrandom"
 description: "Nhật ký cuộc họp phát triển I2P ngày 16 tháng 3 năm 2004."
 categories: ["meeting"]
-aliases: 
 ---
 
 ## Tóm tắt nhanh

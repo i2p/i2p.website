@@ -4,9 +4,6 @@ description: "Connecting Git clients to I2P-hosted services such as i2pgit.org"
 slug: "git"
 lastUpdated: "2025-02"
 accurateFor: "2.5.0"
-aliases:
-  - "/en/docs/applications/GIT.md"
-  - /en/docs/applications/gitlab/
 reviewStatus: "needs-review"
 ---
 

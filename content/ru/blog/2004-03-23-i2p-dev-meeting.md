@@ -4,7 +4,6 @@ date: 2004-03-23
 author: "jrand0m"
 description: "Протокол встречи разработчиков I2P от 23 марта 2004 года."
 categories: ["meeting"]
-aliases: 
 ---
 
 ## Краткое резюме

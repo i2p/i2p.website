@@ -4,10 +4,6 @@ description: "Deprecated API for destination management (deprecated)"
 slug: "bob"
 lastUpdated: "2025-05"
 layout: "single"
-aliases:
-  - /docs/api/bob/
-  - /docs/legacy/bob/
-  - /en/docs/api/bob/
 reviewStatus: "needs-review"
 ---
 

@@ -7,9 +7,6 @@ outputs:
   - HTML
   - RSS
   - JSON
-aliases:
-  - /en/docs/protocol/
-  - /en/docs/specs/overview/
 ---
 
 Welcome to the I2P documentation. This site provides guides, explanations, and technical specifications for developers and users.

@@ -4,11 +4,6 @@ description: "Secure Semi-Reliable UDP Transport Protocol Version 2"
 slug: "ssu2"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /en/docs/specs/ssu2
-  - /spec/ssu2/
-  - /docs/specs/ssu2/
-  - /en/spec/ssu2/
 ---
 
 ## 1. Overview

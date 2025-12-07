@@ -4,7 +4,6 @@ date: 2004-03-23
 author: "jrand0m"
 description: "2004年3月23日的 I2P 开发会议记录。"
 categories: ["meeting"]
-aliases: 
 ---
 
 ## 快速回顾

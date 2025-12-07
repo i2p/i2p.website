@@ -5,10 +5,6 @@ slug: "ntcp2"
 lastUpdated: "2025-10"
 accurateFor: "0.9.66"
 type: docs
-aliases:
-  - /spec/ntcp2/
-  - /docs/specs/ntcp2/
-  - /en/spec/ntcp2/
 ---
 
 ## Overview

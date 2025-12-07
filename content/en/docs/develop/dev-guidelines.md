@@ -4,10 +4,6 @@ description: "End-to-end guidelines for contributing to I2P: workflow, release c
 slug: "dev-guidelines"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - "/en/get-involved/guides/dev-guidelines/"
-  - "/get-involved/guides/dev-guidelines/"
-  - "/en//get-involved/guides/dev-guidelines"
 type: docs
 ---
 

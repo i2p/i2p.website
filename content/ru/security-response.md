@@ -2,8 +2,6 @@
 title: "Процесс реагирования на уязвимости"
 description: "Процесс сообщения и реагирования на уязвимости безопасности I2P"
 layout: "security-response"
-aliases:
-  - /en/research/vrp
 ---
 
 <div id="contact"></div>

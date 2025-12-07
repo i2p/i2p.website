@@ -4,8 +4,6 @@ description: "TCP-like transport used by most I2P applications"
 slug: "streaming"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /docs/api/streaming/
 ---
 
 ## Overview

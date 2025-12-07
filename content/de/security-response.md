@@ -2,8 +2,6 @@
 title: "Verfahren zur Behandlung von Sicherheitslücken"
 description: "I2Ps Verfahren zur Meldung und Reaktion auf Sicherheitslücken"
 layout: "security-response"
-aliases:
-  - /en/research/vrp
 ---
 
 <div id="contact"></div>

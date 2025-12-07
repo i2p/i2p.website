@@ -1,8 +1,5 @@
 ---
 title: "ऐतिहासिक दस्तावेज़"
-aliases:
-  - /hi/misc/invisiblenet/
-  - /misc/invisiblenet/
 ---
 
 यह पृष्ठ "ऐतिहासिक" के तहत [प्रलेखन](/en/docs/) अनुभाग में स्थानांतरित हो गया है।

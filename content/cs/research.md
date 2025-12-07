@@ -2,10 +2,6 @@
 title: "Akademický výzkum"
 description: "Informace a pokyny pro akademický výzkum v síti I2P"
 layout: "research"
-aliases:
-  - /en/research
-  - /en/research/index
-  - /en/research/questions
 ---
 
 <div id="intro"></div>

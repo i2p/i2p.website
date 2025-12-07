@@ -5,11 +5,6 @@ slug: "streaming"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs
-aliases:
-  - /spec/streaming/
-  - /spec/api/streaming/
-  - /docs/specs/streaming/
-  - /en/spec/streaming/
 ---
 
 ## Overview

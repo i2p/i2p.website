@@ -4,8 +4,6 @@ description: "Overview of I2P tunnel terminology, construction, and lifecycle"
 slug: "tunnel-routing"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /en/docs/how/tunnel-routing/
 ---
 
 

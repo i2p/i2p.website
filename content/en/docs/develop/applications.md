@@ -4,9 +4,6 @@ description: "Why write I2P-specific apps, key concepts, development options, an
 slug: "applications"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - "/en/get-involved/develop/applications"
-  - "/get-involved/develop/applications"
 type: docs
 ---
 

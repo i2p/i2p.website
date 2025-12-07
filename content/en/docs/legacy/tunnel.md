@@ -5,8 +5,6 @@ slug: "tunnel"
 layout: "single"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
-aliases:
-  - /docs/discussions/tunnel/
 reviewStatus: "needs-review"
 ---
 

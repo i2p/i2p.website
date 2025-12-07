@@ -4,7 +4,6 @@ date: 2004-03-23
 author: "jrand0m"
 description: "Biên bản cuộc họp phát triển I2P ngày 23 tháng 3 năm 2004."
 categories: ["meeting"]
-aliases: 
 ---
 
 ## Tóm tắt nhanh

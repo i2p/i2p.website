@@ -5,24 +5,6 @@ slug: "implementation"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: spec
-aliases:
-  - /docs/tunnels/implementation/
-  - /docs/specs/implementation/
-  - /en/docs/docs/specs/implementation/
-  - /spec/tunnel-creation-ecies/
-  - /en/docs/spec/tunnel-creation-ecies
-  - /spec/tunnel/creation-ecies/
-  - /spec/tunnel/tunnel-creation-ecies/
-  - /en/docs/spec/tunnel/tunnel-creation-ecies/
-  - /spec/tunnel-creation/
-  - /en/docs/spec/tunnel/creation/
-  - /spec/tunnel/tunnel-creation/
-  - /en/docs/spec/tunnel/tunnel-creation/
-  - /spec/tunnel/message/
-  - /spec/tunnel-message/
-  - /en/docs/spec/tunnel/message/
-  - /spec/tunnel/tunnel-message/
-  - /en/docs/spec/tunnel/tunnel-message/
 reviewStatus: "needs-review"
 ---
 

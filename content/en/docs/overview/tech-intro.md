@@ -4,12 +4,6 @@ description: "Technical introduction to I2P architecture and operation"
 slug: "tech-intro"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /en/docs/how/tech-intro
-  - /how/tech-intro/
-  - /docs/overview/tech-intro
-  - /docs/overview/tech-intro/
-  - /en/docs/how/tech-intro/
 ---
 
 ## Introduction

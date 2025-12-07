@@ -1,7 +1,6 @@
 ---
 title: "ادعم I2P"
 slug: "financial-support"
-aliases: 
 layout: docs/single
 type: التوثيق
 hideSidebar: صحيح

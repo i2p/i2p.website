@@ -4,9 +4,6 @@ description: "Understanding garlic routing terminology, architecture, and modern
 slug: "garlic-routing"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /docs/how/garlic-routing/
-  - /docs/spec/garlic-routing/
 ---
 
 ---

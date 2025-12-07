@@ -4,7 +4,6 @@ date: 2004-03-16
 author: " jrandom"
 description: "سجل اجتماع تطوير I2P بتاريخ 16 مارس 2004."
 categories: ["meeting"]
-aliases: 
 ---
 
 ## مراجعة سريعة

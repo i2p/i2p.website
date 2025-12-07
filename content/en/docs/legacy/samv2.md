@@ -4,10 +4,6 @@ description: "Legacy Simple Anonymous Messaging protocol"
 slug: "samv2"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
-aliases:
-  - /docs/api/samv2/
-  - /docs/legacy/samv2/
-  - /en/docs/api/samv2/
 reviewStatus: "needs-review"
 ---
 

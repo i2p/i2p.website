@@ -4,8 +4,6 @@ description: "CLI utility for sending I2P datagrams via SAM v3"
 slug: "v3dgsend"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /docs/api/v3dgsend/
 ---
 
 > Status: This is a concise reference for the `v3dgsend` utility. It complements the [Datagram API](/docs/api/datagrams/) and [SAM v3](/docs/api/samv3/) docs.

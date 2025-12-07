@@ -4,9 +4,6 @@ description: "Legacy end-to-end encryption combining ElGamal, AES, SHA-256, and 
 slug: "elgamal-aes"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /docs/how/elgamal-aes/
-  - /en/docs/specs/elgamal-aes/
 reviewStatus: "needs-review"
 ---
 

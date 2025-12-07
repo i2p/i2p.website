@@ -4,7 +4,6 @@ date: 2004-03-23
 author: "jrand0m"
 description: "Zápis z vývojové schůzky I2P ze dne 23. března 2004."
 categories: ["meeting"]
-aliases: 
 ---
 
 ## Stručné shrnutí

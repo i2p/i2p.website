@@ -4,9 +4,6 @@ description: "PGP keys used to sign I2P releases and where to obtain them"
 slug: "release-signing-key"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - "/en/get-involved/develop/release-signing-key"
-  - "/get-involved/develop/release-signing-key"
 type: docs
 ---
 

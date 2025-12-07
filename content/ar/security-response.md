@@ -2,8 +2,6 @@
 title: "عملية الاستجابة للضعف الأمني"
 description: "عملية الإبلاغ والاستجابة للضعف الأمني في I2P"
 layout: "security-response"
-aliases:
-  - /en/research/vrp
 ---
 
 <div id="contact"></div>

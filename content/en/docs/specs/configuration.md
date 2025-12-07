@@ -4,11 +4,6 @@ description: "Configuration options and formats for I2P routers and clients"
 slug: "configuration"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /en/docs/specs/configuration
-  - /spec/configuration/
-  - /docs/specs/configuration/
-  - /en/spec/configuration/
 type: spec
 ---
 ## Overview

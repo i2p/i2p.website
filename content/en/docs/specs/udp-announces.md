@@ -3,9 +3,6 @@ title: "UDP BitTorrent Announces"
 description: "Protocol specification for UDP-based BitTorrent tracker announces in I2P"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /en/docs/specs/udp-announces/
-  - /docs/specs/udp-bittorrent-announces/
 ---
 
 ## Overview

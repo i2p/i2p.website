@@ -2,10 +2,6 @@
 title: "Akademische Forschung"
 description: "Informationen und Richtlinien für die akademische Forschung im I2P-Netzwerk"
 layout: "research"
-aliases:
-  - /en/research
-  - /en/research/index
-  - /en/research/questions
 ---
 
 <div id="intro"></div>

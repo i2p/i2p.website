@@ -4,7 +4,6 @@ date: 2004-03-16
 author: " jrandom"
 description: "Протокол встречи по разработке I2P от 16 марта 2004 года."
 categories: ["meeting"]
-aliases: 
 ---
 
 ## Краткое резюме

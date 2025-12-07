@@ -2,10 +2,6 @@
 title: "أبحاث أكاديمية"
 description: "معلومات وإرشادات للبحث الأكاديمي حول شبكة I2P"
 layout: "research"
-aliases:
-  - /en/research
-  - /en/research/index
-  - /en/research/questions
 ---
 
 <div id="intro"></div>

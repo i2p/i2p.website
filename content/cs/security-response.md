@@ -2,8 +2,6 @@
 title: "Proces reakce na zranitelnosti"
 description: "Proces nahlášení a reakce na zranitelnosti bezpečnosti I2P"
 layout: "security-response"
-aliases:
-  - /en/research/vrp
 ---
 
 <div id="contact"></div>

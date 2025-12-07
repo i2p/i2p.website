@@ -2,8 +2,6 @@
 title: "Processus de Réponse aux Vulnérabilités"  
 description: "Processus de signalement et de réponse aux vulnérabilités de sécurité chez I2P"  
 layout: "security-response"  
-aliases:  
-  - /en/research/vrp  
 ---  
 
 <div id="contact"></div>

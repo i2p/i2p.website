@@ -4,11 +4,6 @@ description: "How I2P behaves in jurisdictions with restrictions on routing or a
 slug: "restrictive-countries"
 lastUpdated: "2024-07"
 accurateFor: "2.10.0"
-aliases:
-  - "/en/about/restrictive-countries"
-  - "/about/restrictive-countries"
-  - "/en/about/restrictive-countries/"
-  - "/about/restrictive-countries/"
 type: docs
 reviewStatus: "needs-review"
 ---

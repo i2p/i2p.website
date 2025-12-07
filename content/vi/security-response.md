@@ -2,8 +2,6 @@
 title: "Quy Trình Phản Ứng Lỗ Hổng Bảo Mật"
 description: "Quy trình báo cáo và phản ứng lỗ hổng bảo mật của I2P"
 layout: "security-response"
-aliases:
-  - /en/research/vrp
 ---
 
 <div id="contact"></div>

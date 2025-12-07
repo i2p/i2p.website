@@ -4,8 +4,6 @@ description: "Remote router management API via the I2PControl webapp"
 slug: "i2pcontrol"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /docs/api/i2pcontrol/
 reviewStatus: "needs-review"
 ---
 

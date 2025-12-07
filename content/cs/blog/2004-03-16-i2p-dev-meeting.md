@@ -4,7 +4,6 @@ date: 2004-03-16
 author: " jrandom"
 description: "I2P development meeting log for March 16, 2004."
 categories: ["meeting"]
-aliases: 
 ---
 
 ## Stručné shrnutí

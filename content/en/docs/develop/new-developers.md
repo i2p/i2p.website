@@ -4,9 +4,6 @@ description: "How to start contributing to I2P: study materials, source code, bu
 slug: "new-developers"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - "/en/get-involved/guides/new-developers/"
-  - "/get-involved/guides/new-developers/"
 type: docs
 notes: update translation part
 ---

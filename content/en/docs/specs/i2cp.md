@@ -4,12 +4,6 @@ description: "How applications negotiate sessions, tunnels, and LeaseSets with t
 slug: "i2cp"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /docs/protocol/i2cp/
-  - /spec/i2cp/
-  - /docs/specs/i2cp/
-  - /en/spec/i2cp/
-  - /en/docs/protocol/i2cp/
 ---
 
 ## Overview

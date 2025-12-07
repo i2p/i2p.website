@@ -4,19 +4,6 @@ description: "I2P network performance: how it behaves today, historical improvem
 slug: "performance"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - "/en/about/performance"
-  - "/about/performance"
-  - "/en/about/performance/"
-  - "/about/performance/"
-  - "/en/about/performance/future"
-  - "/about/performance/future"
-  - "/en/about/performance/future/"
-  - "/about/performance/future/"
-  - "/en/about/performance/history"
-  - "/about/performance/history"
-  - "/en/about/performance/history/"
-  - "/about/performance/history/"
 reviewStatus: "needs-review"
 ---
 

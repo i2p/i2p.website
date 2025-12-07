@@ -2,10 +2,6 @@
 title: "Академическое исследование"
 description: "Информация и руководства для академических исследований в сети I2P"
 layout: "research"
-aliases:
-  - /en/research
-  - /en/research/index
-  - /en/research/questions
 ---
 
 <div id="intro"></div>

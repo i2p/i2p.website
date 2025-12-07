@@ -3,8 +3,6 @@ title: "I2PTunnel"
 description: "Tool for interfacing with and providing services on I2P"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /docs/api/i2ptunnel/
 ---
 
 ## Overview

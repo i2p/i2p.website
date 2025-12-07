@@ -5,13 +5,6 @@ slug: "threat-model"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 reviewStatus: "needs-review"
-aliases:
-  - /en/docs/how/threat-model
-  - /how/threat-model/
-  - /docs/overview/threat-model
-  - /docs/overview/threat-model/
-  - /docs/how/threat-model/
-  - /en/docs/how/threat-model/
 ---
 
 > **Status:**  

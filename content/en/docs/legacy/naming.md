@@ -5,8 +5,6 @@ slug: "naming"
 layout: "single"
 lastUpdated: "2025-02"
 accurateFor: "historical"
-aliases:
-  - /docs/discussions/naming/
 reviewStatus: "needs-review"
 ---
 

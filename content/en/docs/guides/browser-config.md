@@ -4,7 +4,6 @@ description: "Configure popular browsers to use I2P’s HTTP/HTTPS proxies on de
 slug: "browser-config"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
 type: docs
 ---
 

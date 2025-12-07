@@ -5,7 +5,6 @@ description: "Community-maintained I2P client implementations (updated for 2025)
 slug: "alternative-clients"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
 ---
 
 The main I2P client implementation uses **Java**. If you cannot or prefer not to use Java on a particular system, there are alternative I2P client implementations developed and maintained by community members. These programs provide the same core functionality using different programming languages or approaches.

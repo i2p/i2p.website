@@ -4,10 +4,6 @@ description: "Legacy Simple Anonymous Messaging protocol (deprecated)"
 slug: "sam"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
-aliases:
-  - /docs/api/sam/
-  - /docs/legacy/sam/
-  - /en/docs/api/sam/
 reviewStatus: "needs-review"
 ---
 

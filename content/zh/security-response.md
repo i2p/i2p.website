@@ -2,8 +2,6 @@
 title: "漏洞响应流程"
 description: "I2P的安全漏洞报告和响应流程"
 layout: "security-response"
-aliases:
-  - /en/research/vrp
 ---
 
 <div id="contact"></div>

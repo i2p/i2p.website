@@ -4,9 +4,6 @@ description: "GPG public key for contacting the I2P Security Team"
 slug: "security-key"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - "/en/get-involved/develop/security-key"
-  - "/get-involved/develop/security-key"
 type: docs
 ---
 

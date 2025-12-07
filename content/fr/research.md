@@ -2,10 +2,6 @@
 title: "Recherche Académique"
 description: "Informations et directives pour la recherche académique sur le réseau I2P"
 layout: "research"
-aliases:
-  - /en/research
-  - /en/research/index
-  - /en/research/questions
 ---
 
 <div id="intro"></div>

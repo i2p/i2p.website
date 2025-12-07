@@ -3,10 +3,6 @@ title: "NTCP Discussion"
 description: "Historical notes comparing NTCP and SSU transports and proposed tuning ideas"
 slug: "ntcp"
 layout: "single"
-aliases:
-  - /docs/discussions/ntcp/
-  - /docs/legacy/ntcp/
-  - /en/docs/ntcp/
 reviewStatus: "needs-review"
 ---
 

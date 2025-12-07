@@ -2,8 +2,6 @@
 title: "Zafiyet Yanıt Süreci"
 description: "I2P'nin güvenlik açığı bildirim ve yanıt süreci"
 layout: "guvenlik-yaniti"
-aliases:
-  - /en/research/vrp
 ---
 
 <div id="contact"></div>

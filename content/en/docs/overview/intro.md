@@ -5,9 +5,6 @@ slug: "intro"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 reviewStatus: "needs-review"
-aliases:
-  - /en/docs/how/intro/
-  - /docs/how/intro/
 ---
 
 ## What is I2P?

@@ -4,8 +4,6 @@ description: "Using I2P's SOCKS tunnel safely (updated for 2.10.0)"
 slug: "socks"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-aliases:
-  - /docs/api/socks/
 ---
 
 > **Caution:** The SOCKS tunnel forwards application payloads without sanitizing them. Many protocols leak IPs, hostnames, or other identifiers. Only use SOCKS with software you have audited for anonymity.

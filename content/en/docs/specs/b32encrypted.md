@@ -4,9 +4,6 @@ description: "Base 32 address format for encrypted LS2 leasesets"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 status: "Implemented"
-aliases:
-  - /en/docs/specs/b32encrypted/
-  - /docs/specs/b32-for-encrypted-leasesets/
 ---
 
 ## Overview

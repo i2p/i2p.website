@@ -4,7 +4,6 @@ date: 2004-03-16
 author: " jrandom"
 description: "Protokoll der I2P-Entwicklungsbesprechung vom 16. März 2004."
 categories: ["meeting"]
-aliases: 
 ---
 
 ## Kurze Zusammenfassung

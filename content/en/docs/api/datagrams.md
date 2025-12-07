@@ -5,8 +5,6 @@ slug: "datagrams"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 toc: true
-aliases:
-  - /docs/api/datagrams/
 ---
 
 ## Overview

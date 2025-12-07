@@ -2,8 +2,6 @@
 title: "भेद्यता प्रतिक्रिया प्रक्रिया"
 description: "I2P की सुरक्षा भेद्यता रिपोर्टिंग और प्रतिक्रिया प्रक्रिया"
 layout: "security-response"
-aliases:
-  - /en/research/vrp
 ---
 
 <div id="contact"></div>
