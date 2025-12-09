@@ -5,28 +5,6 @@
     'use strict';
 
     // ========================================================================
-    // Theme Toggle
-    // ========================================================================
-
-    const themeToggle = document.querySelector('.theme-toggle');
-    const html = document.documentElement;
-
-    function setTheme(theme) {
-        html.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-    }
-
-    function toggleTheme() {
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-    }
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-    }
-
-    // ========================================================================
     // Mobile Menu Toggle
     // ========================================================================
 

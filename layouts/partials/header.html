@@ -78,8 +78,8 @@
                         </div>
                     </div>
 
-                    <!-- Theme toggle -->
-                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                    <!-- Theme toggle (CSS-only via checkbox) -->
+                    <label for="theme-toggle-checkbox" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
                         <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2" />
@@ -92,7 +92,7 @@
                             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
                                 stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
                         </svg>
-                    </button>
+                    </label>
 
                     <!-- Donate Button -->
                     <a href="{{ relLangURL "/financial-support/" }}" class="btn btn-primary" id="donate-btn">Donate</a>

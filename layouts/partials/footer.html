@@ -30,14 +30,13 @@
                         </a>
                     </div>
 
-                    <!-- Mailing List Widget -->
+                    <!-- Mailing List -->
                     <div class="footer-newsletter-inline">
                         <p class="newsletter-description">{{ i18n "footer.newsletterDescription" }}</p>
-                        <div id="mailing-list-widget"
-                             data-api-url="https://feedback.i2p.net"
-                             data-button-text="{{ i18n "footer.subscribe" }}"
-                             data-placeholder="{{ i18n "footer.emailPlaceholder" }}">
-                        </div>
+                        <form action="https://feedback.i2p.net/api/mailing-list/subscribe" method="POST" class="newsletter-form">
+                            <input type="email" name="email" placeholder="{{ i18n "footer.emailPlaceholder" }}" required>
+                            <button type="submit">{{ i18n "footer.subscribe" }}</button>
+                        </form>
                     </div>
                 </div>
             </div>

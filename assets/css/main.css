@@ -63,7 +63,64 @@
     --header-height: 88px;
 }
 
-/* Dark Mode */
+/* Hidden checkbox for CSS-only theme toggle */
+.theme-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Dark Mode - activated by checkbox toggle */
+body:has(#theme-toggle-checkbox:checked) {
+    --color-primary: #3b82f6;
+    --color-primary-hover: #60a5fa;
+    --color-secondary: #a78bfa;
+    --color-accent: #06b6d4;
+
+    --color-bg: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-bg-tertiary: #334155;
+
+    --color-text: #f1f5f9;
+    --color-text-secondary: #cbd5e1;
+    --color-text-muted: #94a3b8;
+
+    --color-border: #334155;
+    --color-border-hover: #475569;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Also support system preference for dark mode */
+@media (prefers-color-scheme: dark) {
+    body:not(:has(#theme-toggle-checkbox:checked)) {
+        --color-primary: #3b82f6;
+        --color-primary-hover: #60a5fa;
+        --color-secondary: #a78bfa;
+        --color-accent: #06b6d4;
+
+        --color-bg: #0f172a;
+        --color-bg-secondary: #1e293b;
+        --color-bg-tertiary: #334155;
+
+        --color-text: #f1f5f9;
+        --color-text-secondary: #cbd5e1;
+        --color-text-muted: #94a3b8;
+
+        --color-border: #334155;
+        --color-border-hover: #475569;
+
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Legacy support for data-theme attribute */
 [data-theme="dark"] {
     --color-primary: #3b82f6;
     --color-primary-hover: #60a5fa;
@@ -186,6 +243,7 @@ main {
     transition: transform var(--transition-base), opacity var(--transition-base);
 }
 
+body:has(#theme-toggle-checkbox:checked) .site-banner,
 [data-theme="dark"] .site-banner {
     background: linear-gradient(135deg, #1e3a8a 0%, #0e7490 100%);
 }
@@ -302,6 +360,7 @@ main {
     background-color: rgba(255, 255, 255, 0.9);
 }
 
+body:has(#theme-toggle-checkbox:checked) .site-header,
 [data-theme="dark"] .site-header {
     background-color: rgba(15, 23, 42, 0.9);
 }
@@ -338,10 +397,12 @@ main {
     display: none;
 }
 
+body:has(#theme-toggle-checkbox:checked) .logo-light,
 [data-theme="dark"] .logo-light {
     display: none;
 }
 
+body:has(#theme-toggle-checkbox:checked) .logo-dark,
 [data-theme="dark"] .logo-dark {
     display: block;
 }
@@ -454,10 +515,12 @@ main {
     display: block;
 }
 
+body:has(#theme-toggle-checkbox:checked) .sun-icon,
 [data-theme="dark"] .sun-icon {
     display: block;
 }
 
+body:has(#theme-toggle-checkbox:checked) .moon-icon,
 [data-theme="dark"] .moon-icon {
     display: none;
 }
@@ -746,10 +809,12 @@ main {
     display: none;
 }
 
+body:has(#theme-toggle-checkbox:checked) .signal-logo-light,
 [data-theme="dark"] .signal-logo-light {
     display: none;
 }
 
+body:has(#theme-toggle-checkbox:checked) .signal-logo-dark,
 [data-theme="dark"] .signal-logo-dark {
     display: block;
     filter: brightness(0) saturate(100%) invert(77%) sepia(14%) saturate(281%) hue-rotate(182deg) brightness(95%) contrast(90%);
@@ -759,6 +824,7 @@ main {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
 
+body:has(#theme-toggle-checkbox:checked) .signal-link:hover .signal-logo,
 [data-theme="dark"] .signal-link:hover .signal-logo {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
@@ -784,6 +850,41 @@ main {
     margin-bottom: var(--spacing-sm);
     font-weight: 500;
     white-space: nowrap;
+}
+
+.footer-newsletter-inline .newsletter-form {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.footer-newsletter-inline .newsletter-form input[type="email"] {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    min-width: 200px;
+}
+
+.footer-newsletter-inline .newsletter-form input[type="email"]::placeholder {
+    color: var(--color-text-muted);
+}
+
+.footer-newsletter-inline .newsletter-form button {
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.footer-newsletter-inline .newsletter-form button:hover {
+    background: var(--color-primary-dark);
 }
 
 .footer-bottom {
@@ -3073,6 +3174,7 @@ main {
     color: #065f46;
 }
 
+body:has(#theme-toggle-checkbox:checked) .content-badge.status-released,
 [data-theme="dark"] .content-badge.status-released {
     background: #064e3b;
     color: #6ee7b7;
@@ -3083,6 +3185,7 @@ main {
     color: #92400e;
 }
 
+body:has(#theme-toggle-checkbox:checked) .content-badge.status-target,
 [data-theme="dark"] .content-badge.status-target {
     background: #78350f;
     color: #fcd34d;

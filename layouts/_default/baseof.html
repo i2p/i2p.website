@@ -29,19 +29,13 @@
     {{ end }}
 
 
-    <!-- Theme Script (prevent flash) -->
-    <script>
-        (function () {
-            const saved = localStorage.getItem('theme');
-            const theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-    </script>
-
     {{ block "head" . }}{{ end }}
 </head>
 
 <body>
+    <!-- CSS-only theme toggle (checkbox must be early in DOM for :has() selector) -->
+    <input type="checkbox" id="theme-toggle-checkbox" class="theme-checkbox" aria-hidden="true">
+
     {{ partial "banner.html" . }}
     {{ partial "header.html" . }}
 
