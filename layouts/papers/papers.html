@@ -7,14 +7,6 @@
 
         <!-- Filter Controls -->
         <div class="papers-controls">
-            <div class="search-box">
-                <input type="search" id="papers-search" placeholder="{{ i18n "papers.searchPlaceholder" }}" />
-                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
-                    <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </div>
-
             <div class="filter-controls">
                 <label for="year-filter">{{ i18n "papers.filterByYear" }}</label>
                 <select id="year-filter">
@@ -82,38 +74,12 @@
 
 .papers-controls {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-sm);
-}
-
-.search-box {
-    position: relative;
-    max-width: 600px;
-    width: 100%;
-}
-
-.search-box input {
-    width: 100%;
-    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 3rem;
-    border: none;
-    border-radius: var(--radius-lg);
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--color-text);
-}
-
-.search-box input:focus {
-    outline: 3px solid rgba(255, 255, 255, 0.5);
-    background: white;
-}
-
-.search-icon {
-    position: absolute;
-    left: var(--spacing-md);
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--color-text-muted);
+    flex-wrap: wrap;
 }
 
 .filter-controls {
@@ -361,9 +327,19 @@
         font-size: 2rem;
     }
 
+    .papers-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
     .filter-controls {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .filter-controls select,
+    .sort-btn {
+        width: 100%;
     }
 
     .paper-title {
@@ -375,7 +351,6 @@
 <script>
 // Papers filtering and sorting
 (function() {
-    const searchInput = document.getElementById('papers-search');
     const yearFilter = document.getElementById('year-filter');
     const sortToggle = document.getElementById('sort-toggle');
     const sortLabel = document.getElementById('sort-label');
@@ -437,18 +412,13 @@
 
     // Filter papers
     function filterPapers() {
-        const searchTerm = searchInput.value.toLowerCase();
         const selectedYear = yearFilter.value;
 
         papers.forEach(paper => {
-            const title = paper.dataset.title.toLowerCase();
-            const authors = paper.dataset.authors.toLowerCase();
             const year = paper.dataset.year;
-
-            const matchesSearch = title.includes(searchTerm) || authors.includes(searchTerm);
             const matchesYear = selectedYear === 'all' || year === selectedYear;
 
-            paper.style.display = matchesSearch && matchesYear ? 'block' : 'none';
+            paper.style.display = matchesYear ? 'block' : 'none';
         });
 
         updateCount();
@@ -488,7 +458,6 @@
     }
 
     // Event listeners
-    searchInput.addEventListener('input', filterPapers);
     yearFilter.addEventListener('change', filterPapers);
     sortToggle.addEventListener('click', sortPapers);
 
