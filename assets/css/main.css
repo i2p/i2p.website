@@ -455,9 +455,11 @@ main {
     top: 0;
     z-index: 1000;
     height: var(--header-height);
-    transition: background-color var(--transition-base), border-color var(--transition-base);
+    transition: background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.9);
+    /* Shadow appears when header is sticky (scrolled) - CSS-only solution */
+    box-shadow: var(--shadow-md);
 }
 
 [data-theme="dark"] .site-header {

@@ -65,22 +65,8 @@
     }
 
     // ========================================================================
-    // Header Shadow on Scroll
+    // Header Shadow on Scroll - REMOVED (now CSS-only, shadow always visible on sticky header)
     // ========================================================================
-
-    const header = document.querySelector('.site-header');
-
-    function handleHeaderShadow() {
-        if (window.scrollY > 10) {
-            header.style.boxShadow = 'var(--shadow-md)';
-        } else {
-            header.style.boxShadow = 'none';
-        }
-    }
-
-    if (header) {
-        window.addEventListener('scroll', handleHeaderShadow);
-    }
 
     // ========================================================================
     // Site Banner Dismiss - REMOVED (now handled by Cloudflare Worker with cookies)
