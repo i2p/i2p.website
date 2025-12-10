@@ -8,61 +8,155 @@
     </div>
 </section>
 
-<!-- Auto-Detected Platform Section -->
+<!-- Auto-Detected Platform Section (CSS controls visibility via html[data-detected-os]) -->
 <section class="download-primary">
     <div class="container">
-        <div id="detected-platform" class="detected-download" style="display: none;">
+        <!-- Windows Recommendation -->
+        <div class="detected-download detected-os-windows">
             <div class="detected-header">
                 <h2>{{ i18n "downloads.recommendedForYourSystem" }}</h2>
             </div>
             <div class="detected-content">
-                <div class="platform-icon-large" id="detected-icon">
-                    <!-- Icon inserted by JS -->
+                <div class="platform-icon-large">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                    </svg>
                 </div>
                 <div class="detected-info">
-                    <h3 id="detected-name">Download for Windows</h3>
-                    <p id="detected-details" class="text-muted">Version {{ .Site.Data.downloads.current_version }} • ~45 MB</p>
+                    <h3>{{ i18n "downloads.windows" }}</h3>
+                    <p class="text-muted">v{{ .Site.Data.downloads.current_version }} · {{ .Site.Data.downloads.downloads.windows.size }}</p>
                     <div class="download-actions">
-                        <a href="#" id="detected-download-btn" class="btn btn-download">
+                        <a href="{{ .Site.Data.downloads.downloads.windows.links.primary }}" class="btn btn-download">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             {{ i18n "downloads.downloadNow" }}
                         </a>
-                        <div class="mirror-selector">
-                            <label for="detected-mirror">{{ i18n "downloads.mirrorLabel" }}</label>
-                            <select id="detected-mirror" class="mirror-select">
-                                <option value="https://i2p.net/files/2.10.0/">I2P</option>
-                                <option value="https://mirror.stormycloud.org/2.10.0/">StormyCloud</option>
-                            </select>
-                        </div>
                     </div>
                     <div class="alt-download-methods">
-                        <a href="" id="detected-torrent" class="alt-method" title="Download via Torrent">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                            {{ i18n "downloads.torrent" }}
-                        </a>
-                        <a href="#" id="detected-i2p" class="alt-method" title="Download via I2P">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                            {{ i18n "downloads.i2p" }}
-                        </a>
-                        <a href="#" id="detected-tor" class="alt-method" title="Download via Tor">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/>
-                            </svg>
-                            {{ i18n "downloads.tor" }}
-                        </a>
-                        <span id="detected-checksum" class="checksum-badge" data-sha="" style="display: none;">
+                        {{ with .Site.Data.downloads.downloads.windows.links.torrent }}<a href="{{ . | safeURL }}" class="alt-method" title="Torrent">{{ i18n "downloads.torrent" }}</a>{{ end }}
+                        {{ with .Site.Data.downloads.downloads.windows.links.i2p }}<a href="{{ . }}" class="alt-method" title="I2P">{{ i18n "downloads.i2p" }}</a>{{ end }}
+                        {{ with .Site.Data.downloads.downloads.windows.links.tor }}<a href="{{ . }}" class="alt-method" title="Tor">{{ i18n "downloads.tor" }}</a>{{ end }}
+                        {{ with .Site.Data.downloads.downloads.windows.sha256 }}
+                        <span class="checksum-badge" data-sha="SHA256: {{ . }}">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2"/>
                             </svg>
                         </span>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- macOS Recommendation -->
+        <div class="detected-download detected-os-mac">
+            <div class="detected-header">
+                <h2>{{ i18n "downloads.recommendedForYourSystem" }}</h2>
+            </div>
+            <div class="detected-content">
+                <div class="platform-icon-large">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                </div>
+                <div class="detected-info">
+                    <h3>{{ i18n "downloads.macOsLinuxBsd" }}</h3>
+                    <p class="text-muted">v{{ .Site.Data.downloads.current_version }} · {{ .Site.Data.downloads.downloads.mac_linux.size }}</p>
+                    <div class="download-actions">
+                        <a href="{{ .Site.Data.downloads.downloads.mac_linux.links.primary }}" class="btn btn-download">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            {{ i18n "downloads.downloadNow" }}
+                        </a>
+                    </div>
+                    <div class="alt-download-methods">
+                        {{ with .Site.Data.downloads.downloads.mac_linux.links.torrent }}<a href="{{ . | safeURL }}" class="alt-method" title="Torrent">{{ i18n "downloads.torrent" }}</a>{{ end }}
+                        {{ with .Site.Data.downloads.downloads.mac_linux.links.i2p }}<a href="{{ . }}" class="alt-method" title="I2P">{{ i18n "downloads.i2p" }}</a>{{ end }}
+                        {{ with .Site.Data.downloads.downloads.mac_linux.links.tor }}<a href="{{ . }}" class="alt-method" title="Tor">{{ i18n "downloads.tor" }}</a>{{ end }}
+                        {{ with .Site.Data.downloads.downloads.mac_linux.sha256 }}
+                        <span class="checksum-badge" data-sha="SHA256: {{ . }}">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2"/>
+                            </svg>
+                        </span>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Linux Recommendation (same JAR as macOS) -->
+        <div class="detected-download detected-os-linux">
+            <div class="detected-header">
+                <h2>{{ i18n "downloads.recommendedForYourSystem" }}</h2>
+            </div>
+            <div class="detected-content">
+                <div class="platform-icon-large">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.581 19.049c-.55-.446-.336-1.431-.907-1.917.553-3.365-.997-6.331-2.845-8.232-1.551-1.595-1.051-3.147-1.051-4.49 0-2.146-.881-4.41-3.55-4.41-2.853 0-3.635 2.38-3.663 3.738-.068 3.262.659 4.11-1.25 6.484-2.246 2.793-2.577 5.579-2.07 7.057-.237.276-.557.582-1.155.835-1.652.72-.441 1.925-.898 2.78-.13.243-.192.497-.192.74 0 .75.596 1.399 1.679 1.302 1.461-.13 2.809.905 3.681.905.77 0 1.402-.438 1.696-1.041 1.377-.339 3.077-.296 4.453.059.247.691.798 1.041 1.479 1.041.973 0 2.13-.901 3.299-.901 1.007 0 1.64.36 1.868.684.178.261.53.456 1.004.456.456 0 .924-.277 1.024-.757.15-.723-.809-1.318-1.624-2.076z"/>
+                    </svg>
+                </div>
+                <div class="detected-info">
+                    <h3>{{ i18n "downloads.macOsLinuxBsd" }}</h3>
+                    <p class="text-muted">v{{ .Site.Data.downloads.current_version }} · {{ .Site.Data.downloads.downloads.mac_linux.size }}</p>
+                    <div class="download-actions">
+                        <a href="{{ .Site.Data.downloads.downloads.mac_linux.links.primary }}" class="btn btn-download">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            {{ i18n "downloads.downloadNow" }}
+                        </a>
+                    </div>
+                    <div class="alt-download-methods">
+                        {{ with .Site.Data.downloads.downloads.mac_linux.links.torrent }}<a href="{{ . | safeURL }}" class="alt-method" title="Torrent">{{ i18n "downloads.torrent" }}</a>{{ end }}
+                        {{ with .Site.Data.downloads.downloads.mac_linux.links.i2p }}<a href="{{ . }}" class="alt-method" title="I2P">{{ i18n "downloads.i2p" }}</a>{{ end }}
+                        {{ with .Site.Data.downloads.downloads.mac_linux.links.tor }}<a href="{{ . }}" class="alt-method" title="Tor">{{ i18n "downloads.tor" }}</a>{{ end }}
+                        {{ with .Site.Data.downloads.downloads.mac_linux.sha256 }}
+                        <span class="checksum-badge" data-sha="SHA256: {{ . }}">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2"/>
+                            </svg>
+                        </span>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Android Recommendation -->
+        <div class="detected-download detected-os-android">
+            <div class="detected-header">
+                <h2>{{ i18n "downloads.recommendedForYourSystem" }}</h2>
+            </div>
+            <div class="detected-content">
+                <div class="platform-icon-large">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 00-.83.22l-1.88 3.24a11.43 11.43 0 00-8.94 0L5.65 5.67a.643.643 0 00-.87-.2c-.28.18-.37.54-.22.83L6.4 9.48A10.81 10.81 0 001 18h22a10.81 10.81 0 00-5.4-8.52M7 15.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5m10 0a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z"/>
+                    </svg>
+                </div>
+                <div class="detected-info">
+                    <h3>{{ i18n "downloads.android" }}</h3>
+                    <p class="text-muted">v{{ .Site.Data.downloads.android_version }} · {{ .Site.Data.downloads.downloads.android.size }}</p>
+                    <div class="download-actions">
+                        <a href="{{ .Site.Data.downloads.downloads.android.links.primary }}" class="btn btn-download">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            {{ i18n "downloads.downloadNow" }}
+                        </a>
+                    </div>
+                    <div class="alt-download-methods">
+                        {{ with .Site.Data.downloads.downloads.android.links.torrent }}<a href="{{ . | safeURL }}" class="alt-method" title="Torrent">{{ i18n "downloads.torrent" }}</a>{{ end }}
+                        {{ with .Site.Data.downloads.downloads.android.links.i2p }}<a href="{{ . }}" class="alt-method" title="I2P">{{ i18n "downloads.i2p" }}</a>{{ end }}
+                        {{ with .Site.Data.downloads.downloads.android.sha256 }}
+                        <span class="checksum-badge" data-sha="SHA256: {{ . }}">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2"/>
+                            </svg>
+                        </span>
+                        {{ end }}
                     </div>
                 </div>
             </div>

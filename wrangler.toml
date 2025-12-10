@@ -1,0 +1,8 @@
+# Cloudflare Pages configuration for I2P website
+# For local development, run: npx wrangler pages dev public
+
+name = "i2p-www"
+compatibility_date = "2024-01-01"
+
+# Note: For Cloudflare Pages, functions in the /functions directory
+# are automatically detected and deployed. No additional configuration needed.
