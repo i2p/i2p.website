@@ -1,9 +1,9 @@
 {{ if .Site.Params.poll.enabled }}
-<div class="modal-overlay" id="poll-modal" data-poll-id="{{ .Site.Params.poll.pollId | default "1" }}">
+<div class="modal-overlay" id="poll">
     <div class="modal-content poll-modal-content">
-        <button class="modal-close" id="poll-close" aria-label="{{ i18n "poll.close" | default "Close poll" }}">
+        <a href="#" class="modal-close" aria-label="{{ i18n "poll.close" | default "Close poll" }}">
             <span aria-hidden="true">&times;</span>
-        </button>
+        </a>
 
         <div class="modal-header">
             <h2>{{ i18n "poll.title" | default "Community Poll" }}</h2>
@@ -11,12 +11,15 @@
         </div>
 
         <div class="modal-body">
-            <!-- Poll Widget (exactly like feedback widget pattern) -->
-            <div id="poll-widget"
-                 data-poll-id="{{ .Site.Params.poll.pollId | default "1" }}"
-                 data-api-url="https://feedback.i2p.net"
-                 data-show-results="false">
-            </div>
+            <!-- Server-rendered poll widget in iframe (no JavaScript required) -->
+            <iframe 
+                id="poll-iframe"
+                data-poll-id="{{ .Site.Params.poll.pollId | default "1" }}"
+                data-api-url="https://feedback.i2p.net"
+                frameborder="0"
+                scrolling="no"
+                style="width: 100%; border: none; min-height: 400px;">
+            </iframe>
         </div>
 
         <div class="modal-footer">
@@ -27,11 +30,15 @@
     </div>
 </div>
 
-<!-- Network detection for poll widget (runs BEFORE widget script loads) -->
+<!-- Minimal script to set iframe src based on network (only URL construction, no modal logic) -->
 <script>
 (function() {
+    const iframe = document.getElementById('poll-iframe');
+    if (!iframe) return;
+    
     const hostname = window.location.hostname;
     let apiUrl = 'https://feedback.i2p.net';
+    const pollId = iframe.getAttribute('data-poll-id') || '1';
 
     // Check for I2P (both .i2p and .b32.i2p addresses)
     if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
@@ -42,11 +49,9 @@
         apiUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
     }
 
-    // Update poll widget API URL
-    const widget = document.getElementById('poll-widget');
-    if (widget) {
-        widget.setAttribute('data-api-url', apiUrl);
-    }
+    // Set iframe src
+    const pollUrl = apiUrl + '/widgets/poll.html?poll_id=' + encodeURIComponent(pollId) + '&api_url=' + encodeURIComponent(apiUrl);
+    iframe.src = pollUrl;
 })();
 </script>
 {{ end }}

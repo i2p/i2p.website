@@ -2189,7 +2189,8 @@ html[data-detected-os="android"] .platform-card[data-platform="android"] {
     animation: fadeIn 0.3s ease-out;
 }
 
-.modal-overlay.show {
+/* CSS-only modal using :target pseudo-class */
+.modal-overlay:target {
     display: flex;
 }
 
@@ -2238,6 +2239,8 @@ html[data-detected-os="android"] .platform-card[data-platform="android"] {
     padding: var(--spacing-xs);
     transition: color var(--transition-fast);
     z-index: 1;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .modal-close:hover {
@@ -2351,6 +2354,13 @@ html[data-detected-os="android"] .platform-card[data-platform="android"] {
 /* Poll Modal Styles */
 .poll-modal-content {
     max-width: 600px;
+}
+
+#poll-iframe {
+    width: 100%;
+    border: none;
+    min-height: 400px;
+    display: block;
 }
 
 .poll-loading {
