@@ -84,7 +84,7 @@
 
             // Write script tags synchronously so they load in order
             document.write('<link rel="stylesheet" href="' + baseUrl + '/widgets/styles.css">');
-            document.write('<script src="' + baseUrl + '/widgets/features.js"><\/script>');
+            // Features widget is now server-rendered (no JavaScript required)
         })();
     </script>
 

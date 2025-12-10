@@ -26,12 +26,15 @@
                 <h2>{{ i18n "feedback.submitFeatureRequestHeading" }}</h2>
                 <p>{{ i18n "feedback.submitFeatureRequestDesc" }}</p>
 
-                <!-- Feature Request Widget -->
-                <div id="features-widget"
-                     data-api-url="https://feedback.i2p.net"
-                     data-mode="list"
-                     data-max-items="20">
-                </div>
+                <!-- Feature Request Widget (server-rendered, no JavaScript required) -->
+                <iframe 
+                    id="features-iframe"
+                    data-api-url="https://feedback.i2p.net"
+                    data-max-items="20"
+                    frameborder="0"
+                    scrolling="no"
+                    style="width: 100%; border: none; min-height: 600px;">
+                </iframe>
             </div>
         </div>
     </div>
@@ -220,10 +223,12 @@ document.querySelectorAll('.feedback-nav a').forEach(anchor => {
         apiUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
     }
 
-    // Update widget API URL
-    const widget = document.getElementById('features-widget');
-    if (widget) {
-        widget.setAttribute('data-api-url', apiUrl);
+    // Set iframe src for features widget
+    const iframe = document.getElementById('features-iframe');
+    if (iframe) {
+        const maxItems = iframe.getAttribute('data-max-items') || '20';
+        const featuresUrl = apiUrl + '/widgets/features.html?api_url=' + encodeURIComponent(apiUrl) + '&max_items=' + encodeURIComponent(maxItems);
+        iframe.src = featuresUrl;
     }
 })();
 </script>
