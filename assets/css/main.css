@@ -1157,7 +1157,7 @@ main {
     padding: var(--spacing-xl) 0 var(--spacing-md) 0;
 }
 
-/* All recommendation blocks hidden by default - shown via html[data-detected-os] */
+/* All recommendation blocks hidden by default - shown via html[data-ver] */
 .detected-download {
     display: none;
     background-color: var(--color-bg);
@@ -1167,19 +1167,19 @@ main {
     margin-bottom: var(--spacing-lg);
 }
 
-/* Show the matching OS recommendation when Worker injects data-detected-os */
-html[data-detected-os="windows"] .detected-os-windows,
-html[data-detected-os="mac"] .detected-os-mac,
-html[data-detected-os="linux"] .detected-os-linux,
-html[data-detected-os="android"] .detected-os-android {
+/* Show the matching OS recommendation when Worker injects data-ver */
+html[data-ver="2.1"] .detected-os-windows,
+html[data-ver="2.2"] .detected-os-mac,
+html[data-ver="2.3"] .detected-os-linux,
+html[data-ver="2.4"] .detected-os-android {
     display: block;
 }
 
 /* Hide the matching platform card from the grid when recommendation is shown */
-html[data-detected-os="windows"] .platform-card[data-platform="windows"]:first-of-type,
-html[data-detected-os="mac"] .platform-card[data-platform="mac"],
-html[data-detected-os="linux"] .platform-card[data-platform="mac"],
-html[data-detected-os="android"] .platform-card[data-platform="android"] {
+html[data-ver="2.1"] .platform-card[data-platform="windows"]:first-of-type,
+html[data-ver="2.2"] .platform-card[data-platform="mac"],
+html[data-ver="2.3"] .platform-card[data-platform="linux"],
+html[data-ver="2.4"] .platform-card[data-platform="android"] {
     display: none;
 }
 
