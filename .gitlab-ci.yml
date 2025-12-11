@@ -98,6 +98,16 @@ deploy_host2:
   only:
     - main
 
+deploy_cloudflare:
+  stage: deploy
+  image: node:20-alpine
+  script:
+    - npx wrangler pages deploy public --project-name=$CLOUDFLARE_PAGES_PROJECT
+  dependencies:
+    - build
+  only:
+    - main
+
 secret_detection:
   stage: secret-detection
 

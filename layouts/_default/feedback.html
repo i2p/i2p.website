@@ -227,8 +227,24 @@ document.querySelectorAll('.feedback-nav a').forEach(anchor => {
     const iframe = document.getElementById('features-iframe');
     if (iframe) {
         const maxItems = iframe.getAttribute('data-max-items') || '20';
-        const featuresUrl = apiUrl + '/widgets/features.html?api_url=' + encodeURIComponent(apiUrl) + '&max_items=' + encodeURIComponent(maxItems);
+        // Detect theme from parent page
+        const htmlElement = document.documentElement;
+        const theme = htmlElement.getAttribute('data-theme') || 'light';
+        const featuresUrl = apiUrl + '/widgets/features.html?api_url=' + encodeURIComponent(apiUrl) + '&max_items=' + encodeURIComponent(maxItems) + '&theme=' + encodeURIComponent(theme);
         iframe.src = featuresUrl;
+        
+        // Update iframe theme when parent theme changes
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                    const newTheme = htmlElement.getAttribute('data-theme') || 'light';
+                    const currentUrl = new URL(iframe.src);
+                    currentUrl.searchParams.set('theme', newTheme);
+                    iframe.src = currentUrl.toString();
+                }
+            });
+        });
+        observer.observe(htmlElement, { attributes: true, attributeFilter: ['data-theme'] });
     }
 })();
 </script>
