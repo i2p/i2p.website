@@ -90,6 +90,10 @@
 
     <!-- Poll Widget is now server-rendered and loaded in iframe (no JavaScript required) -->
 
+    <!-- Cloudflare Web Analytics is injected by analytics-injector Worker -->
+    <!-- Only injected for clearnet users, not for I2P/Tor users -->
+    <!-- Do not add analytics script directly here - it's handled by the Worker -->
+
     {{ block "scripts" . }}{{ end }}
 
 </body>
