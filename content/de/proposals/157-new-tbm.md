@@ -98,8 +98,7 @@ Schicht- und Antwortschlüssel kleiner gemacht, damit sie nicht ausdrücklich in
 Beide werden "variabel" mit einem einbyte-großen Datensatzzahlen-Feld sein,
 wie bei den bestehenden Variablen-Nachrichten.
 
-ShortTunnelBuild: Typ 25
-````````````````````````````````
+#### ShortTunnelBuild: Typ 25
 
 Typische Länge (mit 4 Datensätzen): 873 Byte
 
@@ -116,8 +115,7 @@ in eine einzelne Tunnel-Nachricht passt. Siehe den Anhang unten.
 
 
 
-OutboundTunnelBuildReply: Typ 26
-``````````````````````````````````````
+#### OutboundTunnelBuildReply: Typ 26
 
 Wir definieren eine neue OutboundTunnelBuildReply-Nachricht.
 Diese wird nur für ausgehende Tunnelbauten verwendet.
@@ -131,8 +129,7 @@ Die anderen Datensätze gehen in die anderen Slots.
 Dann knoblauchverschlüsselt es die Nachricht an den Urheber mit den abgeleiteten symmetrischen Schlüsseln.
 
 
-Hinweise
-```````
+#### Hinweise
 
 Durch das Knoblauchverschlüsseln der OTBRM und STBM vermeiden wir auch potenzielle
 Kompatibilitätsprobleme beim IBGW und OBEP der gepaarten Tunnel.
@@ -143,48 +140,48 @@ Kompatibilitätsprobleme beim IBGW und OBEP der gepaarten Tunnel.
 ### Nachrichtenfluss
 
 
-  {% highlight %}
+```
 STBM: Kurze Tunnel-Baunachricht (Typ 25)
-  OTBRM: Ausgehende Tunnel-Bau-Antwortnachricht (Typ 26)
+OTBRM: Ausgehende Tunnel-Bau-Antwortnachricht (Typ 26)
 
-  Ausgehender Bau A-B-C
-  Antwort über bestehenden eingehenden D-E-F
-
-
-                  Neuer Tunnel
-           STBM      STBM      STBM
-  Ersteller ------> A ------> B ------> C ---\
-                                     OBEP   \
-                                            | Knoblauch eingewickelt
-                                            | OTBRM
-                                            | (TUNNEL-Lieferung)
-                                            | von OBEP zu
-                                            | Ersteller
-                Bestehender Tunnel             /
-  Ersteller <-------F---------E-------- D <--/
-                                     IBGW
+Ausgehender Bau A-B-C
+Antwort über bestehenden eingehenden D-E-F
 
 
-
-  Eingehender Aufbau D-E-F
-  Gesendet durch bestehenden ausgehenden A-B-C
-
-
-                Bestehender Tunnel
-  Ersteller ------> A ------> B ------> C ---\
-                                    OBEP    \
-                                            | Knoblauch eingewickelt (optional)
-                                            | STBM
-                                            | (ROUTER-Lieferung)
-                                            | vom Ersteller
-                  Neuer Tunnel                | zu IBGW
-            STBM      STBM      STBM        /
-  Ersteller <------ F <------ E <------ D <--/
-                                     IBGW
+                Neuer Tunnel
+         STBM      STBM      STBM
+Ersteller ------> A ------> B ------> C ---\
+                                   OBEP   \
+                                          | Knoblauch eingewickelt
+                                          | OTBRM
+                                          | (TUNNEL-Lieferung)
+                                          | von OBEP zu
+                                          | Ersteller
+              Bestehender Tunnel             /
+Ersteller <-------F---------E-------- D <--/
+                                   IBGW
 
 
 
-{% endhighlight %}
+Eingehender Aufbau D-E-F
+Gesendet durch bestehenden ausgehenden A-B-C
+
+
+              Bestehender Tunnel
+Ersteller ------> A ------> B ------> C ---\
+                                  OBEP    \
+                                          | Knoblauch eingewickelt (optional)
+                                          | STBM
+                                          | (ROUTER-Lieferung)
+                                          | vom Ersteller
+                Neuer Tunnel                | zu IBGW
+          STBM      STBM      STBM        /
+Ersteller <------ F <------ E <------ D <--/
+                                   IBGW
+
+
+
+```
 
 
 
@@ -224,8 +221,7 @@ Dies ist ein Thema für weitere Forschung.
 
 
 
-Kurzer Anforderungsdatensatz Unverschlüsselt
-```````````````````````````````````````
+#### Kurzer Anforderungsdatensatz Unverschlüsselt
 
 Dies ist die vorgeschlagene Spezifikation des Tunnel-Bauanforderungsdatensatzes für ECIES-X25519-Router.
 Zusammenfassung der Änderungen von [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
@@ -243,22 +239,20 @@ Alle Felder sind Big-Endian.
 Unverschlüsselte Größe: 154 Byte.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes     0-3: Tunnel-ID zum Empfangen von Nachrichten als, ungleich null
-  bytes     4-7: nächste Tunnel-ID, ungleich null
-  bytes    8-39: nächster Router-Identitätshash
-  byte       40: Flags
-  bytes   41-42: mehr Flags, ungenutzt, aus Kompatibilitätsgründen auf 0 setzen
-  byte       43: Schichtverschlüsselungstyp
-  bytes   44-47: Anforderungszeit (in Minuten seit der Epoche, abgerundet)
-  bytes   48-51: Ablauf der Anforderung (in Sekunden seit der Erstellung)
-  bytes   52-55: nächste Nachrichten-ID
-  bytes    56-x: Tunnel-Bauoptionen (Mapping)
-  bytes     x-x: andere Daten wie durch Flags oder Optionen impliziert
-  bytes   x-153: zufällige Auffüllung (siehe unten)
-
-{% endhighlight %}
+bytes     4-7: nächste Tunnel-ID, ungleich null
+bytes    8-39: nächster Router-Identitätshash
+byte       40: Flags
+bytes   41-42: mehr Flags, ungenutzt, aus Kompatibilitätsgründen auf 0 setzen
+byte       43: Schichtverschlüsselungstyp
+bytes   44-47: Anforderungszeit (in Minuten seit der Epoche, abgerundet)
+bytes   48-51: Ablauf der Anforderung (in Sekunden seit der Erstellung)
+bytes   52-55: nächste Nachrichten-ID
+bytes    56-x: Tunnel-Bauoptionen (Mapping)
+bytes     x-x: andere Daten wie durch Flags oder Optionen impliziert
+bytes   x-153: zufällige Auffüllung (siehe unten)
+```
 
 
 Das Flags-Feld ist dasselbe wie in [Tunnel-Creation](/en/docs/spec/tunnel-creation/) definiert und enthält die folgenden::
@@ -292,30 +286,27 @@ und der maximale Wert des Längenfeldes des Mappings beträgt 96.
 
 
 
-Kurzer Anforderungsdatensatz Verschlüsselt
-`````````````````````````````````````
+#### Kurzer Anforderungsdatensatz Verschlüsselt
 
 Alle Felder sind Big-Endian außer dem ephemeren öffentlichen Schlüssel, der Little-Endian ist.
 
 Verschlüsselte Größe: 218 Byte
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-15: Trunkierter Identitätshash des Hops
-  bytes   16-47: Ephemerer X25519-Öffentlichschlüssel des Absenders
-  bytes  48-201: ChaCha20-verschlüsselter ShortBuildRequestRecord
-  bytes 202-217: Poly1305-MAC
-
-{% endhighlight %}
+bytes   16-47: Ephemerer X25519-Öffentlichschlüssel des Absenders
+bytes  48-201: ChaCha20-verschlüsselter ShortBuildRequestRecord
+bytes 202-217: Poly1305-MAC
+```
 
 
 
 ### Kurzer Antwortdatensatz
 
 
-Kurzer Antwortdatensatz Unverschlüsselt
-`````````````````````````````````````
+#### Kurzer Antwortdatensatz Unverschlüsselt
+
 Dies ist die vorgeschlagene Spezifikation des Tunnel-ShortBuildReplyRecord für ECIES-X25519-Router.
 Zusammenfassung der Änderungen von [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
 
@@ -330,14 +321,12 @@ Alle Felder sind Big-Endian.
 Unverschlüsselte Größe: 202 Byte.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-x: Tunnel-Bauoptionen (Mapping)
-  bytes    x-x: andere Daten wie durch Optionen impliziert
-  bytes  x-200: Zufällige Auffüllung (siehe unten)
-  byte     201: Antwort-Byte
-
-{% endhighlight %}
+bytes    x-x: andere Daten wie durch Optionen impliziert
+bytes  x-200: Zufällige Auffüllung (siehe unten)
+byte     201: Antwort-Byte
+```
 
 Die Tunnel-Bauoptionen sind eine Mapping-Struktur, wie in [Common](/en/docs/spec/common-structures/) definiert.
 Dies ist für zukünftige Nutzung. Derzeit sind keine Optionen definiert.
@@ -352,18 +341,15 @@ wie in [Tunnel-Creation](/en/docs/spec/tunnel-creation/) definiert, um Fingerpri
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
 
-Kurzer Antwortdatensatz Verschlüsselt
-```````````````````````````````````
+#### Kurzer Antwortdatensatz Verschlüsselt
 
 Verschlüsselte Größe: 218 Byte
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes   0-201: ChaCha20-verschlüsselter ShortBuildReplyRecord
-  bytes 202-217: Poly1305-MAC
-
-{% endhighlight %}
+bytes 202-217: Poly1305-MAC
+```
 
 
 
@@ -384,23 +370,22 @@ Knoblauch eingewickelt, und an den Urheber gesendet.
 
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
-  | num| ShortBuildRequestRecords...
-  +----+----+----+----+----+----+----+----+
+| num| ShortBuildRequestRecords...
++----+----+----+----+----+----+----+----+
 
-  num ::
-         1 Byte `Integer`
-         Gültige Werte: 1-8
+num ::
+       1 Byte `Integer`
+       Gültige Werte: 1-8
 
-  Datensatzgröße: 218 Byte
-  Gesamtgröße: 1+$num*218
-{% endhighlight %}
+Datensatzgröße: 218 Byte
+Gesamtgröße: 1+$num*218
+```
 
-Hinweise
-`````
+#### Hinweise
+
 * Typische Anzahl der Datensätze ist 4, für eine Gesamtgröße von 873.
-
 
 
 
@@ -412,28 +397,28 @@ Sie darf nicht an einen anderen Hop gesendet werden.
 Sie ist immer Knoblauch verschlüsselt.
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
-  | num|                                  |
-  +----+                                  +
-  |      ShortBuildReplyRecords...        |
-  +----+----+----+----+----+----+----+----+
+| num|                                  |
++----+                                  +
+|      ShortBuildReplyRecords...        |
++----+----+----+----+----+----+----+----+
 
-  num ::
-         Gesamtanzahl der Datensätze,
-         1 Byte `Integer`
-         Gültige Werte: 1-8
+num ::
+       Gesamtanzahl der Datensätze,
+       1 Byte `Integer`
+       Gültige Werte: 1-8
 
-  ShortBuildReplyRecords ::
-         Verschlüsselte Datensätze
-         Länge: num * 218
+ShortBuildReplyRecords ::
+       Verschlüsselte Datensätze
+       Länge: num * 218
 
-  Verschlüsselte Datensatzgröße: 218 Byte
-  Gesamtgröße: 1+$num*218
-{% endhighlight %}
+Verschlüsselte Datensatzgröße: 218 Byte
+Gesamtgröße: 1+$num*218
+```
 
-Hinweise
-`````
+#### Hinweise
+
 * Typische Anzahl der Datensätze ist 4, für eine Gesamtgröße von 873.
 * Diese Nachricht sollte Knoblauch verschlüsselt werden.
 
@@ -449,33 +434,32 @@ Der Antwortschlüssel wird verwendet, um den Antwortdatensatz mit AEAD/Chaha20/P
 Beide verwenden denselben Schlüssel, Nonce ist die Position des Datensatzes in der Nachricht, beginnend bei 0.
 
 
-  {% highlight lang='dataspec' %}
+```
 keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
-  replyKey = keydata[32:63]
-  ck = keydata[0:31]
+replyKey = keydata[32:63]
+ck = keydata[0:31]
 
-  Schichtschlüssel:
-  Der Schichtschlüssel ist derzeit immer AES, aber derselbe KDF kann für Chacha20 verwendet werden
+Schichtschlüssel:
+Der Schichtschlüssel ist derzeit immer AES, aber derselbe KDF kann für Chacha20 verwendet werden
 
-  keydata = HKDF(ck, ZEROLEN, "SMTunnelLayerKey", 64)
-  layerKey = keydata[32:63]
+keydata = HKDF(ck, ZEROLEN, "SMTunnelLayerKey", 64)
+layerKey = keydata[32:63]
 
-  IV-Schlüssel für nicht-OBEP-Datensatz:
-  ivKey = keydata[0:31]
-  weil es das letzte ist
+IV-Schlüssel für nicht-OBEP-Datensatz:
+ivKey = keydata[0:31]
+weil es das letzte ist
 
-  IV-Schlüssel für OBEP-Datensatz:
-  ck = keydata[0:31]
-  keydata = HKDF(ck, ZEROLEN, "TunnelLayerIVKey", 64)
-  ivKey = keydata[32:63]
-  ck = keydata[0:31]
+IV-Schlüssel für OBEP-Datensatz:
+ck = keydata[0:31]
+keydata = HKDF(ck, ZEROLEN, "TunnelLayerIVKey", 64)
+ivKey = keydata[32:63]
+ck = keydata[0:31]
 
-  OBEP-Knoblauch-Antwortschlüssel/Tag:
-  keydata = HKDF(ck, ZEROLEN, "RGarlicKeyAndTag", 64)
-  replyKey = keydata[32:63]
-  replyTag = keydata[0:7]
-
-{% endhighlight %}
+OBEP-Knoblauch-Antwortschlüssel/Tag:
+keydata = HKDF(ck, ZEROLEN, "RGarlicKeyAndTag", 64)
+replyKey = keydata[32:63]
+replyTag = keydata[0:7]
+```
 
 
 
@@ -543,90 +527,88 @@ wenn wir kein ITBM verwenden:
 
 
 
-  {% highlight lang='text' %}
+```
 Aktuelle Größe mit 4 Slots: 4 * 528 + Overhead = 3 Tunnel Nachrichten
 
-  Bau Nachricht mit 4 Slots, die in eine Tunnel Nachricht passt, nur ECIES:
+Bau Nachricht mit 4 Slots, die in eine Tunnel Nachricht passt, nur ECIES:
 
-  1024
-  - 21 Fragment-Header
-  ----
-  1003
-  - 35 unfragmentierte ROUTER-Lieferanweisungen
-  ----
-  968
-  - 16 I2NP-Header
-  ----
-  952
-  - 1 Anzahl der Slots
-  ----
-  951
-  / 4 Slots
-  ----
-  237 Neue verschlüsselte Bau-Datensatzgröße (vs. 528 jetzt)
-  - 16 verkürzter Hash
-  - 32 ephem. Schlüssel
-  - 16 MAC
-  ----
-  173 maximaler Klartext-Baudatensatz (vs. 222 jetzt)
+1024
+- 21 Fragment-Header
+----
+1003
+- 35 unfragmentierte ROUTER-Lieferanweisungen
+----
+968
+- 16 I2NP-Header
+----
+952
+- 1 Anzahl der Slots
+----
+951
+/ 4 Slots
+----
+237 Neue verschlüsselte Bau-Datensatzgröße (vs. 528 jetzt)
+- 16 verkürzter Hash
+- 32 ephem. Schlüssel
+- 16 MAC
+----
+173 maximaler Klartext-Baudatensatz (vs. 222 jetzt)
 
 
-
-{% endhighlight %}
+```
 
 
 Mit Knoblauch-Overhead für 'N'-Noise-Pattern zur Verschlüsselung von eingehendem STBM,
 wenn wir kein ITBM verwenden:
 
 
-  {% highlight lang='text' %}
+```
 Aktuelle Größe mit 4 Slots: 4 * 528 + Overhead = 3 Tunnel Nachrichten
 
-  Bau-Nachricht mit 4 Slots, die Knoblauch-verschlüsselt in eine Tunnel-Nachricht passt, nur ECIES:
+Bau-Nachricht mit 4 Slots, die Knoblauch-verschlüsselt in eine Tunnel-Nachricht passt, nur ECIES:
 
-  1024
-  - 21 Fragment-Header
-  ----
-  1003
-  - 35 unfragmentierte ROUTER-Lieferanweisungen
-  ----
-  968
-  - 16 I2NP-Header
-  -  4 Länge
-  ----
-  948
-  - 32 Byte ephem. Schlüssel
-  ----
-  916
-  - 7 Byte DateTime-Block
-  ----
-  909
-  - 3 Byte Knoblauch-Block-Overhead
-  ----
-  906
-  - 9 Byte I2NP-Header
-  ----
-  897
-  - 1 Byte Knoblauch-LOKAL-Lieferanweisungen
-  ----
-  896
-  - 16 Byte Poly1305-MAC
-  ----
-  880
-  - 1 Anzahl der Slots
-  ----
-  879
-  / 4 Slots
-  ----
-  219 Neue verschlüsselte Bau-Datensatzgröße (vs. 528 jetzt)
-  - 16 verkürzter Hash
-  - 32 ephem. Schlüssel
-  - 16 MAC
-  ----
-  155 maximaler Klartext-Baudatensatz (vs. 222 jetzt)
+1024
+- 21 Fragment-Header
+----
+1003
+- 35 unfragmentierte ROUTER-Lieferanweisungen
+----
+968
+- 16 I2NP-Header
+-  4 Länge
+----
+948
+- 32 Byte ephem. Schlüssel
+----
+916
+- 7 Byte DateTime-Block
+----
+909
+- 3 Byte Knoblauch-Block-Overhead
+----
+906
+- 9 Byte I2NP-Header
+----
+897
+- 1 Byte Knoblauch-LOKAL-Lieferanweisungen
+----
+896
+- 16 Byte Poly1305-MAC
+----
+880
+- 1 Anzahl der Slots
+----
+879
+/ 4 Slots
+----
+219 Neue verschlüsselte Bau-Datensatzgröße (vs. 528 jetzt)
+- 16 verkürzter Hash
+- 32 ephem. Schlüssel
+- 16 MAC
+----
+155 maximaler Klartext-Baudatensatz (vs. 222 jetzt)
 
-
-{% endhighlight %}
+```
 
 Hinweise:
 

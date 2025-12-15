@@ -97,8 +97,7 @@ couches et les clés de réponse, donc ils n'ont pas besoin d'être explicitemen
 Les deux seront "variables" avec un champ de nombre d'enregistrements d'un octet,
 comme pour les messages variables existants.
 
-ShortTunnelBuild: Type 25
-````````````````````````````````
+#### ShortTunnelBuild: Type 25
 
 Longueur typique (avec 4 enregistrements): 873 octets
 
@@ -115,8 +114,7 @@ dans un seul message de tunnel. Voir l'annexe ci-dessous.
 
 
 
-OutboundTunnelBuildReply: Type 26
-``````````````````````````````````````
+#### OutboundTunnelBuildReply: Type 26
 
 Nous définissons un nouveau message de réponse de construction de tunnel sortant.
 Il est utilisé uniquement pour les constructions de tunnel sortant.
@@ -130,8 +128,7 @@ Les autres enregistrements vont dans les autres emplacements.
 Il chiffre ensuite à l'ail le message à l'initiateur avec les clés symétriques dérivées.
 
 
-Notes
-```````
+#### Notes
 
 En chiffrant à l'ail le OTBRM et le STBM, nous évitons également tout problème potentiel
 de compatibilité à l'IBGW et à l'OBEP des tunnels jumelés.
@@ -142,48 +139,48 @@ de compatibilité à l'IBGW et à l'OBEP des tunnels jumelés.
 ### Flux de Message
 
 
-  {% highlight %}
+```
 STBM: Message de construction de court tunnel (type 25)
-  OTBRM: Message de réponse de construction de tunnel sortant (type 26)
+OTBRM: Message de réponse de construction de tunnel sortant (type 26)
 
-  Construction sortante A-B-C
-  Réponse via le tunnel entrant existant D-E-F
-
-
-                  Nouveau Tunnel
-           STBM      STBM      STBM
-  Créateur ------> A ------> B ------> C ---\
-                                     OBEP   \
-                                            | Chiffré à l'ail
-                                            | OTBRM
-                                            | (livraison TUNNEL)
-                                            | de OBEP à
-                                            | créateur
-                Tunnel Existant             /
-  Créateur <-------F---------E-------- D <--/
-                                     IBGW
+Construction sortante A-B-C
+Réponse via le tunnel entrant existant D-E-F
 
 
-
-  Construction Entrante D-E-F
-  Envoyé via le tunnel sortant existant A-B-C
-
-
-                Tunnel Existant
-  Créateur ------> A ------> B ------> C ---\
-                                    OBEP    \
-                                            | Chiffré à l'ail (optionnel)
-                                            | STBM
-                                            | (livraison ROUTER)
-                                            | du créateur
-                  Nouveau Tunnel            | à l'IBGW
-            STBM      STBM      STBM        /
-  Créateur <------ F <------ E <------ D <--/
-                                     IBGW
+                Nouveau Tunnel
+         STBM      STBM      STBM
+Créateur ------> A ------> B ------> C ---\
+                                   OBEP   \
+                                          | Chiffré à l'ail
+                                          | OTBRM
+                                          | (livraison TUNNEL)
+                                          | de OBEP à
+                                          | créateur
+              Tunnel Existant             /
+Créateur <-------F---------E-------- D <--/
+                                   IBGW
 
 
 
-{% endhighlight %}
+Construction Entrante D-E-F
+Envoyé via le tunnel sortant existant A-B-C
+
+
+              Tunnel Existant
+Créateur ------> A ------> B ------> C ---\
+                                  OBEP    \
+                                          | Chiffré à l'ail (optionnel)
+                                          | STBM
+                                          | (livraison ROUTER)
+                                          | du créateur
+                Nouveau Tunnel            | à l'IBGW
+          STBM      STBM      STBM        /
+Créateur <------ F <------ E <------ D <--/
+                                   IBGW
+
+
+
+```
 
 
 
@@ -223,8 +220,7 @@ C'est un sujet de recherche supplémentaire.
 
 
 
-Enregistrement de Courte Requête Non Chiffré
-```````````````````````````````````````````
+#### Enregistrement de Courte Requête Non Chiffré
 
 Ceci est la spécification proposée de l'enregistrement de requête de construction de tunnel pour les routeurs ECIES-X25519.
 Résumé des changements par rapport à [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
@@ -242,22 +238,20 @@ Tous les champs sont en big-endian.
 Taille non chiffrée : 154 octets.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 octets     0-3: identifiant de tunnel pour recevoir les messages, non nul
-  octets     4-7: prochain identifiant de tunnel, non nul
-  octets    8-39: hachage d'identité du prochain routeur
-  octet       40: drapeaux
-  octets   41-42: plus de drapeaux, inutilisés, définis à 0 pour la compatibilité
-  octet       43: type de chiffrement de couche
-  octets   44-47: heure de la requête (en minutes depuis l'époque, arrondie)
-  octets   48-51: expiration de la requête (en secondes depuis la création)
-  octets   52-55: prochain identifiant de message
-  octets    56-x: options de construction de tunnel (Mapping)
-  octets     x-x: autres données selon les drapeaux ou options
-  octets   x-153: remplissage aléatoire (voir ci-dessous)
-
-{% endhighlight %}
+octets     4-7: prochain identifiant de tunnel, non nul
+octets    8-39: hachage d'identité du prochain routeur
+octet       40: drapeaux
+octets   41-42: plus de drapeaux, inutilisés, définis à 0 pour la compatibilité
+octet       43: type de chiffrement de couche
+octets   44-47: heure de la requête (en minutes depuis l'époque, arrondie)
+octets   48-51: expiration de la requête (en secondes depuis la création)
+octets   52-55: prochain identifiant de message
+octets    56-x: options de construction de tunnel (Mapping)
+octets     x-x: autres données selon les drapeaux ou options
+octets   x-153: remplissage aléatoire (voir ci-dessous)
+```
 
 
 Le champ de drapeaux est le même que celui défini dans [Tunnel-Creation](/en/docs/spec/tunnel-creation/) et contient ce qui suit :
@@ -291,30 +285,27 @@ et la valeur maximum du champ de longueur du Mapping est de 96.
 
 
 
-Enregistrement de Courte Requête Chiffré
-````````````````````````````````````````
+#### Enregistrement de Courte Requête Chiffré
 
 Tous les champs sont en big-endian sauf pour la clé publique éphémère qui est en little-endian.
 
 Taille chiffrée : 218 octets
 
 
-  {% highlight lang='dataspec' %}
-
+```
 octets    0-15: hachage d'identité tronqué du saut
-  octets   16-47: clé publique X25519 éphémère de l'expéditeur
-  octets  48-201: Enregistrement de Courte Requête Chiffré par ChaCha20
-  octets 202-217: MAC Poly1305
-
-{% endhighlight %}
+octets   16-47: clé publique X25519 éphémère de l'expéditeur
+octets  48-201: Enregistrement de Courte Requête Chiffré par ChaCha20
+octets 202-217: MAC Poly1305
+```
 
 
 
 ### Enregistrement de Courte Réponse
 
 
-Enregistrement de Courte Réponse Non Chiffré
-```````````````````````````````````````````
+#### Enregistrement de Courte Réponse Non Chiffré
+
 Ceci est la spécification proposée de l'enregistrement de courte réponse de construction de tunnel pour les routeurs ECIES-X25519.
 Résumé des changements par rapport à [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
 
@@ -329,14 +320,12 @@ Tous les champs sont en big-endian.
 Taille non chiffrée : 202 octets.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 octets    0-x: Options de Réponse de Construction de Tunnel (Mapping)
-  octets    x-x: autres données selon les options
-  octets  x-200: Remplissage Aléatoire (voir ci-dessous)
-  octet     201: Octet de Réponse
-
-{% endhighlight %}
+octets    x-x: autres données selon les options
+octets  x-200: Remplissage Aléatoire (voir ci-dessous)
+octet     201: Octet de Réponse
+```
 
 Les options de réponse de construction de tunnel est une structure de Mapping telle que définie dans [Common](/en/docs/spec/common-structures/).
 C'est pour une utilisation future. Aucune option n'est actuellement définie.
@@ -351,18 +340,15 @@ telles que définies dans [Tunnel-Creation](/en/docs/spec/tunnel-creation/) pour
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
 
-Enregistrement de Courte Réponse Chiffré
-```````````````````````````````````````
+#### Enregistrement de Courte Réponse Chiffré
 
 Taille chiffrée : 218 octets
 
 
-  {% highlight lang='dataspec' %}
-
+```
 octets   0-201: Enregistrement de Courte Réponse Chiffré par ChaCha20
-  octets 202-217: MAC Poly1305
-
-{% endhighlight %}
+octets 202-217: MAC Poly1305
+```
 
 
 
@@ -383,23 +369,22 @@ enveloppé à l'ail, et envoyé à l'initiateur.
 
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
-  | nombre| Enregistrements de Courte Réponse de Construction...
-  +----+----+----+----+----+----+----+----+
+| nombre| Enregistrements de Courte Réponse de Construction...
++----+----+----+----+----+----+----+----+
 
-  nombre ::
-         1 octet `Entier`
-         Valeurs valides : 1-8
+nombre ::
+       1 octet `Entier`
+       Valeurs valides : 1-8
 
-  taille de l'enregistrement : 218 octets
-  taille totale : 1+$nombre*218
-{% endhighlight %}
+taille de l'enregistrement : 218 octets
+taille totale : 1+$nombre*218
+```
 
-Notes
-`````
+#### Notes
+
 * Nombre typique d'enregistrements est 4, pour une taille totale de 873.
-
 
 
 
@@ -411,28 +396,28 @@ Il ne peut pas être envoyé à un autre saut.
 Il est toujours enveloppé à l'ail.
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
-  | nombre|                                  |
-  +----+                                  +
-  |      Enregistrements de Courte Réponse de Construction...        |
-  +----+----+----+----+----+----+----+----+
+| nombre|                                  |
++----+                                  +
+|      Enregistrements de Courte Réponse de Construction...        |
++----+----+----+----+----+----+----+----+
 
-  nombre ::
-         Nombre total d'enregistrements,
-         1 octet `Entier`
-         Valeurs valides : 1-8
+nombre ::
+       Nombre total d'enregistrements,
+       1 octet `Entier`
+       Valeurs valides : 1-8
 
-  Enregistrements de Courte Réponse de Construction ::
-         Enregistrements chiffrés
-         longueur : nombre * 218
+Enregistrements de Courte Réponse de Construction ::
+       Enregistrements chiffrés
+       longueur : nombre * 218
 
-  taille de l'enregistrement chiffré : 218 octets
-  taille totale : 1+$nombre*218
-{% endhighlight %}
+taille de l'enregistrement chiffré : 218 octets
+taille totale : 1+$nombre*218
+```
 
-Notes
-`````
+#### Notes
+
 * Nombre typique d'enregistrements est 4, pour une taille totale de 873.
 * Ce message doit être enveloppé à l'ail.
 
@@ -449,33 +434,32 @@ La clé de réponse est utilisée pour chiffrer cette réponse d'enregistrement 
 Les deux utilisent la même clé, le nonce est la position de l'enregistrement dans le message en commençant par 0.
 
 
-  {% highlight lang='dataspec' %}
+```
 keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
-  replyKey = keydata[32:63]
-  ck = keydata[0:31]
+replyKey = keydata[32:63]
+ck = keydata[0:31]
 
-  Clé de couche :
-  La clé de couche est toujours AES pour l'instant, mais le même KDF peut être utilisé pour Chacha20
+Clé de couche :
+La clé de couche est toujours AES pour l'instant, mais le même KDF peut être utilisé pour Chacha20
 
-  keydata = HKDF(ck, ZEROLEN, "SMTunnelLayerKey", 64)
-  layerKey = keydata[32:63]
+keydata = HKDF(ck, ZEROLEN, "SMTunnelLayerKey", 64)
+layerKey = keydata[32:63]
 
-  Clé IV pour enregistrement non-OBEP :
-  ivKey = keydata[0:31]
-  car c'est la dernière
+Clé IV pour enregistrement non-OBEP :
+ivKey = keydata[0:31]
+car c'est la dernière
 
-  Clé IV pour enregistrement OBEP :
-  ck = keydata[0:31]
-  keydata = HKDF(ck, ZEROLEN, "TunnelLayerIVKey", 64)
-  ivKey = keydata[32:63]
-  ck = keydata[0:31]
+Clé IV pour enregistrement OBEP :
+ck = keydata[0:31]
+keydata = HKDF(ck, ZEROLEN, "TunnelLayerIVKey", 64)
+ivKey = keydata[32:63]
+ck = keydata[0:31]
 
-  Clé/étiquette de réponse à l'ail OBEP :
-  keydata = HKDF(ck, ZEROLEN, "RGarlicKeyAndTag", 64)
-  replyKey = keydata[32:63]
-  replyTag = keydata[0:7]
-
-{% endhighlight %}
+Clé/étiquette de réponse à l'ail OBEP :
+keydata = HKDF(ck, ZEROLEN, "RGarlicKeyAndTag", 64)
+replyKey = keydata[32:63]
+replyTag = keydata[0:7]
+```
 
 
 
@@ -544,90 +528,88 @@ si nous n'utilisons pas ITBM :
 
 
 
-  {% highlight lang='text' %}
+```
 Taille actuelle 4 emplacements : 4 * 528 + surcharge = 3 messages tunnel
 
-  Message de construction de 4 emplacements pour tenir dans un message tunnel, uniquement ECIES :
+Message de construction de 4 emplacements pour tenir dans un message tunnel, uniquement ECIES :
 
-  1024
-  - 21 en-tête de fragment
-  ----
-  1003
-  - 35 instructions de livraison non fragmentées ROUTER
-  ----
-  968
-  - 16 en-tête I2NP
-  ----
-  952
-  - 1 nombre d'emplacements
-  ----
-  951
-  / 4 emplacements
-  ----
-  237 Nouvelle taille d'enregistrement de construction chiffré (vs. 528 maintenant)
-  - 16 hachage trunc.
-  - 32 clé éph.
-  - 16 MAC
-  ----
-  173 taille maximum d'enregistrement de construction en clair (vs. 222 maintenant)
+1024
+- 21 en-tête de fragment
+----
+1003
+- 35 instructions de livraison non fragmentées ROUTER
+----
+968
+- 16 en-tête I2NP
+----
+952
+- 1 nombre d'emplacements
+----
+951
+/ 4 emplacements
+----
+237 Nouvelle taille d'enregistrement de construction chiffré (vs. 528 maintenant)
+- 16 hachage trunc.
+- 32 clé éph.
+- 16 MAC
+----
+173 taille maximum d'enregistrement de construction en clair (vs. 222 maintenant)
 
 
-
-{% endhighlight %}
+```
 
 
 Avec surcharge d'ail pour le modèle de bruit 'N' pour chiffrer le STBM entrant,
 si nous n'utilisons pas ITBM :
 
 
-  {% highlight lang='text' %}
+```
 Taille actuelle 4 emplacements : 4 * 528 + surcharge = 3 messages tunnel
 
-  Message de construction chiffré à l'ail de 4 emplacements pour tenir dans un message tunnel, uniquement ECIES :
+Message de construction chiffré à l'ail de 4 emplacements pour tenir dans un message tunnel, uniquement ECIES :
 
-  1024
-  - 21 en-tête de fragment
-  ----
-  1003
-  - 35 instructions de livraison non fragmentées ROUTER
-  ----
-  968
-  - 16 en-tête I2NP
-  -  4 longueur
-  ----
-  948
-  - 32 octets clé éph.
-  ----
-  916
-  - 7 octets bloc DateTime
-  ----
-  909
-  - 3 octets surcharge bloc Garlic
-  ----
-  906
-  - 9 octets en-tête I2NP
-  ----
-  897
-  - 1 octet Garlic instructions de livraison LOCALE
-  ----
-  896
-  - 16 octets MAC Poly1305
-  ----
-  880
-  - 1 nombre d'emplacements
-  ----
-  879
-  / 4 emplacements
-  ----
-  219 Nouvelle taille d'enregistrement de construction chiffré (vs. 528 maintenant)
-  - 16 hachage trunc.
-  - 32 clé éph.
-  - 16 MAC
-  ----
-  155 taille maximum d'enregistrement de construction en clair (vs. 222 maintenant)
+1024
+- 21 en-tête de fragment
+----
+1003
+- 35 instructions de livraison non fragmentées ROUTER
+----
+968
+- 16 en-tête I2NP
+-  4 longueur
+----
+948
+- 32 octets clé éph.
+----
+916
+- 7 octets bloc DateTime
+----
+909
+- 3 octets surcharge bloc Garlic
+----
+906
+- 9 octets en-tête I2NP
+----
+897
+- 1 octet Garlic instructions de livraison LOCALE
+----
+896
+- 16 octets MAC Poly1305
+----
+880
+- 1 nombre d'emplacements
+----
+879
+/ 4 emplacements
+----
+219 Nouvelle taille d'enregistrement de construction chiffré (vs. 528 maintenant)
+- 16 hachage trunc.
+- 32 clé éph.
+- 16 MAC
+----
+155 taille maximum d'enregistrement de construction en clair (vs. 222 maintenant)
 
-
-{% endhighlight %}
+```
 
 Notes :
 

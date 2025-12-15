@@ -90,8 +90,7 @@ bu nedenle açıkça isteğe dahil edilmeleri gerekmemektedir.
 
 Her ikisi de mevcut Değişken mesajlarla aynı bir baytlık kayıt sayısı alanına sahip "değişken" olacaktır.
 
-ShortTunnelBuild: Tür 25
-````````````````````````````````
+#### ShortTunnelBuild: Tür 25
 
 Tipik uzunluk (4 kayıt ile): 873 bayt
 
@@ -106,8 +105,7 @@ ve ShortTunnelBuildMessage'ı bir sonraki adıma gönderir.
 Kayıt uzunluğu, sarımsak şifrelenmiş STBM'nin
 bir tünel mesajına sığması için seçilmiştir. Aşağıdaki ek bölümüne bakınız.
 
-OutboundTunnelBuildReply: Tür 26
-``````````````````````````````````````
+#### OutboundTunnelBuildReply: Tür 26
 
 Yeni bir OutboundTunnelBuildReply mesajı tanımlıyoruz.
 Bu yalnızca giden tünel yapıları için kullanılır.
@@ -120,8 +118,7 @@ ve yanıtı açık metin alanına koyar.
 Diğer kayıtlar diğer slotlara yerleştirilir.
 Ardından sarımsak şifreleyerek mesajı türev simetrik anahtarlarla orijinatöre gönderir.
 
-Notlar
-```````
+#### Notlar
 
 OTBRM ve STBM'yi sarımsak şifreleyerek,
 çift tünellerin IBGW ve OBEP ile uyumluluğu ile ilgili herhangi bir olası
@@ -130,7 +127,7 @@ sorunu da önleriz.
 ### Mesaj Akışı
 
 
-  {% highlight %}
+```
 STBM: Kısa tünel yapı mesajı (tür 25)
   OTBRM: Giden tünel yapı yanıt mesajı (tür 26)
 
@@ -165,7 +162,7 @@ STBM: Kısa tünel yapı mesajı (tür 25)
   Oluşturucu <------ F <------ E <------ D <--/
                                      IBGW
 
-{% endhighlight %}
+```
 
 ### Kayıt Şifreleme
 
@@ -191,8 +188,7 @@ Bu ek araştırmalar için bir konudur.
 
 ### Kısa İstek Kaydı
 
-Kısa İstek Kaydı Şifre Değiştirilmemiş
-```````````````````````````````````````
+#### Kısa İstek Kaydı Şifre Değiştirilmemiş
 
 Bu, ECIES-X25519 yönlendiricileri için tünel BuildRequestRecord'un önerilen spesifikasyonudur.
 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 'dan değişikliklerin özeti:
@@ -209,8 +205,7 @@ Tüm alanlar büyük-endian'dır.
 Şifrelenmemiş boyut: 154 bayt.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes     0-3: mesajları almak için tünel kimliği, sıfır olmayan
   bytes     4-7: bir sonraki tünel kimliği, sıfır olmayan
   bytes    8-39: bir sonraki yönlendirici kimlik karma değeri
@@ -224,7 +219,7 @@ bytes     0-3: mesajları almak için tünel kimliği, sıfır olmayan
   bytes     x-x: bayraklar veya seçenekler tarafından belirtilen diğer veriler
   bytes   x-153: rastgele dolgu (aşağıya bakınız)
 
-{% endhighlight %}
+```
 
 Bayraklar alanı [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 'da tanımlandığı gibi ve aşağıdakileri içerir::
 
@@ -256,27 +251,24 @@ Haritalama yapısı boşsa, bu iki bayttır 0x00 0x00.
 Haritalamanın maksimum boyutu (uzunluk alanı dahil) 98 bayttır,
 ve Haritalama uzunluk alanının maksimum değeri 96'dır.
 
-Kısa İstek Kaydı Şifrelenmiş
-`````````````````````````````````````
+#### Kısa İstek Kaydı Şifrelenmiş
 
 Tüm alanlar büyük-endian'dır, geçici genel anahtar hariç, o küçük-endian'dır.
 
 Şifrelenmiş boyut: 218 bayt
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-15: Hop'un kesilmiş kimlik karma değeri
   bytes   16-47: Gönderenin geçici X25519 genel anahtarı
   bytes  48-201: ChaCha20 ile şifrelenmiş Kısa Yapı İstek Kaydı
   bytes 202-217: Poly1305 MAC
 
-{% endhighlight %}
+```
 
 ### Kısa Yanıt Kaydı
 
-Kısa Yanıt Kaydı Şifre Değiştirilmemiş
-`````````````````````````````````````
+#### Kısa Yanıt Kaydı Şifre Değiştirilmemiş
 
 Bu, ECIES-X25519 yönlendiricileri için tünel Kısa Yapı Yanıt Kaydı'nın önerilen spesifikasyonudur.
 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 'dan değişikliklerin özeti:
@@ -291,14 +283,13 @@ Tüm alanlar büyük-endian'dır.
 Şifrelenmemiş boyut: 202 bayt.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-x: Tünel Yapı Yanıt Seçenekleri (Haritalama)
   bytes    x-x: seçenekler tarafından belirtilen diğer veriler
   bytes  x-200: Rastgele dolgu (aşağıya bakınız)
   byte     201: Yanıt bayt
 
-{% endhighlight %}
+```
 
 Tünel yapı yanıt seçenekleri [Common](/en/docs/spec/common-structures/) 'da tanımlandığı gibi bir Haritalama yapısıdır.
 Bu, gelecekteki kullanım içindir. Şu anda tanımlanmış seçenek yoktur.
@@ -312,18 +303,16 @@ Yanıt baytı aşağıdaki değerlerden biridir
 - 0x00 (kabul)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
-Kısa Yanıt Kaydı Şifrelenmiş
-```````````````````````````````````
+#### Kısa Yanıt Kaydı Şifrelenmiş
 
 Şifrelenmiş boyut: 218 bayt
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes   0-201: ChaCha20 ile şifrelenmiş Kısa Yapı Yanıt Kaydı
   bytes 202-217: Poly1305 MAC
 
-{% endhighlight %}
+```
 
 ### KDF
 
@@ -339,7 +328,7 @@ OBEP tarafından alındığında, OutboundTunnelBuildReply'a dönüştürülür,
 sarımsak sarılır ve oluşturucuya gönderilir.
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num| ShortBuildRequestRecords...
   +----+----+----+----+----+----+----+----+
@@ -350,10 +339,10 @@ sarımsak sarılır ve oluşturucuya gönderilir.
 
   kayıt boyutu: 218 bayt
   toplam boyut: 1+$num*218
-{% endhighlight %}
+```
 
-Notlar
-`````
+#### Notlar
+
 * Tipik kayıt sayısı 4'tür, toplam boyut 873.
 
 
@@ -365,7 +354,7 @@ Başka hiçbir adıma gönderilemez.
 Her zaman sarımsak şifrelenmiştir.
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num|                                  |
   +----+                                  +
@@ -383,10 +372,10 @@ Her zaman sarımsak şifrelenmiştir.
 
   şifreli kayıt boyutu: 218 bayt
   toplam boyut: 1+$num*218
-{% endhighlight %}
+```
 
-Notlar
-`````
+#### Notlar
+
 * Tipik kayıt sayısı 4'tür, toplam boyut 873.
 * Bu mesaj sarımsakla şifrelenmelidir.
 
@@ -400,7 +389,7 @@ Yanıt anahtarı, AEAD/Chaha20/Poly1305 kullanarak yanıt kaydını şifrelemek 
 Her ikisi de aynı anahtarı kullanır, nonce mesajdaki kaydın pozisyonudur, 0'dan başlayarak.
 
 
-  {% highlight lang='dataspec' %}
+```
 keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   replyKey = keydata[32:63]
   ck = keydata[0:31]
@@ -426,7 +415,7 @@ keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   replyKey = keydata[32:63]
   replyTag = keydata[0:7]
 
-{% endhighlight %}
+```
 
 ## Gerekçe
 
@@ -479,7 +468,7 @@ Geriye dönük uyumluluk sorunları yoktur. Yeni mesajlar yalnızca bunları des
 Şifrelenmemiş giden STBM için sarımsak yükü olmadan, ITBM kullanmazsak:
 
 
-  {% highlight lang='text' %}
+```
 Mevcut 4-slot boyut: 4 * 528 + ek yük = 3 tünel mesajı
 
   4-slot yapım mesajı bir tünel mesajına sığacak şekilde, yalnızca ECIES:
@@ -506,12 +495,12 @@ Mevcut 4-slot boyut: 4 * 528 + ek yük = 3 tünel mesajı
   ----
   173 açık metin yapı kaydı maksimum (şu anki 222'ye kıyasla)
 
-{% endhighlight %}
+```
 
 ITBM kullanmazsak, gelen STBM için sarımsak yükü ile:
 
 
-  {% highlight lang='text' %}
+```
 Mevcut 4-slot boyut: 4 * 528 + ek yük = 3 tünel mesajı
 
   4-slot sarımsak şifrelenmiş yapı mesajı bir tünel mesajına sığacak şekilde, yalnızca ECIES:
@@ -557,7 +546,7 @@ Mevcut 4-slot boyut: 4 * 528 + ek yük = 3 tünel mesajı
   ----
   155 açık metin yapı kaydı maksimum (şu anki 222'ye kıyasla)
 
-{% endhighlight %}
+```
 
 Notlar:
 

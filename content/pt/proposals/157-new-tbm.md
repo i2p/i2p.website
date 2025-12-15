@@ -99,8 +99,7 @@ chaves de camada e resposta, para que não precisem ser incluídas explicitament
 Ambos serão "variáveis" com um campo de número de registros de um byte,
 como nas mensagens Variáveis existentes.
 
-ShortTunnelBuild: Tipo 25
-````````````````````````````````
+#### ShortTunnelBuild: Tipo 25
 
 Comprimento típico (com 4 registros): 873 bytes
 
@@ -117,8 +116,7 @@ em uma única mensagem de túnel. Veja o apêndice abaixo.
 
 
 
-OutboundTunnelBuildReply: Tipo 26
-``````````````````````````````````````
+#### OutboundTunnelBuildReply: Tipo 26
 
 Definimos uma nova mensagem OutboundTunnelBuildReply.
 Esta é usada apenas para construções de túnel de saída.
@@ -132,8 +130,7 @@ Os outros registros vão para os outros slots.
 Em seguida, criptografa a mensagem com alho para o originador com as chaves simétricas derivadas.
 
 
-Notas
-```````
+#### Notas
 
 Criptografando com alho o OTBRM e a STBM, também evitamos quaisquer
 problemas potenciais de compatibilidade no IBGW e OBEP dos túneis emparelhados.
@@ -144,7 +141,7 @@ problemas potenciais de compatibilidade no IBGW e OBEP dos túneis emparelhados.
 ### Fluxo de Mensagem
 
 
-  {% highlight %}
+```
 STBM: Mensagem de construção de túnel curto (tipo 25)
   OTBRM: Mensagem de resposta de construção de túnel de saída (tipo 26)
 
@@ -185,7 +182,7 @@ STBM: Mensagem de construção de túnel curto (tipo 25)
 
 
 
-{% endhighlight %}
+```
 
 
 
@@ -225,8 +222,7 @@ Este é um tópico para pesquisa adicional.
 
 
 
-Registro de Solicitação Curta Não Criptografado
-`````````````````````````````````````
+#### Registro de Solicitação Curta Não Criptografado
 
 Esta é a especificação proposta do BuildRequestRecord de túnel para roteadores ECIES-X25519.
 Resumo de alterações de [Tunnel-Creation-ECIES]:
@@ -244,8 +240,7 @@ Todos os campos estão em big-endian.
 Tamanho não criptografado: 154 bytes.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes     0-3: ID do túnel para receber mensagens como, não zero
   bytes     4-7: próximo ID do túnel, não zero
   bytes    8-39: hash de identidade do próximo roteador
@@ -259,7 +254,7 @@ bytes     0-3: ID do túnel para receber mensagens como, não zero
   bytes     x-x: outros dados como implícitos por flags ou opções
   bytes   x-153: preenchimento aleatório (veja abaixo)
 
-{% endhighlight %}
+```
 
 
 O campo flags é o mesmo definido em [Tunnel-Creation] e contém o seguinte::
@@ -293,30 +288,27 @@ e o valor máximo do campo de comprimento do Mapeamento é 96.
 
 
 
-Registro de Solicitação Curta Criptografado
-`````````````````````````````````````
+#### Registro de Solicitação Curta Criptografado
 
 Todos os campos são big-endian, exceto a chave pública efêmera, que é little-endian.
 
 Tamanho criptografado: 218 bytes
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-15: Hash de identidade truncado do salto
   bytes   16-47: Chave pública efêmera X25519 do remetente
   bytes  48-201: Registro de Construção Curta Criptografado ChaCha20
   bytes 202-217: MAC Poly1305
 
-{% endhighlight %}
+```
 
 
 
 ### Registro de Resposta Curta
 
 
-Registro de Resposta Curta Não Criptografado
-`````````````````````````````````````
+#### Registro de Resposta Curta Não Criptografado
 Esta é a especificação proposta do ShortBuildReplyRecord de túnel para roteadores ECIES-X25519.
 Resumo de alterações de [Tunnel-Creation-ECIES]:
 
@@ -331,14 +323,13 @@ Todos os campos são big-endian.
 Tamanho não criptografado: 202 bytes.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-x: Opções de Resposta de Construção de Túnel (Mapeamento)
   bytes    x-x: outros dados como implícitos por opções
   bytes  x-200: Preenchimento aleatório (veja abaixo)
   byte     201: Byte de Resposta
 
-{% endhighlight %}
+```
 
 As opções de resposta de construção de túnel são uma estrutura de Mapeamento conforme definido em [Common].
 Isso é para uso futuro. Nenhuma opção está atualmente definida.
@@ -353,18 +344,16 @@ como definido em [Tunnel-Creation](/en/docs/spec/tunnel-creation/) para evitar f
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
 
-Registro de Resposta Curta Criptografado
-```````````````````````````````````
+#### Registro de Resposta Curta Criptografado
 
 Tamanho criptografado: 218 bytes
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes   0-201: Registro de Resposta de Construção Curta Criptografado ChaCha20
   bytes 202-217: MAC Poly1305
 
-{% endhighlight %}
+```
 
 
 
@@ -385,7 +374,7 @@ criptografada com alho, e enviada ao originador.
 
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num| ShortBuildRequestRecords...
   +----+----+----+----+----+----+----+----+
@@ -396,10 +385,10 @@ criptografada com alho, e enviada ao originador.
 
   tamanho do registro: 218 bytes
   tamanho total: 1+$num*218
-{% endhighlight %}
+```
 
-Notas
-`````
+#### Notas
+
 * Número típico de registros é 4, para um tamanho total de 873.
 
 
@@ -413,7 +402,7 @@ Não pode ser enviada a qualquer outro salto.
 Ela é sempre criptografada com alho.
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num|                                  |
   +----+                                  +
@@ -431,10 +420,10 @@ Ela é sempre criptografada com alho.
 
   tamanho do registro criptografado: 218 bytes
   tamanho total: 1+$num*218
-{% endhighlight %}
+```
 
-Notas
-`````
+#### Notas
+
 * Número típico de registros é 4, para um tamanho total de 873.
 * Esta mensagem deve ser criptografada com alho.
 
@@ -451,7 +440,7 @@ A chave de resposta é usada para criptografar a resposta usando AEAD/Chaha20/Po
 Ambos usam a mesma chave, nonce é a posição do registro na mensagem começando de 0.
 
 
-  {% highlight lang='dataspec' %}
+```
 keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   replyKey = keydata[32:63]
   ck = keydata[0:31]
@@ -477,7 +466,7 @@ keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   replyKey = keydata[32:63]
   replyTag = keydata[0:7]
 
-{% endhighlight %}
+```
 
 
 
@@ -546,7 +535,7 @@ se não usarmos ITBM:
 
 
 
-  {% highlight lang='text' %}
+```
 Tamanho atual de 4 slots: 4 * 528 + sobrecarga = 3 mensagens de túnel
 
   Mensagem de construção de 4 slots para caber em uma mensagem de túnel, somente ECIES:
@@ -575,13 +564,13 @@ Tamanho atual de 4 slots: 4 * 528 + sobrecarga = 3 mensagens de túnel
 
 
 
-{% endhighlight %}
+```
 
 
 Com sobrecarga de alho para o padrão de ruído 'N' para criptografar STBM de entrada, se não usarmos ITBM:
 
 
-  {% highlight lang='text' %}
+```
 Tamanho atual de 4 slots: 4 * 528 + sobrecarga = 3 mensagens de túnel
 
   Mensagem de construção criptografada com alho de 4 slots para caber em uma mensagem de túnel, somente ECIES:
@@ -628,7 +617,7 @@ Tamanho atual de 4 slots: 4 * 528 + sobrecarga = 3 mensagens de túnel
   155 tamanho máximo do registro de construção em texto claro (vs. 222 agora)
 
 
-{% endhighlight %}
+```
 
 Notas:
 

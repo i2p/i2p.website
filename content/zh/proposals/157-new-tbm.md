@@ -100,8 +100,7 @@ toc: true
 两者都将是 "可变量的"，并具有一个字节的记录数量字段，
 与现有可变消息一样。
 
-ShortTunnelBuild: 类型 25
-````````````````````````````
+#### ShortTunnelBuild: 类型 25
 
 典型长度（4 个记录）: 873 字节
 
@@ -118,8 +117,7 @@ IBGW 解密消息，
 
 
 
-OutboundTunnelBuildReply: 类型 26
-``````````````````````````````````````
+#### OutboundTunnelBuildReply: 类型 26
 
 我们定义一个新的 OutboundTunnelBuildReply 消息。
 这仅用于出站隧道构建中。
@@ -133,8 +131,7 @@ OBEP 解密隧道构建消息，
 然后使用派生的对称密钥对消息进行大蒜加密发送给发起人。
 
 
-笔记
-```````
+#### 笔记
 
 通过对 OTBRM 和 STBM 进行大蒜加密，我们还避免了在配对隧道的 IBGW 和 OBEP 上的兼容性可能出现的任何潜在
 问题。
@@ -145,7 +142,7 @@ OBEP 解密隧道构建消息，
 ### 消息流
 
 
-  {% highlight %}
+```
 STBM：短隧道构建消息（类型 25）
   OTBRM：出站隧道构建回复消息（类型 26）
 
@@ -186,7 +183,7 @@ STBM：短隧道构建消息（类型 25）
 
 
 
-{% endhighlight %}
+```
 
 
 
@@ -225,8 +222,7 @@ STBM：短隧道构建消息（类型 25）
 
 
 
-短请求记录未加密部分
-```````````````````````````````````````
+#### 短请求记录未加密部分
 
 这是 ECIES-X25519 路由器的隧道 BuildRequestRecord 的建议规范。
 与 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 的变化摘要：
@@ -244,8 +240,7 @@ STBM：短隧道构建消息（类型 25）
 未加密大小：154 字节。
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes 0-3: 接收消息的隧道 ID，非零
   bytes 4-7: 下一个隧道 ID，非零
   bytes 8-39: 下一个路由器身份哈希
@@ -258,8 +253,7 @@ bytes 0-3: 接收消息的隧道 ID，非零
   bytes 56-x: 隧道构建选项（Mapping）
   bytes x-x: 由标志或选项暗示的其他数据
   bytes x-153: 随机填充（见下文）
-
-{% endhighlight %}
+```
 
 
 标志字段与 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义相同，包含以下内容::
@@ -292,30 +286,26 @@ Mapping 的最大大小（包括长度字段）为 98 字节，Mapping 长度字
 
 
 
-短请求记录加密部分
-`````````````````````````````````````
+#### 短请求记录加密部分
 
 除了临时公钥为小端格式外，所有字段都是大端格式。
 
 加密大小：218 字节
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes 0-15: 节点的截断身份哈希
   bytes 16-47: 发送方的临时 X25519 公钥
   bytes 48-201: ChaCha20 加密的 ShortBuildRequestRecord
   bytes 202-217: Poly1305 MAC
-
-{% endhighlight %}
+```
 
 
 
 ### 短回复记录
 
 
-短回复记录未加密部分
-`````````````````````````````````````
+#### 短回复记录未加密部分
 这是 ECIES-X25519 路由器的隧道 ShortBuildReplyRecord 的建议规范。
 与 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 的变化摘要：
 
@@ -330,14 +320,12 @@ ECIES 回复使用 ChaCha20/Poly1305 加密。
 未加密大小：202 字节。
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes 0-x: 隧道构建回复选项（Mapping）
   bytes x-x: 由选项暗示的其他数据
   bytes x-200: 随机填充（见下文）
   byte 201: 回复字节
-
-{% endhighlight %}
+```
 
 隧道构建回复选项是一个 Mapping 结构，如 [Common](/en/docs/spec/common-structures/) 中定义。
 这是为了将来使用。目前尚未定义任何选项。
@@ -351,18 +339,15 @@ Mapping 的最大大小（包括长度字段）为 201 字节，Mapping 长度�
 - 30（TUNNEL_REJECT_BANDWIDTH）
 
 
-短回复记录加密部分
-```````````````````````````````````
+#### 短回复记录加密部分
 
 加密大小：218 字节
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes 0-201: ChaCha20 加密的 ShortBuildReplyRecord
   bytes 202-217: Poly1305 MAC
-
-{% endhighlight %}
+```
 
 
 
@@ -383,7 +368,7 @@ I2NP 类型 25
 
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num| ShortBuildRequestRecords...
   +----+----+----+----+----+----+----+----+
@@ -394,10 +379,10 @@ I2NP 类型 25
 
   记录大小：218 字节
   总大小：1+$num*218
-{% endhighlight %}
+```
 
-笔记
-`````
+#### 笔记
+
 * 典型的记录数为 4，总大小为 873。
 
 
@@ -411,7 +396,7 @@ I2NP 类型 26
 总是大蒜加密。
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num|                                  |
   +----+                                  +
@@ -429,10 +414,10 @@ I2NP 类型 26
 
   加密记录大小：218 字节
   总大小：1+$num*218
-{% endhighlight %}
+```
 
-笔记
-`````
+#### 笔记
+
 * 典型的记录数为 4，总大小为 873。
 * 此消息应为大蒜加密。
 
@@ -448,7 +433,7 @@ I2NP 类型 26
 两者都使用相同的密钥，nonce 是消息中记录的位置，从 0 开始。
 
 
-  {% highlight lang='dataspec' %}
+```
 keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   replyKey = keydata[32:63]
   ck = keydata[0:31]
@@ -473,8 +458,7 @@ keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   keydata = HKDF(ck, ZEROLEN, "RGarlicKeyAndTag", 64)
   replyKey = keydata[32:63]
   replyTag = keydata[0:7]
-
-{% endhighlight %}
+```
 
 
 
@@ -540,7 +524,7 @@ ChaCha20 避免了数据大小必须是 16 的倍数的要求。
 
 
 
-  {% highlight lang='text' %}
+```
 当前 4 槽大小：4 * 528 + 开销 = 3 个隧道消息
 
   4 槽构建消息以适应一个隧道消息，仅节奏：
@@ -566,16 +550,13 @@ ChaCha20 避免了数据大小必须是 16 的倍数的要求。
   - 16 MAC
   ----
   173 明文构建记录最大值（而不是现在的 222）
-
-
-
-{% endhighlight %}
+```
 
 
 对于我们不使用 ITBM 的情况，使用 "N" 噪声模式对入站 STBM 进行大蒜加密的开销：
 
 
-  {% highlight lang='text' %}
+```
 当前 4 槽大小：4 * 528 + 开销 = 3 个隧道消息
 
   4 槽大蒜加密的构建消息以适应一个隧道消息，仅节奏：
@@ -620,9 +601,7 @@ ChaCha20 避免了数据大小必须是 16 的倍数的要求。
   - 16 MAC
   ----
   155 明文构建记录最大值（而不是现在的 222）
-
-
-{% endhighlight %}
+```
 
 笔记：
 

@@ -98,8 +98,7 @@ các khóa tầng và trả lời, vì vậy chúng không cần phải được
 Cả hai sẽ là "biến" với một trường số lượng bản ghi một byte,
 như với các thông điệp Biến hiện có.
 
-ShortTunnelBuild: Loại 25
-````````````````````````````````
+#### ShortTunnelBuild: Loại 25
 
 Độ dài điển hình (với 4 bản ghi): 873 byte
 
@@ -116,8 +115,7 @@ với một thông điệp đường hầm duy nhất. Xem phụ lục dưới �
 
 
 
-OutboundTunnelBuildReply: Loại 26
-``````````````````````````````````````
+#### OutboundTunnelBuildReply: Loại 26
 
 Chúng tôi định nghĩa một thông điệp OutboundTunnelBuildReply mới.
 Điều này được sử dụng cho các xây dựng đường hầm ra duy nhất.
@@ -131,8 +129,7 @@ Các bản ghi khác đặt vào các khe khác.
 Sau đó, mã hóa garlic thông điệp đến nguồn với các khóa đối xứng được phát sinh.
 
 
-Ghi chú
-```````
+#### Ghi chú
 
 Bằng cách mã hóa garlic OTBRM và STBM, chúng tôi cũng tránh các
 vấn đề có thể xảy ra với sự tương thích tại IBGW và OBEP của các đường hầm đôi.
@@ -143,7 +140,7 @@ vấn đề có thể xảy ra với sự tương thích tại IBGW và OBEP c�
 ### Luồng Thông Điệp
 
 
-  {% highlight %}
+```
 STBM: Thông điệp xây dựng đường hầm ngắn (loại 25)
   OTBRM: Thông điệp phản hồi xây dựng đường hầm ra ngoài (loại 26)
 
@@ -183,7 +180,7 @@ STBM: Thông điệp xây dựng đường hầm ngắn (loại 25)
 
 
 
-{% endhighlight %}
+```
 
 
 
@@ -223,8 +220,7 @@ Nó có thể có ích để giới thiệu một thông điệp I2NP mới mà 
 
 
 
-Bản Ghi Yêu Cầu Ngắn Không Mã Hóa
-```````````````````````````````````````
+#### Bản Ghi Yêu Cầu Ngắn Không Mã Hóa
 
 Đây là đặc tả đề xuất cho bản ghi Xây Dựng Yêu Cầu Đường Hầm cho các bộ định tuyến ECIES-X25519.
 Tóm tắt các thay đổi từ [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
@@ -242,8 +238,7 @@ Tất cả các trường đều theo thứ tự big-endian.
 Kích thước không mã hóa: 154 byte.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes     0-3: ID đường hầm để nhận thông điệp, khác không
   bytes     4-7: ID đường hầm tiếp theo, khác không
   bytes    8-39: hash định danh Router tiếp theo
@@ -257,7 +252,7 @@ bytes     0-3: ID đường hầm để nhận thông điệp, khác không
   bytes     x-x: dữ liệu khác như được ám bởi cờ hoặc tùy chọn
   bytes   x-153: dồn ngẫu nhiên (xem bên dưới)
 
-{% endhighlight %}
+```
 
 
 Trường cờ giữ nguyên như được định nghĩa trong [Tunnel-Creation](/en/docs/spec/tunnel-creation/) và chứa các giá trị sau::
@@ -291,30 +286,27 @@ và giá trị tối đa của trường độ dài Mapping là 96.
 
 
 
-Bản Ghi Yêu Cầu Ngắn Mã Hóa
-```````````````````````````````````
+#### Bản Ghi Yêu Cầu Ngắn Mã Hóa
 
 Tất cả các trường đều là big-endian, ngoại trừ khóa công khai thểm thời là little-endian.
 
 Kích thước mã hóa: 218 byte
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-15: Hash định danh rút gọn của Hop
   bytes   16-47: Khóa công khai X25519 tạm thời của Người gửi
   bytes  48-201: Bản Ghi Yêu Cầu Xây Dựng Ngắn mã hóa ChaCha20
   bytes 202-217: Poly1305 MAC
 
-{% endhighlight %}
+```
 
 
 
 ### Bản Ghi Trả Lời Ngắn
 
 
-Bản Ghi Trả Lời Ngắn Không Mã Hóa
-`````````````````````````````````````
+#### Bản Ghi Trả Lời Ngắn Không Mã Hóa
 
 Đây là đặc tả đề xuất cho bản ghi Trả Lời Xây Dựng Ngắn cho các bộ định tuyến ECIES-X25519.
 Tóm tắt các thay đổi từ [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
@@ -330,14 +322,13 @@ Tất cả các trường đều là big-endian.
 Kích thước không mã hóa: 202 byte.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-x: Tùy Chọn Trả Lời Xây Dựng Đường Hầm (Mapping)
   bytes    x-x: dữ liệu khác như được ám bởi các tùy chọn
   bytes  x-200: Dồn ngẫu nhiên (xem bên dưới)
   byte     201: Byte Trả Lời
 
-{% endhighlight %}
+```
 
 Tùy chọn Trả Lời Xây Dựng Đường Hầm là một cấu trúc Mapping như được định nghĩa trong [Common](/en/docs/spec/common-structures/).
 Đây là cho việc sử dụng trong tương lai. Không có tùy chọn nào hiện đang được định nghĩa.
@@ -352,18 +343,16 @@ như được định nghĩa trong [Tunnel-Creation](/en/docs/spec/tunnel-creati
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
 
-Bản Ghi Trả Lời Ngắn Mã Hóa
-```````````````````````````````````
+#### Bản Ghi Trả Lời Ngắn Mã Hóa
 
 Kích thước mã hóa: 218 byte
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes   0-201: Bản Ghi Trả Lời Xây Dựng Ngắn mã hóa ChaCha20
   bytes 202-217: Poly1305 MAC
 
-{% endhighlight %}
+```
 
 
 
@@ -384,7 +373,7 @@ mã hóa garlic, và gửi đến người tạo.
 
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num| ShortBuildRequestRecords...
   +----+----+----+----+----+----+----+----+
@@ -395,10 +384,10 @@ mã hóa garlic, và gửi đến người tạo.
 
   kích thước bản ghi: 218 byte
   tổng kích thước: 1+$num*218
-{% endhighlight %}
+```
 
-Ghi chú
-`````
+#### Ghi chú
+
 * Số lượng bản ghi điển hình là 4, cho tổng kích thước là 873.
 
 
@@ -412,7 +401,7 @@ Nó không được gửi đến bất kỳ bước nào khác.
 Nó luôn luôn được mã hóa garlic.
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num|                                  |
   +----+                                  +
@@ -430,10 +419,10 @@ Nó luôn luôn được mã hóa garlic.
 
   kích thước bản ghi mã hóa: 218 byte
   tổng kích thước: 1+$num*218
-{% endhighlight %}
+```
 
-Ghi chú
-`````
+#### Ghi chú
+
 * Số lượng bản ghi điển hình là 4, cho tổng kích thước là 873.
 * Thông điệp này nên được mã hóa garlic.
 
@@ -450,7 +439,7 @@ Khóa trả lời được sử dụng để mã hóa trả lời cho bản ghi 
 Cả hai sử dụng cùng khóa, nonce là vị trí của bản ghi trong thông điệp bắt đầu từ 0.
 
 
-  {% highlight lang='dataspec' %}
+```
 keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   replyKey = keydata[32:63]
   ck = keydata[0:31]
@@ -476,7 +465,7 @@ keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   replyKey = keydata[32:63]
   replyTag = keydata[0:7]
 
-{% endhighlight %}
+```
 
 
 
@@ -545,7 +534,7 @@ nếu chúng ta không sử dụng ITBM:
 
 
 
-  {% highlight lang='text' %}
+```
 Kích thước 4 khe hiện tại: 4 * 528 + độ trễ = 3 thông điệp đường hầm
 
   Thông điệp xây dựng 4 khe để vừa trong một thông điệp đường hầm, chỉ ECIES:
@@ -574,14 +563,14 @@ Kích thước 4 khe hiện tại: 4 * 528 + độ trễ = 3 thông điệp đư
 
 
 
-{% endhighlight %}
+```
 
 
 Có độ trễ garlic cho mẫu 'N' noise để mã hóa STBM vào,
 nếu chúng ta không sử dụng ITBM:
 
 
-  {% highlight lang='text' %}
+```
 Kích thước 4 khe hiện tại: 4 * 528 + độ trễ = 3 thông điệp đường hầm
 
   Thông điệp xây dựng được mã hóa garlic 4 khe để vừa trong một thông điệp đường hầm, chỉ ECIES:
@@ -628,7 +617,7 @@ Kích thước 4 khe hiện tại: 4 * 528 + độ trễ = 3 thông điệp đư
   155 kích thước bản ghi xây dựng dạng văn bản tối đa (so với 222 hiện tại)
 
 
-{% endhighlight %}
+```
 
 Ghi chú:
 

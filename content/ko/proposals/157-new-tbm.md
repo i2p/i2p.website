@@ -80,9 +80,7 @@ HKDF를 사용하여 레이어와 응답 키를 생성하여
 
 제안된 두 메시지는 기존의 가변 메시지와 마찬가지로 "가변"이며, 레코드 번호 필드가 1바이트입니다.
 
-ShortTunnelBuild: 유형 25
-
-````````````````````````````````
+#### ShortTunnelBuild: 유형 25
 
 평균 길이 (4개의 레코드 포함): 873바이트
 
@@ -96,9 +94,7 @@ ShortTunnelBuildMessage를 다음 홉으로 보냅니다.
 
 기록 길이는 가상 암호화된 STBM이 단일 터널 메시지에 맞을 수 있도록 선택됩니다. 아래 부록을 참조하십시오.
 
-OutboundTunnelBuildReply: 유형 26
-
-``````````````````````````````````````
+#### OutboundTunnelBuildReply: 유형 26
 
 새로운 OutboundTunnelBuildReply 메시지를 정의합니다.
 이는 아웃바운드 터널 빌드에만 사용됩니다.
@@ -111,9 +107,7 @@ OutboundTunnelBuildReply 메시지를 구성하여
 다른 레코드는 다른 슬롯에 들어갑니다.
 그 다음 원본과 유도된 대칭 키를 사용하여 메시지를 암호화합니다.
 
-Notes
-
-```````
+#### Notes
 
 OTBRM 및 STBM을 암호화함으로써,
 페어 터널의 IBGW 및 OBEP에서의 호환성 문제를 회피할 수 있습니다.
@@ -121,7 +115,7 @@ OTBRM 및 STBM을 암호화함으로써,
 ### 메시지 흐름
 
 
-  {% highlight %}
+```
 
 STBM: 짧은 터널 빌드 메시지 (유형 25)
   OTBRM: 아웃바운드 터널 빌드 응답 메시지 (유형 26)
@@ -157,7 +151,7 @@ STBM: 짧은 터널 빌드 메시지 (유형 25)
   생성자 <------ F <------ E <------ D <--/
                                      IBGW
 
-{% endhighlight %}
+```
 
 ### 레코드 암호화
 
@@ -184,9 +178,7 @@ STBM: 짧은 터널 빌드 메시지 (유형 25)
 
 ### 짧은 요청 레코드
 
-짧은 요청 레코드 암호화되지 않음
-
-```````````````````````````````````````
+#### 짧은 요청 레코드 암호화되지 않음
 
 이것은 ECIES-X25519 라우터를 위한 터널 BuildRequestRecord의 제안된 사양입니다.
 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)에서의 변화 요약:
@@ -203,8 +195,7 @@ STBM: 짧은 터널 빌드 메시지 (유형 25)
 암호화되지 않은 크기: 154바이트.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes     0-3: 메시지 수신을 위한 터널 ID, 0이 아님
   bytes     4-7: 다음 터널 ID, 0이 아님
   bytes    8-39: 다음 라우터 식별자 해시
@@ -218,7 +209,7 @@ bytes     0-3: 메시지 수신을 위한 터널 ID, 0이 아님
   bytes     x-x: 플래그 또는 옵션에 의해 암시된 기타 데이터
   bytes   x-153: 임의 패딩 (아래 참조)
 
-{% endhighlight %}
+```
 
 플래그 필드는 [Tunnel-Creation](/en/docs/spec/tunnel-creation/)에 정의된 것과 동일하며 다음을 포함합니다::
 
@@ -246,29 +237,24 @@ bytes     0-3: 메시지 수신을 위한 터널 ID, 0이 아님
 매핑 구조가 비어 있으면, 이는 0x00 0x00의 두 바이트입니다.
 매핑의 최대 크기(길이 필드 포함)는 98바이트이며, 매핑 길이 필드의 최대 값은 96입니다.
 
-짧은 요청 레코드 암호화
-
-```````````````````````````````````````
+#### 짧은 요청 레코드 암호화
 
 모든 필드는 빅 엔디안이며, 임시 공개 키는 리틀 엔디안입니다.
 
 암호화된 크기: 218바이트
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-15: 홉의 잘린 식별자 해시
   bytes   16-47: 송신자의 임시 X25519 공개 키
   bytes  48-201: ChaCha20로 암호화된 ShortBuildRequestRecord
   bytes 202-217: Poly1305 MAC
 
-{% endhighlight %}
+```
 
 ### 짧은 응답 레코드
 
-짧은 응답 레코드 암호화되지 않음
-
-`````````````````````````````````````
+#### 짧은 응답 레코드 암호화되지 않음
 
 이것은 ECIES-X25519 라우터를 위한 터널 ShortBuildReplyRecord의 제안된 사양입니다.
 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)에서의 변화 요약:
@@ -283,14 +269,13 @@ ECIES 응답은 ChaCha20/Poly1305로 암호화됩니다.
 암호화되지 않은 크기: 202바이트.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-x: Tunnel Build Reply Options (매핑)
   bytes    x-x: 옵션에 의해 암시된 기타 데이터
   bytes  x-200: 임의 패딩 (아래 참조)
   byte     201: 응답 바이트
 
-{% endhighlight %}
+```
 
 터널 빌드 응답 옵션은 [Common](/en/docs/spec/common-structures/)에 정의된 매핑 구조입니다.
 이는 향후 사용을 위한 것입니다. 현재 정의된 옵션은 없습니다.
@@ -303,19 +288,16 @@ bytes    0-x: Tunnel Build Reply Options (매핑)
 - 0x00 (수용)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
-짧은 응답 레코드 암호화
-
-```````````````````````````````````
+#### 짧은 응답 레코드 암호화
 
 암호화된 크기: 218바이트
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes   0-201: ChaCha20로 암호화된 ShortBuildReplyRecord
   bytes 202-217: Poly1305 MAC
 
-{% endhighlight %}
+```
 
 ### KDF
 
@@ -331,7 +313,7 @@ OBEP에서 받은 경우, 이는 OutboundTunnelBuildReply로 변환되어
 가상 래핑되며 원본으로 전송됩니다.
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num| ShortBuildRequestRecords...
   +----+----+----+----+----+----+----+----+
@@ -342,11 +324,10 @@ OBEP에서 받은 경우, 이는 OutboundTunnelBuildReply로 변환되어
 
   기록 크기: 218바이트
   전체 크기: 1+$num*218
-{% endhighlight %}
+```
 
-노트
+#### 노트
 
-`````
 * 일반적인 레코드 수는 4로, 전체 크기는 873입니다.
 
 
@@ -358,7 +339,7 @@ I2NP 유형 26
 항상 가상 암호화됩니다.
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num|                                  |
   +----+                                  +
@@ -376,11 +357,10 @@ I2NP 유형 26
 
   암호화된 기록 크기: 218바이트
   전체 크기: 1+$num*218
-{% endhighlight %}
+```
 
-노트
+#### 노트
 
-`````
 * 일반적인 레코드 수는 4로, 전체 크기는 873입니다.
 * 이 메시지는 가상 암호화해야 합니다.
 
@@ -394,7 +374,7 @@ I2NP 유형 26
 AEAD/Chaha20/Poly1305 및 Chacha20에 사용할 수 있는 키는 동일하며, nonce는 메시지의 기록 위치를 0부터 시작합니다.
 
 
-  {% highlight lang='dataspec' %}
+```
 keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   replyKey = keydata[32:63]
   ck = keydata[0:31]
@@ -419,7 +399,7 @@ keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   replyKey = keydata[32:63]
   replyTag = keydata[0:7]
 
-{% endhighlight %}
+```
 
 ## 정당화
 
@@ -469,7 +449,7 @@ ChaCha20은 데이터 크기가 16의 배수가 될 필요가 없게 합니다.
 ITBM을 사용하지 않는 경우:
 
 
-  {% highlight lang='text' %}
+```
 현재 4 슬롯 크기: 4 * 528 + 오버헤드 = 3 터널 메시지
 
   4 슬롯 빌드 메시지가 단일 터널 메시지에 맞도록 하기 위해, ECIES 전용:
@@ -496,13 +476,13 @@ ITBM을 사용하지 않는 경우:
   ----
   173 일반 텍스트 빌드 레코드 최대 (현재 222 vs)
 
-{% endhighlight %}
+```
 
 암호화된 'N' 노이즈 패턴 오버헤드로 인바운드 STBM의 경우,
 ITBM을 사용하지 않는 경우:
 
 
-  {% highlight lang='text' %}
+```
 현재 4 슬롯 크기: 4 * 528 + 오버헤드 = 3 터널 메시지
 
   4 슬롯 암호화된 빌드 메시지가 단일 터널 메시지에 맞도록 하기 위해, ECIES 전용:
@@ -548,7 +528,7 @@ ITBM을 사용하지 않는 경우:
   ----
   155 일반 텍스트 빌드 레코드 최대 (현재 222 vs)
 
-{% endhighlight %}
+```
 
 노트:
 

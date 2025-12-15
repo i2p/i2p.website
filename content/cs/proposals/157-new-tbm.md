@@ -99,8 +99,7 @@ klíčů a IV vrstev a odpovědí, takže nemusí být výslovně zahrnuty v po�
 Obě budou "proměnné" s jedním bajtem čísla záznamů,
 stejně jako u stávajících proměnných zpráv.
 
-ShortTunnelBuild: Typ 25
-````````````````````````````````
+#### ShortTunnelBuild: Typ 25
 
 Typická délka (se 4 záznamy): 873 bajtů
 
@@ -117,8 +116,7 @@ jedné tunelové zprávy. Viz níže uvedená příloha.
 
 
 
-OutboundTunnelBuildReply: Typ 26
-``````````````````````````````````````
+#### OutboundTunnelBuildReply: Typ 26
 
 Definujeme novou zprávu OutboundTunnelBuildReply.
 Používá se pouze pro odchozí stavby tunelů.
@@ -132,8 +130,7 @@ Ostatní záznamy vloží do jiných slotů.
 Poté zprávu zašifruje česnekem směrem k autorovi s odvozenými symetrickými klíči.
 
 
-Poznámky
-```````
+#### Poznámky
 
 Zašifrováním OTBRM a STBM česnekem se také vyhneme jakýmkoli potenciálním
 problémům s kompatibilitou na IBGW a OBEP spárovaných tunelů.
@@ -144,7 +141,7 @@ problémům s kompatibilitou na IBGW a OBEP spárovaných tunelů.
 ### Tok zprávy
 
 
-  {% highlight %}
+```
 STBM: Krátká zpráva o stavbě tunelu (typ 25)
   OTBRM: Zpráva o odpovědi na stavbu odchozího tunelu (typ 26)
 
@@ -183,7 +180,7 @@ STBM: Krátká zpráva o stavbě tunelu (typ 25)
 
 
 
-{% endhighlight %}
+```
 
 
 
@@ -222,8 +219,7 @@ Toto je téma pro další výzkum.
 
 
 
-Krátký nezakódovaný záznam požadavku
-`````````````````````````````````````
+#### Krátký nezakódovaný záznam požadavku
 
 Toto je navrhovaná specifikace pro BuildRequestRecord tunelu pro směrovače ECIES-X25519.
 Shrnutí změn z [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
@@ -241,8 +237,7 @@ Všechna pole jsou big-endian.
 Nezakódovaná velikost: 154 bajtů.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes     0-3: ID tunelu pro příjem zpráv jako, nenulové
   bytes     4-7: další ID tunelu, nenulové
   bytes    8-39: hash identity dalšího směrovače
@@ -256,7 +251,7 @@ bytes     0-3: ID tunelu pro příjem zpráv jako, nenulové
   bytes     x-x: další data, jak je naznačeno vlajkami nebo volbami
   bytes   x-153: náhodné vycpávání (viz níže)
 
-{% endhighlight %}
+```
 
 
 Pole vlajek je stejné, jak je definováno v [Tunnel-Creation](/en/docs/spec/tunnel-creation/) a obsahuje následující::
@@ -287,30 +282,27 @@ a maximální hodnota pole délky Mappingu je 96.
 
 
 
-Zašifrovaný krátký záznam požadavku
-`````````````````````````````````````
+#### Zašifrovaný krátký záznam požadavku
 
 Všechna pole jsou big-endian kromě efemérního veřejného klíče, který je little-endian.
 
 Zakódovaná velikost: 218 bajtů
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-15: Zkrácený hash identity hopa
   bytes   16-47: Efemérní veřejný klíč odesílatele X25519
   bytes  48-201: ChaCha20 zašifrovaný ShortBuildRequestRecord
   bytes 202-217: Poly1305 MAC
 
-{% endhighlight %}
+```
 
 
 
 ### Krátký záznam odpovědi
 
 
-Krátký nezakódovaný záznam odpovědi
-`````````````````````````````````````
+#### Krátký nezakódovaný záznam odpovědi
 Toto je navrhovaná specifikace pro ShortBuildReplyRecord tunelu pro směrovače ECIES-X25519.
 Shrnutí změn z [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
 
@@ -325,14 +317,13 @@ Všechna pole jsou big-endian.
 Nezakódovaná velikost: 202 bajtů.
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes    0-x: Možnosti odpovědi na konstrukci tunelu (Mapping)
   bytes    x-x: další data, jak je naznačeno možnostmi
   bytes  x-200: Náhodné vycpávání (viz níže)
   byte     201: Byte odpovědi
 
-{% endhighlight %}
+```
 
 Možnosti odpovědi na konstrukci tunelu je struktura Mapping, jak je definováno v [Common](/en/docs/spec/common-structures/).
 Toto je pro budoucí použití. Žádné volby nejsou aktuálně definovány.
@@ -347,18 +338,16 @@ jak je definováno v [Tunnel-Creation](/en/docs/spec/tunnel-creation/) pro zabr�
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
 
-Zašifrovaný krátký záznam odpovědi
-```````````````````````````````````
+#### Zašifrovaný krátký záznam odpovědi
 
 Zakódovaná velikost: 218 bajtů
 
 
-  {% highlight lang='dataspec' %}
-
+```
 bytes   0-201: ChaCha20 zašifrovaný ShortBuildReplyRecord
   bytes 202-217: Poly1305 MAC
 
-{% endhighlight %}
+```
 
 
 
@@ -379,7 +368,7 @@ zabalenou česnekem, a odesílá se autorovi.
 
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num| ShortBuildRequestRecords...
   +----+----+----+----+----+----+----+----+
@@ -390,10 +379,10 @@ zabalenou česnekem, a odesílá se autorovi.
 
   velikost záznamu: 218 bajtů
   celková velikost: 1+$num*218
-{% endhighlight %}
+```
 
-Poznámky
-`````
+#### Poznámky
+
 * Typický počet záznamů je 4, pro celkovou velikost 873.
 
 
@@ -407,7 +396,7 @@ Nesmí být odeslána žádnému jinému přeskoku.
 Vždy je zašifrován česnekem.
 
 
-  {% highlight lang='dataspec' %}
+```
 +----+----+----+----+----+----+----+----+
   | num|                                  |
   +----+                                  +
@@ -425,10 +414,10 @@ Vždy je zašifrován česnekem.
 
   velikost zašifrovaného záznamu: 218 bajtů
   celková velikost: 1+$num*218
-{% endhighlight %}
+```
 
-Poznámky
-`````
+#### Poznámky
+
 * Typický počet záznamů je 4, pro celkovou velikost 873.
 * Tato zpráva by měla být šifrována česnekem.
 
@@ -445,7 +434,7 @@ Klíč odpovědi je používán ke šifrování odpovědi pomocí AEAD/ChaCha20/
 Oba používají stejný klíč, nonce je pozice záznamu ve zprávě počínaje od 0.
 
 
-  {% highlight lang='dataspec' %}
+```
 keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   replyKey = keydata[32:63]
   ck = keydata[0:31]
@@ -471,7 +460,7 @@ keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
   replyKey = keydata[32:63]
   replyTag = keydata[0:7]
 
-{% endhighlight %}
+```
 
 
 
@@ -540,7 +529,7 @@ pokud nepoužíváme ITBM:
 
 
 
-  {% highlight lang='text' %}
+```
 Aktuální velikost pro 4 sloty: 4 * 528 + režie = 3 tunelové zprávy
 
   Konstrukční zpráva pro 4 sloty, aby se vešla do jedné tunelové zprávy, jen ECIES:
@@ -569,14 +558,14 @@ Aktuální velikost pro 4 sloty: 4 * 528 + režie = 3 tunelové zprávy
 
 
 
-{% endhighlight %}
+```
 
 
 S režie česnekem pro 'N' vzorec šumu pro šifrování příchozího STBM,
 pokud nepoužíváme ITBM:
 
 
-  {% highlight lang='text' %}
+```
 Aktuální velikost pro 4 sloty: 4 * 528 + režie = 3 tunelové zprávy
 
   Česnekem šifrovaná konstrukční zpráva pro 4 sloty, aby se vešla do jedné tunelové zprávy, jen ECIES:
@@ -623,7 +612,7 @@ Aktuální velikost pro 4 sloty: 4 * 528 + režie = 3 tunelové zprávy
   155 maximální velikost otevřeného stavebního záznamu (vs. 222 nyní)
 
 
-{% endhighlight %}
+```
 
 Poznámky:
 
