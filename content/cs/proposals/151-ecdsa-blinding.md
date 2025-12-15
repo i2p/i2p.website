@@ -69,8 +69,8 @@ HKDF(salt, ikm, info, n)
     o délce 32 bajtů a kontextově specifické 'info', a vytváří výstup
     o n bajtech vhodný pro použití jako klíčový materiál.
 
-    Použijte HKDF podle specifikace v [RFC-5869]_, použitím hash funkce HMAC SHA-256
-    podle specifikace v [RFC-2104]_. To znamená, že SALT_LEN je maximálně 32 bajtů.
+    Použijte HKDF podle specifikace v [RFC-5869](https://tools.ietf.org/html/rfc5869), použitím hash funkce HMAC SHA-256
+    podle specifikace v [RFC-2104](https://tools.ietf.org/html/rfc2104). To znamená, že SALT_LEN je maximálně 32 bajtů.
 
 ### Výpočty zaslepení
 
@@ -79,9 +79,7 @@ Tajný alpha a zaslepené klíče se počítají následujícím způsobem.
 
 GENERATE_ALPHA(destination, date, secret), pro všechny strany:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // tajemství je volitelné, jinak nulové
@@ -94,14 +92,12 @@ GENERATE_ALPHA(destination, date, secret), pro všechny strany:
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // treat seed as a 64 byte big-endian value
   alpha = seed mod L
-{% endhighlight %}
+```
 
 
 BLIND_PRIVKEY(), pro vlastníka publikujícího leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -109,21 +105,19 @@ BLIND_PRIVKEY(), pro vlastníka publikujícího leaseset:
   // sčítání pomocí skalární aritmetiky
   zaslepený podpisový soukromý klíč = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   zaslepený podpisový veřejný klíč = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 
 BLIND_PUBKEY(), pro klienty stahující leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = veřejný podpisový klíč cíle
   // sčítání pomocí prvků skupiny (bodů na křivce)
   zaslepený veřejný klíč = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 
 Obě metody výpočtu A' vedou ke stejnému výsledku, jak je požadováno.
@@ -135,8 +129,5 @@ Buď adresa b33 bude delší, nebo může být veřejný klíč uložen v kompri
 
 ## Odkazy
 
-.. [RFC-2104]
-    https://tools.ietf.org/html/rfc2104
-
-.. [RFC-5869]
-    https://tools.ietf.org/html/rfc5869
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)

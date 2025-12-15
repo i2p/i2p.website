@@ -11,7 +11,7 @@ toc: true
 
 ## Überblick
 
-Dies ist die Spezifikation für das Garlic Farm-Wire-Protokoll, basierend auf JRaft, seinem "exts"-Code zur Implementierung über TCP und seiner "dmprinter"-Beispielanwendung [JRAFT]_. JRaft ist eine Implementierung des Raft-Protokolls [RAFT]_.
+Dies ist die Spezifikation für das Garlic Farm-Wire-Protokoll, basierend auf JRaft, seinem "exts"-Code zur Implementierung über TCP und seiner "dmprinter"-Beispielanwendung [JRAFT](https://github.com/datatechnology/jraft). JRaft ist eine Implementierung des Raft-Protokolls [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
 
 Wir konnten keine Implementierung mit einem dokumentierten Wire-Protokoll finden. Allerdings ist die JRaft-Implementierung einfach genug, dass wir den Code überprüfen und dann sein Protokoll dokumentieren konnten. Dieser Vorschlag ist das Ergebnis dieser Bemühung.
 
@@ -54,7 +54,7 @@ Ziele:
 - Einfaches Protokoll, damit keine vollständige Webserver-Implementierung erforderlich ist
 - Kompatibel mit gängigen Standards, sodass Implementierungen, falls gewünscht, Standardbibliotheken verwenden können
 
-Wir werden einen websocket-ähnlichen Handshake [WEBSOCKET]_ und HTTP-Digest-Authentifizierung [RFC-2617]_ verwenden. Die RFC 2617-Basic-Authentifizierung wird NICHT unterstützt. Beim Proxying durch den HTTP-Proxy kommunizieren Sie mit dem Proxy wie in [RFC-2616]_ spezifiziert.
+Wir werden einen websocket-ähnlichen Handshake [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) und HTTP-Digest-Authentifizierung [RFC-2617](https://tools.ietf.org/html/rfc2617) verwenden. Die RFC 2617-Basic-Authentifizierung wird NICHT unterstützt. Beim Proxying durch den HTTP-Proxy kommunizieren Sie mit dem Proxy wie in [RFC-2616](https://tools.ietf.org/html/rfc2616) spezifiziert.
 
 Credentials
 ```````````
@@ -69,10 +69,7 @@ Der Absender sendet folgendes.
 
 Alle Zeilen werden mit CRLF abgeschlossen, wie von HTTP gefordert.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -82,16 +79,15 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER ist der Name des Clusters (Standard "farm")
   VERSION ist die Garlic Farm-Version (derzeit "1")
-
-{% endhighlight %}
+```
 
 
 HTTP-Antwort 1
 ``````````````
 
-Wenn der Pfad nicht korrekt ist, sendet der Empfänger eine standardmäßige "HTTP/1.1 404 Not Found"-Antwort, wie in [RFC-2616]_.
+Wenn der Pfad nicht korrekt ist, sendet der Empfänger eine standardmäßige "HTTP/1.1 404 Not Found"-Antwort, wie in [RFC-2616](https://tools.ietf.org/html/rfc2616).
 
-Wenn der Pfad korrekt ist, sendet der Empfänger eine standardmäßige "HTTP/1.1 401 Unauthorized"-Antwort, einschließlich des WWW-Authenticate-HTTP-Digest-Authentifizierungs-Headers, wie in [RFC-2617]_.
+Wenn der Pfad korrekt ist, sendet der Empfänger eine standardmäßige "HTTP/1.1 401 Unauthorized"-Antwort, einschließlich des WWW-Authenticate-HTTP-Digest-Authentifizierungs-Headers, wie in [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
 Beide Parteien schließen dann den Socket.
 
@@ -99,14 +95,11 @@ Beide Parteien schließen dann den Socket.
 HTTP-Anfrage 2
 ``````````````
 
-Der Absender sendet folgendes, wie in [RFC-2617]_ und [WEBSOCKET]_.
+Der Absender sendet folgendes, wie in [RFC-2617](https://tools.ietf.org/html/rfc2617) und [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 Alle Zeilen werden mit CRLF abgeschlossen, wie von HTTP gefordert.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -119,31 +112,26 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER ist der Name des Clusters (Standard "farm")
   VERSION ist die Garlic Farm-Version (derzeit "1")
-
-{% endhighlight %}
+```
 
 
 HTTP-Antwort 2
 ``````````````
 
-Wenn die Authentifizierung nicht korrekt ist, sendet der Empfänger eine weitere standardmäßige "HTTP/1.1 401 Unauthorized"-Antwort, wie in [RFC-2617]_.
+Wenn die Authentifizierung nicht korrekt ist, sendet der Empfänger eine weitere standardmäßige "HTTP/1.1 401 Unauthorized"-Antwort, wie in [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
-Wenn die Authentifizierung korrekt ist, sendet der Empfänger die folgende Antwort, wie in [WEBSOCKET]_.
+Wenn die Authentifizierung korrekt ist, sendet der Empfänger die folgende Antwort, wie in [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 Alle Zeilen werden mit CRLF abgeschlossen, wie von HTTP gefordert.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 HTTP/1.1 101 Switching Protocols
   Connection: Upgrade
   Upgrade: websocket
   (Sec-Websocket-* headers)
   (any other headers ignored)
   (blank line)
-
-{% endhighlight %}
+```
 
 Nach dieser Empfang bleibt der Socket offen. Das nachstehend definierte Raft-Protokoll wird über denselben Socket gestartet.
 
@@ -193,10 +181,7 @@ InstallSnapshotResponse     17    Follower     Leader              Raft Abschnit
 
 Nach dem HTTP-Handshake ist die Einrichtungssequenz wie folgt:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Neue Serverin Alice            Zufälliger Follower Bob
 
   ClientRequest   ------->
@@ -217,30 +202,22 @@ Neue Serverin Alice            Zufälliger Follower Bob
                        ODER InstallSnapshotRequest
   SyncLogResponse  ------->
   ODER InstallSnapshotResponse
-
-{% endhighlight %}
+```
 
 Trennsequenz:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Followerin Alice            Leader Charlie
 
   RemoveServerRequest   ------->
           <---------   RemoveServerResponse
           <---------   LeaveClusterRequest
   LeaveClusterResponse  ------->
-
-{% endhighlight %}
+```
 
 Wahlsequenz:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Kandidatin Alice               Follower Bob
 
   RequestVoteRequest   ------->
@@ -253,8 +230,7 @@ Kandidatin Alice               Follower Bob
   AppendEntriesRequest   ------->
   (Herzschlag)
           <---------   AppendEntriesResponse
-
-{% endhighlight %}
+```
 
 
 ### Definitionen
@@ -276,10 +252,7 @@ Anfrageheader
 
 Der Anfrageheader ist 45 Bytes groß, wie folgt. Alle Werte sind unsigned Big-Endian.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Nachrichtentyp:         1 Byte
   Quelle:                 ID, 4-Byte-Integer
   Ziel:                   ID, 4-Byte-Integer
@@ -289,8 +262,7 @@ Nachrichtentyp:         1 Byte
   Bestätigungsindex:      8-Byte-Integer
   Log-Eintragsgröße:      Gesamte Größe in Bytes, 4-Byte-Integer
   Log-Einträge:           siehe unten, Gesamtlänge wie angegeben
-
-{% endhighlight %}
+```
 
 
 #### Anmerkungen
@@ -306,16 +278,12 @@ Logs-Einträge
 
 Das Log enthält null oder mehr Log-Einträge. Jeder Log-Eintrag ist wie folgt. Alle Werte sind unsigned Big-Endian.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Begriff:        8-Byte-Integer
   Werttyp:        1 Byte
   Eintragsgröße:  In Bytes, 4-Byte-Integer
   Eintrag:        Länge wie angegeben
-
-{% endhighlight %}
+```
 
 
 Log-Inhalt
@@ -344,18 +312,14 @@ Anwendungsinhalte sind UTF-8-codiert [JSON](https://www.json.org/). Siehe den Ab
 Dies wird verwendet, damit der Leader eine neue Clusterkonfiguration serialisiert und an Peers repliziert. Es enthält null oder mehr ClusterServer-Konfigurationen.
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Log-Index:   8-Byte-Integer
   Letzter Log-Index:   8-Byte-Integer
   ClusterServer-Daten für jeden Server:
     ID:                4-Byte-Integer
     Endpunkt-Datenlänge: In Bytes, 4-Byte-Integer
     Endpunkt-Daten:     ASCII-String der Form "tcp://localhost:9001", Länge wie angegeben
-
-{% endhighlight %}
+```
 
 
 #### ClusterServer
@@ -364,26 +328,18 @@ Die Konfigurationsinformationen für einen Server in einem Cluster. Dies ist nur
 
 Verwendet in einer AddServerRequest-Nachricht:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID:                4-Byte-Integer
   Endpunkt-Datenlänge: In Bytes, 4-Byte-Integer
   Endpunkt-Daten:      ASCII-String der Form "tcp://localhost:9001", Länge wie angegeben
-
-{% endhighlight %}
+```
 
 
 Verwendet in einer RemoveServerRequest-Nachricht:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID:                4-Byte-Integer
-
-{% endhighlight %}
+```
 
 
 #### LogPack
@@ -392,16 +348,12 @@ Dies ist nur in einer SyncLogRequest-Nachricht enthalten.
 
 Folgendes wird vor der Übertragung komprimiert:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Index-Datenlänge: In Bytes, 4-Byte-Integer
   Log-Datenlänge:   In Bytes, 4-Byte-Integer
   Index-Daten:      8 Bytes für jeden Index, Länge wie angegeben
   Log-Daten:        Länge wie angegeben
-
-{% endhighlight %}
+```
 
 
 
@@ -409,10 +361,7 @@ Index-Datenlänge: In Bytes, 4-Byte-Integer
 
 Dies ist nur in einer InstallSnapshotRequest-Nachricht enthalten.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Letzter Log-Index:   8-Byte-Integer
   Letzter Log-Begriff:  8-Byte-Integer
   Konfigurationsdatenlänge: In Bytes, 4-Byte-Integer
@@ -421,8 +370,7 @@ Letzter Log-Index:   8-Byte-Integer
   Datenlänge:       In Bytes, 4-Byte-Integer
   Daten:            Länge wie angegeben
   Ist abgeschlossen: 1 falls abgeschlossen, 0 falls nicht (1 Byte)
-
-{% endhighlight %}
+```
 
 
 
@@ -431,18 +379,14 @@ Letzter Log-Index:   8-Byte-Integer
 
 Alle Antworten sind 26 Bytes groß, wie folgt. Alle Werte sind unsigned Big-Endian.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Nachrichtentyp:  1 Byte
   Quelle:          ID, 4-Byte-Integer
   Ziel:            Normalerweise die tatsächliche Ziel-ID (siehe Anmerkungen), 4-Byte-Integer
   Begriff:         Aktueller Begriff, 8-Byte-Integer
   Nächster Index:  Initialisiert auf den letzten Log-Index des Leaders + 1, 8-Byte-Integer
   Ist angenommen:  1 falls angenommen, 0 falls nicht (siehe Anmerkungen), 1 Byte
-
-{% endhighlight %}
+```
 
 
 Anmerkungen
@@ -587,20 +531,9 @@ Keine Abwärtskompatibilitätsprobleme.
 
 ## Referenzen
 
-.. [JRAFT]  
-    https://github.com/datatechnology/jraft
-
-.. [JSON]  
-    https://json.org/
-
-.. [RAFT]  
-    https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf
-
-.. [RFC-2616]  
-    https://tools.ietf.org/html/rfc2616
-
-.. [RFC-2617]  
-    https://tools.ietf.org/html/rfc2617
-
-.. [WEBSOCKET]  
-    https://en.wikipedia.org/wiki/WebSocket
+* [JRAFT](https://github.com/datatechnology/jraft)
+* [JSON](https://json.org/)
+* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RFC-2616](https://tools.ietf.org/html/rfc2616)
+* [RFC-2617](https://tools.ietf.org/html/rfc2617)
+* [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

@@ -49,12 +49,10 @@ O estado de congestionamento deve se basear na média das condições ao longo d
 
 ## Especificação
 
-Atualizar [NETDB]_ da seguinte forma:
+Atualizar [NETDB](/docs/how/network-database/) da seguinte forma:
 
 
-.. raw:: html
-
-  {% highlight %}
+```text
 D: Congestionamento médio, ou um roteador de baixo desempenho (por exemplo, Android, Raspberry Pi)
      Outros roteadores devem rebaixar ou limitar a aparente capacidade de túnel deste roteador no perfil.
 
@@ -67,7 +65,7 @@ D: Congestionamento médio, ou um roteador de baixo desempenho (por exemplo, And
   G: Este roteador está rejeitando todos os túneis temporária ou permanentemente.
      Não tente construir um túnel através deste roteador,
      até receber um novo RI sem o 'G'.
-{% endhighlight %}
+```
 
 Para consistência, as implementações devem adicionar quaisquer capacidades de congestionamento no final (após R ou U).
 
@@ -115,5 +113,4 @@ agir sobre as capacidades publicadas em 0.9.59 (julho de 2023).
 
 ## Referências
 
-.. [NETDB]
-    {{ site_url('docs/how/network-database', True) }}
+* [NETDB](/docs/how/network-database/)

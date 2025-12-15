@@ -69,8 +69,8 @@ HKDF(salt, ikm, info, n)
     de comprimento 32 bytes, e um valor 'info' específico do contexto, e produz uma saída
     de n bytes adequada para uso como material chave.
 
-    Use HKDF conforme especificado em [RFC-5869]_, usando a função hash HMAC SHA-256
-    conforme especificado em [RFC-2104]_. Isso significa que SALT_LEN é 32 bytes máx.
+    Use HKDF conforme especificado em [RFC-5869](https://tools.ietf.org/html/rfc5869), usando a função hash HMAC SHA-256
+    conforme especificado em [RFC-2104](https://tools.ietf.org/html/rfc2104). Isso significa que SALT_LEN é 32 bytes máx.
 
 
 ### Cálculos de Ofuscação
@@ -80,9 +80,7 @@ O segredo alpha e as chaves ofuscadas são calculados da seguinte forma.
 
 GENERATE_ALPHA(destination, date, secret), para todas as partes:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // secret é opcional, caso contrário, comprimento zero
@@ -95,14 +93,12 @@ GENERATE_ALPHA(destination, date, secret), para todas as partes:
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // trate o seed como um valor de 64 bytes em big-endian
   alpha = seed mod L
-{% endhighlight %}
+```
 
 
 BLIND_PRIVKEY(), para o proprietário publicando o leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -110,21 +106,19 @@ BLIND_PRIVKEY(), para o proprietário publicando o leaseset:
   // Adição usando aritmética escalar
   chave privada de assinatura ofuscada = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   chave pública de assinatura ofuscada = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 
 BLIND_PUBKEY(), para os clientes recuperando o leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = chave pública de assinatura do destino
   // Adição usando elementos do grupo (pontos na curva)
   chave pública ofuscada = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 
 Ambos os métodos de calcular A' produzem o mesmo resultado, conforme exigido.
@@ -137,8 +131,5 @@ Ou o endereço b33 será maior, ou a chave pública pode ser armazenada em forma
 
 ## Referências
 
-.. [RFC-2104]
-    https://tools.ietf.org/html/rfc2104
-
-.. [RFC-5869]
-    https://tools.ietf.org/html/rfc5869
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)

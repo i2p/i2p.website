@@ -69,8 +69,8 @@ HKDF(salt, ikm, info, n)
     de longitud de 32 bytes, y un valor 'info' específico de contexto, y produce una salida
     de n bytes adecuada para usar como material de clave.
 
-    Use HKDF como se especifica en [RFC-5869]_, usando la función hash HMAC SHA-256
-    como se especifica en [RFC-2104]_. Esto significa que SALT_LEN es de 32 bytes máx.
+    Use HKDF como se especifica en [RFC-5869](https://tools.ietf.org/html/rfc5869), usando la función hash HMAC SHA-256
+    como se especifica en [RFC-2104](https://tools.ietf.org/html/rfc2104). Esto significa que SALT_LEN es de 32 bytes máx.
 
 ### Cálculos de desviación
 
@@ -79,9 +79,7 @@ El secreto alpha y las claves desviadas se calculan de la siguiente manera.
 
 GENERATE_ALPHA(destination, date, secret), para todas las partes:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // El secreto es opcional, de lo contrario longitud cero
@@ -94,13 +92,11 @@ GENERATE_ALPHA(destination, date, secret), para todas las partes:
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // tratar seed como un valor big-endian de 64 bytes
   alpha = seed mod L
-{% endhighlight %}
+```
 
 BLIND_PRIVKEY(), para el propietario que publica el conjunto de arrendamiento:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -108,20 +104,18 @@ BLIND_PRIVKEY(), para el propietario que publica el conjunto de arrendamiento:
   // Adición usando aritmética escalar
   clave privada de firma desviada = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   clave pública de firma desviada = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 BLIND_PUBKEY(), para los clientes que recuperan el conjunto de arrendamiento:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = la clave pública de firma del destino
   // Adición usando elementos de grupo (puntos en la curva)
   clave pública desviada = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 Ambos métodos de calcular A' producen el mismo resultado, como se requiere.
 
@@ -132,8 +126,5 @@ La dirección b33 será más larga, o la clave pública puede almacenarse en for
 
 ## Referencias
 
-.. [RFC-2104]
-    https://tools.ietf.org/html/rfc2104
-
-.. [RFC-5869]
-    https://tools.ietf.org/html/rfc5869
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)

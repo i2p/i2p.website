@@ -11,7 +11,7 @@ toc: true
 
 ## 概述
 
-这是基于 JRaft 以及其用于 TCP 实现的 "exts" 代码和 "dmprinter" 示例应用程序的 Garlic Farm 线协议规范 [JRAFT]_。 JRaft 是 Raft 协议的一种实现 [RAFT]_。
+这是基于 JRaft 以及其用于 TCP 实现的 "exts" 代码和 "dmprinter" 示例应用程序的 Garlic Farm 线协议规范 [JRAFT](https://github.com/datatechnology/jraft)。 JRaft 是 Raft 协议的一种实现 [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)。
 
 我们找不到任何有记录的线协议实现。然而，JRaft 实现足够简单，我们可以检查代码然后记录其协议。本提案是该努力的结果。
 
@@ -50,7 +50,7 @@ JRaft 未定义。
 - 简单协议，因此不需要完整的 web 服务器实现
 - 与通用标准兼容，因此如果愿意，实现可以使用标准库
 
-我们将使用一种类似 websocket 的握手 [WEBSOCKET]_ 和 HTTP 摘要认证 [RFC-2617]_。 不支持 RFC 2617 基本认证。通过 HTTP 代理进行代理时，请按照 [RFC-2616]_ 指定的与代理通信。
+我们将使用一种类似 websocket 的握手 [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) 和 HTTP 摘要认证 [RFC-2617](https://tools.ietf.org/html/rfc2617)。 不支持 RFC 2617 基本认证。通过 HTTP 代理进行代理时，请按照 [RFC-2616](https://tools.ietf.org/html/rfc2616) 指定的与代理通信。
 
 凭证
 ```````````
@@ -64,10 +64,7 @@ HTTP 请求 1
 
 所有行都需使用 CRLF 作为 HTTP 的要求。
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -77,29 +74,25 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER 是集群的名称（默认 "farm"）
   VERSION 是 Garlic Farm 版本（当前为 "1"）
-
-{% endhighlight %}
+```
 
 HTTP 响应 1
 ```````````````
 
-如果路径不正确，接收者将发送标准的 "HTTP/1.1 404 Not Found" 响应，正如 [RFC-2616]_ 所指。
+如果路径不正确，接收者将发送标准的 "HTTP/1.1 404 Not Found" 响应，正如 [RFC-2616](https://tools.ietf.org/html/rfc2616) 所指。
 
-如果路径正确，接收者将发送标准的 "HTTP/1.1 401 Unauthorized" 响应，包括 WWW-Authenticate HTTP 摘要认证标头，如 [RFC-2617]_ 所指。
+如果路径正确，接收者将发送标准的 "HTTP/1.1 401 Unauthorized" 响应，包括 WWW-Authenticate HTTP 摘要认证标头，如 [RFC-2617](https://tools.ietf.org/html/rfc2617) 所指。
 
 双方然后将关闭套接字。
 
 HTTP 请求 2
 ``````````````
 
-发起方将发送以下内容，如 [RFC-2617]_ 和 [WEBSOCKET]_ 所指。
+发起方将发送以下内容，如 [RFC-2617](https://tools.ietf.org/html/rfc2617) 和 [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) 所指。
 
 所有行都需使用 CRLF 作为 HTTP 的要求。
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -112,30 +105,25 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER 是集群的名称（默认 "farm"）
   VERSION 是 Garlic Farm 版本（当前为 "1"）
-
-{% endhighlight %}
+```
 
 HTTP 响应 2
 ```````````````
 
-如果认证不正确，接收者将发送另一个标准的 "HTTP/1.1 401 Unauthorized" 响应，如 [RFC-2617]_ 所指。
+如果认证不正确，接收者将发送另一个标准的 "HTTP/1.1 401 Unauthorized" 响应，如 [RFC-2617](https://tools.ietf.org/html/rfc2617) 所指。
 
-如果认证正确，接收者将发送以下响应，如 [WEBSOCKET]_ 所指。
+如果认证正确，接收者将发送以下响应，如 [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) 所指。
 
 所有行都需使用 CRLF 作为 HTTP 的要求。
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 HTTP/1.1 101 Switching Protocols
   Connection: Upgrade
   Upgrade: websocket
   (Sec-Websocket-* 标头)
   (其他标头被忽略)
   (空行)
-
-{% endhighlight %}
+```
 
 此后接收，套接字保持开放。如下所定义的 Raft 协议开始，在同一套接字上进行。
 
@@ -180,10 +168,7 @@ InstallSnapshotResponse     17    跟随者       领导者                   Ra
 
 在 HTTP 握手后，建立序列如下：
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 新服务器 Alice              随机跟随者 Bob
 
   ClientRequest   ------->
@@ -204,30 +189,22 @@ InstallSnapshotResponse     17    跟随者       领导者                   Ra
                        或者 InstallSnapshotRequest
   SyncLogResponse  ------->
   或者 InstallSnapshotResponse
-
-{% endhighlight %}
+```
 
 断开序列：
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 跟随者 Alice              领导者 Charlie
 
   RemoveServerRequest   ------->
           <---------   RemoveServerResponse
           <---------   LeaveClusterRequest
   LeaveClusterResponse  ------->
-
-{% endhighlight %}
+```
 
 选举序列：
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 候选人 Alice              跟随者 Bob
 
   RequestVoteRequest   ------->
@@ -240,8 +217,7 @@ InstallSnapshotResponse     17    跟随者       领导者                   Ra
   AppendEntriesRequest   ------->
   (心跳)
           <---------   AppendEntriesResponse
-
-{% endhighlight %}
+```
 
 ### 定义
 
@@ -259,10 +235,7 @@ InstallSnapshotResponse     17    跟随者       领导者                   Ra
 
 请求头为 45 字节，如下所示。所有值为无符号大端序。
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 消息类型：         1 字节
   来源：            ID，4 字节整数
   目的地：          ID，4 字节整数
@@ -272,8 +245,7 @@ InstallSnapshotResponse     17    跟随者       领导者                   Ra
   提交索引：        8 字节整数
   日志条目大小：    字节总数，4 字节整数
   日志条目：        见下文，指定长度
-
-{% endhighlight %}
+```
 
 #### 备注
 
@@ -286,16 +258,12 @@ InstallSnapshotResponse     17    跟随者       领导者                   Ra
 
 日志包含零个或多个日志条目。每个日志条目如下。所有值为无符号大端序。
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 任期：          8 字节整数
   值类型：        1 字节
   条目大小：      字节数，4 字节整数
   条目：          指定长度
-
-{% endhighlight %}
+```
 
 日志内容
 ````````````
@@ -320,18 +288,14 @@ InstallSnapshotResponse     17    跟随者       领导者                   Ra
 
 用于领导者序列化新集群配置并将其复制到同行。包含零个或多个 ClusterServer 配置。
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 日志索引：  8 字节整数
   上次日志索引：  8 字节整数
   每个服务器的 ClusterServer 数据：
     ID：                4 字节整数
     端点数据长度：   字节数，4 字节整数
     端点数据：        形式为 "tcp://localhost:9001" 的 ASCII 字符串，指定长度
-
-{% endhighlight %}
+```
 
 #### 集群服务器
 
@@ -339,25 +303,17 @@ InstallSnapshotResponse     17    跟随者       领导者                   Ra
 
 用于 AddServerRequest 消息：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID：                4 字节整数
   端点数据长度：   字节数，4 字节整数
   端点数据：        形式为 "tcp://localhost:9001" 的 ASCII 字符串，指定长度
-
-{% endhighlight %}
+```
 
 用于 RemoveServerRequest 消息：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID：                4 字节整数
-
-{% endhighlight %}
+```
 
 #### 日志包
 
@@ -365,25 +321,18 @@ ID：                4 字节整数
 
 以下内容在传输前进行 gzip 压缩：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 索引数据长度： 字节数，4 字节整数
   日志数据长度：    字节数，4 字节整数
   索引数据：       每个索引 8 字节，指定长度
   日志数据：       指定长度
-
-{% endhighlight %}
+```
 
 #### 快照同步请求
 
 只包含在 InstallSnapshotRequest 消息中。
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 上次日志索引： 8 字节整数
   上次日志任期：   8 字节整数
   配置数据长度： 字节数，4 字节整数
@@ -392,25 +341,20 @@ ID：                4 字节整数
   数据长度：      字节数，4 字节整数
   数据：          指定长度
   完成：          1 表示完成，0 表示未完成（1 字节）
-
-{% endhighlight %}
+```
 
 ### 响应
 
 所有响应为 26 字节，如下所示。所有值为无符号大端序。
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 消息类型：   1 字节
   来源：         ID，4 字节整数
   目的地：       通常为实际目的地 ID（见备注），4 字节整数
   任期：         当前任期，8 字节整数
   下一个索引：   初始化为领导者上次日志索引 + 1，8 字节整数
   被接受：       1 表示被接受，0 表示不被接受（见备注），1 字节
-
-{% endhighlight %}
+```
 
 备注
 ``````
@@ -544,20 +488,9 @@ Atomix 体积太大，不允许我们自定义从而通过 I2P 路由协议。�
 
 ## 参考文献
 
-.. [JRAFT]
-    https://github.com/datatechnology/jraft
-
-.. [JSON]
-    https://json.org/
-
-.. [RAFT]
-    https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf
-
-.. [RFC-2616]
-    https://tools.ietf.org/html/rfc2616
-
-.. [RFC-2617]
-    https://tools.ietf.org/html/rfc2617
-
-.. [WEBSOCKET]
-    https://en.wikipedia.org/wiki/WebSocket
+* [JRAFT](https://github.com/datatechnology/jraft)
+* [JSON](https://json.org/)
+* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RFC-2616](https://tools.ietf.org/html/rfc2616)
+* [RFC-2617](https://tools.ietf.org/html/rfc2617)
+* [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

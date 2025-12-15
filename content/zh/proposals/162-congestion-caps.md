@@ -49,12 +49,10 @@ toc: true
 
 ## 规范
 
-更新 [NETDB]_ 如下：
+更新 [NETDB](/docs/how/network-database/) 如下：
 
 
-.. raw:: html
-
-  {% highlight %}
+```text
 D: 中度拥塞，或低性能路由器（如Android、树莓派）
      其他路由器应在配置文件中降低或限制此路由器的
      表面隧道容量。
@@ -68,7 +66,7 @@ D: 中度拥塞，或低性能路由器（如Android、树莓派）
   G: 此路由器临时或永久拒绝所有隧道。
      不要尝试通过此路由器建立隧道，
      直到收到没有'G'的新RI。
-{% endhighlight %}
+```
 
 为了一致性，实施应在末尾添加任何拥塞上限（在R或U之后）。
 
@@ -114,5 +112,4 @@ D: 中度拥塞，或低性能路由器（如Android、树莓派）
 
 ## 参考资料
 
-.. [NETDB]
-    {{ site_url('docs/how/network-database', True) }}
+* [NETDB](/docs/how/network-database/)

@@ -69,8 +69,8 @@ HKDF(salt, ikm, info, n)
     von 32 Bytes Länge und einen kontextspezifischen 'info'-Wert und erzeugt eine Ausgabe
     von n Bytes, die als Schlüsselmateriel geeignet ist.
 
-    Verwende HKDF wie in [RFC-5869]_ angegeben, unter Verwendung der HMAC-Hashfunktion SHA-256
-    wie in [RFC-2104]_. Dies bedeutet, dass SALT_LEN maximal 32 Bytes beträgt.
+    Verwende HKDF wie in [RFC-5869](https://tools.ietf.org/html/rfc5869) angegeben, unter Verwendung der HMAC-Hashfunktion SHA-256
+    wie in [RFC-2104](https://tools.ietf.org/html/rfc2104). Dies bedeutet, dass SALT_LEN maximal 32 Bytes beträgt.
 
 
 ### Verblindungsberechnungen
@@ -80,9 +80,7 @@ Das geheime Alpha und die verblindeten Schlüssel werden wie folgt berechnet.
 
 GENERATE_ALPHA(destination, date, secret), für alle Parteien:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // secret ist optional, sonst null-Länge
@@ -95,14 +93,12 @@ GENERATE_ALPHA(destination, date, secret), für alle Parteien:
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // behandle seed als einen 64 Byte Big-Endian Wert
   alpha = seed mod L
-{% endhighlight %}
+```
 
 
 BLIND_PRIVKEY(), für den Besitzer, der das Leaseset veröffentlicht:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -110,21 +106,19 @@ BLIND_PRIVKEY(), für den Besitzer, der das Leaseset veröffentlicht:
   // Addition unter Verwendung von Skalararithmetik
   verblindeter Signing-Privatschlüssel = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   verblindeter Signing-Öffentlichschlüssel = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 
 BLIND_PUBKEY(), für die Klienten, die das Leaseset abrufen:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = Signing-Öffentlichschlüssel des Ziels
   // Addition unter Verwendung von Gruppenelementen (Punkte auf der Kurve)
   verblindeter Öffentlichkeitsschlüssel = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 
 Beide Berechnungsmethoden für A' liefern das gleiche Ergebnis, wie erforderlich.
@@ -137,8 +131,5 @@ Entweder wird die b33-Adresse länger, oder der Öffentlichkeitsschlüssel kann 
 
 ## Referenzen
 
-.. [RFC-2104]
-    https://tools.ietf.org/html/rfc2104
-
-.. [RFC-5869]
-    https://tools.ietf.org/html/rfc5869
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)

@@ -55,12 +55,10 @@ po několik minut, ne na okamžitém měření.
 
 ## Specifikace
 
-Aktualizujte [NETDB]_ následujícím způsobem:
+Aktualizujte [NETDB](/docs/how/network-database/) následujícím způsobem:
 
 
-.. raw:: html
-
-  {% highlight %}
+```text
 D: Střední zácpa, nebo směrovač s nízkým výkonem (např. Android, Raspberry Pi)
      Jiné směrovače by měly degradovat nebo omezit zdánlivou kapacitu
      tohoto směrovače v profilu.
@@ -74,7 +72,7 @@ D: Střední zácpa, nebo směrovač s nízkým výkonem (např. Android, Raspbe
   G: Tento směrovač dočasně nebo trvale odmítá všechny tunely.
      Nepokoušejte se postavit tunel přes tento směrovač,
      dokud není přijata nová RI bez 'G'.
-{% endhighlight %}
+```
 
 Pro konzistenci by implementace měly přidat jakýkoli indikátor zácpy
 na konec (po R nebo U).
@@ -132,5 +130,4 @@ využíváme publikované limity ve verzi 0.9.59 (červenec 2023).
 
 ## Reference
 
-.. [NETDB]
-    {{ site_url('docs/how/network-database', True) }}
+* [NETDB](/docs/how/network-database/)

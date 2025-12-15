@@ -67,8 +67,8 @@ HKDF(salt, ikm, info, n)
     Một hàm phái sinh khóa mã hóa nhận một số liệu đầu vào ikm (nên có entropy tốt nhưng không yêu cầu là một chuỗi ngẫu nhiên đồng đều), một muối có độ dài 32 byte, và một giá trị 'info' cụ thể theo ngữ cảnh, và sinh ra đầu ra
     có độ dài n byte phù hợp để sử dụng làm liệu khóa.
 
-    Sử dụng HKDF như được chỉ định trong [RFC-5869]_, sử dụng hàm băm HMAC SHA-256
-    như được chỉ định trong [RFC-2104]_. Điều này có nghĩa là SALT_LEN là tối đa 32 byte.
+    Sử dụng HKDF như được chỉ định trong [RFC-5869](https://tools.ietf.org/html/rfc5869), sử dụng hàm băm HMAC SHA-256
+    như được chỉ định trong [RFC-2104](https://tools.ietf.org/html/rfc2104). Điều này có nghĩa là SALT_LEN là tối đa 32 byte.
 
 
 ### Tính toán làm mờ
@@ -78,9 +78,7 @@ Alpha bí mật và các khóa bị làm mờ được tính toán như sau.
 
 GENERATE_ALPHA(destination, date, secret), cho tất cả các bên:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // bí mật là tùy chọn, nếu không thì chuỗi rỗng
@@ -93,14 +91,12 @@ GENERATE_ALPHA(destination, date, secret), cho tất cả các bên:
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // xử lý seed như một giá trị big-endian 64 byte
   alpha = seed mod L
-{% endhighlight %}
+```
 
 
 BLIND_PRIVKEY(), cho chủ sở hữu phát hành leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -108,21 +104,19 @@ BLIND_PRIVKEY(), cho chủ sở hữu phát hành leaseset:
   // Cộng sử dụng số học vô hướng
   khóa riêng tư ký bị làm mờ = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   khóa công ký bị làm mờ = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 
 BLIND_PUBKEY(), cho các khách hàng lấy leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = khóa công ký của đích đến
   // Cộng sử dụng các phần tử nhóm (điểm trên đường cong)
   khóa công bị làm mờ = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 
 Cả hai phương pháp tính toán A' đều cho kết quả giống nhau, như yêu cầu.
@@ -135,8 +129,5 @@ Khóa công của ECDSA là cặp (X, Y), vì vậy đối với P256, ví dụ,
 
 ## Tài liệu tham khảo
 
-.. [RFC-2104]
-    https://tools.ietf.org/html/rfc2104
-
-.. [RFC-5869]
-    https://tools.ietf.org/html/rfc5869
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)

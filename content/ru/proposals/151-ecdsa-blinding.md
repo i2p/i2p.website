@@ -69,8 +69,8 @@ HKDF(salt, ikm, info, n)
     длиной 32 байта и значение 'info' специфичное для контекста, и выдает результат
     длиной n байт, пригодный для использования в качестве ключевого материала.
 
-    Используйте HKDF, как указано в [RFC-5869]_, с использованием функции хеширования HMAC SHA-256
-    как указано в [RFC-2104]_. Это означает, что SALT_LEN составляет 32 байта максимум.
+    Используйте HKDF, как указано в [RFC-5869](https://tools.ietf.org/html/rfc5869), с использованием функции хеширования HMAC SHA-256
+    как указано в [RFC-2104](https://tools.ietf.org/html/rfc2104). Это означает, что SALT_LEN составляет 32 байта максимум.
 
 ### Расчеты заслепления
 
@@ -79,9 +79,7 @@ HKDF(salt, ikm, info, n)
 
 GENERATE_ALPHA(destination, date, secret), для всех участников:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // секрет является необязательным, иначе нулевой длины
@@ -94,13 +92,11 @@ GENERATE_ALPHA(destination, date, secret), для всех участников:
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // рассматривайте seed как 64-байтовое значение в формате big-endian
   alpha = seed mod L
-{% endhighlight %}
+```
 
 BLIND_PRIVKEY(), для владельца, публикующего leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -108,20 +104,18 @@ BLIND_PRIVKEY(), для владельца, публикующего leaseset:
   // Сложение с использованием скалярной арифметики
   заслепленный закрытый ключ подписания = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   заслепленный открытый ключ подписания = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 BLIND_PUBKEY(), для клиентов, получающих доступ к leaseset:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = открытый ключ подписания пункта назначения
   // Сложение с использованием элементов группы (точек на кривой)
   заслепленный открытый ключ = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 Оба метода вычисления A' дают одинаковый результат, как и требуется.
 
@@ -132,8 +126,5 @@ BLIND_PUBKEY(), для клиентов, получающих доступ к le
 
 ## Ссылки
 
-.. [RFC-2104]
-    https://tools.ietf.org/html/rfc2104
-
-.. [RFC-5869]
-    https://tools.ietf.org/html/rfc5869
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)

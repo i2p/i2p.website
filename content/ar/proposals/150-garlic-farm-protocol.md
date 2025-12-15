@@ -11,7 +11,7 @@ toc: true
 
 ## نظرة عامة
 
-هذه هي المواصفات لبروتوكول مزرعة الثوم للسلك، بناءً على JRaft، كود "exts" الخاص به للتنفيذ عبر الـTCP، وتطبيق العينة "dmprinter" [JRAFT]_. JRaft هو تنفيذ لبروتوكول Raft [RAFT]_.
+هذه هي المواصفات لبروتوكول مزرعة الثوم للسلك، بناءً على JRaft، كود "exts" الخاص به للتنفيذ عبر الـTCP، وتطبيق العينة "dmprinter" [JRAFT](https://github.com/datatechnology/jraft). JRaft هو تنفيذ لبروتوكول Raft [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
 
 لم نتمكن من العثور على أي تنفيذ يحتوي على بروتوكول سلك موثق. ومع ذلك، فإن تنفيذ JRaft بسيط بما فيه الكفاية لدرجة يمكننا من خلالها فحص الكود ثم توثيق بروتوكوله. هذا الاقتراح هو نتيجة لهذا الجهد.
 
@@ -54,7 +54,7 @@ toc: true
 - بروتوكول بسيط بحيث لا يتطلب تنفيذ خادم ويب كامل
 - متوافق مع المعايير الشائعة، لذا يمكن للتنفيذ استخدام المكتبات القياسية إذا رغب
 
-سنستخدم مصافحة شبيهة بالويب سوكيت [WEBSOCKET]_ والمصادقة الهضمية HTTP [RFC-2617]_. المصادقة الأساسية لـ RFC 2617 غير مدعومة. عند التوسيط عبر وكيل HTTP، تواصل مع الوكيل كما هو محدد في [RFC-2616]_.
+سنستخدم مصافحة شبيهة بالويب سوكيت [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) والمصادقة الهضمية HTTP [RFC-2617](https://tools.ietf.org/html/rfc2617). المصادقة الأساسية لـ RFC 2617 غير مدعومة. عند التوسيط عبر وكيل HTTP، تواصل مع الوكيل كما هو محدد في [RFC-2616](https://tools.ietf.org/html/rfc2616).
 
 البيانات الاعتمادية
 `````````````
@@ -69,10 +69,7 @@ toc: true
 
 جميع السطور تنتهي بـCRLF كما هو مطلوب بواسطة HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -82,16 +79,15 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER هو اسم الكتلة (افتراضي "farm")
   VERSION هو إصدار مزرعة الثوم (حاليًا "1")
-
-{% endhighlight %}
+```
 
 
 استجابة HTTP 1
 ```````````````
 
-إذا كان المسار غير صحيح، سيرسل المستلم استجابة "HTTP/1.1 404 Not Found" كما هو في [RFC-2616]_.
+إذا كان المسار غير صحيح، سيرسل المستلم استجابة "HTTP/1.1 404 Not Found" كما هو في [RFC-2616](https://tools.ietf.org/html/rfc2616).
 
-إذا كان المسار صحيحًا، سيرسل المستلم استجابة "HTTP/1.1 401 Unauthorized" القياسية، متضمنة رأس المصادقة الهضمي HTTP WWW-Authenticate، كما هو في [RFC-2617]_.
+إذا كان المسار صحيحًا، سيرسل المستلم استجابة "HTTP/1.1 401 Unauthorized" القياسية، متضمنة رأس المصادقة الهضمي HTTP WWW-Authenticate، كما هو في [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
 سيغلق كلا الطرفين المقبس بعد ذلك.
 
@@ -99,14 +95,11 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 طلب HTTP 2
 ``````````````
 
-سيرسل المنشئ ما يلي، كما في [RFC-2617] و[WEBSOCKET]_.
+سيرسل المنشئ ما يلي، كما في [RFC-2617](https://tools.ietf.org/html/rfc2617) و[WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 جميع السطور تنتهي بـCRLF كما هو مطلوب بواسطة HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -119,31 +112,26 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER هو اسم الكتلة (افتراضي "farm")
   VERSION هو إصدار مزرعة الثوم (حاليًا "1")
-
-{% endhighlight %}
+```
 
 
 استجابة HTTP 2
 ```````````````
 
-إذا كانت المصادقة غير صحيحة، سيرسل المستلم استجابة "HTTP/1.1 401 Unauthorized" القياسية الأخرى، كما هو في [RFC-2617]_.
+إذا كانت المصادقة غير صحيحة، سيرسل المستلم استجابة "HTTP/1.1 401 Unauthorized" القياسية الأخرى، كما هو في [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
-إذا كانت المصادقة صحيحة، سيرسل المستلم الاستجابة التالية، كما هو في [WEBSOCKET]_.
+إذا كانت المصادقة صحيحة، سيرسل المستلم الاستجابة التالية، كما هو في [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 جميع السطور تنتهي بـCRLF كما هو مطلوب بواسطة HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 HTTP/1.1 101 Switching Protocols
   Connection: Upgrade
   Upgrade: websocket
   (رؤوس Sec-Websocket-*)
   (أي رؤوس أخرى متجاهلة)
   (سطرا فارغا)
-
-{% endhighlight %}
+```
 
 عند استقبال هذا، يظل المقبس مفتوحًا.
 يبدأ بروتوكول Raft كما هو معرف أدناه، على نفس المقبس.
@@ -196,10 +184,7 @@ HTTP/1.1 101 Switching Protocols
 
 بعد المصافحة HTTP، تسلسل التأسيس كالتالي:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 خادم جديد أليس              تابع عشوائي بوب
 
   طلب العميل   ------->
@@ -221,30 +206,22 @@ HTTP/1.1 101 Switching Protocols
                        أو طلب تثبيت اللقطة
   استجابة تزامن السجل  ------->
   أو استجابة تثبيت اللقطة
-
-{% endhighlight %}
+```
 
 تسلسل الفصل:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 تابع أليس              القائد تشارلي
 
   طلب إزالة الخادم   ------->
           <---------   استجابة إزالة الخادم
           <---------   طلب مغادرة الكتلة
   استجابة مغادرة الكتلة  ------->
-
-{% endhighlight %}
+```
 
 تسلسل الانتخابات:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 مرشح أليس               تابع بوب
 
   طلب تصويت   ------->
@@ -257,8 +234,7 @@ HTTP/1.1 101 Switching Protocols
   طلب إدخال الإدخالات   ------->
   (نبضة حتى)
           <---------   استجابة إدخال الإدخالات
-
-{% endhighlight %}
+```
 
 
 ### التعريفات
@@ -282,10 +258,7 @@ HTTP/1.1 101 Switching Protocols
 رأس الطلب هو 45 بايت، كما يلي.
 جميع القيم غير موقعة وبالترتيب البايت الكبير.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 نوع الرسالة:      1 بايت
   المصدر:            المعرف، عدد يبلغ 4 بايت
   الوجهة:             المعرف، عدد يبلغ 4 بايت
@@ -295,8 +268,7 @@ HTTP/1.1 101 Switching Protocols
   فهرس الالتزام:      عدد يبلغ 8 بايت
   حجم إدخالات السجل:  الحجم الكلي بالبايتات، عدد يبلغ 4 بايت
   إدخالات السجل:       انظر أدناه، الطول الكلي كما هو محدد
-
-{% endhighlight %}
+```
 
 
 #### الملاحظات
@@ -315,16 +287,12 @@ HTTP/1.1 101 Switching Protocols
 كل إدخال سجل هو كما يلي. 
 جميع القيم غير موقعة وبالترتيب البايت الكبير.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 المصطلح:           عدد يبلغ 8 بايت
   نوع القيمة:      1 بايت
   حجم الإدخال:     بالبايتات، عدد يبلغ 4 بايت
   الإدخال:          الطول كما هو محدد
-
-{% endhighlight %}
+```
 
 
 محتويات السجل
@@ -355,18 +323,14 @@ HTTP/1.1 101 Switching Protocols
 يحتوي على صفر أو أكثر من تكوينات خادم الكتلة.
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 فهرس السجل:  عدد يبلغ 8 بايت
   الفهرس الأخير في السجل:  عدد يبلغ 8 بايت
   بيانات خادم الكتلة لكل خادم:
     المعرف:                عدد يبلغ 4 بايت
     طول بيانات الفائدة:   بالبايتات، عدد يبلغ 4 بايت
     بيانات الفائدة:       سلسلة ASCII من الشكل "tcp://localhost:9001"، الطول كما هو محدد
-
-{% endhighlight %}
+```
 
 
 #### خادم الكتلة
@@ -376,26 +340,18 @@ HTTP/1.1 101 Switching Protocols
 
 عند استخدامها في رسالة طلب إضافة الخادم:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 المعرف:                عدد يبلغ 4 بايت
   طول بيانات الفائدة:   بالبايتات، عدد يبلغ 4 بايت
   بيانات الفائدة:       سلسلة ASCII من الشكل "tcp://localhost:9001"، الطول كما هو محدد
-
-{% endhighlight %}
+```
 
 
 عند استخدامها في رسالة طلب إزالة الخادم:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 المعرف:                عدد يبلغ 4 بايت
-
-{% endhighlight %}
+```
 
 
 #### حزمة السجل
@@ -405,16 +361,12 @@ HTTP/1.1 101 Switching Protocols
 ما يلي يتم ضغطه قبل الإرسال:
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 طول بيانات الفهرس: بالبايتات، عدد يبلغ 4 بايت
   طول بيانات السجل: بالبايتات، عدد يبلغ 4 بايت
   بيانات الفهرس:     8 بايت لكل فهرس، الطول كما هو محدد
   بيانات السجل:       الطول كما هو محدد
-
-{% endhighlight %}
+```
 
 
 
@@ -422,10 +374,7 @@ HTTP/1.1 101 Switching Protocols
 
 يتم تضمين هذا فقط في رسالة طلب تثبيت اللقطة.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 الفهرس الأخير في السجل:  عدد يبلغ 8 بايت
   المصطلح الأخير في السجل:   عدد يبلغ 8 بايت
   طول بيانات التكوين: بالبايتات، عدد يبلغ 4 بايت
@@ -434,8 +383,7 @@ HTTP/1.1 101 Switching Protocols
   طول البيانات:        بالبايتات، عدد يبلغ 4 بايت
   البيانات:            الطول كما هو محدد
   هل انتهى:         1 إذا انتهى، 0 إذا لم ينته (1 بايت)
-
-{% endhighlight %}
+```
 
 
 
@@ -445,18 +393,14 @@ HTTP/1.1 101 Switching Protocols
 جميع الاستجابات 26 بايت، كما يلي. 
 جميع القيم غير موقعة وبالترتيب البايت الكبير.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 نوع الرسالة:   1 بايت
   المصدر:         المعرف، عدد يبلغ 4 بايت
   الوجهة:    عادة معرف الوجهة الفعلي (انظر الملاحظات)، عدد يبلغ 4 بايت
   المصطلح:           المصطلح الحالي، عدد يبلغ 8 بايت
   الفهرس التالي:     مبادراً إلى آخر فهرس في السجل للقائد + 1، عدد يبلغ 8 بايت
   هل يقبل:    1 إذا تم القبول، 0 إذا لم يتم القبول (انظر الملاحظات)، 1 بايت
-
-{% endhighlight %}
+```
 
 
 الملاحظات
@@ -629,20 +573,9 @@ Atomix كبير جدًا ولن يسمح بالتخصيص لنا لتوجيه
 
 ## المراجع
 
-.. [JRAFT]
-    https://github.com/datatechnology/jraft
-
-.. [JSON]
-    https://json.org/
-
-.. [RAFT]
-    https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf
-
-.. [RFC-2616]
-    https://tools.ietf.org/html/rfc2616
-
-.. [RFC-2617]
-    https://tools.ietf.org/html/rfc2617
-
-.. [WEBSOCKET]
-    https://en.wikipedia.org/wiki/WebSocket
+* [JRAFT](https://github.com/datatechnology/jraft)
+* [JSON](https://json.org/)
+* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RFC-2616](https://tools.ietf.org/html/rfc2616)
+* [RFC-2617](https://tools.ietf.org/html/rfc2617)
+* [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

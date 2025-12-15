@@ -13,8 +13,8 @@ toc: true
 
 Ceci est la spécification pour le protocole de la ferme à l'ail,
 basé sur JRaft, son code "exts" pour l'implémentation sur TCP,
-et son application exemple "dmprinter" [JRAFT]_.
-JRaft est une implémentation du protocole Raft [RAFT]_.
+et son application exemple "dmprinter" [JRAFT](https://github.com/datatechnology/jraft).
+JRaft est une implémentation du protocole Raft [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
 
 Nous n'avons pas été en mesure de trouver une implémentation avec un protocole documenté.
 Cependant, l'implémentation JRaft est suffisamment simple pour que nous puissions
@@ -74,11 +74,11 @@ Objectifs :
 - Compatible avec les standards courants, pour que les implémentations puissent utiliser
   des bibliothèques standard si désiré
 
-Nous utiliserons une poignée de main similaire à websocket [WEBSOCKET]_
-et une authentification HTTP Digest [RFC-2617]_.
+Nous utiliserons une poignée de main similaire à websocket [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)
+et une authentification HTTP Digest [RFC-2617](https://tools.ietf.org/html/rfc2617).
 L'authentification de base RFC 2617 n'est PAS supportée.
 Quand on passe par le proxy HTTP, communiquer avec
-le proxy comme spécifié dans [RFC-2616]_.
+le proxy comme spécifié dans [RFC-2616](https://tools.ietf.org/html/rfc2616).
 
 Identifiants
 `````````````
@@ -94,10 +94,7 @@ L'initiateur enverra ce qui suit.
 
 Toutes les lignes se terminent par CRLF comme requis par HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Hôte : (ip):(port)
   Cache-Control: no-cache
@@ -107,19 +104,18 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER est le nom du cluster (par défaut "farm")
   VERSION est la version de la ferme à l'ail (actuellement "1")
-
-{% endhighlight %}
+```
 
 
 Réponse HTTP 1
 ```````````````
 
 Si le chemin n'est pas correct, le destinataire enverra une réponse standard "HTTP/1.1 404 Not Found",
-comme dans [RFC-2616]_.
+comme dans [RFC-2616](https://tools.ietf.org/html/rfc2616).
 
 Si le chemin est correct, le destinataire enverra une réponse standard "HTTP/1.1 401 Unauthorized",
 incluant l'en-tête d'authentification HTTP digest WWW-Authenticate,
-comme dans [RFC-2617]_.
+comme dans [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
 Les deux parties fermeront alors le socket.
 
@@ -128,14 +124,11 @@ Requête HTTP 2
 ``````````````
 
 L'initiateur enverra ce qui suit,
-comme dans [RFC-2617]_ et [WEBSOCKET]_.
+comme dans [RFC-2617](https://tools.ietf.org/html/rfc2617) et [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 Toutes les lignes se terminent par CRLF comme requis par HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Hôte : (ip):(port)
   Cache-Control: no-cache
@@ -148,33 +141,28 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER est le nom du cluster (par défaut "farm")
   VERSION est la version de la ferme à l'ail (actuellement "1")
-
-{% endhighlight %}
+```
 
 
 Réponse HTTP 2
 ```````````````
 
 Si l'authentification n'est pas correcte, le destinataire enverra une autre réponse standard "HTTP/1.1 401 Unauthorized",
-comme dans [RFC-2617]_.
+comme dans [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
 Si l'authentification est correcte, le destinataire enverra la réponse suivante,
-comme dans [WEBSOCKET]_.
+comme dans [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 Toutes les lignes se terminent par CRLF comme requis par HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 HTTP/1.1 101 Switching Protocols
   Connexion: Upgrade
   Upgrade: websocket
   (en-têtes Sec-Websocket-*)
   (tous les autres en-têtes ignorés)
   (ligne vide)
-
-{% endhighlight %}
+```
 
 Après réception, le socket reste ouvert.
 Le protocole Raft tel que défini ci-dessous commence, sur le même socket.
@@ -233,10 +221,7 @@ InstallSnapshotResponse     17    Suiveur        Leader               Section 7 
 
 Après la poignée de main HTTP, la séquence d'établissement est la suivante :
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Nouveau Serveur Alice              Suiveur Aléatoire Bob
 
   ClientRequest   ------->
@@ -258,30 +243,22 @@ Nouveau Serveur Alice              Suiveur Aléatoire Bob
                        OU InstallSnapshotRequest
   SyncLogResponse  ------->
   OU InstallSnapshotResponse
-
-{% endhighlight %}
+```
 
 Séquence de déconnexion :
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Suiveur Alice              Leader Charlie
 
   RemoveServerRequest   ------->
           <---------   RemoveServerResponse
           <---------   LeaveClusterRequest
   LeaveClusterResponse  ------->
-
-{% endhighlight %}
+```
 
 Séquence d'élection :
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Candidat Alice               Suiveur Bob
 
   RequestVoteRequest   ------->
@@ -294,8 +271,7 @@ Candidat Alice               Suiveur Bob
   AppendEntriesRequest   ------->
   (coup de cœur)
           <---------   AppendEntriesResponse
-
-{% endhighlight %}
+```
 
 
 ### Définitions
@@ -319,10 +295,7 @@ En-tête de requête
 L'en-tête de requête fait 45 octets, comme suit.
 Toutes les valeurs sont en big-endian non signé.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Type de message :      1 octet
   Source :           ID, entier 4 octets
   Destination :      ID, entier 4 octets
@@ -332,8 +305,7 @@ Type de message :      1 octet
   Index de Validation :   entier 8 octets
   Taille des entrées de journal :  Taille totale en octets, entier 4 octets
   Entrées de journal :       voir ci-dessous, longueur totale comme spécifié
-
-{% endhighlight %}
+```
 
 
 #### Remarques
@@ -353,16 +325,12 @@ Le journal contient zéro ou plusieurs entrées de journal.
 Chaque entrée de journal est comme suit.
 Toutes les valeurs sont en big-endian non signé.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Terme :           entier 8 octets
   Type de valeur :   1 octet
   Taille de l'entrée :  En octets, entier 4 octets
   Entrée :          longueur comme spécifié
-
-{% endhighlight %}
+```
 
 
 Contenu du journal
@@ -392,19 +360,14 @@ Voir la section Couche d'application ci-dessous.
 Ceci est utilisé pour que le leader série un nouvelle configuration de cluster et réplique aux pairs.
 Cela contient zéro ou plusieurs configurations de ClusterServer.
 
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Index du Journal :  entier 8 octets
   Dernier Index du Journal :  entier 8 octets
   Données de Clusterserver pour chaque serveur :
     ID :                entier 4 octets
     Taille des données de point de terminaison : En octets, entier 4 octets
     Données de point de terminaison :     chaîne ASCII sous la forme "tcp://localhost:9001", longueur comme spécifié
-
-{% endhighlight %}
+```
 
 
 #### ClusterServer
@@ -414,26 +377,18 @@ Ceci est inclus uniquement dans un message AddServerRequest ou RemoveServerReque
 
 Lorsqu'il est utilisé dans un message AddServerRequest :
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID :                entier 4 octets
   Taille des données de point de terminaison : En octets, entier 4 octets
   Données de point de terminaison :     chaîne ASCII sous la forme "tcp://localhost:9001", longueur comme spécifié
-
-{% endhighlight %}
+```
 
 
 Lorsqu'il est utilisé dans un message RemoveServerRequest :
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID :                entier 4 octets
-
-{% endhighlight %}
+```
 
 
 #### LogPack
@@ -442,17 +397,12 @@ Cela est inclus uniquement dans un message SyncLogRequest.
 
 Ce qui suit est comprimé en gzip avant la transmission :
 
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Taille des données d'index : En octets, entier 4 octets
   Taille des données de journal :   En octets, entier 4 octets
   Données d'index :     8 octets pour chaque index, longueur comme spécifié
   Données de journal :       longueur comme spécifié
-
-{% endhighlight %}
+```
 
 
 
@@ -460,10 +410,7 @@ Taille des données d'index : En octets, entier 4 octets
 
 Cela est inclus uniquement dans un message InstallSnapshotRequest.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Dernier Index de Journal :  entier 8 octets
   Dernier Terme de Journal :   entier 8 octets
   Taille des données de configuration : En octets, entier 4 octets
@@ -472,8 +419,7 @@ Dernier Index de Journal :  entier 8 octets
   Taille des données :        En octets, entier 4 octets
   Données :            longueur comme spécifié
   Est Fait :         1 si terminé, 0 sinon (1 octet)
-
-{% endhighlight %}
+```
 
 
 
@@ -483,18 +429,14 @@ Dernier Index de Journal :  entier 8 octets
 Toutes les réponses font 26 octets, comme suit.
 Toutes les valeurs sont en big-endian non signé.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Type de message :   1 octet
   Source :         ID, entier 4 octets
   Destination :    Habituellement l'ID de destination réel (voir remarques), entier 4 octets
   Terme :           Terme actuel, entier 8 octets
   Index suivant :     Initialisé à l'index du dernier journal du leader + 1, entier 8 octets
   Est Accepté :    1 si accepté, 0 si non accepté (voir remarques), 1 octet
-
-{% endhighlight %}
+```
 
 
 Remarques
@@ -667,20 +609,9 @@ Aucun problème de compatibilité rétroactive.
 
 ## Références
 
-.. [JRAFT]
-    https://github.com/datatechnology/jraft
-
-.. [JSON]
-    https://json.org/
-
-.. [RAFT]
-    https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf
-
-.. [RFC-2616]
-    https://tools.ietf.org/html/rfc2616
-
-.. [RFC-2617]
-    https://tools.ietf.org/html/rfc2617
-
-.. [WEBSOCKET]
-    https://en.wikipedia.org/wiki/WebSocket
+* [JRAFT](https://github.com/datatechnology/jraft)
+* [JSON](https://json.org/)
+* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RFC-2616](https://tools.ietf.org/html/rfc2616)
+* [RFC-2617](https://tools.ietf.org/html/rfc2617)
+* [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

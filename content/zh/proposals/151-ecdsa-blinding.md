@@ -66,7 +66,7 @@ HKDF(salt, ikm, info, n)
     一种密码学密钥派生函数，接受一些输入密钥材料ikm（应具有良好的熵，但不要求是均匀随机字符串），
     长度为32字节的salt和特定上下文的'info'值，生成适合用作密钥材料的n字节输出。
 
-    按[RF-5869]_中规定使用HKDF，并使用[RF-2104]_中规定的HMAC哈希函数SHA-256。
+    按[RFC-5869](https://tools.ietf.org/html/rfc5869)中规定使用HKDF，并使用[RFC-2104](https://tools.ietf.org/html/rfc2104)中规定的HMAC哈希函数SHA-256。
     这意味着SALT_LEN最大为32字节。
 
 
@@ -77,9 +77,7 @@ HKDF(salt, ikm, info, n)
 
 生成alpha(destination, date, secret)，对所有相关方：
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // secret是可选的，否则为空
@@ -92,14 +90,12 @@ HKDF(salt, ikm, info, n)
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // 将seed视为64字节大端值
   alpha = seed mod L
-{% endhighlight %}
+```
 
 
 BLIND_PRIVKEY()，供发布租赁集的所有者使用：
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -107,21 +103,19 @@ BLIND_PRIVKEY()，供发布租赁集的所有者使用：
   // 使用标量算术进行加法
   被遮蔽的签名私钥 = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   被遮蔽的签名公钥 = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 
 BLIND_PUBKEY()，供检索租赁集的用户使用：
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = 目标的签名公钥
   // 使用群元素（曲线上的点）进行加法
   被遮蔽的公钥 = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 
 计算A'的两种方法都产生相同的结果，这是必要的。
@@ -134,8 +128,5 @@ ECDSA的公钥是(X,Y)对，因此对于P256，例如，它是64字节，而不�
 
 ## 参考文献
 
-.. [RF-2104]
-    https://tools.ietf.org/html/rfc2104
-
-.. [RF-5869]
-    https://tools.ietf.org/html/rfc5869
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)

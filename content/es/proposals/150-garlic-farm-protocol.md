@@ -13,8 +13,8 @@ toc: true
 
 Esta es la especificación del protocolo de la Granja de Ajo,
 basado en JRaft, su código "exts" para la implementación sobre TCP,
-y su aplicación de ejemplo "dmprinter" [JRAFT]_.
-JRaft es una implementación del protocolo Raft [RAFT]_.
+y su aplicación de ejemplo "dmprinter" [JRAFT](https://github.com/datatechnology/jraft).
+JRaft es una implementación del protocolo Raft [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
 
 No pudimos encontrar ninguna implementación con un protocolo documentado de cableado.
 Sin embargo, la implementación de JRaft es lo suficientemente simple como para que pudiéramos
@@ -73,11 +73,11 @@ Objetivos:
 - Compatible con estándares comunes, para que las implementaciones puedan utilizar
   bibliotecas estándar si se desea
 
-Usaremos un apretón de manos similar al websocket [WEBSOCKET]_ y
-autenticación HTTP Digest [RFC-2617]_.
+Usaremos un apretón de manos similar al websocket [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) y
+autenticación HTTP Digest [RFC-2617](https://tools.ietf.org/html/rfc2617).
 La autenticación básica RFC 2617 NO está soportada.
 Al proxificar a través del proxy HTTP, comunicar con
-el proxy según lo especificado en [RFC-2616]_.
+el proxy según lo especificado en [RFC-2616](https://tools.ietf.org/html/rfc2616).
 
 Credenciales
 ```````````
@@ -92,10 +92,7 @@ El originador enviará lo siguiente.
 
 Todas las líneas se terminan con CRLF como requiere HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(puerto)
   Cache-Control: no-cache
@@ -105,19 +102,18 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER es el nombre del clúster (por defecto "farm")
   VERSION es la versión de la Granja de Ajo (actualmente "1")
-
-{% endhighlight %}
+```
 
 
 Respuesta HTTP 1
 ``````````````
 
 Si la ruta no es correcta, el destinatario enviará una respuesta estándar "HTTP/1.1 404 Not Found",
-como en [RFC-2616]_.
+como en [RFC-2616](https://tools.ietf.org/html/rfc2616).
 
 Si la ruta es correcta, el destinatario enviará una respuesta estándar "HTTP/1.1 401 Unauthorized",
 incluyendo el encabezado de autenticación WWW-Authenticate HTTP digest,
-como en [RFC-2617]_.
+como en [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
 Ambas partes cerrarán entonces el socket.
 
@@ -126,14 +122,11 @@ Solicitud HTTP 2
 ``````````````
 
 El originador enviará lo siguiente,
-como en [RFC-2617]_ y [WEBSOCKET]_.
+como en [RFC-2617](https://tools.ietf.org/html/rfc2617) y [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 Todas las líneas se terminan con CRLF como requiere HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(puerto)
   Cache-Control: no-cache
@@ -146,33 +139,28 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER es el nombre del clúster (por defecto "farm")
   VERSION es la versión de la Granja de Ajo (actualmente "1")
-
-{% endhighlight %}
+```
 
 
 Respuesta HTTP 2
 ``````````````
 
 Si la autenticación no es correcta, el destinatario enviará otra respuesta estándar "HTTP/1.1 401 Unauthorized",
-como en [RFC-2617]_.
+como en [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
 Si la autenticación es correcta, el destinatario enviará la siguiente respuesta,
-como en [WEBSOCKET]_.
+como en [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 Todas las líneas se terminan con CRLF como requiere HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 HTTP/1.1 101 Switching Protocols
   Connection: Upgrade
   Upgrade: websocket
   (encabezados Sec-Websocket-*)
   (cualquier otro encabezado es ignorado)
   (línea en blanco)
-
-{% endhighlight %}
+```
 
 Después de que esto es recibido, el socket permanece abierto.
 El protocolo Raft definido a continuación comienza, en el mismo socket.
@@ -231,10 +219,7 @@ InstallSnapshotResponse     17    Seguidor     Líder               Sección 7 d
 
 Después del apretón de manos HTTP, la secuencia de establecimiento es la siguiente:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Nuevo Servidor Alice              Seguidor Aleatorio Bob
 
   ClientRequest   ------->
@@ -256,30 +241,22 @@ Nuevo Servidor Alice              Seguidor Aleatorio Bob
                        O InstallSnapshotRequest
   SyncLogResponse  ------->
   O InstallSnapshotResponse
-
-{% endhighlight %}
+```
 
 Secuencia de Desconexión:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Seguidor Alice              Líder Charlie
 
   RemoveServerRequest   ------->
           <---------   RemoveServerResponse
           <---------   LeaveClusterRequest
   LeaveClusterResponse  ------->
-
-{% endhighlight %}
+```
 
 Secuencia de Elección:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Candidato Alice               Seguidor Bob
 
   RequestVoteRequest   ------->
@@ -292,8 +269,7 @@ Candidato Alice               Seguidor Bob
   AppendEntriesRequest   ------->
   (latido)
           <---------   AppendEntriesResponse
-
-{% endhighlight %}
+```
 
 
 ### Definiciones
@@ -317,10 +293,7 @@ Encabezado de Solicitud
 El encabezado de la solicitud es de 45 bytes, como sigue.
 Todos los valores son big-endian sin signo.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Tipo de Mensaje:      1 byte
   Origen:            ID, entero de 4 bytes
   Destino:           ID, entero de 4 bytes
@@ -330,8 +303,7 @@ Tipo de Mensaje:      1 byte
   Índice de Confirmación:      entero de 8 bytes
   Tamaño de entradas de registro:  Tamaño total en bytes, entero de 4 bytes
   Entradas de registro:       ver abajo, longitud total como especificada
-
-{% endhighlight %}
+```
 
 
 #### Notas
@@ -351,16 +323,12 @@ El registro contiene cero o más entradas de registro.
 Cada entrada de registro es como sigue.
 Todos los valores son big-endian sin signo.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Término:           entero de 8 bytes
   Tipo de Valor:     1 byte
   Tamaño de entrada:     En bytes, entero de 4 bytes
   Entrada:          longitud como especificada
-
-{% endhighlight %}
+```
 
 
 Contenidos del Registro
@@ -391,18 +359,14 @@ Esto se utiliza para que el líder serialice una nueva configuración de clúste
 Contiene cero o más configuraciones de Servidor de Clúster.
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Índice de Registro:  entero de 8 bytes
   Último Índice de Registro:  entero de 8 bytes
   Datos de Servidor de Clúster para cada servidor:
     ID:                entero de 4 bytes
     Tamaño de los datos del punto final: En bytes, entero de 4 bytes
     Datos del punto final:     cadena ASCII de la forma "tcp://localhost:9001", longitud como especificada
-
-{% endhighlight %}
+```
 
 
 #### Servidor de Clúster
@@ -412,26 +376,18 @@ Esto se incluye solo en un mensaje AddServerRequest o RemoveServerRequest.
 
 Cuando se usa en un Mensaje AddServerRequest:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID:                entero de 4 bytes
   Tamaño de los datos del punto final: En bytes, entero de 4 bytes
   Datos del punto final:     cadena ASCII de la forma "tcp://localhost:9001", longitud como especificada
-
-{% endhighlight %}
+```
 
 
 Cuando se usa en un Mensaje RemoveServerRequest:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID:                entero de 4 bytes
-
-{% endhighlight %}
+```
 
 
 #### Paquete de Registro
@@ -440,16 +396,12 @@ Esto se incluye solo en un mensaje SyncLogRequest.
 
 Lo siguiente se comprime (gzip) antes de la transmisión:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Tamaño de los datos del índice: En bytes, entero de 4 bytes
   Tamaño de los datos del registro:   En bytes, entero de 4 bytes
   Datos del índice:     8 bytes para cada índice, longitud como especificada
   Datos del registro:       longitud como especificada
-
-{% endhighlight %}
+```
 
 
 
@@ -457,10 +409,7 @@ Tamaño de los datos del índice: En bytes, entero de 4 bytes
 
 Esto se incluye solo en un mensaje InstallSnapshotRequest.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Último Índice de Registro:  entero de 8 bytes
   Último Término de Registro:   entero de 8 bytes
   Tamaño de los datos de Configuración: En bytes, entero de 4 bytes
@@ -469,8 +418,7 @@ Esto se incluye solo en un mensaje InstallSnapshotRequest.
   Tamaño de los datos:        En bytes, entero de 4 bytes
   Datos:            longitud como especificada
   Terminado:         1 si está terminado, 0 si no está terminado (1 byte)
-
-{% endhighlight %}
+```
 
 
 
@@ -480,18 +428,14 @@ Esto se incluye solo en un mensaje InstallSnapshotRequest.
 Todas las respuestas son de 26 bytes, como se indica a continuación.
 Todos los valores son big-endian sin signo.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Tipo de Mensaje:   1 byte
   Origen:         ID, entero de 4 bytes
   Destino:    Usualmente la ID de destino real (ver notas), entero de 4 bytes
   Término:           Término actual, entero de 8 bytes
   Siguiente Índice:     Inicializado en último índice de registro del líder + 1, entero de 8 bytes
   Aceptado:    1 si aceptado, 0 si no aceptado (ver notas), 1 byte
-
-{% endhighlight %}
+```
 
 
 Notas
@@ -664,20 +608,9 @@ No hay problemas de compatibilidad hacia atrás.
 
 ## Referencias
 
-.. [JRAFT]
-    https://github.com/datatechnology/jraft
-
-.. [JSON]
-    https://json.org/
-
-.. [RAFT]
-    https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf
-
-.. [RFC-2616]
-    https://tools.ietf.org/html/rfc2616
-
-.. [RFC-2617]
-    https://tools.ietf.org/html/rfc2617
-
-.. [WEBSOCKET]
-    https://en.wikipedia.org/wiki/WebSocket
+* [JRAFT](https://github.com/datatechnology/jraft)
+* [JSON](https://json.org/)
+* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RFC-2616](https://tools.ietf.org/html/rfc2616)
+* [RFC-2617](https://tools.ietf.org/html/rfc2617)
+* [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

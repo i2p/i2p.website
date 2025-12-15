@@ -13,8 +13,8 @@ toc: true
 
 Đây là đặc tả cho giao thức dây Garlic Farm,
 dựa trên JRaft, mã "exts" của nó để triển khai qua TCP,
-và ứng dụng mẫu "dmprinter" của nó [JRAFT]_.
-JRaft là một triển khai của giao thức Raft [RAFT]_.
+và ứng dụng mẫu "dmprinter" của nó [JRAFT](https://github.com/datatechnology/jraft).
+JRaft là một triển khai của giao thức Raft [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
 
 Chúng tôi không thể tìm thấy bất kỳ triển khai nào có tài liệu về giao thức dây.
 Tuy nhiên, triển khai JRaft đủ đơn giản để chúng tôi có thể
@@ -73,10 +73,10 @@ Mục tiêu:
 - Tương thích với các tiêu chuẩn phổ biến, để các triển khai có thể sử dụng
   thư viện tiêu chuẩn nếu muốn
 
-Chúng tôi sẽ sử dụng một bắt tay giống như websocket [WEBSOCKET]_ và xác thực HTTP Digest [RFC-2617]_.
+Chúng tôi sẽ sử dụng một bắt tay giống như websocket [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) và xác thực HTTP Digest [RFC-2617](https://tools.ietf.org/html/rfc2617).
 Xác thực cơ bản RFC 2617 KHÔNG được hỗ trợ.
 Khi proxy thông qua HTTP proxy, giao tiếp với
-proxy như được chỉ định trong [RFC-2616]_.
+proxy như được chỉ định trong [RFC-2616](https://tools.ietf.org/html/rfc2616).
 
 Thông tin đăng nhập
 `````````````
@@ -92,10 +92,7 @@ Người khởi tạo sẽ gửi những điều sau.
 
 Tất cả các dòng đều được kết thúc bằng CRLF như được yêu cầu bởi HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -105,19 +102,18 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER là tên của cụm (mặc định là "farm")
   VERSION là phiên bản của Garlic Farm (hiện tại là "1")
-
-{% endhighlight %}
+```
 
 
 Phản Hồi HTTP 1
 ```````````````
 
 Nếu đường dẫn không chính xác, người nhận sẽ gửi một phản hồi "HTTP/1.1 404 Not Found" tiêu chuẩn,
-như trong [RFC-2616]_.
+như trong [RFC-2616](https://tools.ietf.org/html/rfc2616).
 
 Nếu đường dẫn là chính xác, người nhận sẽ gửi một phản hồi "HTTP/1.1 401 Unauthorized" tiêu chuẩn,
 bao gồm tiêu đề xác thực HTTP digest WWW-Authenticate,
-như trong [RFC-2617]_.
+như trong [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
 Cả hai bên sau đó sẽ đóng socket.
 
@@ -126,14 +122,11 @@ Yêu Cầu HTTP 2
 ``````````````
 
 Người khởi tạo sẽ gửi những điều sau,
-như trong [RFC-2617]_ và [WEBSOCKET]_.
+như trong [RFC-2617](https://tools.ietf.org/html/rfc2617) và [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 Tất cả các dòng đều được kết thúc bằng CRLF như được yêu cầu bởi HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -146,33 +139,28 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER là tên của cụm (mặc định là "farm")
   VERSION là phiên bản của Garlic Farm (hiện tại là "1")
-
-{% endhighlight %}
+```
 
 
 Phản Hồi HTTP 2
 ```````````````
 
 Nếu xác thực không chính xác, người nhận sẽ gửi một phản hồi "HTTP/1.1 401 Unauthorized" tiêu chuẩn khác,
-như trong [RFC-2617]_.
+như trong [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
 Nếu xác thực là chính xác, người nhận sẽ gửi phản hồi sau,
-như trong [WEBSOCKET]_.
+như trong [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 Tất cả các dòng đều được kết thúc bằng CRLF như được yêu cầu bởi HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 HTTP/1.1 101 Switching Protocols
   Connection: Upgrade
   Upgrade: websocket
   (Sec-Websocket-* tiêu đề)
   (bất kỳ tiêu đề nào khác bị bỏ qua)
   (dòng trống)
-
-{% endhighlight %}
+```
 
 Sau khi nhận được phản hồi này, socket vẫn mở.
 Giao thức Raft như được định nghĩa dưới đây bắt đầu, trên cùng một socket.
@@ -230,10 +218,7 @@ InstallSnapshotResponse     17    Follower     Leader              Phần 7 Raft
 
 Sau bắt tay qua HTTP, chuỗi thiết lập như sau:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Máy chủ mới Alice              Người theo Bob ngẫu nhiên
 
   ClientRequest   ------->
@@ -255,30 +240,22 @@ Máy chủ mới Alice              Người theo Bob ngẫu nhiên
                        HOẶC InstallSnapshotRequest
   SyncLogResponse  ------->
   HOẶC InstallSnapshotResponse
-
-{% endhighlight %}
+```
 
 Chuỗi Ngắt Kết Nối:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Người theo dõi Alice              Nhà lãnh đạo Charlie
 
   RemoveServerRequest   ------->
           <---------   RemoveServerResponse
           <---------   LeaveClusterRequest
   LeaveClusterResponse  ------->
-
-{% endhighlight %}
+```
 
 Chuỗi Bầu cử:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Người ứng cử Alice               Người theo dõi Bob
 
   RequestVoteRequest   ------->
@@ -291,8 +268,7 @@ Người ứng cử Alice               Người theo dõi Bob
   AppendEntriesRequest   ------->
   (nhịp tim)
           <---------   AppendEntriesResponse
-
-{% endhighlight %}
+```
 
 
 ### Định nghĩa
@@ -315,10 +291,7 @@ Tiêu đề Yêu cầu
 Tiêu đề yêu cầu là 45 byte, như sau.
 Tất cả các giá trị đều là big-endian không dấu.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Loại tin nhắn:  1 byte
   Nguồn:          ID, số nguyên 4 byte
   Đích:           ID, số nguyên 4 byte
@@ -328,8 +301,7 @@ Loại tin nhắn:  1 byte
   Chỉ số cam kết:      8 byte integer
   Kích thước nhật lý:  Tổng kích thước tính bằng byte, số nguyên 4 byte
   Nhật lý:       xem bên dưới, tổng chiều dài như đã chỉ định
-
-{% endhighlight %}
+```
 
 
 #### Ghi chú
@@ -348,16 +320,12 @@ Nhật lý chứa không hay nhiều mục nhật lý.
 Mỗi mục nhật lý như sau.
 Tất cả các giá trị đều là big-endian không dấu.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Thuật ngữ:  8 byte integer
   Loại giá trị:  1 byte
   Kích thước mục:    Tính bằng byte, số nguyên 4 byte
   Mục:          chiều dài như đã chỉ định
-
-{% endhighlight %}
+```
 
 
 Nội Dung Nhật lý
@@ -378,7 +346,7 @@ Yêu cầu Đồng bộ hóa Snapshot   5
 
 #### Ứng dụng
 
-Nội dung ứng dụng được mã hóa chuỗi [JSON] UTF-8.
+Nội dung ứng dụng được mã hóa chuỗi [JSON](https://json.org/) UTF-8.
 Xem phần Lớp Ứng dụng bên dưới.
 
 
@@ -387,19 +355,14 @@ Xem phần Lớp Ứng dụng bên dưới.
 Điều này được sử dụng để nhà lãnh đạo tuần tự hóa một cấu hình cụm mới và sao chép tới các đối tác.
 Nó chứa không hoặc nhiều cấu hình Máy chủ Cluster.
 
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Chỉ số Nhật ký:  8 byte integer
   Chỉ số Nhật ký Cuối cùng:  8 byte integer
   Dữ liệu Máy chủ Cluster cho mỗi máy chủ:
     ID:                số nguyên 4 byte
     Độ dài dữ liệu điểm cuối: Tính bằng byte, số nguyên 4 byte
     Dữ liệu điểm cuối: Chuỗi ASCII theo định dạng "tcp://localhost:9001", chiều dài như đã chỉ định
-
-{% endhighlight %}
+```
 
 
 #### Máy chủ Cluster
@@ -409,26 +372,18 @@ Thông tin cấu hình cho một máy chủ trong một cụm.
 
 Khi được sử dụng trong một Thông điệp AddServerRequest:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID:                số nguyên 4 byte
   Độ dài dữ liệu điểm cuối: Tính bằng byte, số nguyên 4 byte
   Dữ liệu điểm cuối: Chuỗi ASCII theo định dạng "tcp://localhost:9001", chiều dài như đã chỉ định
-
-{% endhighlight %}
+```
 
 
 Khi được sử dụng trong một Thông điệp RemoveServerRequest:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID:                số nguyên 4 byte
-
-{% endhighlight %}
+```
 
 
 #### Gói Nhật ký
@@ -437,27 +392,19 @@ ID:                số nguyên 4 byte
 
 Thông tin sau đây được nén trước khi truyền:
 
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Độ dài dữ liệu chỉ số: Tính bằng byte, số nguyên 4 byte
   Độ dài dữ liệu nhật ký:   Tính bằng byte, số nguyên 4 byte
   Dữ liệu chỉ số:     8 byte cho mỗi chỉ số, chiều dài như đã chỉ định
   Dữ liệu nhật ký:       chiều dài như đã chỉ định
-
-{% endhighlight %}
+```
 
 
 #### Yêu cầu Đồng bộ hóa Snapshot
 
 Điều này chỉ được bao gồm trong một thông điệp InstallSnapshotRequest.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Chỉ số Nhật ký Cuối cùng:  8 byte integer
   Thuật ngữ Nhật ký Cuối cùng:   8 byte integer
   Độ dài dữ liệu Cấu hình: Tính bằng byte, số nguyên 4 byte
@@ -466,8 +413,7 @@ Chỉ số Nhật ký Cuối cùng:  8 byte integer
   Độ dài Dữ liệu:        Tính bằng byte, số nguyên 4 byte
   Dữ liệu:            chiều dài như đã chỉ định
   Hoàn Tất:         1 nếu hoàn tất, 0 nếu chưa hoàn tất (1 byte)
-
-{% endhighlight %}
+```
 
 
 ### Phản hồi
@@ -475,18 +421,14 @@ Chỉ số Nhật ký Cuối cùng:  8 byte integer
 Tất cả các phản hồi đều dài 26 byte, như sau.
 Tất cả các giá trị đều là big-endian không dấu.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Loại tin nhắn:   1 byte
   Nguồn:         ID, số nguyên 4 byte
   Đích:          Thông thường là ID đích thực (xem ghi chú), số nguyên 4 byte
   Thuật ngữ:     Thuật ngữ hiện tại, số nguyên 8 byte
   Chỉ số Tiếp theo:     Khởi đầu từ chỉ số nhật ký cuối cùng của nhà lãnh đạo + 1, số nguyên 8 byte
   Được chấp nhận:    1 nếu được chấp nhận, 0 nếu không được chấp nhận (xem ghi chú), 1 byte
-
-{% endhighlight %}
+```
 
 
 Ghi chú
@@ -513,7 +455,7 @@ Nhà xuất bản của Meta LS2 không nhất thiết phải là Nhà lãnh đ�
 
 ### Nội Dung Dữ Liệu Ứng Dụng
 
-Nội dung ứng dụng được mã hóa chuỗi [JSON] UTF-8,
+Nội dung ứng dụng được mã hóa chuỗi [JSON](https://json.org/) UTF-8,
 cho sự đơn giản và khả năng mở rộng.
 Đặc tả đầy đủ chưa được xác định.
 Mục tiêu là cung cấp đủ dữ liệu để viết một thuật toán để xác định router "tốt nhất"
@@ -655,20 +597,9 @@ Không có vấn đề tương thích ngược.
 
 ## Tài liệu
 
-.. [JRAFT]
-    https://github.com/datatechnology/jraft
-
-.. [JSON]
-    https://json.org/
-
-.. [RAFT]
-    https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf
-
-.. [RFC-2616]
-    https://tools.ietf.org/html/rfc2616
-
-.. [RFC-2617]
-    https://tools.ietf.org/html/rfc2617
-
-.. [WEBSOCKET]
-    https://en.wikipedia.org/wiki/WebSocket
+* [JRAFT](https://github.com/datatechnology/jraft)
+* [JSON](https://json.org/)
+* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RFC-2616](https://tools.ietf.org/html/rfc2616)
+* [RFC-2617](https://tools.ietf.org/html/rfc2617)
+* [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

@@ -11,7 +11,7 @@ toc: true
 
 ## Přehled
 
-Toto je specifikace pro wire protokol Garlic Farm, založeného na JRaft, jeho kódu "exts" pro implementaci přes TCP a jeho aplikaci "dmprinter" [JRAFT]_. JRaft je implementace Raft protokolu [RAFT]_.
+Toto je specifikace pro wire protokol Garlic Farm, založeného na JRaft, jeho kódu "exts" pro implementaci přes TCP a jeho aplikaci "dmprinter" [JRAFT](https://github.com/datatechnology/jraft). JRaft je implementace Raft protokolu [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
 
 Nepodařilo se nám najít žádnou implementaci s dokumentovaným wire protokolem. Nicméně, implementace JRaft je dost jednoduchá na to, abychom mohli prozkoumat kód a následně dokumentovat jeho protokol. Tento návrh je výsledkem tohoto úsilí.
 
@@ -53,7 +53,7 @@ Cíle:
 - Jednoduchý protokol tak, aby nebyla nutná plná implementace webového serveru
 - Kompatibilní s běžnými standardy, aby implementace mohly použít standardní knihovny, pokud je to žádoucí
 
-Použijeme handshake podobné websocketu [WEBSOCKET]_ a HTTP Digest autentizaci [RFC-2617]_. RFC 2617 Basic autentizace není podporována. Při proxyingu skrze HTTP proxy, komunikujte s proxy podle specifikace v [RFC-2616]_.
+Použijeme handshake podobné websocketu [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) a HTTP Digest autentizaci [RFC-2617](https://tools.ietf.org/html/rfc2617). RFC 2617 Basic autentizace není podporována. Při proxyingu skrze HTTP proxy, komunikujte s proxy podle specifikace v [RFC-2616](https://tools.ietf.org/html/rfc2616).
 
 Přihlašovací údaje
 ``````````````````
@@ -67,10 +67,7 @@ Vytvořitel pošle následující.
 
 Všechny řádky jsou ukončeny CRLF, jak požaduje HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -80,16 +77,15 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER je název clusteru (výchozí "farm")
   VERSION je verze Garlic Farm (aktuálně "1")
-
-{% endhighlight %}
+```
 
 
 HTTP Odpověď 1
 ```````````````
 
-Pokud cesta není správná, příjemce pošle standardní "HTTP/1.1 404 Not Found" odpověď, jak je popsáno v [RFC-2616]_.
+Pokud cesta není správná, příjemce pošle standardní "HTTP/1.1 404 Not Found" odpověď, jak je popsáno v [RFC-2616](https://tools.ietf.org/html/rfc2616).
 
-Pokud je cesta správná, příjemce pošle standardní "HTTP/1.1 401 Unauthorized" odpověď, obsahující WWW-Authenticate HTTP digest autentizační hlavičku, jak je v [RFC-2617]_.
+Pokud je cesta správná, příjemce pošle standardní "HTTP/1.1 401 Unauthorized" odpověď, obsahující WWW-Authenticate HTTP digest autentizační hlavičku, jak je v [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
 Obě strany pak uzavřou socket.
 
@@ -97,14 +93,11 @@ Obě strany pak uzavřou socket.
 HTTP Požadavek 2
 ```````````````
 
-Vytvořitel pošle následující, tak jak je uvedeno v [RFC-2617]_ a [WEBSOCKET]_.
+Vytvořitel pošle následující, tak jak je uvedeno v [RFC-2617](https://tools.ietf.org/html/rfc2617) a [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 Všechny řádky jsou ukončeny CRLF, jak požaduje HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -117,31 +110,26 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER je název clusteru (výchozí "farm")
   VERSION je verze Garlic Farm (aktuálně "1")
-
-{% endhighlight %}
+```
 
 
 HTTP Odpověď 2
 ```````````````
 
-Pokud autentizace není správná, příjemce pošle další standardní "HTTP/1.1 401 Unauthorized" odpověď, jak je uvedeno v [RFC-2617]_.
+Pokud autentizace není správná, příjemce pošle další standardní "HTTP/1.1 401 Unauthorized" odpověď, jak je uvedeno v [RFC-2617](https://tools.ietf.org/html/rfc2617).
 
-Pokud je autentizace správná, příjemce pošle následující odpověď, jak je v [WEBSOCKET]_.
+Pokud je autentizace správná, příjemce pošle následující odpověď, jak je v [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket).
 
 Všechny řádky jsou ukončeny CRLF, jak požaduje HTTP.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 HTTP/1.1 101 Switching Protocols
   Connection: Upgrade
   Upgrade: websocket
   (hlavičky Sec-Websocket-*)
   (jakékoliv jiné hlavičky jsou ignorovány)
   (prázdný řádek)
-
-{% endhighlight %}
+```
 
 Po přijetí zůstane socket otevřený. Protokol Raft, jak je definováno níže, začíná na stejném socketu.
 
@@ -191,10 +179,7 @@ InstallSnapshotResponse     17    Follower     Lídér               Raft Sekce 
 
 Po HTTP handshaku je pořadí ustanovení následující:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Nový server Alice          Náhodný Follower Bob
 
   ClientRequest   ------->
@@ -216,30 +201,22 @@ Nový server Alice          Náhodný Follower Bob
                        NEBO InstallSnapshotRequest
   SyncLogResponse  ------->
   NEBO InstallSnapshotResponse
-
-{% endhighlight %}
+```
 
 Sekvence odpojení:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Follower Alice              Lídér Charlie
 
   RemoveServerRequest   ------->
           <---------   RemoveServerResponse
           <---------   LeaveClusterRequest
   LeaveClusterResponse  ------->
-
-{% endhighlight %}
+```
 
 Sekvence voleb:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 Kandidát Alice             Follower Bob
 
   RequestVoteRequest   ------->
@@ -252,8 +229,7 @@ Kandidát Alice             Follower Bob
   AppendEntriesRequest   ------->
   (heartbeat)
           <---------   AppendEntriesResponse
-
-{% endhighlight %}
+```
 
 
 ### Definice
@@ -275,10 +251,7 @@ Hlavička požadavku
 
 Hlavička požadavku má 45 bytů, jak následuje. Všechny hodnoty jsou unsigned big-endian.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Typ zprávy:      1 byte
   Zdroj:           ID, 4 bye integer
   Cíl:             ID, 4 byte integer
@@ -288,8 +261,7 @@ Typ zprávy:      1 byte
   Commit Index:    8 byte integer
   Log entries velikost:  Celková velikost v bytech, 4 byte integer
   Log entries:     viz níže, celková délka jak je specifikována
-
-{% endhighlight %}
+```
 
 
 #### Poznámky
@@ -305,16 +277,12 @@ Logové záznamy
 
 Log obsahuje nula nebo více logových záznamů. Každý logový záznam je následující. Všechny hodnoty jsou unsigned big-endian.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Term:           8 byte integer
   Hodnota typ:     1 byte
   Velikost záznamu:  V bytech, 4 byte integer
   Záznam:          délka jak specifikována
-
-{% endhighlight %}
+```
 
 
 Obsah logu
@@ -343,18 +311,14 @@ Aplikační obsah je kódován UTF-8 [JSON](https://www.json.org/). Viz sekce Ap
 To je používáno pro lídra k serializaci nové konfigurace clusteru a replikaci na peeru. Obsahuje nula nebo více konfigurací Clusterového serveru.
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Index logu:  8 byte integer
   Poslední index Logu:  8 byte integer
   Data Clusterového serveru pro každý server:
     ID:                4 byte integer
     Délka dat Endpointu:  V bytech, 4 byte integer
     Data Endpointu:     ASCII string ve formátu "tcp://localhost:9001", délka jak specifikována
-
-{% endhighlight %}
+```
 
 
 #### Clusterový server
@@ -363,26 +327,18 @@ Konfigurační informace pro server v clusteru. To je zahrnuto pouze ve zprávě
 
 Když je používáno ve zprávě AddServerRequest:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID:                4 byte integer
   Délka dat Endpointu:  V bytech, 4 byte integer
   Data Endpointu:     ASCII string ve formátu "tcp://localhost:9001", délka jak specifikována
-
-{% endhighlight %}
+```
 
 
 Když je používáno ve zprávě RemoveServerRequest:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID:                4 byte integer
-
-{% endhighlight %}
+```
 
 
 #### LogPack
@@ -392,16 +348,12 @@ To je zahrnuto pouze ve zprávě SyncLogRequest.
 Následující je před přenosem gzipped:
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Délka dat indexu: V bytech, 4 byte integer
   Délka logových dat:   V bytech, 4 byte integer
   Data indexu:     8 byte pro každý index, délka jak specifikována
   Logová data:       délka jak specifikována
-
-{% endhighlight %}
+```
 
 
 
@@ -409,10 +361,7 @@ Délka dat indexu: V bytech, 4 byte integer
 
 To je zahrnuto pouze ve zprávě InstallSnapshotRequest.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Poslední index logu:  8 byte integer
   Poslední termín Logu:   8 byte integer
   Délka konfiguračních dat: V bytech, 4 byte integer
@@ -421,8 +370,7 @@ Poslední index logu:  8 byte integer
   Délka dat:        V bytech, 4 byte integer
   Data:            délka jak specifikována
   Je dokončeno:         1 pokud je dokončeno, 0 pokud není (1 byte)
-
-{% endhighlight %}
+```
 
 
 
@@ -431,18 +379,14 @@ Poslední index logu:  8 byte integer
 
 Všechny odpovědi mají 26 bytů, jak následuje. Všechny hodnoty jsou unsigned big-endian.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 Typ zprávy:   1 byte
   Zdroj:         ID, 4 byte integer
   Cíl:           Obvykle aktuální ID cíle (viz poznámky), 4 byte integer
   Term:          Aktuální termín, 8 byte integer
   Další index:     Inicializováno na poslední index logu lídra + 1, 8 byte integer
   Je přijato:    1 pokud přijato, 0 pokud ne (viz poznámky), 1 byte
-
-{% endhighlight %}
+```
 
 
 Poznámky
@@ -587,20 +531,9 @@ Atomix je příliš velký a neumožňuje přizpůsobení pro nás, abychom mohl
 
 ## Odkazy
 
-.. [JRAFT]
-    https://github.com/datatechnology/jraft
-
-.. [JSON]
-    https://json.org/
-
-.. [RAFT]
-    https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf
-
-.. [RFC-2616]
-    https://tools.ietf.org/html/rfc2616
-
-.. [RFC-2617]
-    https://tools.ietf.org/html/rfc2617
-
-.. [WEBSOCKET]
-    https://en.wikipedia.org/wiki/WebSocket
+* [JRAFT](https://github.com/datatechnology/jraft)
+* [JSON](https://json.org/)
+* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RFC-2616](https://tools.ietf.org/html/rfc2616)
+* [RFC-2617](https://tools.ietf.org/html/rfc2617)
+* [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

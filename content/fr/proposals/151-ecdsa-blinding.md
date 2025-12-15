@@ -69,8 +69,8 @@ HKDF(salt, ikm, info, n)
     de longueur 32 octets, et une valeur 'info' spécifique au contexte, et produit une sortie
     de n octets appropriée pour être utilisée comme matériel clé.
 
-    Utilisez HKDF comme spécifié dans [RFC-5869]_, en utilisant la fonction de hachage HMAC SHA-256
-    comme spécifié dans [RFC-2104]_. Cela signifie que SALT_LEN est de 32 octets max.
+    Utilisez HKDF comme spécifié dans [RFC-5869](https://tools.ietf.org/html/rfc5869), en utilisant la fonction de hachage HMAC SHA-256
+    comme spécifié dans [RFC-2104](https://tools.ietf.org/html/rfc2104). Cela signifie que SALT_LEN est de 32 octets max.
 
 
 ### Calculs d'obfuscation
@@ -80,9 +80,7 @@ Le secret alpha et les clés obfusquées sont calculés comme suit.
 
 GENERATE_ALPHA(destination, date, secret), pour toutes les parties :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // secret est optionnel, sinon de longueur zéro
@@ -95,14 +93,12 @@ GENERATE_ALPHA(destination, date, secret), pour toutes les parties :
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // traiter seed comme une valeur de 64 octets en big endian
   alpha = seed mod L
-{% endhighlight %}
+```
 
 
 BLIND_PRIVKEY(), pour le propriétaire publiant le leaseset :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -110,21 +106,19 @@ BLIND_PRIVKEY(), pour le propriétaire publiant le leaseset :
   // Addition en utilisant l'arithmétique scalaire
   clé privée de signature obfusquée = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   clé publique de signature obfusquée = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 
 BLIND_PUBKEY(), pour les clients récupérant le leaseset :
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = clé publique de signature de la destination
   // Addition en utilisant les éléments du groupe (points sur la courbe)
   clé publique obfusquée = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 
 Les deux méthodes de calcul de A' donnent le même résultat, comme requis.
@@ -137,8 +131,5 @@ Soit l'adresse b33 sera plus longue, soit la clé publique peut être stockée s
 
 ## Références
 
-.. [RFC-2104]
-    https://tools.ietf.org/html/rfc2104
-
-.. [RFC-5869]
-    https://tools.ietf.org/html/rfc5869
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)

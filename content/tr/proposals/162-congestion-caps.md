@@ -54,12 +54,10 @@ Tıkanıklık durumu, birkaç dakika boyunca koşulların ortalamasına dayanmal
 
 ## Spesifikasyon
 
-[NETDB]'yi aşağıdaki gibi güncelleyin:
+[NETDB](/docs/how/network-database/)'yi aşağıdaki gibi güncelleyin:
 
 
-.. raw:: html
-
-  {% highlight %}
+```text
 D: Orta düzeyde tıkanıklık veya düşük performanslı bir yönlendirici (örneğin Android, Raspberry Pi)
      Diğer yönlendiriciler bu yönlendiricinin
      görünen tünel kapasitesini profilinde düşürmeli veya sınırlamalıdır.
@@ -73,7 +71,7 @@ D: Orta düzeyde tıkanıklık veya düşük performanslı bir yönlendirici (ö
   G: Bu yönlendirici geçici veya kalıcı olarak tüm tünelleri reddediyor.
      Bu yönlendirici üzerinden tünel inşa etmeye çalışmayın,
      yeni bir RI 'G'siz alınana kadar.
-{% endhighlight %}
+```
 
 Tutarlılık için, uygulamalar herhangi bir tıkanıklık sınırını
 sonunda (R veya U'dan sonra) eklemelidir.
@@ -133,5 +131,4 @@ yayımlanan sınırlar üzerinde 0.9.59'da (Temmuz 2023) işlem yapılacak.
 
 ## Referanslar
 
-.. [NETDB]
-    {{ site_url('docs/how/network-database', True) }}
+* [NETDB](/docs/how/network-database/)

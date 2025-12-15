@@ -11,7 +11,7 @@ toc: true
 
 ## 개요
 
-이 문서는 JRaft 및 TCP 위의 "exts" 코드, "dmprinter" 샘플 애플리케이션 [JRAFT]_를 기반으로 하는 Garlic Farm 와이어 프로토콜의 명세서입니다. JRaft는 Raft 프로토콜의 구현체입니다 [RAFT]_.
+이 문서는 JRaft 및 TCP 위의 "exts" 코드, "dmprinter" 샘플 애플리케이션 [JRAFT](https://github.com/datatechnology/jraft)를 기반으로 하는 Garlic Farm 와이어 프로토콜의 명세서입니다. JRaft는 Raft 프로토콜의 구현체입니다 [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf).
 
 문서화된 와이어 프로토콜을 가진 구현체를 찾을 수 없었습니다. 그러나 JRaft 구현체는 코드 검토를 통해 그 프로토콜을 문서화할 수 있을 정도로 충분히 단순합니다. 이 제안서는 그 노력의 결과입니다.
 
@@ -54,7 +54,7 @@ JRaft에 의해 정의되지 않음.
 - 완전한 웹 서버 구현이 필요 없는 간단한 프로토콜
 - 일반적인 표준과 호환 가능하여, 원하는 경우 구현체에서 표준 라이브러리를 사용할 수 있음
 
-우리는 websocket 유사한 핸드셰이크 [WEBSOCKET]_와 HTTP Digest 인증을 사용할 것입니다 [RFC-2617]_. RFC 2617의 기본 인증은 지원하지 않습니다. HTTP 프록시를 통해 프록시 되는 경우 [RFC-2616]_에 명시된 대로 프록시와 통신합니다.
+우리는 websocket 유사한 핸드셰이크 [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)와 HTTP Digest 인증을 사용할 것입니다 [RFC-2617](https://tools.ietf.org/html/rfc2617). RFC 2617의 기본 인증은 지원하지 않습니다. HTTP 프록시를 통해 프록시 되는 경우 [RFC-2616](https://tools.ietf.org/html/rfc2616)에 명시된 대로 프록시와 통신합니다.
 
 크리덴셜
 ```````````
@@ -69,10 +69,7 @@ HTTP 요청 1
 
 모든 라인은 HTTP 요구 사항에 따라 CRLF로 종료됩니다.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -82,16 +79,15 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER는 클러스터의 이름입니다 (기본값 "farm")
   VERSION은 Garlic Farm 버전입니다 (현재 "1")
-
-{% endhighlight %}
+```
 
 
 HTTP 응답 1
 `````````````
 
-경로가 정확하지 않으면 수신자는 [RFC-2616]_에 명시된 대로 표준 "HTTP/1.1 404 Not Found" 응답을 전송할 것입니다.
+경로가 정확하지 않으면 수신자는 [RFC-2616](https://tools.ietf.org/html/rfc2616)에 명시된 대로 표준 "HTTP/1.1 404 Not Found" 응답을 전송할 것입니다.
 
-경로가 정확하면 수신자는 [RFC-2617]_에 명시된 대로 WWW-Authenticate HTTP 다이제스트 인증 헤더를 포함한 표준 "HTTP/1.1 401 Unauthorized" 응답을 전송할 것입니다.
+경로가 정확하면 수신자는 [RFC-2617](https://tools.ietf.org/html/rfc2617)에 명시된 대로 WWW-Authenticate HTTP 다이제스트 인증 헤더를 포함한 표준 "HTTP/1.1 401 Unauthorized" 응답을 전송할 것입니다.
 
 양쪽 당사자는 소켓을 닫습니다.
 
@@ -99,14 +95,11 @@ HTTP 응답 1
 HTTP 요청 2
 ````````````
 
-발신자는 [RFC-2617]_ 와 [WEBSOCKET]_ 에서처럼 다음을 전송합니다.
+발신자는 [RFC-2617](https://tools.ietf.org/html/rfc2617) 와 [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket) 에서처럼 다음을 전송합니다.
 
 모든 라인은 HTTP 요구 사항에 따라 CRLF로 종료됩니다.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
   Host: (ip):(port)
   Cache-Control: no-cache
@@ -119,31 +112,26 @@ GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
 
   CLUSTER는 클러스터의 이름입니다 (기본값 "farm")
   VERSION은 Garlic Farm 버전입니다 (현재 "1")
-
-{% endhighlight %}
+```
 
 
 HTTP 응답 2
 `````````````
 
-인증이 정확하지 않으면 수신자는 [RFC-2617]_에 명시된 대로 또 다른 표준 "HTTP/1.1 401 Unauthorized" 응답을 전송할 것입니다.
+인증이 정확하지 않으면 수신자는 [RFC-2617](https://tools.ietf.org/html/rfc2617)에 명시된 대로 또 다른 표준 "HTTP/1.1 401 Unauthorized" 응답을 전송할 것입니다.
 
-인증이 정확하다면, 수신자는 [WEBSOCKET]_에 명시된 대로 다음 응답을 전송합니다.
+인증이 정확하다면, 수신자는 [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)에 명시된 대로 다음 응답을 전송합니다.
 
 모든 라인은 HTTP 요구 사항에 따라 CRLF로 종료됩니다.
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 HTTP/1.1 101 Switching Protocols
   Connection: Upgrade
   Upgrade: websocket
   (Sec-Websocket-* 헤더)
   (여타 헤더는 무시됩니다)
   (빈 줄)
-
-{% endhighlight %}
+```
 
 이후 이러한 응답이 수신되면 소켓은 열린 상태로 유지됩니다. 같은 소켓에서 아래에 정의된 Raft 프로토콜이 시작됩니다.
 
@@ -199,10 +187,7 @@ InstallSnapshotResponse     17    팔로워        리더                  Raft 
 
 HTTP 핸드셰이크 후, 설정 순서는 다음과 같습니다:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 새 서버 Alice              랜덤 팔로워 Bob
 
   ClientRequest   ------->
@@ -224,30 +209,22 @@ HTTP 핸드셰이크 후, 설정 순서는 다음과 같습니다:
                        또는 InstallSnapshotRequest
   SyncLogResponse  ------->
   또는 InstallSnapshotResponse
-
-{% endhighlight %}
+```
 
 연결 해제 순서:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 팔로워 Alice              리더 Charlie
 
   RemoveServerRequest   ------->
           <---------   RemoveServerResponse
           <---------   LeaveClusterRequest
   LeaveClusterResponse  ------->
-
-{% endhighlight %}
+```
 
 선거 순서:
 
-.. raw:: html
-
-  {% highlight %}
-
+```text
 후보 Alice               팔로워 Bob
 
   RequestVoteRequest   ------->
@@ -260,8 +237,7 @@ HTTP 핸드셰이크 후, 설정 순서는 다음과 같습니다:
   AppendEntriesRequest   ------->
   (하트비트)
           <---------   AppendEntriesResponse
-
-{% endhighlight %}
+```
 
 
 ### 정의
@@ -284,10 +260,7 @@ HTTP 핸드셰이크 후, 설정 순서는 다음과 같습니다:
 
 요청 헤더는 45 바이트로 구성됩니다. 모든 값은 부호 없는 빅 엔디안입니다.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 메시지 유형:      1 바이트
   소스:            ID, 4 바이트 정수
   목적지:           ID, 4 바이트 정수
@@ -297,8 +270,7 @@ HTTP 핸드셰이크 후, 설정 순서는 다음과 같습니다:
   커밋 색인:      8 바이트 정수
   로그 항목 크기:  총 크기(바이트), 4 바이트 정수
   로그 항목:       아래 참조, 지정된 총 길이
-
-{% endhighlight %}
+```
 
 
 #### 참고사항
@@ -317,16 +289,12 @@ AppendEntriesRequest에서는, 로그 항목 크기가 0일 때,
 로그에는 0개 이상의 로그 항목이 포함되어 있습니다.
 각 로그 항목은 다음과 같습니다. 모든 값은 부호 없는 빅 엔디안입니다.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 용어:           8 바이트 정수
   값 유형:     1 바이트
   항목 크기:     바이트 단위, 4 바이트 정수
   항목:          지정된 길이
-
-{% endhighlight %}
+```
 
 
 로그 내용
@@ -357,18 +325,14 @@ AppendEntriesRequest에서는, 로그 항목 크기가 0일 때,
 0개 이상의 ClusterServer 구성을 포함합니다.
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 로그 색인:  8 바이트 정수
   마지막 로그 색인:  8 바이트 정수
   각 서버의 ClusterServer 데이터:
     ID:                4 바이트 정수
     엔드포인트 데이터 길이: 바이트 단위, 4 바이트 정수
     엔드포인트 데이터:  "tcp://localhost:9001" 형식의 ASCII 문자열, 지정된 길이
-
-{% endhighlight %}
+```
 
 
 #### 클러스터 서버
@@ -378,26 +342,18 @@ AppendEntriesRequest에서는, 로그 항목 크기가 0일 때,
 
 AddServerRequest 메시지에서 사용될 때:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID:                4 바이트 정수
   엔드포인트 데이터 길이: 바이트 단위, 4 바이트 정수
   엔드포인트 데이터:     "tcp://localhost:9001" 형식의 ASCII 문자열, 지정된 길이
-
-{% endhighlight %}
+```
 
 
 RemoveServerRequest 메시지에서 사용될 때:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 ID:                4 바이트 정수
-
-{% endhighlight %}
+```
 
 
 #### 로그팩
@@ -407,16 +363,12 @@ ID:                4 바이트 정수
 다음은 전송 전에 gzip으로 압축됩니다:
 
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 색인 데이터 길이: 바이트 단위, 4 바이트 정수
   로그 데이터 길이:   바이트 단위, 4 바이트 정수
   색인 데이터:     각 색인에 대해 8 바이트, 지정된 길이
   로그 데이터:       지정된 길이
-
-{% endhighlight %}
+```
 
 
 
@@ -424,10 +376,7 @@ ID:                4 바이트 정수
 
 이것은 InstallSnapshotRequest 메시지에만 포함됩니다.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 마지막 로그 색인:  8 바이트 정수
   마지막 로그 용어:   8 바이트 정수
   구성 데이터 길이: 바이트 단위, 4 바이트 정수
@@ -436,8 +385,7 @@ ID:                4 바이트 정수
   데이터 길이:        바이트 단위, 4 바이트 정수
   데이터:            지정된 길이
   완료 여부:         완료되었으면 1, 그렇지 않으면 0 (1 바이트)
-
-{% endhighlight %}
+```
 
 
 
@@ -446,18 +394,14 @@ ID:                4 바이트 정수
 
 모든 응답은 26 바이트이며, 다음과 같습니다. 모든 값은 부호 없는 빅 엔디안입니다.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
+```dataspec
 메시지 유형:   1 바이트
   소스:         ID, 4 바이트 정수
   목적지:    보통 실제 목적지 ID (참고사항 참조), 4 바이트 정수
   용어:           현재 용어, 8 바이트 정수
   다음 색인:     리더의 마지막 로그 색인 + 1로 초기화됨, 8 바이트 정수
   수락 여부:    수락되면 1, 그렇지 않으면 0 (참고사항 참조), 1 바이트
-
-{% endhighlight %}
+```
 
 
 참고사항
@@ -482,7 +426,7 @@ Meta LS2의 게시자는 반드시 Raft 리더일 필요는 없습니다.
 
 ### 애플리케이션 데이터 내용
 
-애플리케이션 내용은 간단함과 확장 가능성을 위해 UTF-8로 인코딩된 [JSON]입니다.
+애플리케이션 내용은 간단함과 확장 가능성을 위해 UTF-8로 인코딩된 [JSON](https://json.org/)입니다.
 전체 명세서는 TBD입니다.
 목표는 Meta LS2를 게시할 "최고의" 라우터를 결정할 수 있는 데이터를 제공하고,
 게시자가 Meta LS2의 대상에 가중치를 부여할 충분한 정보를 갖도록 하는 것입니다.
@@ -622,20 +566,9 @@ Atomix는 너무 크고 우리가 I2P를 통해 프로토콜을 라우팅할 수
 
 ## 참고 문헌
 
-.. [JRAFT]
-    https://github.com/datatechnology/jraft
-
-.. [JSON]
-    https://json.org/
-
-.. [RAFT]
-    https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf
-
-.. [RFC-2616]
-    https://tools.ietf.org/html/rfc2616
-
-.. [RFC-2617]
-    https://tools.ietf.org/html/rfc2617
-
-.. [WEBSOCKET]
-    https://en.wikipedia.org/wiki/WebSocket
+* [JRAFT](https://github.com/datatechnology/jraft)
+* [JSON](https://json.org/)
+* [RAFT](https://ramcloud.stanford.edu/wiki/download/attachments/11370504/raft.pdf)
+* [RFC-2616](https://tools.ietf.org/html/rfc2616)
+* [RFC-2617](https://tools.ietf.org/html/rfc2617)
+* [WEBSOCKET](https://en.wikipedia.org/wiki/WebSocket)

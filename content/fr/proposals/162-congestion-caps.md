@@ -55,12 +55,10 @@ sur plusieurs minutes, pas une mesure instantanée.
 
 ## Spécification
 
-Mettre à jour [NETDB]_ comme suit :
+Mettre à jour [NETDB](/docs/how/network-database/) comme suit :
 
 
-.. raw:: html
-
-  {% highlight %}
+```text
 D : Congestion moyenne, ou un routeur à faibles performances (par exemple Android, Raspberry Pi)
      Les autres routeurs devraient rétrograder ou limiter
      la capacité apparente de tunnel de ce routeur dans le profil.
@@ -74,7 +72,7 @@ D : Congestion moyenne, ou un routeur à faibles performances (par exemple Andro
   G : Ce routeur rejette temporairement ou définitivement tous les tunnels.
      Ne pas tenter de construire un tunnel via ce routeur,
      jusqu'à ce qu'un nouveau RI soit reçu sans le 'G'.
-{% endhighlight %}
+```
 
 Pour la cohérence, les implémentations devraient ajouter tout cap de congestion
 à la fin (après R ou U).
@@ -132,5 +130,4 @@ agir sur les caps publiés dans 0.9.59 (juillet 2023).
 
 ## Références
 
-.. [NETDB]
-    {{ site_url('docs/how/network-database', True) }}
+* [NETDB](/docs/how/network-database/)

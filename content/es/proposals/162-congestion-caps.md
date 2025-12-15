@@ -55,12 +55,10 @@ durante varios minutos, no en una medición instantánea.
 
 ## Especificación
 
-Actualizar [NETDB]_ como sigue:
+Actualizar [NETDB](/docs/how/network-database/) como sigue:
 
 
-.. raw:: html
-
-  {% highlight %}
+```text
 D: Congestión media, o un router de bajo rendimiento (por ejemplo Android, Raspberry Pi)
      Otros routers deben degradar o limitar la aparente capacidad de túnel de este router en el perfil.
 
@@ -73,7 +71,7 @@ D: Congestión media, o un router de bajo rendimiento (por ejemplo Android, Rasp
   G: Este router está rechazando temporal o permanentemente todos los túneles.
      No intentar construir un túnel a través de este router,
      hasta que se reciba un nuevo RI sin la 'G'.
-{% endhighlight %}
+```
 
 Para consistencia, las implementaciones deben añadir cualquier capacidad de congestión
 al final (después de R o U).
@@ -131,5 +129,4 @@ actuar sobre capacidades publicadas en 0.9.59 (julio 2023).
 
 ## Referencias
 
-.. [NETDB]
-    {{ site_url('docs/how/network-database', True) }}
+* [NETDB](/docs/how/network-database/)

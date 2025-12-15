@@ -67,7 +67,7 @@ HKDF(salt, ikm, info, n)
     암호학적 키 파생 함수로, 일부 입력 키 자료 ikm (좋은 엔트로피가 필요하지만 균일한 랜덤 문자열일 필요는 없음), 
     길이 32바이트의 소금, 그리고 컨텍스트별 'info' 값을 받아 n 바이트의 출력을 생성합니다. 이 출력은 키 자료로 사용하기 적합합니다.
 
-    [RFC-5869]_에 명시된 대로 사용하고, HMAC 해시 함수는 [RFC-2104]_에 명시된 SHA-256을 사용합니다. 이는 SALT_LEN이 최대 32바이트임을 의미합니다.
+    [RFC-5869](https://tools.ietf.org/html/rfc5869)에 명시된 대로 사용하고, HMAC 해시 함수는 [RFC-2104](https://tools.ietf.org/html/rfc2104)에 명시된 SHA-256을 사용합니다. 이는 SALT_LEN이 최대 32바이트임을 의미합니다.
 
 
 ### 블라인딩 계산
@@ -77,9 +77,7 @@ HKDF(salt, ikm, info, n)
 
 모든 당사자의 경우 GENERATE_ALPHA(destination, date, secret):
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // GENERATE_ALPHA(destination, date, secret)
 
   // secret는 선택 사항이며, 없을 경우 길이는 0
@@ -92,14 +90,12 @@ HKDF(salt, ikm, info, n)
   seed = HKDF(H("I2PGenerateAlpha", keydata), datestring || secret, "i2pblinding1", 64)
   // seed를 64바이트 big-endian 값으로 처리
   alpha = seed mod L
-{% endhighlight %}
+```
 
 
 임대 세트를 게시하는 소유자를 위한 BLIND_PRIVKEY():
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PRIVKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
@@ -107,21 +103,19 @@ HKDF(salt, ikm, info, n)
   // 스칼라 산술을 사용한 덧셈
   블라인드 처리된 서명 비공개 키 = a' = BLIND_PRIVKEY(a, alpha) = (a + alpha) mod L
   블라인드 처리된 서명 공개 키 = A' = DERIVE_PUBLIC(a')
-{% endhighlight %}
+```
 
 
 임대 세트를 검색하는 클라이언트를 위한 BLIND_PUBKEY():
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 // BLIND_PUBKEY()
 
   alpha = GENERATE_ALPHA(destination, date, secret)
   A = 목적지의 서명 공개 키
   // 그룹 요소를 사용한 덧셈 (곡선 위의 점들)
   블라인드 처리된 공개 키 = A' = BLIND_PUBKEY(A, alpha) = A + DERIVE_PUBLIC(alpha)
-{% endhighlight %}
+```
 
 
 A' 계산의 두 방법 모두 요구대로 동일한 결과를 생성합니다.
@@ -134,8 +128,5 @@ ECDSA의 공개 키는 (X,Y) 쌍이므로, 예를 들어 P256의 경우에는 Re
 
 ## 참고 자료
 
-.. [RFC-2104]
-    https://tools.ietf.org/html/rfc2104
-
-.. [RFC-5869]
-    https://tools.ietf.org/html/rfc5869
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [RFC-5869](https://tools.ietf.org/html/rfc5869)

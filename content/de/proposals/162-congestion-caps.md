@@ -55,12 +55,10 @@ Der Stauzustand sollte auf einem Durchschnitt der Bedingungen
 
 ## Spezifikation
 
-Aktualisieren Sie [NETDB]_ wie folgt:
+Aktualisieren Sie [NETDB](/docs/how/network-database/) wie folgt:
 
 
-.. raw:: html
-
-  {% highlight %}
+```text
 D: Mittlerer Stau, oder ein leistungsschwacher Router (z.B. Android, Raspberry Pi)
      Andere Router sollten diese Router in ihrem Profil als mit eingeschränkter
      Tunnelkapazität betrachten.
@@ -74,7 +72,7 @@ D: Mittlerer Stau, oder ein leistungsschwacher Router (z.B. Android, Raspberry P
   G: Dieser Router lehnt vorübergehend oder dauerhaft alle Tunnel ab.
      Versuchen Sie nicht, einen Tunnel über diesen Router zu bauen,
      bis ein neues RI ohne 'G' empfangen wird.
-{% endhighlight %}
+```
 
 Für Konsistenz sollten Implementierungen jedes Stau-Cap
 am Ende hinzufügen (nach R oder U).
@@ -132,5 +130,4 @@ auf veröffentlichte Caps in 0.9.59 (Juli 2023) reagieren.
 
 ## Verweise
 
-.. [NETDB]
-    {{ site_url('docs/how/network-database', True) }}
+* [NETDB](/docs/how/network-database/)

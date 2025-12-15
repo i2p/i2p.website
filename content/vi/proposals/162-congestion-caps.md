@@ -55,12 +55,10 @@ trong vài phút, chứ không phải chỉ số đo lường tức thì.
 
 ## Đặc tả
 
-Cập nhật [NETDB]_ như sau:
+Cập nhật [NETDB](/docs/how/network-database/) như sau:
 
 
-.. raw:: html
-
-  {% highlight %}
+```text
 D: Tắc nghẽn trung bình, hoặc router hiệu suất thấp (ví dụ: Android, Raspberry Pi)
      Các router khác nên hạ cấp hoặc giới hạn dung lượng
      đường hầm hiện hữu trong hồ sơ của router này.
@@ -74,7 +72,7 @@ D: Tắc nghẽn trung bình, hoặc router hiệu suất thấp (ví dụ: Andr
   G: Router này đang từ chối tạm thời hoặc vĩnh viễn tất cả các đường hầm.
      Không cố gắng xây dựng đường hầm thông qua router này,
      cho đến khi nhận được RI mới không có 'G'.
-{% endhighlight %}
+```
 
 Để đồng nhất, các triển khai nên thêm bất kỳ giới hạn tắc nghẽn nào
 vào cuối (sau R hoặc U).
@@ -132,5 +130,4 @@ thực hiện theo giới hạn đã công bố trong 0.9.59 (Tháng 7 năm 2023
 
 ## Tham khảo
 
-.. [NETDB]
-    {{ site_url('docs/how/network-database', True) }}
+* [NETDB](/docs/how/network-database/)
