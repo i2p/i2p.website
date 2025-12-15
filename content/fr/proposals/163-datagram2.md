@@ -21,13 +21,13 @@ Vérifiez la documentation de l'implémentation pour le statut.
 
 ## Vue d'ensemble
 
-Extrait de [Prop123]_ en tant que proposition distincte.
+Extrait de [Prop123](/proposals/123-new-netdb-entries/) en tant que proposition distincte.
 
 Les signatures hors ligne ne peuvent pas être vérifiées dans le traitement des datagrammes réadmettables.
 Nécessite un indicateur pour indiquer une signature hors ligne mais il n'y a pas de place pour mettre un indicateur.
 
 Nécessitera un tout nouveau numéro et format de protocole I2CP,
-à ajouter à la spécification [DATAGRAMS]_.
+à ajouter à la spécification [DATAGRAMS](/docs/api/datagrams/).
 Appelons-le "Datagram2".
 
 
@@ -55,21 +55,19 @@ Restant du travail sur LS2 autrement complété en 2019.
 
 La première application à utiliser Datagram2 devrait être
 les annonces UDP de bittorrent, telles qu'implémentées dans i2psnark et zzzot,
-voir [Prop160]_.
+voir [Prop160](/proposals/160-udp-trackers/).
 
 
 ## Spécification des datagrammes réadmettables
 
 À titre de référence,
 ce qui suit est un examen de la spécification des datagrammes réadmettables,
-copié de [Datagrams]_.
+copié de [Datagrams](/docs/api/datagrams/).
 Le numéro de protocole I2CP standard pour les datagrammes réadmettables est PROTO_DATAGRAM (17).
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
-  | de                                    |
+  | from                                  |
   +                                       +
   |                                       |
   ~                                       ~
@@ -89,11 +87,11 @@ Le numéro de protocole I2CP standard pour les datagrammes réadmettables est PR
   +                                       +
   |                                       |
   +----+----+----+----+----+----+----+----+
-  | charge utile...
+  | payload...
   +----+----+----+----//
 
 
-  de :: un `Destination`
+  from :: un `Destination`
           longueur : 387+ octets
           L'initiateur et le signataire du datagramme
 
@@ -106,11 +104,11 @@ Le numéro de protocole I2CP standard pour les datagrammes réadmettables est PR
                   La `Signature` de la charge utile.
                La signature peut être vérifiée par la clé publique de signature de $from
 
-  charge utile ::  Les données
+  payload ::  Les données
               Longueur : de 0 à environ 31,5 Ko (voir notes)
 
   Longueur totale : Longueur de la charge utile + 423+
-{% endhighlight %}
+```
 
 
 
@@ -124,9 +122,9 @@ Le numéro de protocole I2CP standard pour les datagrammes réadmettables est PR
   la vérification de la signature échoue si interprétée comme datagramme réadmettable ou streaming.
   Cela est accompli en déplaçant la signature après la charge utile,
   et en incluant le hachage de destination dans la fonction de signature.
-- Ajouter la prévention du replay pour les datagrammes, comme cela a été fait dans [Prop164]_ pour le streaming.
+- Ajouter la prévention du replay pour les datagrammes, comme cela a été fait dans [Prop164](/proposals/164-streaming/) pour le streaming.
 - Ajouter une section pour les options arbitraires
-- Réutiliser le format de signature hors ligne de [Common]_ et [Streaming]_.
+- Réutiliser le format de signature hors ligne de [Common](/docs/specs/common-structures/) et [Streaming](/docs/specs/streaming/).
 - La section de signature hors ligne doit être avant les sections
   de charge utile et de signature de longueur variable, car elle spécifie la longueur
   de la signature.
@@ -137,37 +135,35 @@ Le numéro de protocole I2CP standard pour les datagrammes réadmettables est PR
 ### Protocole
 
 Le nouveau numéro de protocole I2CP pour Datagram2 est 19.
-Ajoutez-le en tant que PROTO_DATAGRAM2 à [I2CP]_.
+Ajoutez-le en tant que PROTO_DATAGRAM2 à [I2CP](/docs/protocol/i2cp/).
 
 Le nouveau numéro de protocole I2CP pour Datagram3 est 20.
-Ajoutez-le en tant que PROTO_DATAGRAM2 à [I2CP]_.
+Ajoutez-le en tant que PROTO_DATAGRAM2 à [I2CP](/docs/protocol/i2cp/).
 
 
 ### Format Datagram2
 
-Ajoutez Datagram2 à [DATAGRAMS]_ comme suit :
+Ajoutez Datagram2 à [DATAGRAMS](/docs/api/datagrams/) comme suit :
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
-  ~            de                         ~
+  ~            from                       ~
   ~                                       ~
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |  drapeaux  |     options (optionnelles)|
+  |  flags  |     options (optional)      |
   +----+----+                             +
   ~                                       ~
   ~                                       ~
   +----+----+----+----+----+----+----+----+
   |                                       |
-  ~     signature_hors_ligne (optionnelle)  ~
-  ~   expire, type_sig, clé_publique, sig_hors  ~
+  ~     offline_signature (optional)      ~
+  ~   expires, sigtype, pubkey, offsig    ~
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
-  ~            charge utile               ~
+  ~            payload                    ~
   ~                                       ~
   |                                       |
   +----+----+----+----+----+----+----+----+
@@ -177,11 +173,11 @@ Ajoutez Datagram2 à [DATAGRAMS]_ comme suit :
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-  de :: un `Destination`
+  from :: un `Destination`
           longueur : 387+ octets
           L'initiateur et (sauf signature hors ligne) signataire du datagramme
 
-  drapeaux :: (2 octets)
+  flags :: (2 octets)
            Ordre des bits : 15 14 ... 3 2 1 0
            Bits 3-0 : Version : 0x02 (0 0 1 0)
            Bit 4 : Si 0, pas d'options; si 1, mappage des options inclus
@@ -192,27 +188,27 @@ Ajoutez Datagram2 à [DATAGRAMS]_ comme suit :
            Si le drapeau indique que des options sont présentes, un `Mapping`
            contenant des options de texte arbitraires
 
-  signature_hors_ligne ::
+  offline_signature ::
                Si le drapeau indique des clés hors ligne, la section de signature hors ligne,
                comme spécifié dans la spécification des structures communes,
                avec les 4 champs suivants. Longueur : varie selon les types de sig en ligne et hors ligne, typiquement 102 octets pour Ed25519
                Cette section peut, et devrait, être générée hors ligne.
 
-    expire :: Horodatage d'expiration
+    expires :: Horodatage d'expiration
                (4 octets, big endian, secondes depuis l'époque, se réinitialise en 2106)
 
-    type_sig :: Type de sig. transitoire (2 octets, big endian)
+    sigtype :: Type de sig. transitoire (2 octets, big endian)
 
-    clé_publique :: Clé publique de signature transitoire (longueur selon le type de sig),
+    pubkey :: Clé publique de signature transitoire (longueur selon le type de sig),
               typiquement 32 octets pour le type de sig Ed25519.
 
-    sig_hors :: une `Signature`
+    offsig :: une `Signature`
               Signature du timestamp d'expiration, du type de sig transitoire,
               et clé publique, par la clé publique de destination,
               longueur : 40+ octets, comme impliqué par le type de Signature, typiquement
               64 octets pour le type de sig Ed25519.
 
-  charge utile ::  Les données
+  payload ::  Les données
               Longueur : de 0 à environ 61 Ko (voir notes)
 
   signature :: une `Signature`
@@ -226,25 +222,25 @@ Ajoutez Datagram2 à [DATAGRAMS]_ comme suit :
                (si pas de signature hors ligne) ou la clé publique transitoire
                (si signé hors ligne)
 
-{% endhighlight %}
+```
 
 Longueur totale : minimum 433 + longueur de charge utile;
 longueur typique pour les expéditeurs X25519 et sans signatures hors ligne :
 457 + longueur de charge utile.
 Notez que le message sera généralement compressé avec gzip à la couche I2CP,
-ce qui entraînera des économies significatives si la destination de est compressible.
+ce qui entraînera des économies significatives si la destination from est compressible.
 
-Note : Le format de signature hors ligne est le même que dans la spécification des structures communes [Common]_ et [Streaming]_.
+Note : Le format de signature hors ligne est le même que dans la spécification des structures communes [Common](/docs/specs/common-structures/) et [Streaming](/docs/specs/streaming/).
 
 ### Signatures
 
 La signature couvre les champs suivants.
 
 - Préambule : Le hachage de 32 octets de la destination cible (non inclus dans le datagramme)
-- drapeaux
+- flags
 - options (si présentes)
-- signature_hors_ligne (si présente)
-- charge utile
+- offline_signature (si présente)
+- payload
 
 Dans le datagramme réadmettable, pour le type de clé DSA_SHA1, la signature portait sur le
 hachage SHA-256 de la charge utile, pas sur la charge utile elle-même; ici, la signature couvre
@@ -259,33 +255,31 @@ et rejeter le datagramme en cas d'échec, pour la prévention du replay.
 
 ### Format Datagram3
 
-Ajoutez Datagram3 à [DATAGRAMS]_ comme suit :
+Ajoutez Datagram3 à [DATAGRAMS](/docs/api/datagrams/) comme suit :
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
-  ~            hachage_de                 ~
+  ~            fromhash                   ~
   ~                                       ~
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |  drapeaux  |     options (optionnelles)|
+  |  flags  |     options (optional)      |
   +----+----+                             +
   ~                                       ~
   ~                                       ~
   +----+----+----+----+----+----+----+----+
   |                                       |
-  ~            charge utile               ~
+  ~            payload                    ~
   ~                                       ~
   |                                       |
   +----+----+----+----+----+----+----+----+
 
-  hachage_de :: un `Hash`
+  fromhash :: un `Hash`
               longueur : 32 octets
               L'initiateur du datagramme
 
-  drapeaux :: (2 octets)
+  flags :: (2 octets)
            Ordre des bits : 15 14 ... 3 2 1 0
            Bits 3-0 : Version : 0x03 (0 0 1 1)
            Bit 4 : Si 0, pas d'options; si 1, mappage des options inclus
@@ -295,10 +289,10 @@ Ajoutez Datagram3 à [DATAGRAMS]_ comme suit :
            Si le drapeau indique que des options sont présentes, un `Mapping`
            contenant des options de texte arbitraires
 
-  charge utile ::  Les données
+  payload ::  Les données
               Longueur : de 0 à environ 61 Ko (voir notes)
 
-{% endhighlight %}
+```
 
 Longueur totale : minimum 34 + longueur de charge utile.
 
@@ -330,10 +324,10 @@ ou par le routeur au niveau de la gestion des clés.
 ## Notes
 
 - La longueur pratique est limitée par les couches inférieures de protocoles - la spécification des
-  messages de tunnel [TUNMSG]_ limite les messages à environ 61,2 Ko et les transports
-  [TRANSPORT]_ limitent actuellement les messages à environ 64 Ko, donc la longueur des données ici
+  messages de tunnel [TUNMSG](/docs/specs/tunnel-message/#notes) limite les messages à environ 61,2 Ko et les transports
+  [TRANSPORT](/docs/transport/) limitent actuellement les messages à environ 64 Ko, donc la longueur des données ici
   est limitée à environ 61 Ko.
-- Voir les notes importantes sur la fiabilité des grands datagrammes [API]_. Pour
+- Voir les notes importantes sur la fiabilité des grands datagrammes [API](/docs/api/datagrams/). Pour
   de meilleurs résultats, limitez la charge utile à environ 10 Ko ou moins.
 
 
@@ -358,7 +352,7 @@ L'application UDP la plus en vue est bittorrent.
 Bittorrent DHT : Probablement besoin d'un drapeau d'extension,
 par exemple i2p_dg2, coordonner avec BiglyBT
 
-Annonces UDP pour Bittorrent [Prop160]_: Conception dès le début.
+Annonces UDP pour Bittorrent [Prop160](/proposals/160-udp-trackers/): Conception dès le début.
 Coordonner avec BiglyBT, i2psnark, zzzot
 
 ### Autres
@@ -372,36 +366,14 @@ Applications SAM UDP : Aucune connue
 
 ## Références
 
-.. [API]
-    {{ site_url('docs/api/datagrams', True) }}
-
-.. [BT-SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [DATAGRAMS]
-    {{ spec_url('datagrams') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop160]
-    {{ proposal_url('160') }}
-
-.. [Prop164]
-    {{ proposal_url('164') }}
-
-.. [Streaming]
-    {{ spec_url('streaming') }}
-
-.. [TRANSPORT]
-    {{ site_url('docs/transport', True) }}
-
-.. [TUNMSG]
-    {{ spec_url('tunnel-message') }}#notes
-
+* [API](/docs/api/datagrams/)
+* [BT-SPEC](/docs/applications/bittorrent/)
+* [Common](/docs/specs/common-structures/)
+* [DATAGRAMS](/docs/specs/datagrams/)
+* [I2CP](/docs/protocol/i2cp/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop160](/proposals/160-udp-trackers/)
+* [Prop164](/proposals/164-streaming/)
+* [Streaming](/docs/specs/streaming/)
+* [TRANSPORT](/docs/transport/)
+* [TUNMSG](/docs/specs/tunnel-message/#notes)

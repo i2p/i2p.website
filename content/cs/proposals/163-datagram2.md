@@ -19,13 +19,13 @@ Pro stav zkontrolujte implementační dokumentaci.
 
 ## Přehled
 
-Vyjmuto z [Prop123]_ jako samostatný návrh.
+Vyjmuto z [Prop123](/proposals/123-new-netdb-entries/) jako samostatný návrh.
 
 Offline podpisy nelze ověřit při zpracování odpověditelných datagramů.
 Je třeba příznak pro označení offline podpisu, ale není místo pro umístění příznaku.
 
 Bude vyžadovat zcela nové číslo a formát protokolu I2CP,
-který bude přidán do specifikace [DATAGRAMY]_.
+který bude přidán do specifikace [DATAGRAMS](/docs/api/datagrams/).
 Nazvěme to "Datagram2".
 
 ## Cíle
@@ -49,18 +49,16 @@ přepnout na nebalené datagramy (RAW).
 Zůstává z práce na LS2, která byla jinak dokončena v roce 2019.
 
 První aplikací, která by měla používat Datagram2, se očekává, že bude
-bittorentové UDP oznamy, jak je implementováno v i2psnark a zzzot, viz [Prop160]_.
+bittorentové UDP oznamy, jak je implementováno v i2psnark a zzzot, viz [Prop160](/proposals/160-udp-trackers/).
 
 ## Specifikace odpověditelných datagramů
 
 Pro informaci,
 následuje přehled specifikace pro odpověditelné datagramy,
-zkopírováno z [Datagrams]_.
+zkopírováno z [Datagrams](/docs/api/datagrams/).
 Standardní I2CP číslo protokolu pro odpověditelné datagramy je PROTO_DATAGRAM (17).
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   | from                                  |
   +                                       +
@@ -102,7 +100,7 @@ Standardní I2CP číslo protokolu pro odpověditelné datagramy je PROTO_DATAGR
               Délka: 0 až přibližně 31,5 KB (viz poznámky)
 
   Celková délka: Délka payloadu + 423+
-{% endhighlight %}
+```
 
 ## Návrh
 
@@ -114,9 +112,9 @@ Standardní I2CP číslo protokolu pro odpověditelné datagramy je PROTO_DATAGR
   ověření podpisu selhalo, pokud by byl interpretován jako odpověditelný datagram nebo streaming.
   Toho je dosaženo přesunutím podpisu po payloadu,
   a zahrnutím hashe cílového umístění do podpisové funkce.
-- Přidat ochranu proti znovuvysílání pro datagramy, jak bylo provedeno v [Prop164]_ pro streaming.
+- Přidat ochranu proti znovuvysílání pro datagramy, jak bylo provedeno v [Prop164](/proposals/164-streaming/) pro streaming.
 - Přidat sekci pro libovolné možnosti
-- Znovu použít formát offline podpisu z [Common]_ a [Streaming]_.
+- Znovu použít formát offline podpisu z [Common](/docs/specs/common-structures/) a [Streaming](/docs/specs/streaming/).
 - Sekce offline podpisu musí být před sekcemi proměnlivé délky
   payloadu a podpisu, jelikož specifikuje délku podpisu.
 
@@ -125,18 +123,16 @@ Standardní I2CP číslo protokolu pro odpověditelné datagramy je PROTO_DATAGR
 ### Protokol
 
 Nové číslo I2CP protokolu pro Datagram2 je 19.
-Přidat jako PROTO_DATAGRAM2 do [I2CP]_.
+Přidat jako PROTO_DATAGRAM2 do [I2CP](/docs/protocol/i2cp/).
 
 Nové číslo I2CP protokolu pro Datagram3 je 20.
-Přidat jako PROTO_DATAGRAM2 do [I2CP]_.
+Přidat jako PROTO_DATAGRAM2 do [I2CP](/docs/protocol/i2cp/).
 
 ### Formát Datagram2
 
-Přidat Datagram2 do [DATAGRAMY]_ následujícím způsobem:
+Přidat Datagram2 do [DATAGRAMS](/docs/api/datagrams/) následujícím způsobem:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            from                       ~
@@ -214,7 +210,7 @@ Přidat Datagram2 do [DATAGRAMY]_ následujícím způsobem:
                (pokud není offline podepsán) nebo přechodným veřejným klíčem
                (pokud je offline podepsán)
 
-{% endhighlight %}
+```
 
 Celková délka: minimálně 433 + délka payloadu;
 typická délka pro odesílatele X25519 a bez offline podpisů:
@@ -222,7 +218,7 @@ typická délka pro odesílatele X25519 a bez offline podpisů:
 Upozorňujeme, že zpráva bude obvykle komprimována pomocí gzip ve vrstvě I2CP,
 což povede k významným úsporám, pokud je z destinace compressovatelná.
 
-Poznámka: Formát offline podpisu je stejný jako ve specifikaci Common Structures [Common]_ a [Streaming]_.
+Poznámka: Formát offline podpisu je stejný jako ve specifikaci Common Structures [Common](/docs/specs/common-structures/) a [Streaming](/docs/specs/streaming/).
 
 ### Podpisy
 
@@ -245,11 +241,9 @@ a zahodit datagram při selhání, aby se zabránilo znovuvysílání.
 
 ### Formát Datagram3
 
-Přidat Datagram3 do [DATAGRAMY]_ následujícím způsobem:
+Přidat Datagram3 do [DATAGRAMS](/docs/api/datagrams/) následujícím způsobem:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            fromhash                   ~
@@ -284,7 +278,7 @@ Přidat Datagram3 do [DATAGRAMY]_ následujícím způsobem:
   payload ::  Data
               Délka: 0 až cca 61 KB (viz poznámky)
 
-{% endhighlight %}
+```
 
 Celková délka: minimálně 34 + délka payloadu.
 
@@ -308,11 +302,11 @@ nebo routerem na vrstvě katrice.
 
 ## Poznámky
 
-- Praktická délka je omezena nižšími vrstvami protokolů - specifikace zprávy tunelu [TUNMSG]_
+- Praktická délka je omezena nižšími vrstvami protokolů - specifikace zprávy tunelu [TUNMSG](/docs/specs/tunnel-message/#notes)
   omezuje zprávy na přibližně 61,2 KB a aktuální transporty
-  [TRANSPORT]_ omezují zprávy na přibližně 64 KB, takže délka dat zde
+  [TRANSPORT](/docs/transport/) omezují zprávy na přibližně 64 KB, takže délka dat zde
   je omezena na přibližně 61 KB.
-- Viz důležité poznámky o spolehlivosti velkých datagramů [API]_. Pro
+- Viz důležité poznámky o spolehlivosti velkých datagramů [API](/docs/api/datagrams/). Pro
   nejlepší výsledek, omezte payload na přibližně 10 KB nebo méně.
 
 ## Kompatibilita
@@ -332,7 +326,7 @@ Nejvýraznější UDP aplikací je bittorrent.
 Bittorrent DHT: Pravděpodobně potřebuje rozšíření příznaku,
 např. i2p_dg2, koordinace s BiglyBT
 
-Bittorrent UDP Oznámení [Prop160]_: Design od počátku.
+Bittorrent UDP Oznámení [Prop160](/proposals/160-udp-trackers/): Design od počátku.
 Koordinace s BiglyBT, i2psnark, zzzot
 
 ### Ostatní
@@ -345,35 +339,14 @@ SAM UDP aplikace: Žádné známé
 
 ## Reference
 
-.. [API]
-    {{ site_url('docs/api/datagrams', True) }}
-
-.. [BT-SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [DATAGRAMY]
-    {{ spec_url('datagrams') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop160]
-    {{ proposal_url('160') }}
-
-.. [Prop164]
-    {{ proposal_url('164') }}
-
-.. [Streaming]
-    {{ spec_url('streaming') }}
-
-.. [TRANSPORT]
-    {{ site_url('docs/transport', True) }}
-
-.. [TUNMSG]
-    {{ spec_url('tunnel-message') }}#notes
+* [API](/docs/api/datagrams/)
+* [BT-SPEC](/docs/applications/bittorrent/)
+* [Common](/docs/specs/common-structures/)
+* [DATAGRAMS](/docs/specs/datagrams/)
+* [I2CP](/docs/protocol/i2cp/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop160](/proposals/160-udp-trackers/)
+* [Prop164](/proposals/164-streaming/)
+* [Streaming](/docs/specs/streaming/)
+* [TRANSPORT](/docs/transport/)
+* [TUNMSG](/docs/specs/tunnel-message/#notes)

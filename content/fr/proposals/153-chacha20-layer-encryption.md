@@ -34,7 +34,7 @@ Cette section décrit les modifications concernant :
 - Chiffrement et post-traitement des participants
 - Chiffrement et post-traitement des points de terminaison sortants et entrants
 
-Pour un aperçu du traitement actuel des messages de tunnel, voir la spécification [Tunnel-Implementation]_.
+Pour un aperçu du traitement actuel des messages de tunnel, voir la spécification [Tunnel Implementation](/docs/tunnels/implementation/).
 
 Seules les modifications pour les routeurs supportant le chiffrement de couche ChaCha20 sont discutées.
 
@@ -54,9 +54,7 @@ Les messages de tunnel devront réduire la longueur du cadre chiffré interne de
 
 AEAD ne peut pas être utilisé directement sur les messages, car le déchiffrement itératif est nécessaire par les tunnels sortants. Le déchiffrement itératif ne peut être réalisé, dans son utilisation actuelle, qu'en utilisant ChaCha20 sans AEAD.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |    ID de Tunnel    |   tunnelNonce     |
   +----+----+----+----+----+----+----+----+
@@ -96,7 +94,7 @@ AEAD ne peut pas être utilisé directement sur les messages, car le déchiffrem
          16 octets
 
   taille totale : 1028 Octets
-{% endhighlight %}
+```
 
 Les sauts internes (avec des sauts précédents et suivants) auront deux ``AEADKeys``, un pour déchiffrer la couche AEAD du saut précédent, et chiffrer la couche AEAD vers le saut suivant.
 
@@ -146,9 +144,7 @@ La passerelle entrante (IBGW) du tunnel, traite les messages reçus d'un point d
 
 L'IBGW prétraite les messages dans les messages de tunnel formatés de manière appropriée, et chiffre comme suit :
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // L'IBGW génère des nonces aléatoires, assurant aucune collision dans son filtre de Bloom pour chaque nonce
   tunnelNonce = Random(len = 64-bits)
@@ -158,7 +154,7 @@ L'IBGW prétraite les messages dans les messages de tunnel formatés de manière
 
   // Chacre20-Poly1305 chiffre chaque cadre de données chiffrées du message avec le tunnelNonce et outAEADKey
   (encMsg, MAC) = ChanCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
-{% endhighlight %}
+```
 
 Le format du message de tunnel changera légèrement, utilisant deux nonces de 8 octets au lieu d'un IV de 16 octets. Le ``obfsNonce`` utilisé pour chiffrer le nonce est ajouté au ``tunnelNonce`` de 8 octets et est chiffré par chaque saut en utilisant le ``tunnelNonce`` chiffré et le ``nonceKey`` du saut.
 
@@ -171,9 +167,7 @@ Tunnels sortants :
 - Utiliser les mêmes règles pour les nonces de couche que pour les tunnels entrants
 - Générer des nonces aléatoires une fois par ensemble de messages de tunnel expédiés
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 
 // Pour chaque ensemble de messages, générer des nonces uniques et aléatoires
@@ -191,7 +185,7 @@ Tunnels sortants :
 
   // Après le traitement des sauts, chiffrer ChaCha20-Poly1305 chaque cadre de données "déchiffrées" des messages de tunnel avec le premier tunnelNonce chiffré des sauts et inAEADKey du saut
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = decMsg, nonce = first hop's encrypted tunnelNonce, key = first hop's inAEADKey / GW outAEADKey)
-{% endhighlight %}
+```
 
 ### Traitement des Participants
 
@@ -212,9 +206,7 @@ Après validation, le participant :
 - Chiffre ChaCha20 le ``obfsNonce`` avec son ``nonceKey`` et le ``tunnelNonce`` chiffré
 - Envoie le tuple {``nextTunnelId``, chiffré (``tunnelNonce`` || ``obfsNonce``), texte chiffré AEAD || MAC} au saut suivant.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Pour vérification, les sauts de tunnel devraient vérifier le filtre de Bloom pour l'unicité de chaque nonce reçu
   // Après vérification, défaire le(s) cadre(s) AEAD en déchiffrant ChaCha20-Poly1305 chaque cadre chiffré des messages de tunnel
@@ -233,7 +225,7 @@ Après validation, le participant :
 
   // Chiffre ChaCha20 le obfsNonce reçu avec le tunnelNonce chiffré et nonceKey du saut
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### Traitement du Point de Terminaison Entrant
 
@@ -248,9 +240,7 @@ Pour les tunnels ChaCha20, le schéma suivant sera utilisé pour déchiffrer cha
 - Répéter les étapes pour déchiffrement des nonces et de la couche pour chaque saut dans le tunnel, jusqu'à l'IBGW
 - La déchiffrement du cadre AEAD n'est nécessaire que lors du premier tour
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Pour le premier tour, déchiffre ChaCha20-Poly1305 chaque cadre de données chiffré + MAC
   // en utilisant le tunnelNonce reçu et inAEADKey
@@ -264,7 +254,7 @@ Pour les tunnels ChaCha20, le schéma suivant sera utilisé pour déchiffrer cha
   decMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
   tunnelNonce = ChaCha20(msg = tunnelNonce, nonce = obfsNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### Analyse de Sécurité pour le Chiffrement de Couche de Tunnel ChaCha20+ChaCha20-Poly1305
 
@@ -290,5 +280,4 @@ Les deux attaques sont également bloquées en interdisant les multiples appels 
 
 ## Références
 
-.. [Tunnel-Implementation]
-   /docs/specs/implementation/
+* [Tunnel-Implementation](/docs/tunnels/implementation/)

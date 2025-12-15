@@ -34,7 +34,7 @@ Esta seção descreve alterações para:
 - Criptografia e pós-processamento de Participantes
 - Criptografia e pós-processamento de Ponto de Extremidade de Saída e Entrada
 
-Para uma visão geral do processamento atual de mensagens de túnel, veja a especificação [Tunnel-Implementation]_.
+Para uma visão geral do processamento atual de mensagens de túnel, veja a especificação [Tunnel Implementation](/docs/tunnels/implementation/).
 
 Apenas alterações para roteadores que suportam criptografia de camada ChaCha20 são discutidas.
 
@@ -62,9 +62,7 @@ acomodar o MAC Poly1305.
 AEAD não pode ser usado diretamente nas mensagens, já que a descriptografia iterativa é necessária por túneis de saída.
 A descriptografia iterativa só pode ser alcançada, da maneira que é usada atualmente, usando ChaCha20 sem AEAD.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |    ID do Túnel      |   tunnelNonce     |
   +----+----+----+----+----+----+----+----+
@@ -104,7 +102,7 @@ A descriptografia iterativa só pode ser alcançada, da maneira que é usada atu
          16 bytes
 
   tamanho total: 1028 Bytes
-{% endhighlight %}
+```
 
 Saltos internos (com saltos precedentes e seguintes), terão duas ``AEADKeys``, uma para descriptografar
 a camada AEAD do salto anterior, e criptografar a camada AEAD para o salto seguinte.
@@ -164,9 +162,7 @@ As mensagens I2NP internas estão envolvidas em dentes de alho, criptografadas u
 
 O IBGW pré-processa as mensagens nos formatos de mensagem de túnel apropriados, e criptografa como a seguir:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // IBGW gera nonces aleatórios, garantindo que não há colisão em seu filtro de Bloom para cada nonce
   tunnelNonce = Random(len = 64-bits)
@@ -176,7 +172,7 @@ O IBGW pré-processa as mensagens nos formatos de mensagem de túnel apropriados
 
   // ChaCha20-Poly1305 criptografa cada quadro de dados criptografado da mensagem com o tunnelNonce e outAEADKey
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
-{% endhighlight %}
+```
 
 O formato da mensagem de túnel mudará ligeiramente, usando dois nonces de 8 bytes em vez de um IV de 16 bytes.
 O ``obfsNonce`` usado para criptografar o nonce é anexado ao ``tunnelNonce`` de 8 bytes,
@@ -193,9 +189,7 @@ Túneis de saída:
 - Use as mesmas regras para nonces de camada como túneis de entrada
 - Gerar nonces aleatórios uma vez por conjunto de mensagens de túnel enviadas
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 
 // Para cada conjunto de mensagens, gerar nonces únicos e aleatórios
@@ -213,7 +207,7 @@ Túneis de saída:
 
   // Após o processamento de salto, ChaCha20-Poly1305 criptografa cada quadro de dados "descriptografado" da mensagem de túnel com o tunnelNonce criptografado do primeiro salto e inAEADKey
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = decMsg, nonce = tunnelNonce criptografado do primeiro salto, key = inAEADKey do primeiro salto / GW outAEADKey)
-{% endhighlight %}
+```
 
 ### Processamento de Participantes
 
@@ -237,9 +231,7 @@ Após a validação, o participante:
 - Criptografa o ``obfsNonce`` com sua ``nonceKey`` e ``tunnelNonce`` criptografado
 - Envia o tuplo {``nextTunnelId``, criptografado (``tunnelNonce`` || ``obfsNonce``), ciphertext AEAD || MAC} para o próximo salto.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Para verificação, saltos de túnel devem verificar o filtro de Bloom para a exclusividade de cada nonce recebido
   // Após a verificação, desinvolve o quadro AEAD através da descriptografia ChaCha20-Poly1305 de cada quadro criptografado de mensagem de túnel
@@ -258,7 +250,7 @@ Após a validação, o participante:
 
   // ChaCha20 criptografa o obfsNonce recebido com o tunnelNonce criptografado e a nonceKey do salto
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### Processamento do Ponto de Extremidade de Entrada
 
@@ -273,9 +265,7 @@ Para túneis ChaCha20, o seguinte esquema será usado para descriptografar cada 
 - Repetir os passos para descriptografia de nonce e camada em cada salto do túnel, voltando para o IBGW
 - A descriptografia do quadro AEAD é necessária apenas na primeira rodada
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Para a primeira rodada, descriptografar cada quadro de dados criptografado da mensagem + MAC usando ChaCha20-Poly1305
   // usando o tunnelNonce recebido e inAEADKey
@@ -289,7 +279,7 @@ Para túneis ChaCha20, o seguinte esquema será usado para descriptografar cada 
   decMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
   tunnelNonce = ChaCha20(msg = tunnelNonce, nonce = obfsNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### Análise de Segurança para Criptografia de Camada de Túnel ChaCha20+ChaCha20-Poly1305
 
@@ -320,5 +310,4 @@ Ambos os ataques também são bloqueados por desabilitar múltiplas chamadas ora
 
 ## Referências
 
-.. [Tunnel-Implementation]
-   /docs/specs/implementation/
+* [Tunnel-Implementation](/docs/tunnels/implementation/)

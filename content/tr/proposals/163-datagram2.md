@@ -20,13 +20,13 @@ Durum için uygulama dokümantasyonunu kontrol edin.
 
 ## Genel Bakış
 
-[Prop123]_ 'den bağımsız bir öneri olarak çıkarılmıştır.
+[Prop123](/proposals/123-new-netdb-entries/) 'den bağımsız bir öneri olarak çıkarılmıştır.
 
 Çevrimdışı imzalar, yanıtlanabilir datagram işlemede doğrulanamaz.
 Çevrimdışı imzalandığını belirtmek için bir bayrağa ihtiyaç var ama bayrak koyacak yer yok.
 
-Yeni bir I2CP protokol numarası ve formatı gerektirir, 
-[DATAGRAMS]_ spesifikasyonuna eklenmelidir. 
+Yeni bir I2CP protokol numarası ve formatı gerektirir,
+[DATAGRAMS](/docs/api/datagrams/) spesifikasyonuna eklenmelidir.
 Buna "Datagram2" diyelim.
 
 
@@ -53,18 +53,16 @@ RAW datagramlarına geçmelidir.
 2019 yılında tamamlanan LS2 çalışmalarının kalanı.
 
 Datagram2'yi kullanan ilk uygulamanın
-i2psnark ve zzzot'ta uygulandığı gibi, bittorrent UDP duyuruları olması beklenmektedir, 
-bkz. [Prop160]_.
+i2psnark ve zzzot'ta uygulandığı gibi, bittorrent UDP duyuruları olması beklenmektedir,
+bkz. [Prop160](/proposals/160-udp-trackers/).
 
 
 ## Yanıtlanabilir Datagram Spesifikasyonu
 
-Referans için, işte [Datagrams]_ 'dan kopyalanan yanıtlanabilir datagramlar için spesifikasyonun bir incelemesi.
+Referans için, işte [Datagrams](/docs/api/datagrams/) 'dan kopyalanan yanıtlanabilir datagramlar için spesifikasyonun bir incelemesi.
 Yanıtlanabilir datagramlar için standart I2CP protokol numarası PROTO_DATAGRAM (17)'dir.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   | from                                  |
   +                                       +
@@ -106,7 +104,7 @@ Yanıtlanabilir datagramlar için standart I2CP protokol numarası PROTO_DATAGRA
               Uzunluk: 0 ile yaklaşık 31,5 KB (+/- notlar)
 
   Toplam uzunluk: Payload uzunluğu + 423+
-{% endhighlight %}
+```
 
 
 
@@ -119,9 +117,9 @@ Yanıtlanabilir datagramlar için standart I2CP protokol numarası PROTO_DATAGRA
 - Yanıtlanabilir datagram veya akış olarak yorumlandığında imza doğrulaması başarısız olacak şekilde farklı bir imza spesifikasyonu.
   Bu, imzayı veri yükünün sonuna taşıyarak,
   ve imza fonksiyonuna hedef hash'i dahil ederek gerçekleştirilir.
-- [Prop164]_ 'de akış için yapıldığı gibi, datagramlar için tekrar önleme ekleyin.
+- [Prop164](/proposals/164-streaming/) 'de akış için yapıldığı gibi, datagramlar için tekrar önleme ekleyin.
 - Keyfi seçenekler için bölüm ekleyin
-- [Common]_ ve [Streaming]_ 'den çevrimdışı imza formatını yeniden kullanın.
+- [Common](/docs/specs/common-structures/) ve [Streaming](/docs/specs/streaming/) 'den çevrimdışı imza formatını yeniden kullanın.
 - Çevrimdışı imza bölümü, değişken uzunlukta
   veri yükü ve imza bölümleri öncesinde olmalıdır, çünkü bu imzanın uzunluğunu belirtir.
 
@@ -131,19 +129,17 @@ Yanıtlanabilir datagramlar için standart I2CP protokol numarası PROTO_DATAGRA
 ### Protokol
 
 Datagram2 için yeni I2CP protokol numarası 19'dur.
-Bunu [I2CP]_ 'ye PROTO_DATAGRAM2 olarak ekleyin.
+Bunu [I2CP](/docs/protocol/i2cp/) 'ye PROTO_DATAGRAM2 olarak ekleyin.
 
 Datagram3 için yeni I2CP protokol numarası 20'dir.
-Bunu [I2CP]_ 'ye PROTO_DATAGRAM2 olarak ekleyin.
+Bunu [I2CP](/docs/protocol/i2cp/) 'ye PROTO_DATAGRAM2 olarak ekleyin.
 
 
 ### Datagram2 Formatı
 
-Aşağıdaki şekilde [DATAGRAMS]_ 'e Datagram2 ekleyin:
+Aşağıdaki şekilde [DATAGRAMS](/docs/api/datagrams/) 'e Datagram2 ekleyin:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            from                       ~
@@ -220,15 +216,15 @@ Aşağıdaki şekilde [DATAGRAMS]_ 'e Datagram2 ekleyin:
                imza yoksa) veya geçici genel anahtar ile (çevrimdışı
                imzalanmışsa) doğrulanır.
 
-{% endhighlight %}
+```
 
 Toplam uzunluk: minimum 433 + veri yükü uzunluğu;
 çevrimdışı imzalar olmadan X25519 göndericileri için tipik uzunluk:
 457 + veri yükü uzunluğu.
-Mesaj, I2CP katmanında genellikle gzip ile sıkıştırılır, 
+Mesaj, I2CP katmanında genellikle gzip ile sıkıştırılır,
 bu da sıkıştırılabilir durumda olan gönderen için önemli tasarruflar sağlar.
 
-Not: Çevrimdışı imza formatı, Ortak Yapılar [Common]_ ve [Streaming]_ 'deki ile aynıdır.
+Not: Çevrimdışı imza formatı, Ortak Yapılar [Common](/docs/specs/common-structures/) ve [Streaming](/docs/specs/streaming/) 'deki ile aynıdır.
 
 ### İmzalar
 
@@ -240,7 +236,7 @@ Not: Çevrimdışı imza formatı, Ortak Yapılar [Common]_ ve [Streaming]_ 'dek
 - çevrimdışı imza (varsa)
 - veri
 
-Yanıtlanabilir datagramda, DSA_SHA1 anahtar türü için, imza 
+Yanıtlanabilir datagramda, DSA_SHA1 anahtar türü için, imza
 SHA-256 hash'inin değil, verinin bizzat kendisinin üzerindeydi;
 burada, imza
 alanlar üzerindedir (hash üzerinde DEĞİL), anahtar türü ne olursa olsun.
@@ -254,11 +250,9 @@ ve başarısızlık durumunda datagramı reddetmelidir. Bu, tekrar önlemeye yö
 
 ### Datagram3 Formatı
 
-Aşağıdaki şekilde [DATAGRAMS]_ 'e Datagram3 ekleyin:
+Aşağıdaki şekilde [DATAGRAMS](/docs/api/datagrams/) 'e Datagram3 ekleyin:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            fromhash                   ~
@@ -292,7 +286,7 @@ Aşağıdaki şekilde [DATAGRAMS]_ 'e Datagram3 ekleyin:
   payload ::  Veriler
               Uzunluk: notlara bakınız, 0 ile yaklaşık 61 KB arası
 
-{% endhighlight %}
+```
 
 Toplam uzunluk: minimum 34 + veri yükü uzunluğu.
 
@@ -322,19 +316,19 @@ ve tekrar saldırılarına açıktır. Gerekli tüm doğrulama uygulama katmanı
 ## Notlar
 
 - Pratik uzunluk, protokollerin daha alt katmanları tarafından sınırlıdır - tünel
-  mesaj spesifikasyonu [TUNMSG]_ mesajları yaklaşık 61,2 KB ile sınırlar ve taşıma
-  [TRANSPORT]_ şu anda mesajları yaklaşık 64 KB ile sınırlar, bu yüzden burada veri uzunluğu
+  mesaj spesifikasyonu [TUNMSG](/docs/specs/tunnel-message/#notes) mesajları yaklaşık 61,2 KB ile sınırlar ve taşıma
+  [TRANSPORT](/docs/transport/) şu anda mesajları yaklaşık 64 KB ile sınırlar, bu yüzden burada veri uzunluğu
   yaklaşık 61 KB ile sınırlıdır.
-- Büyük datagramların güvenilirliği hakkında önemli notlara bakın [API]_. 
+- Büyük datagramların güvenilirliği hakkında önemli notlara bakın [API](/docs/api/datagrams/).
   En iyi sonuçlar için veri yükünü yaklaşık 10 KB veya daha az ile sınırlayın.
 
 
 ## Uyumluluk
 
-Yok. Uygulamalar, protokol ve/veya porta göre Datagram2 I2CP mesajlarını yönlendirecek şekilde 
+Yok. Uygulamalar, protokol ve/veya porta göre Datagram2 I2CP mesajlarını yönlendirecek şekilde
 yeniden yazılmalı.
 Yanlış yönlendirilmiş ve
-Yanıtlanabilir datagram veya akış mesajları olarak yorumlanan Datagram2 mesajları, 
+Yanıtlanabilir datagram veya akış mesajları olarak yorumlanan Datagram2 mesajları,
 imza, format veya her ikisine de dayalı olarak başarısız olur.
 
 
@@ -345,10 +339,10 @@ En belirgin UDP uygulaması bittorrenttir.
 
 ### Bittorrent
 
-Bittorrent DHT: Muhtemelen bir uzatma bayrağı gerek, 
+Bittorrent DHT: Muhtemelen bir uzatma bayrağı gerek,
 ör., i2p_dg2, BiglyBT ile koordine edin
 
-Bittorrent UDP Anonsları [Prop160]_: Baştan beri tasarımda. 
+Bittorrent UDP Anonsları [Prop160](/proposals/160-udp-trackers/): Baştan beri tasarımda.
 Coordindate BiglyBT, i2psnark, zzzot ile
 
 ### Diğerleri
@@ -362,35 +356,14 @@ SAM UDP uygulamaları: Bilinen yok
 
 ## Referanslar
 
-.. [API]
-    {{ site_url('docs/api/datagrams', True) }}
-
-.. [BT-SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [DATAGRAMS]
-    {{ spec_url('datagrams') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop160]
-    {{ proposal_url('160') }}
-
-.. [Prop164]
-    {{ proposal_url('164') }}
-
-.. [Streaming]
-    {{ spec_url('streaming') }}
-
-.. [TRANSPORT]
-    {{ site_url('docs/transport', True) }}
-
-.. [TUNMSG]
-    {{ spec_url('tunnel-message') }}#notes
+* [API](/docs/api/datagrams/)
+* [BT-SPEC](/docs/applications/bittorrent/)
+* [Common](/docs/specs/common-structures/)
+* [DATAGRAMS](/docs/specs/datagrams/)
+* [I2CP](/docs/protocol/i2cp/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop160](/proposals/160-udp-trackers/)
+* [Prop164](/proposals/164-streaming/)
+* [Streaming](/docs/specs/streaming/)
+* [TRANSPORT](/docs/transport/)
+* [TUNMSG](/docs/specs/tunnel-message/#notes)

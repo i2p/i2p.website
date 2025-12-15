@@ -34,7 +34,7 @@ toc: true
 - 参与者加密和后处理
 - 出站和入站端点加密和后处理
 
-有关当前隧道消息处理的概述，请参见 [Tunnel-Implementation]_ 规范。
+有关当前隧道消息处理的概述，请参见 [Tunnel Implementation](/docs/tunnels/implementation/) 规范。
 
 仅讨论支持ChaCha20层加密的路由器的更改。
 
@@ -56,9 +56,7 @@ toc: true
 消息不能直接使用AEAD，因为出站隧道需要迭代解密。
 只有在当前方式中使用ChaCha20而没有AEAD才能实现迭代解密。
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |    隧道 ID      |   隧道随机数     |
   +----+----+----+----+----+----+----+----+
@@ -98,7 +96,7 @@ toc: true
          16 字节
 
   总大小：1028字节
-{% endhighlight %}
+```
 
 中间跃点（具有前后跃点），将有两个``AEADKeys``，一个用于解密前一个跃点的AEAD层，一个用于加密到下一个跃点的AEAD层。
 
@@ -148,9 +146,7 @@ toc: true
 
 IBGW将消息预处理成适当格式的隧道消息，并加密如下：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // IBGW生成随机随机数，确保其Bloom过滤器中的每个随机数不冲突
   tunnelNonce = Random(len = 64-bits)
@@ -160,7 +156,7 @@ IBGW将消息预处理成适当格式的隧道消息，并加密如下：
 
   // 使用tunnelNonce和outAEADKey对每个消息的加密数据帧进行ChaCha20-Poly1305加密
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
-{% endhighlight %}
+```
 
 隧道消息格式将略微更改，使用两个8字节的随机数代替16字节的IV。
 用于加密随机数的``obfsNonce``附加到8字节的``tunnelNonce``，
@@ -176,9 +172,7 @@ IBGW将消息预处理成适当格式的隧道消息，并加密如下：
 - 使用与入站隧道相同的规则生成层随机数
 - 每组发送的隧道消息生成一次随机数
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // 对于每组消息，生成唯一的随机数
   tunnelNonce = Random(len = 64-bits)
@@ -195,7 +189,7 @@ IBGW将消息预处理成适当格式的隧道消息，并加密如下：
 
   // 在跃点处理后，使用第一跃点的加密tunnelNonce和inAEADKey对每个隧道消息的“解密”的数据帧进行ChaCha20-Poly1305加密
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = decMsg, nonce = first hop's encrypted tunnelNonce, key = first hop's inAEADKey / GW outAEADKey)
-{% endhighlight %}
+```
 
 ### 参与者处理
 
@@ -217,9 +211,7 @@ IBGW将消息预处理成适当格式的隧道消息，并加密如下：
 - 使用其``nonceKey``和加密的``tunnelNonce``对``obfsNonce``进行ChaCha20加密
 - 将{``nextTunnelId``，加密的（``tunnelNonce`` || ``obfsNonce``），AEAD密文 || MAC}元组发送到下一个跃点。
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // 为了验证，隧道跃点应检查Bloom过滤器以确保每个接收到的随机数的唯一性
   // 验证后，使用接收到的tunnelNonce和inAEADKey解开AEAD帧
@@ -236,7 +228,7 @@ IBGW将消息预处理成适当格式的隧道消息，并加密如下：
 
   // 使用加密的tunnelNonce和跃点的nonceKey对接收的obfsNonce进行ChaCha20加密
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### 入站端点处理
 
@@ -251,9 +243,7 @@ IBGW将消息预处理成适当格式的隧道消息，并加密如下：
 - 重复对隧道中每个跃点的随机数和层解密的步骤，直到返回到IBGW
 - AEAD帧解密仅需要在第一轮中进行
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // 在第一轮中，使用接收到的tunnelNonce和inAEADKey对每个消息的加密数据帧和MAC进行ChaCha20-Poly1305解密
   msg = encTunMsg \|\| MAC
@@ -265,7 +255,7 @@ IBGW将消息预处理成适当格式的隧道消息，并加密如下：
   decMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
   tunnelNonce = ChaCha20(msg = tunnelNonce, nonce = obfsNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### 使用ChaCha20+ChaCha20-Poly1305的隧道层加密的安全分析
 
@@ -291,5 +281,4 @@ IBGW将消息预处理成适当格式的隧道消息，并加密如下：
 
 ## 参考
 
-.. [Tunnel-Implementation]
-   /docs/specs/implementation/
+* [Tunnel-Implementation](/docs/tunnels/implementation/)

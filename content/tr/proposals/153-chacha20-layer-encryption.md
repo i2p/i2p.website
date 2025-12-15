@@ -34,7 +34,7 @@ Bu bölümde şunlardaki değişiklikler anlatılmaktadır:
 - Katılımcı şifreleme + son işleme
 - Giden ve Gelen Uç Nokta şifreleme + son işleme
 
-Geçerli tünel mesajı işleme hakkında genel bilgi için, [Tünel-Uygulama]_ spesifikasyonuna bakınız.
+Geçerli tünel mesajı işleme hakkında genel bilgi için, [Tunnel Implementation](/docs/tunnels/implementation/) spesifikasyonuna bakınız.
 
 Sadece ChaCha20 katman şifrelemesini destekleyen yönlendiriciler için değişiklikler tartışılmaktadır.
 
@@ -99,7 +99,7 @@ Mevcut kullanıldığı şekilde yinelemeli şifre çözme, ancak AEAD olmadan C
          16 bayt
 
   toplam boyut: 1028 Bayt
-{% endhighlight %}
+```
 
 İç geçişler (önceki ve sonraki geçişlerle birlikte), önceki geçişlerin AEAD katmanını çözmek ve ardından gelen geçişe AEAD katmanını şifrelemek için ``AEADKey`` 'e sahip olacaktır.
 
@@ -153,9 +153,7 @@ I2NP mesaj başlıkları, tünel katmanında, OBEP ve IBGW'ye görünür.
 
 IBGW, mesajları uygun formatta tünel mesajları haline getirir ve aşağıda belirtildiği şekilde şifreler:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // IBGW Bloom filteri için çakışma olmadığından emin olarak rastgele nonce'lar üretir
   tünelNonce = Random(len = 64-bit)
@@ -165,7 +163,7 @@ IBGW, mesajları uygun formatta tünel mesajları haline getirir ve aşağıda b
 
   // Her mesajın şifreli veri çerçevesini tünelNonce ve outAEADKey ile ChaCha20-Poly1305 şifreleyin
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tünelNonce, key = outAEADKey)
-{% endhighlight %}
+```
 
 Tünel mesaj formatı hafifçe değiştirilecek, iki 8-baytlık nonce bir 16-bayt IV yerine kullanılacaktır.
 ``obfsNonce`` , tünelNonce'ın 8 baytına eklenir ve şifrelenmiş tünelNonce ve geçişin ``nonceKey`` 'i kullanılarak her geçiş tarafından şifrelenir.
@@ -179,9 +177,7 @@ Giden tüneller:
 - Gelen tünellerle aynı kuralları kullan
 - Gönderilen tünel mesajları seti başına rastgele nonce'lar üret
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Her mesaj seti için benzersiz, rastgele nonce'lar üret
   tünelNonce = Random(len = 64-bit)
@@ -198,7 +194,7 @@ Giden tüneller:
 
   // Geçiş işlemlerinin ardından, her tünel mesajının "çözülmüş" veri çerçevesini ilk geçişin şifreli tünelNonce ve inAEADKey ile ChaCha20-Poly1305 ile şifrele
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = decMsg, nonce = ilk geçişin şifreli tünelNonce, key = ilk geçişin inAEADKey / GW outAEADKey)
-{% endhighlight %}
+```
 
 ### Katılımcı İşleme
 
@@ -220,9 +216,7 @@ Doğrulamadan sonra katılımcı:
 - ``nonceKey`` ve şifreli ``tünelNonce`` ile ``obfsNonce`` 'ı ChaCha20 ile şifreler
 - Tuple {``nextTunnelId``, şifreli (``tünelNonce`` || ``obfsNonce``), AEAD şifreli metin || MAC} 'ı bir sonraki geçişe gönderir.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Doğrulama için, tünel geçişleri her alınan nonce'ın benzersizliğini Bloom filtresi ile kontrol etmelidir
   // Doğrulamanın ardından, ChaCha20-Poly1305 ile alınan tünelNonce ve inAEADKey ile tünel mesajının şifreli çerçevesini her AEAD çerçevesini açılacak şekilde çözün
@@ -239,7 +233,7 @@ Doğrulamadan sonra katılımcı:
 
   // Alınan obfsNonce'ı, şifreli tünelNonce ve hop'un nonceKey ile ChaCha20 ile şifrele
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tünelNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### Gelen Uç Nokta İşleme
 
@@ -254,9 +248,7 @@ ChaCha20 tünelleri için, her tünel mesajını çözmek için aşağıdaki şe
 - Bu adımları tekrar edin ve tünelin başlangıcına kadar her geçişte, bu katmanlarla Alice-in-Wonderland tarzı ``tünelNonce`` ve ``obfsNonce`` 'ı çözün
 - İlk turda yalnızca AEAD çerçeve deşifreleme gereklidir
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // İlk tur için, her mesajın şifreli veri çerçevesini + MAC'ını sağlanan tünelNonce ve inAEADKey kullanarak ChaCha20-Poly1305 ile çözün
   msg = encTunMsg \|\| MAC
@@ -269,7 +261,7 @@ ChaCha20 tünelleri için, her tünel mesajını çözmek için aşağıdaki şe
   decMsg = ChaCha20(msg = encTunMsg, nonce = tünelNonce, key = layerKey)
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tünelNonce, key = nonceKey)
   tünelNonce = ChaCha20(msg = tünelNonce, nonce = obfsNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### ChaCha20+ChaCha20-Poly1305 Tünel Katmanı Şifrelemesi için Güvenlik Analizi
 
@@ -298,5 +290,4 @@ Her iki saldırı da aynı IV'yi kullanarak çoklu oracle çağrılarını engel
 
 ## Referanslar
 
-.. [Tünel-Uygulama]
-   /docs/specs/implementation/
+* [Tunnel-Implementation](/docs/tunnels/implementation/)

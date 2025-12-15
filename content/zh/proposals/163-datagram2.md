@@ -21,14 +21,14 @@ toc: true
 
 ## 概述
 
-从 [Prop123]_ 中单独提取为一个独立提案。
+从 [Prop123](/proposals/123-new-netdb-entries/) 中单独提取为一个独立提案。
 
 离线签名无法在可回复数据报处理中验证。
 需要一个标志来指示离线签名，但没有地方放置标志。
 
 将需要一个全新的 I2CP协议号和格式，
-将其添加到 [DATAGRAMS]_ 规范中。
-我们称之为“Datagram2”。
+将其添加到 [DATAGRAMS](/docs/api/datagrams/) 规范中。
+我们称之为"Datagram2"。
 
 
 ## 目标
@@ -55,19 +55,17 @@ toc: true
 
 预计首个使用 Datagram2 的应用程序将是
 bittorrent UDP 通告，已在 i2psnark 和 zzzot 中实现，
-详见 [Prop160]_。
+详见 [Prop160](/proposals/160-udp-trackers/)。
 
 
 ## 可回复数据报规范
 
 供参考，
 以下是对可回复数据报规范的回顾，
-从 [Datagrams]_ 中复制。
+从 [Datagrams](/docs/api/datagrams/) 中复制。
 可回复数据报的标准 I2CP 协议号为 PROTO_DATAGRAM (17)。
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   | from                                  |
   +                                       +
@@ -110,7 +108,7 @@ bittorrent UDP 通告，已在 i2psnark 和 zzzot 中实现，
               长度: 0 到大约 31.5 KB（参见注释）
 
   总长度: 有效负载长度 + 423+
-{% endhighlight %}
+```
 
 
 
@@ -124,9 +122,9 @@ bittorrent UDP 通告，已在 i2psnark 和 zzzot 中实现，
   如果解释为可回复数据报或流，签名验证将失败。
   这是通过将签名移到有效负载后实现的，
   并在签名函数中包含目标哈希。
-- 为数据报添加重播预防，就像在 [Prop164]_ 中为流所做的那样。
+- 为数据报添加重播预防，就像在 [Prop164](/proposals/164-streaming/) 中为流所做的那样。
 - 添加任意选项部分
-- 重用来自 [Common]_ 和 [Streaming]_ 的离线签名格式。
+- 重用来自 [Common](/docs/specs/common-structures/) 和 [Streaming](/docs/specs/streaming/) 的离线签名格式。
 - 离线签名部分必须位于变量长度之前
   有效负载和签名部分，因为它指定了签名的长度。
 
@@ -136,19 +134,17 @@ bittorrent UDP 通告，已在 i2psnark 和 zzzot 中实现，
 ### 协议
 
 Datagram2 的新 I2CP 协议编号为19。
-将其添加为 PROTO_DATAGRAM2 到 [I2CP]_。
+将其添加为 PROTO_DATAGRAM2 到 [I2CP](/docs/protocol/i2cp/)。
 
 Datagram3 的新 I2CP 协议编号为20。
-将其添加为 PROTO_DATAGRAM2 到 [I2CP]_。
+将其添加为 PROTO_DATAGRAM2 到 [I2CP](/docs/protocol/i2cp/)。
 
 
 ### Datagram2 格式
 
-将 Datagram2 添加到 [DATAGRAMS]_ 作为如下所示：
+将 Datagram2 添加到 [DATAGRAMS](/docs/api/datagrams/) 作为如下所示：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            from                       ~
@@ -226,7 +222,7 @@ Datagram3 的新 I2CP 协议编号为20。
                （如果没有离线签名）或临时公钥
                （如果是离线签名）
 
-{% endhighlight %}
+```
 
 总长度：最小433 + 有效负载长度；
 典型的X25519发送者且无离线签名情况下的长度：
@@ -234,7 +230,7 @@ Datagram3 的新 I2CP 协议编号为20。
 注意，消息通常会在I2CP层使用gzip压缩，
 如果来源地可压缩，会大大节省。
 
-注意：离线签名格式与通用结构规范 [Common]_ 和 [Streaming]_ 中相同。
+注意：离线签名格式与通用结构规范 [Common](/docs/specs/common-structures/) 和 [Streaming](/docs/specs/streaming/) 中相同。
 
 ### 签名
 
@@ -259,11 +255,9 @@ Datagram3 的新 I2CP 协议编号为20。
 
 ### Datagram3 格式
 
-将 Datagram3 添加到 [DATAGRAMS]_ 作为如下所示：
+将 Datagram3 添加到 [DATAGRAMS](/docs/api/datagrams/) 作为如下所示：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            fromhash                   ~
@@ -298,7 +292,7 @@ Datagram3 的新 I2CP 协议编号为20。
   payload ::  数据
               长度: 0 到约 61 KB（参见注释）
 
-{% endhighlight %}
+```
 
 总长度：最低34 + 有效负载长度。
 
@@ -330,9 +324,9 @@ Datagram3 格式缺乏签名，因此无法验证发送者，
 ## 备注
 
 - 实际长度受到协议的底层限制 - 隧道
-  消息规范 [TUNMSG]_ 将消息限制在约 61.2 KB，而传输
-  [TRANSPORT]_ 当前将消息限制在约 64 KB，因此这里的数据长度限制为约 61 KB。
-- 见关于大数据报可靠性的相关重要注释 [API]。为了
+  消息规范 [TUNMSG](/docs/specs/tunnel-message/#notes) 将消息限制在约 61.2 KB，而传输
+  [TRANSPORT](/docs/transport/) 当前将消息限制在约 64 KB，因此这里的数据长度限制为约 61 KB。
+- 见关于大数据报可靠性的相关重要注释 [API](/docs/api/datagrams/)。为了
   获得最佳效果，将有效负载限制在约 10 KB 或更少。
 
 
@@ -355,7 +349,7 @@ Datagram3 格式缺乏签名，因此无法验证发送者，
 Bittorrent DHT: 可能需要扩展标志，
 例如 i2p_dg2，与 BiglyBT 协调
 
-Bittorrent UDP 通告 [Prop160]_：从一开始就设计。
+Bittorrent UDP 通告 [Prop160](/proposals/160-udp-trackers/)：从一开始就设计。
 与 BiglyBT、i2psnark、zzzot 协调
 
 ### 其他
@@ -369,35 +363,14 @@ SAM UDP 应用：未知
 
 ## 参考
 
-.. [API]
-    {{ site_url('docs/api/datagrams', True) }}
-
-.. [BT-SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [DATAGRAMS]
-    {{ spec_url('datagrams') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop160]
-    {{ proposal_url('160') }}
-
-.. [Prop164]
-    {{ proposal_url('164') }}
-
-.. [Streaming]
-    {{ spec_url('streaming') }}
-
-.. [TRANSPORT]
-    {{ site_url('docs/transport', True) }}
-
-.. [TUNMSG]
-    {{ spec_url('tunnel-message') }}#notes
+* [API](/docs/api/datagrams/)
+* [BT-SPEC](/docs/applications/bittorrent/)
+* [Common](/docs/specs/common-structures/)
+* [DATAGRAMS](/docs/specs/datagrams/)
+* [I2CP](/docs/protocol/i2cp/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop160](/proposals/160-udp-trackers/)
+* [Prop164](/proposals/164-streaming/)
+* [Streaming](/docs/specs/streaming/)
+* [TRANSPORT](/docs/transport/)
+* [TUNMSG](/docs/specs/tunnel-message/#notes)

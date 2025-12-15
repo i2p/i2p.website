@@ -21,13 +21,13 @@ Verifique a documentação de implementação para status.
 
 ## Visão Geral
 
-Extraído de [Prop123]_ como uma proposta separada.
+Extraído de [Prop123](/proposals/123-new-netdb-entries/) como uma proposta separada.
 
 Assinaturas offline não podem ser verificadas no processamento de datagramas repliáveis.
 Necessita de uma bandeira para indicar assinaturas offline, mas não há lugar para colocar uma bandeira.
 
 Será necessário um número e formato de protocolo I2CP completamente novo,
-a serem adicionados à especificação [DATAGRAMS]_.
+a serem adicionados à especificação [DATAGRAMS](/docs/api/datagrams/).
 Vamos chamá-lo de "Datagram2".
 
 
@@ -55,19 +55,17 @@ Remanescente do trabalho LS2, concluído em 2019.
 
 A primeira aplicação a usar o Datagram2 deve ser
 anúncios UDP de bittorrent, conforme implementado em i2psnark e zzzot,
-veja [Prop160]_.
+veja [Prop160](/proposals/160-udp-trackers/).
 
 
 ## Especificação de Datagramas Repliáveis
 
 Para referência,
 segue uma revisão da especificação para datagramas repliáveis,
-copiada de [Datagrams]_.
+copiada de [Datagrams](/docs/api/datagrams/).
 O número padrão de protocolo I2CP para datagramas repliáveis é PROTO_DATAGRAM (17).
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   | from                                  |
   +                                       +
@@ -110,7 +108,7 @@ O número padrão de protocolo I2CP para datagramas repliáveis é PROTO_DATAGRA
               Comprimento: 0 até cerca de 31,5 KB (veja notas)
 
   Comprimento total: Comprimento do payload + 423+
-{% endhighlight %}
+```
 
 
 
@@ -124,9 +122,9 @@ O número padrão de protocolo I2CP para datagramas repliáveis é PROTO_DATAGRA
   a verificação da assinatura falhará se interpretada como datagrama repliável ou streaming.
   Isso é conseguido movendo a assinatura após o payload,
   e incluindo o hash do destino na função de assinatura.
-- Adicionar prevenção de replay para datagramas, como foi feito em [Prop164]_ para streaming.
+- Adicionar prevenção de replay para datagramas, como foi feito em [Prop164](/proposals/164-streaming/) para streaming.
 - Adicionar seção para opções arbitrárias
-- Reutilizar formato de assinatura offline de [Common]_ e [Streaming]_.
+- Reutilizar formato de assinatura offline de [Common](/docs/specs/common-structures/) e [Streaming](/docs/specs/streaming/).
 - A seção de assinatura offline deve ser antes das seções de
   payload e assinatura de comprimento variável, pois especifica o comprimento
   da assinatura.
@@ -136,32 +134,30 @@ O número padrão de protocolo I2CP para datagramas repliáveis é PROTO_DATAGRA
 
 ### Protocolo
 
-O novo número de protocolo I2CP para Datagram2 é 19. Adicione-o como PROTO_DATAGRAM2 a [I2CP].
+O novo número de protocolo I2CP para Datagram2 é 19. Adicione-o como PROTO_DATAGRAM2 a [I2CP](/docs/protocol/i2cp/).
 
-O novo número de protocolo I2CP para Datagram3 é 20. Adicione-o como PROTO_DATAGRAM2 a [I2CP].
+O novo número de protocolo I2CP para Datagram3 é 20. Adicione-o como PROTO_DATAGRAM2 a [I2CP](/docs/protocol/i2cp/).
 
 
 ### Formato Datagram2
 
-Adicione Datagram2 a [DATAGRAMS]_ como segue:
+Adicione Datagram2 a [DATAGRAMS](/docs/api/datagrams/) como segue:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            from                       ~
   ~                                       ~
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |  bandeiras  |     opções (opcional)   |
+  |  flags  |     options (optional)      |
   +----+----+                             +
   ~                                       ~
   ~                                       ~
   +----+----+----+----+----+----+----+----+
   |                                       |
-  ~     assinatura_offline (opcional)     ~
-  ~   expira, tiposig, pubkey, offsigs    ~
+  ~     offline_signature (optional)      ~
+  ~   expires, sigtype, pubkey, offsig    ~
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
@@ -170,7 +166,7 @@ Adicione Datagram2 a [DATAGRAMS]_ como segue:
   |                                       |
   +----+----+----+----+----+----+----+----+
   |                                       |
-  ~            assinatura                 ~
+  ~            signature                  ~
   ~                                       ~
   |                                       |
   +----+----+----+----+----+----+----+----+
@@ -179,33 +175,33 @@ Adicione Datagram2 a [DATAGRAMS]_ como segue:
           comprimento: 387+ bytes
           O originador e (a menos que assinado offline) assinante do datagrama
 
-  bandeiras :: (2 bytes)
+  flags :: (2 bytes)
            Ordem dos bits: 15 14 ... 3 2 1 0
            Bits 3-0: Versão: 0x02 (0 0 1 0)
            Bit 4: Se 0, sem opções; se 1, mapeamento de opções incluído
            Bit 5: Se 0, sem assinatura offline; se 1, assinado offline
            Bits 15-6: não usados, configurar para 0 para compatibilidade com usos futuros
 
-  opções :: (2+ bytes se presentes)
+  options :: (2+ bytes se presentes)
            Se a bandeira indicar que opções estão presentes, um `Mapping`
            contendo opções de texto arbitrárias
 
-  assinatura_offline ::
+  offline_signature ::
                Se a bandeira indicar chaves offline, a seção de assinatura offline,
                conforme especificado na Especificação de Estruturas Comuns,
                com os seguintes 4 campos. Comprimento: varia conforme os tipos de assinatura
                online e offline, tipicamente 102 bytes para Ed25519
                Esta seção pode e deve ser gerada offline.
 
-    expira :: Timestamp de expiração
+    expires :: Timestamp de expiração
                (4 bytes, big endian, segundos desde a época, gira em 2106)
 
-    tiposig :: Tipo de assinatura transitória (2 bytes, big endian)
+    sigtype :: Tipo de assinatura transitória (2 bytes, big endian)
 
     pubkey :: Chave pública de assinatura transitória (comprimento conforme implicado pelo tipo de assinatura),
               tipicamente 32 bytes para o tipo de assinatura Ed25519.
 
-    offsigs :: uma `Signature`
+    offsig :: uma `Signature`
               Assinatura de timestamp de expiração, tipo de assinatura transitória,
               e chave pública, pela chave pública de destino,
               comprimento: 40+ bytes, conforme implícito pelo tipo de assinatura, tipicamente
@@ -214,7 +210,7 @@ Adicione Datagram2 a [DATAGRAMS]_ como segue:
   payload ::  Os dados
               Comprimento: 0 até cerca de 61 KB (veja notas)
 
-  assinatura :: uma `Signature`
+  signature :: uma `Signature`
                O tipo de assinatura deve corresponder ao tipo de chave pública de assinatura de $from
                (se não assinado offline) ou o tipo de assinatura transitória
                (se assinado offline)
@@ -225,7 +221,7 @@ Adicione Datagram2 a [DATAGRAMS]_ como segue:
                (se não assinado offline) ou a chave pública transitória
                (se assinado offline)
 
-{% endhighlight %}
+```
 
 Comprimento total: mínimo 433 + comprimento do payload;
 comprimento típico para remetentes X25519 e sem assinaturas offline:
@@ -233,16 +229,16 @@ comprimento típico para remetentes X25519 e sem assinaturas offline:
 Observe que a mensagem será tipicamente comprimida com gzip na camada I2CP,
 o que resultará em economias significativas se o destino "from" for compressível.
 
-Nota: O formato de assinatura offline é o mesmo que na especificação de Estruturas Comuns [Common]_ e [Streaming]_.
+Nota: O formato de assinatura offline é o mesmo que na especificação de Estruturas Comuns [Common](/docs/specs/common-structures/) e [Streaming](/docs/specs/streaming/).
 
 ### Assinaturas
 
 A assinatura é sobre os seguintes campos.
 
 - Prelúdio: O hash de 32 bytes do destino alvo (não incluído no datagrama)
-- bandeiras
-- opções (se presentes)
-- assinatura_offline (se presente)
+- flags
+- options (se presentes)
+- offline_signature (se presente)
 - payload
 
 No datagrama repliável, para o tipo de chave DSA_SHA1, a assinatura era sobre o
@@ -258,18 +254,16 @@ e descartar o datagrama em caso de falha, para prevenção de replay.
 
 ### Formato Datagram3
 
-Adicione Datagram3 a [DATAGRAMS]_ como segue:
+Adicione Datagram3 a [DATAGRAMS](/docs/api/datagrams/) como segue:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            fromhash                   ~
   ~                                       ~
   |                                       |
   +----+----+----+----+----+----+----+----+
-  |  bandeiras  |     opções (opcional)   |
+  |  flags  |     options (optional)      |
   +----+----+                             +
   ~                                       ~
   ~                                       ~
@@ -284,20 +278,20 @@ Adicione Datagram3 a [DATAGRAMS]_ como segue:
               comprimento: 32 bytes
               O originador do datagrama
 
-  bandeiras :: (2 bytes)
+  flags :: (2 bytes)
            Ordem dos bits: 15 14 ... 3 2 1 0
            Bits 3-0: Versão: 0x03 (0 0 1 1)
            Bit 4: Se 0, sem opções; se 1, mapeamento de opções incluído
            Bits 15-5: não usados, configurar para 0 para compatibilidade com usos futuros
 
-  opções :: (2+ bytes se presentes)
+  options :: (2+ bytes se presentes)
            Se a bandeira indicar que opções estão presentes, um `Mapping`
            contendo opções de texto arbitrárias
 
   payload ::  Os dados
               Comprimento: 0 até cerca de 61 KB (veja notas)
 
-{% endhighlight %}
+```
 
 Comprimento total: mínimo 34 + comprimento do payload.
 
@@ -328,10 +322,10 @@ ou pelo roteador na camada de ratchet.
 
 ## Notas
 
-- O comprimento prático é limitado pelas camadas inferiores dos protocolos - a especificação de mensagem de túnel [TUNMSG]_ limita as mensagens a cerca de 61,2 KB e os transportes
-  [TRANSPORT]_ atualmente limitam as mensagens a cerca de 64 KB, então o comprimento dos dados aqui
+- O comprimento prático é limitado pelas camadas inferiores dos protocolos - a especificação de mensagem de túnel [TUNMSG](/docs/specs/tunnel-message/#notes) limita as mensagens a cerca de 61,2 KB e os transportes
+  [TRANSPORT](/docs/transport/) atualmente limitam as mensagens a cerca de 64 KB, então o comprimento dos dados aqui
   é limitado a cerca de 61 KB.
-- Veja notas importantes sobre a confiabilidade de datagramas grandes [API]_. Para
+- Veja notas importantes sobre a confiabilidade de datagramas grandes [API](/docs/api/datagrams/). Para
   melhores resultados, limite o payload a cerca de 10 KB ou menos.
 
 
@@ -356,7 +350,7 @@ A aplicação UDP mais proeminente é o bittorrent.
 DHT de Bittorrent: Provavelmente precisa de bandeira de extensão,
 por exemplo, i2p_dg2, coordenar com BiglyBT
 
-Anúncios UDP de Bittorrent [Prop160]_: Design desde o início.
+Anúncios UDP de Bittorrent [Prop160](/proposals/160-udp-trackers/): Design desde o início.
 Coordenar com BiglyBT, i2psnark, zzzot
 
 ### Outros
@@ -370,35 +364,14 @@ Aplicativos UDP SAM: Nenhum conhecido
 
 ## Referências
 
-.. [API]
-    {{ site_url('docs/api/datagrams', True) }}
-
-.. [BT-SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [DATAGRAMS]
-    {{ spec_url('datagrams') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop160]
-    {{ proposal_url('160') }}
-
-.. [Prop164]
-    {{ proposal_url('164') }}
-
-.. [Streaming]
-    {{ spec_url('streaming') }}
-
-.. [TRANSPORT]
-    {{ site_url('docs/transport', True) }}
-
-.. [TUNMSG]
-    {{ spec_url('tunnel-message') }}#notes
+* [API](/docs/api/datagrams/)
+* [BT-SPEC](/docs/applications/bittorrent/)
+* [Common](/docs/specs/common-structures/)
+* [DATAGRAMS](/docs/specs/datagrams/)
+* [I2CP](/docs/protocol/i2cp/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop160](/proposals/160-udp-trackers/)
+* [Prop164](/proposals/164-streaming/)
+* [Streaming](/docs/specs/streaming/)
+* [TRANSPORT](/docs/transport/)
+* [TUNMSG](/docs/specs/tunnel-message/#notes)

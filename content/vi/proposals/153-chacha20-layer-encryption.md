@@ -36,7 +36,7 @@ Phần này mô tả những thay đổi đối với:
 - Mã hóa + xử lý sau của người tham gia
 - Mã hóa + xử lý sau Endpoint ra và vào
 
-Để có cái nhìn tổng quan về xử lý thông điệp đường hầm hiện tại, hãy xem phần [Tunnel-Implementation]_.
+Để có cái nhìn tổng quan về xử lý thông điệp đường hầm hiện tại, hãy xem phần [Tunnel Implementation](/docs/tunnels/implementation/).
 
 Chỉ những thay đổi cho các bộ định tuyến hỗ trợ mã hóa tầng ChaCha20 được thảo luận.
 
@@ -64,9 +64,7 @@ Thông điệp đường hầm sẽ cần giảm chiều dài khung mã hóa bê
 AEAD không thể được sử dụng trực tiếp trên các thông điệp, vì cần giải mã lặp lại bởi các đường hầm đầu ra.
 Giải mã lặp lại chỉ có thể đạt được, theo cách nó được sử dụng hiện nay, sử dụng ChaCha20 mà không có AEAD.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |    Tunnel ID      |   tunnelNonce     |
   +----+----+----+----+----+----+----+----+
@@ -106,7 +104,7 @@ Giải mã lặp lại chỉ có thể đạt được, theo cách nó được 
          16 bytes
 
   tổng kích thước: 1028 Bytes
-{% endhighlight %}
+```
 
 Các hop bên trong (với hop liền trước và liền sau), sẽ có hai ``AEADKeys``, một để giải mã
 tầng AEAD của hop trước, và mã hóa tầng AEAD cho hop tiếp theo.
@@ -165,9 +163,7 @@ Các thông điệp I2NP bên trong được bao bọc trong Garlic cloves, mã 
 
 IBGW tiền xử lý các thông điệp thành các thông điệp đường hầm được định dạng thích hợp, và mã hóa như sau:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // IBGW tạo nonce ngẫu nhiên, đảm bảo không vướng vào bộ lọc Bloom của nó cho mỗi nonce
   tunnelNonce = Random(len = 64-bits)
@@ -177,7 +173,7 @@ IBGW tiền xử lý các thông điệp thành các thông điệp đường h�
 
   // ChaCha20-Poly1305 mã hóa từng khung dữ liệu mã hóa của thông điệp với tunnelNonce và outAEADKey
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
-{% endhighlight %}
+```
 
 Định dạng thông điệp đường hầm sẽ thay đổi nhẹ, sử dụng hai nonce 8-byte thay vì IV 16-byte.
 ``obfsNonce`` được sử dụng để mã hóa nonce sẽ được đính kèm với ``tunnelNonce`` 8-byte,
@@ -194,9 +190,7 @@ ChaCha20-Poly1305 AEAD mã hóa phần văn bản mã hóa của mỗi thông đ
 - Sử dụng các quy tắc giống nhau cho các nonce class như đường hầm vào
 - Tạo nonce ngẫu nhiên một lần cho mỗi tập hợp thông điệp đường hầm gửi đi
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 
 // Đối với mỗi tập hợp thông điệp, tạo nonce ngẫu nhiên, duy nhất
@@ -214,7 +208,7 @@ ChaCha20-Poly1305 AEAD mã hóa phần văn bản mã hóa của mỗi thông đ
 
   // Sau khi xử lý hop, ChaCha20-Poly1305 mã hóa khung dữ liệu "đã giải mã" của từng thông điệp đường hầm với tunnelNonce đã được mã hóa của hop đầu tiên và inAEADKey của nó / GW outAEADKey
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = decMsg, nonce = first hop's encrypted tunnelNonce, key = first hop's inAEADKey / GW outAEADKey)
-{% endhighlight %}
+```
 
 ### Xử Lý Người Tham Gia
 
@@ -238,9 +232,7 @@ Sau khi xác thực, người tham gia:
 - ChaCha20 mã hóa ``obfsNonce`` với ``nonceKey`` của nó và ``tunnelNonce`` đã được mã hóa
 - Gửi cặp {``nextTunnelId``, mã hóa (``tunnelNonce`` || ``obfsNonce``), AEAD ciphertext || MAC} tới hop tiếp theo.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Để xác minh, các hop phải kiểm tra bộ lọc Bloom để xác nhận sự duy nhất của mỗi nonce nhận được
   // Sau khi xác minh, mở khung AEAD bằng cách ChaCha20-Poly1305 giải mã từng khung dữ liệu đã mã hóa
@@ -259,7 +251,7 @@ Sau khi xác thực, người tham gia:
 
   // ChaCha20 mã hóa obfsNonce nhận được với tunnelNonce đã được mã hóa và nonceKey của hop
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### Xử Lý Endpoint Vào
 
@@ -274,9 +266,7 @@ Sau khi xác thực, người tham gia:
 - Lặp lại các bước cho việc giải mã nonce và giải mã tầng cho từng hop trong đường hầm, trở lại IBGW
 - Giải mã khung AEAD chỉ cần trong vòng đầu tiên
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Đối với vòng đầu tiên, ChaCha20-Poly1305 giải mã khung dữ liệu mã hóa của từng thông điệp + MAC
   // sử dụng tunnelNonce nhận được và inAEADKey
@@ -290,7 +280,7 @@ Sau khi xác thực, người tham gia:
   decMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
   tunnelNonce = ChaCha20(msg = tunnelNonce, nonce = obfsNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### Phân Tích An Ninh cho Mã Hóa Tầng Đường Hầm ChaCha20+ChaCha20-Poly1305
 
@@ -324,5 +314,4 @@ Cả hai cuộc tấn công cũng đều bị chặn bởi việc không cho ph�
 
 ## Tài Liệu Tham Khảo
 
-.. [Tunnel-Implementation]
-   /docs/specs/implementation/
+* [Tunnel-Implementation](/docs/tunnels/implementation/)

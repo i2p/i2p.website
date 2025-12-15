@@ -21,13 +21,13 @@ Revise la documentación de implementación para el estado.
 
 ## Resumen
 
-Extraído de [Prop123]_ como una propuesta separada.
+Extraído de [Prop123](/proposals/123-new-netdb-entries/) como una propuesta separada.
 
 Las firmas offline no pueden ser verificadas en el procesamiento de datagramas replicables.
 Se necesita una bandera para indicar firma offline pero no hay lugar para poner una bandera.
 
 Requerirá un número y formato de protocolo I2CP completamente nuevo,
-para ser agregado a la especificación [DATAGRAMS]_.
+para ser agregado a la especificación [DATAGRAMS](/docs/api/datagrams/).
 Llamémoslo "Datagram2".
 
 
@@ -55,19 +55,17 @@ Restos del trabajo de LS2 por lo demás completado en 2019.
 
 Se espera que la primera aplicación en usar Datagram2 sea
 los anuncios UDP de bittorrent, como implementado en i2psnark y zzzot,
-ver [Prop160]_.
+ver [Prop160](/proposals/160-udp-trackers/).
 
 
 ## Especificación de Datagramas Replicables
 
 Para referencia,
 a continuación se presenta una revisión de la especificación para datagramas replicables,
-copiada de [Datagrams]_.
+copiada de [Datagrams](/docs/api/datagrams/).
 El número de protocolo I2CP estándar para datagramas replicables es PROTO_DATAGRAM (17).
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   | from                                  |
   +                                       +
@@ -110,7 +108,7 @@ El número de protocolo I2CP estándar para datagramas replicables es PROTO_DATA
               Longitud: 0 hasta aproximadamente 31.5 KB (ver notas)
 
   Longitud total: Longitud de la carga útil + 423+
-{% endhighlight %}
+```
 
 
 
@@ -124,9 +122,9 @@ El número de protocolo I2CP estándar para datagramas replicables es PROTO_DATA
   la verificación de la firma falle si se interpreta como datagrama replicable o streaming.
   Esto se logra moviendo la firma después de la carga útil,
   e incluyendo el hash de destino en la función de firma.
-- Añadir prevención de repetición para datagramas, como se hizo en [Prop164]_ para streaming.
+- Añadir prevención de repetición para datagramas, como se hizo en [Prop164](/proposals/164-streaming/) para streaming.
 - Añadir sección para opciones arbitrarias
-- Reutilizar formato de firma offline de [Common]_ y [Streaming]_.
+- Reutilizar formato de firma offline de [Common](/docs/specs/common-structures/) y [Streaming](/docs/specs/streaming/).
 - La sección de firma offline debe estar antes de las secciones
   de carga útil y firma de longitud variable, ya que especifica la longitud
   de la firma.
@@ -137,19 +135,17 @@ El número de protocolo I2CP estándar para datagramas replicables es PROTO_DATA
 ### Protocolo
 
 El nuevo número de protocolo I2CP para Datagram2 es 19.
-Añádelo como PROTO_DATAGRAM2 a [I2CP]_.
+Añádelo como PROTO_DATAGRAM2 a [I2CP](/docs/protocol/i2cp/).
 
 El nuevo número de protocolo I2CP para Datagram3 es 20.
-Añádelo como PROTO_DATAGRAM2 a [I2CP]_.
+Añádelo como PROTO_DATAGRAM2 a [I2CP](/docs/protocol/i2cp/).
 
 
 ### Formato de Datagram2
 
-Añadir Datagram2 a [DATAGRAMS]_ como sigue:
+Añadir Datagram2 a [DATAGRAMS](/docs/api/datagrams/) como sigue:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            from                       ~
@@ -227,7 +223,7 @@ Añadir Datagram2 a [DATAGRAMS]_ como sigue:
                (si no hay firma offline) o la clave pública transitoria
                (si está firmado offline)
 
-{% endhighlight %}
+```
 
 Longitud total: mínimo 433 + longitud de la carga útil;
 longitud típica para emisores X25519 y sin firmas offline:
@@ -235,7 +231,7 @@ longitud típica para emisores X25519 y sin firmas offline:
 Tenga en cuenta que el mensaje típicamente será comprimido con gzip en la capa I2CP,
 lo que resultará en ahorros significativos si el destino from es comprimible.
 
-Nota: El formato de firma offline es el mismo que en la especificación de Estructuras Comunes [Common]_ y [Streaming]_.
+Nota: El formato de firma offline es el mismo que en la especificación de Estructuras Comunes [Common](/docs/specs/common-structures/) y [Streaming](/docs/specs/streaming/).
 
 ### Firmas
 
@@ -260,11 +256,9 @@ y descartar el datagrama en caso de falla, para prevenir repeticiones.
 
 ### Formato de Datagram3
 
-Añadir Datagram3 a [DATAGRAMS]_ como sigue:
+Añadir Datagram3 a [DATAGRAMS](/docs/api/datagrams/) como sigue:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            fromhash                   ~
@@ -299,7 +293,7 @@ Añadir Datagram3 a [DATAGRAMS]_ como sigue:
   payload ::  Los datos
               Longitud: 0 hasta aproximadamente 61 KB (ver notas)
 
-{% endhighlight %}
+```
 
 Longitud total: mínimo 34 + longitud de la carga útil.
 
@@ -331,10 +325,10 @@ realizarse en la capa de aplicación, o por el router en la capa de ratchet.
 ## Notas
 
 - La longitud práctica está limitada por capas más bajas de protocolos - la especificación de
-  mensajes del túnel [TUNMSG] limita los mensajes a aproximadamente 61.2 KB y los transportes
-  [TRANSPORT] actualmente limitan los mensajes a aproximadamente 64 KB, por lo que la longitud de
+  mensajes del túnel [TUNMSG](/docs/specs/tunnel-message/#notes) limita los mensajes a aproximadamente 61.2 KB y los transportes
+  [TRANSPORT](/docs/transport/) actualmente limitan los mensajes a aproximadamente 64 KB, por lo que la longitud de
   los datos aquí está limitada a aproximadamente 61 KB.
-- Ver notas importantes sobre la fiabilidad de datagramas grandes [API]_. Para
+- Ver notas importantes sobre la fiabilidad de datagramas grandes [API](/docs/api/datagrams/). Para
   mejores resultados, limite la carga útil a aproximadamente 10 KB o menos.
 
 
@@ -359,7 +353,7 @@ La aplicación UDP más prominente es bittorrent.
 Bittorrent DHT: Necesita probablemente una bandera de extensión,
 e.g. i2p_dg2, coordinar con BiglyBT
 
-Bittorrent UDP Announces [Prop160]_: Diseño desde el principio.
+Bittorrent UDP Announces [Prop160](/proposals/160-udp-trackers/): Diseño desde el principio.
 Coordinar con BiglyBT, i2psnark, zzzot
 
 ### Otros
@@ -373,36 +367,14 @@ Aplicaciones UDP SAM: Ninguna conocida
 
 ## Referencias
 
-.. [API]
-    {{ site_url('docs/api/datagrams', True) }}
-
-.. [BT-SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [DATAGRAMS]
-    {{ spec_url('datagrams') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop160]
-    {{ proposal_url('160') }}
-
-.. [Prop164]
-    {{ proposal_url('164') }}
-
-.. [Streaming]
-    {{ spec_url('streaming') }}
-
-.. [TRANSPORT]
-    {{ site_url('docs/transport', True) }}
-
-.. [TUNMSG]
-    {{ spec_url('tunnel-message') }}#notes
-
+* [API](/docs/api/datagrams/)
+* [BT-SPEC](/docs/applications/bittorrent/)
+* [Common](/docs/specs/common-structures/)
+* [DATAGRAMS](/docs/specs/datagrams/)
+* [I2CP](/docs/protocol/i2cp/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop160](/proposals/160-udp-trackers/)
+* [Prop164](/proposals/164-streaming/)
+* [Streaming](/docs/specs/streaming/)
+* [TRANSPORT](/docs/transport/)
+* [TUNMSG](/docs/specs/tunnel-message/#notes)

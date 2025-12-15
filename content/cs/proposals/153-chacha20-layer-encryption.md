@@ -34,7 +34,7 @@ Tato sekce popisuje změny pro:
 - Šifrování účastníků a postprocessing
 - Šifrování a postprocessing výstupního a vstupního koncového bodu
 
-Pro přehled současného zpracování tunelových zpráv viz specifikace [Tunnel-Implementation]_.
+Pro přehled současného zpracování tunelových zpráv viz specifikace [Tunnel Implementation](/docs/tunnels/implementation/).
 
 Jsou diskutovány pouze změny pro směrovače podporující ChaCha20 šifrování vrstev.
 
@@ -98,7 +98,7 @@ AEAD nemůže být použito přímo na zprávy, protože iterativní dešifrová
          16 bajtů
 
   celková velikost: 1028 bajtů
-{% endhighlight %}
+```
 
 Vnitřní uzly (s předcházejícími a následujícími uzly) budou mít dva ``AEADKeys``, jeden pro dešifrování AEAD vrstvy předcházejícího uzlu a šifrování AEAD vrstvy následujícího uzlu.
 
@@ -148,9 +148,7 @@ V tomto bodě je vnější vrstva zpráv zašifrována pomocí šifrování poin
 
 IBGW předzpracovává zprávy do vhodně formátovaných tunelových zpráv a šifruje je takto:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // IBGW generuje náhodné nonce, zajišťuje, že se v jeho Bloomově filtru nenachází žádná kolize pro každý nonce
   tunnelNonce = Random(len = 64-bits)
@@ -160,7 +158,7 @@ IBGW předzpracovává zprávy do vhodně formátovaných tunelových zpráv a �
 
   // ChaCha20-Poly1305 zašifruje každý datový rámec s už zašifrovanou zprávou pomocí tunnelNonce a outAEADKey
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
-{% endhighlight %}
+```
 
 Formát tunelové zprávy se lehce změní, s použitím dvou 8bajtových nonce namísto 16bajtového IV. ``obfsNonce`` použité pro šifrování nonce je připojeno k 8bajtovému ``tunnelNonce`` a je šifrováno každým uzlem pomocí zašifrovaného ``tunnelNonce`` a jeho ``nonceKey``.
 
@@ -173,9 +171,7 @@ Výstupní tunely:
 - Použití stejných pravidel pro šifrování vrstvy pro nonce jako vstupní tunely
 - Generování náhodných nonce jednou pro sadu odeslaných tunelových zpráv
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 
 // Pro každou sadu zpráv vygenerujte jedinečné, náhodné nonce
@@ -193,7 +189,7 @@ Výstupní tunely:
 
   // Po zpracování uzlu, ChaCha20-Poly1305 zašifruje každý decrypted frame tunelové zprávy s zašifrovaným tunnelNonce prvního uzlu a inAEADKey
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = decMsg, nonce = first hop's encrypted tunnelNonce, key = first hop's inAEADKey / GW outAEADKey)
-{% endhighlight %}
+```
 
 ### Zpracování Účastníků
 
@@ -214,9 +210,7 @@ Po validaci účastník:
 - ChaCha20 zašifruje ``obfsNonce`` s jeho ``nonceKey`` a zašifrovaným ``tunnelNonce``
 - Odešle dvojiček {``nextTunnelId``, zašifrovaný (``tunnelNonce`` || ``obfsNonce``), AEAD ciphertext || MAC} na další uzel.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Pro ověření by tunelové uzly měly zkontrolovat Bloomův filtr pro jedinečnost každého přijatého nonce
   // Po ověření, rozbalte AEAD rámec(y) dešifrováním každého rámce zašifrované tunelové zprávy
@@ -234,7 +228,7 @@ Po validaci účastník:
 
   // Zašifrujte obdržené obfsNonce s zašifrovaným tunnelNonce a hop's nonceKey
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### Zpracování Vstupního Koncového Bodu
 
@@ -249,9 +243,7 @@ Pro tunely ChaCha20 bude použit následující schéma k dešifrování každé
 - Opakujte kroky pro nonce a dešifrování vrstvy pro každý uzel v tunelu zpět na IBGW
 - AEAD dešifrování rámců je potřeba pouze v první iteraci
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Pro první iteraci ChaCha20-Poly1305 dešifruje každé datové rámy zprávy + MAC
   // s použitím přijatého tunnelNonce a inAEADKey
@@ -265,7 +257,7 @@ Pro tunely ChaCha20 bude použit následující schéma k dešifrování každé
   decMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
   tunnelNonce = ChaCha20(msg = tunnelNonce, nonce = obfsNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### Bezpečnostní Analýza pro Šifrování Tunelových Vrstv ChaCha20+ChaCha20-Poly1305
 
@@ -291,5 +283,4 @@ Oba útoky jsou také blokovány tím, že se nepovolují opakované orákulové
 
 ## Reference
 
-.. [Tunnel-Implementation]
-   /docs/specs/implementation/
+* [Tunnel-Implementation](/docs/tunnels/implementation/)

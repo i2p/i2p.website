@@ -34,7 +34,7 @@ toc: true
 - التشفير + معالجة المشاركين
 - التشفير + معالجة النقاط النهائية الخارج والداخل
 
-للحصول على نظرة عامة على معالجة رسائل النفق الحالية، راجع المواصفات في [Tunnel-Implementation]_.
+للحصول على نظرة عامة على معالجة رسائل النفق الحالية، راجع المواصفات في [Tunnel Implementation](/docs/tunnels/implementation/).
 
 فقط التغييرات للراوترات التي تدعم تشفير طبقة ChaCha20 تتم مناقشتها.
 
@@ -54,9 +54,7 @@ toc: true
 
 لا يمكن استخدام AEAD على الرسائل مباشرة، حيث يلزم فك التشفير المتكرر بواسطة الأنفاق الخارجة. يمكن تحقيق فك التشفير المتكرر، بالطريقة التي يستخدم بها الآن، باستخدام ChaCha20 بدون AEAD.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |    Tunnel ID      |   tunnelNonce     |
   +----+----+----+----+----+----+----+----+
@@ -70,7 +68,7 @@ toc: true
   |                                       |
   +                   +----+----+----+----+
   |                   |    Poly1305 MAC   |
-  +----+----+----+----+                   +  
+  +----+----+----+----+                   +
   |                                       |
   +                   +----+----+----+----+
   |                   |
@@ -96,7 +94,7 @@ toc: true
          16 bytes
 
   total size: 1028 Bytes
-{% endhighlight %}
+```
 
 ستحصل القفزات الداخلية (بوجود قفزات تسبقها وتليها) على مفتاحي ``AEADKeys``، أحدهما لفك تشفير طبقة AEAD للقفزة السابقة، والآخر لتشفير طبقة AEAD للقفزة التالية.
 
@@ -146,9 +144,7 @@ toc: true
 
 يقوم IBGW بمعالجة الرسائل مسبقًا في رسائل النفق المناسبة ويشفرة كما يلي:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // يولد IBGW نونسيات عشوائية، لضمان عدم الاصطدام في فلتر البلوم لنونسيه
   tunnelNonce = Random(len = 64-bits)
@@ -158,7 +154,7 @@ toc: true
 
   // تشفر الرسائل بالإطار المشفر باستخدام ChaCha20-Poly1305 باستخدام النونسي tunnelNonce ومفتاح outAEADKey
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
-{% endhighlight %}
+```
 
 سيتم تغيير صيغة رسالة النفق قليلًا، باستخدام نونسيتين بحجم 8 بايت بدلاً من IV بحجم 16 بايت. يتم إلحاق ``obfsNonce`` المستخدمة لتشفير النونسي مع ``tunnelNonce`` بحجم 8 بايت، وتشفيرها من قبل كل قفزة باستخدام ``tunnelNonce`` المشفر ومفتاح ``nonceKey`` الخاص بالقفزة.
 
@@ -171,9 +167,7 @@ toc: true
 - استخدام نفس قواعد النونسي لطبقة الأنفاق كأنفاق داخلة
 - توليد نونسيات عشوائية لكل مجموعة من الرسائل المستخدمة في النفق
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 
 // للحصول على كل مجموعة من الرسائل، إنشاء نونسيات فريدة وعشوائية
@@ -191,7 +185,7 @@ toc: true
 
   // بعد معالجة القفزة، تشفير ChaCha20-Poly1305 لكل إطار بيانات مشفراً ``"مفكوك" `` مع النونسي الخاص بنفق القفزة الأول والمفتاح inAEADKey الخاص بالقفزة الأولى
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = decMsg, nonce = first hop's encrypted tunnelNonce, key = first hop's inAEADKey / GW outAEADKey)
-{% endhighlight %}
+```
 
 ### معالجة المشاركين
 
@@ -212,9 +206,7 @@ toc: true
 - تشفير ``obfsNonce`` باستخدام ``nonceKey`` الخاص به و``tunnelNonce`` المشفر
 - إرسال المجموعة {``nextTunnelId``، مشفرة (``tunnelNonce`` || ``obfsNonce``)، AEAD ciphertext || MAC} إلى القفزة التالية.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // للتحقق، ينبغي على قفزات النفق التحقق من فلتر بلوم لمدى تفرد كل نونسي مستلم
   // بعد التحقق، قُم بفك إطار AEAD عن طريق فك ChaCha20-Poly1305 لكل إطار مشفر للرسالة الخاصة بالنفق مع النونسي المستلم ومفتاح inAEADKey
@@ -231,7 +223,7 @@ toc: true
 
   // تشفير ChaCha20 للـobfsNonce المستلمة باستخدام النونسي المشفر ومفتاح nonceKey الخاص بالقفزة
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### معالجة النقطة النهائية الداخلة
 
@@ -246,9 +238,7 @@ toc: true
 - تكرار الخطوات لفك تشفير النونسي والطبقة لكل قفزة في النفق، حتى تصل إلى الـIBGW
 - لا تحتاج فك تشفير إطار AEAD إلا في الجولة الأولى
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // للجولة الأولى، فك تشفير كل إطار بيانات مشفر + MAC باستخدام ChaCha20-Poly1305
   // باستخدام النونسي المستلم و``inAEADKey``
@@ -262,7 +252,7 @@ toc: true
   decMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
   tunnelNonce = ChaCha20(msg = tunnelNonce, nonce = obfsNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### التحليل الأمني لتشفير طبقة النفق ChaCha20+ChaCha20-Poly1305
 
@@ -288,5 +278,4 @@ toc: true
 
 ## المراجع
 
-.. [Tunnel-Implementation]
-   /docs/specs/implementation/
+* [Tunnel-Implementation](/docs/tunnels/implementation/)

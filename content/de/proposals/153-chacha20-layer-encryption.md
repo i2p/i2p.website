@@ -34,7 +34,7 @@ Dieser Abschnitt beschreibt Änderungen an:
 - Teilnehmer-Verschlüsselung + Nachverarbeitung
 - Ausgangs- und Eingangsendpunkt-Verschlüsselung + Nachverarbeitung
 
-Für einen Überblick über die aktuelle Tunnel-Nachrichtenverarbeitung siehe die [Tunnel-Implementation]_ Spezifikation.
+Für einen Überblick über die aktuelle Tunnel-Nachrichtenverarbeitung siehe die [Tunnel Implementation](/docs/tunnels/implementation/) Spezifikation.
 
 Besprochen werden nur Änderungen für Router, die die ChaCha20-Schicht-Verschlüsselung unterstützen.
 
@@ -54,9 +54,7 @@ Die Tunnel-Nachrichten müssen die Länge des inneren verschlüsselten Rahmens u
 
 AEAD kann nicht direkt auf die Nachrichten angewendet werden, da von ausgehenden Tunneln eine iterative Entschlüsselung benötigt wird. Iterative Entschlüsselung kann nur, so wie sie jetzt verwendet wird, mit ChaCha20 ohne AEAD erreicht werden.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |    Tunnel ID      |   tunnelNonce     |
   +----+----+----+----+----+----+----+----+
@@ -96,7 +94,7 @@ AEAD kann nicht direkt auf die Nachrichten angewendet werden, da von ausgehenden
          16 Bytes
 
   Gesamtgröße: 1028 Bytes
-{% endhighlight %}
+```
 
 Innere Hops (mit vor- und nachfolgenden Hops) haben zwei ``AEADKeys``, einen zum Entschlüsseln der AEAD-Schicht des vorherigen Hops und einen zum Verschlüsseln der AEAD-Schicht zum folgenden Hop.
 
@@ -148,9 +146,7 @@ Die inneren I2NP-Nachrichten sind in Garlic-Klaven verpackt, die mithilfe von En
 
 Das IBGW verarbeitet die Nachrichten zu den entsprechend formatierten Tunnel-Nachrichten vor und verschlüsselt sie wie folgt:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // IBGW generiert zufällige Nonces, die keine Kollision in ihrem Bloom-Filter für jeden Nonce sicherstellen
   tunnelNonce = Random(len = 64-bits)
@@ -160,7 +156,7 @@ Das IBGW verarbeitet die Nachrichten zu den entsprechend formatierten Tunnel-Nac
 
   // ChaCha20-Poly1305 verschlüsselt jeden verschlüsselten Datenrahmen der Nachricht mit dem tunnelNonce und outAEADKey
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
-{% endhighlight %}
+```
 
 Das Format der Tunnel-Nachrichten wird sich leicht ändern, indem zwei 8-Byte-Nonces anstelle einer 16-Byte-IV verwendet werden.
 Der für die Verschlüsselung des Nonce verwendete ``obfsNonce`` wird dem 8-Byte ``tunnelNonce`` angehängt und wird von jedem Hop mithilfe des verschlüsselten ``tunnelNonce`` und dem ``nonceKey`` des Hops verschlüsselt.
@@ -175,9 +171,7 @@ Ausgehende Tunnel:
 - Verwenden die gleichen Regeln für Schicht-Nonces wie eingehende Tunnel
 - Generieren zufällige Nonces einmal pro Satz gesendeter Tunnel-Nachrichten
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 
 // Für jeden Satz Nachrichten, generiere einzigartige, zufällige Nonces
@@ -195,7 +189,7 @@ Ausgehende Tunnel:
 
   // Nach der Hop-Verarbeitung, ChaCha20-Poly1305 verschlüsseln jede Tunnel-Nachrichts "entschlüsselte" Datenrahmen mit dem ersten verschlüsselten tunnelNonce und inAEADKey des Hops
   (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = decMsg, nonce = first hop's encrypted tunnelNonce, key = first hop's inAEADKey / GW outAEADKey)
-{% endhighlight %}
+```
 
 ### Teilnehmerverarbeitung
 
@@ -216,9 +210,7 @@ Nach der Validierung:
 - ChaCha20 verschlüsselt den ``obfsNonce`` mit ihrem ``nonceKey`` und dem verschlüsselten ``tunnelNonce``
 - Sendet das Tupel {``nextTunnelId``, encrypted (``tunnelNonce`` || ``obfsNonce``), AEAD ciphertext || MAC} an den nächsten Hop.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Zur Überprüfung sollten Tunnel-Hops den Bloom-Filter auf die Einzigartigkeit jedes empfangenen Nonce überprüfuntion
   // Nach der Verifizierung die AEAD-Frame(s) durch ChaCha20-Poly1305-Entschlüsselung jeder Tunnel-Nachricht's verschlüsseltem Frame
@@ -237,7 +229,7 @@ Nach der Validierung:
 
   // ChaCha20 verschlüsseln den empfangenen obfsNonce mit dem verschlüsselten tunnelNonce und dem nonceKey des Hops
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### Verarbeitung des Eingangs-Endpunkts
 
@@ -252,9 +244,7 @@ Für ChaCha20-Tunnel wird das folgende Schema zur Entschlüsselung jeder Tunnel-
 - Wiederholen Sie die Schritte zur Nonce- und Schichtentschlüsselung für jeden Hop im Tunnel zurück zum IBGW
 - Die AEAD-Frame-Entschlüsselung wird nur im ersten Durchlauf benötigt
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 
 // Für die erste Runde, ChaCha20-Poly1305 entschlüsseln die verschlüsselten Datenrahmen + MAC jeder Nachricht
   // unter Verwendung des erhaltenen tunnelNonce und inAEADKey
@@ -268,7 +258,7 @@ Für ChaCha20-Tunnel wird das folgende Schema zur Entschlüsselung jeder Tunnel-
   decMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
   obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
   tunnelNonce = ChaCha20(msg = tunnelNonce, nonce = obfsNonce, key = nonceKey)
-{% endhighlight %}
+```
 
 ### Sicherheitsanalyse für ChaCha20+ChaCha20-Poly1305 Tunnel-Schicht-Verschlüsselung
 
@@ -297,5 +287,4 @@ Beide Angriffe werden auch durch das Verbot mehrerer Oracle-Anfragen mit derselb
 
 ## Referenzen
 
-.. [Tunnel-Implementation]
-   /docs/specs/implementation/
+* [Tunnel-Implementation](/docs/tunnels/implementation/)

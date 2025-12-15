@@ -21,13 +21,13 @@ API 0.9.66에서 Java I2P로 구현되었습니다.
 
 ## 개요
 
-[Prop123]_에서 별도의 제안으로 분리되었습니다.
+[Prop123](/proposals/123-new-netdb-entries/)에서 별도의 제안으로 분리되었습니다.
 
 오프라인 서명은 응답 가능한 데이터그램 처리에서 확인할 수 없습니다.
 오프라인 서명된 것을 나타내는 플래그가 필요하지만 플래그를 넣을 곳이 없습니다.
 
 완전히 새로운 I2CP 프로토콜 번호와 형식이 필요하며,
-이것은 [DATAGRAMS]_ 사양에 추가될 것입니다.
+이것은 [DATAGRAMS](/docs/api/datagrams/) 사양에 추가될 것입니다.
 이를 "Datagram2"라고 부릅시다.
 
 
@@ -53,18 +53,16 @@ Datagram2 위에만 고성능 프로토콜을 설계하는 것은 의미가 없�
 
 Datagram2를 사용하는 첫 번째 응용 프로그램은
 i2psnark 및 zzzot에서 구현된 바와 같이 비트토런트 UDP 발표가 될 것으로 예상됩니다,
-자세한 내용은 [Prop160]_를 참조하십시오.
+자세한 내용은 [Prop160](/proposals/160-udp-trackers/)를 참조하십시오.
 
 
 ## 응답 가능한 데이터그램 사양
 
 참조로,
-다음은 [Datagrams]_에서 복사한 응답 가능한 데이터그램 사양에 대한 리뷰입니다.
+다음은 [Datagrams](/docs/api/datagrams/)에서 복사한 응답 가능한 데이터그램 사양에 대한 리뷰입니다.
 응답 가능한 데이터그램의 표준 I2CP 프로토콜 번호는 PROTO_DATAGRAM (17)입니다.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   | from                                  |
   +                                       +
@@ -107,7 +105,7 @@ i2psnark 및 zzzot에서 구현된 바와 같이 비트토런트 UDP 발표가 �
               Length: 0 to about 31.5 KB (see notes)
 
   Total length: Payload length + 423+
-{% endhighlight %}
+```
 
 
 
@@ -121,9 +119,9 @@ i2psnark 및 zzzot에서 구현된 바와 같이 비트토런트 UDP 발표가 �
   서명 확인이 응답 가능한 데이터그램이나 스트리밍으로 해석되면 실패합니다.
   이는 서명을 페이로드 후로 이동시키고,
   서명 함수에 대상 해시를 포함시켜 달성됩니다.
-- 데이터그램에 대한 재생 방지 추가, [Prop164]_에서 스트리밍에 대한 작업 수행.
+- 데이터그램에 대한 재생 방지 추가, [Prop164](/proposals/164-streaming/)에서 스트리밍에 대한 작업 수행.
 - 임의의 옵션에 대한 섹션 추가
-- [Common]_과 [Streaming]_에서 오프라인 서명 형식 재사용.
+- [Common](/docs/specs/common-structures/)과 [Streaming](/docs/specs/streaming/)에서 오프라인 서명 형식 재사용.
 - 오프라인 서명 섹션은 가변 길이의
   페이로드 및 서명 섹션 앞에 있어야 하며, 서명의 길이를 지정합니다.
 
@@ -133,19 +131,17 @@ i2psnark 및 zzzot에서 구현된 바와 같이 비트토런트 UDP 발표가 �
 ### 프로토콜
 
 Datagram2의 새로운 I2CP 프로토콜 번호는 19입니다.
-이를 [I2CP]_에 PROTO_DATAGRAM2로 추가하십시오.
+이를 [I2CP](/docs/protocol/i2cp/)에 PROTO_DATAGRAM2로 추가하십시오.
 
 Datagram3의 새로운 I2CP 프로토콜 번호는 20입니다.
-이를 [I2CP]_에 PROTO_DATAGRAM2로 추가하십시오.
+이를 [I2CP](/docs/protocol/i2cp/)에 PROTO_DATAGRAM2로 추가하십시오.
 
 
 ### Datagram2 형식
 
-다음과 같이 [DATAGRAMS]_에 Datagram2를 추가하십시오:
+다음과 같이 [DATAGRAMS](/docs/api/datagrams/)에 Datagram2를 추가하십시오:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            from                       ~
@@ -223,7 +219,7 @@ Datagram3의 새로운 I2CP 프로토콜 번호는 20입니다.
                (if no offline signature) or the transient pubkey
                (if offline signed)
 
-{% endhighlight %}
+```
 
 총 길이: 최소 433 + 페이로드 길이;
 오프라인 서명 없이 X25519 발신자의 일반적인 길이:
@@ -231,7 +227,7 @@ Datagram3의 새로운 I2CP 프로토콜 번호는 20입니다.
 메시지는 일반적으로 I2CP 레이어에서 gzip으로 압축되므로,
 압축 가능한 출발지로부터의 경우 상당한 절약을 할 수 있습니다.
 
-참고: 오프라인 서명 형식은 공통 구조 사양 [Common]_ 및 [Streaming]_와 동일합니다.
+참고: 오프라인 서명 형식은 공통 구조 사양 [Common](/docs/specs/common-structures/) 및 [Streaming](/docs/specs/streaming/)와 동일합니다.
 
 ### 서명
 
@@ -256,11 +252,9 @@ Datagram3의 새로운 I2CP 프로토콜 번호는 20입니다.
 
 ### Datagram3 형식
 
-다음과 같이 [DATAGRAMS]_에 Datagram3을 추가하십시오:
+다음과 같이 [DATAGRAMS](/docs/api/datagrams/)에 Datagram3을 추가하십시오:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            fromhash                   ~
@@ -295,7 +289,7 @@ Datagram3의 새로운 I2CP 프로토콜 번호는 20입니다.
   payload ::  The data
               Length: 0 to about 61 KB (see notes)
 
-{% endhighlight %}
+```
 
 총 길이: 최소 34 + 페이로드 길이.
 
@@ -327,10 +321,10 @@ Datagram3 형식에는 서명이 없으므로 발신자를 검증할 수 없으�
 ## 참고
 
 - 실질적인 길이는 프로토콜 하위 계층에 의해 제한됩니다 - 터널
-  메시지 사양 [TUNMSG]_은 메시지를 약 61.2 KB로 제한하며,
-  전송 [TRANSPORT]_은 현재 메시지를 약 64 KB로 제한하므로,
+  메시지 사양 [TUNMSG](/docs/specs/tunnel-message/#notes)은 메시지를 약 61.2 KB로 제한하며,
+  전송 [TRANSPORT](/docs/transport/)은 현재 메시지를 약 64 KB로 제한하므로,
   여기서의 데이터 길이는 약 61 KB로 제한됩니다.
-- 큰 데이터그램의 신뢰성에 대한 중요한 주석, [API]_. 최고의 결과를 위해,
+- 큰 데이터그램의 신뢰성에 대한 중요한 주석, [API](/docs/api/datagrams/). 최고의 결과를 위해,
   페이로드를 약 10 KB 이하로 제한하십시오.
 
 
@@ -353,7 +347,7 @@ Datagram3 형식에는 서명이 없으므로 발신자를 검증할 수 없으�
 비트토런트 DHT: 확장 플래그가 필요할 가능성이 있으며,
 예: i2p_dg2, BiglyBT와 조율하십시오
 
-비트토런트 UDP 발표 [Prop160]_: 처음부터 설계하십시오.
+비트토런트 UDP 발표 [Prop160](/proposals/160-udp-trackers/): 처음부터 설계하십시오.
 BiglyBT, i2psnark, zzzot와 조율하십시오
 
 ### 기타
@@ -367,35 +361,14 @@ SAM UDP 앱: 알려진 바 없습니다
 
 ## 참고문헌
 
-.. [API]
-    {{ site_url('docs/api/datagrams', True) }}
-
-.. [BT-SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [DATAGRAMS]
-    {{ spec_url('datagrams') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop160]
-    {{ proposal_url('160') }}
-
-.. [Prop164]
-    {{ proposal_url('164') }}
-
-.. [Streaming]
-    {{ spec_url('streaming') }}
-
-.. [TRANSPORT]
-    {{ site_url('docs/transport', True) }}
-
-.. [TUNMSG]
-    {{ spec_url('tunnel-message') }}#notes
+* [API](/docs/api/datagrams/)
+* [BT-SPEC](/docs/applications/bittorrent/)
+* [Common](/docs/specs/common-structures/)
+* [DATAGRAMS](/docs/specs/datagrams/)
+* [I2CP](/docs/protocol/i2cp/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop160](/proposals/160-udp-trackers/)
+* [Prop164](/proposals/164-streaming/)
+* [Streaming](/docs/specs/streaming/)
+* [TRANSPORT](/docs/transport/)
+* [TUNMSG](/docs/specs/tunnel-message/#notes)

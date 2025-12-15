@@ -21,13 +21,13 @@ Kiểm tra tài liệu triển khai để biết trạng thái.
 
 ## Tổng quan
 
-Được tách ra từ [Prop123]_ như một đề xuất riêng biệt.
+Được tách ra từ [Prop123](/proposals/123-new-netdb-entries/) như một đề xuất riêng biệt.
 
 Chữ ký ngoại tuyến không thể được xác minh trong quá trình xử lý datagram có thể phát lại.
 Cần có một cờ để chỉ ra chữ ký ngoại tuyến nhưng không có chỗ để đặt cờ.
 
 Sẽ cần một số giao thức I2CP hoàn toàn mới và định dạng mới,
-để được thêm vào đặc tả [DATAGRAMS]_.
+để được thêm vào đặc tả [DATAGRAMS](/docs/api/datagrams/).
 Chúng ta hãy gọi nó là "Datagram2".
 
 
@@ -55,19 +55,17 @@ chuyển sang datagram RAW.
 
 Ứng dụng đầu tiên sử dụng Datagram2 dự kiến sẽ là
 thông báo UDP bittorrent, như đã triển khai trong i2psnark và zzzot,
-xem [Prop160]_.
+xem [Prop160](/proposals/160-udp-trackers/).
 
 
 ## Đặc tả Datagram có thể phát lại
 
 Để tham khảo,
 sau đây là đánh giá của đặc tả cho các datagram có thể phát lại,
-sao chép từ [Datagrams]_.
+sao chép từ [Datagrams](/docs/api/datagrams/).
 Số giao thức I2CP tiêu chuẩn cho các datagram có thể phát lại là PROTO_DATAGRAM (17).
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   | from                                  |
   +                                       +
@@ -110,7 +108,7 @@ Số giao thức I2CP tiêu chuẩn cho các datagram có thể phát lại là 
               Chiều dài: 0 đến khoảng 31,5 KB (xem lưu ý)
 
   Tổng chiều dài: Chiều dài tải + 423+
-{% endhighlight %}
+```
 
 
 
@@ -124,9 +122,9 @@ Số giao thức I2CP tiêu chuẩn cho các datagram có thể phát lại là 
   xác minh chữ ký sẽ thất bại nếu được giải thích là datagram có thể phát lại hoặc truyền tải.
   Điều này được thực hiện bằng cách di chuyển chữ ký sau tải,
   và bằng cách bao gồm băm đích trong chức năng chữ ký.
-- Thêm phòng ngừa phát lại cho các datagram, như đã được thực hiện trong [Prop164]_ cho truyền tải.
+- Thêm phòng ngừa phát lại cho các datagram, như đã được thực hiện trong [Prop164](/proposals/164-streaming/) cho truyền tải.
 - Thêm phần cho các tùy chọn tùy ý
-- Tái sử dụng định dạng chữ ký ngoại tuyến từ [Common]_ và [Streaming]_.
+- Tái sử dụng định dạng chữ ký ngoại tuyến từ [Common](/docs/specs/common-structures/) và [Streaming](/docs/specs/streaming/).
 - Phần chữ ký ngoại tuyến phải trước phần tải
   và phần chữ ký có chiều dài thay đổi, vì nó chỉ định chiều dài
   của chữ ký.
@@ -137,19 +135,17 @@ Số giao thức I2CP tiêu chuẩn cho các datagram có thể phát lại là 
 ### Giao thức
 
 Số giao thức I2CP mới cho Datagram2 là 19.
-Thêm nó làm PROTO_DATAGRAM2 vào [I2CP]_.
+Thêm nó làm PROTO_DATAGRAM2 vào [I2CP](/docs/protocol/i2cp/).
 
 Số giao thức I2CP mới cho Datagram3 là 20.
-Thêm nó làm PROTO_DATAGRAM2 vào [I2CP]_.
+Thêm nó làm PROTO_DATAGRAM2 vào [I2CP](/docs/protocol/i2cp/).
 
 
 ### Định dạng Datagram2
 
-Thêm Datagram2 vào [DATAGRAMS]_ như sau:
+Thêm Datagram2 vào [DATAGRAMS](/docs/api/datagrams/) như sau:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            from                       ~
@@ -227,7 +223,7 @@ Thêm Datagram2 vào [DATAGRAMS]_ như sau:
                (nếu không có chữ ký ngoại tuyến) hoặc khóa công khai tạm thời
                (nếu đã ký ngoại tuyến)
 
-{% endhighlight %}
+```
 
 Tổng chiều dài: tối thiểu 433 + chiều dài tải;
 chiều dài điển hình cho người gửi X25519 và không có chữ ký ngoại tuyến:
@@ -235,7 +231,7 @@ chiều dài điển hình cho người gửi X25519 và không có chữ ký ng
 Lưu ý rằng tin nhắn sẽ thường được nén với gzip ở lớp I2CP,
 điều sẽ mang lại tiết kiệm đáng kể nếu bích đích từ có thể nén được.
 
-Ghi chú: Định dạng chữ ký ngoại tuyến giống như trong đặc tả Cấu trúc Chung [Common]_ và [Streaming]_.
+Ghi chú: Định dạng chữ ký ngoại tuyến giống như trong đặc tả Cấu trúc Chung [Common](/docs/specs/common-structures/) và [Streaming](/docs/specs/streaming/).
 
 ### Chữ ký
 
@@ -258,11 +254,9 @@ và loại bỏ datagram khi thất bại, để ngăn chặn phát lại.
 
 ### Định dạng Datagram3
 
-Thêm Datagram3 vào [DATAGRAMS]_ như sau:
+Thêm Datagram3 vào [DATAGRAMS](/docs/api/datagrams/) như sau:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' -%}
+```text
 +----+----+----+----+----+----+----+----+
   |                                       |
   ~            fromhash                   ~
@@ -297,7 +291,7 @@ Thêm Datagram3 vào [DATAGRAMS]_ như sau:
   payload :: Dữ liệu
               Chiều dài: 0 đến khoảng 61 KB (xem ghi chú)
 
-{% endhighlight %}
+```
 
 Tổng chiều dài: tối thiểu 34 + chiều dài tải.
 
@@ -328,9 +322,9 @@ hoặc bởi router ở lớp ratchet.
 
 ## Ghi chú
 
-- Chiều dài thực tế bị giới hạn bởi các lớp dưới của các giao thức - đặc tả thông điệp hầm [TUNMSG]_ giới hạn các thông điệp khoảng 61.2 KB và các phương tiện truyền thông [TRANSPORT]_ hiện tại giới hạn các thông điệp khoảng 64 KB, do đó chiều dài dữ liệu ở đây
+- Chiều dài thực tế bị giới hạn bởi các lớp dưới của các giao thức - đặc tả thông điệp hầm [TUNMSG](/docs/specs/tunnel-message/#notes) giới hạn các thông điệp khoảng 61.2 KB và các phương tiện truyền thông [TRANSPORT](/docs/transport/) hiện tại giới hạn các thông điệp khoảng 64 KB, do đó chiều dài dữ liệu ở đây
   bị giới hạn khoảng 61 KB.
-- Xem các ghi chú quan trọng về độ tin cậy của các datagram lớn [API]_. Để 
+- Xem các ghi chú quan trọng về độ tin cậy của các datagram lớn [API](/docs/api/datagrams/). Để
   đạt được kết quả tốt nhất, hãy giới hạn tải khoảng 10 KB hoặc ít hơn.
 
 
@@ -355,7 +349,7 @@ Mỗi ứng dụng UDP phải phát hiện hỗ trợ và di chuyển riêng.
 Bittorrent DHT: Có thể cần cờ mở rộng,
 ví dụ: i2p_dg2, điều phối với BiglyBT
 
-Thông báo UDP Bittorrent [Prop160]_: Thiết kế trong từ đầu.
+Thông báo UDP Bittorrent [Prop160](/proposals/160-udp-trackers/): Thiết kế trong từ đầu.
 Điều phối với BiglyBT, i2psnark, zzzot
 
 ### Khác
@@ -369,36 +363,14 @@ Streamr: Không ai sử dụng nó, không có kế hoạch di chuyển
 
 ## Tham khảo
 
-.. [API]
-    {{ site_url('docs/api/datagrams', True) }}
-
-.. [BT-SPEC]
-    {{ site_url('docs/applications/bittorrent', True) }}
-
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [DATAGRAMS]
-    {{ spec_url('datagrams') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop160]
-    {{ proposal_url('160') }}
-
-.. [Prop164]
-    {{ proposal_url('164') }}
-
-.. [Streaming]
-    {{ spec_url('streaming') }}
-
-.. [TRANSPORT]
-    {{ site_url('docs/transport', True) }}
-
-.. [TUNMSG]
-    {{ spec_url('tunnel-message') }}#notes
-
+* [API](/docs/api/datagrams/)
+* [BT-SPEC](/docs/applications/bittorrent/)
+* [Common](/docs/specs/common-structures/)
+* [DATAGRAMS](/docs/specs/datagrams/)
+* [I2CP](/docs/protocol/i2cp/)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop160](/proposals/160-udp-trackers/)
+* [Prop164](/proposals/164-streaming/)
+* [Streaming](/docs/specs/streaming/)
+* [TRANSPORT](/docs/transport/)
+* [TUNMSG](/docs/specs/tunnel-message/#notes)
