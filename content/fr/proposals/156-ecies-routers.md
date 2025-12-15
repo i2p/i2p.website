@@ -112,8 +112,7 @@ Ces changements sont définis dans la proposition 157 [Prop157](/en/proposals/15
 
 ### Chiffrement de bout en bout
 
-Historique
-```````````
+#### Historique
 
 Dans la conception originale de Java I2P, il y avait un seul gestionnaire de clé de session ElGamal (SKM)
 partagé par le routeur et toutes ses destinations locales.
@@ -135,8 +134,7 @@ mais de manière compatible, afin qu'un SKM ECIES puisse recevoir à la fois des
 L'intention était d'utiliser une clé zéro pour les routeurs ECIES.
 
 
-Cas d'utilisation et modèles de menace
-````````````````````````````````````
+#### Cas d'utilisation et modèles de menace
 
 Le cas d'utilisation et le modèle de menace pour les messages envoyés aux routeurs sont très différents de
 ceux pour les messages de bout en bout entre destinations.
@@ -172,8 +170,7 @@ Objectifs non-visés du cas d'utilisation des routeurs :
 - Pas besoin d'exécuter des gestionnaires de clés de session "à double clé" comme décrit dans [ECIES](/en/docs/spec/ecies/) pour les destinations. Les routeurs n'ont qu'une seule clé publique.
 
 
-Conclusion de la conception
-```````````````````````````
+#### Conclusion de la conception
 
 Le SKM de routeur ECIES n'a pas besoin d'un SKM à cliquet complet tel que spécifié dans [ECIES](/en/docs/spec/ecies/) pour les destinations.
 Il n'y a pas de besoin de messages non-anonymes utilisant le modèle IK.
@@ -239,8 +236,7 @@ En général, ce seront des messages de nouvelle session et seront envoyés avec
 (pas de liaison ou session), car l'expéditeur du message est anonyme.
 
 
-KDF pour ck et h initiaux
-````````````````````````
+#### KDF pour ck et h initiaux
 
 Cela fait partie du standard [NOISE](https://noiseprotocol.org/noise.html) pour le modèle "N" avec un nom de protocole standard.
 C'est le même que spécifié dans [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) et [Prop152](/en/proposals/152-ecies-tunnels/) pour les messages de construction de tunnel.
@@ -273,8 +269,7 @@ C'est le modèle de message "e" :
   ```
 
 
-KDF pour les messages
-````````````````````````
+#### KDF pour les messages
 
 Les créateurs de message génèrent une paire de clés éphémères X25519 pour chaque message.
 Les clés éphémères doivent être uniques par message.
@@ -339,8 +334,7 @@ C'est le même que spécifié dans [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-
 
 
 
-Charge utile
-````````````````````````
+#### Charge utile
 
 La charge utile est le même format de bloc que défini dans [ECIES](/en/docs/spec/ecies/) et [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/).
 Tous les messages doivent contenir un bloc DateTime pour la prévention de la relecture.
@@ -521,44 +515,17 @@ Version cible : 0.9.53, début 2022.
 
 ## Références
 
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [ECIES]
-   {{ spec_url('ecies') }}
-
-.. [ECIES-ROUTERS]
-   {{ spec_url('ecies-routers') }}
-
-.. [I2NP]
-    {{ spec_url('i2np') }}
-
-.. [NOISE]
-    https://noiseprotocol.org/noise.html
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop144]
-    {{ proposal_url('144') }}
-
-.. [Prop145]
-    {{ proposal_url('145') }}
-
-.. [Prop152]
-    {{ proposal_url('152') }}
-
-.. [Prop153]
-    {{ proposal_url('153') }}
-
-.. [Prop154]
-    {{ proposal_url('154') }}
-
-.. [Prop157]
-    {{ proposal_url('157') }}
-
-.. [Tunnel-Creation]
-    {{ spec_url('tunnel-creation') }}
-
-.. [Tunnel-Creation-ECIES]
-   {{ spec_url('tunnel-creation-ecies') }}
+* [Common](/docs/specs/common-structures/)
+* [ECIES](/docs/specs/ecies/)
+* [ECIES-ROUTERS](/docs/specs/ecies-routers/)
+* [I2NP](/docs/specs/i2np/)
+* [NOISE](https://noiseprotocol.org/noise.html)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop144](/proposals/144-ecies-x25519-aead-ratchet/)
+* [Prop145](/proposals/145-ecies/)
+* [Prop152](/proposals/152-ecies-tunnels/)
+* [Prop153](/proposals/153-chacha20-layer-encryption/)
+* [Prop154](/proposals/154-ecies-lookups/)
+* [Prop157](/proposals/157-new-tbm/)
+* [Tunnel-Creation](/docs/specs/tunnel-creation/)
+* [Tunnel-Creation-ECIES](/docs/specs/tunnel-creation-ecies/)

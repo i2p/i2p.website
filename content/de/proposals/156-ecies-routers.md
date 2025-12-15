@@ -110,8 +110,7 @@ Diese Änderungen sind in Vorschlag 157 [Prop157](/en/proposals/157-new-tbm/) de
 
 ### End-to-End-Verschlüsselung
 
-Geschichte
-```````````
+#### Geschichte
 
 Im ursprünglichen Design von Java I2P gab es einen einzigen ElGamal-Session-Key-Manager (SKM),
 der vom Router und all seinen lokalen Destinationen gemeinsam genutzt wurde.
@@ -132,8 +131,7 @@ jedoch auf eine kompatible Weise, sodass ein ECIES-SKM sowohl anonyme als auch n
 Die Absicht war es, den Nullschlüssel für ECIES-Router zu verwenden.
 
 
-Anwendungsfälle und Bedrohungsmodelle
-`````````````````````````````````````
+#### Anwendungsfälle und Bedrohungsmodelle
 
 Der Anwendungsfall und das Bedrohungsmodell für Nachrichten, die an Router gesendet werden, unterscheiden sich wesentlich von
 denen für End-to-End-Nachrichten zwischen Destinationen.
@@ -169,8 +167,7 @@ Nicht-Ziele des Router-Anwendungsfalls:
 - Keine Notwendigkeit, "dual key" Session Key Manager laufen zu lassen, wie in [ECIES](/en/docs/spec/ecies/) für Destinationen beschrieben. Router haben nur einen öffentlichen Schlüssel.
 
 
-Design-Schlussfolgerungen
-```````````````````````````
+#### Design-Schlussfolgerungen
 
 Der ECIES-Router-SKM benötigt nicht einen vollständigen Ratchet-SKM, wie für Destinationen in [ECIES](/en/docs/spec/ecies/) spezifiziert.
 Es gibt keine Anforderungen für nicht-anonyme Nachrichten im IK-Muster.
@@ -235,8 +232,7 @@ Im Allgemeinen werden dies Neue Sitzungsnachrichten sein und mit einem Nullstati
 (kein Binding oder Sitzung) gesendet, da der Absender der Nachricht anonym ist.
 
 
-KDF für Initiale ck und h
-````````````````````````
+#### KDF für Initiale ck und h
 
 Dies ist Standard [NOISE](https://noiseprotocol.org/noise.html) für Muster "N" mit einem Standardprotokollnamen.
 Dies ist dasselbe wie in [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) und [Prop152](/en/proposals/152-ecies-tunnels/) für Tunnelaufbau-Nachrichten spezifiziert.
@@ -269,8 +265,7 @@ Dies ist das "e"-Nachrichtenmuster:
   ```
 
 
-KDF für Nachricht
-````````````````````````
+#### KDF für Nachricht
 
 Nachrichtenersteller generieren für jede Nachricht ein ephemeres X25519-Schlüsselpaar.
 Ephemerschlüssel müssen pro Nachricht einzigartig sein.
@@ -333,8 +328,7 @@ Dies ist dasselbe wie in [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-e
 
 
 
-Nutzlast
-````````````````````````
+#### Nutzlast
 
 Die Nutzlast ist dasselbe Blockformat, wie in [ECIES](/en/docs/spec/ecies/) und [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/) definiert.
 Alle Nachrichten müssen einen DateTime-Block zur Wiederholungsprävention enthalten.

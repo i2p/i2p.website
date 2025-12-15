@@ -112,8 +112,7 @@ Những thay đổi này được định nghĩa trong kiến nghị 157 [Prop15
 
 ### Mã Hóa Đầu Cuối
 
-Lịch Sử
-```````````
+#### Lịch Sử
 
 Trong thiết kế ban đầu của Java I2P, có một Quản Lý Khóa Phiên ElGamal (SKM) chia sẻ
 giữa thiết bị định tuyến và tất cả các Điểm Đến cục bộ của nó.
@@ -132,8 +131,7 @@ Do đó, chúng tôi đã bao gồm trong đề xuất một cách để gửi t
 Ý định là sử dụng khóa không cho các thiết bị định tuyến ECIES.
 
 
-Trường Hợp Sử Dụng và Mô Hình Đe Dọa
-`````````````````````````
+#### Trường Hợp Sử Dụng và Mô Hình Đe Dọa
 
 Trường hợp sử dụng và mô hình đe dọa cho các tin nhắn gửi đến các thiết bị định tuyến rất khác với
 đối với các tin nhắn đầu-cuối giữa các Điểm Đến.
@@ -169,8 +167,7 @@ Phi-mục tiêu của trường hợp sử dụng Thiết Bị Định Tuyến:
 - Không cần chạy "quản trị khóa đôi" Quản Lý Khóa Phiên như được mô tả trong [ECIES](/en/docs/spec/ecies/) cho Điểm Đến. Các thiết bị định tuyến chỉ có một khóa công khai.
 
 
-Kết Luận Thiết Kế
-```````````````````````
+#### Kết Luận Thiết Kế
 
 SKM Router ECIES không cần một SKM Ratchet đầy đủ như được quy định trong [ECIES](/en/docs/spec/ecies/) cho các Điểm Đến.
 Không có yêu cầu cho các tin nhắn không ẩn danh sử dụng mẫu IK.
@@ -236,8 +233,7 @@ Thông thường, đây sẽ là tin nhắn Phiên Mới và sẽ được gửi
 (không có ràng buộc hoặc phiên), khi người gửi của tin nhắn là ẩn danh.
 
 
-KDF cho ck ban đầu và h
-````````````````````````
+#### KDF cho ck ban đầu và h
 
 Đây là [NOISE](https://noiseprotocol.org/noise.html) tiêu chuẩn cho mẫu "N" với một tên giao thức chuẩn.
 Điều này giống như đã được quy định trong [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) và [Prop152](/en/proposals/152-ecies-tunnels/) cho các tin nhắn xây dựng đường hầm.
@@ -270,8 +266,7 @@ KDF cho ck ban đầu và h
   ```
 
 
-KDF cho Tin Nhắn
-````````````````````````
+#### KDF cho Tin Nhắn
 
 Người tạo ra tin nhắn tạo ra một cặp khóa X25519 tạm thời cho mỗi tin nhắn.
 Khóa tạm thời phải là duy nhất cho mỗi tin nhắn.
@@ -336,8 +331,7 @@ Khóa tạm thời phải là duy nhất cho mỗi tin nhắn.
 
 
 
-Tải
-````````````````````````
+#### Tải
 
 Tải là cùng định dạng khối như được định nghĩa trong [ECIES](/en/docs/spec/ecies/) và [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/).
 Tất cả các tin nhắn phải chứa một khối DateTime để ngăn chặn việc phát lại.
@@ -514,44 +508,17 @@ Phiên bản mục tiêu: 0.9.53, đầu 2022.
 
 ## Tham Khảo
 
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [ECIES]
-   {{ spec_url('ecies') }}
-
-.. [ECIES-ROUTERS]
-   {{ spec_url('ecies-routers') }}
-
-.. [I2NP]
-    {{ spec_url('i2np') }}
-
-.. [NOISE]
-    https://noiseprotocol.org/noise.html
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop144]
-    {{ proposal_url('144') }}
-
-.. [Prop145]
-    {{ proposal_url('145') }}
-
-.. [Prop152]
-    {{ proposal_url('152') }}
-
-.. [Prop153]
-    {{ proposal_url('153') }}
-
-.. [Prop154]
-    {{ proposal_url('154') }}
-
-.. [Prop157]
-    {{ proposal_url('157') }}
-
-.. [Tunnel-Creation]
-    {{ spec_url('tunnel-creation') }}
-
-.. [Tunnel-Creation-ECIES]
-   {{ spec_url('tunnel-creation-ecies') }}
+* [Common](/docs/specs/common-structures/)
+* [ECIES](/docs/specs/ecies/)
+* [ECIES-ROUTERS](/docs/specs/ecies-routers/)
+* [I2NP](/docs/specs/i2np/)
+* [NOISE](https://noiseprotocol.org/noise.html)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop144](/proposals/144-ecies-x25519-aead-ratchet/)
+* [Prop145](/proposals/145-ecies/)
+* [Prop152](/proposals/152-ecies-tunnels/)
+* [Prop153](/proposals/153-chacha20-layer-encryption/)
+* [Prop154](/proposals/154-ecies-lookups/)
+* [Prop157](/proposals/157-new-tbm/)
+* [Tunnel-Creation](/docs/specs/tunnel-creation/)
+* [Tunnel-Creation-ECIES](/docs/specs/tunnel-creation-ecies/)

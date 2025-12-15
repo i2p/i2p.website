@@ -102,8 +102,7 @@ LS2 [Prop123](/en/proposals/123-new-netdb-entries/)와 ECIES-X25519-AEAD-Ratchet
 
 ### 종단간 암호화
 
-기본 사항
-```````````
+#### 기본 사항
 
 Java I2P의 초기 설계에서는 라우터와 그 안의 모든 목적지가 공유하는 단일 ElGamal 세션 키 관리자가 있었음.
 공유 SKM은 정보를 누출하고 공격자에 의해 상관될 수 있기 때문에
@@ -122,8 +121,7 @@ IK 패턴은 익명의 발신자를 허용하지 않음.
 ECIES 라우터에 대해 제로 키를 사용하는 것이 목적이었음.
 
 
-사용 사례 및 위협 모델
-```````````````````````````````
+#### 사용 사례 및 위협 모델
 
 라우터로 전송된 메시지의 사용 사례와 위협 모델은
 목적지 간의 종단간 메시지와 매우 다름.
@@ -159,8 +157,7 @@ ECIES 라우터에 대해 제로 키를 사용하는 것이 목적이었음.
 - 목적지를 위한 [ECIES](/en/docs/spec/ecies/)에 설명 된 "이중 키" 세션 키 관리자를 실행할 필요 없음. 라우터는 단일 공개 키만 가짐.
 
 
-설계 결론
-`````````````````````````
+#### 설계 결론
 
 ECIES 라우터 SKM은 목적지에 대해 [ECIES](/en/docs/spec/ecies/)에 지정된 전체 Ratchet SKM을 필요로 하지 않음.
 IK 패턴을 사용하는 비익명 메시지에 대한 요구 사항이 없음.
@@ -219,8 +216,7 @@ ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/
 일반적으로, 이는 새로운 세션 메시지가 될 것이며, 발신자가 익명이므로 제로 고정 키(바인딩 또는 세션 없음)와 함께 전송될 것임.
 
 
-초기 ck 및 h를 위한 KDF
-````````````````````````
+#### 초기 ck 및 h를 위한 KDF
 
 이것은 표준 패턴 "N"에 대한 표준 [NOISE](https://noiseprotocol.org/noise.html)임.
 이는 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 및 [Prop152](/en/proposals/152-ecies-tunnels/)에 터널 빌드 메시지에 지정된 것과 동일함.
@@ -253,8 +249,7 @@ ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/
   ```
 
 
-메시지를 위한 KDF
-````````````````````````
+#### 메시지를 위한 KDF
 
 메시지 생성자는 각 메시지에 대해 일시적인 X25519 키 쌍을 생성함.
 일시적인 키는 메시지마다 고유해야 함.
@@ -318,8 +313,7 @@ ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/
 
 
 
-페이로드
-````````````````````````
+#### 페이로드
 
 페이로드는 [ECIES](/en/docs/spec/ecies/) 및 [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/)에 정의된 동일 블록 형식임.
 모든 메시지는 재전송 방지를 위해 DateTime 블록을 포함해야 함.

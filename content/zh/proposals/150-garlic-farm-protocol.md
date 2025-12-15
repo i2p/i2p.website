@@ -142,27 +142,25 @@ HTTP/1.1 101 Switching Protocols
 
 消息类型 16-17 是 Raft 第 7 节中定义的日志压缩 RPC 消息。
 
-========================  ======  ===========  =================   =====================================
-消息                     编号     发送方       接收方               备注
-========================  ======  ===========  =================   =====================================
-RequestVoteRequest           1    候选人       跟随者                   标准 Raft RPC；不应包含日志条目
-RequestVoteResponse          2    跟随者       候选人                   标准 Raft RPC
-AppendEntriesRequest         3    领导者       跟随者                   标准 Raft RPC
-AppendEntriesResponse        4    跟随者       领导者 / 客户端          标准 Raft RPC
-ClientRequest                5    客户端       领导者 / 跟随者          响应是 AppendEntriesResponse；必须仅包含应用程序日志条目
-AddServerRequest             6    客户端       领导者                   必须仅包含一个 ClusterServer 日志条目
-AddServerResponse            7    领导者       客户端                   领导者也会发送 JoinClusterRequest
-RemoveServerRequest          8    跟随者       领导者                   必须仅包含一个 ClusterServer 日志条目
-RemoveServerResponse         9    领导者       跟随者
-SyncLogRequest              10    领导者       跟随者                   必须仅包含一个 LogPack 日志条目
-SyncLogResponse             11    跟随者       领导者
-JoinClusterRequest          12    领导者       新服务器                 邀请加入；必须仅包含一个 Configuration 日志条目
-JoinClusterResponse         13    新服务器     领导者
-LeaveClusterRequest         14    领导者       跟随者                   命令离开
-LeaveClusterResponse        15    跟随者       领导者
-InstallSnapshotRequest      16    领导者       跟随者                   Raft 第 7 节；必须仅包含一个 SnapshotSyncRequest 日志条目
-InstallSnapshotResponse     17    跟随者       领导者                   Raft 第 7 节
-========================  ======  ===========  =================   =====================================
+| 消息 | 编号 | 发送方 | 接收方 | 备注 |
+|------|------|--------|--------|------|
+| RequestVoteRequest | 1 | 候选人 | 跟随者 | 标准 Raft RPC；不应包含日志条目 |
+| RequestVoteResponse | 2 | 跟随者 | 候选人 | 标准 Raft RPC |
+| AppendEntriesRequest | 3 | 领导者 | 跟随者 | 标准 Raft RPC |
+| AppendEntriesResponse | 4 | 跟随者 | 领导者 / 客户端 | 标准 Raft RPC |
+| ClientRequest | 5 | 客户端 | 领导者 / 跟随者 | 响应是 AppendEntriesResponse；必须仅包含应用程序日志条目 |
+| AddServerRequest | 6 | 客户端 | 领导者 | 必须仅包含一个 ClusterServer 日志条目 |
+| AddServerResponse | 7 | 领导者 | 客户端 | 领导者也会发送 JoinClusterRequest |
+| RemoveServerRequest | 8 | 跟随者 | 领导者 | 必须仅包含一个 ClusterServer 日志条目 |
+| RemoveServerResponse | 9 | 领导者 | 跟随者 | |
+| SyncLogRequest | 10 | 领导者 | 跟随者 | 必须仅包含一个 LogPack 日志条目 |
+| SyncLogResponse | 11 | 跟随者 | 领导者 | |
+| JoinClusterRequest | 12 | 领导者 | 新服务器 | 邀请加入；必须仅包含一个 Configuration 日志条目 |
+| JoinClusterResponse | 13 | 新服务器 | 领导者 | |
+| LeaveClusterRequest | 14 | 领导者 | 跟随者 | 命令离开 |
+| LeaveClusterResponse | 15 | 跟随者 | 领导者 | |
+| InstallSnapshotRequest | 16 | 领导者 | 跟随者 | Raft 第 7 节；必须仅包含一个 SnapshotSyncRequest 日志条目 |
+| InstallSnapshotResponse | 17 | 跟随者 | 领导者 | Raft 第 7 节 |
 
 ### 建立
 
@@ -270,15 +268,13 @@ InstallSnapshotResponse     17    跟随者       领导者                   Ra
 
 所有值为无符号大端序。
 
-========================  ======
-日志值类型                编号
-========================  ======
-应用程序                      1
-配置                          2
-集群服务器                    3
-日志包                        4
-快照同步请求                  5
-========================  ======
+| 日志值类型 | 编号 |
+|------------|------|
+| 应用程序 | 1 |
+| 配置 | 2 |
+| 集群服务器 | 3 |
+| 日志包 | 4 |
+| 快照同步请求 | 5 |
 
 #### 应用程序
 

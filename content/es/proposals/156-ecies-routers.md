@@ -112,8 +112,7 @@ Estos cambios están definidos en la propuesta 157 [Prop157](/en/proposals/157-n
 
 ### Cifrado de extremo a extremo
 
-Historia
-```````````
+#### Historia
 
 En el diseño original de Java I2P, había un único Gestor de Clave de Sesión ElGamal (SKM)
 compartido por el router y todos sus Destinos locales.
@@ -134,8 +133,7 @@ pero de manera compatible, por lo que un ECIES SKM podría recibir tanto mensaje
 La intención era usar clave cero para routers ECIES.
 
 
-Casos de Uso y Modelos de Amenaza
-`````````````````````````````````
+#### Casos de Uso y Modelos de Amenaza
 
 El caso de uso y modelo de amenaza para mensajes enviados a routers es muy diferente del
 de mensajes de extremo a extremo entre Destinos.
@@ -171,8 +169,7 @@ Metas no buscadas del caso de uso del Router:
 - No hay necesidad de ejecutar Gestores de Clave de Sesión "doble clave" como se describe en [ECIES](/en/docs/spec/ecies/) para Destinos. Los routers solo tienen una clave pública.
 
 
-Conclusiones del Diseño
-```````````````````````
+#### Conclusiones del Diseño
 
 El SKM del Router ECIES no necesita un Ratchet SKM completo como se especifica en [ECIES](/en/docs/spec/ecies/) para Destinos.
 No hay requisito para mensajes no anónimos utilizando el patrón IK.
@@ -238,8 +235,7 @@ Generalmente, estos serán mensajes de Nueva Sesión y se enviarán con una clav
 (sin vinculación ni sesión), ya que el remitente del mensaje es anónimo.
 
 
-KDF para ck y h Iniciales
-````````````````````````
+#### KDF para ck y h Iniciales
 
 Esto es estándar [NOISE](https://noiseprotocol.org/noise.html) para el patrón "N" con un nombre de protocolo estándar.
 Esto es lo mismo que se especifica en [Tunnel-Creation-ECIES] y [Prop152](/en/proposals/152-ecies-tunnels/) para mensajes de construcción de túneles.
@@ -272,8 +268,7 @@ Este es el patrón de mensaje "e":
   ```
 
 
-KDF para Mensaje
-````````````````````````
+#### KDF para Mensaje
 
 Los creadores de mensajes generan un par de claves X25519 efímeras para cada mensaje.
 Las claves efímeras deben ser únicas por mensaje.
@@ -338,8 +333,7 @@ Esto es lo mismo que se especifica en [Tunnel-Creation-ECIES](/en/docs/spec/tunn
 
 
 
-Payload
-````````````````````````
+#### Payload
 
 El payload es el mismo formato de bloque definido en [ECIES](/en/docs/spec/ecies/) y [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/).
 Todos los mensajes deben contener un bloque de DateTime para la prevención de repeticiones.

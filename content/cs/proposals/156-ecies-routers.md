@@ -110,8 +110,7 @@ Tyto změny jsou definovány v návrhu 157 [Prop157](/en/proposals/157-new-tbm/)
 
 ### Šifrování End-to-End
 
-Historie
-```````````
+#### Historie
 
 V původním návrhu Java I2P existoval jediný Správce ElGamal klíčů relace (SKM),
 který sdílel router a všechny jeho lokální Destinace.
@@ -132,8 +131,7 @@ ale kompatibilním způsobem, takže ECIES SKM mohl přijímat jak anonymní, ta
 Úmysl byl použít nulový klíč pro ECIES routery.
 
 
-Použití a model hrozeb
-`````````````````````````
+#### Použití a model hrozeb
 
 Použití a model hrozeb pro zprávy posílané routerům se velmi liší od
 toho pro end-to-end zprávy mezi Destinacemi.
@@ -169,8 +167,7 @@ Necíle použití routeru:
 - Není potřeba provozovat "dvojité klíče" Správce klíčů relace, jak je popsáno v [ECIES](/en/docs/spec/ecies/) pro Destinace. Routery mají pouze jeden veřejný klíč.
 
 
-Závěry návrhu
-```````````````````````
+#### Závěry návrhu
 
 ECIES Router SKM nepotřebuje plný Ratchet SKM, jak je specifikováno v [ECIES](/en/docs/spec/ecies/) pro Destinace.
 Není požadavek na neanonymní zprávy pomocí IK vzoru.
@@ -236,8 +233,7 @@ Obecně se bude jednat o Nové zprávy relace a budou posílány s nulovým stat
 (bez vazby nebo relace), jelikož odesílatel zprávy je anonymní.
 
 
-KDF pro počáteční ck a h
-````````````````````````
+#### KDF pro počáteční ck a h
 
 Toto je standard [NOISE](https://noiseprotocol.org/noise.html) pro vzor "N" s běžně používaným názvem protokolu.
 Toto je stejné jako specifikováno v [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) a [Prop152](/en/proposals/152-ecies-tunnels/) pro zprávy o stavbě tunelů.
@@ -270,8 +266,7 @@ Toto je "e" vzor zprávy:
   ```
 
 
-KDF pro zprávy
-````````````````````````
+#### KDF pro zprávy
 
 Tvořitelé zprávy generují efemérní X25519 klíčový pár pro každou zprávu.
 Efemérní klíče musí být unikátní pro každou zprávu.
@@ -335,8 +330,7 @@ Toto je stejné jako specifikováno v [Tunnel-Creation-ECIES](/en/docs/spec/tunn
   ```
 
 
-Obsah
-````````````````````````
+#### Obsah
 
 Obsah má stejný blokový formát jako definován v [ECIES](/en/docs/spec/ecies/) a [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/).
 Všechny zprávy musí obsahovat DateTime blok pro prevenci přehrání.
@@ -516,44 +510,17 @@ Cílové vydání: 0.9.53, začátek 2022.
 
 ## Odkazy
 
-.. [Common]
-    {{ spec_url('common-structures') }}
-
-.. [ECIES]
-   {{ spec_url('ecies') }}
-
-.. [ECIES-ROUTERS]
-   {{ spec_url('ecies-routers') }}
-
-.. [I2NP]
-    {{ spec_url('i2np') }}
-
-.. [NOISE]
-    https://noiseprotocol.org/noise.html
-
-.. [Prop123]
-    {{ proposal_url('123') }}
-
-.. [Prop144]
-    {{ proposal_url('144') }}
-
-.. [Prop145]
-    {{ proposal_url('145') }}
-
-.. [Prop152]
-    {{ proposal_url('152') }}
-
-.. [Prop153]
-    {{ proposal_url('153') }}
-
-.. [Prop154]
-    {{ proposal_url('154') }}
-
-.. [Prop157]
-    {{ proposal_url('157') }}
-
-.. [Tunnel-Creation]
-    {{ spec_url('tunnel-creation') }}
-
-.. [Tunnel-Creation-ECIES]
-   {{ spec_url('tunnel-creation-ecies') }}
+* [Common](/docs/specs/common-structures/)
+* [ECIES](/docs/specs/ecies/)
+* [ECIES-ROUTERS](/docs/specs/ecies-routers/)
+* [I2NP](/docs/specs/i2np/)
+* [NOISE](https://noiseprotocol.org/noise.html)
+* [Prop123](/proposals/123-new-netdb-entries/)
+* [Prop144](/proposals/144-ecies-x25519-aead-ratchet/)
+* [Prop145](/proposals/145-ecies/)
+* [Prop152](/proposals/152-ecies-tunnels/)
+* [Prop153](/proposals/153-chacha20-layer-encryption/)
+* [Prop154](/proposals/154-ecies-lookups/)
+* [Prop157](/proposals/157-new-tbm/)
+* [Tunnel-Creation](/docs/specs/tunnel-creation/)
+* [Tunnel-Creation-ECIES](/docs/specs/tunnel-creation-ecies/)

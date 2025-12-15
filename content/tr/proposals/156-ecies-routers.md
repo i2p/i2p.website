@@ -83,8 +83,7 @@ Birinci aşamada, ECIES geçişleri için Oluşturma İstek Kaydı ve Oluşturma
 
 ### Uçtan Uca Şifreleme
 
-Geçmiş
-```````````
+#### Geçmiş
 
 Orijinal Java I2P tasarımında, yönlendirici ve tüm yerel Hedefler tarafından paylaşılan tek bir ElGamal Oturum Anahtarı Yöneticisi (SKM) vardı. Paylaşılan bir SKM bilgi sızdırabilir ve saldırganlar tarafından korelasyona izin verebilir, bu nedenle tasarım yönlendirici ve her Hedef için ayrı ElGamal SKM'leri desteklemek üzere değiştirildi. ElGamal tasarımı yalnızca anonimsiz göndericileri destekliyordu; gönderici yalnızca geçici anahtarlar gönderiyor, statik bir anahtar değil. Mesaj göndericinin kimliğine bağlanmamıştı.
 
@@ -93,8 +92,7 @@ Daha sonra, ECIES-X25519-AEAD-Ratchet [Öneri144](/en/proposals/144-ecies-x25519
 Bu nedenle, öneriye bir Ratchet SKM'ye anonim mesajlar gönderme yolunu da dahil ettik, sıfır dolu bir statik anahtar kullanarak. Bu, bir Noise "N" deseni simülasyonu yaptı, ancak uyumlu bir şekilde, böylece bir ECIES SKM hem anonim hem de anonim olmayan mesajları alabilir. Amacı ECIES yönlendiricileri için sıfır anahtar kullanmaktı.
 
 
-Kullanım Durumları ve Tehdit Modelleri
-````````````````````````````````
+#### Kullanım Durumları ve Tehdit Modelleri
 
 Yönlendiricilere gönderilen mesajlar için kullanım durumu ve tehdit modeli, Hedefler arasındaki uçtan uca mesajlaşmadan çok farklıdır.
 
@@ -129,8 +127,7 @@ Yönlendirici kullanım olayı hedef-olmayanlar:
 - Hedefler için [ECIES](/en/docs/spec/ecies/)de açıklanan "çift anahtar" Oturum Anahtarı Yöneticilerini çalıştırmaya gerek yok. Yönlendiricilerin yalnızca bir genel anahtarı vardır.
 
 
-Tasarım Sonuçları
-`````````````````````
+#### Tasarım Sonuçları
 
 ECIES Yönlendirici SKM'nin [ECIES](/en/docs/spec/ecies/)de Hedefler için belirtilen tam bir Ratchet SKM'ye ihtiyacı yoktur.
 IK desenini kullanarak anonim olmayan mesajlar için gereklilik yoktur.
@@ -185,8 +182,7 @@ Geçici anahtarlar Elligator2 ile kodlanmayacaktır.
 Genellikle, bunlar Yeni Oturum mesajları olacak ve sıfır statik anahtar ile (bağlantısız veya oturumsuz) gönderilecektir, çünkü mesajın göndericisi anonimdir.
 
 
-Başlangıç ck ve h için KDF
-``````````````````````````
+#### Başlangıç ck ve h için KDF
 
 Bu, standart [NOISE](https://noiseprotocol.org/noise.html) "N" deseni için standart bir protokol adı ile.
 Bu, tünel oluşturma mesajları için [Tünel-Oluşumu-ECIES](/en/docs/spec/tunnel-creation-ecies/) ve [Öneri152](/en/proposals/152-ecies-tunnels/) 'de belirtilen ile aynıdır.
@@ -219,8 +215,7 @@ Bu, "e" mesaj deseni:
   ```
 
 
-Mesaj için KDF
-````````````````````````
+#### Mesaj için KDF
 
 Mesaj yaratıcıları her mesaj için geçici bir X25519 anahtar çifti oluştururlar.
 Geçici anahtarlar mesaj başına benzersiz olmalıdır.
@@ -285,8 +280,7 @@ Bu, tünel oluşturma mesajları için [Tünel-Oluşumu-ECIES](/en/docs/spec/tun
 
 
 
-Yük
-````````````````````````
+#### Yük
 
 Yük, [ECIES](/en/docs/spec/ecies/) ve [Öneri144](/en/proposals/144-ecies-x25519-aead-ratchet/) 'de tanımlanan aynı blok formatıdır.
 Tüm mesajlar, tekrarlamayı önlemek için bir TarihSaat bloğu içermelidir.

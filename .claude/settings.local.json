@@ -15,7 +15,20 @@
       "Bash(hugo version:*)",
       "Bash(hugo:*)",
       "Bash(find:*)",
-      "Bash(git clone:*)"
+      "Bash(git clone:*)",
+      "Bash(for lang in ar cs de es fr hi ko pt ru tr vi zh)",
+      "Bash(do echo -n \"$lang: \")",
+      "Bash(if [ -f \"c:/Users/admin/git/i2p.www/content/$lang/proposals/154-ecies-lookups.md\" ])",
+      "Bash(then echo \"EXISTS\")",
+      "Bash(else echo \"missing\")",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(if [ -f \"c:/Users/admin/git/i2p.www/content/$lang/proposals/156-ecies-routers.md\" ])",
+      "Bash(grep:*)",
+      "Bash(cat:*)",
+      "Bash(do if [ -f \"c:/Users/admin/git/i2p.www/content/$lang/proposals/167-service-records.md\" ])",
+      "Bash(then echo \"$lang: EXISTS\")",
+      "Bash(else echo \"$lang: missing\")"
     ],
     "deny": [],
     "ask": []

@@ -152,27 +152,25 @@ Typy zpráv 5-15 jsou rozšířené RPC zprávy definované v JRaft, pro podporu
 Typy zpráv 16-17 jsou Log Compaction RPC zprávy definované v sekci 7 Raft.
 
 
-========================  ======  ===========  =================   =====================================
-Zpráva                    Číslo   Posláno kým   Posláno komu        Poznámky
-========================  ======  ===========  =================   =====================================
-RequestVoteRequest           1    Kandidát     Follower            Standardní Raft RPC; nesmí obsahovat log entries
-RequestVoteResponse          2    Follower     Kandidát            Standardní Raft RPC
-AppendEntriesRequest         3    Lídér        Follower            Standardní Raft RPC
-AppendEntriesResponse        4    Follower     Lídér / Klient      Standardní Raft RPC
-ClientRequest                5    Klient       Lídér / Follower    Odpověď je AppendEntriesResponse; musí obsahovat pouze Application log entries
-AddServerRequest             6    Klient       Lídér               Musí obsahovat jediné ClusterServer logové záznamy
-AddServerResponse            7    Lídér        Klient              Lídér pošle také JoinClusterRequest
-RemoveServerRequest          8    Follower     Lídér               Musí obsahovat jediné ClusterServer logové záznamy
-RemoveServerResponse         9    Lídér        Follower
-SyncLogRequest              10    Lídér        Follower            Musí obsahovat jediný LogPack log entry
-SyncLogResponse             11    Follower     Lídér
-JoinClusterRequest          12    Lídér        Nový server         Pozvánka k připojení; musí obsahovat jedinou Configuration logovou položku
-JoinClusterResponse         13    Nový server  Lídér
-LeaveClusterRequest         14    Lídér        Follower            Příkaz k opuštění
-LeaveClusterResponse        15    Follower     Lídér
-InstallSnapshotRequest      16    Lídér        Follower            Raft Sekce 7; Musí obsahovat jediný SnapshotSyncRequest log entry
-InstallSnapshotResponse     17    Follower     Lídér               Raft Sekce 7
-========================  ======  ===========  =================   =====================================
+| Zpráva | Číslo | Posláno kým | Posláno komu | Poznámky |
+|--------|-------|-------------|--------------|----------|
+| RequestVoteRequest | 1 | Kandidát | Follower | Standardní Raft RPC; nesmí obsahovat log entries |
+| RequestVoteResponse | 2 | Follower | Kandidát | Standardní Raft RPC |
+| AppendEntriesRequest | 3 | Lídér | Follower | Standardní Raft RPC |
+| AppendEntriesResponse | 4 | Follower | Lídér / Klient | Standardní Raft RPC |
+| ClientRequest | 5 | Klient | Lídér / Follower | Odpověď je AppendEntriesResponse; musí obsahovat pouze Application log entries |
+| AddServerRequest | 6 | Klient | Lídér | Musí obsahovat jediné ClusterServer logové záznamy |
+| AddServerResponse | 7 | Lídér | Klient | Lídér pošle také JoinClusterRequest |
+| RemoveServerRequest | 8 | Follower | Lídér | Musí obsahovat jediné ClusterServer logové záznamy |
+| RemoveServerResponse | 9 | Lídér | Follower | |
+| SyncLogRequest | 10 | Lídér | Follower | Musí obsahovat jediný LogPack log entry |
+| SyncLogResponse | 11 | Follower | Lídér | |
+| JoinClusterRequest | 12 | Lídér | Nový server | Pozvánka k připojení; musí obsahovat jedinou Configuration logovou položku |
+| JoinClusterResponse | 13 | Nový server | Lídér | |
+| LeaveClusterRequest | 14 | Lídér | Follower | Příkaz k opuštění |
+| LeaveClusterResponse | 15 | Follower | Lídér | |
+| InstallSnapshotRequest | 16 | Lídér | Follower | Raft Sekce 7; Musí obsahovat jediný SnapshotSyncRequest log entry |
+| InstallSnapshotResponse | 17 | Follower | Lídér | Raft Sekce 7 |
 
 
 ### Založení
@@ -290,15 +288,13 @@ Obsah logu
 
 Všechny hodnoty jsou unsigned big-endian.
 
-========================  ======
-Typ hodnot logu          Číslo
-========================  ======
-Aplikace                   1
-Konfigurace                2
-Clusterový server          3
-LogPack                    4
-SnapshotSyncRequest        5
-========================  ======
+| Typ hodnot logu | Číslo |
+|-----------------|-------|
+| Aplikace | 1 |
+| Konfigurace | 2 |
+| Clusterový server | 3 |
+| LogPack | 4 |
+| SnapshotSyncRequest | 5 |
 
 
 #### Aplikace
