@@ -133,19 +133,19 @@ Definido de la siguiente manera:
 
 En LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apuntando a un servidor SMTP:
 
-"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
 En LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apuntando a dos servidores SMTP:
 
-"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
 En LS2 para bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, apuntando a sí mismo como un servidor SMTP:
 
-"_smtp._tcp" "0 999999 25"
+    "_smtp._tcp" "0 999999 25"
 
 Formato posible para redireccionamiento de correo electrónico (ver abajo):
 
-"_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
 ### Límites
@@ -213,7 +213,8 @@ nnn comienza con 0. El valor de la opción contiene "key=value".
 (no incluir comillas)
 
 Ejemplo:
-i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
+
+    i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
 ### Mensaje de Búsqueda de Host
@@ -270,7 +271,7 @@ Se incluirán todas las opciones del conjunto de arrendamiento, no solo las opci
 Por ejemplo, opciones para parámetros definidos en el futuro pueden estar presentes.
 Ejemplo:
 
-NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+    NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
 Las claves que contienen '=', y las claves o valores que contienen un salto de línea,
 se consideran inválidas y el par clave/valor será removido de la respuesta.

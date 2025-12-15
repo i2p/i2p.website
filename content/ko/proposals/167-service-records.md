@@ -108,19 +108,19 @@ LS2 옵션은 키별로 정렬되어 서명이 변하지 않도록 해야 합니
 
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p의 LS2에서 하나의 SMTP 서버를 가리키는 경우:
 
-"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p의 LS2에서 두 개의 SMTP 서버를 가리키는 경우:
 
-"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p의 LS2에서 자신을 SMTP 서버로 가리키는 경우:
 
-"_smtp._tcp" "0 999999 25"
+    "_smtp._tcp" "0 999999 25"
 
 이메일 리디렉션에 대한 가능한 형식 (아래 참조):
 
-"_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p" 
+    "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p" 
 
 
 ### 제한사항
@@ -186,7 +186,8 @@ nnn은 0부터 시작합니다. 옵션 값은 "key=value"를 포함합니다.
 (따옴표 제외)
 
 예시:
-i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
+
+    i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
 ### 호스트 탐색 메시지
@@ -237,7 +238,7 @@ NAME은 OPTIONS=true일 때 전체 base64 목적지일 수 있습니다.
 예를 들어, 미래에 정의될 수 있는 매개변수의 옵션이 있을 수도 있습니다.
 예시:
 
-NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+    NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
 '='를 포함하는 키, 줄바꿈을 포함하는 키 또는 값은
 잘못된 것으로 간주되며, 응답에서 제거됩니다.

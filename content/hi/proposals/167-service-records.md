@@ -114,19 +114,19 @@ LS2 विकल्पों को कुंजी द्वारा क्र
 
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p के लिए LS2 में, एक SMTP सर्वर की ओर इशारा करते हुए:
 
-"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p के लिए LS2 में, दो SMTP सर्वरों की ओर इशारा करते हुए:
 
-"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p के लिए LS2 में, एक SMTP सर्वर के रूप में स्वयं की ओर इशारा करते हुए:
 
-"_smtp._tcp" "0 999999 25"
+    "_smtp._tcp" "0 999999 25"
 
 ईमेल को पुन:निर्देशित करने के लिए संभावित प्रारूप (नीचे देखें):
 
-"_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
 ### सीमाएँ
@@ -193,7 +193,8 @@ nnn 0 से शुरू होता है। विकल्प मान �
 (उद्धरण शामिल न करें)
 
 उदाहरण:
-i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
+
+    i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
 ### HostLookup संदेश
@@ -249,7 +250,7 @@ NAME एक पूरा base64 गंतव्य हो सकता है �
 उदाहरण के लिए, मापदंडों के लिए भविष्य में परिभाषित विकल्प मौजूद हो सकते हैं।
 उदाहरण:
 
-NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+    NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
 कुंजियाँ '=' शामिल करती हैं, और कुंजियाँ या मान जिनमें एक नया पंक्ति होती है,
 अवैध मानी जाती हैं और उत्तर से की-वैल्यू जोड़ी हटा दी जाएगी।

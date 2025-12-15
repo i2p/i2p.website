@@ -134,19 +134,19 @@ Definiert wie folgt:
 
 In LS2 für aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, zeigt auf einen SMTP-Server:
 
-"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
 In LS2 für aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, zeigt auf zwei SMTP-Server:
 
-"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
 In LS2 für bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, zeigt auf sich selbst als SMTP-Server:
 
-"_smtp._tcp" "0 999999 25"
+    "_smtp._tcp" "0 999999 25"
 
 Mögliches Format für das Weiterleiten von E-Mails (siehe unten):
 
-"_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 
 ### Grenzen
@@ -214,7 +214,8 @@ nnn beginnt mit 0. Optionen-Wert enthält "key=value".
 (Einschließlich der Anführungszeichen nicht einschließen)
 
 Beispiel:
-i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
+
+    i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 
 ### HostLookup-Nachricht
@@ -228,8 +229,7 @@ Für Nachschlagetyp 4 ist Element 5 ein Ziel.
 
 
 
-HostReply-Nachricht
- ```````````````````
+### HostReply-Nachricht
 
 Für Nachschlagetypen 2-4 muss der Router das Lease-Set abrufen,
 auch wenn der Nachschlaageschlüssel im Adressbuch vorhanden ist.
@@ -270,7 +270,7 @@ Alle Optionen aus dem Lease-Set werden inkludiert, nicht nur die Service-Eintrag
 Beispielsweise können Optionen für in der Zukunft definierte Parameter vorhanden sein.
 Beispiel:
 
-NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+    NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
 Schlüssel, die '=' enthalten, sowie Schlüssel oder Werte, die einen Zeilenumbruch enthalten,
 gelten als ungültig und das Schlüssel/Wert-Paar wird aus der Antwort entfernt.

@@ -86,19 +86,19 @@ toc: true
 
 في LS2 لـ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p، تشير إلى خادم SMTP واحد:
 
-"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
 في LS2 لـ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p، تشير إلى خادمين SMTP:
 
-"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
 في LS2 لـ bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p، تشير إلى نفسها كخادم SMTP:
 
-"_smtp._tcp" "0 999999 25"
+    "_smtp._tcp" "0 999999 25"
 
 التنسيق المحتمل لإعادة توجيه البريد الإلكتروني (انظر أدناه):
 
-"_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
+    "_smtp._tcp" "1 86400 0 0 25 smtp.postman.i2p example@mail.i2p"
 
 ### الحدود
 
@@ -146,7 +146,8 @@ i2cp.leaseSetOption.nnn
 الخيارات المراد وضعها في مجموعة الإيجار. متاح فقط لـ LS2. يبدأ nnn من 0. تحتوي قيمة الخيار على "key=value". (لا تشمل الاقتباسات)
 
 مثال:
-i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
+
+    i2cp.leaseSetOption.0=_smtp._tcp=1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p
 
 ### رسالة HostLookup
 
@@ -181,7 +182,7 @@ NAMING LOOKUP NAME=example.i2p OPTIONS=true يطلب تعيين الخيارات
 
 إذا كانت البحث عن الوجهة ناجحًا وكانت الخيارات موجودة في مجموعة الإيجار، فإنه في الرد، ستأتي بعد الوجهة، خيارات في شكل OPTION:key=value. كل خيار سيكون لديه Prefix OPTION: منفصل. سيتم تضمين جميع الخيارات من مجموعة الإيجار، وليس فقط خيارات سجل الخدمة. على سبيل المثال، قد تكون الخيارات للمعاملات المحددة في المستقبل موجودة. مثال:
 
-NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
+    NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
 المفاتيح التي تحتوي على '='، والمفاتيح أو القيم التي تحتوي على سطر جديد، تعتبر غير صالحة وسيتم إزالة زوج المفتاح والقيمة من الرد.
 
