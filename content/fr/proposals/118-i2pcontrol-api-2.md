@@ -42,26 +42,25 @@ Tous les paramètres RPC seront désormais en minuscules. Cela *va* briser la co
 
 ### Paramètres
 
-"id"
-  Le numéro d'identification de la requête.
+**`"id"`**
 
-  Utilisé pour identifier quelle réponse a été engendrée par quelle requête.
+Le numéro d'identification de la requête. Utilisé pour identifier quelle réponse a été engendrée par quelle requête.
 
-"method_name"
-  Le nom du RPC qui est invoqué.
+**`"method_name"`**
 
-"auth_token"
-  Le jeton d'authentification de session.
+Le nom du RPC qui est invoqué.
 
-  Doit être fourni avec chaque RPC, sauf pour l'appel 'authenticate'.
+**`"auth_token"`**
 
-"method_parameter_value"
-  Le paramètre de la méthode.
+Le jeton d'authentification de session. Doit être fourni avec chaque RPC, sauf pour l'appel 'authenticate'.
 
-  Utilisé pour offrir différentes variantes d'une méthode, comme 'get', 'set' et autres variantes de ce type.
+**`"method_parameter_value"`**
 
-"result_value"
-  La valeur que retourne le RPC. Son type et son contenu dépendent de la méthode et de la méthode spécifique.
+Le paramètre de la méthode. Utilisé pour offrir différentes variantes d'une méthode, comme 'get', 'set' et autres variantes de ce type.
+
+**`"result_value"`**
+
+La valeur que retourne le RPC. Son type et son contenu dépendent de la méthode et de la méthode spécifique.
 
 
 ### Préfixes
@@ -93,7 +92,6 @@ Renvoie:
 
 
 ### Méthodes
-```
 
 * **authenticate** - Étant donné qu'un mot de passe correct est fourni, cette méthode vous fournit un jeton pour un accès supplémentaire et une liste des niveaux d'API pris en charge.
 
@@ -107,8 +105,6 @@ Renvoie:
       "api" : [[int],[int], ...]  // Une liste des niveaux d'API pris en charge.
     }
 ```
-```
-
 
 * **control.** - Contrôler i2p
 
@@ -163,10 +159,9 @@ Renvoie:
 
     Renvoie:
 ```text
-      true [boolean]
-``` // True si et seulement si une mise à jour signée est disponible
-
+      true [boolean] // True si et seulement si une mise à jour signée est disponible
 ```
+
   * **control.update.start** - Lancer le processus de mise à jour
 
     * [nil] : Aucun paramètre nécessaire
@@ -175,8 +170,6 @@ Renvoie:
 ```text
       [nil]
 ```
-```
-
 
 * **i2pcontrol.** - Configurer i2pcontrol
 
@@ -220,8 +213,6 @@ Renvoie:
 ```text
       [nil]
 ```
-```
-
 
 * **settings.** - Obtenir/Configurer les paramètres de l'instance i2p
 
@@ -372,12 +363,16 @@ Renvoie:
 
     Renvoie:
 ```text
-      0 [number]
-``` // Pourcentage de partage de bande passante (0-100)
+      0 [number] // Pourcentage de partage de bande passante (0-100)
+```
 
     * *set* [number] : Définir le pourcentage de partage de bande passante (0-100)
 
+    Renvoie:
+```text
+      [nil]
 ```
+
   * **settings.upnp** - Activer ou désactiver UPNP
 
     * *get* [nil] : Ce paramètre n'a pas besoin d'être défini.
@@ -393,9 +388,6 @@ Renvoie:
 ```text
       [nil]
 ```
-```
-
-
 
 * **stats.** - Obtenir les statistiques de l'instance i2p
 
@@ -422,8 +414,6 @@ Renvoie:
 ```text
       0.0 [number]
 ```
-```
-
 
 * **status.** - Obtenir le statut de l'instance i2p
 
@@ -487,5 +477,4 @@ Renvoie:
     Renvoie:
 ```text
       "0.0.0.0" [string]
-```
 ```

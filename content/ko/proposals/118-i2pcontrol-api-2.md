@@ -42,33 +42,33 @@ toc: true
 
 ### 매개변수
 
-"id"
-  요청의 ID 번호입니다.
+**`"id"`**
 
-  어느 요청이 어느 응답을 생성했는지 식별하는 데 사용됩니다.
+요청의 ID 번호입니다. 어느 요청이 어느 응답을 생성했는지 식별하는 데 사용됩니다.
 
-"method_name"
-  호출된 RPC의 이름입니다.
+**`"method_name"`**
 
-"auth_token"
-  세션 인증 토큰입니다.
+호출된 RPC의 이름입니다.
 
-  'authenticate' 호출을 제외한 모든 RPC에 제공되어야 합니다.
+**`"auth_token"`**
 
-"method_parameter_value"
-  메소드 매개변수입니다.
+세션 인증 토큰입니다. 'authenticate' 호출을 제외한 모든 RPC에 제공되어야 합니다.
 
-  'get', 'set' 등과 같은 메소드의 다양한 변형을 제공하는 데 사용됩니다.
+**`"method_parameter_value"`**
 
-"result_value"
-  RPC가 반환하는 값입니다. 그 타입과 내용은 메소드와 메소드에 따라 다릅니다.
+메소드 매개변수입니다. 'get', 'set' 등과 같은 메소드의 다양한 변형을 제공하는 데 사용됩니다.
+
+**`"result_value"`**
+
+RPC가 반환하는 값입니다. 그 타입과 내용은 메소드와 메소드에 따라 다릅니다.
 
 
 ### 접두사
 
 RPC 명명 규칙은 CSS에서 사용되는 것과 유사하며, 다른 API 구현 (i2p, kovri, i2pd)을 위한 벤더 접두사를 포함합니다.:
 
-    XXX.YYY.ZZZ
+```text
+XXX.YYY.ZZZ
     i2p.XXX.YYY.ZZZ
     i2pd.XXX.YYY.ZZZ
     kovri.XXX.YYY.ZZZ
@@ -92,7 +92,6 @@ RPC 명명 규칙은 CSS에서 사용되는 것과 유사하며, 다른 API 구�
 
 
 ### 메소드
-```
 
 * **authenticate** - 올바른 비밀번호가 제공되면, 이 메소드는 추가 접근을 위한 토큰과 지원되는 API 레벨 목록을 제공합니다.
 
@@ -106,8 +105,6 @@ RPC 명명 규칙은 CSS에서 사용되는 것과 유사하며, 다른 API 구�
       "api" : [[int],[int], ...]  // 지원되는 API 레벨 목록.
     }
 ```
-```
-
 
 * **control.** - i2p 제어
 
@@ -162,10 +159,9 @@ RPC 명명 규칙은 CSS에서 사용되는 것과 유사하며, 다른 API 구�
 
     반환:
 ```text
-      true [boolean]
-``` // 서명된 업데이트가 있는 경우 true
-
+      true [boolean] // 서명된 업데이트가 있는 경우 true
 ```
+
   * **control.update.start** - 업데이트 프로세스 시작
 
     * [nil]: 매개변수가 필요하지 않습니다.
@@ -174,8 +170,6 @@ RPC 명명 규칙은 CSS에서 사용되는 것과 유사하며, 다른 API 구�
 ```text
       [nil]
 ```
-```
-
 
 * **i2pcontrol.** - i2pcontrol 설정
 
@@ -219,8 +213,6 @@ RPC 명명 규칙은 CSS에서 사용되는 것과 유사하며, 다른 API 구�
 ```text
       [nil]
 ```
-```
-
 
 * **settings.** - i2p 인스턴스 설정 얻기/설정
 
@@ -371,12 +363,16 @@ RPC 명명 규칙은 CSS에서 사용되는 것과 유사하며, 다른 API 구�
 
     반환:
 ```text
-      0 [number]
-``` // 대역폭 공유 비율 (0-100)
+      0 [number] // 대역폭 공유 비율 (0-100)
+```
 
     * *set* [number]: 대역폭 공유 비율 설정 (0-100)
 
+    반환:
+```text
+      [nil]
 ```
+
   * **settings.upnp** - UPNP 활성화 또는 비활성화
 
     * *get* [nil]: 이 매개변수는 설정할 필요가 없습니다.
@@ -392,9 +388,6 @@ RPC 명명 규칙은 CSS에서 사용되는 것과 유사하며, 다른 API 구�
 ```text
       [nil]
 ```
-```
-
-
 
 * **stats.** - i2p 인스턴스에서 통계 가져오기
 
@@ -421,8 +414,6 @@ RPC 명명 규칙은 CSS에서 사용되는 것과 유사하며, 다른 API 구�
 ```text
       0.0 [number]
 ```
-```
-
 
 * **status.** - i2p 인스턴스 상태 가져오기
 
@@ -486,5 +477,4 @@ RPC 명명 규칙은 CSS에서 사용되는 것과 유사하며, 다른 API 구�
     반환:
 ```text
       "0.0.0.0" [string]
-```
 ```

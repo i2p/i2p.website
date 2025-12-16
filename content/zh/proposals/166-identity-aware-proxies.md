@@ -91,25 +91,25 @@ toc: true
 
 下图显示了与“是个问题吗”部分中的“可能性1”相对应的 HTTP 代理的当前操作。可以看到，HTTP 代理直接与 I2P 网站交互，仅使用一个目的地。在这种情况下，HTTP 是应用，同时也是上下文身份。
 
-.. code:: md
-
-   **当前情况：HTTP 是应用，HTTP 是上下文身份**
+```text
+**当前情况：HTTP 是应用，HTTP 是上下文身份**
                                                           __-> 外代理 <-> i2pgit.org
                                                          /
    浏览器 <-> HTTP 代理（一个目的地）<-> I2PSocketManager <---> idk.i2p
                                                          \__-> translate.idk.i2p
                                                           \__-> git.idk.i2p
+```
 
-下图显示了与“是个问题吗”部分中的“可能性3”相对应的主机感知的 HTTP 代理的操作。在这种情况下，HTTP 是应用，但主机定义了上下文身份，其中每个 I2P 网站与不同的 HTTP 代理交互，每个主机都有唯一的目的地。这防止了多个站点的运营者能够区分同一人在访问他们运营的多个站点时的情况。
+下图显示了与"是个问题吗"部分中的"可能性3"相对应的主机感知的 HTTP 代理的操作。在这种情况下，HTTP 是应用，但主机定义了上下文身份，其中每个 I2P 网站与不同的 HTTP 代理交互，每个主机都有唯一的目的地。这防止了多个站点的运营者能够区分同一人在访问他们运营的多个站点时的情况。
 
-.. code:: md
-
-   **更改后：HTTP 是应用，主机是上下文身份**
+```text
+**更改后：HTTP 是应用，主机是上下文身份**
                                                         __-> I2PSocketManager（目的地 A - 仅外代理） <--> i2pgit.org
                                                        /
    浏览器 <-> HTTP 代理多路复用器（无目的地） <---> I2PSocketManager（目的地 B）<--> idk.i2p
                                                        \__-> I2PSocketManager（目的地 C）<--> translate.idk.i2p
                                                         \__-> I2PSocketManager（目的地 C）<--> git.idk.i2p
+```
 
 状态：
 ^^^^^^^
@@ -125,12 +125,12 @@ toc: true
 
 大致来说，下面的脚本将生成一个应用感知的 SOCKS5 代理并将基础命令 SOCKSI 化：
 
-.. code:: sh
-
-   #! /bin/sh
-   command_to_proxy="$@"
-   java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
-   torsocks --port 7695 $command_to_proxy
+```sh
+#! /bin/sh
+command_to_proxy="$@"
+java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
+torsocks --port 7695 $command_to_proxy
+```
 
 附录：``攻击的示例实现``
                                                   

@@ -78,16 +78,14 @@ por lo que será una operación nula para el valor actual del ID de red de 2.
 Agrega la siguiente especificación para valores válidos de ID de red:
 
 
-==================================  ==============
-       Uso                         Número de NetID
-==================================  ==============
-Reservado                                   0
-Reservado                                   1
-Red Actual (predeterminado)                 2
-Redes Futuras Reservadas                3 - 15
-Bifurcaciones y Redes de Prueba         16 - 254
-Reservado                                 255
-==================================  ==============
+| Uso | Número de NetID |
+|-------|--------------|
+| Reservado | 0 |
+| Reservado | 1 |
+| Red Actual (predeterminado) | 2 |
+| Redes Futuras Reservadas | 3 - 15 |
+| Bifurcaciones y Redes de Prueba | 16 - 254 |
+| Reservado | 255 |
 
 
 La configuración de Java I2P para cambiar el predeterminado es "router.networkID=nnn".
@@ -109,31 +107,24 @@ Para SSU, agrega un XOR de ((netid - 2) << 8) en el cálculo HMAC-MD5.
 
 Existente:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion), macKey)
 
   '+' significa añadir y '^' significa o exclusivo.
   payloadLength es un entero sin signo de 2 bytes
   protocolVersion es un byte 0x00
-
-{% endhighlight %}
+```
 
 Nuevo:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion ^ ((netid - 2) << 8)), macKey)
 
   '+' significa añadir, '^' significa o exclusivo, '<<' significa desplazamiento a la izquierda.
   payloadLength es un entero sin signo de dos bytes, big endian
   protocolVersion es dos bytes 0x0000, big endian
   netid es un entero sin signo de dos bytes, big endian, los valores legales son 2-254
-
-
-{% endhighlight %}
+```
 
 
 ### Resiembra

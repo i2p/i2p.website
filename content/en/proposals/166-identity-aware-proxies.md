@@ -195,14 +195,14 @@ section. As you can see, the HTTP proxy interacts with I2P sites
 directly using only one destination. In this scenario, HTTP is both the
 application and the contextual identity.
 
-.. code:: md
-
-   **Current Situation: HTTP is the Application, HTTP is the Contextual Identity**
-                                                          __-> Outproxy <-> i2pgit.org
-                                                         /
-   Browser <-> HTTP Proxy(one Destination)<->I2PSocketManager <---> idk.i2p
-                                                         \__-> translate.idk.i2p
-                                                          \__-> git.idk.i2p
+```text
+**Current Situation: HTTP is the Application, HTTP is the Contextual Identity**
+                                                      __-> Outproxy <-> i2pgit.org
+                                                     /
+Browser <-> HTTP Proxy(one Destination)<->I2PSocketManager <---> idk.i2p
+                                                     \__-> translate.idk.i2p
+                                                      \__-> git.idk.i2p
+```
 
 The diagram below represents the operation of a host-aware HTTP proxy,
 which corresponds to “Possibility 3.” under the “Is it a problem”
@@ -212,14 +212,14 @@ different HTTP proxy with a unique destination per-host. This prevents
 operators of multiple sites from being able to distinguish when the same
 person is visiting multiple sites which they operate.
 
-.. code:: md
-
-   **After the Change: HTTP is the Application, Host is the Contextual Identity**
-                                                        __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
-                                                       /
-   Browser <-> HTTP Proxy Multiplexer(No Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
-                                                       \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
-                                                        \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+```text
+**After the Change: HTTP is the Application, Host is the Contextual Identity**
+                                                    __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
+                                                   /
+Browser <-> HTTP Proxy Multiplexer(No Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
+                                                   \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
+                                                    \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+```
 
 Status:
 ^^^^^^^
@@ -249,12 +249,12 @@ and also not true for many other kinds of potentsial I2P clients.
 Roughly, the following script will produce an application-aware SOCKS5
 proxy and socksify the underlying command:
 
-.. code:: sh
-
-   #! /bin/sh
-   command_to_proxy="$@"
-   java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
-   torsocks --port 7695 $command_to_proxy
+```sh
+#! /bin/sh
+command_to_proxy="$@"
+java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
+torsocks --port 7695 $command_to_proxy
+```
 
 Addendum: ``example implementation of the attack``
                                                   

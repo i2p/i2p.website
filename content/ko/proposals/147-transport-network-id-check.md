@@ -72,16 +72,14 @@ SSU의 경우,
 다음은 유효한 네트워크 ID 값의 명세입니다:
 
 
-==================================  ==============
-       사용법                         NetID 번호
-==================================  ==============
-예약됨                                     0
-예약됨                                     1
-현재 네트워크 (기본)                        2
-예약된 미래 네트워크                    3 - 15
-포크 및 테스트 네트워크               16 - 254
-예약됨                                   255
-==================================  ==============
+| 사용법 | NetID 번호 |
+|-------|--------------|
+| 예약됨 | 0 |
+| 예약됨 | 1 |
+| 현재 네트워크 (기본) | 2 |
+| 예약된 미래 네트워크 | 3 - 15 |
+| 포크 및 테스트 네트워크 | 16 - 254 |
+| 예약됨 | 255 |
 
 
 Java I2P 구성에서 기본값을 변경하려면 "router.networkID=nnn"를 사용합니다.
@@ -102,31 +100,24 @@ SSU의 경우, HMAC-MD5 계산에 ((netid - 2) << 8)을 XOR으로 추가합니�
 
 기존:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion), macKey)
 
   '+'는 덧붙임을, '^'는 배타적 OR를 의미합니다.
   payloadLength는 2바이트 부호 없는 정수입니다
   protocolVersion은 한 바이트 0x00입니다
-
-{% endhighlight %}
+```
 
 새로운:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion ^ ((netid - 2) << 8)), macKey)
 
   '+'는 덧붙임을, '^'는 배타적 OR를, '<<'는 왼쪽 이동을 의미합니다.
   payloadLength는 2바이트 부호 없는 정수, 빅 엔디언입니다
   protocolVersion은 두 바이트 0x0000, 빅 엔디언입니다
   netid는 2바이트 무부호 정수, 빅 엔디언이며, 합법적 값은 2-254입니다
-
-
-{% endhighlight %}
+```
 
 
 ### 리시딩

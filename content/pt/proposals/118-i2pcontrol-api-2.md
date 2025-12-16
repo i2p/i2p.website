@@ -45,27 +45,25 @@ a API mais simples e coerente possível.
 
 ### Parâmetros
 
-"id"
-  O número de identificação ou a solicitação.
+**`"id"`**
 
-  Usado para identificar qual resposta foi gerada por qual solicitação.
+O número de identificação ou a solicitação. Usado para identificar qual resposta foi gerada por qual solicitação.
 
-"method_name"
-  O nome do RPC que está sendo invocado.
+**`"method_name"`**
 
-"auth_token"
-  O token de autenticação da sessão.
+O nome do RPC que está sendo invocado.
 
-  Precisa ser fornecido com todos os RPCs, exceto para a chamada 'authenticate'.
+**`"auth_token"`**
 
-"method_parameter_value"
-  O parâmetro do método.
+O token de autenticação da sessão. Precisa ser fornecido com todos os RPCs, exceto para a chamada 'authenticate'.
 
-  Usado para oferecer diferentes variações de um método. Como 'get', 'set' e variações
-  desse tipo.
+**`"method_parameter_value"`**
 
-"result_value"
-  O valor que o RPC retorna. Seu tipo e conteúdo dependem do método em questão.
+O parâmetro do método. Usado para oferecer diferentes variações de um método. Como 'get', 'set' e variações desse tipo.
+
+**`"result_value"`**
+
+O valor que o RPC retorna. Seu tipo e conteúdo dependem do método em questão.
 
 
 ### Prefixos
@@ -169,8 +167,8 @@ ser removidos e ele pode ser incluído como um RPC central na próxima versão d
 
     Retorna:
 ```text
-      true [boolean]
-``` // Verdadeiro se houver uma atualização assinada disponível
+      true [boolean] // Verdadeiro se houver uma atualização assinada disponível
+```
 
   * **control.update.start** - Iniciar o processo de atualização
 
@@ -375,10 +373,15 @@ ser removidos e ele pode ser incluído como um RPC central na próxima versão d
 
     Retorna:
 ```text
-      0 [number]
-``` // Porcentagem de compartilhamento de largura de banda (0-100)
+      0 [number] // Porcentagem de compartilhamento de largura de banda (0-100)
+```
 
     * *set* [number]: Definir porcentagem de compartilhamento de largura de banda (0-100)
+
+    Retorna:
+```text
+      [nil]
+```
 
   * **settings.upnp** - Ativar ou desativar o UPNP
 

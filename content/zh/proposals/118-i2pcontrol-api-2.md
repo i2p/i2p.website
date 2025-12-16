@@ -42,39 +42,40 @@ toc: true
 
 ### 参数
 
-"id"
-  请求的ID编号。
+**`"id"`**
 
-  用于识别哪个回复是由哪个请求触发的。
+请求的ID编号。用于识别哪个回复是由哪个请求触发的。
 
-"method_name"
-  正被调用的RPC名称。
+**`"method_name"`**
 
-"auth_token"
-  会话认证令牌。
+正被调用的RPC名称。
 
-  除'authenticate'调用外，需在每个RPC中提供。
+**`"auth_token"`**
 
-"method_parameter_value"
-  方法参数。
+会话认证令牌。除'authenticate'调用外，需在每个RPC中提供。
 
-  用于提供方法的不同变体，如'get'、'set'等类似的变体。
+**`"method_parameter_value"`**
 
-"result_value"
-  RPC返回的值。其类型和内容取决于方法及该方法。
+方法参数。用于提供方法的不同变体，如'get'、'set'等类似的变体。
+
+**`"result_value"`**
+
+RPC返回的值。其类型和内容取决于方法及该方法。
 
 
 ### 前缀
 
 RPC命名方案类似于在CSS中的做法，为不同的API实现（i2p, kovri, i2pd）提供供应商前缀:
 
-    XXX.YYY.ZZZ
-    i2p.XXX.YYY.ZZZ
-    i2pd.XXX.YYY.ZZZ
-    kovri.XXX.YYY.ZZZ
+```text
+XXX.YYY.ZZZ
+i2p.XXX.YYY.ZZZ
+i2pd.XXX.YYY.ZZZ
+kovri.XXX.YYY.ZZZ
 ```
 
 使用供应商特定前缀的整体理念是允许一定的灵活性，让实现创新而不必等待其他实现趋同。如果所有实现都已实现某个RPC，则可以移除多个前缀，并将其作为核心RPC包含在下一个API版本中。
+
 
 ### 方法阅读指南
 
@@ -85,12 +86,11 @@ RPC命名方案类似于在CSS中的做法，为不同的API实现（i2p, kovri,
 
 返回:
 ```text
-
-  "return_value" [string] // 这是RPC调用返回的值
-
+"return_value" [string] // 这是RPC调用返回的值
 ```
+
+
 ### 方法
-```
 
 * **authenticate** - 提供正确的密码后，此方法为您提供进一步访问的令牌和支持的API级别列表。
 
@@ -103,7 +103,6 @@ RPC命名方案类似于在CSS中的做法，为不同的API实现（i2p, kovri,
       "token" : [string], // 需在所有其他RPC方法中提供的令牌
       "api" : [[int],[int], ...]  // 支持的API级别列表。
     }
-```
 ```
 
 * **control.** - 控制i2p
@@ -159,10 +158,9 @@ RPC命名方案类似于在CSS中的做法，为不同的API实现（i2p, kovri,
 
     返回:
 ```text
-      true [boolean]
-``` // 仅当有签名更新可用时为真
-
+      true [boolean] // 仅当有签名更新可用时为真
 ```
+
   * **control.update.start** - 开始更新过程
 
     * [nil]: 不需要参数
@@ -170,7 +168,6 @@ RPC命名方案类似于在CSS中的做法，为不同的API实现（i2p, kovri,
     返回:
 ```text
       [nil]
-```
 ```
 
 * **i2pcontrol.** - 配置i2pcontrol
@@ -214,7 +211,6 @@ RPC命名方案类似于在CSS中的做法，为不同的API实现（i2p, kovri,
     返回:
 ```text
       [nil]
-```
 ```
 
 * **settings.** - 获取/设置i2p实例设置
@@ -366,12 +362,16 @@ RPC命名方案类似于在CSS中的做法，为不同的API实现（i2p, kovri,
 
     返回:
 ```text
-      0 [number]
-``` // 带宽共享百分比 (0-100)
+      0 [number] // 带宽共享百分比 (0-100)
+```
 
     * *set* [number]: 设置带宽共享百分比 (0-100)
 
+    返回:
+```text
+      [nil]
 ```
+
   * **settings.upnp** - 启用或禁用UPNP
 
     * *get* [nil]: 不需要设置此参数。
@@ -386,7 +386,6 @@ RPC命名方案类似于在CSS中的做法，为不同的API实现（i2p, kovri,
     返回:
 ```text
       [nil]
-```
 ```
 
 * **stats.** - 从i2p实例获取统计信息
@@ -413,7 +412,6 @@ RPC命名方案类似于在CSS中的做法，为不同的API实现（i2p, kovri,
     返回:
 ```text
       0.0 [number]
-```
 ```
 
 * **status.** - 获取i2p实例状态
@@ -478,5 +476,4 @@ RPC命名方案类似于在CSS中的做法，为不同的API实现（i2p, kovri,
     返回:
 ```text
       "0.0.0.0" [string]
-```
 ```

@@ -42,26 +42,25 @@ Alle RPC-Parameter werden jetzt in Kleinbuchstaben geschrieben. Dies *wird* die 
 
 ### Parameter
 
-"id"
-  Die ID-Nummer oder die Anfrage.
+**`"id"`**
 
-  Wird verwendet, um zu identifizieren, welche Antwort auf welche Anfrage hervorgebracht wurde.
+Die ID-Nummer oder die Anfrage. Wird verwendet, um zu identifizieren, welche Antwort auf welche Anfrage hervorgebracht wurde.
 
-"method_name"
-  Der Name des aufzurufenden RPC.
+**`"method_name"`**
 
-"auth_token"
-  Das Sitzungs-Authentifizierungstoken.
+Der Name des aufzurufenden RPC.
 
-  Muss bei jedem RPC mitgeliefert werden, außer beim 'authenticate'-Aufruf.
+**`"auth_token"`**
 
-"method_parameter_value"
-  Der Methodenparameter.
+Das Sitzungs-Authentifizierungstoken. Muss bei jedem RPC mitgeliefert werden, außer beim 'authenticate'-Aufruf.
 
-  Wird verwendet, um verschiedene Ausprägungen einer Methode anzubieten, wie 'get', 'set' und ähnliche Variationen.
+**`"method_parameter_value"`**
 
-"result_value"
-  Der Wert, den das RPC zurückgibt. Sein Typ und Inhalt hängen von der Methode und der konkreten Methode ab.
+Der Methodenparameter. Wird verwendet, um verschiedene Ausprägungen einer Methode anzubieten, wie 'get', 'set' und ähnliche Variationen.
+
+**`"result_value"`**
+
+Der Wert, den das RPC zurückgibt. Sein Typ und Inhalt hängen von der Methode und der konkreten Methode ab.
 
 ### Präfixe
 
@@ -85,12 +84,10 @@ Die Grundidee mit anbieter-spezifischen Präfixen ist es, etwas Spielraum zu bie
 
 Gibt zurück:
 ```text
-
   "return_value" [string] // Dies ist der Wert, der durch den RPC-Aufruf zurückgegeben wird.
+```
 
-```
 ### Methoden
-```
 
 * **authenticate** - Wenn ein korrektes Passwort angegeben wird, liefert diese Methode Ihnen ein Token für weiteren Zugang und eine Liste unterstützter API-Level.
 
@@ -104,8 +101,6 @@ Gibt zurück:
       "api" : [[int],[int], ...]  // Eine Liste unterstützter API-Level.
     }
 ```
-```
-
 
 * **control.** - I2P steuern
 
@@ -160,10 +155,9 @@ Gibt zurück:
 
     Gibt zurück:
 ```text
-      true [boolean]
-``` // Wahr, falls ein signiertes Update verfügbar ist
-
+      true [boolean] // Wahr, falls ein signiertes Update verfügbar ist
 ```
+
   * **control.update.start** - Update-Prozess starten
 
     * [nil]: Kein Parameter nötig
@@ -172,8 +166,6 @@ Gibt zurück:
 ```text
       [nil]
 ```
-```
-
 
 * **i2pcontrol.** - I2PControl konfigurieren
 
@@ -217,8 +209,6 @@ Gibt zurück:
 ```text
       [nil]
 ```
-```
-
 
 * **settings.** - I2P-Instanzeinstellungen abfragen/festlegen
 
@@ -369,12 +359,16 @@ Gibt zurück:
 
     Gibt zurück:
 ```text
-      0 [number]
-``` // Bandbreitenanteil in Prozent (0-100)
+      0 [number] // Bandbreitenanteil in Prozent (0-100)
+```
 
     * *set* [number]: Bandbreitenanteil in Prozent festlegen (0-100)
 
+    Gibt zurück:
+```text
+      [nil]
 ```
+
   * **settings.upnp** - UPNP aktivieren oder deaktivieren
 
     * *get* [nil]: Dieser Parameter muss nicht gesetzt werden.
@@ -390,9 +384,6 @@ Gibt zurück:
 ```text
       [nil]
 ```
-```
-
-
 
 * **stats.** - Statistiken von der I2P-Instanz abrufen
 
@@ -419,8 +410,6 @@ Gibt zurück:
 ```text
       0.0 [number]
 ```
-```
-
 
 * **status.** - I2P-Instanz-Status abrufen
 
@@ -484,5 +473,4 @@ Gibt zurück:
     Gibt zurück:
 ```text
       "0.0.0.0" [string]
-```
 ```

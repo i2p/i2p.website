@@ -43,26 +43,25 @@ Todos los parámetros RPC ahora estarán en minúsculas. Esto *romperá* la comp
 
 ### Parámetros
 
-"id"
-  El número de identificación de la solicitud.
+**`"id"`**
 
-  Se utiliza para identificar qué respuesta se generó por cuál solicitud.
+El número de identificación de la solicitud. Se utiliza para identificar qué respuesta se generó por cuál solicitud.
 
-"nombre_del_metodo"
-  El nombre del RPC que se está invocando.
+**`"nombre_del_metodo"`**
 
-"token_de_autenticación"
-  El token de autenticación de la sesión.
+El nombre del RPC que se está invocando.
 
-  Necesita ser proporcionado con cada RPC, excepto para la llamada 'authenticate'.
+**`"token_de_autenticación"`**
 
-"valor_del_parametro_del_metodo"
-  El parámetro del método.
+El token de autenticación de la sesión. Necesita ser proporcionado con cada RPC, excepto para la llamada 'authenticate'.
 
-  Se usa para ofrecer diferentes variantes de un método. Como 'obtener', 'establecer' y variantes similares.
+**`"valor_del_parametro_del_metodo"`**
 
-"valor_del_resultado"
-  El valor que retorna el RPC. Su tipo y contenido depende del método y de cuál método.
+El parámetro del método. Se usa para ofrecer diferentes variantes de un método. Como 'obtener', 'establecer' y variantes similares.
+
+**`"valor_del_resultado"`**
+
+El valor que retorna el RPC. Su tipo y contenido depende del método y de cuál método.
 
 
 ### Prefijos

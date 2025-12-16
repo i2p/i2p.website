@@ -65,16 +65,14 @@ damit es für den aktuellen Netzwerk-ID-Wert von 2 keine Auswirkung hat.
 
 Fügen Sie die folgende Spezifikation für gültige Netzwerk-ID-Werte hinzu:
 
-==================================  ==============
-       Nutzung                       NetID-Nummer
-==================================  ==============
-Reserviert                                   0
-Reserviert                                   1
-Aktuelles Netzwerk (Standard)                2
-Reservierte zukünftige Netzwerke         3 - 15
-Forks und Testnetzwerke                 16 - 254
-Reserviert                                 255
-==================================  ==============
+| Nutzung | NetID-Nummer |
+|-------|--------------|
+| Reserviert | 0 |
+| Reserviert | 1 |
+| Aktuelles Netzwerk (Standard) | 2 |
+| Reservierte zukünftige Netzwerke | 3 - 15 |
+| Forks und Testnetzwerke | 16 - 254 |
+| Reserviert | 255 |
 
 Die Java I2P-Konfiguration, um den Standard zu ändern, lautet "router.networkID=nnn".
 Dokumentieren Sie dies besser und ermutigen Sie Forks und Testnetzwerke, diese Einstellung in ihre Konfiguration aufzunehmen.
@@ -93,30 +91,24 @@ Für SSU, fügen wir ein XOR von ((netid - 2) << 8) in die HMAC-MD5-Berechnung e
 
 Bestehende:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion), macKey)
 
   '+' bedeutet anfügen und '^' bedeutet exklusiv-oder.
   payloadLength ist ein 2-Byte-unsigned-Integer
   protocolVersion ist ein Byte 0x00
-
-{% endhighlight %}
+```
 
 Neue:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion ^ ((netid - 2) << 8)), macKey)
 
   '+' bedeutet anfügen, '^' bedeutet exklusiv-oder, '<<' bedeutet Linksschiebe.
   payloadLength ist ein zwei Byte langer unsigned-Integer, Big Endian
   protocolVersion ist zwei Byte 0x0000, Big Endian
   netid ist ein zwei Byte langer unsigned-Integer, Big Endian, zulässige Werte sind 2-254
-
-{% endhighlight %}
+```
 
 ### Resampling
 

@@ -77,9 +77,7 @@ as a "b33" address, the actual new format retains the usual ".b32.i2p" suffix.
 
 Construct a hostname of {56+ chars}.b32.i2p (35+ chars in binary) as follows:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 flag (1 byte)
     bit 0: 0 for one-byte sigtypes, 1 for two-byte sigtypes
     bit 1: 0 for no secret, 1 if secret is required
@@ -95,14 +93,11 @@ flag (1 byte)
 
   public key
     Number of bytes as implied by sigtype
-
-{% endhighlight %}
+```
 
 Post-processing and checksum:
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 Construct the binary data as above.
   Treat checksum as little-endian.
   Calculate checksum = CRC-32(data[3:end])
@@ -111,7 +106,7 @@ Construct the binary data as above.
   data[2] ^= (byte) (checksum >> 16)
 
   hostname = Base32.encode(data) || ".b32.i2p"
-{% endhighlight %}
+```
 
 Any unused bits at the end of the b32 must be 0.
 There are no unused bits for a standard 56 character (35 byte) address.
@@ -119,9 +114,7 @@ There are no unused bits for a standard 56 character (35 byte) address.
 
 ### Decoding and Verification
 
-.. raw:: html
-
-  {% highlight lang='text' %}
+```text
 strip the ".b32.i2p" from the hostname
   data = Base32.decode(hostname)
   Calculate checksum = CRC-32(data[3:end])
@@ -134,7 +127,7 @@ strip the ".b32.i2p" from the hostname
     pubkey sigtype = data[1] ^ ((byte) (checksum >> 8)) || data[2] ^ ((byte) (checksum >> 16))
     blinded sigtype = data[3] || data[4]
   parse the remainder based on the flags to get the public key
-{% endhighlight %}
+```
 
 
 ### Secret and Private Key Bits

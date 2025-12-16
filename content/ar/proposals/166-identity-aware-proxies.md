@@ -91,25 +91,25 @@ toc: true
 
 يمثل الرسم البياني أدناه التشغيل الحالي للوكيل HTTP، والذي يتوافق مع "الإمكانية 1" تحت قسم "هل هي مشكلة". كما ترون، يتفاعل الوكيل HTTP مع مواقع I2P مباشرة باستخدام وجهة واحدة فقط. في هذا السيناريو، HTTP هو كل من التطبيق والهوية السياقية.
 
-.. code:: md
-
-   **الوضع الحالي: HTTP هو التطبيق، HTTP هو الهوية السياقية**
+```text
+**الوضع الحالي: HTTP هو التطبيق، HTTP هو الهوية السياقية**
                                                           __-> Outproxy <-> i2pgit.org
                                                          /
    Browser <-> HTTP Proxy(one Destination)<->I2PSocketManager <---> idk.i2p
                                                          \__-> translate.idk.i2p
                                                           \__-> git.idk.i2p
+```
 
 يمثل الرسم البياني أدناه التشغيل لوكيل HTTP المستند إلى المضيف، والذي يتوافق مع "الإمكانية 3" تحت قسم "هل هي مشكلة". في هذا السيناريو، HTTP هو التطبيق، لكن المضيف يعرف الهوية السياقية، حيث يتفاعل كل موقع I2P مع وكيل HTTP مختلف بوجهة فريدة لكل مضيف. هذا يمنع مشغلي المواقع المتعددة من القدرة على التمييز عندما يكون الشخص نفسه يزور مواقع متعددة يديرونها.
 
-.. code:: md
-
-   **بعد التغيير: HTTP هو التطبيق، المضيف هو الهوية السياقية**
+```text
+**بعد التغيير: HTTP هو التطبيق، المضيف هو الهوية السياقية**
                                                         __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
                                                        /
    Browser <-> HTTP Proxy Multiplexer(No Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
                                                        \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
                                                         \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+```
 
 الحالة:
 ^^^^^^^
@@ -124,12 +124,12 @@ toc: true
 
 تقريبًا، سيؤدي البرنامج النصي التالي إلى إعداد وكيل SOCKS5 مناسب للتطبيق وإكساء الأمر الأساسي:
 
-.. code:: sh
-
-   #! /bin/sh
-   command_to_proxy="$@"
-   java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
-   torsocks --port 7695 $command_to_proxy
+```sh
+#! /bin/sh
+command_to_proxy="$@"
+java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
+torsocks --port 7695 $command_to_proxy
+```
 
 مُلحق: ``تنفيذ مثال للهجوم``
 

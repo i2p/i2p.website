@@ -75,16 +75,14 @@ böylece bu, mevcut ağ kimliği değeri 2 için bir işleyici olmayacaktır.
 Geçerli ağ kimliği değerleri için aşağıdaki özellikleri ekleyin:
 
 
-==================================  ==============
-       Kullanım                      NetID Numarası
-==================================  ==============
-Rezerve Edilmiş                             0
-Rezerve Edilmiş                             1
-Mevcut Ağ (varsayılan)                      2
-Rezerve Gelecek Ağlar                   3 - 15
-Çatal ve Test Ağları                   16 - 254
-Rezerve                                    255
-==================================  ==============
+| Kullanım | NetID Numarası |
+|-------|--------------|
+| Rezerve Edilmiş | 0 |
+| Rezerve Edilmiş | 1 |
+| Mevcut Ağ (varsayılan) | 2 |
+| Rezerve Gelecek Ağlar | 3 - 15 |
+| Çatal ve Test Ağları | 16 - 254 |
+| Rezerve | 255 |
 
 
 Varsayılanı değiştirmek için Java I2P yapılandırması "router.networkID=nnn".
@@ -106,31 +104,24 @@ SSU için, HMAC-MD5 hesaplamasında ((netid - 2) << 8) şeklinde bir XOR ekleyin
 
 Mevcut:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion), macKey)
 
   '+' eklemeyi, '^' özel veya anlamına gelir.
   payloadLength 2 baytlık bir işaretsiz tam sayıdır
   protocolVersion bir bayt 0x00
-
-{% endhighlight %}
+```
 
 Yeni:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion ^ ((netid - 2) << 8)), macKey)
 
   '+' eklemeyi, '^' özel veya, '<<' sola kaydırmayı ifade eder.
   payloadLength iki baytlık işaretsiz tam sayı, big endian
   protocolVersion iki bayt 0x0000, big endian
   netid iki baytlık işaretsiz tam sayı, big endian, yasal değerler 2-254
-
-
-{% endhighlight %}
+```
 
 
 ### Yeniden Tohumlama

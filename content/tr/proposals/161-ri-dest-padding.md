@@ -98,13 +98,11 @@ Akış SYN mesajları I2CP katmanında sıkıştırılır.
 Ed25519 imza türü ve X25519 şifreleme türü için,
 tahmini tasarruflar:
 
-===============  ===========   =============  ====================   ==================  ===========  =============
-Veri Türü        Toplam Boyut  Anahtarlar ve Sertifika  Sıkıştırılmamış Dolgu   Sıkıştırılmış Dolgu  Boyut       Tasarruflar
-===============  ===========   =============  ====================   ==================  ===========  =============
-Hedef           391           39             352                    32                  71           320 bayt (82%)
-Yönlendirici Kimlik  391           71             320                    32                  103          288 bayt (74%)
-Yönlendirici Bilgisi  1000 typ.     71             320                    32                  722 typ.     288 bayt (29%)
-===============  ===========   =============  ====================   ==================  ===========  =============
+| Veri Türü | Toplam Boyut | Anahtarlar ve Sertifika | Sıkıştırılmamış Dolgu | Sıkıştırılmış Dolgu | Boyut | Tasarruflar |
+|-----------|--------------|------------------------|----------------------|---------------------|-------|-------------|
+| Hedef | 391 | 39 | 352 | 32 | 71 | 320 bayt (82%) |
+| Yönlendirici Kimlik | 391 | 71 | 320 | 32 | 103 | 288 bayt (74%) |
+| Yönlendirici Bilgisi | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 bayt (29%) |
 
 Notlar: 7 baytlık sertifikanın sıkıştırılamadığını varsayar, sıfır ek sıkıştırma üst
    limiti. Bunların hiçbiri doğru değil, ancak etkiler küçük olacaktır.

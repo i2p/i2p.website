@@ -187,14 +187,14 @@ který odpovídá „Možnosti 1.“ v sekci „Je to problém“. Jak vidíte,
 HTTP proxy interaguje s I2P stránkami přímo pouze s jedním cílem. V tomto
 scénáři je HTTP jak aplikací, tak i kontextovou identitou.
 
-.. code:: md
-
-   **Aktuální Situace: HTTP je Aplikace, HTTP je Kontextová Identita**
+```text
+**Aktuální Situace: HTTP je Aplikace, HTTP je Kontextová Identita**
                                                           __-> Outproxy <-> i2pgit.org
                                                          /
    Prohlížeč <-> HTTP Proxy(jeden cíl)<->I2PSocketManager <---> idk.i2p
                                                          \__-> translate.idk.i2p
                                                           \__-> git.idk.i2p
+```
 
 Níže uvedený diagram představuje provoz hostitelově vědomé HTTP proxy,
 který odpovídá „Možnosti 3.“ v sekci „Je to problém“. V tomto
@@ -203,14 +203,14 @@ kde se každá I2P stránka propojuje s jinou HTTP proxy s jedinečným
 cílem na hostitele. To brání operátorům více stránek být schopen
 rozeznat, když stejná osoba navštíví více stránek, které provozují.
 
-.. code:: md
-
-   **Po Změně: HTTP je Aplikace, Host je Kontextová Identita**
+```text
+**Po Změně: HTTP je Aplikace, Host je Kontextová Identita**
                                                         __-> I2PSocketManager(Destination A - pouze Outproxy) <--> i2pgit.org
                                                        /
    Prohlížeč <-> HTTP Proxy Multiplexer(Bez destinace) <---> I2PSocketManager(Destination B) <--> idk.i2p
                                                        \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
                                                         \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+```
 
 Stav:
 ^^^^^^^
@@ -241,12 +241,12 @@ pro mnoho jiných druhů potenciálních klientů I2P.
 Přibližně následující skript vytvoří aplikaci orientovanou na SOCKS5
 proxy a socksifikuje podkladový příkaz:
 
-.. code:: sh
-
-   #! /bin/sh
-   prikaz_k_proxy="$@"
-   java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
-   torsocks --port 7695 $prikaz_k_proxy
+```sh
+#! /bin/sh
+prikaz_k_proxy="$@"
+java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
+torsocks --port 7695 $prikaz_k_proxy
+```
 
 Dodatky: ``příklad implementace útoku``
                                                   

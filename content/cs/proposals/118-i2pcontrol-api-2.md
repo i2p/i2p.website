@@ -45,26 +45,25 @@ uživatelům >=API2 co nejjednodušší a nejkoherentnější možné API.
 
 ### Parametry
 
-"id"
-  Číslo id nebo požadavek.
+**`"id"`**
 
-  Používá se k identifikaci, která odpověď byla vyvolána jakým požadavkem.
+Číslo id nebo požadavek. Používá se k identifikaci, která odpověď byla vyvolána jakým požadavkem.
 
-"method_name"
-  Název RPC, který je vyvolán.
+**`"method_name"`**
 
-"auth_token"
-  Autentizační token relace.
+Název RPC, který je vyvolán.
 
-  Je potřeba ho dodat s každým RPC, kromě volání 'authenticate'.
+**`"auth_token"`**
 
-"method_parameter_value"
-  Parametr metody.
+Autentizační token relace. Je potřeba ho dodat s každým RPC, kromě volání 'authenticate'.
 
-  Používá se k nabídce různých variant metody. Jako 'get', 'set' a podobné varianty.
+**`"method_parameter_value"`**
 
-"result_value"
-  Hodnota, kterou RPC vrací. Její typ a obsah záleží na metodě a konkrétní metodě.
+Parametr metody. Používá se k nabídce různých variant metody. Jako 'get', 'set' a podobné varianty.
+
+**`"result_value"`**
+
+Hodnota, kterou RPC vrací. Její typ a obsah záleží na metodě a konkrétní metodě.
 
 
 ### Předpony
@@ -167,8 +166,8 @@ další verzi API.
 
     Vrací:
 ```text
-      true [boolean]
-``` // Pravda, pokud je k dispozici podepsaná aktualizace
+      true [boolean] // Pravda, pokud je k dispozici podepsaná aktualizace
+```
 
   * **control.update.start** - Spustit proces aktualizace
 
@@ -373,10 +372,15 @@ další verzi API.
 
     Vrací:
 ```text
-      0 [number]
-``` // Procentuální podíl šířky pásma (0-100)
+      0 [number] // Procentuální podíl šířky pásma (0-100)
+```
 
     * *set* [number]: Nastavit procentuální podíl šířky pásma (0-100)
+
+    Vrací:
+```text
+      [nil]
+```
 
   * **settings.upnp** - Povolte nebo zakažte UPNP
 

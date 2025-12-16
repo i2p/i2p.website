@@ -58,16 +58,14 @@ Kết nối từ mạng sai nên bị từ chối, và đồng nghiệp nên b�
 
 Thêm đặc tả sau cho các giá trị ID mạng hợp lệ:
 
-==================================  ==============  
-       Sử Dụng                         Số ID Mạng  
-==================================  ==============  
-Dành riêng                              0  
-Dành riêng                              1  
-Mạng Hiện Tại (mặc định)                2  
-Dành cho Mạng Tương Lai                3 - 15  
-Các Phân Nhánh và Mạng Thử Nghiệm     16 - 254  
-Dành riêng                              255  
-==================================  ==============
+| Sử Dụng | Số ID Mạng |
+|-------|--------------|
+| Dành riêng | 0 |
+| Dành riêng | 1 |
+| Mạng Hiện Tại (mặc định) | 2 |
+| Dành cho Mạng Tương Lai | 3 - 15 |
+| Các Phân Nhánh và Mạng Thử Nghiệm | 16 - 254 |
+| Dành riêng | 255 |
 
 Cấu hình Java I2P để thay đổi mặc định là "router.networkID=nnn". Tài liệu hóa điều này tốt hơn và khuyến khích các phân nhánh và mạng thử nghiệm thêm cài đặt này vào cấu hình của họ. Khuyến khích các triển khai khác thực hiện và tài liệu hóa tùy chọn này.
 
@@ -83,30 +81,24 @@ Sử dụng byte dành riêng đầu tiên của các tùy chọn (byte 0) trong
 
 Hiện Tại:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion), macKey)
 
-  '+' có nghĩa là thêm và '^' có nghĩa là exclusive-or.  
-  payloadLength là một số nguyên không dấu dài 2 byte  
-  protocolVersion là một byte 0x00  
-
-{% endhighlight %}
+  '+' có nghĩa là thêm và '^' có nghĩa là exclusive-or.
+  payloadLength là một số nguyên không dấu dài 2 byte
+  protocolVersion là một byte 0x00
+```
 
 Mới:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion ^ ((netid - 2) << 8)), macKey)
 
-  '+' có nghĩa là thêm, '^' có nghĩa là exclusive-or, '<<' có nghĩa là dịch chuyển trái.  
-  payloadLength là một số nguyên không dấu dài hai byte, big endian  
-  protocolVersion là hai byte 0x0000, big endian  
-  netid là một số nguyên không dấu dài hai byte, big endian, các giá trị hợp pháp là 2-254  
-
-{% endhighlight %}
+  '+' có nghĩa là thêm, '^' có nghĩa là exclusive-or, '<<' có nghĩa là dịch chuyển trái.
+  payloadLength là một số nguyên không dấu dài hai byte, big endian
+  protocolVersion là hai byte 0x0000, big endian
+  netid là một số nguyên không dấu dài hai byte, big endian, các giá trị hợp pháp là 2-254
+```
 
 ### Reseeding
 

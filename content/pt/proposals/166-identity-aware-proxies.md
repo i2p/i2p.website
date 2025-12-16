@@ -91,25 +91,25 @@ Diagramas:
 
 O diagrama abaixo representa a operação atual do proxy HTTP, que corresponde à "Possibilidade 1." na seção "É um problema". Como você pode ver, o proxy HTTP interage com sites I2P diretamente usando apenas um destino. Neste cenário, o HTTP é tanto a aplicação quanto a identidade contextual.
 
-.. code:: md
-
-   **Situação Atual: HTTP é a Aplicação, HTTP é a Identidade Contextual**
+```text
+**Situação Atual: HTTP é a Aplicação, HTTP é a Identidade Contextual**
                                                           __-> Outproxy <-> i2pgit.org
                                                          /
    Navegador <-> Proxy HTTP (um Destino) <-> I2PSocketManager <---> idk.i2p
                                                          \__-> translate.idk.i2p
                                                           \__-> git.idk.i2p
+```
 
 O diagrama abaixo representa a operação de um proxy HTTP consciente de host, que corresponde à "Possibilidade 3." na seção "É um problema". Neste cenário, HTTP é a aplicação, mas o Host define a identidade contextual, onde cada site I2P interage com um proxy HTTP diferente com um destino único por host. Isso impede operadores de múltiplos sites de serem capazes de distinguir quando a mesma pessoa está visitando múltiplos sites que eles operam.
 
-.. code:: md
-
-   **Após a Mudança: HTTP é a Aplicação, Host é a Identidade Contextual**
+```text
+**Após a Mudança: HTTP é a Aplicação, Host é a Identidade Contextual**
                                                         __-> I2PSocketManager(Destino A - Apenas Outproxies) <--> i2pgit.org
                                                        /
    Navegador <-> Multiplexador de Proxy HTTP (Sem Destino) <---> I2PSocketManager(Destino B) <--> idk.i2p
                                                        \__-> I2PSocketManager(Destino C) <--> translate.idk.i2p
                                                         \__-> I2PSocketManager(Destino C) <--> git.idk.i2p
+```
 
 Status:
 ^^^^^^^
@@ -125,12 +125,12 @@ Uma abordagem simples orientada para aplicativos para isolar outros tipos de cli
 
 Basicamente, o seguinte script produzirá um proxy SOCKS5 consciente de aplicativo e colocará o comando subjacente:
 
-.. code:: sh
-
-   #! /bin/sh
-   comando_para_proxificar="$@"
-   java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
-   torsocks --port 7695 $comando_para_proxificar
+```sh
+#! /bin/sh
+comando_para_proxificar="$@"
+java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
+torsocks --port 7695 $comando_para_proxificar
+```
 
 Adendo: ``implementação de exemplo do ataque``
                                                   

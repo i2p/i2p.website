@@ -196,14 +196,14 @@ Como puedes ver, el proxy HTTP interactúa con los sitios I2P directamente
 utilizando solo un destino. En este escenario, HTTP es tanto la
 aplicación como la identidad contextual.
 
-.. code:: md
-
-   **Situación Actual: HTTP es la Aplicación, HTTP es la Identidad Contextual**
+```text
+**Situación Actual: HTTP es la Aplicación, HTTP es la Identidad Contextual**
                                                           __-> Outproxy <-> i2pgit.org
                                                          /
    Navegador <-> Proxy HTTP (un solo Destino) <-> I2PSocketManager <---> idk.i2p
                                                          \__-> translate.idk.i2p
                                                           \__-> git.idk.i2p
+```
 
 El siguiente diagrama representa la operación de un proxy HTTP consciente de
 host, que corresponde a la "Posibilidad 3" bajo la sección "¿Es un problema?".
@@ -213,14 +213,14 @@ destino único por host. Esto evita que los operadores de múltiples sitios
 puedan distinguir cuándo la misma persona está visitando múltiples sitios que
 ellos operan.
 
-.. code:: md
-
-   **Después del Cambio: HTTP es la Aplicación, Host es la Identidad Contextual**
+```text
+**Después del Cambio: HTTP es la Aplicación, Host es la Identidad Contextual**
                                                         __-> I2PSocketManager(Destino A - Solo Outproxies) <--> i2pgit.org
                                                        /
    Navegador <-> Multiplexor de Proxy HTTP (Sin Destino) <---> I2PSocketManager(Destino B) <--> idk.i2p
                                                        \__-> I2PSocketManager(Destino C) <--> translate.idk.i2p
                                                         \__-> I2PSocketManager(Destino C) <--> git.idk.i2p
+```
 
 Estado:
 ^^^^^^^
@@ -249,12 +249,12 @@ es cierta para muchos otros tipos de clientes potenciales de I2P.
 Aproximadamente, el siguiente script producirá un proxy SOCKS5 consciente de la
 aplicación y socksificará el comando subyacente:
 
-.. code:: sh
-
-   #! /bin/sh
-   comando_a_proxi="$@"
-   java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
-   torsocks --port 7695 $comando_a_proxi
+```sh
+#! /bin/sh
+comando_a_proxi="$@"
+java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
+torsocks --port 7695 $comando_a_proxi
+```
 
 Adenda: ``implementación de ejemplo del ataque``
                                                   

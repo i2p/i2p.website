@@ -94,25 +94,25 @@ Diagramme:
 
 Das untenstehende Diagramm stellt den aktuellen Betrieb des HTTP-Proxys dar, was der „Möglichkeit 1.“ unter dem Abschnitt „Ist es ein Problem“ entspricht. Wie Sie sehen können, interagiert der HTTP-Proxy direkt mit I2P-Sites, indem er nur eine Destination verwendet. In diesem Szenario ist HTTP sowohl die Anwendung als auch die kontextuelle Identität.
 
-.. code:: md
-
-   **Aktuelle Situation: HTTP ist die Anwendung, HTTP ist die Kontextuelle Identität**
+```text
+**Aktuelle Situation: HTTP ist die Anwendung, HTTP ist die Kontextuelle Identität**
                                                           __-> Outproxy <-> i2pgit.org
                                                          /
    Browser <-> HTTP Proxy(eine Destination)<->I2PSocketManager <---> idk.i2p
                                                          \__-> translate.idk.i2p
                                                           \__-> git.idk.i2p
+```
 
 Das untenstehende Diagramm stellt den Betrieb eines host-bewussten HTTP-Proxys dar, was der „Möglichkeit 3.“ unter dem Abschnitt „Ist es ein Problem“ entspricht. In diesem Szenario ist HTTP die Anwendung, aber der Host definiert die kontextuelle Identität, wobei jede I2P-Site mit einem anderen HTTP-Proxy mit einer einzigartigen Destination pro Host interagiert. Dies verhindert, dass Betreiber mehrerer Sites feststellen können, wann dieselbe Person mehrere von ihnen betriebene Sites besucht.
 
-.. code:: md
-
-   **Nach der Änderung: HTTP ist die Anwendung, Host ist die Kontextuelle Identität**
+```text
+**Nach der Änderung: HTTP ist die Anwendung, Host ist die Kontextuelle Identität**
                                                         __-> I2PSocketManager(Destination A - Nur Outproxies) <--> i2pgit.org
                                                        /
    Browser <-> HTTP Proxy Multiplexer(Keine Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
                                                        \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
                                                         \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+```
 
 Status:
 ^^^^^^^
@@ -128,12 +128,12 @@ Einfaches Anwendungsorientiertes Isolieren anderer Arten von Clients ist möglic
 
 Vereinfacht erzeugt das folgende Skript einen anwendungsbewussten SOCKS5-Proxy und "socksified" den darunterliegenden Befehl:
 
-.. code:: sh
-
-   #! /bin/sh
-   command_to_proxy="$@"
-   java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
-   torsocks --port 7695 $command_to_proxy
+```sh
+#! /bin/sh
+command_to_proxy="$@"
+java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
+torsocks --port 7695 $command_to_proxy
+```
 
 Nachtrag: ``Beispielimplementierung des Angriffs``
                                                   

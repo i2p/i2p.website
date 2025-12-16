@@ -103,13 +103,11 @@ Mensagens SYN de streaming são compactadas com gzip na camada I2CP.
 Para o tipo de assinatura Ed25519 e tipo de criptografia X25519,
 economias estimadas:
 
-===============  ===========   =============  ====================   ==================  ===========  =============
-Tipo de Dado     Tamanho Total Chaves e Cert  Preenchimento Não Comprimido Preenchimento Comprimido Tamanho Economia
-===============  ===========   =============  ====================   ==================  ===========  =============
-Destino          391           39             352                    32                  71            320 bytes (82%)
-Identidade do Roteador 391     71             320                    32                  103           288 bytes (74%)
-Info do Roteador 1000 tip.    71             320                    32                  722 tip.     288 bytes (29%)
-===============  ===========   =============  ====================   ==================  ===========  =============
+| Tipo de Dado | Tamanho Total | Chaves e Cert | Preenchimento Não Comprimido | Preenchimento Comprimido | Tamanho | Economia |
+|--------------|---------------|---------------|------------------------------|--------------------------|---------|----------|
+| Destino | 391 | 39 | 352 | 32 | 71 | 320 bytes (82%) |
+| Identidade do Roteador | 391 | 71 | 320 | 32 | 103 | 288 bytes (74%) |
+| Info do Roteador | 1000 tip. | 71 | 320 | 32 | 722 tip. | 288 bytes (29%) |
 
 Notas: Assume que o certificado de 7 bytes não é compressível, sem sobrecarga adicional do gzip.
 Nenhum dos dois é verdade, mas os efeitos serão pequenos.

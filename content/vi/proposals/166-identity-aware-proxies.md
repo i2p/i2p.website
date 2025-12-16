@@ -108,30 +108,30 @@ Biểu đồ:
 
 Biểu đồ bên dưới minh họa hoạt động hiện tại của HTTP proxy, tương ứng với "Khả năng 1" trong phần "Có phải là vấn đề không". Như bạn có thể thấy, HTTP proxy tương tác trực tiếp với các I2P sites chỉ sử dụng một destination duy nhất. Trong kịch bản này, HTTP vừa là ứng dụng vừa là danh tính ngữ cảnh.
 
-.. code:: md
-
-**Tình Hình Hiện Tại: HTTP là Ứng Dụng, HTTP là Danh Tính Theo Ngữ Cảnh**                                                           __-> Outproxy <-> i2pgit.org                                                          /    Browser <-> HTTP Proxy(một Destination)<->I2PSocketManager <---> idk.i2p                                                          \__-> translate.idk.i2p                                                           \__-> git.idk.i2p
-
+```text
+**Tình Hình Hiện Tại: HTTP là Ứng Dụng, HTTP là Danh Tính Theo Ngữ Cảnh**
                                                           __-> Outproxy <-> i2pgit.org
                                                          /
-Sơ đồ dưới đây mô tả hoạt động của một HTTP proxy nhận biết host, tương ứng với "Khả năng 3" trong phần "Có phải là vấn đề không". Trong tình huống này, HTTP là ứng dụng, nhưng Host định nghĩa bản sắc theo ngữ cảnh, trong đó mỗi trang I2P tương tác với một HTTP proxy khác nhau với một destination duy nhất cho mỗi host. Điều này ngăn chặn những người vận hành nhiều trang web có thể phân biệt khi cùng một người đang truy cập nhiều trang web mà họ vận hành.
-
+   Browser <-> HTTP Proxy(một Destination)<->I2PSocketManager <---> idk.i2p
                                                          \__-> translate.idk.i2p
                                                           \__-> git.idk.i2p
+```
 
-.. code:: md
+Sơ đồ dưới đây mô tả hoạt động của một HTTP proxy nhận biết host, tương ứng với "Khả năng 3" trong phần "Có phải là vấn đề không". Trong tình huống này, HTTP là ứng dụng, nhưng Host định nghĩa bản sắc theo ngữ cảnh, trong đó mỗi trang I2P tương tác với một HTTP proxy khác nhau với một destination duy nhất cho mỗi host. Điều này ngăn chặn những người vận hành nhiều trang web có thể phân biệt khi cùng một người đang truy cập nhiều trang web mà họ vận hành.
 
-**Sau Khi Thay Đổi: HTTP là Ứng Dụng, Host là Danh Tính Ngữ Cảnh**                                                         __-> I2PSocketManager(Destination A - Chỉ Outproxies) <--> i2pgit.org                                                        /    Browser <-> HTTP Proxy Multiplexer(Không Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p                                                        \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p                                                         \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+```text
+**Sau Khi Thay Đổi: HTTP là Ứng Dụng, Host là Danh Tính Ngữ Cảnh**
+                                                        __-> I2PSocketManager(Destination A - Chỉ Outproxies) <--> i2pgit.org
+                                                       /
+   Browser <-> HTTP Proxy Multiplexer(Không Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
+                                                       \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
+                                                        \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+```
 
 Trạng thái:
 ^^^^^^^
 
-                                                        __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
-                                                       /
 Một phiên bản Java hoạt động của host-aware proxy tuân thủ theo phiên bản cũ hơn của đề xuất này có sẵn tại fork của idk dưới nhánh: i2p.i2p.2.6.0-browser-proxy-post-keepalive Link trong phần trích dẫn. Nó đang được sửa đổi mạnh để chia nhỏ các thay đổi thành những phần nhỏ hơn.
-
-                                                       \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
-                                                        \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
 
 Các triển khai với khả năng khác nhau đã được viết bằng Go sử dụng thư viện SAMv3, chúng có thể hữu ích cho việc nhúng vào các ứng dụng Go khác hoặc cho go-i2p nhưng không phù hợp với Java I2P. Ngoài ra, chúng thiếu hỗ trợ tốt để làm việc tương tác với leaseSet được mã hóa.
 
@@ -141,9 +141,7 @@ Một cách tiếp cận đơn giản hướng đến ứng dụng để cách l
 
 Đại khái, script sau đây sẽ tạo ra một SOCKS5 proxy nhận biết ứng dụng và socksify lệnh bên dưới:
 
-.. code:: sh
-
-```
+```sh
 #! /bin/sh
 command_to_proxy="$@"
 java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'

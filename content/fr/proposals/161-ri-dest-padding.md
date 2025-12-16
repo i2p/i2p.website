@@ -103,14 +103,11 @@ Les messages SYN en streaming sont compressés avec gzip au niveau de l'I2CP.
 Pour le type de signature Ed25519 et le type de chiffrement X25519,
 économies estimées :
 
-===============  ===========   =============  ====================   ==================  ===========  =============
-Type de Données   Taille Totale  Clés et Cert  Remplissage Non-       Remplissage        Taille       Économies
-                                           Comprimé                  Compressé
-===============  ===========   =============  ====================   ==================  ===========  =============
-Destination      391           39             352                    32                  71           320 octets (82%)
-Identité Routeur  391           71             320                    32                  103          288 octets (74%)
-Info Routeur      1000 typ.     71             320                    32                  722 typ.     288 octets (29%)
-===============  ===========   =============  ====================   ==================  ===========  =============
+| Type de Données | Taille Totale | Clés et Cert | Remplissage Non-Comprimé | Remplissage Compressé | Taille | Économies |
+|-----------------|---------------|--------------|--------------------------|----------------------|--------|-----------|
+| Destination | 391 | 39 | 352 | 32 | 71 | 320 octets (82%) |
+| Identité Routeur | 391 | 71 | 320 | 32 | 103 | 288 octets (74%) |
+| Info Routeur | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 octets (29%) |
 
 Notes : Suppose qu'un certificat de 7 octets n'est pas compressible, aucune surcharge gzip supplémentaire.
 Aucun des deux n'est vrai, mais les effets seront faibles.

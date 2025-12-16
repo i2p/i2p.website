@@ -45,26 +45,25 @@ mümkün olan en basit ve en tutarlı API'yi sağlamaktır.
 
 ### Parametreler
 
-"id"
-  İstek numarası.
+**`"id"`**
 
-  Hangi isteğe hangi yanıtın verildiğini belirlemek için kullanılır.
+İstek numarası. Hangi isteğe hangi yanıtın verildiğini belirlemek için kullanılır.
 
-"method_name"
-  Çağrılan RPC'nin adı.
+**`"method_name"`**
 
-"auth_token"
-  Oturum kimlik doğrulama belirteci.
+Çağrılan RPC'nin adı.
 
-  'authenticate' çağrısı hariç her RPC ile sağlanması gerekir.
+**`"auth_token"`**
 
-"method_parameter_value"
-  Yöntem parametresi.
+Oturum kimlik doğrulama belirteci. 'authenticate' çağrısı hariç her RPC ile sağlanması gerekir.
 
-  Bir yöntemin farklı seçeneklerini sunmak için kullanılır. 'get', 'set' ve bu tarz seçenekler gibi.
+**`"method_parameter_value"`**
 
-"result_value"
-  RPC'nin döndürdüğü değer. Türü ve içeriği metoda ve hangi metoda bağlıdır.
+Yöntem parametresi. Bir yöntemin farklı seçeneklerini sunmak için kullanılır. 'get', 'set' ve bu tarz seçenekler gibi.
+
+**`"result_value"`**
+
+RPC'nin döndürdüğü değer. Türü ve içeriği metoda ve hangi metoda bağlıdır.
 
 
 ### Önekler
@@ -100,7 +99,6 @@ Döndürür:
 
 
 ### Yöntemler
-```
 
 * **authenticate** - Doğru bir şifre sağlandığında, bu yöntem size daha fazla erişim için bir belirteç ve desteklenen API seviyelerinin bir listesini sağlar.
 
@@ -114,8 +112,6 @@ Döndürür:
       "api" : [[int],[int], ...]  // Desteklenen API seviyelerinin listesi.
     }
 ```
-```
-
 
 * **control.** - i2p'yi kontrol et
 
@@ -170,10 +166,9 @@ Döndürür:
 
     Döndürür:
 ```text
-      true [boolean]
-``` // İmzalı güncelleme mevcutsa doğru
-
+      true [boolean] // İmzalı güncelleme mevcutsa doğru
 ```
+
   * **control.update.start** - Güncelleme sürecine başla
 
     * [nil]: Parametre gerekmiyor
@@ -182,8 +177,6 @@ Döndürür:
 ```text
       [nil]
 ```
-```
-
 
 * **i2pcontrol.** - i2pcontrol yapılandırın
 
@@ -227,8 +220,6 @@ Döndürür:
 ```text
       [nil]
 ```
-```
-
 
 * **settings.** - i2p örneği ayarlarını al/ayarla
 
@@ -379,12 +370,16 @@ Döndürür:
 
     Döndürür:
 ```text
-      0 [number]
-``` // Bant genişliği paylaşım yüzdesi (0-100)
+      0 [number] // Bant genişliği paylaşım yüzdesi (0-100)
+```
 
     * *set* [number]: Bant genişliği paylaşım yüzdesini ayarla (0-100)
 
+    Döndürür:
+```text
+      [nil]
 ```
+
   * **settings.upnp** - UPNP'yi etkinleştir veya devre dışı bırak
 
     * *get* [nil]: Bu parametrenin ayarlanmasına gerek yoktur.
@@ -400,9 +395,6 @@ Döndürür:
 ```text
       [nil]
 ```
-```
-
-
 
 * **stats.** - i2p örneğinden istatistikler al
 
@@ -429,8 +421,6 @@ Döndürür:
 ```text
       0.0 [number]
 ```
-```
-
 
 * **status.** - i2p örneği durumunu al
 
@@ -494,5 +484,4 @@ Döndürür:
     Döndürür:
 ```text
       "0.0.0.0" [string]
-```
 ```

@@ -78,16 +78,14 @@ takže to nebude mít žádný vliv na stávající hodnotu ID sítě, což je 2
 Přidejte následující specifikaci pro platné hodnoty ID sítě:
 
 
-==================================  ==============
-       Použití                        Číslo NetID
-==================================  ==============
-Rezervováno                                  0
-Rezervováno                                  1
-Aktuální síť (výchozí)                       2
-Rezervované budoucí sítě                  3 - 15
-Klonované a testovací sítě               16 - 254
-Rezervováno                                255
-==================================  ==============
+| Použití | Číslo NetID |
+|-------|--------------|
+| Rezervováno | 0 |
+| Rezervováno | 1 |
+| Aktuální síť (výchozí) | 2 |
+| Rezervované budoucí sítě | 3 - 15 |
+| Klonované a testovací sítě | 16 - 254 |
+| Rezervováno | 255 |
 
 
 Konfigurace Java I2P ke změně výchozí hodnoty je "router.networkID=nnn".
@@ -109,31 +107,24 @@ Pro SSU, přidejte XOR s ((netid - 2) << 8) v HMAC-MD5 výpočtu.
 
 Existující:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion), macKey)
 
   '+' znamená přidat a '^' znamená exkluzivní neboli.
   payloadLength je 2-bajtní neznačkové celé číslo
   protocolVersion je jeden byte 0x00
-
-{% endhighlight %}
+```
 
 Nové:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion ^ ((netid - 2) << 8)), macKey)
 
   '+' znamená přidání, '^' znamená exkluzivní neboli, '<<' znamená posun vlevo.
   payloadLength je dvoubajtní neznačkové celé číslo, big endian
   protocolVersion je dva bajty 0x0000, big endian
   netid je dvoubajtní neznačkové celé číslo, big endian, legální hodnoty jsou 2-254
-
-
-{% endhighlight %}
+```
 
 
 ### Opětovné dosazování

@@ -103,13 +103,11 @@ Streamovací SYN zprávy jsou gzipovány na úrovni I2CP.
 Pro typ podpisu Ed25519 a typ šifrování X25519,
 odhadované úspory:
 
-===============  ===========   =============  ====================   ==================  ===========  =============
-Typ dat          Celková velikost  Klíče a cert  Nezkomprimovaná výplň  Zkomprimovaná výplň  Velikost     Úspory
-===============  ===========   =============  ====================   ==================  ===========  =============
-Destination      391           39             352                    32                  71           320 bytů (82 %)
-Router Identity  391           71             320                    32                  103          288 bytů (74 %)
-Router Info      1000 typ.     71             320                    32                  722 typ.     288 bytů (29 %)
-===============  ===========   =============  ====================   ==================  ===========  =============
+| Typ dat | Celková velikost | Klíče a cert | Nezkomprimovaná výplň | Zkomprimovaná výplň | Velikost | Úspory |
+|---------|-----------------|--------------|----------------------|---------------------|----------|--------|
+| Destination | 391 | 39 | 352 | 32 | 71 | 320 bytů (82 %) |
+| Router Identity | 391 | 71 | 320 | 32 | 103 | 288 bytů (74 %) |
+| Router Info | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 bytů (29 %) |
 
 Poznámky: Předpokládá 7-bytový certifikát není komprimovatelný, žádné dodatečné gzip overhead.
 Ani to není pravda, ale efekty budou malé.

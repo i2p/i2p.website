@@ -72,16 +72,14 @@ afin que ce soit une opération sans effet pour la valeur actuelle de l'identifi
 Ajouter la spécification suivante pour les valeurs valides d'identifiant de réseau :
 
 
-==================================  ==============
-       Utilisation                   Numéro NetID
-==================================  ==============
-Réservé                                     0
-Réservé                                     1
-Réseau actuel (par défaut)                  2
-Réseaux futurs réservés                  3 - 15
-Forks et réseaux de test                16 - 254
-Réservé                                   255
-==================================  ==============
+| Utilisation | Numéro NetID |
+|-------|--------------|
+| Réservé | 0 |
+| Réservé | 1 |
+| Réseau actuel (par défaut) | 2 |
+| Réseaux futurs réservés | 3 - 15 |
+| Forks et réseaux de test | 16 - 254 |
+| Réservé | 255 |
 
 
 La configuration Java I2P pour changer la valeur par défaut est "router.networkID=nnn".
@@ -103,31 +101,24 @@ Pour SSU, ajoutez un XOR de ((netid - 2) << 8) dans le calcul HMAC-MD5.
 
 Existante :
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion), macKey)
 
   '+' signifie append et '^' signifie exclusive-or.
   payloadLength est un entier non signé de 2 octets
   protocolVersion est un octet 0x00
-
-{% endhighlight %}
+```
 
 Nouvelle :
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion ^ ((netid - 2) << 8)), macKey)
 
   '+' signifie append, '^' signifie exclusive-or, '<<' signifie décalage à gauche.
   payloadLength est un entier non signé sur deux octets, big endian
   protocolVersion est deux octets 0x0000, big endian
   netid est un entier non signé sur deux octets, big endian, les valeurs légales sont 2-254
-
-
-{% endhighlight %}
+```
 
 
 ### Réensemencement

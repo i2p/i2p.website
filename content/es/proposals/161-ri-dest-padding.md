@@ -103,13 +103,11 @@ Los mensajes SYN de streaming son comprimidos con gzip en la capa I2CP.
 Para el tipo de firma Ed25519 y el tipo de cifrado X25519,
 ahorros estimados:
 
-===============  ===========   =============  ====================   ==================  ===========  =============
-Tipo de Datos    Tamaño Total  Claves y Cert  Padding sin Comprimir Padding Comprimido  Tamaño       Ahorros
-===============  ===========   =============  ====================   ==================  ===========  =============
-Destino          391           39             352                    32                  71           320 bytes (82%)
-Identidad de Router 391        71             320                    32                  103          288 bytes (74%)
-Info de Router   1000 typ.     71             320                    32                  722 typ.     288 bytes (29%)
-===============  ===========   =============  ====================   ==================  ===========  =============
+| Tipo de Datos | Tamaño Total | Claves y Cert | Padding sin Comprimir | Padding Comprimido | Tamaño | Ahorros |
+|---------------|--------------|---------------|-----------------------|--------------------|--------|---------|
+| Destino | 391 | 39 | 352 | 32 | 71 | 320 bytes (82%) |
+| Identidad de Router | 391 | 71 | 320 | 32 | 103 | 288 bytes (74%) |
+| Info de Router | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 bytes (29%) |
 
 Notas: Se asume que el certificado de 7 bytes no es comprimible, sobrecarga de gzip adicional nula.
 Ninguna es cierta, pero los efectos serán pequeños.

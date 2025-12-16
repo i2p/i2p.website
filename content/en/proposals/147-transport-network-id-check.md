@@ -77,17 +77,14 @@ so it will be a no-op for the current network ID value of 2.
 
 Add the following specification for valid network id values:
 
-
-==================================  ==============
-       Usage                         NetID Number
-==================================  ==============
-Reserved                                   0
-Reserved                                   1
-Current Network (default)                  2
-Reserved Future Networks               3 - 15
-Forks and Test Networks               16 - 254
-Reserved                                 255
-==================================  ==============
+| Usage | NetID Number |
+|-------|--------------|
+| Reserved | 0 |
+| Reserved | 1 |
+| Current Network (default) | 2 |
+| Reserved Future Networks | 3 - 15 |
+| Forks and Test Networks | 16 - 254 |
+| Reserved | 255 |
 
 
 The Java I2P configuration to change the default is "router.networkID=nnn".
@@ -109,31 +106,24 @@ For SSU, add an XOR of ((netid - 2) << 8) in the HMAC-MD5 calculation.
 
 Existing:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion), macKey)
 
   '+' means append and '^' means exclusive-or.
   payloadLength is a 2 byte unsigned integer
   protocolVersion is one byte 0x00
-
-{% endhighlight %}
+```
 
 New:
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion ^ ((netid - 2) << 8)), macKey)
 
   '+' means append, '^' means exclusive-or, '<<' means left shift.
   payloadLength is a two byte unsigned integer, big endian
   protocolVersion is two bytes 0x0000, big endian
   netid is a two byte unsigned integer, big endian, legal values are 2-254
-
-
-{% endhighlight %}
+```
 
 
 ### Reseeding

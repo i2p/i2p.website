@@ -73,13 +73,11 @@ Các điểm đích trong thông điệp Lưu trữ Cơ sở không được né
 
 Đối với loại chữ ký Ed25519 và loại mã hóa X25519, tiết kiệm ước tính như sau:
 
-===============  ===========   =============  ====================   ==================  ===========  =============
-Loại Dữ liệu      Kích thước Tổng  Khóa và Giấy chứng nhận  Đệm chưa nén  Đệm nén  Kích thước  Tiết kiệm
-===============  ===========   =============  ====================   ==================  ===========  =============
-Điểm đích        391            39             352                    32                  71           320 byte (82%)
-Nhận dạng Router  391            71             320                    32                  103          288 byte (74%)
-Thông tin Router  1000 typ.      71             320                    32                  722 typ.     288 byte (29%)
-===============  ===========   =============  ====================   ==================  ===========  =============
+| Loại Dữ liệu | Kích thước Tổng | Khóa và Giấy chứng nhận | Đệm chưa nén | Đệm nén | Kích thước | Tiết kiệm |
+|--------------|-----------------|------------------------|--------------|---------|------------|-----------|
+| Điểm đích | 391 | 39 | 352 | 32 | 71 | 320 byte (82%) |
+| Nhận dạng Router | 391 | 71 | 320 | 32 | 103 | 288 byte (74%) |
+| Thông tin Router | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 byte (29%) |
 
 Ghi chú: Giả sử giấy chứng nhận dài 7 byte không thể nén, không có chi phí dữ liệu nén thêm. Không đúng hoàn toàn, nhưng ảnh hưởng sẽ nhỏ. Bỏ qua các phần khác có thể nén của Thông tin Router.
 

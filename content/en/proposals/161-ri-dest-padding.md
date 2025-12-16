@@ -103,13 +103,11 @@ Streaming SYN messages are gzipped at the I2CP layer.
 For Ed25519 signature type and X25519 encryption type,
 estimated savings:
 
-===============  ===========   =============  ====================   ==================  ===========  =============
-Data Type        Total Size    Keys and Cert  Uncompressed Padding   Compressed Padding  Size         Savings
-===============  ===========   =============  ====================   ==================  ===========  =============
-Destination      391           39             352                    32                  71           320 bytes (82%)
-Router Identity  391           71             320                    32                  103          288 bytes (74%)
-Router Info      1000 typ.     71             320                    32                  722 typ.     288 bytes (29%)
-===============  ===========   =============  ====================   ==================  ===========  =============
+| Data Type | Total Size | Keys and Cert | Uncompressed Padding | Compressed Padding | Size | Savings |
+|-----------|------------|---------------|----------------------|--------------------|------|---------|
+| Destination | 391 | 39 | 352 | 32 | 71 | 320 bytes (82%) |
+| Router Identity | 391 | 71 | 320 | 32 | 103 | 288 bytes (74%) |
+| Router Info | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 bytes (29%) |
 
 Notes: Assumes 7-byte certificate is not compressible, zero additional gzip overhead.
 Neither is true, but effects will be small.

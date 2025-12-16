@@ -112,27 +112,27 @@ Aşağıdaki diyagram, HTTP proxy'sinin mevcut işleyişini temsil etmektedir ki
 Görüldüğü gibi, HTTP proxy yalnızca bir hedef kullanarak doğrudan I2P siteleri ile etkileşime girmektedir.
 Bu senaryoda, HTTP hem uygulama hem de bağlamsal kimliktir.
 
-.. code:: md
-
-   **Mevcut Durum: HTTP Uygulama, HTTP Bağlamsal Kimliktir**
+```text
+**Mevcut Durum: HTTP Uygulama, HTTP Bağlamsal Kimliktir**
                                                           __-> Dış Erişim Proxy -> i2pgit.org
                                                          /
    Tarayıcı <-> HTTP Proxy (bir Hedef)<-> I2PSocketManager <---> idk.i2p
                                                          \__-> translate.idk.i2p
                                                           \__-> git.idk.i2p
+```
 
 Aşağıdaki diyagram, host farkındalığı olan bir HTTP proxy'sinin işleyişini temsil etmektedir ki bu, "Bir Problem mi?" bölümündeki “Olasılık 3.” ile örtüşmektedir. 
 Bu senaryoda, HTTP uygulamadır, ancak Host bağlamsal kimliği tanımlar ve her I2P sitesi, host başına benzersiz bir hedefe sahip farklı bir HTTP proxy ile etkileşimde bulunur. 
 Bu, aynı kişinin ziyaret ettiği birden fazla siteyi işleten operatörlerin, ziyaret edilen siteleri ayırt edememelerini engeller.
 
-.. code:: md
-
-   **Değişiklik Sonrası: HTTP Uygulama, Host Bağlamsal Kimliktir**
+```text
+**Değişiklik Sonrası: HTTP Uygulama, Host Bağlamsal Kimliktir**
                                                         __-> I2PSocketManager (Hedef A - Yalnızca Dış Erişimler) <--> i2pgit.org
                                                        /
    Tarayıcı <-> HTTP Proxy Çoklayıcı (Hedef Yok) <---> I2PSocketManager (Hedef B) <--> idk.i2p
                                                        \__-> I2PSocketManager (Hedef C) <--> translate.idk.i2p
                                                         \__-> I2PSocketManager (Hedef D) <--> git.idk.i2p
+```
 
 Durum:
 ^^^^^^^
@@ -151,12 +151,12 @@ diğer türdeki istemcileri izole edebilmek için basit bir uygulama tabanlı ya
 
 Kabaca, aşağıdaki script, uygulama farkındalığına sahip bir SOCKS5 proxy üretir ve alttaki işlemi socksify yapar:
 
-.. code:: sh
-
-   #! /bin/sh
-   proxy_yapılacak_komut="$@"
-   java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
-   torsocks --port 7695 $proxy_yapılacak_komut
+```sh
+#! /bin/sh
+proxy_yapılacak_komut="$@"
+java -jar ~/i2p/lib/i2ptunnel.jar -wait -e 'sockstunnel 7695'
+torsocks --port 7695 $proxy_yapılacak_komut
+```
 
 Ek: ``saldırının örnek uygulaması``
                                                   

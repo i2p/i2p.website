@@ -65,16 +65,14 @@ NTCP2（提案111）在会话请求阶段不拒绝来自不同网络ID的连接�
 
 为有效网络ID值添加以下规范：
 
-==================================  ==============
-       用途                          NetID编号
-==================================  ==============
-保留                                   0
-保留                                   1
-当前网络（默认）                        2
-保留未来网络                       3 - 15
-分叉和测试网络                    16 - 254
-保留                                 255
-==================================  ==============
+| 用途 | NetID编号 |
+|-------|--------------|
+| 保留 | 0 |
+| 保留 | 1 |
+| 当前网络（默认） | 2 |
+| 保留未来网络 | 3 - 15 |
+| 分叉和测试网络 | 16 - 254 |
+| 保留 | 255 |
 
 更改默认值的Java I2P配置为"router.networkID=nnn"。
 更好地记录这个设置，并鼓励分叉和测试网络将该设置添加到他们的配置中。
@@ -93,30 +91,24 @@ NTCP2（提案111）在会话请求阶段不拒绝来自不同网络ID的连接�
 
 现有：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion), macKey)
 
   '+'表示附加，'^'表示异或。
   payloadLength是一个2字节无符号整数
   protocolVersion是一个字节0x00
-
-{% endhighlight %}
+```
 
 新的：
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+```text
 HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion ^ ((netid - 2) << 8)), macKey)
 
   '+'表示附加，'^'表示异或，'<<'表示左移。
   payloadLength是一个2字节无符号整数，big endian
   protocolVersion是两个字节0x0000，big endian
   netid是一个2字节无符号整数，big endian，合法值为2-254
-
-{% endhighlight %}
+```
 
 ### 重新播种
 

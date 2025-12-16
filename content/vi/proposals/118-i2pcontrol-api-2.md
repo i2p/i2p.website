@@ -45,28 +45,25 @@ cho người dùng từ >=API2 với API đơn giản nhất và nhất quán nh
 
 ### Tham số
 
-"id"
-  Số id hoặc yêu cầu.
+**`"id"`**
 
-  Dùng để xác định phản hồi nào đã được sinh ra bởi yêu cầu nào.
+Số id hoặc yêu cầu. Dùng để xác định phản hồi nào đã được sinh ra bởi yêu cầu nào.
 
-"method_name"
-  Tên của RPC đang được gọi.
+**`"method_name"`**
 
-"auth_token"
-  Mã thông báo xác thực phiên.
+Tên của RPC đang được gọi.
 
-  Cần được cung cấp với mọi RPC ngoại trừ cuộc gọi 'authenticate'.
+**`"auth_token"`**
 
-"method_parameter_value"
-  Tham số phương thức.
+Mã thông báo xác thực phiên. Cần được cung cấp với mọi RPC ngoại trừ cuộc gọi 'authenticate'.
 
-  Dùng để cung cấp các phiên bản khác nhau của một phương thức. Như 'get', 'set' và các phiên bản
-  tương tự.
+**`"method_parameter_value"`**
 
-"result_value"
-  Giá trị mà RPC trả về. Loại và nội dung của nó phụ thuộc vào phương thức
-  và phương thức nào.
+Tham số phương thức. Dùng để cung cấp các phiên bản khác nhau của một phương thức. Như 'get', 'set' và các phiên bản tương tự.
+
+**`"result_value"`**
+
+Giá trị mà RPC trả về. Loại và nội dung của nó phụ thuộc vào phương thức và phương thức nào.
 
 
 ### Tiền tố
@@ -168,8 +165,8 @@ bắt kịp. Nếu một RPC được triển khai bởi tất cả các triển
 
     Trả về:
 ```text
-      true [boolean]
-``` // Đúng nếu có bản cập nhật có chữ ký
+      true [boolean] // Đúng nếu có bản cập nhật có chữ ký
+```
 
   * **control.update.start** - Bắt đầu quá trình cập nhật
 
@@ -374,10 +371,15 @@ bắt kịp. Nếu một RPC được triển khai bởi tất cả các triển
 
     Trả về:
 ```text
-      0 [number]
-``` // Tỷ lệ chia sẻ băng thông (0-100)
+      0 [number] // Tỷ lệ chia sẻ băng thông (0-100)
+```
 
     * *set* [number]: Đặt tỷ lệ chia sẻ băng thông (0-100)
+
+    Trả về:
+```text
+      [nil]
+```
 
   * **settings.upnp** - Bật hoặc tắt UPNP
 

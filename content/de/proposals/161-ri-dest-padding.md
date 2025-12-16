@@ -104,13 +104,11 @@ Streaming-SYN-Nachrichten werden auf der I2CP-Ebene gezippt.
 Für den Ed25519-Signaturtyp und den X25519-Verschlüsselungstyp,
 geschätzte Einsparungen:
 
-===============  ===========   =============  ====================   ==================  ===========  =============
-Datentyp         Gesamtgröße   Schlüssel und Zertifikat  Unkomprimiertes Padding  Komprimiertes Padding  Größe       Einsparungen
-===============  ===========   =============  ====================   ==================  ===========  =============
-Ziel             391           39             352                    32                  71           320 Bytes (82%)
-Router-Identität 391           71             320                    32                  103          288 Bytes (74%)
-Router-Info      1000 typ.     71             320                    32                  722 typ.     288 Bytes (29%)
-===============  ===========   =============  ====================   ==================  ===========  =============
+| Datentyp | Gesamtgröße | Schlüssel und Zertifikat | Unkomprimiertes Padding | Komprimiertes Padding | Größe | Einsparungen |
+|----------|-------------|-------------------------|------------------------|-----------------------|-------|--------------|
+| Ziel | 391 | 39 | 352 | 32 | 71 | 320 Bytes (82%) |
+| Router-Identität | 391 | 71 | 320 | 32 | 103 | 288 Bytes (74%) |
+| Router-Info | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 Bytes (29%) |
 
 Hinweise: Annahme, dass 7-Byte-Zertifikat nicht komprimierbar ist, null zusätzlicher Gzip-Overhead.
 Beides ist nicht zutreffend, aber die Effekte werden gering sein.
