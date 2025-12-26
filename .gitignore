@@ -43,3 +43,7 @@ Temporary Items
 __pycache__/
 *.pyc
 *.pyo
+
+# Claude and Cursor files
+.claude/
+.cursor/
