@@ -6,6 +6,7 @@ Tests:
 - Validate all i18n/*.toml files for proper TOML syntax
 """
 
+from pathlib import Path
 import re
 
 import pytest
