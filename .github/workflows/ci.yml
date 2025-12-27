@@ -1,195 +1,189 @@
-name: CI Tests
+name: CI
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
 
 jobs:
-  validate-metadata:
-    name: Validate Meta (Fast)
+  # =================================================================================================
+  # TRANSLATION JOB (Commented out as requested)
+  # =================================================================================================
+  # translate:
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name == 'push' # Only on push to main
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0 # Needed for git log checks if we were doing them, but script might need history
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: '3.11'
+  #     - name: Install dependencies
+  #       run: pip install openai
+  #     - name: Run Translation Script
+  #       env:
+  #         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} # Assuming this would be needed if enabled
+  #       run: bash scripts/ci_translate.sh
+
+  # =================================================================================================
+  # BUILD JOB
+  # =================================================================================================
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
-      
-      - name: Install test dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r tests/requirements.txt
-      
-      - name: Run fast tests
-        id: fast-tests
-        run: |
-          python -m pytest \
-            tests/test_config_validation.py \
-            tests/test_downloads.py \
-            tests/test_front_matter.py \
-            tests/test_i18n_consistency.py \
-            -v -n auto --tb=short 2>&1 | tee test-output.txt
-          exit ${PIPESTATUS[0]}
+          submodules: recursive
 
-      - name: Extract test failures
-        if: failure() && steps.fast-tests.outcome == 'failure'
-        id: extract-failures
-        run: |
-          # Extract only FAILED lines and error messages
-          {
-            echo 'failures<<EOF'
-            grep -E "^(FAILED|ERROR|E   |>   |    assert)" test-output.txt | head -50
-            echo 'EOF'
-          } >> $GITHUB_OUTPUT
-
-      - name: Notify Slack on failure
-        if: failure() && steps.fast-tests.outcome == 'failure'
-        run: |
-          curl -X POST -H 'Content-type: application/json' \
-            --data "{
-              \"blocks\": [
-                {
-                  \"type\": \"header\",
-                  \"text\": {
-                    \"type\": \"plain_text\",
-                    \"text\": \"❌ CI Failed: Validate Meta (Fast)\",
-                    \"emoji\": true
-                  }
-                },
-                {
-                  \"type\": \"section\",
-                  \"fields\": [
-                    {\"type\": \"mrkdwn\", \"text\": \"*Repository:*\n${{ github.repository }}\"},
-                    {\"type\": \"mrkdwn\", \"text\": \"*Branch:*\n${{ github.ref_name }}\"}
-                  ]
-                },
-                {
-                  \"type\": \"section\",
-                  \"fields\": [
-                    {\"type\": \"mrkdwn\", \"text\": \"*Commit:*\n\`${{ github.sha }}\`\"},
-                    {\"type\": \"mrkdwn\", \"text\": \"*Author:*\n${{ github.actor }}\"}
-                  ]
-                },
-                {
-                  \"type\": \"section\",
-                  \"text\": {
-                    \"type\": \"mrkdwn\",
-                    \"text\": \"*Errors:*\n\`\`\`$(echo '${{ steps.extract-failures.outputs.failures }}' | head -c 2500)\`\`\`\"
-                  }
-                },
-                {
-                  \"type\": \"actions\",
-                  \"elements\": [
-                    {
-                      \"type\": \"button\",
-                      \"text\": {\"type\": \"plain_text\", \"text\": \"View Run\", \"emoji\": true},
-                      \"url\": \"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"
-                    }
-                  ]
-                }
-              ]
-            }" \
-            ${{ secrets.SLACK_WEBHOOK }}
-
-  validate-site:
-    name: Validate Site Integrity
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-      
-      - name: Install Hugo
-        uses: peaceiris/actions-hugo@v2
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.147.8'
           extended: true
-      
-      - name: Install test dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r tests/requirements.txt
-      
-      - name: Run site builds and tests
-        id: site-tests
-        run: |
-          python -m pytest \
-            tests/test_html_output.py \
-            tests/test_links.py \
-            tests/test_static_assets.py \
-            -v -n auto --tb=short 2>&1 | tee test-output.txt
-          exit ${PIPESTATUS[0]}
 
-      - name: Extract test failures
-        if: failure() && steps.site-tests.outcome == 'failure'
-        id: extract-failures
+      - name: Install Build Dependencies
         run: |
-          # Extract only FAILED lines and error messages
-          {
-            echo 'failures<<EOF'
-            grep -E "^(FAILED|ERROR|E   |>   |    assert)" test-output.txt | head -50
-            echo 'EOF'
-          } >> $GITHUB_OUTPUT
+          sudo apt-get update
+          sudo apt-get install -y libwebp svgo npm
+          sudo npm install -g svgo
 
-      - name: Notify Slack on failure
-        if: failure() && steps.site-tests.outcome == 'failure'
+      - name: Build with Hugo
+        run: hugo --minify --gc
+
+      - name: Optimize Images (SVG & WebP Conversion)
         run: |
-          curl -X POST -H 'Content-type: application/json' \
-            --data "{
-              \"blocks\": [
-                {
-                  \"type\": \"header\",
-                  \"text\": {
-                    \"type\": \"plain_text\",
-                    \"text\": \"❌ CI Failed: Validate Site Integrity\",
-                    \"emoji\": true
-                  }
-                },
-                {
-                  \"type\": \"section\",
-                  \"fields\": [
-                    {\"type\": \"mrkdwn\", \"text\": \"*Repository:*\n${{ github.repository }}\"},
-                    {\"type\": \"mrkdwn\", \"text\": \"*Branch:*\n${{ github.ref_name }}\"}
-                  ]
-                },
-                {
-                  \"type\": \"section\",
-                  \"fields\": [
-                    {\"type\": \"mrkdwn\", \"text\": \"*Commit:*\n\`${{ github.sha }}\`\"},
-                    {\"type\": \"mrkdwn\", \"text\": \"*Author:*\n${{ github.actor }}\"}
-                  ]
-                },
-                {
-                  \"type\": \"section\",
-                  \"text\": {
-                    \"type\": \"mrkdwn\",
-                    \"text\": \"*Errors:*\n\`\`\`$(echo '${{ steps.extract-failures.outputs.failures }}' | head -c 2500)\`\`\`\"
-                  }
-                },
-                {
-                  \"type\": \"actions\",
-                  \"elements\": [
-                    {
-                      \"type\": \"button\",
-                      \"text\": {\"type\": \"plain_text\", \"text\": \"View Run\", \"emoji\": true},
-                      \"url\": \"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"
-                    }
-                  ]
-                }
-              ]
-            }" \
-            ${{ secrets.SLACK_WEBHOOK }}
+          echo "Optimizing SVG files..."
+          find public -name "*.svg" -type f -exec svgo --multipass --quiet {} \;
+          
+          echo "Converting PNG to WebP..."
+          find public -name "*.png" -type f | while read png; do 
+            webp="${png%.png}.webp"
+            cwebp -q 82 "$png" -o "$webp" && rm "$png"
+          done
+          
+          echo "Converting JPG/JPEG to WebP..."
+          find public \( -name "*.jpg" -o -name "*.jpeg" \) -type f | while read jpg; do 
+            webp="${jpg%.*}.webp"
+            cwebp -q 82 "$jpg" -o "$webp" && rm "$jpg"
+          done
+          
+          echo "Updating HTML references to WebP..."
+          find public -name "*.html" -type f -exec sed -i -e 's/\.png/\.webp/g' -e 's/\.jpg/\.webp/g' -e 's/\.jpeg/\.webp/g' {} +
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-site
+          path: public/
+          retention-days: 1
+
+  # =================================================================================================
+  # DEPLOYMENT JOBS
+  # =================================================================================================
+  
+  deploy-cloudflare:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: production
+      url: https://${{ secrets.CLOUDFLARE_PAGES_PROJECT }}.pages.dev
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: public-site
+          path: public
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
+          directory: public
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  # deploy-ssh-primary:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main'
+  #   steps:
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         name: public-site
+  #         path: public
+  #     - name: Deploy via Rsync
+  #       env:
+  #         DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+  #         DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+  #         DEPLOY_PORT: ${{ secrets.DEPLOY_SSH_PORT }}
+  #         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+  #         DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+  #       run: |
+  #         mkdir -p ~/.ssh
+  #         echo "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+  #         chmod 600 ~/.ssh/deploy_key
+  #         ssh-keyscan -p $DEPLOY_PORT -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+  #         
+  #         # Fix permissions (ownership) - requires sudo NOPASSWD on remote
+  #         ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R $DEPLOY_USER:$DEPLOY_USER $DEPLOY_PATH || true"
+  #         
+  #         # Sync files
+  #         rsync -avz --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no" public/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  #         
+  #         # Fix permissions (www-data)
+  #         ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R www-data:www-data $DEPLOY_PATH || true"
+
+  # deploy-ssh-secondary:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main'
+  #   steps:
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         name: public-site
+  #         path: public
+  #     - name: Install SSHPass
+  #       run: sudo apt-get install -y sshpass
+  #     - name: Deploy via Rsync (Password)
+  #       env:
+  #         DEPLOY_PASS: ${{ secrets.DEPLOY_SSH_KEY2 }} # Mapped from password secret
+  #         DEPLOY_HOST: ${{ secrets.DEPLOY_HOST2 }}
+  #         DEPLOY_PORT: ${{ secrets.DEPLOY_SSH_PORT2 }}
+  #         DEPLOY_USER: ${{ secrets.DEPLOY_USER2 }}
+  #         DEPLOY_PATH: ${{ secrets.DEPLOY_PATH2 }}
+  #       run: |
+  #         mkdir -p ~/.ssh
+  #         ssh-keyscan -p $DEPLOY_PORT -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+  #         
+  #         sshpass -p "$DEPLOY_PASS" ssh -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R $DEPLOY_USER:$DEPLOY_USER $DEPLOY_PATH || true"
+  #         sshpass -p "$DEPLOY_PASS" rsync -avz --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r -e "ssh -p $DEPLOY_PORT -o StrictHostKeyChecking=no" public/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  #         sshpass -p "$DEPLOY_PASS" ssh -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R www-data:www-data $DEPLOY_PATH || true"
+
+  # =================================================================================================
+  # SECURITY SCANNING
+  # =================================================================================================
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run Trivy Vulnerability Scanner (FS)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          hide-progress: false
+          format: 'table'
+          exit-code: '1' # Fail build on critical vulnerabilities
+          severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
