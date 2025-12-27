@@ -44,23 +44,22 @@ def get_valid_urls_from_build(build_dir: Path) -> Set[str]:
         relative = html_file.relative_to(build_dir)
 
         if relative.name == "index.html":
-            url = f"/{relative.parent}/"
-            if url == "//":
-                url = "/"
+            path = str(relative.parent)
+            if path == ".":
+                valid_urls.add("/")
+            else:
+                valid_urls.add(f"/{path}")
+                valid_urls.add(f"/{path}/")
         else:
-            url = f"/{relative}"
-
-        valid_urls.add(url)
+            valid_urls.add(f"/{relative}")
 
     for json_file in build_dir.glob("**/*.json"):
         relative = json_file.relative_to(build_dir)
-        url = f"/{relative}"
-        valid_urls.add(url)
+        valid_urls.add(f"/{relative}")
 
     for xml_file in build_dir.glob("**/*.xml"):
         relative = xml_file.relative_to(build_dir)
-        url = f"/{relative}"
-        valid_urls.add(url)
+        valid_urls.add(f"/{relative}")
 
     return valid_urls
 
@@ -117,18 +116,36 @@ def test_hugo_build_succeeds(build_hugo_site: Path) -> None:
 
 def test_html_links_valid(build_hugo_site: Path) -> None:
     """Test that all internal HTML links point to valid URLs."""
+    import os
     valid_urls = get_valid_urls_from_build(build_hugo_site)
 
     broken_links = {}
 
     for html_file in build_hugo_site.glob("**/*.html"):
+        html_rel_path = html_file.relative_to(build_hugo_site)
         links = extract_internal_links_from_html(html_file)
 
-        broken = [link for link in links if link not in valid_urls]
+        broken = []
+        for link in links:
+            resolved_link = link
+            # If relative link, resolve it relative to the current file
+            if not link.startswith("/"):
+                file_dir = html_rel_path.parent
+                norm_path = os.path.normpath(os.path.join(file_dir, link))
+                if norm_path == "." or norm_path == "..":
+                    resolved_link = "/"
+                else:
+                    resolved_link = "/" + norm_path.lstrip("/")
+            
+            # Check if resolved link is valid
+            if resolved_link not in valid_urls:
+                # Also try adding/removing trailing slash if not already found
+                alt_link = resolved_link.rstrip("/") if resolved_link.endswith("/") else (resolved_link + "/")
+                if alt_link not in valid_urls:
+                    broken.append(link)
 
         if broken:
-            relative_path = html_file.relative_to(build_hugo_site)
-            broken_links[str(relative_path)] = broken
+            broken_links[str(html_rel_path)] = broken
 
     if broken_links:
         print(

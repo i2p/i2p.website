@@ -75,6 +75,9 @@ def test_blog_posts_have_date(all_content_files: List[Path]) -> None:
     missing_date = []
 
     for md_file in blog_files:
+        if md_file.name == "_index.md":
+            continue
+
         with open(md_file, "r", encoding="utf-8") as f:
             content = f.read()
 
