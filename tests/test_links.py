@@ -42,7 +42,7 @@ def test_internal_links_in_html(built_site):
             
             # Handle query params if any
             parsed = urlparse(href)
-            path = parsed.path
+            path = unquote(parsed.path)
             fragment = parsed.fragment
             
             target = None
