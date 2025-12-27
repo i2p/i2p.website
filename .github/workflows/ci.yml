@@ -7,9 +7,39 @@ on:
     branches: [main]
 
 jobs:
-  test:
-    name: Run Tests
+  validate-metadata:
+    name: Validate Meta (Fast)
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tests/requirements.txt
+      
+      - name: Run fast tests
+        run: |
+          python -m pytest \
+            tests/test_config_validation.py \
+            tests/test_downloads.py \
+            tests/test_front_matter.py \
+            tests/test_i18n_consistency.py \
+            -v -n auto --tb=short
+
+  validate-site:
+    name: Validate Site Integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     
     steps:
       - name: Checkout code
@@ -32,17 +62,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r tests/requirements.txt
       
-      - name: Run pytest
+      - name: Run site builds and tests
         run: |
-          cd ${{ github.workspace }}
-          python -m pytest tests/ -v --tb=short
-      
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: |
-            pytest-report.html
-            junit.xml
-          if-no-files-found: ignore
+          python -m pytest \
+            tests/test_html_output.py \
+            tests/test_links.py \
+            tests/test_static_assets.py \
+            -v -n auto --tb=short
