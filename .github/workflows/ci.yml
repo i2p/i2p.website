@@ -175,14 +175,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Run Trivy Vulnerability Scanner (FS)
+        with:
+          fetch-depth: 0 # Needed for TruffleHog to scan history
+
+      - name: Run TruffleHog Secret Scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --debug --only-verified
+
+      - name: Run Trivy Vulnerability & Config Scanner
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
           scan-ref: '.'
           hide-progress: false
           format: 'table'
-          exit-code: '1' # Fail build on critical vulnerabilities
+          # Scan for vulnerabilities (deps), secrets, and misconfigurations (IaC)
+          scanners: 'vuln,secret,misconfig'
+          exit-code: '1'
           severity: 'CRITICAL,HIGH'
           ignore-unfixed: true
