@@ -7,68 +7,10 @@ accurateFor: "2.10.0"
 type: docs
 ---
 
-<ol>
-<li style="list-style: none; display: inline">
-<h4></h4>
-</li>
-<li><a href="#systems">What systems will I2P run on?</a></li>
-<li><a href="#java">Is installing Java required to use I2P?</a></li>
-<li><a href="#I2P Site">What is an "I2P Site" and how do I configure my browser so I can use them?</a></li>
-<li><a href="#active">What do the Active x/y numbers mean in the router console?</a></li>
-<li><a href="#peers">My router has very few active peers, is this OK?</a></li>
-<li><a href="#badcontent">I am opposed to certain types of content. How do I keep from distributing, storing, or accessing them?</a></li>
-<li><a href="#blocking">Is it possible to block I2P?</a></li>
-<li><a href="#protocolfamily">In <code>wrapper.log</code> I see an error stating <code>Protocol family unavailable</code> when I2P is loading</a></li>
-<li><a href="#down">Most of the I2P Sites within I2P are down?</a></li>
-<li><a href="#port32000">Why is I2P listening for connections on port 32000?</a></li>
-<li style="list-style: none; display: inline">
-<h4></h4>
-</li>
-<li><a href="#browserproxy">How do I configure my browser?</a></li>
-<li><a href="#irc">How do I connect to IRC within I2P?</a></li>
-<li><a href="#myI2P Site">How do I set up my own I2P Site?</a></li>
-<li><a href="#hosting">If I host a website at I2P at home, containing only HTML and CSS, is it dangerous?</a></li>
-<li><a href="#addresses">How Does I2P find ".i2p" websites?</a></li>
-<li><a href="#addressbook">How do I add to the Address Book?</a></li>
-<li><a href="#ports">What ports does I2P use?</a></li>
-<li><a href="#subscriptions">I'm missing lots of hosts in my address book. What are some good subscription links?</a></li>
-<li><a href="#remote_webconsole">How can I access the web console from my other machines or password protect it?</a></li>
-<li><a href="#remote_i2cp">How can I use applications from my other machines?</a></li>
-<li><a href="#socks">Is it possible to use I2P as a SOCKS proxy?</a></li>
-<li><a href="#proxy_other">How do I access IRC, BitTorrent, or other services on the regular Internet?</a></li>
-<li style="list-style: none; display: inline">
-<h4></h4>
-</li>
-<li><a href="#reseed">My router has been up for several minutes and has zero or very few connections</a></li>
-<li><a href="#manual_reseed">How do I reseed manually?</a></li>
-<li style="list-style: none; display: inline">
-<h4></h4>
-</li>
-<li><a href="#exit">Is my router an "exit node"(outproxy) to the regular Internet? I don't want it to be.</a></li>
-<li><a href="#detection">Is it easy to detect the use of I2P by analyzing network traffic?</a></li>
-<li><a href="#safe">Is using I2P Safe?</a></li>
-<li><a href="#netdb_ip">I see IP addresses of all other I2P nodes in the router console. Does that mean my IP address is visible by others?</a></li>
-<li><a href="#proxy_safe">Is using an outproxy safe?</a></li>
-<li><a href="#deanon">What about "De-Anonymizing" attacks?</a></li>
-<li style="list-style: none; display: inline">
-<h4>Internet Access/Performance</h4>
-</li>
-<li><a href="#outproxy">I can't access regular Internet sites through I2P.</a></li>
-<li><a href="#https">I can't access https:// or ftp:// sites through I2P.</a></li>
-<li><a href="#cpu">Why is my router using too much CPU?</a></li>
-<li><a href="#peers">My router has very few active peers, is this OK?</a></li>
-<li><a href="#vary">My active peers / known peers / participating tunnels / connections / bandwidth vary dramatically over time! Is anything wrong?</a></li>
-<li><a href="#slow">What makes downloads, torrents, web browsing, and everything else slower on I2P as compared to the regular internet?</a></li>
-<li style="list-style: none; display: inline">
-<h4>Bugs and Questions</h4>
-</li>
-<li><a href="#bug">I think I found a bug, where can I report it?</a></li>
-<li><a href="#question">I have a question!</a></li>
-</ol>
 
-<h2>I2P Router Help</h2>
-<h3 id="systems"><span class="permalink"><a href="#systems">
-What systems will I2P run on?</a> </span></h3>
+
+## I2P Router Help
+### What systems will I2P run on? {#systems}
 <p>
 
 I2P is written in the <a href="">Java programming language</a>. 
@@ -91,18 +33,14 @@ related to the rest of the system (i.e. Operating System, GUI, Other processes e
 Using Sun/Oracle Java or OpenJDK is recommended.
 </p>
 
-<h3 id="java"><span class="permalink"><a href="#java">
-Is installing Java required to use I2P?</a></span>
-</h3>
+### Is installing Java required to use I2P? {#java}
 <p>
 Yes, Java is required to use I2P Core. We include Java inside our easy-installers for
 Windows, Mac OSX, and Linux. If you’re running the I2P Android app you will also need a
 Java runtime like Dalvik or ART installed in most cases.
 </p>
 
-<h3 id="I2P Site"><span class="permalink"><a href="#I2P Site">
-What is an "I2P Site" and how do I configure my browser so I can use them?</a></span>
-</h3>
+### What is an "I2P Site" and how do I configure my browser so I can use them? {#I2P-Site}
 <p>
 An I2P Site is a normal website except that it is hosted inside I2P. I2P sites have
 addresses that look like normal internet addresses, ending in ".i2p" in a human-
@@ -114,9 +52,7 @@ Proxy in your I2P installation and then configuring your browser to use it. For 
 information, browse the “Browsers” section below or the “Browser Configuration” Guide.
 </p>
 
-<h3 id="active"><span class="permalink"><a href="#active">
-What do the Active x/y numbers mean in the router console?</a></span>
-</h3>
+### What do the Active x/y numbers mean in the router console? {#active}
 <p>
 In the Peers page on your router console, you may see two numbers - Active x/y. The 
 first number is the number of peers that you’ve sent or received a message to or from in
@@ -124,9 +60,7 @@ the last few minutes. The second number is the number of peers seen recently, th
 always be larger than or equal to the first number.
 </p>
 
-<h3 id="peers"><span class="permalink"><a href="#peers">
-My router has very few active peers, is this OK?</a></span>
-</h3>
+### My router has very few active peers, is this OK? {#peers}
 <p>Yes, this can be normal, especially when the router has just been started. New routers
 will need time to startup and connect to the rest of the network. To help improve
 network integration, uptime, and performance, review these settings:</p>
@@ -153,9 +87,7 @@ reasonable setting from the listed I2NP Protocols.
 </li>
 </ul>
 
-<h3 id="badcontent"><span class="permalink"><a href="#badcontent">
-I am opposed to certain types of content. How do I keep from distributing, storing, or accessing them?</a></span>
-</h3>
+### I am opposed to certain types of content. How do I keep from distributing, storing, or accessing them? {#badcontent}
 <p>
 There is none of this material installed by default. However, since I2P is a peer-to-
 peer network, it’s possible that you may encounter prohibited content by accident. Here is a
@@ -178,15 +110,13 @@ By running an I2P router, you are not storing content for anyone.
 Your router will not request any content without your specific instruction to do so.</li>
 </ul>
 
-<h3 id="blocking"><span class="permalink"><a href="#blocking">Is it possible to block I2P?</a></span></h3>
+### Is it possible to block I2P? {#blocking}
 <p>Yes, by far the easiest and most common way is by blocking bootstrap, or "Reseed" servers. Completely blocking all obfuscated traffic
 would work as well (although it would break many, many other things that are not I2P and most are not willing to go this far).
 In the case of reseed blocking, there is a reseed bundle on Github, blocking it will also block Github.
 You can reseed over a proxy (many can be found on Internet if you do not want to use Tor) or share reseed bundles on a friend-to-friend basis offline.</p>
 
-<h3 id="protocolfamily"><span class="permalink"><a href="#protocolfamily">
-In <code>wrapper.log</code> I see an error that states "<code>Protocol family unavailable</code>" when loading the Router Console</a></span>
-</h3>
+### In `wrapper.log` I see an error that states "`Protocol family unavailable`" when loading the Router Console {#protocolfamily}
 <p>
 Often this error will occur with any network enabled java software on some systems that are configured to use IPv6 by default. There are a few ways to solve this:
 </p>
@@ -210,9 +140,7 @@ router console will NOT reread this file! You must
 click <em>Shutdown</em>, wait 11 minutes, then start I2P.
 </p>
 
-<h3 id="down"><span class="permalink"><a href="#down">
-Most of the I2P Sites within I2P are down?</a></span>
-</h3>
+### Most of the I2P Sites within I2P are down? {#down}
 <p>
 If you consider every I2P Site that has ever been created, yes, most of them are down.
 People and I2P Sites come and go.
@@ -220,9 +148,7 @@ A good way to get started in I2P is check out a list of I2P Sites that are curre
 <a href="http://identiguy.i2p">identiguy.i2p</a> tracks active I2P Sites.
 </p>
 
-<h3 id="port32000"><span class="permalink"><a href="#port32000">
-Why is I2P listening on port 32000?</a></span>
-</h3>
+### Why is I2P listening on port 32000? {#port32000}
 <p>
 The Tanuki java service wrapper that we use opens this port &mdash;bound to localhost&mdash; in order to communicate with software running inside the JVM. 
 When the JVM is launched it is given a key so it can connect to the wrapper. 
@@ -231,17 +157,13 @@ After the JVM establishes its connection to the wrapper, the wrapper refuses any
 <p>
 More information can be found in the <a href="http://wrapper.tanukisoftware.com/doc/english/prop-port.html">wrapper documentation</a>.
 
-<h3 id="browserproxy"><span class="permalink"><a href="#browserproxy">
-How do I configure my browser?</a></span>
-</h3>
+### How do I configure my browser? {#browserproxy}
 <p>
 The proxy config for different browsers is on a <a href=""> separate page</a> with screenshots. 
 More advanced configs with external tools, such as the browser plug-in FoxyProxy or the proxy server Privoxy, are possible but could introduce leaks in your setup.
 </p>
 
-<h3 id="irc"><span class="permalink"><a href="#irc">
-How do I connect to IRC within I2P?</a></span>
-</h3>
+### How do I connect to IRC within I2P? {#irc}
 <p>
 A tunnel to the main IRC server within I2P, Irc2P, is created when I2P is installed (see the <a href="http://localhost:7657/i2ptunnel/index.jsp">I2PTunnel configuration page</a>), and is automatically started when the I2P router starts. 
 To connect to it, tell your IRC client to connect to <code>localhost 6668</code>. 
@@ -254,9 +176,7 @@ Weechat users can use the following command to add a new network:
   </pre>
 </code>
 
-<h3 id="myI2P Site"><span class="permalink"><a href="#myI2P Site">
-How do I set up my own I2P Site?</a></span>
-</h3>
+### How do I set up my own I2P Site? {#myI2P-Site}
 <p>
 The easiest method is to click on the <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a> link in the router console and create a new 'Server Tunnel'. 
 You can serve dynamic content by setting the tunnel destination to the port of an existing webserver, such as Tomcat or Jetty.
@@ -268,9 +188,7 @@ However, your 'eepsite' is also accessible to others via your eepsite key file, 
 <code>~/.i2p/eepsite/i2p/eepsite.keys</code>. To find out more, read the readme file at: <code>~/.i2p/eepsite/README.txt</code>.
 </p>
 
-<h3 id="hosting"><span class="permalink"><a href="#hosting">
-If I host a website at I2P at home, containing only HTML and CSS, is it dangerous?</a></span>
-</h3>
+### If I host a website at I2P at home, containing only HTML and CSS, is it dangerous? {#hosting}
 <p>
 It depends on your adversary and your threat model. If you are only worried about corporate “privacy” violations, typical criminals and censorship, then it is not really dangerous. 
 Law-enforcement will probably find you anyway if they really want to. 
@@ -280,201 +198,109 @@ Please consider the hosting of your I2P site just as hosting any other service -
 Note: There is already a way to separate hosting an i2p service(destination) from the i2p router. If you <a href="/docs/overview/tech-intro#i2pservices"> understand how</a> it works, then you can just setup a separate machine as a server for the website (or service) that will be publicly accessible and forward that to the webserver over a [very] secure SSH tunnel or use a secured, shared, filesystem.
 </p>
 
-<h3 id="addresses">How Does I2P find ".i2p" websites? </h3>
+### How Does I2P find ".i2p" websites? {#addresses}
 <p>The I2P Address Book application maps human-readable names to long-term destinations, associated with services, making it more like a hosts file or a contact list than a network database or a DNS service. It's also local-first there is no recognized global namespace, you decide what any given .i2p domain maps to in the end. The middle-ground is something called a "Jump Service" which provides a human-readable name by redirecting you to a page where you will be asked "Do you give the I2P router permission to call $SITE_CRYPTO_KEY the name $SITE_NAME.i2p" or something to that effect. Once it's in your address book, you can generate your own jump URL's to help share the site with others. </p>
 
-<h3 id="addressbook">How do I add addresses to the Address Book? </h3>
+### How do I add addresses to the Address Book? {#addressbook}
 <p>You cannot add an address without knowing at least the base32 or base64 of the site you want to visit. The "hostname" which is human-readable is only an alias for the cryptographic address, which corresponds to the base32 or base64. Without the cryptographic address, there is no way to access an I2P Site, this is by design. Distributing the address to people who do not know it yet is usually the responsibility of the Jump service provider. Visiting an I2P Site which is unknown will trigger the use of a Jump service. stats.i2p is the most reliable Jump service.</p>
 
 <p>If you're hosting a site via i2ptunnel, then it won't have a registration with a jump service yet. To give it a URL locally, then visit the configuration page and click the button that says "Add to Local Address Book." Then go to http://127.0.0.1:7657/dns to look up the addresshelper URL and share it.</p>
 
-<h3 id="ports"><span class="permalink"><a href="#ports">
-What ports does I2P use?</a></span>
-</h3>
+### What ports does I2P use? {#ports}
 <p>
 The ports that are used by I2P can be divided into 2 sections: 
 </p>
 
-<ol>
-  <li>Internet-facing ports, which are used for communication with other I2P routers</li>
-  <li>Local ports, for local connections</li>
-</ol>
+1. Internet-facing ports, which are used for communication with other I2P routers
+2. Local ports, for local connections
 
 <p>
 These are described in detail below.
 </p>
 
-<ol>
-  <li>Internet-facing ports<br> Note: Since release 0.7.8, new installs do not use port 8887; 
-    a random port between 9000 and 31000 is selected when the program is run for the first time. 
-    The selected port is shown on the router <a href="http://127.0.0.1:7657/confignet">configuration page</a>.<br>
-    <b>OUTBOUND</b>
-    <ul>
-      <li>UDP from the random port listed on the <a href="http://127.0.0.1:7657/confignet">configuration page</a> to arbitrary remote UDP ports, allowing for replies</li>
-      <li>TCP from random high ports to arbitrary remote TCP ports</li>
-      <li>Outbound UDP on port 123, allowing for replies. 
-        This is necessary for I2P's internal time sync (via SNTP - querying a random SNTP host in pool.ntp.org or another server you specify)</li>
-    </ul>
-    <b>INBOUND</b>
-    <ul>
-      <li>(Optional, recommended) UDP to the port noted on the <a href="http://127.0.0.1:7657/confignet">configuration page</a> from arbitrary locations</li>
-      <li>(Optional, recommended) TCP to the port noted on <a href="http://127.0.0.1:7657/confignet">configuration page</a> from arbitrary locations</li>
-      <li>Inbound TCP can be disabled on the <a href="http://127.0.0.1:7657/confignet">configuration page</a></li>
-    </ul>
-  </li>
-  <li>Local I2P ports, listening only to local connections by default, except where noted:<br>
-    <table class="table table-striped table-bordered">
-      <tr>
-        <th>
-          PORT
-        </th>
-        <th>
-          PURPOSE
-        </th>
-        <th>
-          DESCRIPTION
-        </th>
-      </tr>
-      <tr>
-        <td>
-          1900
-        </td>
-        <td>
-          UPnP SSDP UDP multicast listener
-        </td>
-        <td>
-          Cannot be changed. Binds to all interfaces. May be disabled on <a href="http://127.0.0.1:7657/confignet">confignet</a>.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          2827
-        </td>
-        <td>
-          BOB bridge
-        </td>
-        <td>
-          A higher level socket API for clients. Disabled by default. May be enabled/disabled on <a href="http://127.0.0.1:7657/configclients">configclients</a>. 
-          May be changed in the bob.config file.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          4444
-        </td>
-        <td>
-          HTTP proxy
-        </td>
-        <td>
-          Configured on <a href="http://127.0.0.1:7657/configclients">configclients</a>, go to the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a> to start/stop it 
-          and on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/0">I2P HTTP Proxy</a> to configure it. 
-          Include in your browser's proxy configuration for HTTP
-        </td>
-      </tr>
-      <tr>
-        <td>
-          4445
-        </td>
-        <td>
-          HTTPS proxy
-        </td>
-        <td>
-          Configured on <a href="http://127.0.0.1:7657/configclients">configclients</a>, go to the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a> to start/stop it 
-          and on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/1">I2P HTTPS Proxy</a> to configure it. 
-          Include in your browser's proxy configuration for HTTPS
-        </td>
-      </tr>
-      <tr>
-        <td>
-          6668
-        </td>
-        <td>
-          IRC proxy
-        </td>
-        <td>
-          A tunnel to the inside-the-I2P IRC network. 
-          Disabled by default. Configured on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/2">irc.postman.i2p (IRC proxy)</a> and may be enabled/disabled on the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          7654
-        </td>
-        <td>
-          I2CP (client protocol) port
-        </td>
-        <td>
-          For advanced client usage. Do not expose to an external network.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          7656
-        </td>
-        <td>
-          SAM bridge
-        </td>
-        <td>
-          A socket API for clients. Disabled by default. May be enabled/disabled 
-          on <a href="http://127.0.0.1:7657/configclients">configclients</a> and configured on 
-          <a href="http://127.0.0.1:7657/sam">sam</a>.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          7657 (or 7658 via SSL)
-        </td>
-        <td>
-          Router console
-        </td>
-        <td>
-          The router console provides valuable information about your router and the 
-          network, in addition to giving you access to configure your router and its associated applications.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          7659
-        </td>
-        <td>
-          'eepsite' - an example webserver (Jetty)
-        </td>
-        <td>
-          Included in the <code>i2pinstall</code> and <code>i2pupdate</code> packages - may be disabled if another webserver is
-          available. May be configured on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/3">eepsite</a> and disabled on the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          7660
-        </td>
-        <td>
-          I2PTunnel UDP port for SSH
-        </td>
-        <td>
-          Required for Grizzled's/novg's UDP support. Instances disabled
-          by default. May be enabled/disabled and configured to use a different 
-          port on the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a>.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          123
-        </td>
-        <td>
-          NTP Port
-        </td>
-        <td>
-          Used by <a href="http://127.0.0.1:7657/confignet">NTP Time Sync</a>. May be disabled/changed.
-        </td>
-      </tr>
-    </table>
-    </li>
-</ol>
+1. Internet-facing ports
+   <br>Note: Since release 0.7.8, new installs do not use port 8887; a random port between 9000 and 31000 is selected when the program is run for the first time. The selected port is shown on the router [configuration page](http://127.0.0.1:7657/confignet).
 
-<h3 id="subscriptions"><span class="permalink"><a href="#subscriptions">
-I'm missing lots of hosts in my address book. What are some good subscription links?</a></span>
-</h3>
+   **OUTBOUND**
+   * UDP from the random port listed on the [configuration page](http://127.0.0.1:7657/confignet) to arbitrary remote UDP ports, allowing for replies
+   * TCP from random high ports to arbitrary remote TCP ports
+   * Outbound UDP on port 123, allowing for replies. This is necessary for I2P's internal time sync (via SNTP - querying a random SNTP host in pool.ntp.org or another server you specify)
+
+   **INBOUND**
+   * (Optional, recommended) UDP to the port noted on the [configuration page](http://127.0.0.1:7657/confignet) from arbitrary locations
+   * (Optional, recommended) TCP to the port noted on [configuration page](http://127.0.0.1:7657/confignet) from arbitrary locations
+   * Inbound TCP can be disabled on the [configuration page](http://127.0.0.1:7657/confignet)
+
+2. Local I2P ports, listening only to local connections by default, except where noted:
+
+   <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+     <thead>
+       <tr>
+         <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">PORT</th>
+         <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">PURPOSE</th>
+         <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">DESCRIPTION</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">1900</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">UPnP SSDP UDP multicast listener</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">Cannot be changed. Binds to all interfaces. May be disabled on <a href="http://127.0.0.1:7657/confignet">confignet</a>.</td>
+       </tr>
+       <tr>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">2827</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">BOB bridge</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">A higher level socket API for clients. Disabled by default. May be enabled/disabled on <a href="http://127.0.0.1:7657/configclients">configclients</a>. May be changed in the bob.config file.</td>
+       </tr>
+       <tr>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">4444</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTP proxy</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">Configured on <a href="http://127.0.0.1:7657/configclients">configclients</a>, go to the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a> to start/stop it and on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/0">I2P HTTP Proxy</a> to configure it. Include in your browser's proxy configuration for HTTP</td>
+       </tr>
+       <tr>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">4445</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTPS proxy</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">Configured on <a href="http://127.0.0.1:7657/configclients">configclients</a>, go to the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a> to start/stop it and on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/1">I2P HTTPS Proxy</a> to configure it. Include in your browser's proxy configuration for HTTPS</td>
+       </tr>
+       <tr>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">6668</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">IRC proxy</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">A tunnel to the inside-the-I2P IRC network. Disabled by default. Configured on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/2">irc.postman.i2p (IRC proxy)</a> and may be enabled/disabled on the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a></td>
+       </tr>
+       <tr>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">7654</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">I2CP (client protocol) port</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">For advanced client usage. Do not expose to an external network.</td>
+       </tr>
+       <tr>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">7656</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">SAM bridge</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">A socket API for clients. Disabled by default. May be enabled/disabled on <a href="http://127.0.0.1:7657/configclients">configclients</a> and configured on <a href="http://127.0.0.1:7657/sam">sam</a>.</td>
+       </tr>
+       <tr>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">7657 (or 7658 via SSL)</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">Router console</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">The router console provides valuable information about your router and the network, in addition to giving you access to configure your router and its associated applications.</td>
+       </tr>
+       <tr>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">7659</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">'eepsite' - an example webserver (Jetty)</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">Included in the <code>i2pinstall</code> and <code>i2pupdate</code> packages - may be disabled if another webserver is available. May be configured on the page <a href="http://127.0.0.1:7657/i2ptunnel/web/3">eepsite</a> and disabled on the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a></td>
+       </tr>
+       <tr>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">7660</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">I2PTunnel UDP port for SSH</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">Required for Grizzled's/novg's UDP support. Instances disabled by default. May be enabled/disabled and configured to use a different port on the page <a href="http://127.0.0.1:7657/i2ptunnel/">i2ptunnel</a>.</td>
+       </tr>
+       <tr>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">123</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">NTP Port</td>
+         <td style="border:1px solid var(--color-border); padding:0.6rem;">Used by <a href="http://127.0.0.1:7657/confignet">NTP Time Sync</a>. May be disabled/changed.</td>
+       </tr>
+     </tbody>
+   </table>
+
+### I'm missing lots of hosts in my address book. What are some good subscription links? {#subscriptions}
 <p>
 The address book is located at <a href="http://localhost:7657/dns">http://localhost:7657/dns</a> where further information can be found.</p>
 <ul>
@@ -488,9 +314,7 @@ The address book is located at <a href="http://localhost:7657/dns">http://localh
 </div>
 </ul>
 
-<h3 id="remote_webconsole"><span class="permalink"><a href="#remote_webconsole">
-How can I access the web console from my other machines or password protect it?</a></span>
-</h3>
+### How can I access the web console from my other machines or password protect it? {#remote_webconsole}
 <p>
 For security purposes, the router's admin console by default only listens for connections on the local interface.  
 
@@ -552,17 +376,13 @@ There are two methods for accessing the console remotely:</p>
       Be careful when using this option as the console will be available on ALL addresses configured on your system.</li>
 </ol>
 
-<h3 id="remote_i2cp"><span class="permalink"><a href="#remote_i2cp">
-How can I use applications from my other machines?</a></span>
-</h3>
+### How can I use applications from my other machines? {#remote_i2cp}
 <p>
 Please see the previous answer for instructions on using SSH Port Forwarding, and also see this page in your console: 
 <a href="http://localhost:7657/configi2cp">http://localhost:7657/configi2cp</a>
 </p>
 
-<h3 id="socks"><span class="permalink"><a href="#socks">
-Is it possible to use I2P as a SOCKS proxy?</a></span>
-</h3>
+### Is it possible to use I2P as a SOCKS proxy? {#socks}
 <p>
 The SOCKS proxy has been functional since release 0.7.1. SOCKS 4/4a/5 are supported. 
 I2P does not have a SOCKS outproxy so it is limited to use within I2P only.
@@ -574,29 +394,23 @@ For example, some mail applications will send the IP address of the machine they
 We recommend I2P-specific tools or applications (such as <a href="http://localhost:7657/i2psnark/">I2PSnark</a> for torrents), or applications that are known to be safe to use with I2P that include popular plugins found on <a href="https://www.mozilla.org/">Firefox</a>.
 </p>
 
-<h3 id="proxy_other"><span class="permalink"><a href="#proxy_other">
-How do I access IRC, BitTorrent, or other services on the regular Internet?</a></span>
-</h3>
+### How do I access IRC, BitTorrent, or other services on the regular Internet? {#proxy_other}
 <p>
 There are services called Outproxies that bridge between I2P and the Internet, like Tor Exit Nodes. Default outproxy functionality for HTTP and HTTPS is provided by <code>exit.stormycloud.i2p</code> and is run by StormyCloud Inc. It is configured in the HTTP Proxy. 
 Additionally, to help protect anonymity, I2P does not permit you to make anonymous connections to the regular Internet by default. 
 Please see the <a href="/docs/api/socks#outproxy">Socks Outproxy</a> page for more information.
 </p>
 
-<h2>Reseeds</h2>
+## Reseeds
 
-<h3 id="reseed"><span class="permalink"><a href="#reseed">
-My router has been up for several minutes and has zero or very few connections</a></span>
-</h3>
+### My router has been up for several minutes and has zero or very few connections {#reseed}
 <p>
 First check the <a href="http://127.0.0.1:7657/netdb">http://127.0.0.1:7657/netdb</a> page in the Router Console &ndash; your network database. 
 If you do not see a single router listed from within I2P but the console says you should be firewalled, then you probably cannot connect to the reseed servers. 
 If you do see other I2P routers listed then try to lower the number of max connections <a href="http://127.0.0.1:7657/config">http://127.0.0.1:7657/config</a> maybe your router cannot handle many connections.
 </p>
 
-<h3 id="manual_reseed"><span class="permalink"><a href="#manual_reseed">
-How do I reseed manually?</a></span>
-</h3>
+### How do I reseed manually? {#manual_reseed}
 <p>
 Under normal circumstances, I2P will connect you to the network automatically using our bootstrap links. If disrupted internet makes bootstrapping from reseed servers fail, an easy way to bootstrap is by using Tor browser(By default it open localhost), which
 works very nicely with <a href="http://127.0.0.1:7657/configreseed">http://127.0.0.1:7657/configreseed</a>. 
@@ -605,28 +419,22 @@ It is also possible to reseed an I2P router manually.</p>
 When using Tor browser to reseed you can select multiple URLs at once and proceed. Though the default value which is 2(out of the multiple urls) will also work but it will be slow.
 </p>
 
-<h2>Privacy-Safety</h2>
+## Privacy-Safety
 
-<h3 id="exit"><span class="permalink"><a href="#exit">
-Is my router an "exit node"(outproxy) to the regular Internet? I don't want it to be.</a></span>
-</h3>
+### Is my router an "exit node"(outproxy) to the regular Internet? I don't want it to be. {#exit}
 <p>
 No, your router participates in the transport of encrypted e2e traffic across the i2p network to a random tunnel endpoint, usually not an outproxy, but no traffic is passed between your router and the Internet over the transport layer. <br>
 As an end-user, you should not run an outproxy if you are not skilled in system and network administration.
 </p>
 
-<h3 id="detection"><span class="permalink"><a href="#detection">
-Is it easy to detect the use of I2P by analyzing network traffic?</a></span>
-</h3>
+### Is it easy to detect the use of I2P by analyzing network traffic? {#detection}
 <p>
 I2P traffic usually looks like UDP traffic, and not much more &ndash; and making it look like not that much more is a goal. It also supports TCP. 
 With some effort, passive traffic analysis may be able to classify the traffic as "I2P", but we hope that the continued development of traffic obfuscation will reduce this further. 
 Even a fairly simple protocol obfuscation layer like obfs4 will prevent censors from blocking I2P (it is a goal that I2P deploys).
 </p>
 
-<h3 id="safe"><span class="permalink"><a href="#safe">
-Is using I2P Safe?</a></span>
-</h3>
+### Is using I2P Safe? {#safe}
 <p>
 It depends on your personal threat model. For most people, I2P is way safer than not using any protection. Some other networks (like Tor, mixminion/mixmaster), are probably safer against certain adversaries. 
 For example, I2P traffic does not use TLS/SSL, so it does not have the "weakest link" issues that Tor does. 
@@ -637,9 +445,7 @@ May using a isolated tor V-Browser with its great anti-fingerprint protections a
 
 </p>
 
-<h3 id="netdb_ip"><span class="permalink"><a href="#netdb_ip">
-I see IP addresses of all other I2P nodes in the router console. Does that mean my IP address is visible by others?</a></span>
-</h3>
+### I see IP addresses of all other I2P nodes in the router console. Does that mean my IP address is visible by others? {#netdb_ip}
 <p>
 Yes, for other I2P nodes who know about your router. We use this to connect with the rest of the I2P network. 
 The addresses are physically located in "routerInfos (key,value)objects", either remotely fetched or received from peer. 
@@ -649,9 +455,7 @@ Looking closer under the hood will tell you that everybody got counted with the 
 The I2P network got a own database datas of routerInfos created during upload and indexing, but this depends deep into the realization of the key/value tables and networks topology and state-of-load / state-of-bandwidth and routing probabilities for storages in DB components.
 </p>
 
-<h3 id="proxy_safe"><span class="permalink"><a href="#proxy_safe">
-Is using an outproxy safe?</a></span>
-</h3>
+### Is using an outproxy safe? {#proxy_safe}
 <p>
 It depends on what your definition of "safe" is. Outproxies are great when they work, but unfortunately they voluntary run by people who may lose interest or may not have the resources to maintain them 24/7 – please be aware that you may experience periods of time during which services are unavailable, interrupted, or unreliable, and we are not associated with this service and have no influence on it.
 </p>
@@ -659,19 +463,15 @@ It depends on what your definition of "safe" is. Outproxies are great when they 
 The outproxys themselves can see your traffic come and go, with the exception of end-to-end encrypted HTTPS/SSL data, just like your ISP can see your traffic come and go from your computer. If you are comfortable with your ISP, it wouldn't be any worse with the outproxy.
 </p>
 
-<h3 id="deanon"><span class="permalink"><a href="#deanon">
-What about "De-Anonymizing" attacks?</a></span>
-</h3>
+### What about "De-Anonymizing" attacks? {#deanon}
 <p>
 For a very long explanation, read more at our articles about <a href="/docs/overview/threat-model"> Threat Model</a>. 
 In general, de-anonymizing is not trivial, but possible if you are not cautious enough.
 </p>
 
-<h2>Internet Access/Performance</h2>
+## Internet Access/Performance
 
-<h3 id="outproxy"><span class="permalink"><a href="#outproxy">
-I can't access regular Internet sites through I2P.</a></span>
-</h3>
+### I can't access regular Internet sites through I2P. {#outproxy}
 <p>
 Proxying to Internet sites (eepsites that are out to the Internet) is provided as a service to I2P users by non-block providers. 
 This service is not the main focus of I2P development, and is provided on a voluntary basis. 
@@ -680,33 +480,25 @@ Outproxies are a convenience but they are by design not perfect nor a large part
 Be aware that they may not be able to provide the high-quality service other services of I2P may provide.
 </p>
 
-<h3 id="https"><span class="permalink"><a href="#https">
-I can't access https:// or ftp:// sites through I2P.</a></span>
-</h3>
+### I can't access https:// or ftp:// sites through I2P. {#https}
 <p>
 The default HTTP proxy supports HTTP and HTTPS outproxying only.
 </p>
 
-<h3 id="cpu"><span class="permalink"><a href="#cpu">
-Why is my router using too much CPU?</a></span>
-</h3>
+### Why is my router using too much CPU? {#cpu}
 <p>
 First, make sure you have the latest version of every I2P related part – older versions had<br>
 unnecessary cpu-eating sections in code.
 <br>There is also a <a href="/about/performance">performance Log</a> that documents some of the improvements in I2P performance over time.
 </p>
 
-<h3 id="vary"><span class="permalink"><a href="#vary">
-My active peers / known peers / participating tunnels / connections / bandwidth vary dramatically over time! Is anything wrong?</a></span>
-</h3>
+### My active peers / known peers / participating tunnels / connections / bandwidth vary dramatically over time! Is anything wrong? {#vary}
 <p>
 The general stability of the I2P network is an ongoing area of research. A particular amount of that research is focused on how small changes to configuration settings change the behavior of the router. 
 As I2P is a peer-to-peer network, the actions by other peers will have an influence on your router's performance.
 </p>
 
-<h3 id="slow"><span class="permalink"><a href="#slow">
-What makes downloads, torrents, web browsing, and everything else slower on I2P as compared to the regular internet?</a></span>
-</h3>
+### What makes downloads, torrents, web browsing, and everything else slower on I2P as compared to the regular internet? {#slow}
 <p>
 I2P has different protections that add extra routing and additional layers of encryption. It also bounces traffic through other peers(Tunnels) that have their own speed and quality, some are slow, some fast. 
 This adds up to lots of overhead and traffic at different paces in different directions. 
@@ -776,8 +568,7 @@ I2P is a work in progress. Lots of improvements and fixes are being implemented,
 If you haven't, <a href="">install the latest release</a>.
 </p>
 
-<h3 id="bug"><span class="permalink"><a href="#bug">
-I think I found a bug, where can I report it?</a></span></h3>
+### I think I found a bug, where can I report it? {#bug}
 
 <p>
 You may report any bugs/issues that you encounter on our bugtracker, which is available over both non-private internet and I2P. 
@@ -808,9 +599,7 @@ section as well as any errors or warnings displayed in the various logs displaye
 
 <hr />
 
-<h3 id="question"><span class="permalink"><a href="#question">
-I have a question!</a></span>
-</h3>
+### I have a question! {#question}
 <p>
 Great! Find us on IRC:
 <ul>
