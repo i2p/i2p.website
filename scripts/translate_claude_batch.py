@@ -1070,7 +1070,7 @@ def main() -> int:
     parser.add_argument("--pattern", help="File pattern for source-dir (e.g., '2025-*.md')")
     parser.add_argument("--target-lang", help="Target language code (e.g., de, ko, es)")
     parser.add_argument("--source-lang", default="en", help="Source language code (default: en)")
-    parser.add_argument("--model", default="claude-sonnet-4-20250514", help="Claude model (default: claude-sonnet-4-20250514)")
+    parser.add_argument("--model", default="claude-sonnet-4-5-20250929", help="Claude model (default: claude-sonnet-4-5-20250929)")
     parser.add_argument("--output-root", help="Output root directory (default: auto-detect)")
     parser.add_argument("--dry-run", action="store_true", help="Preview without submitting")
 
