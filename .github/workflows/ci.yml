@@ -47,7 +47,7 @@ jobs:
       - name: Install Build Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebp svgo npm
+          sudo apt-get install -y webp
           sudo npm install -g svgo
 
       - name: Build with Hugo
