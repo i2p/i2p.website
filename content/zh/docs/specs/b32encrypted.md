@@ -1,6 +1,7 @@
 ---
 title: "用于加密 leaseSet 的 B32"
 description: "加密的 LS2 leaseSet 的 Base 32 地址格式"
+slug: "b32encrypted"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 status: "已实现"

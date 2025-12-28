@@ -1,6 +1,7 @@
 ---
 title: "ECIES-X25519-AEAD-Ratchet 混合加密"
 description: "采用 ML-KEM（基于格的密钥封装机制）的 ECIES 加密协议的后量子混合变体"
+slug: "ecies-hybrid"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

@@ -1,6 +1,7 @@
 ---
 title: "ECIES-X25519-AEAD-Ratchet Hybrid Encryption (lược đồ mã hóa lai sử dụng ECIES với X25519, AEAD và ratchet)"
 description: "Biến thể lai hậu lượng tử của giao thức mã hóa ECIES (lược đồ mã hóa tích hợp đường cong elliptic) sử dụng ML-KEM (cơ chế đóng gói khóa dựa trên lưới mô-đun)"
+slug: "ecies-hybrid"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

@@ -1,6 +1,7 @@
 ---
 title: "UDP BitTorrent घोषणाएँ"
-description: "I2P में UDP-आधारित BitTorrent ट्रैकर announce (ट्रैकर को पीयर/टोरेंट स्थिति बताने वाला अनुरोध) के लिए प्रोटोकॉल विनिर्देश"
+description: "I2P में UDP-आधारित BitTorrent ट्रैकर announce के लिए प्रोटोकॉल विनिर्देश"
+slug: "udp-announces"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

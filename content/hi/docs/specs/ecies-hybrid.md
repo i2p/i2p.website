@@ -1,6 +1,7 @@
 ---
-title: "ECIES (एलिप्टिक-कर्व एकीकृत एन्क्रिप्शन योजना)-X25519 (एलिप्टिक-कर्व डिफी-हेलमैन कुंजी विनिमय)-AEAD (संबद्ध डेटा सहित प्रमाणित एन्क्रिप्शन)-Ratchet (क्रमिक कुंजी-अद्यतन तंत्र) हाइब्रिड एन्क्रिप्शन"
-description: "ECIES एन्क्रिप्शन प्रोटोकॉल (Elliptic Curve Integrated Encryption Scheme—एलिप्टिक कर्व आधारित एकीकृत एन्क्रिप्शन स्कीम) का पोस्ट‑क्वांटम हाइब्रिड वैरिएंट, जो ML‑KEM (Module‑Lattice Key Encapsulation Mechanism—पोस्ट‑क्वांटम कुंजी‑एन्कैप्सुलेशन तंत्र) का उपयोग करता है"
+title: "ECIES-X25519-AEAD-Ratchet हाइब्रिड एन्क्रिप्शन"
+description: "ECIES एन्क्रिप्शन प्रोटोकॉल का पोस्ट‑क्वांटम हाइब्रिड वैरिएंट, जो ML‑KEM का उपयोग करता है"
+slug: "ecies-hybrid"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

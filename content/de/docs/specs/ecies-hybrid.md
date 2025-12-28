@@ -1,6 +1,7 @@
 ---
 title: "Hybride Verschlüsselung mit ECIES-X25519-AEAD-Ratchet"
 description: "Post-Quanten-hybride Variante des Verschlüsselungsprotokolls ECIES (integriertes Verschlüsselungsverfahren mit elliptischen Kurven) unter Verwendung von ML-KEM (Modul-Gitter-basiertes Schlüsselkapselungsverfahren)"
+slug: "ecies-hybrid"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

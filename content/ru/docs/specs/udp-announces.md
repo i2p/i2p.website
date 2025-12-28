@@ -1,6 +1,7 @@
 ---
 title: "UDP-анонсы BitTorrent"
 description: "Спецификация протокола для announce-запросов (запросов клиента к трекеру) UDP-трекера BitTorrent в I2P"
+slug: "udp-announces"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

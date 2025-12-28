@@ -1,6 +1,7 @@
 ---
 title: "B32 для зашифрованных LeaseSets (наборы входящих туннелей назначения)"
 description: "Формат адреса Base 32 для зашифрованных LS2 (второй версии) leaseSets"
+slug: "b32encrypted"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 status: "Реализовано"

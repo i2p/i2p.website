@@ -1,6 +1,7 @@
 ---
 title: "B32 para Leasesets cifrados"
 description: "Formato de dirección en Base 32 para LS2 leasesets cifrados"
+slug: "b32encrypted"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 status: "Implementado"

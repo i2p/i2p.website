@@ -1,6 +1,7 @@
 ---
 title: "ECIES-X25519-AEAD-Ratchet Criptografia Híbrida"
 description: "Variante híbrida pós-quântica do protocolo de criptografia ECIES (Esquema de Criptografia Integrada por Curvas Elípticas) usando ML-KEM (mecanismo de encapsulamento de chaves baseado em reticulados modulares)"
+slug: "ecies-hybrid"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

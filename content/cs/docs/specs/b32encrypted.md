@@ -1,6 +1,7 @@
 ---
 title: "B32 pro šifrované leaseSets"
 description: "Formát adresy Base 32 pro šifrované LS2 leasesets"
+slug: "b32encrypted"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 status: "Implementováno"

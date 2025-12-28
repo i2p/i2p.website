@@ -1,6 +1,7 @@
 ---
 title: "UDP BitTorrent Duyuruları"
 description: "I2P'de UDP tabanlı BitTorrent tracker announce (duyuru isteği) için protokol spesifikasyonu"
+slug: "udp-announces"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

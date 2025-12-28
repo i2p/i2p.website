@@ -1,6 +1,7 @@
 ---
 title: "B32 für verschlüsselte leaseSets"
 description: "Base-32-Adressformat für verschlüsselte LS2 leaseSets"
+slug: "b32encrypted"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 status: "Implementiert"

@@ -1,6 +1,7 @@
 ---
 title: "Chiffrement hybride ECIES-X25519-AEAD-Ratchet"
 description: "Variante hybride post-quantique du protocole de chiffrement ECIES utilisant ML-KEM (mécanisme d'encapsulation de clés post-quantique basé sur des réseaux modulaires)"
+slug: "ecies-hybrid"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

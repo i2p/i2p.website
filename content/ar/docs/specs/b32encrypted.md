@@ -1,6 +1,7 @@
 ---
 title: "B32 لـ leaseSets (مجموعات نقاط الدخول للأنفاق في I2P) المشفّرة"
 description: "تنسيق عنوان Base 32 لـ LS2 leasesets المشفرة"
+slug: "b32encrypted"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 status: "تم التنفيذ"

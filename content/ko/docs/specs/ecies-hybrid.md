@@ -1,6 +1,7 @@
 ---
 title: "ECIES-X25519-AEAD-Ratchet 하이브리드 암호화"
 description: "ML-KEM(모듈 격자 기반 키 캡슐화 메커니즘)을 사용하는 ECIES 암호화 프로토콜의 양자 내성 하이브리드 변형"
+slug: "ecies-hybrid"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

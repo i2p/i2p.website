@@ -1,6 +1,7 @@
 ---
 title: "Anuncios de BitTorrent por UDP"
 description: "Especificación del protocolo para las solicitudes announce (solicitud de anuncio del rastreador) de rastreadores de BitTorrent basados en UDP en I2P"
+slug: "udp-announces"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

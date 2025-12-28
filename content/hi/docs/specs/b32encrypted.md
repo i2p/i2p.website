@@ -1,6 +1,7 @@
 ---
 title: "एन्क्रिप्टेड Leasesets के लिए B32"
 description: "एन्क्रिप्टेड LS2 leasesets के लिए Base 32 पते का प्रारूप"
+slug: "b32encrypted"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 status: "कार्यान्वित"

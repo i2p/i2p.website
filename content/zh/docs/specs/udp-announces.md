@@ -1,6 +1,7 @@
 ---
 title: "UDP BitTorrent 通告请求"
 description: "I2P 中的基于 UDP 的 BitTorrent 跟踪器 announce（上报请求）协议规范"
+slug: "udp-announces"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

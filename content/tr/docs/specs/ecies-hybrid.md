@@ -1,6 +1,7 @@
 ---
 title: "ECIES-X25519-AEAD-Ratchet Hibrit Şifreleme"
 description: "ML-KEM (modül-örgü tabanlı anahtar kapsülleme mekanizması) kullanan ECIES şifreleme protokolünün kuantum sonrası hibrit varyantı"
+slug: "ecies-hybrid"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

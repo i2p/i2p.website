@@ -1,6 +1,7 @@
 ---
 title: "Гибридное шифрование ECIES-X25519-AEAD-Ratchet (криптографический «рэтчет»-механизм)"
 description: "Постквантовый гибридный вариант протокола шифрования ECIES с использованием ML-KEM"
+slug: "ecies-hybrid"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

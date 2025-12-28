@@ -1,6 +1,7 @@
 ---
 title: "ECIES-X25519-AEAD-Ratchet hybridní šifrování"
 description: "Postkvantová hybridní varianta šifrovacího protokolu ECIES využívající ML‑KEM (mechanismus zapouzdření klíče založený na modulech mříží)"
+slug: "ecies-hybrid"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---
