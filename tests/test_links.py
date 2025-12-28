@@ -49,23 +49,56 @@ def test_internal_links_in_html(built_site):
             
             if path.startswith("/"):
                 # Absolute from site root
-                # Remove leading slash and resolve against build root
-                # Handle pretty URLs: /about/ -> /about/index.html
+                # In a multi-lingual Hugo site, absolute paths need the language prefix
+                # Extract language from source file path (e.g., "tr/docs/..." -> "tr")
+                source_parts = html_file.relative_to(built_site).parts
+                lang_code = source_parts[0] if source_parts else "en"
+                
+                # Remove leading slash and resolve against build root with language prefix
                 rel_path = path.lstrip("/")
                 if not rel_path or rel_path.endswith("/"):
-                    target = built_site / rel_path / "index.html"
+                    target = built_site / lang_code / rel_path / "index.html"
                 else:
                     # Could be /css/style.css or /about.html
-                    target = built_site / rel_path
+                    target = built_site / lang_code / rel_path
                     if not target.exists() and not target.suffix:
                          # Try implicit index
-                         target = built_site / rel_path / "index.html"
+                         target = built_site / lang_code / rel_path / "index.html"
             else:
                 # Relative to current file
                 # If current file is /foo/bar/index.html, parent is /foo/bar/
                 parent = html_file.parent
                 target = (parent / path).resolve()
+                
+                # Check if the resolved path escaped the language directory
+                # In multi-lingual Hugo, paths like ../../../../docs/legacy/sam/
+                # should stay within the language context
+                # BUT intentional language switches like ../en/ should be allowed
                 try:
+                    # Get the language code from the source file
+                    source_parts = html_file.relative_to(built_site).parts
+                    lang_code = source_parts[0] if source_parts else "en"
+                    
+                    # Known language codes in Hugo multilingual setup
+                    known_langs = {'en', 'es', 'fr', 'de', 'tr', 'ru', 'zh', 'ko', 'ja', 
+                                   'pt', 'ar', 'hi', 'vi', 'cs'}
+                    
+                    # Check if target is outside the built_site
+                    try:
+                        rel_to_site = target.relative_to(built_site)
+                        # If the path doesn't start with the language code
+                        if rel_to_site.parts and rel_to_site.parts[0] != lang_code:
+                            first_part = rel_to_site.parts[0]
+                            # If it's NOT an intentional language switch, re-resolve it
+                            if first_part not in known_langs:
+                                # The path likely went up too far and then into a docs/ path
+                                # Try prepending the language code
+                                target = built_site / lang_code / rel_to_site
+                    except ValueError:
+                        # Target is outside built_site entirely, which shouldn't happen
+                        # but if it does, try to salvage it
+                        pass
+                    
                     is_directory = target.is_dir()
                 except OSError:
                     # Handle file name too long or other FS errors

@@ -926,8 +926,8 @@ def submit_batch(
     # Submit to OpenAI
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
-        # Fallback to hardcoded key for this session
-        api_key = "REMOVED_API_KEY"
+        print("❌ Error: OPENAI_API_KEY environment variable is not set")
+        sys.exit(1)
 
     client = OpenAI(api_key=api_key)
 
@@ -1148,8 +1148,8 @@ def check_batch(batch_id: str, wait: bool = False) -> None:
 
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
-        # Fallback to hardcoded key for this session
-        api_key = "REMOVED_API_KEY"
+        print("❌ Error: OPENAI_API_KEY environment variable is not set")
+        sys.exit(1)
 
     client = OpenAI(api_key=api_key)
 
@@ -1283,7 +1283,8 @@ def cancel_batch(batch_id: str) -> None:
 
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
-        api_key = "REMOVED_API_KEY"
+        print("❌ Error: OPENAI_API_KEY environment variable is not set")
+        sys.exit(1)
 
     client = OpenAI(api_key=api_key)
 
@@ -1339,7 +1340,8 @@ def check_all_batches(wait: bool = False, interval: int = 60) -> None:
 
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
-        api_key = "REMOVED_API_KEY"
+        print("❌ Error: OPENAI_API_KEY environment variable is not set")
+        sys.exit(1)
 
     client = OpenAI(api_key=api_key)
 

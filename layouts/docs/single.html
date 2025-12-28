@@ -41,6 +41,8 @@
                     <span class="current">{{ .Title }}</span>
                 </nav>
 
+                {{ partial "translation-disclaimer.html" . }}
+
                 <!-- Article Header -->
                 <header class="article-header">
                     <h1 class="article-title">{{ .Title }}</h1>
@@ -171,6 +173,45 @@
 
 .current {
     color: var(--color-text);
+}
+
+/* Translation Disclaimer */
+.translation-disclaimer {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.dark .translation-disclaimer {
+    background: #78350f;
+    border-color: #d97706;
+}
+
+.disclaimer-message {
+    color: #92400e;
+    font-size: 0.875rem;
+}
+
+.dark .disclaimer-message {
+    color: #fde047;
+}
+
+.disclaimer-link {
+    color: #92400e;
+    font-weight: 600;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.dark .disclaimer-link {
+    color: #fde047;
 }
 
 /* Article Header */

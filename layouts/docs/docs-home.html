@@ -34,10 +34,11 @@
                         Overview
                     </h2>
                     <ul class="doc-list">
-                        {{/* Dynamically list pages from content/en/docs/overview/ */}}
+                        {{/* Dynamically list pages from content/{lang}/docs/overview/ */}}
+                        {{ $langPrefix := printf "%s/docs/overview/" .Lang }}
                         {{ $overviewPages := slice }}
                         {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir "en/docs/overview/") (hasPrefix .File.Dir "docs/overview/") }}
+                          {{ if or (hasPrefix .File.Dir $langPrefix) (hasPrefix .File.Dir "docs/overview/") }}
                             {{ $overviewPages = $overviewPages | append . }}
                           {{ end }}
                         {{ end }}
@@ -54,10 +55,11 @@
                         Applications
                     </h2>
                     <ul class="doc-list">
-                        {{/* Dynamically list pages from content/en/docs/applications/ */}}
+                        {{/* Dynamically list pages from content/{lang}/docs/applications/ */}}
+                        {{ $appPrefix := printf "%s/docs/applications/" .Lang }}
                         {{ $appPages := slice }}
                         {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir "en/docs/applications/") (hasPrefix .File.Dir "docs/applications/") }}
+                          {{ if or (hasPrefix .File.Dir $appPrefix) (hasPrefix .File.Dir "docs/applications/") }}
                             {{ $appPages = $appPages | append . }}
                           {{ end }}
                         {{ end }}
@@ -74,10 +76,11 @@
                         Guides
                     </h2>
                     <ul class="doc-list">
-                        {{/* Dynamically list guides from content/en/docs/guides/ */}}
+                        {{/* Dynamically list guides from content/{lang}/docs/guides/ */}}
+                        {{ $guidesPrefix := printf "%s/docs/guides/" .Lang }}
                         {{ $guides := slice }}
                         {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir "en/docs/guides/") (hasPrefix .File.Dir "docs/guides/") }}
+                          {{ if or (hasPrefix .File.Dir $guidesPrefix) (hasPrefix .File.Dir "docs/guides/") }}
                             {{ $guides = $guides | append . }}
                           {{ end }}
                         {{ end }}
@@ -94,10 +97,11 @@
                         Develop
                     </h2>
                     <ul class="doc-list">
-                        {{/* Dynamically list pages from content/en/docs/develop/ */}}
+                        {{/* Dynamically list pages from content/{lang}/docs/develop/ */}}
+                        {{ $devPrefix := printf "%s/docs/develop/" .Lang }}
                         {{ $devPages := slice }}
                         {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir "en/docs/develop/") (hasPrefix .File.Dir "docs/develop/") }}
+                          {{ if or (hasPrefix .File.Dir $devPrefix) (hasPrefix .File.Dir "docs/develop/") }}
                             {{ $devPages = $devPages | append . }}
                           {{ end }}
                         {{ end }}
@@ -116,10 +120,11 @@
                         API
                     </h2>
                     <ul class="doc-list">
-                        {{/* Dynamically list pages from content/en/docs/api/ */}}
+                        {{/* Dynamically list pages from content/{lang}/docs/api/ */}}
+                        {{ $apiPrefix := printf "%s/docs/api/" .Lang }}
                         {{ $apiPages := slice }}
                         {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir "en/docs/api/") (hasPrefix .File.Dir "docs/api/") }}
+                          {{ if or (hasPrefix .File.Dir $apiPrefix) (hasPrefix .File.Dir "docs/api/") }}
                             {{ $apiPages = $apiPages | append . }}
                           {{ end }}
                         {{ end }}
@@ -144,9 +149,10 @@
                         <li><a href="/docs/historical/i2p_philosophy.pdf" target="_blank">Invisible Internet Project (I2P) Philosophy - 2003</a></li>
                         <li><a href="/docs/historical/I2P-PET-CON-2009.1.pdf" target="_blank">Peer Profiling and Selection - 2009</a></li>
                         {{/* Historical discussion pages */}}
+                        {{ $historicalPrefix := printf "%s/docs/historical/" .Lang }}
                         {{ $historicalPages := slice }}
                         {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir "en/docs/historical/") (hasPrefix .File.Dir "docs/historical/") }}
+                          {{ if or (hasPrefix .File.Dir $historicalPrefix) (hasPrefix .File.Dir "docs/historical/") }}
                             {{ $historicalPages = $historicalPages | append . }}
                           {{ end }}
                         {{ end }}
@@ -166,10 +172,11 @@
                         Specs
                     </h2>
                     <ul class="doc-list doc-list-multi-column">
-                        {{/* Dynamically list pages from content/en/docs/specs/ */}}
+                        {{/* Dynamically list pages from content/{lang}/docs/specs/ */}}
+                        {{ $specPrefix := printf "%s/docs/specs/" .Lang }}
                         {{ $specPages := slice }}
                         {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir "en/docs/specs/") (hasPrefix .File.Dir "docs/specs/") }}
+                          {{ if or (hasPrefix .File.Dir $specPrefix) (hasPrefix .File.Dir "docs/specs/") }}
                             {{ $specPages = $specPages | append . }}
                           {{ end }}
                         {{ end }}
@@ -186,10 +193,11 @@
                         Legacy
                     </h2>
                     <ul class="doc-list doc-list-multi-column">
-                        {{/* Dynamically list pages from content/en/docs/legacy/ */}}
+                        {{/* Dynamically list pages from content/{lang}/docs/legacy/ */}}
+                        {{ $legacyPrefix := printf "%s/docs/legacy/" .Lang }}
                         {{ $legacyPages := slice }}
                         {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir "en/docs/legacy/") (hasPrefix .File.Dir "docs/legacy/") }}
+                          {{ if or (hasPrefix .File.Dir $legacyPrefix) (hasPrefix .File.Dir "docs/legacy/") }}
                             {{ $legacyPages = $legacyPages | append . }}
                           {{ end }}
                         {{ end }}

@@ -5,7 +5,9 @@
     {{ if $enVersion }}
     <a href="{{ $enVersion.RelPermalink }}" class="disclaimer-link">{{ i18n "translationDisclaimer.viewEnglish" }}</a>
     {{ else }}
-    <a href="/en/proposals/" class="disclaimer-link">{{ i18n "translationDisclaimer.viewEnglish" }}</a>
+    {{/* Fallback: construct English URL by replacing language code */}}
+    {{ $enUrl := replaceRE (printf "^/%s/" .Lang) "/en/" .RelPermalink }}
+    <a href="{{ $enUrl }}" class="disclaimer-link">{{ i18n "translationDisclaimer.viewEnglish" }}</a>
     {{ end }}
 </div>
 {{ end }}
