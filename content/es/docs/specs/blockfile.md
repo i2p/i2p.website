@@ -4,7 +4,7 @@ description: "Formato de almacenamiento en disco tipo blockfile (archivo en bloq
 slug: "blockfile"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## Descripción general

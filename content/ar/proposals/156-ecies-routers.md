@@ -85,7 +85,7 @@ ElGamal بطيء ويحتاج إلى استبداله في جميع الأماك
 
 ### رسالة بناء النفق
 
-تتطلب عدة تغييرات لمواصفات إنشاء النفق [Tunnel-Creation](/docs/specs/tunnel-creation/)
+تتطلب عدة تغييرات لمواصفات إنشاء النفق [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
 استخدام ECIES بدلاً من ElGamal.
 بالإضافة إلى ذلك، سنقوم بإجراء تحسينات على رسائل بناء النفق
 لزيادة الأمان.

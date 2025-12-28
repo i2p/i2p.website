@@ -4,7 +4,7 @@ description: "خيارات الإعداد والتنسيقات الخاصة بـ
 slug: "configuration"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## نظرة عامة

@@ -211,7 +211,7 @@ bytes     0-3: 메시지 수신을 위한 터널 ID, 0이 아님
 
 ```
 
-플래그 필드는 [Tunnel-Creation](/docs/specs/tunnel-creation/)에 정의된 것과 동일하며 다음을 포함합니다::
+플래그 필드는 [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)에 정의된 것과 동일하며 다음을 포함합니다::
 
 비트 순서: 76543210 (비트 7은 MSB)
 비트 7: 설정된 경우, 누구로부터 메시지를 허용
@@ -283,7 +283,7 @@ bytes    0-x: Tunnel Build Reply Options (매핑)
 매핑의 최대 크기(길이 필드 포함)는 201바이트이며, 매핑 길이 필드의 최대 값은 199입니다.
 
 응답 바이트는 다음과 같은 값 중 하나입니다
-[Tunnel-Creation](/docs/specs/tunnel-creation/)에서 정의된 값을 사용하여 지문을 피하기 위해:
+[Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)에서 정의된 값을 사용하여 지문을 피하기 위해:
 
 - 0x00 (수용)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

@@ -67,7 +67,7 @@ I2P üzerinden veri göndermek için her birinin kendine özgü avantaj ve dezav
 
 ### Streaming Kütüphanesi
 
-[Tam streaming kütüphanesi](/spec/api/streaming/) artık standart arayüzdür. [Streaming geliştirme kılavuzunda](#developing-with-the-streaming-library) açıklandığı gibi, TCP benzeri soketler kullanarak programlama yapılmasına olanak tanır.
+[Tam streaming kütüphanesi](/docs/specs/streaming/) artık standart arayüzdür. [Streaming geliştirme kılavuzunda](#developing-with-the-streaming-library) açıklandığı gibi, TCP benzeri soketler kullanarak programlama yapılmasına olanak tanır.
 
 ### BOB
 

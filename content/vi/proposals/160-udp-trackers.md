@@ -46,7 +46,7 @@ Mã hóa và chữ ký Post-Quantum như được hình dung trong [/proposals/1
 
 ## Động lực
 
-Đề xuất này sử dụng repliable datagram2, repliable datagram3, và raw datagrams, như được định nghĩa trong [/docs/specs/datagrams/](/docs/specs/datagrams/). Datagram2 và Datagram3 là các biến thể mới của repliable datagrams, được định nghĩa trong Đề xuất 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 bổ sung khả năng chống replay và hỗ trợ chữ ký offline. Datagram3 nhỏ hơn so với định dạng datagram cũ, nhưng không có xác thực.
+Đề xuất này sử dụng repliable datagram2, repliable datagram3, và raw datagrams, như được định nghĩa trong [/docs/api/datagrams/](/docs/api/datagrams/). Datagram2 và Datagram3 là các biến thể mới của repliable datagrams, được định nghĩa trong Đề xuất 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 bổ sung khả năng chống replay và hỗ trợ chữ ký offline. Datagram3 nhỏ hơn so với định dạng datagram cũ, nhưng không có xác thực.
 
 ### BEP 15
 

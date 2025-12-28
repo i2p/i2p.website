@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 type: docs
 ---
 
-Comme l'exige notre [modèle de menace](/docs/how/threat-model/) (entre autres raisons), le logiciel développé pour prendre en charge le réseau de communication anonyme que nous appelons I2P doit être librement disponible, open source et modifiable par l'utilisateur. Pour répondre à ces critères, nous utilisons diverses techniques juridiques et d'ingénierie logicielle afin d'éliminer autant de barrières à l'entrée que possible pour ceux qui envisagent d'utiliser ou de contribuer au projet I2P.
+Comme l'exige notre [modèle de menace](/docs/overview/threat-model//) (entre autres raisons), le logiciel développé pour prendre en charge le réseau de communication anonyme que nous appelons I2P doit être librement disponible, open source et modifiable par l'utilisateur. Pour répondre à ces critères, nous utilisons diverses techniques juridiques et d'ingénierie logicielle afin d'éliminer autant de barrières à l'entrée que possible pour ceux qui envisagent d'utiliser ou de contribuer au projet I2P.
 
 Bien que les informations ci-dessous puissent être plus déroutantes que de simplement affirmer "I2P est sous BSD", "I2P est sous GPL" ou "I2P est dans le domaine public", la réponse courte à la question "Quelle est la licence d'I2P ?" est la suivante :
 

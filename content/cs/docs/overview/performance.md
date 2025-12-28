@@ -109,7 +109,7 @@ Prosím přečtěte si tuto stránku pečlivě před vývojem aplikací pro I2P.
 
 ### Používejte SAM nebo I2CP
 
-Pro většinu aplikací doporučujeme používat [SAM (Simple Anonymous Messaging)](https://geti2p.net/docs/api/samv3) nebo [I2CP (I2P Client Protocol)](https://geti2p.net/docs/protocol/i2cp). SAM je jednodušší protokol podobný SOCKS a je dostupný v mnoha programovacích jazycích. I2CP poskytuje více možností konfigurace a kontroly, ale je složitější na použití.
+Pro většinu aplikací doporučujeme používat [SAM (Simple Anonymous Messaging)](https://geti2p.net/docs/api/samv3) nebo [I2CP (I2P Client Protocol)](https://geti2p.net/docs/specs/i2cp/). SAM je jednodušší protokol podobný SOCKS a je dostupný v mnoha programovacích jazycích. I2CP poskytuje více možností konfigurace a kontroly, ale je složitější na použití.
 
 ### Nepoužívejte HTTP proxy pro non-HTTP provoz
 

@@ -133,10 +133,10 @@ Số giao thức I2CP tiêu chuẩn cho các datagram có thể phát lại là 
 ### Giao thức
 
 Số giao thức I2CP mới cho Datagram2 là 19.
-Thêm nó làm PROTO_DATAGRAM2 vào [I2CP](/docs/protocol/i2cp/).
+Thêm nó làm PROTO_DATAGRAM2 vào [I2CP](/docs/specs/i2cp/).
 
 Số giao thức I2CP mới cho Datagram3 là 20.
-Thêm nó làm PROTO_DATAGRAM2 vào [I2CP](/docs/protocol/i2cp/).
+Thêm nó làm PROTO_DATAGRAM2 vào [I2CP](/docs/specs/i2cp/).
 
 
 ### Định dạng Datagram2
@@ -358,8 +358,8 @@ Streamr: Không ai sử dụng nó, không có kế hoạch di chuyển
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)

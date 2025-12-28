@@ -244,7 +244,7 @@ bytes     0-3: ID tunelu pro příjem zpráv jako, nenulové
 ```
 
 
-Pole vlajek je stejné, jak je definováno v [Tunnel-Creation](/docs/specs/tunnel-creation/) a obsahuje následující::
+Pole vlajek je stejné, jak je definováno v [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) a obsahuje následující::
 
  Bitový pořadí: 76543210 (bit 7 je MSB)
  bit 7: pokud je nastaven, povolit zprávy od kohokoli
@@ -320,7 +320,7 @@ Maximální velikost struktury Mapping (včetně pole délky) je 201 bajtů,
 a maximální hodnota pole délky Mapping je 199.
 
 Byte odpovědi je jednou z následujících hodnot
-jak je definováno v [Tunnel-Creation](/docs/specs/tunnel-creation/) pro zabránění rozpoznávání otisků prstů:
+jak je definováno v [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) pro zabránění rozpoznávání otisků prstů:
 
 - 0x00 (přijmout)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

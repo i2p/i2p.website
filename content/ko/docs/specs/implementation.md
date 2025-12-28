@@ -4,7 +4,7 @@ description: "I2P tunnels를 통해 트래픽을 생성, 암호화 및 전송하
 slug: "implementation"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 reviewStatus: "needs-review"
 ---
 
@@ -182,7 +182,7 @@ tunnels는 회로와 유사하지만, routers는 그것들을 메시지 큐로 �
 - 참여자들은 고정 크기 프래그먼트를 고려하며; 게이트웨이/엔드포인트는 결합된 프래그먼트 크기를 기준으로 드롭하여 큰 페이로드를 우선적으로 드롭합니다.
 - 네트워크 자원 낭비를 최소화하기 위해 아웃바운드 엔드포인트가 다른 역할보다 먼저 드롭합니다.
 
-보장된 전달은 [Streaming library(스트리밍 라이브러리)](/spec/api/streaming/)와 같은 상위 계층에 맡겨집니다. 신뢰성이 필요한 애플리케이션은 재전송과 승인(acknowledgment)을 스스로 처리해야 합니다.
+보장된 전달은 [Streaming library(스트리밍 라이브러리)](/docs/specs/streaming/)와 같은 상위 계층에 맡겨집니다. 신뢰성이 필요한 애플리케이션은 재전송과 승인(acknowledgment)을 스스로 처리해야 합니다.
 
 ---
 

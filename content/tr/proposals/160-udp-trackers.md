@@ -46,7 +46,7 @@ Ayrıca, datagramlar streaming bağlantısına göre çok daha az bellek içi du
 
 ## Motivasyon
 
-Bu öneri, [/docs/specs/datagrams/](/docs/specs/datagrams/) bölümünde tanımlandığı şekliyle repliable datagram2, repliable datagram3 ve raw datagramları kullanır. Datagram2 ve Datagram3, Öneri 163 [/proposals/163-datagram2/](/proposals/163-datagram2/) içinde tanımlanan repliable datagramların yeni varyantlarıdır. Datagram2, tekrar saldırısına karşı koruma ve çevrimdışı imza desteği ekler. Datagram3, eski datagram formatından daha küçüktür ancak kimlik doğrulaması içermez.
+Bu öneri, [/docs/api/datagrams/](/docs/api/datagrams/) bölümünde tanımlandığı şekliyle repliable datagram2, repliable datagram3 ve raw datagramları kullanır. Datagram2 ve Datagram3, Öneri 163 [/proposals/163-datagram2/](/proposals/163-datagram2/) içinde tanımlanan repliable datagramların yeni varyantlarıdır. Datagram2, tekrar saldırısına karşı koruma ve çevrimdışı imza desteği ekler. Datagram3, eski datagram formatından daha küçüktür ancak kimlik doğrulaması içermez.
 
 ### BEP 15
 

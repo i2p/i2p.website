@@ -4,7 +4,7 @@ description: "Auf dem Datenträger gespeichertes blockfile (Blockdatei)-Speicher
 slug: "blockfile"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## Übersicht

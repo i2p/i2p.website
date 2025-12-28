@@ -46,7 +46,7 @@ Bittorrent는 2008년 BEP 15 [BEP 15](http://www.bittorrent.org/beps/bep_0015.ht
 
 ## 동기
 
-이 제안서는 [/docs/specs/datagrams/](/docs/specs/datagrams/)에 정의된 대로 repliable datagram2, repliable datagram3, 그리고 raw datagram을 사용합니다. Datagram2와 Datagram3은 제안서 163 [/proposals/163-datagram2/](/proposals/163-datagram2/)에서 정의된 repliable datagram의 새로운 변형입니다. Datagram2는 재생 공격 저항성과 오프라인 서명 지원을 추가합니다. Datagram3은 기존 datagram 형식보다 작지만 인증 기능이 없습니다.
+이 제안서는 [/docs/api/datagrams/](/docs/api/datagrams/)에 정의된 대로 repliable datagram2, repliable datagram3, 그리고 raw datagram을 사용합니다. Datagram2와 Datagram3은 제안서 163 [/proposals/163-datagram2/](/proposals/163-datagram2/)에서 정의된 repliable datagram의 새로운 변형입니다. Datagram2는 재생 공격 저항성과 오프라인 서명 지원을 추가합니다. Datagram3은 기존 datagram 형식보다 작지만 인증 기능이 없습니다.
 
 ### BEP 15
 

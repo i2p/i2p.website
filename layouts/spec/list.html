@@ -8,7 +8,8 @@
                 <div class="sidebar-header">
                     <a href="{{ relLangURL "docs/" }}" class="sidebar-title">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" />
                         </svg>
                         Documentation
                     </a>
@@ -19,7 +20,7 @@
                         <div class="nav-section-title">Overview</div>
                         <a href="{{ relLangURL "docs/how/tech-intro/" }}" class="nav-link">Technical Introduction</a>
                         <a href="{{ relLangURL "docs/how/intro/" }}" class="nav-link">Less-Technical Intro</a>
-                        <a href="{{ relLangURL "docs/how/threat-model/" }}" class="nav-link">Threat Model</a>
+                        <a href="{{ relLangURL "docs/overview/threat-model/" }}" class="nav-link">Threat Model</a>
                         <a href="{{ relLangURL "docs/protocol/" }}" class="nav-link">Protocol Stack</a>
                     </div>
 
@@ -27,11 +28,16 @@
                         <div class="nav-section-title">Application Layer</div>
                         <a href="{{ relLangURL "docs/naming/" }}" class="nav-link">Naming &amp; Address Book</a>
                         <a href="{{ relLangURL "docs/plugins/" }}" class="nav-link">Plugins Overview</a>
-                        <a href="{{ relLangURL "docs/applications/supported/" }}" class="nav-link">Supported Applications</a>
-                        <a href="{{ relLangURL "docs/applications/managed-clients/" }}" class="nav-link">Managed Clients</a>
-                        <a href="{{ relLangURL "docs/applications/embedding/" }}" class="nav-link">Embedding the Router</a>
-                        <a href="{{ relLangURL "docs/applications/bittorrent/" }}" class="nav-link">BitTorrent over I2P</a>
-                        <a href="{{ relLangURL "docs/applications/irc/" }}" class="nav-link">IRC Clients &amp; Servers</a>
+                        <a href="{{ relLangURL "docs/applications/supported/" }}" class="nav-link">Supported
+                            Applications</a>
+                        <a href="{{ relLangURL "docs/applications/managed-clients/" }}" class="nav-link">Managed
+                            Clients</a>
+                        <a href="{{ relLangURL "docs/applications/embedding/" }}" class="nav-link">Embedding the
+                            Router</a>
+                        <a href="{{ relLangURL "docs/applications/bittorrent/" }}" class="nav-link">BitTorrent over
+                            I2P</a>
+                        <a href="{{ relLangURL "docs/applications/irc/" }}" class="nav-link">IRC Clients &amp;
+                            Servers</a>
                         <a href="{{ relLangURL "docs/applications/git/" }}" class="nav-link">Git over I2P</a>
                         <a href="{{ relLangURL "docs/applications/git-bundle/" }}" class="nav-link">Git Bundles</a>
                         <a href="{{ relLangURL "docs/applications/gitlab/" }}" class="nav-link">GitLab Hosting</a>
@@ -40,10 +46,11 @@
                     <div class="nav-section">
                         <div class="nav-section-title">APIs &amp; Protocols</div>
                         <a href="{{ relLangURL "docs/api/i2ptunnel/" }}" class="nav-link">I2PTunnel</a>
-                        <a href="{{ relLangURL "docs/protocol/i2cp/" }}" class="nav-link">I2CP</a>
+                        <a href="{{ relLangURL "docs/specs/i2cp/" }}" class="nav-link">I2CP</a>
                         <a href="{{ relLangURL "docs/api/samv3/" }}" class="nav-link">SAM v3</a>
-                        <a href="{{ relLangURL "docs/protocol/i2np/" }}" class="nav-link">I2NP</a>
-                        <a href="{{ relLangURL "docs/api/socks/" }}" class="nav-link">SOCKS Proxy (use with caution)</a>
+                        <a href="{{ relLangURL "docs/specs/i2np/" }}" class="nav-link">I2NP</a>
+                        <a href="{{ relLangURL "docs/api/socks/" }}" class="nav-link">SOCKS Proxy (use with
+                            caution)</a>
                         <a href="{{ relLangURL "docs/api/streaming/" }}" class="nav-link">Streaming Protocol</a>
                         <a href="{{ relLangURL "docs/api/datagrams/" }}" class="nav-link">Datagram API</a>
                         <a href="{{ relLangURL "docs/api/v3dgsend/" }}" class="nav-link">v3dgsend</a>
@@ -52,14 +59,16 @@
 
                     <div class="nav-section">
                         <div class="nav-section-title">Specifications</div>
-                        <a href="{{ relLangURL "spec/streaming/" }}" class="nav-link">Streaming</a>
-                        <a href="{{ relLangURL "spec/datagrams/" }}" class="nav-link">Datagrams</a>
-                        <a href="{{ relLangURL "spec/i2cp/" }}" class="nav-link">I2CP</a>
-                        <a href="{{ relLangURL "spec/i2np/" }}" class="nav-link">I2NP</a>
+                        <a href="{{ relLangURL "docs/specs/streaming/" }}" class="nav-link">Streaming</a>
+                        <a href="{{ relLangURL "docs/api/datagrams/" }}" class="nav-link">Datagrams</a>
+                        <a href="{{ relLangURL "docs/specs/i2cp/" }}" class="nav-link">I2CP</a>
+                        <a href="{{ relLangURL "docs/specs/i2np/" }}" class="nav-link">I2NP</a>
                         <a href="{{ relLangURL "spec/ntcp2/" }}" class="nav-link">NTCP2</a>
                         <a href="{{ relLangURL "spec/ssu2/" }}" class="nav-link">SSU2</a>
-                        <a href="{{ relLangURL "spec/tunnel-creation-ecies/" }}" class="nav-link">Tunnel Creation (ECIES)</a>
-                        <a href="{{ relLangURL "spec/tunnel-creation/" }}" class="nav-link">Tunnel Creation (ElGamal)</a>
+                        <a href="{{ relLangURL "spec/tunnel-creation-ecies/" }}" class="nav-link">Tunnel Creation
+                            (ECIES)</a>
+                        <a href="{{ relLangURL "docs/specs/implementation/#tunnel-creation-ecies" }}" class="nav-link">Tunnel Creation
+                            (ElGamal)</a>
                         <a href="{{ relLangURL "spec/tunnel-message/" }}" class="nav-link">Tunnel Messages</a>
                         <a href="{{ relLangURL "spec/updates/" }}" class="nav-link">Software Updates</a>
                         <a href="{{ relLangURL "spec/plugin/" }}" class="nav-link">Plugin Package Format</a>
@@ -71,9 +80,12 @@
                     <div class="nav-section">
                         <div class="nav-section-title">Network &amp; Transport</div>
                         <a href="{{ relLangURL "docs/how/tunnel-routing/" }}" class="nav-link">Tunnel Routing</a>
-                        <a href="{{ relLangURL "docs/how/peer-selection/" }}" class="nav-link">Peer Profiling &amp; Selection</a>
-                        <a href="{{ relLangURL "docs/tunnels/implementation/" }}" class="nav-link">Tunnel Implementation</a>
-                        <a href="{{ relLangURL "docs/tunnels/unidirectional/" }}" class="nav-link">Unidirectional Tunnels</a>
+                        <a href="{{ relLangURL "docs/how/peer-selection/" }}" class="nav-link">Peer Profiling &amp;
+                            Selection</a>
+                        <a href="{{ relLangURL "docs/tunnels/implementation/" }}" class="nav-link">Tunnel
+                            Implementation</a>
+                        <a href="{{ relLangURL "docs/tunnels/unidirectional/" }}" class="nav-link">Unidirectional
+                            Tunnels</a>
                         <a href="{{ relLangURL "docs/transport/" }}" class="nav-link">Transport Overview</a>
                         <a href="{{ relLangURL "docs/ports/" }}" class="nav-link">Port Assignments</a>
                         <a href="{{ relLangURL "spec/ntcp2/" }}" class="nav-link">NTCP2 Specification</a>
@@ -88,8 +100,9 @@
                         <a href="{{ relLangURL "docs/api/sam/" }}" class="nav-link">SAM v1 (legacy)</a>
                         <a href="{{ relLangURL "docs/api/samv2/" }}" class="nav-link">SAM v2 (legacy)</a>
                         <a href="{{ relLangURL "docs/transport/ntcp/" }}" class="nav-link">NTCP (legacy)</a>
-                        <a href="{{ relLangURL "docs/transport/ssu/" }}" class="nav-link">SSU (legacy)</a>
-                        <a href="{{ relLangURL "docs/tunnels/old-implementation/" }}" class="nav-link">Old Tunnel Implementation</a>
+                        <a href="{{ relLangURL "docs/legacy/ssu/" }}" class="nav-link">SSU (legacy)</a>
+                        <a href="{{ relLangURL "docs/tunnels/old-implementation/" }}" class="nav-link">Old Tunnel
+                            Implementation</a>
                     </div>
                 </nav>
             </aside>
@@ -106,7 +119,7 @@
                 <header class="article-header">
                     <h1 class="article-title">{{ .Title }}</h1>
                     {{ with .Description }}
-                        <p class="article-description">{{ . }}</p>
+                    <p class="article-description">{{ . }}</p>
                     {{ end }}
                 </header>
 
@@ -125,7 +138,7 @@
                                 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
                             </h2>
                             {{ with .Description }}
-                                <p class="list-item-description">{{ . }}</p>
+                            <p class="list-item-description">{{ . }}</p>
                             {{ end }}
                             <a href="{{ .RelPermalink }}" class="list-item-link">Read more →</a>
                         </div>
@@ -140,26 +153,134 @@
 </div>
 
 <style>
-.docs-page { min-height: 100vh; padding: var(--spacing-xl) 0; }
-.docs-layout { display: grid; grid-template-columns: 280px 1fr; gap: var(--spacing-2xl); align-items: start; }
-.docs-sidebar { position: sticky; top: 100px; max-height: calc(100vh - 120px); overflow-y: auto; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--spacing-lg); }
-.sidebar-header { margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-md); border-bottom: 1px solid var(--color-border); }
-.sidebar-title { display: flex; align-items: center; gap: var(--spacing-sm); font-weight: 700; font-size: 1.125rem; color: var(--color-text); text-decoration: none; }
-.sidebar-title:hover { color: var(--color-primary); }
-.nav-section { margin-bottom: var(--spacing-lg); }
-.nav-section-title { font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-bottom: var(--spacing-sm); }
-.nav-link { display: block; padding: var(--spacing-xs) var(--spacing-sm); color: var(--color-text); text-decoration: none; border-radius: var(--radius-md); font-size: 0.9375rem; transition: all var(--transition-fast); }
-.nav-link:hover { background: var(--color-bg-secondary); color: var(--color-primary); }
-.docs-article { max-width: 800px; }
-.breadcrumbs { display: flex; align-items: center; gap: var(--spacing-xs); margin-bottom: var(--spacing-lg); font-size: 0.875rem; color: var(--color-text-muted); }
-.article-title { font-size: 2.2rem; margin-bottom: var(--spacing-sm); }
-.list-content { display: grid; grid-template-columns: 1fr; gap: var(--spacing-md); }
-.list-item { border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--spacing-md); background: var(--color-bg); }
-.list-item-title { margin: 0 0 var(--spacing-xs); font-size: 1.2rem; }
-.list-item-description { margin: 0 0 var(--spacing-sm); color: var(--color-text-secondary); }
-.list-item-link { text-decoration: none; color: var(--color-primary); }
-@media (max-width: 1024px) { .docs-layout { grid-template-columns: 1fr; } .docs-sidebar { position: static; max-height: none; order: 2; } }
+    .docs-page {
+        min-height: 100vh;
+        padding: var(--spacing-xl) 0;
+    }
+
+    .docs-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: var(--spacing-2xl);
+        align-items: start;
+    }
+
+    .docs-sidebar {
+        position: sticky;
+        top: 100px;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        background: var(--color-bg);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+    }
+
+    .sidebar-header {
+        margin-bottom: var(--spacing-lg);
+        padding-bottom: var(--spacing-md);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .sidebar-title {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        font-weight: 700;
+        font-size: 1.125rem;
+        color: var(--color-text);
+        text-decoration: none;
+    }
+
+    .sidebar-title:hover {
+        color: var(--color-primary);
+    }
+
+    .nav-section {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .nav-section-title {
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--color-text-muted);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .nav-link {
+        display: block;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        color: var(--color-text);
+        text-decoration: none;
+        border-radius: var(--radius-md);
+        font-size: 0.9375rem;
+        transition: all var(--transition-fast);
+    }
+
+    .nav-link:hover {
+        background: var(--color-bg-secondary);
+        color: var(--color-primary);
+    }
+
+    .docs-article {
+        max-width: 800px;
+    }
+
+    .breadcrumbs {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-lg);
+        font-size: 0.875rem;
+        color: var(--color-text-muted);
+    }
+
+    .article-title {
+        font-size: 2.2rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .list-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .list-item {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-md);
+        background: var(--color-bg);
+    }
+
+    .list-item-title {
+        margin: 0 0 var(--spacing-xs);
+        font-size: 1.2rem;
+    }
+
+    .list-item-description {
+        margin: 0 0 var(--spacing-sm);
+        color: var(--color-text-secondary);
+    }
+
+    .list-item-link {
+        text-decoration: none;
+        color: var(--color-primary);
+    }
+
+    @media (max-width: 1024px) {
+        .docs-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .docs-sidebar {
+            position: static;
+            max-height: none;
+            order: 2;
+        }
+    }
 </style>
 
 {{ end }}
-

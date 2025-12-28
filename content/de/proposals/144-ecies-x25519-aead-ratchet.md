@@ -207,7 +207,7 @@ Crypto-Typ 0 ist ElGamal. Crypto-Typen 1-3 sind reserviert für ECIES-ECDH-AES-S
 
 ### Zusammenfassung des kryptografischen Designs
 
-Dieser Vorschlag stellt die Anforderungen basierend auf dem Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11) bereit. Noise hat ähnliche Eigenschaften wie das Station-To-Station-Protokoll [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), welches die Grundlage für das [SSU](/docs/specs/ssu/)-Protokoll bildet. In der Noise-Terminologie ist Alice die Initiatorin und Bob der Responder.
+Dieser Vorschlag stellt die Anforderungen basierend auf dem Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11) bereit. Noise hat ähnliche Eigenschaften wie das Station-To-Station-Protokoll [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), welches die Grundlage für das [SSU](/docs/legacy/ssu/)-Protokoll bildet. In der Noise-Terminologie ist Alice die Initiatorin und Bob der Responder.
 
 Dieser Vorschlag basiert auf dem Noise-Protokoll Noise_IK_25519_ChaChaPoly_SHA256. (Der tatsächliche Bezeichner für die anfängliche Schlüsselableitungsfunktion ist "Noise_IKelg2_25519_ChaChaPoly_SHA256", um I2P-Erweiterungen anzuzeigen - siehe Abschnitt KDF 1 unten) Dieses Noise-Protokoll verwendet die folgenden Primitive:
 

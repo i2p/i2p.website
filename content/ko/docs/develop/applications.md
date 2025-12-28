@@ -67,7 +67,7 @@ I2P를 통해 데이터를 전송하는 방법에는 여러 가지가 있으며,
 
 ### 스트리밍 라이브러리
 
-[전체 streaming 라이브러리](/spec/api/streaming/)가 이제 표준 인터페이스입니다. [Streaming 개발 가이드](#developing-with-the-streaming-library)에서 설명한 대로 TCP와 유사한 소켓을 사용한 프로그래밍이 가능합니다.
+[전체 streaming 라이브러리](/docs/specs/streaming/)가 이제 표준 인터페이스입니다. [Streaming 개발 가이드](#developing-with-the-streaming-library)에서 설명한 대로 TCP와 유사한 소켓을 사용한 프로그래밍이 가능합니다.
 
 ### BOB
 

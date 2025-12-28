@@ -129,10 +129,10 @@ i2psnark 및 zzzot에서 구현된 바와 같이 비트토런트 UDP 발표가 �
 ### 프로토콜
 
 Datagram2의 새로운 I2CP 프로토콜 번호는 19입니다.
-이를 [I2CP](/docs/protocol/i2cp/)에 PROTO_DATAGRAM2로 추가하십시오.
+이를 [I2CP](/docs/specs/i2cp/)에 PROTO_DATAGRAM2로 추가하십시오.
 
 Datagram3의 새로운 I2CP 프로토콜 번호는 20입니다.
-이를 [I2CP](/docs/protocol/i2cp/)에 PROTO_DATAGRAM2로 추가하십시오.
+이를 [I2CP](/docs/specs/i2cp/)에 PROTO_DATAGRAM2로 추가하십시오.
 
 
 ### Datagram2 형식
@@ -356,8 +356,8 @@ SAM UDP 앱: 알려진 바 없습니다
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)

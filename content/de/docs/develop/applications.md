@@ -67,7 +67,7 @@ Es gibt verschiedene Möglichkeiten, Daten über I2P zu übertragen, jede mit ih
 
 ### Streaming-Bibliothek
 
-Die [vollständige Streaming-Bibliothek](/spec/api/streaming/) ist nun die Standardschnittstelle. Sie ermöglicht die Programmierung mit TCP-ähnlichen Sockets, wie im [Streaming-Entwicklungsleitfaden](#developing-with-the-streaming-library) erklärt.
+Die [vollständige Streaming-Bibliothek](/docs/specs/streaming/) ist nun die Standardschnittstelle. Sie ermöglicht die Programmierung mit TCP-ähnlichen Sockets, wie im [Streaming-Entwicklungsleitfaden](#developing-with-the-streaming-library) erklärt.
 
 ### BOB
 

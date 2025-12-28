@@ -207,7 +207,7 @@ ElGamal/AES+SessionTag 协议作为我们唯一的端到端协议已经使用了
 
 ### 密码学设计概述
 
-本提案基于 Noise 协议框架 [NOISE](https://noiseprotocol.org/noise.html)（修订版 34，2018-07-11）提供要求。Noise 具有与 Station-To-Station 协议 [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) 相似的特性，后者是 [SSU](/docs/specs/ssu/) 协议的基础。在 Noise 术语中，Alice 是发起方，Bob 是响应方。
+本提案基于 Noise 协议框架 [NOISE](https://noiseprotocol.org/noise.html)（修订版 34，2018-07-11）提供要求。Noise 具有与 Station-To-Station 协议 [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) 相似的特性，后者是 [SSU](/docs/legacy/ssu/) 协议的基础。在 Noise 术语中，Alice 是发起方，Bob 是响应方。
 
 该提案基于 Noise 协议 Noise_IK_25519_ChaChaPoly_SHA256。（初始密钥派生函数的实际标识符是 "Noise_IKelg2_25519_ChaChaPoly_SHA256"，以表示 I2P 扩展 - 参见下面的 KDF 1 部分）此 Noise 协议使用以下基元：
 

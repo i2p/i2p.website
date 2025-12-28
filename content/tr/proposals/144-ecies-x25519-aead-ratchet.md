@@ -204,7 +204,7 @@ Crypto türü 0 ElGamal'dır. Crypto türleri 1-3, ECIES-ECDH-AES-SessionTag iç
 
 ### Kriptografik Tasarımın Özeti
 
-Bu öneri, Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revizyon 34, 2018-07-11) tabanlı gereksinimleri sağlar. Noise, [SSU](/docs/specs/ssu/) protokolünün temelini oluşturan Station-To-Station protokolü [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) ile benzer özelliklere sahiptir. Noise terminolojisinde Alice başlatıcı, Bob ise yanıtlayıcıdır.
+Bu öneri, Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revizyon 34, 2018-07-11) tabanlı gereksinimleri sağlar. Noise, [SSU](/docs/legacy/ssu/) protokolünün temelini oluşturan Station-To-Station protokolü [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) ile benzer özelliklere sahiptir. Noise terminolojisinde Alice başlatıcı, Bob ise yanıtlayıcıdır.
 
 Bu öneri Noise protokolü Noise_IK_25519_ChaChaPoly_SHA256 tabanlıdır. (İlk anahtar türetme fonksiyonu için gerçek tanımlayıcı, I2P uzantılarını belirtmek için "Noise_IKelg2_25519_ChaChaPoly_SHA256"'dır - aşağıdaki KDF 1 bölümüne bakın) Bu Noise protokolü aşağıdaki ilkelleri kullanır:
 

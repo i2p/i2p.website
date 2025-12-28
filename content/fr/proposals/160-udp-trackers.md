@@ -46,7 +46,7 @@ Le chiffrement et les signatures post-quantiques tels qu'envisagés dans [/propo
 
 ## Motivation
 
-Cette proposition utilise repliable datagram2, repliable datagram3, et raw datagrams, comme définis dans [/docs/specs/datagrams/](/docs/specs/datagrams/). Datagram2 et Datagram3 sont de nouvelles variantes de repliable datagrams, définies dans la Proposition 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 ajoute une résistance contre la rejouabilité et le support de signature hors ligne. Datagram3 est plus petit que l'ancien format de datagram, mais sans authentification.
+Cette proposition utilise repliable datagram2, repliable datagram3, et raw datagrams, comme définis dans [/docs/api/datagrams/](/docs/api/datagrams/). Datagram2 et Datagram3 sont de nouvelles variantes de repliable datagrams, définies dans la Proposition 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 ajoute une résistance contre la rejouabilité et le support de signature hors ligne. Datagram3 est plus petit que l'ancien format de datagram, mais sans authentification.
 
 ### BEP 15
 

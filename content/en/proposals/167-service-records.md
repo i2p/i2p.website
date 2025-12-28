@@ -202,7 +202,7 @@ Extend the specification as follows:
 
 #### Configuration options
 
-Add the following to the [I2CP configuration options](/docs/protocol/i2cp/)
+Add the following to the [I2CP configuration options](/docs/specs/i2cp/)
 
 i2cp.leaseSetOption.nnn
 
@@ -381,7 +381,7 @@ SAM compatibility versions for each implementation will be documented in the SAM
 
 * [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102)
 * [I2CP](/docs/specs/i2cp/)
-* [I2CP-OPTIONS](/docs/protocol/i2cp/)
+* [I2CP-OPTIONS](/docs/specs/i2cp/)
 * [LS2](/docs/specs/common-structures/)
 * [GNS](http://zzz.i2p/topcs/1545)
 * [NAMING](/docs/naming/)

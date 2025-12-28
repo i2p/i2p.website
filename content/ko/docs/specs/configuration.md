@@ -4,7 +4,7 @@ description: "I2P routers 및 클라이언트를 위한 구성 옵션과 형식"
 slug: "configuration"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## 개요

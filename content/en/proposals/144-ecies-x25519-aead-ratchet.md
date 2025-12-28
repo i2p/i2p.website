@@ -280,7 +280,7 @@ Crypto types 1-3 are reserved for ECIES-ECDH-AES-SessionTag, see proposal 145 [P
 This proposal provides the requirements based on the Noise Protocol Framework
 [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11).
 Noise has similar properties to the Station-To-Station protocol
-[STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), which is the basis for the [SSU](/docs/specs/ssu/) protocol.  In Noise parlance, Alice
+[STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), which is the basis for the [SSU](/docs/legacy/ssu/) protocol.  In Noise parlance, Alice
 is the initiator, and Bob is the responder.
 
 This proposal is based on the Noise protocol Noise_IK_25519_ChaChaPoly_SHA256.

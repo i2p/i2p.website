@@ -89,7 +89,7 @@ na několika místech ve zdrojovém kódu. Většina této práce byla dokončen
 
 ### Zpráva pro stavbu tunelu
 
-Pro použití ECIES namísto ElGamal je potřeba několik změn ve specifikaci vytváření tunelu [Tunnel-Creation](/docs/specs/tunnel-creation/).
+Pro použití ECIES namísto ElGamal je potřeba několik změn ve specifikaci vytváření tunelu [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies).
 Kromě toho provedeme zlepšení v zabezpečení zpráv pro stavbu tunelů.
 
 Ve fázi 1 změníme formát a šifrování
@@ -504,5 +504,5 @@ Cílové vydání: 0.9.53, začátek 2022.
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop154](/proposals/154-ecies-lookups/)
 * [Prop157](/proposals/157-new-tbm/)
-* [Tunnel-Creation](/docs/specs/tunnel-creation/)
+* [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
 * [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)

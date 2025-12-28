@@ -67,7 +67,7 @@ type: docs
 
 ### مكتبة البث
 
-[مكتبة البث الكاملة](/spec/api/streaming/) هي الآن الواجهة القياسية. فهي تسمح بالبرمجة باستخدام مقابس (sockets) شبيهة بـ TCP، كما هو موضح في [دليل تطوير البث](#developing-with-the-streaming-library).
+[مكتبة البث الكاملة](/docs/specs/streaming/) هي الآن الواجهة القياسية. فهي تسمح بالبرمجة باستخدام مقابس (sockets) شبيهة بـ TCP، كما هو موضح في [دليل تطوير البث](#developing-with-the-streaming-library).
 
 ### BOB
 

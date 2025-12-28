@@ -67,7 +67,7 @@ I2P पर डेटा भेजने के कई तरीके हैं,
 
 ### स्ट्रीमिंग लाइब
 
-[पूर्ण streaming लाइब्रेरी](/spec/api/streaming/) अब मानक इंटरफ़ेस है। यह TCP-जैसे सockets का उपयोग करके प्रोग्रामिंग की अनुमति देता है, जैसा कि [Streaming विकास गाइड](#developing-with-the-streaming-library) में समझाया गया है।
+[पूर्ण streaming लाइब्रेरी](/docs/specs/streaming/) अब मानक इंटरफ़ेस है। यह TCP-जैसे सockets का उपयोग करके प्रोग्रामिंग की अनुमति देता है, जैसा कि [Streaming विकास गाइड](#developing-with-the-streaming-library) में समझाया गया है।
 
 ### BOB
 

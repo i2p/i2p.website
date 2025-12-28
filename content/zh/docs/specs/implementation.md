@@ -4,7 +4,7 @@ description: "用于通过 I2P tunnels 构建、加密和传输流量的统一�
 slug: "implementation"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 reviewStatus: "needs-review"
 ---
 
@@ -182,7 +182,7 @@ router 会为探测流量以及每个 I2CP 会话分别维护独立的入站和�
 - 参与方按固定大小的片段进行计算；网关/端点会根据片段的合计大小决定丢弃，优先丢弃大型有效负载。
 - 出站端点会先于其他角色执行丢弃，以尽可能减少网络资源消耗。
 
-保证交付留给更高层（例如 [Streaming library](/spec/api/streaming/)）。需要可靠性的应用必须自行处理重传和确认。
+保证交付留给更高层（例如 [Streaming library](/docs/specs/streaming/)）。需要可靠性的应用必须自行处理重传和确认。
 
 ---
 

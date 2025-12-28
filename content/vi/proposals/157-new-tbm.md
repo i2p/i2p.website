@@ -244,7 +244,7 @@ bytes     0-3: ID đường hầm để nhận thông điệp, khác không
 ```
 
 
-Trường cờ giữ nguyên như được định nghĩa trong [Tunnel-Creation](/docs/specs/tunnel-creation/) và chứa các giá trị sau::
+Trường cờ giữ nguyên như được định nghĩa trong [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) và chứa các giá trị sau::
 
  Thứ tự bit: 76543210 (bit 7 là MSB)
  bit 7: nếu đặt, cho phép gửi thông điệp từ bất kỳ ai
@@ -324,7 +324,7 @@ Kích thước tối đa của Mapping (bao gồm trường độ dài) là 201 
 và giá trị tối đa của trường độ dài Mapping là 199.
 
 Byte trả lời là một trong các giá trị sau
-như được định nghĩa trong [Tunnel-Creation](/docs/specs/tunnel-creation/) để tránh nhận diện:
+như được định nghĩa trong [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) để tránh nhận diện:
 
 - 0x00 (chấp nhận)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

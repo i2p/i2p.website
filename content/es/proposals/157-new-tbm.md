@@ -241,7 +241,7 @@ bytes     0-3: ID del túnel para recibir mensajes, no cero
 ```
 
 
-El campo de banderas es el mismo que se define en [Tunnel-Creation](/docs/specs/tunnel-creation/) y contiene lo siguiente::
+El campo de banderas es el mismo que se define en [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) y contiene lo siguiente::
 
  Orden de bits: 76543210 (el bit 7 es el MSB)
  bit 7: si está establecido, permitir mensajes de cualquiera
@@ -318,7 +318,7 @@ El tamaño máximo del Mapping (incluyendo el campo de longitud) es 201 bytes,
 y el valor máximo del campo de longitud de Mapping es 199.
 
 El byte de respuesta es uno de los siguientes valores
-como se define en [Tunnel-Creation](/docs/specs/tunnel-creation/) para evitar la identificación:
+como se define en [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) para evitar la identificación:
 
 - 0x00 (aceptar)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

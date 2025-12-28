@@ -221,7 +221,7 @@ bytes     0-3: mesajları almak için tünel kimliği, sıfır olmayan
 
 ```
 
-Bayraklar alanı [Tunnel-Creation](/docs/specs/tunnel-creation/) 'da tanımlandığı gibi ve aşağıdakileri içerir::
+Bayraklar alanı [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) 'da tanımlandığı gibi ve aşağıdakileri içerir::
 
  Bit sırası: 76543210 (bayt 7 MSB'dir)
  bit 7: ayarlanırsa, herkesten mesajlara izin ver
@@ -298,7 +298,7 @@ Haritalamanın maksimum boyutu (uzunluk alanı dahil) 201 bayttır,
 ve Haritalama uzunluk alanının maksimum değeri 199'dur.
 
 Yanıt baytı aşağıdaki değerlerden biridir
-[Tunnel-Creation](/docs/specs/tunnel-creation/) 'da tanımlandığı gibi parmak izi bırakmamak için:
+[Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) 'da tanımlandığı gibi parmak izi bırakmamak için:
 
 - 0x00 (kabul)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

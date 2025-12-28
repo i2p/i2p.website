@@ -67,7 +67,7 @@ Existuje několik způsobů přenosu dat přes I2P, každý s vlastními výhoda
 
 ### Streaming Lib
 
-[Kompletní streaming knihovna](/spec/api/streaming/) je nyní standardním rozhraním. Umožňuje programování pomocí socketů podobných TCP, jak je vysvětleno v [průvodci vývojem pro Streaming](#developing-with-the-streaming-library).
+[Kompletní streaming knihovna](/docs/specs/streaming/) je nyní standardním rozhraním. Umožňuje programování pomocí socketů podobných TCP, jak je vysvětleno v [průvodci vývojem pro Streaming](#developing-with-the-streaming-library).
 
 ### BOB
 

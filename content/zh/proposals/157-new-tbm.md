@@ -245,7 +245,7 @@ bytes 0-3: 接收消息的隧道 ID，非零
 ```
 
 
-标志字段与 [Tunnel-Creation](/docs/specs/tunnel-creation/) 中定义相同，包含以下内容::
+标志字段与 [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) 中定义相同，包含以下内容::
 
  位序：76543210（位 7 是 MSB）
  位 7：如果设置，允许来自任何人的消息
@@ -320,7 +320,7 @@ bytes 0-x: 隧道构建回复选项（Mapping）
 Mapping 的最大大小（包括长度字段）为 201 字节，Mapping 长度字段的最大值为199。
 
 回复字节是以下值之一
-如 [Tunnel-Creation](/docs/specs/tunnel-creation/) 中定义，以避免指纹：
+如 [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) 中定义，以避免指纹：
 
 - 0x00（接受）
 - 30（TUNNEL_REJECT_BANDWIDTH）

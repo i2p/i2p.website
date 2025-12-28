@@ -73,7 +73,7 @@ Bu, öneri 145'teki (Öneri145) kripto türleri 1-3 için önerilen ECIES-P256 y
 
 ### Tünel Oluşturma Mesajı
 
-ECIES yerine ElGamal kullanmak için tünel oluşturma spesifikasyonunda [Tünel-Oluşumu](/docs/specs/tunnel-creation/) çeşitli değişiklikler gereklidir. Ayrıca, tünel oluşturma mesajlarının güvenliğini artırmak için geliştirmeler yapacağız.
+ECIES yerine ElGamal kullanmak için tünel oluşturma spesifikasyonunda [Tünel-Oluşumu](/docs/specs/implementation/#tunnel-creation-ecies) çeşitli değişiklikler gereklidir. Ayrıca, tünel oluşturma mesajlarının güvenliğini artırmak için geliştirmeler yapacağız.
 
 Birinci aşamada, ECIES geçişleri için Oluşturma İstek Kaydı ve Oluşturma Yanıt Kaydı'nın formatını ve şifrelemesini değiştireceğiz. Bu değişiklikler mevcut ElGamal yönlendiricilerle uyumlu olacak. Bu değişiklikler öneri 152'de tanımlanmıştır [Öneri152](/proposals/152-ecies-tunnels/).
 

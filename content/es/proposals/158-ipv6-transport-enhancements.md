@@ -38,14 +38,14 @@ La solución es añadir dos nuevas "capacidades" o capacidades a la Información
 
 ### Presentadores IPv6
 
-Nuestras especificaciones [SSU](/docs/specs/ssu2/) y [SSU-SPEC](/docs/specs/ssu/) contienen errores e inconsistencias sobre si los presentadores IPv6 son compatibles para presentaciones IPv4.
+Nuestras especificaciones [SSU](/docs/specs/ssu2/) y [SSU-SPEC](/docs/legacy/ssu/) contienen errores e inconsistencias sobre si los presentadores IPv6 son compatibles para presentaciones IPv4.
 En cualquier caso, esto nunca se ha implementado ni en Java I2P ni en i2pd.
 Esto necesita ser corregido.
 
 
 ### Presentaciones IPv6
 
-Nuestras especificaciones [SSU](/docs/specs/ssu2/) y [SSU-SPEC](/docs/specs/ssu/) dejan claro que
+Nuestras especificaciones [SSU](/docs/specs/ssu2/) y [SSU-SPEC](/docs/legacy/ssu/) dejan claro que
 las presentaciones IPv6 no son compatibles.
 Esto fue bajo la suposición de que IPv6 nunca está tras un cortafuegos.
 Esto claramente no es cierto, y necesitamos mejorar el soporte para routers IPv6 tras un cortafuegos.
@@ -202,7 +202,7 @@ aunque en realidad no actuaban como un presentador vía IPv6.
 Por lo tanto, los routers solo deberían confiar en la capacidad 'C' en una dirección IPv6 si la versión del router es 0.9.50 o superior.
 
 
-[SSU-SPEC](/docs/specs/ssu/) dice actualmente (Solicitud de retransmisión):
+[SSU-SPEC](/docs/legacy/ssu/) dice actualmente (Solicitud de retransmisión):
 
 La dirección IP solo se incluye si es diferente de la dirección y puerto de origen del paquete.
 En la implementación actual, la longitud de IP es siempre 0 y el puerto es siempre 0,
@@ -232,7 +232,7 @@ También hemos descrito esto como "parte 2" de la propuesta.
 
 La comunicación Bob-Charlie y Alice-Charlie es solo a través de IPv4.
 
-[SSU-SPEC](/docs/specs/ssu/) dice actualmente (Solicitud de retransmisión):
+[SSU-SPEC](/docs/legacy/ssu/) dice actualmente (Solicitud de retransmisión):
 
 No hay planes para implementar retransmisión para IPv6.
 
@@ -240,7 +240,7 @@ Cambiar para decir:
 
 La retransmisión para IPv6 es soportada desde la versión 0.9.xx
 
-[SSU-SPEC](/docs/specs/ssu/) dice actualmente (Respuesta de retransmisión):
+[SSU-SPEC](/docs/legacy/ssu/) dice actualmente (Respuesta de retransmisión):
 
 La dirección IP de Charlie debe ser IPv4, ya que esa es la dirección a la que Alice enviará la Solicitud de Sesión después del Hole Punch. No hay planes para implementar retransmisión para IPv6.
 
@@ -250,7 +250,7 @@ La dirección IP de Charlie puede ser IPv4 o, desde la versión 0.9.xx, IPv6.
 Esa es la dirección a la que Alice enviará la Solicitud de Sesión después del Hole Punch.
 La retransmisión para IPv6 es soportada desde la versión 0.9.xx
 
-[SSU-SPEC](/docs/specs/ssu/) dice actualmente (Introducción de retransmisión):
+[SSU-SPEC](/docs/legacy/ssu/) dice actualmente (Introducción de retransmisión):
 
 La dirección IP de Alice siempre es de 4 bytes en la implementación actual, porque Alice está tratando de conectarse a Charlie vía IPv4.
 Este mensaje debe enviarse a través de una conexión IPv4 establecida,

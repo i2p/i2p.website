@@ -46,7 +46,7 @@ Post-kvantové šifrování a podpisy podle návrhu v [/proposals/169-pq-crypto/
 
 ## Motivace
 
-Tento návrh používá repliable datagram2, repliable datagram3 a raw datagramy, jak jsou definovány v [/docs/specs/datagrams/](/docs/specs/datagrams/). Datagram2 a Datagram3 jsou nové varianty repliable datagramů, definované v Návrhu 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 přidává ochranu proti replay útokům a podporu offline podpisů. Datagram3 je menší než starý formát datagramu, ale bez autentifikace.
+Tento návrh používá repliable datagram2, repliable datagram3 a raw datagramy, jak jsou definovány v [/docs/api/datagrams/](/docs/api/datagrams/). Datagram2 a Datagram3 jsou nové varianty repliable datagramů, definované v Návrhu 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 přidává ochranu proti replay útokům a podporu offline podpisů. Datagram3 je menší než starý formát datagramu, ale bez autentifikace.
 
 ### BEP 15
 

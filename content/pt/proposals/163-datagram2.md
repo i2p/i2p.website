@@ -132,9 +132,9 @@ O número padrão de protocolo I2CP para datagramas repliáveis é PROTO_DATAGRA
 
 ### Protocolo
 
-O novo número de protocolo I2CP para Datagram2 é 19. Adicione-o como PROTO_DATAGRAM2 a [I2CP](/docs/protocol/i2cp/).
+O novo número de protocolo I2CP para Datagram2 é 19. Adicione-o como PROTO_DATAGRAM2 a [I2CP](/docs/specs/i2cp/).
 
-O novo número de protocolo I2CP para Datagram3 é 20. Adicione-o como PROTO_DATAGRAM2 a [I2CP](/docs/protocol/i2cp/).
+O novo número de protocolo I2CP para Datagram3 é 20. Adicione-o como PROTO_DATAGRAM2 a [I2CP](/docs/specs/i2cp/).
 
 
 ### Formato Datagram2
@@ -359,8 +359,8 @@ Aplicativos UDP SAM: Nenhum conhecido
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)

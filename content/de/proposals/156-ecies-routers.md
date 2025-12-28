@@ -88,7 +88,7 @@ indem sie an mehreren Stellen in der Codebasis Prüfungen hinzufügten. Die meis
 
 ### Tunnelaufbau-Nachricht
 
-Um ECIES anstelle von ElGamal zu verwenden, sind mehrere Änderungen an der Tunnel-Erstellungsspezifikation [Tunnel-Creation](/docs/specs/tunnel-creation/)
+Um ECIES anstelle von ElGamal zu verwenden, sind mehrere Änderungen an der Tunnel-Erstellungsspezifikation [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
 erforderlich. Darüber hinaus werden wir Verbesserungen an den Tunnelaufbau-Nachrichten vornehmen,
 um die Sicherheit zu erhöhen.
 

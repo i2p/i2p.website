@@ -67,7 +67,7 @@ Có nhiều cách để gửi dữ liệu qua I2P, mỗi cách có ưu và như�
 
 ### Thư viện Streaming
 
-[Thư viện streaming đầy đủ](/spec/api/streaming/) hiện là giao diện tiêu chuẩn. Nó cho phép lập trình sử dụng các socket giống TCP, như được giải thích trong [Hướng dẫn phát triển Streaming](#developing-with-the-streaming-library).
+[Thư viện streaming đầy đủ](/docs/specs/streaming/) hiện là giao diện tiêu chuẩn. Nó cho phép lập trình sử dụng các socket giống TCP, như được giải thích trong [Hướng dẫn phát triển Streaming](#developing-with-the-streaming-library).
 
 ### BOB
 

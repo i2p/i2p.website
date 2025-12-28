@@ -208,7 +208,7 @@ Crypto type 0 là ElGamal. Crypto types 1-3 được dành riêng cho ECIES-ECDH
 
 ### Tóm tắt Thiết kế Mật mã học
 
-Đề xuất này cung cấp các yêu cầu dựa trên Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Phiên bản 34, 2018-07-11). Noise có các thuộc tính tương tự như giao thức Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), là cơ sở cho giao thức [SSU](/docs/specs/ssu/). Theo thuật ngữ của Noise, Alice là bên khởi tạo, và Bob là bên phản hồi.
+Đề xuất này cung cấp các yêu cầu dựa trên Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Phiên bản 34, 2018-07-11). Noise có các thuộc tính tương tự như giao thức Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), là cơ sở cho giao thức [SSU](/docs/legacy/ssu/). Theo thuật ngữ của Noise, Alice là bên khởi tạo, và Bob là bên phản hồi.
 
 Đề xuất này dựa trên giao thức Noise Noise_IK_25519_ChaChaPoly_SHA256. (Định danh thực tế cho hàm dẫn xuất khóa ban đầu là "Noise_IKelg2_25519_ChaChaPoly_SHA256" để chỉ ra các mở rộng I2P - xem phần KDF 1 bên dưới) Giao thức Noise này sử dụng các nguyên hàm sau:
 

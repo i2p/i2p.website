@@ -4,7 +4,7 @@ description: "On-disk blockfile storage format used by I2P for hostname resoluti
 slug: "blockfile"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## Overview

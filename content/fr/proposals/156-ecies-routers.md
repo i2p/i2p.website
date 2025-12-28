@@ -89,7 +89,7 @@ endroits dans la base de code. La plupart de ce travail a été effectué à la 
 
 ### Message de construction de tunnel
 
-Plusieurs changements à la spécification de création de tunnel [Tunnel-Creation](/docs/specs/tunnel-creation/)
+Plusieurs changements à la spécification de création de tunnel [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
 sont nécessaires pour utiliser ECIES au lieu d'ElGamal.
 De plus, nous apporterons des améliorations aux messages de construction de tunnel
 pour accroître la sécurité.
@@ -508,5 +508,5 @@ Version cible : 0.9.53, début 2022.
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop154](/proposals/154-ecies-lookups/)
 * [Prop157](/proposals/157-new-tbm/)
-* [Tunnel-Creation](/docs/specs/tunnel-creation/)
+* [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
 * [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)

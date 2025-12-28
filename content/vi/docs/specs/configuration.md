@@ -4,7 +4,7 @@ description: "Các tùy chọn cấu hình và định dạng dành cho I2P rout
 slug: "configuration"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## Tổng quan

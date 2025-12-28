@@ -82,7 +82,7 @@ ElGamal 速度较慢，需要在其使用的所有地方进行替换。
 
 ### 隧道构建消息
 
-为了使用 ECIES 而不是 ElGamal，需要对隧道创建规范 [Tunnel-Creation](/docs/specs/tunnel-creation/) 进行几项更改。
+为了使用 ECIES 而不是 ElGamal，需要对隧道创建规范 [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) 进行几项更改。
 此外，我们将改进隧道构建消息以提高安全性。
 
 在第一阶段，我们将更改 ECIES 跳的构建请求记录和构建响应记录的格式和加密。

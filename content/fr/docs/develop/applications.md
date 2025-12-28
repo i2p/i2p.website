@@ -67,7 +67,7 @@ Il existe plusieurs moyens d'envoyer des données via I2P, chacun avec ses propr
 
 ### Bibliothèque de streaming
 
-La [bibliothèque de streaming complète](/spec/api/streaming/) est désormais l'interface standard. Elle permet de programmer en utilisant des sockets de type TCP, comme expliqué dans le [guide de développement Streaming](#developing-with-the-streaming-library).
+La [bibliothèque de streaming complète](/docs/specs/streaming/) est désormais l'interface standard. Elle permet de programmer en utilisant des sockets de type TCP, comme expliqué dans le [guide de développement Streaming](#developing-with-the-streaming-library).
 
 ### BOB
 

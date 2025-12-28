@@ -4,7 +4,7 @@ description: "I2P routers 和客户端的配置选项与格式"
 slug: "configuration"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## 概述

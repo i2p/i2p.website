@@ -41,7 +41,7 @@ bu yüzden IPv4 destekli ve IPv6 destekli olmadığını varsayıyoruz.
 
 ### IPv6 Tanıtıcıları
 
-Spesifikasyonlarımız [SSU](/docs/specs/ssu2/) ve [SSU-SPEC](/docs/specs/ssu/),
+Spesifikasyonlarımız [SSU](/docs/specs/ssu2/) ve [SSU-SPEC](/docs/legacy/ssu/),
 IPv6 tanıtıcılarının IPv4 tanıtımları için desteklenip desteklenmediği konusunda hatalar ve tutarsızlıklar içermektedir.
 Her durumda, bu ne Java I2P'de ne de i2pd'de uygulanmamıştır.
 Bu düzeltilmelidir.
@@ -49,7 +49,7 @@ Bu düzeltilmelidir.
 
 ### IPv6 Tanıtımları
 
-Spesifikasyonlarımız [SSU](/docs/specs/ssu2/) ve [SSU-SPEC](/docs/specs/ssu/), 
+Spesifikasyonlarımız [SSU](/docs/specs/ssu2/) ve [SSU-SPEC](/docs/legacy/ssu/), 
 IPv6 tanıtımlarının desteklenmediğini açıkça belirtmektedir.
 Bu varsayım altında, IPv6'nın asla güvenlik duvarı arkasında olmayacağı düşünüldü.
 Bu açıkça doğru değil ve güvenlik duvarı arkasındaki IPv6 yönlendiricileri için desteğimizi geliştirmemiz gerekiyor.
@@ -206,7 +206,7 @@ ancak bunlar gerçekte IPv6 üzerinden tanıtıcı olarak hareket etmiyorlardı.
 Bu nedenle, yönlendiriciler bir IPv6 adresinde 'C' yeteneğine yalnızca yönlendirici sürümü 0.9.50 veya üstü ise güvenmelidir.
 
 
-[SSU-SPEC](/docs/specs/ssu/) şu anda (Aktarım İsteği) diyor ki:
+[SSU-SPEC](/docs/legacy/ssu/) şu anda (Aktarım İsteği) diyor ki:
 
 IP adresi yalnızca paket kaynağı adresi ve portundan farklı gelmesi durumunda dahil edilir.
 Mevcut uygulamada, IP uzunluğu her zaman 0 ve port her zaman 0'dır,
@@ -237,7 +237,7 @@ Bunu ayrıca önerinin "ikinci kısmı" olarak da tanımladık.
 
 Bob-Charlie ve Alice-Charlie iletişimi yalnızca IPv4 üzerinden yapılır.
 
-[SSU-SPEC](/docs/specs/ssu/) şu anda (Aktarım İsteği) diyor ki:
+[SSU-SPEC](/docs/legacy/ssu/) şu anda (Aktarım İsteği) diyor ki:
 
 IPv6 için aktarıcı uygulama planları yoktur.
 
@@ -245,7 +245,7 @@ IPv6 için aktarıcı uygulama planları yoktur.
 
 IPv6 için aktarıcı desteği 0.9.xx sürümünden itibaren desteklenmektedir
 
-[SSU-SPEC](/docs/specs/ssu/) şu anda (Relay Response) diyor ki:
+[SSU-SPEC](/docs/legacy/ssu/) şu anda (Relay Response) diyor ki:
 
 Charlie's IP adresi IPv4 olmalıdır, çünkü bu, Alice'in Hole Punch'tan sonra SessionRequest'i göndereceği adrestir.
 IPv6 için aktarıcı planları yoktur.
@@ -256,7 +256,7 @@ Charlie's IP adresi IPv4 olabilir ya da 0.9.xx sürümünden itibaren IPv6 olabi
 Bu, Alice'in Hole Punch'tan sonra SessionRequest'i göndereceği adrestir.
 IPv6 için aktarıcı desteği 0.9.xx sürümünden itibaren desteklenmektedir
 
-[SSU-SPEC](/docs/specs/ssu/) şu anda (Relay Intro) diyor ki:
+[SSU-SPEC](/docs/legacy/ssu/) şu anda (Relay Intro) diyor ki:
 
 Alice'in IP adresi her zaman 4 bayt uzunluğundadır çünkü Alice, Charlie'ye IPv4 üzerinden bağlanmaya çalışmaktadır.
 Bu mesaj, Bob'un Alice'e RelayResponse içinde dönecek Charlie'nin IPv4 adresini bilmesinin tek yolu olan 

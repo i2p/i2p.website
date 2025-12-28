@@ -4,7 +4,7 @@ description: "Opciones y formatos de configuración para I2P routers y clientes"
 slug: "configuration"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## Descripción general

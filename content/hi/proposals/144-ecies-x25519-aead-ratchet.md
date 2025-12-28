@@ -202,7 +202,7 @@ Crypto type 0 ElGamal है। Crypto types 1-3 ECIES-ECDH-AES-SessionTag क�
 
 ### क्रिप्टोग्राफिक डिज़ाइन का सारांश
 
-यह प्रस्ताव Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11) पर आधारित आवश्यकताएं प्रदान करता है। Noise में Station-To-Station protocol [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) के समान गुण हैं, जो [SSU](/docs/specs/ssu/) protocol का आधार है। Noise की भाषा में, Alice initiator है, और Bob responder है।
+यह प्रस्ताव Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11) पर आधारित आवश्यकताएं प्रदान करता है। Noise में Station-To-Station protocol [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) के समान गुण हैं, जो [SSU](/docs/legacy/ssu/) protocol का आधार है। Noise की भाषा में, Alice initiator है, और Bob responder है।
 
 यह प्रस्ताव Noise protocol Noise_IK_25519_ChaChaPoly_SHA256 पर आधारित है। (प्रारंभिक key derivation function के लिए वास्तविक identifier "Noise_IKelg2_25519_ChaChaPoly_SHA256" है जो I2P extensions को दर्शाता है - नीचे KDF 1 section देखें) यह Noise protocol निम्नलिखित primitives का उपयोग करता है:
 

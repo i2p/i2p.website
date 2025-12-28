@@ -128,10 +128,10 @@ Yanıtlanabilir datagramlar için standart I2CP protokol numarası PROTO_DATAGRA
 ### Protokol
 
 Datagram2 için yeni I2CP protokol numarası 19'dur.
-Bunu [I2CP](/docs/protocol/i2cp/) 'ye PROTO_DATAGRAM2 olarak ekleyin.
+Bunu [I2CP](/docs/specs/i2cp/) 'ye PROTO_DATAGRAM2 olarak ekleyin.
 
 Datagram3 için yeni I2CP protokol numarası 20'dir.
-Bunu [I2CP](/docs/protocol/i2cp/) 'ye PROTO_DATAGRAM2 olarak ekleyin.
+Bunu [I2CP](/docs/specs/i2cp/) 'ye PROTO_DATAGRAM2 olarak ekleyin.
 
 
 ### Datagram2 Formatı
@@ -356,8 +356,8 @@ SAM UDP uygulamaları: Bilinen yok
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)

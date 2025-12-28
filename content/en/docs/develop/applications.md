@@ -69,7 +69,7 @@ There are several means of sending data over I2P, each with their own pros and c
 
 ### Streaming Lib
 
-The [full streaming library](/spec/api/streaming/) is now the standard interface. It allows programming using TCP-like sockets, as explained in the [Streaming development guide](#developing-with-the-streaming-library).
+The [full streaming library](/docs/specs/streaming/) is now the standard interface. It allows programming using TCP-like sockets, as explained in the [Streaming development guide](#developing-with-the-streaming-library).
 
 ### BOB
 

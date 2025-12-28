@@ -208,7 +208,7 @@ O tipo de criptografia 0 é ElGamal. Os tipos de criptografia 1-3 são reservado
 
 ### Resumo do Design Criptográfico
 
-Esta proposta fornece os requisitos baseados no Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revisão 34, 2018-07-11). O Noise tem propriedades similares ao protocolo Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), que é a base para o protocolo [SSU](/docs/specs/ssu/). Na terminologia do Noise, Alice é a iniciadora e Bob é o respondedor.
+Esta proposta fornece os requisitos baseados no Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revisão 34, 2018-07-11). O Noise tem propriedades similares ao protocolo Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), que é a base para o protocolo [SSU](/docs/legacy/ssu/). Na terminologia do Noise, Alice é a iniciadora e Bob é o respondedor.
 
 Esta proposta é baseada no protocolo Noise Noise_IK_25519_ChaChaPoly_SHA256. (O identificador real para a função de derivação de chave inicial é "Noise_IKelg2_25519_ChaChaPoly_SHA256" para indicar extensões I2P - veja a seção KDF 1 abaixo) Este protocolo Noise usa as seguintes primitivas:
 

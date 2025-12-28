@@ -4,7 +4,7 @@ description: "Spécification unifiée pour la construction, le chiffrement et le
 slug: "implementation"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 reviewStatus: "needs-review"
 ---
 
@@ -182,7 +182,7 @@ Bien que les tunnels ressemblent à des circuits, les routers les traitent comme
 - Les participants considèrent des fragments de taille fixe ; les passerelles/points d’extrémité rejettent en fonction de la taille combinée des fragments, en pénalisant en priorité les charges utiles volumineuses.
 - Les points d’extrémité sortants rejettent avant les autres rôles afin de gaspiller le moins possible de ressources réseau.
 
-La remise garantie est laissée aux couches supérieures telles que la [bibliothèque de streaming](/spec/api/streaming/). Les applications qui exigent de la fiabilité doivent prendre en charge elles-mêmes la retransmission et les accusés de réception.
+La remise garantie est laissée aux couches supérieures telles que la [bibliothèque de streaming](/docs/specs/streaming/). Les applications qui exigent de la fiabilité doivent prendre en charge elles-mêmes la retransmission et les accusés de réception.
 
 ---
 

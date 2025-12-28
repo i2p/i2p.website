@@ -47,4 +47,4 @@ Refer to:
 - [SAM v1](/docs/legacy/sam/)
 - [SAM v3](/docs/api/samv3/)
 - [Datagram API](/docs/api/datagrams/)
-- [Streaming Protocol](/spec/api/streaming/)
+- [Streaming Protocol](/docs/specs/streaming/)

@@ -130,10 +130,10 @@ Datagram2 из-за поля from и накладных расходов на п
 ### Протокол
 
 Новый номер протокола I2CP для Datagram2 - 19.
-Добавьте его как PROTO_DATAGRAM2 в [I2CP](/docs/protocol/i2cp/).
+Добавьте его как PROTO_DATAGRAM2 в [I2CP](/docs/specs/i2cp/).
 
 Новый номер протокола I2CP для Datagram3 - 20.
-Добавьте его как PROTO_DATAGRAM2 в [I2CP](/docs/protocol/i2cp/).
+Добавьте его как PROTO_DATAGRAM2 в [I2CP](/docs/specs/i2cp/).
 
 
 ### Формат Datagram2
@@ -358,8 +358,8 @@ SAM UDP приложения: Неизвестно
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)

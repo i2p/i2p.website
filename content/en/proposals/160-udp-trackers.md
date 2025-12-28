@@ -80,7 +80,7 @@ overhead where possible before PQ crypto is adopted in I2P.
 ## Design
 
 This proposal uses repliable datagram2, repliable datagram3, and raw datagrams,
-as defined in [/docs/specs/datagrams/](/docs/specs/datagrams/).
+as defined in [/docs/api/datagrams/](/docs/api/datagrams/).
 Datagram2 and Datagram3 are new variants of repliable datagrams,
 defined in Proposal 163 [/proposals/163-datagram2/](/proposals/163-datagram2/).
 Datagram2 adds replay resistance and offline signature support.
@@ -499,7 +499,7 @@ Other implementations will follow as desired after the testing and verification 
 
 * [BEP15](http://www.bittorrent.org/beps/bep_0015.html)
 * [BEP41](http://www.bittorrent.org/beps/bep_0041.html)
-* [DATAGRAMS](/docs/specs/datagrams/)
+* [DATAGRAMS](/docs/api/datagrams/)
 * [Prop163](/proposals/163-datagram2/)
 * [Prop169](/proposals/169-pq-crypto/)
 * [SAMv3](/docs/api/samv3/)

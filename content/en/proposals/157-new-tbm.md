@@ -255,7 +255,7 @@ bytes   x-153: random padding (see below)
 ```
 
 
-The flags field is the same as defined in [Tunnel-Creation](/docs/specs/tunnel-creation/) and contains the following:
+The flags field is the same as defined in [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) and contains the following:
 
  Bit order: 76543210 (bit 7 is MSB)
  bit 7: if set, allow messages from anyone
@@ -333,7 +333,7 @@ The maximum size of the Mapping (including the length field) is 201 bytes,
 and the maximum value of the Mapping length field is 199.
 
 The reply byte is one of the following values
-as defined in [Tunnel-Creation](/docs/specs/tunnel-creation/) to avoid fingerprinting:
+as defined in [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) to avoid fingerprinting:
 
 - 0x00 (accept)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -632,6 +632,6 @@ it uses an 8-byte tag rather than the 32-byte ephemeral key for a full 'N' messa
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop154](/proposals/154-ecies-lookups/)
 * [Prop156](/proposals/156-ecies-routers/)
-* [Tunnel-Creation](/docs/specs/tunnel-creation/)
+* [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
 * [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
 

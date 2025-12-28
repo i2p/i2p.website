@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 type: docs
 ---
 
-Jak vyžaduje náš [model hrozeb](/docs/how/threat-model/) (mimo jiné důvody), software vyvinutý pro podporu anonymní komunikační sítě, kterou nazýváme I2P, musí být volně dostupný, s otevřeným zdrojovým kódem a uživatelsky upravitelný. Abychom splnili tato kritéria, využíváme různé právní a softwarové inženýrské techniky, abychom odstranili co nejvíce překážek pro ty, kteří zvažují využití nebo přispění k projektu I2P.
+Jak vyžaduje náš [model hrozeb](/docs/overview/threat-model//) (mimo jiné důvody), software vyvinutý pro podporu anonymní komunikační sítě, kterou nazýváme I2P, musí být volně dostupný, s otevřeným zdrojovým kódem a uživatelsky upravitelný. Abychom splnili tato kritéria, využíváme různé právní a softwarové inženýrské techniky, abychom odstranili co nejvíce překážek pro ty, kteří zvažují využití nebo přispění k projektu I2P.
 
 Ačkoli níže uvedené informace mohou být matoucí spíše než jednoduché prohlášení "I2P je BSD", "I2P je GPL" nebo "I2P je veřejná doména", krátká odpověď na otázku "Jak je I2P licencováno?" zní takto:
 

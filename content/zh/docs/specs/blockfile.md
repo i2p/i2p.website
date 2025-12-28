@@ -4,7 +4,7 @@ description: "I2P 用于主机名解析的基于磁盘的 blockfile（块文件�
 slug: "blockfile"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## 概述

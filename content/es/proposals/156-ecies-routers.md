@@ -89,7 +89,7 @@ lugares en la base de código. La mayor parte de este trabajo se realizó a medi
 
 ### Mensaje de Construcción de Túnel
 
-Se requieren varios cambios a la especificación de creación de túneles [Tunnel-Creation](/docs/specs/tunnel-creation/)
+Se requieren varios cambios a la especificación de creación de túneles [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
 para usar ECIES en lugar de ElGamal.
 Además, realizaremos mejoras en los mensajes de construcción de túneles
 para aumentar la seguridad.

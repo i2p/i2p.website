@@ -4,7 +4,7 @@ description: "I2P routers और क्लाइंट्स के लिए �
 slug: "configuration"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## अवलोकन

@@ -89,7 +89,7 @@ vị trí trong cơ sở mã. Hầu hết công việc này được hoàn thàn
 
 ### Tin Nhắn Xây Dựng Đường Hầm
 
-Một số thay đổi đối với đặc tả tạo đường hầm [Tunnel-Creation](/docs/specs/tunnel-creation/)
+Một số thay đổi đối với đặc tả tạo đường hầm [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
 được yêu cầu để sử dụng ECIES thay vì ElGamal.
 Ngoài ra, chúng tôi sẽ cải thiện các tin nhắn xây dựng đường hầm
 để tăng cường bảo mật.
@@ -501,5 +501,5 @@ Phiên bản mục tiêu: 0.9.53, đầu 2022.
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop154](/proposals/154-ecies-lookups/)
 * [Prop157](/proposals/157-new-tbm/)
-* [Tunnel-Creation](/docs/specs/tunnel-creation/)
+* [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
 * [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)

@@ -243,7 +243,7 @@ octets   x-153: remplissage aléatoire (voir ci-dessous)
 ```
 
 
-Le champ de drapeaux est le même que celui défini dans [Tunnel-Creation](/docs/specs/tunnel-creation/) et contient ce qui suit :
+Le champ de drapeaux est le même que celui défini dans [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) et contient ce qui suit :
 
  Ordre des bits : 76543210 (bit 7 est le MSB)
  bit 7 : si défini, autoriser les messages de n'importe qui
@@ -321,7 +321,7 @@ La taille maximum du Mapping (incluant le champ de longueur) est de 201 octets,
 et la valeur maximum du champ de longueur du Mapping est de 199.
 
 L'octet de réponse est une des valeurs suivantes
-telles que définies dans [Tunnel-Creation](/docs/specs/tunnel-creation/) pour éviter la collecte d'empreintes :
+telles que définies dans [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) pour éviter la collecte d'empreintes :
 
 - 0x00 (acceptation)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

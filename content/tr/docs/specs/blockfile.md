@@ -4,7 +4,7 @@ description: "I2P tarafından ana bilgisayar adı çözümlemesi için kullanıl
 slug: "blockfile"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## Genel Bakış

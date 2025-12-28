@@ -46,7 +46,7 @@ A criptografia e assinaturas pós-quânticas como previstas em [/proposals/169-p
 
 ## Motivação
 
-Esta proposta usa repliable datagram2, repliable datagram3, e raw datagrams, conforme definido em [/docs/specs/datagrams/](/docs/specs/datagrams/). Datagram2 e Datagram3 são novas variantes de repliable datagrams, definidas na Proposta 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 adiciona resistência a replay e suporte a assinatura offline. Datagram3 é menor que o formato antigo de datagrama, mas sem autenticação.
+Esta proposta usa repliable datagram2, repliable datagram3, e raw datagrams, conforme definido em [/docs/api/datagrams/](/docs/api/datagrams/). Datagram2 e Datagram3 são novas variantes de repliable datagrams, definidas na Proposta 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 adiciona resistência a replay e suporte a assinatura offline. Datagram3 é menor que o formato antigo de datagrama, mas sem autenticação.
 
 ### BEP 15
 

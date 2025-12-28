@@ -4,7 +4,7 @@ description: "Formát úložiště typu blockfile (blokový soubor) na disku, kt
 slug: "blockfile"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## Přehled

@@ -177,7 +177,7 @@ HostReplyMessage를 확장하여 요청된 경우 옵션 매핑을 추가해야 
 
 ### 구성 옵션
 
-[I2CP-OPTIONS](/docs/protocol/i2cp/)에 다음을 추가합니다:
+[I2CP-OPTIONS](/docs/specs/i2cp/)에 다음을 추가합니다:
 
 i2cp.leaseSetOption.nnn
 

@@ -245,7 +245,7 @@ bytes     0-3: المعرف النفق لتلقي الرسائل كما، غير
 ```
 
 
-حقل الأعلام هو نفس التعريف في [Tunnel-Creation](/docs/specs/tunnel-creation/) ويحتوي على ما يلي::
+حقل الأعلام هو نفس التعريف في [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) ويحتوي على ما يلي::
 
 ترتيب البتات: 76543210 (البت 7 هو MSB)
  البت 7: إذا تمت المجموعة، السماح للرسائل من أي شخص
@@ -325,7 +325,7 @@ bytes    0-x: خيارات الردود على بناء النفق (خرائط)
 والحد الأقصى لقيمة حقل طول الخرائط هو 199.
 
 بايت الرد هو واحد من القيم التالية
-كما هو معرف في [Tunnel-Creation](/docs/specs/tunnel-creation/) لتجنب استخراج البصمة:
+كما هو معرف في [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) لتجنب استخراج البصمة:
 
 - 0x00 (قبول)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

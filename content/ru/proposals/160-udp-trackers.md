@@ -46,7 +46,7 @@ Post-Quantum шифрование и подписи, как предусмотр
 
 ## Мотивация
 
-Это предложение использует repliable datagram2, repliable datagram3 и raw datagrams, как определено в [/docs/specs/datagrams/](/docs/specs/datagrams/). Datagram2 и Datagram3 — это новые варианты repliable datagrams, определенные в Предложении 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 добавляет защиту от повторного воспроизведения и поддержку автономных подписей. Datagram3 меньше по размеру, чем старый формат datagram, но без аутентификации.
+Это предложение использует repliable datagram2, repliable datagram3 и raw datagrams, как определено в [/docs/api/datagrams/](/docs/api/datagrams/). Datagram2 и Datagram3 — это новые варианты repliable datagrams, определенные в Предложении 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 добавляет защиту от повторного воспроизведения и поддержку автономных подписей. Datagram3 меньше по размеру, чем старый формат datagram, но без аутентификации.
 
 ### BEP 15
 

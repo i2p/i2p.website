@@ -4,7 +4,7 @@ description: "호스트명 해석을 위해 I2P에서 사용하는 디스크 기
 slug: "blockfile"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## 개요

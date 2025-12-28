@@ -132,10 +132,10 @@ bittorrent UDP 通告，已在 i2psnark 和 zzzot 中实现，
 ### 协议
 
 Datagram2 的新 I2CP 协议编号为19。
-将其添加为 PROTO_DATAGRAM2 到 [I2CP](/docs/protocol/i2cp/)。
+将其添加为 PROTO_DATAGRAM2 到 [I2CP](/docs/specs/i2cp/)。
 
 Datagram3 的新 I2CP 协议编号为20。
-将其添加为 PROTO_DATAGRAM2 到 [I2CP](/docs/protocol/i2cp/)。
+将其添加为 PROTO_DATAGRAM2 到 [I2CP](/docs/specs/i2cp/)。
 
 
 ### Datagram2 格式
@@ -358,8 +358,8 @@ SAM UDP 应用：未知
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)

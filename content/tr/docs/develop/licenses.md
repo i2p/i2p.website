@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 type: docs
 ---
 
-[Tehdit modelimizin](/docs/how/threat-model/) gerektirdiği şekilde (diğer nedenlerle birlikte), I2P adını verdiğimiz anonim iletişim ağını desteklemek için geliştirilen yazılımın özgürce erişilebilir, açık kaynaklı ve kullanıcı tarafından değiştirilebilir olması gerekmektedir. Bu kriterleri karşılamak için, I2P çabasından yararlanmayı veya ona katkıda bulunmayı düşünenler için giriş engellerini olabildiğince kaldırmak amacıyla çeşitli yasal ve yazılım mühendisliği tekniklerinden faydalanıyoruz.
+[Tehdit modelimizin](/docs/overview/threat-model//) gerektirdiği şekilde (diğer nedenlerle birlikte), I2P adını verdiğimiz anonim iletişim ağını desteklemek için geliştirilen yazılımın özgürce erişilebilir, açık kaynaklı ve kullanıcı tarafından değiştirilebilir olması gerekmektedir. Bu kriterleri karşılamak için, I2P çabasından yararlanmayı veya ona katkıda bulunmayı düşünenler için giriş engellerini olabildiğince kaldırmak amacıyla çeşitli yasal ve yazılım mühendisliği tekniklerinden faydalanıyoruz.
 
 Aşağıdaki bilgiler basitçe "I2P BSD lisanslıdır", "I2P GPL lisanslıdır" veya "I2P kamu malıdır" demekten daha kafa karıştırıcı olsa da, "I2P nasıl lisanslanmıştır?" sorusunun kısa cevabı şudur:
 

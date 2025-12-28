@@ -46,7 +46,7 @@ Post-Quantum-Verschlüsselung und -Signaturen, wie in [/proposals/169-pq-crypto/
 
 ## Motivation
 
-Dieser Vorschlag verwendet repliable datagram2, repliable datagram3 und raw datagrams, wie in [/docs/specs/datagrams/](/docs/specs/datagrams/) definiert. Datagram2 und Datagram3 sind neue Varianten von repliable datagrams, die in Vorschlag 163 [/proposals/163-datagram2/](/proposals/163-datagram2/) definiert sind. Datagram2 fügt Replay-Resistenz und Offline-Signatur-Unterstützung hinzu. Datagram3 ist kleiner als das alte Datagram-Format, aber ohne Authentifizierung.
+Dieser Vorschlag verwendet repliable datagram2, repliable datagram3 und raw datagrams, wie in [/docs/api/datagrams/](/docs/api/datagrams/) definiert. Datagram2 und Datagram3 sind neue Varianten von repliable datagrams, die in Vorschlag 163 [/proposals/163-datagram2/](/proposals/163-datagram2/) definiert sind. Datagram2 fügt Replay-Resistenz und Offline-Signatur-Unterstützung hinzu. Datagram3 ist kleiner als das alte Datagram-Format, aber ohne Authentifizierung.
 
 ### BEP 15
 

@@ -46,7 +46,7 @@ toc: true
 
 ## الدافع
 
-هذا الاقتراح يستخدم repliable datagram2 و repliable datagram3 و raw datagrams، كما هو محدد في [/docs/specs/datagrams/](/docs/specs/datagrams/). Datagram2 و Datagram3 هما متغيران جديدان من repliable datagrams، محددان في الاقتراح 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 يضيف مقاومة إعادة التشغيل ودعم التوقيع في وضع عدم الاتصال. Datagram3 أصغر من تنسيق datagram القديم، ولكن بدون مصادقة.
+هذا الاقتراح يستخدم repliable datagram2 و repliable datagram3 و raw datagrams، كما هو محدد في [/docs/api/datagrams/](/docs/api/datagrams/). Datagram2 و Datagram3 هما متغيران جديدان من repliable datagrams، محددان في الاقتراح 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 يضيف مقاومة إعادة التشغيل ودعم التوقيع في وضع عدم الاتصال. Datagram3 أصغر من تنسيق datagram القديم، ولكن بدون مصادقة.
 
 ### BEP 15
 

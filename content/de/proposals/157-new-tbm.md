@@ -244,7 +244,7 @@ bytes   x-153: zufällige Auffüllung (siehe unten)
 ```
 
 
-Das Flags-Feld ist dasselbe wie in [Tunnel-Creation](/docs/specs/tunnel-creation/) definiert und enthält die folgenden::
+Das Flags-Feld ist dasselbe wie in [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) definiert und enthält die folgenden::
 
  Bit-Reihenfolge: 76543210 (Bit 7 ist MSB)
  bit 7: wenn gesetzt, Nachrichten von allen zulassen
@@ -322,7 +322,7 @@ Die maximale Größe des Mappings (einschließlich des Längenfeldes) beträgt 2
 und der maximale Wert des Längenfeldes des Mappings beträgt 199.
 
 Das Antwort-Byte ist einer der folgenden Werte
-wie in [Tunnel-Creation](/docs/specs/tunnel-creation/) definiert, um Fingerprinting zu vermeiden:
+wie in [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) definiert, um Fingerprinting zu vermeiden:
 
 - 0x00 (akzeptieren)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

@@ -133,10 +133,10 @@ Le numéro de protocole I2CP standard pour les datagrammes réadmettables est PR
 ### Protocole
 
 Le nouveau numéro de protocole I2CP pour Datagram2 est 19.
-Ajoutez-le en tant que PROTO_DATAGRAM2 à [I2CP](/docs/protocol/i2cp/).
+Ajoutez-le en tant que PROTO_DATAGRAM2 à [I2CP](/docs/specs/i2cp/).
 
 Le nouveau numéro de protocole I2CP pour Datagram3 est 20.
-Ajoutez-le en tant que PROTO_DATAGRAM2 à [I2CP](/docs/protocol/i2cp/).
+Ajoutez-le en tant que PROTO_DATAGRAM2 à [I2CP](/docs/specs/i2cp/).
 
 
 ### Format Datagram2
@@ -361,8 +361,8 @@ Applications SAM UDP : Aucune connue
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)

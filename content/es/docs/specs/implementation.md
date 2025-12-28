@@ -4,7 +4,7 @@ description: "Especificación unificada para la creación, el cifrado y el trans
 slug: "implementation"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 reviewStatus: "needs-review"
 ---
 
@@ -182,7 +182,7 @@ Aunque los tunnels se asemejan a circuitos, los routers los tratan como colas de
 - Los participantes consideran fragmentos de tamaño fijo; las puertas de enlace/extremos descartan en función del tamaño combinado de los fragmentos, penalizando primero las cargas útiles grandes.
 - Los extremos salientes descartan antes que otros roles para desperdiciar el menor esfuerzo de red posible.
 
-La entrega garantizada se delega a capas superiores como la [Streaming library](/spec/api/streaming/) (biblioteca de transmisión). Las aplicaciones que requieren fiabilidad deben encargarse ellas mismas de la retransmisión y de los acuses de recibo.
+La entrega garantizada se delega a capas superiores como la [Streaming library](/docs/specs/streaming/) (biblioteca de transmisión). Las aplicaciones que requieren fiabilidad deben encargarse ellas mismas de la retransmisión y de los acuses de recibo.
 
 ---
 

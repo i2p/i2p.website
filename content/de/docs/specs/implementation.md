@@ -4,7 +4,7 @@ description: "Vereinheitlichte Spezifikation zum Aufbau, zur Verschlüsselung un
 slug: "implementation"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 reviewStatus: "needs-review"
 ---
 
@@ -182,7 +182,7 @@ Obwohl tunnels Verbindungen ähneln, behandeln routers sie wie Nachrichtenwartes
 - Teilnehmer berücksichtigen Fragmente fester Größe; Gateways/Endpunkte verwerfen anhand der Gesamtgröße der Fragmente und benachteiligen dabei große Nutzlasten zuerst.
 - Ausgehende Endpunkte verwerfen früher als andere Rollen, um möglichst wenig Netzwerkressourcen zu verschwenden.
 
-Garantierte Zustellung wird höheren Schichten wie der [Streaming library](/spec/api/streaming/) überlassen. Anwendungen, die Zuverlässigkeit benötigen, müssen erneute Übertragungen und Bestätigungen selbst übernehmen.
+Garantierte Zustellung wird höheren Schichten wie der [Streaming library](/docs/specs/streaming/) überlassen. Anwendungen, die Zuverlässigkeit benötigen, müssen erneute Übertragungen und Bestätigungen selbst übernehmen.
 
 ---
 

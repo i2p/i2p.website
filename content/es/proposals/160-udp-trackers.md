@@ -46,7 +46,7 @@ El cifrado y las firmas Post-Quantum como se prevé en [/proposals/169-pq-crypto
 
 ## Motivación
 
-Esta propuesta utiliza repliable datagram2, repliable datagram3, y raw datagrams, como se define en [/docs/specs/datagrams/](/docs/specs/datagrams/). Datagram2 y Datagram3 son nuevas variantes de repliable datagrams, definidas en la Propuesta 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 añade resistencia a la reproducción y soporte para firmas sin conexión. Datagram3 es más pequeño que el formato de datagrama anterior, pero sin autenticación.
+Esta propuesta utiliza repliable datagram2, repliable datagram3, y raw datagrams, como se define en [/docs/api/datagrams/](/docs/api/datagrams/). Datagram2 y Datagram3 son nuevas variantes de repliable datagrams, definidas en la Propuesta 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 añade resistencia a la reproducción y soporte para firmas sin conexión. Datagram3 es más pequeño que el formato de datagrama anterior, pero sin autenticación.
 
 ### BEP 15
 

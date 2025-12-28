@@ -123,10 +123,10 @@ Standardní I2CP číslo protokolu pro odpověditelné datagramy je PROTO_DATAGR
 ### Protokol
 
 Nové číslo I2CP protokolu pro Datagram2 je 19.
-Přidat jako PROTO_DATAGRAM2 do [I2CP](/docs/protocol/i2cp/).
+Přidat jako PROTO_DATAGRAM2 do [I2CP](/docs/specs/i2cp/).
 
 Nové číslo I2CP protokolu pro Datagram3 je 20.
-Přidat jako PROTO_DATAGRAM2 do [I2CP](/docs/protocol/i2cp/).
+Přidat jako PROTO_DATAGRAM2 do [I2CP](/docs/specs/i2cp/).
 
 ### Formát Datagram2
 
@@ -342,8 +342,8 @@ SAM UDP aplikace: Žádné známé
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)

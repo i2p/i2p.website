@@ -4,7 +4,7 @@ description: "Định dạng lưu trữ blockfile (tệp khối) trên đĩa đ�
 slug: "blockfile"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## Tổng quan

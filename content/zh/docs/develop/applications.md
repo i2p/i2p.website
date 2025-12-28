@@ -67,7 +67,7 @@ I2P 对网络上传输的所有数据都提供透明的端到端加密和身份�
 
 ### 流媒体库
 
-[完整的流式传输库](/spec/api/streaming/)现在是标准接口。它允许使用类似 TCP 的套接字进行编程,具体说明请参见[流式传输开发指南](#developing-with-the-streaming-library)。
+[完整的流式传输库](/docs/specs/streaming/)现在是标准接口。它允许使用类似 TCP 的套接字进行编程,具体说明请参见[流式传输开发指南](#developing-with-the-streaming-library)。
 
 ### BOB
 

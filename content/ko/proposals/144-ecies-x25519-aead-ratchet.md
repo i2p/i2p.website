@@ -205,7 +205,7 @@ Crypto type 0은 ElGamal입니다. Crypto type 1-3은 ECIES-ECDH-AES-SessionTag�
 
 ### 암호화 설계 요약
 
-이 제안서는 Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11)를 기반으로 한 요구사항을 제공합니다. Noise는 [SSU](/docs/specs/ssu/) 프로토콜의 기반이 되는 Station-To-Station 프로토콜 [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol)와 유사한 특성을 가지고 있습니다. Noise 용어로는 Alice가 개시자(initiator)이고, Bob이 응답자(responder)입니다.
+이 제안서는 Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11)를 기반으로 한 요구사항을 제공합니다. Noise는 [SSU](/docs/legacy/ssu/) 프로토콜의 기반이 되는 Station-To-Station 프로토콜 [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol)와 유사한 특성을 가지고 있습니다. Noise 용어로는 Alice가 개시자(initiator)이고, Bob이 응답자(responder)입니다.
 
 이 제안은 Noise protocol Noise_IK_25519_ChaChaPoly_SHA256을 기반으로 합니다. (초기 키 유도 함수의 실제 식별자는 I2P 확장을 나타내기 위해 "Noise_IKelg2_25519_ChaChaPoly_SHA256"입니다 - 아래 KDF 1 섹션 참조) 이 Noise protocol은 다음 프리미티브를 사용합니다:
 

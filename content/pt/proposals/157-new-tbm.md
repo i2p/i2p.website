@@ -325,7 +325,7 @@ O tamanho máximo do Mapeamento (incluindo o campo de comprimento) é 201 bytes,
 e o valor máximo do campo de comprimento do Mapeamento é 199.
 
 O byte de resposta é um dos seguintes valores
-como definido em [Tunnel-Creation](/docs/specs/tunnel-creation/) para evitar fingerprinting:
+como definido em [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) para evitar fingerprinting:
 
 - 0x00 (aceitar)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

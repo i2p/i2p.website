@@ -4,7 +4,7 @@ description: "Format de stockage sur disque de type blockfile (fichier en blocs)
 slug: "blockfile"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## Vue d’ensemble

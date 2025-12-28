@@ -116,10 +116,10 @@ Java I2P में लागू किया गया API 0.9.66 के अन�
 ### प्रोटोकॉल
 
 डाटाग्राम2 के लिए नया I2CP प्रोटोकॉल नंबर 19 है।
-[I2CP](/docs/protocol/i2cp/) के तहत इसे PROTO_DATAGRAM2 के रूप में जोड़ें।
+[I2CP](/docs/specs/i2cp/) के तहत इसे PROTO_DATAGRAM2 के रूप में जोड़ें।
 
 डाटाग्राम3 के लिए नया I2CP प्रोटोकॉल नंबर 20 है।
-[I2CP](/docs/protocol/i2cp/) के तहत इसे PROTO_DATAGRAM2 के रूप में जोड़ें।
+[I2CP](/docs/specs/i2cp/) के तहत इसे PROTO_DATAGRAM2 के रूप में जोड़ें।
 
 ### डाटाग्राम2 प्रारूप
 
@@ -334,8 +334,8 @@ SAM UDP एप्स: कोई ज्ञात नहीं
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)

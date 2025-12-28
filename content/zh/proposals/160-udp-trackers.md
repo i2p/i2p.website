@@ -46,7 +46,7 @@ Bittorrent 在 2008 年的 BEP 15 [BEP 15](http://www.bittorrent.org/beps/bep_00
 
 ## 动机
 
-此提案使用可回复数据报2、可回复数据报3和原始数据报，如[/docs/specs/datagrams/](/docs/specs/datagrams/)中所定义。数据报2和数据报3是可回复数据报的新变体，在提案163 [/proposals/163-datagram2/](/proposals/163-datagram2/)中定义。数据报2添加了重放抵抗和离线签名支持。数据报3比旧的数据报格式更小，但没有身份验证。
+此提案使用可回复数据报2、可回复数据报3和原始数据报，如[/docs/api/datagrams/](/docs/api/datagrams/)中所定义。数据报2和数据报3是可回复数据报的新变体，在提案163 [/proposals/163-datagram2/](/proposals/163-datagram2/)中定义。数据报2添加了重放抵抗和离线签名支持。数据报3比旧的数据报格式更小，但没有身份验证。
 
 ### BEP 15
 
