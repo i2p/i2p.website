@@ -1,15 +1,83 @@
-{{ define "main" }}
-<div class="container">
-    <div class="error-page">
-        <img src="/images/mascot-404.png" alt="404 - Page Not Found" class="error-mascot">
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "en" }}" data-theme="light">
 
-        <p class="error-text">
-            Oops! It seems you've ventured into the unknown. The page you are looking for might have been moved, deleted, or never existed.
-        </p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <a href="/" class="btn btn-primary">
-            Return Home
-        </a>
-    </div>
-</div>
-{{ end }}
+    <title>404 - Page Not Found | {{ .Site.Title }}</title>
+
+    <meta name="description" content="The page you are looking for could not be found.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="icon" type="image/png" href="/images/i2plogo.png" sizes="32x32">
+
+    <!-- Styles -->
+    {{ $styles := resources.Get "css/main.css" }}
+    {{ if $styles }}
+    {{ $styles = $styles | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
+    {{ end }}
+
+    <style>
+        .error-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+            padding: 2rem;
+        }
+        .error-mascot {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+        .error-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+        .error-text {
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+            max-width: 500px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- CSS-only theme toggle -->
+    <input type="checkbox" id="theme-toggle-checkbox" class="theme-checkbox" aria-hidden="true">
+
+    {{ partial "banner.html" . }}
+    {{ partial "header.html" . }}
+
+    <main id="main-content">
+        <div class="container">
+            <div class="error-page">
+                <img src="/images/mascot-404.png" alt="404 - Page Not Found" class="error-mascot">
+
+                <h1 class="error-title">404</h1>
+
+                <p class="error-text">
+                    Oops! It seems you've ventured into the unknown. The page you are looking for might have been moved, deleted, or never existed.
+                </p>
+
+                <a href="/" class="btn btn-primary">
+                    Return Home
+                </a>
+            </div>
+        </div>
+    </main>
+
+    {{ partial "footer.html" . }}
+</body>
+
+</html>
