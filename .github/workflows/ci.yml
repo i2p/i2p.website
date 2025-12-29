@@ -143,36 +143,36 @@ jobs:
           directory: public
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
-  # deploy-ssh-primary:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   if: github.ref == 'refs/heads/main'
-  #   steps:
-  #     - uses: actions/download-artifact@v4
-  #       with:
-  #         name: public-site
-  #         path: public
-  #     - name: Deploy via Rsync
-  #       env:
-  #         DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-  #         DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-  #         DEPLOY_PORT: ${{ secrets.DEPLOY_SSH_PORT }}
-  #         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-  #         DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-  #       run: |
-  #         mkdir -p ~/.ssh
-  #         echo "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
-  #         chmod 600 ~/.ssh/deploy_key
-  #         ssh-keyscan -p $DEPLOY_PORT -H $DEPLOY_HOST >> ~/.ssh/known_hosts
-  #         
-  #         # Fix permissions (ownership) - requires sudo NOPASSWD on remote
-  #         ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R $DEPLOY_USER:$DEPLOY_USER $DEPLOY_PATH || true"
-  #         
-  #         # Sync files
-  #         rsync -avz --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no" public/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-  #         
-  #         # Fix permissions (www-data)
-  #         ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R www-data:www-data $DEPLOY_PATH || true"
+  deploy-ssh-primary:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: public-site
+          path: public
+      - name: Deploy via Rsync
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_SSH_PORT }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p $DEPLOY_PORT -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+
+          # Fix permissions (ownership) - requires sudo NOPASSWD on remote
+          ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R $DEPLOY_USER:$DEPLOY_USER $DEPLOY_PATH || true"
+
+          # Sync files
+          rsync -avz --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no" public/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+
+          # Fix permissions (www-data)
+          ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R www-data:www-data $DEPLOY_PATH || true"
 
   # deploy-ssh-secondary:
   #   needs: build

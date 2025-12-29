@@ -377,19 +377,4 @@
 {{ end }}
 
 {{ define "scripts" }}
-<!-- Load downloads intercept script (only on production, not on beta) -->
-{{ $downloadsIntercept := resources.Get "js/downloads-intercept.js" | minify }}
-<script>
-    // Only load intercept script on production domain (not beta.i2p.net)
-    (function() {
-        var hostname = window.location.hostname;
-        if (hostname !== 'beta.i2p.net' && !hostname.includes('beta.')) {
-            var script = document.createElement('script');
-            script.src = '{{ $downloadsIntercept.RelPermalink }}';
-            document.head.appendChild(script);
-        } else {
-            console.log('[I2P Downloads] Intercept script disabled on beta site for testing');
-        }
-    })();
-</script>
 {{ end }}

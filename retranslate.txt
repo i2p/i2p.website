@@ -1,4 +1,0 @@
-Missing?: https://geti2p.net/en/docs/how/network-database
-https://geti2p.net/en/docs/transport
-
-

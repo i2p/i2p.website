@@ -220,14 +220,13 @@
 
 /* Docs Hero */
 .docs-hero {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    padding: var(--spacing-2xl) 0;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     color: white;
     margin-bottom: var(--spacing-2xl);
 }
 
 [data-theme="dark"] .docs-hero {
-    background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
 }
 
 .docs-title {
@@ -241,6 +240,12 @@
     font-size: 1.125rem;
     text-align: center;
     opacity: 0.95;
+    margin-bottom: 0;
+}
+
+/* Add margin below subtitle only when search bar is visible */
+html.clearnet .docs-subtitle,
+body.clearnet .docs-subtitle {
     margin-bottom: var(--spacing-xl);
 }
 
@@ -261,6 +266,16 @@
 html.clearnet [data-search-bar],
 body.clearnet [data-search-bar] {
     display: block;
+}
+
+/* Add extra padding to hero when search bar is hidden (non-clearnet) */
+.docs-hero {
+    padding: var(--spacing-3xl) 0;
+}
+
+html.clearnet .docs-hero,
+body.clearnet .docs-hero {
+    padding: var(--spacing-2xl) 0;
 }
 
 .docs-search form {
@@ -479,7 +494,7 @@ body.clearnet [data-search-bar] {
 }
 
 .quick-link-card {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     color: white;
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
@@ -487,7 +502,7 @@ body.clearnet [data-search-bar] {
 }
 
 [data-theme="dark"] .quick-link-card {
-    background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
 }
 
 .quick-link-card h3 {

@@ -335,7 +335,7 @@ main {
    ========================================================================== */
 
 .site-banner {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     color: #ffffff;
     padding: var(--spacing-md) 0;
     position: relative;
@@ -345,7 +345,7 @@ main {
 }
 
 [data-theme="dark"] .site-banner {
-    background: linear-gradient(135deg, #1e3a8a 0%, #0e7490 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
 }
 
 .site-banner.banner-hidden {
@@ -1205,7 +1205,7 @@ html[data-ver="2.4"] .platform-card[data-platform="android"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(135deg, #1e3a8a, #1e40af);
     border-radius: var(--radius-lg);
     color: white;
     flex-shrink: 0;
@@ -1616,9 +1616,13 @@ html[data-ver="2.4"] .platform-card[data-platform="android"] {
 
 .media-hero {
     padding: var(--spacing-2xl) 0 var(--spacing-xl);
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     color: white;
     text-align: center;
+}
+
+[data-theme="dark"] .media-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
 }
 
 .media-hero h1 {
@@ -1731,7 +1735,7 @@ html[data-ver="2.4"] .platform-card[data-platform="android"] {
     content: '';
     width: 8px;
     height: 32px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(135deg, #1e3a8a, #1e40af);
     border-radius: var(--radius-sm);
 }
 
@@ -2489,7 +2493,7 @@ html[data-ver="2.4"] .platform-card[data-platform="android"] {
 }
 
 .poll-result-bar {
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    background: linear-gradient(90deg, #1e3a8a, #1e40af);
     height: 100%;
     border-radius: var(--radius-sm);
     transition: width var(--transition-base);
@@ -3452,7 +3456,7 @@ details.content-section summary:hover {
     margin-bottom: var(--spacing-xs);
     line-height: 1;
     /* Text gradient for extra flair matching theme */
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(135deg, #1e3a8a, #1e40af);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

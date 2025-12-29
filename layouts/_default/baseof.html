@@ -48,14 +48,6 @@
     <!-- Poll Modal -->
     {{ partial "poll-modal.html" . }}
 
-    <!-- Scripts -->
-    {{/* Disabled for testing - all functionality now CSS/Worker-based
-    {{ $scripts := resources.Get "js/main.js" }}
-    {{ if $scripts }}
-    {{ $scripts = $scripts | resources.Minify | resources.Fingerprint }}
-    <script src="{{ $scripts.RelPermalink }}" integrity="{{ $scripts.Data.Integrity }}"></script>
-    {{ end }}
-    */}}
 
 
 

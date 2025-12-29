@@ -3,6 +3,7 @@ public/
 hugo-site/public/
 hugo-site/resources/
 resources/
+tests/public_test/
 
 # Hugo stats
 hugo_stats.json
@@ -47,3 +48,6 @@ __pycache__/
 # Claude and Cursor files
 .claude/
 .cursor/
+
+# Translation batch state
+scripts/claude_batch_state.json
