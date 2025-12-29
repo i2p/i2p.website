@@ -63,165 +63,11 @@
     --header-height: 88px;
 }
 
-/* Hidden checkbox for CSS-only theme toggle */
-.theme-checkbox {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-
 /*
- * Theme Toggle Logic:
- * - Light system preference: unchecked = light, checked = dark
- * - Dark system preference: unchecked = dark, checked = light
- * The checkbox toggles AWAY from the system default.
+ * Dark Mode Styles
+ * Activated via data-theme="dark" attribute on <html> element
+ * Set by server (nginx/Cloudflare) based on theme cookie
  */
-
-/* Light system preference + checkbox checked = Dark Mode */
-@media (prefers-color-scheme: light) {
-    body:has(#theme-toggle-checkbox:checked) {
-        --color-primary: #3b82f6;
-        --color-primary-hover: #60a5fa;
-        --color-secondary: #a78bfa;
-        --color-accent: #06b6d4;
-
-        --color-bg: #0f172a;
-        --color-bg-secondary: #1e293b;
-        --color-bg-tertiary: #334155;
-
-        --color-text: #f1f5f9;
-        --color-text-secondary: #cbd5e1;
-        --color-text-muted: #94a3b8;
-
-        --color-border: #334155;
-        --color-border-hover: #475569;
-
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Dark mode component styles when toggled on light system */
-    body:has(#theme-toggle-checkbox:checked) .site-banner {
-        background: linear-gradient(135deg, #1e3a8a 0%, #0e7490 100%);
-    }
-
-    body:has(#theme-toggle-checkbox:checked) .logo-light {
-        display: none;
-    }
-
-    body:has(#theme-toggle-checkbox:checked) .logo-dark {
-        display: block;
-    }
-
-    body:has(#theme-toggle-checkbox:checked) .sun-icon {
-        display: block;
-    }
-
-    body:has(#theme-toggle-checkbox:checked) .moon-icon {
-        display: none;
-    }
-
-    body:has(#theme-toggle-checkbox:checked) .site-header {
-        background-color: rgba(15, 23, 42, 0.9);
-    }
-
-    /* Signal logo */
-    body:has(#theme-toggle-checkbox:checked) .signal-logo-light {
-        display: none;
-    }
-
-    body:has(#theme-toggle-checkbox:checked) .signal-logo-dark {
-        display: block;
-        filter: brightness(0) saturate(100%) invert(77%) sepia(14%) saturate(281%) hue-rotate(182deg) brightness(95%) contrast(90%);
-    }
-
-    /* Content badges */
-    body:has(#theme-toggle-checkbox:checked) .content-badge.status-released {
-        background: #064e3b;
-        color: #6ee7b7;
-    }
-
-    body:has(#theme-toggle-checkbox:checked) .content-badge.status-target {
-        background: #78350f;
-        color: #fcd34d;
-    }
-}
-
-/* Dark system preference + checkbox unchecked = Dark Mode */
-@media (prefers-color-scheme: dark) {
-    body:not(:has(#theme-toggle-checkbox:checked)) {
-        --color-primary: #3b82f6;
-        --color-primary-hover: #60a5fa;
-        --color-secondary: #a78bfa;
-        --color-accent: #06b6d4;
-
-        --color-bg: #0f172a;
-        --color-bg-secondary: #1e293b;
-        --color-bg-tertiary: #334155;
-
-        --color-text: #f1f5f9;
-        --color-text-secondary: #cbd5e1;
-        --color-text-muted: #94a3b8;
-
-        --color-border: #334155;
-        --color-border-hover: #475569;
-
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Dark mode component styles when on dark system (not toggled) */
-    body:not(:has(#theme-toggle-checkbox:checked)) .site-banner {
-        background: linear-gradient(135deg, #1e3a8a 0%, #0e7490 100%);
-    }
-
-    body:not(:has(#theme-toggle-checkbox:checked)) .logo-light {
-        display: none;
-    }
-
-    body:not(:has(#theme-toggle-checkbox:checked)) .logo-dark {
-        display: block;
-    }
-
-    body:not(:has(#theme-toggle-checkbox:checked)) .sun-icon {
-        display: block;
-    }
-
-    body:not(:has(#theme-toggle-checkbox:checked)) .moon-icon {
-        display: none;
-    }
-
-    body:not(:has(#theme-toggle-checkbox:checked)) .site-header {
-        background-color: rgba(15, 23, 42, 0.9);
-    }
-
-    /* Signal logo */
-    body:not(:has(#theme-toggle-checkbox:checked)) .signal-logo-light {
-        display: none;
-    }
-
-    body:not(:has(#theme-toggle-checkbox:checked)) .signal-logo-dark {
-        display: block;
-        filter: brightness(0) saturate(100%) invert(77%) sepia(14%) saturate(281%) hue-rotate(182deg) brightness(95%) contrast(90%);
-    }
-
-    /* Content badges */
-    body:not(:has(#theme-toggle-checkbox:checked)) .content-badge.status-released {
-        background: #064e3b;
-        color: #6ee7b7;
-    }
-
-    body:not(:has(#theme-toggle-checkbox:checked)) .content-badge.status-target {
-        background: #78350f;
-        color: #fcd34d;
-    }
-}
-
-/* Legacy support for data-theme attribute */
 [data-theme="dark"] {
     --color-primary: #3b82f6;
     --color-primary-hover: #60a5fa;
@@ -243,6 +89,44 @@
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode component styles */
+[data-theme="dark"] .site-banner {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0e7490 100%);
+}
+
+[data-theme="dark"] .logo-light {
+    display: none;
+}
+
+[data-theme="dark"] .logo-dark {
+    display: block;
+}
+
+[data-theme="dark"] .site-header {
+    background-color: rgba(15, 23, 42, 0.9);
+}
+
+/* Signal logo */
+[data-theme="dark"] .signal-logo-light {
+    display: none;
+}
+
+[data-theme="dark"] .signal-logo-dark {
+    display: block;
+    filter: brightness(0) saturate(100%) invert(77%) sepia(14%) saturate(281%) hue-rotate(182deg) brightness(95%) contrast(90%);
+}
+
+/* Content badges */
+[data-theme="dark"] .content-badge.status-released {
+    background: #064e3b;
+    color: #6ee7b7;
+}
+
+[data-theme="dark"] .content-badge.status-target {
+    background: #78350f;
+    color: #fcd34d;
 }
 
 /* ==========================================================================
@@ -598,6 +482,10 @@ main {
 }
 
 /* Theme Toggle */
+.theme-toggle-container {
+    display: flex;
+}
+
 .theme-toggle {
     background: none;
     border: 1px solid var(--color-border);
@@ -621,19 +509,21 @@ main {
     border-color: var(--color-border-hover);
 }
 
-.sun-icon {
+/* Light mode: show moon button (to switch to dark), hide sun button */
+.theme-light-btn {
     display: none;
 }
 
-.moon-icon {
-    display: block;
+.theme-dark-btn {
+    display: flex;
 }
 
-[data-theme="dark"] .sun-icon {
-    display: block;
+/* Dark mode: show sun button (to switch to light), hide moon button */
+[data-theme="dark"] .theme-light-btn {
+    display: flex;
 }
 
-[data-theme="dark"] .moon-icon {
+[data-theme="dark"] .theme-dark-btn {
     display: none;
 }
 

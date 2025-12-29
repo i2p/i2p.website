@@ -152,19 +152,6 @@
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 41, 59, 0.92) 100%);
 }
 
-/* Light system + toggle checked = dark mode */
-@media (prefers-color-scheme: light) {
-    body:has(#theme-toggle-checkbox:checked) .hero-compact::before {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 41, 59, 0.92) 100%);
-    }
-}
-
-/* Dark system + toggle unchecked = dark mode */
-@media (prefers-color-scheme: dark) {
-    body:not(:has(#theme-toggle-checkbox:checked)) .hero-compact::before {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 41, 59, 0.92) 100%);
-    }
-}
 
 .hero-compact .container {
     position: relative;
