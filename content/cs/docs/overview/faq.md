@@ -333,7 +333,7 @@ Výchozí HTTP proxy podporuje pouze outproxying HTTP a HTTPS.
 
 ### Proč můj router využívá příliš mnoho procesoru? {#cpu}
 
-Nejprve se ujistěte, že máte nejnovější verzi všech součástí souvisejících s I2P – starší verze měly v kódu zbytečné sekce, které zatěžovaly procesor. Existuje také [Log výkonu](/about/performance), který dokumentuje některá vylepšení výkonu I2P v průběhu času.
+Nejprve se ujistěte, že máte nejnovější verzi všech součástí souvisejících s I2P – starší verze měly v kódu zbytečné sekce, které zatěžovaly procesor. Existuje také [Log výkonu](/docs/overview/performance), který dokumentuje některá vylepšení výkonu I2P v průběhu času.
 
 ### Moje aktivní partnery / známé partnery / účastnické tunely / připojení / šířka pásma se dramaticky mění v čase! Je něco špatně? {#vary}
 

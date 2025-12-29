@@ -89,7 +89,7 @@ Tor'dan farklı olarak, I2P SOCKS tabanlı clearnet outproxy'leri **sunmaz**. Ha
 
 ## 3. Tarihsel Bağlam
 
-Geliştiriciler uzun zamandır anonim kullanım için SOCKS'u önermiyor. Dahili geliştirici tartışmalarından ve 2004'teki [Toplantı 81](/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) ve [Toplantı 82](/blog/2004/03/23/i2p-dev-meeting-march-23-2004/)'den:
+Geliştiriciler uzun zamandır anonim kullanım için SOCKS'u önermiyor. Dahili geliştirici tartışmalarından ve 2004'teki [Toplantı 81](/tr/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) ve [Toplantı 82](/tr/blog/2004/03/23/i2p-dev-meeting-march-23-2004/)'den:
 
 > "Rastgele trafiği yönlendirmek güvenli değildir ve anonimlik yazılımı geliştiricileri olarak son kullanıcılarımızın güvenliğini her şeyden önce düşünmemiz gerekir."
 

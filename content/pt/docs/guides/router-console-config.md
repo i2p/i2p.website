@@ -244,7 +244,7 @@ A página de Configuração de Reseed permite que você faça o reseed manual do
 
 4. Se você conhece e confia em alguém que publica arquivos de reseed, peça a eles o URL. Em seguida, use esta página para fazer reseed com o URL que você recebeu. Primeiro, insira o URL abaixo. Depois, clique em "Reseed from URL"
 
-5. Consulte [as FAQ](/en/faq) para instruções sobre como fazer reseed manualmente
+5. Consulte [as FAQ](/docs/overview/faq/) para instruções sobre como fazer reseed manualmente
 
 **Opções de Reseed Manual:**
 

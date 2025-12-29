@@ -41,7 +41,7 @@ Garlic routing 与洋葱路由共享其基本原理:每个 router 仅解密一�
 
 一次完整的往返通信（Alice ↔ Bob）使用四条 tunnel：Alice 的 outbound → Bob 的 inbound，然后 Bob 的 outbound → Alice 的 inbound。这种设计相比双向电路**将关联数据暴露减半**。
 
-关于隧道实现细节，请参阅[隧道规范](/docs/specs/implementation)和[隧道创建（ECIES）](/spec/tunnel/creation-ecies)规范。
+关于隧道实现细节，请参阅[隧道规范](/docs/specs/implementation)和[隧道创建（ECIES）](/docs/specs/implementation)规范。
 
 ---
 
@@ -186,8 +186,8 @@ garlic encryption（大蒜加密）和消息捆绑技术贯穿整个 I2P 协议�
 I2P的文档中心[可在此处获取](/docs/)，持续维护中。相关的活跃规范包括：
 
 - [ECIES 规范](/docs/specs/ecies) — ECIES‑X25519‑AEAD‑Ratchet
-- [Tunnel 创建（ECIES）](/spec/tunnel/creation-ecies) — 现代 tunnel 构建协议
-- [I2NP 规范](/spec/i2np) — I2NP 消息格式
+- [Tunnel 创建（ECIES）](/docs/specs/implementation) — 现代 tunnel 构建协议
+- [I2NP 规范](/docs/specs/i2np) — I2NP 消息格式
 - [SSU2 规范](/docs/specs/ssu2) — SSU2 UDP 传输
 - [通用结构](/docs/specs/common-structures) — netDb 和 floodfill 行为
 

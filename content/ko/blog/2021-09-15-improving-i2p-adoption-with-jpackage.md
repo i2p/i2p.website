@@ -1,6 +1,7 @@
 ---
 title: "Jpackage와 I2P-Zero를 사용한 I2P 채택 및 온보딩 개선"
 date: 2021-09-15
+slug: "improving-i2p-adoption-and-onboarding-using-jpackage-i2p-zero"
 author: "idk"
 description: "애플리케이션에 I2P를 설치하고 내장하는 다양하고 새롭게 등장하는 방법"
 categories: ["general"]
@@ -22,10 +23,10 @@ Mac OSX의 최근 버전에서는 .jar 형식으로 제공되는 "Classic" 설�
 
 Zlatinb가 제작한 새로운 I2P .dmg 설치 프로그램은 사용자가 Java를 직접 설치할 필요가 없게 하고, 표준 OSX 설치 도구를 권장된 방식대로 활용하여, 그 어느 때보다 OSX에서 I2P를 더 쉽게 설치할 수 있게 합니다. 새로운 .dmg 설치 프로그램은 Mac OSX에서 I2P를 설치 및 설정하는 작업을 그 어느 때보다 더 쉽게 만들어 줍니다.
 
-[dmg](/mac) 다운로드
+[dmg](https://geti2p.net/en/download/mac) 다운로드
 
 ## 미래의 I2P는 설치가 간편합니다
 
 사용자들에게서 가장 자주 듣는 말 중 하나는 I2P가 채택되려면 사람들이 쉽게 사용할 수 있어야 한다는 것입니다. 많은 이들이, 익숙한 Reddit 사용자들의 표현을 인용하거나 바꾸어 말하자면, "Tor Browser 같은" 사용자 경험을 원합니다. 설치는 복잡하고 오류가 발생하기 쉬운 "post-installation" 단계들을 요구해서는 안 됩니다. 많은 신규 사용자는 브라우저 설정을 철저하고 완전하게 다룰 준비가 되어 있지 않습니다. 이 문제를 해결하기 위해 우리는 I2P Profile Bundle을 만들어, Firefox가 I2P에서 자동으로 "그냥 작동하도록(Just Work)" 구성했습니다. 개발이 진행되면서 보안 기능이 추가되었고 I2P 자체와의 통합도 개선되었습니다. 최신 버전에서는 **또한** 완전하며 Jpackage로 구동되는 I2P Router를 함께 제공합니다. 이제 I2P Firefox Profile은 Windows용 I2P의 본격적인 배포판이 되었으며, 남은 유일한 의존성은 Firefox 자체뿐입니다. 이는 Windows에서 I2P를 사용하는 사용자들에게 전례 없는 수준의 편의성을 제공할 것입니다.
 
-[설치 프로그램](/nsis) 다운로드
+[설치 프로그램](https://geti2p.net/en/download#windows) 다운로드

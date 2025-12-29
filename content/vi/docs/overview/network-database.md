@@ -200,7 +200,7 @@ LeaseSets bao gồm: - **Destination (đích đến)** – khóa mã hóa, khóa
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>LeaseSet2 (LS2)</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys (<a href="/proposals/123-new-netdb-entries">Proposal 123</a>)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys ([Proposal 123](/proposals/123-new-netdb-entries/))</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Meta LeaseSet</strong></td>
@@ -433,4 +433,4 @@ Rò rỉ thông tin DHT (bảng băm phân tán) trong I2P cần được điề
 - [Đặc tả Cấu trúc Chung](/docs/specs/common-structures/) – Các cấu trúc RouterInfo (thông tin router) và LeaseSet
 - [Đặc tả I2NP](/docs/specs/i2np/) – Các loại thông điệp cơ sở dữ liệu
 - [Đề xuất 123: Các bản ghi netDb mới](/proposals/123-new-netdb-entries) – Đặc tả LeaseSet2 (phiên bản thứ hai của LeaseSet)
-- [Thảo luận netDb trong lịch sử](/docs/historical/netdb/) – Lịch sử phát triển và các thảo luận đã lưu trữ
+- [Thảo luận netDb trong lịch sử](/docs/netdb/) – Lịch sử phát triển và các thảo luận đã lưu trữ

@@ -294,5 +294,5 @@ Geplante Forschungsarbeiten und Verbesserungen umfassen:
 - [SSU2-Spezifikation](/docs/specs/ssu2/) – Sicheres halbzuverlässiges UDP 2
 - [I2NP-Spezifikation](/docs/specs/i2np/) – Nachrichten des I2P Network Protocol
 - [Gemeinsame Strukturen](/docs/specs/common-structures/) – RouterInfo- und Adressstrukturen
-- [Historische NTCP-Diskussion](/docs/historical/ntcp/) – Entwicklungsgeschichte des Legacy-Transports
+- [Historische NTCP-Diskussion](/docs/ntcp/) – Entwicklungsgeschichte des Legacy-Transports
 - [Legacy-SSU-Dokumentation](/docs/legacy/ssu/) – Ursprüngliche SSU-Spezifikation (veraltet)

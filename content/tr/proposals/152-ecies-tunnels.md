@@ -572,7 +572,7 @@ Bkz. [Öneri 156](/proposals/156-ecies-routers).
 * [Prop156](/proposals/156-ecies-routers/)
 * [Prop157](/proposals/157-new-tbm/)
 * [SPEC](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Tunnel-Creation](/docs/specs/tunnel-creation/)
+* [Tunnel-Creation](/docs/specs/implementation/)
 * [Çoklu Şifreleme](https://en.wikipedia.org/wiki/Multiple_encryption)
 * [RFC-7539](https://tools.ietf.org/html/rfc7539)
 * [RFC-7748](https://tools.ietf.org/html/rfc7748)

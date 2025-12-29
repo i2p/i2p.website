@@ -17,7 +17,7 @@ Stav:
 
 - ECIES Routery implementovány od verze 0.9.48, viz [Common](/docs/specs/common-structures/).
 - Vytváření tunelů implementováno od verze 0.9.48, viz [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
-- Šifrované zprávy pro ECIES routery implementovány od verze 0.9.49, viz [ECIES-ROUTERS](/docs/specs/ecies-routers/).
+- Šifrované zprávy pro ECIES routery implementovány od verze 0.9.49, viz [ECIES-ROUTERS](/docs/specs/ecies/).
 - Nové zprávy pro stavbu tunelů implementovány od verze 0.9.51.
 
 
@@ -494,7 +494,7 @@ Cílové vydání: 0.9.53, začátek 2022.
 
 * [Common](/docs/specs/common-structures/)
 * [ECIES](/docs/specs/ecies/)
-* [ECIES-ROUTERS](/docs/specs/ecies-routers/)
+* [ECIES-ROUTERS](/docs/specs/ecies/)
 * [I2NP](/docs/specs/i2np/)
 * [NOISE](https://noiseprotocol.org/noise.html)
 * [Prop123](/proposals/123-new-netdb-entries/)

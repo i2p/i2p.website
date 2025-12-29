@@ -53,7 +53,7 @@ Para compilar el código, necesitas el Sun/Oracle Java Development Kit 6 o super
 
 Para compilar o trabajar en las traducciones de la consola, necesitas las herramientas `xgettext`, `msgfmt` y `msgmerge` del paquete GNU gettext.
 
-Para el desarrollo de nuevas aplicaciones, consulta la [guía de desarrollo de aplicaciones](/get-involved/develop/applications/).
+Para el desarrollo de nuevas aplicaciones, consulta la [guía de desarrollo de aplicaciones](/docs/develop/applications/).
 
 ## Ideas de Desarrollo
 
@@ -65,7 +65,7 @@ Consulta la lista de tareas pendientes (TODO) del proyecto o la lista de problem
 
 Consulta la parte inferior de la página de licencias para los requisitos de privilegios de commit. Necesitas estos para colocar código en `i2p.i2p` (¡no requerido para el sitio web!).
 
-- [Página de licencias](/get-involved/develop/licenses#commit)
+- [Página de licencias](/docs/develop/licenses#commit)
 
 ## ¡Conócenos!
 
@@ -73,7 +73,7 @@ Los desarrolladores se encuentran en IRC. Se les puede contactar en varias redes
 
 ## Traducciones
 
-Traductores del sitio web y la consola del router: Consulta la [Guía para Nuevos Traductores](/get-involved/guides/new-translators/) para los siguientes pasos.
+Traductores del sitio web y la consola del router: Consulta la [Guía para Nuevos Traductores](/docs/develop/new-translators/) para los siguientes pasos.
 
 ## Herramientas
 

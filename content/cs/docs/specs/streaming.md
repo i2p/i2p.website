@@ -323,4 +323,4 @@ Streamingové relace jsou na vrstvě I2CP šifrovány end-to-end.   Postkvantov�
 - [Specifikace protokolu pro streamování](/docs/specs/streaming/)  
 - [Specifikace I2CP](/docs/specs/i2cp/)  
 - [Návrh 144: Výpočty MTU pro streamování](/proposals/144-ecies-x25519-aead-ratchet/)  
-- [Poznámky k vydání I2P 2.10.0](/blog/2025-09-08-i2p-2-10-0-release/)
+- [Poznámky k vydání I2P 2.10.0](/cs/blog/2025/09/08/i2p-2.10.0-release/)

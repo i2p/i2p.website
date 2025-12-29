@@ -89,7 +89,7 @@ Ao contrário do Tor, o I2P **não** oferece outproxies para a clearnet baseados
 
 ## 3. Contexto Histórico
 
-Os desenvolvedores há muito tempo desaconselham o uso de SOCKS para uso anônimo. De discussões internas de desenvolvedores e da [Reunião 81](/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) e [Reunião 82](/blog/2004/03/23/i2p-dev-meeting-march-23-2004/) de 2004:
+Os desenvolvedores há muito tempo desaconselham o uso de SOCKS para uso anônimo. De discussões internas de desenvolvedores e da [Reunião 81](/pt/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) e [Reunião 82](/pt/blog/2004/03/23/i2p-dev-meeting-march-23-2004/) de 2004:
 
 > "Encaminhar tráfego arbitrário é inseguro, e cabe a nós, como desenvolvedores de software de anonimato, ter a segurança dos nossos utilizadores finais em primeiro lugar nas nossas mentes."
 

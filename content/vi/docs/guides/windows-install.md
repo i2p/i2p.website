@@ -220,7 +220,7 @@ Tôi sẵn sàng dịch. Vui lòng cung cấp văn bản cần dịch.
 - **Chuyển tiếp cổng**: Xem [portforward.com](https://portforward.com/) để biết hướng dẫn cụ thể cho từng loại router về cách chuyển tiếp cổng mà I2P đang sử dụng
 - **Khám phá bảng điều khiển router**: Tìm hiểu về các tính năng, dịch vụ và tùy chọn cấu hình của I2P
 - **Truy cập các eepsite**: Thử truy cập các trang web `.i2p` thông qua mạng I2P
-- **Đọc tài liệu**: Xem [tài liệu I2P](../../_index.md) để biết thêm thông tin
+- **Đọc tài liệu**: Xem [tài liệu I2P](/docs/) để biết thêm thông tin
 
 Chào mừng bạn đến với mạng lưới I2P! 🎉
 
@@ -489,10 +489,10 @@ Tôi đã nhận được yêu cầu của bạn, nhưng không thấy văn bả
 ## Bước 3: Chọn Ngôn ngữ của Bạn
 
 - **Chờ tích hợp**: Đợi I2P 5-10 phút để tích hợp vào mạng và xây dựng các tunnel
-- **Cấu hình chuyển tiếp cổng**: Xem [hướng dẫn chuyển tiếp cổng](windows-easy-install.md#recommended-port-forwarding-optional-but-important) để biết chi tiết
+- **Cấu hình chuyển tiếp cổng**: Xem [hướng dẫn chuyển tiếp cổng](#recommended-port-forwarding-optional-but-important) để biết chi tiết
 - **Cấu hình trình duyệt**: Thiết lập trình duyệt web để sử dụng HTTP proxy của I2P
 - **Khám phá bảng điều khiển router**: Tìm hiểu về các tính năng, dịch vụ và tùy chọn cấu hình của I2P
 - **Truy cập các eepsite**: Thử truy cập các trang web `.i2p` thông qua mạng I2P
-- **Đọc tài liệu**: Xem [tài liệu I2P](../../_index.md) để biết thêm thông tin
+- **Đọc tài liệu**: Xem [tài liệu I2P](/docs/) để biết thêm thông tin
 
 Chào mừng đến với mạng lưới I2P! 🎉

@@ -31,7 +31,7 @@ Shrnutí, několik důvodů pro psaní kódu specifického pro I2P:
 - Obecné síťové protokoly často odesílají velké množství dodatečných dat, která mohou být použita k identifikaci uživatelů. Programování přímo pro I2P umožňuje vytvoření síťového protokolu, který takové informace neprozrazuje, a udržuje tak uživatele anonymní a v bezpečí.
 - Síťové protokoly navržené pro použití na běžném internetu mohou být na I2P neefektivní, což je síť s mnohem vyšší latencí.
 
-I2P podporuje standardní [rozhraní pro pluginy](/docs/plugins/) pro vývojáře, aby mohly být aplikace snadno integrovány a distribuovány.
+I2P podporuje standardní [rozhraní pro pluginy](/docs/specs/plugin/) pro vývojáře, aby mohly být aplikace snadno integrovány a distribuovány.
 
 Aplikace napsané v Javě a přístupné/spustitelné pomocí HTML rozhraní přes standardní webapps/app.war mohou být zváženy k zařazení do distribuce I2P.
 

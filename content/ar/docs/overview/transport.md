@@ -294,5 +294,5 @@ accurateFor: "2.10.0"
 - [مواصفة SSU2](/docs/specs/ssu2/) – UDP شبه موثوق وآمن 2
 - [مواصفة I2NP](/docs/specs/i2np/) – رسائل بروتوكول شبكة I2P
 - [الهياكل الشائعة](/docs/specs/common-structures/) – RouterInfo وهياكل العناوين
-- [مناقشة NTCP التاريخية](/docs/historical/ntcp/) – تاريخ تطوير النقل القديم
+- [مناقشة NTCP التاريخية](/docs/ntcp/) – تاريخ تطوير النقل القديم
 - [توثيق SSU القديم](/docs/legacy/ssu/) – المواصفة الأصلية لـ SSU (مهملة)

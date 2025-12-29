@@ -1,6 +1,7 @@
 ---
 title: "Высокоуровневая дорожная карта на 2018 год"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "2018 год станет годом новых протоколов, новых партнерств и более точного фокуса."
 categories: ["roadmap"]

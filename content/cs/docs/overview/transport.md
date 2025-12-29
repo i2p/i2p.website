@@ -294,5 +294,5 @@ Plánovaný výzkum a vylepšení zahrnují:
 - [Specifikace SSU2](/docs/specs/ssu2/) – Bezpečné částečně spolehlivé UDP 2
 - [Specifikace I2NP](/docs/specs/i2np/) – Zprávy síťového protokolu I2P
 - [Společné struktury](/docs/specs/common-structures/) – RouterInfo a struktury adres
-- [Historická diskuse o NTCP](/docs/historical/ntcp/) – Historie vývoje staršího transportu
+- [Historická diskuse o NTCP](/docs/ntcp/) – Historie vývoje staršího transportu
 - [Dokumentace ke staršímu SSU](/docs/legacy/ssu/) – Původní specifikace SSU (zastaralá)

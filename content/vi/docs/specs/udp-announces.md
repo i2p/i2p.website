@@ -1,7 +1,7 @@
 ---
 title: "Các thông báo BitTorrent qua UDP"
 description: "Đặc tả giao thức cho các announce dựa trên UDP của tracker BitTorrent trong I2P"
-slug: "udp-announces"
+slug: "udp-bittorrent-announces"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

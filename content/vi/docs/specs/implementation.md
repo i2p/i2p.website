@@ -182,13 +182,12 @@ Mặc dù tunnels giống các mạch, routers coi chúng như các hàng đợi
 - Các thành phần tham gia xem xét các mảnh có kích thước cố định; gateway/endpoint (cổng/điểm cuối) loại bỏ dựa trên tổng kích thước các mảnh, ưu tiên loại bỏ các payload (dữ liệu tải) lớn trước.
 - Các endpoint gửi đi sẽ loại bỏ trước các vai trò khác để lãng phí ít tài nguyên mạng nhất.
 
-Chức năng đảm bảo chuyển phát được dành cho các tầng cao hơn, chẳng hạn như [Streaming library](/spec/api/streaming/) (thư viện Streaming). Các ứng dụng yêu cầu độ tin cậy phải tự xử lý việc truyền lại và xác nhận.
+Chức năng đảm bảo chuyển phát được dành cho các tầng cao hơn, chẳng hạn như [Streaming library](/docs/specs/streaming/) (thư viện Streaming). Các ứng dụng yêu cầu độ tin cậy phải tự xử lý việc truyền lại và xác nhận.
 
 ---
 
 ## Tài liệu đọc thêm {#further-reading}
 
-- [Tunnel một chiều (Lịch sử)](/docs/legacy/unidirectional-tunnels/)
 - [Lựa chọn peer (nút ngang hàng)](/docs/overview/tunnel-routing#peer-selection/)
 - [Tổng quan về tunnel](/docs/overview/tunnel-routing/)
 - [Triển khai tunnel cũ](/docs/legacy/old-implementation/)

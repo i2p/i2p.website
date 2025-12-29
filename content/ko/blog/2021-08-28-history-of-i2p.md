@@ -1,6 +1,7 @@
 ---
 title: "20년간의 프라이버시: I2P의 간략한 역사"
 date: 2021-08-28
+slug: "20-years-of-privacy-a-brief-history-of-i2p"
 author: "sadie"
 description: "우리가 알고 있는 I2P의 역사"
 categories: ["general"]

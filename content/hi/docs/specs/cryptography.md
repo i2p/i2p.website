@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 reviewStatus: "needs-review"
 ---
 
-> **स्थिति:** यह पृष्ठ पुराने "लो-लेवल क्रिप्टोग्राफी विनिर्देश" का संक्षेप प्रस्तुत करता है। आधुनिक I2P रिलीज़ (2.10.0, अक्टूबर 2025) ने नए क्रिप्टोग्राफ़िक प्रिमिटिव्स पर माइग्रेशन पूरा कर लिया है। कार्यान्वयन विवरण के लिए [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/), तथा [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies/) जैसी विशेषीकृत विनिर्देशों का उपयोग करें।
+> **स्थिति:** यह पृष्ठ पुराने "लो-लेवल क्रिप्टोग्राफी विनिर्देश" का संक्षेप प्रस्तुत करता है। आधुनिक I2P रिलीज़ (2.10.0, अक्टूबर 2025) ने नए क्रिप्टोग्राफ़िक प्रिमिटिव्स पर माइग्रेशन पूरा कर लिया है। कार्यान्वयन विवरण के लिए [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/), तथा [Tunnel Creation (ECIES)](/docs/specs/implementation/) जैसी विशेषीकृत विनिर्देशों का उपयोग करें।
 
 ## विकास का स्नैपशॉट
 

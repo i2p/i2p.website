@@ -213,11 +213,11 @@ Resources for journalists, researchers, and anyone interested in learning about 
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="/en/about/i2pcon/2015/">I2PCon 2015</a>
+[I2PCon 2015](/en/blog/2015/07/16/i2pcon/)
 </div>
 <div class="content-entry-meta">🎪 Conference • Toronto • August 15-16, 2015</div>
 <div class="content-entry-actions">
-<a href="/en/about/i2pcon/2015/" class="content-btn">Details</a>
+[Details](/en/blog/2015/07/16/i2pcon/)
 </div>
 </div>
 

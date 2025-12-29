@@ -316,8 +316,8 @@ SHA-256 хеше полезной нагрузки, а не на самой по
 
 ## Примечания
 
-- Практическая длина ограничена нижележащими уровнями протоколов - спецификация туннельных сообщений [TUNMSG](/docs/specs/tunnel-message/#notes) ограничивает сообщения до около 61,2 КБ, и транспортные
-  [TRANSPORT](/docs/transport/) в настоящее время ограничивают сообщения до около 64 КБ, так что длина данных здесь
+- Практическая длина ограничена нижележащими уровнями протоколов - спецификация туннельных сообщений [TUNMSG](/docs/specs/implementation/#notes) ограничивает сообщения до около 61,2 КБ, и транспортные
+  [TRANSPORT](/docs/overview/transport/) в настоящее время ограничивают сообщения до около 64 КБ, так что длина данных здесь
   ограничена до около 61 КБ.
 - См. важные заметки о надежности больших датаграмм [API](/docs/api/datagrams/). Для
   наилучших результатов, ограничьте полезную нагрузку до около 10 КБ или меньше.
@@ -364,5 +364,5 @@ SAM UDP приложения: Неизвестно
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

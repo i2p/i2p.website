@@ -1,6 +1,7 @@
 ---
 title: "Verbesserung der I2P-Verbreitung und des Onboardings mit Jpackage, I2P-Zero"
 date: 2021-09-15
+slug: "improving-i2p-adoption-and-onboarding-using-jpackage-i2p-zero"
 author: "idk"
 description: "Vielseitige und neu entstehende Möglichkeiten, I2P in Ihre Anwendung zu installieren und einzubetten"
 categories: ["general"]
@@ -23,10 +24,10 @@ Das Problem wurde in neueren Versionen von Mac OSX dringlicher, in denen es nich
 
 Das neue I2P-.dmg-Installationsprogramm, erstellt von Zlatinb, macht die Installation von I2P unter OSX so einfach wie nie zuvor: Es erfordert nicht länger, dass Nutzer Java selbst installieren, und verwendet die standardmäßigen OSX-Installationswerkzeuge in der vorgesehenen Weise. Das neue .dmg-Installationsprogramm macht das Einrichten von I2P auf Mac OSX einfacher als je zuvor.
 
-Lade das [dmg](/mac) herunter
+Lade das [dmg](https://geti2p.net/en/download/mac) herunter
 
 ## Das I2P der Zukunft ist einfach zu installieren
 
 Eines der Dinge, die ich von Nutzern am häufigsten höre, ist, dass I2P, wenn es Verbreitung finden will, für Menschen einfach zu benutzen sein muss. Viele von ihnen wünschen sich eine "Tor-Browser-ähnliche" Benutzererfahrung, um viele bekannte Redditors zu zitieren oder zu paraphrasieren. Die Installation sollte keine komplizierten und fehleranfälligen "Post-Installation"-Schritte erfordern. Viele neue Nutzer sind nicht darauf vorbereitet, sich umfassend und vollständig mit ihrer Browserkonfiguration auseinanderzusetzen. Um dieses Problem anzugehen, haben wir das I2P Profile Bundle erstellt, das Firefox so konfiguriert hat, dass es für I2P automatisch "einfach funktioniert". Im Laufe der Weiterentwicklung hat es Sicherheitsfunktionen hinzugefügt und die Integration mit I2P selbst verbessert. In seiner neuesten Version bündelt es **auch** einen vollständigen, Jpackage-basierten I2P Router. Das I2P Firefox Profile ist jetzt eine vollwertige Distribution von I2P für Windows, wobei die einzige verbleibende Abhängigkeit Firefox selbst ist. Dies sollte ein beispielloses Maß an Komfort für I2P-Nutzer unter Windows bieten.
 
-Laden Sie das [Installationsprogramm](/nsis) herunter
+Laden Sie das [Installationsprogramm](https://geti2p.net/en/download#windows) herunter

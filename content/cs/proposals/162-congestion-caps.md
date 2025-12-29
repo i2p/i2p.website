@@ -51,7 +51,7 @@ po několik minut, ne na okamžitém měření.
 
 ## Specifikace
 
-Aktualizujte [NETDB](/docs/how/network-database/) následujícím způsobem:
+Aktualizujte [NETDB](/docs/overview/network-database/) následujícím způsobem:
 
 
 ```text
@@ -121,4 +121,4 @@ využíváme publikované limity ve verzi 0.9.59 (červenec 2023).
 
 ## Reference
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

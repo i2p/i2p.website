@@ -15,7 +15,7 @@ accurateFor: "2.10.0"
 - أُعلِن تقادم ElGamal و DSA-SHA1 لهويات Router (استخدم X25519 + EdDSA)
 - دعم ML-KEM لما بعد الكم في مرحلة الاختبار التجريبي (اختياري اعتبارًا من 2.10.0)
 - تم توحيد خيارات سجل الخدمة ([Proposal 167](/proposals/167-service-records/), تم تنفيذها في 0.9.66)
-- تم إقرار مواصفات الحشو القابل للضغط نهائيًا ([Proposal 161](/proposals/161-padding-generation/), تم تنفيذها في 0.9.57)
+- تم إقرار مواصفات الحشو القابل للضغط نهائيًا ([Proposal 161](/ar/proposals/161-ri-dest-padding/), تم تنفيذها في 0.9.57)
 
 ---
 
@@ -673,7 +673,7 @@ For Key Certificate (EdDSA + X25519):
 For larger keys (e.g., RSA_4096):
   Total = 384 + 3 + 4 + excess_key_data_length
 ```
-### إرشادات توليد الحشو ([المقترح 161](/proposals/161-padding-generation/))
+### إرشادات توليد الحشو ([المقترح 161](/ar/proposals/161-ri-dest-padding/))
 
 **إصدار التنفيذ:** 0.9.57 (يناير 2023، الإصدار 2.1.0)
 
@@ -752,7 +752,7 @@ Compression savings: ~320 bytes when compressed
 3. **الحجم النموذجي:**
    - X25519 + EdDSA مع شهادة المفتاح = 391 بايت
    - 32 بايت لمفتاح عام X25519
-   - 320 بايت حشو (قابل للضغط حسب [Proposal 161](/proposals/161-padding-generation/))
+   - 320 بايت حشو (قابل للضغط حسب [Proposal 161](/ar/proposals/161-ri-dest-padding/))
    - 32 بايت لمفتاح عام EdDSA
    - 7 بايت شهادة (ترويسة 3 بايت + أنواع المفاتيح 4 بايت)
 
@@ -760,7 +760,7 @@ Compression savings: ~320 bytes when compressed
 
 **مفتاح قاعدة البيانات الشبكية:** - RouterInfo مفهرس بواسطة تجزئة SHA-256 لـ RouterIdentity الكامل - التجزئة محسوبة على البنية كاملة المؤلفة من 391+ بايت (بما في ذلك الحشو)
 
-**انظر أيضًا:** - إرشادات توليد الحشو ([المقترح 161](/proposals/161-padding-generation/)) - مواصفة شهادة المفتاح أعلاه
+**انظر أيضًا:** - إرشادات توليد الحشو ([المقترح 161](/ar/proposals/161-ri-dest-padding/)) - مواصفة شهادة المفتاح أعلاه
 
 **JavaDoc (توثيق Java):** [RouterIdentity](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html)
 
@@ -783,7 +783,7 @@ Compression savings: ~320 bytes when compressed
 
 2. **مفتاح التشفير:**
    - الحقل غير مستخدَم لكنه يجب أن يكون موجودًا
-   - **موصى به:** املأه ببيانات عشوائية وفقًا لـ [Proposal 161](/proposals/161-padding-generation/) (قابلة للضغط)
+   - **موصى به:** املأه ببيانات عشوائية وفقًا لـ [Proposal 161](/ar/proposals/161-ri-dest-padding/) (قابلة للضغط)
    - الحجم: دائمًا 256 بايت (فتحة ElGamal (خوارزمية التشفير ElGamal)، على الرغم من أنه لا يُستَخدَم لـ ElGamal)
 
 3. **الشهادة:**
@@ -2380,7 +2380,7 @@ Encryption: X25519 (type 4, 32 bytes)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/proposals/161-ri-dest-padding/)
+Padding: Compressible per [Proposal 161](/ar/proposals/161-ri-dest-padding/)
 ```
 **بالنسبة إلى الوجهات الجديدة:**
 
@@ -2389,7 +2389,7 @@ Unused Public Key Field: 256 bytes random (compressible)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/proposals/161-ri-dest-padding/)
+Padding: Compressible per [Proposal 161](/ar/proposals/161-ri-dest-padding/)
 ```
 **بالنسبة إلى LeaseSets الجديدة (وصف لمسارات الدخول إلى وجهة في I2P):**
 
@@ -2433,7 +2433,7 @@ Authorization: Per-client encryption keys
 
 ### ملاحظات التوافق
 
-**التوافق مع الإصدارات السابقة:** - لا يزال دعم ElGamal و DSA_SHA1 قائماً لـ routers القديمة - تظل أنواع المفاتيح المهملة تعمل، لكن غير مستحسنة - الحشو القابل للضغط ([المقترح 161](/proposals/161-padding-generation/)) متوافق رجوعياً حتى الإصدار 0.6
+**التوافق مع الإصدارات السابقة:** - لا يزال دعم ElGamal و DSA_SHA1 قائماً لـ routers القديمة - تظل أنواع المفاتيح المهملة تعمل، لكن غير مستحسنة - الحشو القابل للضغط ([المقترح 161](/ar/proposals/161-ri-dest-padding/)) متوافق رجوعياً حتى الإصدار 0.6
 
 **التوافق المستقبلي:** - يمكن تحليل أنواع المفاتيح غير المعروفة باستخدام حقول الطول - يمكن تجاوز أنواع الشهادات غير المعروفة باستخدام الطول - يجب التعامل مع أنواع التواقيع غير المعروفة بسلاسة - لا ينبغي أن يفشل المنفذون عند مواجهة ميزات اختيارية غير معروفة
 
@@ -2473,11 +2473,11 @@ Authorization: Per-client encryption keys
 ### مقترحات
 
 - [المقترح 123: مدخلات netDB الجديدة](/proposals/123-new-netdb-entries/)
-- [المقترح 134: أنواع تواقيع GOST](/proposals/134-gost-signature-types/)
+- [المقترح 134: أنواع تواقيع GOST](/proposals/134-gost/)
 - [المقترح 136: أنواع تواقيع تجريبية](/proposals/136-experimental-sigtypes/)
-- [المقترح 145: ECIES-P256](/proposals/145-ecies-p256/)
+- [المقترح 145: ECIES-P256](/proposals/145-ecies/)
 - [المقترح 156: ECIES Routers](/proposals/156-ecies-routers/)
-- [المقترح 161: توليد الحشو](/proposals/161-padding-generation/)
+- [المقترح 161: توليد الحشو](/ar/proposals/161-ri-dest-padding/)
 - [المقترح 167: سجلات الخدمة](/proposals/167-service-records/)
 - [المقترح 169: التشفير ما بعد الكمّي](/proposals/169-pq-crypto/)
 - [فهرس جميع المقترحات](/proposals/)
@@ -2533,7 +2533,7 @@ Authorization: Per-client encryption keys
 
 ### معلومات الإصدار
 
-- [إصدار I2P 2.10.0](/blog/2025-09-08-i2p-2-10-0-release/)
+- [إصدار I2P 2.10.0](/ar/blog/2025/09/08/i2p-2.10.0-release/)
 - [سجل الإصدارات](https://github.com/i2p/i2p.i2p/blob/master/history.txt)
 - [سجل التغييرات](https://github.com/i2p/i2p.i2p/blob/master/debian/changelog)
 
@@ -2642,9 +2642,9 @@ Authorization: Per-client encryption keys
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jul 2020</td><td style="border:1px solid var(--color-border); padding:0.5rem;">X25519 for Router Identities</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2021</td><td style="border:1px solid var(--color-border); padding:0.5rem;">NTCP removed</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2022</td><td style="border:1px solid var(--color-border); padding:0.5rem;">SSU2 testing</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/161-ri-dest-padding/">Proposal 161</a> padding (release 2.1.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 161](/ar/proposals/161-ri-dest-padding/) padding (release 2.1.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mar 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ElGamal/DSA deprecated for RIs (2.2.0)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/167-service-records/">Proposal 167</a> service records (2.9.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 167](/proposals/167-service-records/) service records (2.9.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Sep 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ML-KEM beta support (2.10.0)</td></tr>
   </tbody>
 </table>

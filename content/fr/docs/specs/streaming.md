@@ -323,4 +323,4 @@ Les sessions de streaming sont chiffrées de bout en bout au niveau de la couche
 - [Spécification du protocole Streaming](/docs/specs/streaming/)  
 - [Spécification I2CP](/docs/specs/i2cp/)  
 - [Proposition 144 : Calculs de MTU pour le Streaming](/proposals/144-ecies-x25519-aead-ratchet/)  
-- [Notes de version d’I2P 2.10.0](/blog/2025-09-08-i2p-2-10-0-release/)
+- [Notes de version d’I2P 2.10.0](/fr/blog/2025/09/08/i2p-2.10.0-release/)

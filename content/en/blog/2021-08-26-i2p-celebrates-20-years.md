@@ -30,9 +30,9 @@ We've worked very hard to never compromise on this stance, and today every I2P r
 
 Over the next 2 weeks, we've planned some blog posts where we'll explore the past, present, and future of I2P, highlight applications and tools that build on and enhance I2P, and showcase the best of our community. Check back here for more in the coming days!
 
-* [The History of I2P](/en/blog/2021/08/28/History-of-I2P)
-* [Dependency-Free I2P of the Future - Jpackage Bundles and I2P-Zero (from Monero)](/en/blog/2021/09/08/I2P-Jpackage-Bundles-and-Zero)
-* [Level-Up your I2P use with Encrypted LeaseSets](/en/blog/2021/09/07/Level-Up-Encrypted-Leasesets)
+* [The History of I2P](/blog/2021/08/28/20-years-of-privacy-a-brief-history-of-i2p/)
+* [Dependency-Free I2P of the Future - Jpackage Bundles and I2P-Zero (from Monero)](/blog/2021/09/15/improving-i2p-adoption-and-onboarding-using-jpackage-i2p-zero/)
+* [Level-Up your I2P use with Encrypted LeaseSets](/blog/2021/09/07/level-up-your-i2p-skills-with-encrypted-leasesets/)
 * Dividing the Triangle: How I2P Eases Naming and Increases Flexibility for End-Users
 * I2P's Usability Journey
 * Building Bridges - Making Connections with Other Privacy Projects

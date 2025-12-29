@@ -1,7 +1,7 @@
 ---
 title: "Şifreli leaseSet'ler için B32"
 description: "Şifrelenmiş LS2 leaseSet'ler için Base 32 adres biçimi"
-slug: "b32encrypted"
+slug: "b32-for-encrypted-leasesets"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 status: "Uygulandı"

@@ -1,6 +1,7 @@
 ---
 title: "2018 için Üst Düzey Yol Haritası"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "2018, yeni protokollerin, yeni işbirliklerinin ve daha rafine bir odağın yılı olacak."
 categories: ["roadmap"]

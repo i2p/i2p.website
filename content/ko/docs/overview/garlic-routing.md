@@ -41,7 +41,7 @@ Garlic routing은 onion routing과 근본적인 원리를 공유합니다: 각 r
 
 완전한 왕복 통신(Alice ↔ Bob)은 네 개의 tunnel을 사용합니다: Alice의 outbound → Bob의 inbound, 그 다음 Bob의 outbound → Alice의 inbound. 이 설계는 양방향 회로에 비해 **상관관계 데이터 노출을 절반으로 줄입니다**.
 
-터널 구현 세부사항은 [Tunnel Specification](/docs/specs/implementation)과 [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies) 명세를 참조하세요.
+터널 구현 세부사항은 [Tunnel Specification](/docs/specs/implementation)과 [Tunnel Creation (ECIES)](/docs/specs/implementation) 명세를 참조하세요.
 
 ---
 
@@ -186,8 +186,8 @@ Garlic 암호화와 메시지 번들링은 I2P 프로토콜 스택 전반에 걸
 I2P의 문서 허브는 [여기에서 확인할 수 있으며](/docs/), 지속적으로 유지 관리됩니다. 관련된 최신 명세서는 다음과 같습니다:
 
 - [ECIES 명세서](/docs/specs/ecies) — ECIES‑X25519‑AEAD‑Ratchet
-- [Tunnel 생성 (ECIES)](/spec/tunnel/creation-ecies) — 현대적인 tunnel 구축 프로토콜
-- [I2NP 명세서](/spec/i2np) — I2NP 메시지 형식
+- [Tunnel 생성 (ECIES)](/docs/specs/implementation) — 현대적인 tunnel 구축 프로토콜
+- [I2NP 명세서](/docs/specs/i2np) — I2NP 메시지 형식
 - [SSU2 명세서](/docs/specs/ssu2) — SSU2 UDP 전송
 - [공통 구조](/docs/specs/common-structures) — netDb 및 floodfill 동작
 

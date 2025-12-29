@@ -106,6 +106,6 @@ GZip или аналогичные методы для объёмных стру
 Смотрите также:
 
 - [Маршрутизация туннелей](/docs/overview/tunnel-routing/)
-- [Выбор пиров](/docs/how/peer-selection/)
-- [Транспорты](/docs/transport/)
+- [Выбор пиров](/docs/overview/tunnel-routing/)
+- [Транспорты](/docs/overview/transport/)
 - [Спецификация SSU2](/docs/specs/ssu2/) и [Спецификация NTCP2](/docs/specs/ntcp2/)

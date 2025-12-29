@@ -376,8 +376,8 @@ SAM UDP apps: None known
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)
 
 
 

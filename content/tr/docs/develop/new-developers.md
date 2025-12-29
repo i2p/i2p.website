@@ -53,7 +53,7 @@ Kodu derlemek için Sun/Oracle Java Development Kit 6 veya üzeri, ya da eşdeğ
 
 Console çevirilerini oluşturmak veya üzerinde çalışmak için GNU gettext paketinden `xgettext`, `msgfmt` ve `msgmerge` araçlarına ihtiyacınız var.
 
-Yeni uygulamalar üzerinde geliştirme yapmak için [uygulama geliştirme kılavuzuna](/get-involved/develop/applications/) bakın.
+Yeni uygulamalar üzerinde geliştirme yapmak için [uygulama geliştirme kılavuzuna](/docs/develop/applications/) bakın.
 
 ## Geliştirme Fikirleri
 
@@ -65,7 +65,7 @@ Fikirler için proje TODO listesine veya GitLab'daki sorun listesine bakın:
 
 Commit yetkisi gereksinimleri için lisanslar sayfasının altına bakın. `i2p.i2p`'ye kod koymak için bunlara ihtiyacınız var (web sitesi için gerekli değil!).
 
-- [Lisanslar sayfası](/get-involved/develop/licenses#commit)
+- [Lisanslar sayfası](/docs/develop/licenses#commit)
 
 ## Bizi Tanıyın!
 
@@ -73,7 +73,7 @@ Geliştiriciler IRC'de takılırlar. Onlara çeşitli ağlar ve I2P dahili ağla
 
 ## Çeviriler
 
-Web sitesi ve router konsolu çeviricileri: Sonraki adımlar için [Yeni Çevirmenlerin Rehberi](/get-involved/guides/new-translators/)'ne bakın.
+Web sitesi ve router konsolu çeviricileri: Sonraki adımlar için [Yeni Çevirmenlerin Rehberi](/docs/develop/new-translators/)'ne bakın.
 
 ## Araçlar
 

@@ -55,7 +55,7 @@ To compile the code, you need the Sun/Oracle Java Development Kit 6 or higher, o
 
 To build or work on console translations, you need the `xgettext`, `msgfmt`, and `msgmerge` tools from the GNU gettext package.
 
-For development on new applications, see the [application development guide](/get-involved/develop/applications/).
+For development on new applications, see the [application development guide](/docs/develop/applications/).
 
 ## Development Ideas
 
@@ -67,7 +67,7 @@ See the project TODO list or the issue list on GitLab for ideas:
 
 See the bottom of the licenses page for commit privilege requirements. You need these to put code into `i2p.i2p` (not required for the website!).
 
-- [Licenses page](/get-involved/develop/licenses#commit)
+- [Licenses page](/docs/develop/licenses#commit)
 
 ## Get to Know Us!
 
@@ -75,7 +75,7 @@ The developers hang around on IRC. They can be reached on various networks and o
 
 ## Translations
 
-Website and router console translators: See the [New Translator's Guide](/get-involved/guides/new-translators/) for next steps.
+Website and router console translators: See the [New Translator's Guide](/docs/develop/new-translators/) for next steps.
 
 ## Tools
 

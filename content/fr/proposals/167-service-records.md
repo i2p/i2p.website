@@ -119,7 +119,7 @@ Définies comme suit :
   Utile uniquement s'il y a plus d'un enregistrement, mais requis même s'il n'y en a qu'un.
 - port := Le port I2CP sur lequel se trouve le service. Entier non-négatif. Exemple : "25"
   Le port 0 est pris en charge mais non recommandé.
-- target := Le nom d'hôte ou b32 de la destination fournissant le service. Un nom d'hôte valide comme dans [NAMING](/docs/naming/). Doit être en minuscules.
+- target := Le nom d'hôte ou b32 de la destination fournissant le service. Un nom d'hôte valide comme dans [NAMING](/docs/overview/naming/). Doit être en minuscules.
   Exemple : "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" ou "example.i2p".
   b32 est recommandé sauf si le nom d'hôte est "bien connu", c'est-à-dire dans les carnets d'adresses officiels ou par défaut.
 - appoptions := texte arbitraire spécifique à l'application, ne doit pas contenir " " ou ",". Le codage est UTF-8.

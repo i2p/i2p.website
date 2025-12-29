@@ -1,6 +1,7 @@
 ---
 title: "Митап в Торонто"
 date: 2015-06-02
+slug: "toronto-meetup"
 author: "hottuna"
 description: "Встреча I2P в Торонто 15–16 августа"
 categories: ["community"]

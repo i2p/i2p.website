@@ -53,7 +53,7 @@ Pour compiler le code, vous avez besoin du Sun/Oracle Java Development Kit 6 ou 
 
 Pour compiler ou travailler sur les traductions de la console, vous avez besoin des outils `xgettext`, `msgfmt` et `msgmerge` du paquet GNU gettext.
 
-Pour le développement de nouvelles applications, consultez le [guide de développement d'applications](/get-involved/develop/applications/).
+Pour le développement de nouvelles applications, consultez le [guide de développement d'applications](/docs/develop/applications/).
 
 ## Idées de développement
 
@@ -65,7 +65,7 @@ Consultez la liste TODO du projet ou la liste des problèmes sur GitLab pour des
 
 Consultez le bas de la page des licences pour connaître les exigences relatives aux privilèges de commit. Vous en avez besoin pour intégrer du code dans `i2p.i2p` (non requis pour le site web !).
 
-- [Page des licences](/get-involved/develop/licenses#commit)
+- [Page des licences](/docs/develop/licenses#commit)
 
 ## Faites notre connaissance !
 
@@ -73,7 +73,7 @@ Les développeurs traînent sur IRC. Ils peuvent être contactés sur différent
 
 ## Traductions
 
-Traducteurs du site web et de la console du routeur : Consultez le [Guide du nouveau traducteur](/get-involved/guides/new-translators/) pour les prochaines étapes.
+Traducteurs du site web et de la console du routeur : Consultez le [Guide du nouveau traducteur](/docs/develop/new-translators/) pour les prochaines étapes.
 
 ## Outils
 

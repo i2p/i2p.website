@@ -107,6 +107,6 @@ GZip 或类似压缩方式用于冗长结构(例如 RouterInfo 选项),在适当
 另请参阅：
 
 - [Tunnel Routing（隧道路由）](/docs/overview/tunnel-routing/)
-- [Peer Selection（节点选择）](/docs/how/peer-selection/)
-- [Transports（传输协议）](/docs/transport/)
+- [Peer Selection（节点选择）](/docs/overview/tunnel-routing/)
+- [Transports（传输协议）](/docs/overview/transport/)
 - [SSU2 Specification](/docs/specs/ssu2/) 和 [NTCP2 Specification](/docs/specs/ntcp2/)

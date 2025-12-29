@@ -107,6 +107,6 @@ Selective LeaseSet bundling, tùy chọn nén RouterInfo, và việc áp dụng 
 Xem thêm:
 
 - [Định tuyến Tunnel](/docs/overview/tunnel-routing/)
-- [Lựa chọn Peer](/docs/how/peer-selection/)
-- [Transports](/docs/transport/)
+- [Lựa chọn Peer](/docs/overview/tunnel-routing/)
+- [Transports](/docs/overview/transport/)
 - [Đặc tả SSU2](/docs/specs/ssu2/) và [Đặc tả NTCP2](/docs/specs/ntcp2/)

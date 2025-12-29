@@ -93,7 +93,7 @@ LS2选项必须按键排序，因此签名是不变的。
   仅在多于一个记录时有用，但即使只有一个记录也需要。
 - port := 服务所在的I2CP端口。非负整数。例如："25"。
   支持端口0但不推荐使用。
-- target := 提供该服务的终点的主机名或b32。有效的主机名如[NAMING](/docs/naming/)。必须小写。
+- target := 提供该服务的终点的主机名或b32。有效的主机名如[NAMING](/docs/overview/naming/)。必须小写。
   例如："aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p"或"example.i2p"。
   除非主机名是“众所周知”的，即在官方或默认地址簿中，否则建议使用b32。
 - appoptions := 特定于应用的任意文本，不得包含" "或","。编码为UTF-8。
@@ -239,7 +239,7 @@ NAMING LOOKUP NAME=example.i2p OPTIONS=true请求在回复中提供选项映射�
 
 ## 名称查找替代方案
 
-考虑了一种替代设计，以支持对服务的完整主机名查找，例如_smtp._tcp.example.i2p，通过更新[NAMING](/docs/naming/)以指定处理以'_'开头的主机名。
+考虑了一种替代设计，以支持对服务的完整主机名查找，例如_smtp._tcp.example.i2p，通过更新[NAMING](/docs/overview/naming/)以指定处理以'_'开头的主机名。
 这被拒绝的原因有两个：
 
 - 仍然需要I2CP和SAM更改以将TTL和端口信息传递给客户端。

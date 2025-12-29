@@ -67,6 +67,6 @@ SAM 메시지는 공백으로 구분된 키/값 쌍으로 이루어진 단일 �
 - [SAM v2](/docs/legacy/samv2/)
 - [SAM v3](/docs/api/samv3/)
 - [데이터그램 사양](/docs/api/datagrams/)
-- [스트리밍 프로토콜](/spec/api/streaming/)
+- [스트리밍 프로토콜](/docs/specs/streaming/)
 
 SAM v1은 router에 구애받지 않는 애플리케이션 개발의 토대를 마련했지만, 생태계는 이미 다음 단계로 넘어갔습니다. 이 문서는 출발점이라기보다 호환성 확보를 위한 보조 자료로 취급하십시오.

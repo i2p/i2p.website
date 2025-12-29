@@ -313,8 +313,8 @@ ve tekrar saldırılarına açıktır. Gerekli tüm doğrulama uygulama katmanı
 ## Notlar
 
 - Pratik uzunluk, protokollerin daha alt katmanları tarafından sınırlıdır - tünel
-  mesaj spesifikasyonu [TUNMSG](/docs/specs/tunnel-message/#notes) mesajları yaklaşık 61,2 KB ile sınırlar ve taşıma
-  [TRANSPORT](/docs/transport/) şu anda mesajları yaklaşık 64 KB ile sınırlar, bu yüzden burada veri uzunluğu
+  mesaj spesifikasyonu [TUNMSG](/docs/specs/implementation/#notes) mesajları yaklaşık 61,2 KB ile sınırlar ve taşıma
+  [TRANSPORT](/docs/overview/transport/) şu anda mesajları yaklaşık 64 KB ile sınırlar, bu yüzden burada veri uzunluğu
   yaklaşık 61 KB ile sınırlıdır.
 - Büyük datagramların güvenilirliği hakkında önemli notlara bakın [API](/docs/api/datagrams/).
   En iyi sonuçlar için veri yükünü yaklaşık 10 KB veya daha az ile sınırlayın.
@@ -362,5 +362,5 @@ SAM UDP uygulamaları: Bilinen yok
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

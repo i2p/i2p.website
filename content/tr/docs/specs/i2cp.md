@@ -1356,7 +1356,7 @@ Açık bir sona erme süresi belirlemek için her zaman SendMessageExpires (Send
 - [Öneri 152](/proposals/152-ecies-tunnels/): X25519 tunnel oluşturma
 - [Öneri 154](/proposals/154-ecies-lookups/): ECIES hedeflerinden veritabanı sorguları
 - [Öneri 156](/proposals/156-ecies-routers/): Router'ın ECIES-X25519'a geçişi
-- [Öneri 161](/proposals/161-ri-dest-padding/): Hedef dolgusu sıkıştırması
+- [Öneri 161](/tr/proposals/161-ri-dest-padding/): Hedef dolgusu sıkıştırması
 - [Öneri 167](/proposals/167-service-records/): LeaseSet hizmet kayıtları
 - [Öneri 169](/proposals/169-pq-crypto/): Kuantum-sonrası hibrit kriptografi (ML-KEM)
 

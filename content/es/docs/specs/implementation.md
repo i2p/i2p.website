@@ -182,13 +182,12 @@ Aunque los tunnels se asemejan a circuitos, los routers los tratan como colas de
 - Los participantes consideran fragmentos de tamaño fijo; las puertas de enlace/extremos descartan en función del tamaño combinado de los fragmentos, penalizando primero las cargas útiles grandes.
 - Los extremos salientes descartan antes que otros roles para desperdiciar el menor esfuerzo de red posible.
 
-La entrega garantizada se delega a capas superiores como la [Streaming library](/spec/api/streaming/) (biblioteca de transmisión). Las aplicaciones que requieren fiabilidad deben encargarse ellas mismas de la retransmisión y de los acuses de recibo.
+La entrega garantizada se delega a capas superiores como la [Streaming library](/docs/specs/streaming/) (biblioteca de transmisión). Las aplicaciones que requieren fiabilidad deben encargarse ellas mismas de la retransmisión y de los acuses de recibo.
 
 ---
 
 ## Lecturas adicionales {#further-reading}
 
-- [Tunnels unidireccionales (histórico)](/docs/legacy/unidirectional-tunnels/)
 - [Selección de pares](/docs/overview/tunnel-routing#peer-selection/)
 - [Visión general de Tunnel](/docs/overview/tunnel-routing/)
 - [Implementación antigua de Tunnel](/docs/legacy/old-implementation/)

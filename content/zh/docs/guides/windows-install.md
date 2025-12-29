@@ -215,7 +215,7 @@ toc: true
 - **设置端口转发**: 参阅 [portforward.com](https://portforward.com/) 获取特定于 router 的关于如何转发 I2P 所使用端口的说明
 - **探索 router 控制台**: 了解 I2P 的功能、服务和配置选项
 - **访问 eepsites（I2P 内部网站）**: 尝试通过 I2P 网络访问 `.i2p` 网站
-- **阅读文档**: 查看 [I2P 文档](../../_index.md) 以了解更多信息
+- **阅读文档**: 查看 [I2P 文档](/docs/) 以了解更多信息
 
 欢迎来到 I2P 网络！🎉
 
@@ -460,10 +460,10 @@ toc: true
 ## 后续步骤
 
 - **等待接入**: 给 I2P 5-10 分钟接入网络并建立 tunnels
-- **配置端口转发**: 请参阅[端口转发指南](windows-easy-install.md#recommended-port-forwarding-optional-but-important) 获取说明
+- **配置端口转发**: 请参阅[端口转发指南](#recommended-port-forwarding-optional-but-important) 获取说明
 - **配置浏览器**: 将你的网页浏览器设置为使用 I2P 的 HTTP 代理
 - **探索 router 控制台**: 了解 I2P 的功能、服务和配置选项
 - **访问 eepsites（I2P 内部网站）**: 尝试通过 I2P 网络访问 `.i2p` 网站
-- **阅读文档**: 查看 [I2P 文档](../../_index.md) 了解更多信息
+- **阅读文档**: 查看 [I2P 文档](/docs/) 了解更多信息
 
 欢迎来到 I2P 网络！🎉

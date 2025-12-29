@@ -1353,7 +1353,7 @@ CreateLeaseSet2Message（用于发布 LeaseSet2 的消息）包含用于解密�
 - [提案 152](/proposals/152-ecies-tunnels/): X25519 tunnel 的创建
 - [提案 154](/proposals/154-ecies-lookups/): 从 ECIES 目的地发起的数据库查找
 - [提案 156](/proposals/156-ecies-routers/): Router 迁移到 ECIES-X25519
-- [提案 161](/proposals/161-ri-dest-padding/): 目的地填充压缩
+- [提案 161](/zh/proposals/161-ri-dest-padding/): 目的地填充压缩
 - [提案 167](/proposals/167-service-records/): LeaseSet 服务记录
 - [提案 169](/proposals/169-pq-crypto/): 后量子混合密码学（ML-KEM）
 

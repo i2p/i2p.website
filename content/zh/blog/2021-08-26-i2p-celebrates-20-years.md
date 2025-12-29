@@ -30,9 +30,9 @@ I2P 一直是一个去中心化的网络，因为很显然，提供匿名网络�
 
 在接下来的两周里，我们计划发布一些博客文章，在其中我们将探讨 I2P 的过去、现在与未来，重点介绍基于 I2P 构建并提升其能力的应用和工具，并展示我们社区的最佳风采。接下来几天请持续关注这里，获取更多内容！
 
-* [The History of I2P](/en/blog/2021/08/28/History-of-I2P)
-* [Dependency-Free I2P of the Future - Jpackage Bundles and I2P-Zero (from Monero)](/en/blog/2021/09/08/I2P-Jpackage-Bundles-and-Zero)
-* [Level-Up your I2P use with Encrypted LeaseSets](/en/blog/2021/09/07/Level-Up-Encrypted-Leasesets)
+* [The History of I2P](/blog/2021/08/28/20-years-of-privacy-a-brief-history-of-i2p/)
+* [Dependency-Free I2P of the Future - Jpackage Bundles and I2P-Zero (from Monero)](/blog/2021/09/15/improving-i2p-adoption-and-onboarding-using-jpackage-i2p-zero/)
+* [Level-Up your I2P use with Encrypted LeaseSets](/blog/2021/09/07/level-up-your-i2p-skills-with-encrypted-leasesets/)
 * Dividing the Triangle: How I2P Eases Naming and Increases Flexibility for End-Users
 * I2P's Usability Journey
 * Building Bridges - Making Connections with Other Privacy Projects

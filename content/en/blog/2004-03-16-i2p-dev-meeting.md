@@ -1,5 +1,6 @@
 ---
 title: "I2P Dev Meeting - March 16, 2004"
+slug: "i2p-dev-meeting-march-16-2004"
 date: 2004-03-16
 author: " jrandom"
 description: "I2P development meeting log for March 16, 2004."

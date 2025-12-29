@@ -160,7 +160,7 @@ ZCash Protocol Specification 5.4.6.1절에 따르면: 보안을 위해 alpha는 
 
 **지원되는 서명 유형:** - **유형 7 (Ed25519):** 기존 destinations(목적지) 지원 (하위 호환성) - **유형 11 (Red25519):** 암호화를 사용하는 신규 destinations에 권장 - **Blinded keys(블라인드 키):** 항상 유형 11 (Red25519)을 사용
 
-**참고 자료:** - [ZCash 프로토콜 명세서](https://zips.z.cash/protocol/protocol.pdf) - 섹션 5.4.6 RedDSA - [I2P Red25519 명세서](/docs/specs/red25519/)
+**참고 자료:** - [ZCash 프로토콜 명세서](https://zips.z.cash/protocol/protocol.pdf) - 섹션 5.4.6 RedDSA - [I2P Red25519 명세서](/docs/specs/red25519-signature-scheme/)
 
 ### DH(디피-헬먼 키 교환): X25519
 
@@ -1271,7 +1271,7 @@ def destination_to_encrypted_b32(destination):
 
 **주소 검증:** - 사용 전에 항상 체크섬을 검증할 것 - 유효하지 않은 서명 유형의 주소는 거부할 것 - 공개 키가 타원 곡선 상에 있는지 확인할 것(구현별)
 
-**참고 자료:** - [제안 149: 암호화된 LS2(leaseSet 2)용 B32](/proposals/149-b32-encrypted-ls2/) - [B32 주소 지정 사양](/docs/specs/b32encrypted/) - [I2P 이름 지정 사양](/docs/overview/naming/)
+**참고 자료:** - [제안 149: 암호화된 LS2(leaseSet 2)용 B32](/proposals/149-b32-encrypted-ls2/) - [B32 주소 지정 사양](/docs/specs/b32-for-encrypted-leasesets/) - [I2P 이름 지정 사양](/docs/overview/naming/)
 
 ---
 
@@ -2096,8 +2096,8 @@ Key areas to test:
 - **[Proposal 123: New netDB Entries](/proposals/123-new-netdb-entries/)** - Background and design of LeaseSet2
 - **[Proposal 146: Red25519](/proposals/146-red25519/)** - Red25519 signature scheme specification
 - **[Proposal 149: B32 for Encrypted LS2](/proposals/149-b32-encrypted-ls2/)** - Base32 addressing for encrypted LeaseSets
-- **[Red25519 Specification](/docs/specs/red25519/)** - Detailed Red25519 implementation
-- **[B32 Addressing Specification](/docs/specs/b32encrypted/)** - Base32 address format
+- **[Red25519 Specification](/docs/specs/red25519-signature-scheme/)** - Detailed Red25519 implementation
+- **[B32 Addressing Specification](/docs/specs/b32-for-encrypted-leasesets/)** - Base32 address format
 - **[Network Database Documentation](/docs/specs/common-structures/)** - NetDB usage and operations
 - **[I2CP Specification](/docs/specs/i2cp/)** - I2P Client Protocol
 
@@ -2119,7 +2119,7 @@ Key areas to test:
 - **[Java I2P Repository](https://github.com/i2p/i2p.i2p)** - Official Java implementation
 - **[i2pd Repository](https://github.com/PurpleI2P/i2pd)** - C++ implementation
 - **[I2P Website](/)** - Official I2P project website
-- **[I2P Specifications](/spec/)** - Complete specification index
+- **[I2P Specifications](/docs/specs/)** - Complete specification index
 
 ### Version History
 

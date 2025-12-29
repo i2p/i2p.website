@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 reviewStatus: "needs-review"
 ---
 
-> **الحالة:** تلخّص هذه الصفحة "مواصفة التشفير منخفض المستوى" القديمة. لقد أكملت إصدارات I2P الحديثة (2.10.0، أكتوبر 2025) الانتقال إلى بدائيات تشفير جديدة. استخدم المواصفات المتخصصة مثل [ECIES](/docs/specs/ecies/) (نظام تشفير متكامل قائم على المنحنيات الإهليلجية)، [Encrypted LeaseSets](/docs/specs/encryptedleaseset/)، [NTCP2](/docs/specs/ntcp2/)، [Red25519](/docs/specs/red25519-signature-scheme/)، [SSU2](/docs/specs/ssu2/)، و[Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies/) للحصول على تفاصيل التنفيذ.
+> **الحالة:** تلخّص هذه الصفحة "مواصفة التشفير منخفض المستوى" القديمة. لقد أكملت إصدارات I2P الحديثة (2.10.0، أكتوبر 2025) الانتقال إلى بدائيات تشفير جديدة. استخدم المواصفات المتخصصة مثل [ECIES](/docs/specs/ecies/) (نظام تشفير متكامل قائم على المنحنيات الإهليلجية)، [Encrypted LeaseSets](/docs/specs/encryptedleaseset/)، [NTCP2](/docs/specs/ntcp2/)، [Red25519](/docs/specs/red25519-signature-scheme/)، [SSU2](/docs/specs/ssu2/)، و[Tunnel Creation (ECIES)](/docs/specs/implementation/) للحصول على تفاصيل التنفيذ.
 
 ## لقطة للتطور
 

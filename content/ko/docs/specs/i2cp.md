@@ -1356,7 +1356,7 @@ CreateLeaseSet2Message(LeaseSet2 생성 메시지)에는 수신 메시지를 복
 - [제안 152](/proposals/152-ecies-tunnels/): X25519 tunnel 생성
 - [제안 154](/proposals/154-ecies-lookups/): ECIES 목적지에서의 데이터베이스 조회
 - [제안 156](/proposals/156-ecies-routers/): Router의 ECIES-X25519로의 마이그레이션
-- [제안 161](/proposals/161-ri-dest-padding/): Destination 패딩 압축
+- [제안 161](/ko/proposals/161-ri-dest-padding/): Destination 패딩 압축
 - [제안 167](/proposals/167-service-records/): LeaseSet 서비스 레코드
 - [제안 169](/proposals/169-pq-crypto/): 포스트-양자 하이브리드 암호(ML-KEM)
 

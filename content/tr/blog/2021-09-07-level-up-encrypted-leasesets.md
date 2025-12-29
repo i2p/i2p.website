@@ -1,6 +1,7 @@
 ---
 title: "I2P becerilerinizi Şifrelenmiş LeaseSets (gelen tünel kümeleri) ile bir üst seviyeye taşıyın"
 date: 2021-09-07
+slug: "level-up-your-i2p-skills-with-encrypted-leasesets"
 author: "idk"
 description: "I2P'nin Gizli Servisleri vurguladığı söylenir; bunun bir yorumunu inceliyoruz."
 categories: ["general"]

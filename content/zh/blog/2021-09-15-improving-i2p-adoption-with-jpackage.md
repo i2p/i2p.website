@@ -1,6 +1,7 @@
 ---
 title: "使用 Jpackage 和 I2P-Zero 提升 I2P 的普及度与上手引导"
 date: 2021-09-15
+slug: "improving-i2p-adoption-and-onboarding-using-jpackage-i2p-zero"
 author: "idk"
 description: "在您的应用程序中安装和嵌入 I2P 的多样化和新兴方法"
 categories: ["general"]
@@ -22,10 +23,10 @@ categories: ["general"]
 
 由 Zlatinb 创建的全新 I2P .dmg 安装程序，使在 OSX 上安装 I2P 比以往任何时候都更容易，不再需要用户自行安装 Java，并按照规定的方式使用标准的 OSX 安装工具。新的 .dmg 安装程序让在 Mac OSX 上设置 I2P 比以往任何时候都更容易。
 
-获取 [dmg](/mac)
+获取 [dmg](https://geti2p.net/en/download/mac)
 
 ## 未来的 I2P 易于安装
 
 我最常从用户那里听到的一件事是，如果 I2P 想要被广泛采用，就必须让人们容易上手。许多人希望有一种“类似 Tor Browser 的”用户体验，引用（或转述）许多熟悉的 Reddit 用户的话。安装不应要求繁琐且容易出错的“安装后”步骤。许多新用户并没有做好以全面、完整的方式处理其浏览器配置的准备。为了解决这个问题，我们创建了 I2P Profile Bundle，它会配置 Firefox，使其能自动“开箱即用”地使用 I2P。随着它的发展，它添加了安全功能，并改进了与 I2P 本身的集成。在其最新版本中，它**also**捆绑了一个完整的、由 Jpackage 驱动的 I2P Router。I2P Firefox Profile 现在是一个面向 Windows 的完整 I2P 发行版，唯一剩余的依赖只有 Firefox 本身。这应当为 Windows 上的 I2P 用户提供前所未有的便利。
 
-获取[安装程序](/nsis)
+获取[安装程序](https://geti2p.net/en/download#windows)

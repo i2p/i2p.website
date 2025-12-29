@@ -1,5 +1,6 @@
 ---
 title: "Cuộc họp các nhà phát triển I2P - ngày 16 tháng 3 năm 2004"
+slug: "i2p-dev-meeting-march-16-2004"
 date: 2004-03-16
 author: " jrandom"
 description: "Nhật ký cuộc họp phát triển I2P ngày 16 tháng 3 năm 2004."

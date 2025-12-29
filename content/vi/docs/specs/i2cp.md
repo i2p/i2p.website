@@ -1360,7 +1360,7 @@ Luôn dùng SendMessageExpires (không phải SendMessage) để thiết lập t
 - [Đề xuất 152](/proposals/152-ecies-tunnels/): Tạo tunnel X25519
 - [Đề xuất 154](/proposals/154-ecies-lookups/): Tra cứu cơ sở dữ liệu từ các đích ECIES (Destination)
 - [Đề xuất 156](/proposals/156-ecies-routers/): Di chuyển router sang ECIES-X25519
-- [Đề xuất 161](/proposals/161-ri-dest-padding/): Nén phần đệm của đích
+- [Đề xuất 161](/vi/proposals/161-ri-dest-padding/): Nén phần đệm của đích
 - [Đề xuất 167](/proposals/167-service-records/): Bản ghi dịch vụ LeaseSet
 - [Đề xuất 169](/proposals/169-pq-crypto/): Mật mã lai hậu lượng tử (ML-KEM)
 

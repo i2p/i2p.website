@@ -17,7 +17,7 @@ choisir ou de construire des tunnels lorsqu'un message est envoyé de sorte que 
 
 ## Motivation
 
-La plupart des routeurs I2P utilisent une forme de suppression de paquets pour la gestion de la congestion. L'implémentation de référence utilise une stratégie WRED qui prend en compte à la fois la taille du message et la distance parcourue (voir [documentation tunnel throttling](/docs/tunnels/implementation/#tunnelthrottling)). En raison de cette stratégie, la principale source de perte de paquets est l'OBEP.
+La plupart des routeurs I2P utilisent une forme de suppression de paquets pour la gestion de la congestion. L'implémentation de référence utilise une stratégie WRED qui prend en compte à la fois la taille du message et la distance parcourue (voir [documentation tunnel throttling](/docs/specs/implementation/#tunnelthrottling)). En raison de cette stratégie, la principale source de perte de paquets est l'OBEP.
 
 
 ## Conception

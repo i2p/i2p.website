@@ -319,8 +319,8 @@ Datagram3 格式缺乏签名，因此无法验证发送者，
 ## 备注
 
 - 实际长度受到协议的底层限制 - 隧道
-  消息规范 [TUNMSG](/docs/specs/tunnel-message/#notes) 将消息限制在约 61.2 KB，而传输
-  [TRANSPORT](/docs/transport/) 当前将消息限制在约 64 KB，因此这里的数据长度限制为约 61 KB。
+  消息规范 [TUNMSG](/docs/specs/implementation/#notes) 将消息限制在约 61.2 KB，而传输
+  [TRANSPORT](/docs/overview/transport/) 当前将消息限制在约 64 KB，因此这里的数据长度限制为约 61 KB。
 - 见关于大数据报可靠性的相关重要注释 [API](/docs/api/datagrams/)。为了
   获得最佳效果，将有效负载限制在约 10 KB 或更少。
 
@@ -364,5 +364,5 @@ SAM UDP 应用：未知
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

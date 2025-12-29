@@ -34,7 +34,7 @@ Dieser Abschnitt beschreibt Änderungen an:
 - Teilnehmer-Verschlüsselung + Nachverarbeitung
 - Ausgangs- und Eingangsendpunkt-Verschlüsselung + Nachverarbeitung
 
-Für einen Überblick über die aktuelle Tunnel-Nachrichtenverarbeitung siehe die [Tunnel Implementation](/docs/tunnels/implementation/) Spezifikation.
+Für einen Überblick über die aktuelle Tunnel-Nachrichtenverarbeitung siehe die [Tunnel Implementation](/docs/specs/implementation/) Spezifikation.
 
 Besprochen werden nur Änderungen für Router, die die ChaCha20-Schicht-Verschlüsselung unterstützen.
 
@@ -287,4 +287,4 @@ Beide Angriffe werden auch durch das Verbot mehrerer Oracle-Anfragen mit derselb
 
 ## Referenzen
 
-* [Tunnel-Implementation](/docs/tunnels/implementation/)
+* [Tunnel-Implementation](/docs/specs/implementation/)

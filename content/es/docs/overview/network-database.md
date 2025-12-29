@@ -200,7 +200,7 @@ Los LeaseSets incluyen: - **Destino** – clave de cifrado, clave de firma, cert
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>LeaseSet2 (LS2)</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys (<a href="/proposals/123-new-netdb-entries">Proposal 123</a>)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys ([Proposal 123](/proposals/123-new-netdb-entries/))</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Meta LeaseSet</strong></td>
@@ -439,4 +439,4 @@ La filtración de información en la DHT (tabla hash distribuida) de I2P requier
 - [Especificación de estructuras comunes](/docs/specs/common-structures/) – estructuras RouterInfo y LeaseSet
 - [Especificación de I2NP](/docs/specs/i2np/) – tipos de mensajes de la base de datos
 - [Propuesta 123: Nuevas entradas de netDb](/proposals/123-new-netdb-entries) – especificación de LeaseSet2
-- [Discusión histórica de netDb](/docs/historical/netdb/) – historial de desarrollo y debates archivados
+- [Discusión histórica de netDb](/docs/netdb/) – historial de desarrollo y debates archivados

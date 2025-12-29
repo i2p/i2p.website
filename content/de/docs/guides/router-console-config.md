@@ -244,7 +244,7 @@ Die Reseed-Konfigurationsseite ermöglicht es Ihnen, Ihren Router manuell zu res
 
 4. Wenn Sie jemanden kennen und ihm vertrauen, der Reseed-Dateien veröffentlicht, fragen Sie ihn nach der URL. Verwenden Sie dann diese Seite, um mit der erhaltenen URL zu reseeden. Geben Sie zunächst die URL unten ein. Klicken Sie dann auf „Reseed from URL"
 
-5. Siehe [die FAQ](/de/faq) für Anweisungen zum manuellen Reseeding
+5. Siehe [die FAQ](/docs/overview/faq/) für Anweisungen zum manuellen Reseeding
 
 **Manuelle Reseed-Optionen:**
 

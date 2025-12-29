@@ -46,4 +46,4 @@ ASCII القائم على الأسطر مع أزواج `key=value` مفصولة 
 - [SAM v1](/docs/legacy/sam/)
 - [SAM v3](/docs/api/samv3/)
 - [واجهة برمجة تطبيقات الداتاغرام](/docs/api/datagrams/)
-- [بروتوكول البث](/spec/api/streaming/)
+- [بروتوكول البث](/docs/specs/streaming/)

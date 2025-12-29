@@ -323,4 +323,4 @@ Các phiên streaming được mã hóa đầu-cuối ở lớp I2CP.   Mã hóa
 - [Đặc tả Giao thức Streaming](/docs/specs/streaming/)  
 - [Đặc tả I2CP](/docs/specs/i2cp/)  
 - [Đề xuất 144: Tính toán MTU cho Streaming](/proposals/144-ecies-x25519-aead-ratchet/)  
-- [Ghi chú phát hành I2P 2.10.0](/blog/2025-09-08-i2p-2-10-0-release/)
+- [Ghi chú phát hành I2P 2.10.0](/vi/blog/2025/09/08/i2p-2.10.0-release/)

@@ -160,7 +160,7 @@ Ze specifikace protokolu ZCash, oddíl 5.4.6.1: Z hlediska bezpečnosti musí m�
 
 **Podporované typy podpisů:** - **Typ 7 (Ed25519):** Podporován pro existující destinace (zpětná kompatibilita) - **Typ 11 (Red25519):** Doporučen pro nové destinace využívající šifrování - **Zaslepené klíče:** Vždy používejte typ 11 (Red25519)
 
-**Reference:** - [Specifikace protokolu Zcash](https://zips.z.cash/protocol/protocol.pdf) - Sekce 5.4.6 RedDSA - [Specifikace I2P Red25519](/docs/specs/red25519/)
+**Reference:** - [Specifikace protokolu Zcash](https://zips.z.cash/protocol/protocol.pdf) - Sekce 5.4.6 RedDSA - [Specifikace I2P Red25519](/docs/specs/red25519-signature-scheme/)
 
 ### DH: X25519
 
@@ -1271,7 +1271,7 @@ def destination_to_encrypted_b32(destination):
 
 **Ověření adresy:** - Před použitím vždy ověřte kontrolní součet - Odmítejte adresy s neplatnými typy podpisů - Ověřte, že veřejný klíč leží na křivce (v závislosti na implementaci)
 
-**Odkazy:** - [Návrh 149: B32 pro šifrovaný LS2](/proposals/149-b32-encrypted-ls2/) - [Specifikace adresování B32](/docs/specs/b32encrypted/) - [Specifikace pojmenování I2P](/docs/overview/naming/)
+**Odkazy:** - [Návrh 149: B32 pro šifrovaný LS2](/proposals/149-b32-encrypted-ls2/) - [Specifikace adresování B32](/docs/specs/b32-for-encrypted-leasesets/) - [Specifikace pojmenování I2P](/docs/overview/naming/)
 
 ---
 
@@ -2096,8 +2096,8 @@ Key areas to test:
 - **[Proposal 123: New netDB Entries](/proposals/123-new-netdb-entries/)** - Background and design of LeaseSet2
 - **[Proposal 146: Red25519](/proposals/146-red25519/)** - Red25519 signature scheme specification
 - **[Proposal 149: B32 for Encrypted LS2](/proposals/149-b32-encrypted-ls2/)** - Base32 addressing for encrypted LeaseSets
-- **[Red25519 Specification](/docs/specs/red25519/)** - Detailed Red25519 implementation
-- **[B32 Addressing Specification](/docs/specs/b32encrypted/)** - Base32 address format
+- **[Red25519 Specification](/docs/specs/red25519-signature-scheme/)** - Detailed Red25519 implementation
+- **[B32 Addressing Specification](/docs/specs/b32-for-encrypted-leasesets/)** - Base32 address format
 - **[Network Database Documentation](/docs/specs/common-structures/)** - NetDB usage and operations
 - **[I2CP Specification](/docs/specs/i2cp/)** - I2P Client Protocol
 
@@ -2119,7 +2119,7 @@ Key areas to test:
 - **[Java I2P Repository](https://github.com/i2p/i2p.i2p)** - Official Java implementation
 - **[i2pd Repository](https://github.com/PurpleI2P/i2pd)** - C++ implementation
 - **[I2P Website](/)** - Official I2P project website
-- **[I2P Specifications](/spec/)** - Complete specification index
+- **[I2P Specifications](/docs/specs/)** - Complete specification index
 
 ### Version History
 

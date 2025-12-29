@@ -46,4 +46,4 @@ Bkz.:
 - [SAM v1](/docs/legacy/sam/)
 - [SAM v3](/docs/api/samv3/)
 - [Datagram API'si](/docs/api/datagrams/)
-- [Akış Protokolü](/spec/api/streaming/)
+- [Akış Protokolü](/docs/specs/streaming/)

@@ -41,7 +41,7 @@ accurateFor: "2.10.0"
 
 رحلة كاملة ذهاباً وإياباً (Alice ↔ Bob) تستخدم أربعة tunnels: outbound الخاص بـ Alice → inbound الخاص بـ Bob، ثم outbound الخاص بـ Bob → inbound الخاص بـ Alice. هذا التصميم **يقلل تعرض بيانات الارتباط إلى النصف** مقارنة بالدوائر ثنائية الاتجاه.
 
-لمزيد من التفاصيل حول تنفيذ الأنفاق، راجع [مواصفات النفق](/docs/specs/implementation) ومواصفات [إنشاء النفق (ECIES)](/spec/tunnel/creation-ecies).
+لمزيد من التفاصيل حول تنفيذ الأنفاق، راجع [مواصفات النفق](/docs/specs/implementation) ومواصفات [إنشاء النفق (ECIES)](/docs/specs/implementation).
 
 ---
 
@@ -186,8 +186,8 @@ accurateFor: "2.10.0"
 مركز توثيق I2P [متاح هنا](/docs/)، ويتم صيانته بشكل مستمر. المواصفات الحية ذات الصلة تشمل:
 
 - [مواصفات ECIES](/docs/specs/ecies) — ECIES‑X25519‑AEAD‑Ratchet
-- [إنشاء Tunnel (ECIES)](/spec/tunnel/creation-ecies) — بروتوكول بناء tunnel الحديث
-- [مواصفات I2NP](/spec/i2np) — تنسيقات رسائل I2NP
+- [إنشاء Tunnel (ECIES)](/docs/specs/implementation) — بروتوكول بناء tunnel الحديث
+- [مواصفات I2NP](/docs/specs/i2np) — تنسيقات رسائل I2NP
 - [مواصفات SSU2](/docs/specs/ssu2) — بروتوكول نقل SSU2 UDP
 - [البنى المشتركة](/docs/specs/common-structures) — سلوك netDb و floodfill
 

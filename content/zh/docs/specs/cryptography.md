@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 reviewStatus: "needs-review"
 ---
 
-> **状态：** 本页精炼汇总了遗留的“Low-level Cryptography Specification”。较新的 I2P 发行版（2.10.0，2025年10月）已完成向新的密码学原语的迁移。实现细节请参阅以下专项规范：[ECIES](/docs/specs/ecies/)、[Encrypted LeaseSets](/docs/specs/encryptedleaseset/)、[NTCP2](/docs/specs/ntcp2/)、[Red25519](/docs/specs/red25519-signature-scheme/)、[SSU2](/docs/specs/ssu2/)，以及 [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies/)。
+> **状态：** 本页精炼汇总了遗留的“Low-level Cryptography Specification”。较新的 I2P 发行版（2.10.0，2025年10月）已完成向新的密码学原语的迁移。实现细节请参阅以下专项规范：[ECIES](/docs/specs/ecies/)、[Encrypted LeaseSets](/docs/specs/encryptedleaseset/)、[NTCP2](/docs/specs/ntcp2/)、[Red25519](/docs/specs/red25519-signature-scheme/)、[SSU2](/docs/specs/ssu2/)，以及 [Tunnel Creation (ECIES)](/docs/specs/implementation/)。
 
 ## 演进快照
 

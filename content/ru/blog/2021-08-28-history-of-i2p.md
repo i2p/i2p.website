@@ -1,6 +1,7 @@
 ---
 title: "20 лет конфиденциальности: краткая история I2P"
 date: 2021-08-28
+slug: "20-years-of-privacy-a-brief-history-of-i2p"
 author: "sadie"
 description: "История I2P в том виде, в каком мы его знаем"
 categories: ["general"]

@@ -1514,7 +1514,7 @@ Always use SendMessageExpires (not SendMessage) to set explicit expiration. This
 - [Proposal 152](/proposals/152-ecies-tunnels/): X25519 tunnel creation
 - [Proposal 154](/proposals/154-ecies-lookups/): Database lookups from ECIES destinations
 - [Proposal 156](/proposals/156-ecies-routers/): Router migration to ECIES-X25519
-- [Proposal 161](/proposals/161-ri-dest-padding/): Destination padding compression
+- [Proposal 161](/en/proposals/161-ri-dest-padding/): Destination padding compression
 - [Proposal 167](/proposals/167-service-records/): LeaseSet service records
 - [Proposal 169](/proposals/169-pq-crypto/): Post-quantum hybrid cryptography (ML-KEM)
 

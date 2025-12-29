@@ -182,13 +182,12 @@ Ačkoli tunnels připomínají okruhy, routers s nimi zacházejí jako s frontam
 - Účastníci uvažují fragmenty pevné velikosti; brány/koncové body zahazují podle souhrnné velikosti fragmentů a přednostně zahazují velká užitečná data.
 - Výstupní koncové body zahazují dříve než jiné role, aby se co nejméně plýtvalo síťovými prostředky.
 
-Zaručené doručování je ponecháno vyšším vrstvám, jako je [Streaming library (knihovna pro streamování)](/spec/api/streaming/). Aplikace, které vyžadují spolehlivost, si musí samy zajišťovat retransmise a potvrzování.
+Zaručené doručování je ponecháno vyšším vrstvám, jako je [Streaming library (knihovna pro streamování)](/docs/specs/streaming/). Aplikace, které vyžadují spolehlivost, si musí samy zajišťovat retransmise a potvrzování.
 
 ---
 
 ## Další čtení {#further-reading}
 
-- [Jednosměrné tunnels (historické)](/docs/legacy/unidirectional-tunnels/)
 - [Výběr peerů](/docs/overview/tunnel-routing#peer-selection/)
 - [Přehled Tunnel](/docs/overview/tunnel-routing/)
 - [Stará implementace Tunnel](/docs/legacy/old-implementation/)

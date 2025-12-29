@@ -46,4 +46,4 @@ Viz:
 - [SAM v1](/docs/legacy/sam/)
 - [SAM v3](/docs/api/samv3/)
 - [Datagramové API](/docs/api/datagrams/)
-- [Streamovací protokol](/spec/api/streaming/)
+- [Streamovací protokol](/docs/specs/streaming/)

@@ -46,4 +46,4 @@ Reportez-vous à :
 - [SAM v1](/docs/legacy/sam/)
 - [SAM v3](/docs/api/samv3/)
 - [API des datagrammes](/docs/api/datagrams/)
-- [Protocole de diffusion en continu](/spec/api/streaming/)
+- [Protocole de diffusion en continu](/docs/specs/streaming/)

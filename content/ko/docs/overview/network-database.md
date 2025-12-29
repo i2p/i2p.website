@@ -200,7 +200,7 @@ LeaseSets에는 다음이 포함됩니다: - **Destination** (목적지) – 암
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>LeaseSet2 (LS2)</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys (<a href="/proposals/123-new-netdb-entries">Proposal 123</a>)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys ([Proposal 123](/proposals/123-new-netdb-entries/))</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Meta LeaseSet</strong></td>
@@ -433,4 +433,4 @@ I2P에서의 DHT(분산 해시 테이블) 정보 유출은 추가 조사가 필�
 - [공통 구조체 명세](/docs/specs/common-structures/) – RouterInfo 및 LeaseSet(리스셋, I2P 목적지 도달을 위한 리스 집합) 구조체
 - [I2NP 명세](/docs/specs/i2np/) – 데이터베이스 메시지 유형
 - [제안 123: 새로운 netDb 항목](/proposals/123-new-netdb-entries) – LeaseSet2 명세
-- [netDb 역사 논의](/docs/historical/netdb/) – 개발 역사와 아카이브된 논의
+- [netDb 역사 논의](/docs/netdb/) – 개발 역사와 아카이브된 논의

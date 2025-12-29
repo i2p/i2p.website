@@ -6,7 +6,7 @@ lastUpdated: "2025-02"
 accurateFor: "historical"
 ---
 
-> **Zastaralé:** Knihovna ministreaming předchází současné [streamovací knihovně](/spec/api/streaming/). Moderní aplikace musí používat plné streamovací API nebo SAM v3. Informace níže jsou ponechány pro vývojáře, kteří provádějí revizi zastaralého zdrojového kódu dodávaného v `ministreaming.jar`.
+> **Zastaralé:** Knihovna ministreaming předchází současné [streamovací knihovně](/docs/specs/streaming/). Moderní aplikace musí používat plné streamovací API nebo SAM v3. Informace níže jsou ponechány pro vývojáře, kteří provádějí revizi zastaralého zdrojového kódu dodávaného v `ministreaming.jar`.
 
 ## Přehled
 
@@ -40,7 +40,7 @@ V současnosti považujte `ministreaming.jar` pouze za kompatibilní vrstvu. Nov
 
 ## Referenční dokumentace
 
-- [Dokumentace knihovny pro streamování](/spec/api/streaming/)
+- [Dokumentace knihovny pro streamování](/docs/specs/streaming/)
 - [Javadoc knihovny pro streamování](http://idk.i2p/javadoc-i2p/net/i2p/client/streaming/package-summary.html) – včetně zastaralých tříd "ministreaming" (zjednodušené streamování)
 - [Specifikace SAMv3](/docs/api/samv3/) – podpora streamování pro aplikace nepsané v Javě
 

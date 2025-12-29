@@ -161,6 +161,6 @@ Selective LeaseSet bundling, compressed RouterInfo विकल्प, और �
 यह भी देखें:
 
 - [Tunnel Routing](/docs/overview/tunnel-routing/)
-- [Peer Selection](/docs/how/peer-selection/)
-- [Transports](/docs/transport/)
+- [Peer Selection](/docs/overview/tunnel-routing/)
+- [Transports](/docs/overview/transport/)
 - [SSU2 विनिर्देश](/docs/specs/ssu2/) और [NTCP2 विनिर्देश](/docs/specs/ntcp2/)

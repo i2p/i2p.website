@@ -291,7 +291,7 @@
                 <p class="platform-version">v{{ .Site.Data.downloads.current_version }}</p>
                 <p class="platform-req">{{ i18n "downloads.aptRepository" }}</p>
                 <div class="platform-actions">
-                    <a href="{{ relLangURL "docs/guides/installing-i2p-on-debian-and-ubuntu/" }}" class="btn btn-platform" data-no-intercept="true">{{ i18n "downloads.installGuide" }}</a>
+                    <a href="{{ "/en/docs/guides/installing-i2p-on-debian-and-ubuntu/" | relURL }}" class="btn btn-platform" data-no-intercept="true">{{ i18n "downloads.installGuide" }}</a>
                 </div>
             </div>
 
@@ -347,10 +347,10 @@
             <div class="resource-card">
                 <h3>{{ i18n "downloads.installationGuides" }}</h3>
                 <ul>
-                    <li><a href="{{ relLangURL "docs/install/windows/" }}">{{ i18n "downloads.windowsInstallation" }}</a></li>
-                    <li><a href="{{ relLangURL "docs/install/macos/" }}">{{ i18n "downloads.macOsInstallation" }}</a></li>
-                    <li><a href="{{ relLangURL "docs/guides/installing-i2p-on-debian-and-ubuntu/" }}">{{ i18n "downloads.linuxInstallation" }}</a></li>
-                    <li><a href="{{ relLangURL "docs/install/android/" }}">{{ i18n "downloads.androidInstallation" }}</a></li>
+                    <li><a href="{{ "/en/docs/guides/installing-i2p-on-windows/" | relURL }}">{{ i18n "downloads.windowsInstallation" }}</a></li>
+                    <li><a href="{{ "/en/docs/guides/installing-i2p-on-macos-the-long-way/" | relURL }}">{{ i18n "downloads.macOsInstallation" }}</a></li>
+                    <li><a href="{{ "/en/docs/guides/installing-i2p-on-debian-and-ubuntu/" | relURL }}">{{ i18n "downloads.linuxInstallation" }}</a></li>
+                    <li><a href="https://play.google.com/store/apps/details?id=net.i2p.android.router">{{ i18n "downloads.androidInstallation" }}</a></li>
                 </ul>
             </div>
 

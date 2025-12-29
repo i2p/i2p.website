@@ -6,7 +6,7 @@ lastUpdated: "2025-02"
 accurateFor: "historical"
 ---
 
-> **Obsoleto:** A biblioteca ministreaming é anterior à [biblioteca de streaming](/spec/api/streaming/) atual. Aplicações modernas devem usar a API de streaming completa ou SAM v3. As informações abaixo são mantidas para desenvolvedores que revisam código-fonte legado distribuído em `ministreaming.jar`.
+> **Obsoleto:** A biblioteca ministreaming é anterior à [biblioteca de streaming](/docs/specs/streaming/) atual. Aplicações modernas devem usar a API de streaming completa ou SAM v3. As informações abaixo são mantidas para desenvolvedores que revisam código-fonte legado distribuído em `ministreaming.jar`.
 
 ## Visão geral
 
@@ -40,7 +40,7 @@ Hoje, considere `ministreaming.jar` apenas como uma camada de compatibilidade. N
 
 ## Referência
 
-- [Documentação da Biblioteca de Streaming](/spec/api/streaming/)
+- [Documentação da Biblioteca de Streaming](/docs/specs/streaming/)
 - [Javadoc de Streaming](http://idk.i2p/javadoc-i2p/net/i2p/client/streaming/package-summary.html) – inclui classes de ministreaming (implementação mínima de streaming) obsoletas
 - [Especificação do SAM v3](/docs/api/samv3/) – suporte de streaming para aplicações não Java
 

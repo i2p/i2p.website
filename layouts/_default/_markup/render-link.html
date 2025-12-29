@@ -1,0 +1,37 @@
+{{- /* Render hook for markdown links that handles multilingual sites with relativeURLs */}}
+{{- $destination := .Destination -}}
+{{- $text := .Text -}}
+{{- $title := .Title -}}
+{{- $page := .Page -}}
+
+{{- /* Check if this is an internal absolute link (starts with / but not //) */}}
+{{- if and (strings.HasPrefix $destination "/") (not (strings.HasPrefix $destination "//")) -}}
+  {{- /* Check if it's a static file that should stay at root */}}
+  {{- $isStaticFile := or (strings.HasPrefix $destination "/keys/") (strings.HasPrefix $destination "/images/") (strings.HasSuffix $destination ".asc") (strings.HasSuffix $destination ".txt") (strings.HasSuffix $destination ".pdf") (strings.HasSuffix $destination ".svg") (strings.HasSuffix $destination ".png") (strings.HasSuffix $destination ".jpg") (strings.HasSuffix $destination ".jpeg") (strings.HasSuffix $destination ".gif") -}}
+  {{- if $isStaticFile -}}
+    {{- /* Static files stay at root - use relURL */}}
+    {{- $destination = $destination | relURL -}}
+  {{- else -}}
+    {{- /* For internal content links, prepend current language if not already language-prefixed */}}
+    {{- $lang := site.Language.Lang -}}
+    {{- $langPrefix := printf "/%s/" $lang -}}
+    {{- if not (strings.HasPrefix $destination $langPrefix) -}}
+      {{- /* Check if already has another language prefix */}}
+      {{- $hasLangPrefix := false -}}
+      {{- range site.Languages -}}
+        {{- $prefix := printf "/%s/" .Lang -}}
+        {{- if strings.HasPrefix $destination $prefix -}}
+          {{- $hasLangPrefix = true -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if not $hasLangPrefix -}}
+        {{- /* No language prefix - add current language prefix */}}
+        {{- $destination = printf "/%s%s" $lang $destination -}}
+      {{- end -}}
+    {{- end -}}
+    {{- /* Now convert to relative URL */}}
+    {{- $destination = $destination | relURL -}}
+  {{- end -}}
+{{- end -}}
+
+<a href="{{ $destination | safeURL }}"{{ with $title }} title="{{ . }}"{{ end }}>{{ $text }}</a>

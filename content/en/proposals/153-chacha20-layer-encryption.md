@@ -317,6 +317,6 @@ Both attacks are also blocked by disallowing multiple oracle calls using the sam
 
 ## References
 
-* [Tunnel-Implementation](/docs/tunnels/implementation/)
+* [Tunnel-Implementation](/docs/specs/implementation/)
 
 

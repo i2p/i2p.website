@@ -53,7 +53,7 @@ Pro kompilaci kódu potřebujete Sun/Oracle Java Development Kit 6 nebo vyšší
 
 Pro sestavení nebo práci na překladech konzole potřebujete nástroje `xgettext`, `msgfmt` a `msgmerge` z balíčku GNU gettext.
 
-Pro vývoj nových aplikací se podívejte do [průvodce vývojem aplikací](/get-involved/develop/applications/).
+Pro vývoj nových aplikací se podívejte do [průvodce vývojem aplikací](/docs/develop/applications/).
 
 ## Nápady pro vývoj
 
@@ -65,7 +65,7 @@ Podívejte se na seznam TODO projektu nebo na seznam problémů na GitLabu pro n
 
 Požadavky na práva k provádění commitů najdete na konci stránky s licencemi. Tyto práva potřebujete k vkládání kódu do `i2p.i2p` (pro webové stránky není vyžadováno!).
 
-- [Stránka licencí](/get-involved/develop/licenses#commit)
+- [Stránka licencí](/docs/develop/licenses#commit)
 
 ## Poznejte nás!
 
@@ -73,7 +73,7 @@ Vývojáři se zdržují na IRC. Lze je zastihnout na různých sítích a na in
 
 ## Překlady
 
-Překladatelé webových stránek a routerové konzole: Další kroky najdete v [Příručce pro nové překladatele](/get-involved/guides/new-translators/).
+Překladatelé webových stránek a routerové konzole: Další kroky najdete v [Příručce pro nové překladatele](/docs/develop/new-translators/).
 
 ## Nástroje
 

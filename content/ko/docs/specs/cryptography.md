@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 reviewStatus: "needs-review"
 ---
 
-> **상태:** 이 페이지는 레거시 "Low-level Cryptography Specification"(저수준 암호화 명세)을 요약합니다. 최신 I2P 릴리스(2.10.0, 2025년 10월)는 새로운 암호 프리미티브로의 마이그레이션을 완료했습니다. 구현 세부사항은 [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/), 및 [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies/)와 같은 전용 명세를 참고하십시오.
+> **상태:** 이 페이지는 레거시 "Low-level Cryptography Specification"(저수준 암호화 명세)을 요약합니다. 최신 I2P 릴리스(2.10.0, 2025년 10월)는 새로운 암호 프리미티브로의 마이그레이션을 완료했습니다. 구현 세부사항은 [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/), 및 [Tunnel Creation (ECIES)](/docs/specs/implementation/)와 같은 전용 명세를 참고하십시오.
 
 ## 발전 스냅샷
 

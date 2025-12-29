@@ -108,6 +108,6 @@ IMPORTANT: Sadece çeviriyi sağlayın. Soru sormayın, açıklama yapmayın vey
 Ayrıca bakınız:
 
 - [Tunnel Yönlendirme](/docs/overview/tunnel-routing/)
-- [Eş Seçimi](/docs/how/peer-selection/)
-- [Taşıma Katmanları](/docs/transport/)
+- [Eş Seçimi](/docs/overview/tunnel-routing/)
+- [Taşıma Katmanları](/docs/overview/transport/)
 - [SSU2 Spesifikasyonu](/docs/specs/ssu2/) ve [NTCP2 Spesifikasyonu](/docs/specs/ntcp2/)

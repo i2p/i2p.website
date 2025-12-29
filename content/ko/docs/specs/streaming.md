@@ -323,4 +323,4 @@ OutputStream out = socket.getOutputStream();
 - [스트리밍 프로토콜 명세](/docs/specs/streaming/)  
 - [I2CP 명세](/docs/specs/i2cp/)  
 - [제안 144: 스트리밍 MTU 계산](/proposals/144-ecies-x25519-aead-ratchet/)  
-- [I2P 2.10.0 릴리스 노트](/blog/2025-09-08-i2p-2-10-0-release/)
+- [I2P 2.10.0 릴리스 노트](/ko/blog/2025/09/08/i2p-2.10.0-release/)

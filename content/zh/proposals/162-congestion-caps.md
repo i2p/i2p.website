@@ -46,7 +46,7 @@ toc: true
 
 ## 规范
 
-更新 [NETDB](/docs/how/network-database/) 如下：
+更新 [NETDB](/docs/overview/network-database/) 如下：
 
 
 ```text
@@ -106,4 +106,4 @@ D: 中度拥塞，或低性能路由器（如Android、树莓派）
 
 ## 参考资料
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

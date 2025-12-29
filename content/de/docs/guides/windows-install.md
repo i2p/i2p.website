@@ -213,7 +213,7 @@ Nachdem Sie Ihren Port weitergeleitet haben, sollte I2P im Systemleisten-Menü v
 - **Leiten Sie Ihren Port weiter**: Siehe [portforward.com](https://portforward.com/) für routerspezifische Anleitungen zur Portweiterleitung des von I2P verwendeten Ports
 - **Erkunden Sie die Router-Konsole**: Informieren Sie sich über I2P-Funktionen, Dienste und Konfigurationsoptionen
 - **Besuchen Sie eepsites**: Versuchen Sie, `.i2p`-Websites über das I2P-Netzwerk aufzurufen
-- **Lesen Sie die Dokumentation**: Schauen Sie sich die [I2P-Dokumentation](../../_index.md) an für weitere Informationen
+- **Lesen Sie die Dokumentation**: Schauen Sie sich die [I2P-Dokumentation](/docs/) an für weitere Informationen
 
 Willkommen im I2P-Netzwerk! 🎉
 
@@ -504,10 +504,10 @@ WICHTIG:  Stellen Sie KEINE Fragen, geben Sie keine Erklärungen ab und fügen S
 ## Schritt 3: Wählen Sie Ihre Sprache
 
 - **Auf Integration warten**: Geben Sie I2P 5-10 Minuten Zeit, um sich ins Netzwerk zu integrieren und Tunnel aufzubauen
-- **Port-Weiterleitung konfigurieren**: Siehe die [Anleitung zur Port-Weiterleitung](windows-easy-install.md#recommended-port-forwarding-optional-but-important) für Instruktionen
+- **Port-Weiterleitung konfigurieren**: Siehe die [Anleitung zur Port-Weiterleitung](#recommended-port-forwarding-optional-but-important) für Instruktionen
 - **Browser konfigurieren**: Richten Sie Ihren Webbrowser ein, um den HTTP-Proxy von I2P zu verwenden
 - **Router-Konsole erkunden**: Erfahren Sie mehr über die Funktionen, Dienste und Konfigurationsoptionen von I2P
 - **Eepsites besuchen**: Versuchen Sie, `.i2p`-Websites über das I2P-Netzwerk aufzurufen
-- **Dokumentation lesen**: Schauen Sie sich die [I2P-Dokumentation](../../_index.md) an für weitere Informationen
+- **Dokumentation lesen**: Schauen Sie sich die [I2P-Dokumentation](/docs/) an für weitere Informationen
 
 Willkommen im I2P-Netzwerk! 🎉

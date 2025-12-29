@@ -1,7 +1,7 @@
 ---
 title: "B32 cho các leaseSet mã hóa"
 description: "Định dạng địa chỉ Base 32 cho leasesets LS2 được mã hóa"
-slug: "b32encrypted"
+slug: "b32-for-encrypted-leasesets"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 status: "Đã triển khai"

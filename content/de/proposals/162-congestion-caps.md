@@ -51,7 +51,7 @@ Der Stauzustand sollte auf einem Durchschnitt der Bedingungen
 
 ## Spezifikation
 
-Aktualisieren Sie [NETDB](/docs/how/network-database/) wie folgt:
+Aktualisieren Sie [NETDB](/docs/overview/network-database/) wie folgt:
 
 
 ```text
@@ -121,4 +121,4 @@ auf veröffentlichte Caps in 0.9.59 (Juli 2023) reagieren.
 
 ## Verweise
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

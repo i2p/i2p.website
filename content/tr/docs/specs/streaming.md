@@ -323,4 +323,4 @@ Akış oturumları I2CP katmanında uçtan uca şifrelenir.   Post-kuantum hibri
 - [Streaming Protokolü Belirtimi](/docs/specs/streaming/)  
 - [I2CP Belirtimi](/docs/specs/i2cp/)  
 - [Öneri 144: Streaming MTU Hesaplamaları](/proposals/144-ecies-x25519-aead-ratchet/)  
-- [I2P 2.10.0 Sürüm Notları](/blog/2025-09-08-i2p-2-10-0-release/)
+- [I2P 2.10.0 Sürüm Notları](/tr/blog/2025/09/08/i2p-2.10.0-release/)

@@ -216,7 +216,7 @@ sudo dpkg-reconfigure i2p
 الآن بعد أن تم تثبيت وتشغيل I2P:
 
 - [قم بإعداد متصفحك](/docs/guides/browser-config) للوصول إلى مواقع I2P
-- استكشف [لوحة تحكم I2P router](/http://127.0.0.1:7657/) لمراقبة الـ router الخاص بك
+- استكشف [لوحة تحكم I2P router](http://127.0.0.1:7657/) لمراقبة الـ router الخاص بك
 - تعرف على [تطبيقات I2P](/docs/applications/) التي يمكنك استخدامها
 - اقرأ عن [كيفية عمل I2P](/docs/overview/tech-intro) لفهم الشبكة
 

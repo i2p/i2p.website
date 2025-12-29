@@ -16,7 +16,7 @@ Bu öneri, bir mesaj gönderildiğinde tünellerin, hedef Destination'un LeaseSe
 
 ## Motivasyon
 
-Çoğu I2P yönlendiricisi, tıkanıklık yönetimi için bir çeşit paket düşürme kullanır. Referans uygulama, hem mesaj boyutunu hem de seyahat mesafesini dikkate alan bir WRED stratejisi kullanır (bkz. [tunnel throttling belgeleri](/docs/tunnels/implementation/#tunnelthrottling)). Bu strateji nedeniyle, paket kaybının ana kaynağı OBEP'tir.
+Çoğu I2P yönlendiricisi, tıkanıklık yönetimi için bir çeşit paket düşürme kullanır. Referans uygulama, hem mesaj boyutunu hem de seyahat mesafesini dikkate alan bir WRED stratejisi kullanır (bkz. [tunnel throttling belgeleri](/docs/specs/implementation/#tunnelthrottling)). Bu strateji nedeniyle, paket kaybının ana kaynağı OBEP'tir.
 
 
 ## Tasarım

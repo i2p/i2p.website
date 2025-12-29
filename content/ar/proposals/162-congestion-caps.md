@@ -51,7 +51,7 @@ toc: true
 
 ## المواصفات
 
-تحديث [NETDB](/docs/how/network-database/) على النحو التالي:
+تحديث [NETDB](/docs/overview/network-database/) على النحو التالي:
 
 
 ```text
@@ -120,4 +120,4 @@ D: ازدحام متوسط، أو موجه ذو أداء منخفض (مثل أن
 
 ## المراجع
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

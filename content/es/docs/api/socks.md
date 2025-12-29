@@ -89,7 +89,7 @@ A diferencia de Tor, I2P **no** ofrece outproxies (proxies de salida) a la clear
 
 ## 3. Contexto Histórico
 
-Los desarrolladores han desaconsejado durante mucho tiempo el uso de SOCKS para anonimato. De las discusiones internas de desarrolladores y de la [Reunión 81](/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) y [Reunión 82](/blog/2004/03/23/i2p-dev-meeting-march-23-2004/) de 2004:
+Los desarrolladores han desaconsejado durante mucho tiempo el uso de SOCKS para anonimato. De las discusiones internas de desarrolladores y de la [Reunión 81](/es/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) y [Reunión 82](/es/blog/2004/03/23/i2p-dev-meeting-march-23-2004/) de 2004:
 
 > "Reenviar tráfico arbitrario no es seguro, y nos corresponde como desarrolladores de software de anonimato tener la seguridad de nuestros usuarios finales en primer lugar en nuestras mentes."
 

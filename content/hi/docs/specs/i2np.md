@@ -1702,7 +1702,7 @@ Total size: 1 + ($num × 218) bytes
 - **[प्रस्ताव 156](/proposals/156-ecies-routers/)** - ECIES routers
 - **[प्रस्ताव 157](/proposals/157-new-tbm/)** - छोटे tunnel निर्माण संदेश (संक्षिप्त प्रारूप)
 - **[प्रस्ताव 159](/proposals/159-ssu2/)** - SSU2 ट्रांसपोर्ट
-- **[प्रस्ताव 161](/proposals/161-ri-dest-padding/)** - कम्प्रेस करने योग्य पैडिंग
+- **[प्रस्ताव 161](/hi/proposals/161-ri-dest-padding/)** - कम्प्रेस करने योग्य पैडिंग
 - **[प्रस्ताव 163](/proposals/163-datagram2/)** - डेटाग्राम2 और डेटाग्राम3
 - **[प्रस्ताव 167](/proposals/167-service-records/)** - LeaseSet सर्विस रिकॉर्ड पैरामीटर
 - **[प्रस्ताव 168](/proposals/168-tunnel-bandwidth/)** - Tunnel निर्माण बैंडविड्थ पैरामीटर

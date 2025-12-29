@@ -15,7 +15,7 @@ accurateFor: "2.10.0"
 - Router Identities에서 ElGamal 및 DSA-SHA1 사용 중단됨 (X25519 + EdDSA 사용)
 - Post-quantum(양자 이후) ML-KEM 지원이 베타 테스트 중 (2.10.0부터 opt-in(사용자 선택 활성화))
 - 서비스 레코드 옵션 표준화 ([Proposal 167](/proposals/167-service-records/), 0.9.66에서 구현됨)
-- 압축 가능한 패딩 사양 최종 확정 ([Proposal 161](/proposals/161-padding-generation/), 0.9.57에서 구현됨)
+- 압축 가능한 패딩 사양 최종 확정 ([Proposal 161](/ko/proposals/161-ri-dest-padding/), 0.9.57에서 구현됨)
 
 ---
 
@@ -665,7 +665,7 @@ For Key Certificate (EdDSA + X25519):
 For larger keys (e.g., RSA_4096):
   Total = 384 + 3 + 4 + excess_key_data_length
 ```
-### 패딩 생성 지침 ([Proposal 161](/proposals/161-padding-generation/))
+### 패딩 생성 지침 ([Proposal 161](/ko/proposals/161-ri-dest-padding/))
 
 **구현 버전:** 0.9.57 (2023년 1월, 릴리스 2.1.0)
 
@@ -744,7 +744,7 @@ Compression savings: ~320 bytes when compressed
 3. **일반적인 크기:**
    - Key Certificate를 포함한 X25519 + EdDSA = 391바이트
    - 32바이트 X25519 공개 키
-   - 320바이트 패딩 ([Proposal 161](/proposals/161-padding-generation/)에 따라 압축 가능)
+   - 320바이트 패딩 ([Proposal 161](/ko/proposals/161-ri-dest-padding/)에 따라 압축 가능)
    - 32바이트 EdDSA 공개 키
    - 7바이트 인증서 (3바이트 헤더 + 4바이트 키 유형)
 
@@ -752,7 +752,7 @@ Compression savings: ~320 bytes when compressed
 
 **네트워크 데이터베이스 키:** - RouterInfo는 완전한 RouterIdentity의 SHA-256 해시를 키로 사용 - 해시는 패딩을 포함한 391바이트+의 전체 구조에 대해 계산됨
 
-**참고:** - 패딩 생성 지침 ([제안서 161](/proposals/161-padding-generation/)) - 위의 Key Certificate 사양
+**참고:** - 패딩 생성 지침 ([제안서 161](/ko/proposals/161-ri-dest-padding/)) - 위의 Key Certificate 사양
 
 **JavaDoc:** [RouterIdentity](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html)
 
@@ -775,7 +775,7 @@ Compression savings: ~320 bytes when compressed
 
 2. **암호화 키:**
    - 필드는 사용되지 않지만 반드시 존재해야 함
-   - **권장:** [Proposal 161](/proposals/161-padding-generation/)에 따라 무작위 데이터로 채울 것(압축 가능)
+   - **권장:** [Proposal 161](/ko/proposals/161-ri-dest-padding/)에 따라 무작위 데이터로 채울 것(압축 가능)
    - 크기: 항상 256바이트(ElGamal에는 사용되지 않지만 ElGamal 슬롯)
 
 3. **인증서:**
@@ -2372,7 +2372,7 @@ Encryption: X25519 (type 4, 32 bytes)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/proposals/161-ri-dest-padding/)
+Padding: Compressible per [Proposal 161](/ko/proposals/161-ri-dest-padding/)
 ```
 **새로운 Destination(목적지)용:**
 
@@ -2381,7 +2381,7 @@ Unused Public Key Field: 256 bytes random (compressible)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/proposals/161-ri-dest-padding/)
+Padding: Compressible per [Proposal 161](/ko/proposals/161-ri-dest-padding/)
 ```
 **새로운 LeaseSets의 경우:**
 
@@ -2425,7 +2425,7 @@ Authorization: Per-client encryption keys
 
 ### 호환성 참고 사항
 
-**하위 호환성:** - ElGamal 및 DSA_SHA1은 레거시 router에서도 여전히 지원됩니다 - 더 이상 권장되지 않는 키 유형은 기능적으로는 계속 동작하지만 사용은 권장되지 않습니다 - Compressible padding(압축 가능한 패딩) ([Proposal 161](/proposals/161-padding-generation/))은 0.6 버전까지 하위 호환됩니다
+**하위 호환성:** - ElGamal 및 DSA_SHA1은 레거시 router에서도 여전히 지원됩니다 - 더 이상 권장되지 않는 키 유형은 기능적으로는 계속 동작하지만 사용은 권장되지 않습니다 - Compressible padding(압축 가능한 패딩) ([Proposal 161](/ko/proposals/161-ri-dest-padding/))은 0.6 버전까지 하위 호환됩니다
 
 **전방 호환성:** - 알 수 없는 키 유형은 길이 필드를 사용하여 파싱할 수 있다 - 알 수 없는 인증서 유형은 길이를 이용해 건너뛸 수 있다 - 알 수 없는 서명 유형은 무리 없이 처리해야 한다 - 구현자는 알 수 없는 선택적 기능 때문에 실패해서는 안 된다
 
@@ -2465,11 +2465,11 @@ Authorization: Per-client encryption keys
 ### 제안서
 
 - [제안 123: 새로운 netDB 항목](/proposals/123-new-netdb-entries/)
-- [제안 134: GOST(러시아 국가표준 암호) 서명 유형](/proposals/134-gost-signature-types/)
+- [제안 134: GOST(러시아 국가표준 암호) 서명 유형](/proposals/134-gost/)
 - [제안 136: 실험적 서명 유형](/proposals/136-experimental-sigtypes/)
-- [제안 145: ECIES(타원곡선 통합 암호화 방식)-P256](/proposals/145-ecies-p256/)
+- [제안 145: ECIES(타원곡선 통합 암호화 방식)-P256](/proposals/145-ecies/)
 - [제안 156: ECIES Routers](/proposals/156-ecies-routers/)
-- [제안 161: 패딩 생성](/proposals/161-padding-generation/)
+- [제안 161: 패딩 생성](/ko/proposals/161-ri-dest-padding/)
 - [제안 167: 서비스 레코드](/proposals/167-service-records/)
 - [제안 169: 포스트-양자 암호](/proposals/169-pq-crypto/)
 - [모든 제안 색인](/proposals/)
@@ -2525,7 +2525,7 @@ Authorization: Per-client encryption keys
 
 ### 릴리스 정보
 
-- [I2P 2.10.0 릴리스](/blog/2025-09-08-i2p-2-10-0-release/)
+- [I2P 2.10.0 릴리스](/ko/blog/2025/09/08/i2p-2.10.0-release/)
 - [릴리스 이력](https://github.com/i2p/i2p.i2p/blob/master/history.txt)
 - [변경 로그](https://github.com/i2p/i2p.i2p/blob/master/debian/changelog)
 
@@ -2634,9 +2634,9 @@ Authorization: Per-client encryption keys
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jul 2020</td><td style="border:1px solid var(--color-border); padding:0.5rem;">X25519 for Router Identities</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2021</td><td style="border:1px solid var(--color-border); padding:0.5rem;">NTCP removed</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2022</td><td style="border:1px solid var(--color-border); padding:0.5rem;">SSU2 testing</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/161-ri-dest-padding/">Proposal 161</a> padding (release 2.1.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 161](/ko/proposals/161-ri-dest-padding/) padding (release 2.1.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mar 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ElGamal/DSA deprecated for RIs (2.2.0)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/167-service-records/">Proposal 167</a> service records (2.9.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 167](/proposals/167-service-records/) service records (2.9.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Sep 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ML-KEM beta support (2.10.0)</td></tr>
   </tbody>
 </table>

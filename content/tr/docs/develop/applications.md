@@ -31,7 +31,7 @@ I2P üzerinde nasıl etkileşim kurulacağını belirlerken gözden geçirilmesi
 - Genel ağ protokolleri genellikle kullanıcıları tanımlamak için kullanılabilecek çok miktarda ek veri gönderir. I2P için özel olarak programlama yapmak, bu tür bilgileri sızdırmayan bir ağ protokolü oluşturulmasına olanak tanır ve kullanıcıları anonim ve güvenli tutar.
 - Normal internet üzerinde kullanılmak üzere tasarlanmış ağ protokolleri, çok daha yüksek gecikme süresine sahip bir ağ olan I2P'de verimsiz olabilir.
 
-I2P, geliştiriciler için standart bir [eklenti arayüzünü](/docs/plugins/) destekler, böylece uygulamalar kolayca entegre edilip dağıtılabilir.
+I2P, geliştiriciler için standart bir [eklenti arayüzünü](/docs/specs/plugin/) destekler, böylece uygulamalar kolayca entegre edilip dağıtılabilir.
 
 Java ile yazılmış ve standart webapps/app.war üzerinden bir HTML arayüzü kullanılarak erişilebilen/çalıştırılabilen uygulamalar, I2P dağıtımına dahil edilmek üzere değerlendirilebilir.
 

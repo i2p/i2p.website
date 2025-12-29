@@ -41,7 +41,7 @@ Nicméně I2P implementuje **jednosměrné tunely**, nikoli obousměrné okruhy:
 
 Celá cesta tam i zpět (Alice ↔ Bob) využívá čtyři tunnely: odchozí Alice → příchozí Bob, poté odchozí Bob → příchozí Alice. Tento design **snižuje odhalení korelačních dat na polovinu** ve srovnání s obousměrnými okruhy.
 
-Pro podrobnosti implementace tunelů viz [specifikace tunelů](/docs/specs/implementation) a specifikace [vytváření tunelů (ECIES)](/spec/tunnel/creation-ecies).
+Pro podrobnosti implementace tunelů viz [specifikace tunelů](/docs/specs/implementation) a specifikace [vytváření tunelů (ECIES)](/docs/specs/implementation).
 
 ---
 
@@ -186,8 +186,8 @@ Garlic routing je tedy jak *metoda vrstvení šifrování*, tak *model síťové
 Centrum dokumentace I2P je [dostupné zde](/docs/), průběžně udržované. Relevantní živé specifikace zahrnují:
 
 - [Specifikace ECIES](/docs/specs/ecies) — ECIES‑X25519‑AEAD‑Ratchet
-- [Vytváření tunelů (ECIES)](/spec/tunnel/creation-ecies) — moderní protokol pro vytváření tunelů
-- [Specifikace I2NP](/spec/i2np) — formáty zpráv I2NP
+- [Vytváření tunelů (ECIES)](/docs/specs/implementation) — moderní protokol pro vytváření tunelů
+- [Specifikace I2NP](/docs/specs/i2np) — formáty zpráv I2NP
 - [Specifikace SSU2](/docs/specs/ssu2) — transportní protokol SSU2 UDP
 - [Společné struktury](/docs/specs/common-structures) — chování netDb a floodfill
 

@@ -1698,7 +1698,7 @@ Total size: 1 + ($num × 218) bytes
 - **[Návrh 156](/proposals/156-ecies-routers/)** - ECIES routery
 - **[Návrh 157](/proposals/157-new-tbm/)** - Menší zprávy pro sestavení tunnel (krátký formát)
 - **[Návrh 159](/proposals/159-ssu2/)** - Transport SSU2
-- **[Návrh 161](/proposals/161-ri-dest-padding/)** - Komprimovatelná výplň
+- **[Návrh 161](/cs/proposals/161-ri-dest-padding/)** - Komprimovatelná výplň
 - **[Návrh 163](/proposals/163-datagram2/)** - Datagram2 a Datagram3
 - **[Návrh 167](/proposals/167-service-records/)** - Parametry záznamu služby LeaseSet
 - **[Návrh 168](/proposals/168-tunnel-bandwidth/)** - Parametry šířky pásma pro sestavení tunnel

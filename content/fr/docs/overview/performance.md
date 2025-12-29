@@ -108,6 +108,6 @@ IMPORTANT :  NE posez PAS de questions, ne fournissez PAS d'explications et n'aj
 Voir aussi :
 
 - [Routage de tunnel](/docs/overview/tunnel-routing/)
-- [Sélection des pairs](/docs/how/peer-selection/)
-- [Transports](/docs/transport/)
+- [Sélection des pairs](/docs/overview/tunnel-routing/)
+- [Transports](/docs/overview/transport/)
 - [Spécification SSU2](/docs/specs/ssu2/) et [Spécification NTCP2](/docs/specs/ntcp2/)

@@ -46,4 +46,4 @@ Tham khảo:
 - [SAM v1](/docs/legacy/sam/)
 - [SAM v3](/docs/api/samv3/)
 - [API Datagram (gói tin không kết nối)](/docs/api/datagrams/)
-- [Giao thức truyền phát](/spec/api/streaming/)
+- [Giao thức truyền phát](/docs/specs/streaming/)

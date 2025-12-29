@@ -298,5 +298,5 @@ Planned research and improvements include:
 - [SSU2 Specification](/docs/specs/ssu2/) – Secure Semireliable UDP 2
 - [I2NP Specification](/docs/specs/i2np/) – I2P Network Protocol messages
 - [Common Structures](/docs/specs/common-structures/) – RouterInfo and address structures
-- [Historical NTCP Discussion](/docs/historical/ntcp/) – Legacy transport development history
+- [Historical NTCP Discussion](/docs/ntcp/) – Legacy transport development history
 - [Legacy SSU Documentation](/docs/legacy/ssu/) – Original SSU specification (deprecated)

@@ -30,9 +30,9 @@ I2P는 항상 탈중앙화된 네트워크였는데, 익명 네트워크를 제�
 
 앞으로 2주 동안 I2P의 과거, 현재, 미래를 탐구하고, I2P를 기반으로 구축되어 I2P를 향상시키는 애플리케이션과 도구를 조명하며, 우리 커뮤니티의 최고의 면모를 선보이는 블로그 글을 몇 편 계획해 두었습니다. 앞으로 며칠 동안 더 많은 소식을 보려면 이곳을 다시 확인해 주세요!
 
-* [The History of I2P](/en/blog/2021/08/28/History-of-I2P)
-* [Dependency-Free I2P of the Future - Jpackage Bundles and I2P-Zero (from Monero)](/en/blog/2021/09/08/I2P-Jpackage-Bundles-and-Zero)
-* [Level-Up your I2P use with Encrypted LeaseSets](/en/blog/2021/09/07/Level-Up-Encrypted-Leasesets)
+* [The History of I2P](/blog/2021/08/28/20-years-of-privacy-a-brief-history-of-i2p/)
+* [Dependency-Free I2P of the Future - Jpackage Bundles and I2P-Zero (from Monero)](/blog/2021/09/15/improving-i2p-adoption-and-onboarding-using-jpackage-i2p-zero/)
+* [Level-Up your I2P use with Encrypted LeaseSets](/blog/2021/09/07/level-up-your-i2p-skills-with-encrypted-leasesets/)
 * Dividing the Triangle: How I2P Eases Naming and Increases Flexibility for End-Users
 * I2P's Usability Journey
 * Building Bridges - Making Connections with Other Privacy Projects

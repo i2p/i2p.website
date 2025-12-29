@@ -323,4 +323,4 @@ Las sesiones de streaming están cifradas de extremo a extremo en la capa I2CP. 
 - [Especificación del protocolo de transmisión](/docs/specs/streaming/)  
 - [Especificación de I2CP](/docs/specs/i2cp/)  
 - [Propuesta 144: Cálculos de MTU de transmisión](/proposals/144-ecies-x25519-aead-ratchet/)  
-- [Notas de la versión de I2P 2.10.0](/blog/2025-09-08-i2p-2-10-0-release/)
+- [Notas de la versión de I2P 2.10.0](/es/blog/2025/09/08/i2p-2.10.0-release/)

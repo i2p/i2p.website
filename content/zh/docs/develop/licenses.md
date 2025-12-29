@@ -117,7 +117,7 @@ I2P 发行版包含多个资源，反映了源代码被划分为多个组件。�
       <td style="border:1px solid var(--color-border); padding:0.6rem;">zzz</td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong><a href="/docs/legacy/bob/">BOB</a> Bridge</strong></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>[BOB](/docs/legacy/bob/) Bridge</strong></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">apps/BOB</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">BOB.jar</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><a href="https://en.wikipedia.org/wiki/WTFPL">WTFPL</a></td>
@@ -125,7 +125,7 @@ I2P 发行版包含多个资源，反映了源代码被划分为多个组件。�
       <td style="border:1px solid var(--color-border); padding:0.6rem;">sponge</td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong><a href="/docs/api/samv3/">SAM</a> Bridge</strong></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>[SAM](/docs/api/samv3/) Bridge</strong></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">apps/sam</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">sam.jar</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><a href="https://en.wikipedia.org/wiki/Public_domain">Public domain</a></td>
@@ -133,7 +133,7 @@ I2P 发行版包含多个资源，反映了源代码被划分为多个组件。�
       <td style="border:1px solid var(--color-border); padding:0.6rem;">zzz</td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong><a href="/docs/legacy/sam/">SAM v1</a> Perl library</strong></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>[SAM v1](/docs/legacy/sam/) Perl library</strong></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">apps/sam/perl</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">SAM.pm</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><a href="https://www.gnu.org/licenses/gpl-2.0.html">GPL</a></td>
@@ -141,7 +141,7 @@ I2P 发行版包含多个资源，反映了源代码被划分为多个组件。�
       <td style="border:1px solid var(--color-border); padding:0.6rem;">BrianR</td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong><a href="/docs/legacy/sam/">SAM v1</a> C library</strong></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>[SAM v1](/docs/legacy/sam/) C library</strong></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">apps/sam/c</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">libSAM</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><a href="http://opensource.org/licenses/bsd-license.php">BSD</a></td>
@@ -149,7 +149,7 @@ I2P 发行版包含多个资源，反映了源代码被划分为多个组件。�
       <td style="border:1px solid var(--color-border); padding:0.6rem;">Nightblade</td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong><a href="/docs/legacy/sam/">SAM v1</a> Python library</strong></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>[SAM v1](/docs/legacy/sam/) Python library</strong></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">apps/sam/python</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">i2p.py</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><a href="https://en.wikipedia.org/wiki/Public_domain">Public domain</a></td>
@@ -157,7 +157,7 @@ I2P 发行版包含多个资源，反映了源代码被划分为多个组件。�
       <td style="border:1px solid var(--color-border); padding:0.6rem;">Connelly</td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong><a href="/docs/legacy/sam/">SAM v1</a> C# library</strong></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>[SAM v1](/docs/legacy/sam/) C# library</strong></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">apps/sam/csharp/</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">n/a</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><a href="https://en.wikipedia.org/wiki/Public_domain">Public domain</a></td>

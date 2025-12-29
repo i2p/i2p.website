@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 reviewStatus: "needs-review"
 ---
 
-> **Stav:** Tato stránka stručně shrnuje zastaralou "Low-level Cryptography Specification". Moderní vydání I2P (2.10.0, říjen 2025) dokončila přechod na nová kryptografická primitiva. Pro implementační detaily použijte specializované specifikace, jako [ECIES](/docs/specs/ecies/), [Šifrované LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/), a [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies/) pro implementační detaily.
+> **Stav:** Tato stránka stručně shrnuje zastaralou "Low-level Cryptography Specification". Moderní vydání I2P (2.10.0, říjen 2025) dokončila přechod na nová kryptografická primitiva. Pro implementační detaily použijte specializované specifikace, jako [ECIES](/docs/specs/ecies/), [Šifrované LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/), a [Tunnel Creation (ECIES)](/docs/specs/implementation/) pro implementační detaily.
 
 ## Snímek vývoje
 

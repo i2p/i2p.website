@@ -15,7 +15,7 @@ toc: true
 
 - تم تنفيذ موجهات ECIES اعتبارًا من 0.9.48، راجع [Common](/docs/specs/common-structures/).
 - تم تنفيذ بناء الأنفاق اعتبارًا من 0.9.48، راجع [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
-- تم تنفيذ الرسائل المشفرة للموجهات ECIES اعتبارًا من 0.9.49، راجع [ECIES-ROUTERS](/docs/specs/ecies-routers/).
+- تم تنفيذ الرسائل المشفرة للموجهات ECIES اعتبارًا من 0.9.49، راجع [ECIES-ROUTERS](/docs/specs/ecies/).
 - تم تنفيذ رسائل بناء النفق الجديدة اعتبارًا من 0.9.51.
 
 

@@ -156,6 +156,6 @@ Jasně dokumentujte všechny závislosti a požadavky na verze pro vaši aplikac
 Viz také:
 
 - [Směrování tunelů](/docs/overview/tunnel-routing/)
-- [Výběr peerů](/docs/how/peer-selection/)
-- [Transporty](/docs/transport/)
+- [Výběr peerů](/docs/overview/tunnel-routing/)
+- [Transporty](/docs/overview/transport/)
 - [Specifikace SSU2](/docs/specs/ssu2/) a [Specifikace NTCP2](/docs/specs/ntcp2/)

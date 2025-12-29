@@ -244,7 +244,7 @@ Trang Cấu hình Reseed cho phép bạn thực hiện reseed thủ công cho ro
 
 4. Nếu bạn biết và tin tưởng ai đó công bố các tệp reseed, hãy hỏi họ để lấy URL. Sau đó, sử dụng trang này để reseed với URL bạn nhận được. Đầu tiên, nhập URL vào bên dưới. Tiếp theo, nhấp vào "Reseed from URL"
 
-5. Xem [câu hỏi thường gặp (FAQ)](/en/faq) để biết hướng dẫn reseed thủ công
+5. Xem [câu hỏi thường gặp (FAQ)](/docs/overview/faq/) để biết hướng dẫn reseed thủ công
 
 **Tùy chọn Reseed Thủ công:**
 

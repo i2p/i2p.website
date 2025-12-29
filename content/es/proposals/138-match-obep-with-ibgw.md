@@ -16,7 +16,7 @@ Esta propuesta añade una opción I2CP para túneles de salida que hace que los 
 
 ## Motivación
 
-La mayoría de los routers I2P emplean una forma de eliminación de paquetes para la gestión de la congestión. La implementación de referencia utiliza una estrategia WRED que toma en cuenta tanto el tamaño del mensaje como la distancia de viaje (véase [documentación de tunnel throttling](/docs/tunnels/implementation/#tunnelthrottling)). Debido a esta estrategia, la principal fuente de pérdida de paquetes es el OBEP.
+La mayoría de los routers I2P emplean una forma de eliminación de paquetes para la gestión de la congestión. La implementación de referencia utiliza una estrategia WRED que toma en cuenta tanto el tamaño del mensaje como la distancia de viaje (véase [documentación de tunnel throttling](/docs/specs/implementation/#tunnelthrottling)). Debido a esta estrategia, la principal fuente de pérdida de paquetes es el OBEP.
 
 
 ## Diseño

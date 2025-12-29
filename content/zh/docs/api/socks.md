@@ -89,7 +89,7 @@ SOCKS5 中的 UDP 支持尚未实现。该协议会宣告 UDP 功能，但调用
 
 ## 3. 历史背景
 
-开发者长期以来不鼓励将 SOCKS 用于匿名用途。来自内部开发者讨论以及 2004 年的 [Meeting 81](/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) 和 [Meeting 82](/blog/2004/03/23/i2p-dev-meeting-march-23-2004/):
+开发者长期以来不鼓励将 SOCKS 用于匿名用途。来自内部开发者讨论以及 2004 年的 [Meeting 81](/zh/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) 和 [Meeting 82](/zh/blog/2004/03/23/i2p-dev-meeting-march-23-2004/):
 
 > "转发任意流量是不安全的,作为匿名软件的开发者,我们有责任将终端用户的安全放在首位。"
 

@@ -333,7 +333,7 @@ El proxy HTTP predeterminado solo admite salida HTTP y HTTPS.
 
 ### ¿Por qué mi router está usando demasiada CPU? {#cpu}
 
-Primero, asegúrate de tener la última versión de cada componente relacionado con I2P: las versiones antiguas tenían secciones de código que consumían CPU innecesariamente. También existe un [registro de rendimiento](/about/performance) que documenta algunas de las mejoras en el rendimiento de I2P a lo largo del tiempo.
+Primero, asegúrate de tener la última versión de cada componente relacionado con I2P: las versiones antiguas tenían secciones de código que consumían CPU innecesariamente. También existe un [registro de rendimiento](/docs/overview/performance) que documenta algunas de las mejoras en el rendimiento de I2P a lo largo del tiempo.
 
 ### ¿Mis pares activos / pares conocidos / túneles participantes / conexiones / ancho de banda varían drásticamente con el tiempo! ¿Hay algo mal? {#vary}
 

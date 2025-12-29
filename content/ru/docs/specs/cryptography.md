@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 reviewStatus: "needs-review"
 ---
 
-> **Статус:** Эта страница сводит воедино материалы из устаревшей "Low-level Cryptography Specification" (спецификация криптографии низкого уровня). Современные релизы I2P (2.10.0, октябрь 2025) завершили миграцию на новые криптографические примитивы. Для деталей реализации используйте специализированные спецификации, такие как [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/) и [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies/).
+> **Статус:** Эта страница сводит воедино материалы из устаревшей "Low-level Cryptography Specification" (спецификация криптографии низкого уровня). Современные релизы I2P (2.10.0, октябрь 2025) завершили миграцию на новые криптографические примитивы. Для деталей реализации используйте специализированные спецификации, такие как [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/) и [Tunnel Creation (ECIES)](/docs/specs/implementation/).
 
 ## Снимок эволюции
 

@@ -1695,7 +1695,7 @@ Total size: 1 + ($num × 218) bytes
 - **[Đề xuất 156](/proposals/156-ecies-routers/)** - Các router ECIES
 - **[Đề xuất 157](/proposals/157-new-tbm/)** - Thông điệp xây dựng tunnel nhỏ hơn (định dạng ngắn)
 - **[Đề xuất 159](/proposals/159-ssu2/)** - Giao thức truyền tải SSU2
-- **[Đề xuất 161](/proposals/161-ri-dest-padding/)** - Đệm có thể nén
+- **[Đề xuất 161](/vi/proposals/161-ri-dest-padding/)** - Đệm có thể nén
 - **[Đề xuất 163](/proposals/163-datagram2/)** - Datagram2 và Datagram3
 - **[Đề xuất 167](/proposals/167-service-records/)** - Các tham số bản ghi dịch vụ LeaseSet
 - **[Đề xuất 168](/proposals/168-tunnel-bandwidth/)** - Các tham số băng thông xây dựng tunnel

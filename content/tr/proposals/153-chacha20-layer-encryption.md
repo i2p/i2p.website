@@ -34,7 +34,7 @@ Bu bölümde şunlardaki değişiklikler anlatılmaktadır:
 - Katılımcı şifreleme + son işleme
 - Giden ve Gelen Uç Nokta şifreleme + son işleme
 
-Geçerli tünel mesajı işleme hakkında genel bilgi için, [Tunnel Implementation](/docs/tunnels/implementation/) spesifikasyonuna bakınız.
+Geçerli tünel mesajı işleme hakkında genel bilgi için, [Tunnel Implementation](/docs/specs/implementation/) spesifikasyonuna bakınız.
 
 Sadece ChaCha20 katman şifrelemesini destekleyen yönlendiriciler için değişiklikler tartışılmaktadır.
 
@@ -290,4 +290,4 @@ Her iki saldırı da aynı IV'yi kullanarak çoklu oracle çağrılarını engel
 
 ## Referanslar
 
-* [Tunnel-Implementation](/docs/tunnels/implementation/)
+* [Tunnel-Implementation](/docs/specs/implementation/)

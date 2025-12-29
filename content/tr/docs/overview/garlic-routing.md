@@ -41,7 +41,7 @@ Ancak, I2P **tek yönlü tüneller** uygular, çift yönlü devreler değil:
 
 Tam bir gidiş-dönüş (Alice ↔ Bob) dört tunnel kullanır: Alice'in outbound'u → Bob'un inbound'u, ardından Bob'un outbound'u → Alice'in inbound'u. Bu tasarım, çift yönlü devrelere kıyasla **korelasyon veri maruziyetini yarıya indirir**.
 
-Tünel uygulama detayları için [Tünel Spesifikasyonu](/docs/specs/implementation) ve [Tünel Oluşturma (ECIES)](/spec/tunnel/creation-ecies) spesifikasyonuna bakın.
+Tünel uygulama detayları için [Tünel Spesifikasyonu](/docs/specs/implementation) ve [Tünel Oluşturma (ECIES)](/docs/specs/implementation) spesifikasyonuna bakın.
 
 ---
 
@@ -186,8 +186,8 @@ Garlic routing bu nedenle hem bir *şifreleme katmanlama yöntemi* hem de bir *a
 I2P'nin dokümantasyon merkezi [buradan ulaşılabilir](/docs/), sürekli güncellenir. İlgili güncel teknik özellikler şunlardır:
 
 - [ECIES Spesifikasyonu](/docs/specs/ecies) — ECIES‑X25519‑AEAD‑Ratchet
-- [Tunnel Oluşturma (ECIES)](/spec/tunnel/creation-ecies) — modern tunnel inşa protokolü
-- [I2NP Spesifikasyonu](/spec/i2np) — I2NP mesaj formatları
+- [Tunnel Oluşturma (ECIES)](/docs/specs/implementation) — modern tunnel inşa protokolü
+- [I2NP Spesifikasyonu](/docs/specs/i2np) — I2NP mesaj formatları
 - [SSU2 Spesifikasyonu](/docs/specs/ssu2) — SSU2 UDP taşıma protokolü
 - [Ortak Yapılar](/docs/specs/common-structures) — netDb ve floodfill davranışı
 

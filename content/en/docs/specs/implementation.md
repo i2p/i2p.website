@@ -192,7 +192,7 @@ Guaranteed delivery is left to higher layers such as the [Streaming library](/do
 
 ## Further Reading {#further-reading}
 
-- [Unidirectional Tunnels (Historical)](/docs/legacy/unidirectional-tunnels/)
+
 - [Peer Selection](/docs/overview/tunnel-routing#peer-selection/)
 - [Tunnel Overview](/docs/overview/tunnel-routing/)
 - [Old Tunnel Implementation](/docs/legacy/old-implementation/)

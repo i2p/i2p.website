@@ -51,7 +51,7 @@ trong vài phút, chứ không phải chỉ số đo lường tức thì.
 
 ## Đặc tả
 
-Cập nhật [NETDB](/docs/how/network-database/) như sau:
+Cập nhật [NETDB](/docs/overview/network-database/) như sau:
 
 
 ```text
@@ -121,4 +121,4 @@ thực hiện theo giới hạn đã công bố trong 0.9.59 (Tháng 7 năm 2023
 
 ## Tham khảo
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

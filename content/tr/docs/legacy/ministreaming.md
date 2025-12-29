@@ -6,7 +6,7 @@ lastUpdated: "2025-02"
 accurateFor: "historical"
 ---
 
-> **Kullanımdan kaldırıldı:** ministreaming kütüphanesi, bugünkü [streaming kütüphanesinden](/spec/api/streaming/) daha eskidir. Modern uygulamalar tam streaming API’sini veya SAM v3’ü kullanmalıdır. Aşağıdaki bilgiler, `ministreaming.jar` ile dağıtılan eski kaynak kodunu inceleyen geliştiriciler için tutulmuştur.
+> **Kullanımdan kaldırıldı:** ministreaming kütüphanesi, bugünkü [streaming kütüphanesinden](/docs/specs/streaming/) daha eskidir. Modern uygulamalar tam streaming API’sini veya SAM v3’ü kullanmalıdır. Aşağıdaki bilgiler, `ministreaming.jar` ile dağıtılan eski kaynak kodunu inceleyen geliştiriciler için tutulmuştur.
 
 ## Genel Bakış
 
@@ -40,7 +40,7 @@ Bugün, `ministreaming.jar`'ı yalnızca bir uyumluluk katmanı olarak ele alın
 
 ## Referans
 
-- [Streaming Library dokümantasyonu](/spec/api/streaming/)
+- [Streaming Library dokümantasyonu](/docs/specs/streaming/)
 - [Streaming Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/client/streaming/package-summary.html) – kullanımdan kaldırılmış ministreaming sınıflarını içerir
 - [SAM v3 spesifikasyonu](/docs/api/samv3/) – Java dışı uygulamalar için streaming desteği
 

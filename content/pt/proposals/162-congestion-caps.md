@@ -45,7 +45,7 @@ O estado de congestionamento deve se basear na média das condições ao longo d
 
 ## Especificação
 
-Atualizar [NETDB](/docs/how/network-database/) da seguinte forma:
+Atualizar [NETDB](/docs/overview/network-database/) da seguinte forma:
 
 
 ```text
@@ -104,4 +104,4 @@ agir sobre as capacidades publicadas em 0.9.59 (julho de 2023).
 
 ## Referências
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

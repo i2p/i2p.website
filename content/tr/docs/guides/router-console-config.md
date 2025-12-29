@@ -244,7 +244,7 @@ Reseed Yapılandırma sayfası, otomatik reseed işlemi başarısız olursa rout
 
 4. Reseed dosyalarını yayınlayan güvendiğiniz birini tanıyorsanız, onlara URL'yi sorun. Ardından, aldığınız URL ile reseed yapmak için bu sayfayı kullanın. İlk olarak, aşağıya URL'yi girin. Sonra, "Reseed from URL" düğmesine tıklayın
 
-5. Manuel olarak yeniden seed işlemi için [SSS](/en/faq) bölümüne bakın
+5. Manuel olarak yeniden seed işlemi için [SSS](/docs/overview/faq/) bölümüne bakın
 
 **Manuel Reseed Seçenekleri:**
 

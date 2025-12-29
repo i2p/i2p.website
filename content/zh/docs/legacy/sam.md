@@ -67,6 +67,6 @@ SAM 消息为单行 ASCII，由以空格分隔的键/值对组成。键使用 UT
 - [SAM v2](/docs/legacy/samv2/)
 - [SAM v3](/docs/api/samv3/)
 - [数据报规范](/docs/api/datagrams/)
-- [流式协议](/spec/api/streaming/)
+- [流式协议](/docs/specs/streaming/)
 
 SAM v1 为与 router 无关的应用开发奠定了基础，但生态系统已经向前发展了。请将本文档视为兼容性参考，而非起点。

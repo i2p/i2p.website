@@ -262,7 +262,7 @@ The Reseed Configuration page allows you to manually reseed your router if autom
 
 4. If you know and trust somebody that publishes reseed files, ask them for the URL. Then, use this page to reseed with the URL you received. First, enter the URL below. Then, click "Reseed from URL"
 
-5. See [the FAQ](/en/faq) for instructions on reseeding manually
+5. See [the FAQ](/docs/overview/faq/) for instructions on reseeding manually
 
 **Manual Reseed Options:**
 

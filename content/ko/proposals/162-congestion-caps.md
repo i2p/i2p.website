@@ -49,7 +49,7 @@ toc: true
 
 ## 명세
 
-[NETDB](/docs/how/network-database/)를 다음과 같이 업데이트합니다:
+[NETDB](/docs/overview/network-database/)를 다음과 같이 업데이트합니다:
 
 
 ```text
@@ -119,4 +119,4 @@ D: 중간 혼잡, 또는 저성능 라우터 (예: 안드로이드, 라즈베리
 
 ## 참조
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

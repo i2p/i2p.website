@@ -15,7 +15,7 @@ Tài liệu này đặc tả các cấu trúc dữ liệu cơ bản được s�
 - ElGamal và DSA-SHA1 không còn được khuyến nghị cho Router Identities (sử dụng X25519 + EdDSA)
 - Hỗ trợ ML-KEM hậu lượng tử đang trong giai đoạn thử nghiệm beta (tùy chọn tham gia (opt-in) kể từ 2.10.0)
 - Các tùy chọn bản ghi dịch vụ đã được chuẩn hóa ([Proposal 167](/proposals/167-service-records/), được triển khai trong 0.9.66)
-- Đặc tả đệm có thể nén đã được hoàn tất ([Proposal 161](/proposals/161-padding-generation/), được triển khai trong 0.9.57)
+- Đặc tả đệm có thể nén đã được hoàn tất ([Proposal 161](/vi/proposals/161-ri-dest-padding/), được triển khai trong 0.9.57)
 
 ---
 
@@ -673,7 +673,7 @@ For Key Certificate (EdDSA + X25519):
 For larger keys (e.g., RSA_4096):
   Total = 384 + 3 + 4 + excess_key_data_length
 ```
-### Hướng dẫn tạo phần đệm ([Đề xuất 161](/proposals/161-padding-generation/))
+### Hướng dẫn tạo phần đệm ([Đề xuất 161](/vi/proposals/161-ri-dest-padding/))
 
 **Phiên bản triển khai:** 0.9.57 (Tháng 1 năm 2023, phát hành 2.1.0)
 
@@ -752,7 +752,7 @@ Compression savings: ~320 bytes when compressed
 3. **Kích thước điển hình:**
    - X25519 + EdDSA với Chứng chỉ khóa = 391 byte
    - 32 byte khóa công khai X25519
-   - 320 byte phần đệm (có thể nén theo [Proposal 161](/proposals/161-padding-generation/))
+   - 320 byte phần đệm (có thể nén theo [Proposal 161](/vi/proposals/161-ri-dest-padding/))
    - 32 byte khóa công khai EdDSA
    - 7 byte chứng chỉ (tiêu đề 3 byte + 4 byte loại khóa)
 
@@ -760,7 +760,7 @@ Compression savings: ~320 bytes when compressed
 
 **Khóa Cơ sở dữ liệu mạng:** - RouterInfo được lập chỉ mục bằng giá trị băm SHA-256 của RouterIdentity đầy đủ - Giá trị băm được tính trên toàn bộ cấu trúc 391+ byte (bao gồm cả phần đệm)
 
-**Xem thêm:** - Hướng dẫn tạo padding (phần đệm) ([Proposal 161](/proposals/161-padding-generation/)) - Đặc tả Chứng chỉ khóa ở trên
+**Xem thêm:** - Hướng dẫn tạo padding (phần đệm) ([Proposal 161](/vi/proposals/161-ri-dest-padding/)) - Đặc tả Chứng chỉ khóa ở trên
 
 **JavaDoc:** [RouterIdentity](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html)
 
@@ -783,7 +783,7 @@ Compression savings: ~320 bytes when compressed
 
 2. **Khóa mã hóa:**
    - Trường không được sử dụng nhưng bắt buộc phải có
-   - **Khuyến nghị:** Điền bằng dữ liệu ngẫu nhiên theo [Proposal 161](/proposals/161-padding-generation/) (có thể nén)
+   - **Khuyến nghị:** Điền bằng dữ liệu ngẫu nhiên theo [Proposal 161](/vi/proposals/161-ri-dest-padding/) (có thể nén)
    - Kích thước: Luôn 256 byte (khe ElGamal, dù không dùng cho ElGamal)
 
 3. **Chứng chỉ:**
@@ -2385,7 +2385,7 @@ Encryption: X25519 (type 4, 32 bytes)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/proposals/161-ri-dest-padding/)
+Padding: Compressible per [Proposal 161](/vi/proposals/161-ri-dest-padding/)
 ```
 **Dành cho các điểm đích (Destination) mới:**
 
@@ -2394,7 +2394,7 @@ Unused Public Key Field: 256 bytes random (compressible)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/proposals/161-ri-dest-padding/)
+Padding: Compressible per [Proposal 161](/vi/proposals/161-ri-dest-padding/)
 ```
 **Đối với LeaseSets mới:**
 
@@ -2438,7 +2438,7 @@ Authorization: Per-client encryption keys
 
 ### Ghi chú về khả năng tương thích
 
-**Tương thích ngược:** - ElGamal và DSA_SHA1 vẫn được hỗ trợ cho các routers đời cũ - Các kiểu khóa đã lỗi thời vẫn hoạt động nhưng không được khuyến khích - Đệm có thể nén ([Proposal 161](/proposals/161-padding-generation/)) tương thích ngược đến 0.6
+**Tương thích ngược:** - ElGamal và DSA_SHA1 vẫn được hỗ trợ cho các routers đời cũ - Các kiểu khóa đã lỗi thời vẫn hoạt động nhưng không được khuyến khích - Đệm có thể nén ([Proposal 161](/vi/proposals/161-ri-dest-padding/)) tương thích ngược đến 0.6
 
 **Tương thích về sau:** - Các loại khóa không xác định có thể được phân tích dựa vào các trường độ dài - Các loại chứng chỉ không xác định có thể được bỏ qua dựa vào độ dài - Các loại chữ ký không xác định nên được xử lý một cách an toàn, không gây lỗi - Các bản triển khai không nên lỗi khi gặp các tính năng tùy chọn không xác định
 
@@ -2478,11 +2478,11 @@ Authorization: Per-client encryption keys
 ### Các đề xuất
 
 - [Đề xuất 123: Các bản ghi netDB mới](/proposals/123-new-netdb-entries/)
-- [Đề xuất 134: Kiểu chữ ký GOST](/proposals/134-gost-signature-types/)
+- [Đề xuất 134: Kiểu chữ ký GOST](/proposals/134-gost/)
 - [Đề xuất 136: Kiểu chữ ký thử nghiệm](/proposals/136-experimental-sigtypes/)
-- [Đề xuất 145: ECIES-P256](/proposals/145-ecies-p256/)
+- [Đề xuất 145: ECIES-P256](/proposals/145-ecies/)
 - [Đề xuất 156: ECIES Routers](/proposals/156-ecies-routers/)
-- [Đề xuất 161: Sinh phần đệm](/proposals/161-padding-generation/)
+- [Đề xuất 161: Sinh phần đệm](/vi/proposals/161-ri-dest-padding/)
 - [Đề xuất 167: Bản ghi dịch vụ](/proposals/167-service-records/)
 - [Đề xuất 169: Mật mã hậu lượng tử](/proposals/169-pq-crypto/)
 - [Chỉ mục tất cả đề xuất](/proposals/)
@@ -2538,7 +2538,7 @@ Authorization: Per-client encryption keys
 
 ### Thông tin phát hành
 
-- [Bản phát hành I2P 2.10.0](/blog/2025-09-08-i2p-2-10-0-release/)
+- [Bản phát hành I2P 2.10.0](/vi/blog/2025/09/08/i2p-2.10.0-release/)
 - [Lịch sử phát hành](https://github.com/i2p/i2p.i2p/blob/master/history.txt)
 - [Nhật ký thay đổi](https://github.com/i2p/i2p.i2p/blob/master/debian/changelog)
 
@@ -2647,9 +2647,9 @@ Authorization: Per-client encryption keys
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jul 2020</td><td style="border:1px solid var(--color-border); padding:0.5rem;">X25519 for Router Identities</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2021</td><td style="border:1px solid var(--color-border); padding:0.5rem;">NTCP removed</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2022</td><td style="border:1px solid var(--color-border); padding:0.5rem;">SSU2 testing</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/161-ri-dest-padding/">Proposal 161</a> padding (release 2.1.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 161](/vi/proposals/161-ri-dest-padding/) padding (release 2.1.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mar 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ElGamal/DSA deprecated for RIs (2.2.0)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/167-service-records/">Proposal 167</a> service records (2.9.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 167](/proposals/167-service-records/) service records (2.9.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Sep 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ML-KEM beta support (2.10.0)</td></tr>
   </tbody>
 </table>

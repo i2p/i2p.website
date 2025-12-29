@@ -67,6 +67,6 @@ SESSION STATUS RESULT=OK DESTINATION=name
 - [SAM v2](/docs/legacy/samv2/)
 - [SAM v3](/docs/api/samv3/)
 - [مواصفة الداتاغرام](/docs/api/datagrams/)
-- [بروتوكول التدفق](/spec/api/streaming/)
+- [بروتوكول التدفق](/docs/specs/streaming/)
 
 SAM v1 وضع الأساس لتطوير تطبيقات غير مرتبطة بـ router محدد، لكن النظام البيئي قد تطوّر. اعتبر هذا المستند وسيلة للتوافق لا نقطة انطلاق.

@@ -182,13 +182,12 @@ Obwohl tunnels Verbindungen ähneln, behandeln routers sie wie Nachrichtenwartes
 - Teilnehmer berücksichtigen Fragmente fester Größe; Gateways/Endpunkte verwerfen anhand der Gesamtgröße der Fragmente und benachteiligen dabei große Nutzlasten zuerst.
 - Ausgehende Endpunkte verwerfen früher als andere Rollen, um möglichst wenig Netzwerkressourcen zu verschwenden.
 
-Garantierte Zustellung wird höheren Schichten wie der [Streaming library](/spec/api/streaming/) überlassen. Anwendungen, die Zuverlässigkeit benötigen, müssen erneute Übertragungen und Bestätigungen selbst übernehmen.
+Garantierte Zustellung wird höheren Schichten wie der [Streaming library](/docs/specs/streaming/) überlassen. Anwendungen, die Zuverlässigkeit benötigen, müssen erneute Übertragungen und Bestätigungen selbst übernehmen.
 
 ---
 
 ## Weiterführende Informationen {#further-reading}
 
-- [Unidirektionale Tunnels (historisch)](/docs/legacy/unidirectional-tunnels/)
 - [Peer-Auswahl](/docs/overview/tunnel-routing#peer-selection/)
 - [Tunnel-Übersicht](/docs/overview/tunnel-routing/)
 - [Alte Tunnel-Implementierung](/docs/legacy/old-implementation/)

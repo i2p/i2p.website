@@ -41,7 +41,7 @@ Tuy nhiên, I2P triển khai **tunnel một chiều**, không phải mạch hai 
 
 Một vòng đi về hoàn chỉnh (Alice ↔ Bob) sử dụng bốn tunnel: outbound của Alice → inbound của Bob, sau đó outbound của Bob → inbound của Alice. Thiết kế này **giảm một nửa mức độ phơi bày dữ liệu tương quan** so với các mạch hai chiều.
 
-Để biết chi tiết về triển khai tunnel, xem [Đặc tả Tunnel](/docs/specs/implementation) và đặc tả [Tạo Tunnel (ECIES)](/spec/tunnel/creation-ecies).
+Để biết chi tiết về triển khai tunnel, xem [Đặc tả Tunnel](/docs/specs/implementation) và đặc tả [Tạo Tunnel (ECIES)](/docs/specs/implementation).
 
 ---
 
@@ -186,8 +186,8 @@ Garlic routing do đó vừa là một *phương pháp phân lớp mã hóa* v�
 Trung tâm tài liệu của I2P [có sẵn tại đây](/docs/), được duy trì liên tục. Các thông số kỹ thuật liên quan bao gồm:
 
 - [Đặc tả ECIES](/docs/specs/ecies) — ECIES‑X25519‑AEAD‑Ratchet
-- [Tạo Tunnel (ECIES)](/spec/tunnel/creation-ecies) — giao thức xây dựng tunnel hiện đại
-- [Đặc tả I2NP](/spec/i2np) — định dạng thông điệp I2NP
+- [Tạo Tunnel (ECIES)](/docs/specs/implementation) — giao thức xây dựng tunnel hiện đại
+- [Đặc tả I2NP](/docs/specs/i2np) — định dạng thông điệp I2NP
 - [Đặc tả SSU2](/docs/specs/ssu2) — giao thức vận chuyển SSU2 UDP
 - [Cấu trúc chung](/docs/specs/common-structures) — hành vi netDb và floodfill
 

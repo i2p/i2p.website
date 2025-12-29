@@ -50,7 +50,7 @@ Tıkanıklık durumu, birkaç dakika boyunca koşulların ortalamasına dayanmal
 
 ## Spesifikasyon
 
-[NETDB](/docs/how/network-database/)'yi aşağıdaki gibi güncelleyin:
+[NETDB](/docs/overview/network-database/)'yi aşağıdaki gibi güncelleyin:
 
 
 ```text
@@ -122,4 +122,4 @@ yayımlanan sınırlar üzerinde 0.9.59'da (Temmuz 2023) işlem yapılacak.
 
 ## Referanslar
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

@@ -294,5 +294,5 @@ NTCP2 需要入站 TCP 连通性。位于 NAT（网络地址转换）后的 Rout
 - [SSU2 规范](/docs/specs/ssu2/) – 安全的半可靠 UDP 2
 - [I2NP 规范](/docs/specs/i2np/) – I2P 网络协议消息
 - [通用结构](/docs/specs/common-structures/) – RouterInfo 和地址结构
-- [NTCP 历史讨论](/docs/historical/ntcp/) – 旧版传输的开发历史
+- [NTCP 历史讨论](/docs/ntcp/) – 旧版传输的开发历史
 - [遗留 SSU 文档](/docs/legacy/ssu/) – 原始 SSU 规范（已弃用）

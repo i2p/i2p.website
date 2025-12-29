@@ -123,7 +123,7 @@ Definiert wie folgt:
   Nur nützlich, wenn mehr als ein Eintrag, aber erforderlich, auch wenn nur ein Eintrag.
 - port := Der I2CP-Port, auf dem der Dienst zu finden ist. Nichtnegative ganze Zahl. Beispiel: "25"
   Port 0 wird unterstützt, aber nicht empfohlen.
-- target := Der Hostname oder b32 des Ziels, das den Dienst bereitstellt. Ein gültiger Hostname wie in [NAMING](/docs/naming/). Muss klein geschrieben sein.
+- target := Der Hostname oder b32 des Ziels, das den Dienst bereitstellt. Ein gültiger Hostname wie in [NAMING](/docs/overview/naming/). Muss klein geschrieben sein.
   Beispiel: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" oder "example.i2p".
   b32 wird empfohlen, es sei denn, der Hostname ist "gut bekannt", d.h. in offiziellen oder Standard-Adressbüchern.
 - appoptions := beliebiger Text, der speziell für die Anwendung ist, darf kein " " oder "," enthalten. Die Kodierung erfolgt in UTF-8.
@@ -281,7 +281,7 @@ Wenn OPTIONS=true in der Nachschlage enthalten war und das Lease-Set nicht gefun
 
 Ein alternatives Design wurde erwogen, um die Nachschlage von Diensten
 als vollständigen Hostnamen zu unterstützen, zum Beispiel _smtp._tcp.example.i2p,
-durch Aktualisieren von [NAMING](/docs/naming/) zur Spezifikation der Behandlung von Hostnamen, die mit '_' beginnen.
+durch Aktualisieren von [NAMING](/docs/overview/naming/) zur Spezifikation der Behandlung von Hostnamen, die mit '_' beginnen.
 Dies wurde aus zwei Gründen abgelehnt:
 
 - I2CP- und SAM-Änderungen wären dennoch notwendig, um die TTL- und Port-Informationen an den Client weiterzugeben.

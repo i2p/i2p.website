@@ -123,7 +123,7 @@ Definováno následujícím způsobem:
   Užitečné pouze pokud existuje více než jeden záznam, ale požadováno i pokud je pouze jeden záznam.
 - port := I2CP port, na kterém je služba nalezena. Nezáporné celé číslo. Příklad: "25"
   Port 0 je podporován, ale nedoporučuje se.
-- target := Hostname nebo b32 destinace poskytující služby. Platný hostname jako v [NAMING](/docs/naming/). Musí být malými písmeny.
+- target := Hostname nebo b32 destinace poskytující služby. Platný hostname jako v [NAMING](/docs/overview/naming/). Musí být malými písmeny.
   Příklad: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" nebo "example.i2p".
   b32 je doporučeno, pokud hostname není "dobře známé", tj. v oficiálních nebo výchozích adresářích.
 - appoptions := libovolný text specifický pro aplikaci, nesmí obsahovat " " nebo ",". Kódování je UTF-8.
@@ -284,7 +284,7 @@ Pokud OPTIONS=true bylo v vyhledávání a leaseset není nalezen, bude vrácen�
 
 Byl zvažován alternativní návrh, jak podporovat vyhledávání služeb
 jako plného hostname, například _smtp._tcp.example.i2p,
-aktualizací [NAMING](/docs/naming/) pro specifikaci zpracování hostname začínajících '_'.
+aktualizací [NAMING](/docs/overview/naming/) pro specifikaci zpracování hostname začínajících '_'.
 To bylo odmítnuto ze dvou důvodů:
 
 - Změny I2CP a SAM by byly stále nezbytné pro průchod TTL a informací o portu k klientovi.

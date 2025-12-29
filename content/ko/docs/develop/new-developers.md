@@ -53,7 +53,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 콘솔 번역을 빌드하거나 작업하려면 GNU gettext 패키지의 `xgettext`, `msgfmt`, `msgmerge` 도구가 필요합니다.
 
-새로운 애플리케이션 개발에 대해서는 [애플리케이션 개발 가이드](/get-involved/develop/applications/)를 참조하세요.
+새로운 애플리케이션 개발에 대해서는 [애플리케이션 개발 가이드](/docs/develop/applications/)를 참조하세요.
 
 ## 개발 아이디어
 
@@ -65,7 +65,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 커밋 권한 요구사항은 라이선스 페이지 하단을 참조하세요. `i2p.i2p`에 코드를 넣으려면 이 권한이 필요합니다 (웹사이트는 필요 없습니다!).
 
-- [라이선스 페이지](/get-involved/develop/licenses#commit)
+- [라이선스 페이지](/docs/develop/licenses#commit)
 
 ## 저희를 알아가세요!
 
@@ -73,7 +73,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 ##
 
-웹사이트 및 라우터 콘솔 번역가: 다음 단계는 [신규 번역가 가이드](/get-involved/guides/new-translators/)를 참조하세요.
+웹사이트 및 라우터 콘솔 번역가: 다음 단계는 [신규 번역가 가이드](/docs/develop/new-translators/)를 참조하세요.
 
 ## 도구
 

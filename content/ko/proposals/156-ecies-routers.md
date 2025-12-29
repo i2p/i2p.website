@@ -17,7 +17,7 @@ toc: true
 
 - ECIES 라우터는 0.9.48에 구현됨, [Common](/docs/specs/common-structures/) 참조.
 - 터널 빌딩은 0.9.48에 구현됨, [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 참조.
-- ECIES 라우터에 암호화된 메시지는 0.9.49에 구현됨, [ECIES-ROUTERS](/docs/specs/ecies-routers/) 참조.
+- ECIES 라우터에 암호화된 메시지는 0.9.49에 구현됨, [ECIES-ROUTERS](/docs/specs/ecies/) 참조.
 - 새로운 터널 빌드 메시지는 0.9.51에 구현됨.
 
 

@@ -17,7 +17,7 @@ Statut :
 
 - Routeurs ECIES implémentés depuis la version 0.9.48, voir [Common](/docs/specs/common-structures/).
 - Construction de tunnels implémentée depuis la version 0.9.48, voir [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
-- Messages cryptés aux routeurs ECIES implémentés depuis la version 0.9.49, voir [ECIES-ROUTERS](/docs/specs/ecies-routers/).
+- Messages cryptés aux routeurs ECIES implémentés depuis la version 0.9.49, voir [ECIES-ROUTERS](/docs/specs/ecies/).
 - Nouveaux messages de construction de tunnels implémentés depuis la version 0.9.51.
 
 
@@ -498,7 +498,7 @@ Version cible : 0.9.53, début 2022.
 
 * [Common](/docs/specs/common-structures/)
 * [ECIES](/docs/specs/ecies/)
-* [ECIES-ROUTERS](/docs/specs/ecies-routers/)
+* [ECIES-ROUTERS](/docs/specs/ecies/)
 * [I2NP](/docs/specs/i2np/)
 * [NOISE](https://noiseprotocol.org/noise.html)
 * [Prop123](/proposals/123-new-netdb-entries/)

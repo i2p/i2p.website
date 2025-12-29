@@ -53,7 +53,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 要构建或处理控制台翻译，您需要 GNU gettext 软件包中的 `xgettext`、`msgfmt` 和 `msgmerge` 工具。
 
-对于新应用程序的开发，请参阅[应用程序开发指南](/get-involved/develop/applications/)。
+对于新应用程序的开发，请参阅[应用程序开发指南](/docs/develop/applications/)。
 
 ## 开发想法
 
@@ -65,7 +65,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 请参阅许可证页面底部了解提交权限要求。您需要这些权限才能将代码提交到 `i2p.i2p`（网站不需要！）。
 
-- [许可证页面](/get-involved/develop/licenses#commit)
+- [许可证页面](/docs/develop/licenses#commit)
 
 ## 了解我们！
 
@@ -73,7 +73,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 ## 翻译
 
-网站和路由器控制台翻译者：请查看[新翻译者指南](/get-involved/guides/new-translators/)了解后续步骤。
+网站和路由器控制台翻译者：请查看[新翻译者指南](/docs/develop/new-translators/)了解后续步骤。
 
 ## 工具
 

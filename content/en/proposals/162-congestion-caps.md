@@ -55,7 +55,7 @@ over several minutes, not an instantaneous measurement.
 
 ## Specification
 
-Update [NETDB](/docs/how/network-database) as follows:
+Update [NETDB](/docs/overview/network-database) as follows:
 
 
 ```text
@@ -129,7 +129,7 @@ act on published caps in 0.9.59 (July 2023).
 
 ## References
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)
 
 
 

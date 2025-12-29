@@ -17,7 +17,7 @@ vybrány nebo postaveny při odeslání zprávy tak, že OBEP odpovídá jednomu
 
 ## Motivace
 
-Většina I2P směrovačů používá formu zahazování paketů pro řízení přetížení. Referenční implementace používá strategii WRED, která bere v úvahu jak velikost zprávy, tak cestovní vzdálenost (viz [dokumentace tunnel throttling](/docs/tunnels/implementation/#tunnelthrottling)). Díky této strategii je primárním zdrojem ztráty paketů OBEP.
+Většina I2P směrovačů používá formu zahazování paketů pro řízení přetížení. Referenční implementace používá strategii WRED, která bere v úvahu jak velikost zprávy, tak cestovní vzdálenost (viz [dokumentace tunnel throttling](/docs/specs/implementation/#tunnelthrottling)). Díky této strategii je primárním zdrojem ztráty paketů OBEP.
 
 
 ## Návrh

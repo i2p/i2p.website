@@ -106,6 +106,6 @@ GZip أو ما شابه للهياكل الطويلة (على سبيل المث�
 انظر أيضاً:
 
 - [توجيه الأنفاق (Tunnel Routing)](/docs/overview/tunnel-routing/)
-- [اختيار النظراء (Peer Selection)](/docs/how/peer-selection/)
-- [بروتوكولات النقل (Transports)](/docs/transport/)
+- [اختيار النظراء (Peer Selection)](/docs/overview/tunnel-routing/)
+- [بروتوكولات النقل (Transports)](/docs/overview/transport/)
 - [مواصفات SSU2](/docs/specs/ssu2/) و [مواصفات NTCP2](/docs/specs/ntcp2/)

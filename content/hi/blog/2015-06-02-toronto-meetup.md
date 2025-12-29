@@ -1,6 +1,7 @@
 ---
 title: "टोरंटो मीटअप"
 date: 2015-06-02
+slug: "toronto-meetup"
 author: "hottuna"
 description: "टोरंटो में 15–16 अगस्त को I2P मीटअप"
 categories: ["community"]

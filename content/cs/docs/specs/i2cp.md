@@ -1359,7 +1359,7 @@ Vždy používejte SendMessageExpires (nikoli SendMessage) k nastavení explicit
 - [Návrh 152](/proposals/152-ecies-tunnels/): Vytváření X25519 tunnelů
 - [Návrh 154](/proposals/154-ecies-lookups/): Vyhledávání v databázi z ECIES destinací
 - [Návrh 156](/proposals/156-ecies-routers/): Migrace routerů na ECIES-X25519
-- [Návrh 161](/proposals/161-ri-dest-padding/): Komprese paddingu destinace
+- [Návrh 161](/cs/proposals/161-ri-dest-padding/): Komprese paddingu destinace
 - [Návrh 167](/proposals/167-service-records/): Záznamy služeb LeaseSet
 - [Návrh 169](/proposals/169-pq-crypto/): Postkvantová hybridní kryptografie (ML-KEM)
 

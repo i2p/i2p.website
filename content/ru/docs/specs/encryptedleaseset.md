@@ -160,7 +160,7 @@ BLIND_PUBKEY(pubkey, alpha) == DERIVE_PUBLIC(BLIND_PRIVKEY(privkey, alpha))
 
 **Поддерживаемые типы подписей:** - **Тип 7 (Ed25519):** Поддерживается для существующих назначений (обратная совместимость) - **Тип 11 (Red25519):** Рекомендуется для новых назначений с использованием шифрования - **Ослеплённые ключи:** Всегда используйте тип 11 (Red25519)
 
-**Ссылки:** - [Спецификация протокола ZCash](https://zips.z.cash/protocol/protocol.pdf) - Раздел 5.4.6 RedDSA (схема цифровой подписи) - [Спецификация I2P Red25519](/docs/specs/red25519/)
+**Ссылки:** - [Спецификация протокола ZCash](https://zips.z.cash/protocol/protocol.pdf) - Раздел 5.4.6 RedDSA (схема цифровой подписи) - [Спецификация I2P Red25519](/docs/specs/red25519-signature-scheme/)
 
 ### Диффи‑Хеллман: X25519
 
@@ -1270,7 +1270,7 @@ def destination_to_encrypted_b32(destination):
 
 **Проверка адреса:** - Всегда проверяйте контрольную сумму перед использованием - Отклоняйте адреса с недопустимыми типами подписи - Проверьте, что открытый ключ лежит на кривой (зависит от реализации)
 
-**Ссылки:** - [Предложение 149: B32 для Encrypted LS2](/proposals/149-b32-encrypted-ls2/) - [Спецификация адресации B32](/docs/specs/b32encrypted/) - [Спецификация именования I2P](/docs/overview/naming/)
+**Ссылки:** - [Предложение 149: B32 для Encrypted LS2](/proposals/149-b32-encrypted-ls2/) - [Спецификация адресации B32](/docs/specs/b32-for-encrypted-leasesets/) - [Спецификация именования I2P](/docs/overview/naming/)
 
 ---
 
@@ -2095,8 +2095,8 @@ Key areas to test:
 - **[Proposal 123: New netDB Entries](/proposals/123-new-netdb-entries/)** - Background and design of LeaseSet2
 - **[Proposal 146: Red25519](/proposals/146-red25519/)** - Red25519 signature scheme specification
 - **[Proposal 149: B32 for Encrypted LS2](/proposals/149-b32-encrypted-ls2/)** - Base32 addressing for encrypted LeaseSets
-- **[Red25519 Specification](/docs/specs/red25519/)** - Detailed Red25519 implementation
-- **[B32 Addressing Specification](/docs/specs/b32encrypted/)** - Base32 address format
+- **[Red25519 Specification](/docs/specs/red25519-signature-scheme/)** - Detailed Red25519 implementation
+- **[B32 Addressing Specification](/docs/specs/b32-for-encrypted-leasesets/)** - Base32 address format
 - **[Network Database Documentation](/docs/specs/common-structures/)** - NetDB usage and operations
 - **[I2CP Specification](/docs/specs/i2cp/)** - I2P Client Protocol
 
@@ -2118,7 +2118,7 @@ Key areas to test:
 - **[Java I2P Repository](https://github.com/i2p/i2p.i2p)** - Official Java implementation
 - **[i2pd Repository](https://github.com/PurpleI2P/i2pd)** - C++ implementation
 - **[I2P Website](/)** - Official I2P project website
-- **[I2P Specifications](/spec/)** - Complete specification index
+- **[I2P Specifications](/docs/specs/)** - Complete specification index
 
 ### Version History
 

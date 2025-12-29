@@ -294,5 +294,5 @@ Planlanan araştırmalar ve iyileştirmeler şunları içerir:
 - [SSU2 Spesifikasyonu](/docs/specs/ssu2/) – Güvenli, yarı güvenilir UDP 2
 - [I2NP Spesifikasyonu](/docs/specs/i2np/) – I2P Ağ Protokolü mesajları
 - [Ortak Yapılar](/docs/specs/common-structures/) – RouterInfo ve adres yapıları
-- [Tarihsel NTCP Tartışması](/docs/historical/ntcp/) – Eski taşıma geliştirme geçmişi
+- [Tarihsel NTCP Tartışması](/docs/ntcp/) – Eski taşıma geliştirme geçmişi
 - [Eski SSU Dokümantasyonu](/docs/legacy/ssu/) – Orijinal SSU spesifikasyonu (kullanımdan kaldırıldı)

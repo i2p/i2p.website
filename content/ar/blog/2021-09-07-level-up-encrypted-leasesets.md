@@ -1,6 +1,7 @@
 ---
 title: "ارتقِ بمهاراتك في I2P باستخدام LeaseSets المشفرة"
 date: 2021-09-07
+slug: "level-up-your-i2p-skills-with-encrypted-leasesets"
 author: "idk"
 description: "يُقال إن I2P تُركّز على الخدمات المخفية، ونستعرض أحد التفسيرات لذلك."
 categories: ["general"]

@@ -22,7 +22,7 @@ Welcome to the I2P documentation. This site provides guides, explanations, and t
 
 ## Specifications
 
-For detailed protocol specifications, see the [Specifications](/spec/) section, which includes:
+For detailed protocol specifications, see the [Specifications](/docs/specs/) section, which includes:
 
 - **Transport Layer** - NTCP2 and SSU2 protocols
 - **Tunnel Layer** - Tunnel building and routing

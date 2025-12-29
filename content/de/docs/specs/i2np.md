@@ -1695,7 +1695,7 @@ Total size: 1 + ($num × 218) bytes
 - **[Proposal 156](/proposals/156-ecies-routers/)** - ECIES-Router
 - **[Proposal 157](/proposals/157-new-tbm/)** - Kleinere tunnel-build-Nachrichten (Kurzformat)
 - **[Proposal 159](/proposals/159-ssu2/)** - SSU2-Transport
-- **[Proposal 161](/proposals/161-ri-dest-padding/)** - Komprimierbares Padding
+- **[Proposal 161](/de/proposals/161-ri-dest-padding/)** - Komprimierbares Padding
 - **[Proposal 163](/proposals/163-datagram2/)** - Datagram2 und Datagram3
 - **[Proposal 167](/proposals/167-service-records/)** - Service-Record-Parameter im LeaseSet
 - **[Proposal 168](/proposals/168-tunnel-bandwidth/)** - Bandbreitenparameter für tunnel build

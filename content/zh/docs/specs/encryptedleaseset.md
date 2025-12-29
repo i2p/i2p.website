@@ -162,7 +162,7 @@ BLIND_PUBKEY(pubkey, alpha) == DERIVE_PUBLIC(BLIND_PRIVKEY(privkey, alpha))
 
 **支持的签名类型:** - **类型 7 (Ed25519):** 支持用于现有目的地（向后兼容） - **类型 11 (Red25519):** 建议用于使用加密的新目的地 - **Blinded keys（盲化密钥）:** 始终使用类型 11 (Red25519)
 
-**参考资料：** - [ZCash 协议规范](https://zips.z.cash/protocol/protocol.pdf) - 第 5.4.6 节 RedDSA - [I2P Red25519 规范](/docs/specs/red25519/)
+**参考资料：** - [ZCash 协议规范](https://zips.z.cash/protocol/protocol.pdf) - 第 5.4.6 节 RedDSA - [I2P Red25519 规范](/docs/specs/red25519-signature-scheme/)
 
 ### DH（Diffie-Hellman）: X25519
 
@@ -1278,7 +1278,7 @@ def destination_to_encrypted_b32(destination):
 
 **地址验证：** - 在使用前务必验证校验和 - 拒绝具有无效签名类型的地址 - 验证公钥位于曲线上（取决于具体实现）
 
-**参考资料：** - [提案 149：用于加密 LS2（LeaseSet 第2版）的 B32](/proposals/149-b32-encrypted-ls2/) - [B32 寻址规范](/docs/specs/b32encrypted/) - [I2P 命名规范](/docs/overview/naming/)
+**参考资料：** - [提案 149：用于加密 LS2（LeaseSet 第2版）的 B32](/proposals/149-b32-encrypted-ls2/) - [B32 寻址规范](/docs/specs/b32-for-encrypted-leasesets/) - [I2P 命名规范](/docs/overview/naming/)
 
 ---
 
@@ -2103,8 +2103,8 @@ Key areas to test:
 - **[Proposal 123: New netDB Entries](/proposals/123-new-netdb-entries/)** - Background and design of LeaseSet2
 - **[Proposal 146: Red25519](/proposals/146-red25519/)** - Red25519 signature scheme specification
 - **[Proposal 149: B32 for Encrypted LS2](/proposals/149-b32-encrypted-ls2/)** - Base32 addressing for encrypted LeaseSets
-- **[Red25519 Specification](/docs/specs/red25519/)** - Detailed Red25519 implementation
-- **[B32 Addressing Specification](/docs/specs/b32encrypted/)** - Base32 address format
+- **[Red25519 Specification](/docs/specs/red25519-signature-scheme/)** - Detailed Red25519 implementation
+- **[B32 Addressing Specification](/docs/specs/b32-for-encrypted-leasesets/)** - Base32 address format
 - **[Network Database Documentation](/docs/specs/common-structures/)** - NetDB usage and operations
 - **[I2CP Specification](/docs/specs/i2cp/)** - I2P Client Protocol
 
@@ -2126,7 +2126,7 @@ Key areas to test:
 - **[Java I2P Repository](https://github.com/i2p/i2p.i2p)** - Official Java implementation
 - **[i2pd Repository](https://github.com/PurpleI2P/i2pd)** - C++ implementation
 - **[I2P Website](/)** - Official I2P project website
-- **[I2P Specifications](/spec/)** - Complete specification index
+- **[I2P Specifications](/docs/specs/)** - Complete specification index
 
 ### Version History
 

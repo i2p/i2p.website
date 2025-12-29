@@ -1,6 +1,7 @@
 ---
 title: "Nâng cao kỹ năng I2P của bạn với LeaseSets được mã hóa"
 date: 2021-09-07
+slug: "level-up-your-i2p-skills-with-encrypted-leasesets"
 author: "idk"
 description: "Có ý kiến cho rằng I2P nhấn mạnh vào các dịch vụ ẩn; chúng tôi xem xét một cách diễn giải về điều này."
 categories: ["general"]

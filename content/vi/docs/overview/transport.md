@@ -294,5 +294,5 @@ Các nghiên cứu và cải tiến được lên kế hoạch bao gồm:
 - [Đặc tả SSU2](/docs/specs/ssu2/) – UDP bán tin cậy, bảo mật 2
 - [Đặc tả I2NP](/docs/specs/i2np/) – Các thông điệp của Giao thức Mạng I2P
 - [Cấu trúc chung](/docs/specs/common-structures/) – RouterInfo và các cấu trúc địa chỉ
-- [Các thảo luận NTCP lịch sử](/docs/historical/ntcp/) – Lịch sử phát triển giao thức truyền tải kiểu cũ
+- [Các thảo luận NTCP lịch sử](/docs/ntcp/) – Lịch sử phát triển giao thức truyền tải kiểu cũ
 - [Tài liệu SSU cũ](/docs/legacy/ssu/) – Đặc tả SSU ban đầu (đã ngừng dùng)

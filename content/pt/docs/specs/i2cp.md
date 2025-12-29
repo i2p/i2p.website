@@ -1356,7 +1356,7 @@ Use sempre SendMessageExpires (não SendMessage) para definir uma expiração ex
 - [Proposta 152](/proposals/152-ecies-tunnels/): Criação de tunnel com X25519
 - [Proposta 154](/proposals/154-ecies-lookups/): Consultas ao banco de dados a partir de destinos ECIES
 - [Proposta 156](/proposals/156-ecies-routers/): Migração do router para ECIES-X25519
-- [Proposta 161](/proposals/161-ri-dest-padding/): Compressão do preenchimento de destino
+- [Proposta 161](/pt/proposals/161-ri-dest-padding/): Compressão do preenchimento de destino
 - [Proposta 167](/proposals/167-service-records/): Registros de serviço de LeaseSet
 - [Proposta 169](/proposals/169-pq-crypto/): Criptografia híbrida pós-quântica (ML-KEM)
 

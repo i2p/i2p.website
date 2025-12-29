@@ -333,7 +333,7 @@ HTTP proxy mặc định chỉ hỗ trợ outproxy HTTP và HTTPS.
 
 ### Tại sao router của tôi sử dụng quá nhiều CPU? {#cpu}
 
-Đầu tiên, hãy đảm bảo bạn có phiên bản mới nhất của mọi thành phần liên quan đến I2P – các phiên bản cũ có những đoạn mã tiêu tốn CPU không cần thiết. Ngoài ra còn có một [nhật ký hiệu năng](/about/performance) ghi lại một số cải tiến về hiệu năng I2P theo thời gian.
+Đầu tiên, hãy đảm bảo bạn có phiên bản mới nhất của mọi thành phần liên quan đến I2P – các phiên bản cũ có những đoạn mã tiêu tốn CPU không cần thiết. Ngoài ra còn có một [nhật ký hiệu năng](/docs/overview/performance) ghi lại một số cải tiến về hiệu năng I2P theo thời gian.
 
 ### Các peer hoạt động / peer đã biết / tunnel tham gia / kết nối / băng thông của tôi thay đổi đáng kể theo thời gian! Có vấn đề gì không? {#vary}
 

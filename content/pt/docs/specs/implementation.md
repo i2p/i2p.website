@@ -182,13 +182,12 @@ Embora tunnels se assemelhem a circuitos, routers os tratam como filas de mensag
 - Os participantes consideram fragmentos de tamanho fixo; gateways/endpoints descartam com base no tamanho combinado dos fragmentos, penalizando primeiro cargas úteis grandes.
 - Os endpoints de saída descartam antes de outros papéis para desperdiçar o mínimo possível de esforço de rede.
 
-A entrega garantida fica a cargo de camadas superiores, como a [biblioteca de streaming](/spec/api/streaming/). As aplicações que requerem fiabilidade devem tratar elas próprias da retransmissão e das confirmações de receção.
+A entrega garantida fica a cargo de camadas superiores, como a [biblioteca de streaming](/docs/specs/streaming/). As aplicações que requerem fiabilidade devem tratar elas próprias da retransmissão e das confirmações de receção.
 
 ---
 
 ## Leitura adicional {#further-reading}
 
-- [Tunnels Unidirecionais (Histórico)](/docs/legacy/unidirectional-tunnels/)
 - [Seleção de Pares](/docs/overview/tunnel-routing#peer-selection/)
 - [Visão Geral de Tunnels](/docs/overview/tunnel-routing/)
 - [Implementação Antiga de Tunnel](/docs/legacy/old-implementation/)

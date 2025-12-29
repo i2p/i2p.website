@@ -6,7 +6,7 @@ lastUpdated: "2025-02"
 accurateFor: "historical"
 ---
 
-> **Không dùng nữa:** Thư viện ministreaming ra đời trước [thư viện streaming](/spec/api/streaming/) hiện nay. Các ứng dụng hiện đại phải sử dụng API streaming đầy đủ hoặc SAM v3. Thông tin bên dưới được giữ lại cho các nhà phát triển đang xem xét mã nguồn cũ được phân phối trong `ministreaming.jar`.
+> **Không dùng nữa:** Thư viện ministreaming ra đời trước [thư viện streaming](/docs/specs/streaming/) hiện nay. Các ứng dụng hiện đại phải sử dụng API streaming đầy đủ hoặc SAM v3. Thông tin bên dưới được giữ lại cho các nhà phát triển đang xem xét mã nguồn cũ được phân phối trong `ministreaming.jar`.
 
 ## Tổng quan
 
@@ -40,7 +40,7 @@ Hiện nay, hãy coi `ministreaming.jar` chỉ như một lớp tương thích. 
 
 ## Tài liệu tham khảo
 
-- [Tài liệu Thư viện Streaming](/spec/api/streaming/)
+- [Tài liệu Thư viện Streaming](/docs/specs/streaming/)
 - [Javadoc của Streaming](http://idk.i2p/javadoc-i2p/net/i2p/client/streaming/package-summary.html) – bao gồm các lớp ministreaming không còn được khuyến nghị sử dụng
 - [Đặc tả SAM v3](/docs/api/samv3/) – hỗ trợ streaming cho các ứng dụng không phải Java
 

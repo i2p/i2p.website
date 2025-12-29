@@ -41,7 +41,7 @@ Cependant, I2P implémente des **tunnels unidirectionnels**, et non des circuits
 
 Un aller-retour complet (Alice ↔ Bob) utilise quatre tunnels : outbound d'Alice → inbound de Bob, puis outbound de Bob → inbound d'Alice. Cette conception **réduit de moitié l'exposition des données de corrélation** par rapport aux circuits bidirectionnels.
 
-Pour les détails d'implémentation des tunnels, voir la [Spécification des Tunnels](/docs/specs/implementation) et la spécification [Création de Tunnel (ECIES)](/spec/tunnel/creation-ecies).
+Pour les détails d'implémentation des tunnels, voir la [Spécification des Tunnels](/docs/specs/implementation) et la spécification [Création de Tunnel (ECIES)](/docs/specs/implementation).
 
 ---
 
@@ -186,8 +186,8 @@ Le garlic routing est donc à la fois une *méthode de chiffrement en couches* e
 Le centre de documentation d'I2P est [disponible ici](/docs/), maintenu en continu. Les spécifications pertinentes incluent :
 
 - [Spécification ECIES](/docs/specs/ecies) — ECIES‑X25519‑AEAD‑Ratchet
-- [Création de tunnel (ECIES)](/spec/tunnel/creation-ecies) — protocole moderne de construction de tunnel
-- [Spécification I2NP](/spec/i2np) — formats de message I2NP
+- [Création de tunnel (ECIES)](/docs/specs/implementation) — protocole moderne de construction de tunnel
+- [Spécification I2NP](/docs/specs/i2np) — formats de message I2NP
 - [Spécification SSU2](/docs/specs/ssu2) — transport UDP SSU2
 - [Structures communes](/docs/specs/common-structures) — comportement netDb et floodfill
 

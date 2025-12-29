@@ -504,4 +504,4 @@ Other implementations will follow as desired after the testing and verification 
 * [Prop169](/proposals/169-pq-crypto/)
 * [SAMv3](/docs/api/samv3/)
 * [SPEC](/docs/applications/bittorrent/)
-* [UDP](/docs/specs/udp-announces/)
+* [UDP](/docs/specs/udp-bittorrent-announces/)

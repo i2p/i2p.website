@@ -117,7 +117,14 @@
                         ← Back to Proposals
                     </a>
                     {{ if .Params.number }}
-                    <a href="/proposals/{{ printf "%03d" (.Params.number | int) }}-{{ .Title | strings.ToLower | replaceRE "[^a-z0-9]+" "-" }}.txt" class="page-nav-link" download>
+                    {{/* Use the English proposal slug for the .txt file, not translated title */}}
+                    {{ $englishPage := index (where .Sites.Default.RegularPages "Section" "proposals") 0 }}
+                    {{ range where .Sites.Default.RegularPages "Section" "proposals" }}
+                        {{ if eq .Params.number $.Params.number }}
+                            {{ $englishPage = . }}
+                        {{ end }}
+                    {{ end }}
+                    <a href="/proposals/{{ $englishPage.File.ContentBaseName }}.txt" class="page-nav-link" download>
                         Download Source (.txt)
                     </a>
                     {{ end }}

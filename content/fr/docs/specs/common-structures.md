@@ -15,7 +15,7 @@ Ce document spécifie les structures de données fondamentales utilisées dans l
 - ElGamal et DSA-SHA1 déconseillés pour les identités du router (utiliser X25519 + EdDSA)
 - Prise en charge post-quantique de ML-KEM en test bêta (opt-in, activation facultative, à partir de la 2.10.0)
 - Options des enregistrements de service normalisées ([Proposition 167](/proposals/167-service-records/), implémentées depuis 0.9.66)
-- Spécifications de bourrage compressible finalisées ([Proposition 161](/proposals/161-padding-generation/), implémentées depuis 0.9.57)
+- Spécifications de bourrage compressible finalisées ([Proposition 161](/fr/proposals/161-ri-dest-padding/), implémentées depuis 0.9.57)
 
 ---
 
@@ -673,7 +673,7 @@ For Key Certificate (EdDSA + X25519):
 For larger keys (e.g., RSA_4096):
   Total = 384 + 3 + 4 + excess_key_data_length
 ```
-### Directives de génération de bourrage ([Proposition 161](/proposals/161-padding-generation/))
+### Directives de génération de bourrage ([Proposition 161](/fr/proposals/161-ri-dest-padding/))
 
 **Version de l'implémentation:** 0.9.57 (janvier 2023, sortie 2.1.0)
 
@@ -752,7 +752,7 @@ Compression savings: ~320 bytes when compressed
 3. **Taille typique:**
    - X25519 + EdDSA avec certificat de clé = 391 octets
    - 32 octets de clé publique X25519
-   - remplissage de 320 octets (compressible selon la [Proposition 161](/proposals/161-padding-generation/))
+   - remplissage de 320 octets (compressible selon la [Proposition 161](/fr/proposals/161-ri-dest-padding/))
    - 32 octets de clé publique EdDSA
    - certificat de 7 octets (en-tête de 3 octets + 4 octets pour les types de clés)
 
@@ -760,7 +760,7 @@ Compression savings: ~320 bytes when compressed
 
 **Clé de la base de données réseau:** - RouterInfo (informations du router) indexé par le hachage SHA-256 de la RouterIdentity (identité du router) complète - Hachage calculé sur la structure complète de 391+ octets (y compris le bourrage)
 
-**Voir aussi :** - Recommandations pour la génération du bourrage ([Proposition 161](/proposals/161-padding-generation/)) - Spécification du certificat de clé ci-dessus
+**Voir aussi :** - Recommandations pour la génération du bourrage ([Proposition 161](/fr/proposals/161-ri-dest-padding/)) - Spécification du certificat de clé ci-dessus
 
 **JavaDoc :** [RouterIdentity](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html)
 
@@ -783,7 +783,7 @@ Compression savings: ~320 bytes when compressed
 
 2. **Clé de chiffrement :**
    - Le champ est inutilisé mais doit être présent
-   - **Recommandé :** Remplir avec des données aléatoires conformément à [Proposal 161](/proposals/161-padding-generation/) (compressibles)
+   - **Recommandé :** Remplir avec des données aléatoires conformément à [Proposal 161](/fr/proposals/161-ri-dest-padding/) (compressibles)
    - Taille : toujours 256 octets (emplacement ElGamal, même s’il n’est pas utilisé pour ElGamal)
 
 3. **Certificat:**
@@ -2380,7 +2380,7 @@ Encryption: X25519 (type 4, 32 bytes)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/proposals/161-ri-dest-padding/)
+Padding: Compressible per [Proposal 161](/fr/proposals/161-ri-dest-padding/)
 ```
 **Pour de nouvelles destinations :**
 
@@ -2389,7 +2389,7 @@ Unused Public Key Field: 256 bytes random (compressible)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/proposals/161-ri-dest-padding/)
+Padding: Compressible per [Proposal 161](/fr/proposals/161-ri-dest-padding/)
 ```
 **Pour les nouveaux LeaseSets:**
 
@@ -2433,7 +2433,7 @@ Authorization: Per-client encryption keys
 
 ### Notes de compatibilité
 
-**Rétrocompatibilité:** - ElGamal et DSA_SHA1 toujours pris en charge pour les routers historiques - Les types de clés dépréciés restent fonctionnels mais sont déconseillés - Bourrage compressible ([Proposal 161](/proposals/161-padding-generation/)) rétrocompatible jusqu'à la version 0.6
+**Rétrocompatibilité:** - ElGamal et DSA_SHA1 toujours pris en charge pour les routers historiques - Les types de clés dépréciés restent fonctionnels mais sont déconseillés - Bourrage compressible ([Proposal 161](/fr/proposals/161-ri-dest-padding/)) rétrocompatible jusqu'à la version 0.6
 
 **Compatibilité ascendante :** - Les types de clés inconnus peuvent être analysés à l'aide des champs de longueur - Les types de certificats inconnus peuvent être ignorés à l'aide du champ de longueur - Les types de signatures inconnus doivent être gérés de manière robuste - Les implémenteurs ne doivent pas échouer en présence de fonctionnalités optionnelles inconnues
 
@@ -2473,11 +2473,11 @@ Authorization: Per-client encryption keys
 ### Propositions
 
 - [Proposition 123: Nouvelles entrées netDB](/proposals/123-new-netdb-entries/)
-- [Proposition 134: Types de signature GOST](/proposals/134-gost-signature-types/)
+- [Proposition 134: Types de signature GOST](/proposals/134-gost/)
 - [Proposition 136: Types de signature expérimentaux](/proposals/136-experimental-sigtypes/)
-- [Proposition 145: ECIES-P256](/proposals/145-ecies-p256/)
+- [Proposition 145: ECIES-P256](/proposals/145-ecies/)
 - [Proposition 156: ECIES Routers](/proposals/156-ecies-routers/)
-- [Proposition 161: Génération du bourrage](/proposals/161-padding-generation/)
+- [Proposition 161: Génération du bourrage](/fr/proposals/161-ri-dest-padding/)
 - [Proposition 167: Enregistrements de service](/proposals/167-service-records/)
 - [Proposition 169: Cryptographie post-quantique](/proposals/169-pq-crypto/)
 - [Index de toutes les propositions](/proposals/)
@@ -2533,7 +2533,7 @@ Authorization: Per-client encryption keys
 
 ### Informations sur la version
 
-- [Annonce de la version 2.10.0 d’I2P](/blog/2025-09-08-i2p-2-10-0-release/)
+- [Annonce de la version 2.10.0 d’I2P](/fr/blog/2025/09/08/i2p-2.10.0-release/)
 - [Historique des versions](https://github.com/i2p/i2p.i2p/blob/master/history.txt)
 - [Journal des modifications](https://github.com/i2p/i2p.i2p/blob/master/debian/changelog)
 
@@ -2642,9 +2642,9 @@ Authorization: Per-client encryption keys
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jul 2020</td><td style="border:1px solid var(--color-border); padding:0.5rem;">X25519 for Router Identities</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2021</td><td style="border:1px solid var(--color-border); padding:0.5rem;">NTCP removed</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2022</td><td style="border:1px solid var(--color-border); padding:0.5rem;">SSU2 testing</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/161-ri-dest-padding/">Proposal 161</a> padding (release 2.1.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 161](/fr/proposals/161-ri-dest-padding/) padding (release 2.1.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mar 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ElGamal/DSA deprecated for RIs (2.2.0)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/167-service-records/">Proposal 167</a> service records (2.9.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 167](/proposals/167-service-records/) service records (2.9.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Sep 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ML-KEM beta support (2.10.0)</td></tr>
   </tbody>
 </table>

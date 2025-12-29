@@ -1,5 +1,6 @@
 ---
 title: "I2P Dev Meeting - March 23, 2004"
+slug: "i2p-dev-meeting-march-23-2004"
 date: 2004-03-23
 author: "jrand0m"
 description: "Ata da reunião de desenvolvimento do I2P de 23 de março de 2004."

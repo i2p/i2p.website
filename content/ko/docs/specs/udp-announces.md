@@ -1,7 +1,7 @@
 ---
 title: "UDP BitTorrent announce(트래커 상태 보고 및 피어 목록 요청)"
 description: "I2P에서의 UDP 기반 BitTorrent 트래커 announce(트래커에 클라이언트 상태를 알리는 요청) 프로토콜 사양"
-slug: "udp-announces"
+slug: "udp-bittorrent-announces"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

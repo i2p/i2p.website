@@ -211,7 +211,7 @@ Después de reenviar tu puerto, I2P debería cambiar de "Network: Firewalled" a 
 - **Reenvía tu puerto**: Consulta [portforward.com](https://portforward.com/) para obtener instrucciones específicas de tu router sobre cómo reenviar el puerto que I2P está utilizando
 - **Explora la consola del router**: Aprende sobre las características, servicios y opciones de configuración de I2P
 - **Visita eepsites**: Prueba a acceder a sitios web `.i2p` a través de la red I2P
-- **Lee la documentación**: Consulta la [documentación de I2P](../../_index.md) para obtener más información
+- **Lee la documentación**: Consulta la [documentación de I2P](/docs/) para obtener más información
 
 ¡Bienvenido a la red I2P! 🎉
 
@@ -516,10 +516,10 @@ El método de Servicios de Windows es útil para administrar I2P como un servici
 ## Paso 3: Selecciona Tu Idioma
 
 - **Espera la integración**: Dale a I2P de 5 a 10 minutos para integrarse en la red y construir túneles
-- **Configura el reenvío de puertos**: Consulta la [guía de reenvío de puertos](windows-easy-install.md#recommended-port-forwarding-optional-but-important) para obtener instrucciones
+- **Configura el reenvío de puertos**: Consulta la [guía de reenvío de puertos](#recommended-port-forwarding-optional-but-important) para obtener instrucciones
 - **Configura tu navegador**: Configura tu navegador web para usar el proxy HTTP de I2P
 - **Explora la consola del router**: Aprende sobre las características, servicios y opciones de configuración de I2P
 - **Visita eepsites**: Intenta acceder a sitios web `.i2p` a través de la red I2P
-- **Lee la documentación**: Consulta la [documentación de I2P](../../_index.md) para obtener más información
+- **Lee la documentación**: Consulta la [documentación de I2P](/docs/) para obtener más información
 
 ¡Bienvenido a la red I2P! 🎉

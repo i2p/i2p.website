@@ -123,7 +123,7 @@ Các tùy chọn của LS2 PHẢI được sắp xếp theo khóa, để chữ k
   Chỉ hữu ích nếu có nhiều hơn một bản ghi, nhưng vẫn cần ngay cả khi chỉ có một bản ghi.
 - port := Cổng I2CP mà dịch vụ được tìm thấy. Số nguyên không âm. Ví dụ: "25"
   Cổng 0 được hỗ trợ nhưng không được khuyến nghị.
-- target := Hostname hoặc b32 của đích cung cấp dịch vụ. Một hostname hợp lệ như trong [NAMING](/docs/naming/). Phải viết bằng chữ thường.
+- target := Hostname hoặc b32 của đích cung cấp dịch vụ. Một hostname hợp lệ như trong [NAMING](/docs/overview/naming/). Phải viết bằng chữ thường.
   Ví dụ: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" hoặc "example.i2p".
   b32 được khuyến khích trừ khi hostname là "rất quen thuộc", ví dụ trong sổ địa chỉ chính thức hoặc mặc định.
 - appoptions := văn bản tùy ý cụ thể cho ứng dụng, không được chứa " " hoặc ",". Mã hóa là UTF-8.
@@ -284,7 +284,7 @@ Nếu OPTIONS=true có trong tra cứu, và bộ cho thuê không được tìm 
 
 Một thiết kế thay thế đã được xem xét, để hỗ trợ tra cứu các dịch vụ
 như một hostname đầy đủ, ví dụ: _smtp._tcp.example.i2p,
-bằng cách cập nhật [NAMING](/docs/naming/) để chỉ định cách xử lý các hostname bắt đầu với '_'.
+bằng cách cập nhật [NAMING](/docs/overview/naming/) để chỉ định cách xử lý các hostname bắt đầu với '_'.
 Điều này đã bị từ chối vì hai lý do:
 
 - Các thay đổi I2CP và SAM vẫn cần thiết để truyền qua thông tin TTL và cổng cho khách hàng.

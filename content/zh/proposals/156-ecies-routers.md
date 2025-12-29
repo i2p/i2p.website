@@ -17,7 +17,7 @@ toc: true
 
 - ECIES 路由器已在 0.9.48 中实现，详情见 [Common](/docs/specs/common-structures/)。
 - 隧道构建已在 0.9.48 中实现，详情见 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)。
-- 到 ECIES 路由器的加密消息已在 0.9.49 中实现，详情见 [ECIES-ROUTERS](/docs/specs/ecies-routers/)。
+- 到 ECIES 路由器的加密消息已在 0.9.49 中实现，详情见 [ECIES-ROUTERS](/docs/specs/ecies/)。
 - 新的隧道构建消息已在 0.9.51 中实现。
 
 

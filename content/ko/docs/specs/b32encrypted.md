@@ -1,7 +1,7 @@
 ---
 title: "암호화된 leaseSet을 위한 B32"
 description: "암호화된 LS2 leaseSet용 Base 32 주소 형식"
-slug: "b32encrypted"
+slug: "b32-for-encrypted-leasesets"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 status: "구현됨"

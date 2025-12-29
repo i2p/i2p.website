@@ -213,11 +213,11 @@ Recursos para jornalistas, pesquisadores, e qualquer pessoa interessada em apren
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="/en/about/i2pcon/2015/">I2PCon 2015</a>
+[I2PCon 2015](/pt/blog/2015/07/16/i2pcon/)
 </div>
 <div class="content-entry-meta">🎪 Conferência • Toronto • 15-16 de agosto, 2015</div>
 <div class="content-entry-actions">
-<a href="/en/about/i2pcon/2015/" class="content-btn">Detalhes</a>
+<a href="/pt/blog/2015/07/16/i2pcon/" class="content-btn">Detalhes</a>
 </div>
 </div>
 

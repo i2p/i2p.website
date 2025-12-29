@@ -213,11 +213,11 @@ Gazeteciler, araştırmacılar ve I2P hakkında bilgi edinmek isteyen herkes iç
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="/en/about/i2pcon/2015/">I2PCon 2015</a>
+[I2PCon 2015](/tr/blog/2015/07/16/i2pcon/)
 </div>
 <div class="content-entry-meta">🎪 Konferans • Toronto • 15-16 Ağustos 2015</div>
 <div class="content-entry-actions">
-<a href="/en/about/i2pcon/2015/" class="content-btn">Detaylar</a>
+<a href="/tr/blog/2015/07/16/i2pcon/" class="content-btn">Detaylar</a>
 </div>
 </div>
 

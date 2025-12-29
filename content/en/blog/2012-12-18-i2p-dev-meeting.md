@@ -302,7 +302,7 @@ categories: ["meeting"]
 22:50:16  &lt;str4d&gt; Yes, true (that itself is why half the links are still broken)
 22:50:31  &lt;zzz&gt; e.g. on how.html there's dup links in there, and links to all sorts of topics.
 22:50:34  &lt;str4d&gt; But I wanted the url of each page to make sense for that page.
-22:51:05  &lt;str4d&gt; i.e. /en/site/docs/transport/ssu vs /en/site/docs/legacy/ssu/
+22:51:05  &lt;str4d&gt; i.e. /en/site/docs/overview/transport/ssu vs /en/site/docs/legacy/ssu/
 22:51:16  &lt;str4d&gt; (There are both - one is the documentation, one is the specification)
 22:51:46  &lt;zzz&gt; nice in theory, maybe not so much in practice. or maybe it's all good.
 22:52:23  &lt;str4d&gt; But if everyone is happy enough to have an /en/site/misc/* url for the remaining pages, I'll put them there (as I'm getting tired of page sorting @_@)

@@ -317,8 +317,8 @@ ou pelo roteador na camada de ratchet.
 
 ## Notas
 
-- O comprimento prático é limitado pelas camadas inferiores dos protocolos - a especificação de mensagem de túnel [TUNMSG](/docs/specs/tunnel-message/#notes) limita as mensagens a cerca de 61,2 KB e os transportes
-  [TRANSPORT](/docs/transport/) atualmente limitam as mensagens a cerca de 64 KB, então o comprimento dos dados aqui
+- O comprimento prático é limitado pelas camadas inferiores dos protocolos - a especificação de mensagem de túnel [TUNMSG](/docs/specs/implementation/#notes) limita as mensagens a cerca de 61,2 KB e os transportes
+  [TRANSPORT](/docs/overview/transport/) atualmente limitam as mensagens a cerca de 64 KB, então o comprimento dos dados aqui
   é limitado a cerca de 61 KB.
 - Veja notas importantes sobre a confiabilidade de datagramas grandes [API](/docs/api/datagrams/). Para
   melhores resultados, limite o payload a cerca de 10 KB ou menos.
@@ -365,5 +365,5 @@ Aplicativos UDP SAM: Nenhum conhecido
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

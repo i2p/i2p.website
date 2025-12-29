@@ -106,6 +106,6 @@ O agrupamento seletivo de LeaseSet, as opções comprimidas de RouterInfo e a ad
 Veja também:
 
 - [Roteamento de Túneis](/docs/overview/tunnel-routing/)
-- [Seleção de Pares](/docs/how/peer-selection/)
-- [Transportes](/docs/transport/)
+- [Seleção de Pares](/docs/overview/tunnel-routing/)
+- [Transportes](/docs/overview/transport/)
 - [Especificação SSU2](/docs/specs/ssu2/) e [Especificação NTCP2](/docs/specs/ntcp2/)

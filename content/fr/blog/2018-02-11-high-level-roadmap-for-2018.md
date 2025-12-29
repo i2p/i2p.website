@@ -1,6 +1,7 @@
 ---
 title: "Feuille de route de haut niveau pour 2018"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "2018 sera l'année de nouveaux protocoles, de nouvelles collaborations et d'une orientation plus précise"
 categories: ["roadmap"]

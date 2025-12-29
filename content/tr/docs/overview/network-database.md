@@ -200,7 +200,7 @@ LeaseSets şunları içerir: - **Hedef** – şifreleme anahtarı, imzalama anah
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>LeaseSet2 (LS2)</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys (<a href="/proposals/123-new-netdb-entries">Proposal 123</a>)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys ([Proposal 123](/proposals/123-new-netdb-entries/))</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Meta LeaseSet</strong></td>
@@ -433,4 +433,4 @@ I2P'deki DHT (dağıtık karma tablosu) bilgi sızıntısı daha fazla araştır
 - [Ortak Yapılar Teknik Belirtimi](/docs/specs/common-structures/) – RouterInfo ve LeaseSet yapıları
 - [I2NP Teknik Belirtimi](/docs/specs/i2np/) – Veritabanı mesaj türleri
 - [Öneri 123: Yeni netDb Girdileri](/proposals/123-new-netdb-entries) – LeaseSet2 teknik belirtimi
-- [Tarihsel netDb Tartışması](/docs/historical/netdb/) – Geliştirme geçmişi ve arşivlenmiş tartışmalar
+- [Tarihsel netDb Tartışması](/docs/netdb/) – Geliştirme geçmişi ve arşivlenmiş tartışmalar

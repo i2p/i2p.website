@@ -202,7 +202,7 @@ LeaseSets में शामिल हैं: - **Destination** – एन्�
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>LeaseSet2 (LS2)</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys (<a href="/proposals/123-new-netdb-entries">Proposal 123</a>)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys ([Proposal 123](/proposals/123-new-netdb-entries/))</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Meta LeaseSet</strong></td>
@@ -435,4 +435,4 @@ I2P में DHT (वितरित हैश तालिका) की स�
 - [सामान्य संरचनाओं का विनिर्देश](/docs/specs/common-structures/) – RouterInfo और LeaseSet संरचनाएँ
 - [I2NP विनिर्देश](/docs/specs/i2np/) – डेटाबेस संदेश प्रकार
 - [प्रस्ताव 123: नई netDb प्रविष्टियाँ](/proposals/123-new-netdb-entries) – LeaseSet2 विनिर्देश
-- [ऐतिहासिक netDb चर्चा](/docs/historical/netdb/) – विकास इतिहास और संग्रहीत चर्चाएँ
+- [ऐतिहासिक netDb चर्चा](/docs/netdb/) – विकास इतिहास और संग्रहीत चर्चाएँ

@@ -17,7 +17,7 @@ Status:
 
 - ECIES-Router implementiert ab 0.9.48, siehe [Common](/docs/specs/common-structures/).
 - Tunnelaufbau implementiert ab 0.9.48, siehe [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
-- Verschlüsselte Nachrichten an ECIES-Router implementiert ab 0.9.49, siehe [ECIES-ROUTERS](/docs/specs/ecies-routers/).
+- Verschlüsselte Nachrichten an ECIES-Router implementiert ab 0.9.49, siehe [ECIES-ROUTERS](/docs/specs/ecies/).
 - Neue Tunnel-Build-Nachrichten implementiert ab 0.9.51.
 
 

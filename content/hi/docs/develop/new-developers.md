@@ -53,7 +53,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 console अनुवाद बनाने या उस पर काम करने के लिए, आपको GNU gettext पैकेज से `xgettext`, `msgfmt`, और `msgmerge` टूल्स की आवश्यकता होगी।
 
-नए एप्लिकेशन के विकास के लिए, [एप्लिकेशन डेवलपमेंट गाइड](/get-involved/develop/applications/) देखें।
+नए एप्लिकेशन के विकास के लिए, [एप्लिकेशन डेवलपमेंट गाइड](/docs/develop/applications/) देखें।
 
 ## विकास विचार
 
@@ -65,7 +65,7 @@ console अनुवाद बनाने या उस पर काम कर
 
 लाइसेंस पृष्ठ के नीचे commit विशेषाधिकार आवश्यकताओं को देखें। `i2p.i2p` में कोड डालने के लिए आपको इनकी आवश्यकता है (वेबसाइट के लिए आवश्यक नहीं!)।
 
-- [लाइसेंस पेज](/get-involved/develop/licenses#commit)
+- [लाइसेंस पेज](/docs/develop/licenses#commit)
 
 ## हमसे मिलें!
 
@@ -73,7 +73,7 @@ console अनुवाद बनाने या उस पर काम कर
 
 ##
 
-वेबसाइट और router console अनुवादकों के लिए: अगले चरणों के लिए [नए अनुवादक की मार्गदर्शिका](/get-involved/guides/new-translators/) देखें।
+वेबसाइट और router console अनुवादकों के लिए: अगले चरणों के लिए [नए अनुवादक की मार्गदर्शिका](/docs/develop/new-translators/) देखें।
 
 ## उपकरण
 

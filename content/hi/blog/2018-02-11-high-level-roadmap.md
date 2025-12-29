@@ -1,6 +1,7 @@
 ---
 title: "2018 के लिए उच्च-स्तरीय रोडमैप"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "2018 नए प्रोटोकॉल, नए सहयोग, और अधिक परिष्कृत फोकस का वर्ष होगा।"
 categories: ["roadmap"]

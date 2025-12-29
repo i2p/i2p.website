@@ -323,4 +323,4 @@ Streaming-Sitzungen sind auf der I2CP-Ebene Ende-zu-Ende-verschlüsselt.   Post-
 - [Spezifikation des Streaming-Protokolls](/docs/specs/streaming/)  
 - [I2CP-Spezifikation](/docs/specs/i2cp/)  
 - [Vorschlag 144: Streaming-MTU-Berechnungen](/proposals/144-ecies-x25519-aead-ratchet/)  
-- [I2P 2.10.0 Versionshinweise](/blog/2025-09-08-i2p-2-10-0-release/)
+- [I2P 2.10.0 Versionshinweise](/de/blog/2025/09/08/i2p-2.10.0-release/)

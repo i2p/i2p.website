@@ -1,6 +1,7 @@
 ---
 title: "通过加密的 leaseSet（租约集）提升你的 I2P 技能"
 date: 2021-09-07
+slug: "level-up-your-i2p-skills-with-encrypted-leasesets"
 author: "idk"
 description: "有人说 I2P 强调隐藏服务，我们在此审视对此的一种解读。"
 categories: ["general"]

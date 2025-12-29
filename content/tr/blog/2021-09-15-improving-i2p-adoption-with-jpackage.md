@@ -1,6 +1,7 @@
 ---
 title: "Jpackage ve I2P-Zero kullanarak I2P’nin benimsenmesini ve Onboarding’i (ilk kullanım sürecini) iyileştirme"
 date: 2021-09-15
+slug: "improving-i2p-adoption-and-onboarding-using-jpackage-i2p-zero"
 author: "idk"
 description: "I2P'yi kurmanın ve uygulamanıza entegre etmenin çok yönlü ve yeni ortaya çıkan yöntemleri"
 categories: ["general"]
@@ -23,10 +24,10 @@ Sorun, Mac OSX’in son sürümlerinde daha da acil hâle geldi; .jar formatınd
 
 Zlatinb tarafından oluşturulan yeni I2P .dmg yükleyicisi, kullanıcıların artık Java'yı kendilerinin kurmasını gerektirmemesi ve standart OSX kurulum araçlarını belirlenen şekilde kullanması sayesinde, I2P'nin OSX'e kurulmasını hiç olmadığı kadar kolaylaştırıyor. Yeni .dmg yükleyicisi, Mac OSX üzerinde I2P'yi kurmayı şimdiye kadarki en kolay hale getiriyor.
 
-[dmg](/mac) dosyasını indirin
+[dmg](https://geti2p.net/en/download/mac) dosyasını indirin
 
 ## Geleceğin I2P'si kolay kurulur
 
 Kullanıcılardan en sık duyduğum şeylerden biri, I2P'nin benimsenmesini istiyorsa insanlar için kullanımı kolay olması gerektiğidir. Pek çok tanıdık Reddit kullanıcısının sözleriyle söylersek, "Tor Browser benzeri" bir kullanıcı deneyimi istiyorlar. Kurulum, karmaşık ve hataya açık "kurulum sonrası" adımlar gerektirmemelidir. Pek çok yeni kullanıcı, tarayıcı yapılandırmalarıyla kapsamlı ve eksiksiz bir şekilde uğraşmaya hazır değil. Bu sorunu çözmek için, Firefox'u I2P için otomatik olarak "hemen çalışır" hale getiren I2P Profile Bundle'ı oluşturduk. Geliştikçe güvenlik özellikleri eklendi ve I2P'nin kendisiyle entegrasyonu iyileştirildi. En son sürümünde, **ayrıca** Jpackage destekli, eksiksiz bir I2P Router'ı da paketler. I2P Firefox Profile artık Windows için tam teşekküllü bir I2P dağıtımıdır; geriye kalan tek bağımlılık Firefox'un kendisidir. Bu, Windows'ta I2P kullanıcıları için eşi benzeri görülmemiş bir kullanım kolaylığı sağlayacaktır.
 
-[Yükleyiciyi](/nsis) edinin
+[Yükleyiciyi](https://geti2p.net/en/download#windows) edinin

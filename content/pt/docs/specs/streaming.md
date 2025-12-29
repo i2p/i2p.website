@@ -323,4 +323,4 @@ As sessões de streaming são criptografadas de ponta a ponta na camada I2CP.   
 - [Especificação do Protocolo de Streaming](/docs/specs/streaming/)  
 - [Especificação do I2CP](/docs/specs/i2cp/)  
 - [Proposta 144: Cálculos de MTU para Streaming](/proposals/144-ecies-x25519-aead-ratchet/)  
-- [Notas de versão do I2P 2.10.0](/blog/2025-09-08-i2p-2-10-0-release/)
+- [Notas de versão do I2P 2.10.0](/pt/blog/2025/09/08/i2p-2.10.0-release/)

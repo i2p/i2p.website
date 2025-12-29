@@ -1,5 +1,6 @@
 ---
 title: "اجتماع مطوري I2P - 23 مارس 2004"
+slug: "i2p-dev-meeting-march-23-2004"
 date: 2004-03-23
 author: "jrand0m"
 description: "سجل اجتماع تطوير I2P بتاريخ 23 مارس 2004."

@@ -53,7 +53,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 Để xây dựng hoặc làm việc với các bản dịch console, bạn cần các công cụ `xgettext`, `msgfmt`, và `msgmerge` từ gói GNU gettext.
 
-Để phát triển các ứng dụng mới, xem [hướng dẫn phát triển ứng dụng](/get-involved/develop/applications/).
+Để phát triển các ứng dụng mới, xem [hướng dẫn phát triển ứng dụng](/docs/develop/applications/).
 
 ## Ý Tưởng Phát Triển
 
@@ -65,7 +65,7 @@ Xem danh sách TODO của dự án hoặc danh sách vấn đề trên GitLab đ
 
 Xem phần cuối của trang giấy phép để biết các yêu cầu về quyền commit. Bạn cần những quyền này để đưa mã vào `i2p.i2p` (không bắt buộc đối với trang web!).
 
-- [Trang giấy phép](/get-involved/develop/licenses#commit)
+- [Trang giấy phép](/docs/develop/licenses#commit)
 
 ## Tìm hiểu về chúng tôi!
 
@@ -73,7 +73,7 @@ Các nhà phát triển thường có mặt trên IRC. Bạn có thể liên h�
 
 ##
 
-Người dịch trang web và bảng điều khiển router: Xem [Hướng dẫn cho Người dịch Mới](/get-involved/guides/new-translators/) để biết các bước tiếp theo.
+Người dịch trang web và bảng điều khiển router: Xem [Hướng dẫn cho Người dịch Mới](/docs/develop/new-translators/) để biết các bước tiếp theo.
 
 ## Công cụ
 

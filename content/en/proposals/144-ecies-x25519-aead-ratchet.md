@@ -3451,10 +3451,10 @@ either ECIES-only, or dual-key.
 ## References
 
 * [Common](/docs/specs/common-structures/)
-* [CRYPTO-ELG](/docs/how/cryptography/#elgamal)
-* [ElG-AES](/docs/how/elgamal-aes/)
+* [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)
+* [ElG-AES](/docs/legacy/elgamal-aes/)
 * [Elligator2](https://elligator.cr.yp.to/elligator-20130828.pdf)
-* [GARLICSPEC](/docs/how/garlic-routing/)
+* [GARLICSPEC](/docs/overview/garlic-routing/)
 * [I2CP](/docs/specs/i2cp/)
 * [I2NP](/docs/specs/i2np/)
 * [NTCP2](/docs/specs/ntcp2/)

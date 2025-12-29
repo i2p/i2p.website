@@ -1359,7 +1359,7 @@ CreateLeaseSet2Message (رسالة إنشاء LeaseSet2) تحتوي على مف�
 - [المقترح 152](/proposals/152-ecies-tunnels/): إنشاء tunnel باستخدام X25519
 - [المقترح 154](/proposals/154-ecies-lookups/): استعلامات قاعدة البيانات من وجهات ECIES
 - [المقترح 156](/proposals/156-ecies-routers/): ترحيل Router إلى ECIES-X25519
-- [المقترح 161](/proposals/161-ri-dest-padding/): ضغط حشو الوجهة
+- [المقترح 161](/ar/proposals/161-ri-dest-padding/): ضغط حشو الوجهة
 - [المقترح 167](/proposals/167-service-records/): سجلات خدمة LeaseSet
 - [المقترح 169](/proposals/169-pq-crypto/): التشفير الهجين ما بعد الكمّي (ML-KEM)
 

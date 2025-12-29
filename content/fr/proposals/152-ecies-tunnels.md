@@ -594,7 +594,7 @@ Voir [Proposition 156](/proposals/156-ecies-routers).
 * [Prop156](/proposals/156-ecies-routers/)
 * [Prop157](/proposals/157-new-tbm/)
 * [SPEC](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Création de tunnel](/docs/specs/tunnel-creation/)
+* [Création de tunnel](/docs/specs/implementation/)
 * [Chiffrement multiple](https://en.wikipedia.org/wiki/Multiple_encryption)
 * [RFC-7539](https://tools.ietf.org/html/rfc7539)
 * [RFC-7748](https://tools.ietf.org/html/rfc7748)

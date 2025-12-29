@@ -15,7 +15,7 @@ accurateFor: "2.10.0"
 - 在 Router 标识中弃用 ElGamal 和 DSA-SHA1（使用 X25519 + EdDSA）
 - 后量子 ML-KEM（密钥封装机制）支持处于测试版阶段（自 2.10.0 起需用户主动启用）
 - 服务记录选项已标准化（[提案 167](/proposals/167-service-records/)，在 0.9.66 中实现）
-- 可压缩填充规范已最终确定（[提案 161](/proposals/161-padding-generation/)，在 0.9.57 中实现）
+- 可压缩填充规范已最终确定（[提案 161](/zh/proposals/161-ri-dest-padding/)，在 0.9.57 中实现）
 
 ---
 
@@ -673,7 +673,7 @@ For Key Certificate (EdDSA + X25519):
 For larger keys (e.g., RSA_4096):
   Total = 384 + 3 + 4 + excess_key_data_length
 ```
-### 填充生成指南 ([Proposal 161](/proposals/161-padding-generation/))
+### 填充生成指南 ([Proposal 161](/zh/proposals/161-ri-dest-padding/))
 
 **实现版本：** 0.9.57（2023年1月，发行版 2.1.0）
 
@@ -752,7 +752,7 @@ Compression savings: ~320 bytes when compressed
 3. **典型大小：**
    - 带密钥证书的 X25519（基于 Curve25519 的密钥交换算法） + EdDSA（椭圆曲线数字签名算法的一种） = 391 字节
    - 32 字节 X25519 公钥
-   - 320 字节填充（可按 [Proposal 161](/proposals/161-padding-generation/) 压缩）
+   - 320 字节填充（可按 [Proposal 161](/zh/proposals/161-ri-dest-padding/) 压缩）
    - 32 字节 EdDSA 公钥
    - 7 字节证书（3 字节头部 + 4 字节密钥类型）
 
@@ -760,7 +760,7 @@ Compression savings: ~320 bytes when compressed
 
 **网络数据库键：** - RouterInfo（路由器信息对象）以完整的 RouterIdentity（路由器身份）的 SHA-256 哈希作为键 - 哈希在完整的 391+ 字节结构上计算（包括填充）
 
-**另见：** - 填充生成指南 ([提案 161](/proposals/161-padding-generation/)) - 上文的密钥证书规范
+**另见：** - 填充生成指南 ([提案 161](/zh/proposals/161-ri-dest-padding/)) - 上文的密钥证书规范
 
 **JavaDoc 文档:** [RouterIdentity](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html)
 
@@ -783,7 +783,7 @@ Compression savings: ~320 bytes when compressed
 
 2. **加密密钥：**
    - 该字段未被使用，但必须存在
-   - **建议：** 根据[提案 161](/proposals/161-padding-generation/)填充随机数据（可压缩）
+   - **建议：** 根据[提案 161](/zh/proposals/161-ri-dest-padding/)填充随机数据（可压缩）
    - 大小：始终为 256 字节（ElGamal 槽位，尽管并未用于 ElGamal）
 
 3. **证书：**
@@ -2386,7 +2386,7 @@ Encryption: X25519 (type 4, 32 bytes)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/proposals/161-ri-dest-padding/)
+Padding: Compressible per [Proposal 161](/zh/proposals/161-ri-dest-padding/)
 ```
 **对于新的 Destination（目标标识）：**
 
@@ -2395,7 +2395,7 @@ Unused Public Key Field: 256 bytes random (compressible)
 Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
 Certificate: Key Certificate (type 5)
 Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/proposals/161-ri-dest-padding/)
+Padding: Compressible per [Proposal 161](/zh/proposals/161-ri-dest-padding/)
 ```
 **针对新的 LeaseSets：**
 
@@ -2439,7 +2439,7 @@ Authorization: Per-client encryption keys
 
 ### 兼容性说明
 
-**向后兼容性：** - ElGamal 和 DSA_SHA1 仍支持旧版 routers - 已弃用的密钥类型仍可用，但不建议使用 - 可压缩填充（[Proposal 161](/proposals/161-padding-generation/)）与 0.6 版本向后兼容
+**向后兼容性：** - ElGamal 和 DSA_SHA1 仍支持旧版 routers - 已弃用的密钥类型仍可用，但不建议使用 - 可压缩填充（[Proposal 161](/zh/proposals/161-ri-dest-padding/)）与 0.6 版本向后兼容
 
 **前向兼容性:** - 未知的密钥类型可以使用长度字段进行解析 - 未知的证书类型可以通过长度跳过 - 未知的签名类型应当被稳妥地处理 - 实现不应因未知的可选特性而失败
 
@@ -2479,11 +2479,11 @@ Authorization: Per-client encryption keys
 ### 提案
 
 - [提案 123：新的 netDB 条目](/proposals/123-new-netdb-entries/)
-- [提案 134：GOST 签名类型](/proposals/134-gost-signature-types/)
+- [提案 134：GOST 签名类型](/proposals/134-gost/)
 - [提案 136：实验性签名类型](/proposals/136-experimental-sigtypes/)
-- [提案 145：ECIES-P256](/proposals/145-ecies-p256/)
+- [提案 145：ECIES-P256](/proposals/145-ecies/)
 - [提案 156：ECIES Routers](/proposals/156-ecies-routers/)
-- [提案 161：填充生成](/proposals/161-padding-generation/)
+- [提案 161：填充生成](/zh/proposals/161-ri-dest-padding/)
 - [提案 167：服务记录](/proposals/167-service-records/)
 - [提案 169：后量子密码学](/proposals/169-pq-crypto/)
 - [全部提案索引](/proposals/)
@@ -2515,7 +2515,7 @@ Authorization: Per-client encryption keys
 
 ### 发布信息
 
-- [I2P 2.10.0 发布](/blog/2025-09-08-i2p-2-10-0-release/)
+- [I2P 2.10.0 发布](/zh/blog/2025/09/08/i2p-2.10.0-release/)
 - [发布历史](https://github.com/i2p/i2p.i2p/blob/master/history.txt)
 - [更新日志](https://github.com/i2p/i2p.i2p/blob/master/debian/changelog)
 
@@ -2624,9 +2624,9 @@ Authorization: Per-client encryption keys
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jul 2020</td><td style="border:1px solid var(--color-border); padding:0.5rem;">X25519 for Router Identities</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2021</td><td style="border:1px solid var(--color-border); padding:0.5rem;">NTCP removed</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2022</td><td style="border:1px solid var(--color-border); padding:0.5rem;">SSU2 testing</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/161-ri-dest-padding/">Proposal 161</a> padding (release 2.1.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 161](/zh/proposals/161-ri-dest-padding/) padding (release 2.1.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mar 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ElGamal/DSA deprecated for RIs (2.2.0)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="/proposals/167-service-records/">Proposal 167</a> service records (2.9.0)</td></tr>
+    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 167](/proposals/167-service-records/) service records (2.9.0)</td></tr>
     <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Sep 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ML-KEM beta support (2.10.0)</td></tr>
   </tbody>
 </table>

@@ -16,7 +16,7 @@ Dieser Vorschlag fügt eine I2CP-Option für ausgehende Tunnel hinzu, die bewirk
 
 ## Motivation
 
-Die meisten I2P-Router verwenden eine Form der Paketabwurfsteuerung zur Überlastungsverwaltung. Die Referenzimplementierung nutzt eine WRED-Strategie, die sowohl die Nachrichtengröße als auch die Reisedistanz berücksichtigt (siehe [Tunnel Throttling Dokumentation](/docs/tunnels/implementation/#tunnelthrottling)). Aufgrund dieser Strategie ist die Hauptquelle für Paketverlust der OBEP.
+Die meisten I2P-Router verwenden eine Form der Paketabwurfsteuerung zur Überlastungsverwaltung. Die Referenzimplementierung nutzt eine WRED-Strategie, die sowohl die Nachrichtengröße als auch die Reisedistanz berücksichtigt (siehe [Tunnel Throttling Dokumentation](/docs/specs/implementation/#tunnelthrottling)). Aufgrund dieser Strategie ist die Hauptquelle für Paketverlust der OBEP.
 
 
 ## Design

@@ -51,7 +51,7 @@ durante varios minutos, no en una medición instantánea.
 
 ## Especificación
 
-Actualizar [NETDB](/docs/how/network-database/) como sigue:
+Actualizar [NETDB](/docs/overview/network-database/) como sigue:
 
 
 ```text
@@ -120,4 +120,4 @@ actuar sobre capacidades publicadas en 0.9.59 (julio 2023).
 
 ## Referencias
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

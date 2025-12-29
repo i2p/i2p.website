@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 reviewStatus: "needs-review"
 ---
 
-> **Status:** Esta página condensa a especificação legada "Low-level Cryptography Specification". As versões modernas do I2P (2.10.0, outubro de 2025) concluíram a migração para novas primitivas criptográficas. Use especificações especializadas como [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/), e [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies/) para detalhes de implementação.
+> **Status:** Esta página condensa a especificação legada "Low-level Cryptography Specification". As versões modernas do I2P (2.10.0, outubro de 2025) concluíram a migração para novas primitivas criptográficas. Use especificações especializadas como [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/), e [Tunnel Creation (ECIES)](/docs/specs/implementation/) para detalhes de implementação.
 
 ## Instantâneo do Evolution
 

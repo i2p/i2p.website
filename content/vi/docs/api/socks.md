@@ -89,7 +89,7 @@ Khác với Tor, I2P **không** cung cấp outproxy (proxy ra mạng thường) 
 
 ## 3. Bối cảnh lịch sử
 
-Các nhà phát triển từ lâu đã không khuyến khích sử dụng SOCKS cho mục đích ẩn danh. Từ các cuộc thảo luận nội bộ của nhà phát triển và năm 2004 [Meeting 81](/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) và [Meeting 82](/blog/2004/03/23/i2p-dev-meeting-march-23-2004/):
+Các nhà phát triển từ lâu đã không khuyến khích sử dụng SOCKS cho mục đích ẩn danh. Từ các cuộc thảo luận nội bộ của nhà phát triển và năm 2004 [Meeting 81](/vi/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) và [Meeting 82](/vi/blog/2004/03/23/i2p-dev-meeting-march-23-2004/):
 
 > "Chuyển tiếp lưu lượng tùy ý là không an toàn, và với vai trò là những nhà phát triển phần mềm ẩn danh, chúng ta có trách nhiệm phải đặt sự an toàn của người dùng cuối lên hàng đầu trong tâm trí."
 

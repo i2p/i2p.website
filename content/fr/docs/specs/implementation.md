@@ -182,13 +182,12 @@ Bien que les tunnels ressemblent à des circuits, les routers les traitent comme
 - Les participants considèrent des fragments de taille fixe ; les passerelles/points d’extrémité rejettent en fonction de la taille combinée des fragments, en pénalisant en priorité les charges utiles volumineuses.
 - Les points d’extrémité sortants rejettent avant les autres rôles afin de gaspiller le moins possible de ressources réseau.
 
-La remise garantie est laissée aux couches supérieures telles que la [bibliothèque de streaming](/spec/api/streaming/). Les applications qui exigent de la fiabilité doivent prendre en charge elles-mêmes la retransmission et les accusés de réception.
+La remise garantie est laissée aux couches supérieures telles que la [bibliothèque de streaming](/docs/specs/streaming/). Les applications qui exigent de la fiabilité doivent prendre en charge elles-mêmes la retransmission et les accusés de réception.
 
 ---
 
 ## Pour aller plus loin {#further-reading}
 
-- [Tunnels unidirectionnels (historique)](/docs/legacy/unidirectional-tunnels/)
 - [Sélection des pairs](/docs/overview/tunnel-routing#peer-selection/)
 - [Aperçu des Tunnels](/docs/overview/tunnel-routing/)
 - [Ancienne implémentation des Tunnels](/docs/legacy/old-implementation/)

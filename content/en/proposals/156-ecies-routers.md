@@ -503,7 +503,7 @@ Target release: 0.9.53, early 2022.
 
 * [Common](/docs/specs/common-structures/)
 * [ECIES](/docs/specs/ecies/)
-* [ECIES-ROUTERS](/docs/specs/ecies-routers/)
+* [ECIES-ROUTERS](/docs/specs/ecies/)
 * [I2NP](/docs/specs/i2np/)
 * [NOISE](https://noiseprotocol.org/noise.html)
 * [Prop123](/proposals/123-new-netdb-entries/)

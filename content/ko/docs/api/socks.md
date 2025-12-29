@@ -89,7 +89,7 @@ Tor와 달리, I2P는 SOCKS 기반 clearnet outproxy를 제공하지 **않습니
 
 ## 3. 역사적 맥락
 
-개발자들은 오랫동안 익명 사용을 위한 SOCKS 사용을 권장하지 않았습니다. 내부 개발자 토론 및 2004년 [Meeting 81](/blog/2004/03/16/i2p-dev-meeting-march-16-2004/)과 [Meeting 82](/blog/2004/03/23/i2p-dev-meeting-march-23-2004/)에서:
+개발자들은 오랫동안 익명 사용을 위한 SOCKS 사용을 권장하지 않았습니다. 내부 개발자 토론 및 2004년 [Meeting 81](/ko/blog/2004/03/16/i2p-dev-meeting-march-16-2004/)과 [Meeting 82](/ko/blog/2004/03/23/i2p-dev-meeting-march-23-2004/)에서:
 
 > "임의의 트래픽을 전달하는 것은 안전하지 않으며, 익명성 소프트웨어 개발자로서 우리는 최종 사용자의 안전을 최우선으로 고려해야 합니다."
 

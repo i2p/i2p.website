@@ -104,6 +104,6 @@ Selektives LeaseSet-Bündeln, komprimierte RouterInfo-Optionen und die Einführu
 Siehe auch:
 
 - [Tunnel Routing](/docs/overview/tunnel-routing/)
-- [Peer-Auswahl](/docs/how/peer-selection/)
-- [Transports](/docs/transport/)
+- [Peer-Auswahl](/docs/overview/tunnel-routing/)
+- [Transports](/docs/overview/transport/)
 - [SSU2-Spezifikation](/docs/specs/ssu2/) und [NTCP2-Spezifikation](/docs/specs/ntcp2/)

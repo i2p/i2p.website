@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 reviewStatus: "needs-review"
 ---
 
-> **Trạng thái:** Trang này cô đọng tài liệu "Low-level Cryptography Specification" (đặc tả mật mã cấp thấp) cũ. Các bản phát hành I2P hiện đại (2.10.0, tháng 10 năm 2025) đã hoàn tất việc chuyển đổi sang các nguyên thủy mật mã mới. Hãy sử dụng các đặc tả chuyên biệt như [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/), và [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies/) để biết chi tiết triển khai.
+> **Trạng thái:** Trang này cô đọng tài liệu "Low-level Cryptography Specification" (đặc tả mật mã cấp thấp) cũ. Các bản phát hành I2P hiện đại (2.10.0, tháng 10 năm 2025) đã hoàn tất việc chuyển đổi sang các nguyên thủy mật mã mới. Hãy sử dụng các đặc tả chuyên biệt như [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/), và [Tunnel Creation (ECIES)](/docs/specs/implementation/) để biết chi tiết triển khai.
 
 ## Ảnh chụp nhanh quá trình phát triển
 

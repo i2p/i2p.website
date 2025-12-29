@@ -109,7 +109,7 @@ kovri.XXX.YYY.ZZZ
 
   * **control.reseed** - 开始重新播种
 
-    * [nil]: 不需要参数
+    * \[nil\]: 不需要参数
 
     返回:
 ```text
@@ -118,7 +118,7 @@ kovri.XXX.YYY.ZZZ
 
   * **control.restart** - 重启i2p实例
 
-    * [nil]: 不需要参数
+    * \[nil\]: 不需要参数
 
     返回:
 ```text
@@ -127,7 +127,7 @@ kovri.XXX.YYY.ZZZ
 
   * **control.restart.graceful** - 温和地重启i2p实例
 
-    * [nil]: 不需要参数
+    * \[nil\]: 不需要参数
 
     返回:
 ```text
@@ -136,7 +136,7 @@ kovri.XXX.YYY.ZZZ
 
   * **control.shutdown** - 关闭i2p实例
 
-    * [nil]: 不需要参数
+    * \[nil\]: 不需要参数
 
     返回:
 ```text
@@ -145,7 +145,7 @@ kovri.XXX.YYY.ZZZ
 
   * **control.shutdown.graceful** - 温和地关闭i2p实例
 
-    * [nil]: 不需要参数
+    * \[nil\]: 不需要参数
 
     返回:
 ```text
@@ -154,7 +154,7 @@ kovri.XXX.YYY.ZZZ
 
   * **control.update.find** - **阻塞** 搜索签名更新
 
-    * [nil]: 不需要参数
+    * \[nil\]: 不需要参数
 
     返回:
 ```text
@@ -163,7 +163,7 @@ kovri.XXX.YYY.ZZZ
 
   * **control.update.start** - 开始更新过程
 
-    * [nil]: 不需要参数
+    * \[nil\]: 不需要参数
 
     返回:
 ```text

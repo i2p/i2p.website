@@ -16,7 +16,7 @@ toc: true
 
 ## 동기
 
-대부분의 I2P 라우터는 혼잡 관리를 위해 패킷 제거 형태를 사용합니다. 참조 구현은 메시지 크기와 이동 거리를 모두 고려하는 WRED 전략을 사용합니다 ([tunnel throttling 문서](/docs/tunnels/implementation/#tunnelthrottling) 참조). 이 전략으로 인해 패킷 손실의 주요 원인은 OBEP입니다.
+대부분의 I2P 라우터는 혼잡 관리를 위해 패킷 제거 형태를 사용합니다. 참조 구현은 메시지 크기와 이동 거리를 모두 고려하는 WRED 전략을 사용합니다 ([tunnel throttling 문서](/docs/specs/implementation/#tunnelthrottling) 참조). 이 전략으로 인해 패킷 손실의 주요 원인은 OBEP입니다.
 
 
 ## 설계

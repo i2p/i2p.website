@@ -17,7 +17,7 @@ Trạng thái:
 
 - Thiết bị định tuyến ECIES đã được triển khai từ phiên bản 0.9.48, xem [Common](/docs/specs/common-structures/).
 - Tạo đường hầm đã được triển khai từ phiên bản 0.9.48, xem [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
-- Tin nhắn mã hóa đến các thiết bị định tuyến ECIES đã được triển khai từ phiên bản 0.9.49, xem [ECIES-ROUTERS](/docs/specs/ecies-routers/).
+- Tin nhắn mã hóa đến các thiết bị định tuyến ECIES đã được triển khai từ phiên bản 0.9.49, xem [ECIES-ROUTERS](/docs/specs/ecies/).
 - Các tin nhắn xây dựng đường hầm mới đã được triển khai từ phiên bản 0.9.51.
 
 
@@ -491,7 +491,7 @@ Phiên bản mục tiêu: 0.9.53, đầu 2022.
 
 * [Common](/docs/specs/common-structures/)
 * [ECIES](/docs/specs/ecies/)
-* [ECIES-ROUTERS](/docs/specs/ecies-routers/)
+* [ECIES-ROUTERS](/docs/specs/ecies/)
 * [I2NP](/docs/specs/i2np/)
 * [NOISE](https://noiseprotocol.org/noise.html)
 * [Prop123](/proposals/123-new-netdb-entries/)

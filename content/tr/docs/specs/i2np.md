@@ -1693,7 +1693,7 @@ Total size: 1 + ($num × 218) bytes
 - **[Teklif 156](/proposals/156-ecies-routers/)** - ECIES routers
 - **[Teklif 157](/proposals/157-new-tbm/)** - Daha küçük tunnel oluşturma iletileri (kısa biçim)
 - **[Teklif 159](/proposals/159-ssu2/)** - SSU2 taşıma
-- **[Teklif 161](/proposals/161-ri-dest-padding/)** - Sıkıştırılabilir dolgu
+- **[Teklif 161](/tr/proposals/161-ri-dest-padding/)** - Sıkıştırılabilir dolgu
 - **[Teklif 163](/proposals/163-datagram2/)** - Datagram2 ve Datagram3
 - **[Teklif 167](/proposals/167-service-records/)** - LeaseSet hizmet kaydı parametreleri
 - **[Teklif 168](/proposals/168-tunnel-bandwidth/)** - Tunnel oluşturma bant genişliği parametreleri

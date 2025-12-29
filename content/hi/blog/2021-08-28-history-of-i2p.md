@@ -1,6 +1,7 @@
 ---
 title: "20 वर्षों की गोपनीयता: I2P का संक्षिप्त इतिहास"
 date: 2021-08-28
+slug: "20-years-of-privacy-a-brief-history-of-i2p"
 author: "sadie"
 description: "I2P का इतिहास — जैसा हम जानते हैं"
 categories: ["general"]

@@ -1,6 +1,7 @@
 ---
 title: "Gizliliğin 20 Yılı: I2P'nin Kısa Tarihi"
 date: 2021-08-28
+slug: "20-years-of-privacy-a-brief-history-of-i2p"
 author: "sadie"
 description: "Bildiğimiz Haliyle I2P'nin Tarihi"
 categories: ["general"]

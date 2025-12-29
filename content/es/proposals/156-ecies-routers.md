@@ -17,7 +17,7 @@ Estado:
 
 - Routers ECIES implementados desde la versión 0.9.48, ver [Common](/docs/specs/common-structures/).
 - Creación de túneles implementada desde la versión 0.9.48, ver [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
-- Mensajes cifrados a routers ECIES implementados desde la versión 0.9.49, ver [ECIES-ROUTERS](/docs/specs/ecies-routers/).
+- Mensajes cifrados a routers ECIES implementados desde la versión 0.9.49, ver [ECIES-ROUTERS](/docs/specs/ecies/).
 - Nuevos mensajes de construcción de túneles implementados desde la versión 0.9.51.
 
 

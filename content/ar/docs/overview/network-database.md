@@ -200,7 +200,7 @@ stat_tunnel.participatingTunnels.60m = 289.20
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>LeaseSet2 (LS2)</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys (<a href="/proposals/123-new-netdb-entries">Proposal 123</a>)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">As of 0.9.38, supports new encryption types, multiple encryption types, options, offline signing keys ([Proposal 123](/proposals/123-new-netdb-entries/))</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Meta LeaseSet</strong></td>
@@ -440,4 +440,4 @@ Routers تستخدم هذه المقاييس عند تحديد "الجودة" ل
 - [مواصفة البُنى الشائعة](/docs/specs/common-structures/) – هياكل RouterInfo (بيانات تعريف الـ router) و LeaseSet (مجموعة بيانات مسارات الدخول)
 - [مواصفة I2NP (بروتوكول شبكة I2P الداخلي)](/docs/specs/i2np/) – أنواع رسائل قاعدة البيانات
 - [الاقتراح 123: إدخالات netDb (قاعدة بيانات الشبكة الموزّعة) الجديدة](/proposals/123-new-netdb-entries) – مواصفة LeaseSet2 (الإصدار الثاني من LeaseSet)
-- [مناقشة netDb التاريخية](/docs/historical/netdb/) – تاريخ التطوير والمناقشات المؤرشفة
+- [مناقشة netDb التاريخية](/docs/netdb/) – تاريخ التطوير والمناقشات المؤرشفة

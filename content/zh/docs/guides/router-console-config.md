@@ -244,7 +244,7 @@ Reseed 配置页面允许您在自动重新播种失败时手动为路由器重�
 
 4. 如果你认识并信任某个发布 reseed 文件的人,向他们索要 URL。然后,使用此页面通过你收到的 URL 进行 reseed。首先,在下方输入 URL。然后,点击"从 URL 进行 Reseed"
 
-5. 查看 [FAQ](/en/faq) 了解手动重新播种的说明
+5. 查看 [FAQ](/docs/overview/faq/) 了解手动重新播种的说明
 
 **手动 Reseed 选项：**
 

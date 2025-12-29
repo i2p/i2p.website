@@ -1697,7 +1697,7 @@ Total size: 1 + ($num × 218) bytes
 - **[提案 156](/proposals/156-ecies-routers/)** - ECIES routers
 - **[提案 157](/proposals/157-new-tbm/)** - 更小的 tunnel 构建消息 (短格式)
 - **[提案 159](/proposals/159-ssu2/)** - SSU2 传输
-- **[提案 161](/proposals/161-ri-dest-padding/)** - 可压缩填充
+- **[提案 161](/zh/proposals/161-ri-dest-padding/)** - 可压缩填充
 - **[提案 163](/proposals/163-datagram2/)** - Datagram2 和 Datagram3
 - **[提案 167](/proposals/167-service-records/)** - LeaseSet 服务记录参数
 - **[提案 168](/proposals/168-tunnel-bandwidth/)** - Tunnel 构建带宽参数

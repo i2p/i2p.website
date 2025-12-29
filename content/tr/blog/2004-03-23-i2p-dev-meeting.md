@@ -1,5 +1,6 @@
 ---
 title: "I2P Geliştirici Toplantısı - 23 Mart 2004"
+slug: "i2p-dev-meeting-march-23-2004"
 date: 2004-03-23
 author: "jrand0m"
 description: "I2P development meeting log for March 23, 2004."

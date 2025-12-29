@@ -572,7 +572,7 @@ Xem [Đề xuất 156](/proposals/156-ecies-routers).
 * [Đề xuất 156](/proposals/156-ecies-routers/)
 * [Đề xuất 157](/proposals/157-new-tbm/)
 * [Đặc tả](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Tạo tunnel](/docs/specs/tunnel-creation/)
+* [Tạo tunnel](/docs/specs/implementation/)
 * [Mã hóa nhiều lần](https://en.wikipedia.org/wiki/Multiple_encryption)
 * [RFC-7539](https://tools.ietf.org/html/rfc7539)
 * [RFC-7748](https://tools.ietf.org/html/rfc7748)

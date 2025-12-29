@@ -227,7 +227,7 @@ I2P používá několik vrstev šifrování k ochraně síťové komunikace. Dat
 - **Přesměrujte svůj port**: Navštivte [portforward.com](https://portforward.com/) pro instrukce specifické pro váš router, jak přesměrovat port, který I2P používá
 - **Prozkoumejte router console**: Seznamte se s funkcemi, službami a možnostmi konfigurace I2P
 - **Navštivte eepsites**: Zkuste přistupovat k webovým stránkám s doménou `.i2p` prostřednictvím sítě I2P
-- **Přečtěte si dokumentaci**: Prohlédněte si [dokumentaci I2P](../../_index.md) pro více informací
+- **Přečtěte si dokumentaci**: Prohlédněte si [dokumentaci I2P](/docs/) pro více informací
 
 Vítejte v síti I2P! 🎉
 
@@ -643,10 +643,10 @@ Metoda Windows Services je užitečná pro správu I2P jako služby na pozadí, 
 ## Krok 3: Vyberte svůj jazyk
 
 - **Počkejte na integraci**: Dejte I2P 5-10 minut na integraci do sítě a vybudování tunelů
-- **Nakonfigurujte přesměrování portů**: Pokyny naleznete v [průvodci přesměrováním portů](windows-easy-install.md#recommended-port-forwarding-optional-but-important)
+- **Nakonfigurujte přesměrování portů**: Pokyny naleznete v [průvodci přesměrováním portů](#recommended-port-forwarding-optional-but-important)
 - **Nakonfigurujte svůj prohlížeč**: Nastavte webový prohlížeč pro použití HTTP proxy I2P
 - **Prozkoumejte konzoli routeru**: Seznamte se s funkcemi, službami a možnostmi konfigurace I2P
 - **Navštivte eepsites**: Zkuste přistupovat k webovým stránkám `.i2p` prostřednictvím sítě I2P
-- **Přečtěte si dokumentaci**: Pro více informací se podívejte na [dokumentaci I2P](../../_index.md)
+- **Přečtěte si dokumentaci**: Pro více informací se podívejte na [dokumentaci I2P](/docs/)
 
 Vítejte v síti I2P! 🎉

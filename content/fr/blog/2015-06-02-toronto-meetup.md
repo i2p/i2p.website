@@ -1,6 +1,7 @@
 ---
 title: "Rencontre à Toronto"
 date: 2015-06-02
+slug: "toronto-meetup"
 author: "hottuna"
 description: "Rencontre I2P à Toronto les 15 et 16 août"
 categories: ["community"]

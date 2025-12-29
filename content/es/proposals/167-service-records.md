@@ -122,7 +122,7 @@ Definido de la siguiente manera:
   Solo es útil si hay más de un registro, pero es obligatorio incluso si solo hay un registro.
 - port := El puerto I2CP en el que se encontrará el servicio. Entero no negativo. Ejemplo: "25"
   El puerto 0 es compatible pero no recomendado.
-- target := El nombre de host o b32 del destino que proporciona el servicio. Un nombre de host válido como en [NAMING](/docs/naming/). Debe estar en minúsculas.
+- target := El nombre de host o b32 del destino que proporciona el servicio. Un nombre de host válido como en [NAMING](/docs/overview/naming/). Debe estar en minúsculas.
   Ejemplo: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" o "example.i2p".
   b32 se recomienda a menos que el nombre de host sea "bien conocido", es decir, en los libros de direcciones oficiales o predeterminados.
 - appoptions := texto arbitrario específico para la aplicación, no debe contener " " o ",". La codificación es UTF-8.
@@ -282,7 +282,7 @@ Si OPTIONS=true estaba en la búsqueda, y el conjunto de arrendamiento no se enc
 
 Se consideró un diseño alternativo, para soportar búsquedas de servicios
 como un nombre de host completo, por ejemplo _smtp._tcp.example.i2p,
-al actualizar [NAMING](/docs/naming/) para especificar el manejo de nombres de host que comienzan con '_'.
+al actualizar [NAMING](/docs/overview/naming/) para especificar el manejo de nombres de host que comienzan con '_'.
 Esto fue rechazado por dos razones:
 
 - Todavía serían necesarios los cambios en I2CP y SAM para pasar información TTL y de puerto al cliente.

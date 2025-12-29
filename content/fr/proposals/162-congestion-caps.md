@@ -51,7 +51,7 @@ sur plusieurs minutes, pas une mesure instantanée.
 
 ## Spécification
 
-Mettre à jour [NETDB](/docs/how/network-database/) comme suit :
+Mettre à jour [NETDB](/docs/overview/network-database/) comme suit :
 
 
 ```text
@@ -121,4 +121,4 @@ agir sur les caps publiés dans 0.9.59 (juillet 2023).
 
 ## Références
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

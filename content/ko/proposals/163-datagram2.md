@@ -316,8 +316,8 @@ Datagram3 형식에는 서명이 없으므로 발신자를 검증할 수 없으�
 ## 참고
 
 - 실질적인 길이는 프로토콜 하위 계층에 의해 제한됩니다 - 터널
-  메시지 사양 [TUNMSG](/docs/specs/tunnel-message/#notes)은 메시지를 약 61.2 KB로 제한하며,
-  전송 [TRANSPORT](/docs/transport/)은 현재 메시지를 약 64 KB로 제한하므로,
+  메시지 사양 [TUNMSG](/docs/specs/implementation/#notes)은 메시지를 약 61.2 KB로 제한하며,
+  전송 [TRANSPORT](/docs/overview/transport/)은 현재 메시지를 약 64 KB로 제한하므로,
   여기서의 데이터 길이는 약 61 KB로 제한됩니다.
 - 큰 데이터그램의 신뢰성에 대한 중요한 주석, [API](/docs/api/datagrams/). 최고의 결과를 위해,
   페이로드를 약 10 KB 이하로 제한하십시오.
@@ -362,5 +362,5 @@ SAM UDP 앱: 알려진 바 없습니다
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

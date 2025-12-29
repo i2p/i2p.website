@@ -122,7 +122,7 @@ Aşağıdaki gibi tanımlanır:
   Sadece birden fazla kayıt varsa yararlıdır, ancak tek kayıt bile olsa gereklidir.
 - port := Hizmetin bulunacağı I2CP portu. Negatif olmayan bir tam sayı. Örnek: "25"
   Port 0 desteklenir ancak önerilmez.
-- hedef := Hizmeti sağlayan hedefin hostname veya b32. Geçerli bir hostname olarak [NAMING](/docs/naming/) içinde tanımlanmıştır. Küçük harf olmalıdır.
+- hedef := Hizmeti sağlayan hedefin hostname veya b32. Geçerli bir hostname olarak [NAMING](/docs/overview/naming/) içinde tanımlanmıştır. Küçük harf olmalıdır.
   Örnek: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" ya da "example.i2p".
   b32 önerilir, hostname "iyi bilinen," yani resmi veya varsayılan adres defterlerindeyse.
 - app seçenekleri := uygulamaya özgü rastgele metin, " " veya "," içeremez. Kodlama UTF-8'dir.

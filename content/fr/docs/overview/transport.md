@@ -294,5 +294,5 @@ Les recherches et améliorations prévues comprennent:
 - [Spécification SSU2](/docs/specs/ssu2/) – UDP semi-fiable sécurisé 2
 - [Spécification I2NP](/docs/specs/i2np/) – Messages du protocole réseau I2P
 - [Structures communes](/docs/specs/common-structures/) – RouterInfo et structures d’adresses
-- [Discussion historique sur NTCP](/docs/historical/ntcp/) – Historique du développement du transport hérité
+- [Discussion historique sur NTCP](/docs/ntcp/) – Historique du développement du transport hérité
 - [Documentation SSU héritée](/docs/legacy/ssu/) – Spécification SSU originale (obsolète)

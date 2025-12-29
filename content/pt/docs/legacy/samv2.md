@@ -46,4 +46,4 @@ Consulte:
 - [SAM v1](/docs/legacy/sam/)
 - [SAM v3](/docs/api/samv3/)
 - [API de Datagramas](/docs/api/datagrams/)
-- [Protocolo de Streaming](/spec/api/streaming/)
+- [Protocolo de Streaming](/docs/specs/streaming/)

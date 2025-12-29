@@ -333,7 +333,7 @@ Varsayılan HTTP proxy yalnızca HTTP ve HTTPS outproxy'i destekler.
 
 ### Router'ım neden çok fazla CPU kullanıyor? {#cpu}
 
-Öncelikle, I2P ile ilgili tüm bileşenlerin en son sürüme sahip olduğunuzdan emin olun – eski sürümlerde kodda gereksiz CPU tüketen bölümler bulunuyordu. Ayrıca, I2P performansındaki iyileştirmelerin zaman içindeki gelişimini belgeleyen bir [performans Günlüğü](/about/performance) de mevcuttur.
+Öncelikle, I2P ile ilgili tüm bileşenlerin en son sürüme sahip olduğunuzdan emin olun – eski sürümlerde kodda gereksiz CPU tüketen bölümler bulunuyordu. Ayrıca, I2P performansındaki iyileştirmelerin zaman içindeki gelişimini belgeleyen bir [performans Günlüğü](/docs/overview/performance) de mevcuttur.
 
 ### Aktif eşlerim / bilinen eşlerim / katıldığım tüneller / bağlantılar / bant genişliği zaman içinde büyük ölçüde değişiyor! Bir sorun mu var? {#vary}
 

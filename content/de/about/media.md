@@ -213,11 +213,11 @@ Ressourcen für Journalisten, Forscher und alle, die sich für I2P interessieren
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="/en/about/i2pcon/2015/">I2PCon 2015</a>
+[I2PCon 2015](/de/blog/2015/07/16/i2pcon/)
 </div>
 <div class="content-entry-meta">🎪 Konferenz • Toronto • 15.-16. August 2015</div>
 <div class="content-entry-actions">
-<a href="/en/about/i2pcon/2015/" class="content-btn">Details</a>
+[Details](/de/blog/2015/07/16/i2pcon/)
 </div>
 </div>
 

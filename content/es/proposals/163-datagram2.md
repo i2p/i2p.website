@@ -320,8 +320,8 @@ realizarse en la capa de aplicación, o por el router en la capa de ratchet.
 ## Notas
 
 - La longitud práctica está limitada por capas más bajas de protocolos - la especificación de
-  mensajes del túnel [TUNMSG](/docs/specs/tunnel-message/#notes) limita los mensajes a aproximadamente 61.2 KB y los transportes
-  [TRANSPORT](/docs/transport/) actualmente limitan los mensajes a aproximadamente 64 KB, por lo que la longitud de
+  mensajes del túnel [TUNMSG](/docs/specs/implementation/#notes) limita los mensajes a aproximadamente 61.2 KB y los transportes
+  [TRANSPORT](/docs/overview/transport/) actualmente limitan los mensajes a aproximadamente 64 KB, por lo que la longitud de
   los datos aquí está limitada a aproximadamente 61 KB.
 - Ver notas importantes sobre la fiabilidad de datagramas grandes [API](/docs/api/datagrams/). Para
   mejores resultados, limite la carga útil a aproximadamente 10 KB o menos.
@@ -368,5 +368,5 @@ Aplicaciones UDP SAM: Ninguna conocida
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

@@ -89,7 +89,7 @@ Na rozdíl od Toru, I2P **nenabízí** SOCKS outproxy pro přístup k běžnému
 
 ## 3. Historický kontext
 
-Vývojáři již dlouho nedoporučují SOCKS pro anonymní použití. Z interních vývojářských diskusí a z roku 2004 [Meeting 81](/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) a [Meeting 82](/blog/2004/03/23/i2p-dev-meeting-march-23-2004/):
+Vývojáři již dlouho nedoporučují SOCKS pro anonymní použití. Z interních vývojářských diskusí a z roku 2004 [Meeting 81](/cs/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) a [Meeting 82](/cs/blog/2004/03/23/i2p-dev-meeting-march-23-2004/):
 
 > "Přeposílání libovolného provozu je nebezpečné a jako vývojářům softwaru pro anonymitu nám přísluší mít bezpečnost našich koncových uživatelů na prvním místě."
 

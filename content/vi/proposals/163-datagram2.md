@@ -317,7 +317,7 @@ hoặc bởi router ở lớp ratchet.
 
 ## Ghi chú
 
-- Chiều dài thực tế bị giới hạn bởi các lớp dưới của các giao thức - đặc tả thông điệp hầm [TUNMSG](/docs/specs/tunnel-message/#notes) giới hạn các thông điệp khoảng 61.2 KB và các phương tiện truyền thông [TRANSPORT](/docs/transport/) hiện tại giới hạn các thông điệp khoảng 64 KB, do đó chiều dài dữ liệu ở đây
+- Chiều dài thực tế bị giới hạn bởi các lớp dưới của các giao thức - đặc tả thông điệp hầm [TUNMSG](/docs/specs/implementation/#notes) giới hạn các thông điệp khoảng 61.2 KB và các phương tiện truyền thông [TRANSPORT](/docs/overview/transport/) hiện tại giới hạn các thông điệp khoảng 64 KB, do đó chiều dài dữ liệu ở đây
   bị giới hạn khoảng 61 KB.
 - Xem các ghi chú quan trọng về độ tin cậy của các datagram lớn [API](/docs/api/datagrams/). Để
   đạt được kết quả tốt nhất, hãy giới hạn tải khoảng 10 KB hoặc ít hơn.
@@ -364,5 +364,5 @@ Streamr: Không ai sử dụng nó, không có kế hoạch di chuyển
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

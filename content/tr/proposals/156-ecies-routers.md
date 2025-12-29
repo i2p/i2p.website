@@ -17,7 +17,7 @@ Durum:
 
 - ECIES Yönlendiricileri 0.9.48 itibarıyla uygulanmıştır, bkz. [Ortak](/docs/specs/common-structures/).
 - Tünel oluşturma 0.9.48 itibarıyla uygulanmıştır, bkz. [Tünel-Oluşumu-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
-- ECIES yönlendiricilerine şifrelenmiş mesajlar 0.9.49 itibarıyla uygulanmıştır, bkz. [ECIES-YÖNLENDİRİCİLER](/docs/specs/ecies-routers/).
+- ECIES yönlendiricilerine şifrelenmiş mesajlar 0.9.49 itibarıyla uygulanmıştır, bkz. [ECIES-YÖNLENDİRİCİLER](/docs/specs/ecies/).
 - Yeni tünel oluşturma mesajları 0.9.51 itibarıyla uygulanmıştır.
 
 

@@ -337,7 +337,7 @@ The default HTTP proxy supports HTTP and HTTPS outproxying only.
 
 ### Why is my router using too much CPU? {#cpu}
 
-First, make sure you have the latest version of every I2P related part – older versions had unnecessary cpu-eating sections in code. There is also a [performance Log](/about/performance) that documents some of the improvements in I2P performance over time.
+First, make sure you have the latest version of every I2P related part – older versions had unnecessary cpu-eating sections in code. There is also a [performance Log](/docs/overview/performance) that documents some of the improvements in I2P performance over time.
 
 ### My active peers / known peers / participating tunnels / connections / bandwidth vary dramatically over time! Is anything wrong? {#vary}
 

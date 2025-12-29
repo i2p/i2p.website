@@ -17,7 +17,7 @@ toc: true
 
 - ECIES роутеры реализованы в 0.9.48, см. [Common](/docs/specs/common-structures/).
 - Создание туннелей реализовано в 0.9.48, см. [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
-- Зашифрованные сообщения для ECIES роутеров реализованы в 0.9.49, см. [ECIES-ROUTERS](/docs/specs/ecies-routers/).
+- Зашифрованные сообщения для ECIES роутеров реализованы в 0.9.49, см. [ECIES-ROUTERS](/docs/specs/ecies/).
 - Сообщения о создании новых туннелей реализованы в 0.9.51.
 
 

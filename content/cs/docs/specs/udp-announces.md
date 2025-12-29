@@ -1,7 +1,7 @@
 ---
 title: "UDP oznámení BitTorrentu"
 description: "Specifikace protokolu pro oznámení trackeru BitTorrentu na bázi UDP v I2P"
-slug: "udp-announces"
+slug: "udp-bittorrent-announces"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

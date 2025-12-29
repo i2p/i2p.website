@@ -7,7 +7,7 @@ accurateFor: "2.10.0"
 reviewStatus: "needs-review"
 ---
 
-> **Durum:** Bu sayfa eski “Low-level Cryptography Specification” belgesinin özetini sunar. Modern I2P sürümleri (2.10.0, Ekim 2025) yeni kriptografik ilkelere geçişi tamamladı. Uygulama ayrıntıları için [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/) ve [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies/) gibi uzmanlaşmış teknik belgelere başvurun.
+> **Durum:** Bu sayfa eski “Low-level Cryptography Specification” belgesinin özetini sunar. Modern I2P sürümleri (2.10.0, Ekim 2025) yeni kriptografik ilkelere geçişi tamamladı. Uygulama ayrıntıları için [ECIES](/docs/specs/ecies/), [Encrypted LeaseSets](/docs/specs/encryptedleaseset/), [NTCP2](/docs/specs/ntcp2/), [Red25519](/docs/specs/red25519-signature-scheme/), [SSU2](/docs/specs/ssu2/) ve [Tunnel Creation (ECIES)](/docs/specs/implementation/) gibi uzmanlaşmış teknik belgelere başvurun.
 
 ## Evrim Anlık Görüntüsü
 

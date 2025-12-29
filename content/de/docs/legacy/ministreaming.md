@@ -6,7 +6,7 @@ lastUpdated: "2025-02"
 accurateFor: "historical"
 ---
 
-> **Veraltet:** Die Ministreaming-Bibliothek entstand vor der heutigen [Streaming-Bibliothek](/spec/api/streaming/). Moderne Anwendungen müssen die vollständige Streaming-API oder SAM v3 verwenden. Die folgenden Informationen werden für Entwickler beibehalten, die den in `ministreaming.jar` ausgelieferten Legacy-Quellcode prüfen.
+> **Veraltet:** Die Ministreaming-Bibliothek entstand vor der heutigen [Streaming-Bibliothek](/docs/specs/streaming/). Moderne Anwendungen müssen die vollständige Streaming-API oder SAM v3 verwenden. Die folgenden Informationen werden für Entwickler beibehalten, die den in `ministreaming.jar` ausgelieferten Legacy-Quellcode prüfen.
 
 ## Überblick
 
@@ -40,7 +40,7 @@ Aktuell ist `ministreaming.jar` nur als Kompatibilitätsschicht zu betrachten. N
 
 ## Referenz
 
-- [Dokumentation zur Streaming-Bibliothek](/spec/api/streaming/)
+- [Dokumentation zur Streaming-Bibliothek](/docs/specs/streaming/)
 - [Streaming-Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/client/streaming/package-summary.html) – enthält veraltete Ministreaming-Klassen
 - [SAM v3-Spezifikation](/docs/api/samv3/) – Streaming-Unterstützung für Nicht-Java-Anwendungen
 

@@ -46,4 +46,4 @@ SESSION CREATE STYLE={STREAM|DATAGRAM|RAW} DESTINATION={name|TRANSIENT} [DIRECTI
 - [SAM v1](/docs/legacy/sam/)
 - [SAM v3](/docs/api/samv3/)
 - [数据报 API](/docs/api/datagrams/)
-- [流式协议](/spec/api/streaming/)
+- [流式协议](/docs/specs/streaming/)

@@ -124,7 +124,7 @@ Defined as follows:
   Only useful if more than one record, but required even if just one record.
 - port := The I2CP port on which the service is to be found. Non-negative integer. Example: "25"
   Port 0 is supported but not recommended.
-- target := The hostname or b32 of the destination providing the service. A valid [hostname](/docs/naming/). Must be lower case.
+- target := The hostname or b32 of the destination providing the service. A valid [hostname](/docs/overview/naming/). Must be lower case.
   Example: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" or "example.i2p".
   b32 is recommended unless the hostname is "well known", i.e. in official or default address books.
 - appoptions := arbitrary text specific to the application, must not contain " " or ",". Encoding is UTF-8.
@@ -281,7 +281,7 @@ If OPTIONS=true was in the lookup, and the leaseset is not found, a new result v
 
 An alternative design was considered, to support lookups of services
 as a full hostname, for example _smtp._tcp.example.i2p,
-by updating the [naming specification](/docs/naming/) to specify handling of hostnames starting with '_'.
+by updating the [naming specification](/docs/overview/naming/) to specify handling of hostnames starting with '_'.
 This was rejected for two reasons:
 
 - I2CP and SAM changes would still be necessary to pass through the TTL and port information to the client.
@@ -384,7 +384,7 @@ SAM compatibility versions for each implementation will be documented in the SAM
 * [I2CP-OPTIONS](/docs/specs/i2cp/)
 * [LS2](/docs/specs/common-structures/)
 * [GNS](http://zzz.i2p/topcs/1545)
-* [NAMING](/docs/naming/)
+* [NAMING](/docs/overview/naming/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop168](/proposals/168-tunnel-bandwidth/)
 * [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)

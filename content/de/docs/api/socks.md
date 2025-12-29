@@ -89,7 +89,7 @@ Anders als Tor bietet I2P **keine** SOCKS-basierten Clearnet-Outproxies. Versuch
 
 ## 3. Historischer Kontext
 
-Entwickler haben lange davon abgeraten, SOCKS für anonyme Nutzung zu verwenden. Aus internen Entwicklerdiskussionen und den Treffen von 2004 [Meeting 81](/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) und [Meeting 82](/blog/2004/03/23/i2p-dev-meeting-march-23-2004/):
+Entwickler haben lange davon abgeraten, SOCKS für anonyme Nutzung zu verwenden. Aus internen Entwicklerdiskussionen und den Treffen von 2004 [Meeting 81](/de/blog/2004/03/16/i2p-dev-meeting-march-16-2004/) und [Meeting 82](/de/blog/2004/03/23/i2p-dev-meeting-march-23-2004/):
 
 > "Das Weiterleiten von beliebigem Datenverkehr ist unsicher, und es obliegt uns als Entwicklern von Anonymitätssoftware, die Sicherheit unserer Endnutzer stets im Vordergrund zu haben."
 

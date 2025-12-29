@@ -6,7 +6,7 @@ lastUpdated: "2025-02"
 accurateFor: "historical"
 ---
 
-> **已弃用：** ministreaming 库（简化的流式库）早于如今的[流式库](/spec/api/streaming/)。现代应用程序必须使用完整的流式 API 或 SAM v3。以下信息仅为审阅随 `ministreaming.jar` 提供的遗留源代码的开发者而保留。
+> **已弃用：** ministreaming 库（简化的流式库）早于如今的[流式库](/docs/specs/streaming/)。现代应用程序必须使用完整的流式 API 或 SAM v3。以下信息仅为审阅随 `ministreaming.jar` 提供的遗留源代码的开发者而保留。
 
 ## 概述
 
@@ -40,7 +40,7 @@ Ministreaming（轻量级流式传输协议）构建在 [I2CP](/docs/specs/i2cp/
 
 ## 参考
 
-- [Streaming 库文档](/spec/api/streaming/)
+- [Streaming 库文档](/docs/specs/streaming/)
 - [Streaming Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/client/streaming/package-summary.html) – 包含已弃用的 ministreaming 类
 - [SAM v3 规范](/docs/api/samv3/) – 为非 Java 应用程序提供流式传输支持
 

@@ -1,7 +1,7 @@
 ---
 title: "إعلانات BitTorrent عبر UDP"
 description: "مواصفة بروتوكول لإعلانات متتبع BitTorrent القائم على UDP في I2P"
-slug: "udp-announces"
+slug: "udp-bittorrent-announces"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

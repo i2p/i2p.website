@@ -53,7 +53,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 لبناء أو العمل على ترجمات console، تحتاج إلى أدوات `xgettext` و `msgfmt` و `msgmerge` من حزمة GNU gettext.
 
-للتطوير على التطبيقات الجديدة، راجع [دليل تطوير التطبيقات](/get-involved/develop/applications/).
+للتطوير على التطبيقات الجديدة، راجع [دليل تطوير التطبيقات](/docs/develop/applications/).
 
 ## أفكار التطوير
 
@@ -65,7 +65,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 انظر إلى أسفل صفحة التراخيص لمتطلبات صلاحيات الالتزام (commit privilege). تحتاج إلى هذه الصلاحيات لإضافة الكود إلى `i2p.i2p` (غير مطلوبة للموقع الإلكتروني!).
 
-- [صفحة التراخيص](/get-involved/develop/licenses#commit)
+- [صفحة التراخيص](/docs/develop/licenses#commit)
 
 ## تعرف علينا!
 
@@ -73,7 +73,7 @@ git clone https://github.com/i2p/i2p.i2p.git
 
 ## الترجمات
 
-مترجمو الموقع الإلكتروني ولوحة تحكم الراوتر: راجع [دليل المترجمين الجدد](/get-involved/guides/new-translators/) للخطوات التالية.
+مترجمو الموقع الإلكتروني ولوحة تحكم الراوتر: راجع [دليل المترجمين الجدد](/docs/develop/new-translators/) للخطوات التالية.
 
 ## الأدوات
 

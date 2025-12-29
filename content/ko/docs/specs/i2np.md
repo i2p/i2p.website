@@ -1695,7 +1695,7 @@ Total size: 1 + ($num × 218) bytes
 - **[제안 156](/proposals/156-ecies-routers/)** - ECIES routers
 - **[제안 157](/proposals/157-new-tbm/)** - 더 작은 tunnel 빌드 메시지 (짧은 형식)
 - **[제안 159](/proposals/159-ssu2/)** - SSU2 트랜스포트
-- **[제안 161](/proposals/161-ri-dest-padding/)** - 압축 가능한 패딩
+- **[제안 161](/ko/proposals/161-ri-dest-padding/)** - 압축 가능한 패딩
 - **[제안 163](/proposals/163-datagram2/)** - Datagram2 및 Datagram3
 - **[제안 167](/proposals/167-service-records/)** - LeaseSet 서비스 레코드 매개변수
 - **[제안 168](/proposals/168-tunnel-bandwidth/)** - tunnel 빌드 대역폭 매개변수

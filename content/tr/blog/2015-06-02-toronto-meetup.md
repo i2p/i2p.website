@@ -1,6 +1,7 @@
 ---
 title: "Toronto Buluşması"
 date: 2015-06-02
+slug: "toronto-meetup"
 author: "hottuna"
 description: "Toronto'da 15-16 Ağustos tarihlerinde I2P buluşması"
 categories: ["community"]

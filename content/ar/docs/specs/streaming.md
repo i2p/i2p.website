@@ -323,4 +323,4 @@ OutputStream out = socket.getOutputStream();
 - [مواصفة بروتوكول البث](/docs/specs/streaming/)  
 - [مواصفة I2CP](/docs/specs/i2cp/)  
 - [الاقتراح 144: حسابات MTU (أقصى وحدة نقل) للبث](/proposals/144-ecies-x25519-aead-ratchet/)  
-- [ملاحظات إصدار I2P 2.10.0](/blog/2025-09-08-i2p-2-10-0-release/)
+- [ملاحظات إصدار I2P 2.10.0](/ar/blog/2025/09/08/i2p-2.10.0-release/)

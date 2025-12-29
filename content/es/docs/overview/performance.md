@@ -107,6 +107,6 @@ El bundling selectivo de LeaseSet, las opciones comprimidas de RouterInfo y la a
 Véase también:
 
 - [Enrutamiento de Túneles](/docs/overview/tunnel-routing/)
-- [Selección de Pares](/docs/how/peer-selection/)
-- [Transportes](/docs/transport/)
+- [Selección de Pares](/docs/overview/tunnel-routing/)
+- [Transportes](/docs/overview/transport/)
 - [Especificación SSU2](/docs/specs/ssu2/) y [Especificación NTCP2](/docs/specs/ntcp2/)

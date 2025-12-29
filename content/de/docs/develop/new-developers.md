@@ -53,7 +53,7 @@ Um den Code zu kompilieren, benötigen Sie das Sun/Oracle Java Development Kit 6
 
 Um Konsolenübersetzungen zu erstellen oder daran zu arbeiten, benötigen Sie die Werkzeuge `xgettext`, `msgfmt` und `msgmerge` aus dem GNU gettext-Paket.
 
-Für die Entwicklung neuer Anwendungen siehe den [Leitfaden zur Anwendungsentwicklung](/get-involved/develop/applications/).
+Für die Entwicklung neuer Anwendungen siehe den [Leitfaden zur Anwendungsentwicklung](/docs/develop/applications/).
 
 ## Entwicklungsideen
 
@@ -65,7 +65,7 @@ Siehe die Projekt-TODO-Liste oder die Issue-Liste auf GitLab für Ideen:
 
 Siehe unten auf der Lizenzseite für die Anforderungen an Commit-Rechte. Sie benötigen diese, um Code in `i2p.i2p` einzubringen (nicht erforderlich für die Website!).
 
-- [Lizenzseite](/get-involved/develop/licenses#commit)
+- [Lizenzseite](/docs/develop/licenses#commit)
 
 ## Lernen Sie uns kennen!
 
@@ -73,7 +73,7 @@ Die Entwickler sind auf IRC erreichbar. Sie können über verschiedene Netzwerke
 
 ## Übersetzungen
 
-Übersetzer für Website und Router-Konsole: Siehe den [Leitfaden für neue Übersetzer](/get-involved/guides/new-translators/) für die nächsten Schritte.
+Übersetzer für Website und Router-Konsole: Siehe den [Leitfaden für neue Übersetzer](/docs/develop/new-translators/) für die nächsten Schritte.
 
 ## Werkzeuge
 

@@ -244,7 +244,7 @@ Stránka Konfigurace reseedu vám umožňuje ručně provést reseed vašeho rou
 
 4. Pokud znáte a důvěřujete někomu, kdo publikuje reseed soubory, požádejte jej o URL. Poté použijte tuto stránku k reseedování pomocí získané URL adresy. Nejprve zadejte URL níže. Pak klikněte na "Reseed from URL"
 
-5. Viz [FAQ](/en/faq) pro návod na manuální reseed
+5. Viz [FAQ](/docs/overview/faq/) pro návod na manuální reseed
 
 **Manuální možnosti reseedu:**
 

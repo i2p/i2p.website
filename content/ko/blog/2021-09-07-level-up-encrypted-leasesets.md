@@ -1,6 +1,7 @@
 ---
 title: "암호화된 LeaseSets로 I2P 역량을 한 단계 끌어올리세요"
 date: 2021-09-07
+slug: "level-up-your-i2p-skills-with-encrypted-leasesets"
 author: "idk"
 description: "I2P가 Hidden Services(숨김 서비스)를 강조한다고들 합니다. 이에 대한 한 가지 해석을 검토합니다."
 categories: ["general"]

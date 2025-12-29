@@ -1,6 +1,7 @@
 ---
 title: "토론토 모임"
 date: 2015-06-02
+slug: "toronto-meetup"
 author: "hottuna"
 description: "8월 15-16일 토론토에서 I2P 밋업"
 categories: ["community"]

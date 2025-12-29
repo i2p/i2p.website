@@ -1,6 +1,7 @@
 ---
 title: "Lộ trình tổng quan cho năm 2018"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "2018 sẽ là năm của các giao thức mới, các hợp tác mới, và một trọng tâm được tinh chỉnh hơn."
 categories: ["roadmap"]

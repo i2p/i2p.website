@@ -247,7 +247,7 @@ La página de Configuración de Reseed te permite resembrar manualmente tu route
 
 4. Si conoces y confías en alguien que publica archivos reseed, pídele la URL. Luego, usa esta página para hacer reseed con la URL que recibiste. Primero, ingresa la URL a continuación. Después, haz clic en "Reseed from URL"
 
-5. Consulta [las preguntas frecuentes](/en/faq) para obtener instrucciones sobre cómo resembrar manualmente
+5. Consulta [las preguntas frecuentes](/docs/overview/faq/) para obtener instrucciones sobre cómo resembrar manualmente
 
 **Opciones de Reseed Manual:**
 

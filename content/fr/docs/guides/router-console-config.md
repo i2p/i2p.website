@@ -244,7 +244,7 @@ La page de configuration du Reseed vous permet de réensemencer manuellement vot
 
 4. Si vous connaissez et faites confiance à quelqu'un qui publie des fichiers reseed, demandez-lui l'URL. Ensuite, utilisez cette page pour effectuer un reseed avec l'URL que vous avez reçue. D'abord, saisissez l'URL ci-dessous. Puis, cliquez sur « Reseed depuis une URL »
 
-5. Voir [la FAQ](/en/faq) pour les instructions sur le reseeding manuel
+5. Voir [la FAQ](/docs/overview/faq/) pour les instructions sur le reseeding manuel
 
 **Options de Reseed manuel :**
 

@@ -294,5 +294,5 @@ NTCP2는 인바운드 TCP 연결이 필요합니다. NAT 뒤에 있는 routers�
 - [SSU2 명세](/docs/specs/ssu2/) – 보안 반신뢰성 UDP 2
 - [I2NP 명세](/docs/specs/i2np/) – I2P 네트워크 프로토콜 메시지
 - [공통 구조체](/docs/specs/common-structures/) – RouterInfo 및 주소 구조체
-- [역사적 NTCP 논의](/docs/historical/ntcp/) – 레거시 전송 개발 역사
+- [역사적 NTCP 논의](/docs/ntcp/) – 레거시 전송 개발 역사
 - [레거시 SSU 문서](/docs/legacy/ssu/) – 원래의 SSU 명세(사용 중단됨)

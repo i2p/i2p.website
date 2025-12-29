@@ -213,11 +213,11 @@ Nguồn tài nguyên cho nhà báo, nhà nghiên cứu và bất kỳ ai quan t�
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="/en/about/i2pcon/2015/">I2PCon 2015</a>
+[I2PCon 2015](/vi/blog/2015/07/16/i2pcon/)
 </div>
 <div class="content-entry-meta">🎪 Hội nghị • Toronto • Ngày 15-16 tháng 8, 2015</div>
 <div class="content-entry-actions">
-<a href="/en/about/i2pcon/2015/" class="content-btn">Chi Tiết</a>
+<a href="/vi/blog/2015/07/16/i2pcon/" class="content-btn">Chi Tiết</a>
 </div>
 </div>
 

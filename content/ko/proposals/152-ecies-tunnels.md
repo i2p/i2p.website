@@ -572,7 +572,7 @@ ChaCha20Poly1305(ChaCha20 스트림 암호와 Poly1305 메시지 인증 코드�
 * [Prop156](/proposals/156-ecies-routers/)
 * [Prop157](/proposals/157-new-tbm/)
 * [사양](/docs/specs/implementation/#tunnel-creation-ecies)
-* [Tunnel 생성](/docs/specs/tunnel-creation/)
+* [Tunnel 생성](/docs/specs/implementation/)
 * [다중 암호화](https://en.wikipedia.org/wiki/Multiple_encryption)
 * [RFC-7539](https://tools.ietf.org/html/rfc7539)
 * [RFC-7748](https://tools.ietf.org/html/rfc7748)

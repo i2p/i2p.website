@@ -67,6 +67,6 @@ Pouze kvůli interoperabilitě se zastaralým softwarem, který nelze aktualizov
 - [SAM v2](/docs/legacy/samv2/)
 - [SAM v3](/docs/api/samv3/)
 - [Specifikace datagramů](/docs/api/datagrams/)
-- [Streamovací protokol](/spec/api/streaming/)
+- [Streamovací protokol](/docs/specs/streaming/)
 
 SAM v1 položil základy pro vývoj aplikací nezávislý na routeru, ale ekosystém se posunul dál. Tento dokument berte spíše jako pomůcku pro kompatibilitu než jako výchozí bod.

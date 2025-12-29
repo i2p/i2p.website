@@ -31,7 +31,7 @@ Em resumo, várias razões para escrever código específico para I2P:
 - Protocolos de rede gerais frequentemente enviam muitos dados adicionais que podem ser usados para identificar usuários. Programar especificamente para I2P permite a criação de um protocolo de rede que não vaza tais informações, mantendo os usuários anônimos e seguros.
 - Protocolos de rede projetados para uso na internet comum podem ser ineficientes no I2P, que é uma rede com latência muito maior.
 
-I2P suporta uma [interface de plugins](/docs/plugins/) padrão para desenvolvedores, de modo que aplicações possam ser facilmente integradas e distribuídas.
+I2P suporta uma [interface de plugins](/docs/specs/plugin/) padrão para desenvolvedores, de modo que aplicações possam ser facilmente integradas e distribuídas.
 
 Aplicações escritas em Java e acessíveis/executáveis usando uma interface HTML através do webapps/app.war padrão podem ser consideradas para inclusão na distribuição I2P.
 

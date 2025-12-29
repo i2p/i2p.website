@@ -67,6 +67,6 @@ Solo para la interoperabilidad con software heredado que no puede actualizarse. 
 - [SAM v2](/docs/legacy/samv2/)
 - [SAM v3](/docs/api/samv3/)
 - [Especificación de datagramas](/docs/api/datagrams/)
-- [Protocolo de streaming](/spec/api/streaming/)
+- [Protocolo de streaming](/docs/specs/streaming/)
 
 SAM v1 sentó las bases para el desarrollo de aplicaciones agnósticas del router, pero el ecosistema ha evolucionado. Considere este documento como una ayuda de compatibilidad más que como un punto de partida.

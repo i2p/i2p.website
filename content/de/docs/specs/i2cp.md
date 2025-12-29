@@ -1357,7 +1357,7 @@ Verwenden Sie immer SendMessageExpires (nicht SendMessage), um eine explizite Ab
 - [Vorschlag 152](/proposals/152-ecies-tunnels/): X25519 tunnel-Erstellung
 - [Vorschlag 154](/proposals/154-ecies-lookups/): Datenbankabfragen von ECIES-Destinationen
 - [Vorschlag 156](/proposals/156-ecies-routers/): Router-Migration auf ECIES-X25519
-- [Vorschlag 161](/proposals/161-ri-dest-padding/): Komprimierung des Destination-Padding
+- [Vorschlag 161](/de/proposals/161-ri-dest-padding/): Komprimierung des Destination-Padding
 - [Vorschlag 167](/proposals/167-service-records/): LeaseSet-Serviceeinträge
 - [Vorschlag 169](/proposals/169-pq-crypto/): Post-quantische hybride Kryptografie (ML-KEM)
 

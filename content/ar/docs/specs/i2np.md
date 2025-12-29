@@ -1690,7 +1690,7 @@ Total size: 1 + ($num × 218) bytes
 - **[الاقتراح 156](/proposals/156-ecies-routers/)** - ECIES routers
 - **[الاقتراح 157](/proposals/157-new-tbm/)** - رسائل إنشاء tunnel أصغر (تنسيق قصير)
 - **[الاقتراح 159](/proposals/159-ssu2/)** - نقل SSU2
-- **[الاقتراح 161](/proposals/161-ri-dest-padding/)** - حشو قابل للضغط
+- **[الاقتراح 161](/ar/proposals/161-ri-dest-padding/)** - حشو قابل للضغط
 - **[الاقتراح 163](/proposals/163-datagram2/)** - Datagram2 وDatagram3
 - **[الاقتراح 167](/proposals/167-service-records/)** - معلمات سجل خدمة LeaseSet
 - **[الاقتراح 168](/proposals/168-tunnel-bandwidth/)** - معلمات عرض النطاق لبناء tunnel

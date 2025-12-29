@@ -209,7 +209,7 @@ Portunuzu yönlendirdikten sonra, I2P sistem tepsisi menüsünde "Network: Firew
 - **Portunu yönlendir**: I2P'nin kullandığı portu nasıl yönlendireceğinize dair yönlendiricinize özel talimatlar için [portforward.com](https://portforward.com/) adresine bakın
 - **Router konsolunu keşfedin**: I2P'nin özellikleri, hizmetleri ve yapılandırma seçenekleri hakkında bilgi edinin
 - **Eepsite'ları ziyaret edin**: I2P ağı üzerinden `.i2p` web sitelerine erişmeyi deneyin
-- **Dokümantasyonu okuyun**: Daha fazla bilgi için [I2P dokümantasyonuna](../../_index.md) göz atın
+- **Dokümantasyonu okuyun**: Daha fazla bilgi için [I2P dokümantasyonuna](/docs/) göz atın
 
 I2P ağına hoş geldiniz! 🎉
 
@@ -426,10 +426,10 @@ Done'a tıkladıktan sonra:
 ## Adım 3: Dilinizi Seçin
 
 - **Entegrasyonu bekleyin**: I2P'nin ağa entegre olması ve tunnel'ları oluşturması için 5-10 dakika bekleyin
-- **Port yönlendirmeyi yapılandırın**: Talimatlar için [port yönlendirme kılavuzuna](windows-easy-install.md#recommended-port-forwarding-optional-but-important) bakın
+- **Port yönlendirmeyi yapılandırın**: Talimatlar için [port yönlendirme kılavuzuna](#recommended-port-forwarding-optional-but-important) bakın
 - **Tarayıcınızı yapılandırın**: Web tarayıcınızı I2P'nin HTTP proxy'sini kullanacak şekilde ayarlayın
 - **Router konsolunu keşfedin**: I2P'nin özellikleri, hizmetleri ve yapılandırma seçenekleri hakkında bilgi edinin
 - **Eepsite'ları ziyaret edin**: I2P ağı üzerinden `.i2p` web sitelerine erişmeyi deneyin
-- **Dokümantasyonu okuyun**: Daha fazla bilgi için [I2P dokümantasyonuna](../../_index.md) göz atın
+- **Dokümantasyonu okuyun**: Daha fazla bilgi için [I2P dokümantasyonuna](/docs/) göz atın
 
 I2P ağına hoş geldiniz! 🎉

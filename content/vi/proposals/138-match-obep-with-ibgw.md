@@ -16,7 +16,7 @@ toc: true
 
 ## Động lực
 
-Hầu hết các router I2P sử dụng một dạng bỏ gói tin để quản lý tắc nghẽn. Triển khai tham chiếu sử dụng chiến lược WRED, tính toán cả kích thước thông điệp và khoảng cách di chuyển (xem [tài liệu tunnel throttling](/docs/tunnels/implementation/#tunnelthrottling)). Do chiến lược này, nguồn gốc chính của mất gói là OBEP.
+Hầu hết các router I2P sử dụng một dạng bỏ gói tin để quản lý tắc nghẽn. Triển khai tham chiếu sử dụng chiến lược WRED, tính toán cả kích thước thông điệp và khoảng cách di chuyển (xem [tài liệu tunnel throttling](/docs/specs/implementation/#tunnelthrottling)). Do chiến lược này, nguồn gốc chính của mất gói là OBEP.
 
 
 ## Thiết kế

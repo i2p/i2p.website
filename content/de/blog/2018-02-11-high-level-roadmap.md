@@ -1,6 +1,7 @@
 ---
 title: "Übergeordnete Roadmap für 2018"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "2018 wird das Jahr neuer Protokolle, neuer Kooperationen und einer verfeinerten Fokussierung."
 categories: ["roadmap"]

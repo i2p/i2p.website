@@ -6,7 +6,7 @@ lastUpdated: "2025-02"
 accurateFor: "historical"
 ---
 
-> **مهمل:** تسبق مكتبة ministreaming [مكتبة التدفق](/spec/api/streaming/) الحالية. يجب على التطبيقات الحديثة استخدام واجهة برمجة تطبيقات التدفق الكاملة أو SAM v3. تُحتفظ المعلومات أدناه لأجل المطورين الذين يراجعون الشفرة المصدرية القديمة الموزعة ضمن `ministreaming.jar`.
+> **مهمل:** تسبق مكتبة ministreaming [مكتبة التدفق](/docs/specs/streaming/) الحالية. يجب على التطبيقات الحديثة استخدام واجهة برمجة تطبيقات التدفق الكاملة أو SAM v3. تُحتفظ المعلومات أدناه لأجل المطورين الذين يراجعون الشفرة المصدرية القديمة الموزعة ضمن `ministreaming.jar`.
 
 ## نظرة عامة
 
@@ -40,7 +40,7 @@ Ministreaming (بروتوكول تدفّق مصغّر) يعمل فوق [I2CP](/d
 
 ## مرجع
 
-- [توثيق مكتبة البث](/spec/api/streaming/)
+- [توثيق مكتبة البث](/docs/specs/streaming/)
 - [وثائق Javadoc للبث](http://idk.i2p/javadoc-i2p/net/i2p/client/streaming/package-summary.html) – يتضمن أصناف ministreaming (واجهة بث مصغّرة قديمة) المهملة
 - [مواصفة SAM v3](/docs/api/samv3/) – دعم البث للتطبيقات غير المكتوبة بلغة Java
 

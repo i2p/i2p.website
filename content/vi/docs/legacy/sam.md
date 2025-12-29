@@ -67,6 +67,6 @@ Chỉ nhằm bảo đảm khả năng tương tác với phần mềm cũ không
 - [SAM v2](/docs/legacy/samv2/)
 - [SAM v3](/docs/api/samv3/)
 - [Đặc tả Datagram](/docs/api/datagrams/)
-- [Giao thức truyền phát](/spec/api/streaming/)
+- [Giao thức truyền phát](/docs/specs/streaming/)
 
 SAM v1 đã đặt nền tảng cho việc phát triển ứng dụng không phụ thuộc router, nhưng hệ sinh thái đã tiến xa hơn. Hãy xem tài liệu này như một công cụ hỗ trợ khả năng tương thích, thay vì một điểm khởi đầu.

@@ -67,6 +67,6 @@ Yalnızca güncellenemeyen eski yazılımlarla birlikte çalışabilirlik amacı
 - [SAM v2](/docs/legacy/samv2/)
 - [SAM v3](/docs/api/samv3/)
 - [Datagram Belirtimi](/docs/api/datagrams/)
-- [Akış Protokolü](/spec/api/streaming/)
+- [Akış Protokolü](/docs/specs/streaming/)
 
 SAM v1, router'dan bağımsız uygulama geliştirme için temeli attı, ancak ekosistem ilerledi. Bu belgeyi bir başlangıç noktası olarak değil, uyumluluğa yönelik bir yardımcı kaynak olarak değerlendirin.

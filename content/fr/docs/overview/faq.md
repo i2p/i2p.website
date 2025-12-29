@@ -333,7 +333,7 @@ Le proxy HTTP par défaut prend en charge uniquement la redirection sortante HTT
 
 ### Pourquoi mon routeur utilise-t-il trop de CPU ? {#cpu}
 
-Tout d'abord, assurez-vous d'avoir la dernière version de chaque composant lié à I2P – les versions plus anciennes contenaient des sections de code consommant inutilement du processeur. Il existe également un [journal des performances](/about/performance) qui documente certaines des améliorations des performances d'I2P au fil du temps.
+Tout d'abord, assurez-vous d'avoir la dernière version de chaque composant lié à I2P – les versions plus anciennes contenaient des sections de code consommant inutilement du processeur. Il existe également un [journal des performances](/docs/overview/performance) qui documente certaines des améliorations des performances d'I2P au fil du temps.
 
 ### Mes pairs actifs / pairs connus / tunnels participants / connexions / bande passante varient considérablement dans le temps ! Y a-t-il un problème ? {#vary}
 

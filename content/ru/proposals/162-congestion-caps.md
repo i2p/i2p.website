@@ -51,7 +51,7 @@ toc: true
 
 ## Спецификация
 
-Обновить [NETDB](/docs/how/network-database/) следующим образом:
+Обновить [NETDB](/docs/overview/network-database/) следующим образом:
 
 
 ```text
@@ -121,4 +121,4 @@ Caps, как и все остальное в информации о маршр�
 
 ## Ссылки
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

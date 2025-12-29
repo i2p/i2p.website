@@ -31,7 +31,7 @@ Tóm lại, có một số lý do để viết mã riêng cho I2P:
 - Các giao thức mạng thông thường thường gửi rất nhiều dữ liệu bổ sung có thể được sử dụng để xác định người dùng. Lập trình đặc biệt cho I2P cho phép tạo ra một giao thức mạng không làm rò rỉ thông tin như vậy, giữ cho người dùng ẩn danh và an toàn.
 - Các giao thức mạng được thiết kế để sử dụng trên internet thông thường có thể không hiệu quả trên I2P, một mạng có độ trễ cao hơn nhiều.
 
-I2P hỗ trợ một [giao diện plugins](/docs/plugins/) tiêu chuẩn cho các nhà phát triển để các ứng dụng có thể dễ dàng tích hợp và phân phối.
+I2P hỗ trợ một [giao diện plugins](/docs/specs/plugin/) tiêu chuẩn cho các nhà phát triển để các ứng dụng có thể dễ dàng tích hợp và phân phối.
 
 Các ứng dụng được viết bằng Java và có thể truy cập/chạy được thông qua giao diện HTML qua webapps/app.war tiêu chuẩn có thể được xem xét để đưa vào bản phân phối I2P.
 

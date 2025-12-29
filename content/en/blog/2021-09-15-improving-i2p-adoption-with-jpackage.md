@@ -22,10 +22,10 @@ The issue became more pressing in recent versions of Mac OSX, where it is no lon
 
 The new I2P .dmg installer, created by Zlatinb, makes I2P easier to install on OSX than ever, no longer requiring users to install Java themselves and using standard OSX installation tools in their prescribed ways. The new .dmg installer makes setting up I2P on Mac OSX easier than it's ever been.
 
-Get the [dmg](/mac)
+Get the [dmg](https://geti2p.net/en/download/mac)
 
 ## The I2P of the future is Easy to Install
 
 One of the things I hear from users the most is that if I2P wants adoption, it needs to be easy to use for people. Many of them want a "Tor Browser Like" user experience, to quote or paraphrase many familiar Redditors. Installation should not require complicated and error-prone "post-installation" steps. Many new users are not prepared to deal with their browser configuration in a thorough and complete way. To address this problem, we created the I2P Profile Bundle which configured Firefox so that it would automatically "Just Work" for I2P. As it's developed, it's added security features and improved integration with I2P itself. In it's latest version, it **also** bundles a complete, Jpackage powered I2P Router. The I2P Firefox Profile is now a fully-fledged distribution of I2P for Windows, with the only remaining dependency being Firefox itself. This should provide an unprecedented level of convenience for I2P users on Windows.
 
-Get the [installer](/nsis)
+Get the [installer](https://geti2p.net/en/download#windows)

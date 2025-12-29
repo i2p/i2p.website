@@ -6,7 +6,7 @@ lastUpdated: "2025-02"
 accurateFor: "historical"
 ---
 
-> **사용 중단됨:** ministreaming 라이브러리(과거의 경량 스트리밍 라이브러리)는 오늘날의 [스트리밍 라이브러리](/spec/api/streaming/)보다 먼저 만들어졌습니다. 최신 애플리케이션은 정식 스트리밍 API 또는 SAM v3를 사용해야 합니다. 아래 정보는 `ministreaming.jar`에 포함되어 배포되던 레거시 소스 코드를 검토하는 개발자들을 위해 보존되어 있습니다.
+> **사용 중단됨:** ministreaming 라이브러리(과거의 경량 스트리밍 라이브러리)는 오늘날의 [스트리밍 라이브러리](/docs/specs/streaming/)보다 먼저 만들어졌습니다. 최신 애플리케이션은 정식 스트리밍 API 또는 SAM v3를 사용해야 합니다. 아래 정보는 `ministreaming.jar`에 포함되어 배포되던 레거시 소스 코드를 검토하는 개발자들을 위해 보존되어 있습니다.
 
 ## 개요
 
@@ -40,7 +40,7 @@ Ministreaming(경량 스트리밍 계층)은 [I2CP](/docs/specs/i2cp/) 위에서
 
 ## 참고
 
-- [스트리밍 라이브러리 문서](/spec/api/streaming/)
+- [스트리밍 라이브러리 문서](/docs/specs/streaming/)
 - [스트리밍 Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/client/streaming/package-summary.html) – 사용 중단된 ministreaming 클래스 포함
 - [SAM v3 명세](/docs/api/samv3/) – 비-Java 애플리케이션을 위한 스트리밍 지원
 

@@ -107,6 +107,6 @@ GZip 또는 유사한 압축 방식을 사용하여 장황한 구조(예: Router
 참고:
 
 - [터널 라우팅](/docs/overview/tunnel-routing/)
-- [피어 선택](/docs/how/peer-selection/)
-- [전송 계층](/docs/transport/)
+- [피어 선택](/docs/overview/tunnel-routing/)
+- [전송 계층](/docs/overview/transport/)
 - [SSU2 명세서](/docs/specs/ssu2/) 및 [NTCP2 명세서](/docs/specs/ntcp2/)

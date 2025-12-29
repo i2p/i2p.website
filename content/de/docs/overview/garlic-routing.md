@@ -41,7 +41,7 @@ Allerdings implementiert I2P **unidirektionale Tunnel**, keine bidirektionalen S
 
 Ein vollständiger Roundtrip (Alice ↔ Bob) verwendet vier Tunnel: Alices outbound → Bobs inbound, dann Bobs outbound → Alices inbound. Dieses Design **halbiert die Offenlegung von Korrelationsdaten** im Vergleich zu bidirektionalen Verbindungen.
 
-Für Details zur Tunnel-Implementierung siehe die [Tunnel-Spezifikation](/docs/specs/implementation) und die [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies) Spezifikation.
+Für Details zur Tunnel-Implementierung siehe die [Tunnel-Spezifikation](/docs/specs/implementation) und die [Tunnel Creation (ECIES)](/docs/specs/implementation) Spezifikation.
 
 ---
 
@@ -186,8 +186,8 @@ Garlic routing ist somit sowohl eine *Methode der Verschlüsselungsschichtung* a
 Das Dokumentationszentrum von I2P ist [hier verfügbar](/docs/) und wird kontinuierlich gepflegt. Relevante aktuelle Spezifikationen umfassen:
 
 - [ECIES Spezifikation](/docs/specs/ecies) — ECIES‑X25519‑AEAD‑Ratchet
-- [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies) — modernes tunnel build Protokoll
-- [I2NP Spezifikation](/spec/i2np) — I2NP Nachrichtenformate
+- [Tunnel Creation (ECIES)](/docs/specs/implementation) — modernes tunnel build Protokoll
+- [I2NP Spezifikation](/docs/specs/i2np) — I2NP Nachrichtenformate
 - [SSU2 Spezifikation](/docs/specs/ssu2) — SSU2 UDP Transport
 - [Common Structures](/docs/specs/common-structures) — netDb und floodfill Verhalten
 

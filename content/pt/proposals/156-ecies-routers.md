@@ -17,7 +17,7 @@ Status:
 
 - Implementação de Roteadores ECIES a partir da versão 0.9.48, veja [Common](/docs/specs/common-structures/).
 - Implementação de criação de túneis a partir da versão 0.9.48, veja [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
-- Implementação de mensagens criptografadas para roteadores ECIES a partir da versão 0.9.49, veja [ECIES-ROUTERS](/docs/specs/ecies-routers/).
+- Implementação de mensagens criptografadas para roteadores ECIES a partir da versão 0.9.49, veja [ECIES-ROUTERS](/docs/specs/ecies/).
 - Implementação de novas mensagens de construção de túneis a partir da versão 0.9.51.
 
 

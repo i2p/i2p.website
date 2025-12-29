@@ -17,7 +17,7 @@ toc: true
 
 - ECIES राउटर्स 0.9.48 के तहत कार्यान्वित, देखें [Common](/docs/specs/common-structures/)।
 - टनल निर्माण 0.9.48 के तहत कार्यान्वित, देखें [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)।
-- ECIES राउटर्स को एन्क्रिप्टेड संदेश 0.9.49 के तहत कार्यान्वित, देखें [ECIES-ROUTERS](/docs/specs/ecies-routers/)।
+- ECIES राउटर्स को एन्क्रिप्टेड संदेश 0.9.49 के तहत कार्यान्वित, देखें [ECIES-ROUTERS](/docs/specs/ecies/)।
 - नए टनल निर्माण संदेश 0.9.51 के तहत कार्यान्वित।
 
 ## अवलोकन

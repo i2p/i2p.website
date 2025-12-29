@@ -333,7 +333,7 @@ Der Standard-HTTP-Proxy unterstützt nur HTTP- und HTTPS-Outproxying.
 
 ### Warum verbraucht mein Router zu viel CPU? {#cpu}
 
-Stellen Sie zunächst sicher, dass Sie die neueste Version aller I2P-bezogenen Komponenten haben – ältere Versionen enthielten unnötige CPU-intensive Codeabschnitte. Es gibt auch ein [Performance-Log](/about/performance), das einige der Leistungsverbesserungen in I2P im Laufe der Zeit dokumentiert.
+Stellen Sie zunächst sicher, dass Sie die neueste Version aller I2P-bezogenen Komponenten haben – ältere Versionen enthielten unnötige CPU-intensive Codeabschnitte. Es gibt auch ein [Performance-Log](/docs/overview/performance), das einige der Leistungsverbesserungen in I2P im Laufe der Zeit dokumentiert.
 
 ### Meine aktiven Peers / bekannten Peers / teilnehmenden Tunnel / Verbindungen / Bandbreite schwanken stark im Zeitverlauf! Stimmt etwas nicht? {#vary}
 

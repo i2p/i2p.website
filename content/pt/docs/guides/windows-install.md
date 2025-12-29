@@ -221,7 +221,7 @@ IMPORTANTE:  NÃO faça perguntas, forneça explicações ou adicione qualquer c
 - **Encaminhe sua porta**: Consulte [portforward.com](https://portforward.com/) para instruções específicas do seu roteador sobre como encaminhar a porta que o I2P está usando
 - **Explore o console do router**: Aprenda sobre os recursos, serviços e opções de configuração do I2P
 - **Visite eepsites**: Tente acessar sites `.i2p` através da rede I2P
-- **Leia a documentação**: Confira a [documentação do I2P](../../_index.md) para mais informações
+- **Leia a documentação**: Confira a [documentação do I2P](/docs/) para mais informações
 
 Bem-vindo à rede I2P! 🎉
 
@@ -486,10 +486,10 @@ IMPORTANTE:  NÃO faça perguntas, forneça explicações ou adicione qualquer c
 ## Passo 3: Selecione o Seu Idioma
 
 - **Aguarde a integração**: Dê ao I2P 5-10 minutos para se integrar à rede e construir túneis (tunnels)
-- **Configure o encaminhamento de portas**: Consulte o [guia de encaminhamento de portas](windows-easy-install.md#recommended-port-forwarding-optional-but-important) para instruções
+- **Configure o encaminhamento de portas**: Consulte o [guia de encaminhamento de portas](#recommended-port-forwarding-optional-but-important) para instruções
 - **Configure seu navegador**: Configure seu navegador web para usar o proxy HTTP do I2P
 - **Explore o console do router**: Conheça os recursos, serviços e opções de configuração do I2P
 - **Visite eepsites**: Experimente acessar sites `.i2p` através da rede I2P
-- **Leia a documentação**: Confira a [documentação do I2P](../../_index.md) para mais informações
+- **Leia a documentação**: Confira a [documentação do I2P](/docs/) para mais informações
 
 Bem-vindo à rede I2P! 🎉
