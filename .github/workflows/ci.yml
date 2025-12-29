@@ -163,16 +163,16 @@ jobs:
           mkdir -p ~/.ssh
           echo "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p $DEPLOY_PORT -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+          ssh-keyscan -H -p "$DEPLOY_PORT" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
 
           # Fix permissions (ownership) - requires sudo NOPASSWD on remote
-          ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R $DEPLOY_USER:$DEPLOY_USER $DEPLOY_PATH || true"
+          ssh -i ~/.ssh/deploy_key -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "sudo chown -R $DEPLOY_USER:$DEPLOY_USER $DEPLOY_PATH || true"
 
           # Sync files
-          rsync -avz --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no" public/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+          rsync -avz --delete --chmod=Du=rwx,Dgo=rx,Fu=rw,Fgo=r -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o StrictHostKeyChecking=no" public/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH"
 
           # Fix permissions (www-data)
-          ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT $DEPLOY_USER@$DEPLOY_HOST "sudo chown -R www-data:www-data $DEPLOY_PATH || true"
+          ssh -i ~/.ssh/deploy_key -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "sudo chown -R www-data:www-data $DEPLOY_PATH || true"
 
   # deploy-ssh-secondary:
   #   needs: build
