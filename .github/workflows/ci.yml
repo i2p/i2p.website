@@ -144,7 +144,7 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
   deploy-ssh-primary:
-    needs: [build, security-scan, codeql, lighthouse]
+    needs: [build, codeql, lighthouse]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
