@@ -33,8 +33,12 @@ show_menu() {
     echo -e "  ${CYAN}2)${NC} Add Research Paper"
     echo -e "  ${CYAN}3)${NC} Add Media/Press Entry"
     echo -e "  ${CYAN}4)${NC} Add Blog Post"
+<<<<<<< HEAD:scripts/tools/i2p_tools.sh
     echo -e "  ${CYAN}5)${NC} Add Proposal"
     echo -e "  ${CYAN}6)${NC} Exit"
+=======
+    echo -e "  ${CYAN}5)${NC} Exit"
+>>>>>>> e9e35c9b0afe5ae20d499bee81afb9a528a54d11:scripts/i2p_tools.sh
     echo ""
 }
 
@@ -100,6 +104,7 @@ main() {
                 ;;
             5)
                 echo ""
+<<<<<<< HEAD:scripts/tools/i2p_tools.sh
                 echo -e "${BLUE}Launching Proposal Tool...${NC}"
                 echo ""
                 if [ -x "$SCRIPT_DIR/add_proposal.sh" ]; then
@@ -113,12 +118,18 @@ main() {
                 ;;
             6)
                 echo ""
+=======
+>>>>>>> e9e35c9b0afe5ae20d499bee81afb9a528a54d11:scripts/i2p_tools.sh
                 echo -e "${GREEN}Goodbye!${NC}"
                 exit 0
                 ;;
             *)
                 echo ""
+<<<<<<< HEAD:scripts/tools/i2p_tools.sh
                 echo -e "${RED}Invalid option. Please select 1-6.${NC}"
+=======
+                echo -e "${RED}Invalid option. Please select 1-5.${NC}"
+>>>>>>> e9e35c9b0afe5ae20d499bee81afb9a528a54d11:scripts/i2p_tools.sh
                 sleep 1
                 ;;
         esac
