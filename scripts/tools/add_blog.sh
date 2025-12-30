@@ -28,7 +28,6 @@ POST_SLUG=""
 POST_CONTENT=""
 HUGO_PID=""
 TEMP_POST_FILE=""
-CONTENT_TEMP_FILE=""
 
 # Available categories
 CATEGORIES=(
@@ -109,9 +108,6 @@ cleanup() {
     # Remove temp files
     if [ -n "$TEMP_POST_FILE" ] && [ -f "$TEMP_POST_FILE" ]; then
         rm -f "$TEMP_POST_FILE"
-    fi
-    if [ -n "$CONTENT_TEMP_FILE" ] && [ -f "$CONTENT_TEMP_FILE" ]; then
-        rm -f "$CONTENT_TEMP_FILE"
     fi
     rm -rf /tmp/i2p-blog-preview-* 2>/dev/null || true
 }
@@ -217,36 +213,38 @@ collect_metadata() {
     return 0
 }
 
-# Collect post content using a temp file and cat with EOF marker
+# Collect post content - reads until two consecutive blank lines
 collect_content() {
     echo ""
     echo -e "${YELLOW}Paste your blog post content (Markdown format).${NC}"
-    echo -e "${YELLOW}Type ${CYAN}END${YELLOW} on a line by itself when done:${NC}"
+    echo -e "${YELLOW}Press Enter on a blank line ${CYAN}twice${YELLOW} when done:${NC}"
     echo ""
 
-    # Create temp file for content
-    CONTENT_TEMP_FILE=$(mktemp)
+    POST_CONTENT=""
+    local empty_count=0
+    local line
 
-    # Read until END marker
     while IFS= read -r line; do
-        if [ "$line" = "END" ]; then
-            break
+        if [ -z "$line" ]; then
+            empty_count=$((empty_count + 1))
+            if [ $empty_count -ge 2 ]; then
+                break
+            fi
+            # Add the single blank line to content (might be paragraph break)
+            POST_CONTENT+=$'\n'
+        else
+            empty_count=0
+            POST_CONTENT+="$line"$'\n'
         fi
-        echo "$line" >> "$CONTENT_TEMP_FILE"
     done
 
-    # Read content from temp file
-    if [ -f "$CONTENT_TEMP_FILE" ]; then
-        POST_CONTENT=$(cat "$CONTENT_TEMP_FILE")
-    fi
-
     # Trim trailing newlines
-    POST_CONTENT=$(echo "$POST_CONTENT" | sed -e :a -e '/^\n*$/{$d;N;ba' -e '}')
+    POST_CONTENT=$(printf '%s' "$POST_CONTENT" | sed -e :a -e '/^\n*$/{$d;N;ba' -e '}')
 
     if [ -z "$POST_CONTENT" ]; then
         echo -e "${YELLOW}Warning: No content provided${NC}"
     else
-        local line_count=$(echo "$POST_CONTENT" | wc -l)
+        local line_count=$(printf '%s' "$POST_CONTENT" | wc -l)
         echo -e "${GREEN}✓ Content captured: $line_count lines${NC}"
     fi
 
@@ -320,10 +318,26 @@ preview_local() {
     return 0
 }
 
-# Preview with surge.sh (headless)
-preview_headless() {
+# Preview with surge.sh
+preview_surge() {
     echo ""
-    echo -e "${CYAN}Building preview for headless environment...${NC}"
+
+    # Check for required tools
+    if ! command -v hugo &>/dev/null; then
+        echo -e "${RED}Error: Hugo is required to build the preview${NC}"
+        echo -e "${YELLOW}Install Hugo: https://gohugo.io/installation/${NC}"
+        show_terminal_preview
+        return 1
+    fi
+
+    if ! command -v surge &>/dev/null; then
+        echo -e "${RED}Error: surge is required for preview hosting${NC}"
+        echo -e "${YELLOW}Install with: npm install -g surge${NC}"
+        show_terminal_preview
+        return 1
+    fi
+
+    echo -e "${CYAN}Building site with Hugo...${NC}"
 
     # Write temp post
     write_temp_post
@@ -331,25 +345,32 @@ preview_headless() {
     local preview_dir="/tmp/i2p-blog-preview-$$"
 
     cd "$PROJECT_ROOT"
-    hugo --buildDrafts --destination "$preview_dir" >/dev/null 2>&1
+    if ! hugo --buildDrafts --destination "$preview_dir" 2>&1; then
+        echo -e "${RED}Hugo build failed${NC}"
+        show_terminal_preview
+        rm -rf "$preview_dir"
+        return 1
+    fi
 
-    if command -v surge &>/dev/null; then
-        local domain="i2p-preview-$(date +%s).surge.sh"
-        echo -e "${CYAN}Uploading to surge.sh...${NC}"
+    local domain="i2p-preview-$(date +%s).surge.sh"
+    echo -e "${CYAN}Uploading to surge.sh...${NC}"
 
-        if surge "$preview_dir" --domain "$domain" 2>/dev/null; then
-            local year=$(echo "$POST_DATE" | cut -d'-' -f1)
-            local month=$(echo "$POST_DATE" | cut -d'-' -f2)
-            local day=$(echo "$POST_DATE" | cut -d'-' -f3)
-            echo ""
-            echo -e "${GREEN}Preview URL: https://$domain/en/blog/$year/$month/$day/$POST_SLUG/${NC}"
-        else
-            echo -e "${RED}Failed to upload preview${NC}"
-            show_terminal_preview
+    if surge "$preview_dir" --domain "$domain"; then
+        local year=$(echo "$POST_DATE" | cut -d'-' -f1)
+        local month=$(echo "$POST_DATE" | cut -d'-' -f2)
+        local day=$(echo "$POST_DATE" | cut -d'-' -f3)
+        echo ""
+        echo -e "${GREEN}═══════════════════════════════════════════════════════════${NC}"
+        echo -e "${GREEN}Preview URL: https://$domain/en/blog/$year/$month/$day/$POST_SLUG/${NC}"
+        echo -e "${GREEN}═══════════════════════════════════════════════════════════${NC}"
+        echo ""
+
+        # Try to open in browser if we have a display
+        if has_display; then
+            open_browser "https://$domain/en/blog/$year/$month/$day/$POST_SLUG/"
         fi
     else
-        echo -e "${YELLOW}surge not installed. Install with: npm install -g surge${NC}"
-        echo -e "${YELLOW}Showing terminal preview instead...${NC}"
+        echo -e "${RED}Failed to upload to surge.sh${NC}"
         show_terminal_preview
     fi
 
@@ -372,15 +393,9 @@ show_terminal_preview() {
     echo -e "${BLUE}════════════════════════════════════════${NC}"
 }
 
-# Start preview
+# Start preview - uses surge.sh for hosting
 start_preview() {
-    if has_display && command -v hugo &>/dev/null; then
-        preview_local
-    elif command -v hugo &>/dev/null; then
-        preview_headless
-    else
-        show_terminal_preview
-    fi
+    preview_surge
 }
 
 # Show post summary

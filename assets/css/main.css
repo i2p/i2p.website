@@ -703,6 +703,11 @@ main {
     border-color: var(--color-border-hover);
 }
 
+.language-toggle:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
 .language-toggle svg {
     flex-shrink: 0;
 }
@@ -727,7 +732,9 @@ main {
     z-index: 1000;
 }
 
-.language-selector:hover .language-dropdown {
+/* Opens on hover (desktop) OR focus-within (mobile touch) */
+.language-selector:hover .language-dropdown,
+.language-selector:focus-within .language-dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -1111,6 +1118,16 @@ main {
     .btn-donate {
         flex: 1 1 0;
         min-width: 0;
+    }
+
+    /* Language dropdown - open upward on mobile */
+    .language-dropdown {
+        top: auto;
+        bottom: calc(100% + 0.5rem);
+        right: 0;
+        left: auto;
+        max-height: 200px;
+        overflow-y: auto;
     }
 
     .footer-grid {
