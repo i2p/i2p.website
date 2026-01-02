@@ -15,12 +15,6 @@
 {{ $documentId := .RelPermalink }}
 {{ $redirectUrl := .Permalink }}
 
-{{/* Check for feedback status from query params (set by worker redirect) */}}
-{{ $feedbackStatus := "" }}
-{{ with site.Params.feedback }}
-  {{/* Note: Hugo cannot read query params at build time, so status display requires minimal JS or CSS :target */}}
-{{ end }}
-
 <div class="docs-feedback" id="docs-feedback">
   <p class="docs-feedback-title">Was this page helpful?</p>
 
@@ -36,26 +30,183 @@
       </button>
     </form>
 
-    {{/* No Button - Redirects to feedback form page */}}
-    <form method="POST" action="{{ $workerUrl }}/feedback/show-form" class="docs-feedback-form">
-      <input type="hidden" name="document_id" value="{{ $documentId }}">
-      <input type="hidden" name="redirect_url" value="{{ $redirectUrl }}#docs-feedback">
-      <button type="submit" class="feedback-btn feedback-btn-no">
-        <span class="feedback-icon">&#128078;</span>
-        <span>No</span>
-      </button>
-    </form>
+    {{/* No Button - Shows inline form via CSS :target */}}
+    <a href="#feedback-form" class="feedback-btn feedback-btn-no">
+      <span class="feedback-icon">&#128078;</span>
+      <span>No</span>
+    </a>
   </div>
 
-  {{/* Status messages - shown via query params after redirect */}}
-  <noscript>
-    <p class="feedback-noscript-note">After submitting, you'll be redirected back to this page.</p>
-  </noscript>
+  {{/* Inline Feedback Form - Hidden by default, shown via :target */}}
+  <div class="feedback-form-container" id="feedback-form">
+    <div class="feedback-form-card">
+      <h3 class="feedback-form-title">Help us improve</h3>
+      <p class="feedback-form-description">Sorry this page wasn't helpful. Please let us know what we could improve.</p>
+
+      <form method="POST" action="{{ $workerUrl }}/feedback/submit-form" class="feedback-inline-form">
+        <input type="hidden" name="document_id" value="{{ $documentId }}">
+        <input type="hidden" name="redirect_url" value="{{ $redirectUrl }}#docs-feedback">
+
+        <div class="feedback-form-group">
+          <label for="feedback-message">What could be improved? <span class="required">*</span></label>
+          <textarea id="feedback-message" name="message" required placeholder="Please describe what was unclear, missing, or incorrect..."></textarea>
+        </div>
+
+        <div class="feedback-form-group">
+          <label for="feedback-email">Email (optional)</label>
+          <input type="email" id="feedback-email" name="email" placeholder="your@email.com">
+          <p class="feedback-form-hint">If you'd like us to follow up about your feedback</p>
+        </div>
+
+        <div class="feedback-form-actions">
+          <a href="#docs-feedback" class="feedback-form-cancel">Cancel</a>
+          <button type="submit" class="feedback-form-submit">Submit Feedback</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <p class="feedback-note">
     Found an issue? <a href="https://gitlab.com/{{ .Site.Params.gitlabRepo }}/-/blob/{{ .Site.Params.gitlabBranch }}/hugo-site/content/{{ .Language.Lang }}/{{ .File.Path }}?ref_type=heads" target="_blank" rel="noopener">Edit this page on GitLab</a>
   </p>
 </div>
+
+<style>
+/* Inline feedback form - hidden by default */
+.feedback-form-container {
+  display: none;
+  margin-top: var(--spacing-lg);
+}
+
+/* Show form when targeted via #feedback-form */
+.feedback-form-container:target {
+  display: block;
+}
+
+/* Hide buttons when form is shown */
+.feedback-form-container:target ~ .docs-feedback-buttons,
+#feedback-form:target ~ .docs-feedback-buttons {
+  display: none;
+}
+
+/* This selector hides buttons when form container is targeted */
+.docs-feedback:has(#feedback-form:target) .docs-feedback-buttons {
+  display: none;
+}
+
+.feedback-form-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  text-align: left;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.feedback-form-title {
+  font-size: 1.25rem;
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-text);
+}
+
+.feedback-form-description {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.feedback-form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.feedback-form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text);
+}
+
+.feedback-form-group .required {
+  color: #dc3545;
+}
+
+.feedback-form-group textarea,
+.feedback-form-group input[type="email"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.feedback-form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.feedback-form-group textarea:focus,
+.feedback-form-group input[type="email"]:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(102, 16, 242, 0.1);
+}
+
+.feedback-form-hint {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+}
+
+.feedback-form-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.feedback-form-cancel {
+  padding: 0.75rem 1.25rem;
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 500;
+  text-align: center;
+  transition: background var(--transition-fast);
+}
+
+.feedback-form-cancel:hover {
+  background: var(--color-border);
+}
+
+.feedback-form-submit {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.feedback-form-submit:hover {
+  background: var(--color-primary-hover, #520dc2);
+}
+
+/* Style the No button as a link that looks like a button */
+a.feedback-btn-no {
+  text-decoration: none;
+}
+</style>
 
 {{/*
   Minimal JavaScript for displaying feedback status from query params.
@@ -86,10 +237,12 @@
   }
 
   if (msg.innerHTML) {
-    // Hide the buttons if success or already voted
+    // Hide the buttons and form if success or already voted
     if (feedback === 'success' || feedback === 'already_voted') {
       const buttons = container.querySelector('.docs-feedback-buttons');
+      const formContainer = container.querySelector('.feedback-form-container');
       if (buttons) buttons.style.display = 'none';
+      if (formContainer) formContainer.style.display = 'none';
     }
 
     // Insert message after title
