@@ -139,6 +139,10 @@ defaultContentLanguageInSubdir = true
   gitlabRepo = "stormycloud-group/i-2-p-www-v-2"
   gitlabBranch = "main"
 
+  # Docs feedback configuration (zero-JS Cloudflare Worker)
+  [params.feedback]
+    workerUrl = "https://i2p-docs-feedback.tight-heart-b33b.workers.dev"
+
 
 
   # Asset pipeline
