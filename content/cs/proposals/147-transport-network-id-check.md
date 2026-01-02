@@ -70,7 +70,6 @@ Jelikož toto musí být kompatibilní s předchozími verzemi, provedeme XOR s 
 takže to nebude mít žádný vliv na stávající hodnotu ID sítě, což je 2.
 
 
-
 ## Specifikace
 
 ### Dokumentace
@@ -144,7 +143,6 @@ kontaktovat vývojáře nebo operátory a vysvětlit důležitost změny ID sít
 
 
 ## Problémy
-
 
 
 ## Migrace

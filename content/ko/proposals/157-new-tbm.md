@@ -14,7 +14,7 @@ toc: true
 API 버전 0.9.51부터 구현되었습니다.
 네트워크 배포 및 테스트 진행 중.
 사소한 수정될 수 있습니다.
-최종 사양은 [I2NP](/en/docs/spec/i2np/) 및 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)를 참조하십시오.
+최종 사양은 [I2NP](/docs/specs/i2np/) 및 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)를 참조하십시오.
 
 ## 개요
 
@@ -23,7 +23,7 @@ API 버전 0.9.51부터 구현되었습니다.
 현재 암호화된 터널 빌드 요청 및 응답 레코드의 크기는 528입니다.
 일반적인 가변 터널 빌드 및 가변 터널 빌드 응답 메시지의 총 크기는 2113바이트입니다. 이 메시지는 역방향 경로를 위해 세 개의 1KB 터널 메시지로 나뉩니다.
 
-ECIES-X25519 라우터용 528바이트 레코드 형식 변경은 [Prop152](/en/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)에 지정되어 있습니다. 터널에 있는 ElGamal 및 ECIES-X25519 라우터가 혼합된 경우 레코드 크기는 528바이트로 유지되어야 합니다. 그러나 터널의 모든 라우터가 ECIES-X25519인 경우 ElGamal보다 ECIES-X25519 암호화의 오버헤드가 훨씬 적기 때문에 새롭고 작은 빌드 레코드가 가능합니다.
+ECIES-X25519 라우터용 528바이트 레코드 형식 변경은 [Prop152](/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)에 지정되어 있습니다. 터널에 있는 ElGamal 및 ECIES-X25519 라우터가 혼합된 경우 레코드 크기는 528바이트로 유지되어야 합니다. 그러나 터널의 모든 라우터가 ECIES-X25519인 경우 ElGamal보다 ECIES-X25519 암호화의 오버헤드가 훨씬 적기 때문에 새롭고 작은 빌드 레코드가 가능합니다.
 
 작은 메시지는 대역폭을 절약할 수 있습니다. 또한 메시지가 단일 터널 메시지에 맞을 수 있다면 역방향 경로는 세 배 더 효율적일 수 있습니다.
 
@@ -33,13 +33,13 @@ ECIES-X25519 라우터용 528바이트 레코드 형식 변경은 [Prop152](/en/
 
 ### 목표
 
-추가 목표는 [Prop152](/en/proposals/152-ecies-tunnels/) 및 [Prop156](/en/proposals/156-ecies-routers/)를 참조하십시오.
+추가 목표는 [Prop152](/proposals/152-ecies-tunnels/) 및 [Prop156](/proposals/156-ecies-routers/)를 참조하십시오.
 
 - 더 작은 레코드 및 메시지
-- [Prop152](/en/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)에서와 같이 향후 옵션에 대한 충분한 공간 유지
+- [Prop152](/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)에서와 같이 향후 옵션에 대한 충분한 공간 유지
 - 역방향 경로에 하나의 터널 메시지에 맞추기
 - ECIES 홉만 지원
-- [Prop152](/en/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)에서 구현된 개선 사항 유지
+- [Prop152](/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)에서 구현된 개선 사항 유지
 - 현재 네트워크와의 호환성 최대화
 - OBEP에서 인바운드 빌드 메시지 숨기기
 - IBGW에서 아웃바운드 빌드 응답 메시지 숨기기
@@ -49,10 +49,10 @@ ECIES-X25519 라우터용 528바이트 레코드 형식 변경은 [Prop152](/en/
 
 ### 비목표
 
-추가 비목표는 [Prop156](/en/proposals/156-ecies-routers/)를 참조하십시오.
+추가 비목표는 [Prop156](/proposals/156-ecies-routers/)를 참조하십시오.
 
 - 혼합 ElGamal/ECIES 터널에 대한 요구 없음
-- 레이어 암호화 변경사항 없음, 이는 [Prop153](/en/proposals/153-chacha20-layer-encryption/)를 참조하십시오.
+- 레이어 암호화 변경사항 없음, 이는 [Prop153](/proposals/153-chacha20-layer-encryption/)를 참조하십시오.
 - 암호화 작업의 속도 향상이 없음. ChaCha20과 AES가 유사하다고 가정,
   데이터 크기가 작은 경우에는 특히 AESNI와 함께라도.
 
@@ -65,10 +65,10 @@ ECIES-X25519 라우터용 528바이트 레코드 형식 변경은 [Prop152](/en/
 암호화된 요청 및 응답 레코드는 현재 528바이트에서 218바이트가 됩니다.
 
 일반 텍스트 요청 레코드는 222바이트의 ElGamal 레코드와 비교하여 154바이트가 될 것이며,
-[Prop152](/en/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)에서 정의된 464바이트의 ECIES 레코드에서도 마찬가지입니다.
+[Prop152](/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)에서 정의된 464바이트의 ECIES 레코드에서도 마찬가지입니다.
 
 일반 텍스트 응답 레코드는 ElGamal 레코드의 496바이트와
-[Prop152](/en/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)에서 정의된 512바이트의 ECIES 레코드에 비해 202바이트가 될 것입니다.
+[Prop152](/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)에서 정의된 512바이트의 ECIES 레코드에 비해 202바이트가 될 것입니다.
 
 응답 암호화는 ChaCha20 (ChaCha20/Poly1305 아님)입니다,
 따라서 일반 텍스트 레코드는 16바이트의 배수가 될 필요가 없습니다.
@@ -155,7 +155,7 @@ STBM: 짧은 터널 빌드 메시지 (유형 25)
 
 ### 레코드 암호화
 
-요청 및 응답 레코드 암호화: [Prop152](/en/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)에 정의된 대로.
+요청 및 응답 레코드 암호화: [Prop152](/proposals/152-ecies-tunnels/) 및 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)에 정의된 대로.
 
 다른 슬롯의 응답 레코드 암호화: ChaCha20.
 
@@ -181,7 +181,7 @@ STBM: 짧은 터널 빌드 메시지 (유형 25)
 #### 짧은 요청 레코드 암호화되지 않음
 
 이것은 ECIES-X25519 라우터를 위한 터널 BuildRequestRecord의 제안된 사양입니다.
-[Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)에서의 변화 요약:
+[Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)에서의 변화 요약:
 
 - 암호화되지 않은 길이를 464에서 154로 변경
 - 암호화된 길이를 528에서 218로 변경
@@ -211,7 +211,7 @@ bytes     0-3: 메시지 수신을 위한 터널 ID, 0이 아님
 
 ```
 
-플래그 필드는 [Tunnel-Creation](/en/docs/spec/tunnel-creation/)에 정의된 것과 동일하며 다음을 포함합니다::
+플래그 필드는 [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)에 정의된 것과 동일하며 다음을 포함합니다::
 
 비트 순서: 76543210 (비트 7은 MSB)
 비트 7: 설정된 경우, 누구로부터 메시지를 허용
@@ -232,7 +232,7 @@ bytes     0-3: 메시지 수신을 위한 터널 ID, 0이 아님
 이것은 인바운드 터널 빌드 메시지의 일반 텍스트 레코드에만 포함됩니다.
 빌드 레코드의 레이어에 대한 DH가 없기 때문에 필요합니다.
 
-터널 빌드 옵션은 [Common](/en/docs/spec/common-structures/)에 정의된 매핑 구조입니다.
+터널 빌드 옵션은 [Common](/docs/specs/common-structures/)에 정의된 매핑 구조입니다.
 이는 향후 사용을 위한 것입니다. 현재 정의된 옵션은 없습니다.
 매핑 구조가 비어 있으면, 이는 0x00 0x00의 두 바이트입니다.
 매핑의 최대 크기(길이 필드 포함)는 98바이트이며, 매핑 길이 필드의 최대 값은 96입니다.
@@ -257,7 +257,7 @@ bytes    0-15: 홉의 잘린 식별자 해시
 #### 짧은 응답 레코드 암호화되지 않음
 
 이것은 ECIES-X25519 라우터를 위한 터널 ShortBuildReplyRecord의 제안된 사양입니다.
-[Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)에서의 변화 요약:
+[Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)에서의 변화 요약:
 
 - 암호화되지 않은 길이를 512에서 202로 변경
 - 암호화된 길이를 528에서 218로 변경
@@ -277,13 +277,13 @@ bytes    0-x: Tunnel Build Reply Options (매핑)
 
 ```
 
-터널 빌드 응답 옵션은 [Common](/en/docs/spec/common-structures/)에 정의된 매핑 구조입니다.
+터널 빌드 응답 옵션은 [Common](/docs/specs/common-structures/)에 정의된 매핑 구조입니다.
 이는 향후 사용을 위한 것입니다. 현재 정의된 옵션은 없습니다.
 매핑 구조가 비어 있으면, 이는 0x00 0x00의 두 바이트입니다.
 매핑의 최대 크기(길이 필드 포함)는 201바이트이며, 매핑 길이 필드의 최대 값은 199입니다.
 
 응답 바이트는 다음과 같은 값 중 하나입니다
-[Tunnel-Creation](/en/docs/spec/tunnel-creation/)에서 정의된 값을 사용하여 지문을 피하기 위해:
+[Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)에서 정의된 값을 사용하여 지문을 피하기 위해:
 
 - 0x00 (수용)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

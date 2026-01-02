@@ -13,9 +13,8 @@ toc: true
 ## 注意
 
 本提案已被批准并已纳入 API 0.9.65 版本的
-[Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/) 规范中。
+[Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies) 规范中。
 目前尚无已知的实现；实现日期/API 版本待定。
-
 
 
 ## 概述
@@ -35,18 +34,16 @@ toc: true
 本提案通过在隧道构建请求和答复消息中添加带宽参数来解决这些问题。
 
 
-
 ## 设计
 
-在隧道构建选项映射字段中的 ECIES 隧道构建消息记录中添加带宽参数 (参见 [Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/))。
+在隧道构建选项映射字段中的 ECIES 隧道构建消息记录中添加带宽参数 (参见 [Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies))。
 因为选项字段可用空间有限，请使用缩短的参数名称。
 隧道构建消息为固定大小，所以这不会增加消息的大小。
 
 
-
 ## 规范
 
-如以下更新 [ECIES 隧道构建消息规范](/en/docs/spec/tunnel-creation-ecies/)：
+如以下更新 [ECIES 隧道构建消息规范](/docs/specs/implementation/#tunnel-creation-ecies)：
 
 对于长和短的 ECIES 构建记录：
 
@@ -117,7 +114,6 @@ toc: true
 这些隧道是由端到端连接另一端的拥有者创建的。
 
 
-
 ## 安全分析
 
 基于请求，可能会出现客户指纹识别或关联。
@@ -139,7 +135,6 @@ toc: true
 - 追踪请求与每个隧道的实际使用带宽
 
 
-
 ## 兼容性
 
 没有问题。所有已知的实现目前都忽略构建消息中的映射字段，
@@ -152,6 +147,5 @@ toc: true
 
 由于目前没有定义 API 版本，其中要求此提案的支持，
 路由器应检查“b”响应以确认支持。
-
 
 

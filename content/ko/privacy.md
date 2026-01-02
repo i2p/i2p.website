@@ -96,7 +96,6 @@ The Invisible Internet Project(이하 "I2P", "저희", "우리" 또는 "당사")
 - **Email**: press@i2p.net
 - **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
 
-번역만 제공하고, 그 외에는 아무것도 제공하지 마십시오:
 
 **최종 업데이트**: 2025년 10월
 

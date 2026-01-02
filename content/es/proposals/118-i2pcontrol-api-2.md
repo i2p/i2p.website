@@ -410,7 +410,6 @@ Devuelve:
 ```
 
 
-
 * **stats.** - Obtener estadísticas de la instancia de i2p
 
   * **stats.advanced** - Este método proporciona acceso a todas las estadísticas guardadas dentro de la instancia.

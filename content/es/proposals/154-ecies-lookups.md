@@ -106,8 +106,6 @@ DH no es posible para respuestas de enrutadores ElG porque no publican
 una clave pública X25519.
 
 
-
-
 ## Especificación
 
 En la especificación DLM (DatabaseLookup) de [I2NP](/docs/specs/i2np/), realizar los siguientes cambios.
@@ -178,8 +176,6 @@ reply_key ::
 ```
 
 
-
-
 ### ECIES a ElG
 
 _destino ECIES_ envía una búsqueda a un _enrutador ElG_.
@@ -232,23 +228,18 @@ tag :: etiqueta de respuesta de 8 bytes
 ```
 
 
-
-
-
 ### ECIES a ECIES (0.9.49)
 
 _destino ECIES_ o _enrutador_ envía una búsqueda a un _enrutador ECIES_, con claves de respuesta incluidas.
 Soportado a partir de la 0.9.49.
 
-Los enrutadores ECIES se introdujeron en la 0.9.48, véase [Prop156](/en/proposals/156-ecies-routers/).
+Los enrutadores ECIES se introdujeron en la 0.9.48, véase [Prop156](/proposals/156-ecies-routers/).
 A partir de la 0.9.49, los destinos y enrutadores ECIES pueden utilizar el mismo formato que en
 la sección "ECIES a ElG" arriba, con claves de respuesta incluidas en la solicitud.
 La búsqueda utilizará el "formato de una sola vez" en [ECIES](/docs/specs/ecies/)
 ya que el solicitante es anónimo.
 
 Para un nuevo método con claves derivadas, véase la siguiente sección.
-
-
 
 
 ### ECIES a ECIES (futuro)
@@ -327,7 +318,6 @@ Ver [ECIES](/docs/specs/ecies/) para todas las definiciones.
 ```
 
 
-
 ### Formato de respuesta
 
 Este es el mensaje de sesión existente,
@@ -370,7 +360,6 @@ pero probablemente eso sea más problemático de lo que vale.
 La propuesta anterior es la más sencilla y minimiza el cambio al formato de búsqueda.
 
 
-
 ## Notas
 
 Las búsquedas y almacenes de base de datos en enrutadores ElG deben estar cifrados con ElGamal/AESSessionTag
@@ -380,7 +369,6 @@ como de costumbre.
 ## Issues
 
 Se requiere un análisis adicional sobre la seguridad de las dos opciones de respuesta ECIES.
-
 
 
 ## Migración

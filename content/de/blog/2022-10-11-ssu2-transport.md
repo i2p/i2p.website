@@ -37,7 +37,6 @@ Alle I2P Noise-Protokolle verwenden die folgenden Standard-Kryptografie-Algorith
 
 ## Ziele
 
-Geben Sie NUR die Übersetzung an, nichts anderes:
 
 - Upgrade the asymmetric cryptography to the much faster X25519
 - Use standard symmetric authenticated encryption ChaCha20/Poly1305

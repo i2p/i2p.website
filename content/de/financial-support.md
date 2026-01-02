@@ -90,4 +90,3 @@ hideSidebar: wahr
 
 </div>
 
-Geben Sie NUR die Übersetzung an, sonst nichts:

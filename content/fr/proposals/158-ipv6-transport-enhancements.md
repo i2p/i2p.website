@@ -42,7 +42,7 @@ La solution consiste à ajouter deux nouvelles "caps" ou capacités aux Informat
 
 ### Initiateurs IPv6
 
-Nos spécifications [SSU](/en/docs/transport/ssu/) et [SSU-SPEC](/en/docs/spec/ssu/) contiennent des erreurs et des incohérences concernant le support
+Nos spécifications [SSU](/docs/specs/ssu2/) et [SSU-SPEC](/docs/legacy/ssu/) contiennent des erreurs et des incohérences concernant le support
 des initiateurs IPv6 pour les introductions IPv4.
 Dans tous les cas, cela n'a jamais été mis en œuvre dans I2P Java ou i2pd.
 Cela doit être corrigé.
@@ -50,7 +50,7 @@ Cela doit être corrigé.
 
 ### Introductions IPv6
 
-Nos spécifications [SSU](/en/docs/transport/ssu/) et [SSU-SPEC](/en/docs/spec/ssu/) indiquent clairement que
+Nos spécifications [SSU](/docs/specs/ssu2/) et [SSU-SPEC](/docs/legacy/ssu/) indiquent clairement que
 les introductions IPv6 ne sont pas prises en charge.
 Cela était basé sur l'hypothèse qu'IPv6 n'est jamais derrière un pare-feu.
 Cela est clairement faux, et nous devons améliorer le support pour les routeurs IPv6 derrière un pare-feu.
@@ -124,7 +124,6 @@ Trois changements doivent être mis en œuvre.
 - Ajouter le support des introductions IPv6 via des initiateurs IPv4 et IPv6
 
 
-
 ## Spécification
 
 ### Caps 4/6
@@ -191,7 +190,6 @@ NTCP2 caché : Caps, s, v uniquement 4/6, multiple est autorisé. Pas besoin de 
 Exemple : NTCP2 caps="46" i=... s=... v="2"
 
 
-
 ### Initiateurs IPv6 pour IPv4
 
 Les changements suivants sont nécessaires pour corriger les erreurs et incohérences dans les spécifications.
@@ -199,7 +197,7 @@ Nous avons également décrit cela comme "partie 1" de la proposition.
 
 #### Changements de Spécifications
 
-[SSU](/en/docs/transport/ssu/) indique actuellement (notes IPv6) :
+[SSU](/docs/specs/ssu2/) indique actuellement (notes IPv6) :
 
 IPv6 est pris en charge depuis la version 0.9.8. Les adresses de relais publiées peuvent être IPv4 ou IPv6, et la communication Alice-Bob peut se faire via IPv4 ou IPv6.
 
@@ -211,8 +209,7 @@ même s'ils n'agissaient pas réellement comme un initiateur via IPv6.
 Par conséquent, les routeurs ne doivent faire confiance à la capacité 'C' d'une adresse IPv6 que si la version du routeur est 0.9.50 ou supérieure.
 
 
-
-[SSU-SPEC](/en/docs/spec/ssu/) indique actuellement (Demande de Relais) :
+[SSU-SPEC](/docs/legacy/ssu/) indique actuellement (Demande de Relais) :
 
 L'adresse IP est uniquement incluse si elle est différente de l'adresse source du paquet et du port.
 Dans l'implémentation actuelle, la longueur de l'IP est toujours 0 et le port est toujours 0,
@@ -223,7 +220,6 @@ Ajouter ce qui suit :
 
 L'IP et le port doivent être inclus pour introduire une adresse IPv4 lors de l'envoi de ce message via IPv6.
 Cela est pris en charge à partir de la version 0.9.50.
-
 
 
 ### Introductions IPv6
@@ -240,11 +236,11 @@ Nous avons également décrit cela comme "partie 2" de la proposition.
 
 #### Changements de Spécifications
 
-[SSU](/en/docs/transport/ssu/) indique actuellement (notes IPv6) :
+[SSU](/docs/specs/ssu2/) indique actuellement (notes IPv6) :
 
 La communication Bob-Charlie et Alice-Charlie se fait uniquement via IPv4.
 
-[SSU-SPEC](/en/docs/spec/ssu/) indique actuellement (Demande de Relais) :
+[SSU-SPEC](/docs/legacy/ssu/) indique actuellement (Demande de Relais) :
 
 Il n'est pas prévu de mettre en œuvre le relais pour IPv6.
 
@@ -252,7 +248,7 @@ Changer pour dire :
 
 Le relais pour IPv6 est pris en charge à partir de la version 0.9.xx
 
-[SSU-SPEC](/en/docs/spec/ssu/) indique actuellement (Réponse de Relais) :
+[SSU-SPEC](/docs/legacy/ssu/) indique actuellement (Réponse de Relais) :
 
 L'adresse IP de Charlie doit être IPv4, car c'est l'adresse à laquelle Alice enverra la SessionRequest après le Hole Punch.
 Il n'est pas prévu de mettre en œuvre le relais pour IPv6.
@@ -263,7 +259,7 @@ L'adresse IP de Charlie peut être IPv4 ou, à partir de la version 0.9.xx, IPv6
 C'est l'adresse à laquelle Alice enverra la SessionRequest après le Hole Punch.
 Le relais pour IPv6 est pris en charge à partir de la version 0.9.xx
 
-[SSU-SPEC](/en/docs/spec/ssu/) indique actuellement (Introduction de Relais) :
+[SSU-SPEC](/docs/legacy/ssu/) indique actuellement (Introduction de Relais) :
 
 L'adresse IP d'Alice est toujours de 4 octets dans l'implémentation actuelle, car Alice essaie de se connecter à Charlie via IPv4.
 Ce message doit être envoyé via une connexion IPv4 établie,

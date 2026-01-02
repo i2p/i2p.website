@@ -52,7 +52,6 @@ Altere as especificações de transporte NTCP e SSU para indicar que o parâmetr
 Isso também se aplica aos parâmetros "ihost0", "ihost1" e "ihost2" em um endereço SSU. Os roteadores devem ignorar endereços de introdutores que contenham nomes de host.
 
 
-
 ## Notas
 
 Esta proposta não aborda nomes de host para hosts de reseed. Embora as consultas DNS para hosts de reseed sejam muito menos frequentes, ainda podem ser um problema. Se necessário, isso pode ser corrigido simplesmente substituindo os nomes de host por IPs na lista de URLs embutida; não seriam necessárias mudanças de especificação ou de código.

@@ -12,7 +12,7 @@ toc: true
 
 ## Stav
 
-Schváleno při kontrole 2025-06-24. Specifikace je na [UDP specification](/en/docs/spec/udp-bittorrent-announces/). Implementováno v zzzot 0.20.0-beta2. Implementováno v i2psnark od API 0.9.67. Zkontrolujte dokumentaci dalších implementací pro stav.
+Schváleno při kontrole 2025-06-24. Specifikace je na [UDP specification](/docs/specs/udp-bittorrent-announces/). Implementováno v zzzot 0.20.0-beta2. Implementováno v i2psnark od API 0.9.67. Zkontrolujte dokumentaci dalších implementací pro stav.
 
 ## Přehled
 
@@ -20,9 +20,9 @@ Tento návrh je pro implementaci UDP trackerů v I2P.
 
 ### Change History
 
-Předběžný návrh pro UDP trackery v I2P byl zveřejněn na naší [stránce specifikace bittorrent](/en/docs/applications/bittorrent/) v květnu 2014; tento návrh předcházel našemu formálnímu procesu návrhů a nikdy nebyl implementován. Tento návrh byl vytvořen začátkem roku 2022 a zjednodušuje verzi z roku 2014.
+Předběžný návrh pro UDP trackery v I2P byl zveřejněn na naší [stránce specifikace bittorrent](/docs/applications/bittorrent/) v květnu 2014; tento návrh předcházel našemu formálnímu procesu návrhů a nikdy nebyl implementován. Tento návrh byl vytvořen začátkem roku 2022 a zjednodušuje verzi z roku 2014.
 
-Jelikož tento návrh spoléhá na odpověditelné datagramy, byl pozastaven, jakmile jsme začali pracovat na [návrhu Datagram2](/en/proposals/163-datagram2/) na začátku roku 2023. Tento návrh byl schválen v dubnu 2025.
+Jelikož tento návrh spoléhá na odpověditelné datagramy, byl pozastaven, jakmile jsme začali pracovat na [návrhu Datagram2](/proposals/163-datagram2/) na začátku roku 2023. Tento návrh byl schválen v dubnu 2025.
 
 Verze tohoto návrhu z roku 2023 specifikovala dva režimy, "kompatibilní" a "rychlý". Další analýza odhalila, že rychlý režim by byl nezabezpečený a také by byl neefektivní pro klienty s velkým počtem torrentů. Navíc BiglyBT vyjádřil preferenci pro kompatibilní režim. Tento režim bude jednodušší implementovat pro jakýkoli tracker nebo klient podporující standardní [BEP 15](http://www.bittorrent.org/beps/bep_0015.html).
 
@@ -42,11 +42,11 @@ Je obtížné vypočítat úspory šířky pásma u datagramů oproti streamovac
 
 Kromě toho by mělo dojít k implementačně specifickým úsporám paměti, protože datagramy vyžadují mnohem méně stavu v paměti než streamovací spojení.
 
-Post-kvantové šifrování a podpisy podle návrhu v [/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/) podstatně zvýší režii šifrovaných a podepsaných struktur, včetně destinací, leaseSets, streaming SYN a SYN ACK. Je důležité tuto režii minimalizovat všude, kde je to možné, než bude PQ kryptografie v I2P přijata.
+Post-kvantové šifrování a podpisy podle návrhu v [/proposals/169-pq-crypto/](/proposals/169-pq-crypto/) podstatně zvýší režii šifrovaných a podepsaných struktur, včetně destinací, leaseSets, streaming SYN a SYN ACK. Je důležité tuto režii minimalizovat všude, kde je to možné, než bude PQ kryptografie v I2P přijata.
 
 ## Motivace
 
-Tento návrh používá repliable datagram2, repliable datagram3 a raw datagramy, jak jsou definovány v [/en/docs/spec/datagrams/](/en/docs/spec/datagrams/). Datagram2 a Datagram3 jsou nové varianty repliable datagramů, definované v Návrhu 163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/). Datagram2 přidává ochranu proti replay útokům a podporu offline podpisů. Datagram3 je menší než starý formát datagramu, ale bez autentifikace.
+Tento návrh používá repliable datagram2, repliable datagram3 a raw datagramy, jak jsou definovány v [/docs/api/datagrams/](/docs/api/datagrams/). Datagram2 a Datagram3 jsou nové varianty repliable datagramů, definované v Návrhu 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 přidává ochranu proti replay útokům a podporu offline podpisů. Datagram3 je menší než starý formát datagramu, ale bez autentifikace.
 
 ### BEP 15
 
@@ -99,7 +99,7 @@ Pro externí tracker aplikaci, která v současnosti používá HTTP server tunn
 
 #### Clients
 
-Externí SAM-based torrent klienti jako qbittorrent a další klienti založené na libtorrent by vyžadovali [SAM v3.3](/en/docs/api/samv3/), které není podporováno v i2pd. To je také vyžadováno pro podporu DHT a je dostatečně složité na to, aby to žádný známý SAM torrent klient neimplementoval. Žádné SAM-based implementace tohoto návrhu se neočekávají v blízké době.
+Externí SAM-based torrent klienti jako qbittorrent a další klienti založené na libtorrent by vyžadovali [SAM v3.3](/docs/api/samv3/), které není podporováno v i2pd. To je také vyžadováno pro podporu DHT a je dostatečně složité na to, aby to žádný známý SAM torrent klient neimplementoval. Žádné SAM-based implementace tohoto návrhu se neočekávají v blízké době.
 
 ### Connection Lifetime
 

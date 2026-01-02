@@ -57,16 +57,14 @@ I2P ile ilgili güncellemeler ve duyurular almak için e-postanızı bu web site
 | Rol | Kişi | Açıklama |
 |------|--------|-------------|
 | **I2P Java Sürüm Yöneticisi** | idk | Sürümleri derler ve imzalar |
-| **Forum yöneticisi** | eche\|on | I2P genel forum bakım sorumlusu |
 | **İndirme yansıları yöneticisi** | StormyCloud | İndirme dosyaları için yansıları yönetir |
 | **Paketleyici; Linux** | idk | Linux (Debian/Ubuntu) dağıtım paketleyicisi |
 | **Paketleyici; Windows** | idk | Windows kurulum paketleyicisi |
-| **Paketleyici; OSX** | echelon | OSX kurulum paketleyicisi |
-| **Sürüm Yöneticisi Yedekleri** | eche\|on | Yedek sürüm yöneticileri |
+| **Paketleyici; OSX** | vacant | OSX kurulum paketleyicisi |
 | **CI yöneticisi** | idk | Sürekli Entegrasyon altyapısını sürdürür |
 | **Reseed Yöneticisi** | idk | reseed sunucularını izler, danışmanlık yapar ve yeni reseed sunucuları temin eder |
 | **Gitea yöneticisi** | idk | I2P Gitea bakım sorumlusu |
-| **Yerelleştirme** | eche\|on, idk, zzz | [Transifex](https://www.transifex.com/projects/p/I2P/) üzerinde yöneticiler |
+| **Yerelleştirme** | idk, zzz | [Transifex](https://www.transifex.com/projects/p/I2P/) üzerinde yöneticiler |
 | **Çevirmenler** | pek çok kişi! | [Transifex](https://www.transifex.com/projects/p/I2P/) üzerinde çevirmenler |
 | **Web sitesi bakım sorumlusu** | StormyCloud | Kamusal proje web sitesinin içerik ve tasarımını yönetir |
 | **Web sunucusu yöneticisi** | StormyCloud | Kamusal proje web sunucularını yönetir |

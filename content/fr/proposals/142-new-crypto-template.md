@@ -24,7 +24,6 @@ Cependant, plusieurs problèmes doivent être résolus avant que nous puissions 
 Ce document met en évidence ces problèmes non résolus.
 
 
-
 ## Recherche de Fond
 
 Toute personne proposant une nouvelle cryptographie doit d'abord être familière avec les documents suivants :
@@ -58,11 +57,9 @@ En révision, nous utilisons ElGamal pour :
 Toute proposition visant à remplacer ElGamal par autre chose doit fournir les détails suivants.
 
 
-
 ## Spécification
 
 Toute proposition de nouvelle cryptographie asymétrique doit spécifier complètement les éléments suivants.
-
 
 
 ### 1. Général
@@ -88,9 +85,6 @@ Répondez aux questions suivantes dans votre proposition :
 - Numéro(s) de type de cryptographie proposé(s) (gamme expérimentale ou non)
 
 
-
-
 ## Notes
-
 
 

@@ -32,7 +32,6 @@ Ao padronizar os tipos de mime, cada implementação de roteador pode escrever m
 conforme apropriado, e o arquivo de definição de mime pode ser compartilhado por todas as implementações.
 
 
-
 ## Design
 
 Escreva um arquivo fonte XML seguindo o padrão freedesktop.org e inclua-o
@@ -45,7 +44,6 @@ especificados aqui.
 
 Também incluiremos as definições com o Jetty e as incluiremos com
 o software de reabastecimento ou instruções.
-
 
 
 ## Especificação
@@ -87,8 +85,6 @@ o software de reabastecimento ou instruções.
 =.txt.gz 		application/x-i2p-peerprofile
 
 .xpi2p	 		application/x-i2p-plugin
-
-
 
 
 ## Notas

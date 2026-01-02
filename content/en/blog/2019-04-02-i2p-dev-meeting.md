@@ -25,7 +25,7 @@ categories: ["meeting"]
 20:01:10 &lt;zzz&gt; still awaiting mavencentral (str4d), our f-droid (meeh), official f-droid (nextloop) and debian (mhatta)
 20:01:12 &lt;meeh&gt; hi
 20:01:26 &lt;zzz&gt; any of you have ETA on when those items will be completed?
-20:02:58 &lt;meeh&gt; if it's as easy as https://f-droid.org/en/docs/Setup_an_F-Droid_App_Repo/ seem to be,later today.
+20:02:58 &lt;meeh&gt; if it's as easy as https://f-droid.org/docs/Setup_an_F-Droid_App_Repo/ seem to be,later today.
 20:03:31 &lt;zzz&gt; you've already set it up, we've had it for years. It's just a question of putting the new apk in there, which you've done several times before
 20:04:08 &lt;zzz&gt; please harass str4d for maven central, and figure out how to get him out of the process ASAP. It's been a year we've been fighting to get control of this
 20:04:08 &lt;meeh&gt; no, I've hosted it, never uploaded

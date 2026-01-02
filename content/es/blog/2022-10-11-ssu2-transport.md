@@ -85,7 +85,6 @@ Los proyectos Java I2P e i2pd habilitarán SSU2 de forma predeterminada en sus p
 
 ## Resumen
 
-Proporcione ÚNICAMENTE la traducción, nada más:
 
 Los fundadores de I2P tuvieron que tomar varias decisiones sobre algoritmos y protocolos criptográficos. Algunas de esas decisiones fueron mejores que otras, pero, veinte años después, la mayoría de ellas ya acusa el paso del tiempo. Por supuesto, sabíamos que esto se avecinaba, y hemos pasado la última década planificando e implementando actualizaciones criptográficas.
 

@@ -1,6 +1,7 @@
 ---
 title: "20 Jahre Privatsphäre: Eine kurze Geschichte von I2P"
 date: 2021-08-28
+slug: "20-years-of-privacy-a-brief-history-of-i2p"
 author: "sadie"
 description: "Eine Geschichte von I2P, so wie wir es kennen"
 categories: ["general"]

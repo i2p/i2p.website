@@ -15,7 +15,7 @@ toc: true
 
 ## 动机
 
-大多数 I2P 路由器采用一种丢包的拥塞管理形式。参考实现使用一种 WRED 策略，考虑到消息大小和传输距离（参见 [tunnel throttling 文档](/en/docs/tunnels/implementation/#tunnelthrottling)）。由于这种策略，丢包的主要来源是 OBEP。
+大多数 I2P 路由器采用一种丢包的拥塞管理形式。参考实现使用一种 WRED 策略，考虑到消息大小和传输距离（参见 [tunnel throttling 文档](/docs/specs/implementation/#tunnelthrottling)）。由于这种策略，丢包的主要来源是 OBEP。
 
 ## 设计
 
@@ -27,7 +27,7 @@ toc: true
 
 ## 规范
 
-新增一个 I2CP 选项到 [I2CP 规范](/en/docs/spec/i2cp/)：
+新增一个 I2CP 选项到 [I2CP 规范](/docs/specs/i2cp/)：
 
     outbound.matchEndWithTarget
         Boolean

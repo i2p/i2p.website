@@ -11,7 +11,7 @@ Le réseau I2P prospère grâce à notre communauté. Que vous soyez développeu
 ### Développement du cœur
 I2P est open source et nous accueillons les contributions au code source. Que vous souhaitiez corriger des bugs, ajouter des fonctionnalités ou améliorer les performances, vos contributions de code font la différence.
 
-- **Commencer** : Consultez notre [guide pour les nouveaux développeurs](/en/docs/developers/new-developers)
+- **Commencer** : Consultez notre [guide pour les nouveaux développeurs](/docs/developers/new-developers)
 - **Code source** : [GitLab](https://i2pgit.org) (également disponible dans I2P à l'adresse http://git.idk.i2p)
 - **Réunions mensuelles** : Rejoignez-nous le premier mardi de chaque mois
 - **Canaux IRC** : #i2p-dev sur IRC2P pour les discussions de développement
@@ -19,7 +19,7 @@ I2P est open source et nous accueillons les contributions au code source. Que vo
 ### Développement d'applications
 Construisez des applications qui fonctionnent sur I2P !
 
-- **Documentation API** : Apprenez-en davantage sur [les APIs SAM, BOB et I2PTunnel](/en/docs/api)
+- **Documentation API** : Apprenez-en davantage sur [les APIs SAM, BOB et I2PTunnel](/docs/api)
 - **Bibliothèque de streaming** : Utilisez la bibliothèque de streaming I2P pour vos applications
 - **Nouveaux routeurs** : Envisagez de construire un routeur I2P en [Rust, Go ou autres langages](/en/blog/2025/10/16/new-i2p-routers/)
 
@@ -27,7 +27,7 @@ Construisez des applications qui fonctionnent sur I2P !
 
 Aidez les nouveaux utilisateurs à rejoindre le réseau en exécutant des services d'infrastructure :
 
-- **Serveurs de réensemencement** : Aidez les nouveaux routeurs à démarrer et à rejoindre le réseau - consultez notre [documentation sur le réensemencement](/en/docs/guides/reseed-server/)
+- **Serveurs de réensemencement** : Aidez les nouveaux routeurs à démarrer et à rejoindre le réseau - consultez notre [documentation sur le réensemencement](/docs/guides/reseed-server/)
 - **Sites miroirs** : Hébergez des miroirs de téléchargement pour améliorer la disponibilité
 - **Services** : Exécutez des services I2P comme des forums, des serveurs IRC ou d'autres outils communautaires
 
@@ -36,8 +36,8 @@ Aidez les nouveaux utilisateurs à rejoindre le réseau en exécutant des servic
 ### Améliorer la documentation
 Une documentation claire aide tout le monde à mieux comprendre et utiliser I2P.
 
-- **Directives de rédaction** : Suivez nos [directives de rédaction de documentation](/en/docs/writing-guidelines/)
-- **Hub de documentation** : Parcourez et contribuez à la [section des docs](/en/docs/)
+- **Directives de rédaction** : Suivez nos [directives de rédaction de documentation](/docs/writing-guidelines)
+- **Hub de documentation** : Parcourez et contribuez à la [section des docs](/docs/)
 - **Suggestions de contenu** : Des idées ? [Contactez-nous](/en/contact/)
 
 ### Traduction
@@ -110,7 +110,7 @@ Connectez-vous à la communauté I2P :
 Vous ne savez pas par où commencer ? Voici quelques premiers pas :
 
 1. **Installer I2P** : [Téléchargez et installez](/en/downloads) la dernière version
-2. **Apprendre les bases** : Lisez l'[introduction à I2P](/en/docs/how/intro)
+2. **Apprendre les bases** : Lisez l'[introduction à I2P](/docs/how/intro)
 3. **Choisir un domaine** : Choisissez quelque chose qui correspond à vos compétences et intérêts
 4. **Dire bonjour** : Rejoignez #i2p-dev sur IRC2P et présentez-vous
 5. **Commencer petit** : Choisissez une petite tâche ou contribution pour débuter

@@ -569,7 +569,6 @@ vào tuần tự hóa Java.
 ## Ghi chú
 
 
-
 ## Vấn đề
 
 - Không có cách nào cho một khách hàng để tìm ra và kết nối với một nhà lãnh đạo không xác định.

@@ -37,7 +37,6 @@ Todos os protocolos Noise do I2P usam os seguintes algoritmos criptográficos pa
 
 ## Objetivos
 
-Forneça APENAS a tradução, nada mais:
 
 - Upgrade the asymmetric cryptography to the much faster X25519
 - Use standard symmetric authenticated encryption ChaCha20/Poly1305

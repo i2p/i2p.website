@@ -166,7 +166,7 @@ Hay mucha información valiosa en el documento técnico, y lo revisaremos en bus
 
 ### Intercambio de Claves
 
-Actualiza las secciones y tablas en el documento de estructuras comunes [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/) de la siguiente manera:
+Actualiza las secciones y tablas en el documento de estructuras comunes [/docs/specs/common-structures/](/docs/specs/common-structures/) de la siguiente manera:
 
 ### Firmas
 
@@ -563,7 +563,7 @@ sin cambios
 
 ### SigningPrivateKey
 
-Actualiza la especificación ECIES-Ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) de la siguiente manera:
+Actualiza la especificación ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) de la siguiente manera:
 
 #### Noise identifiers
 
@@ -760,11 +760,11 @@ Tamaños:
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-Ten en cuenta que aunque el mensaje 2 normalmente tendrá una carga útil distinta de cero, la especificación ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) no lo requiere, por lo que el tamaño mínimo de carga útil es 0. Los tamaños mínimos del mensaje 2 pueden calcularse en consecuencia.
+Ten en cuenta que aunque el mensaje 2 normalmente tendrá una carga útil distinta de cero, la especificación ratchet [/docs/specs/ecies/](/docs/specs/ecies/) no lo requiere, por lo que el tamaño mínimo de carga útil es 0. Los tamaños mínimos del mensaje 2 pueden calcularse en consecuencia.
 
 ### Firma
 
-Actualiza la especificación NTCP2 [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/) de la siguiente manera:
+Actualiza la especificación NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) de la siguiente manera:
 
 #### Noise identifiers
 
@@ -935,7 +935,7 @@ Sin cambios
 
 ### Certificados de Clave
 
-Actualiza la especificación SSU2 [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/) de la siguiente manera:
+Actualiza la especificación SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) de la siguiente manera:
 
 #### Noise identifiers
 

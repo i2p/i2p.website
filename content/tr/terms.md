@@ -128,10 +128,8 @@ Bu Hizmet Koşulları hakkında sorularınız varsa, lütfen bizimle iletişime 
 
 Web Sitemizi veya Yazılımımızı kullanarak, bu Hizmet Şartlarını okuduğunuzu, anladığınızı ve bunlara bağlı kalmayı kabul ettiğinizi beyan edersiniz.
 
-Yalnızca çeviriyi verin, başka hiçbir şey değil:
 
 **Son Güncelleme**: Ekim 2025
 
-Yalnızca çeviriyi sağlayın, başka hiçbir şey değil:
 
 Bu koşullar I2P projesinin web sitesi (geti2p.net) ve I2P projesi tarafından dağıtılan I2P yazılımı için geçerlidir.

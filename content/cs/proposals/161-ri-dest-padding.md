@@ -44,7 +44,6 @@ které by zcela odstranily výplň. Existuje také krátká diskuse o postkvanto
 kryptografii a jak by to mohlo ovlivnit budoucí plánování.
 
 
-
 ### Cíle
 
 - Odstranit požadavek na vytvoření cílů ElGamal klíčového páru
@@ -67,7 +66,6 @@ zcela odstranit kód ElGamal, s ohledem na aspekty zpětné kompatibility
 v jiných protokolech.
 
 
-
 ## Navrhovaný design
 
 Přísně řečeno, 32-bytů veřejný podpisový klíč samotný (v rámci Destinations a Router Identities)
@@ -83,7 +81,6 @@ znepokojit nebo zmást.
 Pro typ podpisu Ed25519 a typ šifrování X25519:
 Destinations bude obsahovat 11 kopií (352 bytů) náhodných dat.
 Router Identities bude obsahovat 10 kopií (320 bytů) náhodných dat.
-
 
 
 ### Odhadované úspory
@@ -112,7 +109,6 @@ odhadované úspory:
 Poznámky: Předpokládá 7-bytový certifikát není komprimovatelný, žádné dodatečné gzip overhead.
 Ani to není pravda, ale efekty budou malé.
 Ignoruje další komprimovatelné části Router Info.
-
 
 
 ## Specifikace
@@ -204,9 +200,6 @@ Náklady a výhody těchto změn nejsou jasné.
 Konkrétní návrhy TBD:
 
 
-
-
-
 ### PQ klíče
 
 Post-Quantum (PQ) veřejné klíče, pro jakýkoli předpokládaný algoritmus,
@@ -231,8 +224,6 @@ Ale stalo by se to až po hybridním nebo ratchetu ????????????
 Pro další diskusi viz [this topic](http://zzz.i2p/topics/3294).
 
 
-
-
 ## Problémy
 
 Může být žádoucí znovu nastavit klíče sítě pomalým tempem, aby se poskytlo krytí pro nové routery.
@@ -241,8 +232,6 @@ Může být žádoucí znovu nastavit klíče sítě pomalým tempem, aby se pos
 Není možné znovu nastavit existující Destinations.
 
 Měly by být Router Identities s výplní ve veřejném klíčovém polích identifikované odlišným typem šifrování v klíčovém certifikátu? To by způsobilo problémy s kompatibilitou.
-
-
 
 
 ## Migrace

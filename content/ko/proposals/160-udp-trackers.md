@@ -12,7 +12,7 @@ toc: true
 
 ## 상태
 
-2025-06-24 검토에서 승인됨. 사양은 [UDP specification](/en/docs/spec/udp-bittorrent-announces/)에서 확인할 수 있습니다. zzzot 0.20.0-beta2에서 구현됨. API 0.9.67부터 i2psnark에서 구현됨. 다른 구현체의 상태는 해당 문서를 확인하세요.
+2025-06-24 검토에서 승인됨. 사양은 [UDP specification](/docs/specs/udp-bittorrent-announces/)에서 확인할 수 있습니다. zzzot 0.20.0-beta2에서 구현됨. API 0.9.67부터 i2psnark에서 구현됨. 다른 구현체의 상태는 해당 문서를 확인하세요.
 
 ## 개요
 
@@ -20,9 +20,9 @@ toc: true
 
 ### Change History
 
-I2P에서 UDP tracker에 대한 예비 제안이 2014년 5월 우리의 [bittorrent 사양 페이지](/en/docs/applications/bittorrent/)에 게시되었습니다. 이는 우리의 공식적인 제안 프로세스보다 앞서 있었고, 구현되지 않았습니다. 이 제안은 2022년 초에 작성되었으며 2014년 버전을 단순화합니다.
+I2P에서 UDP tracker에 대한 예비 제안이 2014년 5월 우리의 [bittorrent 사양 페이지](/docs/applications/bittorrent/)에 게시되었습니다. 이는 우리의 공식적인 제안 프로세스보다 앞서 있었고, 구현되지 않았습니다. 이 제안은 2022년 초에 작성되었으며 2014년 버전을 단순화합니다.
 
-이 제안서는 응답 가능한 datagram에 의존하므로, 2023년 초에 [Datagram2 제안서](/en/proposals/163-datagram2/) 작업을 시작하면서 보류되었습니다. 해당 제안서는 2025년 4월에 승인되었습니다.
+이 제안서는 응답 가능한 datagram에 의존하므로, 2023년 초에 [Datagram2 제안서](/proposals/163-datagram2/) 작업을 시작하면서 보류되었습니다. 해당 제안서는 2025년 4월에 승인되었습니다.
 
 이 제안서의 2023년 버전은 "호환성"과 "빠른" 두 가지 모드를 명시했습니다. 추가 분석 결과 빠른 모드는 안전하지 않으며, 많은 수의 torrent를 가진 클라이언트에게는 비효율적일 것으로 밝혀졌습니다. 또한 BiglyBT는 호환성 모드에 대한 선호를 표명했습니다. 이 모드는 표준 [BEP 15](http://www.bittorrent.org/beps/bep_0015.html)를 지원하는 모든 tracker 또는 클라이언트에서 구현하기가 더 쉬울 것입니다.
 
@@ -42,11 +42,11 @@ Bittorrent는 2008년 BEP 15 [BEP 15](http://www.bittorrent.org/beps/bep_0015.ht
 
 또한 데이터그램은 스트리밍 연결보다 메모리 내 상태를 훨씬 적게 요구하므로, 구현별 메모리 감소 효과가 있어야 합니다.
 
-[/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/)에서 구상된 Post-Quantum 암호화 및 서명은 destination, leaseSet, 스트리밍 SYN 및 SYN ACK를 포함한 암호화되고 서명된 구조의 오버헤드를 상당히 증가시킬 것입니다. I2P에서 PQ 암호화가 채택되기 전에 가능한 한 이러한 오버헤드를 최소화하는 것이 중요합니다.
+[/proposals/169-pq-crypto/](/proposals/169-pq-crypto/)에서 구상된 Post-Quantum 암호화 및 서명은 destination, leaseSet, 스트리밍 SYN 및 SYN ACK를 포함한 암호화되고 서명된 구조의 오버헤드를 상당히 증가시킬 것입니다. I2P에서 PQ 암호화가 채택되기 전에 가능한 한 이러한 오버헤드를 최소화하는 것이 중요합니다.
 
 ## 동기
 
-이 제안서는 [/en/docs/spec/datagrams/](/en/docs/spec/datagrams/)에 정의된 대로 repliable datagram2, repliable datagram3, 그리고 raw datagram을 사용합니다. Datagram2와 Datagram3은 제안서 163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/)에서 정의된 repliable datagram의 새로운 변형입니다. Datagram2는 재생 공격 저항성과 오프라인 서명 지원을 추가합니다. Datagram3은 기존 datagram 형식보다 작지만 인증 기능이 없습니다.
+이 제안서는 [/docs/api/datagrams/](/docs/api/datagrams/)에 정의된 대로 repliable datagram2, repliable datagram3, 그리고 raw datagram을 사용합니다. Datagram2와 Datagram3은 제안서 163 [/proposals/163-datagram2/](/proposals/163-datagram2/)에서 정의된 repliable datagram의 새로운 변형입니다. Datagram2는 재생 공격 저항성과 오프라인 서명 지원을 추가합니다. Datagram3은 기존 datagram 형식보다 작지만 인증 기능이 없습니다.
 
 ### BEP 15
 
@@ -99,7 +99,7 @@ announce 요청은 Datagram3이므로 tracker는 연결 ID를 announce 목적지
 
 #### Clients
 
-qbittorrent 및 기타 libtorrent 기반 클라이언트와 같은 외부 SAM 기반 토렌트 클라이언트는 i2pd에서 지원되지 않는 [SAM v3.3](/en/docs/api/samv3/)이 필요합니다. 이는 DHT 지원에도 필요하며, 알려진 SAM 토렌트 클라이언트가 구현하기에는 충분히 복잡합니다. 이 제안의 SAM 기반 구현은 곧 기대되지 않습니다.
+qbittorrent 및 기타 libtorrent 기반 클라이언트와 같은 외부 SAM 기반 토렌트 클라이언트는 i2pd에서 지원되지 않는 [SAM v3.3](/docs/api/samv3/)이 필요합니다. 이는 DHT 지원에도 필요하며, 알려진 SAM 토렌트 클라이언트가 구현하기에는 충분히 복잡합니다. 이 제안의 SAM 기반 구현은 곧 기대되지 않습니다.
 
 ### Connection Lifetime
 

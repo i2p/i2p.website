@@ -166,7 +166,7 @@ Rosenpass는 사전 공유된 Classic McEliece 460896 정적 키(각각 500 KB)�
 
 ### 키 교환
 
-공통 구조 문서 [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/)의 섹션과 테이블을 다음과 같이 업데이트하세요:
+공통 구조 문서 [/docs/specs/common-structures/](/docs/specs/common-structures/)의 섹션과 테이블을 다음과 같이 업데이트하세요:
 
 ### 서명
 
@@ -563,7 +563,7 @@ This is the "ekem1" message pattern:
 
 ### SigningPrivateKey
 
-다음과 같이 ECIES-Ratchet 명세서 [/en/docs/spec/ecies/](/en/docs/spec/ecies/)를 업데이트하세요:
+다음과 같이 ECIES-Ratchet 명세서 [/docs/specs/ecies/](/docs/specs/ecies/)를 업데이트하세요:
 
 #### Noise identifiers
 
@@ -760,11 +760,11 @@ Payload Part 1:
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-메시지 2는 일반적으로 0이 아닌 페이로드를 가지지만, ratchet 사양 [/en/docs/spec/ecies/](/en/docs/spec/ecies/)에서는 이를 요구하지 않으므로 최소 페이로드 크기는 0입니다. 따라서 최소 메시지 2 크기를 그에 따라 계산할 수 있습니다.
+메시지 2는 일반적으로 0이 아닌 페이로드를 가지지만, ratchet 사양 [/docs/specs/ecies/](/docs/specs/ecies/)에서는 이를 요구하지 않으므로 최소 페이로드 크기는 0입니다. 따라서 최소 메시지 2 크기를 그에 따라 계산할 수 있습니다.
 
 ### 서명
 
-NTCP2 사양서 [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/)를 다음과 같이 업데이트하세요:
+NTCP2 사양서 [/docs/specs/ntcp2/](/docs/specs/ntcp2/)를 다음과 같이 업데이트하세요:
 
 #### Noise identifiers
 
@@ -935,7 +935,7 @@ NTCP2 사양서 [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/)를 다음과 같이
 
 ### 키 인증서
 
-SSU2 사양 [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/)을 다음과 같이 업데이트하세요:
+SSU2 사양 [/docs/specs/ssu2/](/docs/specs/ssu2/)을 다음과 같이 업데이트하세요:
 
 #### Noise identifiers
 

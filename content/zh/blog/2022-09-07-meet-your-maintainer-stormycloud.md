@@ -8,7 +8,7 @@ categories: ["general"]
 
 ## 与 StormyCloud Inc. 的对话
 
-随着最新的 [I2P Java 发行版](https://geti2p.net/en/blog/post/2022/08/22/1.9.0-Release)，针对新的 I2P 安装，现有的 outproxy（出口代理）false.i2p 已被新的 StormyCloud outproxy 所替换。对于正在更新其 router 的用户，切换到 Stormycloud 服务可以很快完成。
+随着最新的 [I2P Java 发行版](https://geti2p.net/en/blog/2022/08/22/1.9.0-Release)，针对新的 I2P 安装，现有的 outproxy（出口代理）false.i2p 已被新的 StormyCloud outproxy 所替换。对于正在更新其 router 的用户，切换到 Stormycloud 服务可以很快完成。
 
 在您的 Hidden Services Manager（隐藏服务管理器）中，将 Outproxies（出口代理）和 SSL Outproxies（SSL 出口代理）都更改为 exit.stormycloud.i2p，然后点击页面底部的保存按钮。
 

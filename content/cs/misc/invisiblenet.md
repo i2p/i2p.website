@@ -2,4 +2,4 @@
 title: "Historické dokumenty"
 ---
 
-Tato stránka byla přesunuta do sekce [Dokumentace](/en/docs/) pod "Historie".
+Tato stránka byla přesunuta do sekce [Dokumentace](/docs/) pod "Historie".

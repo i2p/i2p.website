@@ -1,5 +1,6 @@
 ---
 title: "Cuộc họp các nhà phát triển I2P - 23 tháng 3, 2004"
+slug: "i2p-dev-meeting-march-23-2004"
 date: 2004-03-23
 author: "jrand0m"
 description: "Biên bản cuộc họp phát triển I2P ngày 23 tháng 3 năm 2004."

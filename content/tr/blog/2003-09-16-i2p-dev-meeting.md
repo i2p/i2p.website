@@ -16,4 +16,3 @@ categories: ["meeting"]
 
 </div>
 
-Yalnızca çeviriyi verin, başka bir şey değil:

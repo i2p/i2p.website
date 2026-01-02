@@ -8,7 +8,6 @@ categories: ["status"]
 
 Herkese merhaba,
 
-Yalnızca çeviriyi verin, başka hiçbir şey değil:
 
 * Index
 

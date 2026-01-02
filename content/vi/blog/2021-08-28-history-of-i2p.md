@@ -1,6 +1,7 @@
 ---
 title: "20 năm bảo vệ quyền riêng tư: Lược sử I2P"
 date: 2021-08-28
+slug: "20-years-of-privacy-a-brief-history-of-i2p"
 author: "sadie"
 description: "Lịch sử của I2P như chúng ta biết"
 categories: ["general"]

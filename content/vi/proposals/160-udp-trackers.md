@@ -12,7 +12,7 @@ toc: true
 
 ## Trạng thái
 
-Đã được phê duyệt tại đánh giá 2025-06-24. Đặc tả tại [UDP specification](/en/docs/spec/udp-bittorrent-announces/). Đã triển khai trong zzzot 0.20.0-beta2. Đã triển khai trong i2psnark từ API 0.9.67. Kiểm tra tài liệu của các triển khai khác để biết trạng thái.
+Đã được phê duyệt tại đánh giá 2025-06-24. Đặc tả tại [UDP specification](/docs/specs/udp-bittorrent-announces/). Đã triển khai trong zzzot 0.20.0-beta2. Đã triển khai trong i2psnark từ API 0.9.67. Kiểm tra tài liệu của các triển khai khác để biết trạng thái.
 
 ## Tổng quan
 
@@ -20,9 +20,9 @@ toc: true
 
 ### Change History
 
-Một đề xuất sơ bộ về UDP tracker trong I2P đã được đăng tải trên [trang thông số kỹ thuật bittorrent](/en/docs/applications/bittorrent/) của chúng tôi vào tháng 5 năm 2014; điều này có trước quy trình đề xuất chính thức của chúng tôi, và nó chưa bao giờ được triển khai. Đề xuất này được tạo ra vào đầu năm 2022 và đã đơn giản hóa phiên bản năm 2014.
+Một đề xuất sơ bộ về UDP tracker trong I2P đã được đăng tải trên [trang thông số kỹ thuật bittorrent](/docs/applications/bittorrent/) của chúng tôi vào tháng 5 năm 2014; điều này có trước quy trình đề xuất chính thức của chúng tôi, và nó chưa bao giờ được triển khai. Đề xuất này được tạo ra vào đầu năm 2022 và đã đơn giản hóa phiên bản năm 2014.
 
-Vì đề xuất này dựa vào các datagram có thể trả lời, nó đã được tạm hoãn khi chúng tôi bắt đầu làm việc trên [đề xuất Datagram2](/en/proposals/163-datagram2/) vào đầu năm 2023. Đề xuất đó đã được phê duyệt vào tháng 4 năm 2025.
+Vì đề xuất này dựa vào các datagram có thể trả lời, nó đã được tạm hoãn khi chúng tôi bắt đầu làm việc trên [đề xuất Datagram2](/proposals/163-datagram2/) vào đầu năm 2023. Đề xuất đó đã được phê duyệt vào tháng 4 năm 2025.
 
 Phiên bản 2023 của đề xuất này quy định hai chế độ, "tương thích" và "nhanh". Phân tích sâu hơn cho thấy chế độ nhanh sẽ không an toàn và cũng sẽ không hiệu quả đối với các client có số lượng lớn torrent. Hơn nữa, BiglyBT đã bày tỏ sự ưa thích cho chế độ tương thích. Chế độ này sẽ dễ triển khai hơn cho bất kỳ tracker hoặc client nào hỗ trợ tiêu chuẩn [BEP 15](http://www.bittorrent.org/beps/bep_0015.html).
 
@@ -42,11 +42,11 @@ Rất khó để tính toán mức tiết kiệm băng thông của datagram so 
 
 Ngoài ra, nên có các giảm thiểu bộ nhớ cụ thể theo từng triển khai, vì các datagram yêu cầu ít trạng thái trong bộ nhớ hơn nhiều so với kết nối streaming.
 
-Mã hóa và chữ ký Post-Quantum như được hình dung trong [/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/) sẽ tăng đáng kể chi phí overhead của các cấu trúc được mã hóa và ký, bao gồm destinations, leasesets, streaming SYN và SYN ACK. Việc giảm thiểu overhead này là quan trọng khi có thể trước khi PQ crypto được áp dụng trong I2P.
+Mã hóa và chữ ký Post-Quantum như được hình dung trong [/proposals/169-pq-crypto/](/proposals/169-pq-crypto/) sẽ tăng đáng kể chi phí overhead của các cấu trúc được mã hóa và ký, bao gồm destinations, leasesets, streaming SYN và SYN ACK. Việc giảm thiểu overhead này là quan trọng khi có thể trước khi PQ crypto được áp dụng trong I2P.
 
 ## Động lực
 
-Đề xuất này sử dụng repliable datagram2, repliable datagram3, và raw datagrams, như được định nghĩa trong [/en/docs/spec/datagrams/](/en/docs/spec/datagrams/). Datagram2 và Datagram3 là các biến thể mới của repliable datagrams, được định nghĩa trong Đề xuất 163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/). Datagram2 bổ sung khả năng chống replay và hỗ trợ chữ ký offline. Datagram3 nhỏ hơn so với định dạng datagram cũ, nhưng không có xác thực.
+Đề xuất này sử dụng repliable datagram2, repliable datagram3, và raw datagrams, như được định nghĩa trong [/docs/api/datagrams/](/docs/api/datagrams/). Datagram2 và Datagram3 là các biến thể mới của repliable datagrams, được định nghĩa trong Đề xuất 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 bổ sung khả năng chống replay và hỗ trợ chữ ký offline. Datagram3 nhỏ hơn so với định dạng datagram cũ, nhưng không có xác thực.
 
 ### BEP 15
 
@@ -99,7 +99,7 @@ Có bốn triển khai I2P tracker được biết đến:
 
 #### Clients
 
-Các client torrent bên ngoài dựa trên SAM như qbittorrent và các client dựa trên libtorrent khác sẽ yêu cầu [SAM v3.3](/en/docs/api/samv3/) không được hỗ trợ bởi i2pd. Điều này cũng cần thiết cho hỗ trợ DHT, và đủ phức tạp đến mức không có client torrent SAM nào đã biết đã triển khai nó. Không có triển khai dựa trên SAM nào của đề xuất này được kỳ vọng sớm.
+Các client torrent bên ngoài dựa trên SAM như qbittorrent và các client dựa trên libtorrent khác sẽ yêu cầu [SAM v3.3](/docs/api/samv3/) không được hỗ trợ bởi i2pd. Điều này cũng cần thiết cho hỗ trợ DHT, và đủ phức tạp đến mức không có client torrent SAM nào đã biết đã triển khai nó. Không có triển khai dựa trên SAM nào của đề xuất này được kỳ vọng sớm.
 
 ### Connection Lifetime
 

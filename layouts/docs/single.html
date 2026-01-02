@@ -41,6 +41,8 @@
                     <span class="current">{{ .Title }}</span>
                 </nav>
 
+                {{ partial "translation-disclaimer.html" . }}
+
                 <!-- Article Header -->
                 <header class="article-header">
                     <h1 class="article-title">{{ .Title }}</h1>
@@ -89,52 +91,8 @@
                     {{ end }}
                 </nav>
 
-                <!-- Feedback -->
-                <div class="docs-feedback">
-                    <p>Was this page helpful?</p>
-                    <div class="feedback-buttons" id="feedback-buttons">
-                        <button class="feedback-btn" id="feedback-yes">👍 Yes</button>
-                        <button class="feedback-btn" id="feedback-no">👎 No</button>
-                    </div>
-
-                    <!-- Feedback Form (hidden by default) -->
-                    <div class="feedback-form-container" id="feedback-form-container" style="display: none;">
-                        <p class="feedback-form-title">We're sorry to hear that. How can we improve this page?</p>
-                        <form id="feedback-form">
-                            <div class="form-group">
-                                <label for="feedback-email">Email (optional - if you'd like a response)</label>
-                                <input type="email" id="feedback-email" name="email" placeholder="your@email.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="feedback-message">Feedback *</label>
-                                <textarea id="feedback-message" name="message" rows="4" required placeholder="Tell us what we can improve..."></textarea>
-                            </div>
-                            <button type="submit" class="btn-submit-feedback" id="feedback-submit-btn">
-                                <span class="btn-text">Submit Feedback</span>
-                                <span class="btn-loading" style="display: none;">Sending...</span>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Feedback Messages -->
-                    <div class="feedback-message" id="feedback-success" style="display: none;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
-                        </svg>
-                        <span id="feedback-success-text">Thanks for your feedback!</span>
-                    </div>
-                    <div class="feedback-message feedback-error" id="feedback-error" style="display: none;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <circle cx="12" cy="12" r="10" stroke-width="2"/>
-                            <path d="M12 8v4M12 16h.01" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <span id="feedback-error-text">Something went wrong. Please try again.</span>
-                    </div>
-
-                    <p class="feedback-note">
-                        Found an issue? <a href="https://gitlab.com/{{ .Site.Params.gitlabRepo }}/-/blob/{{ .Site.Params.gitlabBranch }}/hugo-site/content/{{ .Language.Lang }}/{{ .File.Path }}?ref_type=heads" target="_blank">Edit this page on GitLab</a>
-                    </p>
-                </div>
+                <!-- Feedback (Zero-JS via Cloudflare Worker) -->
+                {{ partial "docs-feedback.html" . }}
             </div>
         </div>
     </div>
@@ -171,6 +129,45 @@
 
 .current {
     color: var(--color-text);
+}
+
+/* Translation Disclaimer */
+.translation-disclaimer {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.dark .translation-disclaimer {
+    background: #78350f;
+    border-color: #d97706;
+}
+
+.disclaimer-message {
+    color: #92400e;
+    font-size: 0.875rem;
+}
+
+.dark .disclaimer-message {
+    color: #fde047;
+}
+
+.disclaimer-link {
+    color: #92400e;
+    font-weight: 600;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.dark .disclaimer-link {
+    color: #fde047;
 }
 
 /* Article Header */
@@ -429,7 +426,7 @@
     color: var(--color-text);
 }
 
-/* Feedback */
+/* Feedback (Zero-JS Form-based) */
 .docs-feedback {
     margin-top: var(--spacing-2xl);
     padding: var(--spacing-lg);
@@ -438,19 +435,33 @@
     text-align: center;
 }
 
-.feedback-buttons {
+.docs-feedback-title {
+    margin: 0 0 var(--spacing-md) 0;
+    font-weight: 600;
+}
+
+.docs-feedback-buttons {
     display: flex;
     gap: var(--spacing-md);
     justify-content: center;
     margin: var(--spacing-md) 0;
 }
 
+.docs-feedback-form {
+    display: inline;
+}
+
 .feedback-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
     padding: var(--spacing-sm) var(--spacing-lg);
     background: var(--color-bg);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
     transition: all var(--transition-fast);
 }
 
@@ -458,6 +469,10 @@
     border-color: var(--color-primary);
     background: var(--color-primary);
     color: white;
+}
+
+.feedback-icon {
+    font-size: 1.25rem;
 }
 
 .feedback-note {
@@ -475,89 +490,31 @@
     text-decoration: underline;
 }
 
-/* Feedback Form */
-.feedback-form-container {
-    margin-top: var(--spacing-lg);
-    padding: var(--spacing-lg);
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    text-align: left;
+.feedback-noscript-note {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-sm);
 }
 
-.feedback-form-title {
-    font-weight: 600;
-    margin-bottom: var(--spacing-md);
-    color: var(--color-text);
-}
-
-.form-group {
-    margin-bottom: var(--spacing-md);
-}
-
-.form-group label {
-    display: block;
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-bottom: var(--spacing-xs);
-    color: var(--color-text);
-}
-
-.form-group input[type="email"],
-.form-group textarea {
-    width: 100%;
-    padding: var(--spacing-sm);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background: var(--color-bg);
-    color: var(--color-text);
-    font-family: inherit;
-    font-size: 0.9375rem;
-    transition: border-color var(--transition-fast);
-}
-
-.form-group input[type="email"]:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.btn-submit-feedback {
-    padding: var(--spacing-sm) var(--spacing-lg);
-    background: var(--color-primary);
-    color: white;
-    border: none;
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.btn-submit-feedback:hover:not(:disabled) {
-    background: var(--color-primary-dark);
-    transform: translateY(-1px);
-}
-
-.btn-submit-feedback:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-/* Feedback Messages */
+/* Feedback Status Messages */
 .feedback-message {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-md) 0;
+}
+
+.feedback-message.feedback-success {
     background: #d1fae5;
     color: #065f46;
-    border-radius: var(--radius-md);
-    margin-top: var(--spacing-md);
+}
+
+.feedback-message.feedback-info {
+    background: #dbeafe;
+    color: #1e40af;
 }
 
 .feedback-message.feedback-error {
@@ -638,34 +595,5 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 {{ end }}
-
-<!-- Feedback Form Handler (loaded dynamically based on network) -->
-<script>
-(function() {
-    'use strict';
-    
-    // Use window.feedbackBaseUrl if available (set by baseof.html), otherwise detect
-    let baseUrl = window.feedbackBaseUrl;
-    if (!baseUrl) {
-        const hostname = window.location.hostname;
-        // Check for I2P (both .i2p and .b32.i2p addresses)
-        if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
-            baseUrl = 'http://5kwyynf3eetgqa2nors6ctwo7doi7yu73k7uvypy5eqmm326zkiq.b32.i2p';
-        } else if (hostname.endsWith('.onion')) {
-            baseUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
-        } else {
-            baseUrl = 'https://feedback.i2p.net';
-        }
-    }
-    
-    const script = document.createElement('script');
-    script.src = baseUrl + '/widgets/docs-feedback.js';
-    script.async = true;
-    script.onerror = function() {
-        console.error('[Docs Feedback] Failed to load docs-feedback.js from:', baseUrl);
-    };
-    document.body.appendChild(script);
-})();
-</script>
 
 {{ end }}

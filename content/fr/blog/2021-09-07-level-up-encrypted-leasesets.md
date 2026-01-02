@@ -1,6 +1,7 @@
 ---
 title: "Améliorez vos compétences I2P grâce aux LeaseSets chiffrés"
 date: 2021-09-07
+slug: "level-up-your-i2p-skills-with-encrypted-leasesets"
 author: "idk"
 description: "On a dit qu’I2P met l’accent sur les services cachés ; nous en examinons une interprétation."
 categories: ["general"]

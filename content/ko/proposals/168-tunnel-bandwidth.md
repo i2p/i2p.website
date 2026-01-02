@@ -12,9 +12,8 @@ toc: true
 
 ## 참고
 
-이 제안서는 승인되었으며 API 0.9.65부터 [Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/)에 포함되어 있습니다.
+이 제안서는 승인되었으며 API 0.9.65부터 [Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies)에 포함되어 있습니다.
 아직 구현된 것은 없으며, 구현 날짜/API 버전은 미정입니다.
-
 
 
 ## 개요
@@ -33,17 +32,15 @@ toc: true
 이 제안서는 터널 빌드 요청 및 응답 메시지에 대역폭 매개변수를 추가하여 이러한 문제를 해결합니다.
 
 
-
 ## 설계
 
-ECIES 터널 빌드 메시지 (참조: [Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/))의 터널 빌드 옵션 매핑 필드에 대역폭 매개변수를 추가합니다. 옵션 필드의 공간이 제한되어 있기 때문에 짧은 매개변수 이름을 사용하십시오.
+ECIES 터널 빌드 메시지 (참조: [Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies))의 터널 빌드 옵션 매핑 필드에 대역폭 매개변수를 추가합니다. 옵션 필드의 공간이 제한되어 있기 때문에 짧은 매개변수 이름을 사용하십시오.
 터널 빌드 메시지는 고정 크기이므로 메시지의 크기는 증가하지 않습니다.
-
 
 
 ## 사양
 
-[ECIES 터널 빌드 메시지 사양](/en/docs/spec/tunnel-creation-ecies/)을 다음과 같이 업데이트합니다:
+[ECIES 터널 빌드 메시지 사양](/docs/specs/implementation/#tunnel-creation-ecies)을 다음과 같이 업데이트합니다:
 
 긴 ECIES 빌드 레코드와 짧은 ECIES 빌드 레코드 모두에 대해:
 
@@ -107,7 +104,6 @@ ECIES 터널 빌드 메시지 (참조: [Tunnel Creation ECIES specification](/en
 이 제안서는 오직 생성자가 만든 터널에만 영향을 미칩니다. 엔드 투 엔드 연결의 다른 쪽 끝의 소유자가 만든 "far-end" 터널을 요청하거나 대역폭을 할당하기 위한 방법은 정의되어 있지 않습니다.
 
 
-
 ## 보안 분석
 
 클라이언트 지문 분석 또는 상관관계가 요청을 기반으로 가능할 수 있습니다.
@@ -137,6 +133,5 @@ ECIES 터널 빌드 메시지 (참조: [Tunnel Creation ECIES specification](/en
 
 현재 이 제안서 지원이 요구되는 API 버전은 정의되어 있지 않으므로,
 라우터는 지원 확인을 위해 "b" 응답을 확인해야 합니다.
-
 
 

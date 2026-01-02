@@ -11,7 +11,7 @@ Das I2P-Netzwerk gedeiht dank unserer Gemeinschaft. Egal, ob Sie Entwickler, Üb
 ### Kernentwicklung
 I2P ist Open Source, und wir begrüßen Beiträge zum Code. Ob Sie Bugs beheben, Funktionen hinzufügen oder die Leistung verbessern möchten, Ihre Codebeiträge machen einen Unterschied.
 
-- **Erste Schritte**: Schauen Sie sich unseren [Leitfaden für neue Entwickler](/en/docs/developers/new-developers) an
+- **Erste Schritte**: Schauen Sie sich unseren [Leitfaden für neue Entwickler](/docs/developers/new-developers) an
 - **Quellcode**: [GitLab](https://i2pgit.org) (auch innerhalb von I2P unter http://git.idk.i2p verfügbar)
 - **Monatliche Besprechungen**: Nehmen Sie am ersten Dienstag jedes Monats teil
 - **IRC-Kanäle**: #i2p-dev auf IRC2P für Entwicklungsgespräche
@@ -19,7 +19,7 @@ I2P ist Open Source, und wir begrüßen Beiträge zum Code. Ob Sie Bugs beheben,
 ### Anwendungsentwicklung
 Entwickeln Sie Anwendungen, die auf I2P laufen!
 
-- **API-Dokumentation**: Informieren Sie sich über [SAM-, BOB- und I2PTunnel-APIs](/en/docs/api)
+- **API-Dokumentation**: Informieren Sie sich über [SAM-, BOB- und I2PTunnel-APIs](/docs/api)
 - **Streaming-Bibliothek**: Verwenden Sie die I2P-Streaming-Bibliothek für Ihre Apps
 - **Neue Router**: Erwägen Sie den Bau eines I2P-Routers in [Rust, Go oder anderen Sprachen](/en/blog/2025/10/16/new-i2p-routers/)
 
@@ -27,7 +27,7 @@ Entwickeln Sie Anwendungen, die auf I2P laufen!
 
 Helfen Sie neuen Nutzern, dem Netzwerk beizutreten, indem Sie Infrastrukturdienste bereitstellen:
 
-- **Reseed-Server**: Helfen Sie neuen Routern, sich zu booten und dem Netzwerk beizutreten - siehe unsere [Reseed-Dokumentation](/en/docs/guides/reseed-server/)
+- **Reseed-Server**: Helfen Sie neuen Routern, sich zu booten und dem Netzwerk beizutreten - siehe unsere [Reseed-Dokumentation](/docs/guides/reseed-server/)
 - **Spiegelseiten**: Host-Download-Spiegel zur Verbesserung der Verfügbarkeit
 - **Dienste**: Betreiben Sie I2P-Dienste wie Foren, IRC-Server oder andere Community-Tools
 
@@ -36,8 +36,8 @@ Helfen Sie neuen Nutzern, dem Netzwerk beizutreten, indem Sie Infrastrukturdiens
 ### Dokumentation Verbessern
 Klar formulierte Dokumentation hilft jedem, I2P besser zu verstehen und zu nutzen.
 
-- **Schreibrichtlinien**: Befolgen Sie unsere [Schreibrichtlinien für Dokumentationen](/en/docs/writing-guidelines/)
-- **Dokumentations-Hub**: Durchstöbern und tragen Sie zum [Dokumentenbereich](/en/docs/) bei
+- **Schreibrichtlinien**: Befolgen Sie unsere [Schreibrichtlinien für Dokumentationen](/docs/writing-guidelines)
+- **Dokumentations-Hub**: Durchstöbern und tragen Sie zum [Dokumentenbereich](/docs/) bei
 - **Inhaltvorschläge**: Haben Sie Ideen? [Kontaktieren Sie uns](/en/contact/)
 
 ### Übersetzung
@@ -110,7 +110,7 @@ Verbinden Sie sich mit der I2P-Community:
 Nicht sicher, wo Sie anfangen sollen? Hier sind einige erste Schritte:
 
 1. **Installieren Sie I2P**: [Laden Sie die neueste Version herunter und installieren Sie sie](/en/downloads)
-2. **Lernen Sie die Grundlagen**: Lesen Sie die [I2P-Einführung](/en/docs/how/intro)
+2. **Lernen Sie die Grundlagen**: Lesen Sie die [I2P-Einführung](/docs/how/intro)
 3. **Wählen Sie einen Bereich**: Wählen Sie etwas, das zu Ihren Fähigkeiten und Interessen passt
 4. **Sagen Sie Hallo**: Treten Sie #i2p-dev auf IRC2P bei und stellen Sie sich vor
 5. **Fangen Sie klein an**: Wählen Sie eine kleine Aufgabe oder einen Beitrag, um zu beginnen

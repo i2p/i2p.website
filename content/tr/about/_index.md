@@ -17,7 +17,7 @@ I2P ağı, tamamen şifrelenmiş bir eşler arası katman ağıdır. Bir gözlem
 
 ## I2P Ağına Nasıl Bağlanılır?
 
-Ana yazılım (Java) ağı tanıtan ve buna bağlantıyı sürdüren bir yönlendirici içerir. Ayrıca deneyiminizi ve iş akışınızı kişiselleştirmek için uygulamalar ve yapılandırma seçenekleri sağlar. [belgelerimizden](/en/docs/) daha fazla bilgi edinin.
+Ana yazılım (Java) ağı tanıtan ve buna bağlantıyı sürdüren bir yönlendirici içerir. Ayrıca deneyiminizi ve iş akışınızı kişiselleştirmek için uygulamalar ve yapılandırma seçenekleri sağlar. [belgelerimizden](/docs/) daha fazla bilgi edinin.
 
 ## I2P Ağında Neler Yapabilirim?
 
@@ -25,7 +25,7 @@ Ağ, hizmetler, uygulamalar ve ağ yönetimi için bir uygulama katmanı sağlar
 
 ## Ağın Genel Görünümü
 
-I2P, kurduğu tüneller ve taşıdığı iletişimler için çeşitli özellikler elde etmek için kriptografi kullanır. I2P tünelleri, [NTCP2](/en/docs/specs/ntcp2/) ve [SSU2](/en/docs/specs/ssu2/) taşımalarını kullanarak üzerinden taşınan trafiği gizler. Bağlantılar, yönlendiriciden yönlendiriciye ve istemciden istemciye (uçtan uca) şifrelenmiştir. Tüm bağlantılar için ileriye dönük gizlilik sağlanır. I2P kriptografik olarak adreslendiği için, I2P ağ adresleri kendinden doğrulamalı olup, yalnızca onları oluşturan kullanıcıya aittir.
+I2P, kurduğu tüneller ve taşıdığı iletişimler için çeşitli özellikler elde etmek için kriptografi kullanır. I2P tünelleri, [NTCP2](/docs/specs/ntcp2/) ve [SSU2](/docs/specs/ssu2/) taşımalarını kullanarak üzerinden taşınan trafiği gizler. Bağlantılar, yönlendiriciden yönlendiriciye ve istemciden istemciye (uçtan uca) şifrelenmiştir. Tüm bağlantılar için ileriye dönük gizlilik sağlanır. I2P kriptografik olarak adreslendiği için, I2P ağ adresleri kendinden doğrulamalı olup, yalnızca onları oluşturan kullanıcıya aittir.
 
 Ağ, eşler ("yönlendiriciler") ve tek yönlü gelen ve giden sanal tünellerden oluşur. Yönlendiriciler, mevcut taşıma mekanizmaları (TCP, UDP) üzerine kurulmuş protokoller kullanarak birbirleriyle mesajlar iletir. İstemci uygulamalarının mesaj gönderip alabilmesine olanak tanıyan kendi kriptografik kimlikleri ("Hedef") vardır. Bu istemciler, herhangi bir yönlendiriciye bağlanabilir ve ağ üzerinden mesaj göndermek ve almak için kullanılacak tünellerin geçici tahsisatını ("kira") yetkilendirebilirler. I2P, yönlendirme ve iletişim bilgilerini güvenli bir şekilde dağıtmak için Kademlia DHT'nin bir modifikasyonunu kullanarak kendi dahili ağ veritabanına sahiptir.
 
@@ -35,4 +35,4 @@ I2P ağı neredeyse tamamen merkezsizdir, bunun tek istisnası "Reseed Sunucular
 
 ## Karşılaştırmalar
 
-Anonim iletişim üzerinde çalışan başka birçok uygulama ve proje mevcuttur ve I2P, bunların çoğunun çabalarından ilham almıştır. Bu, anonimlik kaynaklarının kapsamlı bir listesi değildir - hem [freehaven'in Anonimlik Bibliyografisi](http://freehaven.net/anonbib/topic.html) hem de [GNUnet'in ilgili projeleri](https://www.gnunet.org/links/) bu amaca iyi hizmet eder. Bununla birlikte, birkaç sistem daha fazla karşılaştırma için öne çıkmaktadır. I2P'nin diğer anonim ağlarla nasıl karşılaştırıldığını daha fazla öğrenmek için [detaylı karşılaştırma belgelerimize](/en/docs/overview/comparison/) bakın.
+Anonim iletişim üzerinde çalışan başka birçok uygulama ve proje mevcuttur ve I2P, bunların çoğunun çabalarından ilham almıştır. Bu, anonimlik kaynaklarının kapsamlı bir listesi değildir - hem [freehaven'in Anonimlik Bibliyografisi](http://freehaven.net/anonbib/topic.html) hem de [GNUnet'in ilgili projeleri](https://www.gnunet.org/links/) bu amaca iyi hizmet eder. Bununla birlikte, birkaç sistem daha fazla karşılaştırma için öne çıkmaktadır. I2P'nin diğer anonim ağlarla nasıl karşılaştırıldığını daha fazla öğrenmek için [detaylı karşılaştırma belgelerimize](/docs/overview/comparison/) bakın.

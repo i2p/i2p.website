@@ -6,7 +6,7 @@ lastUpdated: "2025-02"
 accurateFor: "historical"
 ---
 
-> **Deprecated:** The ministreaming library predates today’s [streaming library](/spec/api/streaming/). Modern applications must use the full streaming API or SAM v3. The information below is retained for developers reviewing legacy source code shipped in `ministreaming.jar`.
+> **Deprecated:** The ministreaming library predates today’s [streaming library](/docs/specs/streaming/). Modern applications must use the full streaming API or SAM v3. The information below is retained for developers reviewing legacy source code shipped in `ministreaming.jar`.
 
 ## Overview
 
@@ -40,7 +40,7 @@ Today, treat `ministreaming.jar` as a compatibility layer only. New development 
 
 ## Reference
 
-- [Streaming Library documentation](/spec/api/streaming/)
+- [Streaming Library documentation](/docs/specs/streaming/)
 - [Streaming Javadoc](http://idk.i2p/javadoc-i2p/net/i2p/client/streaming/package-summary.html) – includes deprecated ministreaming classes
 - [SAM v3 specification](/docs/api/samv3/) – streaming support for non-Java applications
 

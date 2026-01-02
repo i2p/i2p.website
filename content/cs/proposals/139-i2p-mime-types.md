@@ -33,7 +33,6 @@ obsluhu podle potřeby a soubor definice MIME může být sdílen mezi všemi
 implementacemi.
 
 
-
 ## Návrh
 
 Napište XML zdrojový soubor podle standardu freedesktop.org a zahrňte ho
@@ -45,7 +44,6 @@ Obsluhy pro tyto typy MIME jsou specifické pro aplikaci a zde nebudou
 specifikovány.
 
 Definice zahrneme také s Jetty a zahrneme je se softwarem pro osev nebo pokyny.
-
 
 
 ## Specifikace
@@ -87,8 +85,6 @@ Definice zahrneme také s Jetty a zahrneme je se softwarem pro osev nebo pokyny.
 =.txt.gz 		application/x-i2p-peerprofile
 
 .xpi2p	 		application/x-i2p-plugin
-
-
 
 
 ## Poznámky

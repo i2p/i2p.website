@@ -8,7 +8,6 @@ categories: ["development"]
 
 Zdravím všechny,
 
-Poskytněte POUZE překlad, nic jiného:
 
 Ve světě I2P existuje mnoho projektů, které nás nadchly, ale ne všechny jsou zatím připraveny pro produkční nasazení. Rozhodli jsme se vytvořit místo, kde je můžeme zpřístupnit každému, kdo si je chce vyzkoušet, a které zároveň poslouží jako zkušební platforma pro projekty, jež se možná jednoho dne stanou oficiálními produkty I2P. Tím místem je [I2P Laboratory](https://geti2p.net/en/download/lab).
 

@@ -368,7 +368,6 @@ LS2 的缺点：
 
     Destination
 
-
 ### 理由说明
 
 我们定义以下函数，对应于用于加密 LS2 的密码学构建块：
@@ -406,7 +405,6 @@ STREAM
 
     DECRYPT(k, iv, ciphertext)
         Decrypts ciphertext using the cipher key k, and nonce iv. Returns the plaintext.
-
 
 SIG
 
@@ -463,7 +461,6 @@ HKDF(salt, ikm, info, n)
 
     Use HKDF as specified in [RFC 5869](https://tools.ietf.org/html/rfc5869), using the HMAC hash function SHA-256
     as specified in [RFC 2104](https://tools.ietf.org/html/rfc2104). This means that SALT_LEN is 32 bytes max.
-
 
 ### 讨论
 
@@ -562,7 +559,6 @@ outerCiphertext
     If the flag indicates offline keys, the signature is verified with the transient
     public key. Otherwise, the signature is verified with the blinded public key.
 
-
 #### Layer 1 (middle)
 
 标志
@@ -623,13 +619,11 @@ PSK 客户端认证数据
         clientCookie_i
             32 bytes
 
-
 innerCiphertext
 
     Length implied by lenOuterCiphertext (whatever data remains)
 
     Encrypted layer 2 data. See below for key derivation and encryption algorithms.
-
 
 #### Layer 2 (inner)
 
@@ -644,7 +638,6 @@ innerCiphertext
     LeaseSet2 data for the given type.
 
     Includes the header and signature.
-
 
 ### 新的加密问题
 
@@ -721,7 +714,6 @@ LEOS2IP(x)
 H*(x)
 
     32 bytes = (LEOS2IP(SHA512(x))) mod B, same as in Ed25519 hash-and-reduce
-
 
 #### Blinding Calculations
 
@@ -1413,11 +1405,9 @@ Router到客户端。无变化。租约使用8字节时间戳发送，即使返�
 
 - 签名私钥，之前为撤销而定义但未使用，在 LS2 中不存在。
 
-### I notice that you've provided the instruction "Format" but there doesn't appear to be any actual text content to translate after that line. The only content I see is:
-
 "Format
 
-Provide ONLY the translation, nothing else:"
+"
 
 Could you please provide the actual text content that needs to be translated from English to Chinese?
 

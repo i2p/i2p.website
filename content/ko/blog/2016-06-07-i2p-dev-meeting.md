@@ -93,7 +93,7 @@ categories: ["meeting"]
 20:21:25 &lt;str4d&gt;   - libsam3 (C, 동기/비동기 모두, git.repo.i2p에 있음)
 20:21:49 &lt;zzz&gt; 좋아요. psi도 Go로 하나 가지고 있어요
 20:21:53 &lt;str4d&gt;   -   - i2psam (C++, https://github.com/VirtualDestructor/bitcoin-qt-i2p/tree/master/i2psam)
-20:22:16 &lt;str4d&gt; 다른 것들은 http://i2p-projekt.i2p/en/docs/api/samv3 를 참고하세요
+20:22:16 &lt;str4d&gt; 다른 것들은 http://i2p-projekt.i2p/docs/api/samv3 를 참고하세요
 20:22:33 &lt;zzz&gt; 질문에 답변 대기하는 것 외에는, 저는 주로 앱 작업을 먼저 시작할 생각입니다
 20:22:35 &lt;zzz&gt; 좋습니다
 20:22:45 &lt;str4d&gt; 적어도 Python Twisted와 C++ 라이브러리는 업데이트되길 바랍니다

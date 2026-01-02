@@ -1,6 +1,7 @@
 ---
 title: "多伦多聚会"
 date: 2015-06-02
+slug: "toronto-meetup"
 author: "hottuna"
 description: "I2P 多伦多聚会，8月15日至16日"
 categories: ["community"]

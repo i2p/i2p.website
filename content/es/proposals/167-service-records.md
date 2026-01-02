@@ -34,7 +34,7 @@ bittorrent, criptomonedas, otras aplicaciones peer-to-peer.
 
 ### Listas de Servicios
 
-La propuesta LS2 123 [Prop123](/en/proposals/123-new-netdb-entries/) definió 'registros de servicio' que indicaban que un destino
+La propuesta LS2 123 [Prop123](/proposals/123-new-netdb-entries/) definió 'registros de servicio' que indicaban que un destino
 participaba en un servicio global. Los floodfills agruparían estos registros
 en 'listas de servicios' globales.
 Esto nunca se implementó debido a su complejidad, falta de autenticación,
@@ -71,10 +71,10 @@ por sí solos no proporcionan un registro genérico para cualquier servicio.
 
 ## Diseño
 
-Los registros de servicio se ubican en la sección de opciones en LS2 [LS2](/en/docs/spec/common-structures/).
+Los registros de servicio se ubican en la sección de opciones en LS2 [LS2](/docs/specs/common-structures/).
 La sección de opciones de LS2 está actualmente sin uso.
 No es compatible con LS1.
-Esto es similar a la propuesta de ancho de banda de túnel [Prop168](/en/proposals/168-tunnel-bandwidth/),
+Esto es similar a la propuesta de ancho de banda de túnel [Prop168](/proposals/168-tunnel-bandwidth/),
 que define opciones para registros de construcción de túneles.
 
 Para buscar una dirección de servicio para un nombre de host o b32 específico, el router obtiene el
@@ -92,7 +92,6 @@ deben soportar estos cambios.
 
 Se proponen extensiones menores a I2CP y SAM para facilitar la recuperación de
 registros de servicio por los clientes.
-
 
 
 ## Especificación
@@ -123,7 +122,7 @@ Definido de la siguiente manera:
   Solo es útil si hay más de un registro, pero es obligatorio incluso si solo hay un registro.
 - port := El puerto I2CP en el que se encontrará el servicio. Entero no negativo. Ejemplo: "25"
   El puerto 0 es compatible pero no recomendado.
-- target := El nombre de host o b32 del destino que proporciona el servicio. Un nombre de host válido como en [NAMING](/en/docs/naming/). Debe estar en minúsculas.
+- target := El nombre de host o b32 del destino que proporciona el servicio. Un nombre de host válido como en [NAMING](/docs/overview/naming/). Debe estar en minúsculas.
   Ejemplo: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" o "example.i2p".
   b32 se recomienda a menos que el nombre de host sea "bien conocido", es decir, en los libros de direcciones oficiales o predeterminados.
 - appoptions := texto arbitrario específico para la aplicación, no debe contener " " o ",". La codificación es UTF-8.
@@ -175,18 +174,17 @@ No se permite el uso de comodines como (asterisco), (asterisco)._tcp, o _tcp.
 Cada servicio compatible debe tener su propio registro.
 
 
-
 ### Registro de Nombre de Servicio
 
 Los identificadores no estándar que no están listados en [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) o Linux /etc/services
-pueden ser solicitados y añadidos a la especificación de estructuras comunes [LS2](/en/docs/spec/common-structures/).
+pueden ser solicitados y añadidos a la especificación de estructuras comunes [LS2](/docs/specs/common-structures/).
 
 Los formatos de appoptions específicas de servicio también pueden ser añadidos allí.
 
 
 ### Especificación I2CP
 
-El protocolo [I2CP](/en/docs/spec/i2cp/) debe ser extendido para soportar búsquedas de servicio.
+El protocolo [I2CP](/docs/specs/i2cp/) debe ser extendido para soportar búsquedas de servicio.
 Se requieren códigos de error adicionales de MessageStatusMessage y/o HostReplyMessage relacionados con la búsqueda de servicio.
 Para hacer que la facilidad de búsqueda sea general, no solo específica para registros de servicio,
 el diseño es para soportar la recuperación de todas las opciones de LS2.
@@ -227,7 +225,6 @@ Ejemplo:
 Para el tipo de búsqueda 4, el ítem 5 es un Destino.
 
 
-
 ### Mensaje de Respuesta de Host
 
 
@@ -252,10 +249,9 @@ Si un tipo de búsqueda no es compatible,
 la respuesta contendrá un nuevo código de error 7 (tipo de búsqueda no compatible).
 
 
-
 ### Especificación SAM
 
-El protocolo [SAMv3](/en/docs/api/samv3/) debe ser extendido para soportar búsquedas de servicio.
+El protocolo [SAMv3](/docs/api/samv3/) debe ser extendido para soportar búsquedas de servicio.
 
 Extender NAMING LOOKUP de la siguiente manera:
 
@@ -286,7 +282,7 @@ Si OPTIONS=true estaba en la búsqueda, y el conjunto de arrendamiento no se enc
 
 Se consideró un diseño alternativo, para soportar búsquedas de servicios
 como un nombre de host completo, por ejemplo _smtp._tcp.example.i2p,
-al actualizar [NAMING](/en/docs/naming/) para especificar el manejo de nombres de host que comienzan con '_'.
+al actualizar [NAMING](/docs/overview/naming/) para especificar el manejo de nombres de host que comienzan con '_'.
 Esto fue rechazado por dos razones:
 
 - Todavía serían necesarios los cambios en I2CP y SAM para pasar información TTL y de puerto al cliente.
@@ -299,7 +295,6 @@ Esto fue rechazado por dos razones:
 Los servidores deben especificar un TTL de al menos 86400, y el puerto estándar para la aplicación.
 
 
-
 ## Características Avanzadas
 
 ### Búsquedas Recursivas
@@ -309,7 +304,6 @@ es revisado para encontrar un registro de servicio que apunte a otro conjunto de
 Esto probablemente no sea necesario, al menos en una implementación inicial.
 
 TODO
-
 
 
 ### Campos específicos de la aplicación

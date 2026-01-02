@@ -135,6 +135,5 @@ Voici d'autres blocs de données utilisés dans l'implémentation NTCP2 actuelle
 
 ## Résumé
 
-Fournissez UNIQUEMENT la traduction, rien d'autre:
 
 Le nouveau protocole de transport I2P NTCP2 offre une résistance efficace à la censure par inspection approfondie des paquets (DPI). Il en résulte une réduction de la charge du processeur grâce à une cryptographie moderne plus rapide. Cela rend plus probable l’exécution d’I2P sur des appareils d’entrée de gamme, comme les smartphones et les routeurs domestiques. Les deux principales implémentations d’I2P prennent entièrement en charge NTCP2 et rendent NTCP2 disponible à partir des versions 0.9.36 (Java) et 2.20 (i2pd, C++).

@@ -29,15 +29,15 @@ This document highlights these unresolved issues.
 
 Anybody proposing new crypto must first be familiar with the following documents:
 
-- [Proposal 111 NTCP2](/en/proposals/111-ntcp-2/)
-- [Proposal 123 LS2](/en/proposals/123-new-netdb-entries/)
-- [Proposal 136 experimental sig types](/en/proposals/136-experimental-sigtypes/)
-- [Proposal 137 optional sig types](/en/proposals/137-optional-sigtypes/)
+- [Proposal 111 NTCP2](/proposals/111-ntcp-2/)
+- [Proposal 123 LS2](/proposals/123-new-netdb-entries/)
+- [Proposal 136 experimental sig types](/proposals/136-experimental-sigtypes/)
+- [Proposal 137 optional sig types](/proposals/137-optional-sigtypes/)
 - Discussion threads here for each of the above proposals, linked within
 - [2018 proposal priorities](http://zzz.i2p/topics/2494)
 - [ECIES proposal](http://zzz.i2p/topics/2418)
 - [New asymmetric crypto overview](http://zzz.i2p/topics/1768)
-- [Low-level crypto overview](/en/docs/specs/common-structures/)
+- [Low-level crypto overview](/docs/specs/common-structures/)
 
 
 ## Asymmetric Crypto Uses

@@ -166,7 +166,6 @@ istemciler genel anahtar ile hedef arasındaki eşlemeyi (muhtemelen
 kalıcı olarak) hatırlamalı ve önbelleğe almalıdırlar.
 
 
-
 ## Notlar
 
 - Eski ve yeni tatları uzunluklarına göre ayırt et. Eski b32 adresleri

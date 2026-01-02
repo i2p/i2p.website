@@ -135,6 +135,5 @@ void NTCP2Session::KeyDerivationFunctionDataPhase ()
 
 ## 摘要
 
-仅提供翻译，除此之外不包含其他内容：
 
 新的 I2P 传输协议 NTCP2 能够有效抵御基于深度包检测（DPI）的审查。由于采用了更快的现代加密算法，它还降低了 CPU 负载。这使得 I2P 更容易在低端设备上运行，例如智能手机和家用 router。两大 I2P 实现均已完全支持 NTCP2，并自 0.9.36（Java）和 2.20（i2pd，C++）版本起可使用 NTCP2。

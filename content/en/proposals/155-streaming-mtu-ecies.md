@@ -23,7 +23,7 @@ Subject to minor revisions.
 
 ECIES reduces exisiting session (ES) message overhead by about 90 bytes.
 Therefore we can increase the MTU by about 90 bytes for ECIES connections.
-See the [ECIES specification](/en/docs/spec/ecies/#overhead), [Streaming specification](/en/docs/spec/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/en/docs/api/streaming/).
+See the [ECIES specification](/docs/specs/ecies/#overhead), [Streaming specification](/docs/specs/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/docs/api/streaming/).
 
 Without increasing the MTU, in many cases the overhead savings aren't really 'saved',
 as the messages will be padded out to use two full tunnel messages anyway.
@@ -69,7 +69,7 @@ however, there is no provision for negotiating upwards in streaming,
 so the MTU should remain at 1730.
 
 
-As noted in the [Streaming API documentation](/en/docs/api/streaming/),
+As noted in the [Streaming API documentation](/docs/api/streaming/),
 the data in the SYN packets sent from Alice to Bob may exceed Bob's MTU.
 This is a weakness in the streaming protocol.
 Therefore, dual-key clients must limit the data in the sent SYN packets
@@ -80,7 +80,7 @@ payload sent.
 
 ### Analysis
 
-As described in the [ECIES specification](/en/docs/spec/ecies/#overhead), the ElGamal overhead for existing session messages is
+As described in the [ECIES specification](/docs/specs/ecies/#overhead), the ElGamal overhead for existing session messages is
 151 bytes, and the Ratchet overhead is 69 bytes.
 Therefore, we may increase the MTU for ratchet connections by (151 - 69) = 82 bytes,
 from 1730 to 1812.
@@ -89,8 +89,8 @@ from 1730 to 1812.
 
 ## Specification
 
-Add the following changes and clarifications to the MTU Selection and Negotiation section of the [Streaming API documentation](/en/docs/api/streaming/).
-No changes to the [Streaming specification](/en/docs/spec/streaming/).
+Add the following changes and clarifications to the MTU Selection and Negotiation section of the [Streaming API documentation](/docs/api/streaming/).
+No changes to the [Streaming specification](/docs/specs/streaming/).
 
 
 The default value of the option i2p.streaming.maxMessageSize remains 1730 for all connections, no matter what keys are used.
@@ -163,7 +163,7 @@ in the SYN ACK from Bob to Alice, and in all subsequent packets sent in both dir
 ## Justification
 
 See the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) for why the current value is 1730.
-See the [ECIES specification](/en/docs/spec/ecies/#overhead) for why the ECIES overhead is 82 bytes less than ElGamal.
+See the [ECIES specification](/docs/specs/ecies/#overhead) for why the ECIES overhead is 82 bytes less than ElGamal.
 
 
 

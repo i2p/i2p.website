@@ -36,13 +36,13 @@ toc: true
 
 ### IPv6介绍器
 
-我们的[SSU](/en/docs/transport/ssu/) 和 [SSU-SPEC](/en/docs/spec/ssu/) 规范在IPv4引介的IPv6介绍器支持方面存在错误和不一致。
+我们的[SSU](/docs/specs/ssu2/) 和 [SSU-SPEC](/docs/legacy/ssu/) 规范在IPv4引介的IPv6介绍器支持方面存在错误和不一致。
 无论如何，这在Java I2P或i2pd中从未实现过。
 这需要得到纠正。
 
 ### IPv6引介
 
-我们的[SSU](/en/docs/transport/ssu/) 和 [SSU-SPEC](/en/docs/spec/ssu/) 规范清楚地表明不支持IPv6引介。
+我们的[SSU](/docs/specs/ssu2/) 和 [SSU-SPEC](/docs/legacy/ssu/) 规范清楚地表明不支持IPv6引介。
 这是假设IPv6从不被防火墙保护。
 这显然是不正确的，我们需要改进对防火墙后的IPv6路由器的支持。
 
@@ -179,7 +179,7 @@ NTCP2隐藏: 能力、s、v 仅需4/6，允许多个 无需两个地址，一个
 
 #### 规范更改
 
-[SSU](/en/docs/transport/ssu/) 目前表示（IPv6备注）：
+[SSU](/docs/specs/ssu2/) 目前表示（IPv6备注）：
 
 IPv6自版本0.9.8支持。发布的中继地址可以是IPv4或IPv6，Alice-Bob通信可以通过IPv4或IPv6进行。
 
@@ -190,7 +190,7 @@ IPv6自版本0.9.8支持。发布的中继地址可以是IPv4或IPv6，Alice-Bob
 即使它们实际上没有通过IPv6充当介绍器。
 因此，路由器应仅信任0.9.50或更高版本的路由器的IPv6地址上的“C”能力。
 
-[SSU-SPEC](/en/docs/spec/ssu/) 目前表示（中继请求）：
+[SSU-SPEC](/docs/legacy/ssu/) 目前表示（中继请求）：
 
 仅当IP地址可能不同于数据包的源地址和端口时才会包含IP地址。
 在当前实现中，IP长度始终为0，端口始终为0，
@@ -215,11 +215,11 @@ IPv6自版本0.9.8支持。发布的中继地址可以是IPv4或IPv6，Alice-Bob
 
 #### 规范更改
 
-[SSU](/en/docs/transport/ssu/) 目前表示（IPv6备注）：
+[SSU](/docs/specs/ssu2/) 目前表示（IPv6备注）：
 
 Bob-Charlie和Alice-Charlie通信仅通过IPv4进行。
 
-[SSU-SPEC](/en/docs/spec/ssu/) 目前表示（中继请求）：
+[SSU-SPEC](/docs/legacy/ssu/) 目前表示（中继请求）：
 
 没有计划实施IPv6的中继。
 
@@ -227,7 +227,7 @@ Bob-Charlie和Alice-Charlie通信仅通过IPv4进行。
 
 自版本0.9.xx起，支持IPv6的中继。
 
-[SSU-SPEC](/en/docs/spec/ssu/) 目前表示（中继响应）：
+[SSU-SPEC](/docs/legacy/ssu/) 目前表示（中继响应）：
 
 Charlie的IP地址必须是IPv4，因为Alice将通过该地址在洞穿后发送SessionRequest。
 没有计划实施IPv6的中继。
@@ -238,7 +238,7 @@ Charlie的IP地址可能是IPv4，或者自版本0.9.xx起为IPv6。
 Alice将在洞穿后通过该地址发送SessionRequest。
 自版本0.9.xx起，支持IPv6的中继。
 
-[SSU-SPEC](/en/docs/spec/ssu/) 目前表示（中继引介）：
+[SSU-SPEC](/docs/legacy/ssu/) 目前表示（中继引介）：
 
 Alice的IP地址在当前实现中始终为4字节，因为Alice试图通过IPv4连接到Charlie。
 此消息必须通过建立的IPv4连接发送，

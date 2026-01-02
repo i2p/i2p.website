@@ -38,7 +38,6 @@ The Invisible Internet Project ("I2P", "мы", "нас" или "наш") при�
 
 **Мы не**:
 
-Предоставьте ТОЛЬКО перевод, ничего другого:
 
 - Sell, rent, or trade your data to third parties
 - Use third-party services to identify individual users
@@ -98,7 +97,6 @@ The Invisible Internet Project ("I2P", "мы", "нас" или "наш") при�
 - **Email**: press@i2p.net
 - **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
 
-Provide ONLY the translation, nothing else:
 
 **Последнее обновление**: Октябрь 2025
 

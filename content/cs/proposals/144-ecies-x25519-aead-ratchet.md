@@ -208,7 +208,7 @@ Crypto type 0 je ElGamal. Crypto types 1-3 jsou vyhrazeny pro ECIES-ECDH-AES-Ses
 
 ### Shrnutí kryptografického návrhu
 
-Tento návrh poskytuje požadavky založené na Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revize 34, 2018-07-11). Noise má podobné vlastnosti jako protokol Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), který je základem pro protokol [SSU](/docs/specs/ssu/). V terminologii Noise je Alice iniciátor a Bob je respondent.
+Tento návrh poskytuje požadavky založené na Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revize 34, 2018-07-11). Noise má podobné vlastnosti jako protokol Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), který je základem pro protokol [SSU](/docs/legacy/ssu/). V terminologii Noise je Alice iniciátor a Bob je respondent.
 
 Tento návrh je založen na protokolu Noise Noise_IK_25519_ChaChaPoly_SHA256. (Skutečný identifikátor pro počáteční funkci odvození klíčů je "Noise_IKelg2_25519_ChaChaPoly_SHA256" pro označení rozšíření I2P - viz sekce KDF 1 níže) Tento protokol Noise používá následující primitiva:
 
@@ -445,7 +445,6 @@ MixKey(d)
         MixKey(d) := output = HKDF(chainKey, d, "", 64)
                      chainKey = output[0:31]
                      k = output[32:63]
-
 
 
 ### Časové limity relace
@@ -1337,8 +1336,6 @@ TAGSET
         If there are few TAGSET_ENTRIES remaining, EXTEND(n) is called.
 
 
-
-
 ### 4) Západky
 
 Ratchets, ale ne zdaleka tak rychle jako Signal. Oddělujeme potvrzení přijatého klíče od generování nového klíče. V typickém použití Alice a Bob každý provede ratchet (dvakrát) okamžitě v nové relaci, ale poté již ratchet neprovedou znovu.
@@ -1454,9 +1451,7 @@ Tag Sender                    Tag Receiver
   (reuse key #1, do DH, create IB Tagset #3)
 
 
-
                    ... use tag set #3 ...
-
 
 
        After tag set 3, repeat the above

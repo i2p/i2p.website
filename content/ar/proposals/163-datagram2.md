@@ -18,7 +18,6 @@ toc: true
 راجع وثائق التنفيذ للحصول على الحالة.
 
 
-
 ## نظرة عامة
 
 خرجت من [Prop123](/proposals/123-new-netdb-entries/) كتقديم منفصل.
@@ -310,7 +309,7 @@ Datagram2، بسبب حقل الإرسال وتكاليف التوقيع.
 
 ## ملاحظات
 
-- الطول العملي محدود بالطبقات الأدنى من البروتوكولات - مواصفات رسالة النفق [TUNMSG](/docs/specs/tunnel-message/#notes) تحدد الرسائل بحوالي 61.2 كيلوبايت والوسائط الناقلة تحد الرسائل حاليًا بحوالي 64 كيلوبايت، لذا فإن طول البيانات هنا
+- الطول العملي محدود بالطبقات الأدنى من البروتوكولات - مواصفات رسالة النفق [TUNMSG](/docs/specs/implementation/#notes) تحدد الرسائل بحوالي 61.2 كيلوبايت والوسائط الناقلة تحد الرسائل حاليًا بحوالي 64 كيلوبايت، لذا فإن طول البيانات هنا
   محدود بحوالي 61 كيلوبايت.
 - انظر الملاحظات الهامة حول موثوقية المخططات الكبيرة [API](/docs/api/datagrams/). للحصول
   على أفضل النتائج، حدد الحمولة بحوالي 10 كيلوبايت أو أقل.
@@ -348,11 +347,11 @@ SAM لتطبيقات UDP: لا توجد معروفة
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

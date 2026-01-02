@@ -13,7 +13,7 @@ toc: true
 Tento návrh nebyl implementován tak, jak bylo specifikováno,
 nicméně dlouhé a krátké zprávy o výstavbě ECIES (návrhy 152 a 157)
 byly navrženy s rozšiřitelnými poli možností.
-Viz [specifikace Tunnel Creation ECIES](/en/docs/spec/tunnel-creation-ecies/) pro oficiální specifikaci.
+Viz [specifikace Tunnel Creation ECIES](/docs/specs/implementation/#tunnel-creation-ecies) pro oficiální specifikaci.
 
 
 ## Přehled
@@ -32,7 +32,6 @@ Použití konstrukce 'mapování' by použilo alespoň 6 bajtů na možnost ("1a
 Pevné definování více polí možností by mohlo později způsobit problémy.
 
 Tento dokument navrhuje nový, flexibilní systém mapování možností.
-
 
 
 ## Návrh
@@ -82,7 +81,6 @@ V TBRM je 495 volných bajtů.
 
 Tyto změny se týkají Záznamů o Výstavbě Tunelu, a tak mohou být použity ve všech typech Zpráv o Výstavbě -
 Žádost o Výstavbu Tunelu, Žádost o Variabilní Výstavbu Tunelu, Odpověď na Výstavbu Tunelu a Odpověď na Variabilní Výstavbu Tunelu.
-
 
 
 ## Migrace

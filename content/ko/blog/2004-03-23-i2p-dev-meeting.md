@@ -1,5 +1,6 @@
 ---
 title: "I2P 개발자 회의 - 2004년 3월 23일"
+slug: "i2p-dev-meeting-march-23-2004"
 date: 2004-03-23
 author: "jrand0m"
 description: "2004년 3월 23일자 I2P 개발 회의록."

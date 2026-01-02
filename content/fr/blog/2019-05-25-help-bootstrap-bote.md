@@ -50,7 +50,6 @@ Ces fonctionnalités sont également disponibles dans un certain nombre de bibli
 
 **Raccourci:**
 
-Fournissez UNIQUEMENT la traduction, rien d'autre:**
 
 Puisque la destination locale de votre nœud bote est une destination DSA, il est plus rapide de simplement tronquer le fichier local_dest.key aux 516 premiers octets. Pour le faire facilement, exécutez cette commande lorsque vous exécutez I2P-Bote avec I2P sur Debian:
 

@@ -8,7 +8,6 @@ categories: ["development"]
 
 Herkese merhaba,
 
-YALNIZCA çeviriyi verin, başka hiçbir şey vermeyin:
 
 There are many projects in the I2P world that we are excited about, but not all of them are ready for prime-time. We decided to create a place where we can make those available for anyone interested in trying them out, that will serve as proving grounds for projects that may one day become official I2P products. This place is the [I2P Laboratory](https://geti2p.net/en/download/lab).
 

@@ -12,7 +12,7 @@ toc: true
 
 ## Durum
 
-2025-06-24 tarihinde incelemede onaylandı. Spesifikasyon [UDP spesifikasyonu](/en/docs/spec/udp-bittorrent-announces/) adresindedir. zzzot 0.20.0-beta2'de uygulandı. API 0.9.67 itibariyle i2psnark'ta uygulandı. Durum için diğer uygulamaların belgelerini kontrol edin.
+2025-06-24 tarihinde incelemede onaylandı. Spesifikasyon [UDP spesifikasyonu](/docs/specs/udp-bittorrent-announces/) adresindedir. zzzot 0.20.0-beta2'de uygulandı. API 0.9.67 itibariyle i2psnark'ta uygulandı. Durum için diğer uygulamaların belgelerini kontrol edin.
 
 ## Genel Bakış
 
@@ -20,9 +20,9 @@ Bu öneri I2P'de UDP tracker'larının uygulanması içindir.
 
 ### Change History
 
-I2P'de UDP tracker'lar için ön bir öneri, Mayıs 2014'te [bittorrent spec sayfamızda](/en/docs/applications/bittorrent/) yayınlanmıştı; bu, resmi öneri sürecimizden önceydi ve hiçbir zaman uygulanmadı. Bu öneri 2022'nin başlarında oluşturuldu ve 2014 versiyonunu basitleştiriyor.
+I2P'de UDP tracker'lar için ön bir öneri, Mayıs 2014'te [bittorrent spec sayfamızda](/docs/applications/bittorrent/) yayınlanmıştı; bu, resmi öneri sürecimizden önceydi ve hiçbir zaman uygulanmadı. Bu öneri 2022'nin başlarında oluşturuldu ve 2014 versiyonunu basitleştiriyor.
 
-Bu öneri yanıtlanabilir datagramlara dayandığından, 2023 yılının başlarında [Datagram2 önerisi](/en/proposals/163-datagram2/) üzerinde çalışmaya başladığımızda askıya alındı. Bu öneri Nisan 2025'te onaylandı.
+Bu öneri yanıtlanabilir datagramlara dayandığından, 2023 yılının başlarında [Datagram2 önerisi](/proposals/163-datagram2/) üzerinde çalışmaya başladığımızda askıya alındı. Bu öneri Nisan 2025'te onaylandı.
 
 Bu önerinin 2023 versiyonu "uyumluluk" ve "hızlı" olmak üzere iki mod belirtiyordu. Daha ayrıntılı analiz, hızlı modun güvensiz olacağını ve ayrıca çok sayıda torrent'e sahip istemciler için verimsiz olacağını ortaya çıkardı. Ayrıca, BiglyBT uyumluluk modunu tercih ettiğini belirtti. Bu mod, standart [BEP 15](http://www.bittorrent.org/beps/bep_0015.html)'i destekleyen herhangi bir tracker veya istemci için uygulanması daha kolay olacaktır.
 
@@ -42,11 +42,11 @@ Datagram'lar ile streaming protokolü arasındaki bant genişliği tasarrufunu h
 
 Ayrıca, datagramlar streaming bağlantısına göre çok daha az bellek içi durum gerektirdiğinden, implementasyona özel bellek azalmaları da olmalıdır.
 
-[/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/) adresinde öngörüldüğü şekliyle Post-Quantum şifreleme ve imzalar, destinasyonlar, leaseSet'ler, streaming SYN ve SYN ACK dahil olmak üzere şifrelenmiş ve imzalanmış yapıların yükünü önemli ölçüde artıracaktır. PQ kripto I2P'de benimsenmeye başlamadan önce mümkün olan yerlerde bu yükü minimize etmek önemlidir.
+[/proposals/169-pq-crypto/](/proposals/169-pq-crypto/) adresinde öngörüldüğü şekliyle Post-Quantum şifreleme ve imzalar, destinasyonlar, leaseSet'ler, streaming SYN ve SYN ACK dahil olmak üzere şifrelenmiş ve imzalanmış yapıların yükünü önemli ölçüde artıracaktır. PQ kripto I2P'de benimsenmeye başlamadan önce mümkün olan yerlerde bu yükü minimize etmek önemlidir.
 
 ## Motivasyon
 
-Bu öneri, [/en/docs/spec/datagrams/](/en/docs/spec/datagrams/) bölümünde tanımlandığı şekliyle repliable datagram2, repliable datagram3 ve raw datagramları kullanır. Datagram2 ve Datagram3, Öneri 163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/) içinde tanımlanan repliable datagramların yeni varyantlarıdır. Datagram2, tekrar saldırısına karşı koruma ve çevrimdışı imza desteği ekler. Datagram3, eski datagram formatından daha küçüktür ancak kimlik doğrulaması içermez.
+Bu öneri, [/docs/api/datagrams/](/docs/api/datagrams/) bölümünde tanımlandığı şekliyle repliable datagram2, repliable datagram3 ve raw datagramları kullanır. Datagram2 ve Datagram3, Öneri 163 [/proposals/163-datagram2/](/proposals/163-datagram2/) içinde tanımlanan repliable datagramların yeni varyantlarıdır. Datagram2, tekrar saldırısına karşı koruma ve çevrimdışı imza desteği ekler. Datagram3, eski datagram formatından daha küçüktür ancak kimlik doğrulaması içermez.
 
 ### BEP 15
 
@@ -99,7 +99,7 @@ Bilinen dört I2P tracker uygulaması vardır:
 
 #### Clients
 
-qbittorrent ve diğer libtorrent tabanlı istemciler gibi harici SAM tabanlı torrent istemcileri, i2pd tarafından desteklenmeyen [SAM v3.3](/en/docs/api/samv3/) gerektirir. Bu aynı zamanda DHT desteği için de gereklidir ve o kadar karmaşıktır ki bilinen hiçbir SAM torrent istemcisi bunu uygulamamıştır. Bu önerinin SAM tabanlı uygulamalarının yakın zamanda beklenmemektedir.
+qbittorrent ve diğer libtorrent tabanlı istemciler gibi harici SAM tabanlı torrent istemcileri, i2pd tarafından desteklenmeyen [SAM v3.3](/docs/api/samv3/) gerektirir. Bu aynı zamanda DHT desteği için de gereklidir ve o kadar karmaşıktır ki bilinen hiçbir SAM torrent istemcisi bunu uygulamamıştır. Bu önerinin SAM tabanlı uygulamalarının yakın zamanda beklenmemektedir.
 
 ### Connection Lifetime
 

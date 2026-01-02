@@ -166,7 +166,7 @@ Noise N لا يستخدم تبادل مفاتيح ثنائي الاتجاه وب
 
 ### تبادل المفاتيح
 
-قم بتحديث الأقسام والجداول في وثيقة الهياكل المشتركة [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/) كما يلي:
+قم بتحديث الأقسام والجداول في وثيقة الهياكل المشتركة [/docs/specs/common-structures/](/docs/specs/common-structures/) كما يلي:
 
 ### التوقيعات
 
@@ -565,7 +565,7 @@ This is the "ekem1" message pattern:
 
 ### مفتاح التوقيع الخاص
 
-قم بتحديث مواصفات ECIES-Ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) كما يلي:
+قم بتحديث مواصفات ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) كما يلي:
 
 #### Noise identifiers
 
@@ -762,11 +762,11 @@ Payload Part 1:
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-لاحظ أنه بينما ستحتوي الرسالة 2 عادةً على حمولة غير صفرية، فإن مواصفات ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) لا تتطلب ذلك، لذا فإن الحد الأدنى لحجم الحمولة هو 0. يمكن حساب الأحجام الدنيا للرسالة 2 وفقاً لذلك.
+لاحظ أنه بينما ستحتوي الرسالة 2 عادةً على حمولة غير صفرية، فإن مواصفات ratchet [/docs/specs/ecies/](/docs/specs/ecies/) لا تتطلب ذلك، لذا فإن الحد الأدنى لحجم الحمولة هو 0. يمكن حساب الأحجام الدنيا للرسالة 2 وفقاً لذلك.
 
 ### التوقيع
 
-قم بتحديث مواصفات NTCP2 [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/) كما يلي:
+قم بتحديث مواصفات NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) كما يلي:
 
 #### Noise identifiers
 
@@ -937,7 +937,7 @@ Payload Part 1:
 
 ### شهادات المفاتيح
 
-حدّث مواصفات SSU2 [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/) كما يلي:
+حدّث مواصفات SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) كما يلي:
 
 #### Noise identifiers
 

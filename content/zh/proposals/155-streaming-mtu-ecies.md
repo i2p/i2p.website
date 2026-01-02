@@ -23,7 +23,7 @@ toc: true
 
 ECIES 将现有会话（ES）消息的开销减少了约 90 个字节。
 因此，我们可以将 ECIES 连接的 MTU 增加约 90 个字节。
-参见 the [ECIES specification](/en/docs/spec/ecies/#overhead), [Streaming specification](/en/docs/spec/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/en/docs/api/streaming/)。
+参见 the [ECIES specification](/docs/specs/ecies/#overhead), [Streaming specification](/docs/specs/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/docs/api/streaming/)。
 
 如果不增加 MTU，在许多情况下，开销的节省并没有真正“节省”，因为消息将被填充到使用两个完整的隧道消息。
 
@@ -57,19 +57,19 @@ ECIES 将现有会话（ES）消息的开销减少了约 90 个字节。
 
 作为 Bob 的双密钥客户端可以发回更高的值，即使没有从 Alice 接收到值或接收到的值为 1730；然而，在流式传输中没有上行协商的规定，因此 MTU 应保持在 1730。
 
-正如 the [Streaming API documentation](/en/docs/api/streaming/) 中所指出的，从 Alice 到 Bob 发送的 SYN 数据包中的数据可能会超出 Bob 的 MTU。这是流式协议中的一个弱点。
+正如 the [Streaming API documentation](/docs/api/streaming/) 中所指出的，从 Alice 到 Bob 发送的 SYN 数据包中的数据可能会超出 Bob 的 MTU。这是流式协议中的一个弱点。
 因此，双密钥客户端必须在发送的 SYN 数据包中将数据限制为 1730 字节，同时发送更高的 MTU 选项。
 一旦从 Bob 收到更高的 MTU，Alice 可以增加实际发送的最大有效负载。
 
 
 ### 分析
 
-如 the [ECIES specification](/en/docs/spec/ecies/#overhead) 中所述，现有会话消息的 ElGamal 开销为 151 字节，而 Ratchet 开销为 69 字节。因此，我们可以将棘轮连接的 MTU 从 1730 增加 (151 - 69) = 82 字节至 1812。
+如 the [ECIES specification](/docs/specs/ecies/#overhead) 中所述，现有会话消息的 ElGamal 开销为 151 字节，而 Ratchet 开销为 69 字节。因此，我们可以将棘轮连接的 MTU 从 1730 增加 (151 - 69) = 82 字节至 1812。
 
 ## 规范
 
-在 the [Streaming API documentation](/en/docs/api/streaming/) 的 MTU 选择和协商部分添加以下更改和澄清。
-无需更改 the [Streaming specification](/en/docs/spec/streaming/)。
+在 the [Streaming API documentation](/docs/api/streaming/) 的 MTU 选择和协商部分添加以下更改和澄清。
+无需更改 the [Streaming specification](/docs/specs/streaming/)。
 
 选项 i2p.streaming.maxMessageSize 的默认值对于所有连接保持 1730，无论使用何种密钥。
 客户机必须使用发送和接收的 MTU 中的最小值。
@@ -125,7 +125,7 @@ Alice 和 Bob 计算 negotiated_mtu，Alice 和 Bob 的 MTU 中的最小值，�
 ## 依据
 
 参见 the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) 了解当前值为何为 1730。
-参见 the [ECIES specification](/en/docs/spec/ecies/#overhead) 了解为什么 ECIES 的开销比 ElGamal 少 82 个字节。
+参见 the [ECIES specification](/docs/specs/ecies/#overhead) 了解为什么 ECIES 的开销比 ElGamal 少 82 个字节。
 
 ## 实现说明
 

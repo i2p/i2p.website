@@ -9,7 +9,6 @@ description: "I2P geliştiricileri bu ay birden fazla konferansa katılıyor."
 
 Herkese merhaba,
 
-YALNIZCA çeviriyi sağlayın, başka hiçbir şey değil:
 
 Gelecek ay yoğun geçecek! Defcon 27'deki iki çalıştayda I2P geliştiricileriyle buluşun ve FOCI '19'da I2P sansürünü gözlemleyen araştırmacılarla bağlantı kurun.
 

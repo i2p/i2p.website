@@ -57,16 +57,14 @@ Please do not use these email addresses for support requests. For contact specif
 | 角色 | 人员 | 说明 |
 |------|--------|-------------|
 | **I2P Java 发布经理** | idk | 构建并签署发行版 |
-| **论坛管理员** | eche\|on | I2P 公共论坛维护者 |
 | **下载镜像管理员** | StormyCloud | 管理下载文件的镜像 |
 | **打包者；Linux** | idk | Linux（Debian/Ubuntu）发行版打包者 |
 | **打包者；Windows** | idk | Windows 安装程序打包者 |
-| **打包者；OSX** | echelon | OSX 安装程序打包者 |
-| **发布经理候补** | eche\|on | 备用发布经理 |
+| **打包者；OSX** | vacant | OSX 安装程序打包者 |
 | **CI 管理员** | idk | 维护持续集成（CI）基础设施 |
 | **Reseed 管理员** | idk | 监控、指导并招募 reseed（引导种子）主机 |
 | **Gitea 管理员** | idk | I2P Gitea 维护者 |
-| **本地化** | eche\|on, idk, zzz | 在 [Transifex](https://www.transifex.com/projects/p/I2P/) 上的管理员 |
+| **本地化** | idk, zzz | 在 [Transifex](https://www.transifex.com/projects/p/I2P/) 上的管理员 |
 | **译者** | 很多很多人！ | 在 [Transifex](https://www.transifex.com/projects/p/I2P/) 上的译者 |
 | **网站维护者** | StormyCloud | 管理公共项目网站的内容与设计 |
 | **Web 服务器管理员** | StormyCloud | 管理公共项目的 Web 服务器 |

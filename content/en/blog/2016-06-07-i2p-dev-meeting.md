@@ -94,7 +94,7 @@ categories: ["meeting"]
 20:21:25 &lt;str4d&gt;   - libsam3 (C, both sync and async, on git.repo.i2p)
 20:21:49 &lt;zzz&gt; ok. psi also has one in go
 20:21:53 &lt;str4d&gt;   -   - i2psam (C++, https://github.com/VirtualDestructor/bitcoin-qt-i2p/tree/master/i2psam)
-20:22:16 &lt;str4d&gt; See http://i2p-projekt.i2p/en/docs/api/samv3 for others
+20:22:16 &lt;str4d&gt; See http://i2p-projekt.i2p/docs/api/samv3 for others
 20:22:33 &lt;zzz&gt; I think I'll mostly just get a head start on apps, other than standing by to answer questions
 20:22:35 &lt;zzz&gt; sounds good
 20:22:45 &lt;str4d&gt; I'd like to see at least the Python Twisted and C++ libraries updated

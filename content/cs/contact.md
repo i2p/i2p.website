@@ -57,16 +57,14 @@ Připojte se k naší poštovní konferenci zadáním své e‑mailové adresy v
 | Role | Osoba | Popis |
 |------|--------|-------------|
 | **Správce vydání I2P Java** | idk | Sestavuje a podepisuje vydání |
-| **Administrátor fóra** | eche\|on | Správce veřejného fóra I2P |
 | **Administrátor zrcadel pro stahování** | StormyCloud | Spravuje zrcadla pro soubory ke stažení |
 | **Balič; Linux** | idk | Balič distribucí Linuxu (Debian/Ubuntu) |
 | **Balič; Windows** | idk | Balič instalačního programu pro Windows |
-| **Balič; OSX** | echelon | Balič instalačního programu pro OSX |
-| **Zástupci správce vydání** | eche\|on | Záložní správci vydání |
+| **Balič; OSX** | vacant | Balič instalačního programu pro OSX |
 | **Administrátor CI** | idk | Spravuje infrastrukturu Continuous Integration |
 | **Administrátor reseedu** | idk | Sleduje, radí a získává hostitele reseedu |
 | **Administrátor Gitea** | idk | Správce I2P Gitea |
-| **Lokalizace** | eche\|on, idk, zzz | Administrátoři na [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Lokalizace** | idk, zzz | Administrátoři na [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Překladatelé** | mnoho, mnoho lidí! | Překladatelé na [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Správce webu** | StormyCloud | Spravuje obsah a design veřejného webu projektu |
 | **Administrátor webserveru** | StormyCloud | Spravuje veřejné webservery projektu |

@@ -107,7 +107,6 @@ Za žádných okolností by router neměl dělat DNS dotaz na publikovaného hos
 ať už přímo nebo prostřednictvím podřízené knihovny.
 
 
-
 ## Specifikace
 
 Změňte specifikace NTCP a SSU transportu tak, aby určili, že parametr "host" musí být
@@ -116,8 +115,6 @@ adresy routerů, které obsahují hostitele.
 
 To se také vztahuje na parametry "ihost0", "ihost1" a "ihost2" v adrese SSU.
 Routery by měly ignorovat adresy zprostředkovatelů, které obsahují hostitele.
-
-
 
 
 ## Poznámky

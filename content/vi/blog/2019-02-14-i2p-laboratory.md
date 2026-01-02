@@ -8,7 +8,6 @@ categories: ["development"]
 
 Xin chào mọi người,
 
-Chỉ cung cấp bản dịch, không có gì khác:
 
 Có nhiều dự án trong thế giới I2P mà chúng tôi rất hào hứng, nhưng không phải tất cả đều đã sẵn sàng cho người dùng đại chúng. Chúng tôi quyết định tạo ra một nơi để cung cấp những dự án đó cho bất kỳ ai quan tâm muốn dùng thử, đồng thời làm bãi thử nghiệm cho các dự án có thể một ngày nào đó trở thành sản phẩm I2P chính thức. Đó chính là [I2P Laboratory](https://geti2p.net/en/download/lab).
 

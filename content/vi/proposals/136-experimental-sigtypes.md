@@ -25,15 +25,12 @@ Thứ nhất, vì các loại chữ ký trong phạm vi thử nghiệm không th
 Thứ hai, trừ khi thông tin router hay lease set với một loại chữ ký thử nghiệm có thể được lưu trữ ở floodfill, việc thử nghiệm hoàn toàn hay sử dụng thử nghiệm loại chữ ký mới rất khó khăn.
 
 
-
 ## Thiết kế
 
 Floodfills nên chấp nhận, và lưu truyền, các lưu trữ LS với các loại chữ ký trong phạm vi thử nghiệm, mà không kiểm tra chữ ký. Hỗ trợ cho lưu trữ RI còn chưa rõ, và có thể có thêm các vấn đề an ninh.
 
 
-
 ## Đặc tả
-
 
 
 Đối với các loại chữ ký trong phạm vi thử nghiệm, một floodfill nên chấp nhận và lưu truyền lưu trữ netdb mà không kiểm tra chữ ký.
@@ -64,6 +61,5 @@ Các vấn đề tương tự sẽ cần được giải quyết với các lo�
 ## Ghi chú
 
 Lưu trữ NetDB của các loại chữ ký không rõ không nằm trong phạm vi thử nghiệm sẽ tiếp tục bị từ chối bởi floodfills, vì chữ ký không thể được xác minh.
-
 
 

@@ -202,7 +202,7 @@ From ZCash Protocol Specification Section 5.4.6.1: For security, alpha must be i
 
 **References:**
 - [ZCash Protocol Specification](https://zips.z.cash/protocol/protocol.pdf) - Section 5.4.6 RedDSA
-- [I2P Red25519 Specification](/docs/specs/red25519/)
+- [I2P Red25519 Specification](/docs/specs/red25519-signature-scheme/)
 
 ### DH: X25519
 
@@ -1496,7 +1496,7 @@ def destination_to_encrypted_b32(destination):
 
 **References:**
 - [Proposal 149: B32 for Encrypted LS2](/proposals/149-b32-encrypted-ls2/)
-- [B32 Addressing Specification](/docs/specs/b32encrypted/)
+- [B32 Addressing Specification](/docs/specs/b32-for-encrypted-leasesets/)
 - [I2P Naming Specification](/docs/overview/naming/)
 
 ---
@@ -2332,8 +2332,8 @@ Key areas to test:
 - **[Proposal 123: New netDB Entries](/proposals/123-new-netdb-entries/)** - Background and design of LeaseSet2
 - **[Proposal 146: Red25519](/proposals/146-red25519/)** - Red25519 signature scheme specification
 - **[Proposal 149: B32 for Encrypted LS2](/proposals/149-b32-encrypted-ls2/)** - Base32 addressing for encrypted LeaseSets
-- **[Red25519 Specification](/docs/specs/red25519/)** - Detailed Red25519 implementation
-- **[B32 Addressing Specification](/docs/specs/b32encrypted/)** - Base32 address format
+- **[Red25519 Specification](/docs/specs/red25519-signature-scheme/)** - Detailed Red25519 implementation
+- **[B32 Addressing Specification](/docs/specs/b32-for-encrypted-leasesets/)** - Base32 address format
 - **[Network Database Documentation](/docs/specs/common-structures/)** - NetDB usage and operations
 - **[I2CP Specification](/docs/specs/i2cp/)** - I2P Client Protocol
 
@@ -2355,7 +2355,7 @@ Key areas to test:
 - **[Java I2P Repository](https://github.com/i2p/i2p.i2p)** - Official Java implementation
 - **[i2pd Repository](https://github.com/PurpleI2P/i2pd)** - C++ implementation
 - **[I2P Website](/)** - Official I2P project website
-- **[I2P Specifications](/spec/)** - Complete specification index
+- **[I2P Specifications](/docs/specs/)** - Complete specification index
 
 ### Version History
 

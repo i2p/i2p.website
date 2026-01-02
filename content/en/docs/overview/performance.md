@@ -106,7 +106,7 @@ Selective LeaseSet bundling, compressed RouterInfo options, and adoption of the 
 See also:
 
 - [Tunnel Routing](/docs/overview/tunnel-routing/)
-- [Peer Selection](/docs/how/peer-selection/)
-- [Transports](/docs/transport/)
+- [Peer Selection](/docs/overview/tunnel-routing/)
+- [Transports](/docs/overview/transport/)
 - [SSU2 Specification](/docs/specs/ssu2/) and [NTCP2 Specification](/docs/specs/ntcp2/)
 

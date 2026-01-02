@@ -34,7 +34,7 @@ bittorrent, cryptocurrencies, other peer-to-peer applications.
 
 ### Service Lists
 
-The LS2 [Proposal 123](/en/proposals/123-new-netdb-entries/) defined 'service records' that indicated a destination
+The LS2 [Proposal 123](/proposals/123-new-netdb-entries/) defined 'service records' that indicated a destination
 was participating in a global service. The floodfills would aggregate these records
 into global 'service lists'.
 This was never implemented due to complexity, lack of authentication,
@@ -72,10 +72,10 @@ alone do not provide a generic record for any service.
 
 ## Design
 
-Service records are placed in the options section in [LS2](/en/docs/spec/common-structures/).
+Service records are placed in the options section in [LS2](/docs/specs/common-structures/).
 The LS2 options section is currently unused.
 Not supported for LS1.
-This is similar to the [tunnel bandwidth proposal](/en/proposals/168-tunnel-bandwidth/),
+This is similar to the [tunnel bandwidth proposal](/proposals/168-tunnel-bandwidth/),
 which defines options for tunnel build records.
 
 To lookup a service address for a specific hostname or b32, the router fetches the
@@ -124,7 +124,7 @@ Defined as follows:
   Only useful if more than one record, but required even if just one record.
 - port := The I2CP port on which the service is to be found. Non-negative integer. Example: "25"
   Port 0 is supported but not recommended.
-- target := The hostname or b32 of the destination providing the service. A valid [hostname](/en/docs/naming/). Must be lower case.
+- target := The hostname or b32 of the destination providing the service. A valid [hostname](/docs/overview/naming/). Must be lower case.
   Example: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" or "example.i2p".
   b32 is recommended unless the hostname is "well known", i.e. in official or default address books.
 - appoptions := arbitrary text specific to the application, must not contain " " or ",". Encoding is UTF-8.
@@ -176,14 +176,14 @@ Each supported service must have its own record.
 ### Service Name Registry
 
 Non-standard identifiers that are not listed in the [DNS-SD Service Types registry](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services
-may be requested and added to the [common structures specification](/en/docs/spec/common-structures/).
+may be requested and added to the [common structures specification](/docs/specs/common-structures/).
 
 Service-specific appoptions formats may also be added there.
 
 
 ### I2CP Specification
 
-The [I2CP protocol](/en/docs/spec/i2cp/) must be extended to support service lookups.
+The [I2CP protocol](/docs/specs/i2cp/) must be extended to support service lookups.
 Additional MessageStatusMessage and/or HostReplyMessage error codes related to service lookup
 are required.
 To make the lookup facility general, not just service record-specific,
@@ -202,7 +202,7 @@ Extend the specification as follows:
 
 #### Configuration options
 
-Add the following to the [I2CP configuration options](/en/docs/protocol/i2cp/)
+Add the following to the [I2CP configuration options](/docs/specs/i2cp/)
 
 i2cp.leaseSetOption.nnn
 
@@ -250,7 +250,7 @@ the reply will contain a new error code 7 (lookup type unsupported).
 
 ### SAM Specification
 
-The [SAMv3 protocol](/en/docs/api/samv3/) must be extended to support service lookups.
+The [SAMv3 protocol](/docs/api/samv3/) must be extended to support service lookups.
 
 Extend NAMING LOOKUP as follows:
 
@@ -281,7 +281,7 @@ If OPTIONS=true was in the lookup, and the leaseset is not found, a new result v
 
 An alternative design was considered, to support lookups of services
 as a full hostname, for example _smtp._tcp.example.i2p,
-by updating the [naming specification](/en/docs/naming/) to specify handling of hostnames starting with '_'.
+by updating the [naming specification](/docs/overview/naming/) to specify handling of hostnames starting with '_'.
 This was rejected for two reasons:
 
 - I2CP and SAM changes would still be necessary to pass through the TTL and port information to the client.
@@ -381,10 +381,10 @@ SAM compatibility versions for each implementation will be documented in the SAM
 
 * [DOTWELLKNOWN](http://i2pforum.i2p/viewtopic.php?p=3102)
 * [I2CP](/docs/specs/i2cp/)
-* [I2CP-OPTIONS](/docs/protocol/i2cp/)
+* [I2CP-OPTIONS](/docs/specs/i2cp/)
 * [LS2](/docs/specs/common-structures/)
 * [GNS](http://zzz.i2p/topcs/1545)
-* [NAMING](/docs/naming/)
+* [NAMING](/docs/overview/naming/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop168](/proposals/168-tunnel-bandwidth/)
 * [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)

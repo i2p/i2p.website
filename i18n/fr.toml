@@ -101,6 +101,7 @@ selfContainedNetwork = "Réseau autonome"
 selfContainedNetworkDesc = "Écosystème complet pour la communication privée."
 
 [nav]
+home = "Accueil"
 about = "À propos"
 docs = "Docs"
 downloads = "Téléchargements"
@@ -114,6 +115,9 @@ featureSuggestions = "Suggestions de fonctionnalités"
 getI2P = "Obtenir I2P"
 
 [footer]
+home = "Accueil"
+about = "À propos"
+docs = "Docs"
 newsletterDescription = "Restez informé des actualités I2P :"
 subscribe = "S'abonner"
 emailPlaceholder = "Entrez votre email"
@@ -165,6 +169,7 @@ tor = "Tor"
 allPlatforms = "Toutes les plateformes"
 windows = "Windows"
 download = "Télécharger"
+latest = "Dernier"
 beta = "Bêta"
 windowsEasyInstaller = "Installation facile Windows"
 macOsLinuxBsd = "macOS / Linux / BSD"
@@ -208,6 +213,7 @@ nextSteps = "Prochaines étapes"
 installI2p = "Installer I2P"
 installationGuides = "guides d'installation"
 configureYourBrowser = "Configurez votre navigateur"
+browserSetupGuide = "Guide de configuration du navigateur"
 exploreI2pSites = "Explorer les sites I2P"
 startBrowsing = "Commencez à naviguer sur les sites .i2p"
 getSupport = "Obtenir de l'aide"
@@ -221,6 +227,17 @@ zcashZec = "Zcash (ZEC)"
 viewAllOptions = "Voir toutes les options de don →"
 gettingStarted = "Commencer"
 backToDownloads = "Retour aux téléchargements"
+
+[poll]
+title = "Sondage de la communauté"
+subtitle = "Nous aimerions avoir de vos nouvelles"
+loading = "Chargement du sondage..."
+close = "Fermer"
+disclaimer = "Votre vote aide à façonner l'avenir d'I2P."
+
+[translationDisclaimer]
+message = "Cette traduction a été générée par apprentissage automatique et peut ne pas être exacte à 100%."
+viewEnglish = "Voir la version anglaise"
 
 [languages]
 en = "Anglais"

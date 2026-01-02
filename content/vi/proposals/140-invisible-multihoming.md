@@ -11,9 +11,9 @@ toc: true
 
 ## Tổng quan
 
-Đề xuất này phác thảo một thiết kế cho giao thức cho phép một I2P client, dịch vụ hoặc tiến trình cân bằng tải bên ngoài quản lý nhiều router một cách minh bạch khi lưu trữ một [Destination](http://localhost:63465/en/docs/specs/common-structures/#destination) duy nhất.
+Đề xuất này phác thảo một thiết kế cho giao thức cho phép một I2P client, dịch vụ hoặc tiến trình cân bằng tải bên ngoài quản lý nhiều router một cách minh bạch khi lưu trữ một [Destination](http://localhost:63465/docs/specs/common-structures/#destination) duy nhất.
 
-Đề xuất hiện tại không chỉ định một cách triển khai cụ thể. Nó có thể được triển khai như một phần mở rộng của [I2CP](/en/docs/specs/i2cp/), hoặc như một giao thức mới.
+Đề xuất hiện tại không chỉ định một cách triển khai cụ thể. Nó có thể được triển khai như một phần mở rộng của [I2CP](/docs/specs/i2cp/), hoặc như một giao thức mới.
 
 ## Động lực
 
@@ -127,7 +127,7 @@ Hãy tưởng tượng cấu hình mong muốn sau đây:
 
 ### Client đơn
 
-Để tạo và quản lý cấu hình này, client cần các chức năng mới sau đây ngoài những gì hiện được cung cấp bởi [I2CP](/en/docs/specs/i2cp/):
+Để tạo và quản lý cấu hình này, client cần các chức năng mới sau đây ngoài những gì hiện được cung cấp bởi [I2CP](/docs/specs/i2cp/):
 
 - Yêu cầu router xây dựng tunnel mà không tạo LeaseSet cho chúng.
 - Lấy danh sách các tunnel hiện tại trong inbound pool.

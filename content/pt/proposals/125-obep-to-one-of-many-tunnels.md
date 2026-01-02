@@ -27,8 +27,8 @@ múltiplos túneis também nos permite implementar multicast no OBEP (entregando
 mensagem para todos os túneis especificados).
 
 Uma alternativa à parte de delegação desta proposta seria enviar através de um
-hash [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset), semelhante à habilidade existente de especificar um hash
-[RouterIdentity](http://localhost:63465/en/docs/specs/common-structures/#common-structure-specification) de destino. Isso resultaria em uma mensagem menor e em
+hash [LeaseSet](http://localhost:63465/docs/specs/common-structures/#leaseset), semelhante à habilidade existente de especificar um hash
+[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) de destino. Isso resultaria em uma mensagem menor e em
 potencialmente um LeaseSet mais recente. No entanto:
 
 1. Isso forçaria o OBEP a fazer uma busca
@@ -38,15 +38,15 @@ potencialmente um LeaseSet mais recente. No entanto:
 3. O LeaseSet pode estar criptografado, então o OBEP não conseguiria obter os
    leases.
 
-4. Especificar um LeaseSet revela ao OBEP o [Destination](/en/docs/specs/common-structures/#destination) da mensagem,
+4. Especificar um LeaseSet revela ao OBEP o [Destination](/docs/specs/common-structures/#destination) da mensagem,
    que ele poderia descobrir apenas vasculhando todos os LeaseSets na rede e
    procurando por uma correspondência de Lease.
 
 
 ## Design
 
-O originador (OBGW) colocaria alguns (todos?) dos [Leases](http://localhost:63465/en/docs/specs/common-structures/#lease) de destino nas
-instruções de entrega [TUNNEL-DELIVERY](/en/docs/specs/i2np/#tunnel-message-delivery-instructions) em vez de escolher apenas um.
+O originador (OBGW) colocaria alguns (todos?) dos [Leases](http://localhost:63465/docs/specs/common-structures/#lease) de destino nas
+instruções de entrega [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) em vez de escolher apenas um.
 
 O OBEP selecionaria um desses para entregar. O OBEP selecionaria, se
 disponível, um ao qual ele já está conectado, ou já conhece. Isso faria o
@@ -54,7 +54,7 @@ caminho OBEP-IBGW mais rápido e mais confiável, e reduziria as conexões de
 rede totais.
 
 Temos um tipo de entrega não utilizado (0x03) e dois bits restantes (0 e 1) nos
-flags para [TUNNEL-DELIVERY](/en/docs/specs/i2np/#tunnel-message-delivery-instructions), que podemos aproveitar para implementar esses
+flags para [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions), que podemos aproveitar para implementar esses
 recursos.
 
 
@@ -65,7 +65,7 @@ alvo do OBGW ou sua visão do NetDB:
 
 - Um adversário que controla o OBEP e está coletando LeaseSets do NetDB já pode
   determinar se uma mensagem está sendo enviada para um Destino específico,
-  buscando o par [TunnelId](http://localhost:63465/en/docs/specs/common-structures/#tunnelid) / [RouterIdentity](http://localhost:63465/en/docs/specs/common-structures/#common-structure-specification). Na pior das hipóteses, a
+  buscando o par [TunnelId](http://localhost:63465/docs/specs/common-structures/#tunnelid) / [RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification). Na pior das hipóteses, a
   presença de vários Leases no TMDI pode tornar mais rápido encontrar uma
   correspondência no banco de dados do adversário.
 
@@ -87,7 +87,7 @@ vazamento de informações sobre de qual aplicação específica uma mensagem ve
 
 ## Especificação
 
-As Instruções de Entrega do Primeiro Fragmento [TUNNEL-DELIVERY](/en/docs/specs/i2np/#tunnel-message-delivery-instructions) seriam
+As Instruções de Entrega do Primeiro Fragmento [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) seriam
 modificadas da seguinte forma:
 
 ```
@@ -159,10 +159,10 @@ Resto das instruções de entrega inalterado
 
 Os únicos pares que precisam entender a nova especificação são os OBGWs e os
 OBEPs. Portanto, podemos tornar esta mudança compatível com a rede existente
-tornando seu uso condicional na versão I2P alvo [VERSIONS](/en/docs/specs/i2np/#protocol-versions):
+tornando seu uso condicional na versão I2P alvo [VERSIONS](/docs/specs/i2np/#protocol-versions):
 
 * Os OBGWs devem selecionar OBEPs compatíveis ao construir túneis de saída,
-  com base na versão I2P anunciada em seu [RouterInfo](http://localhost:63465/en/docs/specs/common-structures/#routerinfo).
+  com base na versão I2P anunciada em seu [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
 
 * Pares que anunciam a versão alvo devem suportar a análise dos novos flags,
   e não devem rejeitar as instruções como inválidas.

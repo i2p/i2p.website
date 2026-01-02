@@ -400,7 +400,6 @@ ser removidos e ele pode ser incluído como um RPC central na próxima versão d
 ```
 
 
-
 * **stats.** - Obter estatísticas da instância i2p
 
   * **stats.advanced** - Este método fornece acesso a todas as estatísticas mantidas dentro da instância.

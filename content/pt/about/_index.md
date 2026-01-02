@@ -17,7 +17,7 @@ A rede I2P é uma rede de sobreposição ponto a ponto totalmente criptografada.
 
 ## Como Conectar-se à Rede I2P
 
-O software principal (Java) inclui um roteador que introduz e mantém uma conexão com a rede. Ele também oferece aplicações e opções de configuração para personalizar sua experiência e fluxo de trabalho. Saiba mais em nossa [documentação](/en/docs/).
+O software principal (Java) inclui um roteador que introduz e mantém uma conexão com a rede. Ele também oferece aplicações e opções de configuração para personalizar sua experiência e fluxo de trabalho. Saiba mais em nossa [documentação](/docs/).
 
 ## O Que Posso Fazer na Rede I2P?
 
@@ -25,7 +25,7 @@ A rede fornece uma camada de aplicação para serviços, aplicações e gerencia
 
 ## Uma Visão Geral da Rede
 
-O I2P usa criptografia para alcançar uma variedade de propriedades para os túneis que constrói e as comunicações que transporta. Os túneis I2P usam transportes, [NTCP2](/en/docs/specs/ntcp2/) e [SSU2](/en/docs/specs/ssu2/), para ocultar o tráfego sendo transportado sobre eles. As conexões são criptografadas de roteador para roteador e de cliente para cliente (de ponta a ponta). A confidencialidade direta é fornecida para todas as conexões. Como o I2P é criptograficamente endereçado, os endereços de rede do I2P são auto-autenticadores e pertencem apenas ao usuário que os gerou.
+O I2P usa criptografia para alcançar uma variedade de propriedades para os túneis que constrói e as comunicações que transporta. Os túneis I2P usam transportes, [NTCP2](/docs/specs/ntcp2/) e [SSU2](/docs/specs/ssu2/), para ocultar o tráfego sendo transportado sobre eles. As conexões são criptografadas de roteador para roteador e de cliente para cliente (de ponta a ponta). A confidencialidade direta é fornecida para todas as conexões. Como o I2P é criptograficamente endereçado, os endereços de rede do I2P são auto-autenticadores e pertencem apenas ao usuário que os gerou.
 
 A rede é composta por pares ("roteadores") e túneis virtuais unidirecionais de entrada e saída. Os roteadores se comunicam entre si usando protocolos construídos sobre mecanismos de transporte existentes (TCP, UDP), passando mensagens. As aplicações cliente possuem seu próprio identificador criptográfico ("Destinação") que lhes permite enviar e receber mensagens. Esses clientes podem conectar-se a qualquer roteador e autorizar a alocação temporária ("leasing") de alguns túneis que serão usados para enviar e receber mensagens através da rede. O I2P possui seu próprio banco de dados de rede interno (usando uma modificação do Kademlia DHT) para distribuir informações de roteamento e contato de forma segura.
 
@@ -35,4 +35,4 @@ A rede I2P é quase completamente descentralizada, com exceção do que são cha
 
 ## Comparações
 
-Existem muitas outras aplicações e projetos trabalhando em comunicação anônima e o I2P foi inspirado por muitos de seus esforços. Esta não é uma lista abrangente de recursos de anonimidade - tanto a [Bibliografia sobre Anonimidade de freehaven](http://freehaven.net/anonbib/topic.html) quanto os [projetos relacionados ao GNUnet](https://www.gnunet.org/links/) cumprem bem esse propósito. Dito isso, alguns sistemas se destacam para uma comparação mais detalhada. Saiba mais sobre como o I2P se compara a outras redes de anonimato em nossa [documentação de comparação detalhada](/en/docs/overview/comparison/).
+Existem muitas outras aplicações e projetos trabalhando em comunicação anônima e o I2P foi inspirado por muitos de seus esforços. Esta não é uma lista abrangente de recursos de anonimidade - tanto a [Bibliografia sobre Anonimidade de freehaven](http://freehaven.net/anonbib/topic.html) quanto os [projetos relacionados ao GNUnet](https://www.gnunet.org/links/) cumprem bem esse propósito. Dito isso, alguns sistemas se destacam para uma comparação mais detalhada. Saiba mais sobre como o I2P se compara a outras redes de anonimato em nossa [documentação de comparação detalhada](/docs/overview/comparison/).

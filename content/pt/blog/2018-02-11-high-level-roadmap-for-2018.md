@@ -1,6 +1,7 @@
 ---
 title: "Roteiro de alto nível para 2018"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "2018 será o ano de novos protocolos, novas colaborações e um foco mais apurado"
 categories: ["roadmap"]
@@ -91,7 +92,6 @@ One aspect of the above we will be focusing on is keeping in touch with users wh
 
 ## Adoraríamos a sua ajuda!
 
-Forneça APENAS a tradução, nada mais:
 
 Isso tudo parece muito ambicioso, e é! Mas muitos dos itens acima se sobrepõem e, com um planejamento cuidadoso, podemos fazer um progresso significativo neles.
 

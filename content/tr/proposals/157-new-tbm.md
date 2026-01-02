@@ -14,7 +14,7 @@ toc: true
 Uygulandı, API sürüm 0.9.51'den itibaren.
 Ağ dağıtımı ve test süreci devam ediyor.
 Küçük revizyonlara tabi olabilir.
-Nihai spesifikasyon için [I2NP](/en/docs/spec/i2np/) ve [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) belgelerine bakınız.
+Nihai spesifikasyon için [I2NP](/docs/specs/i2np/) ve [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) belgelerine bakınız.
 
 ## Genel Bakış
 
@@ -25,7 +25,7 @@ Tipik Değişken Tünel Yapı ve Değişken Tünel Yapı Yanıt mesajları için
 toplam boyut 2113 bayttır. Bu mesaj, ters yol için üç 1KB tünel
 mesajına bölünmektedir.
 
-ECIES-X25519 yönlendiricileri için 528 baytlık kayıt formatındaki değişiklikler [Prop152](/en/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) belgelerinde belirtilmiştir.
+ECIES-X25519 yönlendiricileri için 528 baytlık kayıt formatındaki değişiklikler [Prop152](/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) belgelerinde belirtilmiştir.
 Bir tünelde ElGamal ve ECIES-X25519 yönlendiricilerinin karışımı için, kayıt boyutunun
 528 bayt olarak kalması gerekmektedir. Ancak, bir tüneldeki tüm yönlendiriciler ECIES-X25519 ise,
 yeni, daha küçük bir yapı kaydı mümkün olabilir, çünkü ECIES-X25519 şifrelemesinin ElGamal'a göre
@@ -42,13 +42,13 @@ Bu durumun 2021 yılı sonuna kadar gerçekleşmesi beklenmektedir.
 
 ### Hedefler
 
-Ek hedefler için [Prop152](/en/proposals/152-ecies-tunnels/) ve [Prop156](/en/proposals/156-ecies-routers/) belgelerine bakınız.
+Ek hedefler için [Prop152](/proposals/152-ecies-tunnels/) ve [Prop156](/proposals/156-ecies-routers/) belgelerine bakınız.
 
 - Daha küçük kayıtlar ve mesajlar
-- Gelecekteki seçenekler için yeterli alanı koruma, [Prop152](/en/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) belgelerinde olduğu gibi
+- Gelecekteki seçenekler için yeterli alanı koruma, [Prop152](/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) belgelerinde olduğu gibi
 - Ters yol için bir tünel mesajına sığma
 - Sadece ECIES adımlarını destekleme
-- [Prop152](/en/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) belgelerinde uygulanan iyileştirmeleri koruma
+- [Prop152](/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) belgelerinde uygulanan iyileştirmeleri koruma
 - Mevcut ağ ile maksimum uyumluluk
 - Giden yapı yanıt mesajlarını IBGW'den gizleme
 - Ağın tamamının "flag day" yükseltmesi gerektirmeme
@@ -57,10 +57,10 @@ Ek hedefler için [Prop152](/en/proposals/152-ecies-tunnels/) ve [Prop156](/en/p
 
 ### Hedef Olmayanlar
 
-Ek hedef olmayanlar için [Prop156](/en/proposals/156-ecies-routers/) belgesine bakınız.
+Ek hedef olmayanlar için [Prop156](/proposals/156-ecies-routers/) belgesine bakınız.
 
 - Karışık ElGamal/ECIES tünelleri gerektirmemek
-- Katman şifreleme değişiklikleri, bunun için [Prop153](/en/proposals/153-chacha20-layer-encryption/) belgesine bakınız
+- Katman şifreleme değişiklikleri, bunun için [Prop153](/proposals/153-chacha20-layer-encryption/) belgesine bakınız
 - Kripto operasyonlarının hızlandırılmaması. ChaCha20 ve AES'in benzer olduğu varsayılmakta,
   en azından söz konusu küçük veri boyutları için, hatta AESNI ile bile.
 
@@ -74,11 +74,11 @@ Hesaplamalar için ek bölüme bakınız.
 
 Düz metin istek kayıtları 154 bayt olacaktır,
 ElGamal kayıtları için şu anki 222 bayt ve
-[Prop152](/en/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) belgelerinde tanımlanan ECIES kayıtları için 464 bayta kıyasla.
+[Prop152](/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) belgelerinde tanımlanan ECIES kayıtları için 464 bayta kıyasla.
 
 Düz metin yanıt kayıtları 202 bayt olacaktır,
 ElGamal kayıtları için şu anki 496 bayt ve
-[Prop152](/en/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) belgelerinde tanımlanan ECIES kayıtları için 512 bayta kıyasla.
+[Prop152](/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) belgelerinde tanımlanan ECIES kayıtları için 512 bayta kıyasla.
 
 Yanıt şifrelemesi ChaCha20 olacaktır (ChaCha20/Poly1305 DEĞİL),
 dolayısıyla düz metin kayıtlarının 16 bayt çokluğunda olmasına gerek yoktur.
@@ -166,7 +166,7 @@ STBM: Kısa tünel yapı mesajı (tür 25)
 
 ### Kayıt Şifreleme
 
-İstek ve yanıt kayıt şifrelemesi: [Prop152](/en/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) belgelerinde tanımlandığı gibi.
+İstek ve yanıt kayıt şifrelemesi: [Prop152](/proposals/152-ecies-tunnels/) ve [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) belgelerinde tanımlandığı gibi.
 
 Diğer slotlar için yanıt kayıt şifrelemesi: ChaCha20.
 
@@ -191,7 +191,7 @@ Bu ek araştırmalar için bir konudur.
 #### Kısa İstek Kaydı Şifre Değiştirilmemiş
 
 Bu, ECIES-X25519 yönlendiricileri için tünel BuildRequestRecord'un önerilen spesifikasyonudur.
-[Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 'dan değişikliklerin özeti:
+[Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 'dan değişikliklerin özeti:
 
 - Şifrelenmemiş uzunluğu 464'ten 154 bayta değiştir
 - Şifrelenmiş uzunluğu 528'den 218 bayta değiştir
@@ -221,7 +221,7 @@ bytes     0-3: mesajları almak için tünel kimliği, sıfır olmayan
 
 ```
 
-Bayraklar alanı [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 'da tanımlandığı gibi ve aşağıdakileri içerir::
+Bayraklar alanı [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) 'da tanımlandığı gibi ve aşağıdakileri içerir::
 
  Bit sırası: 76543210 (bayt 7 MSB'dir)
  bit 7: ayarlanırsa, herkesten mesajlara izin ver
@@ -245,7 +245,7 @@ Bu, IBGW katman ve yanıt anahtarları ve IV'leri için bir KDF için kullanıl�
 Bu yalnızca gelen bir Tünel Yapı mesajında düz metin kaydında bulunur.
 Bu gereklidir çünkü bu katmanda bir DH için yapı kaydı yoktur.
 
-tünel yapı seçenekleri, [Common](/en/docs/spec/common-structures/) 'da tanımlandığı gibi bir Haritalama yapısıdır.
+tünel yapı seçenekleri, [Common](/docs/specs/common-structures/) 'da tanımlandığı gibi bir Haritalama yapısıdır.
 Bu, gelecekteki kullanım içindir. Şu anda tanımlanmış seçenek yoktur.
 Haritalama yapısı boşsa, bu iki bayttır 0x00 0x00.
 Haritalamanın maksimum boyutu (uzunluk alanı dahil) 98 bayttır,
@@ -271,7 +271,7 @@ bytes    0-15: Hop'un kesilmiş kimlik karma değeri
 #### Kısa Yanıt Kaydı Şifre Değiştirilmemiş
 
 Bu, ECIES-X25519 yönlendiricileri için tünel Kısa Yapı Yanıt Kaydı'nın önerilen spesifikasyonudur.
-[Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 'dan değişikliklerin özeti:
+[Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 'dan değişikliklerin özeti:
 
 - Şifrelenmemiş uzunluğu 512'den 202 bayta değiştir
 - Şifrelenmiş uzunluğu 528'den 218 bayta değiştir
@@ -291,14 +291,14 @@ bytes    0-x: Tünel Yapı Yanıt Seçenekleri (Haritalama)
 
 ```
 
-Tünel yapı yanıt seçenekleri [Common](/en/docs/spec/common-structures/) 'da tanımlandığı gibi bir Haritalama yapısıdır.
+Tünel yapı yanıt seçenekleri [Common](/docs/specs/common-structures/) 'da tanımlandığı gibi bir Haritalama yapısıdır.
 Bu, gelecekteki kullanım içindir. Şu anda tanımlanmış seçenek yoktur.
 Haritalama yapısı boşsa, bu iki bayttır 0x00 0x00.
 Haritalamanın maksimum boyutu (uzunluk alanı dahil) 201 bayttır,
 ve Haritalama uzunluk alanının maksimum değeri 199'dur.
 
 Yanıt baytı aşağıdaki değerlerden biridir
-[Tunnel-Creation](/en/docs/spec/tunnel-creation/) 'da tanımlandığı gibi parmak izi bırakmamak için:
+[Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) 'da tanımlandığı gibi parmak izi bırakmamak için:
 
 - 0x00 (kabul)
 - 30 (TUNNEL_REJECT_BANDWIDTH)

@@ -58,16 +58,14 @@ Join our mailing list by entering your email in the footer of this website to re
 | Role | Person | Description |
 |------|--------|-------------|
 | **I2P Java Release Manager** | idk | Builds and signs the releases |
-| **Forum admin** | eche\|on | I2P public forum maintainer |
 | **Download mirrors admin** | StormyCloud | Manage the mirrors for the download files |
 | **Packager; Linux** | idk | Linux (Debian/Ubuntu) distribution packager |
 | **Packager; Windows** | idk | Windows installer packager |
-| **Packager; OSX** | echelon | OSX installer packager |
-| **Release Manager Alternates** | eche\|on | Backup release managers |
+| **Packager; OSX** | vacant | OSX installer packager |
 | **CI admin** | idk | Maintain Continuous Integration infrastructure |
 | **Reseed Admin** | idk | Monitors, advises and recruits reseed hosts |
 | **Gitea admin** | idk | I2P Gitea maintainer |
-| **Localization** | eche\|on, idk, zzz | Admins on [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Localization** | idk, zzz | Admins on [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Translators** | many many people! | Translators on [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Website Maintainer** | StormyCloud | Manage the public project website content design |
 | **Webserver admin** | StormyCloud | Manage public project webservers |

@@ -11,7 +11,7 @@ I2P ağı, topluluğumuz sayesinde gelişiyor. İster bir geliştirici, çevirme
 ### Çekirdek Geliştirme
 I2P açık kaynaklıdır ve kod tabanına katkıları memnuniyetle karşılıyoruz. Hataları düzeltmek, özellikler eklemek veya performansı artırmak istiyorsanız, kod katkılarınız büyük fark yaratır.
 
-- **Başlamak için**: [Yeni geliştirici kılavuzumuzu](/en/docs/developers/new-developers) inceleyin
+- **Başlamak için**: [Yeni geliştirici kılavuzumuzu](/docs/developers/new-developers) inceleyin
 - **Kaynak kodu**: [GitLab](https://i2pgit.org) (I2P içinde de http://git.idk.i2p adresinde mevcuttur)
 - **Aylık toplantılar**: Her ayın ilk Salı günü bize katılın
 - **IRC kanalları**: Geliştirme tartışmaları için IRC2P'de #i2p-dev
@@ -19,7 +19,7 @@ I2P açık kaynaklıdır ve kod tabanına katkıları memnuniyetle karşılıyor
 ### Uygulama Geliştirme
 I2P üzerinde çalışan uygulamalar geliştirin!
 
-- **API dokümantasyonu**: [SAM, BOB ve I2PTunnel API'leri](/en/docs/api) hakkında bilgi edinin
+- **API dokümantasyonu**: [SAM, BOB ve I2PTunnel API'leri](/docs/api) hakkında bilgi edinin
 - **Yayın kütüphanesi**: Uygulamalarınız için I2P yayın kütüphanesini kullanın
 - **Yeni yönlendiriciler**: [Rust, Go veya diğer dillerde](/en/blog/2025/10/16/new-i2p-routers/) bir I2P yönlendirici geliştirmeyi düşünün
 
@@ -27,7 +27,7 @@ I2P üzerinde çalışan uygulamalar geliştirin!
 
 Yeni kullanıcıların ağa katılmasına yardımcı olmak için altyapı hizmetleri çalıştırın:
 
-- **Yeniden tohumlama sunucuları**: Yeni yönlendiricilerin ağa katılmasına ve bağlanmasına yardımcı olun - [yeniden tohumlama dokümantasyonumuza](/en/docs/guides/reseed-server/) bakın
+- **Yeniden tohumlama sunucuları**: Yeni yönlendiricilerin ağa katılmasına ve bağlanmasına yardımcı olun - [yeniden tohumlama dokümantasyonumuza](/docs/guides/reseed-server/) bakın
 - **Yansıtma siteleri**: Erişilebilirliği artırmak için indirme yansımaları barındırın
 - **Hizmetler**: Forumlar, IRC sunucuları veya diğer topluluk araçları gibi I2P hizmetlerini çalıştırın
 
@@ -36,8 +36,8 @@ Yeni kullanıcıların ağa katılmasına yardımcı olmak için altyapı hizmet
 ### Dokümantasyonu İyileştirin
 Açık dokümantasyon, herkesin I2P'yi anlamasına ve kullanmasına yardımcı olur.
 
-- **Yazım Kuralları**: [Dokümantasyon yazım kurallarımıza](/en/docs/writing-guidelines/) uyun
-- **Dokümantasyon Merkezi**: [Docs bölümünü](/en/docs/) göz atın ve katkıda bulunun
+- **Yazım Kuralları**: [Dokümantasyon yazım kurallarımıza](/docs/writing-guidelines) uyun
+- **Dokümantasyon Merkezi**: [Docs bölümünü](/docs/) göz atın ve katkıda bulunun
 - **İçerik Önerileri**: Fikirleriniz mi var? [Bize ulaşın](/en/contact/)
 
 ### Çeviri
@@ -110,7 +110,7 @@ I2P topluluğu ile bağlantı kurun:
 Nereden başlayacağınızı bilmiyor musunuz? İşte ilk adımlar:
 
 1. **I2P'yi Kurun**: [İndirin ve yükleyin](/en/downloads) en son sürümü
-2. **Temel bilgileri öğrenin**: [I2P girişini](/en/docs/how/intro) okuyun
+2. **Temel bilgileri öğrenin**: [I2P girişini](/docs/how/intro) okuyun
 3. **Bir alan seçin**: Becerilerinize ve ilgi alanlarınıza uygun bir şey seçin
 4. **Merhaba deyin**: IRC2P'de #i2p-dev'e katılın ve kendinizi tanıtın
 5. **Küçük başlayın**: Başlamak için küçük bir görev veya katkı seçin

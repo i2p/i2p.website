@@ -1,6 +1,7 @@
 ---
 title: "Lộ trình tổng quan cho năm 2018"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "Năm 2018 sẽ là năm của các giao thức mới, các hợp tác mới, và một trọng tâm được tinh chỉnh hơn."
 categories: ["roadmap"]
@@ -91,7 +92,6 @@ Trong các nội dung nêu trên, một trọng tâm của chúng tôi là duy t
 
 ## Chúng tôi rất mong nhận được sự giúp đỡ của bạn!
 
-Chỉ cung cấp bản dịch, không kèm gì khác:
 
 Nhìn chung tất cả có vẻ rất tham vọng, và đúng là như vậy! Nhưng nhiều hạng mục ở trên chồng chéo nhau, và với việc lập kế hoạch cẩn thận, chúng ta có thể giải quyết được một phần đáng kể trong số đó.
 

@@ -127,7 +127,6 @@ Si vous avez des questions concernant ces Conditions d'utilisation, veuillez nou
 
 En utilisant notre Site Web ou notre Logiciel, vous reconnaissez avoir lu et compris les présentes Conditions d’utilisation et acceptez d’être lié par celles-ci.
 
-Fournissez UNIQUEMENT la traduction, rien d’autre :
 
 **Dernière mise à jour**: octobre 2025
 

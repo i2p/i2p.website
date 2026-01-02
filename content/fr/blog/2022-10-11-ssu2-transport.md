@@ -85,7 +85,6 @@ Les projets Java I2P et i2pd activeront tous deux SSU2 par défaut dans leurs pr
 
 ## Résumé
 
-Fournissez UNIQUEMENT la traduction, rien d'autre:
 
 Les fondateurs d’I2P ont dû faire plusieurs choix en matière d’algorithmes et de protocoles cryptographiques. Certains de ces choix étaient meilleurs que d’autres, mais, vingt ans plus tard, la plupart accusent leur âge. Bien sûr, nous savions que cela arriverait, et nous avons passé la dernière décennie à planifier et à mettre en œuvre des mises à niveau cryptographiques.
 

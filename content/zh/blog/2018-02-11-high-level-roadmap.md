@@ -1,6 +1,7 @@
 ---
 title: "2018 年总体路线图"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "2018年将是新协议、新合作涌现、关注重点更加明确的一年。"
 categories: ["roadmap"]

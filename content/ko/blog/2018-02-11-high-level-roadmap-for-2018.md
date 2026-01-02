@@ -1,6 +1,7 @@
 ---
 title: "2018년 개괄적 로드맵"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "2018년은 새로운 프로토콜과 새로운 협업, 그리고 더욱 정교해진 초점의 해가 될 것입니다."
 categories: ["roadmap"]

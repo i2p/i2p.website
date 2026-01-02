@@ -234,7 +234,7 @@ After forwarding your port, I2P should change from "Network: Firewalled" to "Net
 - **Forward your port**: See [portforward.com](https://portforward.com/) for router-specific instructions on how to forward the port I2P is using
 - **Explore the router console**: Learn about I2P's features, services, and configuration options
 - **Visit eepsites**: Try accessing `.i2p` websites through the I2P network
-- **Read the documentation**: Check out the [I2P documentation](../../_index.md) for more information
+- **Read the documentation**: Check out the [I2P documentation](/docs/) for more information
 
 Welcome to the I2P network! 🎉
 
@@ -507,11 +507,11 @@ The Windows Services method is useful for managing I2P as a background service, 
 ## Next Steps
 
 - **Wait for integration**: Give I2P 5-10 minutes to integrate into the network and build tunnels
-- **Configure port forwarding**: See the [port forwarding guide](windows-easy-install.md#recommended-port-forwarding-optional-but-important) for instructions
+- **Configure port forwarding**: See the [port forwarding guide](#recommended-port-forwarding-optional-but-important) for instructions
 - **Configure your browser**: Set up your web browser to use I2P's HTTP proxy
 - **Explore the router console**: Learn about I2P's features, services, and configuration options
 - **Visit eepsites**: Try accessing `.i2p` websites through the I2P network
-- **Read the documentation**: Check out the [I2P documentation](../../_index.md) for more information
+- **Read the documentation**: Check out the [I2P documentation](/docs/) for more information
 
 Welcome to the I2P network! 🎉
 

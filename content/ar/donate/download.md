@@ -13,8 +13,8 @@ type: "donate"
 
 الآن بعد أن حصلت على I2P، إليك كيفية البدء:
 
-1. **Install I2P** - Follow our [installation guides](/en/docs/guides/) for your platform
-2. **Configure Your Browser** - Set up your browser to use I2P with our [browser configuration guide](/en/docs/guides/browser-config/)
+1. **Install I2P** - Follow our [installation guides](/docs/guides/) for your platform
+2. **Configure Your Browser** - Set up your browser to use I2P with our [browser configuration guide](/docs/guides/browser-config/)
 3. **Explore I2P Sites** - Start browsing .i2p sites and discover the I2P network
 4. **Get Support** - Join our [community forums](/en/contact/#forums) or [IRC channels](/en/contact/#irc) if you need help
 

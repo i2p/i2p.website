@@ -18,7 +18,6 @@ toc: true
 Проверьте документацию по реализации для получения информации о статусе.
 
 
-
 ## Обзор
 
 Выделено из [Prop123](/proposals/123-new-netdb-entries/) как отдельное предложение.
@@ -110,7 +109,6 @@ Datagram2 из-за поля from и накладных расходов на п
 ```
 
 
-
 ## Дизайн
 
 - Определить новый протокол 19 - Датаграмма с возможностью ответа с опциями.
@@ -132,10 +130,10 @@ Datagram2 из-за поля from и накладных расходов на п
 ### Протокол
 
 Новый номер протокола I2CP для Datagram2 - 19.
-Добавьте его как PROTO_DATAGRAM2 в [I2CP](/docs/protocol/i2cp/).
+Добавьте его как PROTO_DATAGRAM2 в [I2CP](/docs/specs/i2cp/).
 
 Новый номер протокола I2CP для Datagram3 - 20.
-Добавьте его как PROTO_DATAGRAM2 в [I2CP](/docs/protocol/i2cp/).
+Добавьте его как PROTO_DATAGRAM2 в [I2CP](/docs/specs/i2cp/).
 
 
 ### Формат Datagram2
@@ -295,7 +293,6 @@ SHA-256 хеше полезной нагрузки, а не на самой по
 Общая длина: минимум 34 + длина полезной нагрузки.
 
 
-
 ### SAM
 
 Добавьте STYLE=DATAGRAM2 и STYLE=DATAGRAM3 в спецификацию SAMv3.
@@ -308,7 +305,6 @@ SHA-256 хеше полезной нагрузки, а не на самой по
 Это приемлемо.
 
 
-
 ## Анализ безопасности
 
 Включение хеша цели в подпись должно быть эффективным для предотвращения атак повторов.
@@ -318,16 +314,13 @@ SHA-256 хеше полезной нагрузки, а не на самой по
 или маршрутизатором на уровне механизма зашифрования.
 
 
-
 ## Примечания
 
-- Практическая длина ограничена нижележащими уровнями протоколов - спецификация туннельных сообщений [TUNMSG](/docs/specs/tunnel-message/#notes) ограничивает сообщения до около 61,2 КБ, и транспортные
-  [TRANSPORT](/docs/transport/) в настоящее время ограничивают сообщения до около 64 КБ, так что длина данных здесь
+- Практическая длина ограничена нижележащими уровнями протоколов - спецификация туннельных сообщений [TUNMSG](/docs/specs/implementation/#notes) ограничивает сообщения до около 61,2 КБ, и транспортные
+  [TRANSPORT](/docs/overview/transport/) в настоящее время ограничивают сообщения до около 64 КБ, так что длина данных здесь
   ограничена до около 61 КБ.
 - См. важные заметки о надежности больших датаграмм [API](/docs/api/datagrams/). Для
   наилучших результатов, ограничьте полезную нагрузку до около 10 КБ или меньше.
-
-
 
 
 ## Совместимость
@@ -365,11 +358,11 @@ SAM UDP приложения: Неизвестно
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

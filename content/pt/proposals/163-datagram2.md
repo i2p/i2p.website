@@ -18,7 +18,6 @@ Implementado em Java I2P a partir da API 0.9.66.
 Verifique a documentação de implementação para status.
 
 
-
 ## Visão Geral
 
 Extraído de [Prop123](/proposals/123-new-netdb-entries/) como uma proposta separada.
@@ -111,7 +110,6 @@ O número padrão de protocolo I2CP para datagramas repliáveis é PROTO_DATAGRA
 ```
 
 
-
 ## Design
 
 - Definir novo protocolo 19 - Datagramas repliáveis com opções.
@@ -134,9 +132,9 @@ O número padrão de protocolo I2CP para datagramas repliáveis é PROTO_DATAGRA
 
 ### Protocolo
 
-O novo número de protocolo I2CP para Datagram2 é 19. Adicione-o como PROTO_DATAGRAM2 a [I2CP](/docs/protocol/i2cp/).
+O novo número de protocolo I2CP para Datagram2 é 19. Adicione-o como PROTO_DATAGRAM2 a [I2CP](/docs/specs/i2cp/).
 
-O novo número de protocolo I2CP para Datagram3 é 20. Adicione-o como PROTO_DATAGRAM2 a [I2CP](/docs/protocol/i2cp/).
+O novo número de protocolo I2CP para Datagram3 é 20. Adicione-o como PROTO_DATAGRAM2 a [I2CP](/docs/specs/i2cp/).
 
 
 ### Formato Datagram2
@@ -296,7 +294,6 @@ Adicione Datagram3 a [DATAGRAMS](/docs/api/datagrams/) como segue:
 Comprimento total: mínimo 34 + comprimento do payload.
 
 
-
 ### SAM
 
 Adicione STYLE=DATAGRAM2 e STYLE=DATAGRAM3 à especificação SAMv3.
@@ -309,7 +306,6 @@ Este design adiciona 2 bytes de sobrecarga para datagramas repliáveis para band
 Isso é aceitável.
 
 
-
 ## Análise de Segurança
 
 Incluir o hash alvo na assinatura deve ser efetivo em prevenir ataques de replay.
@@ -319,16 +315,13 @@ e ataques de replay são possíveis. Qualquer validação necessária deve ser f
 ou pelo roteador na camada de ratchet.
 
 
-
 ## Notas
 
-- O comprimento prático é limitado pelas camadas inferiores dos protocolos - a especificação de mensagem de túnel [TUNMSG](/docs/specs/tunnel-message/#notes) limita as mensagens a cerca de 61,2 KB e os transportes
-  [TRANSPORT](/docs/transport/) atualmente limitam as mensagens a cerca de 64 KB, então o comprimento dos dados aqui
+- O comprimento prático é limitado pelas camadas inferiores dos protocolos - a especificação de mensagem de túnel [TUNMSG](/docs/specs/implementation/#notes) limita as mensagens a cerca de 61,2 KB e os transportes
+  [TRANSPORT](/docs/overview/transport/) atualmente limitam as mensagens a cerca de 64 KB, então o comprimento dos dados aqui
   é limitado a cerca de 61 KB.
 - Veja notas importantes sobre a confiabilidade de datagramas grandes [API](/docs/api/datagrams/). Para
   melhores resultados, limite o payload a cerca de 10 KB ou menos.
-
-
 
 
 ## Compatibilidade
@@ -337,7 +330,6 @@ Nenhuma. As aplicações devem ser reescritas para rotear mensagens I2CP Datagra
 com base no protocolo e/ou porta.
 Mensagens Datagram2 que são mal roteadas e interpretadas como
 mensagens de datagrama repliáveis ou de streaming falharão com base na assinatura, formato, ou ambos.
-
 
 
 ## Migração
@@ -367,11 +359,11 @@ Aplicativos UDP SAM: Nenhum conhecido
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

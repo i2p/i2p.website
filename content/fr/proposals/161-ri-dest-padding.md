@@ -44,7 +44,6 @@ qui élimineraient complètement le remplissage. Il y a également une brève di
 et comment cela pourrait affecter la planification future.
 
 
-
 ### Objectifs
 
 - Éliminer l'obligation de générer une paire de clés ElGamal pour les Destinations
@@ -67,7 +66,6 @@ En éliminant l'exigence de générer des clés ElGamal, les implémentations po
 dans d'autres protocoles.
 
 
-
 ## Conception
 
 À proprement parler, la clé publique de signature de 32 octets seule (dans les Destinations et les Identités de Routeur)
@@ -83,7 +81,6 @@ alarmer ou confondre les utilisateurs.
 Pour le type de signature Ed25519 et le type de chiffrement X25519 :
 Les Destinations contiendront 11 copies (352 octets) des données aléatoires.
 Les Identités de Routeur contiendront 10 copies (320 octets) des données aléatoires.
-
 
 
 ### Économies Estimées
@@ -112,7 +109,6 @@ Pour le type de signature Ed25519 et le type de chiffrement X25519,
 Notes : Suppose qu'un certificat de 7 octets n'est pas compressible, aucune surcharge gzip supplémentaire.
 Aucun des deux n'est vrai, mais les effets seront faibles.
 Ignore d'autres parties compressibles de l'Info Routeur.
-
 
 
 ## Spécification
@@ -204,9 +200,6 @@ Les coûts et bénéfices de ces changements ne sont pas clairs.
 Propositions spécifiques à définir :
 
 
-
-
-
 ### Clés PQ
 
 Les clés publiques de chiffrement post-quantique (PQ), pour tout algorithme anticipé,
@@ -229,8 +222,6 @@ Mais serait après hybride ou ratchet ????????????
 Pour de plus amples discussions, voir [this topic](http://zzz.i2p/topics/3294).
 
 
-
-
 ## Problèmes
 
 Il pourrait être souhaitable de changer les clés du réseau à un rythme lent, pour fournir une couverture aux nouveaux routeurs.
@@ -239,8 +230,6 @@ Il pourrait être souhaitable de changer les clés du réseau à un rythme lent,
 Il n'est pas possible de changer les clés des Destinations existantes.
 
 Les Identités de Routeur avec remplissage dans le champ de clé publique devraient-elles être identifiées avec un type de chiffrement différent dans le certificat de clé ? Cela entraînerait des problèmes de compatibilité.
-
-
 
 
 ## Migration

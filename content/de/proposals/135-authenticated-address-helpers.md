@@ -49,12 +49,10 @@ Jump-Dienste würden wie üblich vertraut, jedoch mit dem zusätzlichen Authenti
 Address Helper-Links auf anderen Seiten müssten geändert werden.
 
 
-
 ## Sicherheitsimplikationen
 
 Dieser Vorschlag erhöht die Sicherheit durch Hinzufügung von Authentifizierung durch 
 vertrauenswürdige Registrierungs-/Jump-Dienste.
-
 
 
 ## Spezifikation

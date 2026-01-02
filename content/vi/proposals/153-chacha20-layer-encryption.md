@@ -36,7 +36,7 @@ Phần này mô tả những thay đổi đối với:
 - Mã hóa + xử lý sau của người tham gia
 - Mã hóa + xử lý sau Endpoint ra và vào
 
-Để có cái nhìn tổng quan về xử lý thông điệp đường hầm hiện tại, hãy xem phần [Tunnel Implementation](/docs/tunnels/implementation/).
+Để có cái nhìn tổng quan về xử lý thông điệp đường hầm hiện tại, hãy xem phần [Tunnel Implementation](/docs/specs/implementation/).
 
 Chỉ những thay đổi cho các bộ định tuyến hỗ trợ mã hóa tầng ChaCha20 được thảo luận.
 
@@ -314,4 +314,4 @@ Cả hai cuộc tấn công cũng đều bị chặn bởi việc không cho ph�
 
 ## Tài Liệu Tham Khảo
 
-* [Tunnel-Implementation](/docs/tunnels/implementation/)
+* [Tunnel-Implementation](/docs/specs/implementation/)

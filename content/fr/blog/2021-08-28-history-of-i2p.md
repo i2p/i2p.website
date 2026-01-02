@@ -1,6 +1,7 @@
 ---
 title: "20 ans de protection de la vie privée : brève histoire d'I2P"
 date: 2021-08-28
+slug: "20-years-of-privacy-a-brief-history-of-i2p"
 author: "sadie"
 description: "Un historique d'I2P tel que nous le connaissons"
 categories: ["general"]

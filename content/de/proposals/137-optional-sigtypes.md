@@ -16,7 +16,6 @@ Dies bietet eine Möglichkeit, neue Signaturtypen langfristig zu unterstützen,
 auch wenn nicht alle Implementierungen sie unterstützen.
 
 
-
 ## Motivation
 
 Der GOST Vorschlag 134 hat mehrere Probleme mit dem bisher ungenutzten experimentellen Signaturtyp-Bereich aufgedeckt.
@@ -37,7 +36,6 @@ Fünftens, wenn GOST einen Signaturtyp im Standardbereich verwendet, gibt es imm
 Floodfill GOST unterstützt.
 
 
-
 ## Design
 
 Alle Floodfills müssen die Signaturtypen DSA (0), ECDSA (1-3) und EdDSA (7) unterstützen.
@@ -46,9 +44,7 @@ Für alle anderen Signaturtypen im Standard- (nicht experimentellen) Bereich kan
 die Unterstützung in seinen Routerinfo-Eigenschaften anzeigen.
 
 
-
 ## Spezifikation
-
 
 
 Ein Router, der einen optionalen Signaturtyp unterstützt, soll die Eigenschaft "sigTypes"
@@ -62,12 +58,10 @@ Router, die optionale Signaturtypen unterstützen, dürfen nur speichern, nachsc
 zu Floodfills, die die Unterstützung für diesen Signaturtyp anzeigen.
 
 
-
 ## Migration
 
 Nicht anwendbar.
 Nur Router, die einen optionalen Signaturtyp unterstützen, müssen implementieren.
-
 
 
 ## Probleme
@@ -85,6 +79,5 @@ was noch nicht formell vorgeschlagen wurde.
 
 NetDB-Speicherungen von unbekannten Signaturtypen, die nicht im experimentellen Bereich liegen, werden weiterhin
 von Floodfills abgelehnt, da die Signatur nicht verifiziert werden kann.
-
 
 

@@ -12,7 +12,7 @@ toc: true
 ## 注意
 该提案未按指定实现，
 然而，ECIES 长短构建消息（提案 152 和 157）设计了可扩展的选项字段。
-请参见 [Tunnel Creation ECIES 规范](/en/docs/spec/tunnel-creation-ecies/) 查看官方规范。
+请参见 [Tunnel Creation ECIES 规范](/docs/specs/implementation/#tunnel-creation-ecies) 查看官方规范。
 
 
 ## 概述
@@ -30,7 +30,6 @@ TBM 中有 29 个备用字节。我们希望在保持灵活性的同时，也能
 严格定义更多的选项字段可能会在以后引起问题。
 
 本文档提出了一种新的、灵活的选项映射方案。
-
 
 
 ## 设计
@@ -79,7 +78,6 @@ TBRM 中有 495 个备用字节。
 
 这些更改适用于隧道构建记录，因此可以用于所有构建消息风味 -
 隧道构建请求、可变隧道构建请求、隧道构建回复和可变隧道构建回复。
-
 
 
 ## 迁移

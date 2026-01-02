@@ -15,12 +15,10 @@ Việc triển khai và kiểm tra mạng đang được tiến hành.
 Có thể sửa đổi.
 Trạng thái:
 
-- Thiết bị định tuyến ECIES đã được triển khai từ phiên bản 0.9.48, xem [Common](/en/docs/spec/common-structures/).
-- Tạo đường hầm đã được triển khai từ phiên bản 0.9.48, xem [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
-- Tin nhắn mã hóa đến các thiết bị định tuyến ECIES đã được triển khai từ phiên bản 0.9.49, xem [ECIES-ROUTERS](/en/docs/spec/ecies-routers/).
+- Thiết bị định tuyến ECIES đã được triển khai từ phiên bản 0.9.48, xem [Common](/docs/specs/common-structures/).
+- Tạo đường hầm đã được triển khai từ phiên bản 0.9.48, xem [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
+- Tin nhắn mã hóa đến các thiết bị định tuyến ECIES đã được triển khai từ phiên bản 0.9.49, xem [ECIES-ROUTERS](/docs/specs/ecies/).
 - Các tin nhắn xây dựng đường hầm mới đã được triển khai từ phiên bản 0.9.51.
-
-
 
 
 ## Tổng Quan
@@ -32,8 +30,8 @@ Danh tính của Thiết Bị Định Tuyến hiện tại chứa một khóa m�
 Đây đã là tiêu chuẩn từ khi I2P bắt đầu.
 ElGamal chậm và cần được thay thế ở tất cả các địa điểm sử dụng.
 
-Các đề xuất cho LS2 [Prop123](/en/proposals/123-new-netdb-entries/) và ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/)
-(hiện được chỉ định trong [ECIES](/en/docs/spec/ecies/)) đã định nghĩa việc thay thế ElGamal bằng ECIES
+Các đề xuất cho LS2 [Prop123](/proposals/123-new-netdb-entries/) và ECIES-X25519-AEAD-Ratchet [Prop144](/proposals/144-ecies-x25519-aead-ratchet/)
+(hiện được chỉ định trong [ECIES](/docs/specs/ecies/)) đã định nghĩa việc thay thế ElGamal bằng ECIES
 cho các Điểm Đến.
 
 Đề xuất này định nghĩa việc thay thế ElGamal bằng ECIES-X25519 cho các thiết bị định tuyến.
@@ -44,7 +42,7 @@ Xem phần tham khảo để có liên kết.
 
 ### Mục Tiêu
 
-Xem [Prop152](/en/proposals/152-ecies-tunnels/) để biết các mục tiêu bổ sung.
+Xem [Prop152](/proposals/152-ecies-tunnels/) để biết các mục tiêu bổ sung.
 
 - Thay thế ElGamal bằng ECIES-X25519 trong Danh Tính Thiết Bị Định Tuyến
 - Tái sử dụng các nguyên thủy mật mã hiện có
@@ -58,10 +56,10 @@ Xem [Prop152](/en/proposals/152-ecies-tunnels/) để biết các mục tiêu b�
 
 ### Phi-Mục Tiêu
 
-Xem [Prop152](/en/proposals/152-ecies-tunnels/) để biết các phi-mục tiêu bổ sung.
+Xem [Prop152](/proposals/152-ecies-tunnels/) để biết các phi-mục tiêu bổ sung.
 
 - Không yêu cầu cho các thiết bị định tuyến hai khóa
-- Thay đổi lớp mã hóa, đối với điều đó xem [Prop153](/en/proposals/153-chacha20-layer-encryption/)
+- Thay đổi lớp mã hóa, đối với điều đó xem [Prop153](/proposals/153-chacha20-layer-encryption/)
 
 
 ## Thiết Kế
@@ -73,17 +71,17 @@ Xem [Prop152](/en/proposals/152-ecies-tunnels/) để biết các phi-mục tiê
 chúng tôi hỗ trợ nhiều loại mã hóa trong cùng một leaseset.
 
 Không cần điều đó cho các thiết bị định tuyến. Khóa mã hóa của thiết bị định tuyến
-nằm trong Danh Tính Thiết Bị Định Tuyến. Xem đặc tả cấu trúc chung [Common](/en/docs/spec/common-structures/).
+nằm trong Danh Tính Thiết Bị Định Tuyến. Xem đặc tả cấu trúc chung [Common](/docs/specs/common-structures/).
 
 Đối với thiết bị định tuyến, chúng tôi sẽ thay thế khóa ElGamal 256 byte trong Danh Tính Thiết Bị Định Tuyến
 bằng một khóa X25519 32 byte và 224 byte đệm.
 Điều này sẽ được chỉ định bởi loại mã hóa trong chứng nhận khóa.
 Loại mã hóa (giống như được sử dụng trong LS2) là 4.
 Điều này biểu thị một khóa công khai X25519 32 byte little-endian.
-Đây là cấu trúc tiêu chuẩn như đã được định nghĩa trong đặc tả cấu trúc chung [Common](/en/docs/spec/common-structures/).
+Đây là cấu trúc tiêu chuẩn như đã được định nghĩa trong đặc tả cấu trúc chung [Common](/docs/specs/common-structures/).
 
 Điều này giống hệt với phương pháp được đề xuất cho ECIES-P256
-cho các loại mã hóa 1-3 trong đề xuất 145 [Prop145](/en/proposals/145-ecies/).
+cho các loại mã hóa 1-3 trong đề xuất 145 [Prop145](/proposals/145-ecies/).
 Trong khi đề xuất này chưa bao giờ được thông qua, các nhà phát triển triển khai Java đã chuẩn bị cho
 các loại mã hóa trong chứng chỉ khóa Danh Tính Thiết Bị Định Tuyến bằng cách thêm các kiểm tra ở nhiều
 vị trí trong cơ sở mã. Hầu hết công việc này được hoàn thành vào giữa năm 2019.
@@ -91,7 +89,7 @@ vị trí trong cơ sở mã. Hầu hết công việc này được hoàn thàn
 
 ### Tin Nhắn Xây Dựng Đường Hầm
 
-Một số thay đổi đối với đặc tả tạo đường hầm [Tunnel-Creation](/en/docs/spec/tunnel-creation/)
+Một số thay đổi đối với đặc tả tạo đường hầm [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
 được yêu cầu để sử dụng ECIES thay vì ElGamal.
 Ngoài ra, chúng tôi sẽ cải thiện các tin nhắn xây dựng đường hầm
 để tăng cường bảo mật.
@@ -99,15 +97,14 @@ Ngoài ra, chúng tôi sẽ cải thiện các tin nhắn xây dựng đường 
 Trong giai đoạn 1, chúng tôi sẽ thay đổi định dạng và mã hóa của
 Bản Ghi Yêu Cầu Xây Dựng và Bản Ghi Phản Hồi Xây Dựng cho các điểm dừng ECIES.
 Những thay đổi này sẽ tương thích với các thiết bị định tuyến ElGamal hiện có.
-Những thay đổi này được định nghĩa trong kiến nghị 152 [Prop152](/en/proposals/152-ecies-tunnels/).
+Những thay đổi này được định nghĩa trong kiến nghị 152 [Prop152](/proposals/152-ecies-tunnels/).
 
 Trong giai đoạn 2, chúng tôi sẽ thêm một phiên bản mới của
 Tin Nhắn Yêu Cầu Xây Dựng, Tin Nhắn Phản Hồi Xây Dựng,
 Bản Ghi Yêu Cầu Xây Dựng và Bản Ghi Phản Hồi Xây Dựng.
 Kích thước sẽ được giảm để tăng hiệu quả.
 Các thay đổi này phải được hỗ trợ bởi tất cả các điểm dừng trong một đường hầm, và tất cả các điểm dừng phải là ECIES.
-Những thay đổi này được định nghĩa trong kiến nghị 157 [Prop157](/en/proposals/157-new-tbm/).
-
+Những thay đổi này được định nghĩa trong kiến nghị 157 [Prop157](/proposals/157-new-tbm/).
 
 
 ### Mã Hóa Đầu Cuối
@@ -123,7 +120,7 @@ người gửi chỉ gửi khóa tạm thời, không phải một khóa tĩnh.
 Tin nhắn không bị ràng buộc với danh tính của người gửi.
 
 Sau đó, chúng tôi đã thiết kế ECIES Ratchet SKM trong
-ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/), hiện được quy định trong [ECIES](/en/docs/spec/ecies/).
+ECIES-X25519-AEAD-Ratchet [Prop144](/proposals/144-ecies-x25519-aead-ratchet/), hiện được quy định trong [ECIES](/docs/specs/ecies/).
 Thiết kế này được quy định bằng cách sử dụng mẫu "IK" của Noise, bao gồm khóa tĩnh của người gửi trong tin nhắn đầu tiên. Giao thức này được sử dụng cho các Điểm Đến ECIES (loại 4).
 Mẫu IK không cho phép người gửi ẩn danh.
 
@@ -164,26 +161,26 @@ Phi-mục tiêu của trường hợp sử dụng Thiết Bị Định Tuyến:
 - Không cần tin nhắn không ẩn danh
 - Không cần gửi tin nhắn thông qua các đường hầm thăm dò vào (một thiết bị định tuyến không xuất bản leasesets thăm dò)
 - Không cần giao thông tin nhắn kéo dài sử dụng tags
-- Không cần chạy "quản trị khóa đôi" Quản Lý Khóa Phiên như được mô tả trong [ECIES](/en/docs/spec/ecies/) cho Điểm Đến. Các thiết bị định tuyến chỉ có một khóa công khai.
+- Không cần chạy "quản trị khóa đôi" Quản Lý Khóa Phiên như được mô tả trong [ECIES](/docs/specs/ecies/) cho Điểm Đến. Các thiết bị định tuyến chỉ có một khóa công khai.
 
 
 #### Kết Luận Thiết Kế
 
-SKM Router ECIES không cần một SKM Ratchet đầy đủ như được quy định trong [ECIES](/en/docs/spec/ecies/) cho các Điểm Đến.
+SKM Router ECIES không cần một SKM Ratchet đầy đủ như được quy định trong [ECIES](/docs/specs/ecies/) cho các Điểm Đến.
 Không có yêu cầu cho các tin nhắn không ẩn danh sử dụng mẫu IK.
 Mô hình đe dọa không yêu cầu mã hóa khóa tạm thời Elligator2.
 
 Do đó, SKM Router sẽ sử dụng mẫu "N" của Noise, giống như được quy định
-trong [Prop152](/en/proposals/152-ecies-tunnels/) cho việc xây dựng đường hầm.
-Nó sẽ sử dụng cùng định dạng tải như được quy định cho các Điểm Đến trong [ECIES](/en/docs/spec/ecies/).
-Chế độ khóa tĩnh rỗng (không ràng buộc hoặc phiên) mẫu IK quy định trong [ECIES](/en/docs/spec/ecies/) sẽ không được sử dụng.
+trong [Prop152](/proposals/152-ecies-tunnels/) cho việc xây dựng đường hầm.
+Nó sẽ sử dụng cùng định dạng tải như được quy định cho các Điểm Đến trong [ECIES](/docs/specs/ecies/).
+Chế độ khóa tĩnh rỗng (không ràng buộc hoặc phiên) mẫu IK quy định trong [ECIES](/docs/specs/ecies/) sẽ không được sử dụng.
 
 Phản hồi các tra cứu sẽ được mã hóa với thẻ ratchet nếu được yêu cầu trong tra cứu.
-Điều này được ghi nhận trong [Prop154](/en/proposals/154-ecies-lookups/), hiện được chỉ định trong [I2NP](/en/docs/spec/i2np/).
+Điều này được ghi nhận trong [Prop154](/proposals/154-ecies-lookups/), hiện được chỉ định trong [I2NP](/docs/specs/i2np/).
 
 Thiết kế cho phép thiết bị định tuyến có một Quản Lý Khóa Phiên ECIES duy nhất.
 Không cần chạy "quản trị khóa đôi" Quản Lý Khóa Phiên như
-được mô tả trong [ECIES](/en/docs/spec/ecies/) cho các Điểm Đến.
+được mô tả trong [ECIES](/docs/specs/ecies/) cho các Điểm Đến.
 Các thiết bị định tuyến chỉ có một khóa công khai.
 
 Một thiết bị định tuyến ECIES không có khóa tĩnh ElGamal.
@@ -193,7 +190,7 @@ qua các thiết bị định tuyến ElGamal và gửi tin nhắn mã hóa tớ
 Một thiết bị định tuyến ECIES CÓ THỂ yêu cầu một Quản Lý Khóa Phiên ElGamal một phần để
 nhận các tin nhắn gắn thẻ ElGamal nhận được như phản hồi cho các tìm kiếm NetDB
 từ các thiết bị định tuyến floodfill phiên bản trước 0.9.46, khi các thiết bị định tuyến đó không có
-một triển khai của phản hồi gắn thẻ ECIES như được quy định trong [Prop152](/en/proposals/152-ecies-tunnels/).
+một triển khai của phản hồi gắn thẻ ECIES như được quy định trong [Prop152](/proposals/152-ecies-tunnels/).
 Nếu không, một thiết bị định tuyến ECIES có thể không yêu cầu một phản hồi được mã hóa từ
 một thiết bị định tuyến floodfill trước 0.9.46.
 
@@ -203,30 +200,29 @@ và có thể phụ thuộc vào số lượng mạng đã nâng cấp lên
 Tính đến thời điểm này, khoảng 85% mạng là 0.9.46 hoặc cao hơn.
 
 
-
 ## Đặc Tả
 
-X25519: Xem [ECIES](/en/docs/spec/ecies/).
+X25519: Xem [ECIES](/docs/specs/ecies/).
 
-Danh Tính Thiết Bị Định Tuyến và Chứng Nhận Khóa: Xem [Common](/en/docs/spec/common-structures/).
+Danh Tính Thiết Bị Định Tuyến và Chứng Nhận Khóa: Xem [Common](/docs/specs/common-structures/).
 
-Việc Xây Dựng Đường Hầm: Xem [Prop152](/en/proposals/152-ecies-tunnels/).
+Việc Xây Dựng Đường Hầm: Xem [Prop152](/proposals/152-ecies-tunnels/).
 
-Tin Nhắn Xây Dựng Đường Hầm Mới: Xem [Prop157](/en/proposals/157-new-tbm/).
+Tin Nhắn Xây Dựng Đường Hầm Mới: Xem [Prop157](/proposals/157-new-tbm/).
 
 
 ### Mã Hóa Yêu Cầu
 
-Mã hóa yêu cầu giống như đã được quy định trong [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) và [Prop152](/en/proposals/152-ecies-tunnels/),
+Mã hóa yêu cầu giống như đã được quy định trong [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) và [Prop152](/proposals/152-ecies-tunnels/),
 sử dụng mẫu "N" của Noise.
 
 Phản hồi các tìm kiếm sẽ được mã hóa với thẻ ratchet nếu được yêu cầu trong tìm kiếm.
 Tin nhắn yêu cầu Tra Cứu Cơ Sở Dữ Liệu chứa khóa phản hồi 32-byte và thẻ phản hồi 8-byte
-như đã được quy định trong [I2NP](/en/docs/spec/i2np/) và [Prop154](/en/proposals/154-ecies-lookups/). Khóa và thẻ được sử dụng để mã hóa phản hồi.
+như đã được quy định trong [I2NP](/docs/specs/i2np/) và [Prop154](/proposals/154-ecies-lookups/). Khóa và thẻ được sử dụng để mã hóa phản hồi.
 
 Không có bộ thẻ nào được tạo ra.
 Chế độ khóa tĩnh rỗng được quy định trong
-ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/) và [ECIES](/en/docs/spec/ecies/) sẽ không được sử dụng.
+ECIES-X25519-AEAD-Ratchet [Prop144](/proposals/144-ecies-x25519-aead-ratchet/) và [ECIES](/docs/specs/ecies/) sẽ không được sử dụng.
 Khóa tạm thời sẽ không được mã hóa Elligator2.
 
 Thông thường, đây sẽ là tin nhắn Phiên Mới và sẽ được gửi với một khóa tĩnh rỗng
@@ -236,7 +232,7 @@ Thông thường, đây sẽ là tin nhắn Phiên Mới và sẽ được gửi
 #### KDF cho ck ban đầu và h
 
 Đây là [NOISE](https://noiseprotocol.org/noise.html) tiêu chuẩn cho mẫu "N" với một tên giao thức chuẩn.
-Điều này giống như đã được quy định trong [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) và [Prop152](/en/proposals/152-ecies-tunnels/) cho các tin nhắn xây dựng đường hầm.
+Điều này giống như đã được quy định trong [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) và [Prop152](/proposals/152-ecies-tunnels/) cho các tin nhắn xây dựng đường hầm.
 
 
   ```text
@@ -260,9 +256,6 @@ Thông thường, đây sẽ là tin nhắn Phiên Mới và sẽ được gửi
   // đến đây, có thể được tính trước bởi tất cả các thiết bị định tuyến.
 
 
-
-
-
   ```
 
 
@@ -270,7 +263,7 @@ Thông thường, đây sẽ là tin nhắn Phiên Mới và sẽ được gửi
 
 Người tạo ra tin nhắn tạo ra một cặp khóa X25519 tạm thời cho mỗi tin nhắn.
 Khóa tạm thời phải là duy nhất cho mỗi tin nhắn.
-Điều này giống như đã được quy định trong [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) và [Prop152](/en/proposals/152-ecies-tunnels/) cho các tin nhắn xây dựng đường hầm.
+Điều này giống như đã được quy định trong [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) và [Prop152](/proposals/152-ecies-tunnels/) cho các tin nhắn xây dựng đường hầm.
 
 
   ```dataspec
@@ -324,16 +317,12 @@ Khóa tạm thời phải là duy nhất cho mỗi tin nhắn.
   //h = SHA256(h || ciphertext)
 
 
-
-
-
   ```
-
 
 
 #### Tải
 
-Tải là cùng định dạng khối như được định nghĩa trong [ECIES](/en/docs/spec/ecies/) và [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/).
+Tải là cùng định dạng khối như được định nghĩa trong [ECIES](/docs/specs/ecies/) và [Prop144](/proposals/144-ecies-x25519-aead-ratchet/).
 Tất cả các tin nhắn phải chứa một khối DateTime để ngăn chặn việc phát lại.
 
 
@@ -342,11 +331,9 @@ Tất cả các tin nhắn phải chứa một khối DateTime để ngăn chặ
 Các phản hồi cho các tin nhắn Tra Cứu Cơ Sở Dữ Liệu là các tin nhắn Lưu Trữ Cơ Sở Dữ Liệu hoặc Phản Hồi Tìm Kiếm Cơ Sở Dữ Liệu.
 Chúng được mã hóa như các tin nhắn Phiên Tồn Tại với
 khóa phản hồi 32-byte và thẻ phản hồi 8-byte
-như đã được quy định trong [I2NP](/en/docs/spec/i2np/) và [Prop154](/en/proposals/154-ecies-lookups/).
+như đã được quy định trong [I2NP](/docs/specs/i2np/) và [Prop154](/proposals/154-ecies-lookups/).
 
 Không có phản hồi rõ ràng cho các tin nhắn Lưu Trữ Cơ Sở Dữ Liệu. Người gửi có thể đóng gói phản hồi của chính nó như một Tin Nhắn Tỏi đến chính nó, chứa một tin nhắn Trạng Thái Giao Hàng.
-
-
 
 
 ## Lý Do
@@ -354,8 +341,6 @@ Không có phản hồi rõ ràng cho các tin nhắn Lưu Trữ Cơ Sở Dữ L
 Thiết kế này tối đa hóa việc tái sử dụng các nguyên thủy mật mã, các giao thức, và mã hiện có.
 
 Thiết kế này tối thiểu hóa rủi ro.
-
-
 
 
 ## Ghi Chú Triển Khai
@@ -367,12 +352,10 @@ Nhà triển khai nên phát hiện và từ chối các bản ghi và tin nhắ
 càng sớm càng tốt để giảm việc sử dụng CPU.
 
 
-
 ## Vấn Đề
 
-Đề xuất 145 [Prop145](/en/proposals/145-ecies/) có thể được viết lại để phần lớn tương thích với
-Đề xuất 152 [Prop152](/en/proposals/152-ecies-tunnels/).
-
+Đề xuất 145 [Prop145](/proposals/145-ecies/) có thể được viết lại để phần lớn tương thích với
+Đề xuất 152 [Prop152](/proposals/152-ecies-tunnels/).
 
 
 ## Di Cư
@@ -386,12 +369,11 @@ Chi tiết của việc triển khai và di cư có thể thay đổi cho
 mỗi triển khai I2P.
 
 
-
 ### Kết Nối Cơ Bản Điểm-Tới-Điểm
 
 Các thiết bị định tuyến ECIES có thể kết nối và nhận kết nối từ các thiết bị định tuyến ElGamal.
 Điều này nên có thể ngay bây giờ, vì nhiều kiểm tra đã được thêm vào cơ sở mã Java
-vào giữa năm 2019 để phản ứng với đề xuất 145 [Prop145](/en/proposals/145-ecies/) không hoàn thành.
+vào giữa năm 2019 để phản ứng với đề xuất 145 [Prop145](/proposals/145-ecies/) không hoàn thành.
 Đảm bảo không có gì trong cơ sở mã ngăn kết nối điểm-tới-điểm với các thiết bị định tuyến không phải ElGamal.
 
 Kiểm tra đúng mã:
@@ -418,7 +400,7 @@ Phiên bản mục tiêu, nếu thay đổi cần thiết: 0.9.48
 
 Đảm bảo rằng thông tin thiết bị định tuyến ECIES có thể được lưu trữ và truy xuất từ các thiết bị định tuyến floodfill ElGamal.
 Điều này nên có thể ngay bây giờ, vì nhiều kiểm tra đã được thêm vào cơ sở mã Java
-vào giữa năm 2019 để phản ứng với đề xuất 145 [Prop145](/en/proposals/145-ecies/) không hoàn thành.
+vào giữa năm 2019 để phản ứng với đề xuất 145 [Prop145](/proposals/145-ecies/) không hoàn thành.
 Đảm bảo không có gì trong cơ sở mã ngăn lưu trữ thông tin thiết bị định tuyến phi-ElGamal trong cơ sở dữ liệu mạng.
 
 Không cần thay đổi.
@@ -427,7 +409,7 @@ Phiên bản mục tiêu, nếu thay đổi cần thiết: 0.9.48
 
 ### Việc Xây Dựng Đường Hầm
 
-Thực hiện xây dựng đường hầm như được định nghĩa trong đề xuất 152 [Prop152](/en/proposals/152-ecies-tunnels/).
+Thực hiện xây dựng đường hầm như được định nghĩa trong đề xuất 152 [Prop152](/proposals/152-ecies-tunnels/).
 Bắt đầu với việc một thiết bị định tuyến ECIES xây dựng đường hầm với tất cả các điểm ElGamal;
 sử dụng bản ghi yêu cầu xây dựng của riêng nó cho một đường hầm vào để kiểm tra và debug.
 
@@ -444,7 +426,7 @@ Phiên bản mục tiêu: 0.9.48, cuối 2020
 ### Tin nhắn Ratchet tới floodfills ECIES
 
 Thực hiện và kiểm tra nhận các tin nhắn ECIES (với khóa tĩnh rỗng) bởi các floodfills ECIES,
-như được định nghĩa trong đề xuất 144 [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/).
+như được định nghĩa trong đề xuất 144 [Prop144](/proposals/144-ecies-x25519-aead-ratchet/).
 Thực hiện và kiểm tra nhận các phản hồi AEAD cho tin nhắn Tra Cứu Cơ Sở Dữ Liệu bởi các thiết bị định tuyến ECIES.
 
 Kích hoạt tự động floodfill bởi các thiết bị định tuyến ECIES.
@@ -484,7 +466,7 @@ cuối 2021 cho phần lớn mạng để được đặt lại khóa.
 
 ### Tin Nhắn Xây Dựng Đường Hầm Mới (Giai Đoạn 2)
 
-Thực hiện và kiểm tra Tin Nhắn Xây Dựng Đường Hầm mới như được định nghĩa trong đề xuất 157 [Prop157](/en/proposals/157-new-tbm/).
+Thực hiện và kiểm tra Tin Nhắn Xây Dựng Đường Hầm mới như được định nghĩa trong đề xuất 157 [Prop157](/proposals/157-new-tbm/).
 Triển khai hỗ trợ trong phiên bản 0.9.51.
 Làm thêm kiểm tra, sau đó kích hoạt trong phiên bản 0.9.52.
 
@@ -505,12 +487,11 @@ không thể xây dựng đường hầm qua hầu hết các điểm đồng đ
 Phiên bản mục tiêu: 0.9.53, đầu 2022.
 
 
-
 ## Tham Khảo
 
 * [Common](/docs/specs/common-structures/)
 * [ECIES](/docs/specs/ecies/)
-* [ECIES-ROUTERS](/docs/specs/ecies-routers/)
+* [ECIES-ROUTERS](/docs/specs/ecies/)
 * [I2NP](/docs/specs/i2np/)
 * [NOISE](https://noiseprotocol.org/noise.html)
 * [Prop123](/proposals/123-new-netdb-entries/)
@@ -520,5 +501,5 @@ Phiên bản mục tiêu: 0.9.53, đầu 2022.
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop154](/proposals/154-ecies-lookups/)
 * [Prop157](/proposals/157-new-tbm/)
-* [Tunnel-Creation](/docs/specs/tunnel-creation/)
-* [Tunnel-Creation-ECIES](/docs/specs/tunnel-creation-ecies/)
+* [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)

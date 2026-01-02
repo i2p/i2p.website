@@ -30,28 +30,38 @@
     </div>
 </div>
 
-<!-- Minimal script to set iframe src based on network (only URL construction, no modal logic) -->
+<!-- Only load poll iframe when modal is opened (URL has #poll) -->
 <script>
 (function() {
-    const iframe = document.getElementById('poll-iframe');
-    if (!iframe) return;
-    
-    const hostname = window.location.hostname;
-    let apiUrl = 'https://feedback.i2p.net';
-    const pollId = iframe.getAttribute('data-poll-id') || '1';
+    function loadPollIfNeeded() {
+        if (window.location.hash !== '#poll') return;
 
-    // Check for I2P (both .i2p and .b32.i2p addresses)
-    if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
-        apiUrl = 'http://5kwyynf3eetgqa2nors6ctwo7doi7yu73k7uvypy5eqmm326zkiq.b32.i2p';
-    }
-    // Detect Tor
-    else if (hostname.endsWith('.onion')) {
-        apiUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
+        const iframe = document.getElementById('poll-iframe');
+        if (!iframe || iframe.src) return; // Already loaded
+
+        const hostname = window.location.hostname;
+        let apiUrl = 'https://feedback.i2p.net';
+        const pollId = iframe.getAttribute('data-poll-id') || '1';
+
+        // Check for I2P (both .i2p and .b32.i2p addresses)
+        if (hostname.endsWith('.b32.i2p') || hostname.endsWith('.i2p')) {
+            apiUrl = 'http://5kwyynf3eetgqa2nors6ctwo7doi7yu73k7uvypy5eqmm326zkiq.b32.i2p';
+        }
+        // Detect Tor
+        else if (hostname.endsWith('.onion')) {
+            apiUrl = 'http://gfonxmohvarpmocsvllscsuszdu5rikipm6innvcwq4vpng7zzqmmfyd.onion';
+        }
+
+        // Set iframe src only now
+        const pollUrl = apiUrl + '/widgets/poll.html?poll_id=' + encodeURIComponent(pollId) + '&api_url=' + encodeURIComponent(apiUrl);
+        iframe.src = pollUrl;
     }
 
-    // Set iframe src
-    const pollUrl = apiUrl + '/widgets/poll.html?poll_id=' + encodeURIComponent(pollId) + '&api_url=' + encodeURIComponent(apiUrl);
-    iframe.src = pollUrl;
+    // Check on page load (if URL already has #poll)
+    loadPollIfNeeded();
+
+    // Check when hash changes (user clicks poll link)
+    window.addEventListener('hashchange', loadPollIfNeeded);
 })();
 </script>
 {{ end }}

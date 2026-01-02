@@ -1,6 +1,7 @@
 ---
 title: "Vysokourovňová roadmapa pro rok 2018"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "Rok 2018 bude rokem nových protokolů, nových spoluprací a vytříbenějšího zaměření."
 categories: ["roadmap"]
@@ -91,7 +92,6 @@ Jedním z aspektů výše uvedeného, na který se zaměříme, je udržování 
 
 ## Budeme rádi za vaši pomoc!
 
-Poskytněte POUZE překlad, nic jiného:
 
 That all looks very ambitious, and it is! But many of the items above overlap, and with careful planning we can make a serious dent in them.
 

@@ -207,7 +207,7 @@ Crypto-Typ 0 ist ElGamal. Crypto-Typen 1-3 sind reserviert für ECIES-ECDH-AES-S
 
 ### Zusammenfassung des kryptografischen Designs
 
-Dieser Vorschlag stellt die Anforderungen basierend auf dem Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11) bereit. Noise hat ähnliche Eigenschaften wie das Station-To-Station-Protokoll [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), welches die Grundlage für das [SSU](/docs/specs/ssu/)-Protokoll bildet. In der Noise-Terminologie ist Alice die Initiatorin und Bob der Responder.
+Dieser Vorschlag stellt die Anforderungen basierend auf dem Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11) bereit. Noise hat ähnliche Eigenschaften wie das Station-To-Station-Protokoll [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), welches die Grundlage für das [SSU](/docs/legacy/ssu/)-Protokoll bildet. In der Noise-Terminologie ist Alice die Initiatorin und Bob der Responder.
 
 Dieser Vorschlag basiert auf dem Noise-Protokoll Noise_IK_25519_ChaChaPoly_SHA256. (Der tatsächliche Bezeichner für die anfängliche Schlüsselableitungsfunktion ist "Noise_IKelg2_25519_ChaChaPoly_SHA256", um I2P-Erweiterungen anzuzeigen - siehe Abschnitt KDF 1 unten) Dieses Noise-Protokoll verwendet die folgenden Primitive:
 
@@ -444,7 +444,6 @@ MixKey(d)
         MixKey(d) := output = HKDF(chainKey, d, "", 64)
                      chainKey = output[0:31]
                      k = output[32:63]
-
 
 
 ### Sitzungs-Timeouts
@@ -1336,8 +1335,6 @@ TAGSET
         If there are few TAGSET_ENTRIES remaining, EXTEND(n) is called.
 
 
-
-
 ### 4) Ratchets
 
 Ratchets, aber bei weitem nicht so schnell wie Signal es macht. Wir trennen die Bestätigung des empfangenen Schlüssels von der Generierung des neuen Schlüssels. Bei typischer Nutzung werden Alice und Bob jeweils (zweimal) sofort in einer New Session ratcheten, aber danach nicht mehr ratcheten.
@@ -1453,9 +1450,7 @@ Tag Sender                    Tag Receiver
   (reuse key #1, do DH, create IB Tagset #3)
 
 
-
                    ... use tag set #3 ...
-
 
 
        After tag set 3, repeat the above

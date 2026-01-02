@@ -23,7 +23,7 @@ Unterliegt geringfügigen Änderungen.
 
 ECIES reduziert den Overhead bestehender Sitzung (ES) Nachrichten um etwa 90 Bytes.
 Deshalb können wir das MTU für ECIES-Verbindungen um etwa 90 Bytes erhöhen.
-Siehe the [ECIES specification](/en/docs/spec/ecies/#overhead), [Streaming specification](/en/docs/spec/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/en/docs/api/streaming/).
+Siehe the [ECIES specification](/docs/specs/ecies/#overhead), [Streaming specification](/docs/specs/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/docs/api/streaming/).
 
 Ohne die Erhöhung des MTU werden in vielen Fällen die Overhead-Einsparungen nicht wirklich „eingespart“, 
 da die Nachrichten ohnehin auf die Nutzung von zwei vollständigen Tunnel-Nachrichten aufgefüllt werden.
@@ -69,7 +69,7 @@ es gibt jedoch keine Bestimmung zur nachträglichen Aushandlung im Streaming,
 sodass das MTU bei 1730 bleiben sollte.
 
 
-Wie in the [Streaming API documentation](/en/docs/api/streaming/) erwähnt,
+Wie in the [Streaming API documentation](/docs/api/streaming/) erwähnt,
 können die Daten in den von Alice an Bob gesendeten SYN-Paketen Bobs MTU überschreiten.
 Dies ist eine Schwäche im Streaming-Protokoll.
 Daher müssen Dual-Key-Clients die Daten in den gesendeten SYN-Paketen
@@ -80,17 +80,16 @@ Nutzlast erhöhen.
 
 ### Analyse
 
-Wie in the [ECIES specification](/en/docs/spec/ecies/#overhead) beschrieben, beträgt der ElGamal-Overhead für bestehende Sitzung-Nachrichten
+Wie in the [ECIES specification](/docs/specs/ecies/#overhead) beschrieben, beträgt der ElGamal-Overhead für bestehende Sitzung-Nachrichten
 151 Bytes und der Ratchet-Overhead 69 Bytes.
 Daher können wir das MTU für Ratchet-Verbindungen um (151 - 69) = 82 Bytes erhöhen,
 von 1730 auf 1812.
 
 
-
 ## Spezifikation
 
-Fügen Sie die folgenden Änderungen und Klarstellungen zum Abschnitt MTU-Auswahl und -Aushandlung von the [Streaming API documentation](/en/docs/api/streaming/) hinzu.
-Keine Änderungen an the [Streaming specification](/en/docs/spec/streaming/).
+Fügen Sie die folgenden Änderungen und Klarstellungen zum Abschnitt MTU-Auswahl und -Aushandlung von the [Streaming API documentation](/docs/api/streaming/) hinzu.
+Keine Änderungen an the [Streaming specification](/docs/specs/streaming/).
 
 
 Der Standardwert der Option i2p.streaming.maxMessageSize bleibt 1730 für alle Verbindungen, unabhängig von den verwendeten Schlüsseln.
@@ -124,7 +123,6 @@ Keine Änderung, 1730 MTU in allen Paketen.
 - Alice muss MAX_PACKET_SIZE_INCLUDED im SYN senden
 
 
-
 ### 3) Alice Dual-Key und weiß, dass Bob ElGamal ist
 1730 MTU in allen Paketen.
 
@@ -133,14 +131,12 @@ Keine Änderung, 1730 MTU in allen Paketen.
 - Alice kann MAX_PACKET_SIZE_INCLUDED im SYN senden, nicht erforderlich, es sei denn != 1730
 
 
-
 ### 4) Alice Dual-Key und weiß, dass Bob ECIES ist
 1812 MTU in allen Paketen.
 
 - ALICE_SYN_MAX_DATA = 1812
 - i2cp.streaming.maxMessageSize Standard: 1812
 - Alice muss MAX_PACKET_SIZE_INCLUDED im SYN senden
-
 
 
 ### 5) Alice Dual-Key und Bob-Schlüssel ist unbekannt
@@ -158,13 +154,10 @@ negotiated_mtu, das Minimum aus Alice's und Bob's MTU, zu verwenden als Maximal-
 im SYN ACK von Bob zu Alice und in allen nachfolgenden gesendeten Paketen in beide Richtungen.
 
 
-
-
 ## Rechtfertigung
 
 Siehe the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) für den Grund, warum der aktuelle Wert 1730 ist.
-Siehe the [ECIES specification](/en/docs/spec/ecies/#overhead) für den Grund, warum der ECIES-Overhead 82 Bytes weniger als ElGamal ist.
-
+Siehe the [ECIES specification](/docs/specs/ecies/#overhead) für den Grund, warum der ECIES-Overhead 82 Bytes weniger als ElGamal ist.
 
 
 ## Implementierungshinweise
@@ -188,12 +181,9 @@ Ein empfohlenes Auffüllungs-Algorithmus in ECIES ist wie folgt:
 und der Drei-Tunnel-Nachricht-Größe (2952) verwendet werden, obwohl diese Größen in der Praxis selten sein sollten.
 
 
-
 ## Probleme
 
 Der Wert 1812 ist vorläufig. Er muss bestätigt und möglicherweise angepasst werden.
-
-
 
 
 ## Migration
@@ -204,6 +194,5 @@ Dies ist eine bestehende Option und MTU-Aushandlung ist bereits Teil der Spezifi
 Ältere ECIES-Ziele unterstützen 1730.
 Jeder Client, der einen höheren Wert erhält, wird mit 1730 antworten, und das ferne Ende
 wird abwärts verhandeln, wie üblich.
-
 
 

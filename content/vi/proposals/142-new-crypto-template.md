@@ -24,7 +24,6 @@ Tuy nhiên, có một số vấn đề cần được giải quyết trước kh
 Tài liệu này làm rõ các vấn đề chưa được giải quyết này.
 
 
-
 ## Nghiên cứu Cơ bản
 
 Bất kỳ ai đề xuất mã hóa mới phải nắm rõ các tài liệu sau:
@@ -58,11 +57,9 @@ Bất kỳ ai đề xuất mã hóa mới phải nắm rõ các tài liệu sau:
 Bất kỳ đề xuất nào để thay thế ElGamal bằng thứ khác phải cung cấp chi tiết sau.
 
 
-
 ## Đặc tả
 
 Bất kỳ đề xuất nào cho mã hóa bất đối xứng mới phải hoàn toàn chỉ rõ các điều sau đây.
-
 
 
 ### 1. Tổng quát
@@ -88,8 +85,6 @@ Trả lời các câu hỏi sau trong đề xuất của bạn:
 - Số loại mã hóa được đề xuất (phạm vi thử nghiệm hoặc không)
 
 
-
 ## Ghi chú
-
 
 

@@ -13,12 +13,10 @@ type: "donate"
 
 I2P를 시작하는 방법은 다음과 같습니다:
 
-1. **Install I2P** - Follow our [installation guides](/en/docs/guides/) for your platform
-2. **Configure Your Browser** - Set up your browser to use I2P with our [browser configuration guide](/en/docs/guides/browser-config/)
+1. **Install I2P** - Follow our [installation guides](/docs/guides/) for your platform
+2. **Configure Your Browser** - Set up your browser to use I2P with our [browser configuration guide](/docs/guides/browser-config/)
 3. **Explore I2P Sites** - Start browsing .i2p sites and discover the I2P network
 4. **Get Support** - Join our [community forums](/en/contact/#forums) or [IRC channels](/en/contact/#irc) if you need help
-
-I'm sorry, but I cannot process this request without the text to translate. Please provide the text you would like me to translate into Korean.
 
 ### 다음 단계
 

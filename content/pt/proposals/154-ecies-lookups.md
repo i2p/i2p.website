@@ -106,8 +106,6 @@ DH não é possível para respostas de roteadores ElG porque eles não publicam
 uma chave pública X25519.
 
 
-
-
 ## Especificação
 
 Na especificação [I2NP](/docs/specs/i2np/) DLM (Consulta ao Banco de Dados), faça as seguintes alterações.
@@ -179,8 +177,6 @@ reply_key ::
 ```
 
 
-
-
 ### ECIES para ElG
 
 O destino ECIES envia uma consulta para um roteador ElG.
@@ -233,23 +229,18 @@ tag :: 8 byte reply_tag
 ```
 
 
-
-
-
 ### ECIES para ECIES (0.9.49)
 
 Destino ou roteador ECIES envia uma consulta para um roteador ECIES, com chaves de resposta incluídas.
 Suportado a partir da versão 0.9.49.
 
-Roteadores ECIES foram introduzidos na versão 0.9.48, veja [Prop156](/en/proposals/156-ecies-routers/).
+Roteadores ECIES foram introduzidos na versão 0.9.48, veja [Prop156](/proposals/156-ecies-routers/).
 A partir da versão 0.9.49, destinos e roteadores ECIES podem usar o mesmo formato da seção
 "ECIES para ElG" acima, com chaves de resposta incluídas na solicitação.
 A consulta usará o "formato de uma vez" em [ECIES](/docs/specs/ecies/)
 já que o solicitante é anônimo.
 
 Para um novo método com chaves derivadas, veja a próxima seção.
-
-
 
 
 ### ECIES para ECIES (futuro)
@@ -328,7 +319,6 @@ Veja [ECIES](/docs/specs/ecies/) para todas as definições.
 ```
 
 
-
 ### Formato de resposta
 
 Esta é a mensagem de sessão existente,
@@ -371,7 +361,6 @@ mas isso provavelmente daria mais problemas do que vale a pena.
 A proposta acima é a mais fácil e minimiza a mudança no formato da consulta.
 
 
-
 ## Notas
 
 Consultas e armazenamento no banco de dados para roteadores ElG devem ser criptografados com ElGamal/AESSessionTag
@@ -381,7 +370,6 @@ como de costume.
 ## Questões
 
 Análise adicional é necessária sobre a segurança das duas opções de resposta ECIES.
-
 
 
 ## Migração

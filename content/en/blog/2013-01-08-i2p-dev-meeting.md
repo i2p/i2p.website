@@ -381,7 +381,7 @@ categories: ["meeting"]
 23:58:26  &lt;primal&gt; Is the android release mature enough to be on the page for download? or perhaps as a 'development release' or something? Or is that sponge's project and not something that ought to be up there?
 23:58:29  &lt;primal&gt; dg: yeah I haven;t tried it, i2psnark works just fine for me.
 23:58:29  &lt;primal&gt; sorry str4d  :)
-23:59:08  &lt;str4d&gt; So: would the url /lang/blog/post/XXXX/XX/XX/slug be preferable to the current /lang/blog/entry/XXXX/XX/XX/slug ?
+23:59:08  &lt;str4d&gt; So: would the url /lang/blog/XXXX/XX/XX/slug be preferable to the current /lang/blog/entry/XXXX/XX/XX/slug ?
 23:59:15  &lt;str4d&gt; //lang/support/* vs /lang/help/* ?
 23:59:22  &lt;h2ik&gt; str4d: we could add some of the newer services to the interesting eepsite list if that's what you are after
 23:59:25  &lt;str4d&gt; /lang/volunteer/* vs /lang/get-involved/* ?
@@ -485,7 +485,7 @@ categories: ["meeting"]
 00:37:55  &lt;dg&gt;&gt;.&gt;
 00:38:06  &lt;str4d&gt; So: I'll change /lang/volunteer/* to /lang/get-involved/* but leave the nav menu as-is for now until a UX decision is made.
 00:38:09  &lt;RN-Droid&gt; okay we can hash out the mode situation of the service I redirect later Thanks for I listen to my input
-00:38:16  &lt;str4d&gt; /lang/blog/post/* is already changed.
+00:38:16  &lt;str4d&gt; /lang/blog/* is already changed.
 00:38:23  &lt;dg&gt; str4d: Sounds good
 00:38:46  &lt;str4d&gt; And /lang/support/* vs /lang/help/* hasn't been properly decided on yet, so I'll leave it for now.
 00:38:53  &lt;primal&gt; looks good to me

@@ -34,7 +34,6 @@ Das Raft-Protokoll ist kein konkretes Protokoll; es definiert nur eine Zustandsm
 Raft wählt einen Leader, dessen Aufgabe es ist, ein Log zu veröffentlichen. Das Log enthält Raft-Konfigurationsdaten und Anwendungsdaten. Die Anwendungsdaten enthalten den Status jedes Serverrouters und das Ziel für den Meta-LS2-Cluster. Die Server verwenden einen gemeinsamen Algorithmus, um den Herausgeber und den Inhalt des Meta LS2 zu bestimmen. Der Herausgeber des Meta LS2 ist NICHT notwendigerweise der Raft-Leader.
 
 
-
 ## Spezifikation
 
 Das Wire-Protokoll erfolgt über SSL-Sockets oder nicht-SSL-I2P-Sockets. I2P-Sockets werden durch das HTTP-Proxy weitergeleitet. Es gibt keine Unterstützung für Clearnet-nicht-SSL-Sockets.
@@ -136,7 +135,6 @@ Nach dieser Empfang bleibt der Socket offen. Das nachstehend definierte Raft-Pro
 Anmeldeinformationen sollen mindestens eine Stunde im Cache gespeichert werden, sodass nachfolgende Verbindungen direkt zur "HTTP-Anfrage 2" oben springen können.
 
 
-
 ### Nachrichtentypen
 
 Es gibt zwei Arten von Nachrichten, Anfragen und Antworten. Anfragen können Log-Einträge enthalten und sind variabel groß; Antworten enthalten keine Log-Einträge und sind fest groß.
@@ -233,7 +231,6 @@ Kandidatin Alice               Follower Bob
 - Indizes: Siehe Raft. Initialisiert auf 0, steigt monoton
 
 
-
 ### Anfragen
 
 Anfragen enthalten einen Header und null oder mehr Log-Einträge. Anfragen haben einen Header mit fester Größe und optionale Logs-Einträge variabler Größe.
@@ -261,7 +258,6 @@ Nachrichtentyp:         1 Byte
 Im RequestVoteRequest ist Begriff der Begriff des Kandidaten. Andernfalls ist es der aktuelle Begriff des Leaders.
 
 Im AppendEntriesRequest, wenn die Log-Eintragsgröße null ist, ist diese Nachricht eine Herzschlag (Keepalive)-Nachricht.
-
 
 
 #### Logs-Einträge
@@ -343,7 +339,6 @@ Index-Datenlänge: In Bytes, 4-Byte-Integer
 ```
 
 
-
 #### SnapshotSyncRequest
 
 Dies ist nur in einer InstallSnapshotRequest-Nachricht enthalten.
@@ -358,8 +353,6 @@ Letzter Log-Index:   8-Byte-Integer
   Daten:            Länge wie angegeben
   Ist abgeschlossen: 1 falls abgeschlossen, 0 falls nicht (1 Byte)
 ```
-
-
 
 
 ### Antworten
@@ -477,7 +470,6 @@ Anforderungen eines Admin-Interfaces:
 - Import-/Export-Funktionalität für Konfigurationen für Massenbereitstellungen
 
 
-
 ## Router-Interface
 
 TBD, möglicherweise ein separater Vorschlag. i2pcontrol ist in der ersten Veröffentlichung nicht erforderlich und detaillierte Änderungen werden in einem separaten Vorschlag enthalten sein.
@@ -501,18 +493,14 @@ Atomix ist zu groß und erlaubt keine Anpassung, um das Protokoll über I2P zu l
 ## Anmerkungen
 
 
-
 ## Probleme
 
 - Es gibt keine Möglichkeit für einen Client, von einem unbekannten Leader zu erfahren und sich mit ihm zu verbinden. Es wäre eine kleine Änderung, wenn ein Follower die Konfiguration als Log-Eintrag in der AppendEntriesResponse senden würde.
 
 
-
 ## Migration
 
 Keine Abwärtskompatibilitätsprobleme.
-
-
 
 
 ## Referenzen

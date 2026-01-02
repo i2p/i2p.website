@@ -11,9 +11,9 @@ toc: true
 
 ## अवलोकन
 
-यह प्रस्ताव एक protocol के लिए एक design को रेखांकित करता है जो किसी I2P client, service या external balancer process को कई routers को transparently manage करने में सक्षम बनाता है जो एक single [Destination](http://localhost:63465/en/docs/specs/common-structures/#destination) को host कर रहे हैं।
+यह प्रस्ताव एक protocol के लिए एक design को रेखांकित करता है जो किसी I2P client, service या external balancer process को कई routers को transparently manage करने में सक्षम बनाता है जो एक single [Destination](http://localhost:63465/docs/specs/common-structures/#destination) को host कर रहे हैं।
 
-यह प्रस्ताव वर्तमान में कोई ठोस implementation निर्दिष्ट नहीं करता। इसे [I2CP](/en/docs/specs/i2cp/) के extension के रूप में, या एक नए protocol के रूप में implement किया जा सकता है।
+यह प्रस्ताव वर्तमान में कोई ठोस implementation निर्दिष्ट नहीं करता। इसे [I2CP](/docs/specs/i2cp/) के extension के रूप में, या एक नए protocol के रूप में implement किया जा सकता है।
 
 ## प्रेरणा
 
@@ -128,7 +128,7 @@ Multihoming वह स्थिति है जहाँ समान Destinati
 
 ### सिंगल-क्लाइंट
 
-इस configuration को बनाने और प्रबंधित करने के लिए, client को वर्तमान में [I2CP](/en/docs/specs/i2cp/) द्वारा प्रदान की जाने वाली सुविधाओं के अतिरिक्त निम्नलिखित नई functionality की आवश्यकता है:
+इस configuration को बनाने और प्रबंधित करने के लिए, client को वर्तमान में [I2CP](/docs/specs/i2cp/) द्वारा प्रदान की जाने वाली सुविधाओं के अतिरिक्त निम्नलिखित नई functionality की आवश्यकता है:
 
 - एक router को tunnels बनाने के लिए कहें, उनके लिए LeaseSet बनाए बिना।
 - inbound pool में मौजूदा tunnels की सूची प्राप्त करें।

@@ -70,7 +70,6 @@ Como isso deve ser compatível com versões anteriores, faremos XOR em (id - 2)
 para que não tenha efeito no valor atual do ID de rede de 2.
 
 
-
 ## Especificação
 
 ### Documentação
@@ -145,7 +144,6 @@ contatar os desenvolvedores ou operadores para explicar a importância de mudar 
 
 
 ## Problemas
-
 
 
 ## Migração

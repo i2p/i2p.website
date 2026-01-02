@@ -140,7 +140,6 @@ Cachování
 Přihlašovací údaje musí být cachovány nejméně jednu hodinu, takže následné připojení může přejít přímo na "HTTP Požadavek 2" výše.
 
 
-
 ### Typy zpráv
 
 Existují dva typy zpráv, požadavky a odpovědi. Požadavky mohou obsahovat Log Entries a jsou proměnlivé velikosti; odpovědi neobsahují Log Entries a jsou pevné velikosti.
@@ -238,7 +237,6 @@ Kandidát Alice             Follower Bob
 - Indexy: Viz Raft. Inicializováno na 0, zvyšuje se monotónně
 
 
-
 ### Požadavky
 
 Požadavky obsahují hlavičku a nula nebo více logových záznamů. Požadavky obsahují hlavičku s pevnou velikostí a volitelné Log Entries proměnlivé velikosti.
@@ -267,7 +265,6 @@ Typ zprávy:      1 byte
 V RequestVoteRequest, Term je kandidátův termín. Jinak je to aktuální termín lídra.
 
 V AppendEntriesRequest, pokud je log entries velikost nula, tato zpráva je heartbeat (keepalive) zprávou.
-
 
 
 Logové záznamy
@@ -352,7 +349,6 @@ Délka dat indexu: V bytech, 4 byte integer
 ```
 
 
-
 #### SnapshotSyncRequest
 
 To je zahrnuto pouze ve zprávě InstallSnapshotRequest.
@@ -367,8 +363,6 @@ Poslední index logu:  8 byte integer
   Data:            délka jak specifikována
   Je dokončeno:         1 pokud je dokončeno, 0 pokud není (1 byte)
 ```
-
-
 
 
 ### Odpovědi
@@ -487,7 +481,6 @@ Požadavky administrativního rozhraní:
 - Funkce importu/exportu konfigurace pro hromadná nasazení
 
 
-
 ## Routerové rozhraní
 
 TBD, možná samostatný návrh. i2pcontrol není vyžadován pro první vydání a podrobné změny budou zahrnuty do samostatného návrhu.
@@ -511,18 +504,14 @@ Atomix je příliš velký a neumožňuje přizpůsobení pro nás, abychom mohl
 ## Poznámky
 
 
-
 ## Problémy
 
 - Neexistuje způsob, jak by klient mohl zjistit a připojit se k neznámému lídrovi. Bylo by to menší změna, aby Follower poslal Konfiguraci jako Log Entry v AppendEntriesResponse.
 
 
-
 ## Migrace
 
 Žádné problémy se zpětnou kompatibilitou.
-
-
 
 
 ## Odkazy

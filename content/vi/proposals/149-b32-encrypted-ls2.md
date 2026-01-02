@@ -154,7 +154,6 @@ Mặc dù nằm ngoài phạm vi của đề xuất này, các router và/hoặc
 (có thể là mãi mãi) ánh xạ của khóa công khai đến điểm đến, và ngược lại.
 
 
-
 ## Ghi chú
 
 - Phân biệt các kiểu cũ và mới bằng độ dài. Các địa chỉ b32 cũ luôn là {52 ký tự}.b32.i2p. Các địa chỉ mới là {56+ ký tự}.b32.i2p

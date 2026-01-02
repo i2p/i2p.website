@@ -44,7 +44,6 @@ die das Padding insgesamt beseitigen würden. Es gibt auch eine kurze Diskussion
 diese die zukünftige Planung beeinflussen könnte.
 
 
-
 ### Ziele
 
 - Anforderung zur Erzeugung eines ElGamal-Schlüsselpaares für Ziele eliminieren
@@ -67,7 +66,6 @@ können Implementierungen möglicherweise den ElGamal-Code vollständig entferne
 vorbehaltlich von Überlegungen zur Abwärtskompatibilität in anderen Protokollen.
 
 
-
 ## Design
 
 Streng genommen ist der 32-Byte-Signierschlüssel allein (sowohl in Zielen als auch in Router-Identitäten)
@@ -84,7 +82,6 @@ was Benutzer alarmieren oder verwirren könnte.
 Für den Ed25519-Signaturtyp und den X25519-Verschlüsselungstyp:
 Ziele enthalten 11 Kopien (352 Bytes) der zufälligen Daten.
 Router-Identitäten enthalten 10 Kopien (320 Bytes) der zufälligen Daten.
-
 
 
 ### Geschätzte Einsparungen
@@ -113,7 +110,6 @@ geschätzte Einsparungen:
 Hinweise: Annahme, dass 7-Byte-Zertifikat nicht komprimierbar ist, null zusätzlicher Gzip-Overhead.
 Beides ist nicht zutreffend, aber die Effekte werden gering sein.
 Ignoriert andere komprimierbare Teile der Router-Info.
-
 
 
 ## Spezifikation
@@ -203,9 +199,6 @@ Die Kosten und Vorteile dieser Änderungen sind unklar.
 Spezifische Vorschläge TBD:
 
 
-
-
-
 ### PQ-Schlüssel
 
 Post-Quanten (PQ) -Verschlüsselungsschlüssel, für jeden erwarteten Algorithmus,
@@ -229,8 +222,6 @@ Aber wäre nach hybriden oder Ratsch ?????????
 Für weitere Diskussion siehe [this topic](http://zzz.i2p/topics/3294).
 
 
-
-
 ## Probleme
 
 Es könnte wünschenswert sein, das Netzwerk langsam neu zu verschlüsseln, um neuen Routern Deckung zu bieten.
@@ -240,8 +231,6 @@ Es ist nicht möglich, vorhandene Ziele neu zu verschlüsseln.
 
 Sollten Router-Identitäten mit Padding im öffentlichen Schlüsselfeld mit einem anderen
 Verschlüsselungstyp im Schlüsselzertifikat identifiziert werden? Dies würde Kompatibilitätsprobleme verursachen.
-
-
 
 
 ## Migration

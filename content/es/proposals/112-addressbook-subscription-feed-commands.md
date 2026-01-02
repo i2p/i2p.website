@@ -308,4 +308,3 @@ Todas las nuevas líneas en el formato hosts.txt se implementan usando caractere
 Cuando los routers I2P se actualicen a la nueva especificación, no reinterpretarán los comentarios antiguos, pero comenzarán a escuchar nuevos comandos en recuperaciones posteriores de sus feeds de suscripción. Por lo tanto, es importante que los servidores de nombres persistan las entradas de comando de alguna manera, o habiliten el soporte etag para que los routers puedan recuperar todos los comandos anteriores.
 
 
-

@@ -15,9 +15,9 @@ toc: true
 可能会有修订。
 状态：
 
-- ECIES 路由器已在 0.9.48 中实现，详情见 [Common](/en/docs/spec/common-structures/)。
-- 隧道构建已在 0.9.48 中实现，详情见 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)。
-- 到 ECIES 路由器的加密消息已在 0.9.49 中实现，详情见 [ECIES-ROUTERS](/en/docs/spec/ecies-routers/)。
+- ECIES 路由器已在 0.9.48 中实现，详情见 [Common](/docs/specs/common-structures/)。
+- 隧道构建已在 0.9.48 中实现，详情见 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)。
+- 到 ECIES 路由器的加密消息已在 0.9.49 中实现，详情见 [ECIES-ROUTERS](/docs/specs/ecies/)。
 - 新的隧道构建消息已在 0.9.51 中实现。
 
 
@@ -30,8 +30,8 @@ toc: true
 这是自 I2P 开始以来的标准。
 ElGamal 速度较慢，需要在其使用的所有地方进行替换。
 
-关于 LS2 的提案 [Prop123](/en/proposals/123-new-netdb-entries/) 和 ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/) 
-（现在在 [ECIES](/en/docs/spec/ecies/) 中指定）定义了用 ECIES 替换目的地的 ElGamal。
+关于 LS2 的提案 [Prop123](/proposals/123-new-netdb-entries/) 和 ECIES-X25519-AEAD-Ratchet [Prop144](/proposals/144-ecies-x25519-aead-ratchet/) 
+（现在在 [ECIES](/docs/specs/ecies/) 中指定）定义了用 ECIES 替换目的地的 ElGamal。
 
 本提案定义了用 ECIES-X25519 替换路由器的 ElGamal。
 本提案提供了所需更改的概述。
@@ -41,7 +41,7 @@ ElGamal 速度较慢，需要在其使用的所有地方进行替换。
 
 ### 目标
 
-参见 [Prop152](/en/proposals/152-ecies-tunnels/)，了解其他目标。
+参见 [Prop152](/proposals/152-ecies-tunnels/)，了解其他目标。
 
 - 在路由器身份中用 ECIES-X25519 替换 ElGamal
 - 复用现有加密原语
@@ -55,10 +55,10 @@ ElGamal 速度较慢，需要在其使用的所有地方进行替换。
 
 ### 非目标
 
-参见 [Prop152](/en/proposals/152-ecies-tunnels/)，了解其他非目标。
+参见 [Prop152](/proposals/152-ecies-tunnels/)，了解其他非目标。
 
 - 不要求双密钥路由器
-- 层加密更改，参见 [Prop153](/en/proposals/153-chacha20-layer-encryption/)
+- 层加密更改，参见 [Prop153](/proposals/153-chacha20-layer-encryption/)
 
 
 ## 设计
@@ -68,32 +68,31 @@ ElGamal 速度较慢，需要在其使用的所有地方进行替换。
 
 对于目的地，密钥在租约集中而不在目的地，我们支持在同一租约集中使用多种加密类型。
 
-对于路由器，路由器的加密密钥在其路由器身份中。参见通用结构规范 [Common](/en/docs/spec/common-structures/)。
+对于路由器，路由器的加密密钥在其路由器身份中。参见通用结构规范 [Common](/docs/specs/common-structures/)。
 
 对于路由器，我们将用 32 字节的 X25519 密钥和 224 字节的填充替换路由器身份中的 256 字节 ElGamal 密钥。
 这将通过密钥证书中的加密类型指示。
 加密类型（与 LS2 中使用的相同）为 4。
 这表示一个小端32字节的 X25519 公钥。
-这是在通用结构规范 [Common](/en/docs/spec/common-structures/) 中定义的标准结构。
+这是在通用结构规范 [Common](/docs/specs/common-structures/) 中定义的标准结构。
 
-这与提案 145 中为加密类型 1-3 提出的关于 ECIES-P256 的方法相同 [Prop145](/en/proposals/145-ecies/)。
+这与提案 145 中为加密类型 1-3 提出的关于 ECIES-P256 的方法相同 [Prop145](/proposals/145-ecies/)。
 虽然这个提案从未被采纳，但 Java 实现开发人员通过在代码库中的多个地方添加检查来为路由器身份密钥证书中的加密类型做准备。这些工作大多是在 2019 年中旬完成的。
 
 
 ### 隧道构建消息
 
-为了使用 ECIES 而不是 ElGamal，需要对隧道创建规范 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 进行几项更改。
+为了使用 ECIES 而不是 ElGamal，需要对隧道创建规范 [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) 进行几项更改。
 此外，我们将改进隧道构建消息以提高安全性。
 
 在第一阶段，我们将更改 ECIES 跳的构建请求记录和构建响应记录的格式和加密。
 这些更改将与现有的 ElGamal 路由器兼容。
-这些更改在提案 152 [Prop152](/en/proposals/152-ecies-tunnels/) 中定义。
+这些更改在提案 152 [Prop152](/proposals/152-ecies-tunnels/) 中定义。
 
 在第二阶段，我们将添加新的构建请求消息、构建回复消息、构建请求记录和构建响应记录的版本。
 尺寸将缩小以提高效率。
 这些更改必须由隧道中的所有跳支持，并且所有跳都必须是 ECIES。
-这些更改在提案 157 [Prop157](/en/proposals/157-new-tbm/) 中定义。
-
+这些更改在提案 157 [Prop157](/proposals/157-new-tbm/) 中定义。
 
 
 ### 端到端加密
@@ -105,7 +104,7 @@ ElGamal 速度较慢，需要在其使用的所有地方进行替换。
 ElGamal 设计仅支持匿名发送者；发送方仅发送临时密钥，而不是静态密钥。
 消息与发送者的身份无关。
 
-随后，我们在 ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/) 中设计了 ECIES Ratchet SKM，现在在 [ECIES](/en/docs/spec/ecies/) 中指定。
+随后，我们在 ECIES-X25519-AEAD-Ratchet [Prop144](/proposals/144-ecies-x25519-aead-ratchet/) 中设计了 ECIES Ratchet SKM，现在在 [ECIES](/docs/specs/ecies/) 中指定。
 该设计使用了 Noise “IK” 模式，该模式在第一条消息中包含了发送者的静态密钥。
 该协议用于 ECIES（类型 4）目的地。
 IK 模式不允许匿名发送者。
@@ -147,30 +146,30 @@ IK 模式不允许匿名发送者。
 - 不需要非匿名消息
 - 不需要通过入站探索隧道发送消息（路由器不发布探索租约集）
 - 不需要使用标记进行持续的消息流量
-- 不需要为目的地运行“双密钥”会话密钥管理器（详见 [ECIES](/en/docs/spec/ecies/)）。路由器只有一个公钥。
+- 不需要为目的地运行“双密钥”会话密钥管理器（详见 [ECIES](/docs/specs/ecies/)）。路由器只有一个公钥。
 
 
 #### 设计结论
 
-ECIES 路由器 SKM 不需要为目的地指定的完整 Ratchet SKM（见 [ECIES](/en/docs/spec/ecies/)）。
+ECIES 路由器 SKM 不需要为目的地指定的完整 Ratchet SKM（见 [ECIES](/docs/specs/ecies/)）。
 没有需要使用 IK 模式发送非匿名消息的要求。
 威胁模型不需要 Elligator2 编码的临时密钥。
 
-因此，路由器 SKM 将使用 Noise "N" 模式，与 [Prop152](/en/proposals/152-ecies-tunnels/) 为隧道构建指定的相同。
-它将使用与 [ECIES](/en/docs/spec/ecies/) 为目的地指定的相同的负载格式。
+因此，路由器 SKM 将使用 Noise "N" 模式，与 [Prop152](/proposals/152-ecies-tunnels/) 为隧道构建指定的相同。
+它将使用与 [ECIES](/docs/specs/ecies/) 为目的地指定的相同的负载格式。
 IK 指定的零静态密钥（无绑定或会话）模式将不使用。
 
 查找的回复将使用查找中的请求加密进行 Ratchet 标记加密。
-如 [Prop154](/en/proposals/154-ecies-lookups/) 中记录的那样，现在在 [I2NP](/en/docs/spec/i2np/) 中指定。
+如 [Prop154](/proposals/154-ecies-lookups/) 中记录的那样，现在在 [I2NP](/docs/specs/i2np/) 中指定。
 
 设计使路由器能够拥有单个 ECIES 会话密钥管理器。
-没有必要像在 [ECIES](/en/docs/spec/ecies/) 中为目的地描述的那样运行“双密钥”会话密钥管理器。
+没有必要像在 [ECIES](/docs/specs/ecies/) 中为目的地描述的那样运行“双密钥”会话密钥管理器。
 路由器只有一个公钥。
 
 ECIES 路由器没有 ElGamal 静态密钥。
 路由器仍然需要一个 ElGamal 的实现，通过 ElGamal 路由器建造隧道并向 ElGamal 路由器发送加密消息。
 
-ECIES 路由器可能需要一个部分 ElGamal 会话密钥管理器，以接收从 0.9.46 之前的 floodfill 路由器作为 NetDB 查找回复的 ElGamal 标记消息，因为这些路由器没有 [Prop152](/en/proposals/152-ecies-tunnels/) 中指定的 ECIES 标记回复的实现。
+ECIES 路由器可能需要一个部分 ElGamal 会话密钥管理器，以接收从 0.9.46 之前的 floodfill 路由器作为 NetDB 查找回复的 ElGamal 标记消息，因为这些路由器没有 [Prop152](/proposals/152-ecies-tunnels/) 中指定的 ECIES 标记回复的实现。
 如果没有， ECIES 路由器可能不会请求来自 0.9.46 之前的 floodfill 路由器的加密回复。
 
 这是可选的。决定可能会在各种 I2P 实现中有所不同，并可能取决于网络升级到 0.9.46 或更高版本的数量。
@@ -179,26 +178,26 @@ ECIES 路由器可能需要一个部分 ElGamal 会话密钥管理器，以接�
 
 ## 规范
 
-X25519：详见 [ECIES](/en/docs/spec/ecies/)。
+X25519：详见 [ECIES](/docs/specs/ecies/)。
 
-路由器身份和密钥证书：详见 [Common](/en/docs/spec/common-structures/)。
+路由器身份和密钥证书：详见 [Common](/docs/specs/common-structures/)。
 
-隧道构建：详见 [Prop152](/en/proposals/152-ecies-tunnels/)。
+隧道构建：详见 [Prop152](/proposals/152-ecies-tunnels/)。
 
-新隧道构建消息：详见 [Prop157](/en/proposals/157-new-tbm/)。
+新隧道构建消息：详见 [Prop157](/proposals/157-new-tbm/)。
 
 
 ### 请求加密
 
-请求加密与 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 和 [Prop152](/en/proposals/152-ecies-tunnels/) 中指定的一致，
+请求加密与 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 和 [Prop152](/proposals/152-ecies-tunnels/) 中指定的一致，
 使用 Noise “N” 模式。
 
 查找的回复将使用请求中的 Ratchet 标记加密。
 数据库查找请求消息包含 32 字节的回复密钥和 8 字节的回复标记，
-详见 [I2NP](/en/docs/spec/i2np/) 和 [Prop154](/en/proposals/154-ecies-lookups/)。密钥和标记用于加密回复。
+详见 [I2NP](/docs/specs/i2np/) 和 [Prop154](/proposals/154-ecies-lookups/)。密钥和标记用于加密回复。
 
 不创建标记集。
-不会使用 ECIES-X25519-AEAD-Ratchet [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/) 和 [ECIES](/en/docs/spec/ecies/) 指定的零静态密钥方案。
+不会使用 ECIES-X25519-AEAD-Ratchet [Prop144](/proposals/144-ecies-x25519-aead-ratchet/) 和 [ECIES](/docs/specs/ecies/) 指定的零静态密钥方案。
 临时密钥不会进行 Elligator2 编码。
 
 通常，这些将是新的会话消息，并将使用零静态密钥（无绑定或会话）发送，因为消息的发送者是匿名的。
@@ -207,7 +206,7 @@ X25519：详见 [ECIES](/en/docs/spec/ecies/)。
 #### 初始 ck 和 h 的 KDF
 
 这是标准的 [NOISE](https://noiseprotocol.org/noise.html)，用于模式 "N" 和标准协议名称。
-这与 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 和 [Prop152](/en/proposals/152-ecies-tunnels/) 中为隧道构建消息指定的一样。
+这与 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 和 [Prop152](/proposals/152-ecies-tunnels/) 中为隧道构建消息指定的一样。
 
 
   ```text
@@ -231,9 +230,6 @@ X25519：详见 [ECIES](/en/docs/spec/ecies/)。
   // 直到这里，所有路由器都可以预计算。
 
 
-
-
-
   ```
 
 
@@ -241,7 +237,7 @@ X25519：详见 [ECIES](/en/docs/spec/ecies/)。
 
 消息创建者为每个消息生成一个临时 X25519 密钥对。
 每个消息都必须有唯一的临时密钥。
-这与 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 和 [Prop152](/en/proposals/152-ecies-tunnels/) 中为隧道构建消息指定的相同。
+这与 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 和 [Prop152](/proposals/152-ecies-tunnels/) 中为隧道构建消息指定的相同。
 
 
   ```dataspec
@@ -294,28 +290,23 @@ X25519：详见 [ECIES](/en/docs/spec/ecies/)。
   //h = SHA256(h || ciphertext)
 
 
-
-
-
   ```
 
 
 #### 负载
 
-负载与 [ECIES](/en/docs/spec/ecies/) 和 [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/) 中定义的块格式相同。
+负载与 [ECIES](/docs/specs/ecies/) 和 [Prop144](/proposals/144-ecies-x25519-aead-ratchet/) 中定义的块格式相同。
 所有消息必须包含防止重放的 DateTime 块。
 
 
 ### 回复加密
 
 对数据库查找消息的回复是数据库存储或数据库搜索回复消息。
-它们被加密为现有会话消息，使用包含在 [I2NP](/en/docs/spec/i2np/) 和 [Prop154](/en/proposals/154-ecies-lookups/) 中指定的 32 字节的回复密钥和 8 字节的回复标记。
+它们被加密为现有会话消息，使用包含在 [I2NP](/docs/specs/i2np/) 和 [Prop154](/proposals/154-ecies-lookups/) 中指定的 32 字节的回复密钥和 8 字节的回复标记。
 
 
 数据库存储消息没有明确的回复。
 发送者可以将自己的回复捆绑为发送给自己的大蒜消息，包含一个交付状态消息。
-
-
 
 
 ## 原因
@@ -323,8 +314,6 @@ X25519：详见 [ECIES](/en/docs/spec/ecies/)。
 该设计最大限度地复用现有加密原语、协议和代码。
 
 该设计将风险降至最低。
-
-
 
 
 ## 实施说明
@@ -335,12 +324,10 @@ X25519：详见 [ECIES](/en/docs/spec/ecies/)。
 实现者应尽早检测并拒绝这些记录和消息，以减少 CPU 使用率。
 
 
-
 ## 问题
 
-提案 145 [Prop145](/en/proposals/145-ecies/) 是否会重写以便与
-提案 152 [Prop152](/en/proposals/152-ecies-tunnels/) 兼容尚不确定。
-
+提案 145 [Prop145](/proposals/145-ecies/) 是否会重写以便与
+提案 152 [Prop152](/proposals/152-ecies-tunnels/) 兼容尚不确定。
 
 
 ## 迁移
@@ -351,11 +338,10 @@ X25519：详见 [ECIES](/en/docs/spec/ecies/)。
 每个 I2P 实现的实施和迁移细节可能有所不同。
 
 
-
 ### 基本点对点
 
 ECIES 路由器可以连接到并从 ElGamal 路由器接收连接。
-这应该在现阶段可行，因为到 2019 年中期，Java 代码库已经添加了一些检查来响应未完成的提案 145 [Prop145](/en/proposals/145-ecies/)。
+这应该在现阶段可行，因为到 2019 年中期，Java 代码库已经添加了一些检查来响应未完成的提案 145 [Prop145](/proposals/145-ecies/)。
 确保代码库中没有任何内容阻止与非 ElGamal 路由器的点对点连接。
 
 代码正确性检查：
@@ -379,7 +365,7 @@ ECIES 路由器可以连接到并从 ElGamal 路由器接收连接。
 ### NetDB 兼容性
 
 确保 ECIES 路由器信息可以存储到 ElGamal floodfills 并从中检索。
-这应该在现阶段可行，因为到 2019 年中期，Java 代码库已经添加了一些检查来响应未完成的提案 145 [Prop145](/en/proposals/145-ecies/)。
+这应该在现阶段可行，因为到 2019 年中期，Java 代码库已经添加了一些检查来响应未完成的提案 145 [Prop145](/proposals/145-ecies/)。
 确保代码库中没有任何内容阻止在网络数据库中存储非 ElGamal RouterInfos。
 
 无需进行更改。
@@ -388,7 +374,7 @@ ECIES 路由器可以连接到并从 ElGamal 路由器接收连接。
 
 ### 隧道构建
 
-按照提案 152 [Prop152](/en/proposals/152-ecies-tunnels/) 实施隧道构建。
+按照提案 152 [Prop152](/proposals/152-ecies-tunnels/) 实施隧道构建。
 首先让 ECIES 路由器构建与所有 ElGamal 跳的隧道；
 通过构建入站隧道来测试和调试。
 
@@ -402,7 +388,7 @@ ECIES 路由器可以连接到并从 ElGamal 路由器接收连接。
 
 ### 向 ECIES floodfills 的 Ratchet 消息
 
-按照提案 144 [Prop144](/en/proposals/144-ecies-x25519-aead-ratchet/) 实施和测试 ECIES 消息（带有零静态密钥）由 ECIES floodfills 接收。
+按照提案 144 [Prop144](/proposals/144-ecies-x25519-aead-ratchet/) 实施和测试 ECIES 消息（带有零静态密钥）由 ECIES floodfills 接收。
 实现和测试由 ECIES 路由器接收的对数据库查找消息的 AEAD 回复。
 
 启用 ECIES 路由器的自动 floodfill。
@@ -439,7 +425,7 @@ ECIES 路由器可以自动成为 floodfill。
 
 ### 新的隧道构建消息（阶段 2）
 
-按照提案 157 [Prop157](/en/proposals/157-new-tbm/) 实施和测试新的隧道构建消息。
+按照提案 157 [Prop157](/proposals/157-new-tbm/) 实施和测试新的隧道构建消息。
 在版本 0.9.51 中推出支持。
 进行额外测试，然后在版本 0.9.52 中启用。
 

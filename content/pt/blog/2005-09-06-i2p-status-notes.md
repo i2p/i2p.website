@@ -8,7 +8,6 @@ categories: ["status"]
 
 Olá, pessoal,
 
-Forneça APENAS a tradução, nada mais:
 
 * Index
 

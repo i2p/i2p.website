@@ -25,15 +25,12 @@ Erstens, da Sig-Typen im experimentellen Bereich nicht reserviert werden können
 Zweitens, sofern ein Router-Info oder Lease-Set mit einem experimentellen Sig-Typ nicht in einem Floodfill gespeichert werden kann, ist der neue Sig-Typ schwer vollständig zu testen oder auf Probe zu verwenden.
 
 
-
 ## Design
 
 Floodfills sollten LS-Stores mit Sig-Typen im experimentellen Bereich akzeptieren und verteilen, ohne die Signatur zu prüfen. Die Unterstützung für RI-Stores ist noch festzulegen und könnte mehr Sicherheitsimplikationen haben.
 
 
-
 ## Spezifikation
-
 
 
 Für Sig-Typen im experimentellen Bereich sollte ein Floodfill NetDB-Stores akzeptieren und verteilen, ohne die Signatur zu prüfen.
@@ -70,6 +67,5 @@ die bisher noch nicht formell vorgeschlagen wurden.
 ## Anmerkungen
 
 NetDB-Stores unbekannter Sig-Typen, die nicht im experimentellen Bereich liegen, werden weiterhin von Floodfills abgelehnt, da die Signatur nicht verifiziert werden kann.
-
 
 

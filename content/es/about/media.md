@@ -213,11 +213,11 @@ Recursos para periodistas, investigadores y cualquier persona interesada en apre
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="/en/about/i2pcon/2015/">I2PCon 2015</a>
+[I2PCon 2015](/es/blog/2015/07/16/i2pcon/)
 </div>
 <div class="content-entry-meta">🎪 Conferencia • Toronto • 15-16 de agosto de 2015</div>
 <div class="content-entry-actions">
-<a href="/en/about/i2pcon/2015/" class="content-btn">Detalles</a>
+<a href="/es/blog/2015/07/16/i2pcon/" class="content-btn">Detalles</a>
 </div>
 </div>
 

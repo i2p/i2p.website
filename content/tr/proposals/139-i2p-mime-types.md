@@ -32,7 +32,6 @@ Mime türlerini standart hale getirerek, her yönlendirici implementasyonu
 uygun olarak işleyiciler yazabilir ve mime tanım dosyası tüm implementasyonlar tarafından paylaşılabilir.
 
 
-
 ## Tasarım
 
 freedesktop.org standardını izleyen bir XML kaynak dosyası yazın ve
@@ -46,7 +45,6 @@ belirtilmeyecektir.
 
 Ayrıca Jetty ile tanımları dahil edeceğiz ve bunları
 yeniden tohum yazılımı veya talimatları ile birlikte ekleyeceğiz.
-
 
 
 ## Teknik Özellikler
@@ -88,8 +86,6 @@ yeniden tohum yazılımı veya talimatları ile birlikte ekleyeceğiz.
 =.txt.gz 		application/x-i2p-peerprofile
 
 .xpi2p	 		application/x-i2p-plugin
-
-
 
 
 ## Notlar

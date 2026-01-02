@@ -57,16 +57,14 @@ Hãy tham gia danh sách gửi thư của chúng tôi bằng cách nhập địa
 | Vai trò | Người | Mô tả |
 |------|--------|-------------|
 | **Quản lý phát hành I2P Java** | idk | Xây dựng và ký các bản phát hành |
-| **Quản trị diễn đàn** | eche\|on | Người phụ trách diễn đàn công khai I2P |
 | **Quản trị mirrors tải xuống** | StormyCloud | Quản lý các máy chủ mirror cho tệp tải xuống |
 | **Người đóng gói; Linux** | idk | Người đóng gói cho bản phân phối Linux (Debian/Ubuntu) |
 | **Người đóng gói; Windows** | idk | Người đóng gói bộ cài đặt Windows |
-| **Người đóng gói; OSX** | echelon | Người đóng gói bộ cài đặt OSX |
-| **Nhân sự dự phòng cho Quản lý phát hành** | eche\|on | Các quản lý phát hành dự phòng |
+| **Người đóng gói; OSX** | vacant | Người đóng gói bộ cài đặt OSX |
 | **Quản trị CI** | idk | Duy trì hạ tầng Continuous Integration (Tích hợp liên tục) |
 | **Quản trị Reseed** | idk | Giám sát, tư vấn và tuyển dụng các máy chủ reseed |
 | **Quản trị Gitea** | idk | Người phụ trách Gitea của I2P |
-| **Bản địa hóa** | eche\|on, idk, zzz | Quản trị viên trên [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Bản địa hóa** | idk, zzz | Quản trị viên trên [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Dịch giả** | rất rất nhiều người! | Dịch giả trên [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Người phụ trách trang web** | StormyCloud | Quản lý thiết kế nội dung của trang web công khai của dự án |
 | **Quản trị máy chủ web** | StormyCloud | Quản lý các máy chủ web công khai của dự án |

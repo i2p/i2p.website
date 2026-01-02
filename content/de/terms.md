@@ -127,7 +127,6 @@ Wenn Sie Fragen zu diesen Nutzungsbedingungen haben, kontaktieren Sie uns bitte:
 
 Mit der Nutzung unserer Website oder Software erkennen Sie an, dass Sie diese Nutzungsbedingungen gelesen und verstanden haben und sich damit einverstanden erklären, an sie gebunden zu sein.
 
-Geben Sie NUR die Übersetzung, sonst nichts:
 
 **Zuletzt aktualisiert**: Oktober 2025
 

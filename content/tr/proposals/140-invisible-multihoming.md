@@ -11,9 +11,9 @@ toc: true
 
 ## Genel Bakış
 
-Bu öneri, bir I2P istemcisi, hizmeti veya harici dengeleyici sürecinin tek bir [Destination](http://localhost:63465/en/docs/specs/common-structures/#destination)'ı şeffaf bir şekilde barındıran birden fazla router'ı yönetmesini sağlayan bir protokol için tasarımı özetlemektedir.
+Bu öneri, bir I2P istemcisi, hizmeti veya harici dengeleyici sürecinin tek bir [Destination](http://localhost:63465/docs/specs/common-structures/#destination)'ı şeffaf bir şekilde barındıran birden fazla router'ı yönetmesini sağlayan bir protokol için tasarımı özetlemektedir.
 
-Bu öneri şu anda somut bir uygulama belirtmiyor. [I2CP](/en/docs/specs/i2cp/) için bir uzantı olarak veya yeni bir protokol olarak uygulanabilir.
+Bu öneri şu anda somut bir uygulama belirtmiyor. [I2CP](/docs/specs/i2cp/) için bir uzantı olarak veya yeni bir protokol olarak uygulanabilir.
 
 ## Motivasyon
 
@@ -127,7 +127,7 @@ Aşağıdaki istenen konfigürasyonu hayal edin:
 
 ### Tek istemci
 
-Bu konfigürasyonu oluşturmak ve yönetmek için, client'ın şu anda [I2CP](/en/docs/specs/i2cp/) tarafından sağlanandan daha fazla yeni işlevselliğe ihtiyacı vardır:
+Bu konfigürasyonu oluşturmak ve yönetmek için, client'ın şu anda [I2CP](/docs/specs/i2cp/) tarafından sağlanandan daha fazla yeni işlevselliğe ihtiyacı vardır:
 
 - Bir router'a, onlar için LeaseSet oluşturmadan tüneller inşa etmesini söyler.
 - Gelen havuzundaki mevcut tünellerin listesini alır.

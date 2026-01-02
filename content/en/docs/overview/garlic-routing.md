@@ -46,8 +46,7 @@ A full round trip (Alice ↔ Bob) uses four tunnels:
 Alice’s outbound → Bob’s inbound, then Bob’s outbound → Alice’s inbound.  
 This design **halves correlation data exposure** compared to bidirectional circuits.
 
-For tunnel implementation details, see the [Tunnel Specification](/docs/specs/implementation)  
-and the [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies) specification.
+For tunnel implementation details, see the [Tunnel Operations Guide](/docs/specs/implementation/).
 
 ---
 
@@ -199,9 +198,9 @@ Garlic routing is thus both a *method of encryption layering* and a *network mes
 I2P's documentation hub is [available here](/docs/), maintained continuously.  
 Relevant living specifications include:
 
-- [ECIES Specification](/docs/specs/ecies) — ECIES‑X25519‑AEAD‑Ratchet
-- [Tunnel Creation (ECIES)](/spec/tunnel/creation-ecies) — modern tunnel build protocol
-- [I2NP Specification](/spec/i2np) — I2NP message formats
+- [ECIES Specification](/docs/specs/ecies/) — ECIES‑X25519‑AEAD‑Ratchet
+- [Tunnel Operations Guide](/docs/specs/implementation/) — tunnel creation and encryption
+- [I2NP Specification](/docs/specs/i2np/) — I2NP message formats
 - [SSU2 Specification](/docs/specs/ssu2) — SSU2 UDP transport
 - [Common Structures](/docs/specs/common-structures) — netDb and floodfill behavior
 

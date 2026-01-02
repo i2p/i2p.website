@@ -201,7 +201,7 @@ Le type de crypto 0 est ElGamal. Les types de crypto 1-3 sont réservés pour EC
 
 ### Résumé de la conception cryptographique
 
-Cette proposition fournit les exigences basées sur le Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Révision 34, 2018-07-11). Noise a des propriétés similaires au protocole Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), qui est la base du protocole [SSU](/docs/specs/ssu/). Dans la terminologie Noise, Alice est l'initiateur, et Bob est le répondeur.
+Cette proposition fournit les exigences basées sur le Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Révision 34, 2018-07-11). Noise a des propriétés similaires au protocole Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), qui est la base du protocole [SSU](/docs/legacy/ssu/). Dans la terminologie Noise, Alice est l'initiateur, et Bob est le répondeur.
 
 Cette proposition est basée sur le protocole Noise Noise_IK_25519_ChaChaPoly_SHA256. (L'identifiant réel pour la fonction de dérivation de clé initiale est "Noise_IKelg2_25519_ChaChaPoly_SHA256" pour indiquer les extensions I2P - voir la section KDF 1 ci-dessous) Ce protocole Noise utilise les primitives suivantes :
 
@@ -438,7 +438,6 @@ MixKey(d)
         MixKey(d) := output = HKDF(chainKey, d, "", 64)
                      chainKey = output[0:31]
                      k = output[32:63]
-
 
 
 ### Délais d'expiration de session
@@ -1330,8 +1329,6 @@ TAGSET
         If there are few TAGSET_ENTRIES remaining, EXTEND(n) is called.
 
 
-
-
 ### 4) Ratchets
 
 Ratchets mais pas aussi rapidement que Signal. Nous séparons l'accusé de réception de la clé reçue de la génération de la nouvelle clé. Dans un usage typique, Alice et Bob vont chacun effectuer un ratchet (deux fois) immédiatement dans une Nouvelle Session, mais n'effectueront plus de ratchet par la suite.
@@ -1447,9 +1444,7 @@ Tag Sender                    Tag Receiver
   (reuse key #1, do DH, create IB Tagset #3)
 
 
-
                    ... use tag set #3 ...
-
 
 
        After tag set 3, repeat the above

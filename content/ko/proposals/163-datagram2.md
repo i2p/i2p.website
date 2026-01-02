@@ -18,7 +18,6 @@ API 0.9.66에서 Java I2P로 구현되었습니다.
 상태에 대한 구현 문서를 확인하십시오.
 
 
-
 ## 개요
 
 [Prop123](/proposals/123-new-netdb-entries/)에서 별도의 제안으로 분리되었습니다.
@@ -108,7 +107,6 @@ i2psnark 및 zzzot에서 구현된 바와 같이 비트토런트 UDP 발표가 �
 ```
 
 
-
 ## 설계
 
 - 새로운 프로토콜 19 - 옵션이 있는 응답 가능한 데이터그램 정의.
@@ -131,10 +129,10 @@ i2psnark 및 zzzot에서 구현된 바와 같이 비트토런트 UDP 발표가 �
 ### 프로토콜
 
 Datagram2의 새로운 I2CP 프로토콜 번호는 19입니다.
-이를 [I2CP](/docs/protocol/i2cp/)에 PROTO_DATAGRAM2로 추가하십시오.
+이를 [I2CP](/docs/specs/i2cp/)에 PROTO_DATAGRAM2로 추가하십시오.
 
 Datagram3의 새로운 I2CP 프로토콜 번호는 20입니다.
-이를 [I2CP](/docs/protocol/i2cp/)에 PROTO_DATAGRAM2로 추가하십시오.
+이를 [I2CP](/docs/specs/i2cp/)에 PROTO_DATAGRAM2로 추가하십시오.
 
 
 ### Datagram2 형식
@@ -294,7 +292,6 @@ Datagram3의 새로운 I2CP 프로토콜 번호는 20입니다.
 총 길이: 최소 34 + 페이로드 길이.
 
 
-
 ### SAM
 
 SAMv3 사양에 STYLE=DATAGRAM2 및 STYLE=DATAGRAM3을 추가하십시오.
@@ -307,7 +304,6 @@ SAMv3 사양에 STYLE=DATAGRAM2 및 STYLE=DATAGRAM3을 추가하십시오.
 이는 수용 가능합니다.
 
 
-
 ## 보안 분석
 
 서명에 대상 해시를 포함시키면 재생 공격을 방지하는 데 효과적일 것입니다.
@@ -317,24 +313,20 @@ Datagram3 형식에는 서명이 없으므로 발신자를 검증할 수 없으�
 라우터의 래칫 계층에 의해 수행되어야 합니다.
 
 
-
 ## 참고
 
 - 실질적인 길이는 프로토콜 하위 계층에 의해 제한됩니다 - 터널
-  메시지 사양 [TUNMSG](/docs/specs/tunnel-message/#notes)은 메시지를 약 61.2 KB로 제한하며,
-  전송 [TRANSPORT](/docs/transport/)은 현재 메시지를 약 64 KB로 제한하므로,
+  메시지 사양 [TUNMSG](/docs/specs/implementation/#notes)은 메시지를 약 61.2 KB로 제한하며,
+  전송 [TRANSPORT](/docs/overview/transport/)은 현재 메시지를 약 64 KB로 제한하므로,
   여기서의 데이터 길이는 약 61 KB로 제한됩니다.
 - 큰 데이터그램의 신뢰성에 대한 중요한 주석, [API](/docs/api/datagrams/). 최고의 결과를 위해,
   페이로드를 약 10 KB 이하로 제한하십시오.
-
-
 
 
 ## 호환성
 
 없음. 응용 프로그램은 프로토콜 및/또는 포트에 기반하여 Datagram2 I2CP 메시지를 라우팅하도록 다시 작성되어야 합니다.
 잘못 라우팅되어 응답 가능한 데이터그램이나 스트리밍 메시지로 해석된 Datagram2 메시지는 서명, 형식 또는 둘 다에 따라 실패할 것입니다.
-
 
 
 ## 마이그레이션
@@ -364,11 +356,11 @@ SAM UDP 앱: 알려진 바 없습니다
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

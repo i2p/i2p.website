@@ -1,6 +1,7 @@
 ---
 title: "Поднимите на новый уровень свои навыки работы с I2P с помощью зашифрованных LeaseSets"
 date: 2021-09-07
+slug: "level-up-your-i2p-skills-with-encrypted-leasesets"
 author: "idk"
 description: "Говорят, что I2P уделяет особое внимание скрытым сервисам; мы рассмотрим одну интерпретацию этого."
 categories: ["general"]

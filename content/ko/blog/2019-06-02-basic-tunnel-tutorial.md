@@ -8,7 +8,7 @@ categories: ["tutorial"]
 
 Java I2P router는 사용자의 첫 eepSite를 제공하기 위해 정적 웹 서버인 jetty가 미리 구성되어 있지만, 많은 사용자는 웹 서버에서 더 정교한 기능을 필요로 하며 다른 서버로 eepSite를 만들기를 선호합니다. 물론 이것은 가능하며, 한 번만 해보면 실제로 매우 쉽습니다.
 
-설정 자체는 쉽지만, 실행하기 전에 고려해야 할 몇 가지 사항이 있습니다. 서버/배포판 유형을 보고하는 기본 오류 페이지나 식별에 사용될 수 있는 헤더 등, 웹 서버에서 신원을 식별할 수 있는 특성은 제거하는 것이 좋습니다. 잘못 구성된 애플리케이션이 초래하는 익명성 위협에 대한 더 자세한 정보는 다음을 참고하세요: [Riseup 여기](https://riseup.net/en/security/network-security/tor/onionservices-best-practices), [Whonix 여기](https://www.whonix.org/wiki/Onion_Services), [일부 OPSEC(운영 보안) 실패 사례를 다룬 이 블로그 글](https://blog.0day.rocks/securing-a-web-hidden-service-89d935ba1c1d), [그리고 I2P applications 페이지 여기](https://geti2p.net/en/docs/applications/supported). 이러한 정보의 상당수는 Tor Onion Services를 기준으로 설명되어 있지만, 동일한 절차와 원칙은 I2P를 통해 애플리케이션을 호스팅할 때도 그대로 적용됩니다.
+설정 자체는 쉽지만, 실행하기 전에 고려해야 할 몇 가지 사항이 있습니다. 서버/배포판 유형을 보고하는 기본 오류 페이지나 식별에 사용될 수 있는 헤더 등, 웹 서버에서 신원을 식별할 수 있는 특성은 제거하는 것이 좋습니다. 잘못 구성된 애플리케이션이 초래하는 익명성 위협에 대한 더 자세한 정보는 다음을 참고하세요: [Riseup 여기](https://riseup.net/en/security/network-security/tor/onionservices-best-practices), [Whonix 여기](https://www.whonix.org/wiki/Onion_Services), [일부 OPSEC(운영 보안) 실패 사례를 다룬 이 블로그 글](https://blog.0day.rocks/securing-a-web-hidden-service-89d935ba1c1d), [그리고 I2P applications 페이지 여기](https://geti2p.net/docs/applications/supported). 이러한 정보의 상당수는 Tor Onion Services를 기준으로 설명되어 있지만, 동일한 절차와 원칙은 I2P를 통해 애플리케이션을 호스팅할 때도 그대로 적용됩니다.
 
 ### 1단계: Tunnel 마법사 열기
 

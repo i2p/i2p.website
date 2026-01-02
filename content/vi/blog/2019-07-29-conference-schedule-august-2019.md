@@ -9,7 +9,6 @@ description: "Các nhà phát triển I2P đang tham dự nhiều hội nghị t
 
 Chào mọi người,
 
-Chỉ cung cấp bản dịch, không có gì khác:
 
 Tháng tới sẽ rất bận rộn! Hãy gặp gỡ các nhà phát triển I2P tại hai buổi hội thảo ở Defcon 27, và kết nối với các nhà nghiên cứu tại FOCI '19, những người đã quan sát việc kiểm duyệt I2P.
 

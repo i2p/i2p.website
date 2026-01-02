@@ -207,11 +207,11 @@ categories: ["meeting"]
 10:51:16  &lt;str4d&gt; I've wanted to merge the various intro pages, but we could actually leverage them separately
 10:51:36  &lt;str4d&gt; Turn https://geti2p.net/en/about/intro into a brief overview of I2P, both the network and the project
 10:51:38  &lt;iRelay&gt; Title: Intro - I2P (at geti2p.net)
-10:51:59  &lt;str4d&gt; Then make https://geti2p.net/en/docs/how/intro the *actual* "how does I2P work" page
+10:51:59  &lt;str4d&gt; Then make https://geti2p.net/docs/how/intro the *actual* "how does I2P work" page
 10:52:00  &lt;iRelay&gt; Title: A Gentle Introduction to How I2P Works - I2P (at geti2p.net)
 10:52:10  &lt;str4d&gt; Kinda sorta what they appear to be now, but properly split
 10:53:12  &lt;dg&gt; hottuna: Where can I find the blogposts?
-10:53:22  &lt;dg&gt; hottuna: I can only see one (http://i2p-projekt.i2p/en/blog/post/2015/11/15/Community-Outreach)
+10:53:22  &lt;dg&gt; hottuna: I can only see one (http://i2p-projekt.i2p/en/blog/2015/11/15/Community-Outreach)
 10:53:25  &lt;iRelay&gt; Title: Community Outreach - Blog - I2P (at i2p-projekt.i2p)
 10:54:38  &lt;lazygravy&gt; dg: they don't exist aside from that
 10:54:55  &lt;lazygravy&gt; and that was mostly a POC IMO. Next one should be published on 10Jan2016 on CCC

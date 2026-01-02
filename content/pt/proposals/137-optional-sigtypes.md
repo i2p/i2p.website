@@ -16,7 +16,6 @@ Isso fornecerá um meio de suportar novos tipos de assinaturas a longo prazo,
 mesmo que nem todas as implementações os suportem.
 
 
-
 ## Motivação
 
 A proposta GOST 134 revelou vários problemas com a faixa de tipos de assinatura experimental anteriormente não utilizada.
@@ -37,7 +36,6 @@ Quinto, se GOST usar um tipo de assinatura na faixa padrão, ainda não há como
 floodfill suporta GOST.
 
 
-
 ## Design
 
 Todos os floodfills devem suportar os tipos de assinaturas DSA (0), ECDSA (1-3) e EdDSA (7).
@@ -46,9 +44,7 @@ Para qualquer outro tipo de assinatura na faixa padrão (não experimental), um 
 anunciar suporte em suas propriedades de informação do roteador.
 
 
-
 ## Especificação
-
 
 
 Um roteador que suporta um tipo de assinatura opcional deve adicionar a propriedade "sigTypes"
@@ -62,12 +58,10 @@ Roteadores que suportam tipos de assinatura opcionais devem somente armazenar, p
 para floodfills que anunciem suporte para esse tipo de assinatura.
 
 
-
 ## Migração
 
 Não aplicável.
 Apenas roteadores que suportam um tipo de assinatura opcional devem implementar.
-
 
 
 ## Problemas
@@ -85,6 +79,5 @@ o que ainda não foi formalmente proposto.
 
 Armazenamentos NetDB de tipos de assinatura desconhecidos que não estão na faixa experimental continuarão
 sendo rejeitados por floodfills, pois a assinatura não pode ser verificada.
-
 
 

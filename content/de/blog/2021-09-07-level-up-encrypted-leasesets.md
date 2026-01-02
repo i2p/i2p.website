@@ -1,6 +1,7 @@
 ---
 title: "Bringen Sie Ihre I2P-Kenntnisse mit verschlüsselten LeaseSets auf das nächste Niveau"
 date: 2021-09-07
+slug: "level-up-your-i2p-skills-with-encrypted-leasesets"
 author: "idk"
 description: "Es heißt, dass I2P den Schwerpunkt auf Hidden Services (versteckte Dienste) legt; wir untersuchen eine mögliche Interpretation davon."
 categories: ["general"]

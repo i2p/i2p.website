@@ -200,7 +200,7 @@ tag :: 8-bajtový reply_tag
 ECIES cíl nebo směrovač odešle vyhledávání do ECIES směrovače, s přiloženými odpovědními klíči.
 Podporováno od 0.9.49.  
 
-ECIES směrovače byly představeny ve verzi 0.9.48, viz [Prop156](/en/proposals/156-ecies-routers/).  
+ECIES směrovače byly představeny ve verzi 0.9.48, viz [Prop156](/proposals/156-ecies-routers/).  
 Od verze 0.9.49, ECIES cíle a směrovače mohou používat stejný formát jako v sekci "ECIES to ElG", uvedený výše, s odpovědními klíči zahrnutými v požadavku.  
 Vyhledávání použije "one time format" v [ECIES](/docs/specs/ecies/)  
 protože je požadovatel anonymní.  

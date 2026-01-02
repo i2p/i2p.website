@@ -14,4 +14,3 @@ Cordialement
 
 // hottuna (ou Robert)
 
-Fournissez UNIQUEMENT la traduction, rien d'autre:

@@ -166,7 +166,7 @@ Whitepaper'da çok fazla iyi bilgi var ve fikirlere ve ilhama kavuşmak için on
 
 ### Anahtar Değişimi
 
-Ortak yapılar belgesindeki [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/) bölümleri ve tabloları aşağıdaki şekilde güncelleyin:
+Ortak yapılar belgesindeki [/docs/specs/common-structures/](/docs/specs/common-structures/) bölümleri ve tabloları aşağıdaki şekilde güncelleyin:
 
 ### İmzalar
 
@@ -563,7 +563,7 @@ değişmemiş
 
 ### SigningPrivateKey
 
-ECIES-Ratchet spesifikasyonunu [/en/docs/spec/ecies/](/en/docs/spec/ecies/) aşağıdaki şekilde güncelleyin:
+ECIES-Ratchet spesifikasyonunu [/docs/specs/ecies/](/docs/specs/ecies/) aşağıdaki şekilde güncelleyin:
 
 #### Noise identifiers
 
@@ -760,11 +760,11 @@ Boyutlar:
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-Mesaj 2'nin normalde sıfır olmayan bir payload'a sahip olacağını, ancak ratchet spesifikasyonunun [/en/docs/spec/ecies/](/en/docs/spec/ecies/) bunu gerektirmediğini, dolayısıyla minimum payload boyutunun 0 olduğunu unutmayın. Minimum mesaj 2 boyutları buna göre hesaplanabilir.
+Mesaj 2'nin normalde sıfır olmayan bir payload'a sahip olacağını, ancak ratchet spesifikasyonunun [/docs/specs/ecies/](/docs/specs/ecies/) bunu gerektirmediğini, dolayısıyla minimum payload boyutunun 0 olduğunu unutmayın. Minimum mesaj 2 boyutları buna göre hesaplanabilir.
 
 ### İmza
 
-NTCP2 spesifikasyonunu [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/) aşağıdaki şekilde güncelleyin:
+NTCP2 spesifikasyonunu [/docs/specs/ntcp2/](/docs/specs/ntcp2/) aşağıdaki şekilde güncelleyin:
 
 #### Noise identifiers
 
@@ -935,7 +935,7 @@ Değişmeden
 
 ### Anahtar Sertifikaları
 
-SSU2 spesifikasyonunu [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/) aşağıdaki şekilde güncelleyin:
+SSU2 spesifikasyonunu [/docs/specs/ssu2/](/docs/specs/ssu2/) aşağıdaki şekilde güncelleyin:
 
 #### Noise identifiers
 

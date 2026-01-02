@@ -109,8 +109,6 @@ Thao tác DH không thể thực hiện được cho các phản hồi từ các
 một khóa công khai X25519.
 
 
-
-
 ## Thông số kỹ thuật
 
 Trong thông số kỹ thuật DLM (DatabaseLookup) [I2NP](/docs/specs/i2np/), thực hiện các thay đổi sau đây.
@@ -181,8 +179,6 @@ reply_key ::
 ```
 
 
-
-
 ### ECIES đến ElG
 
 Đích ECIES gửi một tra cứu đến một bộ định tuyến ElG.
@@ -235,23 +231,18 @@ tag :: 8 byte reply_tag
 ```
 
 
-
-
-
 ### ECIES đến ECIES (0.9.49)
 
 Đích hoặc bộ định tuyến ECIES gửi một tra cứu đến một bộ định tuyến ECIES, với các khóa phản hồi đi kèm.
 Hỗ trợ kể từ 0.9.49.
 
-Các bộ định tuyến ECIES đã được giới thiệu trong 0.9.48, xem [Prop156](/en/proposals/156-ecies-routers/).
+Các bộ định tuyến ECIES đã được giới thiệu trong 0.9.48, xem [Prop156](/proposals/156-ecies-routers/).
 Kể từ 0.9.49, các đích và bộ định tuyến ECIES có thể sử dụng cùng định dạng như trong
 phần "ECIES đến ElG" ở trên, với các khóa phản hồi được bao gồm trong yêu cầu.
 Tra cứu sẽ sử dụng "định dạng một lần" trong [ECIES](/docs/specs/ecies/)
 do người yêu cầu là ẩn danh.
 
 Đối với một phương pháp mới với các khóa dẫn xuất, xem phần tiếp theo.
-
-
 
 
 ### ECIES đến ECIES (tương lai)
@@ -330,7 +321,6 @@ Xem [ECIES](/docs/specs/ecies/) để biết tất cả các định nghĩa.
 ```
 
 
-
 ### Định dạng phản hồi
 
 Đây là thông điệp phiên hiện có,
@@ -373,7 +363,6 @@ nhưng có lẽ điều đó gây phiền toái hơn là đáng giá.
 Đề xuất trên là dễ dàng nhất và giảm thiểu thay đổi đối với định dạng tra cứu.
 
 
-
 ## Ghi chú
 
 Các tra cứu và lưu trữ cơ sở dữ liệu đến các bộ định tuyến ElG cần được mã hóa ElGamal/AESSessionTag
@@ -383,7 +372,6 @@ như thường lệ.
 ## Vấn đề
 
 Cần phân tích thêm về tính bảo mật của hai tùy chọn phản hồi ECIES.
-
 
 
 ## Di chuyển

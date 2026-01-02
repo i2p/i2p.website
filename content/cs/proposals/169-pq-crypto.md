@@ -166,7 +166,7 @@ V whitepaperu je mnoho dobrých informací a my si je projdeme pro nápady a ins
 
 ### Výměna klíčů
 
-Aktualizujte sekce a tabulky v dokumentu běžných struktur [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/) následovně:
+Aktualizujte sekce a tabulky v dokumentu běžných struktur [/docs/specs/common-structures/](/docs/specs/common-structures/) následovně:
 
 ### Podpisy
 
@@ -563,7 +563,7 @@ nezměněno
 
 ### SigningPrivateKey
 
-Aktualizujte specifikaci ECIES-Ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) následovně:
+Aktualizujte specifikaci ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) následovně:
 
 #### Noise identifiers
 
@@ -760,11 +760,11 @@ Velikosti:
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-Upozorňujeme, že zatímco zpráva 2 bude normálně mít nenulový payload, specifikace ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) to nevyžaduje, takže minimální velikost payload je 0. Minimální velikosti zprávy 2 mohou být vypočítány odpovídajícím způsobem.
+Upozorňujeme, že zatímco zpráva 2 bude normálně mít nenulový payload, specifikace ratchet [/docs/specs/ecies/](/docs/specs/ecies/) to nevyžaduje, takže minimální velikost payload je 0. Minimální velikosti zprávy 2 mohou být vypočítány odpovídajícím způsobem.
 
 ### Podpis
 
-Aktualizujte specifikaci NTCP2 [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/) následovně:
+Aktualizujte specifikaci NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) následovně:
 
 #### Noise identifiers
 
@@ -935,7 +935,7 @@ Nezměněno
 
 ### Certifikáty klíčů
 
-Aktualizujte specifikaci SSU2 [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/) následovně:
+Aktualizujte specifikaci SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) následovně:
 
 #### Noise identifiers
 

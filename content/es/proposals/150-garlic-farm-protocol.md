@@ -50,7 +50,6 @@ del Meta LS2.
 El editor del Meta LS2 NO es necesariamente el Líder de Raft.
 
 
-
 ## Especificación
 
 El protocolo de conexión es sobre sockets SSL o sockets I2P no SSL.
@@ -169,7 +168,6 @@ las conexiones subsecuentes puedan saltar directamente a
 "Solicitud HTTP 2" arriba.
 
 
-
 ### Tipos de Mensajes
 
 Hay dos tipos de mensajes, solicitudes y respuestas.
@@ -273,7 +271,6 @@ Candidato Alice               Seguidor Bob
 - Índices: Ver Raft. Inicializado en 0, aumenta monotonamente
 
 
-
 ### Solicitudes
 
 Las solicitudes contienen un encabezado y cero o más entradas de registro.
@@ -305,7 +302,6 @@ De lo contrario, es el término actual del líder.
 
 En el AppendEntriesRequest, cuando el tamaño de las entradas de registro es cero,
 este mensaje es un mensaje de latido (mantenimiento de conexión).
-
 
 
 #### Entradas de Registro
@@ -392,7 +388,6 @@ Tamaño de los datos del índice: En bytes, entero de 4 bytes
 ```
 
 
-
 #### Solicitud de Sincronización de Instantánea
 
 Esto se incluye solo en un mensaje InstallSnapshotRequest.
@@ -407,8 +402,6 @@ Esto se incluye solo en un mensaje InstallSnapshotRequest.
   Datos:            longitud como especificada
   Terminado:         1 si está terminado, 0 si no está terminado (1 byte)
 ```
-
-
 
 
 ### Respuestas
@@ -551,7 +544,6 @@ Requisitos de una interfaz de administración:
 - Funcionalidad de importación/exportación de configuración para implementaciones en masa
 
 
-
 ## Interfaz del Router
 
 TDB, posiblemente una propuesta separada.
@@ -578,19 +570,15 @@ de la serialización en Java.
 ## Notas
 
 
-
 ## Problemas
 
 - No hay manera para que un cliente se entere y se conecte a un líder desconocido.
   Sería un cambio menor para que un Seguidor envíe la Configuración como una Entrada de Registro en la AppendEntriesResponse.
 
 
-
 ## Migración
 
 No hay problemas de compatibilidad hacia atrás.
-
-
 
 
 ## Referencias

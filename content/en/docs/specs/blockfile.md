@@ -4,12 +4,12 @@ description: "On-disk blockfile storage format used by I2P for hostname resoluti
 slug: "blockfile"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 ---
 
 ## Overview
 This document specifies the **I2P blockfile file format** and the tables in the `hostsdb.blockfile` used by the **Blockfile Naming Service**.  
-For background, see [I2P Naming and Address Book](/en/docs/overview/naming).
+For background, see [I2P Naming and Address Book](/docs/overview/naming).
 
 The blockfile enables **fast destination lookups** in a compact binary format.  
 Compared to the legacy `hosts.txt` system:

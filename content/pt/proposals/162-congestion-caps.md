@@ -15,12 +15,9 @@ toc: true
 Adicionar indicadores de congestionamento à Router Info (RI) publicada.
 
 
-
-
 ## Motivação
 
 "Capacidades" de largura de banda indicam limites de compartilhamento de largura de banda e acessibilidade, mas não o estado de congestionamento. Um indicador de congestionamento ajudará os roteadores a evitar tentativas de construção através de um roteador congestionado, o que contribui para mais congestionamento e redução no sucesso da construção de túneis.
-
 
 
 ## Design
@@ -46,10 +43,9 @@ As implementações podem considerar um ou mais dos seguintes:
 O estado de congestionamento deve se basear na média das condições ao longo de vários minutos, não em uma medição instantânea.
 
 
-
 ## Especificação
 
-Atualizar [NETDB](/docs/how/network-database/) da seguinte forma:
+Atualizar [NETDB](/docs/overview/network-database/) da seguinte forma:
 
 
 ```text
@@ -70,7 +66,6 @@ D: Congestionamento médio, ou um roteador de baixo desempenho (por exemplo, And
 Para consistência, as implementações devem adicionar quaisquer capacidades de congestionamento no final (após R ou U).
 
 
-
 ## Análise de Segurança
 
 Qualquer informação de par publicada não pode ser confiada. Capacidades, como qualquer outra coisa na Router Info, podem ser falsificadas. Nunca usamos nada na Router Info para aumentar a capacidade percebida de um roteador.
@@ -82,7 +77,6 @@ Os indicadores atuais de capacidade de largura de banda (L-P, X) são confiávei
 Qualquer indicador de congestionamento publicado deve ter o mesmo efeito que rejeitar ou descartar um pedido de construção de túnel, com propriedades de segurança semelhantes.
 
 
-
 ## Notas
 
 Os pares não devem evitar completamente os roteadores 'D', apenas rebaixá-los.
@@ -92,8 +86,6 @@ Deve-se ter cuidado para não evitar completamente os roteadores 'E', para que q
 Os roteadores podem usar diferentes estratégias para quais tipos de túneis construir através de roteadores 'D' e 'E', por exemplo, exploratórios vs. cliente, ou túneis de cliente de alta vs. baixa largura de banda.
 
 Os roteadores provavelmente não devem publicar uma capacidade de congestionamento ao iniciar ou desligar por padrão, mesmo que seu estado de rede seja desconhecido, para prevenir a detecção de reinício por pares.
-
-
 
 
 ## Compatibilidade
@@ -110,7 +102,6 @@ Publicar capacidades em 0.9.58 (abril de 2023);
 agir sobre as capacidades publicadas em 0.9.59 (julho de 2023).
 
 
-
 ## Referências
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

@@ -213,11 +213,11 @@ layout: "single"
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="/en/about/i2pcon/2015/">مؤتمر I2P 2015</a>
+<a href="/ar/blog/2015/07/16/i2pcon/">مؤتمر I2P 2015</a>
 </div>
 <div class="content-entry-meta">🎪 مؤتمر • تورونتو • 15-16 أغسطس 2015</div>
 <div class="content-entry-actions">
-<a href="/en/about/i2pcon/2015/" class="content-btn">تفاصيل</a>
+<a href="/ar/blog/2015/07/16/i2pcon/" class="content-btn">تفاصيل</a>
 </div>
 </div>
 

@@ -16,7 +16,7 @@ toc: true
 
 ## Động lực
 
-Hầu hết các router I2P sử dụng một dạng bỏ gói tin để quản lý tắc nghẽn. Triển khai tham chiếu sử dụng chiến lược WRED, tính toán cả kích thước thông điệp và khoảng cách di chuyển (xem [tài liệu tunnel throttling](/en/docs/tunnels/implementation/#tunnelthrottling)). Do chiến lược này, nguồn gốc chính của mất gói là OBEP.
+Hầu hết các router I2P sử dụng một dạng bỏ gói tin để quản lý tắc nghẽn. Triển khai tham chiếu sử dụng chiến lược WRED, tính toán cả kích thước thông điệp và khoảng cách di chuyển (xem [tài liệu tunnel throttling](/docs/specs/implementation/#tunnelthrottling)). Do chiến lược này, nguồn gốc chính của mất gói là OBEP.
 
 
 ## Thiết kế
@@ -31,7 +31,7 @@ Chế độ này có nghĩa là người nhận sẽ lựa chọn OBEP của ng�
 
 ## Đặc tả
 
-Một tùy chọn I2CP mới được thêm vào [đặc tả I2CP](/en/docs/spec/i2cp/):
+Một tùy chọn I2CP mới được thêm vào [đặc tả I2CP](/docs/specs/i2cp/):
 
     outbound.matchEndWithTarget
         Boolean

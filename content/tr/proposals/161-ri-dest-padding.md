@@ -40,7 +40,6 @@ Son olarak, öneri tüm doldurmayı tamamen ortadan kaldıracak yeni Hedef ve Y�
 olası seçenekleri tartışır. Gelecek planlamasını etkileyebilecek post-kuantum kriptografisi hakkında kısa bir tartışma da bulunmaktadır.
 
 
-
 ### Hedefler
 
 - Hedefler için ElGamal anahtar çifti üretme gereksinimini ortadan kaldırma
@@ -63,7 +62,6 @@ ElGamal anahtarlarının üretim gereksinimini ortadan kaldırarak, uygulamalar
 diğer protokollerde geriye dönük uyumluluk dikkate alınarak ElGamal kodunu tamamen kaldırabilirler.
 
 
-
 ## Tasarım
 
 Teknik olarak, yalnızca 32 baytlık imzalama açık anahtarı (hem Hedeflerde hem de Yönlendirici Kimliklerinde)
@@ -79,7 +77,6 @@ veya karışıklığa neden olabilir.
 Ed25519 imza türü ve X25519 şifreleme türü için:
 Hedefler rastgele verilerin 11 kopyasını (352 bayt) içerir.
 Yönlendirici Kimlikleri rastgele verilerin 10 kopyasını (320 bayt) içerir.
-
 
 
 ### Tahmini Tasarruflar
@@ -107,7 +104,6 @@ tahmini tasarruflar:
 Notlar: 7 baytlık sertifikanın sıkıştırılamadığını varsayar, sıfır ek sıkıştırma üst
    limiti. Bunların hiçbiri doğru değil, ancak etkiler küçük olacaktır.
 Yönlendirici Bilgisinin diğer sıkıştırılabilir bölümlerini göz ardı eder.
-
 
 
 ## Spesifikasyon
@@ -197,9 +193,6 @@ Bu değişikliklerin maliyetleri ve faydaları açık değildir.
 Spesifik öneriler TBD:
 
 
-
-
-
 ### PQ Anahtarları
 
 Post-Kuantum (PQ) şifreleme açık anahtarları, öngörülen herhangi bir algoritma
@@ -223,8 +216,6 @@ Ancak hibrit veya ratchetten sonra olur ????????????
 Daha fazla tartışma için bkz [this topic](http://zzz.i2p/topics/3294).
 
 
-
-
 ## Sorunlar
 
 Ağ için kaplama sağlamak amacıyla yavaş bir hızda yeniden anahtarlama yapmak
@@ -235,8 +226,6 @@ Mevcut hedeflerde yeniden anahtarlama mümkün değildir.
 
 Açık anahtar alanında dolgu olan Yönlendirici Kimlikleri anahtar sertifikasında farklı 
 bir şifreleme türü ile tanımlanmalı mı? Bu, uyumluluk sorunlarına neden olacaktır.
-
-
 
 
 ## Geçiş

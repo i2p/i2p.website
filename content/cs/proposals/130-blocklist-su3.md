@@ -45,5 +45,3 @@ Komentáře začínají znakem '#'.
 n/a
 
 
-
-

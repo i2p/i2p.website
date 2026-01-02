@@ -30,22 +30,21 @@ def validate_sha256_hash(hash_value: str) -> bool:
 
 
 def extract_markdown_front_matter(content: str) -> Dict:
-    """Extract front matter from markdown content."""
-    lines = content.split("\n")
+    """Extract front matter from markdown content using regex."""
+    if not content:
+        return {}
+    
+    # Handle UTF-8 BOM if present
+    if content.startswith('\ufeff'):
+        content = content[1:]
 
-    if not lines:
+    # Match content between triple dashes at the start of the file
+    # Handles potential leading whitespace/newlines
+    match = re.search(r'^\s*---\s*\n(.*?)\n---\s*\n', content, re.DOTALL)
+    if not match:
         return {}
 
-    if not lines[0].startswith("---"):
-        return {}
-
-    front_matter_lines = []
-    for line in lines[1:]:
-        if line.startswith("---"):
-            break
-        front_matter_lines.append(line)
-
-    front_matter_str = "\n".join(front_matter_lines)
+    front_matter_str = match.group(1)
     try:
         return yaml.safe_load(front_matter_str) or {}
     except yaml.YAMLError:

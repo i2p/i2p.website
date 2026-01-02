@@ -57,16 +57,14 @@ Suscríbete a nuestra lista de correo introduciendo tu correo electrónico en el
 | Rol | Persona | Descripción |
 |------|--------|-------------|
 | **Responsable de lanzamientos de I2P Java** | idk | Compila y firma los lanzamientos |
-| **Administrador del foro** | eche\|on | Encargado del foro público de I2P |
 | **Administrador de espejos de descargas** | StormyCloud | Gestiona los espejos para los archivos de descarga |
 | **Empaquetador; Linux** | idk | Empaquetador de distribuciones Linux (Debian/Ubuntu) |
 | **Empaquetador; Windows** | idk | Empaquetador del instalador de Windows |
-| **Empaquetador; OSX** | echelon | Empaquetador del instalador de OSX |
-| **Suplentes del Responsable de lanzamientos** | eche\|on | Responsables de lanzamientos suplentes |
+| **Empaquetador; OSX** | vacant | Empaquetador del instalador de OSX |
 | **Administrador de CI** | idk | Mantiene la infraestructura de Integración Continua |
 | **Administrador de Reseed** | idk | Supervisa, asesora y recluta servidores de reseed |
 | **Administrador de Gitea** | idk | Encargado de Gitea de I2P |
-| **Localización** | eche\|on, idk, zzz | Administradores en [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Localización** | idk, zzz | Administradores en [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Traductores** | ¡muchísimas personas! | Traductores en [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Encargado del sitio web** | StormyCloud | Gestiona el diseño del contenido del sitio web público del proyecto |
 | **Administrador de servidores web** | StormyCloud | Gestiona los servidores web públicos del proyecto |

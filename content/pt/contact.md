@@ -57,16 +57,14 @@ Inscreva-se na nossa lista de e-mails inserindo seu e-mail no rodapé deste site
 | Função | Pessoa | Descrição |
 |------|--------|-------------|
 | **Gerente de Lançamentos do I2P Java** | idk | Compila e assina os lançamentos |
-| **Administrador do fórum** | eche\|on | Mantenedor do fórum público do I2P |
 | **Administrador dos espelhos de download** | StormyCloud | Gerencia os espelhos para os arquivos de download |
 | **Empacotador; Linux** | idk | Empacotador de distribuição Linux (Debian/Ubuntu) |
 | **Empacotador; Windows** | idk | Empacotador do instalador do Windows |
-| **Empacotador; OSX** | echelon | Empacotador do instalador do OSX |
-| **Substitutos do Gerente de Lançamentos** | eche\|on | Gerentes de lançamento suplentes |
+| **Empacotador; OSX** | vacant | Empacotador do instalador do OSX |
 | **Administrador de CI** | idk | Mantém a infraestrutura de Integração Contínua |
 | **Administrador de Reseed** | idk | Monitora, aconselha e recruta hosts de reseed |
 | **Administrador do Gitea** | idk | Mantenedor do Gitea do I2P |
-| **Localização** | eche\|on, idk, zzz | Administradores no [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Localização** | idk, zzz | Administradores no [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Tradutores** | muitas, muitas pessoas! | Tradutores no [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Mantenedor do site** | StormyCloud | Gerencia o design do conteúdo do site público do projeto |
 | **Administrador do servidor web** | StormyCloud | Gerencia os servidores web públicos do projeto |

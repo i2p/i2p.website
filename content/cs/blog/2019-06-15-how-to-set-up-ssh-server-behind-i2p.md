@@ -37,7 +37,6 @@ Později byste to měli vyladit, ale typ Standard tunnel je pro začátek nejjed
 
 Uveďte kvalitní popis:
 
-Poskytněte POUZE překlad, nic dalšího:
 
 **Zástupné místo pro snímek obrazovky:** Popište, k čemu slouží
 

@@ -17,7 +17,7 @@ choisir ou de construire des tunnels lorsqu'un message est envoyé de sorte que 
 
 ## Motivation
 
-La plupart des routeurs I2P utilisent une forme de suppression de paquets pour la gestion de la congestion. L'implémentation de référence utilise une stratégie WRED qui prend en compte à la fois la taille du message et la distance parcourue (voir [documentation tunnel throttling](/en/docs/tunnels/implementation/#tunnelthrottling)). En raison de cette stratégie, la principale source de perte de paquets est l'OBEP.
+La plupart des routeurs I2P utilisent une forme de suppression de paquets pour la gestion de la congestion. L'implémentation de référence utilise une stratégie WRED qui prend en compte à la fois la taille du message et la distance parcourue (voir [documentation tunnel throttling](/docs/specs/implementation/#tunnelthrottling)). En raison de cette stratégie, la principale source de perte de paquets est l'OBEP.
 
 
 ## Conception
@@ -32,7 +32,7 @@ Ce mode signifierait effectivement que le destinataire sélectionne l'OBEP de l'
 
 ## Spécification
 
-Une nouvelle option I2CP est ajoutée à la [spécification I2CP](/en/docs/spec/i2cp/) :
+Une nouvelle option I2CP est ajoutée à la [spécification I2CP](/docs/specs/i2cp/) :
 
     outbound.matchEndWithTarget
         Booléen

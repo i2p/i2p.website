@@ -45,7 +45,7 @@ categories: ["meeting"]
 20:20:59  &lt;iRelay&gt; http://trac.i2p2.i2p/ticket/807 - (accepted enhancement) - Revamp of website
 20:20:59  &lt;dg&gt; want to revisit this next week then?
 20:23:38  &lt;dg&gt; Found one.
-20:23:46  &lt;dg&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/docs/how/networkcomparisons from http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/docs/how/garlic-routing
+20:23:46  &lt;dg&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/docs/how/networkcomparisons from http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/docs/how/garlic-routing
 20:23:49  &lt;str4d&gt; Oh, and /lang/misc/* hasn't been looked at either.
 20:23:56  &lt;iRelay&gt; Title: Garlic Routing - I2P (at vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p)
 20:24:06  &lt;dg&gt; Should be /en/comparison
@@ -53,7 +53,7 @@ categories: ["meeting"]
 20:24:15  &lt;dg&gt; eyerape
 20:24:22  &lt;str4d&gt; dg: yep, that is a side-effect of my hypenating all the double-worded pages.
 20:24:30  &lt;str4d&gt; Oh, that too.
-20:25:09  &lt;dg&gt; /en/docs/how/garlic-routing has /en/docs/how/elgamalaes, should be /en/docs/how/elgamal-aes
+20:25:09  &lt;dg&gt; /docs/how/garlic-routing has /docs/how/elgamalaes, should be /docs/how/elgamal-aes
 20:25:16  &lt;dg&gt; i'll put them all into the ticket later
 20:25:23  &lt;dg&gt; &lt;+dg&gt; want to revisit this next week then?
 20:26:01  &lt;str4d&gt; I'm happy to. Anyone else want to comment? ^_^

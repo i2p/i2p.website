@@ -25,8 +25,6 @@ le paquet SYN peut contenir des données initiales (comme un GET ou un POST) que
 Charlie traitera immédiatement.
 
 
-
-
 ## Conception
 
 La solution consiste pour Alice à inclure le hash de destination de Bob dans les données SYN signées.
@@ -45,10 +43,9 @@ réécrire le hash.
 Si Alice et Charlie disposent de l'API 0.9.58 ou plus récent, toute tentative de relecture par Bob sera rejetée.
 
 
-
 ## Spécification
 
-Mettre à jour la [spécification Streaming](/en/docs/spec/streaming/) pour ajouter la section suivante :
+Mettre à jour la [spécification Streaming](/docs/specs/streaming/) pour ajouter la section suivante :
 
 ### Prévention de la relecture
 
@@ -100,11 +97,9 @@ comme des NACKs pour 8 messages différents, ces messages ne seraient pas en cou
 pendant le processus de SYNCHRONIZE et les NACKs n'auraient aucun sens.
 
 
-
 ## Migration
 
 Les implémentations peuvent ajouter le support à tout moment, aucune coordination n'est nécessaire.
 Les routeurs Java I2P et i2pd ont implémenté cela dans l'API 0.9.58 (publiée en mars 2023).
-
 
 

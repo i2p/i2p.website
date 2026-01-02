@@ -101,6 +101,7 @@ selfContainedNetwork = "Samostatná síť"
 selfContainedNetworkDesc = "Kompletní ekosystém pro soukromou komunikaci."
 
 [nav]
+home = "Domů"
 about = "O aplikaci"
 docs = "Dokumentace"
 downloads = "Ke stažení"
@@ -114,6 +115,9 @@ featureSuggestions = "Návrhy funkcí"
 getI2P = "Získat I2P"
 
 [footer]
+home = "Domů"
+about = "O projektu"
+docs = "Dokumenty"
 newsletterDescription = "Zůstaňte informováni o novinkách I2P:"
 subscribe = "Odebírat"
 emailPlaceholder = "Zadejte svůj email"
@@ -155,12 +159,15 @@ freeHavenBib = "Bibliografie anonymity Free Haven"
 
 
 [downloads]
+recommendedForYourSystem = "Doporučeno pro váš systém"
 downloadNow = "Stáhnout nyní"
 mirror = "Zrcadlo:"
 mirrorLabel = "Zrcadlo:"
 torrent = "Torrent"
 i2p = "I2P"
 tor = "Tor"
+allPlatforms = "Všechny platformy"
+latest = "Nejnovější"
 windows = "Windows"
 download = "Stáhnout nyní"
 beta = "Beta"
@@ -210,6 +217,7 @@ browserSetupGuide = "Příručka pro nastavení prohlížeče"
 exploreI2pSites = "Prozkoumat I2P stránky"
 startBrowsing = "Začněte procházet stránky .i2p"
 getSupport = "Získat podporu"
+forums = "Fóra"
 irc = "IRC"
 donateWithCrypto = "Darujte pomocí kryptoměny"
 moneroRecommended = "Monero (XMR) - Doporučeno"
@@ -219,6 +227,17 @@ zcashZec = "Zcash (ZEC)"
 viewAllOptions = "Zobrazit všechny možnosti darování →"
 gettingStarted = "Začínáme"
 backToDownloads = "Zpět ke stažení"
+
+[poll]
+title = "Komunitní anketa"
+subtitle = "Rádi bychom o vás slyšeli"
+loading = "Načítání ankety..."
+close = "Zavřít"
+disclaimer = "Váš hlas pomáhá utvářet budoucnost I2P."
+
+[translationDisclaimer]
+message = "Tento překlad byl vytvořen pomocí strojového učení a nemusí být 100% přesný."
+viewEnglish = "Zobrazit anglickou verzi"
 
 [languages]
 en = "Angličtina"

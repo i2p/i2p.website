@@ -16,4 +16,3 @@ categories: ["meeting"]
 
 </div>
 
-Poskytněte POUZE překlad, nic jiného:

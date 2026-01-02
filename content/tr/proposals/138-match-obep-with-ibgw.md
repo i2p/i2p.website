@@ -16,7 +16,7 @@ Bu öneri, bir mesaj gönderildiğinde tünellerin, hedef Destination'un LeaseSe
 
 ## Motivasyon
 
-Çoğu I2P yönlendiricisi, tıkanıklık yönetimi için bir çeşit paket düşürme kullanır. Referans uygulama, hem mesaj boyutunu hem de seyahat mesafesini dikkate alan bir WRED stratejisi kullanır (bkz. [tunnel throttling belgeleri](/en/docs/tunnels/implementation/#tunnelthrottling)). Bu strateji nedeniyle, paket kaybının ana kaynağı OBEP'tir.
+Çoğu I2P yönlendiricisi, tıkanıklık yönetimi için bir çeşit paket düşürme kullanır. Referans uygulama, hem mesaj boyutunu hem de seyahat mesafesini dikkate alan bir WRED stratejisi kullanır (bkz. [tunnel throttling belgeleri](/docs/specs/implementation/#tunnelthrottling)). Bu strateji nedeniyle, paket kaybının ana kaynağı OBEP'tir.
 
 
 ## Tasarım
@@ -31,7 +31,7 @@ Bu mod, alıcının göndericinin OBEP'sini seçtiği anlamına gelir. Mevcut gi
 
 ## Şartname
 
-[I2CP spesifikasyonu](/en/docs/spec/i2cp/)'na yeni bir I2CP seçeneği eklendi:
+[I2CP spesifikasyonu](/docs/specs/i2cp/)'na yeni bir I2CP seçeneği eklendi:
 
     outbound.matchEndWithTarget
         Boolean

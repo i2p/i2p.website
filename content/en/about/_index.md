@@ -17,7 +17,7 @@ The I2P network is a fully encrypted peer-to-peer overlay network. An observer c
 
 ## How to Connect to the I2P Network
 
-The core software (Java) includes a router that introduces and maintains a connection with the network. It also provides applications and configuration options to personalize your experience and workflow. Learn more in our [documentation](/en/docs/).
+The core software (Java) includes a router that introduces and maintains a connection with the network. It also provides applications and configuration options to personalize your experience and workflow. Learn more in our [documentation](/docs/).
 
 ## What Can I Do On The I2P Network?
 
@@ -25,7 +25,7 @@ The network provides an application layer for services, applications, and networ
 
 ## An Overview of the Network
 
-I2P uses cryptography to achieve a variety of properties for the tunnels it builds and the communications it transports. I2P tunnels use transports, [NTCP2](/en/docs/specs/ntcp2/) and [SSU2](/en/docs/specs/ssu2/), to conceal the traffic being transported over it. Connections are encrypted from router-to-router, and from client-to-client (end-to-end). Forward-secrecy is provided for all connections. Because I2P is cryptographically addressed, I2P network addresses are self-authenticating and only belong to the user who generated them.
+I2P uses cryptography to achieve a variety of properties for the tunnels it builds and the communications it transports. I2P tunnels use transports, [NTCP2](/docs/specs/ntcp2/) and [SSU2](/docs/specs/ssu2/), to conceal the traffic being transported over it. Connections are encrypted from router-to-router, and from client-to-client (end-to-end). Forward-secrecy is provided for all connections. Because I2P is cryptographically addressed, I2P network addresses are self-authenticating and only belong to the user who generated them.
 
 The network is made up of peers ("routers") and unidirectional inbound and outbound virtual tunnels. Routers communicate with each other using protocols built on existing transport mechanisms (TCP, UDP), passing messages. Client applications have their own cryptographic identifier ("Destination") which enables it to send and receive messages. These clients can connect to any router and authorize the temporary allocation ("lease") of some tunnels that will be used for sending and receiving messages through the network. I2P has its own internal network database (using a modification of the Kademlia DHT) for distributing routing and contact information securely.
 
@@ -35,4 +35,4 @@ The I2P network is almost completely decentralized, with exception to what are c
 
 ## Comparisons
 
-There are a great many other applications and projects working on anonymous communication and I2P has been inspired by much of their efforts. This is not a comprehensive list of anonymity resources - both [freehaven's Anonymity Bibliography](http://freehaven.net/anonbib/topic.html) and [GNUnet's related projects](https://www.gnunet.org/links/) serve that purpose well. That said, a few systems stand out for further comparison. Learn more about how I2P compares to other anonymity networks in our [detailed comparison documentation](/en/docs/overview/comparison/). 
+There are a great many other applications and projects working on anonymous communication and I2P has been inspired by much of their efforts. This is not a comprehensive list of anonymity resources - both [freehaven's Anonymity Bibliography](http://freehaven.net/anonbib/topic.html) and [GNUnet's related projects](https://www.gnunet.org/links/) serve that purpose well. That said, a few systems stand out for further comparison. Learn more about how I2P compares to other anonymity networks in our [detailed comparison documentation](/docs/overview/comparison/). 

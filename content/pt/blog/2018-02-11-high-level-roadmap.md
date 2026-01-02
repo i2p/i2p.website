@@ -1,6 +1,7 @@
 ---
 title: "Roteiro de alto nível para 2018"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "2018 será o ano de novos protocolos, novas colaborações e um foco mais refinado."
 categories: ["roadmap"]

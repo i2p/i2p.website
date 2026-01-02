@@ -57,16 +57,14 @@ Inscrivez-vous à notre liste de diffusion en saisissant votre adresse e-mail da
 | Rôle | Personne | Description |
 |------|--------|-------------|
 | **Responsable des versions I2P Java** | idk | Construit et signe les versions |
-| **Administrateur du forum** | eche\|on | Mainteneur du forum public I2P |
 | **Administrateur des miroirs de téléchargement** | StormyCloud | Gère les miroirs pour les fichiers à télécharger |
 | **Responsable des paquets ; Linux** | idk | Responsable des paquets pour la distribution Linux (Debian/Ubuntu) |
 | **Responsable des paquets ; Windows** | idk | Responsable du programme d'installation Windows |
-| **Responsable des paquets ; OSX** | echelon | Responsable du programme d'installation OSX |
-| **Suppléants du responsable des versions** | eche\|on | Responsables des versions remplaçants |
+| **Responsable des paquets ; OSX** | vacant | Responsable du programme d'installation OSX |
 | **Administrateur CI** | idk | Maintient l'infrastructure d'intégration continue |
 | **Administrateur Reseed (réensemencement)** | idk | Surveille, conseille et recrute des hôtes de reseed |
 | **Administrateur Gitea** | idk | Mainteneur du Gitea I2P |
-| **Localisation** | eche\|on, idk, zzz | Administrateurs sur [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Localisation** | idk, zzz | Administrateurs sur [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Traducteurs** | beaucoup, beaucoup de personnes ! | Traducteurs sur [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Mainteneur du site Web** | StormyCloud | Gère la conception du contenu du site Web public du projet |
 | **Administrateur des serveurs Web** | StormyCloud | Gère les serveurs Web publics du projet |

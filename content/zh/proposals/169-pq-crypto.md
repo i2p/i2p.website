@@ -166,7 +166,7 @@ Rosenpass 使用类似 Noise KK 的握手，配合预共享的 Classic McEliece 
 
 ### 密钥交换
 
-按照以下方式更新通用结构文档 [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/) 中的章节和表格：
+按照以下方式更新通用结构文档 [/docs/specs/common-structures/](/docs/specs/common-structures/) 中的章节和表格：
 
 ### 签名
 
@@ -563,7 +563,7 @@ This is the "ekem1" message pattern:
 
 ### SigningPrivateKey（签名私钥）
 
-按以下方式更新ECIES-Ratchet规范 [/en/docs/spec/ecies/](/en/docs/spec/ecies/)：
+按以下方式更新ECIES-Ratchet规范 [/docs/specs/ecies/](/docs/specs/ecies/)：
 
 #### Noise identifiers
 
@@ -760,11 +760,11 @@ Payload Part 1:
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-请注意，虽然消息2通常会有非零载荷，但ratchet规范[/en/docs/spec/ecies/](/en/docs/spec/ecies/)并不要求如此，因此最小载荷大小为0。可以相应地计算消息2的最小大小。
+请注意，虽然消息2通常会有非零载荷，但ratchet规范[/docs/specs/ecies/](/docs/specs/ecies/)并不要求如此，因此最小载荷大小为0。可以相应地计算消息2的最小大小。
 
 ### 签名
 
-按如下方式更新 NTCP2 规范 [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/)：
+按如下方式更新 NTCP2 规范 [/docs/specs/ntcp2/](/docs/specs/ntcp2/)：
 
 #### Noise identifiers
 
@@ -935,7 +935,7 @@ Payload Part 1:
 
 ### 密钥证书
 
-按以下方式更新 SSU2 规范 [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/)：
+按以下方式更新 SSU2 规范 [/docs/specs/ssu2/](/docs/specs/ssu2/)：
 
 #### Noise identifiers
 

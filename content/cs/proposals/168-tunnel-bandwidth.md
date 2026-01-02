@@ -13,9 +13,8 @@ toc: true
 ## POZNÁMKA
 
 Tento návrh byl schválen a je nyní součástí
-[Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/) od API 0.9.65.
+[Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies) od API 0.9.65.
 Zatím nejsou známy žádné implementace; data implementace / verze API jsou TBD.
-
 
 
 ## Přehled
@@ -40,20 +39,18 @@ Tento návrh řeší tyto problémy přidáním parametrů šířky pásma do
 požadavků a odpovědí na vytvoření tunelu.
 
 
-
 ## Návrh
 
-Přidat parametry šířky pásma do záznamů v ECIES zprávách o vytvoření tunelu (viz [Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/))
+Přidat parametry šířky pásma do záznamů v ECIES zprávách o vytvoření tunelu (viz [Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies))
 v poli mapování možností vytvoření tunelu. Použít krátké názvy parametrů, protože prostor
 pro pole možností je omezený.
 Zprávy o vytvoření tunelu mají pevnou velikost, takže toto nezvětšuje
 velikost zpráv.
 
 
-
 ## Specifikace
 
-Aktualizujte [specifikaci zprávy o vytvoření tunelu ECIES](/en/docs/spec/tunnel-creation-ecies/)
+Aktualizujte [specifikaci zprávy o vytvoření tunelu ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
 takto:
 
 Pro dlouhé i krátké záznamy vytvoření ECIES:
@@ -141,7 +138,6 @@ metoda pro požadování nebo přidělení šířky pásma pro tunely "vzdálen�
 vlastníkem druhého konce end-to-end spojení.
 
 
-
 ## Bezpečnostní analýza
 
 Otisky klienta nebo korelace mohou být možné na základě žádostí.
@@ -177,6 +173,5 @@ Implementace mohou podporu přidat kdykoliv, není potřeba koordinace.
 
 Protože v současné době není definována žádná verze API, kde je podpora tohoto návrhu vyžadována,
 routery by měly zkontrolovat odpověď "b", aby si potvrdily podporu.
-
 
 

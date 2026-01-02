@@ -51,7 +51,6 @@ du Meta LS2.
 L'éditeur du Meta LS2 n'est PAS nécessairement le Leader Raft.
 
 
-
 ## Spécification
 
 Le protocole filaire utilise des sockets SSL ou des sockets I2P non SSL.
@@ -170,7 +169,6 @@ les connexions ultérieures puissent passer directement à
 "Requête HTTP 2" ci-dessus.
 
 
-
 ### Types de messages
 
 Il existe deux types de messages, les requêtes et les réponses.
@@ -274,7 +272,6 @@ Candidat Alice               Suiveur Bob
 - Indexes : Voir Raft. Initialisé à 0, augmente de façon monotone
 
 
-
 ### Requêtes
 
 Les requêtes contiennent un en-tête et zéro ou plusieurs entrées de journal.
@@ -306,7 +303,6 @@ Sinon, c'est le terme actuel du leader.
 
 Dans le AppendEntriesRequest, lorsque la taille des entrées de journal est zéro,
 ce message est un message de maintien (keepalive).
-
 
 
 #### Entrées de journal
@@ -392,7 +388,6 @@ Taille des données d'index : En octets, entier 4 octets
 ```
 
 
-
 #### SnapshotSyncRequest
 
 Cela est inclus uniquement dans un message InstallSnapshotRequest.
@@ -407,8 +402,6 @@ Dernier Index de Journal :  entier 8 octets
   Données :            longueur comme spécifié
   Est Fait :         1 si terminé, 0 sinon (1 octet)
 ```
-
-
 
 
 ### Réponses
@@ -551,7 +544,6 @@ Exigences d'une interface d'administration :
 - Fonctionnalité d'import/export de configuration pour les déploiements en masse
 
 
-
 ## Interface des routeurs
 
 TBD, peut-être une proposition séparée.
@@ -578,19 +570,15 @@ dépend de la sérialisation en Java.
 ## Remarques
 
 
-
 ## Problèmes
 
 - Il n'y a pas de moyen pour un client de découvrir et de se connecter à un leader inconnu.
   Ce serait un changement mineur pour un Suiveur d'envoyer la configuration comme une entrée de journal dans la réponse AppendEntriesResponse.
 
 
-
 ## Migration
 
 Aucun problème de compatibilité rétroactive.
-
-
 
 
 ## Références

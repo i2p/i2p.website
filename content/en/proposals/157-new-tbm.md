@@ -14,7 +14,7 @@ toc: true
 Implemented as of API version 0.9.51.
 Network deployment and testing in progress.
 Subject to minor revision.
-See [I2NP](/en/docs/spec/i2np/) and [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) for the final specification.
+See [I2NP](/docs/specs/i2np/) and [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) for the final specification.
 
 
 
@@ -28,7 +28,7 @@ For typical Variable Tunnel Build and Variable Tunnel Build Reply messages,
 the total size is 2113 bytes. This message is fragmented into three 1KB tunnel
 messages for the reverse path.
 
-Changes to the 528-byte record format for ECIES-X25519 routers are specified in [Prop152](/en/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
+Changes to the 528-byte record format for ECIES-X25519 routers are specified in [Prop152](/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
 For a mix of ElGamal and ECIES-X25519 routers in a tunnel, the record size must remain
 528 bytes. However, if all routers in a tunnel are ECIES-X25519, a new, smaller
 build record is possible, because ECIES-X25519 encryption has much less overhead
@@ -46,13 +46,13 @@ This is expected to happen by year-end 2021.
 
 ### Goals
 
-See [Prop152](/en/proposals/152-ecies-tunnels/) and [Prop156](/en/proposals/156-ecies-routers/) for additional goals.
+See [Prop152](/proposals/152-ecies-tunnels/) and [Prop156](/proposals/156-ecies-routers/) for additional goals.
 
 - Smaller records and messages
-- Maintain sufficient space for future options, as in [Prop152](/en/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)
+- Maintain sufficient space for future options, as in [Prop152](/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
 - Fit in one tunnel message for the reverse path
 - Support ECIES hops only
-- Maintain improvements implemented in [Prop152](/en/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)
+- Maintain improvements implemented in [Prop152](/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
 - Maximize compatibility with current network
 - Hide inbound build messages from the OBEP
 - Hide outbound build reply messages from the IBGW
@@ -63,10 +63,10 @@ See [Prop152](/en/proposals/152-ecies-tunnels/) and [Prop156](/en/proposals/156-
 
 ### Non-Goals
 
-See [Prop156](/en/proposals/156-ecies-routers/) for additional non-goals.
+See [Prop156](/proposals/156-ecies-routers/) for additional non-goals.
 
 - No requirement for mixed ElGamal/ECIES tunnels
-- Layer encryption changes, for that see [Prop153](/en/proposals/153-chacha20-layer-encryption/)
+- Layer encryption changes, for that see [Prop153](/proposals/153-chacha20-layer-encryption/)
 - No speedups of crypto operations. It's assumed that ChaCha20 and AES are similar,
   even with AESNI, at least for the small data sizes in question.
 
@@ -82,11 +82,11 @@ Encrypted request and reply records will be 218 bytes, compared to 528 bytes now
 
 The plaintext request records will be 154 bytes,
 compared to 222 bytes for ElGamal records,
-and 464 bytes for ECIES records as defined in [Prop152](/en/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
+and 464 bytes for ECIES records as defined in [Prop152](/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
 
 The plaintext response records will be 202 bytes,
 compared to 496 bytes for ElGamal records,
-and 512 bytes for ECIES records as defined in [Prop152](/en/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
+and 512 bytes for ECIES records as defined in [Prop152](/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
 
 The reply encryption will be ChaCha20 (NOT ChaCha20/Poly1305),
 so the plaintext records do not need to be a multiple of 16 bytes.
@@ -188,7 +188,7 @@ Creator <------ F <------ E <------ D <--/
 
 ### Record Encryption
 
-Request and reply record encryption: as defined in [Prop152](/en/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
+Request and reply record encryption: as defined in [Prop152](/proposals/152-ecies-tunnels/) and [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
 
 Reply record encryption for other slots: ChaCha20.
 
@@ -225,7 +225,7 @@ This is a topic for additional research.
 #### Short Request Record Unencrypted
 
 This is the proposed specification of the tunnel BuildRequestRecord for ECIES-X25519 routers.
-Summary of changes from [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
+Summary of changes from [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies):
 
 - Change unencrypted length from 464 to 154 bytes
 - Change encrypted length from 528 to 218 bytes
@@ -255,7 +255,7 @@ bytes   x-153: random padding (see below)
 ```
 
 
-The flags field is the same as defined in [Tunnel-Creation](/en/docs/spec/tunnel-creation/) and contains the following:
+The flags field is the same as defined in [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) and contains the following:
 
  Bit order: 76543210 (bit 7 is MSB)
  bit 7: if set, allow messages from anyone
@@ -278,7 +278,7 @@ It is used for the KDF for the IBGW layer and reply keys and IVs.
 This is only included in the plaintext record in an Inbound Tunnel Build message.
 It is required because there is no DH at this layer for the build record.
 
-The tunnel build options is a Mapping structure as defined in [Common](/en/docs/spec/common-structures/).
+The tunnel build options is a Mapping structure as defined in [Common](/docs/specs/common-structures/).
 This is for future use. No options are currently defined.
 If the Mapping structure is empty, this is two bytes 0x00 0x00.
 The maximum size of the Mapping (including the length field) is 98 bytes,
@@ -307,7 +307,7 @@ bytes 202-217: Poly1305 MAC
 #### Short Reply Record Unencrypted
 
 This is the proposed specification of the tunnel ShortBuildReplyRecord for ECIES-X25519 routers.
-Summary of changes from [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
+Summary of changes from [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies):
 
 - Change unencrypted length from 512 to 202 bytes
 - Change encrypted length from 528 to 218 bytes
@@ -326,14 +326,14 @@ bytes  x-200: Random padding (see below)
 byte     201: Reply byte
 ```
 
-The tunnel build reply options is a Mapping structure as defined in [Common](/en/docs/spec/common-structures/).
+The tunnel build reply options is a Mapping structure as defined in [Common](/docs/specs/common-structures/).
 This is for future use. No options are currently defined.
 If the Mapping structure is empty, this is two bytes 0x00 0x00.
 The maximum size of the Mapping (including the length field) is 201 bytes,
 and the maximum value of the Mapping length field is 199.
 
 The reply byte is one of the following values
-as defined in [Tunnel-Creation](/en/docs/spec/tunnel-creation/) to avoid fingerprinting:
+as defined in [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) to avoid fingerprinting:
 
 - 0x00 (accept)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -632,6 +632,6 @@ it uses an 8-byte tag rather than the 32-byte ephemeral key for a full 'N' messa
 * [Prop153](/proposals/153-chacha20-layer-encryption/)
 * [Prop154](/proposals/154-ecies-lookups/)
 * [Prop156](/proposals/156-ecies-routers/)
-* [Tunnel-Creation](/docs/specs/tunnel-creation/)
-* [Tunnel-Creation-ECIES](/docs/specs/tunnel-creation-ecies/)
+* [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
 

@@ -10,7 +10,6 @@ categories: ["status"]
 
 ## Указатель:
 
-Предоставьте ТОЛЬКО перевод, ничего больше:
 
 1. 0.4
 2. Capacity and overload

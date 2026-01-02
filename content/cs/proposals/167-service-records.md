@@ -34,7 +34,7 @@ bittorrent, kryptoměny, jiné peer-to-peer aplikace.
 
 ### Seznamy služeb
 
-Návrh LS2 č. 123 [Prop123](/en/proposals/123-new-netdb-entries/) definoval 'záznamy služeb', které indikují, že destinace
+Návrh LS2 č. 123 [Prop123](/proposals/123-new-netdb-entries/) definoval 'záznamy služeb', které indikují, že destinace
 participuje v globální službě. Floodfill servery by agregovaly tyto záznamy
 do globálních 'seznamů služeb'.
 To nebylo nikdy implementováno kvůli komplexnosti, nedostatku autentizace,
@@ -72,10 +72,10 @@ neposkytují obecný záznam pro jakoukoli službu.
 
 ## Návrh
 
-Záznamy služeb jsou umístěny v sekci možností v LS2 [LS2](/en/docs/spec/common-structures/).
+Záznamy služeb jsou umístěny v sekci možností v LS2 [LS2](/docs/specs/common-structures/).
 Sekce možností LS2 je momentálně nevyužitá.
 Nepodporováno pro LS1.
-To je podobné návrhu šířky pásma tunelu [Prop168](/en/proposals/168-tunnel-bandwidth/),
+To je podobné návrhu šířky pásma tunelu [Prop168](/proposals/168-tunnel-bandwidth/),
 který definuje možnosti pro záznamy sestavení tunelu.
 
 Aby bylo možné vyhledat adresu služby pro konkrétní hostname nebo b32, router získá
@@ -93,7 +93,6 @@ musí tyto změny podporovat.
 
 Jsou navržena malá rozšíření I2CP a SAM pro usnadnění získání
 záznamů služby klienty.
-
 
 
 ## Specifikace
@@ -124,7 +123,7 @@ Definováno následujícím způsobem:
   Užitečné pouze pokud existuje více než jeden záznam, ale požadováno i pokud je pouze jeden záznam.
 - port := I2CP port, na kterém je služba nalezena. Nezáporné celé číslo. Příklad: "25"
   Port 0 je podporován, ale nedoporučuje se.
-- target := Hostname nebo b32 destinace poskytující služby. Platný hostname jako v [NAMING](/en/docs/naming/). Musí být malými písmeny.
+- target := Hostname nebo b32 destinace poskytující služby. Platný hostname jako v [NAMING](/docs/overview/naming/). Musí být malými písmeny.
   Příklad: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" nebo "example.i2p".
   b32 je doporučeno, pokud hostname není "dobře známé", tj. v oficiálních nebo výchozích adresářích.
 - appoptions := libovolný text specifický pro aplikaci, nesmí obsahovat " " nebo ",". Kódování je UTF-8.
@@ -176,18 +175,17 @@ Není povoleno žádné zástupné znakování jako hvězdička, hvězdička._tc
 Každá podporovaná služba musí mít svůj vlastní záznam.
 
 
-
 ### Registr názvů služeb
 
 Nestandardní identifikátory, které nejsou uvedeny v [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) nebo Linux /etc/services
-mohou být požadovány a přidány do specifikace obecných struktur [LS2](/en/docs/spec/common-structures/).
+mohou být požadovány a přidány do specifikace obecných struktur [LS2](/docs/specs/common-structures/).
 
 Formáty appoptions specifické pro služby mohou být také tam přidány.
 
 
 ### Specifikace I2CP
 
-Protokol [I2CP](/en/docs/spec/i2cp/) musí být rozšířen, aby podporoval vyhledávání služeb.
+Protokol [I2CP](/docs/specs/i2cp/) musí být rozšířen, aby podporoval vyhledávání služeb.
 Další MessageStatusMessage a/nebo HostReplyMessage chybové kódy související s vyhledáváním služeb
 jsou vyžadovány.
 Aby bylo vyhledávací zařízení obecné, nejen specifické pro záznamy služby,
@@ -229,7 +227,6 @@ Příklad:
 Pro typ vyhledávání 4, item 5 je Destinace.
 
 
-
 ### HostReply Message
 
 
@@ -254,10 +251,9 @@ Pokud není typ vyhledávání podporován,
 odpověď bude obsahovat nový chybový kód 7 (typ vyhledávání nepodporován).
 
 
-
 ### Specifikace SAM
 
-Protokol [SAMv3](/en/docs/api/samv3/) musí být rozšířen, aby podporoval vyhledávání služeb.
+Protokol [SAMv3](/docs/api/samv3/) musí být rozšířen, aby podporoval vyhledávání služeb.
 
 Rozšíření NAMING LOOKUP následujícím způsobem:
 
@@ -288,7 +284,7 @@ Pokud OPTIONS=true bylo v vyhledávání a leaseset není nalezen, bude vrácen�
 
 Byl zvažován alternativní návrh, jak podporovat vyhledávání služeb
 jako plného hostname, například _smtp._tcp.example.i2p,
-aktualizací [NAMING](/en/docs/naming/) pro specifikaci zpracování hostname začínajících '_'.
+aktualizací [NAMING](/docs/overview/naming/) pro specifikaci zpracování hostname začínajících '_'.
 To bylo odmítnuto ze dvou důvodů:
 
 - Změny I2CP a SAM by byly stále nezbytné pro průchod TTL a informací o portu k klientovi.
@@ -301,7 +297,6 @@ To bylo odmítnuto ze dvou důvodů:
 Servery by měly specifikovat TTL alespoň 86400 a standardní port pro aplikaci.
 
 
-
 ## Pokročilé funkce
 
 ### Rekurzivní vyhledávání
@@ -311,7 +306,6 @@ je kontrolován pro záznam služby ukazující na jiný leaseset, ve stylu DNS.
 To pravděpodobně není nutné, alespoň v počáteční implementaci.
 
 TODO
-
 
 
 ### Pole specifická pro aplikaci

@@ -32,7 +32,6 @@ Bằng cách chuẩn hóa các loại MIME, mỗi triển khai router có thể 
 phù hợp, và tệp định nghĩa MIME có thể được chia sẻ bởi tất cả các triển khai.
 
 
-
 ## Thiết kế
 
 Viết một tệp nguồn XML theo tiêu chuẩn freedesktop.org và bao gồm trong
@@ -45,7 +44,6 @@ Các bộ xử lý cho các loại MIME này là đặc thù cho ứng dụng v�
 
 Chúng ta cũng sẽ bao gồm các định nghĩa với Jetty, và bao gồm chúng với
 phần mềm cài lại hoặc hướng dẫn.
-
 
 
 ## Đặc tả
@@ -87,8 +85,6 @@ phần mềm cài lại hoặc hướng dẫn.
 =.txt.gz 		application/x-i2p-peerprofile
 
 .xpi2p	 		application/x-i2p-plugin
-
-
 
 
 ## Ghi chú

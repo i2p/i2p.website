@@ -40,14 +40,14 @@ A solução é adicionar duas novas "capacidades" ou capacidades ao Router Info 
 
 ### Introduzidores IPv6
 
-Nossas especificações [SSU](/en/docs/transport/ssu/) e [SSU-SPEC](/en/docs/spec/ssu/) contêm erros e inconsistências sobre se
+Nossas especificações [SSU](/docs/specs/ssu2/) e [SSU-SPEC](/docs/legacy/ssu/) contêm erros e inconsistências sobre se
 introduzidores IPv6 são suportados para introduções IPv4.
 De qualquer forma, isso nunca foi implementado no Java I2P nem no i2pd.
 Isso precisa ser corrigido.
 
 ### Introduções IPv6
 
-Nossas especificações [SSU](/en/docs/transport/ssu/) e [SSU-SPEC](/en/docs/spec/ssu/) deixam claro que
+Nossas especificações [SSU](/docs/specs/ssu2/) e [SSU-SPEC](/docs/legacy/ssu/) deixam claro que
 introduções IPv6 não são suportadas.
 Isso foi com a suposição de que o IPv6 nunca é protegido por firewall.
 Isso claramente não é verdade, e precisamos melhorar o suporte para roteadores IPv6 com firewall.
@@ -188,7 +188,7 @@ Também descrevemos isso como "parte 1" da proposta.
 
 #### Alterações na Especificação
 
-[SSU](/en/docs/transport/ssu/) atualmente diz (notas de IPv6):
+[SSU](/docs/specs/ssu2/) atualmente diz (notas de IPv6):
 
 IPv6 é suportado desde a versão 0.9.8. Endereços de retransmissão publicados podem ser IPv4 ou IPv6, e a comunicação Alice-Bob pode ser via IPv4 ou IPv6.
 
@@ -199,7 +199,7 @@ Versões anteriores de roteadores Java publicaram erroneamente a capacidade 'C' 
 mesmo que eles não atuassem realmente como um introduzidor via IPv6.
 Portanto, roteadores devem confiar apenas na capacidade 'C' em um endereço IPv6 se a versão do roteador for 0.9.50 ou superior.
 
-[SSU-SPEC](/en/docs/spec/ssu/) atualmente diz (Solicitação de Retransmissão):
+[SSU-SPEC](/docs/legacy/ssu/) atualmente diz (Solicitação de Retransmissão):
 
 O endereço IP só é incluído se for diferente do endereço de origem e porta do pacote.
 Na implementação atual, o comprimento do IP é sempre 0 e a porta é sempre 0,
@@ -224,11 +224,11 @@ Também descrevemos isso como "parte 2" da proposta.
 
 #### Alterações na Especificação
 
-[SSU](/en/docs/transport/ssu/) atualmente diz (notas de IPv6):
+[SSU](/docs/specs/ssu2/) atualmente diz (notas de IPv6):
 
 A comunicação Bob-Charlie e Alice-Charlie é via IPv4 apenas.
 
-[SSU-SPEC](/en/docs/spec/ssu/) atualmente diz (Solicitação de Retransmissão):
+[SSU-SPEC](/docs/legacy/ssu/) atualmente diz (Solicitação de Retransmissão):
 
 Não há planos para implementar retransmissão para IPv6.
 
@@ -236,7 +236,7 @@ Alterar para:
 
 Retransmissão para IPv6 é suportada a partir da versão 0.9.xx
 
-[SSU-SPEC](/en/docs/spec/ssu/) atualmente diz (Resposta de Retransmissão):
+[SSU-SPEC](/docs/legacy/ssu/) atualmente diz (Resposta de Retransmissão):
 
 O endereço IP de Charlie deve ser IPv4, pois é o endereço que Alice enviará a solicitação de sessão após o furo.
 Não há planos para implementar retransmissão para IPv6.
@@ -247,7 +247,7 @@ O endereço IP de Charlie pode ser IPv4 ou, a partir da versão 0.9.xx, IPv6.
 Esse é o endereço para o qual Alice enviará a solicitação de sessão após o furo.
 Retransmissão para IPv6 é suportada a partir da versão 0.9.xx
 
-[SSU-SPEC](/en/docs/spec/ssu/) atualmente diz (Introdução à Retransmissão):
+[SSU-SPEC](/docs/legacy/ssu/) atualmente diz (Introdução à Retransmissão):
 
 O endereço IP de Alice é sempre 4 bytes na implementação atual, porque Alice está tentando se conectar a Charlie via IPv4.
 Esta mensagem deve ser enviada através de uma conexão IPv4 estabelecida,

@@ -70,6 +70,6 @@ Only for interoperability with legacy software that cannot be updated. For all n
 - [SAM v2](/docs/legacy/samv2/)
 - [SAM v3](/docs/api/samv3/)
 - [Datagram Specification](/docs/api/datagrams/)
-- [Streaming Protocol](/spec/api/streaming/)
+- [Streaming Protocol](/docs/specs/streaming/)
 
 SAM v1 laid the foundation for router-agnostic application development, but the ecosystem has moved on. Treat this document as a compatibility aid rather than a starting point.

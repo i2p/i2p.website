@@ -25,7 +25,7 @@ I2P缺乏一个集中的DNS系统。然而，地址簿与b32主机名系统相�
 
 ### 服务列表
 
-LS2提案123 [Prop123](/en/proposals/123-new-netdb-entries/) 定义了“服务记录”，指示某个终点参与某项全球服务。填充路由器会将这些记录聚合成全球“服务列表”。
+LS2提案123 [Prop123](/proposals/123-new-netdb-entries/) 定义了“服务记录”，指示某个终点参与某项全球服务。填充路由器会将这些记录聚合成全球“服务列表”。
 由于复杂性、认证缺乏、安全性和垃圾邮件问题，这一提案从未实现。
 
 此提案不同之处在于，它提供了针对特定终点的服务查找，而不是针对某一全球服务的全球终点池。
@@ -51,9 +51,9 @@ SRV记录只是MX记录的一种通用版本，适用于任何服务。
 
 ## 设计
 
-服务记录位于LS2[LS2](/en/docs/spec/common-structures/)的选项部分。LS2的选项部分目前未使用。
+服务记录位于LS2[LS2](/docs/specs/common-structures/)的选项部分。LS2的选项部分目前未使用。
 不支持LS1。
-类似于隧道带宽提案[Prop168](/en/proposals/168-tunnel-bandwidth/)，定义隧道构建记录的选项。
+类似于隧道带宽提案[Prop168](/proposals/168-tunnel-bandwidth/)，定义隧道构建记录的选项。
 
 要查找特定主机名或b32的服务地址，路由器会获取租约集并在属性中查找服务记录。
 
@@ -93,7 +93,7 @@ LS2选项必须按键排序，因此签名是不变的。
   仅在多于一个记录时有用，但即使只有一个记录也需要。
 - port := 服务所在的I2CP端口。非负整数。例如："25"。
   支持端口0但不推荐使用。
-- target := 提供该服务的终点的主机名或b32。有效的主机名如[NAMING](/en/docs/naming/)。必须小写。
+- target := 提供该服务的终点的主机名或b32。有效的主机名如[NAMING](/docs/overview/naming/)。必须小写。
   例如："aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p"或"example.i2p"。
   除非主机名是“众所周知”的，即在官方或默认地址簿中，否则建议使用b32。
 - appoptions := 特定于应用的任意文本，不得包含" "或","。编码为UTF-8。
@@ -143,13 +143,13 @@ LS2选项中使用的映射数据结构格式将键和值限制为最大255字�
 
 ### 服务名称注册
 
-不在[REGISTRY](http://www.dns-sd.org/ServiceTypes.html)或Linux /etc/services中列出的非标准标识符可以被请求并添加到[LS2](/en/docs/spec/common-structures/)的共同结构说明中。
+不在[REGISTRY](http://www.dns-sd.org/ServiceTypes.html)或Linux /etc/services中列出的非标准标识符可以被请求并添加到[LS2](/docs/specs/common-structures/)的共同结构说明中。
 
 特定服务的appoptions格式也可以被添加到那里。
 
 ### I2CP规格
 
-[I2CP](/en/docs/spec/i2cp/)协议必须扩展以支持服务查找。
+[I2CP](/docs/specs/i2cp/)协议必须扩展以支持服务查找。
 需要关于服务查找的其他MessageStatusMessage和/或HostReplyMessage错误代码。
 为了使查找功能通用，而不仅仅是特定于服务记录，
 设计是支持所有LS2选项的检索。
@@ -239,7 +239,7 @@ NAMING LOOKUP NAME=example.i2p OPTIONS=true请求在回复中提供选项映射�
 
 ## 名称查找替代方案
 
-考虑了一种替代设计，以支持对服务的完整主机名查找，例如_smtp._tcp.example.i2p，通过更新[NAMING](/en/docs/naming/)以指定处理以'_'开头的主机名。
+考虑了一种替代设计，以支持对服务的完整主机名查找，例如_smtp._tcp.example.i2p，通过更新[NAMING](/docs/overview/naming/)以指定处理以'_'开头的主机名。
 这被拒绝的原因有两个：
 
 - 仍然需要I2CP和SAM更改以将TTL和端口信息传递给客户端。

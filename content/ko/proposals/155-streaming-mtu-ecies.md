@@ -23,7 +23,7 @@ toc: true
 
 ECIES는 기존 세션(ES) 메시지 오버헤드를 약 90바이트 줄입니다.
 따라서 우리는 ECIES 연결을 위해 MTU를 약 90바이트 증가시킬 수 있습니다.
-See the [ECIES specification](/en/docs/spec/ecies/#overhead), [Streaming specification](/en/docs/spec/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/en/docs/api/streaming/)를 참조하세요.
+See the [ECIES specification](/docs/specs/ecies/#overhead), [Streaming specification](/docs/specs/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/docs/api/streaming/)를 참조하세요.
 
 MTU를 증가시키지 않는다면, 많은 경우에 오버헤드 절감이 실제로 '절감되지' 않으며,
 메시지들이 어차피 두 개의 전체 터널 메시지로 패딩될 것입니다.
@@ -63,7 +63,7 @@ MTU를 증가시키지 않는다면, 많은 경우에 오버헤드 절감이 실
 그러나 스트리밍에서 상향 협상의 규정이 없으므로, MTU는 1730으로 유지됩니다.
 
 
-the [Streaming API documentation](/en/docs/api/streaming/)에 명시된 것처럼,
+the [Streaming API documentation](/docs/api/streaming/)에 명시된 것처럼,
 앨리스에서 밥으로 보낸 SYN 패킷의 데이터는 밥의 MTU를 초과할 수 있습니다.
 이것은 스트리밍 프로토콜의 약점입니다.
 따라서, 듀얼 키 클라이언트는 전송된 SYN 패킷의 데이터를 1730 바이트로 제한하면서 더 높은 MTU 옵션을 전송해야 합니다.
@@ -72,17 +72,16 @@ the [Streaming API documentation](/en/docs/api/streaming/)에 명시된 것처�
 
 ### 분석
 
-the [ECIES specification](/en/docs/spec/ecies/#overhead)에 설명된 대로, 기존 세션 메시지에 대한 ElGamal 오버헤드는
+the [ECIES specification](/docs/specs/ecies/#overhead)에 설명된 대로, 기존 세션 메시지에 대한 ElGamal 오버헤드는
 151바이트이며, Ratchet 오버헤드는 69바이트입니다.
 따라서, 우리는 ratchet 연결에 대해 MTU를 (151 - 69) = 82바이트 증가시킬 수 있으며,
 1730에서 1812로 변경됩니다.
 
 
-
 ## 사양
 
-the [Streaming API documentation](/en/docs/api/streaming/)의 MTU 선택 및 협상 섹션에 다음 변경 사항 및 명확성을 추가하십시오.
-the [Streaming specification](/en/docs/spec/streaming/)에 대한 변경 사항은 없습니다.
+the [Streaming API documentation](/docs/api/streaming/)의 MTU 선택 및 협상 섹션에 다음 변경 사항 및 명확성을 추가하십시오.
+the [Streaming specification](/docs/specs/streaming/)에 대한 변경 사항은 없습니다.
 
 
 옵션 i2p.streaming.maxMessageSize의 기본 값은 어떤 키가 사용되든 상관없이 모든 연결에 대해 1730으로 유지됩니다.
@@ -115,7 +114,6 @@ the [Streaming specification](/en/docs/spec/streaming/)에 대한 변경 사항�
 - 앨리스는 SYN에서 MAX_PACKET_SIZE_INCLUDED를 반드시 보내야 함
 
 
-
 ### 3) 앨리스 듀얼 키이며 밥이 ElGamal인 경우 알고 있음
 모든 패킷에 1730 MTU.
 
@@ -124,14 +122,12 @@ the [Streaming specification](/en/docs/spec/streaming/)에 대한 변경 사항�
 - 앨리스는 SYN에서 MAX_PACKET_SIZE_INCLUDED를 보낼 수 있음, != 1730이 아닌 경우 요구되지 않음
 
 
-
 ### 4) 앨리스 듀얼 키이며 밥이 ECIES인 경우 알고 있음
 모든 패킷에 1812 MTU.
 
 - ALICE_SYN_MAX_DATA = 1812
 - i2cp.streaming.maxMessageSize 기본값: 1812
 - 앨리스는 SYN에서 MAX_PACKET_SIZE_INCLUDED를 반드시 보내야 함
-
 
 
 ### 5) 앨리스 듀얼 키이며 밥의 키가 알려져 있지 않음
@@ -148,12 +144,10 @@ SYN 패킷의 데이터는 1730으로 제한하면서 SYN 패킷에 1812를 MAX_
 negotiated_mtu를 계산하며, 이는 앨리스와 밥의 MTU 중 최소값으로, 밥에서 앨리스로 SYN ACK 및 양방향으로 전송되는 모든 후속 패킷에서 최대 데이터 크기로 사용됩니다.
 
 
-
 ## 정당성
 
 현재 값이 1730인 이유는 the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220)을 참조하세요.
-ECIES 오버헤드가 ElGamal보다 82바이트 적은 이유는 the [ECIES specification](/en/docs/spec/ecies/#overhead)를 참조하세요.
-
+ECIES 오버헤드가 ElGamal보다 82바이트 적은 이유는 the [ECIES specification](/docs/specs/ecies/#overhead)를 참조하세요.
 
 
 ## 구현 노트
@@ -175,12 +169,9 @@ ECIES에서 추천되는 패딩 알고리즘은 다음과 같습니다:
 유사한 전략은 최적의 한 터널 메시지 크기(964 바이트) 및 세 개의 터널 메시지 크기(2952 바이트)에서도 사용될 수 있지만, 이러한 크기는 실제로 드문 경우일 것입니다.
 
 
-
 ## 문제점
 
 1812 값은 예비 값입니다. 확인 및 조정 가능성이 있습니다.
-
-
 
 
 ## 마이그레이션
@@ -190,6 +181,5 @@ ECIES에서 추천되는 패딩 알고리즘은 다음과 같습니다:
 
 이전 ECIES 목적지는 1730을 지원할 것입니다.
 더 높은 값을 수신한 모든 클라이언트는 1730으로 응답할 것이며, 원격 끝은 보통 하향 협상할 것입니다.
-
 
 

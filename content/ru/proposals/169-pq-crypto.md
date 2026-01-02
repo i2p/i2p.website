@@ -166,7 +166,7 @@ Rosenpass использует рукопожатие, подобное Noise KK
 
 ### Обмен ключами
 
-Обновите разделы и таблицы в документе общих структур [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/) следующим образом:
+Обновите разделы и таблицы в документе общих структур [/docs/specs/common-structures/](/docs/specs/common-structures/) следующим образом:
 
 ### Подписи
 
@@ -563,7 +563,7 @@ This is the "ekem1" message pattern:
 
 ### SigningPrivateKey
 
-Обновить спецификацию ECIES-Ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) следующим образом:
+Обновить спецификацию ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) следующим образом:
 
 #### Noise identifiers
 
@@ -760,11 +760,11 @@ Payload Part 1:
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-Обратите внимание, что хотя сообщение 2 обычно будет иметь ненулевую полезную нагрузку, спецификация ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) этого не требует, поэтому минимальный размер полезной нагрузки составляет 0. Минимальные размеры сообщения 2 могут быть вычислены соответственно.
+Обратите внимание, что хотя сообщение 2 обычно будет иметь ненулевую полезную нагрузку, спецификация ratchet [/docs/specs/ecies/](/docs/specs/ecies/) этого не требует, поэтому минимальный размер полезной нагрузки составляет 0. Минимальные размеры сообщения 2 могут быть вычислены соответственно.
 
 ### Подпись
 
-Обновить спецификацию NTCP2 [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/) следующим образом:
+Обновить спецификацию NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) следующим образом:
 
 #### Noise identifiers
 
@@ -935,7 +935,7 @@ Payload Part 1:
 
 ### Сертификаты ключей
 
-Обновить спецификацию SSU2 [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/) следующим образом:
+Обновить спецификацию SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) следующим образом:
 
 #### Noise identifiers
 

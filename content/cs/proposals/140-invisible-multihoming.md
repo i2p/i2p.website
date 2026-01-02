@@ -11,9 +11,9 @@ toc: true
 
 ## Přehled
 
-Tento návrh popisuje design protokolu umožňujícího I2P klientovi, službě nebo externímu balancovacímu procesu transparentně spravovat více routerů hostujících jedinou [Destination](http://localhost:63465/en/docs/specs/common-structures/#destination).
+Tento návrh popisuje design protokolu umožňujícího I2P klientovi, službě nebo externímu balancovacímu procesu transparentně spravovat více routerů hostujících jedinou [Destination](http://localhost:63465/docs/specs/common-structures/#destination).
 
-Návrh momentálně nespecifikuje konkrétní implementaci. Mohl by být implementován jako rozšíření [I2CP](/en/docs/specs/i2cp/), nebo jako nový protokol.
+Návrh momentálně nespecifikuje konkrétní implementaci. Mohl by být implementován jako rozšíření [I2CP](/docs/specs/i2cp/), nebo jako nový protokol.
 
 ## Motivace
 
@@ -128,7 +128,7 @@ Představte si následující požadovanou konfiguraci:
 
 ### Jeden klient
 
-Pro vytvoření a správu této konfigurace potřebuje klient následující novou funkcionalitu nad rámec toho, co v současnosti poskytuje [I2CP](/en/docs/specs/i2cp/):
+Pro vytvoření a správu této konfigurace potřebuje klient následující novou funkcionalitu nad rámec toho, co v současnosti poskytuje [I2CP](/docs/specs/i2cp/):
 
 - Říct routeru, aby vybudoval tunely, aniž by pro ně vytvořil LeaseSet.
 - Získat seznam aktuálních tunelů v inbound poolu.

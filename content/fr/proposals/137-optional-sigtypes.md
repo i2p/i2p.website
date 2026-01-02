@@ -36,7 +36,6 @@ Pour tout autre type de signature dans la gamme standard (non expérimentale), u
 ## Spécification
 
 
-
 Un routeur qui prend en charge un type de signature optionnel doit ajouter la propriété "sigTypes" à ses informations publiées de routeur, avec des numéros de type de signature séparés par des virgules. Les types de signature seront dans un ordre numérique trié. Les types de signature obligatoires (0-4,7) ne doivent pas être inclus.
 
 Par exemple: sigTypes=9,10

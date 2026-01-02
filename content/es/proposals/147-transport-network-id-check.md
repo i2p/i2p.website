@@ -70,7 +70,6 @@ Dado que esto debe ser compatible hacia atrás, haremos XOR con (id - 2)
 por lo que será una operación nula para el valor actual del ID de red de 2.
 
 
-
 ## Especificación
 
 ### Documentación
@@ -145,7 +144,6 @@ contactar a los desarrolladores u operadores para explicar la importancia de cam
 
 
 ## Problemas
-
 
 
 ## Migración

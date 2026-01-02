@@ -1,6 +1,7 @@
 ---
 title: "Aprimore suas habilidades em I2P com LeaseSets criptografados"
 date: 2021-09-07
+slug: "level-up-your-i2p-skills-with-encrypted-leasesets"
 author: "idk"
 description: "Diz-se que o I2P enfatiza Serviços Ocultos, examinamos uma interpretação disso"
 categories: ["general"]

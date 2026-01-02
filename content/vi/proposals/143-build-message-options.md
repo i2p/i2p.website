@@ -13,7 +13,7 @@ toc: true
 Đề xuất này không được thực hiện theo chỉ định,
 tuy nhiên, các thông điệp xây dựng dài và ngắn của ECIES (đề xuất 152 và 157)
 được thiết kế với các trường tùy chọn mở rộng.
-Xem [thông số kỹ thuật Tunnel Creation ECIES](/en/docs/spec/tunnel-creation-ecies/) để biết thông số kỹ thuật chính thức.
+Xem [thông số kỹ thuật Tunnel Creation ECIES](/docs/specs/implementation/#tunnel-creation-ecies) để biết thông số kỹ thuật chính thức.
 
 
 ## Tổng quan
@@ -33,7 +33,6 @@ Sử dụng cấu trúc 'mapping' sẽ dùng ít nhất 6 byte mỗi tùy chọn
 Định nghĩa thêm nhiều trường tùy chọn một cách cứng nhắc có thể gây ra vấn đề sau này.
 
 Tài liệu này đề xuất một lược đồ ánh xạ tùy chọn mới và linh hoạt.
-
 
 
 ## Thiết kế
@@ -83,7 +82,6 @@ Có 495 byte dự phòng trong TBRM.
 
 Những thay đổi này là đối với các Bản ghi Xây dựng Đường hầm, và do đó có thể được sử dụng trong tất cả
 các dạng Thông điệp Xây dựng - Yêu cầu Xây dựng Đường hầm, Yêu cầu Xây dựng Đường hầm Biến, Phản hồi Xây dựng Đường hầm, và Phản hồi Xây dựng Đường hầm Biến.
-
 
 
 ## Di cư

@@ -1,0 +1,30 @@
+---
+title: "Chave GPG de Segurança"
+description: "Chave pública GPG para contatar a Equipe de Segurança do I2P"
+slug: "security-key"
+lastUpdated: "2025-10"
+accurateFor: "2.10.0"
+type: docs
+---
+
+## Contato de Segurança
+
+Para relatar vulnerabilidades de segurança ou questões sensíveis de segurança, entre em contato com a Equipe de Segurança I2P em **security@i2p.net**
+
+Para comunicação segura, use nossa chave PGP abaixo.
+
+## Informação da Chave PGP
+
+- **Email**: security@i2p.net
+- **ID da Chave**: `176E1941`
+- **Impressão digital**: `40DF FE20 7D79 9BEC 3AE8  7DEA 5F98 BE91 176E 1941`
+- **Tipo de Chave**: RSA 4096-bit
+- **Criada**: 2025-10-19
+- **Expira**: 2030-11-19
+- **UID**: I2P Security &lt;security@i2p.net&gt;
+
+## Chave Pública
+
+A seguir está a chave pública GPG para a Equipe de Segurança do I2P: <p> <pre> -----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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 hOLK7ID/AeaOxA== =39fn -----END PGP PUBLIC KEY BLOCK----- </pre>

@@ -16,7 +16,6 @@ To poskytne způsob, jak podporovat nové typy podpisů z dlouhodobého hlediska
 i když je nebudou podporovat všechny implementace.
 
 
-
 ## Motivace
 
 Návrh GOST 134 odhalil několik problémů s dříve nepoužívaným experimentálním rozsahem typů podpisů.
@@ -37,7 +36,6 @@ Za páté, pokud GOST používá typ podpisu v standardním rozsahu, stále neex
 floodfill podporuje GOST.
 
 
-
 ## Návrh
 
 Všechny floodfill musí podporovat typy podpisů DSA (0), ECDSA (1-3) a EdDSA (7).
@@ -46,9 +44,7 @@ Pro jakýkoli jiný typ podpisu ve standardním (ne-experimentálním) rozsahu m
 inzerovat podporu ve svých vlastnostech router info.
 
 
-
 ## Specifikace
-
 
 
 Router, který podporuje volitelný typ podpisu, by měl přidat vlastnost "sigTypes"
@@ -62,12 +58,10 @@ Routery, které podporují volitelné typy podpisů, musí ukládat, vyhledávat
 pouze do floodfillů, které inzerují podporu pro tento typ podpisu.
 
 
-
 ## Migrace
 
 Nepoužitelné.
 Pouze routery, které podporují volitelný typ podpisu, to musí implementovat.
-
 
 
 ## Problémy
@@ -85,6 +79,5 @@ což ještě nebylo formálně navrženo.
 
 Úložiště NetDB neznámých typů podpisů, které nejsou v experimentálním rozsahu, budou nadále
 odmítány floodfilly, protože podpis nemůže být ověřen.
-
 
 

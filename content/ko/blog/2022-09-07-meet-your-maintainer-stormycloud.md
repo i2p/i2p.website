@@ -8,7 +8,7 @@ categories: ["general"]
 
 ## StormyCloud Inc.와의 대화
 
-가장 최근의 [I2P Java release](https://geti2p.net/en/blog/post/2022/08/22/1.9.0-Release)에서, 기존 outproxy(외부 프록시)인 false.i2p가 새 I2P 설치에서는 새로운 StormyCloud outproxy로 대체되었습니다. router를 업데이트하는 사용자들은 Stormycloud 서비스로의 전환을 빠르게 완료할 수 있습니다.
+가장 최근의 [I2P Java release](https://geti2p.net/en/blog/2022/08/22/1.9.0-Release)에서, 기존 outproxy(외부 프록시)인 false.i2p가 새 I2P 설치에서는 새로운 StormyCloud outproxy로 대체되었습니다. router를 업데이트하는 사용자들은 Stormycloud 서비스로의 전환을 빠르게 완료할 수 있습니다.
 
 Hidden Services Manager(숨김 서비스 관리자)에서 Outproxies와 SSL Outproxies를 모두 exit.stormycloud.i2p로 변경한 다음, 페이지 하단의 저장 버튼을 클릭하세요.
 

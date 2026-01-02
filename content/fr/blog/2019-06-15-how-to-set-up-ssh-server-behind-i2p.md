@@ -37,7 +37,6 @@ Vous devriez l’affiner plus tard, mais le type de tunnel Standard est le plus 
 
 Rédigez une bonne description :
 
-Fournissez UNIQUEMENT la traduction, rien d’autre :
 
 **Espace réservé pour la capture d'écran:** Décrivez à quoi cela sert
 

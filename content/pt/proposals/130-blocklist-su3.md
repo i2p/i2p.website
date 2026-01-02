@@ -46,5 +46,3 @@ Comentários começam com um '#'.
 n/a
 
 
-
-

@@ -1,6 +1,7 @@
 ---
 title: "隐私二十年：I2P 简史"
 date: 2021-08-28
+slug: "20-years-of-privacy-a-brief-history-of-i2p"
 author: "sadie"
 description: "我们所熟知的 I2P 历史"
 categories: ["general"]

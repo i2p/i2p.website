@@ -8,7 +8,7 @@ categories: ["general"]
 
 ## Một cuộc trò chuyện với StormyCloud Inc.
 
-Với [bản phát hành I2P Java](https://geti2p.net/en/blog/post/2022/08/22/1.9.0-Release) mới nhất, outproxy (proxy thoát) hiện có, false.i2p, đã được thay thế bằng StormyCloud outproxy mới cho các cài đặt I2P mới. Đối với những người đang cập nhật router, việc chuyển sang dịch vụ Stormycloud có thể được thực hiện nhanh chóng.
+Với [bản phát hành I2P Java](https://geti2p.net/en/blog/2022/08/22/1.9.0-Release) mới nhất, outproxy (proxy thoát) hiện có, false.i2p, đã được thay thế bằng StormyCloud outproxy mới cho các cài đặt I2P mới. Đối với những người đang cập nhật router, việc chuyển sang dịch vụ Stormycloud có thể được thực hiện nhanh chóng.
 
 Trong Hidden Services Manager, hãy đổi cả Outproxies và SSL Outproxies thành exit.stormycloud.i2p và nhấp vào nút lưu ở cuối trang.
 

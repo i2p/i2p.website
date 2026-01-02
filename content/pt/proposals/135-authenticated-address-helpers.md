@@ -32,11 +32,9 @@ Se não houver parâmetros de autenticação presentes, o proxy HTTP pode aceita
 Os serviços de salto seriam confiáveis como de costume, mas com o passo adicional de autenticação. Links de ajudante de endereço em outros sites precisariam ser modificados.
 
 
-
 ## Implicações de Segurança
 
 Esta proposta adiciona segurança por meio da adição de autenticação de serviços de registro/salto confiáveis.
-
 
 
 ## Especificação

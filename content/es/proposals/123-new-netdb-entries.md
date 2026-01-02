@@ -385,7 +385,6 @@ Publicado por
 
     Destination
 
-
 ### Justificación
 
 Definimos las siguientes funciones correspondientes a los bloques de construcción criptográficos utilizados para LS2 cifrado:
@@ -423,7 +422,6 @@ STREAM
 
     DECRYPT(k, iv, ciphertext)
         Decrypts ciphertext using the cipher key k, and nonce iv. Returns the plaintext.
-
 
 SIG
 
@@ -480,7 +478,6 @@ HKDF(salt, ikm, info, n)
 
     Use HKDF as specified in [RFC 5869](https://tools.ietf.org/html/rfc5869), using the HMAC hash function SHA-256
     as specified in [RFC 2104](https://tools.ietf.org/html/rfc2104). This means that SALT_LEN is 32 bytes max.
-
 
 ### Discusión
 
@@ -579,7 +576,6 @@ Firma
     If the flag indicates offline keys, the signature is verified with the transient
     public key. Otherwise, the signature is verified with the blinded public key.
 
-
 #### Layer 1 (middle)
 
 Banderas
@@ -640,13 +636,11 @@ Datos de autenticación de cliente PSK
         clientCookie_i
             32 bytes
 
-
 innerCiphertext
 
     Length implied by lenOuterCiphertext (whatever data remains)
 
     Encrypted layer 2 data. See below for key derivation and encryption algorithms.
-
 
 #### Layer 2 (inner)
 
@@ -661,7 +655,6 @@ Datos
     LeaseSet2 data for the given type.
 
     Includes the header and signature.
-
 
 ### Nuevos Problemas de Cifrado
 
@@ -738,7 +731,6 @@ LEOS2IP(x)
 H*(x)
 
     32 bytes = (LEOS2IP(SHA512(x))) mod B, same as in Ed25519 hash-and-reduce
-
 
 #### Blinding Calculations
 
@@ -1459,9 +1451,7 @@ Cliente al router. Nuevo mensaje, para usar en lugar del Mensaje de Crear LeaseS
 - La clave privada de firma, previamente definida para revocación y sin usar,
   no está presente en LS2.
 
-### I notice that the text you provided only contains the word "Format" and the instruction "Provide ONLY the translation, nothing else:" - there doesn't appear to be any actual content to translate.
-
-If you intended to include additional text for translation, please provide it and I'll translate it according to the technical guidelines for I2P documentation.
+### I notice that the text you provided only contains the word "Format" and the instruction "" - there doesn't appear to be any actual content to translate.
 
 For the word "Format" by itself, the Spanish translation would be:
 

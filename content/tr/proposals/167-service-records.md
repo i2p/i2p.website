@@ -35,7 +35,7 @@ bittorrent, kripto paralar, diğer eşler arası uygulamalar.
 
 ### Servis Listeleri
 
-LS2 önerisi 123 [Prop123](/en/proposals/123-new-netdb-entries/) bir destinasyonun
+LS2 önerisi 123 [Prop123](/proposals/123-new-netdb-entries/) bir destinasyonun
 küresel bir hizmete katıldığını belirten 'servis kayıtlarını' tanımlamıştır.
 Bu kayıtları küresel 'servis listeleri' içine
 toplayacaktı. Bu, karmaşıklık, kimlik doğrulama eksikliği,
@@ -73,10 +73,10 @@ herhangi bir hizmet için genel bir kayıt sağlamaz.
 
 ## Tasarım
 
-Servis kayıtları LS2 içinde seçenekler bölümüne yerleştirilir [LS2](/en/docs/spec/common-structures/).
+Servis kayıtları LS2 içinde seçenekler bölümüne yerleştirilir [LS2](/docs/specs/common-structures/).
 LS2 seçenekler bölümü şu anda kullanılmamaktadır.
 LS1 için desteklenmemektedir.
-Bu, tünel bant genişliği önerisine [Prop168](/en/proposals/168-tunnel-bandwidth/) benzerdir,
+Bu, tünel bant genişliği önerisine [Prop168](/proposals/168-tunnel-bandwidth/) benzerdir,
 tünel yapı kayıtları için seçenekler tanımlar.
 
 Belirli bir hostname veya b32 için bir servis adresi aramak için, router
@@ -92,7 +92,6 @@ Sadece kiralama seti yayıncısı ve bir servis kaydı arayan müşteri
 bu değişiklikleri desteklemelidir.
 
 Müşterilerin servis kayıtlarını almasını kolaylaştırmak için küçük I2CP ve SAM uzantıları önerilmektedir.
-
 
 
 ## Belirtim
@@ -123,7 +122,7 @@ Aşağıdaki gibi tanımlanır:
   Sadece birden fazla kayıt varsa yararlıdır, ancak tek kayıt bile olsa gereklidir.
 - port := Hizmetin bulunacağı I2CP portu. Negatif olmayan bir tam sayı. Örnek: "25"
   Port 0 desteklenir ancak önerilmez.
-- hedef := Hizmeti sağlayan hedefin hostname veya b32. Geçerli bir hostname olarak [NAMING](/en/docs/naming/) içinde tanımlanmıştır. Küçük harf olmalıdır.
+- hedef := Hizmeti sağlayan hedefin hostname veya b32. Geçerli bir hostname olarak [NAMING](/docs/overview/naming/) içinde tanımlanmıştır. Küçük harf olmalıdır.
   Örnek: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" ya da "example.i2p".
   b32 önerilir, hostname "iyi bilinen," yani resmi veya varsayılan adres defterlerindeyse.
 - app seçenekleri := uygulamaya özgü rastgele metin, " " veya "," içeremez. Kodlama UTF-8'dir.
@@ -175,18 +174,17 @@ Bu yeterli olmalıdır; birden fazla kayıt nadir olmalıdır.
 Her desteklenen hizmetin kendi kaydı olmalıdır.
 
 
-
 ### Servis Adı Kaydı
 
 [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) veya Linux /etc/services'te listelenmeyen standart olmayan tanımlayıcılar
-talep edilebilir ve ortak yapılar belirtimine [LS2](/en/docs/spec/common-structures/) eklenebilir.
+talep edilebilir ve ortak yapılar belirtimine [LS2](/docs/specs/common-structures/) eklenebilir.
 
 Hizmete özgü app seçenek formatları da oraya eklenebilir.
 
 
 ### I2CP Belirtimi
 
-[I2CP](/en/docs/spec/i2cp/) protokolü, hizmet aramalarını destekleyecek şekilde genişletilmelidir.
+[I2CP](/docs/specs/i2cp/) protokolü, hizmet aramalarını destekleyecek şekilde genişletilmelidir.
 Servis aramasıyla ilgili ek MessageStatusMessage ve / veya HostReplyMessage hata kodları gereklidir.
 Hizmet kaydı özellikli olup olmadığını belirtmek için arama kolaylığının genel olması amaçlanmıştır,
 tüm LS2 seçeneklerinin alınmasını desteklemek için tasarlanmıştır.
@@ -227,7 +225,6 @@ nnn, 0 ile başlar. Seçenek değeri "anahtar=değer" içerir.
 Görünüm tipi 4 için, öğe 5 bir Destinasyondur.
 
 
-
 ### HostReply Mesajı
 
 
@@ -252,10 +249,9 @@ Bir görünüm türü desteklenmiyorsa,
 yanıt yeni hata kodu 7 (görünüm türü desteklenmiyor) içerecektir.
 
 
-
 ### SAM Beliritimi
 
-[SAMv3](/en/docs/api/samv3/) protokolü, hizmet aramaları için genişletilmelidir.
+[SAMv3](/docs/api/samv3/) protokolü, hizmet aramaları için genişletilmelidir.
 
 NAMING LOOKUP'ı aşağıdaki gibi genişletin:
 
@@ -300,7 +296,6 @@ Bu iki nedenle reddedildi:
 Sunucular, en az 86400 ve uygulama için standart portu belirtmelidir.
 
 
-
 ## Gelişmiş Özellikler
 
 ### Özyinelemeli Aramalar
@@ -310,7 +305,6 @@ başka bir kiralama setine işaret eden bir hizmet kaydının, DNS tarzında kon
 Bu, en azından ilk bir uygulamada muhtemelen gerekli değildir.
 
 TODO
-
 
 
 ### Uygulamaya Özgü Alanlar

@@ -9,7 +9,7 @@ API_Translate: pravda
 
 ## Rozhovor se společností StormyCloud Inc.
 
-S nejnovějším [vydáním I2P Java](https://geti2p.net/en/blog/post/2022/08/22/1.9.0-Release), byl stávající outproxy false.i2p nahrazen novým outproxy StormyCloud pro nové instalace I2P. Pro uživatele, kteří aktualizují svůj router, lze přechod na službu Stormycloud provést rychle.
+S nejnovějším [vydáním I2P Java](https://geti2p.net/en/blog/2022/08/22/1.9.0-Release), byl stávající outproxy false.i2p nahrazen novým outproxy StormyCloud pro nové instalace I2P. Pro uživatele, kteří aktualizují svůj router, lze přechod na službu Stormycloud provést rychle.
 
 Ve Správci skrytých služeb změňte obě položky Outproxies i SSL Outproxies na exit.stormycloud.i2p a klikněte na tlačítko Uložit ve spodní části stránky.
 

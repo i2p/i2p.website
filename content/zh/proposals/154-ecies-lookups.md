@@ -209,7 +209,7 @@ tag :: 8字节 reply_tag
 ECIES目的地或路由器向ECIES路由器发送查找，附带回复密钥。
 支持从0.9.49开始。
 
-ECIES路由器在0.9.48中引入，参见[Prop156](/en/proposals/156-ecies-routers/)。
+ECIES路由器在0.9.48中引入，参见[Prop156](/proposals/156-ecies-routers/)。
 从0.9.49开始，ECIES目的地和路由器可以使用与上述“ECIES to ElG”部分相同的格式，在请求中包括回复密钥。
 查找将使用[ECIES](/docs/specs/ecies/)中的“一次性格式”，因为请求者是匿名的。
 

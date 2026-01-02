@@ -1,6 +1,7 @@
 ---
 title: "Melhorando a adoção e a integração inicial do I2P usando Jpackage e I2P-Zero"
 date: 2021-09-15
+slug: "improving-i2p-adoption-and-onboarding-using-jpackage-i2p-zero"
 author: "idk"
 description: "Formas versáteis e emergentes de instalar e incorporar o I2P na sua aplicação"
 categories: ["general"]
@@ -22,10 +23,10 @@ O problema tornou-se mais urgente nas versões recentes do Mac OSX, nas quais j�
 
 O novo instalador .dmg do I2P, criado por Zlatinb, torna a instalação do I2P no OSX mais fácil do que nunca, não exigindo mais que os usuários instalem o Java por conta própria e usando as ferramentas padrão de instalação do OSX da maneira prescrita. O novo instalador .dmg torna a configuração do I2P no Mac OSX mais fácil do que jamais foi.
 
-Obtenha o [dmg](/mac)
+Obtenha o [dmg](https://geti2p.net/en/download/mac)
 
 ## O I2P do futuro é fácil de instalar
 
 Uma das coisas que mais ouço dos usuários é que, se o I2P quer ser adotado, precisa ser fácil de usar. Muitos deles querem uma experiência de uso “estilo Tor Browser”, para citar ou parafrasear muitos usuários do Reddit. A instalação não deve exigir etapas de “pós-instalação” complicadas e propensas a erros. Muitos usuários novos não estão preparados para lidar com a configuração do navegador de forma minuciosa e completa. Para resolver esse problema, criamos o I2P Profile Bundle, que configurava o Firefox para “simplesmente funcionar” automaticamente com o I2P. À medida que foi sendo desenvolvido, ele foi adicionando recursos de segurança e melhorando a integração com o próprio I2P. Na versão mais recente, ele **também** inclui um I2P Router completo, com tecnologia Jpackage. O I2P Firefox Profile agora é uma distribuição completa do I2P para Windows, com a única dependência restante sendo o próprio Firefox. Isso deve proporcionar um nível de conveniência sem precedentes para os usuários do I2P no Windows.
 
-Obtenha o [instalador](/nsis)
+Obtenha o [instalador](https://geti2p.net/en/download#windows)

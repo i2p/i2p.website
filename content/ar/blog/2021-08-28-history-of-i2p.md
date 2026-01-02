@@ -1,6 +1,7 @@
 ---
 title: "20 عاماً من الخصوصية: تاريخ موجز لـ I2P"
 date: 2021-08-28
+slug: "20-years-of-privacy-a-brief-history-of-i2p"
 author: "sadie"
 description: "تاريخ I2P كما نعرفه"
 categories: ["general"]

@@ -213,11 +213,11 @@ layout: "single"
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="/en/about/i2pcon/2015/">I2PCon 2015</a>
+[I2PCon 2015](/zh/blog/2015/07/16/i2pcon/)
 </div>
 <div class="content-entry-meta">🎪 大会 • 多伦多 • 2015 年 8 月 15-16 日</div>
 <div class="content-entry-actions">
-<a href="/en/about/i2pcon/2015/" class="content-btn">详情</a>
+<a href="/zh/blog/2015/07/16/i2pcon/" class="content-btn">详情</a>
 </div>
 </div>
 

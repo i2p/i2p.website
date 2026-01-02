@@ -11,7 +11,7 @@ Mạng lưới I2P phát triển mạnh mẽ nhờ cộng đồng của chúng t
 ### Phát Triển Lõi
 I2P là mã nguồn mở và chúng tôi chào đón những đóng góp vào mã nguồn. Dù bạn muốn sửa lỗi, thêm tính năng, hay cải thiện hiệu suất, phần đóng góp mã của bạn đều quan trọng.
 
-- **Bắt đầu**: Xem hướng dẫn [nhà phát triển mới](/en/docs/developers/new-developers)
+- **Bắt đầu**: Xem hướng dẫn [nhà phát triển mới](/docs/developers/new-developers)
 - **Mã nguồn**: [GitLab](https://i2pgit.org) (cũng có sẵn bên trong I2P tại http://git.idk.i2p)
 - **Cuộc họp hàng tháng**: Tham gia vào thứ Ba đầu tiên của mỗi tháng
 - **Kênh IRC**: #i2p-dev trên IRC2P cho thảo luận phát triển
@@ -19,7 +19,7 @@ I2P là mã nguồn mở và chúng tôi chào đón những đóng góp vào m�
 ### Phát Triển Ứng Dụng
 Xây dựng các ứng dụng chạy trên I2P!
 
-- **Tài liệu API**: Tìm hiểu về [SAM, BOB, và I2PTunnel APIs](/en/docs/api)
+- **Tài liệu API**: Tìm hiểu về [SAM, BOB, và I2PTunnel APIs](/docs/api)
 - **Thư viện streaming**: Sử dụng thư viện streaming của I2P cho ứng dụng của bạn
 - **Router mới**: Xem xét xây dựng một router I2P trong [Rust, Go, hoặc các ngôn ngữ khác](/en/blog/2025/10/16/new-i2p-routers/)
 
@@ -27,7 +27,7 @@ Xây dựng các ứng dụng chạy trên I2P!
 
 Giúp người dùng mới tham gia mạng bằng cách chạy các dịch vụ hạ tầng:
 
-- **Máy chủ reseed**: Giúp các router mới khởi động và tham gia mạng - xem [tài liệu reseed](/en/docs/guides/reseed-server/)
+- **Máy chủ reseed**: Giúp các router mới khởi động và tham gia mạng - xem [tài liệu reseed](/docs/guides/reseed-server/)
 - **Trang mirror**: Lưu trữ các mirror tải xuống để cải thiện tính sẵn có
 - **Dịch vụ**: Chạy các dịch vụ I2P như diễn đàn, máy chủ IRC, hoặc các công cụ cộng đồng khác
 
@@ -36,8 +36,8 @@ Giúp người dùng mới tham gia mạng bằng cách chạy các dịch vụ 
 ### Cải Thiện Tài Liệu
 Tài liệu rõ ràng giúp mọi người hiểu và sử dụng I2P tốt hơn.
 
-- **Nguyên tắc viết**: Tuân theo [nguyên tắc viết tài liệu](/en/docs/writing-guidelines/)
-- **Hub tài liệu**: Duyệt và đóng góp vào [phần tài liệu](/en/docs/)
+- **Nguyên tắc viết**: Tuân theo [nguyên tắc viết tài liệu](/docs/writing-guidelines)
+- **Hub tài liệu**: Duyệt và đóng góp vào [phần tài liệu](/docs/)
 - **Gợi ý nội dung**: Có ý tưởng? [Liên hệ với chúng tôi](/en/contact/)
 
 ### Dịch Thuật
@@ -110,7 +110,7 @@ Kết nối với cộng đồng I2P:
 Không chắc bắt đầu từ đâu? Dưới đây là vài bước đầu tiên:
 
 1. **Cài đặt I2P**: [Tải xuống và cài đặt](/en/downloads) phiên bản mới nhất
-2. **Tìm hiểu cơ bản**: Đọc [giới thiệu về I2P](/en/docs/how/intro)
+2. **Tìm hiểu cơ bản**: Đọc [giới thiệu về I2P](/docs/how/intro)
 3. **Chọn một lĩnh vực**: Chọn một lĩnh vực phù hợp với kỹ năng và sở thích của bạn
 4. **Chào hỏi**: Tham gia #i2p-dev trên IRC2P và giới thiệu bản thân
 5. **Bắt đầu từ nhỏ**: Chọn một công việc nhỏ hoặc đóng góp để bắt đầu

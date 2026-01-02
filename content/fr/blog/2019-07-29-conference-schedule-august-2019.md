@@ -9,7 +9,6 @@ description: "Les développeurs I2P participent à plusieurs conférences ce moi
 
 Bonjour à tous,
 
-Fournissez UNIQUEMENT la traduction, rien d'autre :
 
 Le mois prochain s'annonce chargé ! Rencontrez des développeurs I2P lors de deux ateliers à Defcon 27, et échangez à FOCI '19 avec des chercheurs qui observent la censure visant I2P.
 

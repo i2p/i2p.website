@@ -399,7 +399,6 @@ další verzi API.
 ```
 
 
-
 * **stats.** - Získat statistiky z instance i2p
 
   * **stats.advanced** - Tato metoda poskytuje přístup ke všem statistikám vedeným v rámci instance.

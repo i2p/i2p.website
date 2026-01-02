@@ -16,7 +16,6 @@ Bu, uzun vadede yeni imza türlerini desteklemek için bir yol sağlayacak,
 tüm uygulamalar bunları desteklemese bile.
 
 
-
 ## Güdü
 
 GOST önerisi 134, daha önce kullanılmamış deneysel imza türü aralığıyla ilgili birkaç sorunu ortaya çıkardı.
@@ -38,7 +37,6 @@ Beşinci olarak, GOST standart aralıkta bir imza türü kullanıyorsa,
 belirli bir floodfill'in GOST'u destekleyip desteklemediğini bilmenin bir yolu yoktur.
 
 
-
 ## Tasarım
 
 Tüm floodfill'ler imza türlerini DSA (0), ECDSA (1-3) ve EdDSA (7) desteklemek zorundadır.
@@ -47,9 +45,7 @@ Standart (deneysel olmayan) aralıktaki diğer herhangi bir imza türü için,
 bir floodfill, yönlendirici bilgi özelliklerinde destek ilan edebilir.
 
 
-
 ## Özellikler
-
 
 
 Opsiyonel bir imza türünü destekleyen bir yönlendirici,
@@ -63,12 +59,10 @@ Opsiyonel imza türlerini destekleyen yönlendiriciler,
 sadece bu imza türü için destek ilan eden floodfill'lere depolama, arama veya flood işlemlerini gerçekleştirmelidir.
 
 
-
 ## Geçiş
 
 Uygulanabilir değil.
 Sadece opsiyonel bir imza türünü destekleyen yönlendiricilerin uygulaması gerekir.
-
 
 
 ## Sorunlar
@@ -86,6 +80,5 @@ bu henüz resmi olarak önerilmemiştir.
 
 Deneysel aralıkta olmayan bilinmeyen imza türleri için NetDB saklamaları
 floodfill'ler tarafından reddedilmeye devam edecektir, çünkü imza doğrulanamaz.
-
 
 

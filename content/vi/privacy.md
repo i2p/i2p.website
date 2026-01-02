@@ -38,7 +38,6 @@ Chúng tôi chỉ sử dụng thông tin được thu thập tự động để:
 
 **Chúng tôi không**:
 
-Chỉ cung cấp bản dịch, không gì khác:
 
 - Sell, rent, or trade your data to third parties
 - Use third-party services to identify individual users
@@ -98,7 +97,6 @@ Nếu bạn có câu hỏi hoặc quan ngại về Chính sách quyền riêng t
 - **Email**: press@i2p.net
 - **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
 
-Chỉ cung cấp bản dịch, không có gì khác:
 
 **Cập nhật lần cuối**: Tháng 10 năm 2025
 

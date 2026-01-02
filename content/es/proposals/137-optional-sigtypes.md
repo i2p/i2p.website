@@ -16,7 +16,6 @@ Esto proporcionará una manera de soportar nuevos tipos de firma a largo plazo,
 incluso si no todas las implementaciones los soportan.
 
 
-
 ## Motivación
 
 La propuesta GOST 134 ha revelado varios problemas con el rango de tipos de firma experimentales previamente no utilizados.
@@ -37,7 +36,6 @@ Quinto, si GOST usa un tipo de firma en el rango estándar, aún no hay manera d
 floodfill particular soporta GOST.
 
 
-
 ## Diseño
 
 Todos los floodfills deben soportar los tipos de firma DSA (0), ECDSA (1-3), y EdDSA (7).
@@ -46,9 +44,7 @@ Para cualquier otro tipo de firma en el rango estándar (no experimental), un fl
 anunciar soporte en sus propiedades de router info.
 
 
-
 ## Especificación
-
 
 
 Un router que soporta un tipo de firma opcional deberá añadir la propiedad "sigTypes"
@@ -62,12 +58,10 @@ Los routers que soportan tipos de firma opcionales solo deben almacenar, buscar 
 a los floodfills que anuncien soporte para ese tipo de firma.
 
 
-
 ## Migración
 
 No aplicable.
 Solo los routers que soportan un tipo de firma opcional deben implementar.
-
 
 
 ## Problemas
@@ -85,6 +79,5 @@ lo cual aún no ha sido propuesto formalmente.
 
 Las tiendas de NetDB de tipos de firma desconocidos que no están en el rango experimental continuarán
 siendo rechazadas por los floodfills, ya que la firma no puede verificarse.
-
 
 

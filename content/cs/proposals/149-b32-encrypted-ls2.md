@@ -157,7 +157,6 @@ I když je to mimo rozsah tohoto návrhu, směrovače a/nebo klienti si musí pa
 (pravděpodobně trvale) mapování veřejného klíče na cíl a naopak.
 
 
-
 ## Poznámky
 
 - Odlište staré a nové formáty podle délky. Staré b32 adresy mají vždy {52 znaků}.b32.i2p. Nové mají {56+ znaků}.b32.i2p

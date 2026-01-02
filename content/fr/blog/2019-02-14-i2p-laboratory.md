@@ -8,7 +8,6 @@ categories: ["development"]
 
 Bonjour à tous,
 
-Fournissez UNIQUEMENT la traduction, rien d'autre:
 
 Il existe de nombreux projets dans l’univers I2P qui nous enthousiasment, mais ils ne sont pas tous prêts pour le grand public. Nous avons décidé de créer un espace où nous pouvons les rendre accessibles à toute personne souhaitant les essayer, qui servira de banc d’essai pour des projets susceptibles de devenir un jour des produits I2P officiels. Cet espace est le [Laboratoire I2P](https://geti2p.net/en/download/lab).
 

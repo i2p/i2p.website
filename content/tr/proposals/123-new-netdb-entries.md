@@ -378,7 +378,6 @@ Yayınlayan
 
     Destination
 
-
 ### Gerekçe
 
 Şifreli LS2 için kullanılan kriptografik yapı taşlarına karşılık gelen aşağıdaki fonksiyonları tanımlıyoruz:
@@ -416,7 +415,6 @@ STREAM
 
     DECRYPT(k, iv, ciphertext)
         Decrypts ciphertext using the cipher key k, and nonce iv. Returns the plaintext.
-
 
 SIG
 
@@ -473,7 +471,6 @@ HKDF(salt, ikm, info, n)
 
     Use HKDF as specified in [RFC 5869](https://tools.ietf.org/html/rfc5869), using the HMAC hash function SHA-256
     as specified in [RFC 2104](https://tools.ietf.org/html/rfc2104). This means that SALT_LEN is 32 bytes max.
-
 
 ### Tartışma
 
@@ -572,7 +569,6 @@ outerCiphertext
     If the flag indicates offline keys, the signature is verified with the transient
     public key. Otherwise, the signature is verified with the blinded public key.
 
-
 #### Layer 1 (middle)
 
 Bayraklar
@@ -633,13 +629,11 @@ PSK istemci kimlik doğrulama verisi
         clientCookie_i
             32 bytes
 
-
 innerCiphertext
 
     Length implied by lenOuterCiphertext (whatever data remains)
 
     Encrypted layer 2 data. See below for key derivation and encryption algorithms.
-
 
 #### Layer 2 (inner)
 
@@ -654,7 +648,6 @@ Veri
     LeaseSet2 data for the given type.
 
     Includes the header and signature.
-
 
 ### Yeni Şifreleme Sorunları
 
@@ -731,7 +724,6 @@ LEOS2IP(x)
 H*(x)
 
     32 bytes = (LEOS2IP(SHA512(x))) mod B, same as in Ed25519 hash-and-reduce
-
 
 #### Blinding Calculations
 
@@ -1486,11 +1478,7 @@ Session ID
 - İstemcinin router'a programatik olarak bildirmesi için bir yola ihtiyacımız var.
   Aksi takdirde, kullanıcının her destination'ı manuel olarak yapılandırması gerekir.
 
-### I notice that you've only provided the word "Format" to translate. In Turkish, this would be:
-
 Format
-
-Since "Format" is a commonly used technical term that's already adopted into Turkish, it remains the same. However, if you have a longer text segment that needs translation, please provide it and I'll translate it following all the rules you've specified.
 
 Bir istemci, körleştirilmiş bir hedefe mesaj göndermeden önce, "b33"'ü bir Host Lookup mesajında aramalı veya bir Blinding Info mesajı göndermelidir. Körleştirilmiş hedef bir gizli anahtar veya istemci başına kimlik doğrulama gerektiriyorsa, istemci bir Blinding Info mesajı göndermelidir.
 

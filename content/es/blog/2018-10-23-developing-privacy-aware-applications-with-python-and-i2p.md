@@ -102,4 +102,4 @@ Esto es solo información básica, pero es suficiente para comenzar tu propio pr
 - [i2plib at GitHub](https://github.com/l-n-s/i2plib)
 - [SAM API documentation](/docs/api/samv3/)
 - [asyncio documentation](https://docs.python.org/3/library/asyncio.html)
-- [I2P network technical overview](https://geti2p.net/en/docs/how/tech-intro)
+- [I2P network technical overview](https://geti2p.net/docs/how/tech-intro)

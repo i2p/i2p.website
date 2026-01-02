@@ -94,7 +94,7 @@ categories: ["meeting"]
 15:40 &lt;jrandom&gt; in any case, we'll keep on debugging as things come up
 15:41 &lt;gloin&gt; it's not in it.
 15:41 &lt;jrandom&gt; thats about it for syndie 1.000a - there will of course be updates over time, and they'll be announced in meetings or mails
-15:42 &lt;jrandom&gt; (there are much smaller downloads for upgrading syndie than the full 4-5+MB ones - see syndie.i2p.net/download.html)
+15:42 &lt;jrandom&gt; (there are much smaller downloads for upgrading syndie than the full 4-5+MB ones - see syndie.i2p.net/downloads/)
 15:42 &lt;+fox&gt; &lt;hottuna&gt; whats is the i2p syndie archives url on the i2p network ?
 15:43 &lt;jrandom&gt; gloin: could you priv msg me the jar tvf output?
 15:43 &lt;jrandom&gt; hottuna: http://archive.syndie.i2p/

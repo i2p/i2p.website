@@ -1,5 +1,6 @@
 ---
 title: "I2P Entwicklertreffen - 16. März 2004"
+slug: "i2p-dev-meeting-march-16-2004"
 date: 2004-03-16
 author: " jrandom"
 description: "Protokoll der I2P-Entwicklungsbesprechung vom 16. März 2004."

@@ -15,14 +15,11 @@ toc: true
 Thêm chỉ báo tắc nghẽn vào thông tin Router đã công bố (RI).
 
 
-
-
 ## Động lực
 
 Các "giới hạn" băng thông (khả năng) chỉ ra giới hạn chia sẻ băng thông và khả năng truy cập nhưng không chỉ ra trạng thái tắc nghẽn.
 Một chỉ báo tắc nghẽn sẽ giúp các router tránh cố gắng tạo đường hầm thông qua một router tắc nghẽn,
 góp phần vào việc tắc nghẽn nhiều hơn và giảm thành công xây dựng đường hầm.
-
 
 
 ## Thiết kế
@@ -52,10 +49,9 @@ Trạng thái tắc nghẽn nên dựa trên trung bình của các điều ki�
 trong vài phút, chứ không phải chỉ số đo lường tức thì.
 
 
-
 ## Đặc tả
 
-Cập nhật [NETDB](/docs/how/network-database/) như sau:
+Cập nhật [NETDB](/docs/overview/network-database/) như sau:
 
 
 ```text
@@ -78,7 +74,6 @@ D: Tắc nghẽn trung bình, hoặc router hiệu suất thấp (ví dụ: Andr
 vào cuối (sau R hoặc U).
 
 
-
 ## Phân tích Bảo mật
 
 Bất kỳ thông tin đối tác được công bố nào cũng không thể tin cậy.
@@ -93,7 +88,6 @@ các router có băng thông rất thấp. Giới hạn "U" (không thể truy c
 
 Bất kỳ chỉ báo tắc nghẽn được công bố nào cũng nên có hiệu quả tương tự như
 từ chối hoặc bỏ một yêu cầu xây dựng đường hầm, với các thuộc tính bảo mật tương tự.
-
 
 
 ## Lưu ý
@@ -111,8 +105,6 @@ Các router có lẽ không nên công bố một giới hạn tắc nghẽn khi
 ngay cả khi trạng thái mạng của chúng không rõ, để ngăn chặn sự phát hiện khởi động lại bởi các đối tác.
 
 
-
-
 ## Tương thích
 
 Không có vấn đề, tất cả các triển khai đều bỏ qua các giới hạn không xác định.
@@ -127,7 +119,6 @@ Công bố giới hạn trong 0.9.58 (Tháng 4 năm 2023);
 thực hiện theo giới hạn đã công bố trong 0.9.59 (Tháng 7 năm 2023).
 
 
-
 ## Tham khảo
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

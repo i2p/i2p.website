@@ -280,7 +280,7 @@ Crypto types 1-3 are reserved for ECIES-ECDH-AES-SessionTag, see proposal 145 [P
 This proposal provides the requirements based on the Noise Protocol Framework
 [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11).
 Noise has similar properties to the Station-To-Station protocol
-[STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), which is the basis for the [SSU](/docs/specs/ssu/) protocol.  In Noise parlance, Alice
+[STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), which is the basis for the [SSU](/docs/legacy/ssu/) protocol.  In Noise parlance, Alice
 is the initiator, and Bob is the responder.
 
 This proposal is based on the Noise protocol Noise_IK_25519_ChaChaPoly_SHA256.
@@ -3451,10 +3451,10 @@ either ECIES-only, or dual-key.
 ## References
 
 * [Common](/docs/specs/common-structures/)
-* [CRYPTO-ELG](/docs/how/cryptography/#elgamal)
-* [ElG-AES](/docs/how/elgamal-aes/)
+* [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)
+* [ElG-AES](/docs/legacy/elgamal-aes/)
 * [Elligator2](https://elligator.cr.yp.to/elligator-20130828.pdf)
-* [GARLICSPEC](/docs/how/garlic-routing/)
+* [GARLICSPEC](/docs/overview/garlic-routing/)
 * [I2CP](/docs/specs/i2cp/)
 * [I2NP](/docs/specs/i2np/)
 * [NTCP2](/docs/specs/ntcp2/)
@@ -3474,5 +3474,5 @@ either ECIES-only, or dual-key.
 * [RFC-4880-S5.1](https://tools.ietf.org/html/rfc4880#section-5.1)
 * [Signal](https://signal.org/docs/specifications/doubleratchet/)
 * [SPEC](/docs/specs/ecies/)
-* [SSU](/docs/transport/ssu/)
+* [SSU](/docs/specs/ssu2/)
 * [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol)

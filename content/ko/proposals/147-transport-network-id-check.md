@@ -64,7 +64,6 @@ SSU의 경우,
 이는 역호환 가능해야 하므로, 현재 네트워크 ID 값인 2에 대해서 아무 것도 하지 않도록 (id - 2)를 XOR할 것입니다.
 
 
-
 ## 규격
 
 ### 문서화
@@ -137,7 +136,6 @@ HMAC-MD5(encryptedPayload + IV + (payloadLength ^ protocolVersion ^ ((netid - 2)
 
 
 ## 문제점
-
 
 
 ## 마이그레이션

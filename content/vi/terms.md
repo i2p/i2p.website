@@ -25,7 +25,6 @@ Bạn có thể sử dụng Trang web của chúng tôi để:
 
 Bạn không được sử dụng Trang web của chúng tôi để:
 
-Chỉ cung cấp bản dịch, không có gì khác:
 
 - Violate any applicable laws or regulations
 - Transmit malicious code or harmful software
@@ -129,7 +128,6 @@ Nếu bạn có câu hỏi về các Điều khoản Dịch vụ này, vui lòng
 
 Bằng việc sử dụng Trang web hoặc Phần mềm của chúng tôi, bạn xác nhận rằng mình đã đọc, hiểu và đồng ý bị ràng buộc bởi các Điều khoản Dịch vụ này.
 
-Chỉ cung cấp bản dịch, không có gì khác:
 
 **Cập nhật lần cuối**: Tháng 10 năm 2025
 

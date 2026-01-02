@@ -222,7 +222,7 @@ Your I2P router is now configured and running! The router console will show your
 Now that I2P is installed and configured, you can:
 
 1. **Browse I2P sites**: Visit the [I2P homepage](http://127.0.0.1:7657/home) to see links to popular I2P services
-2. **Configure your browser**: Set up a [browser profile](/en/docs/guides/browser-config) to access `.i2p` sites
+2. **Configure your browser**: Set up a [browser profile](/docs/guides/browser-config) to access `.i2p` sites
 3. **Explore services**: Check out I2P email, forums, file sharing, and more
 4. **Monitor your router**: The [console](http://127.0.0.1:7657/console) shows your network status and statistics
 

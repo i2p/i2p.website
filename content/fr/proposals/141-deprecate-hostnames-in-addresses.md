@@ -109,7 +109,6 @@ En aucun cas un routeur ne doit faire une recherche DNS d'un nom d'hôte publié
 soit directement, soit via une bibliothèque sous-jacente.
 
 
-
 ## Spécification
 
 Changer les spécifications NTCP et SSU pour indiquer que le paramètre "host" doit être
@@ -118,8 +117,6 @@ de routeurs individuelles qui contiennent des noms d'hôte.
 
 Ceci s'applique également aux paramètres "ihost0", "ihost1", et "ihost2" dans une adresse SSU.
 Les routeurs doivent ignorer les adresses des introducers qui contiennent des noms d'hôte.
-
-
 
 
 ## Notes

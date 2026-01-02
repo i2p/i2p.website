@@ -23,7 +23,7 @@ Sujeto a revisiones menores.
 
 ECIES reduce el sobrecargo del mensaje de sesión existente (ES) en unos 90 bytes.
 Por lo tanto, podemos aumentar el MTU en unos 90 bytes para las conexiones ECIES.
-Ver the [ECIES specification](/en/docs/spec/ecies/#overhead), [Streaming specification](/en/docs/spec/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/en/docs/api/streaming/).
+Ver the [ECIES specification](/docs/specs/ecies/#overhead), [Streaming specification](/docs/specs/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/docs/api/streaming/).
 
 Sin aumentar el MTU, en muchos casos los ahorros de sobrecarga no son realmente "ahorros",
 ya que los mensajes se rellenarán para usar de todos modos dos mensajes de túnel completos.
@@ -69,7 +69,7 @@ sin embargo, no hay ninguna disposición para negociar hacia arriba en la transm
 por lo que el MTU debe permanecer en 1730.
 
 
-Como se señala en the [Streaming API documentation](/en/docs/api/streaming/),
+Como se señala en the [Streaming API documentation](/docs/api/streaming/),
 los datos en los paquetes SYN enviados de Alice a Bob pueden exceder el MTU de Bob.
 Esto es una debilidad en el protocolo de transmisión.
 Por lo tanto, los clientes de clave dual deben limitar los datos en los paquetes SYN enviados
@@ -80,17 +80,16 @@ real enviada.
 
 ### Análisis
 
-Como se describe en the [ECIES specification](/en/docs/spec/ecies/#overhead), la sobrecarga de ElGamal para los mensajes de sesión existentes es
+Como se describe en the [ECIES specification](/docs/specs/ecies/#overhead), la sobrecarga de ElGamal para los mensajes de sesión existentes es
 de 151 bytes, y la sobrecarga de Ratchet es de 69 bytes.
 Por lo tanto, podemos aumentar el MTU para las conexiones ratchet en (151 - 69) = 82 bytes,
 de 1730 a 1812.
 
 
-
 ## Especificación
 
-Agregar los siguientes cambios y aclaraciones a la sección de Selección y Negociación de MTU de the [Streaming API documentation](/en/docs/api/streaming/).
-No hay cambios en the [Streaming specification](/en/docs/spec/streaming/).
+Agregar los siguientes cambios y aclaraciones a la sección de Selección y Negociación de MTU de the [Streaming API documentation](/docs/api/streaming/).
+No hay cambios en the [Streaming specification](/docs/specs/streaming/).
 
 
 El valor por defecto de la opción i2p.streaming.maxMessageSize sigue siendo 1730 para todas las conexiones, sin importar qué claves se usen.
@@ -124,7 +123,6 @@ Sin cambios, 1730 MTU en todos los paquetes.
 - Alice debe enviar MAX_PACKET_SIZE_INCLUDED en SYN
 
 
-
 ### 3) Alice Clave Dual y sabe que Bob es ElGamal
 1730 MTU en todos los paquetes.
 
@@ -133,14 +131,12 @@ Sin cambios, 1730 MTU en todos los paquetes.
 - Alice puede enviar MAX_PACKET_SIZE_INCLUDED en SYN, no requerido a menos que != 1730
 
 
-
 ### 4) Alice Clave Dual y sabe que Bob es ECIES
 1812 MTU en todos los paquetes.
 
 - ALICE_SYN_MAX_DATA = 1812
 - i2cp.streaming.maxMessageSize por defecto: 1812
 - Alice debe enviar MAX_PACKET_SIZE_INCLUDED en SYN
-
 
 
 ### 5) Alice Clave Dual y clave de Bob desconocida
@@ -158,13 +154,10 @@ negotiated_mtu, el mínimo del MTU de Alice y Bob, a ser usado como el tamaño m
 en el SYN ACK de Bob a Alice, y en todos los paquetes subsecuentes enviados en ambas direcciones.
 
 
-
-
 ## Justificación
 
 Ver the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) para por qué el valor actual es 1730.
-Ver the [ECIES specification](/en/docs/spec/ecies/#overhead) para por qué la sobrecarga de ECIES es 82 bytes menos que ElGamal.
-
+Ver the [ECIES specification](/docs/specs/ecies/#overhead) para por qué la sobrecarga de ECIES es 82 bytes menos que ElGamal.
 
 
 ## Notas de Implementación
@@ -188,12 +181,9 @@ Estrategias similares podrían ser utilizadas en el tamaño óptimo de un solo m
 y tamaño de tres mensajes de túnel (2952), aunque estos tamaños deberían ser raros en la práctica.
 
 
-
 ## Problemas
 
 El valor 1812 es preliminar. Por confirmar y posiblemente ajustar.
-
-
 
 
 ## Migración
@@ -204,6 +194,5 @@ Esta es una opción existente y la negociación del MTU ya es parte de la especi
 Los destinos ECIES más antiguos soportarán 1730.
 Cualquier cliente que reciba un valor más alto responderá con 1730, y el extremo contrario
 negociará a la baja, como de costumbre.
-
 
 

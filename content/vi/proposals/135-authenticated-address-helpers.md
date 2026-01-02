@@ -32,11 +32,9 @@ Nếu không có tham số xác thực, proxy http có thể chấp nhận, từ
 Các dịch vụ nhảy sẽ được tin cậy như thường lệ, nhưng với bước xác thực bổ sung. Các liên kết trợ giúp địa chỉ trên các trang web khác sẽ cần được chỉnh sửa.
 
 
-
 ## Các Vấn Đề Bảo Mật
 
 Đề xuất này thêm bảo mật bằng cách bổ sung xác thực từ các dịch vụ đăng ký / nhảy tin cậy. 
-
 
 
 ## Đặc Tả

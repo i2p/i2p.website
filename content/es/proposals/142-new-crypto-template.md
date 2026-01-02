@@ -24,7 +24,6 @@ Sin embargo, hay varios problemas que deben ser abordados antes de poder añadir
 Este documento destaca estos problemas no resueltos.
 
 
-
 ## Investigación de Antecedentes
 
 Cualquiera que proponga nueva criptografía debe primero estar familiarizado con los siguientes documentos:
@@ -58,11 +57,9 @@ Como repaso, usamos ElGamal para:
 Cualquier propuesta para reemplazar ElGamal con otra cosa debe proporcionar los siguientes detalles.
 
 
-
 ## Especificación
 
 Cualquier propuesta para nueva criptografía asimétrica debe especificar completamente las siguientes cosas.
-
 
 
 ### 1. General
@@ -88,9 +85,6 @@ Responda las siguientes preguntas en su propuesta:
 - Número(s) de tipo de criptografía propuesto(s) (rango experimental o no)
 
 
-
-
 ## Notas
-
 
 

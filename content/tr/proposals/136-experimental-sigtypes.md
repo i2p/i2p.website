@@ -28,7 +28,6 @@ aynı anda birden fazla imza türü için kullanılabilirler.
 yeni imza türünün tam olarak test edilmesi veya deneme amacıyla kullanılması zordur.
 
 
-
 ## Tasarım
 
 Floodfills, imzayı kontrol etmeden,
@@ -36,9 +35,7 @@ deneysel aralıktaki imza türleri ile LS depolarını kabul etmeli ve yaymalıd
 RI depoları için destek belirlenecek olup, daha fazla güvenlik etkisine sahip olabilir.
 
 
-
 ## Spesifikasyon
-
 
 
 Deneysel aralıktaki imza türleri için, bir floodfill imzayı kontrol etmeden
@@ -83,6 +80,5 @@ sorunların ele alınması gerekecektir.
 
 Deneysel aralıkta olmayan bilinmeyen imza türlerinin netdb depoları,
 imza doğrulanamayacağı için floodfills tarafından reddedilmeye devam edecektir.
-
 
 

@@ -29,7 +29,6 @@ ermöglichen diese Definitionen eine bessere Identifikation und Ikonifizierung v
 Durch die Standardisierung der MIME-Typen kann jede Router-Implementierung entsprechende Handler schreiben und die MIME-Definitionsdatei kann von allen Implementierungen geteilt werden.
 
 
-
 ## Design
 
 Schreiben Sie eine XML-Quelldatei nach dem freedesktop.org-Standard und fügen Sie sie in Debian-Pakete ein. Die Datei heißt "debian/(package).sharedmimeinfo".
@@ -41,7 +40,6 @@ spezifiziert.
 
 Wir werden auch die Definitionen mit Jetty einschließen und sie mit
 der Reload-Software oder -Anweisungen beifügen.
-
 
 
 ## Spezifikation
@@ -83,8 +81,6 @@ der Reload-Software oder -Anweisungen beifügen.
 =.txt.gz 		application/x-i2p-peerprofile
 
 .xpi2p	 		application/x-i2p-plugin
-
-
 
 
 ## Anmerkungen

@@ -1,0 +1,108 @@
+{{/*
+  Docs Feedback Partial - Zero JavaScript Implementation
+
+  Uses Cloudflare Worker to handle form submissions server-side.
+  No client-side JavaScript required for core functionality.
+
+  Usage: {{ partial "docs-feedback.html" . }}
+
+  Requires hugo.toml params:
+    [params.feedback]
+      workerUrl = "https://i2p-docs-feedback.example.workers.dev"
+*/}}
+
+{{ $workerUrl := site.Params.feedback.workerUrl | default "https://i2p-docs-feedback.example.workers.dev" }}
+{{ $documentId := .RelPermalink }}
+{{ $redirectUrl := .Permalink }}
+
+{{/* Check for feedback status from query params (set by worker redirect) */}}
+{{ $feedbackStatus := "" }}
+{{ with site.Params.feedback }}
+  {{/* Note: Hugo cannot read query params at build time, so status display requires minimal JS or CSS :target */}}
+{{ end }}
+
+<div class="docs-feedback" id="docs-feedback">
+  <p class="docs-feedback-title">Was this page helpful?</p>
+
+  <div class="docs-feedback-buttons">
+    {{/* Yes Button - Direct form submission */}}
+    <form method="POST" action="{{ $workerUrl }}/feedback/vote" class="docs-feedback-form">
+      <input type="hidden" name="document_id" value="{{ $documentId }}">
+      <input type="hidden" name="type" value="up">
+      <input type="hidden" name="redirect_url" value="{{ $redirectUrl }}#docs-feedback">
+      <button type="submit" class="feedback-btn feedback-btn-yes">
+        <span class="feedback-icon">&#128077;</span>
+        <span>Yes</span>
+      </button>
+    </form>
+
+    {{/* No Button - Redirects to feedback form page */}}
+    <form method="POST" action="{{ $workerUrl }}/feedback/show-form" class="docs-feedback-form">
+      <input type="hidden" name="document_id" value="{{ $documentId }}">
+      <input type="hidden" name="redirect_url" value="{{ $redirectUrl }}#docs-feedback">
+      <button type="submit" class="feedback-btn feedback-btn-no">
+        <span class="feedback-icon">&#128078;</span>
+        <span>No</span>
+      </button>
+    </form>
+  </div>
+
+  {{/* Status messages - shown via query params after redirect */}}
+  <noscript>
+    <p class="feedback-noscript-note">After submitting, you'll be redirected back to this page.</p>
+  </noscript>
+
+  <p class="feedback-note">
+    Found an issue? <a href="https://gitlab.com/{{ .Site.Params.gitlabRepo }}/-/blob/{{ .Site.Params.gitlabBranch }}/hugo-site/content/{{ .Language.Lang }}/{{ .File.Path }}?ref_type=heads" target="_blank" rel="noopener">Edit this page on GitLab</a>
+  </p>
+</div>
+
+{{/*
+  Minimal JavaScript for displaying feedback status from query params.
+  This is optional enhancement - core functionality works without JS.
+*/}}
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const feedback = params.get('feedback');
+  const container = document.getElementById('docs-feedback');
+
+  if (!feedback || !container) return;
+
+  // Create status message element
+  const msg = document.createElement('div');
+  msg.className = 'feedback-message';
+
+  if (feedback === 'success') {
+    msg.className += ' feedback-success';
+    msg.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/></svg><span>Thanks for your feedback!</span>';
+  } else if (feedback === 'already_voted') {
+    msg.className += ' feedback-info';
+    msg.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10" stroke-width="2"/><path d="M12 16v-4M12 8h.01" stroke-width="2" stroke-linecap="round"/></svg><span>You\'ve already provided feedback for this page.</span>';
+  } else if (feedback === 'error') {
+    msg.className += ' feedback-error';
+    const errorMsg = params.get('error_msg') || 'Something went wrong. Please try again.';
+    msg.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10" stroke-width="2"/><path d="M12 8v4M12 16h.01" stroke-width="2" stroke-linecap="round"/></svg><span>' + errorMsg + '</span>';
+  }
+
+  if (msg.innerHTML) {
+    // Hide the buttons if success or already voted
+    if (feedback === 'success' || feedback === 'already_voted') {
+      const buttons = container.querySelector('.docs-feedback-buttons');
+      if (buttons) buttons.style.display = 'none';
+    }
+
+    // Insert message after title
+    const title = container.querySelector('.docs-feedback-title');
+    if (title) {
+      title.insertAdjacentElement('afterend', msg);
+    }
+
+    // Clean URL (remove query params) without reload
+    const cleanUrl = window.location.pathname + window.location.hash;
+    if (window.history.replaceState) {
+      window.history.replaceState({}, '', cleanUrl);
+    }
+  }
+})();
+</script>

@@ -9,7 +9,6 @@ description: "I2P-Entwickler nehmen diesen Monat an mehreren Konferenzen teil."
 
 Hallo zusammen,
 
-Geben Sie NUR die Übersetzung an, nichts anderes:
 
 Next month will be busy! Meet up with I2P developers at two workshops at Defcon 27, and connect with researchers who have been observing I2P censorship at FOCI '19.
 

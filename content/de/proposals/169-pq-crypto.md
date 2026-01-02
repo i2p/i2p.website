@@ -166,7 +166,7 @@ Es gibt viele gute Informationen in dem Whitepaper, und wir werden es auf Ideen 
 
 ### Schlüsselaustausch
 
-Aktualisieren Sie die Abschnitte und Tabellen im Dokument für gemeinsame Strukturen [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/) wie folgt:
+Aktualisieren Sie die Abschnitte und Tabellen im Dokument für gemeinsame Strukturen [/docs/specs/common-structures/](/docs/specs/common-structures/) wie folgt:
 
 ### Signaturen
 
@@ -563,7 +563,7 @@ unverändert
 
 ### SigningPrivateKey
 
-Aktualisiere die ECIES-Ratchet-Spezifikation [/en/docs/spec/ecies/](/en/docs/spec/ecies/) wie folgt:
+Aktualisiere die ECIES-Ratchet-Spezifikation [/docs/specs/ecies/](/docs/specs/ecies/) wie folgt:
 
 #### Noise identifiers
 
@@ -760,11 +760,11 @@ Größen:
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-Beachten Sie, dass Nachricht 2 normalerweise eine Nutzlast ungleich null haben wird, die ratchet-Spezifikation [/en/docs/spec/ecies/](/en/docs/spec/ecies/) erfordert dies jedoch nicht, sodass die minimale Nutzlastgröße 0 ist. Die minimalen Größen für Nachricht 2 können entsprechend berechnet werden.
+Beachten Sie, dass Nachricht 2 normalerweise eine Nutzlast ungleich null haben wird, die ratchet-Spezifikation [/docs/specs/ecies/](/docs/specs/ecies/) erfordert dies jedoch nicht, sodass die minimale Nutzlastgröße 0 ist. Die minimalen Größen für Nachricht 2 können entsprechend berechnet werden.
 
 ### Signatur
 
-Aktualisieren Sie die NTCP2-Spezifikation [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/) wie folgt:
+Aktualisieren Sie die NTCP2-Spezifikation [/docs/specs/ntcp2/](/docs/specs/ntcp2/) wie folgt:
 
 #### Noise identifiers
 
@@ -935,7 +935,7 @@ Unverändert
 
 ### Schlüsselzertifikate
 
-Aktualisieren Sie die SSU2-Spezifikation [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/) wie folgt:
+Aktualisieren Sie die SSU2-Spezifikation [/docs/specs/ssu2/](/docs/specs/ssu2/) wie folgt:
 
 #### Noise identifiers
 

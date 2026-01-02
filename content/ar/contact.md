@@ -57,16 +57,14 @@ layout: "contact"
 | الدور | الشخص | الوصف |
 |------|--------|-------------|
 | **مدير إصدار I2P Java** | idk | يبني الإصدارات ويوقّعها |
-| **مسؤول المنتدى** | eche\|on | مشرف منتدى I2P العام |
 | **مسؤول مرايا التنزيل** | StormyCloud | إدارة المرايا الخاصة بملفات التنزيل |
 | **مُحزِّم؛ Linux** | idk | مُحزِّم توزيعات Linux (Debian/Ubuntu) |
 | **مُحزِّم؛ Windows** | idk | مُحزِّم مُثبِّت Windows |
-| **مُحزِّم؛ OSX** | echelon | مُحزِّم مُثبِّت OSX |
-| **بدلاء مدير الإصدار** | eche\|on | مديرو إصدار احتياطيون |
+| **مُحزِّم؛ OSX** | vacant | مُحزِّم مُثبِّت OSX |
 | **مسؤول CI** | idk | صيانة بنية تحتية للتكامل المستمر (Continuous Integration) |
 | **مسؤول Reseed (إعادة البذر)** | idk | يراقب ويُوجّه ويستقطب مضيفي reseed |
 | **مسؤول Gitea** | idk | مشرف I2P Gitea |
-| **التوطين** | eche\|on, idk, zzz | مشرفون على [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **التوطين** | idk, zzz | مشرفون على [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **المترجمون** | أشخاص كُثُر! | مترجمون على [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **مسؤول صيانة الموقع** | StormyCloud | إدارة تصميم محتوى موقع المشروع العام |
 | **مسؤول خوادم الويب** | StormyCloud | إدارة خوادم الويب العامة للمشروع |

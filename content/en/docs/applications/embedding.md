@@ -133,7 +133,7 @@ Configuration variables:
   </tbody>
 </table>
 
-All official docs are located under `/en/docs/api/` — the old `/spec/samv3/` path does **not** exist.
+All official docs are located under `/docs/api/` — the old `/spec/samv3/` path does **not** exist.
 
 ## 6. Networking and Ports
 

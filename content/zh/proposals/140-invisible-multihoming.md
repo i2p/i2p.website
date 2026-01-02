@@ -11,9 +11,9 @@ toc: true
 
 ## 概述
 
-本提案概述了一个协议设计，使 I2P 客户端、服务或外部负载均衡器进程能够透明地管理托管单个 [Destination](http://localhost:63465/en/docs/specs/common-structures/#destination) 的多个 router。
+本提案概述了一个协议设计，使 I2P 客户端、服务或外部负载均衡器进程能够透明地管理托管单个 [Destination](http://localhost:63465/docs/specs/common-structures/#destination) 的多个 router。
 
-该提案目前没有指定具体的实现方式。它可以作为 [I2CP](/en/docs/specs/i2cp/) 的扩展来实现，或者作为一个新协议来实现。
+该提案目前没有指定具体的实现方式。它可以作为 [I2CP](/docs/specs/i2cp/) 的扩展来实现，或者作为一个新协议来实现。
 
 ## 动机
 
@@ -127,7 +127,7 @@ Multihoming是指使用多个router来托管同一个Destination。目前在I2P�
 
 ### 单客户端
 
-要创建和管理这个配置，客户端需要以下超出当前 [I2CP](/en/docs/specs/i2cp/) 所提供功能的新功能：
+要创建和管理这个配置，客户端需要以下超出当前 [I2CP](/docs/specs/i2cp/) 所提供功能的新功能：
 
 - 告诉 router 构建隧道，但不为其创建 LeaseSet。
 - 获取入站池中当前隧道的列表。

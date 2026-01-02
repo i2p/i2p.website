@@ -156,7 +156,6 @@ Während dies nicht Teil dieses Vorschlags ist, müssen Router und/oder Clients 
 öffentlichem Schlüssel zu Ziel merken und cachen (vermutlich persistent), und umgekehrt.
 
 
-
 ## Hinweise
 
 - Unterscheiden von alten und neuen Varianten durch Länge. Alte b32-Adressen sind immer {52 Zeichen}.b32.i2p. Neue sind {56+ Zeichen}.b32.i2p

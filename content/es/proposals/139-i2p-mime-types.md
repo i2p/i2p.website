@@ -33,7 +33,6 @@ Al estandarizar los tipos MIME, cada implementación de router puede escribir ma
 según sea apropiado, y el archivo de definición MIME puede ser compartido por todas las implementaciones.
 
 
-
 ## Diseño
 
 Escribir un archivo fuente XML siguiendo el estándar freedesktop.org e incluirlo
@@ -46,7 +45,6 @@ especificados aquí.
 
 También incluiremos las definiciones con Jetty, y las incluiremos con el
 software de resiembra o las instrucciones.
-
 
 
 ## Especificación
@@ -88,8 +86,6 @@ software de resiembra o las instrucciones.
 =.txt.gz 		application/x-i2p-peerprofile
 
 .xpi2p	 		application/x-i2p-plugin
-
-
 
 
 ## Notas

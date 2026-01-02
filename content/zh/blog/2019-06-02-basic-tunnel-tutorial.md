@@ -8,7 +8,7 @@ categories: ["tutorial"]
 
 Although the Java I2P router comes pre-configured with a static web server, jetty, to provide the user's first eepSite, many require more sophisticated functionality from their web server and would rather create an eepSite with a different server. This is of course possible, and actually is really easy once you've done it one time.
 
-尽管这很容易做到，但在动手之前有几件事需要考虑。你应当从你的 Web 服务器中移除可用于识别的特征，例如可能暴露身份的 HTTP 头部，以及会显示服务器/发行版类型的默认错误页面。关于由于应用程序配置不当而对匿名性造成的威胁的更多信息，请参阅：[Riseup 此处](https://riseup.net/en/security/network-security/tor/onionservices-best-practices), [Whonix 此处](https://www.whonix.org/wiki/Onion_Services), [这篇博文介绍了一些 OPSEC（操作安全）失误](https://blog.0day.rocks/securing-a-web-hidden-service-89d935ba1c1d), [以及 I2P 应用程序页面](https://geti2p.net/en/docs/applications/supported)。尽管其中很多信息是针对 Tor Onion Services（Tor 隐藏服务）而写的，但相同的流程和原则同样适用于通过 I2P 托管应用程序。
+尽管这很容易做到，但在动手之前有几件事需要考虑。你应当从你的 Web 服务器中移除可用于识别的特征，例如可能暴露身份的 HTTP 头部，以及会显示服务器/发行版类型的默认错误页面。关于由于应用程序配置不当而对匿名性造成的威胁的更多信息，请参阅：[Riseup 此处](https://riseup.net/en/security/network-security/tor/onionservices-best-practices), [Whonix 此处](https://www.whonix.org/wiki/Onion_Services), [这篇博文介绍了一些 OPSEC（操作安全）失误](https://blog.0day.rocks/securing-a-web-hidden-service-89d935ba1c1d), [以及 I2P 应用程序页面](https://geti2p.net/docs/applications/supported)。尽管其中很多信息是针对 Tor Onion Services（Tor 隐藏服务）而写的，但相同的流程和原则同样适用于通过 I2P 托管应用程序。
 
 ### 第一步：打开 Tunnel 向导
 

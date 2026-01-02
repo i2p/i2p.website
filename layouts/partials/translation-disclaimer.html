@@ -1,0 +1,13 @@
+{{ if ne .Lang "en" }}
+<div class="translation-disclaimer" role="note">
+    <span class="disclaimer-message">{{ i18n "translationDisclaimer.message" }}</span>
+    {{ $enVersion := index (where .Translations "Lang" "en") 0 }}
+    {{ if $enVersion }}
+    <a href="{{ $enVersion.RelPermalink }}" class="disclaimer-link">{{ i18n "translationDisclaimer.viewEnglish" }}</a>
+    {{ else }}
+    {{/* Fallback: construct English URL by replacing language code */}}
+    {{ $enUrl := replaceRE (printf "^/%s/" .Lang) "/en/" .RelPermalink }}
+    <a href="{{ $enUrl }}" class="disclaimer-link">{{ i18n "translationDisclaimer.viewEnglish" }}</a>
+    {{ end }}
+</div>
+{{ end }}

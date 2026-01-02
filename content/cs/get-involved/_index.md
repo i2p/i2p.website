@@ -11,7 +11,7 @@ Síť I2P vzkvétá díky naší komunitě. Ať už jste vývojář, překladate
 ### Vývoj jádra
 I2P je open source a vítáme příspěvky do kódu. Ať už chcete opravovat chyby, přidávat funkce nebo zlepšovat výkon, vaše kódové příspěvky mají význam.
 
-- **Začněte**: Podívejte se na náš [průvodce nového vývojáře](/en/docs/developers/new-developers)
+- **Začněte**: Podívejte se na náš [průvodce nového vývojáře](/docs/developers/new-developers)
 - **Zdrojový kód**: [GitLab](https://i2pgit.org) (dostupné také uvnitř I2P na http://git.idk.i2p)
 - **Měsíční schůzky**: Připojte se k nám první úterý každého měsíce
 - **IRC kanály**: #i2p-dev na IRC2P pro diskuse o vývoji
@@ -19,7 +19,7 @@ I2P je open source a vítáme příspěvky do kódu. Ať už chcete opravovat ch
 ### Vývoj aplikací
 Vytvářejte aplikace, které běží na I2P!
 
-- **API dokumentace**: Naučte se o [SAM, BOB a I2PTunnel API](/en/docs/api)
+- **API dokumentace**: Naučte se o [SAM, BOB a I2PTunnel API](/docs/api)
 - **Streaming knihovna**: Použijte I2P streaming knihovnu pro vaše aplikace
 - **Nové routery**: Zvažte vývoj I2P routeru v [Rust, Go a dalších jazycích](/en/blog/2025/10/16/new-i2p-routers/)
 
@@ -27,7 +27,7 @@ Vytvářejte aplikace, které běží na I2P!
 
 Pomozte novým uživatelům připojit se k síti provozováním infrastrukturních služeb:
 
-- **Reseed servery**: Pomozte novým routerům k bootstrapu a připojení k síti - podívejte se na naši [dokumentaci k reseed serverům](/en/docs/guides/reseed-server/)
+- **Reseed servery**: Pomozte novým routerům k bootstrapu a připojení k síti - podívejte se na naši [dokumentaci k reseed serverům](/docs/guides/reseed-server/)
 - **Mirror stránky**: Hostujte download mirrory pro zlepšení dostupnosti
 - **Služby**: Provozujte I2P služby jako fóra, IRC servery nebo jiné komunitní nástroje
 
@@ -36,8 +36,8 @@ Pomozte novým uživatelům připojit se k síti provozováním infrastrukturní
 ### Zlepšování dokumentace
 Jasná dokumentace pomáhá všem pochopit a lépe používat I2P.
 
-- **Pokyny pro psaní**: Řiďte se našimi [pokyny k psaní dokumentace](/en/docs/writing-guidelines/)
-- **Centrum dokumentace**: Procházejte a přispívejte do [sekce dokumentace](/en/docs/)
+- **Pokyny pro psaní**: Řiďte se našimi [pokyny k psaní dokumentace](/docs/writing-guidelines)
+- **Centrum dokumentace**: Procházejte a přispívejte do [sekce dokumentace](/docs/)
 - **Návrhy na obsah**: Máte nápady? [Kontaktujte nás](/en/contact/)
 
 ### Překlad
@@ -110,7 +110,7 @@ Spojte se s komunitou I2P:
 Nejste si jisti, kde začít? Zde jsou některé první kroky:
 
 1. **Instalujte I2P**: [Stáhněte a nainstalujte](/en/downloads) nejnovější verzi
-2. **Naučte se základy**: Přečtěte si [úvod do I2P](/en/docs/how/intro)
+2. **Naučte se základy**: Přečtěte si [úvod do I2P](/docs/how/intro)
 3. **Vyberte si oblast**: Vyberte si něco, co odpovídá vašim dovednostem a zájmům
 4. **Pozdravte**: Přidejte se na #i2p-dev na IRC2P a představte se
 5. **Začněte s menšími úkoly**: Vyberte si malý úkol nebo příspěvek pro začátek

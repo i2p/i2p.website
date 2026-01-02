@@ -101,6 +101,7 @@ selfContainedNetwork = "Autarkes Netzwerk"
 selfContainedNetworkDesc = "Vollständiges Ökosystem für private Kommunikation."
 
 [nav]
+home = "Start"
 about = "Über"
 docs = "Dokumente"
 downloads = "Downloads"
@@ -114,6 +115,9 @@ featureSuggestions = "Funktionsvorschläge"
 getI2P = "I2P Herunterladen"
 
 [footer]
+home = "Start"
+about = "Über uns"
+docs = "Dokumente"
 newsletterDescription = "Bleiben Sie über I2P-Neuigkeiten informiert:"
 subscribe = "Abonnieren"
 emailPlaceholder = "Geben Sie Ihre E-Mail ein"
@@ -162,6 +166,7 @@ mirrorLabel = "Spiegel:"
 torrent = "Torrent"
 i2p = "I2P"
 tor = "Tor"
+latest = "Neueste"
 allPlatforms = "Alle Plattformen"
 windows = "Windows"
 download = "Herunterladen"
@@ -212,6 +217,7 @@ browserSetupGuide = "Anleitung zur Browserkonfiguration"
 exploreI2pSites = "I2P-Seiten erkunden"
 startBrowsing = "Beginnen Sie mit dem Surfen auf .i2p-Seiten"
 getSupport = "Unterstützung erhalten"
+forums = "Foren"
 irc = "IRC"
 donateWithCrypto = "Spenden mit Kryptowährung"
 moneroRecommended = "Monero (XMR) - Empfohlen"
@@ -221,6 +227,17 @@ zcashZec = "Zcash (ZEC)"
 viewAllOptions = "Alle Spendenoptionen anzeigen →"
 gettingStarted = "Erste Schritte"
 backToDownloads = "Zurück zu Downloads"
+
+[poll]
+title = "Community-Umfrage"
+subtitle = "Wir würden uns freuen, von Ihnen zu hören"
+loading = "Umfrage wird geladen..."
+close = "Schließen"
+disclaimer = "Ihre Stimme hilft dabei, die Zukunft von I2P zu gestalten."
+
+[translationDisclaimer]
+message = "Diese Übersetzung wurde mittels maschinellem Lernen erstellt und ist möglicherweise nicht 100% korrekt."
+viewEnglish = "Englische Version anzeigen"
 
 [languages]
 en = "Englisch"

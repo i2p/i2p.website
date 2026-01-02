@@ -23,7 +23,7 @@ toc: true
 
 ECIES сокращает накладные расходы на существующие сеансовые (ES) сообщения примерно на 90 байт.
 Поэтому мы можем увеличить MTU примерно на 90 байт для соединений ECIES.
-См. the [ECIES specification](/en/docs/spec/ecies/#overhead), [Streaming specification](/en/docs/spec/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/en/docs/api/streaming/).
+См. the [ECIES specification](/docs/specs/ecies/#overhead), [Streaming specification](/docs/specs/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/docs/api/streaming/).
 
 Без увеличения MTU, во многих случаях экономия на накладных расходах на самом деле не "сохраняется",
 так как сообщения будут дополнены для использования двух полных туннельных сообщений в любом случае.
@@ -69,7 +69,7 @@ Leaseset, возможно, еще не был получен, или внутр
 поэтому MTU должно оставаться на уровне 1730.
 
 
-Как отмечено в the [Streaming API documentation](/en/docs/api/streaming/),
+Как отмечено в the [Streaming API documentation](/docs/api/streaming/),
 данные в SYN-пакетах, отправляемых от Alice к Bob, могут превышать MTU Bob.
 Это слабость в стриминговом протоколе.
 Таким образом, клиенты с двойным ключом должны ограничивать данные в отправляемых SYN-пакетах
@@ -80,17 +80,16 @@ Leaseset, возможно, еще не был получен, или внутр
 
 ### Анализ
 
-Как описано в the [ECIES specification](/en/docs/spec/ecies/#overhead), накладные расходы ElGamal для существующих сеансовых сообщений составляют
+Как описано в the [ECIES specification](/docs/specs/ecies/#overhead), накладные расходы ElGamal для существующих сеансовых сообщений составляют
 151 байт, а накладные расходы Ratchet составляют 69 байт.
 Следовательно, мы можем увеличить MTU для соединений Ratchet на (151 - 69) = 82 байта,
 с 1730 до 1812.
 
 
-
 ## Спецификация
 
-Добавьте следующие изменения и пояснения к разделу выбора и переговоров MTU the [Streaming API documentation](/en/docs/api/streaming/).
-Изменения в the [Streaming specification](/en/docs/spec/streaming/) не требуются.
+Добавьте следующие изменения и пояснения к разделу выбора и переговоров MTU the [Streaming API documentation](/docs/api/streaming/).
+Изменения в the [Streaming specification](/docs/specs/streaming/) не требуются.
 
 
 Значение по умолчанию для варианта i2p.streaming.maxMessageSize остается 1730 для всех соединений, независимо от используемых ключей.
@@ -124,7 +123,6 @@ Leaseset, возможно, еще не был получен, или внутр
 - Alice должна отправить MAX_PACKET_SIZE_INCLUDED в SYN
 
 
-
 ### 3) Alice с двойным ключом и знает, что Bob - ElGamal
 1730 MTU во всех пакетах.
 
@@ -133,14 +131,12 @@ Leaseset, возможно, еще не был получен, или внутр
 - Alice может отправить MAX_PACKET_SIZE_INCLUDED в SYN, не требуется, если не равно 1730
 
 
-
 ### 4) Alice с двойным ключом и знает, что Bob - ECIES
 1812 MTU во всех пакетах.
 
 - ALICE_SYN_MAX_DATA = 1812
 - i2cp.streaming.maxMessageSize по умолчанию: 1812
 - Alice должна отправить MAX_PACKET_SIZE_INCLUDED в SYN
-
 
 
 ### 5) Alice с двойным ключом и ключ Bob неизвестен
@@ -158,13 +154,10 @@ negotiated_mtu, минимум из MTU Alice и Bob, который будет 
 в SYN ACK от Bob к Alice и во всех последующих пакетах, отправляемых в обоих направлениях.
 
 
-
-
 ## Обоснование
 
 См. the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) почему текущее значение 1730.
-См. the [ECIES specification](/en/docs/spec/ecies/#overhead) почему накладные расходы ECIES на 82 байта меньше, чем у ElGamal.
-
+См. the [ECIES specification](/docs/specs/ecies/#overhead) почему накладные расходы ECIES на 82 байта меньше, чем у ElGamal.
 
 
 ## Примечания к реализации
@@ -188,12 +181,9 @@ negotiated_mtu, минимум из MTU Alice и Bob, который будет 
 и размера трех туннельных сообщений (2952), хотя такие размеры должны быть редкими на практике.
 
 
-
 ## Проблемы
 
 Значение 1812 является предварительным. Подлежит подтверждению и возможной корректировке.
-
-
 
 
 ## Миграция
@@ -204,6 +194,5 @@ negotiated_mtu, минимум из MTU Alice и Bob, который будет 
 Старые пункты назначения ECIES будут поддерживать 1730.
 Любой клиент, получающий более высокое значение, ответит 1730, и противоположная сторона
 обычно согласует снижение.
-
 
 

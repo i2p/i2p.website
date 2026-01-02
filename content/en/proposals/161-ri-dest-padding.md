@@ -264,7 +264,7 @@ A draft merge request for Java I2P is at [git.idk.i2p](http://git.idk.i2p/i2p-ha
 ## References
 
 * [Common](/docs/specs/common-structures/)
-* [Datagram](/docs/specs/datagrams/)
+* [Datagram](/docs/api/datagrams/)
 * [I2CP](/docs/specs/i2cp/)
 * [I2NP](/docs/specs/i2np/)
 * [MR](http://git.idk.i2p/i2p-hackers/i2p.i2p/-/merge_requests/66)

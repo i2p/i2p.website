@@ -19,8 +19,6 @@ Bu bir protokol tasarım sorunu olup, bir uygulama hatası değildir.
 SYN paketleri imzalanmış durumdadır, ancak Alice'ten Bob'a gönderilen ilk SYN paketinin imzası Bob'un kimliğine bağlı değildir, bu nedenle Bob bu paketi depolayıp tekrar oynatabilir ve bunu bir kurban Charlie'ye gönderebilir. Charlie paketinin Alice'ten geldiğini düşünecek ve ona yanıt verecektir. Çoğu durumda bu zararsızdır, ancak SYN paketi başlangıç verileri içerebilir (örneğin bir GET veya POST) ve Charlie bunu hemen işleyecektir.
 
 
-
-
 ## Tasarım
 
 Çözüm, Alice'in Bob'un varış yeri hash'ini imzalı SYN verilerine eklemesidir.
@@ -36,10 +34,9 @@ Her zamanki gibi, tüm seçenekler imza ile kapsanır, bu nedenle Bob hash'i yen
 Alice ve Charlie API 0.9.58 veya daha yeni sürümde ise, Bob tarafından yapılan herhangi bir tekrar oynatma girişimi reddedilir.
 
 
-
 ## Spesifikasyon
 
-[Streaming spesifikasyonunu](/en/docs/spec/streaming/) güncelleyin ve aşağıdaki bölümü ekleyin:
+[Streaming spesifikasyonunu](/docs/specs/streaming/) güncelleyin ve aşağıdaki bölümü ekleyin:
 
 ### Yeniden Çalma Önleme
 
@@ -85,11 +82,9 @@ Sorun yok. Bilinen tüm uygulamalar şu anda SYN paketindeki NACKs alanını yok
 Ve eğer yok saymazlardı ve 8 farklı mesaj için NACKs olarak yorumlamaya çalışsalar bile, bu mesajlar SYNCHRONIZE el sıkışması sırasında beklemede olmayacak ve NACKs anlam ifade etmeyecekti.
 
 
-
 ## Geçiş
 
 Uygulamalar herhangi bir zamanda destek ekleyebilir, herhangi bir koordinasyona ihtiyaç yoktur.
 Java I2P ve i2pd yönlendiricileri, API 0.9.58'de (Mart 2023'te yayınlandı) bunu uygulamıştır.
-
 
 

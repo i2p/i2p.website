@@ -1,5 +1,6 @@
 ---
 title: "Reunión de desarrolladores de I2P - 23 de marzo de 2004"
+slug: "i2p-dev-meeting-march-23-2004"
 date: 2004-03-23
 author: "jrand0m"
 description: "Registro de la reunión de desarrollo de I2P del 23 de marzo de 2004."

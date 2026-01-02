@@ -45,5 +45,3 @@ Yorumlar '#' ile başlar.
 n/a
 
 
-
-

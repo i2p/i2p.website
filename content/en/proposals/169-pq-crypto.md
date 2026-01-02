@@ -253,7 +253,7 @@ and we will review it for ideas and inspiration. TODO.
 
 ### Common Structures
 
-Update the sections and tables in the common structures document [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/) as follows:
+Update the sections and tables in the common structures document [/docs/specs/common-structures/](/docs/specs/common-structures/) as follows:
 
 
 ### PublicKey
@@ -737,7 +737,7 @@ unchanged
 
 ### Ratchet
 
-Update the ECIES-Ratchet specification [/en/docs/spec/ecies/](/en/docs/spec/ecies/) as follows:
+Update the ECIES-Ratchet specification [/docs/specs/ecies/](/docs/specs/ecies/) as follows:
 
 
 #### Noise identifiers
@@ -959,14 +959,14 @@ Sizes:
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
 
 Note that while message 2 will normally have a nonzero payload,
-the ratchet specification [/en/docs/spec/ecies/](/en/docs/spec/ecies/) does not require it, so the minimum payload size is 0.
+the ratchet specification [/docs/specs/ecies/](/docs/specs/ecies/) does not require it, so the minimum payload size is 0.
 The minimum message 2 sizes may be calculated accordingly.
 
 
 
 ### NTCP2
 
-Update the NTCP2 specification [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/) as follows:
+Update the NTCP2 specification [/docs/specs/ntcp2/](/docs/specs/ntcp2/) as follows:
 
 
 #### Noise identifiers
@@ -1158,7 +1158,7 @@ Unchanged
 
 ### SSU2
 
-Update the SSU2 specification [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/) as follows:
+Update the SSU2 specification [/docs/specs/ssu2/](/docs/specs/ssu2/) as follows:
 
 
 #### Noise identifiers

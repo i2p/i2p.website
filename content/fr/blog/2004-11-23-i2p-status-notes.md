@@ -10,7 +10,6 @@ Salut tout le monde, il est temps de faire un point de situation
 
 ## Index :
 
-Fournissez UNIQUEMENT la traduction, rien d'autre :
 
 1. Net status
 2. Streaming lib

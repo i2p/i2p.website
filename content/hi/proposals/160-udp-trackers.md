@@ -12,7 +12,7 @@ toc: true
 
 ## स्थिति
 
-2025-06-24 की समीक्षा में अनुमोदित। विशिष्टता [UDP specification](/en/docs/spec/udp-bittorrent-announces/) पर है। zzzot 0.20.0-beta2 में कार्यान्वित। API 0.9.67 के रूप में i2psnark में कार्यान्वित। स्थिति के लिए अन्य कार्यान्वयनों के दस्तावेजीकरण की जांच करें।
+2025-06-24 की समीक्षा में अनुमोदित। विशिष्टता [UDP specification](/docs/specs/udp-bittorrent-announces/) पर है। zzzot 0.20.0-beta2 में कार्यान्वित। API 0.9.67 के रूप में i2psnark में कार्यान्वित। स्थिति के लिए अन्य कार्यान्वयनों के दस्तावेजीकरण की जांच करें।
 
 ## अवलोकन
 
@@ -20,9 +20,9 @@ toc: true
 
 ### Change History
 
-I2P में UDP trackers के लिए एक प्रारंभिक प्रस्ताव हमारे [bittorrent spec page](/en/docs/applications/bittorrent/) पर मई 2014 में पोस्ट किया गया था; यह हमारी औपचारिक प्रस्ताव प्रक्रिया से पहले था, और इसे कभी लागू नहीं किया गया। यह प्रस्ताव 2022 की शुरुआत में बनाया गया था और 2014 संस्करण को सरल बनाता है।
+I2P में UDP trackers के लिए एक प्रारंभिक प्रस्ताव हमारे [bittorrent spec page](/docs/applications/bittorrent/) पर मई 2014 में पोस्ट किया गया था; यह हमारी औपचारिक प्रस्ताव प्रक्रिया से पहले था, और इसे कभी लागू नहीं किया गया। यह प्रस्ताव 2022 की शुरुआत में बनाया गया था और 2014 संस्करण को सरल बनाता है।
 
-चूंकि यह प्रस्ताव repliable datagrams पर निर्भर करता है, इसे तब रोक दिया गया था जब हमने 2023 की शुरुआत में [Datagram2 proposal](/en/proposals/163-datagram2/) पर काम करना शुरू किया था। वह प्रस्ताव अप्रैल 2025 में स्वीकृत हुआ था।
+चूंकि यह प्रस्ताव repliable datagrams पर निर्भर करता है, इसे तब रोक दिया गया था जब हमने 2023 की शुरुआत में [Datagram2 proposal](/proposals/163-datagram2/) पर काम करना शुरू किया था। वह प्रस्ताव अप्रैल 2025 में स्वीकृत हुआ था।
 
 इस प्रस्ताव के 2023 संस्करण में दो मोड निर्दिष्ट थे, "compatibility" और "fast"। आगे के विश्लेषण से पता चला कि fast मोड असुरक्षित होगा, और बड़ी संख्या में torrents वाले clients के लिए भी अक्षम होगा। इसके अलावा, BiglyBT ने compatibility मोड के लिए प्राथमिकता दर्शाई। यह मोड मानक [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) का समर्थन करने वाले किसी भी tracker या client के लिए implement करना आसान होगा।
 
@@ -42,11 +42,11 @@ Bittorrent ने 2008 में BEP 15 [BEP 15](http://www.bittorrent.org/beps/
 
 इसके अतिरिक्त, implementation-specific मेमोरी में कमी होनी चाहिए, क्योंकि datagrams को streaming connection की तुलना में बहुत कम in-memory state की आवश्यकता होती है।
 
-Post-Quantum encryption और signatures जैसा कि [/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/) में परिकल्पित है, encrypted और signed structures का overhead काफी बढ़ाएंगे, जिसमें destinations, leasesets, streaming SYN और SYN ACK शामिल हैं। I2P में PQ crypto को अपनाने से पहले जहाँ संभव हो वहाँ इस overhead को कम करना महत्वपूर्ण है।
+Post-Quantum encryption और signatures जैसा कि [/proposals/169-pq-crypto/](/proposals/169-pq-crypto/) में परिकल्पित है, encrypted और signed structures का overhead काफी बढ़ाएंगे, जिसमें destinations, leasesets, streaming SYN और SYN ACK शामिल हैं। I2P में PQ crypto को अपनाने से पहले जहाँ संभव हो वहाँ इस overhead को कम करना महत्वपूर्ण है।
 
 ## प्रेरणा
 
-यह प्रस्ताव repliable datagram2, repliable datagram3, और raw datagrams का उपयोग करता है, जैसा कि [/en/docs/spec/datagrams/](/en/docs/spec/datagrams/) में परिभाषित है। Datagram2 और Datagram3 repliable datagrams के नए रूप हैं, जो Proposal 163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/) में परिभाषित हैं। Datagram2 replay प्रतिरोध और offline signature समर्थन जोड़ता है। Datagram3 पुराने datagram format से छोटा है, लेकिन authentication के बिना।
+यह प्रस्ताव repliable datagram2, repliable datagram3, और raw datagrams का उपयोग करता है, जैसा कि [/docs/api/datagrams/](/docs/api/datagrams/) में परिभाषित है। Datagram2 और Datagram3 repliable datagrams के नए रूप हैं, जो Proposal 163 [/proposals/163-datagram2/](/proposals/163-datagram2/) में परिभाषित हैं। Datagram2 replay प्रतिरोध और offline signature समर्थन जोड़ता है। Datagram3 पुराने datagram format से छोटा है, लेकिन authentication के बिना।
 
 ### BEP 15
 
@@ -99,7 +99,7 @@ announce अनुरोध Datagram3 होते हैं ताकि tracke
 
 #### Clients
 
-बाहरी SAM-आधारित torrent clients जैसे qbittorrent और अन्य libtorrent-आधारित clients को [SAM v3.3](/en/docs/api/samv3/) की आवश्यकता होगी जो i2pd द्वारा समर्थित नहीं है। यह DHT support के लिए भी आवश्यक है, और इतना जटिल है कि किसी भी ज्ञात SAM torrent client ने इसे implement नहीं किया है। इस proposal का कोई SAM-आधारित implementation जल्द ही अपेक्षित नहीं है।
+बाहरी SAM-आधारित torrent clients जैसे qbittorrent और अन्य libtorrent-आधारित clients को [SAM v3.3](/docs/api/samv3/) की आवश्यकता होगी जो i2pd द्वारा समर्थित नहीं है। यह DHT support के लिए भी आवश्यक है, और इतना जटिल है कि किसी भी ज्ञात SAM torrent client ने इसे implement नहीं किया है। इस proposal का कोई SAM-आधारित implementation जल्द ही अपेक्षित नहीं है।
 
 ### Connection Lifetime
 

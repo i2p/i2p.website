@@ -13,7 +13,7 @@ toc: true
 Cette proposition n'a pas été mise en œuvre telle que spécifiée,
 cependant, les messages de construction long et court ECIES (propositions 152 et 157)
 ont été conçus avec des champs d'options extensibles.
-Voir la [spécification Tunnel Creation ECIES](/en/docs/spec/tunnel-creation-ecies/) pour la spécification officielle.
+Voir la [spécification Tunnel Creation ECIES](/docs/specs/implementation/#tunnel-creation-ecies) pour la spécification officielle.
 
 
 ## Vue d'ensemble
@@ -33,7 +33,6 @@ Utiliser la construction 'mapping' utiliserait au moins 6 octets par option ("1a
 Définir plus de champs d'options de manière rigide pourrait poser des problèmes plus tard.
 
 Ce document propose un nouveau schéma de mappage d'options flexible.
-
 
 
 ## Conception
@@ -83,7 +82,6 @@ Il y a 495 octets disponibles dans le TBRM.
 
 Ces changements concernent les Enregistrements de Construction de Tunnel, et peuvent donc être utilisés dans toutes les variantes de Message de Construction -
 Demande de Construction de Tunnel, Demande de Construction de Tunnel Variable, Réponse de Construction de Tunnel, et Réponse de Construction de Tunnel Variable.
-
 
 
 ## Migration

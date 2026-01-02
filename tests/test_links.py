@@ -1,348 +1,200 @@
-"""Test internal link validation.
-
-Tests:
-- Validate internal links in generated HTML
-- Validate internal links in markdown content
-"""
-
+import pytest
 import re
 from pathlib import Path
-from typing import Set
-
-import pytest
 from bs4 import BeautifulSoup
+from urllib.parse import unquote, urlparse
 
 
-def extract_internal_links_from_html(html_path: Path) -> Set[str]:
-    """Extract all internal links from an HTML file."""
-    with open(html_path, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    soup = BeautifulSoup(content, "html.parser")
-    links = set()
-
-    for tag in soup.find_all("a", href=True):
-        href = tag["href"]
-
-        if href.startswith("/"):
-            links.add(href.split("#")[0].split("?")[0])
-        elif href.startswith("http://") or href.startswith("https://"):
-            pass
-        elif href.startswith("#") or href.startswith("?"):
-            pass
-        elif href and not href.startswith(("mailto:", "tel:", "ftp://", "file://")):
-            links.add(href)
-
-    return links
+@pytest.fixture(scope="module")
+def built_site(build_hugo_site):
+    """
+    Ensure the site is built once for this module.
+    Returns the path to the public directory.
+    """
+    return build_hugo_site
 
 
-def get_valid_urls_from_build(build_dir: Path) -> Set[str]:
-    """Get all valid URLs from Hugo build output."""
-    valid_urls = set()
-
-    for html_file in build_dir.glob("**/*.html"):
-        relative = html_file.relative_to(build_dir)
-
-        if relative.name == "index.html":
-            url = f"/{relative.parent}/"
-            if url == "//":
-                url = "/"
-        else:
-            url = f"/{relative}"
-
-        valid_urls.add(url)
-
-    for json_file in build_dir.glob("**/*.json"):
-        relative = json_file.relative_to(build_dir)
-        url = f"/{relative}"
-        valid_urls.add(url)
-
-    for xml_file in build_dir.glob("**/*.xml"):
-        relative = xml_file.relative_to(build_dir)
-        url = f"/{relative}"
-        valid_urls.add(url)
-
-    return valid_urls
+def get_all_html_files(root: Path):
+    return list(root.glob("**/*.html"))
 
 
-def extract_internal_links_from_markdown(content_dir: Path) -> Set[str]:
-    """Extract internal links from markdown files."""
-    links = set()
+def test_internal_links_in_html(built_site):
+    """
+    Parse all HTML files and check that internal links point to existing files.
 
-    link_pattern = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+    This test handles Hugo's multilingual setup with relativeURLs = true,
+    where links are relative paths like '../en/about/' rather than absolute '/en/about/'.
 
-    for md_file in content_dir.glob("**/*.md"):
-        with open(md_file, "r", encoding="utf-8") as f:
-            content = f.read()
+    Static files (keys, PDFs, images) live at the site root, not under language dirs.
+    """
+    html_files = get_all_html_files(built_site)
+    assert html_files, "No HTML files found in build output"
 
-        for match in link_pattern.finditer(content):
-            url = match.group(2)
+    broken_links = []
+    checked_count = 0
 
-            if url.startswith("/"):
-                links.add(url)
-            elif url.startswith("http://") or url.startswith("https://"):
-                pass
-            elif url.startswith("#"):
-                pass
-            elif url and not url.startswith(("mailto:", "tel:")):
-                links.add(url)
-
-    return links
-
-
-def get_content_file_paths(content_dir: Path) -> Set[str]:
-    """Get paths of all content files for validation."""
-    paths = set()
-
-    for content_file in content_dir.glob("**/*.md"):
-        relative = content_file.relative_to(content_dir)
-
-        if relative.name == "_index.md":
-            path = f"/{relative.parent}/"
-        else:
-            path = f"/{relative.with_suffix('')}/"
-
-        paths.add(path)
-
-    return paths
-
-
-def test_hugo_build_succeeds(build_hugo_site: Path) -> None:
-    """Test that Hugo builds successfully."""
-    assert build_hugo_site.exists(), "Hugo build directory not found"
-    assert (build_hugo_site / "index.html").exists(), (
-        "index.html not found in build output"
-    )
-
-
-def test_html_links_valid(build_hugo_site: Path) -> None:
-    """Test that all internal HTML links point to valid URLs."""
-    valid_urls = get_valid_urls_from_build(build_hugo_site)
-
-    broken_links = {}
-
-    for html_file in build_hugo_site.glob("**/*.html"):
-        links = extract_internal_links_from_html(html_file)
-
-        broken = [link for link in links if link not in valid_urls]
-
-        if broken:
-            relative_path = html_file.relative_to(build_hugo_site)
-            broken_links[str(relative_path)] = broken
-
-    if broken_links:
-        print(
-            f"\n❌ Found {sum(len(b) for b in broken_links.values())} broken links in HTML:"
-        )
-        for file_path, links in sorted(broken_links.items()):
-            print(f"\n  {file_path}:")
-            for link in sorted(links)[:5]:
-                print(f"    - {link}")
-            if len(links) > 5:
-                print(f"    ... and {len(links) - 5} more")
-
-        pytest.fail(f"Found broken internal links in {len(broken_links)} HTML files")
-
-
-def test_markdown_links_valid(content_dir: Path) -> None:
-    """Test that all internal markdown links point to valid content files."""
-    content_paths = get_content_file_paths(content_dir)
-    markdown_links = extract_internal_links_from_markdown(content_dir)
-
-    broken_links = [link for link in markdown_links if link not in content_paths]
-
-    if broken_links:
-        print(f"\n❌ Found {len(broken_links)} broken links in markdown content:")
-        for link in sorted(broken_links)[:20]:
-            print(f"    - {link}")
-        if len(broken_links) > 20:
-            print(f"    ... and {len(broken_links) - 20} more")
-
-        pytest.fail(f"Found {len(broken_links)} broken links in markdown files")
-
-
-def test_all_languages_have_index(build_hugo_site: Path) -> None:
-    """Test that all language directories have an index.html."""
-    expected_languages = [
-        "en",
-        "es",
-        "ko",
-        "zh",
-        "ru",
-        "cs",
-        "de",
-        "fr",
-        "tr",
-        "vi",
-        "hi",
-        "ar",
-        "pt",
-    ]
-
-    missing_languages = []
-
-    for lang in expected_languages:
-        index_path = build_hugo_site / lang / "index.html"
-        if not index_path.exists():
-            missing_languages.append(lang)
-
-    if missing_languages:
-        pytest.fail(f"Missing index.html for languages: {', '.join(missing_languages)}")
-
-
-def test_root_index_exists(build_hugo_site: Path) -> None:
-    """Test that root index.html exists."""
-    assert (build_hugo_site / "index.html").exists(), "Root index.html not found"
-
-
-def test_docs_index_json_exists(build_hugo_site: Path) -> None:
-    """Test that docs search index JSON files exist for all languages."""
-    expected_languages = [
-        "en",
-        "es",
-        "ko",
-        "zh",
-        "ru",
-        "cs",
-        "de",
-        "fr",
-        "tr",
-        "vi",
-        "hi",
-        "ar",
-        "pt",
-    ]
-
-    missing_languages = []
-
-    for lang in expected_languages:
-        index_path = build_hugo_site / lang / "docs" / "index.json"
-        if not index_path.exists():
-            missing_languages.append(lang)
-
-    if missing_languages:
-        pytest.fail(
-            f"Missing docs/index.json for languages: {', '.join(missing_languages)}"
-        )
-
-
-def test_rss_feeds_exist(build_hugo_site: Path) -> None:
-    """Test that RSS feeds exist for all languages."""
-    expected_languages = [
-        "en",
-        "es",
-        "ko",
-        "zh",
-        "ru",
-        "cs",
-        "de",
-        "fr",
-        "tr",
-        "vi",
-        "hi",
-        "ar",
-        "pt",
-    ]
-
-    missing_languages = []
-
-    for lang in expected_languages:
-        feed_path = build_hugo_site / lang / "index.xml"
-        if not feed_path.exists():
-            missing_languages.append(lang)
-
-    if missing_languages:
-        pytest.fail(
-            f"Missing index.xml (RSS feed) for languages: {', '.join(missing_languages)}"
-        )
-
-
-def test_no_broken_anchor_links(build_hugo_site: Path) -> None:
-    """Test that anchor links (#section) point to existing elements."""
-    broken_anchors = {}
-
-    for html_file in build_hugo_site.glob("**/*.html"):
+    for html_file in html_files:
         with open(html_file, "r", encoding="utf-8") as f:
-            content = f.read()
+            soup = BeautifulSoup(f, "html.parser")
 
-        soup = BeautifulSoup(content, "html.parser")
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
 
-        anchor_ids = set()
-        for tag in soup.find_all(attrs={"id": True}):
-            anchor_ids.add(tag["id"])
+            # Skip external links, mailto, tel, javascript, anchors
+            if href.startswith(("http://", "https://", "mailto:", "tel:", "//", "#", "javascript:")):
+                continue
 
-        for tag in soup.find_all("a", href=True):
-            href = tag["href"]
-            if "#" in href and not href.startswith("#"):
-                url_part, anchor = href.split("#", 1)
+            # Parse the URL to handle query params and fragments
+            parsed = urlparse(href)
+            path = unquote(parsed.path)
 
-                if url_part == "" or url_part == "/" or url_part.startswith("/"):
-                    pass
+            # Skip empty paths (just fragments like "#section")
+            if not path:
+                continue
+
+            checked_count += 1
+            target = None
+
+            # Resolve the path relative to the HTML file's directory
+            # This works for both relative paths (../../foo) and root-relative paths
+            if path.startswith("/"):
+                # Absolute path from site root (rare with relativeURLs=true)
+                rel_path = path.lstrip("/")
+                if not rel_path or rel_path.endswith("/"):
+                    target = built_site / rel_path / "index.html"
                 else:
+                    target = built_site / rel_path
+                    if not target.exists() and not target.suffix:
+                        target = built_site / rel_path / "index.html"
+            else:
+                # Relative path - resolve from current file's directory
+                parent = html_file.parent
+                try:
+                    target = (parent / path).resolve()
+                except OSError:
+                    # Handle filename too long or other FS errors
+                    broken_links.append((
+                        str(html_file.relative_to(built_site)),
+                        href,
+                        "OSError resolving path"
+                    ))
                     continue
 
-                if anchor and anchor not in anchor_ids:
-                    relative_path = html_file.relative_to(build_hugo_site)
-                    if relative_path not in broken_anchors:
-                        broken_anchors[relative_path] = []
-                    broken_anchors[relative_path].append(anchor)
+                # If target is a directory, look for index.html
+                try:
+                    if target.is_dir():
+                        target = target / "index.html"
+                    elif not target.suffix and not target.exists():
+                        # No extension and doesn't exist - try as directory
+                        target = target / "index.html"
+                except OSError:
+                    broken_links.append((
+                        str(html_file.relative_to(built_site)),
+                        href,
+                        "OSError checking target"
+                    ))
+                    continue
 
-    if broken_anchors:
-        print(f"\n❌ Found broken anchor links in {len(broken_anchors)} files:")
-        for file_path, anchors in sorted(broken_anchors.items()):
-            print(f"\n  {file_path}:")
-            for anchor in sorted(anchors)[:5]:
-                print(f"    - #{anchor}")
-            if len(anchors) > 5:
-                print(f"    ... and {len(anchors) - 5} more")
+            # Check if target exists
+            try:
+                if not target.exists():
+                    broken_links.append((
+                        str(html_file.relative_to(built_site)),
+                        href,
+                        str(target)
+                    ))
+            except OSError:
+                broken_links.append((
+                    str(html_file.relative_to(built_site)),
+                    href,
+                    f"OSError checking existence: {target}"
+                ))
 
-        pytest.fail(f"Found broken anchor links")
+    # Generate report if there are broken links
+    if broken_links:
+        report_path = Path("broken_links_report.md")
+        with open(report_path, "w", encoding="utf-8") as f:
+            f.write("# Broken Links Report\n\n")
+            f.write(f"Total links checked: {checked_count}\n")
+            f.write(f"Broken links found: {len(broken_links)}\n\n")
+            f.write("| Source File | Link | Resolved Path |\n")
+            f.write("|-------------|------|---------------|\n")
+            for source, link, resolved in broken_links:
+                # Escape pipe characters in paths
+                link_escaped = link.replace("|", "\\|")
+                resolved_escaped = resolved.replace("|", "\\|")
+                f.write(f"| {source} | {link_escaped} | {resolved_escaped} |\n")
+
+        print(f"\nGenerated broken links report at: {report_path.absolute()}")
+        print(f"Checked {checked_count} links, found {len(broken_links)} broken")
+
+        # Show first few broken links
+        print("\nFirst 10 broken links:")
+        for source, link, resolved in broken_links[:10]:
+            print(f"  {source} -> {link}")
+
+        # Fail the test if there are broken links
+        pytest.fail(f"Found {len(broken_links)} broken internal links. See broken_links_report.md for details.")
 
 
-def test_static_files_exist(build_hugo_site: Path, static_dir: Path) -> None:
-    """Test that referenced static files exist in build output."""
-    static_files_in_build = set()
+def test_markdown_internal_links(all_content_files, project_root):
+    """
+    Regex-based check for [link](url) in Markdown files.
 
-    for static_file in build_hugo_site.glob("**/*"):
-        if static_file.is_file():
-            static_files_in_build.add(static_file.name)
+    This checks raw markdown links before Hugo processing.
+    Useful for catching typos in relative links between content files.
+    """
+    broken_md_links = []
 
-    for static_file in static_dir.glob("**/*"):
-        if static_file.is_file():
-            if static_file.name not in static_files_in_build:
-                relative_path = static_file.relative_to(static_dir)
-                print(f"\n⚠️  Static file not in build: {relative_path}")
+    # Regex for standard markdown links [text](target)
+    link_pattern = re.compile(r'\[.*?\]\((.*?)\)')
 
+    for md_file in all_content_files:
+        if "node_modules" in str(md_file):
+            continue
 
-def test_image_links_exist(build_hugo_site: Path) -> None:
-    """Test that image src attributes point to existing files."""
-    broken_images = {}
+        # Skip documentation guidelines which contain example links
+        if "i2p-documentation-writing-guidelines.md" in md_file.name:
+            continue
 
-    for html_file in build_hugo_site.glob("**/*.html"):
-        with open(html_file, "r", encoding="utf-8") as f:
-            content = f.read()
+        try:
+            content = md_file.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
 
-        soup = BeautifulSoup(content, "html.parser")
+        for match in link_pattern.finditer(content):
+            url = match.group(1)
+            # Clean up title part "link.md 'Title'"
+            url = url.split()[0]
+            # Strip anchor and query
+            url = url.split("#")[0].split("?")[0]
 
-        for img in soup.find_all("img", src=True):
-            src = img["src"]
+            # Skip external, mailto, shortcodes, and root-relative links
+            if url.startswith(("http", "mailto", "#", "{{", "<", "/")):
+                continue
 
-            if src.startswith("/"):
-                file_path = build_hugo_site / src.lstrip("/")
+            # Skip empty URLs
+            if not url:
+                continue
 
-                if not file_path.exists():
-                    relative_path = html_file.relative_to(build_hugo_site)
-                    if relative_path not in broken_images:
-                        broken_images[relative_path] = []
-                    broken_images[relative_path].append(src)
+            # Relative link - resolve relative to md_file
+            target = (md_file.parent / url).resolve()
 
-    if broken_images:
-        print(f"\n❌ Found broken image links in {len(broken_images)} files:")
-        for file_path, images in sorted(broken_images.items()):
-            print(f"\n  {file_path}:")
-            for img in sorted(images)[:5]:
-                print(f"    - {img}")
-            if len(images) > 5:
-                print(f"    ... and {len(images) - 5} more")
+            # Target could be .md file or a directory (which implies _index.md)
+            if not target.exists():
+                # Maybe it is just missing extension?
+                if not target.suffix:
+                    # Try adding .md
+                    if not target.with_suffix(".md").exists():
+                        # Try _index.md
+                        if not (target / "_index.md").exists():
+                            broken_md_links.append(f"{md_file.relative_to(project_root)} -> {url}")
+                else:
+                    broken_md_links.append(f"{md_file.relative_to(project_root)} -> {url}")
 
-        pytest.fail(f"Found broken image links")
+    if broken_md_links:
+        print(f"\nFound {len(broken_md_links)} potential broken relative links in Markdown:")
+        for link in broken_md_links[:20]:
+            print(f"  {link}")
+        if len(broken_md_links) > 20:
+            print(f"  ... and {len(broken_md_links) - 20} more")

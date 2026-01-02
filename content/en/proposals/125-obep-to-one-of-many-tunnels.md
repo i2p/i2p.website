@@ -28,7 +28,7 @@ delivering the message to all specified tunnels).
 
 An alternative to the delegation part of this proposal would be to send through
 a LeaseSet hash, similar to the existing ability to specify a target
-[RouterIdentity](http://localhost:63465/en/docs/specs/common-structures/#common-structure-specification) hash. This would result in a smaller message and a potentially
+[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) hash. This would result in a smaller message and a potentially
 newer LeaseSet. However:
 
 1. It would force the OBEP to do a lookup
@@ -37,15 +37,15 @@ newer LeaseSet. However:
 
 3. The LeaseSet may be encrypted, so the OBEP couldn't get the leases.
 
-4. Specifying a LeaseSet reveals to the OBEP the [Destination](/en/docs/specs/common-structures/#destination) of the message,
+4. Specifying a LeaseSet reveals to the OBEP the [Destination](/docs/specs/common-structures/#destination) of the message,
    which they could otherwise only discover by scraping all the LeaseSets in the
    network and looking for a Lease match.
 
 
 ## Design
 
-The originator (OBGW) would place some (all?) of the target [Leases](http://localhost:63465/en/docs/specs/common-structures/#lease) in the
-delivery instructions [TUNNEL-DELIVERY](/en/docs/specs/i2np/#tunnel-message-delivery-instructions) instead of picking just one.
+The originator (OBGW) would place some (all?) of the target [Leases](http://localhost:63465/docs/specs/common-structures/#lease) in the
+delivery instructions [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) instead of picking just one.
 
 The OBEP would select one of those to deliver to. The OBEP would select, if
 available, one that it is already connected to, or already knows about. This
@@ -158,7 +158,7 @@ and the OBEPs. We can therefore make this change compatible with the existing
 network by making its use conditional on the target I2P version:
 
 * The OBGWs must select compatible OBEPs when building outbound tunnels, based
-  on the I2P version advertised in their [RouterInfo](http://localhost:63465/en/docs/specs/common-structures/#routerinfo).
+  on the I2P version advertised in their [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
 
 * Peers that advertise the target version must support parsing the new flags,
   and must not reject the instructions as invalid.

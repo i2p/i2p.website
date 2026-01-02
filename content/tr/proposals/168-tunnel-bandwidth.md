@@ -13,9 +13,8 @@ toc: true
 ## NOT
 
 Bu öneri onaylandı ve şu anda API 0.9.65 itibarıyla
-[Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/) yer alıyor.
+[Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies) yer alıyor.
 Henüz bilinen bir uygulama yok; uygulama tarihleri / API sürümleri TBD.
-
 
 
 ## Genel Bakış
@@ -35,18 +34,16 @@ Bu, bir hizmetin aşırı yüklenmesi veya DDoS durumu sırasında oldukça fayd
 Bu öneri, tünel oluşturma isteği ve yanıt mesajlarına bant genişliği parametreleri ekleyerek bu sorunları ele alır.
 
 
-
 ## Tasarım
 
-Bant genişliği parametrelerini, tünel oluşturma seçenekleri haritalama alanındaki ECIES tünel oluşturma mesajlarındaki kayıtlara ekleyin (bkz. [Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/)).
+Bant genişliği parametrelerini, tünel oluşturma seçenekleri haritalama alanındaki ECIES tünel oluşturma mesajlarındaki kayıtlara ekleyin (bkz. [Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies)).
 Çünkü seçenekler alanı için kullanılabilir alan sınırlıdır, kısa parametre isimleri kullanın.
 Tünel oluşturma mesajları sabit boyutlu olduğundan, bu mesajların boyutunu artırmaz.
 
 
-
 ## Spesifikasyon
 
-[ECIES tünel oluşturma mesaj spesifikasyonunu](/en/docs/spec/tunnel-creation-ecies/) güncelleyin
+[ECIES tünel oluşturma mesaj spesifikasyonunu](/docs/specs/implementation/#tunnel-creation-ecies) güncelleyin
 aşağıdaki gibi:
 
 Hem uzun hem de kısa ECIES oluşturma kayıtları için:
@@ -134,7 +131,6 @@ Bir uçtan uca bağlantının diğer ucunun sahibi tarafından oluşturulan "uza
 için gereken veya ayrılmış bant genişliği talep etmek veya ayırmak için tanımlanmış bir yöntem yoktur.
 
 
-
 ## Güvenlik Analizi
 
 İsteklere dayanarak istemci parmak izleme veya korelasyon yapılabilir.
@@ -171,6 +167,5 @@ Uygulamalar herhangi bir zamanda destek ekleyebilir, koordinasyona gerek yoktur.
 
 Bu öneriye destek verilmesinin gereken herhangi bir API sürümü henüz tanımlanmadığından,
 yönlendiriciler destek onayını almak için "b" yanıtını kontrol etmelidir.
-
 
 

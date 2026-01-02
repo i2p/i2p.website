@@ -29,7 +29,6 @@ Ngoài ra, đề xuất này cung cấp hướng dẫn cho các nhà triển kha
 Cuối cùng, đề xuất thảo luận về các khả năng cho các định dạng mới của Điểm đích và Nhận dạng Router có thể loại bỏ hoàn toàn đệm. Cũng có một cuộc thảo luận ngắn gọn về mật mã sau lượng tử và cách nó có thể ảnh hưởng đến kế hoạch trong tương lai.
 
 
-
 ### Mục tiêu
 
 - Loại bỏ yêu cầu tạo cặp khóa ElGamal cho Điểm đích
@@ -52,7 +51,6 @@ có thể loại bỏ hoàn toàn mã ElGamal, tùy thuộc vào các xem xét t
 trong các giao thức khác.
 
 
-
 ## Thiết kế
 
 Nói một cách chặt chẽ, khóa công khai ký 32 byte một mình (cả trong Điểm đích và Nhận dạng Router) và khóa công khai mã hóa 32 byte (chỉ trong Nhận dạng Router) là một số ngẫu nhiên cung cấp tất cả entropy cần thiết cho các hàm băm SHA-256 của các cấu trúc này để mạnh về mặt mật mã và phân phối ngẫu nhiên trong cơ sở dữ liệu mạng DHT.
@@ -60,7 +58,6 @@ Nói một cách chặt chẽ, khóa công khai ký 32 byte một mình (cả tr
 Tuy nhiên, do sự cẩn thận quá mức, chúng tôi khuyến nghị tối thiểu 32 byte dữ liệu ngẫu nhiên được sử dụng trong trường khóa công khai ElG và đệm. Ngoài ra, nếu các trường này đều là số không, các điểm đến Base 64 sẽ chứa các chuỗi dài của các ký tự AAAA, có thể gây lo ngại hoặc nhầm lẫn cho người dùng.
 
 Đối với loại chữ ký Ed25519 và loại mã hóa X25519: Điểm đích sẽ chứa 11 bản sao (352 byte) của dữ liệu ngẫu nhiên. Nhận dạng Router sẽ chứa 10 bản sao (320 byte) của dữ liệu ngẫu nhiên.
-
 
 
 ### Tiết kiệm Ước tính
@@ -80,7 +77,6 @@ Các điểm đích trong thông điệp Lưu trữ Cơ sở không được né
 | Thông tin Router | 1000 typ. | 71 | 320 | 32 | 722 typ. | 288 byte (29%) |
 
 Ghi chú: Giả sử giấy chứng nhận dài 7 byte không thể nén, không có chi phí dữ liệu nén thêm. Không đúng hoàn toàn, nhưng ảnh hưởng sẽ nhỏ. Bỏ qua các phần khác có thể nén của Thông tin Router.
-
 
 
 ## Đặc tả
@@ -148,9 +144,6 @@ Chi phí và lợi ích của những thay đổi này chưa rõ ràng.
 Đề xuất cụ thể Sẽ Được Xác Định:
 
 
-
-
-
 ### Khóa PQ
 
 Khóa công khai mã hóa Sau Lượng Tử (PQ), đối với bất kỳ thuật toán dự kiến nào, lớn hơn 256 byte. Điều này sẽ loại bỏ đệm và bất kỳ tiết kiệm nào từ các thay đổi đề xuất trên, cho các Nhận dạng Router.
@@ -164,8 +157,6 @@ Vì vậy, PQ chỉ ảnh hưởng đến Thông tin Router, và chỉ đối v�
 Để thảo luận thêm, xem [this topic](http://zzz.i2p/topics/3294).
 
 
-
-
 ## Vấn đề
 
 Có thể sẽ muốn thay đổi khóa mạng với tốc độ chậm, để cung cấp bảo mật cho các router mới. "Thay đổi khóa" có thể chỉ có nghĩa là thay đổi đệm, không thực sự thay đổi các khóa.
@@ -173,8 +164,6 @@ Có thể sẽ muốn thay đổi khóa mạng với tốc độ chậm, để c
 Không thể thay đổi khóa Các Điểm đích hiện có.
 
 Có nên xác định Nhận dạng Router với đệm trong trường khóa công khai bằng một loại mã hóa khác trong giấy chứng nhận khóa không? Điều này có thể gây ra các vấn đề tương thích.
-
-
 
 
 ## Di cư

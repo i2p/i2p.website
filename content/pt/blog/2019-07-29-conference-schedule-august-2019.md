@@ -9,7 +9,6 @@ description: "Os desenvolvedores do I2P estão participando de várias conferên
 
 Olá a todos,
 
-Forneça APENAS a tradução, nada mais:
 
 O próximo mês será agitado! Encontre-se com os desenvolvedores do I2P em dois workshops na Defcon 27 e conecte-se com pesquisadores que vêm observando a censura ao I2P no FOCI '19.
 

@@ -156,7 +156,6 @@ Aunque está fuera del alcance de esta propuesta, los routers y/o clientes deben
 (probablemente de forma persistente) el mapeo de clave pública a destino, y viceversa.
 
 
-
 ## Notas
 
 - Distinguir sabores antiguos de nuevos por longitud. Las direcciones b32 antiguas son siempre {52 caracteres}.b32.i2p. Las nuevas son {56+ caracteres}.b32.i2p

@@ -37,7 +37,6 @@ SSH sunucusu için bu tunnel'i yapılandırdığınız için, "Server" tunnel t�
 
 Buna iyi bir açıklama yazın:
 
-Yalnızca çeviriyi verin, başka bir şey değil:
 
 **Ekran görüntüsü yer tutucusu:** Ne için olduğunu açıklayın
 

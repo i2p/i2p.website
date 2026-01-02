@@ -8,7 +8,6 @@ categories: ["status"]
 
 Ahoj všichni,
 
-Poskytněte POUZE překlad, nic jiného:
 
 * Index
 

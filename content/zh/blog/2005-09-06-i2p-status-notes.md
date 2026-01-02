@@ -7,7 +7,6 @@ categories: ["status"]
 ---
 
 大家好，
-只提供翻译，不要添加其他内容：
 
 * Index
 

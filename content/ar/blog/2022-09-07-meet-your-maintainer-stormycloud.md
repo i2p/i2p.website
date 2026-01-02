@@ -8,7 +8,7 @@ categories: ["general"]
 
 ## حوار مع شركة StormyCloud Inc.
 
-مع أحدث [I2P Java release](https://geti2p.net/en/blog/post/2022/08/22/1.9.0-Release)، تم استبدال الـ outproxy الحالي، false.i2p، بـ StormyCloud outproxy الجديد لعمليات تثبيت I2P الجديدة. بالنسبة للأشخاص الذين يقومون بتحديث الـ router لديهم، يمكن التبديل إلى خدمة Stormycloud بسرعة.
+مع أحدث [I2P Java release](https://geti2p.net/en/blog/2022/08/22/1.9.0-Release)، تم استبدال الـ outproxy الحالي، false.i2p، بـ StormyCloud outproxy الجديد لعمليات تثبيت I2P الجديدة. بالنسبة للأشخاص الذين يقومون بتحديث الـ router لديهم، يمكن التبديل إلى خدمة Stormycloud بسرعة.
 
 في Hidden Services Manager لديك، غيّر كلًا من Outproxies وSSL Outproxies إلى exit.stormycloud.i2p ثم انقر على زر الحفظ الموجود في أسفل الصفحة.
 

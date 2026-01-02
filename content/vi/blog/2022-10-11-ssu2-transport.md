@@ -84,7 +84,6 @@ Các dự án Java I2P và i2pd sẽ đều kích hoạt SSU2 theo mặc định
 
 ## Tóm tắt
 
-Chỉ cung cấp bản dịch, không có gì khác:
 
 Những người sáng lập I2P đã phải đưa ra một số lựa chọn về các thuật toán và giao thức mật mã. Một số lựa chọn đó tốt hơn những lựa chọn khác, nhưng sau hai mươi năm, phần lớn đang bộc lộ dấu hiệu lạc hậu. Dĩ nhiên, chúng tôi biết điều này sẽ xảy ra, và trong mười năm qua chúng tôi đã lên kế hoạch và triển khai các nâng cấp về mật mã.
 

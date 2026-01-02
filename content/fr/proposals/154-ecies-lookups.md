@@ -221,7 +221,7 @@ tag :: une reply_tag de 8 octets
 Destinations ou routeurs ECIES envoient une recherche à un routeur ECIES, avec des clés de réponse intégrées.
 Pris en charge depuis la version 0.9.49.
 
-Les routeurs ECIES ont été introduits dans la version 0.9.48, voir [Prop156](/en/proposals/156-ecies-routers/).
+Les routeurs ECIES ont été introduits dans la version 0.9.48, voir [Prop156](/proposals/156-ecies-routers/).
 À partir de la version 0.9.49, les destinations et routeurs ECIES peuvent utiliser le même format que dans
 la section "ECIES à ElG" ci-dessus, avec des clés de réponse incluses dans la requête.
 La recherche utilisera le format "one time" dans [ECIES](/docs/specs/ecies/)

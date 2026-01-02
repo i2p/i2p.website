@@ -108,7 +108,6 @@ En ningún caso un router debe realizar una consulta DNS de un nombre de host pu
 ya sea directamente o a través de una biblioteca subyacente.
 
 
-
 ## Especificación
 
 Cambia las especificaciones de transporte de NTCP y SSU para indicar que el parámetro "host" debe ser
@@ -117,8 +116,6 @@ del router que contengan nombres de host.
 
 Esto también se aplica a los parámetros "ihost0", "ihost1" e "ihost2" en una dirección SSU.
 Los routers deben ignorar direcciones de introductor que contengan nombres de host.
-
-
 
 
 ## Notas

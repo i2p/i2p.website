@@ -180,4 +180,3 @@ categories: ["meeting"]
 
 </div>
 
-Forneça APENAS a tradução, nada mais:

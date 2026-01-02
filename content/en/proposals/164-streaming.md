@@ -48,7 +48,7 @@ If Alice and Charlie are API 0.9.58 or newer, any replay attempt by Bob will be 
 
 ## Specification
 
-Update the [Streaming specification](/en/docs/spec/streaming/) to add the following section:
+Update the [Streaming specification](/docs/specs/streaming/) to add the following section:
 
 ### Replay prevention
 

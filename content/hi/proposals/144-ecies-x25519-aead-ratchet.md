@@ -202,7 +202,7 @@ Crypto type 0 ElGamal है। Crypto types 1-3 ECIES-ECDH-AES-SessionTag क�
 
 ### क्रिप्टोग्राफिक डिज़ाइन का सारांश
 
-यह प्रस्ताव Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11) पर आधारित आवश्यकताएं प्रदान करता है। Noise में Station-To-Station protocol [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) के समान गुण हैं, जो [SSU](/docs/specs/ssu/) protocol का आधार है। Noise की भाषा में, Alice initiator है, और Bob responder है।
+यह प्रस्ताव Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revision 34, 2018-07-11) पर आधारित आवश्यकताएं प्रदान करता है। Noise में Station-To-Station protocol [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) के समान गुण हैं, जो [SSU](/docs/legacy/ssu/) protocol का आधार है। Noise की भाषा में, Alice initiator है, और Bob responder है।
 
 यह प्रस्ताव Noise protocol Noise_IK_25519_ChaChaPoly_SHA256 पर आधारित है। (प्रारंभिक key derivation function के लिए वास्तविक identifier "Noise_IKelg2_25519_ChaChaPoly_SHA256" है जो I2P extensions को दर्शाता है - नीचे KDF 1 section देखें) यह Noise protocol निम्नलिखित primitives का उपयोग करता है:
 
@@ -438,7 +438,6 @@ MixKey(d)
         MixKey(d) := output = HKDF(chainKey, d, "", 64)
                      chainKey = output[0:31]
                      k = output[32:63]
-
 
 
 ### सेशन टाइमआउट्स
@@ -1330,8 +1329,6 @@ TAGSET
         If there are few TAGSET_ENTRIES remaining, EXTEND(n) is called.
 
 
-
-
 ### 4) Ratchets
 
 Ratchets करते हैं लेकिन Signal की तरह उतनी तेज़ी से नहीं। हम प्राप्त की का ack को नई key generate करने से अलग करते हैं। सामान्य उपयोग में, Alice और Bob दोनों New Session में तुरंत ratchet करेंगे (दो बार), लेकिन दोबारा ratchet नहीं करेंगे।
@@ -1447,9 +1444,7 @@ Tag Sender                    Tag Receiver
   (reuse key #1, do DH, create IB Tagset #3)
 
 
-
                    ... use tag set #3 ...
-
 
 
        After tag set 3, repeat the above

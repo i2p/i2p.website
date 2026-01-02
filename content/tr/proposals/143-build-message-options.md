@@ -14,7 +14,7 @@ toc: true
 Bu öneri belirtildiği şekilde uygulanmamıştır,
 ancak ECIES uzun ve kısa yapı mesajları (öneriler 152 ve 157)
 genişletilebilir seçenekler alanı ile tasarlanmıştır.
-Resmi spesifikasyon için [Tunnel Creation ECIES spesifikasyonuna](/en/docs/spec/tunnel-creation-ecies/) bakınız.
+Resmi spesifikasyon için [Tunnel Creation ECIES spesifikasyonuna](/docs/specs/implementation/#tunnel-creation-ecies) bakınız.
 
 
 ## Genel Bakış
@@ -32,7 +32,6 @@ TBM'de 29 boş bayt var. Gelecekteki iyileştirmeler için esneklik sağlamalıy
 Daha fazla seçenek alanını katı bir şekilde tanımlamak daha sonra sorunlara yol açabilir.
 
 Bu belge, yeni, esnek bir seçenek haritalama şeması önerir.
-
 
 
 ## Tasarım
@@ -82,7 +81,6 @@ TBRM'de 495 boş bayt var.
 
 Bu değişiklikler Tünel Yapı Kayıtlarına yöneliktir ve bu nedenle tüm Yapı Mesajı çeşitlerinde kullanılabilir -
 Tünel Yapı İsteği, Değişken Tünel Yapı İsteği, Tünel Yapı Yanıtı ve Değişken Tünel Yapı Yanıtı.
-
 
 
 ## Geçiş

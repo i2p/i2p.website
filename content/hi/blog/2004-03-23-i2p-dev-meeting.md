@@ -1,5 +1,6 @@
 ---
 title: "I2P डेवलपर बैठक - 23 मार्च, 2004"
+slug: "i2p-dev-meeting-march-23-2004"
 date: 2004-03-23
 author: "jrand0m"
 description: "23 मार्च 2004 की I2P विकास बैठक का लॉग."

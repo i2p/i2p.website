@@ -36,7 +36,7 @@ Esta sección describe cambios en:
 - Encriptación de Participante + postprocesamiento
 - Encriptación de Punto Final de Entrada y Salida + postprocesamiento
 
-Para una descripción general del procesamiento actual de mensajes de túnel, consulte la especificación [Tunnel Implementation](/docs/tunnels/implementation/).
+Para una descripción general del procesamiento actual de mensajes de túnel, consulte la especificación [Tunnel Implementation](/docs/specs/implementation/).
 
 Solo se discuten cambios para enrutadores que soporten la encriptación de capa ChaCha20.
 
@@ -314,4 +314,4 @@ Ambos ataques también se bloquean al no permitir múltiples llamadas de orácul
 
 ## Referencias
 
-* [Tunnel-Implementation](/docs/tunnels/implementation/)
+* [Tunnel-Implementation](/docs/specs/implementation/)

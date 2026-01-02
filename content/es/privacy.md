@@ -96,7 +96,6 @@ Si tiene preguntas o inquietudes sobre esta Política de Privacidad, póngase en
 - **Email**: press@i2p.net
 - **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
 
-Proporcione ÚNICAMENTE la traducción, nada más:
 
 **Última actualización**: octubre de 2025
 

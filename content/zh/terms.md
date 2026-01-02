@@ -25,7 +25,6 @@ lastUpdated: "2025-10"
 
 您不得使用我们的网站来：
 
-仅提供翻译，不要包含其他内容：
 
 - Violate any applicable laws or regulations
 - Transmit malicious code or harmful software
@@ -129,7 +128,6 @@ I2P 软件以开源许可证提供。有关具体的许可条款，请参阅随�
 
 通过使用我们的网站或软件，您确认已阅读、理解并同意受本服务条款的约束。
 
-仅提供翻译，不要包含其他内容：
 
 **最后更新**: 2025年10月
 

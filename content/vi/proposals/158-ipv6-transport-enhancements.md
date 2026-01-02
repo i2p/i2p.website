@@ -27,7 +27,6 @@ chúng ta cần cải thiện hỗ trợ cho IPv6 và loại bỏ các giả đ�
 tất cả các router đều có khả năng IPv4.
 
 
-
 ### Kiểm tra Khả năng Kết nối
 
 Khi chọn đối tượng ngang hàng cho các đường hầm, hoặc chọn các đường OBEP/IBGW để định tuyến thông điệp,
@@ -43,7 +42,7 @@ Giải pháp là thêm hai "cap" mới hoặc khả năng vào Thông tin Router
 
 ### Người giới thiệu IPv6
 
-Các đặc tả [SSU](/en/docs/transport/ssu/) và [SSU-SPEC](/en/docs/spec/ssu/) của chúng tôi chứa các lỗi và sự không nhất quán về việc liệu
+Các đặc tả [SSU](/docs/specs/ssu2/) và [SSU-SPEC](/docs/legacy/ssu/) của chúng tôi chứa các lỗi và sự không nhất quán về việc liệu
 những người giới thiệu IPv6 có được hỗ trợ cho công việc giới thiệu IPv4 hay không.
 Trong mọi trường hợp, điều này chưa bao giờ được triển khai trong Java I2P hay i2pd.
 Điều này cần được sửa chữa.
@@ -51,7 +50,7 @@ Trong mọi trường hợp, điều này chưa bao giờ được triển khai 
 
 ### Giới thiệu IPv6
 
-Các đặc tả [SSU](/en/docs/transport/ssu/) và [SSU-SPEC](/en/docs/spec/ssu/) của chúng tôi làm rõ rằng
+Các đặc tả [SSU](/docs/specs/ssu2/) và [SSU-SPEC](/docs/legacy/ssu/) của chúng tôi làm rõ rằng
 giới thiệu IPv6 không được hỗ trợ.
 Điều này được đặt ra dưới giả định rằng IPv6 không bao giờ bị tường lửa bảo vệ.
 Đây là điều không đúng, và chúng ta cần cải thiện hỗ trợ cho các router IPv6 bị tường lửa bảo vệ.
@@ -125,7 +124,6 @@ Có ba thay đổi cần được thực hiện.
 - Thêm hỗ trợ giới thiệu IPv6 qua người giới thiệu IPv4 và IPv6
 
 
-
 ## Đặc tả
 
 ### 4/6 Caps
@@ -191,7 +189,6 @@ NTCP2 ẩn: Chỉ có Caps, s, v, 4/6, nhiều là cho phép. Không cần có h
 Ví dụ: NTCP2 caps="46" i=... s=... v="2"
 
 
-
 ### Người giới thiệu IPv6 cho IPv4
 
 Các thay đổi sau là cần thiết để điều chỉnh các lỗi và sự không nhất quán trong các đặc tả.
@@ -199,7 +196,7 @@ Chúng tôi cũng mô tả điều này như "phần 1" của đề xuất.
 
 #### Thay đổi đặc tả
 
-[SSU](/en/docs/transport/ssu/) hiện tại nói (ghi chú IPv6):
+[SSU](/docs/specs/ssu2/) hiện tại nói (ghi chú IPv6):
 
 IPv6 được hỗ trợ kể từ phiên bản 0.9.8. Địa chỉ relay công bố có thể là IPv4 hoặc IPv6, và giao tiếp Alice-Bob có thể qua IPv4 hoặc IPv6.
 
@@ -211,8 +208,7 @@ mặc dù chúng không thực sự hoạt động như một người giới th
 Do đó, các router chỉ nên tin tưởng khả năng 'C' trên một địa chỉ IPv6 nếu phiên bản router là 0.9.50 hoặc cao hơn.
 
 
-
-[SSU-SPEC](/en/docs/spec/ssu/) hiện tại nói (Relay Request):
+[SSU-SPEC](/docs/legacy/ssu/) hiện tại nói (Relay Request):
 
 Địa chỉ IP chỉ được bao gồm nếu nó khác với địa chỉ nguồn của gói tin và cổng.
 Trong triển khai hiện tại, độ dài IP luôn là 0 và cổng luôn là 0,
@@ -223,7 +219,6 @@ Thêm vào điều sau:
 
 IP và cổng phải được bao gồm để giới thiệu một địa chỉ IPv4 khi gửi thông điệp này qua IPv6.
 Điều này được hỗ trợ kể từ phiên bản 0.9.50.
-
 
 
 ### Giới thiệu IPv6
@@ -240,11 +235,11 @@ Chúng tôi cũng mô tả điều này như "phần 2" của đề xuất.
 
 #### Thay đổi đặc tả
 
-[SSU](/en/docs/transport/ssu/) hiện tại nói (ghi chú IPv6):
+[SSU](/docs/specs/ssu2/) hiện tại nói (ghi chú IPv6):
 
 Giao tiếp Bob-Charlie và Alice-Charlie chỉ qua IPv4.
 
-[SSU-SPEC](/en/docs/spec/ssu/) hiện tại nói (Relay Request):
+[SSU-SPEC](/docs/legacy/ssu/) hiện tại nói (Relay Request):
 
 Không có kế hoạch triển khai relay cho IPv6.
 
@@ -252,7 +247,7 @@ Thay đổi để nói:
 
 Relay cho IPv6 được hỗ trợ kể từ phiên bản 0.9.xx
 
-[SSU-SPEC](/en/docs/spec/ssu/) hiện tại nói (Relay Response):
+[SSU-SPEC](/docs/legacy/ssu/) hiện tại nói (Relay Response):
 
 Địa chỉ IP của Charlie phải là IPv4, vì đó là địa chỉ mà Alice sẽ gửi Yêu cầu Phiên tới sau khi thực hiện Hole Punch.
 Không có kế hoạch triển khai relay cho IPv6.
@@ -263,7 +258,7 @@ Thay đổi để nói:
 Đó là địa chỉ mà Alice sẽ gửi Yêu cầu Phiên tới sau khi thực hiện Hole Punch.
 Relay cho IPv6 được hỗ trợ kể từ phiên bản 0.9.xx
 
-[SSU-SPEC](/en/docs/spec/ssu/) hiện tại nói (Relay Intro):
+[SSU-SPEC](/docs/legacy/ssu/) hiện tại nói (Relay Intro):
 
 Địa chỉ IP của Alice luôn là 4 byte trong triển khai hiện tại, bởi vì Alice đang cố gắng kết nối tới Charlie qua IPv4.
 Thông điệp này phải được gửi qua một kết nối IPv4 đã được thiết lập,

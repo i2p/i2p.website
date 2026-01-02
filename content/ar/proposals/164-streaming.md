@@ -42,7 +42,7 @@ toc: true
 
 ## المواصفات
 
-تحديث [مواصفات Streaming](/en/docs/spec/streaming/) لإضافة القسم التالي:
+تحديث [مواصفات Streaming](/docs/specs/streaming/) لإضافة القسم التالي:
 
 ### منع إعادة التشغيل
 

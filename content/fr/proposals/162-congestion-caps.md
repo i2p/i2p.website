@@ -15,14 +15,11 @@ toc: true
 Ajoutez des indicateurs de congestion au Router Info (RI) publié.
 
 
-
-
 ## Motivation
 
 Les "caps" (capacités) de bande passante indiquent les limites de partage de bande passante et la connectivité mais pas l'état de congestion.
 Un indicateur de congestion aidera les routeurs à éviter de tenter de construire via un routeur congestionné,
 ce qui contribue à plus de congestion et réduit le succès de la construction de tunnels.
-
 
 
 ## Conception
@@ -52,10 +49,9 @@ L'état de congestion doit être basé sur une moyenne des conditions
 sur plusieurs minutes, pas une mesure instantanée.
 
 
-
 ## Spécification
 
-Mettre à jour [NETDB](/docs/how/network-database/) comme suit :
+Mettre à jour [NETDB](/docs/overview/network-database/) comme suit :
 
 
 ```text
@@ -78,7 +74,6 @@ Pour la cohérence, les implémentations devraient ajouter tout cap de congestio
 à la fin (après R ou U).
 
 
-
 ## Analyse de Sécurité
 
 Toute information de pair publiée ne peut pas être digne de confiance.
@@ -93,7 +88,6 @@ les routeurs à très basse bande passante. Le cap "U" (inaccessible) a un effet
 
 Tout indicateur de congestion publié devrait avoir le même effet que
 le rejet ou l'abandon d'une demande de construction de tunnel, avec des propriétés de sécurité similaires.
-
 
 
 ## Remarques
@@ -111,8 +105,6 @@ Les routeurs ne devraient probablement pas publier un cap de congestion au déma
 même si leur état de réseau est inconnu, pour prévenir la détection de redémarrage par les pairs.
 
 
-
-
 ## Compatibilité
 
 Aucun problème, toutes les implémentations ignorent les caps inconnus.
@@ -127,7 +119,6 @@ Publier les caps dans 0.9.58 (avril 2023) ;
 agir sur les caps publiés dans 0.9.59 (juillet 2023).
 
 
-
 ## Références
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

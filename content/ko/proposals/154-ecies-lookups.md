@@ -205,7 +205,7 @@ tag :: 8 byte reply_tag
 ECIES 목적지 또는 라우터가 ECIES 라우터로 조회를 보내며, 포함된 응답 키와 함께 합니다.
 0.9.49부터 지원됩니다.
 
-ECIES 라우터는 0.9.48에 도입되었습니다, [Prop156](/en/proposals/156-ecies-routers/)를 참조하십시오.
+ECIES 라우터는 0.9.48에 도입되었습니다, [Prop156](/proposals/156-ecies-routers/)를 참조하십시오.
 0.9.49부터 ECIES 목적지와 라우터는 "ECIES에서 ElG" 섹션의 형식을 동일하게 사용할 수 있으며, 요청에 포함된 응답 키를 사용합니다.
 조회는 요청자가 익명이므로 [ECIES](/docs/specs/ecies/)에서 "일회성 형식"을 사용합니다.
 

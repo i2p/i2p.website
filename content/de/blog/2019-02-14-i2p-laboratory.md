@@ -8,7 +8,6 @@ categories: ["development"]
 
 Hallo zusammen,
 
-Geben Sie NUR die Übersetzung an, nichts anderes:
 
 Es gibt viele Projekte in der I2P-Welt, die uns begeistern, aber nicht alle sind bereits einsatzreif. Wir haben beschlossen, einen Ort zu schaffen, an dem wir diese allen zugänglich machen können, die sie ausprobieren möchten, und der als Erprobungsplattform für Projekte dient, die eines Tages zu offiziellen I2P-Produkten werden könnten. Dieser Ort ist das [I2P Laboratory](https://geti2p.net/en/download/lab).
 

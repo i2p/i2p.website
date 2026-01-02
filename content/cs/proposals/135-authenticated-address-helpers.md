@@ -32,11 +32,9 @@ Pokud nejsou přítomny žádné autentizační parametry, může HTTP proxy př
 Přeskakovací služby by byly důvěryhodné jako obvykle, ale s dodatečným autentizačním krokem. Odkazy adresních pomocníků na jiných stránkách by musely být upraveny.
 
 
-
 ## Důsledky pro bezpečnost
 
 Tento návrh přidává bezpečnost zavedením autentizace od důvěryhodných registračních / přeskakovacích služeb.
-
 
 
 ## Specifikace

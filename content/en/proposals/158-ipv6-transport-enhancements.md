@@ -292,5 +292,5 @@ Any SSU address with introducers that does not contain a "4" or "6" cap is assum
 
 * [CAPS](http://zzz.i2p/topics/3050)
 * [NTCP2](/docs/specs/ntcp2/)
-* [SSU](/docs/transport/ssu/)
-* [SSU-SPEC](/docs/specs/ssu/)
+* [SSU](/docs/specs/ssu2/)
+* [SSU-SPEC](/docs/legacy/ssu/)

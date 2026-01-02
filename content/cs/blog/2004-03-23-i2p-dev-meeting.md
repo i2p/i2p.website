@@ -1,5 +1,6 @@
 ---
 title: "I2P setkání vývojářů - 23. března 2004"
+slug: "i2p-dev-meeting-march-23-2004"
 date: 2004-03-23
 author: "jrand0m"
 description: "Zápis z vývojové schůzky I2P ze dne 23. března 2004."

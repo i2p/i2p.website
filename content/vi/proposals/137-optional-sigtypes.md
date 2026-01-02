@@ -14,7 +14,6 @@ toc: true
 Thêm cách để floodfills quảng cáo hỗ trợ các loại chữ ký tùy chọn. Điều này sẽ cung cấp cách để hỗ trợ các loại chữ ký mới trong dài hạn, ngay cả khi không phải tất cả các triển khai đều hỗ trợ chúng.
 
 
-
 ## Động lực
 
 Đề xuất GOST 134 đã tiết lộ một số vấn đề với phạm vi loại chữ ký thử nghiệm chưa được sử dụng trước đây.
@@ -30,7 +29,6 @@ Thứ tư, triển khai một loại chữ ký mới có thể là một nỗ l�
 Thứ năm, nếu GOST sử dụng một loại chữ ký trong phạm vi tiêu chuẩn, vẫn không có cách nào để biết liệu một floodfill cụ thể có hỗ trợ GOST hay không.
 
 
-
 ## Thiết kế
 
 Tất cả floodfills phải hỗ trợ các loại chữ ký DSA (0), ECDSA (1-3) và EdDSA (7).
@@ -38,9 +36,7 @@ Tất cả floodfills phải hỗ trợ các loại chữ ký DSA (0), ECDSA (1-
 Đối với bất kỳ loại chữ ký nào khác trong phạm vi tiêu chuẩn (không phải thử nghiệm), một floodfill có thể quảng cáo hỗ trợ trong các thuộc tính thông tin router của nó.
 
 
-
 ## Đặc tả
-
 
 
 Một router hỗ trợ một loại chữ ký tùy chọn sẽ thêm thuộc tính "sigTypes" vào thông tin router đã công bố của nó, với các số loại chữ ký được tách bằng dấu phẩy. Các loại chữ ký sẽ được sắp xếp theo thứ tự số. Các loại chữ ký bắt buộc (0-4,7) sẽ không được bao gồm.
@@ -50,11 +46,9 @@ Ví dụ: sigTypes=9,10
 Các router hỗ trợ các loại chữ ký tùy chọn phải chỉ lưu trữ, tìm kiếm hoặc phát tán, đến các floodfills quảng cáo hỗ trợ cho loại chữ ký đó.
 
 
-
 ## Di cư
 
 Không áp dụng. Chỉ các router hỗ trợ một loại chữ ký tùy chọn mới phải triển khai.
-
 
 
 ## Vấn đề
@@ -69,6 +63,5 @@ Các vấn đề tương tự sẽ cần được giải quyết với các lo�
 ## Chú thích
 
 NetDB lưu trữ các loại chữ ký không xác định không nằm trong phạm vi thử nghiệm sẽ tiếp tục bị từ chối bởi floodfills, vì chữ ký không thể được xác minh.
-
 
 

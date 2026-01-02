@@ -13,9 +13,8 @@ toc: true
 ## LƯU Ý
 
 Đề xuất này đã được phê duyệt và hiện nằm trong
-[Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/) từ API 0.9.65.
+[Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies) từ API 0.9.65.
 Chưa có triển khai nào được biết đến; ngày triển khai / phiên bản API là TBD.
-
 
 
 ## Tổng quan
@@ -40,20 +39,18 @@ Ngoài ra, hiện tại các bộ định tuyến không có cách nào để gi
 các thông điệp yêu cầu và trả lời xây dựng đường hầm.
 
 
-
 ## Thiết kế
 
-Thêm các tham số băng thông vào các bản ghi trong thông điệp xây dựng đường hầm ECIES (xem [Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/))
+Thêm các tham số băng thông vào các bản ghi trong thông điệp xây dựng đường hầm ECIES (xem [Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies))
 trong trường ánh xạ tùy chọn xây dựng đường hầm. Sử dụng tên tham số ngắn vì không gian có sẵn
 cho trường tùy chọn bị hạn chế.
 Các thông điệp xây dựng đường hầm có kích thước cố định nên điều này không làm tăng
 kích thước của các thông điệp.
 
 
-
 ## Đặc tả
 
-Cập nhật [các đặc tả thông điệp xây dựng đường hầm ECIES](/en/docs/spec/tunnel-creation-ecies/)
+Cập nhật [các đặc tả thông điệp xây dựng đường hầm ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
 như sau:
 
 Đối với cả bản ghi xây dựng dài và ngắn của ECIES:
@@ -139,7 +136,6 @@ phương pháp nào được định nghĩa để yêu cầu hoặc phân bổ b
 bởi chủ sở hữu của đầu kia của một kết nối từ đầu này đến đầu kia.
 
 
-
 ## Phân tích An ninh
 
 Dấu vân tay hoặc tương quan khách hàng có thể có thể dựa trên các yêu cầu.
@@ -175,6 +171,5 @@ Các bài thực hiện có thể thêm hỗ trợ bất kỳ lúc nào, không 
 
 Vì hiện tại chưa có phiên bản API nào được định nghĩa mà yêu cầu hỗ trợ cho đề xuất này,
 các bộ định tuyến nên kiểm tra phản hồi "b" để xác nhận hỗ trợ.
-
 
 

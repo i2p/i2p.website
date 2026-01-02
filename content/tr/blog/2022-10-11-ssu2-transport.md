@@ -37,7 +37,6 @@ Tüm I2P Noise protokolleri aşağıdaki standart kriptografik algoritmaları ku
 
 ## Hedefler
 
-SADECE çeviriyi sağlayın, başka bir şey değil:
 
 - Upgrade the asymmetric cryptography to the much faster X25519
 - Use standard symmetric authenticated encryption ChaCha20/Poly1305
@@ -86,7 +85,6 @@ Java I2P ve i2pd projeleri, 2022 Kasım ayının sonlarında çıkacak bir sonra
 
 ## Özet
 
-Yalnızca çeviriyi sağlayın, başka hiçbir şey değil:
 
 I2P'nin kurucuları kriptografik algoritmalar ve protokoller için birkaç tercih yapmak zorunda kaldılar. Bu tercihlerin bazıları diğerlerinden daha iyiydi, ancak yirmi yıl sonra, çoğu artık yaşını belli ediyor. Elbette bunun geleceğini biliyorduk ve son on yılı kriptografik yükseltmeleri planlayıp uygulamakla geçirdik.
 

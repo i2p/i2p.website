@@ -204,7 +204,7 @@ Crypto türü 0 ElGamal'dır. Crypto türleri 1-3, ECIES-ECDH-AES-SessionTag iç
 
 ### Kriptografik Tasarımın Özeti
 
-Bu öneri, Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revizyon 34, 2018-07-11) tabanlı gereksinimleri sağlar. Noise, [SSU](/docs/specs/ssu/) protokolünün temelini oluşturan Station-To-Station protokolü [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) ile benzer özelliklere sahiptir. Noise terminolojisinde Alice başlatıcı, Bob ise yanıtlayıcıdır.
+Bu öneri, Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revizyon 34, 2018-07-11) tabanlı gereksinimleri sağlar. Noise, [SSU](/docs/legacy/ssu/) protokolünün temelini oluşturan Station-To-Station protokolü [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol) ile benzer özelliklere sahiptir. Noise terminolojisinde Alice başlatıcı, Bob ise yanıtlayıcıdır.
 
 Bu öneri Noise protokolü Noise_IK_25519_ChaChaPoly_SHA256 tabanlıdır. (İlk anahtar türetme fonksiyonu için gerçek tanımlayıcı, I2P uzantılarını belirtmek için "Noise_IKelg2_25519_ChaChaPoly_SHA256"'dır - aşağıdaki KDF 1 bölümüne bakın) Bu Noise protokolü aşağıdaki ilkelleri kullanır:
 
@@ -441,7 +441,6 @@ MixKey(d)
         MixKey(d) := output = HKDF(chainKey, d, "", 64)
                      chainKey = output[0:31]
                      k = output[32:63]
-
 
 
 ### Oturum Zaman Aşımları
@@ -1333,8 +1332,6 @@ ETIKET SETİ
         If there are few TAGSET_ENTRIES remaining, EXTEND(n) is called.
 
 
-
-
 ### 4) Ratchet'ler
 
 Ratchet'lar ancak Signal'in yaptığı kadar hızlı değil. Alınan anahtarın onayını yeni anahtar oluşturmaktan ayırıyoruz. Tipik kullanımda, Alice ve Bob her biri Yeni Oturumda hemen (iki kez) ratchet yapacak, ancak tekrar ratchet yapmayacaklar.
@@ -1450,9 +1447,7 @@ Tag Sender                    Tag Receiver
   (reuse key #1, do DH, create IB Tagset #3)
 
 
-
                    ... use tag set #3 ...
-
 
 
        After tag set 3, repeat the above

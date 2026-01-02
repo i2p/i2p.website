@@ -56,11 +56,9 @@ Bir inceleme olarak, ElGamal'ı şu amaçlarla kullanıyoruz:
 ElGamal'ı başka bir şeyle değiştirme önerisi, aşağıdaki ayrıntıları sağlamalıdır.
 
 
-
 ## Şartname
 
 Yeni asimetrik kripto için herhangi bir öneri, aşağıdaki şeyleri tam olarak belirtmelidir.
-
 
 
 ### 1. Genel
@@ -84,8 +82,6 @@ Yeni asimetrik kripto için herhangi bir öneri, aşağıdaki şeyleri tam olara
 - C++ ve Java'da (hem OpenJDK, BouncyCastle, hem de 3. taraf) kütüphane kullanılabilirliği.
   3. taraf veya Java dışı kütüphaneler için bağlantılar ve lisanslar sağlayın
 - Önerilen kripto türü numarası (deneysel aralık veya değil)
-
-
 
 
 ## Notlar

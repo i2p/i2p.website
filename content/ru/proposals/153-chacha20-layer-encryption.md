@@ -34,7 +34,7 @@ toc: true
 - Шифрования + постобработки для участника
 - Шифрования + постобработки на Исходящей и Входящей конечной точке
 
-Для получения обзора текущей обработки туннельных сообщений, см. [Tunnel Implementation](/docs/tunnels/implementation/) спецификацию.
+Для получения обзора текущей обработки туннельных сообщений, см. [Tunnel Implementation](/docs/specs/implementation/) спецификацию.
 
 Обсуждаются только изменения для маршрутизаторов, поддерживающих шифрование уровня через ChaCha20.
 
@@ -280,4 +280,4 @@ IBGW предварительно обрабатывает сообщения в
 
 ## Ссылки
 
-* [Tunnel-Implementation](/docs/tunnels/implementation/)
+* [Tunnel-Implementation](/docs/specs/implementation/)

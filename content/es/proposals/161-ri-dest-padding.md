@@ -44,7 +44,6 @@ que eliminarían el padding por completo. También hay una breve discusión sobr
 y cómo eso puede afectar la planificación futura.
 
 
-
 ### Objetivos
 
 - Eliminar el requerimiento de generar un par de claves ElGamal para Destinos
@@ -67,7 +66,6 @@ ser capaces de eliminar completamente el código ElGamal, sujeto a consideracion
 en otros protocolos.
 
 
-
 ## Diseño
 
 Hablando estrictamente, la clave pública de firma de 32 bytes sola (en ambos Destinos e Identidades de Router)
@@ -83,7 +81,6 @@ o confusión a los usuarios.
 Para el tipo de firma Ed25519 y el tipo de cifrado X25519:
 Los Destinos contendrán 11 copias (352 bytes) de los datos aleatorios.
 Las Identidades de Router contendrán 10 copias (320 bytes) de los datos aleatorios.
-
 
 
 ### Ahorros Estimados
@@ -112,7 +109,6 @@ ahorros estimados:
 Notas: Se asume que el certificado de 7 bytes no es comprimible, sobrecarga de gzip adicional nula.
 Ninguna es cierta, pero los efectos serán pequeños.
 Ignora otras partes comprimibles del Info de Router.
-
 
 
 ## Especificación
@@ -204,9 +200,6 @@ Los costos y beneficios de estos cambios no están claros.
 Propuestas específicas TBD:
 
 
-
-
-
 ### Claves PQ
 
 Las claves públicas de cifrado Post-Cuanticas (PQ), para cualquier algoritmo anticipado,
@@ -230,8 +223,6 @@ Pero sería después de híbrido o ratchet ????????????
 Para más discusión ver [this topic](http://zzz.i2p/topics/3294).
 
 
-
-
 ## Problemas
 
 Puede ser deseable volver a teclear la red a un ritmo lento, para proporcionar cobertura para nuevos routers.
@@ -240,8 +231,6 @@ Puede ser deseable volver a teclear la red a un ritmo lento, para proporcionar c
 No es posible volver a teclear los Destinos existentes.
 
 ¿Deberían Identidades de Router con padding en el campo de clave pública ser identificadas con un tipo de cifrado diferente en el certificado de clave? Esto causaría problemas de compatibilidad.
-
-
 
 
 ## Migración

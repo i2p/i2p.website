@@ -157,7 +157,6 @@ Bien qu'en dehors du champ de cette proposition, les routeurs et/ou les clients 
 (probablement de manière persistante) la correspondance de la clé publique à la destination, et vice versa.
 
 
-
 ## Remarques
 
 - Distinguer les anciennes des nouvelles saveurs par la longueur. Les anciennes adresses b32 sont toujours {52 caractères}.b32.i2p. Les nouvelles sont {56+ caractères}.b32.i2p

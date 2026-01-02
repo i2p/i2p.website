@@ -336,4 +336,4 @@ Post-quantum hybrid encryption (ML-KEM + X25519) is supported experimentally in 
 - [Streaming Protocol Specification](/docs/specs/streaming/)  
 - [I2CP Specification](/docs/specs/i2cp/)  
 - [Proposal 144: Streaming MTU Calculations](/proposals/144-ecies-x25519-aead-ratchet/)  
-- [I2P 2.10.0 Release Notes](/blog/2025-09-08-i2p-2-10-0-release/)
+- [I2P 2.10.0 Release Notes](/en/blog/2025/09/08/i2p-2.10.0-release/)

@@ -10,7 +10,6 @@ Hola a todos, es hora de una actualización de estado
 
 ## Índice:
 
-Proporcione ÚNICAMENTE la traducción, nada más:
 
 1. Net status
 2. Streaming lib

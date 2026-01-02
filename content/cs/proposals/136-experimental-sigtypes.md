@@ -28,16 +28,13 @@ Za druhé, pokud nemůže být router info nebo lease set s experimentálním ty
 je nový typ podpisu obtížné plně otestovat nebo použít na zkušební bázi.
 
 
-
 ## Návrh
 
 Floodfills by měly přijímat a šířit úložiště LS s typy podpisů v experimentálním rozmezí,
 bez kontroly podpisu. Podpora pro úložiště RI je zatím nejasná a může mít více bezpečnostních implikací.
 
 
-
 ## Specifikace
-
 
 
 Pro typy podpisů v experimentálním rozmezí by floodfill měl přijímat a šířit netdb
@@ -83,6 +80,5 @@ což ještě nebylo formálně navrženo.
 
 Úložiště NetDB neznámých typů podpisů, které nejsou v experimentálním rozmezí, budou nadále
 odmítána floodfills, protože podpis nelze ověřit.
-
 
 

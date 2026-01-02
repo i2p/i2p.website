@@ -33,7 +33,6 @@ En standardisant les types MIME, chaque implémentation de routeur peut écrire 
 appropriés, et le fichier de définition MIME peut être partagé par toutes les implémentations.
 
 
-
 ## Conception
 
 Écrire un fichier source XML suivant la norme freedesktop.org et l'inclure
@@ -46,7 +45,6 @@ spécifiés ici.
 
 Nous inclurons également les définitions avec Jetty, et les inclurons avec
 le logiciel de réensemencement ou des instructions.
-
 
 
 ## Spécifications
@@ -88,8 +86,6 @@ le logiciel de réensemencement ou des instructions.
 =.txt.gz 		application/x-i2p-peerprofile
 
 .xpi2p	 		application/x-i2p-plugin
-
-
 
 
 ## Remarques

@@ -13,7 +13,7 @@ toc: true
 Dieser Vorschlag wurde nicht wie spezifiziert implementiert,
 jedoch wurden die ECIES langen und kurzen Build-Nachrichten (Vorschläge 152 und 157)
 mit erweiterbaren Optionsfeldern entworfen.
-Siehe die [Tunnel Creation ECIES Spezifikation](/en/docs/spec/tunnel-creation-ecies/) für die offizielle Spezifikation.
+Siehe die [Tunnel Creation ECIES Spezifikation](/docs/specs/implementation/#tunnel-creation-ecies) für die offizielle Spezifikation.
 
 
 ## Übersicht
@@ -81,7 +81,6 @@ Es gibt 495 freie Bytes im TBRM.
 
 Diese Änderungen betreffen die Tunnel Build Records und können daher in allen Anfragevarianten für Build-Nachrichten verwendet werden -
 Tunnel Build Request, Variable Tunnel Build Request, Tunnel Build Reply und Variable Tunnel Build Reply.
-
 
 
 ## Migration

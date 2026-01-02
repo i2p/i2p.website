@@ -13,7 +13,7 @@ toc: true
 Esta propuesta no fue implementada como se especificó,
 sin embargo, los mensajes de construcción largos y cortos de ECIES (propuestas 152 y 157)
 fueron diseñados con campos de opciones extensibles.
-Véase la [especificación de Tunnel Creation ECIES](/en/docs/spec/tunnel-creation-ecies/) para la especificación oficial.
+Véase la [especificación de Tunnel Creation ECIES](/docs/specs/implementation/#tunnel-creation-ecies) para la especificación oficial.
 
 
 ## Resumen
@@ -32,7 +32,6 @@ Usar la construcción 'mapping' consumiría al menos 6 bytes por opción ("1a=1b
 Definir más campos de opción de manera rígida podría causar problemas más adelante.
 
 Este documento propone un nuevo esquema de mapeo de opciones, flexible.
-
 
 
 ## Diseño
@@ -82,7 +81,6 @@ Hay 495 bytes libres en el TBRM.
 
 Estos cambios son para los Registros de Construcción de Túnel, y por lo tanto pueden usarse en todas las variantes de Mensajes de Construcción -
 Solicitud de Construcción de Túnel, Solicitud de Construcción de Túnel Variable, Respuesta de Construcción de Túnel, y Respuesta de Construcción de Túnel Variable.
-
 
 
 ## Migración

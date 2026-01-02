@@ -399,7 +399,7 @@ Target: Early December 2025
 <details>
 <summary>Click to expand 2020-2016 releases (0.9.48 back to 0.9.24)</summary>
 
-For the complete historical archive of releases from 2020 back to January 2016, including all versions from 0.9.48 to 0.9.24, see the [full release notes](/en/blog/categories/release) on the I2P blog.
+For the complete historical archive of releases from 2020 back to January 2016, including all versions from 0.9.48 to 0.9.24, see the [full release notes](/blog/) on the I2P blog.
 
 **Major milestones from this era:**
 
@@ -454,7 +454,7 @@ For the complete historical archive of releases from 2020 back to January 2016, 
 - **Issue Tracker**: GitLab issues
 - **Monthly Meetings**: First Tuesday of each month
 - **IRC**: #i2p-dev on IRC2P
-- **Release Notes**: [I2P Blog](/en/blog/categories/release)
+- **Release Notes**: [I2P Blog](/blog/)
 
 ---
 

@@ -14,8 +14,7 @@ toc: true
 Đã triển khai kể từ phiên bản API 0.9.51.
 Triển khai và thử nghiệm mạng đang tiến hành.
 Có thể sẽ có sửa đổi nhỏ.
-Xem [I2NP](/en/docs/spec/i2np/) và [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) để biết đặc tả cuối cùng.
-
+Xem [I2NP](/docs/specs/i2np/) và [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) để biết đặc tả cuối cùng.
 
 
 ## Tổng quan
@@ -27,7 +26,7 @@ Kích thước hiện tại của các bản ghi Yêu cầu Xây Dựng và Tr�
 Đối với các thông điệp Xây Dựng Đường Hầm Biến và Xây Dựng Đường Hầm Trả Lời Biến thông thường,
 kích thước tổng cộng là 2113 byte. Thông điệp này bị phân mảnh thành ba thông điệp đường hầm 1KB cho đường ngược.
 
-Các thay đổi đối với định dạng bản ghi 528 byte cho các bộ định tuyến ECIES-X25519 được chỉ định trong [Prop152](/en/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
+Các thay đổi đối với định dạng bản ghi 528 byte cho các bộ định tuyến ECIES-X25519 được chỉ định trong [Prop152](/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
 Đối với sự kết hợp giữa các bộ định tuyến ElGamal và ECIES-X25519 trong một đường hầm, kích thước bản ghi phải duy trì
 528 byte. Tuy nhiên, nếu tất cả các bộ định tuyến trong một đường hầm là ECIES-X25519, một bản ghi xây dựng mới, nhỏ hơn
 có thể, vì mã hóa ECIES-X25519 có độ trễ ít hơn nhiều so với ElGamal.
@@ -44,13 +43,13 @@ Dự kiến sẽ diễn ra vào cuối năm 2021.
 
 ### Mục Tiêu
 
-Xem [Prop152](/en/proposals/152-ecies-tunnels/) và [Prop156](/en/proposals/156-ecies-routers/) để biết thêm các mục tiêu.
+Xem [Prop152](/proposals/152-ecies-tunnels/) và [Prop156](/proposals/156-ecies-routers/) để biết thêm các mục tiêu.
 
 - Các bản ghi và thông điệp nhỏ hơn
-- Duy trì đủ không gian cho các tùy chọn trong tương lai, như trong [Prop152](/en/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)
+- Duy trì đủ không gian cho các tùy chọn trong tương lai, như trong [Prop152](/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
 - Phù hợp trong một thông điệp đường hầm cho đường ngược
 - Chỉ hỗ trợ các bước ECIES
-- Duy trì các cải tiến được triển khai trong [Prop152](/en/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)
+- Duy trì các cải tiến được triển khai trong [Prop152](/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)
 - Tối đa hóa khả năng tương thích với mạng hiện tại
 - Ẩn các thông điệp xây dựng tuyến vào từ OBEP
 - Ẩn các thông điệp trả lời xây dựng tuyến ra từ IBGW
@@ -61,10 +60,10 @@ Xem [Prop152](/en/proposals/152-ecies-tunnels/) và [Prop156](/en/proposals/156-
 
 ### Không Mục Tiêu
 
-Xem [Prop156](/en/proposals/156-ecies-routers/) để biết thêm các không mục tiêu.
+Xem [Prop156](/proposals/156-ecies-routers/) để biết thêm các không mục tiêu.
 
 - Không yêu cầu cho các đường hầm ElGamal/ECIES pha trộn
-- Thay đổi mã hóa tầng, cho điều đó xem [Prop153](/en/proposals/153-chacha20-layer-encryption/)
+- Thay đổi mã hóa tầng, cho điều đó xem [Prop153](/proposals/153-chacha20-layer-encryption/)
 - Không tăng tốc các hoạt động mã hóa. Giả định rằng ChaCha20 và AES tương tự nhau,
   ngay cả với AESNI, ít nhất đối với các kích thước dữ liệu nhỏ cần xét.
 
@@ -80,11 +79,11 @@ Các bản ghi yêu cầu và trả lời mã hóa sẽ là 218 byte, so với 5
 
 Các bản ghi yêu cầu dạng văn bản sẽ là 154 byte,
 so với 222 byte cho các bản ghi ElGamal,
-và 464 byte cho các bản ghi ECIES như được định nghĩa trong [Prop152](/en/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
+và 464 byte cho các bản ghi ECIES như được định nghĩa trong [Prop152](/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
 
 Các bản ghi phản hồi dạng văn bản sẽ là 202 byte,
 so với 496 byte cho các bản ghi ElGamal,
-và 512 byte cho các bản ghi ECIES như được định nghĩa trong [Prop152](/en/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
+và 512 byte cho các bản ghi ECIES như được định nghĩa trong [Prop152](/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
 
 Mã hóa trả lời sẽ là ChaCha20 (KHÔNG Phải ChaCha20/Poly1305),
 vì vậy các bản ghi văn bản không cần phải là bội số của 16 byte.
@@ -114,7 +113,6 @@ Kích thước bản ghi được chọn sao cho một STBM được mã hóa ga
 với một thông điệp đường hầm duy nhất. Xem phụ lục dưới đây.
 
 
-
 #### OutboundTunnelBuildReply: Loại 26
 
 Chúng tôi định nghĩa một thông điệp OutboundTunnelBuildReply mới.
@@ -133,8 +131,6 @@ Sau đó, mã hóa garlic thông điệp đến nguồn với các khóa đối 
 
 Bằng cách mã hóa garlic OTBRM và STBM, chúng tôi cũng tránh các
 vấn đề có thể xảy ra với sự tương thích tại IBGW và OBEP của các đường hầm đôi.
-
-
 
 
 ### Luồng Thông Điệp
@@ -161,7 +157,6 @@ STBM: Thông điệp xây dựng đường hầm ngắn (loại 25)
                                      IBGW
 
 
-
   Xây dựng tuyến vào D-E-F
   Gửi qua tuyến ra hiện có A-B-C
 
@@ -179,14 +174,12 @@ STBM: Thông điệp xây dựng đường hầm ngắn (loại 25)
                                      IBGW
 
 
-
 ```
-
 
 
 ### Mã Hóa Bản Ghi
 
-Mã hóa bản ghi yêu cầu và trả lời: như đã định nghĩa trong [Prop152](/en/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/).
+Mã hóa bản ghi yêu cầu và trả lời: như đã định nghĩa trong [Prop152](/proposals/152-ecies-tunnels/) và [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies).
 
 Mã hóa bản ghi trả lời cho các khe khác: ChaCha20.
 
@@ -197,7 +190,6 @@ Hiện tại không có kế hoạch thay đổi mã hóa tầng cho các đư�
 đặc tả này; nó sẽ vẫn là AES, như hiện đang được sử dụng cho tất cả các đường hầm.
 
 Thay đổi mã hóa tầng thành ChaCha20 là chủ đề cần nghiên cứu thêm.
-
 
 
 ### Thông Điệp Dữ Liệu Đường Hầm Mới
@@ -211,19 +203,16 @@ Nó có thể có ích để giới thiệu một thông điệp I2NP mới mà 
 Đây là một chủ đề cần nghiên cứu thêm.
 
 
-
-
 ## Một Số Quy Định
 
 
 ### Bản Ghi Yêu Cầu Ngắn
 
 
-
 #### Bản Ghi Yêu Cầu Ngắn Không Mã Hóa
 
 Đây là đặc tả đề xuất cho bản ghi Xây Dựng Yêu Cầu Đường Hầm cho các bộ định tuyến ECIES-X25519.
-Tóm tắt các thay đổi từ [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
+Tóm tắt các thay đổi từ [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies):
 
 - Thay đổi độ dài không mã hóa từ 464 thành 154 byte
 - Thay đổi độ dài mã hóa từ 528 thành 218 byte
@@ -255,7 +244,7 @@ bytes     0-3: ID đường hầm để nhận thông điệp, khác không
 ```
 
 
-Trường cờ giữ nguyên như được định nghĩa trong [Tunnel-Creation](/en/docs/spec/tunnel-creation/) và chứa các giá trị sau::
+Trường cờ giữ nguyên như được định nghĩa trong [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) và chứa các giá trị sau::
 
  Thứ tự bit: 76543210 (bit 7 là MSB)
  bit 7: nếu đặt, cho phép gửi thông điệp từ bất kỳ ai
@@ -278,12 +267,11 @@ Nó được sử dụng cho KDF để tạo ra các khóa và IVs tầng và tr
 Điều này chỉ được bao gồm trong bản ghi văn bản rõ ràng trong một thông điệp Xây Dựng Đường Hầm vào.
 Nó cần thiết vì không có DH ở tầng này cho bản ghi xây dựng.
 
-Tùy chọn xây dựng đường hầm là một cấu trúc Mapping như được định nghĩa trong [Common](/en/docs/spec/common-structures/).
+Tùy chọn xây dựng đường hầm là một cấu trúc Mapping như được định nghĩa trong [Common](/docs/specs/common-structures/).
 Đây là cho việc sử dụng trong tương lai. Không có tùy chọn nào hiện được định nghĩa.
 Nếu cấu trúc Mapping trống rỗng, đây là hai byte 0x00 0x00.
 Kích thước tối đa của Mapping (bao gồm trường độ dài) là 98 byte,
 và giá trị tối đa của trường độ dài Mapping là 96.
-
 
 
 #### Bản Ghi Yêu Cầu Ngắn Mã Hóa
@@ -302,14 +290,13 @@ bytes    0-15: Hash định danh rút gọn của Hop
 ```
 
 
-
 ### Bản Ghi Trả Lời Ngắn
 
 
 #### Bản Ghi Trả Lời Ngắn Không Mã Hóa
 
 Đây là đặc tả đề xuất cho bản ghi Trả Lời Xây Dựng Ngắn cho các bộ định tuyến ECIES-X25519.
-Tóm tắt các thay đổi từ [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/):
+Tóm tắt các thay đổi từ [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies):
 
 - Thay đổi độ dài không mã hóa từ 512 thành 202 byte
 - Thay đổi độ dài mã hóa từ 528 thành 218 byte
@@ -330,14 +317,14 @@ bytes    0-x: Tùy Chọn Trả Lời Xây Dựng Đường Hầm (Mapping)
 
 ```
 
-Tùy chọn Trả Lời Xây Dựng Đường Hầm là một cấu trúc Mapping như được định nghĩa trong [Common](/en/docs/spec/common-structures/).
+Tùy chọn Trả Lời Xây Dựng Đường Hầm là một cấu trúc Mapping như được định nghĩa trong [Common](/docs/specs/common-structures/).
 Đây là cho việc sử dụng trong tương lai. Không có tùy chọn nào hiện đang được định nghĩa.
 Nếu cấu trúc Mapping trống rỗng, đây là hai byte 0x00 0x00.
 Kích thước tối đa của Mapping (bao gồm trường độ dài) là 201 byte,
 và giá trị tối đa của trường độ dài Mapping là 199.
 
 Byte trả lời là một trong các giá trị sau
-như được định nghĩa trong [Tunnel-Creation](/en/docs/spec/tunnel-creation/) để tránh nhận diện:
+như được định nghĩa trong [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) để tránh nhận diện:
 
 - 0x00 (chấp nhận)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -355,12 +342,9 @@ bytes   0-201: Bản Ghi Trả Lời Xây Dựng Ngắn mã hóa ChaCha20
 ```
 
 
-
 ### KDF
 
 Xem phần KDF bên dưới.
-
-
 
 
 ### ShortTunnelBuild
@@ -370,7 +354,6 @@ Thông điệp này được gửi đến các bước trung gian, OBEP, và IBE
 Nó không được gửi đến IBGW (sử dụng Xây Dựng Đường Hầm vào mã hóa garlic thay thế).
 Khi được nhận bởi OBEP, nó được chuyển thành một OutboundTunnelBuildReply,
 mã hóa garlic, và gửi đến người tạo.
-
 
 
 ```
@@ -389,8 +372,6 @@ mã hóa garlic, và gửi đến người tạo.
 #### Ghi chú
 
 * Số lượng bản ghi điển hình là 4, cho tổng kích thước là 873.
-
-
 
 
 ### OutboundTunnelBuildReply
@@ -425,7 +406,6 @@ Nó luôn luôn được mã hóa garlic.
 
 * Số lượng bản ghi điển hình là 4, cho tổng kích thước là 873.
 * Thông điệp này nên được mã hóa garlic.
-
 
 
 ### KDF
@@ -468,9 +448,6 @@ keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
 ```
 
 
-
-
-
 ## Biện Minh
 
 Thiết kế này tối đa hóa tái sử dụng các nguyên tố mã hóa, giao thức và mã hiện có.
@@ -492,9 +469,7 @@ ChaCha20 tránh yêu cầu đối với kích thước dữ liệu là bội s�
   các đường hầm ra cũng nên được xây dựng với 4 bản ghi.
 
 
-
 ## Vấn Đề
-
 
 
 ## Di Cư
@@ -524,14 +499,11 @@ Giai đoạn 2 (phát hành tiếp theo): Bật mặc định
 Không có vấn đề tương thích ngược. Các thông điệp mới chỉ có thể được gửi đến các bộ định tuyến hỗ trợ chúng.
 
 
-
-
 ## Phụ lục
 
 
 Không có độ trễ garlic cho STBM vào chưa mã hóa,
 nếu chúng ta không sử dụng ITBM:
-
 
 
 ```
@@ -560,7 +532,6 @@ Kích thước 4 khe hiện tại: 4 * 528 + độ trễ = 3 thông điệp đư
   - 16 MAC
   ----
   173 kích thước bản ghi xây dựng dạng văn bản tối đa (so với 222 hiện tại)
-
 
 
 ```
@@ -630,7 +601,6 @@ OTBRM bọc garlic sẽ nhỏ hơn một chút so với STBM bọc garlic,
 vì các hướng dẫn giao hàng là LOCAL không phải ROUTER,
 không có khối DATETIME bao gồm, và
 nó sử dụng một tag 8-byte thay vì khóa tạm thời 32-byte cho một thông điệp 'N' đầy đủ.
-
 
 
 ## Tài liệu Tham Khảo

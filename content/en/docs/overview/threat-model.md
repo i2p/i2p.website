@@ -7,14 +7,6 @@ accurateFor: "2.10.0"
 reviewStatus: "needs-review"
 ---
 
-> **Status:**  
-> This document supersedes the historical 0.8.x-era threat model.  
-> It reflects I2P’s current design as of October 2025.  
-> Legacy cryptographic and transport protocols (ElGamal, AES, NTCP1, SSU1) are now fully deprecated.  
-> All modern communication is based on the **Noise Protocol Framework** using **X25519 + ChaCha20/Poly1305**.  
-> The goal remains unchanged: preserve anonymity and resilience against realistic adversaries while maintaining backward compatibility.
-
----
 
 ## 1. What "Anonymous" Means
 

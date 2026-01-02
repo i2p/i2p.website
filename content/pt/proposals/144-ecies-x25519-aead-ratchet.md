@@ -208,7 +208,7 @@ O tipo de criptografia 0 é ElGamal. Os tipos de criptografia 1-3 são reservado
 
 ### Resumo do Design Criptográfico
 
-Esta proposta fornece os requisitos baseados no Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revisão 34, 2018-07-11). O Noise tem propriedades similares ao protocolo Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), que é a base para o protocolo [SSU](/docs/specs/ssu/). Na terminologia do Noise, Alice é a iniciadora e Bob é o respondedor.
+Esta proposta fornece os requisitos baseados no Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revisão 34, 2018-07-11). O Noise tem propriedades similares ao protocolo Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol), que é a base para o protocolo [SSU](/docs/legacy/ssu/). Na terminologia do Noise, Alice é a iniciadora e Bob é o respondedor.
 
 Esta proposta é baseada no protocolo Noise Noise_IK_25519_ChaChaPoly_SHA256. (O identificador real para a função de derivação de chave inicial é "Noise_IKelg2_25519_ChaChaPoly_SHA256" para indicar extensões I2P - veja a seção KDF 1 abaixo) Este protocolo Noise usa as seguintes primitivas:
 
@@ -445,7 +445,6 @@ MixKey(d)
         MixKey(d) := output = HKDF(chainKey, d, "", 64)
                      chainKey = output[0:31]
                      k = output[32:63]
-
 
 
 ### Timeouts de Sessão
@@ -1337,8 +1336,6 @@ TAGSET
         If there are few TAGSET_ENTRIES remaining, EXTEND(n) is called.
 
 
-
-
 ### 4) Ratchets
 
 Ratchets mas não tão rápido quanto o Signal faz. Separamos o reconhecimento da chave recebida da geração da nova chave. No uso típico, Alice e Bob farão cada um ratchet (duas vezes) imediatamente em uma Nova Sessão, mas não farão ratchet novamente.
@@ -1454,9 +1451,7 @@ Tag Sender                    Tag Receiver
   (reuse key #1, do DH, create IB Tagset #3)
 
 
-
                    ... use tag set #3 ...
-
 
 
        After tag set 3, repeat the above

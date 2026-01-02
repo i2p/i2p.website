@@ -18,7 +18,6 @@ Các thay đổi đã được tích hợp vào đặc tả.
 Kiểm tra tài liệu triển khai để biết trạng thái.
 
 
-
 ## Tổng quan
 
 Được tách ra từ [Prop123](/proposals/123-new-netdb-entries/) như một đề xuất riêng biệt.
@@ -111,7 +110,6 @@ Số giao thức I2CP tiêu chuẩn cho các datagram có thể phát lại là 
 ```
 
 
-
 ## Thiết kế
 
 - Định nghĩa giao thức mới 19 - Datagram có thể phát lại với tùy chọn.
@@ -135,10 +133,10 @@ Số giao thức I2CP tiêu chuẩn cho các datagram có thể phát lại là 
 ### Giao thức
 
 Số giao thức I2CP mới cho Datagram2 là 19.
-Thêm nó làm PROTO_DATAGRAM2 vào [I2CP](/docs/protocol/i2cp/).
+Thêm nó làm PROTO_DATAGRAM2 vào [I2CP](/docs/specs/i2cp/).
 
 Số giao thức I2CP mới cho Datagram3 là 20.
-Thêm nó làm PROTO_DATAGRAM2 vào [I2CP](/docs/protocol/i2cp/).
+Thêm nó làm PROTO_DATAGRAM2 vào [I2CP](/docs/specs/i2cp/).
 
 
 ### Định dạng Datagram2
@@ -296,7 +294,6 @@ Thêm Datagram3 vào [DATAGRAMS](/docs/api/datagrams/) như sau:
 Tổng chiều dài: tối thiểu 34 + chiều dài tải.
 
 
-
 ### SAM
 
 Thêm STYLE=DATAGRAM2 và STYLE=DATAGRAM3 vào đặc tả SAMv3.
@@ -309,7 +306,6 @@ Thiết kế này thêm 2 byte chi phí bổ sung cho datagram có thể phát l
 Điều này chấp nhận được.
 
 
-
 ## Phân tích Bảo mật
 
 Việc bao gồm băm đích trong chữ ký nên có hiệu quả trong việc ngăn chặn các cuộc tấn công phát lại.
@@ -319,15 +315,12 @@ và các cuộc tấn công phát lại là có thể xảy ra. Mọi xác thự
 hoặc bởi router ở lớp ratchet.
 
 
-
 ## Ghi chú
 
-- Chiều dài thực tế bị giới hạn bởi các lớp dưới của các giao thức - đặc tả thông điệp hầm [TUNMSG](/docs/specs/tunnel-message/#notes) giới hạn các thông điệp khoảng 61.2 KB và các phương tiện truyền thông [TRANSPORT](/docs/transport/) hiện tại giới hạn các thông điệp khoảng 64 KB, do đó chiều dài dữ liệu ở đây
+- Chiều dài thực tế bị giới hạn bởi các lớp dưới của các giao thức - đặc tả thông điệp hầm [TUNMSG](/docs/specs/implementation/#notes) giới hạn các thông điệp khoảng 61.2 KB và các phương tiện truyền thông [TRANSPORT](/docs/overview/transport/) hiện tại giới hạn các thông điệp khoảng 64 KB, do đó chiều dài dữ liệu ở đây
   bị giới hạn khoảng 61 KB.
 - Xem các ghi chú quan trọng về độ tin cậy của các datagram lớn [API](/docs/api/datagrams/). Để
   đạt được kết quả tốt nhất, hãy giới hạn tải khoảng 10 KB hoặc ít hơn.
-
-
 
 
 ## Tương thích
@@ -336,7 +329,6 @@ Không có. Các ứng dụng phải được viết lại để chuyển hướ
 dựa trên giao thức và/hoặc cổng.
 Các thông điệp Datagram2 bị điều hướng sai và được giải thích
 như là datagram có thể phát lại hoặc các thông điệp truyền streaming sẽ thất bại dựa trên chữ ký, định dạng hoặc cả hai.
-
 
 
 ## Di chuyển
@@ -366,11 +358,11 @@ Streamr: Không ai sử dụng nó, không có kế hoạch di chuyển
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

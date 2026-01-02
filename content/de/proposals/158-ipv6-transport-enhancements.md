@@ -27,7 +27,6 @@ müssen wir unsere Unterstützung für IPv6 verbessern und die Annahmen beseitig
 alle Router IPv4-fähig sind.
 
 
-
 ### Konnektivitätsprüfung
 
 Beim Auswählen von Peers für Tunnels oder beim Auswählen von OBEP/IBGW-Pfaden für das Routing von Nachrichten,
@@ -43,7 +42,7 @@ Die Lösung besteht darin, zwei neue "Caps" oder Fähigkeiten zu den Router-Info
 
 ### IPv6-Vermittler
 
-Unsere Spezifikationen [SSU](/en/docs/transport/ssu/) und [SSU-SPEC](/en/docs/spec/ssu/) enthalten Fehler und Inkonsistenzen darüber, ob
+Unsere Spezifikationen [SSU](/docs/specs/ssu2/) und [SSU-SPEC](/docs/legacy/ssu/) enthalten Fehler und Inkonsistenzen darüber, ob
 IPv6-Vermittler für IPv4-Vermittlungen unterstützt werden.
 In jedem Fall wurde dies weder in Java I2P noch in i2pd jemals implementiert.
 Dies muss korrigiert werden.
@@ -51,7 +50,7 @@ Dies muss korrigiert werden.
 
 ### IPv6-Vermittlungen
 
-Unsere Spezifikationen [SSU](/en/docs/transport/ssu/) und [SSU-SPEC](/en/docs/spec/ssu/) machen deutlich, dass
+Unsere Spezifikationen [SSU](/docs/specs/ssu2/) und [SSU-SPEC](/docs/legacy/ssu/) machen deutlich, dass
 IPv6-Vermittlungen nicht unterstützt werden.
 Dies geschah unter der Annahme, dass IPv6 niemals hinter einer Firewall steht.
 Dies ist eindeutig nicht wahr, und wir müssen die Unterstützung für Router hinter einer Firewall mit IPv6 verbessern.
@@ -125,7 +124,6 @@ Es gibt drei Änderungen, die implementiert werden sollen.
 - Hinzufügen der Unterstützung für IPv6-Vermittlungen über IPv4- und IPv6-Vermittler
 
 
-
 ## Spezifikation
 
 ### 4/6 Caps
@@ -192,7 +190,6 @@ NTCP2 versteckt: Caps, s, v nur 4/6, mehrere sind erlaubt. Keine Notwendigkeit f
 Beispiel: NTCP2 caps="46" i=... s=... v="2"
 
 
-
 ### IPv6-Vermittler für IPv4
 
 Die folgenden Änderungen sind erforderlich, um Fehler und Inkonsistenzen in den Spezifikationen zu korrigieren.
@@ -200,7 +197,7 @@ Wir haben dies auch als "Teil 1" des Vorschlags beschrieben.
 
 #### Spezifikationsänderungen
 
-[SSU](/en/docs/transport/ssu/) sagt derzeit (IPv6-Anmerkungen):
+[SSU](/docs/specs/ssu2/) sagt derzeit (IPv6-Anmerkungen):
 
 IPv6 wird ab Version 0.9.8 unterstützt. Veröffentlichte Relay-Adressen können IPv4 oder IPv6 sein, und die Kommunikation zwischen Alice und Bob kann über IPv4 oder IPv6 erfolgen.
 
@@ -212,8 +209,7 @@ obwohl sie tatsächlich nicht als Vermittler über IPv6 fungierten.
 Daher sollten Router der "C"-Fähigkeit auf einer IPv6-Adresse nur vertrauen, wenn die Router-Version 0.9.50 oder höher ist.
 
 
-
-[SSU-SPEC](/en/docs/spec/ssu/) sagt derzeit (Relay-Anfrage):
+[SSU-SPEC](/docs/legacy/ssu/) sagt derzeit (Relay-Anfrage):
 
 Die IP-Adresse ist nur enthalten, wenn sie sich von der Quelladresse und dem Port des Pakets unterscheidet.
 In der aktuellen Implementierung ist die IP-Länge immer 0 und der Port ist immer 0,
@@ -224,7 +220,6 @@ Fügen Sie folgendes hinzu:
 
 Die IP und der Port müssen angegeben werden, um eine IPv4-Adresse über IPv6 zu vermitteln, wenn diese Nachricht gesendet wird.
 Dies wird ab Version 0.9.50 unterstützt.
-
 
 
 ### IPv6-Vermittlungen
@@ -241,11 +236,11 @@ Wir haben dies auch als "Teil 2" des Vorschlags beschrieben.
 
 #### Spezifikationsänderungen
 
-[SSU](/en/docs/transport/ssu/) sagt derzeit (IPv6-Anmerkungen):
+[SSU](/docs/specs/ssu2/) sagt derzeit (IPv6-Anmerkungen):
 
 Die Kommunikation zwischen Bob-Charlie und Alice-Charlie erfolgt nur über IPv4.
 
-[SSU-SPEC](/en/docs/spec/ssu/) sagt derzeit (Relay-Anfrage):
+[SSU-SPEC](/docs/legacy/ssu/) sagt derzeit (Relay-Anfrage):
 
 Es gibt keine Pläne, Relaying für IPv6 zu implementieren.
 
@@ -253,7 +248,7 @@ Es gibt keine Pläne, Relaying für IPv6 zu implementieren.
 
 Relaying für IPv6 wird ab Veröffentlichung 0.9.xx unterstützt
 
-[SSU-SPEC](/en/docs/spec/ssu/) sagt derzeit (Relay Response):
+[SSU-SPEC](/docs/legacy/ssu/) sagt derzeit (Relay Response):
 
 Charlies IP-Adresse muss IPv4 sein, da das die Adresse ist, an die Alice die Session-Anfrage nach dem Hole-Punch senden wird.
 Es gibt keine Pläne, Relaying für IPv6 zu implementieren.
@@ -264,7 +259,7 @@ Charlies IP-Adresse kann IPv4 oder, ab Veröffentlichung 0.9.xx, IPv6 sein.
 Das ist die Adresse, an die Alice die Session-Anfrage nach dem Hole-Punch senden wird.
 Relaying für IPv6 wird ab Veröffentlichung 0.9.xx unterstützt
 
-[SSU-SPEC](/en/docs/spec/ssu/) sagt derzeit (Relay Intro):
+[SSU-SPEC](/docs/legacy/ssu/) sagt derzeit (Relay Intro):
 
 Alices IP-Adresse ist in der aktuellen Implementierung immer 4 Byte, da Alice versucht, Charlie über IPv4 zu verbinden.
 Diese Nachricht muss über eine etablierte IPv4-Verbindung gesendet werden,

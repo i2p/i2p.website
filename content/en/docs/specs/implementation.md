@@ -4,7 +4,7 @@ description: "Unified specification for building, encrypting, and transporting t
 slug: "implementation"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: spec
+type: docs
 reviewStatus: "needs-review"
 ---
 
@@ -186,13 +186,13 @@ Although tunnels resemble circuits, routers treat them as message queues. Weight
 - Participants consider fixed-size fragments; gateways/endpoints drop based on combined fragment size, penalising large payloads first.
 - Outbound endpoints drop before other roles to waste the least network effort.
 
-Guaranteed delivery is left to higher layers such as the [Streaming library](/spec/api/streaming/). Applications that require reliability must handle retransmission and acknowledgments themselves.
+Guaranteed delivery is left to higher layers such as the [Streaming library](/docs/specs/streaming/). Applications that require reliability must handle retransmission and acknowledgments themselves.
 
 ---
 
 ## Further Reading {#further-reading}
 
-- [Unidirectional Tunnels (Historical)](/docs/legacy/unidirectional-tunnels/)
+
 - [Peer Selection](/docs/overview/tunnel-routing#peer-selection/)
 - [Tunnel Overview](/docs/overview/tunnel-routing/)
 - [Old Tunnel Implementation](/docs/legacy/old-implementation/)

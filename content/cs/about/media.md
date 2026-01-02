@@ -213,11 +213,11 @@ Zdroje pro novináře, výzkumníky a každého, kdo se zajímá o I2P. Všechny
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="/en/about/i2pcon/2015/">I2PCon 2015</a>
+[I2PCon 2015](/cs/blog/2015/07/16/i2pcon/)
 </div>
 <div class="content-entry-meta">🎪 Konference • Toronto • 15-16. srpna 2015</div>
 <div class="content-entry-actions">
-<a href="/en/about/i2pcon/2015/" class="content-btn">Podrobnosti</a>
+<a href="/cs/blog/2015/07/16/i2pcon/" class="content-btn">Podrobnosti</a>
 </div>
 </div>
 

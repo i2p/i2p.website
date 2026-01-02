@@ -23,7 +23,7 @@ toc: true
 
 يقلل ECIES من الحمل الزائد لرسائل الجلسات القائمة (ES) بحوالي 90 بايت.
 لذلك يمكننا زيادة الـ MTU بحوالي 90 بايت للاتصالات بـ ECIES.
-انظر the [ECIES specification](/en/docs/spec/ecies/#overhead), [Streaming specification](/en/docs/spec/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/en/docs/api/streaming/).
+انظر the [ECIES specification](/docs/specs/ecies/#overhead), [Streaming specification](/docs/specs/streaming/#flags-and-option-data-fields), and [Streaming API documentation](/docs/api/streaming/).
 
 دون زيادة الـ MTU، في العديد من الحالات لا يتم "توفير" المدخرات فعليًا،
 حيث سيتم تعبئة الرسائل لاستخدام رسائل النفق الكاملة على أي حال.
@@ -69,7 +69,7 @@ toc: true
 لذلك يجب أن يبقى الـ MTU عند 1730.
 
 
-كما هو مذكور في the [Streaming API documentation](/en/docs/api/streaming/),
+كما هو مذكور في the [Streaming API documentation](/docs/api/streaming/),
 قد تتجاوز البيانات في حزم SYN المرسلة من Alice إلى Bob الحد الأقصى لـ MTU الخاص بـ Bob.
 هذه نقطة ضعف في بروتوكول البث.
 لذلك، يجب على العملاء ثنائي المفتاح أن يقتصروا البيانات في حزم SYN المرسلة
@@ -80,17 +80,16 @@ toc: true
 
 ### التحليل
 
-كما هو موضح في the [ECIES specification](/en/docs/spec/ecies/#overhead), فإن الحمل الزائد لـ ElGamal لرسائل الجلسات القائمة هو
+كما هو موضح في the [ECIES specification](/docs/specs/ecies/#overhead), فإن الحمل الزائد لـ ElGamal لرسائل الجلسات القائمة هو
 151 بايت، والحمل الزائد لـ Ratchet هو 69 بايت.
 لذلك، يمكننا زيادة الـ MTU لروابط Ratchet بمقدار (151 - 69) = 82 بايت،
 من 1730 إلى 1812.
 
 
-
 ## المواصفات
 
-أضف التغييرات والتوضيحات التالية إلى قسم اختيار وتفاوض الـ MTU في the [Streaming API documentation](/en/docs/api/streaming/).
-لا تغيير في the [Streaming specification](/en/docs/spec/streaming/).
+أضف التغييرات والتوضيحات التالية إلى قسم اختيار وتفاوض الـ MTU في the [Streaming API documentation](/docs/api/streaming/).
+لا تغيير في the [Streaming specification](/docs/specs/streaming/).
 
 
 تظل القيمة الافتراضية للخيار i2p.streaming.maxMessageSize عند 1730 لجميع الاتصالات، بغض النظر عن المفاتيح المستخدمة.
@@ -124,7 +123,6 @@ toc: true
 - يجب على Alice إرسال MAX_PACKET_SIZE_INCLUDED في SYN
 
 
-
 ### 3) Alice ثنائي المفتاح و تعرف أن Bob هو ElGamal
 1730 MTU في جميع الحزم.
 
@@ -133,14 +131,12 @@ toc: true
 - قد ترسل Alice MAX_PACKET_SIZE_INCLUDED في SYN، ليس مطلوبًا إلا إذا كان != 1730
 
 
-
 ### 4) Alice ثنائي المفتاح و تعرف أن Bob هو ECIES
 1812 MTU في جميع الحزم.
 
 - ALICE_SYN_MAX_DATA = 1812
 - i2cp.streaming.maxMessageSize الافتراضي: 1812
 - يجب على Alice إرسال MAX_PACKET_SIZE_INCLUDED في SYN
-
 
 
 ### 5) Alice ثنائي المفتاح و مفتاح Bob غير معروف
@@ -158,13 +154,10 @@ negotiated_mtu، وهو الحد الأدنى من الـ MTU لدى Alice وBob
 في SYN ACK من Bob إلى Alice، وفي جميع الحزم اللاحقة المرسلة في كلا الاتجاهين.
 
 
-
-
 ## التبرير
 
 انظر إلى the [Java I2P source code](https://github.com/i2p/i2p.i2p/blob/master/apps/streaming/java/src/net/i2p/client/streaming/impl/ConnectionOptions.java#L220) لمعرفة لماذا القيمة الحالية هي 1730.
-انظر إلى the [ECIES specification](/en/docs/spec/ecies/#overhead) لمعرفة لماذا الحمل الزائد لـ ECIES أقل بـ 82 بايت من ElGamal.
-
+انظر إلى the [ECIES specification](/docs/specs/ecies/#overhead) لمعرفة لماذا الحمل الزائد لـ ECIES أقل بـ 82 بايت من ElGamal.
 
 
 ## ملاحظات التنفيذ
@@ -188,12 +181,9 @@ negotiated_mtu، وهو الحد الأدنى من الـ MTU لدى Alice وBob
 وحجم رسالة النفق الثلاثة (2952)، على الرغم من أن هذه الأحجام ينبغي أن تكون نادرة في الممارسة.
 
 
-
 ## المشكلات
 
 القيمة 1812 أولية. ليتم تأكيدها وربما تعديلها.
-
-
 
 
 ## الهجرة
@@ -203,6 +193,5 @@ negotiated_mtu، وهو الحد الأدنى من الـ MTU لدى Alice وBob
 
 ستدعم الوجهات القديمة لـ ECIES القيمة 1730.
 أي عميل يتلقى قيمة أعلى سيرد بقيمة 1730، وسوف يتفاوض الطرف البعيد للأسفل، كما هو معتاد.
-
 
 

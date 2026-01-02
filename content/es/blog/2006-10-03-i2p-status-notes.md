@@ -60,7 +60,6 @@ Además, solo me gustaría destacar dos fragmentos de la documentación de Syndi
 
 La sección relevante de (aún no publicado) Syndie usecases.html es:
 
-Proporcione ÚNICAMENTE la traducción, nada más:
 
 Aunque muchos grupos distintos suelen querer organizar debates en un foro en línea, la naturaleza centralizada de los foros tradicionales (sitios web, BBS, etc.) puede ser un problema. Por ejemplo, el sitio que aloja el foro puede ser dejado fuera de línea mediante ataques de denegación de servicio o por acción administrativa. Además, un único servidor ofrece un punto sencillo para monitorizar la actividad del grupo, de modo que, incluso si un foro es seudónimo, esos seudónimos pueden vincularse a la IP que publicó o leyó mensajes individuales.
 

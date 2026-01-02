@@ -27,8 +27,8 @@ toc: true
 (путем доставки сообщения во все указанные туннели).
 
 Альтернативой части предложения о делегировании было бы отправка через
-хэш [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset), подобно существующей возможности указать цельный хэш
-[RouterIdentity](http://localhost:63465/en/docs/specs/common-structures/#common-structure-specification). Это привело бы к меньшему сообщению и потенциально
+хэш [LeaseSet](http://localhost:63465/docs/specs/common-structures/#leaseset), подобно существующей возможности указать цельный хэш
+[RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification). Это привело бы к меньшему сообщению и потенциально
 новому LeaseSet. Однако:
 
 1. Это заставит OBEP выполнять поиск.
@@ -38,22 +38,22 @@ toc: true
 
 3. LeaseSet может быть зашифрован, поэтому OBEP не сможет получить аренды.
 
-4. Указание LeaseSet раскрывает OBEP местоположение [Destination](/en/docs/specs/common-structures/#destination) сообщения,
+4. Указание LeaseSet раскрывает OBEP местоположение [Destination](/docs/specs/common-structures/#destination) сообщения,
    которое они в ином случае могли бы обнаружить только, просматривая все
    LeaseSet в сети и ища совпадение аренды.
 
 
 ## Дизайн
 
-Инициатор (OBGW) будет помещать какие-то (все?) целевые [Leases](http://localhost:63465/en/docs/specs/common-structures/#lease) в
-инструкции доставки [TUNNEL-DELIVERY](/en/docs/specs/i2np/#tunnel-message-delivery-instructions) вместо выбора только одного.
+Инициатор (OBGW) будет помещать какие-то (все?) целевые [Leases](http://localhost:63465/docs/specs/common-structures/#lease) в
+инструкции доставки [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) вместо выбора только одного.
 
 OBEP выберет один из них для доставки. OBEP выберет, если возможно, тот, с
 которым он уже соединен или о котором уже знает. Это сделает путь OBEP-IBGW
 быстрее и надежнее, а также уменьшит общее количество сетевых соединений.
 
 У нас есть один неиспользуемый тип доставки (0x03) и два оставшихся бита (0 и 1)
-в флагах для [TUNNEL-DELIVERY](/en/docs/specs/i2np/#tunnel-message-delivery-instructions), которые мы можем использовать для реализации
+в флагах для [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions), которые мы можем использовать для реализации
 этих функций.
 
 
@@ -64,7 +64,7 @@ OBGW или их представлении NetDB:
 
 - Злоумышленник, контролирующий OBEP и извлекающий LeaseSet из NetDB, уже может
   определить, отправляется ли сообщение в конкретное местоположение, путем
-  поиска пары [TunnelId](http://localhost:63465/en/docs/specs/common-structures/#tunnelid) / [RouterIdentity](http://localhost:63465/en/docs/specs/common-structures/#common-structure-specification). В худшем случае, наличие
+  поиска пары [TunnelId](http://localhost:63465/docs/specs/common-structures/#tunnelid) / [RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification). В худшем случае, наличие
   нескольких арен в TMDI может ускорить нахождение совпадения в базе данных
   злоумышленника.
 
@@ -86,7 +86,7 @@ OBGW или их представлении NetDB:
 
 ## Спецификация
 
-Инструкции по доставке первого фрагмента [TUNNEL-DELIVERY](/en/docs/specs/i2np/#tunnel-message-delivery-instructions) будут изменены
+Инструкции по доставке первого фрагмента [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) будут изменены
 следующим образом:
 
 ```
@@ -159,10 +159,10 @@ OBGW или их представлении NetDB:
 
 Единственные узлы, которые должны понимать новую спецификацию, - это OBGW и
 OBEP. Поэтому мы можем сделать это изменение совместимым с существующей
-сетью, сделав его использование условным от целевой версии I2P [VERSIONS](/en/docs/specs/i2np/#protocol-versions):
+сетью, сделав его использование условным от целевой версии I2P [VERSIONS](/docs/specs/i2np/#protocol-versions):
 
 * OBGW должны выбирать совместимые OBEP при построении исходящих туннелей на
-  основе версии I2P, указанной в их [RouterInfo](http://localhost:63465/en/docs/specs/common-structures/#routerinfo).
+  основе версии I2P, указанной в их [RouterInfo](http://localhost:63465/docs/specs/common-structures/#routerinfo).
 
 * Узлы, которые рекламируют целевую версию, должны поддерживать разбор новых
   флагов и не должны отвергать инструкции как недействительные.

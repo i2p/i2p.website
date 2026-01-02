@@ -101,6 +101,7 @@ selfContainedNetwork = "自包含网络"
 selfContainedNetworkDesc = "完整的私密通信生态系统。"
 
 [nav]
+home = "首页"
 about = "关于"
 docs = "文档"
 downloads = "下载"
@@ -114,6 +115,9 @@ featureSuggestions = "功能建议"
 getI2P = "获取I2P"
 
 [footer]
+home = "首页"
+about = "关于"
+docs = "文档"
 newsletterDescription = "保持关注 I2P 新闻："
 subscribe = "订阅"
 emailPlaceholder = "输入您的邮箱"
@@ -165,6 +169,7 @@ tor = "Tor"
 allPlatforms = "所有平台"
 windows = "窗口"
 download = "立即下载"
+latest = "最新"
 beta = "测试版"
 windowsEasyInstaller = "Windows Easy Installer"
 macOsLinuxBsd = "macOS / Linux / BSD"
@@ -212,6 +217,7 @@ browserSetupGuide = "浏览器设置指南"
 exploreI2pSites = "探索 I2P 网站"
 startBrowsing = "开始浏览 .i2p 网站"
 getSupport = "获取支持"
+forums = "论坛"
 irc = "IRC"
 donateWithCrypto = "用加密货币捐赠"
 moneroRecommended = "门罗币 (XMR) - 推荐"
@@ -221,6 +227,17 @@ zcashZec = "Zcash (ZEC)"
 viewAllOptions = "查看所有捐赠选项 →"
 gettingStarted = "入门"
 backToDownloads = "返回下载页"
+
+[poll]
+title = "社区投票"
+subtitle = "我们很想听听您的意见"
+loading = "正在加载投票..."
+close = "关闭"
+disclaimer = "您的投票将帮助塑造 I2P 的未来。"
+
+[translationDisclaimer]
+message = "此翻译是使用机器学习生成的，可能不是100%准确。"
+viewEnglish = "查看英文版本"
 
 [languages]
 en = "英语"

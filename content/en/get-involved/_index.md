@@ -11,7 +11,7 @@ The I2P network thrives because of our community. Whether you're a developer, tr
 ### Core Development
 I2P is open source and we welcome contributions to the codebase. Whether you want to fix bugs, add features, or improve performance, your code contributions make a difference.
 
-- **Get started**: Check out our [new developer guide](/en/docs/developers/new-developers)
+- **Get started**: Check out our [new developer guide](/docs/developers/new-developers)
 - **Source code**: [GitLab](https://i2pgit.org) (also available inside I2P at http://git.idk.i2p)
 - **Monthly meetings**: Join us on the first Tuesday of each month
 - **IRC channels**: #i2p-dev on IRC2P for development discussions
@@ -19,7 +19,7 @@ I2P is open source and we welcome contributions to the codebase. Whether you wan
 ### Application Development
 Build applications that run on I2P!
 
-- **API documentation**: Learn about [SAM, BOB, and I2PTunnel APIs](/en/docs/api)
+- **API documentation**: Learn about [SAM, BOB, and I2PTunnel APIs](/docs/api)
 - **Streaming library**: Use the I2P streaming library for your apps
 - **New routers**: Consider building an I2P router in [Rust, Go, or other languages](/en/blog/2025/10/16/new-i2p-routers/)
 
@@ -27,7 +27,7 @@ Build applications that run on I2P!
 
 Help new users join the network by running infrastructure services:
 
-- **Reseed servers**: Help new routers bootstrap and join the network - see our [reseed documentation](/en/docs/guides/reseed-server/)
+- **Reseed servers**: Help new routers bootstrap and join the network - see our [reseed documentation](/docs/guides/reseed-server/)
 - **Mirror sites**: Host download mirrors to improve availability
 - **Services**: Run I2P services like forums, IRC servers, or other community tools
 
@@ -36,8 +36,8 @@ Help new users join the network by running infrastructure services:
 ### Improve Documentation
 Clear documentation helps everyone understand and use I2P better.
 
-- **Writing Guidelines**: Follow our [documentation writing guidelines](/en/docs/writing-guidelines/)
-- **Documentation Hub**: Browse and contribute to the [docs section](/en/docs/)
+- **Writing Guidelines**: Follow our [documentation writing guidelines](/docs/writing-guidelines)
+- **Documentation Hub**: Browse and contribute to the [docs section](/docs/)
 - **Content Suggestions**: Have ideas? [Contact us](/en/contact/)
 
 ### Translation
@@ -110,7 +110,7 @@ Connect with the I2P community:
 Not sure where to begin? Here are some first steps:
 
 1. **Install I2P**: [Download and install](/en/downloads) the latest version
-2. **Learn the basics**: Read the [I2P introduction](/en/docs/how/intro)
+2. **Learn the basics**: Read the [I2P introduction](/docs/how/intro)
 3. **Pick an area**: Choose something that matches your skills and interests
 4. **Say hello**: Join #i2p-dev on IRC2P and introduce yourself
 5. **Start small**: Pick a small task or contribution to get started

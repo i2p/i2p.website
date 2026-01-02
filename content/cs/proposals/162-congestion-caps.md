@@ -15,14 +15,11 @@ toc: true
 Přidejte indikátory zácpy do publikovaných informací o směrovači (RI).
 
 
-
-
 ## Motivace
 
 Šířkové "limity" (schopnosti) indikují sdílené limity šířky pásma a dosažitelnost, ale ne stav zácpy.
 Indikátor zácpy pomůže směrovačům vyhnout se pokusům o budování přes ucpaný směrovač,
 což přispívá k větší zácpě a snížené úspěšnosti budování tunelu.
-
 
 
 ## Návrh
@@ -52,10 +49,9 @@ Stav zácpy by měl být založen na průměru podmínek
 po několik minut, ne na okamžitém měření.
 
 
-
 ## Specifikace
 
-Aktualizujte [NETDB](/docs/how/network-database/) následujícím způsobem:
+Aktualizujte [NETDB](/docs/overview/network-database/) následujícím způsobem:
 
 
 ```text
@@ -78,7 +74,6 @@ Pro konzistenci by implementace měly přidat jakýkoli indikátor zácpy
 na konec (po R nebo U).
 
 
-
 ## Analýza Bezpečnosti
 
 Žádné publikované informace o peerovi nelze důvěřovat.
@@ -93,7 +88,6 @@ velmi nízko-šířkovým směrovačům. Limit "U" (nedosažitelný) má podobn�
 
 Jakýkoli publikovaný indikátor zácpy by měl mít stejný účinek jako
 odmítnutí nebo shození žádosti o vytvoření tunelu, s podobnými bezpečnostními vlastnostmi.
-
 
 
 ## Poznámky
@@ -111,8 +105,6 @@ Směrovače by pravděpodobně neměly výchozí publikovat indikátor zácpy p�
 i když je stav jejich sítě neznámý, aby se zabránilo detekci restartu peerů.
 
 
-
-
 ## Kompatibilita
 
 Žádné problémy, všechny implementace ignorují neznámé limity.
@@ -127,7 +119,6 @@ Publikujeme limity ve verzi 0.9.58 (duben 2023);
 využíváme publikované limity ve verzi 0.9.59 (červenec 2023).
 
 
-
 ## Reference
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

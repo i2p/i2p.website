@@ -213,11 +213,11 @@ layout: "single"
 
 <div class="content-entry">
 <div class="content-entry-title">
-<a href="/en/about/i2pcon/2015/">I2PCon 2015</a>
+[I2PCon 2015](/hi/blog/2015/07/16/i2pcon/)
 </div>
 <div class="content-entry-meta">🎪 सम्मेलन • टोरंटो • अगस्त 15-16, 2015</div>
 <div class="content-entry-actions">
-<a href="/en/about/i2pcon/2015/" class="content-btn">विवरण</a>
+<a href="/hi/blog/2015/07/16/i2pcon/" class="content-btn">विवरण</a>
 </div>
 </div>
 

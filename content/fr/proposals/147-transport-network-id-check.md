@@ -64,7 +64,6 @@ Puisque cela doit être compatible avec les versions antérieures, nous effectue
 afin que ce soit une opération sans effet pour la valeur actuelle de l'identifiant de réseau de 2.
 
 
-
 ## Spécification
 
 ### Documentation
@@ -139,7 +138,6 @@ contacter les développeurs ou opérateurs pour expliquer l'importance de change
 
 
 ## Problèmes
-
 
 
 ## Migration

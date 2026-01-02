@@ -57,16 +57,14 @@ I2P 관련 업데이트와 공지사항을 받으려면 이 웹사이트의 푸�
 | 역할 | 담당자 | 설명 |
 |------|--------|-------------|
 | **I2P Java 릴리스 관리자** | idk | 릴리스를 빌드하고 서명합니다 |
-| **포럼 관리자** | eche\|on | I2P 공개 포럼 유지 관리자 |
 | **다운로드 미러 관리자** | StormyCloud | 다운로드 파일용 미러를 관리합니다 |
 | **패키저; Linux** | idk | Linux (Debian/Ubuntu) 배포판 패키저 |
 | **패키저; Windows** | idk | Windows 설치 프로그램 패키저 |
-| **패키저; OSX** | echelon | OSX 설치 프로그램 패키저 |
-| **릴리스 매니저 예비 인력** | eche\|on | 예비 릴리스 매니저 |
+| **패키저; OSX** | vacant | OSX 설치 프로그램 패키저 |
 | **CI 관리자** | idk | 지속적 통합(Continuous Integration) 인프라를 유지 관리합니다 |
 | **Reseed 관리자** | idk | reseed 호스트를 모니터링하고 자문하며 모집합니다 |
 | **Gitea 관리자** | idk | I2P Gitea 유지 관리자 |
-| **현지화** | eche\|on, idk, zzz | [Transifex](https://www.transifex.com/projects/p/I2P/)의 관리자 |
+| **현지화** | idk, zzz | [Transifex](https://www.transifex.com/projects/p/I2P/)의 관리자 |
 | **번역가** | 정말 많은 분들! | [Transifex](https://www.transifex.com/projects/p/I2P/)의 번역가들 |
 | **웹사이트 유지 관리자** | StormyCloud | 공개 프로젝트 웹사이트의 콘텐츠와 디자인을 관리합니다 |
 | **웹서버 관리자** | StormyCloud | 공개 프로젝트 웹서버를 관리합니다 |

@@ -15,14 +15,11 @@ toc: true
 Fügen Sie Staumelder zu den veröffentlichten Router-Infos (RI) hinzu.
 
 
-
-
 ## Motivation
 
 Bandbreiten-"Caps" (Fähigkeiten) zeigen geteilte Bandbreitengrenzen und Erreichbarkeit an, jedoch nicht den Stauzustand.
 Ein Stau-Indikator hilft Routern, den Versuch zu vermeiden, über einen überlasteten Router zu bauen,
 was zu mehr Stau und einer verringerten Tunnelaufbau-Erfolgsquote führt.
-
 
 
 ## Design
@@ -52,10 +49,9 @@ Der Stauzustand sollte auf einem Durchschnitt der Bedingungen
 über mehrere Minuten basieren, nicht auf einer Momentaufnahme.
 
 
-
 ## Spezifikation
 
-Aktualisieren Sie [NETDB](/docs/how/network-database/) wie folgt:
+Aktualisieren Sie [NETDB](/docs/overview/network-database/) wie folgt:
 
 
 ```text
@@ -78,7 +74,6 @@ Für Konsistenz sollten Implementierungen jedes Stau-Cap
 am Ende hinzufügen (nach R oder U).
 
 
-
 ## Sicherheitsanalyse
 
 Alle veröffentlichten Peer-Informationen können nicht vertraut werden.
@@ -93,7 +88,6 @@ Router mit sehr geringer Bandbreite zu meiden. Das "U" (unerreichbar) Cap hat ei
 
 Jeder veröffentlichte Stau-Indikator sollte die gleiche Wirkung haben wie
 das Ablehnen oder Fallenlassen eines Tunnelbauantrags, mit ähnlichen Sicherheitseigenschaften.
-
 
 
 ## Anmerkungen
@@ -111,8 +105,6 @@ Router sollten wahrscheinlich standardmäßig keinen Stau-Cap bei Start oder Her
 selbst wenn ihr Netzwerkstatus unbekannt ist, um eine Neustarterkennung durch Peers zu verhindern.
 
 
-
-
 ## Kompatibilität
 
 Keine Probleme, alle Implementierungen ignorieren unbekannte Caps.
@@ -127,7 +119,6 @@ Veröffentliche Caps in 0.9.58 (April 2023);
 auf veröffentlichte Caps in 0.9.59 (Juli 2023) reagieren.
 
 
-
 ## Verweise
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

@@ -22,7 +22,7 @@ Bu öneri, ağ performansını artırmak için iki iyileştirmeyi kapsar:
 
 Doğrudan bağlantı durumunda, OBEP'ye IBGW'lere nasıl bağlanacağı konusunda esneklik vererek, bağlantı sıkışıklığını azaltmayı amaçlıyoruz. Birden fazla tünel belirtebilme yeteneği, mesajı belirtilen tüm tünellere ileterek OBEP'de çoklu yayını da uygulamamıza olanak tanır.
 
-Bu önerinin delege etme kısmına alternatif olarak, mevcut hedef [RouterIdentity](http://localhost:63465/en/docs/specs/common-structures/#common-structure-specification) karmasını belirtme yeteneğine benzer şekilde, bir [LeaseSet](http://localhost:63465/en/docs/specs/common-structures/#leaseset) karması gönderilebilir. Bu, daha küçük bir mesaj ve potansiyel olarak daha yeni bir LeaseSet ile sonuçlanacaktır. Ancak:
+Bu önerinin delege etme kısmına alternatif olarak, mevcut hedef [RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) karmasını belirtme yeteneğine benzer şekilde, bir [LeaseSet](http://localhost:63465/docs/specs/common-structures/#leaseset) karması gönderilebilir. Bu, daha küçük bir mesaj ve potansiyel olarak daha yeni bir LeaseSet ile sonuçlanacaktır. Ancak:
 
 1. OBEP'yi bir arama yapmaya zorlar.
 
@@ -35,18 +35,18 @@ Bu önerinin delege etme kısmına alternatif olarak, mevcut hedef [RouterIdenti
 
 ## Tasarım
 
-Başlatıcı (OBGW), hedef [Leases](http://localhost:63465/en/docs/specs/common-structures/#lease)'lerden bazılarını (tümünü?) teslimat talimatlarına [TUNNEL-DELIVERY](/en/docs/specs/i2np/#tunnel-message-delivery-instructions) yerleştirir, sadece bir tane seçmek yerine.
+Başlatıcı (OBGW), hedef [Leases](http://localhost:63465/docs/specs/common-structures/#lease)'lerden bazılarını (tümünü?) teslimat talimatlarına [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) yerleştirir, sadece bir tane seçmek yerine.
 
 OBEP bunlardan birine teslim etmek için seçecektir. OBEP mevcutsa, zaten bağlı olduğu veya bildiği birini seçecektir. Bu, OBEP-IBGW yolunu daha hızlı ve güvenilir hale getirecek ve toplam ağ bağlantılarını azaltacaktır.
 
-Kullanılmayan bir teslimat türümüz (0x03) ve [TUNNEL-DELIVERY](/en/docs/specs/i2np/#tunnel-message-delivery-instructions) bayraklarında iki kalan bitimiz (0 ve 1) var, bu özellikleri uygulamak için bunları kullanabiliriz.
+Kullanılmayan bir teslimat türümüz (0x03) ve [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) bayraklarında iki kalan bitimiz (0 ve 1) var, bu özellikleri uygulamak için bunları kullanabiliriz.
 
 
 ## Güvenlik Etkileri
 
 Bu öneri, OBGW'nin hedef Destination'ı veya NetDB'ye bakış açısı hakkındaki bilgi miktarını değiştirmez:
 
-- OBEP'yi kontrol eden ve NetDB'den LeaseSet'leri kazıyan bir saldırgan, bir mesajın belirli bir Destination'a gönderilip gönderilmediğini, [TunnelId](http://localhost:63465/en/docs/specs/common-structures/#tunnelid) / [RouterIdentity](http://localhost:63465/en/docs/specs/common-structures/#common-structure-specification) çiftini arayarak zaten belirleyebilir. En kötü ihtimalle, TMDI'deki birden fazla Lease varlığı, saldırganın veritabanında bir eşleşme bulma hızını artırabilir.
+- OBEP'yi kontrol eden ve NetDB'den LeaseSet'leri kazıyan bir saldırgan, bir mesajın belirli bir Destination'a gönderilip gönderilmediğini, [TunnelId](http://localhost:63465/docs/specs/common-structures/#tunnelid) / [RouterIdentity](http://localhost:63465/docs/specs/common-structures/#common-structure-specification) çiftini arayarak zaten belirleyebilir. En kötü ihtimalle, TMDI'deki birden fazla Lease varlığı, saldırganın veritabanında bir eşleşme bulma hızını artırabilir.
 
 - Kötü niyetli bir Destination işleten bir saldırgan, zaten farklı floodfill'lere farklı gelen tüneller içeren LeaseSet'ler yayımlayarak ve OBGW'nin hangi tüneller aracılığıyla bağlandığını gözlemleyerek, bağlanan bir kurbanın NetDB'ye bakış açısı hakkında bilgi edinebilir. Onların bakış açısından, OBEP hangi tüneli kullanacağını seçmesi, OBGW'nin seçimi yapmasına işlevsel olarak identiktir.
 
@@ -55,7 +55,7 @@ Bu öneri, OBGW'nin hedef Destination'ı veya NetDB'ye bakış açısı hakkınd
 
 ## Spesifikasyon
 
-İlk Parça Teslimat Talimatları [TUNNEL-DELIVERY](/en/docs/specs/i2np/#tunnel-message-delivery-instructions) şu şekilde değiştirilecektir:
+İlk Parça Teslimat Talimatları [TUNNEL-DELIVERY](/docs/specs/i2np/#tunnel-message-delivery-instructions) şu şekilde değiştirilecektir:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -122,7 +122,7 @@ Teslimat talimatlarının geri kalanı değiştirilmemiştir
 
 ## Uyumluluk
 
-Yeni spesifikasyonu anlaması gereken tek eşler OBGW'ler ve OBEP'lerdir. Dolayısıyla, bu değişikliği hedef I2P sürümü [VERSIONS](/en/docs/specs/i2np/#protocol-versions) üzerinden mevcut ağ ile uyumlu hale getirebiliriz:
+Yeni spesifikasyonu anlaması gereken tek eşler OBGW'ler ve OBEP'lerdir. Dolayısıyla, bu değişikliği hedef I2P sürümü [VERSIONS](/docs/specs/i2np/#protocol-versions) üzerinden mevcut ağ ile uyumlu hale getirebiliriz:
 
 * OBGW'ler, outbound tünelleri oluştururken advertised I2P sürümüne göre uyumlu OBEP'leri seçmeli.
 

@@ -34,7 +34,7 @@ Bittorrent, Kryptowährungen, andere Peer-to-Peer-Anwendungen.
 
 ### Service-Listen
 
-Der LS2-Vorschlag 123 [Prop123](/en/proposals/123-new-netdb-entries/) definierte 'Serviceaufzeichnungen', die anzeigten, dass ein Ziel an einem globalen Dienst teilnimmt. Die Floodfills würden diese Aufzeichnungen
+Der LS2-Vorschlag 123 [Prop123](/proposals/123-new-netdb-entries/) definierte 'Serviceaufzeichnungen', die anzeigten, dass ein Ziel an einem globalen Dienst teilnimmt. Die Floodfills würden diese Aufzeichnungen
 zu globalen 'Service-Listen' zusammenführen.
 Dies wurde aufgrund von Komplexität, mangelnder Authentifizierung,
 Sicherheits- und Spam-Bedenken nie implementiert.
@@ -71,10 +71,10 @@ bieten keinen generischen Eintrag für jeden Dienst.
 
 ## Design
 
-Service-Einträge werden im Optionsabschnitt in LS2 [LS2](/en/docs/spec/common-structures/) platziert.
+Service-Einträge werden im Optionsabschnitt in LS2 [LS2](/docs/specs/common-structures/) platziert.
 Der LS2-Optionsabschnitt wird derzeit nicht verwendet.
 Nicht unterstützt für LS1.
-Dies ähnelt dem Tunnelbandbreiten-Vorschlag [Prop168](/en/proposals/168-tunnel-bandwidth/),
+Dies ähnelt dem Tunnelbandbreiten-Vorschlag [Prop168](/proposals/168-tunnel-bandwidth/),
 
 der Optionen für Tunnel-Bau-Einträge definiert.
 
@@ -93,7 +93,6 @@ müssen diese Änderungen unterstützen.
 
 Kleine I2CP- und SAM-Erweiterungen werden vorgeschlagen, um den Abruf von
 Service-Einträgen durch Clients zu erleichtern.
-
 
 
 ## Spezifikation
@@ -124,7 +123,7 @@ Definiert wie folgt:
   Nur nützlich, wenn mehr als ein Eintrag, aber erforderlich, auch wenn nur ein Eintrag.
 - port := Der I2CP-Port, auf dem der Dienst zu finden ist. Nichtnegative ganze Zahl. Beispiel: "25"
   Port 0 wird unterstützt, aber nicht empfohlen.
-- target := Der Hostname oder b32 des Ziels, das den Dienst bereitstellt. Ein gültiger Hostname wie in [NAMING](/en/docs/naming/). Muss klein geschrieben sein.
+- target := Der Hostname oder b32 des Ziels, das den Dienst bereitstellt. Ein gültiger Hostname wie in [NAMING](/docs/overview/naming/). Muss klein geschrieben sein.
   Beispiel: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" oder "example.i2p".
   b32 wird empfohlen, es sei denn, der Hostname ist "gut bekannt", d.h. in offiziellen oder Standard-Adressbüchern.
 - appoptions := beliebiger Text, der speziell für die Anwendung ist, darf kein " " oder "," enthalten. Die Kodierung erfolgt in UTF-8.
@@ -176,18 +175,17 @@ Kein Wildcarding wie (Sternchen), (Sternchen)._tcp oder _tcp ist erlaubt.
 Jeder unterstützte Dienst muss seinen eigenen Eintrag haben.
 
 
-
 ### Dienstnamen-Registry
 
 Nicht standardisierte Kennungen, die nicht in [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) oder Linux /etc/services aufgelistet sind,
-können angefordert und zur gemeinsamen Strukturspezifikation [LS2](/en/docs/spec/common-structures/) hinzugefügt werden.
+können angefordert und zur gemeinsamen Strukturspezifikation [LS2](/docs/specs/common-structures/) hinzugefügt werden.
 
 Anwendungsspezifische Appoptions-Formate können dort ebenfalls hinzugefügt werden.
 
 
 ### I2CP-Spezifikation
 
-Das [I2CP](/en/docs/spec/i2cp/) Protokoll muss erweitert werden, um Dienstabfragen zu unterstützen.
+Das [I2CP](/docs/specs/i2cp/) Protokoll muss erweitert werden, um Dienstabfragen zu unterstützen.
 Zusätzliche MessageStatusMessage und/oder HostReplyMessage-Fehlercodes im Zusammenhang mit Dienstabfragen sind erforderlich.
 Um die Nachschlagefunktion allgemein zu gestalten, nicht nur dienstaufzeichnungsspezifisch,
 ist das Design so ausgelegt, dass der Abruf aller LS2-Optionen unterstützt wird.
@@ -228,7 +226,6 @@ Beispiel:
 Für Nachschlagetyp 4 ist Element 5 ein Ziel.
 
 
-
 ### HostReply-Nachricht
 
 Für Nachschlagetypen 2-4 muss der Router das Lease-Set abrufen,
@@ -251,10 +248,9 @@ Wenn ein Nachschlagetyp nicht unterstützt wird,
 enthält die Antwort einen neuen Fehlercode 7 (Nachschlagetyp nicht unterstützt).
 
 
-
 ### SAM-Spezifikation
 
-Das [SAMv3](/en/docs/api/samv3/) Protokoll muss erweitert werden, um Dienstabfragen zu unterstützen.
+Das [SAMv3](/docs/api/samv3/) Protokoll muss erweitert werden, um Dienstabfragen zu unterstützen.
 
 NAMING LOOKUP wie folgt erweitern:
 
@@ -285,7 +281,7 @@ Wenn OPTIONS=true in der Nachschlage enthalten war und das Lease-Set nicht gefun
 
 Ein alternatives Design wurde erwogen, um die Nachschlage von Diensten
 als vollständigen Hostnamen zu unterstützen, zum Beispiel _smtp._tcp.example.i2p,
-durch Aktualisieren von [NAMING](/en/docs/naming/) zur Spezifikation der Behandlung von Hostnamen, die mit '_' beginnen.
+durch Aktualisieren von [NAMING](/docs/overview/naming/) zur Spezifikation der Behandlung von Hostnamen, die mit '_' beginnen.
 Dies wurde aus zwei Gründen abgelehnt:
 
 - I2CP- und SAM-Änderungen wären dennoch notwendig, um die TTL- und Port-Informationen an den Client weiterzugeben.
@@ -298,7 +294,6 @@ Dies wurde aus zwei Gründen abgelehnt:
 Server sollten eine TTL von mindestens 86400 angeben und den Standard-Port für die Anwendung.
 
 
-
 ## Erweiterte Funktionen
 
 ### Rekursive Nachschlagen
@@ -308,7 +303,6 @@ auf einen Service-Eintrag überprüft wird, der auf ein anderes Lease-Set verwei
 Dies ist wahrscheinlich nicht notwendig, zumindest in einer ersten Implementierung.
 
 TODO
-
 
 
 ### Anwendungsspezifische Felder

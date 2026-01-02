@@ -53,7 +53,6 @@ Für den Code zur Validierung von Router-Infos und Transportverbindungen sollten
 Dies gilt auch für die "ihost0", "ihost1" und "ihost2" Parameter in einer SSU-Adresse. Router sollten Einleitungsadressen ignorieren, die Hostnamen enthalten.
 
 
-
 ## Anmerkungen
 
 Dieser Vorschlag behandelt nicht Hostnamen für Reseed-Hosts. Während DNS-Lookups für Reseed-Hosts viel seltener sind, könnten sie immer noch ein Problem darstellen. Falls erforderlich, kann dies einfach behoben werden, indem die Hostnamen in der fest kodierten Liste von URLs durch IPs ersetzt werden; es wären keine Spezifikations- oder Codeänderungen erforderlich.

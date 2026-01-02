@@ -13,7 +13,7 @@ toc: true
 ## ملاحظة
 
 تمت الموافقة على هذا الاقتراح وهو الآن في
-[Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/) اعتبارًا من API 0.9.65.
+[Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies) اعتبارًا من API 0.9.65.
 لا توجد تطبيقات معروفة حتى الآن؛ تواريخ التنفيذ / نسخ API لم تتحدد بعد.
 
 ## لمحة عامة
@@ -30,11 +30,11 @@ toc: true
 
 ## التصميم
 
-إضافة معلمات عرض النطاق الترددي إلى السجلات في رسائل بناء النفق عبر ECIES (انظر [Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/)) في حقل خرائط خيارات بناء النفق. استخدم أسماء قصيرة للمعلمات لأن المساحة المتاحة لحقل الخيارات محدودة. الرسائل في بناء النفق ثابتة الحجم لذا فإن ذلك لا يزيد من حجم الرسائل.
+إضافة معلمات عرض النطاق الترددي إلى السجلات في رسائل بناء النفق عبر ECIES (انظر [Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies)) في حقل خرائط خيارات بناء النفق. استخدم أسماء قصيرة للمعلمات لأن المساحة المتاحة لحقل الخيارات محدودة. الرسائل في بناء النفق ثابتة الحجم لذا فإن ذلك لا يزيد من حجم الرسائل.
 
 ## المواصفات
 
-تحديث [مواصفات رسائل بناء النفق عبر ECIES](/en/docs/spec/tunnel-creation-ecies/) كما يلي:
+تحديث [مواصفات رسائل بناء النفق عبر ECIES](/docs/specs/implementation/#tunnel-creation-ecies) كما يلي:
 
 للسجلات الطويلة والقصيرة في بناء ECIES:
 

@@ -23,7 +23,6 @@ Avšak existuje několik problémů, které musíme vyřešit, než můžeme př
 Tento dokument zdůrazňuje tyto nevyřešené problémy.
 
 
-
 ## Výzkumné pozadí
 
 Každý, kdo navrhuje nové šifrování, musí nejprve znát následující dokumenty:
@@ -57,11 +56,9 @@ Jako přehled, používáme ElGamal pro:
 Jakýkoli návrh na nahrazení ElGamal něčím jiným musí poskytnout následující detaily.
 
 
-
 ## Specifikace
 
 Jakýkoli návrh nového asymetrického šifrování musí plně specifikovat následující věci.
-
 
 
 ### 1. Obecné
@@ -87,9 +84,6 @@ Odpovězte na následující otázky ve vašem návrhu:
 - Navrhované číslo/čísla typu šifrování (experimentální rozsah nebo ne)
 
 
-
-
 ## Poznámky
-
 
 

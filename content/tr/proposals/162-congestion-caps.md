@@ -15,14 +15,11 @@ toc: true
 Yayınlanan Yönlendirici Bilgisine (RI) tıkanıklık göstergeleri ekleyin.
 
 
-
-
 ## Motivasyon
 
 Bant genişliği "sınırları" (yetkinlikler) paylaşım bant genişliği limitlerini ve erişilebilirliği belirtir, ancak tıkanıklık durumunu belirtmez.
 Bir tıkanıklık göstergesi, yönlendiricilerin tıkanmış bir yönlendirici üzerinden tünel inşa etme girişiminde bulunmaktan kaçınmalarına yardımcı olur,
 bu da daha fazla tıkanıklık ve azalan tünel inşa başarısına katkı sağlar.
-
 
 
 ## Tasarım
@@ -51,10 +48,9 @@ Uygulamalar aşağıdakilerden bir veya daha fazlasını dikkate alabilir:
 Tıkanıklık durumu, birkaç dakika boyunca koşulların ortalamasına dayanmalıdır, anlık ölçüm değil.
 
 
-
 ## Spesifikasyon
 
-[NETDB](/docs/how/network-database/)'yi aşağıdaki gibi güncelleyin:
+[NETDB](/docs/overview/network-database/)'yi aşağıdaki gibi güncelleyin:
 
 
 ```text
@@ -77,7 +73,6 @@ Tutarlılık için, uygulamalar herhangi bir tıkanıklık sınırını
 sonunda (R veya U'dan sonra) eklemelidir.
 
 
-
 ## Güvenlik Analizi
 
 Yayınlanmış herhangi bir eş bilgisine güvenilemez.
@@ -93,7 +88,6 @@ Mevcut bant genişliği kapasitesi göstergeleri (L-P, X) yalnızca
 
 Yayınlanan herhangi bir tıkanıklık göstergesi, bir tünel inşa talebini
 reddetme veya düşürmeye benzer bir etkiye sahip olmalıdır, benzer güvenlik özellikleri ile.
-
 
 
 ## Notlar
@@ -112,8 +106,6 @@ tıkanıklık sınırını varsayılan olarak yayınlamamalıdır,
 ağ durumları bilinmiyorsa bile, eşler tarafından yeniden başlatma tespiti önlemek için.
 
 
-
-
 ## Uyumluluk
 
 Hiçbir sorun yok, tüm uygulamalar bilinmeyen sınırları yok sayar.
@@ -128,7 +120,6 @@ Sınırlar 0.9.58'de yayınlanacak (Nisan 2023);
 yayımlanan sınırlar üzerinde 0.9.59'da (Temmuz 2023) işlem yapılacak.
 
 
-
 ## Referanslar
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

@@ -13,7 +13,7 @@ toc: true
 ## Status
 
 Approved at review 2025-06-24.
-Specification is at [UDP specification](/en/docs/spec/udp-bittorrent-announces/).
+Specification is at [UDP specification](/docs/specs/udp-bittorrent-announces/).
 Implementated in zzzot 0.20.0-beta2.
 Implementated in i2psnark as of API 0.9.67.
 Check documentation of other implementations for status.
@@ -26,12 +26,12 @@ This proposal is for implemention of UDP trackers in I2P.
 
 ### Change History
 
-A preliminary proposal for UDP trackers in I2P was posted on our [bittorrent spec page](/en/docs/applications/bittorrent/)
+A preliminary proposal for UDP trackers in I2P was posted on our [bittorrent spec page](/docs/applications/bittorrent/)
 in May 2014; this predated our formal proposal process, and it was never implemented.
 This proposal was created in early 2022 and simplifies the 2014 version.
 
 As this proposal relies on repliable datagrams, it was put on hold once we
-started working on the [Datagram2 proposal](/en/proposals/163-datagram2/) in early 2023.
+started working on the [Datagram2 proposal](/proposals/163-datagram2/) in early 2023.
 That proposal was approved in April 2025.
 
 The 2023 version of this proposal specified two modes, "compatibility" and "fast".
@@ -71,7 +71,7 @@ for a tracker's outbound traffic.
 Additionally, there should be implementation-specific memory reductions,
 as datagrams require much less in-memory state than a streaming connection.
 
-Post-Quantum encryption and signatures as envisioned in [/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/) will substantially
+Post-Quantum encryption and signatures as envisioned in [/proposals/169-pq-crypto/](/proposals/169-pq-crypto/) will substantially
 increase the overhead of encrypted and signed structures, including destinations,
 leasesets, streaming SYN and SYN ACK. It is important to minimize this
 overhead where possible before PQ crypto is adopted in I2P.
@@ -80,9 +80,9 @@ overhead where possible before PQ crypto is adopted in I2P.
 ## Design
 
 This proposal uses repliable datagram2, repliable datagram3, and raw datagrams,
-as defined in [/en/docs/spec/datagrams/](/en/docs/spec/datagrams/).
+as defined in [/docs/api/datagrams/](/docs/api/datagrams/).
 Datagram2 and Datagram3 are new variants of repliable datagrams,
-defined in Proposal 163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/).
+defined in Proposal 163 [/proposals/163-datagram2/](/proposals/163-datagram2/).
 Datagram2 adds replay resistance and offline signature support.
 Datagram3 is smaller than the old datagram format, but without authentication.
 
@@ -167,7 +167,7 @@ and are outside the scope of this proposal.
 
 #### Clients
 External SAM-based torrent clients such as qbittorrent and other libtorrent-based clients
-would require [SAM v3.3](/en/docs/api/samv3/) which is not supported by i2pd.
+would require [SAM v3.3](/docs/api/samv3/) which is not supported by i2pd.
 This is also required for DHT support, and is complex enough that no known
 SAM torrent client has implemented it.
 No SAM-based implementations of this proposal are expected soon.
@@ -499,9 +499,9 @@ Other implementations will follow as desired after the testing and verification 
 
 * [BEP15](http://www.bittorrent.org/beps/bep_0015.html)
 * [BEP41](http://www.bittorrent.org/beps/bep_0041.html)
-* [DATAGRAMS](/docs/specs/datagrams/)
+* [DATAGRAMS](/docs/api/datagrams/)
 * [Prop163](/proposals/163-datagram2/)
 * [Prop169](/proposals/169-pq-crypto/)
 * [SAMv3](/docs/api/samv3/)
 * [SPEC](/docs/applications/bittorrent/)
-* [UDP](/docs/specs/udp-announces/)
+* [UDP](/docs/specs/udp-bittorrent-announces/)

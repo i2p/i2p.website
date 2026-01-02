@@ -66,7 +66,7 @@ categories: ["meeting"]
 20:29:50  &lt;str4d&gt; If no-one else has comments yet, then we will move on to the next topic while you think.
 20:30:05  &lt;psi&gt; no comments
 20:31:03  &lt;str4d&gt; 1b) Discuss threat model (and update if needed).
-20:31:17  &lt;str4d&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/en/docs/how/threat-model
+20:31:17  &lt;str4d&gt; http://vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p/docs/overview/threat-model/
 20:31:18  * psi starts skimming threat model
 20:31:39  &lt;iRelay&gt; Title: I2P's Threat Model - I2P (at vekw35szhzysfq7cwsly37coegsnb4rrsggy5k4wtasa6c34gy5a.b32.i2p)
 20:31:47  &lt;dg&gt; I notice a rating?

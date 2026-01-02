@@ -245,7 +245,7 @@ tag :: 8 byte reply_tag
 ECIES destination or router sends a lookup to a ECIES router, with bundled reply keys.
 Supported as of 0.9.49.
 
-ECIES routers were introduced in 0.9.48, see [Prop156](/en/proposals/156-ecies-routers/).
+ECIES routers were introduced in 0.9.48, see [Prop156](/proposals/156-ecies-routers/).
 As of 0.9.49, ECIES destinations and routers may use the same format as in
 the "ECIES to ElG" section above, with reply keys included in the request.
 The lookup will use the "one time format" in [ECIES](/docs/specs/ecies/)

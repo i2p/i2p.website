@@ -2,4 +2,4 @@
 title: "Tarihi Belgeler"
 ---
 
-Bu sayfa "Tarihsel" altında [Dokümantasyon](/en/docs/) bölümüne taşındı.
+Bu sayfa "Tarihsel" altında [Dokümantasyon](/docs/) bölümüne taşındı.

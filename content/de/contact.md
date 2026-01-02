@@ -57,16 +57,14 @@ Abonnieren Sie unsere Mailingliste, indem Sie Ihre E‑Mail‑Adresse in der Fu�
 | Rolle | Person | Beschreibung |
 |------|--------|-------------|
 | **I2P-Java-Release-Manager** | idk | Erstellt und signiert die Releases |
-| **Forum-Admin** | eche\|on | Betreuer des öffentlichen I2P-Forums |
 | **Download-Spiegel-Admin** | StormyCloud | Verwaltet die Spiegel für die Download-Dateien |
 | **Paketierer; Linux** | idk | Paketierer für Linux-Distributionen (Debian/Ubuntu) |
 | **Paketierer; Windows** | idk | Paketierer für Windows-Installer |
-| **Paketierer; OSX** | echelon | Paketierer für OSX-Installer |
-| **Stellvertretende Release-Manager** | eche\|on | Stellvertretende Release-Manager |
+| **Paketierer; OSX** | vacant | Paketierer für OSX-Installer |
 | **CI-Admin** | idk | Betreut die Continuous-Integration-Infrastruktur |
 | **Reseed-Admin** | idk | Überwacht, berät und rekrutiert Reseed-Hosts |
 | **Gitea-Admin** | idk | I2P-Gitea-Betreuer |
-| **Lokalisierung** | eche\|on, idk, zzz | Admins auf [Transifex](https://www.transifex.com/projects/p/I2P/) |
+| **Lokalisierung** | idk, zzz | Admins auf [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Übersetzer** | sehr, sehr viele Menschen! | Übersetzer auf [Transifex](https://www.transifex.com/projects/p/I2P/) |
 | **Website-Betreuer** | StormyCloud | Verwaltet Inhalte und Design der öffentlichen Projekt-Website |
 | **Webserver-Admin** | StormyCloud | Verwaltet die öffentlichen Projekt-Webserver |

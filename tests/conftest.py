@@ -83,14 +83,19 @@ def hugo_bin_path() -> Path:
     return Path(hugo_path)
 
 
-@pytest.fixture(scope="function")
-def hugo_build_dir() -> Generator[Path, None, None]:
-    """Create a temporary directory for Hugo build output."""
-    with tempfile.TemporaryDirectory(prefix="hugo-test-") as tmpdir:
-        yield Path(tmpdir)
+@pytest.fixture(scope="session")
+def hugo_build_dir(project_root: Path) -> Generator[Path, None, None]:
+    """Use a local directory for Hugo build output to avoid /tmp space issues."""
+    build_dir = project_root / "tests" / "public_test"
+    if build_dir.exists():
+        shutil.rmtree(build_dir)
+    build_dir.mkdir(parents=True)
+    yield build_dir
+    # Optionally clean up, but keeping it helps debugging
+    # shutil.rmtree(build_dir)
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def build_hugo_site(
     project_root: Path, hugo_bin_path: Path, hugo_build_dir: Path
 ) -> Generator[Path, None, None]:
@@ -102,15 +107,12 @@ def build_hugo_site(
             str(hugo_bin_path),
             "--destination",
             str(hugo_build_dir),
-            "--quiet",
-            "--gc",
-            "--minify",
         ]
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
 
         if result.returncode != 0:
             pytest.fail(
-                f"Hugo build failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+                f"Hugo build failed (code {result.returncode}):\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
             )
 
         yield hugo_build_dir
@@ -128,18 +130,3 @@ def all_content_files(content_dir: Path) -> list[Path]:
 def all_static_files(static_dir: Path) -> list[Path]:
     """Get all files in static directory."""
     return list(static_dir.glob("**/*"))
-
-    if not lines[0].startswith("---"):
-        return {}
-
-    front_matter_lines = []
-    for line in lines[1:]:
-        if line.startswith("---"):
-            break
-        front_matter_lines.append(line)
-
-    front_matter_str = "\n".join(front_matter_lines)
-    try:
-        return yaml.safe_load(front_matter_str) or {}
-    except yaml.YAMLError:
-        return {}

@@ -12,7 +12,7 @@ toc: true
 
 ## 状态
 
-已于 2025-06-24 审查通过。规范文档位于 [UDP specification](/en/docs/spec/udp-bittorrent-announces/)。已在 zzzot 0.20.0-beta2 中实现。已在 i2psnark 中实现，自 API 0.9.67 版本起。请查看其他实现的文档了解状态。
+已于 2025-06-24 审查通过。规范文档位于 [UDP specification](/docs/specs/udp-bittorrent-announces/)。已在 zzzot 0.20.0-beta2 中实现。已在 i2psnark 中实现，自 API 0.9.67 版本起。请查看其他实现的文档了解状态。
 
 ## 概述
 
@@ -20,9 +20,9 @@ toc: true
 
 ### Change History
 
-一个关于在 I2P 中使用 UDP tracker 的初步提案于 2014 年 5 月发布在我们的 [bittorrent 规范页面](/en/docs/applications/bittorrent/) 上；这早于我们正式的提案流程，且从未实施。本提案创建于 2022 年初，简化了 2014 年版本。
+一个关于在 I2P 中使用 UDP tracker 的初步提案于 2014 年 5 月发布在我们的 [bittorrent 规范页面](/docs/applications/bittorrent/) 上；这早于我们正式的提案流程，且从未实施。本提案创建于 2022 年初，简化了 2014 年版本。
 
-由于此提案依赖于可回复的数据报，当我们在2023年初开始研究[Datagram2 提案](/en/proposals/163-datagram2/)时，该提案被暂停。该提案于2025年4月获得批准。
+由于此提案依赖于可回复的数据报，当我们在2023年初开始研究[Datagram2 提案](/proposals/163-datagram2/)时，该提案被暂停。该提案于2025年4月获得批准。
 
 该提案的 2023 版本指定了两种模式："兼容性"和"快速"。进一步分析显示快速模式将是不安全的，并且对于拥有大量种子文件的客户端也会效率低下。此外，BiglyBT 表示偏好兼容性模式。对于任何支持标准 [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) 的 tracker 或客户端来说，这种模式将更容易实现。
 
@@ -42,11 +42,11 @@ Bittorrent 在 2008 年的 BEP 15 [BEP 15](http://www.bittorrent.org/beps/bep_00
 
 此外，还应该有特定于实现的内存减少，因为数据报比流连接需要的内存状态要少得多。
 
-如[/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/)中所设想的后量子加密和签名将大幅增加加密和签名结构的开销，包括destinations、leasesets、streaming SYN和SYN ACK。在I2P采用PQ加密之前，尽可能减少这些开销非常重要。
+如[/proposals/169-pq-crypto/](/proposals/169-pq-crypto/)中所设想的后量子加密和签名将大幅增加加密和签名结构的开销，包括destinations、leasesets、streaming SYN和SYN ACK。在I2P采用PQ加密之前，尽可能减少这些开销非常重要。
 
 ## 动机
 
-此提案使用可回复数据报2、可回复数据报3和原始数据报，如[/en/docs/spec/datagrams/](/en/docs/spec/datagrams/)中所定义。数据报2和数据报3是可回复数据报的新变体，在提案163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/)中定义。数据报2添加了重放抵抗和离线签名支持。数据报3比旧的数据报格式更小，但没有身份验证。
+此提案使用可回复数据报2、可回复数据报3和原始数据报，如[/docs/api/datagrams/](/docs/api/datagrams/)中所定义。数据报2和数据报3是可回复数据报的新变体，在提案163 [/proposals/163-datagram2/](/proposals/163-datagram2/)中定义。数据报2添加了重放抵抗和离线签名支持。数据报3比旧的数据报格式更小，但没有身份验证。
 
 ### BEP 15
 
@@ -99,7 +99,7 @@ announce请求使用Datagram3，这样tracker就无需维护一个从连接ID到
 
 #### Clients
 
-基于SAM的外部torrent客户端（如qbittorrent和其他基于libtorrent的客户端）需要[SAM v3.3](/en/docs/api/samv3/)，但i2pd不支持此版本。DHT支持也需要此版本，而且实现复杂到目前没有已知的SAM torrent客户端实现了它。预计短期内不会有基于SAM的此提案实现。
+基于SAM的外部torrent客户端（如qbittorrent和其他基于libtorrent的客户端）需要[SAM v3.3](/docs/api/samv3/)，但i2pd不支持此版本。DHT支持也需要此版本，而且实现复杂到目前没有已知的SAM torrent客户端实现了它。预计短期内不会有基于SAM的此提案实现。
 
 ### Connection Lifetime
 

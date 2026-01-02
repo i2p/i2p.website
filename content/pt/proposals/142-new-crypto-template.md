@@ -24,7 +24,6 @@ No entanto, há várias questões que devem ser abordadas antes de podermos adic
 Este documento destaca essas questões não resolvidas.
 
 
-
 ## Pesquisa de Fundo
 
 Qualquer pessoa que proponha novas criptografias deve primeiro estar familiarizada com os seguintes documentos:
@@ -58,11 +57,9 @@ Como revisão, usamos ElGamal para:
 Qualquer proposta para substituir ElGamal por outra coisa deve fornecer os seguintes detalhes.
 
 
-
 ## Especificação
 
 Qualquer proposta para nova criptografia assimétrica deve especificar completamente as seguintes coisas.
-
 
 
 ### 1. Geral
@@ -88,9 +85,6 @@ Responda às seguintes perguntas em sua proposta:
 - Número(s) proposto(s) para tipo de criptografia (faixa experimental ou não)
 
 
-
-
 ## Notas
-
 
 

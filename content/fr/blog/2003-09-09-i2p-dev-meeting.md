@@ -16,4 +16,3 @@ categories: ["meeting"]
 
 </div>
 
-Fournissez UNIQUEMENT la traduction, rien d'autre :

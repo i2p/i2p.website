@@ -10,7 +10,6 @@ Cloner de grands dépôts logiciels via I2P peut être difficile, et l'utilisati
 
 ## Avant de commencer
 
-Fournissez UNIQUEMENT la traduction, rien d'autre :
 
 Si vous avez l'intention de générer un bundle git, vous **devez** déjà disposer d'une copie complète du dépôt **git**, et non du dépôt mtn. Vous pouvez l'obtenir depuis github ou depuis git.idk.i2p, mais un clone superficiel (un clone effectué avec --depth=1) *ne fonctionnera pas*. Il échouera silencieusement, en créant quelque chose qui ressemble à un bundle, mais lorsque vous tenterez de le cloner, la tentative de clonage échouera. Si vous ne faites que récupérer un bundle git pré-généré, alors cette section ne s'applique pas à vous.
 

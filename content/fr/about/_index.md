@@ -17,7 +17,7 @@ Le réseau I2P est un réseau superposé de pair à pair entièrement chiffré. 
 
 ## Comment se connecter au réseau I2P
 
-Le logiciel de base (Java) comprend un routeur qui introduit et maintient une connexion avec le réseau. Il fournit également des applications et des options de configuration pour personnaliser votre expérience et votre flux de travail. En savoir plus dans notre [documentation](/en/docs/).
+Le logiciel de base (Java) comprend un routeur qui introduit et maintient une connexion avec le réseau. Il fournit également des applications et des options de configuration pour personnaliser votre expérience et votre flux de travail. En savoir plus dans notre [documentation](/docs/).
 
 ## Que puis-je faire sur le réseau I2P ?
 
@@ -25,7 +25,7 @@ Le réseau fournit une couche applicative pour les services, les applications et
 
 ## Aperçu du réseau
 
-I2P utilise la cryptographie pour obtenir une variété de propriétés pour les tunnels qu'il construit et les communications qu'il transporte. Les tunnels I2P utilisent des transports, [NTCP2](/en/docs/specs/ntcp2/) et [SSU2](/en/docs/specs/ssu2/), pour dissimuler le trafic transporté. Les connexions sont chiffrées de routeur à routeur et de client à client (de bout en bout). La confidentialité persistante est assurée pour toutes les connexions. Parce que I2P est adressé cryptographiquement, les adresses réseau I2P sont auto-authentifiantes et appartiennent uniquement à l'utilisateur qui les a générées.
+I2P utilise la cryptographie pour obtenir une variété de propriétés pour les tunnels qu'il construit et les communications qu'il transporte. Les tunnels I2P utilisent des transports, [NTCP2](/docs/specs/ntcp2/) et [SSU2](/docs/specs/ssu2/), pour dissimuler le trafic transporté. Les connexions sont chiffrées de routeur à routeur et de client à client (de bout en bout). La confidentialité persistante est assurée pour toutes les connexions. Parce que I2P est adressé cryptographiquement, les adresses réseau I2P sont auto-authentifiantes et appartiennent uniquement à l'utilisateur qui les a générées.
 
 Le réseau est composé de pairs ("routeurs") et de tunnels virtuels unidirectionnels entrants et sortants. Les routeurs communiquent entre eux en utilisant des protocoles construits sur des mécanismes de transport existants (TCP, UDP), en passant des messages. Les applications clientes ont leur propre identifiant cryptographique ("Destination") qui leur permet d'envoyer et de recevoir des messages. Ces clients peuvent se connecter à n'importe quel routeur et autoriser l'attribution temporaire ("lease") de certains tunnels qui seront utilisés pour envoyer et recevoir des messages à travers le réseau. I2P possède sa propre base de données réseau interne (en utilisant une modification du DHT Kademlia) pour distribuer les informations de routage et de contact en toute sécurité.
 
@@ -35,4 +35,4 @@ Le réseau I2P est presque complètement décentralisé, à l'exception de ce qu
 
 ## Comparaisons
 
-Il existe de nombreuses autres applications et projets travaillant sur la communication anonyme et I2P a été inspiré par une grande partie de leurs efforts. Ceci n'est pas une liste exhaustive des ressources en matière d'anonymat - à la fois [la Bibliographie sur l'Anonymat de freehaven](http://freehaven.net/anonbib/topic.html) et [les projets liés à GNUnet](https://www.gnunet.org/links/) remplissent bien cette fonction. Cela dit, quelques systèmes se distinguent pour une comparaison plus approfondie. Apprenez-en plus sur la façon dont I2P se compare à d'autres réseaux d'anonymat dans notre [documentation comparative détaillée](/en/docs/overview/comparison/).
+Il existe de nombreuses autres applications et projets travaillant sur la communication anonyme et I2P a été inspiré par une grande partie de leurs efforts. Ceci n'est pas une liste exhaustive des ressources en matière d'anonymat - à la fois [la Bibliographie sur l'Anonymat de freehaven](http://freehaven.net/anonbib/topic.html) et [les projets liés à GNUnet](https://www.gnunet.org/links/) remplissent bien cette fonction. Cela dit, quelques systèmes se distinguent pour une comparaison plus approfondie. Apprenez-en plus sur la façon dont I2P se compare à d'autres réseaux d'anonymat dans notre [documentation comparative détaillée](/docs/overview/comparison/).

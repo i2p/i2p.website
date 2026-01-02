@@ -44,7 +44,6 @@ que eliminariam o preenchimento por completo. Há também uma breve discussão s
 e como isso pode afetar o planejamento futuro.
 
 
-
 ### Objetivos
 
 - Eliminar a exigência de gerar par de chaves ElGamal para Destinos
@@ -67,7 +66,6 @@ ser capazes de remover completamente o código ElGamal, sujeitas às consideraç
 com versões anteriores em outros protocolos.
 
 
-
 ## Design
 
 Estritamente falando, a chave pública de assinatura de 32 bytes sozinha (em ambos os Destinos e Identidades de Roteador)
@@ -83,7 +81,6 @@ ou confusão aos usuários.
 Para o tipo de assinatura Ed25519 e tipo de criptografia X25519:
 Os Destinos conterão 11 cópias (352 bytes) dos dados aleatórios.
 As Identidades de Roteador conterão 10 cópias (320 bytes) dos dados aleatórios.
-
 
 
 ### Estimativa de Economia
@@ -112,7 +109,6 @@ economias estimadas:
 Notas: Assume que o certificado de 7 bytes não é compressível, sem sobrecarga adicional do gzip.
 Nenhum dos dois é verdade, mas os efeitos serão pequenos.
 Ignora outras partes compressíveis da Info de Roteador.
-
 
 
 ## Especificação
@@ -204,9 +200,6 @@ Os custos e benefícios dessas mudanças não são claros.
 Propostas específicas a serem definidas (TBD):
 
 
-
-
-
 ### Chaves PQ
 
 Chaves públicas de criptografia pós-quântica (PQ), para qualquer algoritmo antecipado,
@@ -229,8 +222,6 @@ Mas seria após híbrido ou ratchet ????????????
 Para mais discussões, veja [this topic](http://zzz.i2p/topics/3294).
 
 
-
-
 ## Questões
 
 Pode ser desejável renovar as chaves da rede em uma taxa lenta, para fornecer proteção para novos roteadores.
@@ -239,8 +230,6 @@ Pode ser desejável renovar as chaves da rede em uma taxa lenta, para fornecer p
 Não é possível renovar chaves de Destinos existentes.
 
 Devem as Identidades de Roteador com preenchimento no campo de chave pública serem identificadas com um tipo de criptografia diferente no certificado de chave? Isso causaria problemas de compatibilidade.
-
-
 
 
 ## Migração

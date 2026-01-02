@@ -157,7 +157,6 @@ Embora fora do escopo desta proposta, roteadores e/ou clientes devem lembrar e s
 (provavelmente de forma persistente) o mapeamento de chave pública para destino, e vice-versa.
 
 
-
 ## Notas
 
 - Diferenciar sabores antigos de novos pelo comprimento. Endereços b32 antigos são sempre {52 chars}.b32.i2p. Novos são {56+ chars}.b32.i2p

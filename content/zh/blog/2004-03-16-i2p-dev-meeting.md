@@ -1,5 +1,6 @@
 ---
 title: "I2P 开发者会议 - 2004 年 3 月 16 日"
+slug: "i2p-dev-meeting-march-16-2004"
 date: 2004-03-16
 author: " jrandom"
 description: "2004年3月16日的 I2P 开发会议记录。"

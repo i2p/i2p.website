@@ -67,7 +67,6 @@ Bu geri uyumlu olması gerektiğinden, (id - 2) olarak XORlayacağız
 böylece bu, mevcut ağ kimliği değeri 2 için bir işleyici olmayacaktır.
 
 
-
 ## Özellikler
 
 ### Dokümantasyon
@@ -141,7 +140,6 @@ geliştiriciler veya operatörlerle iletişime geçmeye çalışmalıyız.
 
 
 ## Sorunlar
-
 
 
 ## Geçiş

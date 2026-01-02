@@ -50,7 +50,6 @@ I2P-Bote 会将其目标密钥存储在一个文本文件中；在 Debian 上，
 
 **捷径：**
 
-仅提供翻译，别无其他：
 
 由于你的 Bote 节点的本地 Destination（I2P 的地址标识）是 DSA Destination，因此更快的做法是直接将 local_dest.key 文件截断为前 516 字节。要轻松实现这一点，在 Debian 上配合 I2P 运行 I2P-Bote 时运行以下命令：
 

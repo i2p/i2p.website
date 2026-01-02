@@ -262,7 +262,7 @@ The Reseed Configuration page allows you to manually reseed your router if autom
 
 4. If you know and trust somebody that publishes reseed files, ask them for the URL. Then, use this page to reseed with the URL you received. First, enter the URL below. Then, click "Reseed from URL"
 
-5. See [the FAQ](/en/faq) for instructions on reseeding manually
+5. See [the FAQ](/docs/overview/faq/) for instructions on reseeding manually
 
 **Manual Reseed Options:**
 
@@ -342,7 +342,7 @@ The Tunnel Configuration page allows you to adjust default tunnel settings for b
 
 ⚠️ **Anonymity vs Performance Tradeoff:** There is a fundamental tradeoff between anonymity and performance. Tunnels longer than 3 hops (for example 2 hops + 0-2 hops, 3 hops + 0-1 hops, 3 hops + 0-2 hops), or a high quantity + backup quantity, may severely reduce performance or reliability. High CPU and/or high outbound bandwidth usage may result. Change these settings with care, and adjust them if you have problems.
 
-⚠️ **Persistence:** Exploratory tunnel setting changes are stored in the router.config file. Client tunnel changes are temporary and are not saved. To make permanent client tunnel changes, see the [I2PTunnel page](/en/docs/api/i2ptunnel).
+⚠️ **Persistence:** Exploratory tunnel setting changes are stored in the router.config file. Client tunnel changes are temporary and are not saved. To make permanent client tunnel changes, see the [I2PTunnel page](/docs/api/i2ptunnel).
 
 **Exploratory Tunnels:**
 

@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "I2P 개발 로드맵"
 description: "I2P 네트워크의 현재 개발 계획과 역사적 성과"

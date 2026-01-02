@@ -181,7 +181,7 @@ to 32-byte hashes in old software.
 
 * [ADLER32](https://en.wikipedia.org/wiki/CRC-32)
 * [RFC 3309](https://tools.ietf.org/html/rfc3309)
-* [SPEC](/docs/specs/b32encrypted/)
+* [SPEC](/docs/specs/b32-for-encrypted-leasesets/)
 
 
 

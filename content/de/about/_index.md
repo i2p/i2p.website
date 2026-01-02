@@ -17,7 +17,7 @@ Das I2P-Netzwerk ist ein vollständig verschlüsseltes Peer-to-Peer-Overlay-Netz
 
 ## Wie man sich mit dem I2P-Netzwerk verbindet
 
-Die Kernsoftware (Java) enthält einen Router, der eine Verbindung mit dem Netzwerk einführt und aufrechterhält. Sie bietet auch Anwendungen und Konfigurationsoptionen, um Ihr Erlebnis und Ihren Arbeitsablauf zu personalisieren. Erfahren Sie mehr in unserer [Dokumentation](/en/docs/).
+Die Kernsoftware (Java) enthält einen Router, der eine Verbindung mit dem Netzwerk einführt und aufrechterhält. Sie bietet auch Anwendungen und Konfigurationsoptionen, um Ihr Erlebnis und Ihren Arbeitsablauf zu personalisieren. Erfahren Sie mehr in unserer [Dokumentation](/docs/).
 
 ## Was kann ich im I2P-Netzwerk tun?
 
@@ -25,7 +25,7 @@ Das Netzwerk bietet eine Anwendungsebene für Dienste, Anwendungen und Netzwerkm
 
 ## Ein Überblick über das Netzwerk
 
-I2P verwendet Kryptographie, um eine Vielzahl von Eigenschaften für die Tunnel, die es baut, und die Kommunikationen, die es transportiert, zu erreichen. I2P-Tunnel verwenden Transports, [NTCP2](/en/docs/specs/ntcp2/) und [SSU2](/en/docs/specs/ssu2/), um den über sie transportierten Datenverkehr zu verschleiern. Verbindungen sind von Router zu Router und von Client zu Client (Ende-zu-Ende) verschlüsselt. Vorwärtsgeheimnis wird für alle Verbindungen bereitgestellt. Da I2P kryptographisch adressiert ist, sind I2P-Netzwerkadressen selbstauthentifizierend und gehören nur dem Benutzer, der sie erzeugt hat.
+I2P verwendet Kryptographie, um eine Vielzahl von Eigenschaften für die Tunnel, die es baut, und die Kommunikationen, die es transportiert, zu erreichen. I2P-Tunnel verwenden Transports, [NTCP2](/docs/specs/ntcp2/) und [SSU2](/docs/specs/ssu2/), um den über sie transportierten Datenverkehr zu verschleiern. Verbindungen sind von Router zu Router und von Client zu Client (Ende-zu-Ende) verschlüsselt. Vorwärtsgeheimnis wird für alle Verbindungen bereitgestellt. Da I2P kryptographisch adressiert ist, sind I2P-Netzwerkadressen selbstauthentifizierend und gehören nur dem Benutzer, der sie erzeugt hat.
 
 Das Netzwerk besteht aus Peers ("Routern") und unidirektionalen eingehenden und ausgehenden virtuellen Tunneln. Router kommunizieren miteinander über Protokolle, die auf bestehenden Transportmechanismen (TCP, UDP) basieren, und leiten Nachrichten weiter. Client-Anwendungen haben ihre eigene kryptographische Kennung ("Destination"), die es ihnen ermöglicht, Nachrichten zu senden und zu empfangen. Diese Clients können sich mit jedem Router verbinden und die vorübergehende Zuweisung ("Lease") einiger Tunnel autorisieren, die zum Senden und Empfangen von Nachrichten über das Netzwerk verwendet werden. I2P hat seine eigene interne Netzwerkdatenbank (mit einer Modifikation des Kademlia DHT), um Routing- und Kontaktdaten sicher zu verteilen.
 
@@ -35,4 +35,4 @@ Das I2P-Netzwerk ist fast vollständig dezentralisiert, mit Ausnahme der sogenan
 
 ## Vergleiche
 
-Es gibt eine Vielzahl anderer Anwendungen und Projekte, die anonymer Kommunikation arbeiten, und I2P wurde von vielen ihrer Bemühungen inspiriert. Dies ist keine umfassende Liste von Anonymitätsressourcen - sowohl [freehavens Anonymity Bibliography](http://freehaven.net/anonbib/topic.html) als auch [GNUnets verwandte Projekte](https://www.gnunet.org/links/) erfüllen diesen Zweck gut. Dennoch stechen einige Systeme für einen weiteren Vergleich hervor. Erfahren Sie mehr darüber, wie I2P im Vergleich zu anderen Anonymitätsnetzwerken abschneidet, in unserer [detaillierten Vergleichsdokumentation](/en/docs/overview/comparison/).
+Es gibt eine Vielzahl anderer Anwendungen und Projekte, die anonymer Kommunikation arbeiten, und I2P wurde von vielen ihrer Bemühungen inspiriert. Dies ist keine umfassende Liste von Anonymitätsressourcen - sowohl [freehavens Anonymity Bibliography](http://freehaven.net/anonbib/topic.html) als auch [GNUnets verwandte Projekte](https://www.gnunet.org/links/) erfüllen diesen Zweck gut. Dennoch stechen einige Systeme für einen weiteren Vergleich hervor. Erfahren Sie mehr darüber, wie I2P im Vergleich zu anderen Anonymitätsnetzwerken abschneidet, in unserer [detaillierten Vergleichsdokumentation](/docs/overview/comparison/).

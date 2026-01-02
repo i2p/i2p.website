@@ -404,7 +404,7 @@ categories: ["meeting"]
 21:11:44  &lt;str4d&gt; As does the desktop CSS
 21:12:02  &lt;str4d&gt; So designers are more than welcome to get stuck in.
 21:12:09  &lt;str4d&gt; But we decided previously that the theme is not a blocker.
-21:12:46  &lt;str4d&gt; Currently, the redirects from the old URLs to the new ones (e.g. /how_threatmodel.html -&gt; /en/docs/how/threat-model) are done with 302 redirects.
+21:12:46  &lt;str4d&gt; Currently, the redirects from the old URLs to the new ones (e.g. /how_threatmodel.html -&gt; /docs/overview/threat-model/) are done with 302 redirects.
 21:13:20  &lt;hottuna&gt; Ok
 21:13:20  &lt;str4d&gt; I'm going to leave them like that until the site is live, so the URL redirects can be properly tested
 21:13:27  &lt;str4d&gt; (But switching to a 301 is a simple addition of a parameter)

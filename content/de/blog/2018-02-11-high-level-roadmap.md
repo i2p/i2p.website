@@ -1,6 +1,7 @@
 ---
 title: "Übergeordnete Roadmap für 2018"
 date: 2018-02-11
+slug: "high-level-roadmap-for-2018"
 author: "str4d"
 description: "2018 wird das Jahr neuer Protokolle, neuer Kooperationen und einer verfeinerten Fokussierung."
 categories: ["roadmap"]
@@ -91,7 +92,6 @@ Ein Aspekt des oben Genannten, auf den wir uns konzentrieren werden, ist, mit de
 
 ## Wir würden uns über Ihre Hilfe freuen!
 
-Geben Sie NUR die Übersetzung an, sonst nichts:
 
 Das alles wirkt sehr ambitioniert, und das ist es auch! Aber viele der oben genannten Punkte überschneiden sich, und mit sorgfältiger Planung können wir daran erhebliche Fortschritte machen.
 

@@ -127,7 +127,6 @@ Si tiene preguntas sobre estos Términos de servicio, póngase en contacto con n
 
 Al utilizar nuestro Sitio Web o Software, usted reconoce que ha leído, entendido y acepta quedar vinculado por estos Términos de Servicio.
 
-Proporcione ÚNICAMENTE la traducción, nada más:
 
 **Última actualización**: octubre de 2025
 

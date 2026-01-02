@@ -14,8 +14,7 @@ toc: true
 自 API 版本 0.9.51 起实现。
 网络部署和测试进行中。
 可能会有小的修订。
-最终规范请参见 [I2NP](/en/docs/spec/i2np/) 和 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)。
-
+最终规范请参见 [I2NP](/docs/specs/i2np/) 和 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)。
 
 
 ## 概览
@@ -28,7 +27,7 @@ toc: true
 总大小为 2113 字节。此消息在反向路径上分为三个 1KB 的隧道
 消息。
 
-对于 ECIES-X25519 路由器，528 字节的记录格式更改在 [Prop152](/en/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 中指定。
+对于 ECIES-X25519 路由器，528 字节的记录格式更改在 [Prop152](/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 中指定。
 对于隧道中混合使用 ElGamal 和 ECIES-X25519 路由器的情况，记录大小必须保持为
 528 字节。然而，如果隧道中的所有路由器都是 ECIES-X25519，则可以使用新的、更小的
 构建记录，因为 ECIES-X25519 加密的开销要小得多
@@ -46,13 +45,13 @@ toc: true
 
 ### 目标
 
-更多目标请参见 [Prop152](/en/proposals/152-ecies-tunnels/) 和 [Prop156](/en/proposals/156-ecies-routers/)。
+更多目标请参见 [Prop152](/proposals/152-ecies-tunnels/) 和 [Prop156](/proposals/156-ecies-routers/)。
 
 - 较小的记录和消息
-- 保留将来选项的足够空间，如在 [Prop152](/en/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)中
+- 保留将来选项的足够空间，如在 [Prop152](/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)中
 - 适合反向路径的一个隧道消息
 - 仅支持 ECIES 跳跃
-- 保留在 [Prop152](/en/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)中实现的改进
+- 保留在 [Prop152](/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)中实现的改进
 - 最大化与当前网络的兼容性
 - 在 OBEP 中隐藏入站构建消息
 - 在 IBGW 中隐藏出站构建回复消息
@@ -63,10 +62,10 @@ toc: true
 
 ### 非目标
 
-更多非目标请参见 [Prop156](/en/proposals/156-ecies-routers/)。
+更多非目标请参见 [Prop156](/proposals/156-ecies-routers/)。
 
 - 不需要混合 ElGamal/ECIES 隧道
-- 层加密变更，请参见 [Prop153](/en/proposals/153-chacha20-layer-encryption/)
+- 层加密变更，请参见 [Prop153](/proposals/153-chacha20-layer-encryption/)
 - 不加速加密操作。假设 ChaCha20 和 AES 是相似的，
   即使是 AESNI，至少对于所涉及的小数据大小来说。
 
@@ -82,11 +81,11 @@ toc: true
 
 明文请求记录将为 154 字节，
 相比之下，ElGamal 记录为 222 字节，
-而根据 [Prop152](/en/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)定义的 ECIES 记录为 464 字节。
+而根据 [Prop152](/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)定义的 ECIES 记录为 464 字节。
 
 明文响应记录将为 202 字节，
 相比较，ElGamal 记录为 496 字节，
-而根据 [Prop152](/en/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)定义的 ECIES 记录为 512 字节。
+而根据 [Prop152](/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)定义的 ECIES 记录为 512 字节。
 
 回复加密将使用 ChaCha20（不含 ChaCha20/Poly1305），
 因此明文记录不需要是 16 字节的倍数。
@@ -116,7 +115,6 @@ IBGW 解密消息，
 适合单个隧道消息。请参见下文中的附录。
 
 
-
 #### OutboundTunnelBuildReply: 类型 26
 
 我们定义一个新的 OutboundTunnelBuildReply 消息。
@@ -135,8 +133,6 @@ OBEP 解密隧道构建消息，
 
 通过对 OTBRM 和 STBM 进行大蒜加密，我们还避免了在配对隧道的 IBGW 和 OBEP 上的兼容性可能出现的任何潜在
 问题。
-
-
 
 
 ### 消息流
@@ -164,7 +160,6 @@ STBM：短隧道构建消息（类型 25）
                                      IBGW
 
 
-
   入站构建 D-E-F
   通过现有出站 A-B-C 发送
 
@@ -182,14 +177,12 @@ STBM：短隧道构建消息（类型 25）
                                      IBGW
 
 
-
 ```
-
 
 
 ### 记录加密
 
-请求和回复记录加密：如 [Prop152](/en/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/)中定义。
+请求和回复记录加密：如 [Prop152](/proposals/152-ecies-tunnels/) 和 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)中定义。
 
 其他槽的回复记录加密：ChaCha20。
 
@@ -202,7 +195,6 @@ STBM：短隧道构建消息（类型 25）
 将层加密更改为 ChaCha20 是一个需要进一步研究的主题。
 
 
-
 ### 新隧道数据消息
 
 目前没有计划更改使用本规范构建的隧道使用的 1KB 隧道数据消息。
@@ -213,19 +205,16 @@ STBM：短隧道构建消息（类型 25）
 这是一个需要进一步研究的主题。
 
 
-
-
 ## 规格
 
 
 ### 短请求记录
 
 
-
 #### 短请求记录未加密部分
 
 这是 ECIES-X25519 路由器的隧道 BuildRequestRecord 的建议规范。
-与 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 的变化摘要：
+与 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 的变化摘要：
 
 - 将未加密长度从 464 更改为 154 字节
 - 将加密长度从 528 更改为 218 字节
@@ -256,7 +245,7 @@ bytes 0-3: 接收消息的隧道 ID，非零
 ```
 
 
-标志字段与 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义相同，包含以下内容::
+标志字段与 [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) 中定义相同，包含以下内容::
 
  位序：76543210（位 7 是 MSB）
  位 7：如果设置，允许来自任何人的消息
@@ -279,11 +268,10 @@ bytes 0-3: 接收消息的隧道 ID，非零
 这仅在入站隧道构建消息的明文记录中包含。
 这是必需的，因为此层没有用于构建记录的 DH。
 
-隧道构建选项是一个 Mapping 结构，如 [Common](/en/docs/spec/common-structures/) 中定义。
+隧道构建选项是一个 Mapping 结构，如 [Common](/docs/specs/common-structures/) 中定义。
 这是为了将来使用。目前尚未定义任何选项。
 如果 Mapping 结构为空，则为两个字节 0x00 0x00。
 Mapping 的最大大小（包括长度字段）为 98 字节，Mapping 长度字段的最大值为96。
-
 
 
 #### 短请求记录加密部分
@@ -301,13 +289,12 @@ bytes 0-15: 节点的截断身份哈希
 ```
 
 
-
 ### 短回复记录
 
 
 #### 短回复记录未加密部分
 这是 ECIES-X25519 路由器的隧道 ShortBuildReplyRecord 的建议规范。
-与 [Tunnel-Creation-ECIES](/en/docs/spec/tunnel-creation-ecies/) 的变化摘要：
+与 [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies) 的变化摘要：
 
 - 将未加密长度从 512 更改为 202 字节
 - 将加密长度从 528 更改为 218 字节
@@ -327,13 +314,13 @@ bytes 0-x: 隧道构建回复选项（Mapping）
   byte 201: 回复字节
 ```
 
-隧道构建回复选项是一个 Mapping 结构，如 [Common](/en/docs/spec/common-structures/) 中定义。
+隧道构建回复选项是一个 Mapping 结构，如 [Common](/docs/specs/common-structures/) 中定义。
 这是为了将来使用。目前尚未定义任何选项。
 如果 Mapping 结构为空，则为两个字节 0x00 0x00。
 Mapping 的最大大小（包括长度字段）为 201 字节，Mapping 长度字段的最大值为199。
 
 回复字节是以下值之一
-如 [Tunnel-Creation](/en/docs/spec/tunnel-creation/) 中定义，以避免指纹：
+如 [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) 中定义，以避免指纹：
 
 - 0x00（接受）
 - 30（TUNNEL_REJECT_BANDWIDTH）
@@ -350,12 +337,9 @@ bytes 0-201: ChaCha20 加密的 ShortBuildReplyRecord
 ```
 
 
-
 ### KDF
 
 见下文的 KDF 部分。
-
-
 
 
 ### ShortTunnelBuild
@@ -365,7 +349,6 @@ I2NP 类型 25
 不得发送给 IBGW（改用大蒜包装的 InboundTunnelBuild）。
 当接收到 OBEP 时，会转化为一个 OutboundTunnelBuildReply，
 大蒜包装，并发送给发起人。
-
 
 
 ```
@@ -384,8 +367,6 @@ I2NP 类型 25
 #### 笔记
 
 * 典型的记录数为 4，总大小为 873。
-
-
 
 
 ### OutboundTunnelBuildReply
@@ -420,7 +401,6 @@ I2NP 类型 26
 
 * 典型的记录数为 4，总大小为 873。
 * 此消息应为大蒜加密。
-
 
 
 ### KDF
@@ -461,9 +441,6 @@ keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
 ```
 
 
-
-
-
 ## 正当理由
 
 此设计最大程度地重用了现有的加密原语、协议和代码。
@@ -485,9 +462,7 @@ ChaCha20 避免了数据大小必须是 16 的倍数的要求。
   出站隧道也应该使用 4 条记录来构建。
 
 
-
 ## 问题
-
 
 
 ## 迁移
@@ -514,14 +489,11 @@ ChaCha20 避免了数据大小必须是 16 的倍数的要求。
 没有向后兼容性问题。新的消息只能发送给支持它们的路由器。
 
 
-
-
 ## 附录
 
 
 如果没有未加密入站 STBM 的大蒜开销，
 如果我们不使用 ITBM：
-
 
 
 ```
@@ -614,7 +586,6 @@ ChaCha20 避免了数据大小必须是 16 的倍数的要求。
 因为传送指令为本地而非路由器，
 不包括 DATETIME 块，以及
 它使用 8 字节的标签而不是完整 'N' 消息的 32 字节临时密钥。
-
 
 
 ## 参考资料

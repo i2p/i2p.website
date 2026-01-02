@@ -2,9 +2,7 @@
 title: "Jak dobrovolně pomoci s bootstrapem (počáteční inicializací) I2P-Bote"
 date: 2019-05-20
 author: "idk"
-description: "Pomozte s inicializací I2P-Bote!
-
-Poskytněte POUZE překlad, nic jiného:"
+description: "Pomozte s inicializací I2P-Bote!"
 categories: ["development"]
 ---
 
@@ -52,7 +50,6 @@ Tyto možnosti jsou také k dispozici v řadě knihoven pro vývoj aplikací pro
 
 **Zkratka:**
 
-Poskytněte POUZE překlad, nic dalšího:
 
 Protože local destination (cílová identita) vašeho uzlu I2P-Bote je DSA destination, je rychlejší jednoduše zkrátit soubor local_dest.key na prvních 516 bajtů. Abyste to provedli snadno, spusťte tento příkaz při běhu I2P-Bote s I2P na Debianu:
 

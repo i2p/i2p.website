@@ -32,14 +32,18 @@ def test_all_markdown_files_have_front_matter(all_content_files: List[Path]) -> 
 
     for md_file in all_content_files:
         with open(md_file, "r", encoding="utf-8") as f:
-            first_line = f.readline()
+            content = f.read(100) # Only check the start
+        
+        # Handle UTF-8 BOM if present
+        if content.startswith('\ufeff'):
+            content = content[1:]
 
-        if not first_line.startswith("---"):
-            missing_front_matter.append(str(md_file.relative_to(md_file.parent.parent)))
+        if not content.strip().startswith("---"):
+            missing_front_matter.append(str(md_file.relative_to(md_file.parent.parent.parent)))
 
     if missing_front_matter:
         print(f"\n❌ Found {len(missing_front_matter)} files without front matter:")
-        for file_path in missing_front_matter[:20]:
+        for file_path in sorted(missing_front_matter)[:20]:
             print(f"    - {file_path}")
         if len(missing_front_matter) > 20:
             print(f"    ... and {len(missing_front_matter) - 20} more")
@@ -75,6 +79,9 @@ def test_blog_posts_have_date(all_content_files: List[Path]) -> None:
     missing_date = []
 
     for md_file in blog_files:
+        if md_file.name == "_index.md":
+            continue
+
         with open(md_file, "r", encoding="utf-8") as f:
             content = f.read()
 
@@ -110,11 +117,11 @@ def test_all_files_have_title(all_content_files: List[Path]) -> None:
             continue
 
         if "title" not in front_matter:
-            missing_title.append(str(md_file.relative_to(md_file.parent.parent)))
+            missing_title.append(str(md_file.relative_to(md_file.parent.parent.parent)))
 
     if missing_title:
         print(f"\n❌ Found {len(missing_title)} files without title:")
-        for file_path in missing_title[:20]:
+        for file_path in sorted(missing_title)[:20]:
             print(f"    - {file_path}")
         if len(missing_title) > 20:
             print(f"    ... and {len(missing_title) - 20} more")

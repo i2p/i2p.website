@@ -38,7 +38,6 @@ Automaticky shromážděné informace používáme výhradně k:
 
 **Neděláme**:
 
-Poskytněte POUZE překlad, nic jiného:
 
 - Sell, rent, or trade your data to third parties
 - Use third-party services to identify individual users
@@ -98,7 +97,6 @@ Máte-li dotazy nebo obavy ohledně těchto Zásad ochrany osobních údajů, pr
 - **Email**: press@i2p.net
 - **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
 
-Poskytněte POUZE překlad, nic jiného:
 
 **Naposledy aktualizováno**: říjen 2025
 

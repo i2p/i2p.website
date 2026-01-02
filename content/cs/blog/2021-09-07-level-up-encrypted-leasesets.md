@@ -1,6 +1,7 @@
 ---
 title: "Posuňte své I2P dovednosti na vyšší úroveň díky šifrovaným LeaseSets"
 date: 2021-09-07
+slug: "level-up-your-i2p-skills-with-encrypted-leasesets"
 author: "idk"
 description: "Říká se, že I2P klade důraz na skryté služby; zkoumáme jednu interpretaci toho"
 categories: ["general"]

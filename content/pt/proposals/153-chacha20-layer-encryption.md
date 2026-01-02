@@ -34,7 +34,7 @@ Esta seção descreve alterações para:
 - Criptografia e pós-processamento de Participantes
 - Criptografia e pós-processamento de Ponto de Extremidade de Saída e Entrada
 
-Para uma visão geral do processamento atual de mensagens de túnel, veja a especificação [Tunnel Implementation](/docs/tunnels/implementation/).
+Para uma visão geral do processamento atual de mensagens de túnel, veja a especificação [Tunnel Implementation](/docs/specs/implementation/).
 
 Apenas alterações para roteadores que suportam criptografia de camada ChaCha20 são discutidas.
 
@@ -310,4 +310,4 @@ Ambos os ataques também são bloqueados por desabilitar múltiplas chamadas ora
 
 ## Referências
 
-* [Tunnel-Implementation](/docs/tunnels/implementation/)
+* [Tunnel-Implementation](/docs/specs/implementation/)

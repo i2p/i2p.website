@@ -8,7 +8,7 @@ categories: ["general"]
 
 ## StormyCloud Inc. ile bir görüşme
 
-En son [I2P Java sürümü](https://geti2p.net/en/blog/post/2022/08/22/1.9.0-Release) ile birlikte, mevcut outproxy (çıkış vekil sunucusu) olan false.i2p, yeni I2P kurulumları için yeni StormyCloud outproxy ile değiştirildi. Router’larını güncelleyen kişiler için, Stormycloud hizmetine geçiş hızlıca yapılabilir.
+En son [I2P Java sürümü](https://geti2p.net/en/blog/2022/08/22/1.9.0-Release) ile birlikte, mevcut outproxy (çıkış vekil sunucusu) olan false.i2p, yeni I2P kurulumları için yeni StormyCloud outproxy ile değiştirildi. Router’larını güncelleyen kişiler için, Stormycloud hizmetine geçiş hızlıca yapılabilir.
 
 Hidden Services Manager'da hem Outproxies hem de SSL Outproxies alanlarını exit.stormycloud.i2p olarak ayarlayın ve sayfanın altındaki kaydet düğmesine tıklayın.
 

@@ -37,7 +37,6 @@ sudo ssh-keygen -N "" -t ed25519 -f /etc/ssh/ssh_host_ed25519_key
 
 给它一个好的描述：
 
-只提供翻译，其他一概不要：
 
 **截图占位符：** 说明其用途
 

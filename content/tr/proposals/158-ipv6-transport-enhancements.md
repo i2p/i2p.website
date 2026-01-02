@@ -26,7 +26,6 @@ IPv6 dünyada büyüdükçe ve IPv6 destekli yapılandırmalar (özellikle mobil
 IPv6 desteğimizi geliştirmemiz ve tüm yönlendiricilerin IPv4 destekli olduğu varsayımını ortadan kaldırmamız gerekiyor.
 
 
-
 ### Bağlantı Kontrolü
 
 Eşler seçilirken, tüneller veya mesajları yönlendirmek için OBEP/IBGW yolları seçilirken,
@@ -42,7 +41,7 @@ bu yüzden IPv4 destekli ve IPv6 destekli olmadığını varsayıyoruz.
 
 ### IPv6 Tanıtıcıları
 
-Spesifikasyonlarımız [SSU](/en/docs/transport/ssu/) ve [SSU-SPEC](/en/docs/spec/ssu/),
+Spesifikasyonlarımız [SSU](/docs/specs/ssu2/) ve [SSU-SPEC](/docs/legacy/ssu/),
 IPv6 tanıtıcılarının IPv4 tanıtımları için desteklenip desteklenmediği konusunda hatalar ve tutarsızlıklar içermektedir.
 Her durumda, bu ne Java I2P'de ne de i2pd'de uygulanmamıştır.
 Bu düzeltilmelidir.
@@ -50,7 +49,7 @@ Bu düzeltilmelidir.
 
 ### IPv6 Tanıtımları
 
-Spesifikasyonlarımız [SSU](/en/docs/transport/ssu/) ve [SSU-SPEC](/en/docs/spec/ssu/), 
+Spesifikasyonlarımız [SSU](/docs/specs/ssu2/) ve [SSU-SPEC](/docs/legacy/ssu/), 
 IPv6 tanıtımlarının desteklenmediğini açıkça belirtmektedir.
 Bu varsayım altında, IPv6'nın asla güvenlik duvarı arkasında olmayacağı düşünüldü.
 Bu açıkça doğru değil ve güvenlik duvarı arkasındaki IPv6 yönlendiricileri için desteğimizi geliştirmemiz gerekiyor.
@@ -124,7 +123,6 @@ Uygulanacak üç değişiklik bulunmaktadır.
 - IPv4 ve IPv6 tanıtıcıları üzerinden IPv6 tanıtımlarını destekle
 
 
-
 ## Şartname
 
 ### 4/6 Yetenek
@@ -189,7 +187,6 @@ Gizli NTCP2: Yetenekler, s, v sadece 4/6, birden fazla izin verilir. İki adres,
 Örnek: NTCP2 caps="46" i=... s=... v="2"
 
 
-
 ### IPv4 için IPv6 Tanıtıcıları
 
 Hataları ve tutarsızlıkları düzeltmek için aşağıdaki değişiklikler gereklidir.
@@ -197,7 +194,7 @@ Bunu ayrıca önerinin "birinci kısmı" olarak da tanımladık.
 
 #### Spesifikasyon Değişiklikleri
 
-[SSU](/en/docs/transport/ssu/) şu anda (IPv6 notları) diyor ki:
+[SSU](/docs/specs/ssu2/) şu anda (IPv6 notları) diyor ki:
 
 IPv6, sürüm 0.9.8 itibariyle desteklenmektedir. Yayınlanan aktarıcı adresleri IPv4 veya IPv6 olabilir ve Alice-Bob iletişimi IPv4 veya IPv6 üzerinden olabilir.
 
@@ -209,8 +206,7 @@ ancak bunlar gerçekte IPv6 üzerinden tanıtıcı olarak hareket etmiyorlardı.
 Bu nedenle, yönlendiriciler bir IPv6 adresinde 'C' yeteneğine yalnızca yönlendirici sürümü 0.9.50 veya üstü ise güvenmelidir.
 
 
-
-[SSU-SPEC](/en/docs/spec/ssu/) şu anda (Aktarım İsteği) diyor ki:
+[SSU-SPEC](/docs/legacy/ssu/) şu anda (Aktarım İsteği) diyor ki:
 
 IP adresi yalnızca paket kaynağı adresi ve portundan farklı gelmesi durumunda dahil edilir.
 Mevcut uygulamada, IP uzunluğu her zaman 0 ve port her zaman 0'dır,
@@ -221,7 +217,6 @@ Aşağıdaki ekleyin:
 
 Bu mesajı IPv6 üzerinden gönderirken bir IPv4 adresini tanıtmak için IP ve port eklenmelidir.
 Bu, 0.9.50 sürümünden itibaren desteklenmektedir.
-
 
 
 ### IPv6 Tanıtımları
@@ -238,11 +233,11 @@ Bunu ayrıca önerinin "ikinci kısmı" olarak da tanımladık.
 
 #### Spesifikasyon Değişiklikleri
 
-[SSU](/en/docs/transport/ssu/) şu anda (IPv6 notları) diyor ki:
+[SSU](/docs/specs/ssu2/) şu anda (IPv6 notları) diyor ki:
 
 Bob-Charlie ve Alice-Charlie iletişimi yalnızca IPv4 üzerinden yapılır.
 
-[SSU-SPEC](/en/docs/spec/ssu/) şu anda (Aktarım İsteği) diyor ki:
+[SSU-SPEC](/docs/legacy/ssu/) şu anda (Aktarım İsteği) diyor ki:
 
 IPv6 için aktarıcı uygulama planları yoktur.
 
@@ -250,7 +245,7 @@ IPv6 için aktarıcı uygulama planları yoktur.
 
 IPv6 için aktarıcı desteği 0.9.xx sürümünden itibaren desteklenmektedir
 
-[SSU-SPEC](/en/docs/spec/ssu/) şu anda (Relay Response) diyor ki:
+[SSU-SPEC](/docs/legacy/ssu/) şu anda (Relay Response) diyor ki:
 
 Charlie's IP adresi IPv4 olmalıdır, çünkü bu, Alice'in Hole Punch'tan sonra SessionRequest'i göndereceği adrestir.
 IPv6 için aktarıcı planları yoktur.
@@ -261,7 +256,7 @@ Charlie's IP adresi IPv4 olabilir ya da 0.9.xx sürümünden itibaren IPv6 olabi
 Bu, Alice'in Hole Punch'tan sonra SessionRequest'i göndereceği adrestir.
 IPv6 için aktarıcı desteği 0.9.xx sürümünden itibaren desteklenmektedir
 
-[SSU-SPEC](/en/docs/spec/ssu/) şu anda (Relay Intro) diyor ki:
+[SSU-SPEC](/docs/legacy/ssu/) şu anda (Relay Intro) diyor ki:
 
 Alice'in IP adresi her zaman 4 bayt uzunluğundadır çünkü Alice, Charlie'ye IPv4 üzerinden bağlanmaya çalışmaktadır.
 Bu mesaj, Bob'un Alice'e RelayResponse içinde dönecek Charlie'nin IPv4 adresini bilmesinin tek yolu olan 

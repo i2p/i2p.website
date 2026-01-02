@@ -166,7 +166,7 @@ Il y a beaucoup de bonnes informations dans le livre blanc, et nous l'examineron
 
 ### Échange de clés
 
-Mettez à jour les sections et tableaux dans le document des structures communes [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/) comme suit :
+Mettez à jour les sections et tableaux dans le document des structures communes [/docs/specs/common-structures/](/docs/specs/common-structures/) comme suit :
 
 ### Signatures
 
@@ -563,7 +563,7 @@ inchangé
 
 ### SigningPrivateKey
 
-Mettre à jour la spécification ECIES-Ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) comme suit :
+Mettre à jour la spécification ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) comme suit :
 
 #### Noise identifiers
 
@@ -760,11 +760,11 @@ Tailles :
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-Notez que bien que le message 2 ait normalement une charge utile non nulle, la spécification ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) ne l'exige pas, donc la taille minimale de charge utile est de 0. Les tailles minimales du message 2 peuvent être calculées en conséquence.
+Notez que bien que le message 2 ait normalement une charge utile non nulle, la spécification ratchet [/docs/specs/ecies/](/docs/specs/ecies/) ne l'exige pas, donc la taille minimale de charge utile est de 0. Les tailles minimales du message 2 peuvent être calculées en conséquence.
 
 ### Signature
 
-Mettez à jour la spécification NTCP2 [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/) comme suit :
+Mettez à jour la spécification NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) comme suit :
 
 #### Noise identifiers
 
@@ -935,7 +935,7 @@ Inchangé
 
 ### Certificats de Clé
 
-Mettre à jour la spécification SSU2 [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/) comme suit :
+Mettre à jour la spécification SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) comme suit :
 
 #### Noise identifiers
 

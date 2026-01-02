@@ -166,7 +166,7 @@ Há muitas informações boas no whitepaper, e nós iremos analisá-lo para obte
 
 ### Troca de Chaves
 
-Atualize as seções e tabelas no documento de estruturas comuns [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/) da seguinte forma:
+Atualize as seções e tabelas no documento de estruturas comuns [/docs/specs/common-structures/](/docs/specs/common-structures/) da seguinte forma:
 
 ### Assinaturas
 
@@ -563,7 +563,7 @@ inalterado
 
 ### SigningPrivateKey
 
-Atualize a especificação ECIES-Ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) da seguinte forma:
+Atualize a especificação ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) da seguinte forma:
 
 #### Noise identifiers
 
@@ -760,11 +760,11 @@ Tamanhos:
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-Note que embora a mensagem 2 normalmente tenha um payload diferente de zero, a especificação ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) não o exige, então o tamanho mínimo do payload é 0. Os tamanhos mínimos da mensagem 2 podem ser calculados adequadamente.
+Note que embora a mensagem 2 normalmente tenha um payload diferente de zero, a especificação ratchet [/docs/specs/ecies/](/docs/specs/ecies/) não o exige, então o tamanho mínimo do payload é 0. Os tamanhos mínimos da mensagem 2 podem ser calculados adequadamente.
 
 ### Assinatura
 
-Atualize a especificação NTCP2 [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/) da seguinte forma:
+Atualize a especificação NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) da seguinte forma:
 
 #### Noise identifiers
 
@@ -935,7 +935,7 @@ Inalterado
 
 ### Certificados de Chave
 
-Atualize a especificação SSU2 [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/) da seguinte forma:
+Atualize a especificação SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) da seguinte forma:
 
 #### Noise identifiers
 

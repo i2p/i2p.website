@@ -53,7 +53,6 @@ Thay đổi thông số kỹ thuật truyền thông NTCP và SSU để chỉ ra
 Điều này cũng áp dụng cho các tham số "ihost0", "ihost1", và "ihost2" trong địa chỉ SSU. Các router nên bỏ qua các địa chỉ người giới thiệu chứa tên miền.
 
 
-
 ## Ghi chú
 
 Đề xuất này không đề cập đến tên miền cho các máy chủ reseed. Mặc dù các truy vấn DNS cho các máy chủ reseed ít thường xuyên hơn nhiều, chúng vẫn có thể là một vấn đề. Nếu cần, điều này có thể được sửa đơn giản bằng cách thay thế tên miền bằng các IP trong danh sách các URL đã mã hóa cứng; không yêu cầu thay đổi đặc tả hoặc mã.

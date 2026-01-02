@@ -398,7 +398,6 @@ bắt kịp. Nếu một RPC được triển khai bởi tất cả các triển
 ```
 
 
-
 * **stats.** - Nhận thống kê từ phiên bản i2p
 
   * **stats.advanced** - Phương thức này cung cấp quyền truy cập vào tất cả các thống kê được giữ trong phiên bản.

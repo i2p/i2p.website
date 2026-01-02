@@ -113,7 +113,6 @@ Chúng ta không thể ép buộc mạng thử nghiệm và phân nhánh thay đ
 ## Các Vấn Đề
 
 
-
 ## Di Chuyển
 
 Điều này tương thích ngược cho giá trị ID mạng hiện tại là 2. Nếu người nào đó đang chạy mạng (thử nghiệm hoặc khác) với giá trị ID mạng khác, thay đổi này sẽ không tương thích ngược. Tuy nhiên, chúng tôi không biết về bất kỳ ai làm điều này. Nếu đó chỉ là một mạng thử nghiệm, không có vấn đề gì, chỉ cần cập nhật tất cả router cùng một lúc.

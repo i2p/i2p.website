@@ -252,8 +252,7 @@
 
 {{ define "scripts" }}
 <!-- Load donation page JavaScript -->
-{{ $downloadDonate := resources.Get "js/download-donate.js" | minify }}
-<script src="{{ $downloadDonate.RelPermalink }}"></script>
+
 
 <!-- FundraiseUp Standard Snippet - loads only on this page -->
 <script>(function(w,d,s,n,a){if(!w[n]){var l='call,catch,on,once,set,then,track'

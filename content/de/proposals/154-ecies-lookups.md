@@ -103,8 +103,6 @@ DH ist nicht für Antworten von ElG-Routern möglich, da sie keinen
 X25519-öffentlichen Schlüssel veröffentlichen.
 
 
-
-
 ## Spezifikation
 
 Im [I2NP](/docs/specs/i2np/) DLM (DatabaseLookup) Spezifikation folgende Änderungen vornehmen.
@@ -175,8 +173,6 @@ reply_key ::
 ```
 
 
-
-
 ### ECIES zu ElG
 
 ECIES-Ziel sendet eine Abfrage an einen ElG-Router.
@@ -229,23 +225,18 @@ tag :: 8 Byte reply_tag
 ```
 
 
-
-
-
 ### ECIES zu ECIES (0.9.49)
 
 ECIES-Ziel oder -Router sendet eine Abfrage an einen ECIES-Router, mit gebündelten Antwortschlüsseln.
 Unterstützt ab 0.9.49.
 
-ECIES-Router wurden in 0.9.48 eingeführt, siehe [Prop156](/en/proposals/156-ecies-routers/).
+ECIES-Router wurden in 0.9.48 eingeführt, siehe [Prop156](/proposals/156-ecies-routers/).
 Ab 0.9.49 können ECIES-Ziele und -Router dasselbe Format wie im
 Abschnitt "ECIES zu ElG" oben verwenden, mit Antwortschlüsseln, die in der Anfrage enthalten sind.
 Die Abfrage wird das "one time format" in [ECIES](/docs/specs/ecies/) verwenden,
 da der Anfragende anonym ist.
 
 Für eine neue Methode mit abgeleiteten Schlüsseln, siehe den nächsten Abschnitt.
-
-
 
 
 ### ECIES zu ECIES (zukünftig)
@@ -324,7 +315,6 @@ Siehe [ECIES](/docs/specs/ecies/) für alle Definitionen.
 ```
 
 
-
 ### Antwortformat
 
 Dies ist die vorhandene Sitzungsnachricht,
@@ -367,7 +357,6 @@ aber das wäre wahrscheinlich mehr Aufwand als es wert ist.
 Der obige Vorschlag ist der einfachste und minimiert die Änderungen am Abfrageformat.
 
 
-
 ## Anmerkungen
 
 Datenbankabfragen und Speichern zu ElG-Routern müssen wie gewohnt ElGamal/AESSessionTag-verschlüsselt sein.
@@ -376,7 +365,6 @@ Datenbankabfragen und Speichern zu ElG-Routern müssen wie gewohnt ElGamal/AESSe
 ## Probleme
 
 Weitere Analysen zur Sicherheit der beiden ECIES-Antwortoptionen sind erforderlich.
-
 
 
 ## Migration

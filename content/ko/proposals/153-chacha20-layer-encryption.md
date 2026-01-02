@@ -34,7 +34,7 @@ ECIES-X25519 터널에 대한 BuildRequestRecord 형식을 지원하는 홉을 �
 - 참가자 암호화 및 후처리
 - 아웃바운드 및 인바운드 엔드포인트 암호화 및 후처리
 
-현재 터널 메시지 처리에 대한 개요는 [Tunnel Implementation](/docs/tunnels/implementation/) 사양을 참조하십시오.
+현재 터널 메시지 처리에 대한 개요는 [Tunnel Implementation](/docs/specs/implementation/) 사양을 참조하십시오.
 
 ChaCha20 레이어 암호화를 지원하는 라우터에 대한 변경만 논의합니다.
 
@@ -290,4 +290,4 @@ AES256/CBC에 대한 패딩 오라클 공격은 패딩을 사용하지 않기 �
 
 ## 참고 문헌
 
-* [Tunnel-Implementation](/docs/tunnels/implementation/)
+* [Tunnel-Implementation](/docs/specs/implementation/)

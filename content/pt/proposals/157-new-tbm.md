@@ -17,7 +17,6 @@ Sujeito a pequenas revisões.
 Veja [I2NP] e [Tunnel-Creation-ECIES] para a especificação final.
 
 
-
 ## Visão Geral
 
 
@@ -115,7 +114,6 @@ O comprimento do registro é selecionado para que uma STBM criptografada com alh
 em uma única mensagem de túnel. Veja o apêndice abaixo.
 
 
-
 #### OutboundTunnelBuildReply: Tipo 26
 
 Definimos uma nova mensagem OutboundTunnelBuildReply.
@@ -134,8 +132,6 @@ Em seguida, criptografa a mensagem com alho para o originador com as chaves sim�
 
 Criptografando com alho o OTBRM e a STBM, também evitamos quaisquer
 problemas potenciais de compatibilidade no IBGW e OBEP dos túneis emparelhados.
-
-
 
 
 ### Fluxo de Mensagem
@@ -163,7 +159,6 @@ STBM: Mensagem de construção de túnel curto (tipo 25)
                                      IBGW
 
 
-
   Construção de entrada D-E-F
   Enviado por caminho de saída existente A-B-C
 
@@ -181,9 +176,7 @@ STBM: Mensagem de construção de túnel curto (tipo 25)
                                      IBGW
 
 
-
 ```
-
 
 
 ### Criptografia de Registro
@@ -201,7 +194,6 @@ esta especificação; ela continuaria AES, como atualmente usado para todos os t
 Mudar a criptografia de camada para ChaCha20 é um tópico para pesquisa adicional.
 
 
-
 ### Nova Mensagem de Dados de Túnel
 
 Atualmente não há plano para mudar a Mensagem de Dados de Túnel de 1KB usada para túneis construídos com
@@ -213,13 +205,10 @@ Isso reduziria a sobrecarga para mensagens grandes.
 Este é um tópico para pesquisa adicional.
 
 
-
-
 ## Especificação
 
 
 ### Registro de Solicitação Curta
-
 
 
 #### Registro de Solicitação Curta Não Criptografado
@@ -287,7 +276,6 @@ O tamanho máximo do Mapeamento (incluindo o campo de comprimento) é 98 bytes,
 e o valor máximo do campo de comprimento do Mapeamento é 96.
 
 
-
 #### Registro de Solicitação Curta Criptografado
 
 Todos os campos são big-endian, exceto a chave pública efêmera, que é little-endian.
@@ -302,7 +290,6 @@ bytes    0-15: Hash de identidade truncado do salto
   bytes 202-217: MAC Poly1305
 
 ```
-
 
 
 ### Registro de Resposta Curta
@@ -338,7 +325,7 @@ O tamanho máximo do Mapeamento (incluindo o campo de comprimento) é 201 bytes,
 e o valor máximo do campo de comprimento do Mapeamento é 199.
 
 O byte de resposta é um dos seguintes valores
-como definido em [Tunnel-Creation](/en/docs/spec/tunnel-creation/) para evitar fingerprinting:
+como definido em [Tunnel-Creation](/docs/specs/implementation/#tunnel-creation-ecies) para evitar fingerprinting:
 
 - 0x00 (aceitar)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
@@ -356,12 +343,9 @@ bytes   0-201: Registro de Resposta de Construção Curta Criptografado ChaCha20
 ```
 
 
-
 ### KDF
 
 Veja a seção KDF abaixo.
-
-
 
 
 ### ShortTunnelBuild
@@ -371,7 +355,6 @@ Esta mensagem é enviada para saltos do meio, OBEP e IBEP (criador).
 Não pode ser enviada para o IBGW (use InboundTunnelBuild criptografado com alho em vez disso).
 Quando recebida pelo OBEP, ela é transformada em uma OutboundTunnelBuildReply,
 criptografada com alho, e enviada ao originador.
-
 
 
 ```
@@ -390,8 +373,6 @@ criptografada com alho, e enviada ao originador.
 #### Notas
 
 * Número típico de registros é 4, para um tamanho total de 873.
-
-
 
 
 ### OutboundTunnelBuildReply
@@ -426,7 +407,6 @@ Ela é sempre criptografada com alho.
 
 * Número típico de registros é 4, para um tamanho total de 873.
 * Esta mensagem deve ser criptografada com alho.
-
 
 
 ### KDF
@@ -469,9 +449,6 @@ keydata = HKDF(ck, ZEROLEN, "SMTunnelReplyKey", 64)
 ```
 
 
-
-
-
 ## Justificativa
 
 Este design maximiza o reuso de primitivas criptográficas, protocolos e código existentes.
@@ -493,9 +470,7 @@ ChaCha20 evita um requisito para tamanhos de dados múltiplos de 16.
   túneis de saída devem ser construídos com 4 registros também.
 
 
-
 ## Questões
-
 
 
 ## Migração
@@ -525,14 +500,11 @@ Fase 2 (próxima versão): Habilitar por padrão
 Não há problemas de compatibilidade retroativa. As novas mensagens podem ser enviadas apenas para roteadores que as suportam.
 
 
-
-
 ## Apêndice
 
 
 Sem sobrecarga de alho para STBM de entrada não criptografada,
 se não usarmos ITBM:
-
 
 
 ```
@@ -561,7 +533,6 @@ Tamanho atual de 4 slots: 4 * 528 + sobrecarga = 3 mensagens de túnel
   - 16 MAC
   ----
   173 tamanho máximo do registro de construção em texto claro (vs. 222 agora)
-
 
 
 ```
@@ -630,7 +601,5 @@ O OTBRM envolto em alho será ligeiramente menor do que o STBM envolto em alho,
 porque as instruções de entrega são LOCAL e não ROUTER,
 não há bloco DATETIME incluído, e
 ele usa uma tag de 8 bytes em vez da chave efêmera de 32 bytes para uma mensagem 'N' completa.
-
-
 
 

@@ -17,7 +17,7 @@ Síť I2P je plně šifrovaná peer-to-peer překryvná síť. Pozorovatel nemů
 
 ## Jak se připojit k síti I2P
 
-Základní software (Java) obsahuje router, který zprostředkovává a udržuje spojení se sítí. Také poskytuje aplikace a možnosti konfigurace pro přizpůsobení vašeho zážitku a pracovního postupu. Další informace naleznete v naší [dokumentaci](/en/docs/).
+Základní software (Java) obsahuje router, který zprostředkovává a udržuje spojení se sítí. Také poskytuje aplikace a možnosti konfigurace pro přizpůsobení vašeho zážitku a pracovního postupu. Další informace naleznete v naší [dokumentaci](/docs/).
 
 ## Co mohu dělat v síti I2P?
 
@@ -25,7 +25,7 @@ Síť poskytuje aplikační vrstvu pro služby, aplikace a správu sítě. Síť
 
 ## Přehled sítě
 
-I2P používá kryptografii k dosažení řady vlastností pro tunely, které vytváří, a komunikace, které přenáší. Tunely I2P používají přenosy, [NTCP2](/en/docs/specs/ntcp2/) a [SSU2](/en/docs/specs/ssu2/), k zakrytí přenášeného provozu. Spojení jsou šifrována od routeru k routeru a od klienta ke klientovi (end-to-end). Dopředná sekretnost je poskytována pro všechna spojení. Protože I2P je kryptograficky adresována, adresy I2P sítě se samy autentizují a patří pouze uživateli, který je vytvořil.
+I2P používá kryptografii k dosažení řady vlastností pro tunely, které vytváří, a komunikace, které přenáší. Tunely I2P používají přenosy, [NTCP2](/docs/specs/ntcp2/) a [SSU2](/docs/specs/ssu2/), k zakrytí přenášeného provozu. Spojení jsou šifrována od routeru k routeru a od klienta ke klientovi (end-to-end). Dopředná sekretnost je poskytována pro všechna spojení. Protože I2P je kryptograficky adresována, adresy I2P sítě se samy autentizují a patří pouze uživateli, který je vytvořil.
 
 Síť se skládá z peers ("routerů") a jednosměrných příchozích a odchozích virtuálních tunelů. Routery komunikují mezi sebou pomocí protokolů postavených na existujících přenosových mechanismech (TCP, UDP), přenášejí zprávy. Klientské aplikace mají své vlastní kryptografické identifikátory („Cíl“), které umožňují odesílat a přijímat zprávy. Tito klienti se mohou připojit k jakémukoli routeru a autorizovat dočasnou alokaci ("půjčku") některých tunelů, které budou použity k odesílání a přijímání zpráv skrze síť. I2P má svou vlastní interní síťovou databázi (používající modifikaci Kademlia DHT) k bezpečnému distribuci směrovacích a kontaktních informací.
 
@@ -35,4 +35,4 @@ Síť I2P je téměř úplně decentralizovaná, s výjimkou toho, co se nazýv�
 
 ## Porovnání
 
-Existuje mnoho jiných aplikací a projektů pracujících na anonymní komunikaci a I2P bylo inspirováno mnoha z jejich úsilí. Toto není vyčerpávající seznam zdrojů anonymity - jak [Anonymní bibliografie freehavenu](http://freehaven.net/anonbib/topic.html), tak i [související projekty GNUnet](https://www.gnunet.org/links/) tuto funkci dobře splňují. K tomu je třeba říci, že několik systémů vyčnívá pro další porovnání. Další informace o tom, jak se I2P porovnává s ostatními anonymními sítěmi, naleznete v naší [podrobné dokumentaci k porovnání](/en/docs/overview/comparison/).
+Existuje mnoho jiných aplikací a projektů pracujících na anonymní komunikaci a I2P bylo inspirováno mnoha z jejich úsilí. Toto není vyčerpávající seznam zdrojů anonymity - jak [Anonymní bibliografie freehavenu](http://freehaven.net/anonbib/topic.html), tak i [související projekty GNUnet](https://www.gnunet.org/links/) tuto funkci dobře splňují. K tomu je třeba říci, že několik systémů vyčnívá pro další porovnání. Další informace o tom, jak se I2P porovnává s ostatními anonymními sítěmi, naleznete v naší [podrobné dokumentaci k porovnání](/docs/overview/comparison/).

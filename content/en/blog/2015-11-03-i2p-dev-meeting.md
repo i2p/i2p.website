@@ -423,7 +423,7 @@ categories: ["meeting"]
 21:11:28  &lt;anonimal&gt; Where would it go on the site?
 21:11:38  &lt;str4d&gt; And define them as non-translatable for simplicity
 21:11:46  &lt;str4d&gt; zab, hell no
-21:11:59  &lt;str4d&gt; anonimal, currently they are at /langcode/docs/spec/*
+21:11:59  &lt;str4d&gt; anonimal, currently they are at /langcode/docs/specs/*
 21:12:03  &lt;str4d&gt; (the specs)
 21:12:04  &lt;zzz&gt; I think str4d already has carte blanche for minor website organization
 21:12:12  &lt;zzz&gt; so can we wrap this up?

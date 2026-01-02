@@ -113,7 +113,6 @@ Hiçbir durumda bir yönlendirici, yayınlanmış bir host isminin DNS aramasın
 doğrudan veya bir alt kütüphane aracılığıyla yapmamalıdır.
 
 
-
 ## Şartname
 
 NTCP ve SSU taşıma spesifikasyonlarını değiştirerek
@@ -122,8 +121,6 @@ host isimlerini içeren bireysel yönlendirici adreslerini görmezden gelmesi ge
 
 Bu aynı zamanda bir SSU adresindeki "ihost0", "ihost1" ve "ihost2" parametreleri için de geçerlidir.
 Yönlendiriciler, host isimlerini içeren tanıtıcı adresleri görmezden gelmelidir.
-
-
 
 
 ## Notlar

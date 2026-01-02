@@ -12,7 +12,7 @@ toc: true
 
 ## Estado
 
-Aprobado en revisión 2025-06-24. La especificación está en [especificación UDP](/en/docs/spec/udp-bittorrent-announces/). Implementado en zzzot 0.20.0-beta2. Implementado en i2psnark a partir de la API 0.9.67. Consulte la documentación de otras implementaciones para conocer el estado.
+Aprobado en revisión 2025-06-24. La especificación está en [especificación UDP](/docs/specs/udp-bittorrent-announces/). Implementado en zzzot 0.20.0-beta2. Implementado en i2psnark a partir de la API 0.9.67. Consulte la documentación de otras implementaciones para conocer el estado.
 
 ## Descripción general
 
@@ -20,9 +20,9 @@ Esta propuesta es para la implementación de rastreadores UDP en I2P.
 
 ### Change History
 
-Una propuesta preliminar para trackers UDP en I2P fue publicada en nuestra [página de especificaciones de bittorrent](/en/docs/applications/bittorrent/) en mayo de 2014; esto precedió nuestro proceso formal de propuestas y nunca fue implementada. Esta propuesta fue creada a principios de 2022 y simplifica la versión de 2014.
+Una propuesta preliminar para trackers UDP en I2P fue publicada en nuestra [página de especificaciones de bittorrent](/docs/applications/bittorrent/) en mayo de 2014; esto precedió nuestro proceso formal de propuestas y nunca fue implementada. Esta propuesta fue creada a principios de 2022 y simplifica la versión de 2014.
 
-Como esta propuesta depende de datagramas que pueden ser respondidos, se puso en espera una vez que comenzamos a trabajar en la [propuesta Datagram2](/en/proposals/163-datagram2/) a principios de 2023. Esa propuesta fue aprobada en abril de 2025.
+Como esta propuesta depende de datagramas que pueden ser respondidos, se puso en espera una vez que comenzamos a trabajar en la [propuesta Datagram2](/proposals/163-datagram2/) a principios de 2023. Esa propuesta fue aprobada en abril de 2025.
 
 La versión 2023 de esta propuesta especificó dos modos, "compatibilidad" y "rápido". Un análisis posterior reveló que el modo rápido sería inseguro, y también sería ineficiente para clientes con un gran número de torrents. Además, BiglyBT indicó una preferencia por el modo de compatibilidad. Este modo será más fácil de implementar para cualquier tracker o cliente que soporte el estándar [BEP 15](http://www.bittorrent.org/beps/bep_0015.html).
 
@@ -42,11 +42,11 @@ Es difícil calcular el ahorro de ancho de banda de los datagramas frente al pro
 
 Además, debería haber reducciones de memoria específicas de la implementación, ya que los datagramas requieren mucho menos estado en memoria que una conexión de streaming.
 
-El cifrado y las firmas Post-Quantum como se prevé en [/en/proposals/169-pq-crypto/](/en/proposals/169-pq-crypto/) aumentarán sustancialmente la sobrecarga de las estructuras cifradas y firmadas, incluyendo destinos, leaseSets, streaming SYN y SYN ACK. Es importante minimizar esta sobrecarga donde sea posible antes de que el cifrado PQ sea adoptado en I2P.
+El cifrado y las firmas Post-Quantum como se prevé en [/proposals/169-pq-crypto/](/proposals/169-pq-crypto/) aumentarán sustancialmente la sobrecarga de las estructuras cifradas y firmadas, incluyendo destinos, leaseSets, streaming SYN y SYN ACK. Es importante minimizar esta sobrecarga donde sea posible antes de que el cifrado PQ sea adoptado en I2P.
 
 ## Motivación
 
-Esta propuesta utiliza repliable datagram2, repliable datagram3, y raw datagrams, como se define en [/en/docs/spec/datagrams/](/en/docs/spec/datagrams/). Datagram2 y Datagram3 son nuevas variantes de repliable datagrams, definidas en la Propuesta 163 [/en/proposals/163-datagram2/](/en/proposals/163-datagram2/). Datagram2 añade resistencia a la reproducción y soporte para firmas sin conexión. Datagram3 es más pequeño que el formato de datagrama anterior, pero sin autenticación.
+Esta propuesta utiliza repliable datagram2, repliable datagram3, y raw datagrams, como se define en [/docs/api/datagrams/](/docs/api/datagrams/). Datagram2 y Datagram3 son nuevas variantes de repliable datagrams, definidas en la Propuesta 163 [/proposals/163-datagram2/](/proposals/163-datagram2/). Datagram2 añade resistencia a la reproducción y soporte para firmas sin conexión. Datagram3 es más pequeño que el formato de datagrama anterior, pero sin autenticación.
 
 ### BEP 15
 
@@ -99,7 +99,7 @@ Para una aplicación de tracker externo que actualmente usa un túnel de servido
 
 #### Clients
 
-Los clientes de torrent externos basados en SAM como qbittorrent y otros clientes basados en libtorrent requerirían [SAM v3.3](/en/docs/api/samv3/) que no es compatible con i2pd. Esto también es requerido para soporte DHT, y es lo suficientemente complejo que ningún cliente de torrent SAM conocido lo ha implementado. No se esperan implementaciones basadas en SAM de esta propuesta pronto.
+Los clientes de torrent externos basados en SAM como qbittorrent y otros clientes basados en libtorrent requerirían [SAM v3.3](/docs/api/samv3/) que no es compatible con i2pd. Esto también es requerido para soporte DHT, y es lo suficientemente complejo que ningún cliente de torrent SAM conocido lo ha implementado. No se esperan implementaciones basadas en SAM de esta propuesta pronto.
 
 ### Connection Lifetime
 

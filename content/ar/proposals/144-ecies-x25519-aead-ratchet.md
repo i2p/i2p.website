@@ -207,7 +207,7 @@ toc: true
 
 ### ملخص التصميم التشفيري
 
-يقدم هذا الاقتراح المتطلبات المبنية على Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (المراجعة 34، 2018-07-11). يتمتع Noise بخصائص مشابهة لبروتوكول Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol)، والذي يشكل الأساس لبروتوكول [SSU](/docs/specs/ssu/). في مصطلحات Noise، Alice هي المبادِرة، وBob هو المستجيب.
+يقدم هذا الاقتراح المتطلبات المبنية على Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (المراجعة 34، 2018-07-11). يتمتع Noise بخصائص مشابهة لبروتوكول Station-To-Station [STS](https://en.wikipedia.org/wiki/Station-to-Station_protocol)، والذي يشكل الأساس لبروتوكول [SSU](/docs/legacy/ssu/). في مصطلحات Noise، Alice هي المبادِرة، وBob هو المستجيب.
 
 هذا الاقتراح مبني على بروتوكول Noise وهو Noise_IK_25519_ChaChaPoly_SHA256. (المعرف الفعلي لدالة اشتقاق المفتاح الأولية هو "Noise_IKelg2_25519_ChaChaPoly_SHA256" للإشارة إلى امتدادات I2P - انظر قسم KDF 1 أدناه) يستخدم بروتوكول Noise هذا العناصر الأساسية التالية:
 
@@ -443,7 +443,6 @@ MixKey(d)
         MixKey(d) := output = HKDF(chainKey, d, "", 64)
                      chainKey = output[0:31]
                      k = output[32:63]
-
 
 
 ### مهلات انتهاء الجلسة
@@ -1335,8 +1334,6 @@ TAGSET_ENTRY
         If there are few TAGSET_ENTRIES remaining, EXTEND(n) is called.
 
 
-
-
 ### 4) Ratchets
 
 Ratchets ولكن ليس بنفس سرعة Signal. نحن نفصل إقرار المفتاح المستلم عن توليد المفتاح الجديد. في الاستخدام النموذجي، ستقوم Alice وBob كلاهما بعمل ratchet (مرتين) فوراً في جلسة جديدة، ولكن لن يقوما بعمل ratchet مرة أخرى.
@@ -1452,9 +1449,7 @@ Tag Sender                    Tag Receiver
   (reuse key #1, do DH, create IB Tagset #3)
 
 
-
                    ... use tag set #3 ...
-
 
 
        After tag set 3, repeat the above

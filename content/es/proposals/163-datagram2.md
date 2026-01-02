@@ -18,7 +18,6 @@ Implementado en Java I2P a partir de la API 0.9.66.
 Revise la documentación de implementación para el estado.
 
 
-
 ## Resumen
 
 Extraído de [Prop123](/proposals/123-new-netdb-entries/) como una propuesta separada.
@@ -111,7 +110,6 @@ El número de protocolo I2CP estándar para datagramas replicables es PROTO_DATA
 ```
 
 
-
 ## Diseño
 
 - Definir nuevo protocolo 19 - Datagram replicable con opciones.
@@ -135,10 +133,10 @@ El número de protocolo I2CP estándar para datagramas replicables es PROTO_DATA
 ### Protocolo
 
 El nuevo número de protocolo I2CP para Datagram2 es 19.
-Añádelo como PROTO_DATAGRAM2 a [I2CP](/docs/protocol/i2cp/).
+Añádelo como PROTO_DATAGRAM2 a [I2CP](/docs/specs/i2cp/).
 
 El nuevo número de protocolo I2CP para Datagram3 es 20.
-Añádelo como PROTO_DATAGRAM2 a [I2CP](/docs/protocol/i2cp/).
+Añádelo como PROTO_DATAGRAM2 a [I2CP](/docs/specs/i2cp/).
 
 
 ### Formato de Datagram2
@@ -298,7 +296,6 @@ Añadir Datagram3 a [DATAGRAMS](/docs/api/datagrams/) como sigue:
 Longitud total: mínimo 34 + longitud de la carga útil.
 
 
-
 ### SAM
 
 Añadir STYLE=DATAGRAM2 y STYLE=DATAGRAM3 a la especificación SAMv3.
@@ -311,7 +308,6 @@ Este diseño añade 2 bytes de sobrecarga a los datagramas replicables para las 
 Esto es aceptable.
 
 
-
 ## Análisis de Seguridad
 
 Incluir el hash de destino en la firma debería ser efectivo para prevenir ataques de repetición.
@@ -321,17 +317,14 @@ y son posibles ataques de repetición. Cualquier validación requerida debe
 realizarse en la capa de aplicación, o por el router en la capa de ratchet.
 
 
-
 ## Notas
 
 - La longitud práctica está limitada por capas más bajas de protocolos - la especificación de
-  mensajes del túnel [TUNMSG](/docs/specs/tunnel-message/#notes) limita los mensajes a aproximadamente 61.2 KB y los transportes
-  [TRANSPORT](/docs/transport/) actualmente limitan los mensajes a aproximadamente 64 KB, por lo que la longitud de
+  mensajes del túnel [TUNMSG](/docs/specs/implementation/#notes) limita los mensajes a aproximadamente 61.2 KB y los transportes
+  [TRANSPORT](/docs/overview/transport/) actualmente limitan los mensajes a aproximadamente 64 KB, por lo que la longitud de
   los datos aquí está limitada a aproximadamente 61 KB.
 - Ver notas importantes sobre la fiabilidad de datagramas grandes [API](/docs/api/datagrams/). Para
   mejores resultados, limite la carga útil a aproximadamente 10 KB o menos.
-
-
 
 
 ## Compatibilidad
@@ -340,7 +333,6 @@ Ninguna. Las aplicaciones deben ser reescritas para enrutar mensajes de I2CP de 
 basados en protocolo y/o puerto.
 Los mensajes de Datagram2 que se enruten incorrectamente y se interpreten como
 mensajes de datagrama replicable o streaming fallarán basados en firma, formato o ambos.
-
 
 
 ## Migración
@@ -370,11 +362,11 @@ Aplicaciones UDP SAM: Ninguna conocida
 * [API](/docs/api/datagrams/)
 * [BT-SPEC](/docs/applications/bittorrent/)
 * [Common](/docs/specs/common-structures/)
-* [DATAGRAMS](/docs/specs/datagrams/)
-* [I2CP](/docs/protocol/i2cp/)
+* [DATAGRAMS](/docs/api/datagrams/)
+* [I2CP](/docs/specs/i2cp/)
 * [Prop123](/proposals/123-new-netdb-entries/)
 * [Prop160](/proposals/160-udp-trackers/)
 * [Prop164](/proposals/164-streaming/)
 * [Streaming](/docs/specs/streaming/)
-* [TRANSPORT](/docs/transport/)
-* [TUNMSG](/docs/specs/tunnel-message/#notes)
+* [TRANSPORT](/docs/overview/transport/)
+* [TUNMSG](/docs/specs/implementation/#notes)

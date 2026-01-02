@@ -17,7 +17,7 @@ La red I2P es una red de superposición totalmente encriptada de igual a igual. 
 
 ## Cómo Conectar a la Red I2P
 
-El software central (Java) incluye un enrutador que introduce y mantiene una conexión con la red. También proporciona aplicaciones y opciones de configuración para personalizar tu experiencia y flujo de trabajo. Aprende más en nuestra [documentación](/en/docs/).
+El software central (Java) incluye un enrutador que introduce y mantiene una conexión con la red. También proporciona aplicaciones y opciones de configuración para personalizar tu experiencia y flujo de trabajo. Aprende más en nuestra [documentación](/docs/).
 
 ## ¿Qué Puedo Hacer en la Red I2P?
 
@@ -25,7 +25,7 @@ La red proporciona una capa de aplicación para servicios, aplicaciones y gesti�
 
 ## Una Visión General de la Red
 
-I2P utiliza criptografía para lograr una variedad de propiedades para los túneles que construye y las comunicaciones que transporta. Los túneles I2P usan transportes, [NTCP2](/en/docs/specs/ntcp2/) y [SSU2](/en/docs/specs/ssu2/), para ocultar el tráfico que se transporta sobre ellos. Las conexiones están encriptadas de enrutador a enrutador, y de cliente a cliente (de extremo a extremo). Se proporciona secreto hacia adelante para todas las conexiones. Debido a que I2P está dirigido criptográficamente, las direcciones de red I2P son autoautenticables y solo pertenecen al usuario que las generó.
+I2P utiliza criptografía para lograr una variedad de propiedades para los túneles que construye y las comunicaciones que transporta. Los túneles I2P usan transportes, [NTCP2](/docs/specs/ntcp2/) y [SSU2](/docs/specs/ssu2/), para ocultar el tráfico que se transporta sobre ellos. Las conexiones están encriptadas de enrutador a enrutador, y de cliente a cliente (de extremo a extremo). Se proporciona secreto hacia adelante para todas las conexiones. Debido a que I2P está dirigido criptográficamente, las direcciones de red I2P son autoautenticables y solo pertenecen al usuario que las generó.
 
 La red está compuesta de pares ("enrutadores") y túneles virtuales unidireccionales de entrada y salida. Los enrutadores se comunican entre sí utilizando protocolos construidos sobre mecanismos de transporte existentes (TCP, UDP), enviando mensajes. Las aplicaciones cliente tienen su propio identificador criptográfico ("Destino") que les permite enviar y recibir mensajes. Estos clientes pueden conectarse a cualquier enrutador y autorizar la asignación temporal ("cesión") de algunos túneles que se usarán para enviar y recibir mensajes a través de la red. I2P tiene su propia base de datos interna de la red (usando una modificación de Kademlia DHT) para distribuir la información de contacto y enrutamiento de manera segura.
 
@@ -35,4 +35,4 @@ La red I2P es casi completamente descentralizada, con excepción de lo que se ll
 
 ## Comparaciones
 
-Existen muchas otras aplicaciones y proyectos que trabajan en comunicación anónima e I2P se ha inspirado en gran parte de sus esfuerzos. Esta no es una lista exhaustiva de recursos sobre anonimato - tanto la [Bibliografía sobre Anonimato de freehaven](http://freehaven.net/anonbib/topic.html) como los [proyectos relacionados de GNUnet](https://www.gnunet.org/links/) cumplen bien ese propósito. Dicho esto, algunos sistemas destacan para una comparación más detallada. Aprende más sobre cómo I2P se compara con otras redes de anonimato en nuestra [documentación de comparación detallada](/en/docs/overview/comparison/). 
+Existen muchas otras aplicaciones y proyectos que trabajan en comunicación anónima e I2P se ha inspirado en gran parte de sus esfuerzos. Esta no es una lista exhaustiva de recursos sobre anonimato - tanto la [Bibliografía sobre Anonimato de freehaven](http://freehaven.net/anonbib/topic.html) como los [proyectos relacionados de GNUnet](https://www.gnunet.org/links/) cumplen bien ese propósito. Dicho esto, algunos sistemas destacan para una comparación más detallada. Aprende más sobre cómo I2P se compara con otras redes de anonimato en nuestra [documentación de comparación detallada](/docs/overview/comparison/). 

@@ -15,14 +15,11 @@ toc: true
 Añadir indicadores de congestión a la Información del Router (RI) publicada.
 
 
-
-
 ## Motivación
 
 Los "límites" de ancho de banda (capacidades) indican límites de ancho de banda compartido y alcanzabilidad, pero no el estado de congestión.
 Un indicador de congestión ayudará a los routers a evitar intentar construir a través de un router congestionado,
 lo que contribuye a más congestión y reduce el éxito en la construcción de túneles.
-
 
 
 ## Diseño
@@ -52,10 +49,9 @@ El estado de congestión debe basarse en un promedio de condiciones
 durante varios minutos, no en una medición instantánea.
 
 
-
 ## Especificación
 
-Actualizar [NETDB](/docs/how/network-database/) como sigue:
+Actualizar [NETDB](/docs/overview/network-database/) como sigue:
 
 
 ```text
@@ -77,7 +73,6 @@ Para consistencia, las implementaciones deben añadir cualquier capacidad de con
 al final (después de R o U).
 
 
-
 ## Análisis de Seguridad
 
 No se puede confiar en ninguna información de pares publicada.
@@ -92,7 +87,6 @@ routers de muy bajo ancho de banda. La capacidad "U" (inaccesible) tiene un efec
 
 Cualquier indicador de congestión publicado debería tener el mismo efecto que
 rechazar o dejar caer una solicitud de construcción de túnel, con propiedades de seguridad similares.
-
 
 
 ## Notas
@@ -110,8 +104,6 @@ Los routers probablemente no deberían publicar una capacidad de congestión al 
 incluso si su estado de red es desconocido, para prevenir la detección de reinicio por pares.
 
 
-
-
 ## Compatibilidad
 
 Sin problemas, todas las implementaciones ignoran capacidades desconocidas.
@@ -126,7 +118,6 @@ Publicar capacidades en 0.9.58 (abril 2023);
 actuar sobre capacidades publicadas en 0.9.59 (julio 2023).
 
 
-
 ## Referencias
 
-* [NETDB](/docs/how/network-database/)
+* [NETDB](/docs/overview/network-database/)

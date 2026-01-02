@@ -43,7 +43,7 @@ Bob 在接收时验证该哈希与他的哈希匹配。
 
 ## 规范
 
-更新 [Streaming 规范](/en/docs/spec/streaming/) 以添加以下部分：
+更新 [Streaming 规范](/docs/specs/streaming/) 以添加以下部分：
 
 ### 防止重放
 

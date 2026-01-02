@@ -50,7 +50,6 @@ Diese Funktionen sind auch in einer Reihe von Bibliotheken zur Entwicklung von I
 
 **Abkürzung:**
 
-Geben Sie NUR die Übersetzung an, nichts anderes:**
 
 Da die lokale destination (Zieladresse) Ihres Bote-Knotens eine DSA destination ist, ist es schneller, die Datei local_dest.key einfach auf die ersten 516 Bytes zu kürzen. Um das einfach zu erledigen, führen Sie diesen Befehl aus, wenn Sie I2P-Bote mit I2P unter Debian ausführen:
 

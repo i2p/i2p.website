@@ -44,12 +44,10 @@ rechazar o presentar información al usuario.
 Los servicios de salto serían confiables como de costumbre, pero con el paso adicional de autenticación. Los enlaces de ayuda de dirección en otros sitios necesitarían ser modificados.
 
 
-
 ## Implicaciones de Seguridad
 
 Esta propuesta añade seguridad añadiendo autenticación de servicios de registro / salto 
 confiables. 
-
 
 
 ## Especificación

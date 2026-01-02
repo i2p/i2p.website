@@ -27,16 +27,13 @@ Segundo, a menos que uma info de roteador ou conjunto de arrendamento com um tip
 o novo tipo de assinatura é difícil de testar completamente ou usar em uma base experimental.
 
 
-
 ## Design
 
 Os floodfills devem aceitar, e propagar, armazenamentos de LS com tipos de assinatura na faixa experimental,
 sem verificar a assinatura. O suporte para armazenamentos RI está em definição e pode ter mais implicações de segurança.
 
 
-
 ## Especificação
-
 
 
 Para tipos de assinatura na faixa experimental, um floodfill deve aceitar e propagar armazenamentos de netdb
@@ -82,6 +79,5 @@ que ainda não foram formalmente propostos.
 
 Armazenamentos de NetDB de tipos de assinatura desconhecidos que não estão na faixa experimental continuarão
 a ser rejeitados pelos floodfills, pois a assinatura não pode ser verificada.
-
 
 

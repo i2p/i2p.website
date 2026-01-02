@@ -50,7 +50,6 @@ Essas funcionalidades também estão disponíveis em diversas bibliotecas de des
 
 **Atalho:**
 
-Forneça APENAS a tradução, nada mais:**
 
 Como o destino local do seu nó do Bote é um destino DSA, é mais rápido simplesmente truncar o arquivo local_dest.key para os primeiros 516 bytes. Para fazer isso facilmente, execute este comando quando estiver executando o I2P-Bote com o I2P no Debian:
 

@@ -13,7 +13,7 @@ toc: true
 ## NOTE
 
 This proposal was approved and is now in the
-[Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/) as of API 0.9.65.
+[Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies) as of API 0.9.65.
 There are no known implementations yet; implementation dates / API versions are TBD.
 
 
@@ -43,7 +43,7 @@ the tunnel build request and reply messages.
 
 ## Design
 
-Add bandwidth parameters to the records in ECIES tunnel build messages (see [Tunnel Creation ECIES specification](/en/docs/spec/tunnel-creation-ecies/))
+Add bandwidth parameters to the records in ECIES tunnel build messages (see [Tunnel Creation ECIES specification](/docs/specs/implementation/#tunnel-creation-ecies))
 in the tunnel build options mapping field. Use short parameter names since the space available
 for the options field is limited.
 Tunnel build messages are fixed-size so this does not increase the
@@ -53,7 +53,7 @@ size of the messages.
 
 ## Specification
 
-Update the [ECIES tunnel build message specification](/en/docs/spec/tunnel-creation-ecies/)
+Update the [ECIES tunnel build message specification](/docs/specs/implementation/#tunnel-creation-ecies)
 as follows:
 
 For both long and short ECIES build records:
@@ -181,4 +181,4 @@ routers should check for a "b" response to confirm support.
 
 ## References
 
-* [Tunnel-Creation-ECIES](/docs/specs/tunnel-creation-ecies/)
+* [Tunnel-Creation-ECIES](/docs/specs/implementation/#tunnel-creation-ecies)

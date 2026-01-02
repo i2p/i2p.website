@@ -127,7 +127,6 @@ Máte-li dotazy ohledně těchto Smluvních podmínek, kontaktujte nás:
 
 Používáním našich webových stránek nebo softwaru berete na vědomí, že jste si přečetli, porozuměli a souhlasíte s tím, že budete vázáni těmito Podmínkami poskytování služeb.
 
-Poskytněte POUZE překlad, nic jiného:
 
 **Naposledy aktualizováno**: říjen 2025
 

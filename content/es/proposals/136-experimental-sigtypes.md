@@ -28,16 +28,13 @@ Segundo, a menos que una información del router o un conjunto de arrendamiento 
 el nuevo tipo de firma es difícil de probar completamente o usar de forma experimental.
 
 
-
 ## Diseño
 
 Los floodfills deberían aceptar, y difundir, los almacenes LS con tipos de firma en el rango experimental,
 sin verificar la firma. El soporte para almacenes RI está por determinar, y puede tener más implicaciones de seguridad.
 
 
-
 ## Especificación
-
 
 
 Para tipos de firma en el rango experimental, un floodfill debe aceptar y difundir almacenes netdb
@@ -83,6 +80,5 @@ que aún no han sido propuestos formalmente.
 
 Los almacenes NetDB de tipos de firma desconocidos que no están en el rango experimental continuarán
 siendo rechazados por los floodfills, ya que la firma no puede ser verificada.
-
 
 

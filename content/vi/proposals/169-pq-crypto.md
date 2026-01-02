@@ -166,7 +166,7 @@ Có rất nhiều thông tin hữu ích trong whitepaper, và chúng tôi sẽ x
 
 ### Trao Đổi Khóa
 
-Cập nhật các phần và bảng trong tài liệu cấu trúc chung [/en/docs/spec/common-structures/](/en/docs/spec/common-structures/) như sau:
+Cập nhật các phần và bảng trong tài liệu cấu trúc chung [/docs/specs/common-structures/](/docs/specs/common-structures/) như sau:
 
 ### Chữ ký
 
@@ -563,7 +563,7 @@ không thay đổi
 
 ### SigningPrivateKey
 
-Cập nhật đặc tả ECIES-Ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) như sau:
+Cập nhật đặc tả ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) như sau:
 
 #### Noise identifiers
 
@@ -760,11 +760,11 @@ Kích thước:
 | MLKEM512_X25519 | 5 | 32 | 856+pl | 816+pl | 768+pl | 768 | pl |
 | MLKEM768_X25519 | 6 | 32 | 1176+pl | 1136+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | 32 | 1656+pl | 1616+pl | 1568+pl | 1568 | pl |
-Lưu ý rằng mặc dù message 2 thường sẽ có payload khác không, đặc tả ratchet [/en/docs/spec/ecies/](/en/docs/spec/ecies/) không yêu cầu điều này, do đó kích thước payload tối thiểu là 0. Kích thước message 2 tối thiểu có thể được tính toán tương ứng.
+Lưu ý rằng mặc dù message 2 thường sẽ có payload khác không, đặc tả ratchet [/docs/specs/ecies/](/docs/specs/ecies/) không yêu cầu điều này, do đó kích thước payload tối thiểu là 0. Kích thước message 2 tối thiểu có thể được tính toán tương ứng.
 
 ### Chữ ký
 
-Cập nhật đặc tả kỹ thuật NTCP2 [/en/docs/spec/ntcp2/](/en/docs/spec/ntcp2/) như sau:
+Cập nhật đặc tả kỹ thuật NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) như sau:
 
 #### Noise identifiers
 
@@ -935,7 +935,7 @@ Không thay đổi
 
 ### Chứng chỉ Khóa
 
-Cập nhật đặc tả SSU2 [/en/docs/spec/ssu2/](/en/docs/spec/ssu2/) như sau:
+Cập nhật đặc tả SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) như sau:
 
 #### Noise identifiers
 

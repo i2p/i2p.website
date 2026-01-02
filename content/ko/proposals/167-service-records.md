@@ -27,7 +27,7 @@ I2P는 중앙 DNS 시스템이 없습니다.
 
 ### 서비스 목록
 
-LS2 제안서 123 [Prop123](/en/proposals/123-new-netdb-entries/)는 글로벌 서비스에 참여하는 목적지를 나타내는 '서비스 기록'을 정의했습니다. 플러드필은 이러한 기록을 글로벌 '서비스 목록'으로 집계할 것입니다.
+LS2 제안서 123 [Prop123](/proposals/123-new-netdb-entries/)는 글로벌 서비스에 참여하는 목적지를 나타내는 '서비스 기록'을 정의했습니다. 플러드필은 이러한 기록을 글로벌 '서비스 목록'으로 집계할 것입니다.
 인증, 보안, 스팸 문제로 인해 구현되지 않았습니다.
 
 이 제안은 특정 목적지에 대한 서비스 조회를 제공한다는 점에서 다르며, 글로벌 서비스에 대한 글로벌 풀 목적지와는 다릅니다.
@@ -54,10 +54,10 @@ MX 기록이 있으면 SRV 기록이 필요하지 않으며, MX 기록만으로�
 
 ## 설계
 
-서비스 기록은 LS2의 옵션 섹션에 배치됩니다 [LS2](/en/docs/spec/common-structures/).
+서비스 기록은 LS2의 옵션 섹션에 배치됩니다 [LS2](/docs/specs/common-structures/).
 현재 LS2의 옵션 섹션은 사용되지 않고 있습니다.
 LS1에 대해서는 지원되지 않습니다.
-이는 터널 대역폭 제안 [Prop168](/en/proposals/168-tunnel-bandwidth/)과 유사하며, 터널 빌드 기록에 대한 옵션을 정의합니다.
+이는 터널 대역폭 제안 [Prop168](/proposals/168-tunnel-bandwidth/)과 유사하며, 터널 빌드 기록에 대한 옵션을 정의합니다.
 
 특정 호스트명 또는 b32에 대한 서비스 주소를 조회하려면 라우터가 리스셋을 가져와 속성에서 서비스 기록을 조회합니다.
 
@@ -98,7 +98,7 @@ LS2 옵션은 키별로 정렬되어 서명이 변하지 않도록 해야 합니
   하나 이상의 기록이 있는 경우에만 유용하지만, 하나의 기록이 있는 경우에도 필요합니다.
 - port := 서비스가 찾을 수 있는 I2CP 포트. 음수가 아닌 정수. 예: "25"
   포트 0은 지원되지만 권장되지 않습니다.
-- target := 서비스를 제공하는 목적지의 호스트명 또는 b32. [NAMING](/en/docs/naming/)의 유효한 호스트명. 소문자여야 합니다.
+- target := 서비스를 제공하는 목적지의 호스트명 또는 b32. [NAMING](/docs/overview/naming/)의 유효한 호스트명. 소문자여야 합니다.
   예: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" 또는 "example.i2p".
   호스트명이 "잘 알려진" 경우가 아니라면 b32가 권장됩니다.
 - appoptions := 애플리케이션에 특정한 임의의 텍스트, " " 또는 ","를 포함할 수 없음. UTF-8로 인코딩됩니다.
@@ -152,14 +152,14 @@ appoptions 필드가 길면 하나 또는 두 개, 호스트명이 짧으면 최
 
 ### 서비스 이름 등록소
 
-[REGISTRY](http://www.dns-sd.org/ServiceTypes.html) 또는 Linux /etc/services에 나열되지 않은 비표준 식별자는 요청하여 일반 구조 사양 [LS2](/en/docs/spec/common-structures/)에 추가할 수 있습니다.
+[REGISTRY](http://www.dns-sd.org/ServiceTypes.html) 또는 Linux /etc/services에 나열되지 않은 비표준 식별자는 요청하여 일반 구조 사양 [LS2](/docs/specs/common-structures/)에 추가할 수 있습니다.
 
 서비스별 appoptions 형식도 추가될 수 있습니다.
 
 
 ### I2CP 사양
 
-[I2CP](/en/docs/spec/i2cp/) 프로토콜은 서비스 조회를 지원하기 위해 확장되어야 합니다.
+[I2CP](/docs/specs/i2cp/) 프로토콜은 서비스 조회를 지원하기 위해 확장되어야 합니다.
 서비스 조회와 관련된 추가 MessageStatusMessage 및/또는 HostReplyMessage 오류 코드가 필요합니다.
 조회 시설을 일반화하여 서비스 기록 특정에만 제한되지 않도록 하려면
 모든 LS2 옵션의 검색을 지원하는 설계가 필요합니다.
@@ -177,7 +177,7 @@ HostReplyMessage를 확장하여 요청된 경우 옵션 매핑을 추가해야 
 
 ### 구성 옵션
 
-[I2CP-OPTIONS](/en/docs/protocol/i2cp/)에 다음을 추가합니다:
+[I2CP-OPTIONS](/docs/specs/i2cp/)에 다음을 추가합니다:
 
 i2cp.leaseSetOption.nnn
 
@@ -200,7 +200,6 @@ nnn은 0부터 시작합니다. 옵션 값은 "key=value"를 포함합니다.
 탐색 유형 4의 경우, 아이템 5는 목적지입니다.
 
 
-
 ### 호스트 응답 메시지
 
 
@@ -219,10 +218,9 @@ nnn은 0부터 시작합니다. 옵션 값은 "key=value"를 포함합니다.
 탐색 유형이 지원되지 않으면, 응답에는 새로운 오류 코드 7(탐색 유형 지원되지 않음)이 포함됩니다.
 
 
-
 ### SAM 사양
 
-[SAMv3](/en/docs/api/samv3/) 프로토콜은 서비스 조회를 지원하기 위해 확장되어야 합니다.
+[SAMv3](/docs/api/samv3/) 프로토콜은 서비스 조회를 지원하기 위해 확장되어야 합니다.
 
 다음과 같이 NAMING LOOKUP을 확장합니다:
 
@@ -252,7 +250,7 @@ OPTIONS=true가 조회에 포함되었고 리스셋이 발견되지 않은 경�
 
 전체 호스트명으로 서비스 조회를 지원하기 위해
 _smtp._tcp.example.i2p와 같은 형태로
-[NAMING](/en/docs/naming/)을 업데이트하는 대안 설계가 고려되었습니다.
+[NAMING](/docs/overview/naming/)을 업데이트하는 대안 설계가 고려되었습니다.
 이는 두 가지 이유로 거절되었습니다:
 
 - I2CP와 SAM 변경이 여전히 필요합니다. 클라이언트에 TTL과 포트 정보를 전달하기 위해서입니다.
@@ -272,7 +270,6 @@ _smtp._tcp.example.i2p와 같은 형태로
 이는 초기 구현에서는 필요하지 않을 수도 있습니다.
 
 TODO
-
 
 
 ### 애플리케이션 별 필드

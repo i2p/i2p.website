@@ -10,7 +10,6 @@ categories: ["status"]
 
 ## 索引：
 
-仅提供翻译，勿添加任何其他内容：
 
 1. 0.3.3 & current updates
 2. NativeBigInteger

@@ -28,16 +28,13 @@ Deuxièmement, à moins qu'une information de routeur ou un ensemble de location
 le nouveau type de signature est difficile à tester complètement ou à utiliser sur une base d'essai.
 
 
-
 ## Conception
 
 Les floodfills devraient accepter, et propager, les stockages LS avec des types de signature dans la plage expérimentale,
 sans vérifier la signature. Le support pour les stockages RI est à définir, et peut avoir plus d'implications sécuritaires.
 
 
-
 ## Spécification
-
 
 
 Pour les types de signature dans la plage expérimentale, un floodfill devrait accepter et propager les stockages netdb
@@ -83,6 +80,5 @@ ce qui n'a pas encore été proposé formellement.
 
 Les stockages NetDB de types de signature inconnus qui ne sont pas dans la plage expérimentale continueront
 d'être rejetés par les floodfills, car la signature ne peut être vérifiée.
-
 
 
