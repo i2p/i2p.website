@@ -71,6 +71,14 @@
   <p class="feedback-note">
     Found an issue? <a href="https://gitlab.com/{{ .Site.Params.gitlabRepo }}/-/blob/{{ .Site.Params.gitlabBranch }}/hugo-site/content/{{ .Language.Lang }}/{{ .File.Path }}?ref_type=heads" target="_blank" rel="noopener">Edit this page on GitLab</a>
   </p>
+
+  {{/* Fallback for I2P/Tor users or when JS is disabled */}}
+  <noscript>
+    <p class="feedback-darknet-notice">
+      Feedback submission requires clearnet access.
+      <a href="https://i2p.net{{ .RelPermalink }}#docs-feedback">Submit feedback via clearnet</a>
+    </p>
+  </noscript>
 </div>
 
 <style>
@@ -204,6 +212,25 @@
   background: var(--color-primary-hover, #520dc2);
 }
 
+/* Darknet/noscript fallback notice */
+.feedback-darknet-notice {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.feedback-darknet-notice a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.feedback-darknet-notice a:hover {
+  text-decoration: underline;
+}
 </style>
 
 {{/*
