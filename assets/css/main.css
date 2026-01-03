@@ -1014,22 +1014,22 @@ main {
         min-width: 0;
     }
 
-    /* Language dropdown - open to the right on mobile */
+    /* Language dropdown - position at far right on mobile */
     .language-selector {
         position: relative;
-        order: 1;  /* Move after theme toggle */
+        order: 10;  /* Move to far right, after all buttons */
     }
 
     .theme-toggle-container {
-        order: 0;  /* Theme toggle first */
+        order: 0;  /* Theme toggle first (far left) */
     }
 
     .language-dropdown {
         position: absolute;
         top: 100%;
         bottom: auto;
-        left: 0;   /* Open to the right */
-        right: auto;
+        right: 0;  /* Align dropdown to right edge */
+        left: auto;
         max-height: 50vh;
         overflow-y: auto;
         z-index: 10001;
