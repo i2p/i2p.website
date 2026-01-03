@@ -83,41 +83,42 @@ jobs:
           retention-days: 1
 
   # =================================================================================================
-  # TEST JOB (Temporarily disabled - needs fixes)
+  # TEST JOB - Runs after build, blocks deployment if tests fail
   # =================================================================================================
-  # test:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #       with:
-  #         submodules: recursive
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-  #     - name: Setup Python
-  #       uses: actions/setup-python@v5
-  #       with:
-  #         python-version: '3.11'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-  #     - name: Setup Hugo
-  #       uses: peaceiris/actions-hugo@v3
-  #       with:
-  #         hugo-version: '0.147.8'
-  #         extended: true
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: public-site
+          path: public
 
-  #     - name: Install Dependencies
-  #       run: |
-  #         pip install -r tests/requirements.txt
+      - name: Install Test Dependencies
+        run: pip install -r tests/requirements.txt
 
-  #     - name: Run Unit Tests
-  #       run: |
-  #         pytest tests/
+      - name: Run Unit Tests
+        run: pytest tests/ -v --tb=short
+        env:
+          HUGO_BUILD_DIR: public
 
   # =================================================================================================
   # DEPLOYMENT JOBS
   # =================================================================================================
   
   deploy-cloudflare:
-    needs: [build]
+    needs: [build, test]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     environment:
@@ -144,7 +145,7 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
   deploy-ssh-primary:
-    needs: [build]
+    needs: [build, test]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
