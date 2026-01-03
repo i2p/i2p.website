@@ -1014,21 +1014,22 @@ main {
         min-width: 0;
     }
 
-    /* Language dropdown - ensure visible within fixed nav on mobile */
-    .nav-menu {
-        overflow: visible;
+    /* Language dropdown - open to the right on mobile */
+    .language-selector {
+        position: relative;
+        order: 1;  /* Move after theme toggle */
     }
 
-    .language-selector {
-        position: static;
+    .theme-toggle-container {
+        order: 0;  /* Theme toggle first */
     }
 
     .language-dropdown {
         position: absolute;
         top: 100%;
         bottom: auto;
-        right: 0;
-        left: auto;
+        left: 0;   /* Open to the right */
+        right: auto;
         max-height: 50vh;
         overflow-y: auto;
         z-index: 10001;
