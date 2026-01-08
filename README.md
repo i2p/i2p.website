@@ -241,10 +241,3 @@ Contains all download links, versions, and checksums for I2P releases.
 ## License
 
 This project is part of the I2P Project. See [LICENSE](LICENSE) for details.
-
-## Links
-
-- [I2P Website](https://geti2p.net)
-- [I2P Documentation](https://geti2p.net/docs)
-- [I2P Forum](https://i2pforum.net)
-- [Report Issues](https://github.com/i2p/i2p.www/issues)
