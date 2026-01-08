@@ -588,6 +588,188 @@ def assign_segment_ids(
             token.segment_id = f"table_{table_count:03d}"
 
 
+def build_cache_from_existing(
+    content_root: Path,
+    source_lang: str = "en",
+    verbose: bool = True
+) -> int:
+    """Build segment cache from existing source and translated files.
+
+    This function reads English source files and their existing translations,
+    then populates the segment cache without making any API calls.
+
+    Args:
+        content_root: Path to content/ directory
+        source_lang: Source language code (default: en)
+        verbose: Print progress
+
+    Returns:
+        Number of segments cached
+    """
+    source_dir = content_root / source_lang
+    if not source_dir.exists():
+        print(f"Error: Source directory not found: {source_dir}", file=sys.stderr)
+        return 0
+
+    # Find all markdown files in source directory
+    source_files = list(source_dir.rglob("*.md"))
+
+    if verbose:
+        print(f"\n{'='*60}")
+        print(f"Building Segment Cache from Existing Translations")
+        print(f"{'='*60}")
+        print(f"Source directory: {source_dir}")
+        print(f"Found {len(source_files)} source files")
+        print(f"Target languages: {', '.join(TARGET_LANGUAGES)}")
+        print(f"{'='*60}\n")
+
+    cache = load_segment_cache()
+    total_segments = 0
+    total_translations = 0
+
+    for source_path in source_files:
+        try:
+            # Read and parse source file
+            source_content = source_path.read_text(encoding="utf-8")
+            source_fm, source_body = split_front_matter(source_content)
+            source_tokens = tokenize_markdown(source_body)
+
+            # Assign segment IDs
+            assign_segment_ids(source_fm, source_tokens)
+
+            # Calculate relative path for cache key
+            rel_path = source_path.relative_to(content_root)
+            file_path_str = str(rel_path).replace("\\", "/")
+
+            if verbose:
+                print(f"Processing: {file_path_str}")
+
+            # Build list of source segments with their hashes
+            source_segments = []
+
+            for entry in source_fm:
+                if entry.key not in NO_TRANSLATE_KEYS and entry.segment_id:
+                    source_hash = calculate_segment_hash(entry.text)
+                    source_segments.append({
+                        "type": "frontmatter",
+                        "segment_id": entry.segment_id,
+                        "source_hash": source_hash,
+                        "source_text": entry.text
+                    })
+
+            for token in source_tokens:
+                if token.type == "heading" and token.segment_id:
+                    source_hash = calculate_segment_hash(token.text)
+                    source_segments.append({
+                        "type": "heading",
+                        "segment_id": token.segment_id,
+                        "source_hash": source_hash,
+                        "source_text": token.text
+                    })
+                elif token.type == "paragraph" and token.segment_id:
+                    source_hash = calculate_segment_hash(token.text)
+                    source_segments.append({
+                        "type": "paragraph",
+                        "segment_id": token.segment_id,
+                        "source_hash": source_hash,
+                        "source_text": token.text
+                    })
+                elif token.type == "list" and token.segment_id:
+                    source_text = "\n".join(token.lines)
+                    source_hash = calculate_segment_hash(source_text)
+                    source_segments.append({
+                        "type": "list",
+                        "segment_id": token.segment_id,
+                        "source_hash": source_hash,
+                        "source_text": source_text
+                    })
+                elif token.type == "table" and token.segment_id:
+                    source_text = "\n".join(token.lines)
+                    source_hash = calculate_segment_hash(source_text)
+                    source_segments.append({
+                        "type": "table",
+                        "segment_id": token.segment_id,
+                        "source_hash": source_hash,
+                        "source_text": source_text
+                    })
+
+            total_segments += len(source_segments)
+
+            # Now check each target language for existing translations
+            for target_lang in TARGET_LANGUAGES:
+                # Construct target path
+                target_rel_path = str(rel_path).replace(f"{source_lang}/", f"{target_lang}/", 1)
+                target_path = content_root / target_rel_path
+
+                if not target_path.exists():
+                    continue
+
+                try:
+                    # Parse translated file
+                    target_content = target_path.read_text(encoding="utf-8")
+                    target_fm, target_body = split_front_matter(target_content)
+                    target_tokens = tokenize_markdown(target_body)
+
+                    # Assign segment IDs to target
+                    assign_segment_ids(target_fm, target_tokens)
+
+                    # Build lookup for target segments
+                    target_fm_lookup = {e.segment_id: e.text for e in target_fm if e.segment_id}
+                    target_token_lookup = {}
+                    for t in target_tokens:
+                        if t.segment_id:
+                            if t.type in ("heading", "paragraph"):
+                                target_token_lookup[t.segment_id] = t.text
+                            elif t.type in ("list", "table"):
+                                target_token_lookup[t.segment_id] = "\n".join(t.lines)
+
+                    # Match source segments with target translations
+                    for seg in source_segments:
+                        seg_id = seg["segment_id"]
+                        translated = None
+
+                        if seg["type"] == "frontmatter":
+                            translated = target_fm_lookup.get(seg_id)
+                        else:
+                            translated = target_token_lookup.get(seg_id)
+
+                        if translated:
+                            update_segment_cache(
+                                cache,
+                                file_path_str,
+                                seg_id,
+                                seg["source_hash"],
+                                target_lang,
+                                translated
+                            )
+                            total_translations += 1
+
+                except Exception as e:
+                    if verbose:
+                        print(f"  Warning: Could not parse {target_path}: {e}")
+                    continue
+
+        except Exception as e:
+            if verbose:
+                print(f"  Warning: Could not process {source_path}: {e}")
+            continue
+
+    # Save cache
+    save_segment_cache(cache)
+
+    if verbose:
+        print(f"\n{'='*60}")
+        print(f"Cache Build Complete")
+        print(f"{'='*60}")
+        print(f"Files processed: {len(source_files)}")
+        print(f"Segments indexed: {total_segments}")
+        print(f"Translations cached: {total_translations}")
+        print(f"Cache saved to: {SEGMENT_CACHE_FILE}")
+        print(f"{'='*60}\n")
+
+    return total_translations
+
+
 def split_front_matter(text: str) -> tuple[List[FrontMatterEntry], str]:
     """Parse YAML front matter from markdown content."""
     if not text.startswith("---"):
@@ -1158,13 +1340,13 @@ def translate_file(
 def main() -> int:
     parser = argparse.ArgumentParser(description="Translate Hugo markdown using Claude API (realtime)")
 
-    # File selection
-    file_group = parser.add_mutually_exclusive_group(required=True)
+    # File selection (not required when using --build-cache or --cache-stats)
+    file_group = parser.add_mutually_exclusive_group(required=False)
     file_group.add_argument("--source", help="Source markdown file path (for single file)")
     file_group.add_argument("--source-dir", help="Source directory (for multiple files)")
 
     parser.add_argument("--pattern", help="File pattern for source-dir (e.g., '2025-*.md')")
-    parser.add_argument("--target-lang", required=True, help="Target language code (e.g., de, ko, es)")
+    parser.add_argument("--target-lang", help="Target language code (e.g., de, ko, es)")
     parser.add_argument("--source-lang", default="en", help="Source language code (default: en)")
     parser.add_argument("--model", default="claude-sonnet-4-20250514", help="Claude model (default: claude-sonnet-4-20250514)")
     parser.add_argument("--output-root", help="Output root directory (default: auto-detect)")
@@ -1184,6 +1366,9 @@ def main() -> int:
                         help="Clear segment cache before translating")
     parser.add_argument("--cache-stats", action="store_true",
                         help="Show cache statistics and exit")
+    parser.add_argument("--build-cache", action="store_true",
+                        help="Build segment cache from existing translations (no API calls)")
+    parser.add_argument("--content-root", help="Content root directory for --build-cache (default: ./content)")
 
     args = parser.parse_args()
 
@@ -1210,6 +1395,28 @@ def main() -> int:
             print(f"Avg translations/segment: {total_translations / total_segments:.1f}")
         print(f"{'='*60}\n")
         return 0
+
+    # Handle build-cache (doesn't require API key)
+    if args.build_cache:
+        content_root = Path(args.content_root) if args.content_root else Path.cwd() / "content"
+        if not content_root.exists():
+            print(f"Error: Content root not found: {content_root}", file=sys.stderr)
+            print("Use --content-root to specify the content directory", file=sys.stderr)
+            return 1
+        result = build_cache_from_existing(
+            content_root=content_root,
+            source_lang=args.source_lang,
+            verbose=not args.quiet
+        )
+        return 0 if result > 0 else 1
+
+    # Validate required args for translation mode
+    if not args.source and not args.source_dir:
+        print("Error: --source or --source-dir is required for translation", file=sys.stderr)
+        return 1
+    if not args.target_lang:
+        print("Error: --target-lang is required for translation", file=sys.stderr)
+        return 1
 
     api_key = os.getenv("ANTHROPIC_API_KEY")
     if not api_key:
