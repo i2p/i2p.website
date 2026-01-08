@@ -5,6 +5,9 @@ on:
     branches:
       - main
   pull_request:
+  repository_dispatch:
+    types: [deploy-after-translate]
+  workflow_dispatch:
 
 jobs:
   # =================================================================================================
@@ -12,6 +15,8 @@ jobs:
   # =================================================================================================
   quick-tests:
     runs-on: ubuntu-latest
+    # Skip for repository_dispatch (deploy-only) and workflow_dispatch
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,6 +39,8 @@ jobs:
   build:
     needs: quick-tests
     runs-on: ubuntu-latest
+    # Skip for repository_dispatch (deploy-only) and workflow_dispatch
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -89,7 +96,8 @@ jobs:
   full-tests:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    # Only run on main branch push (not PRs, not dispatch events)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -116,7 +124,7 @@ jobs:
           HUGO_BUILD_DIR: public
 
   # =================================================================================================
-  # TRANSLATION JOB - Runs after tests pass, commits translated files
+  # TRANSLATION JOB - Runs after tests pass, commits translated files, triggers deploy
   # =================================================================================================
   translate:
     needs: full-tests
@@ -124,6 +132,8 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       contents: write
+    outputs:
+      translations_committed: ${{ steps.translate.outputs.committed }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -136,21 +146,45 @@ jobs:
       - name: Install dependencies
         run: pip install anthropic
       - name: Run Translation Script
+        id: translate
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CI_COMMIT_BEFORE_SHA: ${{ github.event.before }}
           CI_COMMIT_SHA: ${{ github.sha }}
           CI_COMMIT_REF_NAME: ${{ github.ref_name }}
-        run: bash scripts/translate/ci_translate.sh
+        run: |
+          bash scripts/translate/ci_translate.sh
+          # Check if translations were committed by looking at git log
+          if git log -1 --pretty=%B | grep -q "Auto-translate:"; then
+            echo "committed=true" >> $GITHUB_OUTPUT
+          else
+            echo "committed=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Trigger Deploy Workflow
+        if: steps.translate.outputs.committed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Translations committed, triggering deployment..."
+          gh api repos/${{ github.repository }}/dispatches \
+            -f event_type=deploy-after-translate
 
   # =================================================================================================
   # DEPLOYMENT JOBS
+  # Runs after build/tests on regular push, OR triggered by translate after committing translations
   # =================================================================================================
 
   deploy-cloudflare:
     needs: [build, full-tests]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    # Run on main branch push (after build/tests), OR when triggered by dispatch (skips needs)
+    # always() allows this job to run even if needed jobs were skipped
+    if: |
+      always() && (
+        (github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.build.result == 'success' && needs.full-tests.result == 'success') ||
+        github.event_name == 'repository_dispatch' ||
+        github.event_name == 'workflow_dispatch'
+      )
     environment:
       name: production
     permissions:
@@ -158,8 +192,21 @@ jobs:
       deployments: write
     steps:
       - uses: actions/checkout@v4
-      
+
+      # For dispatch events, we need to rebuild since there's no artifact
+      - name: Setup Hugo
+        if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.147.8'
+          extended: true
+
+      - name: Build Site (for dispatch)
+        if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+        run: hugo --minify --gc
+
       - name: Download Build Artifact
+        if: github.event_name == 'push'
         uses: actions/download-artifact@v4
         with:
           name: public-site
@@ -177,12 +224,37 @@ jobs:
   deploy-ssh-primary:
     needs: [build, full-tests]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    # Run on main branch push (after build/tests), OR when triggered by dispatch (skips needs)
+    # always() allows this job to run even if needed jobs were skipped
+    if: |
+      always() && (
+        (github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.build.result == 'success' && needs.full-tests.result == 'success') ||
+        github.event_name == 'repository_dispatch' ||
+        github.event_name == 'workflow_dispatch'
+      )
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v4
+        if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+
+      # For dispatch events, we need to rebuild since there's no artifact
+      - name: Setup Hugo
+        if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.147.8'
+          extended: true
+
+      - name: Build Site (for dispatch)
+        if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+        run: hugo --minify --gc
+
+      - name: Download Build Artifact
+        if: github.event_name == 'push'
+        uses: actions/download-artifact@v4
         with:
           name: public-site
           path: public
+
       - name: Deploy via Rsync
         env:
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
