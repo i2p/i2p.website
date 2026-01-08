@@ -174,8 +174,9 @@ if [ ${#FAILED_LANGUAGES[@]} -eq 0 ]; then
     git config user.name "github-actions[bot]"
     git config user.email "github-actions[bot]@users.noreply.github.com"
 
-    # Add translated files and hash file
+    # Add translated files, hash file, and segment cache
     git add scripts/translate/claude_translation_hashes.json 2>/dev/null || true
+    git add scripts/translate/claude_segment_cache.json 2>/dev/null || true
 
     # Find and add all translated files for each target language
     for TARGET_LANG in $TARGET_LANGUAGES; do

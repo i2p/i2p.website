@@ -53,6 +53,7 @@ except ImportError:
 
 TRANSLATION_HASHES_FILE = Path(__file__).resolve().parent / "claude_translation_hashes.json"
 TRANSLATION_LOG = Path(__file__).resolve().parent / "claude_translation_log.json"
+SEGMENT_CACHE_FILE = Path(__file__).resolve().parent / "claude_segment_cache.json"
 
 # Target languages for translation (can be modified as needed)
 TARGET_LANGUAGES = ["zh", "es", "ko", "ru", "cs", "de", "fr", "tr", "vi", "hi", "ar", "pt"]
@@ -279,6 +280,7 @@ class FrontMatterEntry:
     quote: Optional[str]
     text: str
     translated: Optional[str] = None
+    segment_id: Optional[str] = None  # For segment-level caching
 
     def formatted(self) -> str:
         value = self.translated if self.translated is not None else self.text
@@ -299,6 +301,7 @@ class Token:
     level: int = 0
     lines: List[str] = field(default_factory=list)
     translated: Optional[str] = None
+    segment_id: Optional[str] = None  # For segment-level caching
 
     def render(self) -> str:
         if self.type == "blank":
@@ -456,6 +459,133 @@ def update_translation_hashes(files: List[Path], base_dir: Optional[Path] = None
         stored_hashes[rel_path_str] = current_hash
 
     save_translation_hashes(stored_hashes)
+
+
+# =============================================================================
+# SEGMENT-LEVEL CACHING
+# =============================================================================
+
+def calculate_segment_hash(text: str) -> str:
+    """Calculate hash for a segment's source text (16 char prefix for readability)."""
+    return hashlib.sha256(text.strip().encode("utf-8")).hexdigest()[:16]
+
+
+def load_segment_cache() -> Dict:
+    """Load segment cache from JSON file."""
+    if not SEGMENT_CACHE_FILE.exists():
+        return {"version": 1, "files": {}}
+
+    try:
+        data = json.loads(SEGMENT_CACHE_FILE.read_text(encoding="utf-8"))
+        # Ensure structure is correct
+        if "version" not in data:
+            data["version"] = 1
+        if "files" not in data:
+            data["files"] = {}
+        return data
+    except (json.JSONDecodeError, FileNotFoundError):
+        return {"version": 1, "files": {}}
+
+
+def save_segment_cache(cache: Dict) -> None:
+    """Save segment cache to JSON file."""
+    SEGMENT_CACHE_FILE.write_text(
+        json.dumps(cache, indent=2, ensure_ascii=False),
+        encoding="utf-8"
+    )
+
+
+def get_cached_translation(
+    cache: Dict,
+    file_path_str: str,
+    segment_id: str,
+    source_hash: str,
+    target_lang: str
+) -> Optional[str]:
+    """Get cached translation for a segment if source hash matches.
+
+    Returns:
+        Cached translation string if found and hash matches, None otherwise
+    """
+    file_cache = cache.get("files", {}).get(file_path_str, {})
+    segment_cache = file_cache.get("segments", {}).get(segment_id, {})
+
+    if segment_cache.get("source_hash") == source_hash:
+        return segment_cache.get("translations", {}).get(target_lang)
+
+    return None
+
+
+def update_segment_cache(
+    cache: Dict,
+    file_path_str: str,
+    segment_id: str,
+    source_hash: str,
+    target_lang: str,
+    translation: str
+) -> None:
+    """Update cache with a new translation for a segment."""
+    if "files" not in cache:
+        cache["files"] = {}
+
+    if file_path_str not in cache["files"]:
+        cache["files"][file_path_str] = {"segments": {}}
+
+    if "segments" not in cache["files"][file_path_str]:
+        cache["files"][file_path_str]["segments"] = {}
+
+    segments = cache["files"][file_path_str]["segments"]
+
+    if segment_id not in segments:
+        segments[segment_id] = {"source_hash": source_hash, "translations": {}}
+
+    # Update source hash (in case it changed)
+    segments[segment_id]["source_hash"] = source_hash
+    segments[segment_id]["translations"][target_lang] = translation
+
+
+def assign_segment_ids(
+    fm_entries: List[FrontMatterEntry],
+    tokens: List[Token]
+) -> None:
+    """Assign unique segment IDs to front matter entries and tokens.
+
+    IDs follow the pattern:
+    - Front matter: fm_{key} (e.g., fm_title, fm_description)
+    - Headings: h{level}_{count:03d} (e.g., h2_001, h3_002)
+    - Paragraphs: p_{count:03d} (e.g., p_001, p_002)
+    - Lists: list_{count:03d}
+    - Tables: table_{count:03d}
+    """
+    # Assign IDs to front matter entries
+    for entry in fm_entries:
+        entry.segment_id = f"fm_{entry.key}"
+
+    # Counters for each heading level and other types
+    heading_counts: Dict[int, int] = {}
+    paragraph_count = 0
+    list_count = 0
+    table_count = 0
+
+    for token in tokens:
+        if token.type == "heading":
+            level = token.level
+            if level not in heading_counts:
+                heading_counts[level] = 0
+            heading_counts[level] += 1
+            token.segment_id = f"h{level}_{heading_counts[level]:03d}"
+
+        elif token.type == "paragraph":
+            paragraph_count += 1
+            token.segment_id = f"p_{paragraph_count:03d}"
+
+        elif token.type == "list":
+            list_count += 1
+            token.segment_id = f"list_{list_count:03d}"
+
+        elif token.type == "table":
+            table_count += 1
+            token.segment_id = f"table_{table_count:03d}"
 
 
 def split_front_matter(text: str) -> tuple[List[FrontMatterEntry], str]:
@@ -719,17 +849,32 @@ def translate_file(
     dry_run: bool = False,
     overwrite: bool = False,
     verbose: bool = True,
-    copy_html: bool = False
-) -> bool:
+    copy_html: bool = False,
+    use_cache: bool = True,
+    segment_cache: Optional[Dict] = None
+) -> tuple[bool, int, int]:
     """Translate a single markdown file or copy an HTML file.
 
+    Args:
+        source_path: Path to source file
+        target_lang: Target language code
+        translator: ClaudeTranslator instance
+        output_root: Root directory for output
+        source_lang: Source language code
+        dry_run: If True, don't write files
+        overwrite: If True, overwrite existing files
+        verbose: If True, print progress
+        copy_html: If True, copy HTML files without translation
+        use_cache: If True, use segment-level caching
+        segment_cache: Shared segment cache dict (modified in place)
+
     Returns:
-        True if translation/copy was successful, False otherwise
+        Tuple of (success, cache_hits, cache_misses)
     """
     # Handle HTML files
     if source_path.suffix.lower() == '.html':
         if copy_html:
-            return copy_html_file(
+            success = copy_html_file(
                 source_path=source_path,
                 target_lang=target_lang,
                 output_root=output_root,
@@ -738,11 +883,12 @@ def translate_file(
                 overwrite=overwrite,
                 verbose=verbose
             )
+            return (success, 0, 0)
         else:
             if verbose:
                 print(f"\n  Skipping HTML file: {source_path}")
                 print("   Use --copy-html to copy HTML files without translation")
-            return False
+            return (False, 0, 0)
 
     # Handle markdown files
     if verbose:
@@ -750,12 +896,26 @@ def translate_file(
         print(f"Source: {source_path}")
         print(f"Target language: {target_lang.upper()}")
         print(f"Model: {translator.model}")
+        print(f"Segment caching: {'enabled' if use_cache else 'disabled'}")
         print(f"{'='*60}\n")
+
+    cache_hits = 0
+    cache_misses = 0
 
     try:
         content = source_path.read_text(encoding="utf-8")
         fm_entries, body = split_front_matter(content)
         tokens = tokenize_markdown(body)
+
+        # Assign segment IDs for caching
+        assign_segment_ids(fm_entries, tokens)
+
+        # Calculate file path for cache key
+        try:
+            rel_path = source_path.relative_to(output_root)
+        except ValueError:
+            rel_path = source_path
+        file_path_str = str(rel_path).replace("\\", "/")
 
         # Build list of translatable segments
         segments = []
@@ -774,56 +934,163 @@ def translate_file(
                 segments.append(("table", token))
 
         if verbose:
-            print(f"Translating {len(segments)} segments -> {target_lang.upper()}\n")
+            print(f"Processing {len(segments)} segments -> {target_lang.upper()}\n")
 
-        # Translate segments
+        # Translate segments (with caching)
         for idx, (seg_type, seg) in enumerate(segments, start=1):
+            segment_id = seg.segment_id if hasattr(seg, 'segment_id') else None
+
             if seg_type == "frontmatter":
                 entry = seg
-                if verbose:
-                    print(f"[{idx}/{len(segments)}] frontmatter:{entry.key}: {entry.text[:60]!r}")
-                translated = translator.translate(entry.text, target_lang, source_lang)
-                entry.translated = translated
-                if verbose:
-                    print(f"  -> {translated[:60]!r}\n")
+                source_text = entry.text
+                source_hash = calculate_segment_hash(source_text)
+
+                # Check cache
+                cached = None
+                if use_cache and segment_cache is not None and segment_id:
+                    cached = get_cached_translation(
+                        segment_cache, file_path_str, segment_id, source_hash, target_lang
+                    )
+
+                if cached is not None:
+                    entry.translated = cached
+                    cache_hits += 1
+                    if verbose:
+                        print(f"[{idx}/{len(segments)}] frontmatter:{entry.key}: {source_text[:40]!r} [CACHED]")
+                else:
+                    if verbose:
+                        print(f"[{idx}/{len(segments)}] frontmatter:{entry.key}: {source_text[:40]!r}")
+                    translated = translator.translate(source_text, target_lang, source_lang)
+                    entry.translated = translated
+                    cache_misses += 1
+                    if verbose:
+                        print(f"  -> {translated[:60]!r}\n")
+
+                    # Update cache
+                    if use_cache and segment_cache is not None and segment_id:
+                        update_segment_cache(
+                            segment_cache, file_path_str, segment_id, source_hash, target_lang, translated
+                        )
 
             elif seg_type == "heading":
                 token = seg
-                if verbose:
-                    print(f"[{idx}/{len(segments)}] heading: {token.text[:60]!r}")
-                translated = translator.translate(token.text, target_lang, source_lang)
-                token.translated = translated
-                if verbose:
-                    print(f"  -> {translated[:60]!r}\n")
+                source_text = token.text
+                source_hash = calculate_segment_hash(source_text)
+
+                cached = None
+                if use_cache and segment_cache is not None and segment_id:
+                    cached = get_cached_translation(
+                        segment_cache, file_path_str, segment_id, source_hash, target_lang
+                    )
+
+                if cached is not None:
+                    token.translated = cached
+                    cache_hits += 1
+                    if verbose:
+                        print(f"[{idx}/{len(segments)}] heading ({segment_id}): {source_text[:40]!r} [CACHED]")
+                else:
+                    if verbose:
+                        print(f"[{idx}/{len(segments)}] heading ({segment_id}): {source_text[:40]!r}")
+                    translated = translator.translate(source_text, target_lang, source_lang)
+                    token.translated = translated
+                    cache_misses += 1
+                    if verbose:
+                        print(f"  -> {translated[:60]!r}\n")
+
+                    if use_cache and segment_cache is not None and segment_id:
+                        update_segment_cache(
+                            segment_cache, file_path_str, segment_id, source_hash, target_lang, translated
+                        )
 
             elif seg_type == "paragraph":
                 token = seg
-                if verbose:
-                    print(f"[{idx}/{len(segments)}] paragraph: {token.text[:60]!r}")
-                translated = translator.translate(token.text, target_lang, source_lang)
-                token.translated = translated
-                if verbose:
-                    print(f"  -> {translated[:60]!r}\n")
+                source_text = token.text
+                source_hash = calculate_segment_hash(source_text)
+
+                cached = None
+                if use_cache and segment_cache is not None and segment_id:
+                    cached = get_cached_translation(
+                        segment_cache, file_path_str, segment_id, source_hash, target_lang
+                    )
+
+                if cached is not None:
+                    token.translated = cached
+                    cache_hits += 1
+                    if verbose:
+                        print(f"[{idx}/{len(segments)}] paragraph ({segment_id}): {source_text[:40]!r} [CACHED]")
+                else:
+                    if verbose:
+                        print(f"[{idx}/{len(segments)}] paragraph ({segment_id}): {source_text[:40]!r}")
+                    translated = translator.translate(source_text, target_lang, source_lang)
+                    token.translated = translated
+                    cache_misses += 1
+                    if verbose:
+                        print(f"  -> {translated[:60]!r}\n")
+
+                    if use_cache and segment_cache is not None and segment_id:
+                        update_segment_cache(
+                            segment_cache, file_path_str, segment_id, source_hash, target_lang, translated
+                        )
 
             elif seg_type == "list":
                 token = seg
-                list_text = "\n".join(token.lines)
-                if verbose:
-                    print(f"[{idx}/{len(segments)}] list: {list_text[:60]!r}")
-                translated = translator.translate(list_text, target_lang, source_lang)
-                token.lines = translated.split("\n")
-                if verbose:
-                    print(f"  -> {translated[:60]!r}\n")
+                source_text = "\n".join(token.lines)
+                source_hash = calculate_segment_hash(source_text)
+
+                cached = None
+                if use_cache and segment_cache is not None and segment_id:
+                    cached = get_cached_translation(
+                        segment_cache, file_path_str, segment_id, source_hash, target_lang
+                    )
+
+                if cached is not None:
+                    token.lines = cached.split("\n")
+                    cache_hits += 1
+                    if verbose:
+                        print(f"[{idx}/{len(segments)}] list ({segment_id}): {source_text[:40]!r} [CACHED]")
+                else:
+                    if verbose:
+                        print(f"[{idx}/{len(segments)}] list ({segment_id}): {source_text[:40]!r}")
+                    translated = translator.translate(source_text, target_lang, source_lang)
+                    token.lines = translated.split("\n")
+                    cache_misses += 1
+                    if verbose:
+                        print(f"  -> {translated[:60]!r}\n")
+
+                    if use_cache and segment_cache is not None and segment_id:
+                        update_segment_cache(
+                            segment_cache, file_path_str, segment_id, source_hash, target_lang, translated
+                        )
 
             elif seg_type == "table":
                 token = seg
-                table_text = "\n".join(token.lines)
-                if verbose:
-                    print(f"[{idx}/{len(segments)}] table: {table_text[:60]!r}")
-                translated = translator.translate(table_text, target_lang, source_lang)
-                token.lines = translated.split("\n")
-                if verbose:
-                    print(f"  -> {translated[:60]!r}\n")
+                source_text = "\n".join(token.lines)
+                source_hash = calculate_segment_hash(source_text)
+
+                cached = None
+                if use_cache and segment_cache is not None and segment_id:
+                    cached = get_cached_translation(
+                        segment_cache, file_path_str, segment_id, source_hash, target_lang
+                    )
+
+                if cached is not None:
+                    token.lines = cached.split("\n")
+                    cache_hits += 1
+                    if verbose:
+                        print(f"[{idx}/{len(segments)}] table ({segment_id}): {source_text[:40]!r} [CACHED]")
+                else:
+                    if verbose:
+                        print(f"[{idx}/{len(segments)}] table ({segment_id}): {source_text[:40]!r}")
+                    translated = translator.translate(source_text, target_lang, source_lang)
+                    token.lines = translated.split("\n")
+                    cache_misses += 1
+                    if verbose:
+                        print(f"  -> {translated[:60]!r}\n")
+
+                    if use_cache and segment_cache is not None and segment_id:
+                        update_segment_cache(
+                            segment_cache, file_path_str, segment_id, source_hash, target_lang, translated
+                        )
 
         output_text = reconstruct_markdown(fm_entries, tokens)
 
@@ -834,21 +1101,23 @@ def translate_file(
         if dry_run:
             if verbose:
                 print(f"\n[DRY RUN] Would write to: {output_path}")
+                print(f"Cache stats: {cache_hits} hits, {cache_misses} misses")
                 print(f"\nPreview (first 500 chars):\n{output_text[:500]}\n")
-            return True
+            return (True, cache_hits, cache_misses)
 
         # Check if file exists
         if output_path.exists() and not overwrite:
             if verbose:
                 print(f"\n  File exists: {output_path}")
                 print("   Skipping (use --overwrite to replace)")
-            return False
+            return (False, cache_hits, cache_misses)
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(output_text, encoding="utf-8")
 
         if verbose:
             print(f"\n  Translated file written to: {output_path}")
+            print(f"  Cache stats: {cache_hits} hits, {cache_misses} misses (API calls)")
 
         # Log the translation
         log_entry = {
@@ -858,7 +1127,9 @@ def translate_file(
             "source_lang": source_lang,
             "target_lang": target_lang,
             "model": translator.model,
-            "segments": len(segments)
+            "segments": len(segments),
+            "cache_hits": cache_hits,
+            "cache_misses": cache_misses
         }
 
         if TRANSLATION_LOG.exists():
@@ -874,14 +1145,14 @@ def translate_file(
         log_data.append(log_entry)
         TRANSLATION_LOG.write_text(json.dumps(log_data, indent=2, ensure_ascii=False), encoding="utf-8")
 
-        return True
+        return (True, cache_hits, cache_misses)
 
     except Exception as exc:
         print(f"\n  Error translating {source_path}: {exc}", file=sys.stderr)
         import traceback
         if verbose:
             traceback.print_exc(file=sys.stderr)
-        return False
+        return (False, cache_hits, cache_misses)
 
 
 def main() -> int:
@@ -906,12 +1177,54 @@ def main() -> int:
     parser.add_argument("--no-update-hashes", dest="update_hashes", action="store_false", help="Don't update translation hashes")
     parser.add_argument("--copy-html", action="store_true", help="Copy HTML files without translation (for data files like papers.html)")
 
+    # Segment caching options
+    parser.add_argument("--no-cache", dest="use_cache", action="store_false", default=True,
+                        help="Disable segment-level caching (translate all segments)")
+    parser.add_argument("--clear-cache", action="store_true",
+                        help="Clear segment cache before translating")
+    parser.add_argument("--cache-stats", action="store_true",
+                        help="Show cache statistics and exit")
+
     args = parser.parse_args()
+
+    # Handle cache-stats (doesn't require API key)
+    if args.cache_stats:
+        cache = load_segment_cache()
+        files = cache.get("files", {})
+        total_segments = 0
+        total_translations = 0
+        for file_path, file_data in files.items():
+            segments = file_data.get("segments", {})
+            total_segments += len(segments)
+            for seg_id, seg_data in segments.items():
+                total_translations += len(seg_data.get("translations", {}))
+
+        print(f"\n{'='*60}")
+        print(f"Segment Cache Statistics")
+        print(f"{'='*60}")
+        print(f"Cache file: {SEGMENT_CACHE_FILE}")
+        print(f"Files cached: {len(files)}")
+        print(f"Total segments: {total_segments}")
+        print(f"Total translations: {total_translations}")
+        if total_segments > 0:
+            print(f"Avg translations/segment: {total_translations / total_segments:.1f}")
+        print(f"{'='*60}\n")
+        return 0
 
     api_key = os.getenv("ANTHROPIC_API_KEY")
     if not api_key:
         print("Error: ANTHROPIC_API_KEY environment variable is required", file=sys.stderr)
         return 1
+
+    # Handle clear-cache
+    if args.clear_cache:
+        if SEGMENT_CACHE_FILE.exists():
+            SEGMENT_CACHE_FILE.unlink()
+            if not args.quiet:
+                print(f"Cleared segment cache: {SEGMENT_CACHE_FILE}")
+        else:
+            if not args.quiet:
+                print("No segment cache to clear")
 
     # Collect files
     files = []
@@ -970,6 +1283,9 @@ def main() -> int:
 
     translator = ClaudeTranslator(api_key=api_key, model=args.model)
 
+    # Load segment cache
+    segment_cache = load_segment_cache() if args.use_cache else None
+
     if not args.quiet:
         print(f"\n{'='*60}")
         print(f"Claude Real-time Translation")
@@ -977,14 +1293,17 @@ def main() -> int:
         print(f"Files: {len(files)}")
         print(f"Target language: {args.target_lang.upper()}")
         print(f"Model: {args.model}")
+        print(f"Segment caching: {'enabled' if args.use_cache else 'disabled'}")
         print(f"{'='*60}\n")
 
     # Translate files
     successful = []
     failed = []
+    total_cache_hits = 0
+    total_cache_misses = 0
 
     for file_path in files:
-        success = translate_file(
+        success, cache_hits, cache_misses = translate_file(
             source_path=file_path,
             target_lang=args.target_lang,
             translator=translator,
@@ -993,13 +1312,22 @@ def main() -> int:
             dry_run=args.dry_run,
             overwrite=args.overwrite,
             verbose=not args.quiet,
-            copy_html=args.copy_html
+            copy_html=args.copy_html,
+            use_cache=args.use_cache,
+            segment_cache=segment_cache
         )
+
+        total_cache_hits += cache_hits
+        total_cache_misses += cache_misses
 
         if success:
             successful.append(file_path)
         else:
             failed.append(file_path)
+
+    # Save segment cache
+    if args.use_cache and segment_cache is not None and not args.dry_run:
+        save_segment_cache(segment_cache)
 
     # Update hashes for successfully translated files
     if args.update_hashes and successful and not args.dry_run:
@@ -1013,6 +1341,14 @@ def main() -> int:
         print(f"{'='*60}")
         print(f"Successful: {len(successful)}")
         print(f"Failed: {len(failed)}")
+        if args.use_cache:
+            total_segments = total_cache_hits + total_cache_misses
+            if total_segments > 0:
+                hit_rate = (total_cache_hits / total_segments) * 100
+                print(f"\nCache Performance:")
+                print(f"  Hits: {total_cache_hits} ({hit_rate:.1f}%)")
+                print(f"  Misses (API calls): {total_cache_misses}")
+                print(f"  Total segments: {total_segments}")
         if failed:
             print(f"\nFailed files:")
             for f in failed:
