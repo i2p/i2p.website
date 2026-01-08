@@ -32,7 +32,7 @@ I2P serves a global community, and the website now better reflects that reality.
 
 Under the previous system, many pages were untranslated or only partially translated, which created a poor experience for international users. The new structure makes it significantly easier to maintain translations and expand coverage. Machine-translated pages are clearly labeled and include a disclaimer with a link to the English original.
 
-We are grateful to our Transifex volunteers and welcome new translators who want to help improve or refine existing translations.
+We are grateful to our Transifex volunteers, and Transifex will still be used to translate the I2P router console. We welcome new translators who want to help improve or refine existing website translations.
 
 ## New Features
 
@@ -62,6 +62,6 @@ https://i2p.net/donate
 
 This launch is a starting point, not an endpoint. We will continue improving documentation, expanding translations, and refining the site based on community feedback.
 
-If you notice issues, missing information, or areas that could be improved, please let us know through the forums or GitLab. Many of the most impactful changes to I2P come directly from community input.
+If you notice issues, missing information, or areas that could be improved, please let us know through the forums or Github Issues. Many of the most impactful changes to I2P come directly from community input.
 
 Thank you to everyone who contributed time, effort, and feedback to this redesign, and to the broader I2P community for continuing to build and sustain the network.
