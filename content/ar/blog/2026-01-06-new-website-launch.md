@@ -1,66 +1,66 @@
 ---
-title: "تقديم موقع I2P الجديد"
+title: "Introducing the New I2P Website"
 date: 2026-01-06
 author: StormyCloud
 categories: ["news"]
-description: "تم إعادة تصميم موقع I2P بالكامل بواجهة حديثة، وتنقل محسّن، ودعم متعدد اللغات، وإمكانية وصول أفضل."
+description: "The I2P website has been completely redesigned with a modern interface, improved navigation, multi-language support, and better accessibility."
 ---
 
-## إطلاق موقع I2P المُعاد تصميمه
+## Launching the Redesigned I2P Website
 
-يسعدنا أن نعلن عن إطلاق موقع I2P المُعاد تصميمه. هذا التحديث هو نتيجة جهد مركز لجعل I2P أسهل في الاكتشاف، وأسهل في الفهم، وأسهل في المساهمة فيه—دون المساومة على القيم التي بُني عليها المشروع.
+We are pleased to announce the launch of the redesigned I2P website. This update is the result of a focused effort to make I2P easier to discover, easier to understand, and easier to contribute to—without compromising the values the project is built on.
 
-هذا العمل موجه بشكل أساسي إلى مجتمع I2P: المستخدمين القدامى، والمساهمين، والمطورين، والباحثين، وأولئك الذين يكتشفون I2P لأول مرة ويحاولون فهم كيف يعمل نظامه المتكامل.
+This work is primarily aimed at the I2P community: long-time users, contributors, developers, researchers, and those discovering I2P for the first time and trying to understand how it fits together.
 
-## لماذا كانت إعادة التصميم مطلوبة
+## Why a Redesign Was Needed
 
-مع مرور الوقت، أصبح الموقع السابق صعب الصيانة وصعب التنقل. كانت الوثائق مجزأة، والمعلومات المهمة صعبة الإيجاد، والترجمات غالباً ما كانت غير مكتملة، وكانت التجربة على الأجهزة المحمولة أو الاتصالات منخفضة النطاق الترددي غير متسقة. لم تعد الإصلاحات التدريجية كافية.
+Over time, the previous website had grown difficult to maintain and difficult to navigate. Documentation was fragmented, important information was hard to find, translations were often incomplete, and the experience on mobile or low-bandwidth connections was inconsistent. Incremental fixes were no longer enough.
 
-كانت إعادة التصميم هذه فرصة للتراجع ومعالجة تلك القضايا بشكل شمولي—تحسين البنية وإمكانية الوصول والأداء والوضوح عبر الموقع بأكمله.
+This redesign was an opportunity to step back and address those issues holistically—improving structure, accessibility, performance, and clarity across the site.
 
-## تصميم جديد
+## A Fresh Design
 
-يتميز الموقع الإلكتروني الجديد بواجهة نظيفة وعصرية مصممة مع مراعاة إمكانية الوصول. تجعل اللغة البصرية المتسقة والطباعة المحسنة والتباعد الأفضل المحتوى أسهل في القراءة. كما تتوفر كل من المظاهر الفاتحة والداكنة.
+The new website features a clean, modern interface built with accessibility in mind. A consistent visual language, improved typography, and better spacing make content easier to read. Both light and dark themes are available.
 
-تم إعادة تنظيم التنقل لتجميع المحتوى ذي الصلة بشكل منطقي، مما يسهل العثور على الوثائق والتنزيلات وموارد المجتمع. تم إعادة هيكلة قسم الوثائق لمساعدة المستخدمين الجدد على البدء بسرعة مع توفير معلومات تقنية مفصلة للمطورين والباحثين.
+Navigation has been reorganized to group related content logically, making it easier to find documentation, downloads, and community resources. The documentation section has been restructured to help new users get started quickly while still providing detailed technical information for developers and researchers.
 
-الموقع متوافق بالكامل مع الهواتف المحمولة، مع قائمة تنقل متجاوبة ومحدد لغة يمكن الوصول إليه الآن على الشاشات الأصغر.
+The site is fully mobile-friendly, with a responsive navigation menu and a language selector that is now accessible on smaller screens.
 
-## دعم متعدد اللغات
+## Multi-Language Support
 
-يخدم I2P مجتمعاً عالمياً، والموقع الإلكتروني الآن يعكس هذا الواقع بشكل أفضل. المحتوى متاح بـ 13 لغة: الإنجليزية، الإسبانية، الكورية، الصينية، الروسية، التشيكية، الألمانية، الفرنسية، التركية، الفيتنامية، الهندية، العربية، والبرتغالية.
+I2P serves a global community, and the website now better reflects that reality. Content is available in 13 languages: English, Spanish, Korean, Chinese, Russian, Czech, German, French, Turkish, Vietnamese, Hindi, Arabic, and Portuguese.
 
-في النظام السابق، كانت العديد من الصفحات غير مترجمة أو مترجمة جزئياً فقط، مما خلق تجربة سيئة للمستخدمين الدوليين. البنية الجديدة تجعل من الأسهل بشكل كبير الحفاظ على الترجمات وتوسيع التغطية. الصفحات المترجمة آلياً مُعلَّمة بوضوح وتتضمن إخلاء مسؤولية مع رابط للنسخة الإنجليزية الأصلية.
+Under the previous system, many pages were untranslated or only partially translated, which created a poor experience for international users. The new structure makes it significantly easier to maintain translations and expand coverage. Machine-translated pages are clearly labeled and include a disclaimer with a link to the English original.
 
-نحن ممتنون لمتطوعي Transifex ونرحب بالمترجمين الجدد الذين يرغبون في المساعدة في تحسين أو تنقيح الترجمات الموجودة.
+We are grateful to our Transifex volunteers and welcome new translators who want to help improve or refine existing translations.
 
-## الميزات الجديدة
+## New Features
 
-تمت إضافة عدة ميزات جديدة لتحسين التجربة للمستخدمين والمساهمين:
+Several new features have been added to improve the experience for users and contributors:
 
-- صفحة مخصصة **للمشاركة** تحدد طرق المساهمة، بما في ذلك التطوير والتوثيق والترجمة ودعم المجتمع
-- تحسين صفحات التحميل مع تعليمات أوضح وخاصة بكل منصة
-- توثيق منظم بشكل أفضل مع شريط جانبي لجدول المحتويات للصفحات الطويلة
-- استطلاعات رأي المجتمع لجمع ملاحظات المستخدمين
-- وظيفة البحث في الوثائق على موقع الـ clearnet
-- نظام اقتراح الميزات لجمع مدخلات المجتمع
+- A dedicated **Get Involved** page outlining ways to contribute, including development, documentation, translation, and community support  
+- Improved download pages with clearer, platform-specific instructions  
+- Better-organized documentation with a table-of-contents sidebar for longer pages  
+- Community polls to gather user feedback  
+- Document search functionality on the clearnet site  
+- A feature suggestion system to collect community input  
 
-## التحسينات التقنية
+## Technical Improvements
 
-خلف الكواليس، تم إعادة بناء الموقع من الصفر مع التركيز بقوة على كونه خفيف الوزن وقابل للاستخدام بدون JavaScript. العديد من الصفحات لا يتجاوز حجمها بضعة كيلوبايت وتحمل بسرعة فائقة، حتى على الاتصالات البطيئة أو غير المستقرة.
+Behind the scenes, the website has been rebuilt from the ground up with a strong emphasis on being lightweight and usable without JavaScript. Many pages are only a few kilobytes in size and load extremely quickly, even on slow or unreliable connections.
 
-يتعامل مولد الموقع الثابت مع المحتوى متعدد اللغات بكفاءة، وتم تبسيط عملية البناء لتسريع عمليات النشر، وتساعد الاختبارات الآلية في ضمان جودة المحتوى واكتشاف المشاكل قبل وصول التغييرات إلى الإنتاج. تعكس هذه الخيارات أهداف I2P الأوسع المتمثلة في إمكانية الوصول والمرونة والخصوصية.
+The static site generator handles multi-language content efficiently, the build process has been streamlined for faster deployments, and automated tests help ensure content quality and catch issues before changes reach production. These choices reflect I2P’s broader goals of accessibility, resilience, and privacy.
 
-## دعم المشروع
+## Supporting the Project
 
-لدعم التطوير المستمر والبنية التحتية، يقبل I2P الآن التبرعات. المساهمات تدعم الاستضافة والتطوير والتوثيق وتكاليف المشروع الأخرى. بالنسبة للمتبرعين الأمريكيين، تُعتبر المساهمات تبرعات خيرية قابلة للخصم الضريبي.
+To help sustain ongoing development and infrastructure, I2P is now accepting donations. Contributions support hosting, development, documentation, and other project costs. For U.S. donors, contributions are considered charitable tax-deductible donations.
 
-إذا كنت قادراً ومهتماً بدعم المشروع، فإن المزيد من المعلومات متاحة على: https://i2p.net/donate
+If you are able and interested in supporting the project, more information is available at:   https://i2p.net/donate
 
-## ما هو التالي
+## What Comes Next
 
-هذا الإطلاق هو نقطة بداية، وليس نقطة نهاية. سنستمر في تحسين الوثائق وتوسيع الترجمات وتحسين الموقع بناءً على ملاحظات المجتمع.
+This launch is a starting point, not an endpoint. We will continue improving documentation, expanding translations, and refining the site based on community feedback.
 
-إذا لاحظت مشاكل أو معلومات مفقودة أو مجالات يمكن تحسينها، يرجى إعلامنا من خلال المنتديات أو GitLab. العديد من التغييرات الأكثر تأثيراً في I2P تأتي مباشرة من مدخلات المجتمع.
+If you notice issues, missing information, or areas that could be improved, please let us know through the forums or GitLab. Many of the most impactful changes to I2P come directly from community input.
 
-شكراً لكل من ساهم بالوقت والجهد والملاحظات في هذا التصميم الجديد، وللمجتمع الأوسع لشبكة I2P لاستمراره في بناء الشبكة والحفاظ عليها.
+Thank you to everyone who contributed time, effort, and feedback to this redesign, and to the broader I2P community for continuing to build and sustain the network.

@@ -1,66 +1,66 @@
 ---
-title: "介绍全新的 I2P 网站"
+title: "Introducing the New I2P Website"
 date: 2026-01-06
 author: StormyCloud
 categories: ["news"]
-description: "I2P 网站已经完全重新设计，采用现代化界面，改进了导航功能，支持多语言，并提升了可访问性。"
+description: "The I2P website has been completely redesigned with a modern interface, improved navigation, multi-language support, and better accessibility."
 ---
 
-## 发布重新设计的I2P网站
+## Launching the Redesigned I2P Website
 
-我们很高兴宣布重新设计的I2P网站正式上线。此次更新是我们专注努力的成果，旨在让I2P更容易被发现、更容易理解、更容易参与贡献——同时不会损害项目所建立的核心价值观。
+We are pleased to announce the launch of the redesigned I2P website. This update is the result of a focused effort to make I2P easier to discover, easier to understand, and easier to contribute to—without compromising the values the project is built on.
 
-这项工作主要面向I2P社区：长期用户、贡献者、开发者、研究人员，以及首次发现I2P并试图理解其运作方式的人群。
+This work is primarily aimed at the I2P community: long-time users, contributors, developers, researchers, and those discovering I2P for the first time and trying to understand how it fits together.
 
-## 为什么需要重新设计
+## Why a Redesign Was Needed
 
-随着时间的推移，之前的网站变得难以维护和导航。文档支离破碎，重要信息难以找到，翻译经常不完整，在移动设备或低带宽连接上的体验也不一致。渐进式修复已经不够了。
+Over time, the previous website had grown difficult to maintain and difficult to navigate. Documentation was fragmented, important information was hard to find, translations were often incomplete, and the experience on mobile or low-bandwidth connections was inconsistent. Incremental fixes were no longer enough.
 
-这次重新设计是一个机会，让我们能够退一步，全面解决这些问题——改善网站的结构、可访问性、性能和清晰度。
+This redesign was an opportunity to step back and address those issues holistically—improving structure, accessibility, performance, and clarity across the site.
 
-## 全新设计
+## A Fresh Design
 
-新网站采用简洁现代的界面设计，充分考虑了无障碍访问需求。统一的视觉语言、改进的排版和更好的间距使内容更易于阅读。提供浅色和深色两种主题。
+The new website features a clean, modern interface built with accessibility in mind. A consistent visual language, improved typography, and better spacing make content easier to read. Both light and dark themes are available.
 
-导航已重新组织，将相关内容进行逻辑分组，使查找文档、下载和社区资源变得更加容易。文档部分已重新构建，帮助新用户快速入门，同时仍为开发者和研究人员提供详细的技术信息。
+Navigation has been reorganized to group related content logically, making it easier to find documentation, downloads, and community resources. The documentation section has been restructured to help new users get started quickly while still providing detailed technical information for developers and researchers.
 
-该网站完全适配移动设备，具有响应式导航菜单和语言选择器，现在在小屏幕上也可以正常使用。
+The site is fully mobile-friendly, with a responsive navigation menu and a language selector that is now accessible on smaller screens.
 
-## 多语言支持
+## Multi-Language Support
 
-I2P服务于全球社区，网站现在更好地反映了这一现实。内容提供13种语言版本：英语、西班牙语、韩语、中文、俄语、捷克语、德语、法语、土耳其语、越南语、印地语、阿拉伯语和葡萄牙语。
+I2P serves a global community, and the website now better reflects that reality. Content is available in 13 languages: English, Spanish, Korean, Chinese, Russian, Czech, German, French, Turkish, Vietnamese, Hindi, Arabic, and Portuguese.
 
-在之前的系统下，许多页面未翻译或仅部分翻译，这为国际用户带来了糟糕的体验。新的结构使维护翻译和扩大覆盖范围变得更加容易。机器翻译的页面有明确标记，并包含免责声明和指向英文原文的链接。
+Under the previous system, many pages were untranslated or only partially translated, which created a poor experience for international users. The new structure makes it significantly easier to maintain translations and expand coverage. Machine-translated pages are clearly labeled and include a disclaimer with a link to the English original.
 
-我们感谢 Transifex 志愿者们的贡献，欢迎新的译者加入我们，帮助改进或完善现有翻译。
+We are grateful to our Transifex volunteers and welcome new translators who want to help improve or refine existing translations.
 
-## 新功能
+## New Features
 
-新增了多项功能来改善用户和贡献者的体验：
+Several new features have been added to improve the experience for users and contributors:
 
-- 专门的**参与其中**页面，概述了贡献方式，包括开发、文档、翻译和社区支持
-- 改进的下载页面，提供更清晰的平台特定说明
-- 更好组织的文档，为较长页面提供目录侧边栏
-- 社区投票以收集用户反馈
-- 明网站点的文档搜索功能
-- 功能建议系统以收集社区意见
+- A dedicated **Get Involved** page outlining ways to contribute, including development, documentation, translation, and community support  
+- Improved download pages with clearer, platform-specific instructions  
+- Better-organized documentation with a table-of-contents sidebar for longer pages  
+- Community polls to gather user feedback  
+- Document search functionality on the clearnet site  
+- A feature suggestion system to collect community input  
 
-## 技术改进
+## Technical Improvements
 
-在幕后，网站已经从头开始重建，强调轻量化并且无需JavaScript即可使用。许多页面只有几千字节大小，加载速度极快，即使在缓慢或不稳定的连接下也是如此。
+Behind the scenes, the website has been rebuilt from the ground up with a strong emphasis on being lightweight and usable without JavaScript. Many pages are only a few kilobytes in size and load extremely quickly, even on slow or unreliable connections.
 
-静态站点生成器高效地处理多语言内容，构建过程已经过简化以实现更快的部署，自动化测试有助于确保内容质量并在变更到达生产环境之前捕获问题。这些选择反映了I2P在可访问性、弹性和隐私方面的更广泛目标。
+The static site generator handles multi-language content efficiently, the build process has been streamlined for faster deployments, and automated tests help ensure content quality and catch issues before changes reach production. These choices reflect I2P’s broader goals of accessibility, resilience, and privacy.
 
-## 支持项目
+## Supporting the Project
 
-为了帮助维持持续的开发和基础设施建设，I2P 现在接受捐赠。捐款将用于支持托管、开发、文档编写和其他项目费用。对于美国捐赠者，捐款被视为可税前抵扣的慈善捐赠。
+To help sustain ongoing development and infrastructure, I2P is now accepting donations. Contributions support hosting, development, documentation, and other project costs. For U.S. donors, contributions are considered charitable tax-deductible donations.
 
-如果您有能力并有兴趣支持该项目，更多信息请访问：https://i2p.net/donate
+If you are able and interested in supporting the project, more information is available at:   https://i2p.net/donate
 
-## 接下来的内容
+## What Comes Next
 
-此次发布是一个起点，而非终点。我们将继续改进文档、扩展翻译，并根据社区反馈完善网站。
+This launch is a starting point, not an endpoint. We will continue improving documentation, expanding translations, and refining the site based on community feedback.
 
-如果您发现问题、缺失的信息或可以改进的地方，请通过论坛或 GitLab 让我们知道。对 I2P 最有影响力的许多改进都直接来自社区的意见。
+如果您发现问题、缺失信息或可以改进的地方，请通过论坛或 Github Issues 告知我们。I2P 许多最具影响力的改进都直接来自社区的反馈。
 
-感谢所有为这次重新设计贡献时间、努力和反馈的人员，以及更广泛的 I2P 社区持续构建和维护网络。
+Thank you to everyone who contributed time, effort, and feedback to this redesign, and to the broader I2P community for continuing to build and sustain the network.

@@ -1,66 +1,66 @@
 ---
-title: "Presentando el Nuevo Sitio Web de I2P"
+title: "Introducing the New I2P Website"
 date: 2026-01-06
 author: StormyCloud
 categories: ["news"]
-description: "El sitio web de I2P ha sido completamente rediseñado con una interfaz moderna, navegación mejorada, soporte para múltiples idiomas y mejor accesibilidad."
+description: "The I2P website has been completely redesigned with a modern interface, improved navigation, multi-language support, and better accessibility."
 ---
 
-## Lanzamiento del Sitio Web Rediseñado de I2P
+## Launching the Redesigned I2P Website
 
-Nos complace anunciar el lanzamiento del sitio web rediseñado de I2P. Esta actualización es el resultado de un esfuerzo enfocado para hacer que I2P sea más fácil de descubrir, más fácil de entender y más fácil de contribuir—sin comprometer los valores sobre los que se construye el proyecto.
+We are pleased to announce the launch of the redesigned I2P website. This update is the result of a focused effort to make I2P easier to discover, easier to understand, and easier to contribute to—without compromising the values the project is built on.
 
-Este trabajo está dirigido principalmente a la comunidad de I2P: usuarios veteranos, colaboradores, desarrolladores, investigadores, y aquellos que descubren I2P por primera vez y tratan de entender cómo funciona en conjunto.
+This work is primarily aimed at the I2P community: long-time users, contributors, developers, researchers, and those discovering I2P for the first time and trying to understand how it fits together.
 
-## Por Qué Era Necesario un Rediseño
+## Why a Redesign Was Needed
 
-Con el tiempo, el sitio web anterior se había vuelto difícil de mantener y difícil de navegar. La documentación estaba fragmentada, la información importante era difícil de encontrar, las traducciones a menudo estaban incompletas, y la experiencia en dispositivos móviles o conexiones de ancho de banda limitado era inconsistente. Las correcciones incrementales ya no eran suficientes.
+Over time, the previous website had grown difficult to maintain and difficult to navigate. Documentation was fragmented, important information was hard to find, translations were often incomplete, and the experience on mobile or low-bandwidth connections was inconsistent. Incremental fixes were no longer enough.
 
-Este rediseño fue una oportunidad para dar un paso atrás y abordar esos problemas de manera holística—mejorando la estructura, accesibilidad, rendimiento y claridad en todo el sitio.
+This redesign was an opportunity to step back and address those issues holistically—improving structure, accessibility, performance, and clarity across the site.
 
-## Un Diseño Renovado
+## A Fresh Design
 
-El nuevo sitio web presenta una interfaz limpia y moderna construida pensando en la accesibilidad. Un lenguaje visual consistente, tipografía mejorada y mejor espaciado hacen que el contenido sea más fácil de leer. Están disponibles tanto temas claros como oscuros.
+The new website features a clean, modern interface built with accessibility in mind. A consistent visual language, improved typography, and better spacing make content easier to read. Both light and dark themes are available.
 
-La navegación ha sido reorganizada para agrupar el contenido relacionado de manera lógica, facilitando encontrar documentación, descargas y recursos de la comunidad. La sección de documentación ha sido reestructurada para ayudar a los nuevos usuarios a comenzar rápidamente, mientras sigue proporcionando información técnica detallada para desarrolladores e investigadores.
+Navigation has been reorganized to group related content logically, making it easier to find documentation, downloads, and community resources. The documentation section has been restructured to help new users get started quickly while still providing detailed technical information for developers and researchers.
 
-El sitio es completamente compatible con dispositivos móviles, con un menú de navegación adaptable y un selector de idioma que ahora es accesible en pantallas más pequeñas.
+The site is fully mobile-friendly, with a responsive navigation menu and a language selector that is now accessible on smaller screens.
 
-## Soporte Multi-idioma
+## Multi-Language Support
 
-I2P sirve a una comunidad global, y el sitio web ahora refleja mejor esa realidad. El contenido está disponible en 13 idiomas: inglés, español, coreano, chino, ruso, checo, alemán, francés, turco, vietnamita, hindi, árabe y portugués.
+I2P serves a global community, and the website now better reflects that reality. Content is available in 13 languages: English, Spanish, Korean, Chinese, Russian, Czech, German, French, Turkish, Vietnamese, Hindi, Arabic, and Portuguese.
 
-Bajo el sistema anterior, muchas páginas no estaban traducidas o solo estaban parcialmente traducidas, lo que creaba una mala experiencia para los usuarios internacionales. La nueva estructura hace significativamente más fácil mantener las traducciones y expandir la cobertura. Las páginas traducidas automáticamente están claramente etiquetadas e incluyen una exención de responsabilidad con un enlace al original en inglés.
+Under the previous system, many pages were untranslated or only partially translated, which created a poor experience for international users. The new structure makes it significantly easier to maintain translations and expand coverage. Machine-translated pages are clearly labeled and include a disclaimer with a link to the English original.
 
-Estamos agradecidos a nuestros voluntarios de Transifex y damos la bienvenida a nuevos traductores que quieran ayudar a mejorar o refinar las traducciones existentes.
+We are grateful to our Transifex volunteers and welcome new translators who want to help improve or refine existing translations.
 
-## Nuevas Características
+## New Features
 
-Se han añadido varias características nuevas para mejorar la experiencia de usuarios y colaboradores:
+Several new features have been added to improve the experience for users and contributors:
 
-- Una página dedicada **Participa** que describe las formas de contribuir, incluyendo desarrollo, documentación, traducción y soporte comunitario
-- Páginas de descarga mejoradas con instrucciones más claras y específicas para cada plataforma
-- Documentación mejor organizada con una barra lateral de tabla de contenidos para páginas más largas
-- Encuestas comunitarias para recopilar comentarios de usuarios
-- Funcionalidad de búsqueda de documentos en el sitio clearnet
-- Un sistema de sugerencias de características para recopilar aportes de la comunidad
+- A dedicated **Get Involved** page outlining ways to contribute, including development, documentation, translation, and community support  
+- Improved download pages with clearer, platform-specific instructions  
+- Better-organized documentation with a table-of-contents sidebar for longer pages  
+- Community polls to gather user feedback  
+- Document search functionality on the clearnet site  
+- A feature suggestion system to collect community input  
 
-## Mejoras Técnicas
+## Technical Improvements
 
-Entre bastidores, el sitio web ha sido reconstruido desde cero con un fuerte énfasis en ser ligero y utilizable sin JavaScript. Muchas páginas tienen solo unos pocos kilobytes de tamaño y se cargan extremadamente rápido, incluso en conexiones lentas o poco confiables.
+Behind the scenes, the website has been rebuilt from the ground up with a strong emphasis on being lightweight and usable without JavaScript. Many pages are only a few kilobytes in size and load extremely quickly, even on slow or unreliable connections.
 
-El generador de sitios estáticos maneja el contenido multiidioma de manera eficiente, el proceso de construcción se ha optimizado para despliegues más rápidos, y las pruebas automatizadas ayudan a garantizar la calidad del contenido y detectar problemas antes de que los cambios lleguen a producción. Estas decisiones reflejan los objetivos más amplios de I2P de accesibilidad, resistencia y privacidad.
+The static site generator handles multi-language content efficiently, the build process has been streamlined for faster deployments, and automated tests help ensure content quality and catch issues before changes reach production. These choices reflect I2P’s broader goals of accessibility, resilience, and privacy.
 
-## Apoyando el Proyecto
+## Supporting the Project
 
-Para ayudar a sostener el desarrollo continuo y la infraestructura, I2P ahora acepta donaciones. Las contribuciones apoyan el alojamiento, desarrollo, documentación y otros costos del proyecto. Para donantes de EE.UU., las contribuciones se consideran donaciones caritativas deducibles de impuestos.
+To help sustain ongoing development and infrastructure, I2P is now accepting donations. Contributions support hosting, development, documentation, and other project costs. For U.S. donors, contributions are considered charitable tax-deductible donations.
 
-Si puedes y estás interesado en apoyar el proyecto, hay más información disponible en: https://i2p.net/donate
+If you are able and interested in supporting the project, more information is available at:   https://i2p.net/donate
 
-## Qué Viene Después
+## What Comes Next
 
-Este lanzamiento es un punto de partida, no un punto final. Continuaremos mejorando la documentación, expandiendo las traducciones y refinando el sitio basándonos en los comentarios de la comunidad.
+This launch is a starting point, not an endpoint. We will continue improving documentation, expanding translations, and refining the site based on community feedback.
 
-Si notas problemas, información faltante o áreas que podrían mejorarse, por favor háznoslo saber a través de los foros o GitLab. Muchos de los cambios más impactantes en I2P provienen directamente de la contribución de la comunidad.
+If you notice issues, missing information, or areas that could be improved, please let us know through the forums or GitLab. Many of the most impactful changes to I2P come directly from community input.
 
-Gracias a todos los que contribuyeron con tiempo, esfuerzo y comentarios a este rediseño, y a la comunidad más amplia de I2P por continuar construyendo y manteniendo la red.
+Thank you to everyone who contributed time, effort, and feedback to this redesign, and to the broader I2P community for continuing to build and sustain the network.

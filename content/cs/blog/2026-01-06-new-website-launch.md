@@ -1,66 +1,66 @@
 ---
-title: "Představujeme novou webovou stránku I2P"
+title: "Introducing the New I2P Website"
 date: 2026-01-06
 author: StormyCloud
 categories: ["news"]
-description: "Webové stránky I2P byly kompletně přepracovány s moderním rozhraním, vylepšenou navigací, podporou více jazyků a lepší přístupností."
+description: "The I2P website has been completely redesigned with a modern interface, improved navigation, multi-language support, and better accessibility."
 ---
 
-## Spuštění přepracované webové stránky I2P
+## Launching the Redesigned I2P Website
 
-S potěšením oznamujeme spuštění přepracovaných webových stránek I2P. Tato aktualizace je výsledkem cíleného úsilí učinit I2P snadněji objevitelné, snadněji pochopitelné a snadněji přispívatelné—bez kompromisů v hodnotách, na kterých je projekt postavený.
+We are pleased to announce the launch of the redesigned I2P website. This update is the result of a focused effort to make I2P easier to discover, easier to understand, and easier to contribute to—without compromising the values the project is built on.
 
-Tato práce je primárně zaměřena na komunitu I2P: dlouholeté uživatele, přispěvatele, vývojáře, výzkumníky a ty, kdo I2P objevují poprvé a snaží se pochopit, jak funguje jako celek.
+This work is primarily aimed at the I2P community: long-time users, contributors, developers, researchers, and those discovering I2P for the first time and trying to understand how it fits together.
 
-## Proč bylo nutné přepracování
+## Why a Redesign Was Needed
 
-Postupem času se předchozí webová stránka stala těžko udržovatelnou a obtížně navigovatelnou. Dokumentace byla roztříštěná, důležité informace byly těžko k nalezení, překlady byly často neúplné a zkušenost na mobilních zařízeních nebo při pomalých připojeních byla nekonzistentní. Postupné opravy už nestačily.
+Over time, the previous website had grown difficult to maintain and difficult to navigate. Documentation was fragmented, important information was hard to find, translations were often incomplete, and the experience on mobile or low-bandwidth connections was inconsistent. Incremental fixes were no longer enough.
 
-Tento redesign byl příležitostí udělat krok zpět a řešit tyto problémy komplexně—zlepšit strukturu, přístupnost, výkon a přehlednost na celém webu.
+This redesign was an opportunity to step back and address those issues holistically—improving structure, accessibility, performance, and clarity across the site.
 
-## Nový design
+## A Fresh Design
 
-Nové webové stránky nabízejí čistý, moderní vzhled navržený s ohledem na přístupnost. Jednotný vizuální jazyk, vylepšená typografie a lepší rozestupování činí obsah snadněji čitelný. K dispozici jsou světlý i tmavý motiv.
+The new website features a clean, modern interface built with accessibility in mind. A consistent visual language, improved typography, and better spacing make content easier to read. Both light and dark themes are available.
 
-Navigace byla reorganizována tak, aby logicky seskupovala související obsah, což usnadňuje nalezení dokumentace, stahování a komunitních zdrojů. Sekce dokumentace byla přestrukturována tak, aby pomohla novým uživatelům rychle začít, přičemž stále poskytuje podrobné technické informace pro vývojáře a výzkumníky.
+Navigation has been reorganized to group related content logically, making it easier to find documentation, downloads, and community resources. The documentation section has been restructured to help new users get started quickly while still providing detailed technical information for developers and researchers.
 
-Stránky jsou plně přizpůsobené mobilním zařízením s responzivním navigačním menu a výběrem jazyka, který je nyní dostupný i na menších obrazovkách.
+The site is fully mobile-friendly, with a responsive navigation menu and a language selector that is now accessible on smaller screens.
 
-## Podpora více jazyků
+## Multi-Language Support
 
-I2P slouží globální komunitě a webové stránky nyní lépe odrážejí tuto realitu. Obsah je dostupný ve 13 jazycích: angličtina, španělština, korejština, čínština, ruština, čeština, němčina, francouzština, turečtina, vietnamština, hindština, arabština a portugalština.
+I2P serves a global community, and the website now better reflects that reality. Content is available in 13 languages: English, Spanish, Korean, Chinese, Russian, Czech, German, French, Turkish, Vietnamese, Hindi, Arabic, and Portuguese.
 
-V předchozím systému bylo mnoho stránek nepřeložených nebo jen částečně přeložených, což vytvářelo špatnou zkušenost pro mezinárodní uživatele. Nová struktura značně usnadňuje údržbu překladů a rozšiřování pokrytí. Strojově přeložené stránky jsou jasně označeny a obsahují upozornění s odkazem na anglický originál.
+Under the previous system, many pages were untranslated or only partially translated, which created a poor experience for international users. The new structure makes it significantly easier to maintain translations and expand coverage. Machine-translated pages are clearly labeled and include a disclaimer with a link to the English original.
 
-Jsme vděční našim dobrovolníkům z Transifexu a vítáme nové překladatele, kteří chtějí pomoci vylepšit nebo zdokonalit stávající překlady.
+We are grateful to our Transifex volunteers and welcome new translators who want to help improve or refine existing translations.
 
-## Nové funkce
+## New Features
 
-Bylo přidáno několik nových funkcí pro zlepšení zkušenosti uživatelů a přispěvatelů:
+Several new features have been added to improve the experience for users and contributors:
 
-- Vyhrazená stránka **Zapojte se** popisující způsoby, jak přispět, včetně vývoje, dokumentace, překladů a komunitní podpory
-- Vylepšené stránky pro stahování s jasnějšími pokyny specifickými pro jednotlivé platformy
-- Lépe organizovaná dokumentace s postranním panelem obsahu pro delší stránky
-- Komunitní ankety pro sběr zpětné vazby od uživatelů
-- Funkce vyhledávání dokumentů na clearnet webu
-- Systém pro návrhy funkcí pro sběr podnětů od komunity
+- A dedicated **Get Involved** page outlining ways to contribute, including development, documentation, translation, and community support  
+- Improved download pages with clearer, platform-specific instructions  
+- Better-organized documentation with a table-of-contents sidebar for longer pages  
+- Community polls to gather user feedback  
+- Document search functionality on the clearnet site  
+- A feature suggestion system to collect community input  
 
-## Technická vylepšení
+## Technical Improvements
 
-V zákulisí byla webová stránka přestavěna od základů s důrazem na to, aby byla lehká a použitelná bez JavaScriptu. Mnoho stránek má pouze několik kilobajtů a načítá se extrémně rychle, i na pomalých nebo nespolehlivých připojeních.
+Behind the scenes, the website has been rebuilt from the ground up with a strong emphasis on being lightweight and usable without JavaScript. Many pages are only a few kilobytes in size and load extremely quickly, even on slow or unreliable connections.
 
-Generátor statických stránek efektivně zpracovává vícejazyčný obsah, proces sestavení byl zjednodušen pro rychlejší nasazení a automatizované testy pomáhají zajistit kvalitu obsahu a zachytit problémy dříve, než se změny dostanou do produkce. Tyto volby odrážejí širší cíle I2P v oblasti přístupnosti, odolnosti a soukromí.
+The static site generator handles multi-language content efficiently, the build process has been streamlined for faster deployments, and automated tests help ensure content quality and catch issues before changes reach production. These choices reflect I2P’s broader goals of accessibility, resilience, and privacy.
 
-## Podpora projektu
+## Supporting the Project
 
-Pro podporu pokračujícího vývoje a infrastruktury nyní I2P přijímá dary. Příspěvky podporují hosting, vývoj, dokumentaci a další projektové náklady. Pro dárce ze Spojených států jsou příspěvky považovány za charitativní daňově odpočitatelné dary.
+To help sustain ongoing development and infrastructure, I2P is now accepting donations. Contributions support hosting, development, documentation, and other project costs. For U.S. donors, contributions are considered charitable tax-deductible donations.
 
-Pokud jste schopni a máte zájem podpořit projekt, více informací je k dispozici na: https://i2p.net/donate
+If you are able and interested in supporting the project, more information is available at:   https://i2p.net/donate
 
-## Co následuje
+## What Comes Next
 
-Toto spuštění je počátečním bodem, nikoli konečným cílem. Budeme pokračovat ve zlepšování dokumentace, rozšiřování překladů a vylepšování webu na základě zpětné vazby od komunity.
+This launch is a starting point, not an endpoint. We will continue improving documentation, expanding translations, and refining the site based on community feedback.
 
-Pokud si všimnete problémů, chybějících informací nebo oblastí, které by bylo možné zlepšit, dejte nám vědět prostřednictvím fór nebo GitLabu. Mnoho nejdůležitějších změn v I2P pochází přímo ze zpětné vazby komunity.
+If you notice issues, missing information, or areas that could be improved, please let us know through the forums or GitLab. Many of the most impactful changes to I2P come directly from community input.
 
-Děkujeme všem, kteří přispěli časem, úsilím a zpětnou vazbou k tomuto přepracování, a širší I2P komunitě za pokračující budování a udržování sítě.
+Thank you to everyone who contributed time, effort, and feedback to this redesign, and to the broader I2P community for continuing to build and sustain the network.

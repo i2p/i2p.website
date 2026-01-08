@@ -1,66 +1,66 @@
 ---
-title: "Yeni I2P Web Sitesini Tanıtıyoruz"
+title: "Introducing the New I2P Website"
 date: 2026-01-06
 author: StormyCloud
 categories: ["news"]
-description: "I2P web sitesi modern bir arayüz, geliştirilmiş navigasyon, çok dilli destek ve daha iyi erişilebilirlik ile tamamen yeniden tasarlandı."
+description: "The I2P website has been completely redesigned with a modern interface, improved navigation, multi-language support, and better accessibility."
 ---
 
-## Yeniden Tasarlanan I2P Web Sitesinin Yayınlanması
+## Launching the Redesigned I2P Website
 
-Yeniden tasarlanan I2P web sitesinin başlatılmasını duyurmaktan memnuniyet duyuyoruz. Bu güncelleme, I2P'yi keşfetmeyi, anlamayı ve katkıda bulunmayı kolaylaştırmak için odaklanılmış bir çabanın sonucudur—projenin üzerine inşa edildiği değerlerden ödün vermeden.
+We are pleased to announce the launch of the redesigned I2P website. This update is the result of a focused effort to make I2P easier to discover, easier to understand, and easier to contribute to—without compromising the values the project is built on.
 
-Bu çalışma öncelikle I2P topluluğuna yöneliktir: uzun süreli kullanıcılar, katkıda bulunanlar, geliştiriciler, araştırmacılar ve I2P'yi ilk kez keşfeden ve nasıl bir araya geldiğini anlamaya çalışan kişiler.
+This work is primarily aimed at the I2P community: long-time users, contributors, developers, researchers, and those discovering I2P for the first time and trying to understand how it fits together.
 
-## Neden Yeniden Tasarıma İhtiyaç Duyuldu
+## Why a Redesign Was Needed
 
-Zaman içinde, önceki web sitesinin bakımı zorlaşmış ve gezinmesi güçleşmişti. Dokümantasyon parçalı hale gelmişti, önemli bilgileri bulmak zordu, çeviriler genellikle eksikti ve mobil veya düşük bant genişlikli bağlantılardaki deneyim tutarsızdı. Artık kademeli düzeltmeler yeterli değildi.
+Over time, the previous website had grown difficult to maintain and difficult to navigate. Documentation was fragmented, important information was hard to find, translations were often incomplete, and the experience on mobile or low-bandwidth connections was inconsistent. Incremental fixes were no longer enough.
 
-Bu yeniden tasarım, geri adım atıp bu sorunları bütüncül bir yaklaşımla ele alma fırsatı oldu—sitenin genelinde yapı, erişilebilirlik, performans ve netliği iyileştirmek için.
+This redesign was an opportunity to step back and address those issues holistically—improving structure, accessibility, performance, and clarity across the site.
 
-## Yeni Bir Tasarım
+## A Fresh Design
 
-Yeni web sitesi, erişilebilirlik göz önünde bulundurularak tasarlanmış temiz ve modern bir arayüze sahiptir. Tutarlı görsel dil, geliştirilmiş tipografi ve daha iyi boşluklar içeriği okumayı kolaylaştırır. Hem açık hem de koyu temalar mevcuttur.
+The new website features a clean, modern interface built with accessibility in mind. A consistent visual language, improved typography, and better spacing make content easier to read. Both light and dark themes are available.
 
-Navigasyon, ilgili içeriği mantıksal olarak gruplamak için yeniden düzenlenmiş ve böylece dokümantasyon, indirmeler ve topluluk kaynaklarını bulmanızı kolaylaştırmıştır. Dokümantasyon bölümü, yeni kullanıcıların hızla başlamasına yardımcı olmak için yeniden yapılandırılmış, aynı zamanda geliştiriciler ve araştırmacılar için detaylı teknik bilgiler sunmaya devam etmektedir.
+Navigation has been reorganized to group related content logically, making it easier to find documentation, downloads, and community resources. The documentation section has been restructured to help new users get started quickly while still providing detailed technical information for developers and researchers.
 
-Site tamamen mobil uyumludur, duyarlı navigasyon menüsü ve artık küçük ekranlarda erişilebilen bir dil seçicisi bulunmaktadır.
+The site is fully mobile-friendly, with a responsive navigation menu and a language selector that is now accessible on smaller screens.
 
-## Çok Dilli Destek
+## Multi-Language Support
 
-I2P küresel bir topluluğa hizmet ediyor ve web sitesi artık bu gerçeği daha iyi yansıtıyor. İçerik 13 dilde mevcut: İngilizce, İspanyolca, Korece, Çince, Rusça, Çekçe, Almanca, Fransızca, Türkçe, Vietnamca, Hintçe, Arapça ve Portekizce.
+I2P serves a global community, and the website now better reflects that reality. Content is available in 13 languages: English, Spanish, Korean, Chinese, Russian, Czech, German, French, Turkish, Vietnamese, Hindi, Arabic, and Portuguese.
 
-Önceki sistemde, birçok sayfa çevrilmemiş ya da yalnızca kısmen çevrilmişti, bu da uluslararası kullanıcılar için kötü bir deneyim yaratıyordu. Yeni yapı, çevirileri sürdürmeyi ve kapsama alanını genişletmeyi önemli ölçüde kolaylaştırır. Makine çevirisi yapılan sayfalar açık şekilde etiketlenir ve İngilizce orijinaline bağlantı içeren bir feragatname bulunur.
+Under the previous system, many pages were untranslated or only partially translated, which created a poor experience for international users. The new structure makes it significantly easier to maintain translations and expand coverage. Machine-translated pages are clearly labeled and include a disclaimer with a link to the English original.
 
-Transifex gönüllülerimize minnettarız ve mevcut çevirileri geliştirmek veya iyileştirmek isteyen yeni çevirmenleri memnuniyetle karşılıyoruz.
+We are grateful to our Transifex volunteers and welcome new translators who want to help improve or refine existing translations.
 
-## Yeni Özellikler
+## New Features
 
-Kullanıcılar ve katkıda bulunanlar için deneyimi geliştirmek amacıyla birkaç yeni özellik eklenmiştir:
+Several new features have been added to improve the experience for users and contributors:
 
-- Geliştirme, dokümantasyon, çeviri ve topluluk desteği dahil olmak üzere katkıda bulunma yollarını açıklayan özel bir **Katılım** sayfası  
-- Daha net, platforma özel talimatlarla geliştirilmiş indirme sayfaları  
-- Uzun sayfalar için içindekiler kenar çubuğu olan daha iyi organize edilmiş dokümantasyon  
-- Kullanıcı geri bildirimlerini toplamak için topluluk anketleri  
-- Clearnet sitesinde doküman arama işlevselliği  
-- Topluluk görüşlerini toplamak için özellik önerisi sistemi
+- A dedicated **Get Involved** page outlining ways to contribute, including development, documentation, translation, and community support  
+- Improved download pages with clearer, platform-specific instructions  
+- Better-organized documentation with a table-of-contents sidebar for longer pages  
+- Community polls to gather user feedback  
+- Document search functionality on the clearnet site  
+- A feature suggestion system to collect community input  
 
-## Teknik İyileştirmeler
+## Technical Improvements
 
-Perde arkasında, web sitesi sıfırdan yeniden inşa edildi ve hafif olmaya ve JavaScript olmadan kullanılabilir olmaya güçlü bir vurgu yapıldı. Birçok sayfa yalnızca birkaç kilobayt boyutunda ve yavaş veya güvenilmez bağlantılarda bile son derece hızlı yükleniyor.
+Behind the scenes, the website has been rebuilt from the ground up with a strong emphasis on being lightweight and usable without JavaScript. Many pages are only a few kilobytes in size and load extremely quickly, even on slow or unreliable connections.
 
-Statik site oluşturucu çok dilli içeriği verimli bir şekilde işler, derleme süreci daha hızlı dağıtımlar için kolaylaştırılmıştır ve otomatik testler içerik kalitesini sağlamaya ve değişikliklerin üretime ulaşmadan önce sorunları yakalamaya yardımcı olur. Bu seçimler I2P'nin daha geniş erişilebilirlik, dayanıklılık ve gizlilik hedeflerini yansıtır.
+The static site generator handles multi-language content efficiently, the build process has been streamlined for faster deployments, and automated tests help ensure content quality and catch issues before changes reach production. These choices reflect I2P’s broader goals of accessibility, resilience, and privacy.
 
-## Projeyi Destekleme
+## Supporting the Project
 
-Devam eden geliştirme ve altyapıyı desteklemek için I2P artık bağış kabul ediyor. Katkılar hosting, geliştirme, dokümantasyon ve diğer proje maliyetlerini destekler. ABD'li bağışçılar için katkılar vergiden düşülebilir hayırsever bağışlar olarak kabul edilir.
+To help sustain ongoing development and infrastructure, I2P is now accepting donations. Contributions support hosting, development, documentation, and other project costs. For U.S. donors, contributions are considered charitable tax-deductible donations.
 
-Projeyi desteklemeye ilgi duyuyorsanız ve bunu yapabiliyorsanız, daha fazla bilgi şu adreste mevcuttur: https://i2p.net/donate
+If you are able and interested in supporting the project, more information is available at:   https://i2p.net/donate
 
-## Sırada Ne Var
+## What Comes Next
 
-Bu başlatma bir bitiş noktası değil, bir başlangıç noktasıdır. Topluluk geri bildirimlerine dayanarak dokümantasyonu geliştirmeye, çevirileri genişletmeye ve siteyi iyileştirmeye devam edeceğiz.
+This launch is a starting point, not an endpoint. We will continue improving documentation, expanding translations, and refining the site based on community feedback.
 
-Sorunlar, eksik bilgiler veya geliştirilebilecek alanlar fark ederseniz, lütfen forumlar veya GitLab aracılığıyla bize bildirin. I2P'ye yapılan en etkili değişikliklerin birçoğu doğrudan topluluk girdilerinden gelir.
+If you notice issues, missing information, or areas that could be improved, please let us know through the forums or GitLab. Many of the most impactful changes to I2P come directly from community input.
 
-Bu yeniden tasarıma zaman, çaba ve geri bildirim katkısında bulunan herkese ve ağı inşa etmeye ve sürdürmeye devam eden geniş I2P topluluğuna teşekkür ederiz.
+Thank you to everyone who contributed time, effort, and feedback to this redesign, and to the broader I2P community for continuing to build and sustain the network.

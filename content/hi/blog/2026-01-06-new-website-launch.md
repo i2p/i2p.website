@@ -1,66 +1,66 @@
 ---
-title: "नई I2P वेबसाइट का परिचय"
+title: "Introducing the New I2P Website"
 date: 2026-01-06
 author: StormyCloud
 categories: ["news"]
-description: "I2P वेबसाइट को आधुनिक इंटरफेस, बेहतर नेवीगेशन, बहु-भाषा समर्थन, और बेहतर पहुंच के साथ पूरी तरह से नया डिज़ाइन किया गया है।"
+description: "The I2P website has been completely redesigned with a modern interface, improved navigation, multi-language support, and better accessibility."
 ---
 
-## नई डिज़ाइन की गई I2P वेबसाइट लॉन्च करना
+## Launching the Redesigned I2P Website
 
-हमें नई डिज़ाइन की गई I2P वेबसाइट के लॉन्च की घोषणा करते हुए खुशी हो रही है। यह अपडेट I2P को खोजने में आसान, समझने में आसान, और योगदान करने में आसान बनाने के केंद्रित प्रयास का परिणाम है—उन मूल्यों से समझौता किए बिना जिन पर यह प्रोजेक्ट आधारित है।
+We are pleased to announce the launch of the redesigned I2P website. This update is the result of a focused effort to make I2P easier to discover, easier to understand, and easier to contribute to—without compromising the values the project is built on.
 
-यह काम मुख्य रूप से I2P समुदाय के लिए है: लंबे समय से उपयोगकर्ता, योगदानकर्ता, डेवलपर्स, शोधकर्ता, और वे लोग जो पहली बार I2P की खोज कर रहे हैं और यह समझने की कोशिश कर रहे हैं कि यह कैसे एक साथ काम करता है।
+This work is primarily aimed at the I2P community: long-time users, contributors, developers, researchers, and those discovering I2P for the first time and trying to understand how it fits together.
 
-## पुनः डिज़ाइन की आवश्यकता क्यों थी
+## Why a Redesign Was Needed
 
-समय के साथ, पिछली वेबसाइट को बनाए रखना और नेविगेट करना कठिन हो गया था। डॉक्यूमेंटेशन बिखरी हुई थी, महत्वपूर्ण जानकारी खोजना मुश्किल था, अनुवाद अक्सर अधूरे होते थे, और मोबाइल या कम बैंडविड्थ कनेक्शन पर अनुभव असंगत था। अब छोटे-मोटे सुधार पर्याप्त नहीं थे।
+Over time, the previous website had grown difficult to maintain and difficult to navigate. Documentation was fragmented, important information was hard to find, translations were often incomplete, and the experience on mobile or low-bandwidth connections was inconsistent. Incremental fixes were no longer enough.
 
-यह पुनर्डिज़ाइन एक अवसर था पीछे हटकर इन मुद्दों को समग्र रूप से संबोधित करने का—साइट में संरचना, पहुंच, प्रदर्शन और स्पष्टता में सुधार करना।
+This redesign was an opportunity to step back and address those issues holistically—improving structure, accessibility, performance, and clarity across the site.
 
-## एक नया डिज़ाइन
+## A Fresh Design
 
-नई वेबसाइट में एक स्वच्छ, आधुनिक इंटरफेस है जो पहुंच को ध्यान में रखकर बनाया गया है। एक सुसंगत दृश्य भाषा, बेहतर टाइपोग्राफी, और बेहतर स्पेसिंग सामग्री को पढ़ना आसान बनाती है। हल्के और गहरे दोनों थीम उपलब्ध हैं।
+The new website features a clean, modern interface built with accessibility in mind. A consistent visual language, improved typography, and better spacing make content easier to read. Both light and dark themes are available.
 
-नेवीगेशन को संबंधित सामग्री को तार्किक रूप से समूहित करने के लिए पुनर्गठित किया गया है, जिससे दस्तावेज़ीकरण, डाउनलोड और समुदाय के संसाधन खोजना आसान हो गया है। दस्तावेज़ीकरण अनुभाग को पुनर्संरचित किया गया है ताकि नए उपयोगकर्ताओं को जल्दी शुरुआत करने में मदद मिल सके और साथ ही डेवलपर्स और शोधकर्ताओं के लिए विस्तृत तकनीकी जानकारी भी उपलब्ध हो।
+Navigation has been reorganized to group related content logically, making it easier to find documentation, downloads, and community resources. The documentation section has been restructured to help new users get started quickly while still providing detailed technical information for developers and researchers.
 
-साइट पूर्णतः मोबाइल-अनुकूल है, जिसमें एक responsive नेवीगेशन मेन्यू और भाषा चयनकर्ता है जो अब छोटी स्क्रीन पर भी सुलभ है।
+The site is fully mobile-friendly, with a responsive navigation menu and a language selector that is now accessible on smaller screens.
 
-## बहु-भाषा समर्थन
+## Multi-Language Support
 
-I2P एक वैश्विक समुदाय की सेवा करता है, और वेबसाइट अब उस वास्तविकता को बेहतर तरीके से दर्शाती है। सामग्री 13 भाषाओं में उपलब्ध है: अंग्रेजी, स्पेनिश, कोरियाई, चीनी, रूसी, चेक, जर्मन, फ्रेंच, तुर्की, वियतनामी, हिंदी, अरबी, और पुर्तगाली।
+I2P serves a global community, and the website now better reflects that reality. Content is available in 13 languages: English, Spanish, Korean, Chinese, Russian, Czech, German, French, Turkish, Vietnamese, Hindi, Arabic, and Portuguese.
 
-पुराने सिस्टम के तहत, कई पेज अनुवादित नहीं थे या केवल आंशिक रूप से अनुवादित थे, जिससे अंतर्राष्ट्रीय उपयोगकर्ताओं के लिए एक खराब अनुभव बनता था। नई संरचना अनुवादों को बनाए रखना और कवरेज बढ़ाना काफी आसान बनाती है। मशीन-अनुवादित पेज स्पष्ट रूप से लेबल किए गए हैं और मूल अंग्रेजी के लिंक के साथ एक अस्वीकरण शामिल करते हैं।
+Under the previous system, many pages were untranslated or only partially translated, which created a poor experience for international users. The new structure makes it significantly easier to maintain translations and expand coverage. Machine-translated pages are clearly labeled and include a disclaimer with a link to the English original.
 
-हम अपने Transifex स्वयंसेवकों के आभारी हैं और नए अनुवादकों का स्वागत करते हैं जो मौजूदा अनुवादों को बेहतर बनाने या परिष्कृत करने में मदद करना चाहते हैं।
+We are grateful to our Transifex volunteers and welcome new translators who want to help improve or refine existing translations.
 
-## नई सुविधाएं
+## New Features
 
-उपयोगकर्ताओं और योगदानकर्ताओं के अनुभव को बेहतर बनाने के लिए कई नई सुविधाएं जोड़ी गई हैं:
+Several new features have been added to improve the experience for users and contributors:
 
-- योगदान के तरीकों को बताने वाला एक समर्पित **Get Involved** पेज, जिसमें विकास, दस्तावेज़ीकरण, अनुवाद, और समुदायिक सहायता शामिल है
-- बेहतर डाउनलोड पेज जिनमें स्पष्ट, प्लेटफॉर्म-विशिष्ट निर्देश हैं
-- बेहतर संगठित दस्तावेज़ीकरण जिसमें लंबे पेजों के लिए table-of-contents साइडबार है
-- उपयोगकर्ता प्रतिक्रिया एकत्र करने के लिए समुदायिक पोल
-- clearnet साइट पर दस्तावेज़ खोज कार्यक्षमता
-- समुदायिक इनपुट एकत्र करने के लिए एक फीचर सुझाव सिस्टम
+- A dedicated **Get Involved** page outlining ways to contribute, including development, documentation, translation, and community support  
+- Improved download pages with clearer, platform-specific instructions  
+- Better-organized documentation with a table-of-contents sidebar for longer pages  
+- Community polls to gather user feedback  
+- Document search functionality on the clearnet site  
+- A feature suggestion system to collect community input  
 
-## तकनीकी सुधार
+## Technical Improvements
 
-पर्दे के पीछे, वेबसाइट को शुरू से ही पुनर्निर्मित किया गया है जिसमें हल्का होने और JavaScript के बिना उपयोग योग्य होने पर मजबूत जोर दिया गया है। कई पेज केवल कुछ किलोबाइट्स के आकार के हैं और अत्यधिक तेजी से लोड होते हैं, धीमे या अविश्वसनीय कनेक्शन पर भी।
+Behind the scenes, the website has been rebuilt from the ground up with a strong emphasis on being lightweight and usable without JavaScript. Many pages are only a few kilobytes in size and load extremely quickly, even on slow or unreliable connections.
 
-स्टैटिक साइट जेनरेटर बहु-भाषा सामग्री को कुशलता से संभालता है, बिल्ड प्रक्रिया को तेज़ डिप्लॉयमेंट के लिए सुव्यवस्थित किया गया है, और स्वचालित परीक्षण सामग्री की गुणवत्ता सुनिश्चित करने और परिवर्तन उत्पादन में पहुंचने से पहले समस्याओं को पकड़ने में मदद करते हैं। ये विकल्प I2P के पहुंच, लचीलेपन और गोपनीयता के व्यापक लक्ष्यों को दर्शाते हैं।
+The static site generator handles multi-language content efficiently, the build process has been streamlined for faster deployments, and automated tests help ensure content quality and catch issues before changes reach production. These choices reflect I2P’s broader goals of accessibility, resilience, and privacy.
 
-## प्रोजेक्ट का समर्थन करना
+## Supporting the Project
 
-चल रहे विकास और अवसंरचना को बनाए रखने में मदद करने के लिए, I2P अब दान स्वीकार कर रहा है। योगदान होस्टिंग, विकास, प्रलेखन, और अन्य परियोजना लागतों का समर्थन करते हैं। अमेरिकी दानदाताओं के लिए, योगदान को धर्मार्थ कर-कटौती योग्य दान माना जाता है।
+To help sustain ongoing development and infrastructure, I2P is now accepting donations. Contributions support hosting, development, documentation, and other project costs. For U.S. donors, contributions are considered charitable tax-deductible donations.
 
-यदि आप इस परियोजना का समर्थन करने में सक्षम और रुचि रखते हैं, तो अधिक जानकारी यहाँ उपलब्ध है: https://i2p.net/donate
+If you are able and interested in supporting the project, more information is available at:   https://i2p.net/donate
 
-## आगे क्या आता है
+## What Comes Next
 
-यह लॉन्च एक शुरुआती बिंदु है, अंतिम बिंदु नहीं। हम दस्तावेज़ीकरण में सुधार, अनुवाद का विस्तार, और समुदायिक प्रतिक्रिया के आधार पर साइट को परिष्कृत करना जारी रखेंगे।
+This launch is a starting point, not an endpoint. We will continue improving documentation, expanding translations, and refining the site based on community feedback.
 
-यदि आपको कोई समस्या, अनुपस्थित जानकारी, या सुधार के क्षेत्र दिखाई देते हैं, तो कृपया forums या GitLab के माध्यम से हमें बताएं। I2P में सबसे प्रभावशाली बदलाव सीधे समुदाय के इनपुट से आते हैं।
+If you notice issues, missing information, or areas that could be improved, please let us know through the forums or GitLab. Many of the most impactful changes to I2P come directly from community input.
 
-इस redesign में समय, प्रयास और फीडबैक देने वाले सभी लोगों का धन्यवाद, और व्यापक I2P समुदाय का धन्यवाद जो नेटवर्क को निरंतर बनाने और बनाए रखने का काम कर रहा है।
+Thank you to everyone who contributed time, effort, and feedback to this redesign, and to the broader I2P community for continuing to build and sustain the network.

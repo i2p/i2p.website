@@ -1,66 +1,66 @@
 ---
-title: "새로운 I2P 웹사이트 소개"
+title: "Introducing the New I2P Website"
 date: 2026-01-06
 author: StormyCloud
 categories: ["news"]
-description: "I2P 웹사이트가 현대적인 인터페이스, 개선된 내비게이션, 다국어 지원, 그리고 향상된 접근성으로 완전히 새롭게 디자인되었습니다."
+description: "The I2P website has been completely redesigned with a modern interface, improved navigation, multi-language support, and better accessibility."
 ---
 
-## 새롭게 디자인된 I2P 웹사이트 출시
+## Launching the Redesigned I2P Website
 
-새롭게 디자인된 I2P 웹사이트의 출시를 발표하게 되어 기쁩니다. 이번 업데이트는 프로젝트가 기반으로 하는 가치를 손상시키지 않으면서도 I2P를 더 쉽게 발견하고, 더 쉽게 이해하며, 더 쉽게 기여할 수 있도록 만들기 위한 집중적인 노력의 결과입니다.
+We are pleased to announce the launch of the redesigned I2P website. This update is the result of a focused effort to make I2P easier to discover, easier to understand, and easier to contribute to—without compromising the values the project is built on.
 
-이 작업은 주로 I2P 커뮤니티를 대상으로 합니다: 오랜 사용자, 기여자, 개발자, 연구자, 그리고 처음으로 I2P를 발견하고 어떻게 구성되어 있는지 이해하려는 사람들을 위한 것입니다.
+This work is primarily aimed at the I2P community: long-time users, contributors, developers, researchers, and those discovering I2P for the first time and trying to understand how it fits together.
 
-## 재설계가 필요했던 이유
+## Why a Redesign Was Needed
 
-시간이 지나면서 이전 웹사이트는 유지보수가 어려워지고 탐색하기 힘들어졌습니다. 문서가 분산되어 있고, 중요한 정보를 찾기 어려웠으며, 번역이 종종 불완전했고, 모바일이나 저대역폭 연결에서의 경험이 일관되지 않았습니다. 점진적인 수정만으로는 더 이상 충분하지 않았습니다.
+Over time, the previous website had grown difficult to maintain and difficult to navigate. Documentation was fragmented, important information was hard to find, translations were often incomplete, and the experience on mobile or low-bandwidth connections was inconsistent. Incremental fixes were no longer enough.
 
-이번 재설계는 한 발 물러서서 이러한 문제들을 종합적으로 해결할 기회였습니다—사이트 전반에 걸쳐 구조, 접근성, 성능, 명확성을 개선하는 것이었습니다.
+This redesign was an opportunity to step back and address those issues holistically—improving structure, accessibility, performance, and clarity across the site.
 
-## 새로운 디자인
+## A Fresh Design
 
-새로운 웹사이트는 접근성을 고려하여 구축된 깔끔하고 현대적인 인터페이스를 제공합니다. 일관된 시각 언어, 개선된 타이포그래피, 그리고 더 나은 간격으로 콘텐츠를 더 쉽게 읽을 수 있습니다. 라이트 테마와 다크 테마 모두 사용할 수 있습니다.
+The new website features a clean, modern interface built with accessibility in mind. A consistent visual language, improved typography, and better spacing make content easier to read. Both light and dark themes are available.
 
-네비게이션이 관련 콘텐츠를 논리적으로 그룹화하도록 재구성되어 문서, 다운로드, 커뮤니티 리소스를 더 쉽게 찾을 수 있게 되었습니다. 문서 섹션은 새로운 사용자가 빠르게 시작할 수 있도록 도움을 주는 동시에 개발자와 연구자를 위한 상세한 기술 정보를 제공하도록 재구성되었습니다.
+Navigation has been reorganized to group related content logically, making it easier to find documentation, downloads, and community resources. The documentation section has been restructured to help new users get started quickly while still providing detailed technical information for developers and researchers.
 
-이 사이트는 완전히 모바일 친화적이며, 반응형 내비게이션 메뉴와 작은 화면에서도 접근 가능한 언어 선택기를 제공합니다.
+The site is fully mobile-friendly, with a responsive navigation menu and a language selector that is now accessible on smaller screens.
 
-## 다국어 지원
+## Multi-Language Support
 
-I2P는 전 세계 커뮤니티에 서비스를 제공하며, 웹사이트는 이제 그 현실을 더 잘 반영합니다. 콘텐츠는 13개 언어로 제공됩니다: 영어, 스페인어, 한국어, 중국어, 러시아어, 체코어, 독일어, 프랑스어, 터키어, 베트남어, 힌디어, 아랍어, 포르투갈어.
+I2P serves a global community, and the website now better reflects that reality. Content is available in 13 languages: English, Spanish, Korean, Chinese, Russian, Czech, German, French, Turkish, Vietnamese, Hindi, Arabic, and Portuguese.
 
-이전 시스템에서는 많은 페이지가 번역되지 않았거나 부분적으로만 번역되어 국제 사용자들에게 좋지 않은 경험을 제공했습니다. 새로운 구조는 번역을 유지 관리하고 범위를 확장하는 것을 훨씬 쉽게 만듭니다. 기계 번역된 페이지는 명확하게 표시되며 영어 원본에 대한 링크와 함께 면책 조항이 포함됩니다.
+Under the previous system, many pages were untranslated or only partially translated, which created a poor experience for international users. The new structure makes it significantly easier to maintain translations and expand coverage. Machine-translated pages are clearly labeled and include a disclaimer with a link to the English original.
 
-Transifex 자원봉사자들에게 감사드리며, 기존 번역을 개선하거나 다듬는 데 도움을 주고자 하는 새로운 번역자들을 환영합니다.
+We are grateful to our Transifex volunteers and welcome new translators who want to help improve or refine existing translations.
 
-## 새로운 기능
+## New Features
 
-사용자와 기여자의 경험을 향상시키기 위해 여러 새로운 기능이 추가되었습니다:
+Several new features have been added to improve the experience for users and contributors:
 
-- 개발, 문서화, 번역, 커뮤니티 지원을 포함하여 기여할 수 있는 방법을 설명하는 전용 **참여하기** 페이지
-- 더 명확하고 플랫폼별 지침이 포함된 개선된 다운로드 페이지
-- 긴 페이지를 위한 목차 사이드바가 있는 더 잘 정리된 문서
-- 사용자 피드백을 수집하기 위한 커뮤니티 투표
-- clearnet 사이트의 문서 검색 기능
-- 커뮤니티 의견을 수집하는 기능 제안 시스템
+- A dedicated **Get Involved** page outlining ways to contribute, including development, documentation, translation, and community support  
+- Improved download pages with clearer, platform-specific instructions  
+- Better-organized documentation with a table-of-contents sidebar for longer pages  
+- Community polls to gather user feedback  
+- Document search functionality on the clearnet site  
+- A feature suggestion system to collect community input  
 
-## 기술적 개선사항
+## Technical Improvements
 
-내부적으로, 웹사이트는 가볍고 JavaScript 없이도 사용할 수 있다는 점에 중점을 두고 처음부터 다시 구축되었습니다. 많은 페이지들이 몇 킬로바이트 크기에 불과하며 느리거나 불안정한 연결에서도 매우 빠르게 로드됩니다.
+Behind the scenes, the website has been rebuilt from the ground up with a strong emphasis on being lightweight and usable without JavaScript. Many pages are only a few kilobytes in size and load extremely quickly, even on slow or unreliable connections.
 
-정적 사이트 생성기는 다국어 콘텐츠를 효율적으로 처리하고, 빌드 프로세스는 더 빠른 배포를 위해 간소화되었으며, 자동화된 테스트는 콘텐츠 품질을 보장하고 변경 사항이 프로덕션에 도달하기 전에 문제를 발견하는 데 도움이 됩니다. 이러한 선택은 접근성, 복원력, 프라이버시라는 I2P의 더 넓은 목표를 반영합니다.
+The static site generator handles multi-language content efficiently, the build process has been streamlined for faster deployments, and automated tests help ensure content quality and catch issues before changes reach production. These choices reflect I2P’s broader goals of accessibility, resilience, and privacy.
 
-## 프로젝트 지원하기
+## Supporting the Project
 
-지속적인 개발과 인프라를 지원하기 위해 I2P는 이제 기부를 받고 있습니다. 기부금은 호스팅, 개발, 문서화 및 기타 프로젝트 비용을 지원합니다. 미국 기부자의 경우, 기부금은 자선 세금 공제 가능한 기부로 간주됩니다.
+To help sustain ongoing development and infrastructure, I2P is now accepting donations. Contributions support hosting, development, documentation, and other project costs. For U.S. donors, contributions are considered charitable tax-deductible donations.
 
-프로젝트를 지원할 의향과 능력이 있으시다면, 자세한 정보는 다음 링크에서 확인하실 수 있습니다: https://i2p.net/donate
+If you are able and interested in supporting the project, more information is available at:   https://i2p.net/donate
 
-## 다음 단계
+## What Comes Next
 
-이번 출시는 끝점이 아닌 시작점입니다. 우리는 커뮤니티 피드백을 바탕으로 문서를 계속 개선하고, 번역을 확대하며, 사이트를 개선해 나갈 것입니다.
+This launch is a starting point, not an endpoint. We will continue improving documentation, expanding translations, and refining the site based on community feedback.
 
-문제점, 누락된 정보, 또는 개선될 수 있는 부분을 발견하시면 포럼이나 GitLab을 통해 알려주시기 바랍니다. I2P에 가장 큰 영향을 미치는 많은 변경사항들이 커뮤니티의 의견에서 직접 나옵니다.
+If you notice issues, missing information, or areas that could be improved, please let us know through the forums or GitLab. Many of the most impactful changes to I2P come directly from community input.
 
-이 재설계에 시간, 노력, 피드백을 기여해주신 모든 분들과 네트워크를 계속해서 구축하고 유지해주시는 더 넓은 I2P 커뮤니티에 감사드립니다.
+Thank you to everyone who contributed time, effort, and feedback to this redesign, and to the broader I2P community for continuing to build and sustain the network.

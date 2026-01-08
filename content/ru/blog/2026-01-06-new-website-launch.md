@@ -1,66 +1,66 @@
 ---
-title: "Представляем новый веб-сайт I2P"
+title: "Introducing the New I2P Website"
 date: 2026-01-06
 author: StormyCloud
 categories: ["news"]
-description: "Веб-сайт I2P был полностью переработан с современным интерфейсом, улучшенной навигацией, поддержкой нескольких языков и лучшей доступностью."
+description: "The I2P website has been completely redesigned with a modern interface, improved navigation, multi-language support, and better accessibility."
 ---
 
-## Запуск обновленного веб-сайта I2P
+## Launching the Redesigned I2P Website
 
-Мы рады объявить о запуске обновленного веб-сайта I2P. Это обновление является результатом целенаправленных усилий по тому, чтобы сделать I2P более доступным для изучения, более понятным и более простым для участия в проекте — не идя на компромиссы с ценностями, на которых построен проект.
+We are pleased to announce the launch of the redesigned I2P website. This update is the result of a focused effort to make I2P easier to discover, easier to understand, and easier to contribute to—without compromising the values the project is built on.
 
-Эта работа в первую очередь предназначена для сообщества I2P: давних пользователей, участников, разработчиков, исследователей, а также тех, кто впервые открывает для себя I2P и пытается понять, как всё это работает в комплексе.
+This work is primarily aimed at the I2P community: long-time users, contributors, developers, researchers, and those discovering I2P for the first time and trying to understand how it fits together.
 
-## Почему потребовался редизайн
+## Why a Redesign Was Needed
 
-Со временем предыдущий веб-сайт стало трудно поддерживать и по нему стало сложно перемещаться. Документация была фрагментирована, важную информацию было трудно найти, переводы часто были неполными, а работа на мобильных устройствах или при низкоскоростных соединениях была непоследовательной. Постепенных исправлений больше было недостаточно.
+Over time, the previous website had grown difficult to maintain and difficult to navigate. Documentation was fragmented, important information was hard to find, translations were often incomplete, and the experience on mobile or low-bandwidth connections was inconsistent. Incremental fixes were no longer enough.
 
-Этот редизайн стал возможностью сделать шаг назад и комплексно решить эти проблемы — улучшив структуру, доступность, производительность и ясность всего сайта.
+This redesign was an opportunity to step back and address those issues holistically—improving structure, accessibility, performance, and clarity across the site.
 
-## Свежий дизайн
+## A Fresh Design
 
-Новый веб-сайт отличается чистым, современным интерфейсом, созданным с учетом доступности. Единый визуальный язык, улучшенная типографика и лучшие интервалы делают контент более удобным для чтения. Доступны как светлая, так и темная темы.
+The new website features a clean, modern interface built with accessibility in mind. A consistent visual language, improved typography, and better spacing make content easier to read. Both light and dark themes are available.
 
-Навигация была реорганизована для логической группировки связанного контента, что упрощает поиск документации, загрузок и ресурсов сообщества. Раздел документации был реструктурирован, чтобы помочь новым пользователям быстро начать работу, при этом предоставляя подробную техническую информацию для разработчиков и исследователей.
+Navigation has been reorganized to group related content logically, making it easier to find documentation, downloads, and community resources. The documentation section has been restructured to help new users get started quickly while still providing detailed technical information for developers and researchers.
 
-Сайт полностью адаптирован для мобильных устройств, с адаптивным навигационным меню и селектором языка, который теперь доступен на экранах меньшего размера.
+The site is fully mobile-friendly, with a responsive navigation menu and a language selector that is now accessible on smaller screens.
 
-## Поддержка нескольких языков
+## Multi-Language Support
 
-I2P обслуживает глобальное сообщество, и веб-сайт теперь лучше отражает эту реальность. Контент доступен на 13 языках: английском, испанском, корейском, китайском, русском, чешском, немецком, французском, турецком, вьетнамском, хинди, арабском и португальском.
+I2P serves a global community, and the website now better reflects that reality. Content is available in 13 languages: English, Spanish, Korean, Chinese, Russian, Czech, German, French, Turkish, Vietnamese, Hindi, Arabic, and Portuguese.
 
-В предыдущей системе многие страницы были непереведены или переведены лишь частично, что создавало плохой пользовательский опыт для международных пользователей. Новая структура значительно упрощает поддержку переводов и расширение покрытия. Страницы, переведенные машинным способом, четко помечены и содержат отказ от ответственности со ссылкой на английский оригинал.
+Under the previous system, many pages were untranslated or only partially translated, which created a poor experience for international users. The new structure makes it significantly easier to maintain translations and expand coverage. Machine-translated pages are clearly labeled and include a disclaimer with a link to the English original.
 
-Мы благодарны нашим волонтерам на Transifex и приветствуем новых переводчиков, которые хотят помочь улучшить или доработать существующие переводы.
+We are grateful to our Transifex volunteers and welcome new translators who want to help improve or refine existing translations.
 
-## Новые возможности
+## New Features
 
-Добавлено несколько новых функций для улучшения опыта пользователей и участников:
+Several new features have been added to improve the experience for users and contributors:
 
-- Специальная страница **Принять участие**, описывающая способы внести вклад, включая разработку, документацию, перевод и поддержку сообщества
-- Улучшенные страницы загрузки с более понятными инструкциями для конкретных платформ
-- Лучше организованная документация с боковой панелью содержания для длинных страниц
-- Опросы сообщества для сбора отзывов пользователей
-- Функция поиска документов на clearnet сайте
-- Система предложений функций для сбора мнений сообщества
+- A dedicated **Get Involved** page outlining ways to contribute, including development, documentation, translation, and community support  
+- Improved download pages with clearer, platform-specific instructions  
+- Better-organized documentation with a table-of-contents sidebar for longer pages  
+- Community polls to gather user feedback  
+- Document search functionality on the clearnet site  
+- A feature suggestion system to collect community input  
 
-## Технические улучшения
+## Technical Improvements
 
-За кулисами веб-сайт был полностью перестроен с нуля с упором на легковесность и возможность использования без JavaScript. Многие страницы занимают всего несколько килобайт и загружаются чрезвычайно быстро даже при медленных или ненадежных соединениях.
+Behind the scenes, the website has been rebuilt from the ground up with a strong emphasis on being lightweight and usable without JavaScript. Many pages are only a few kilobytes in size and load extremely quickly, even on slow or unreliable connections.
 
-Генератор статических сайтов эффективно обрабатывает многоязычный контент, процесс сборки был оптимизирован для более быстрых развертываний, а автоматизированные тесты помогают обеспечить качество контента и выявить проблемы до того, как изменения попадут в производственную среду. Эти решения отражают более широкие цели I2P в области доступности, отказоустойчивости и конфиденциальности.
+The static site generator handles multi-language content efficiently, the build process has been streamlined for faster deployments, and automated tests help ensure content quality and catch issues before changes reach production. These choices reflect I2P’s broader goals of accessibility, resilience, and privacy.
 
-## Поддержка проекта
+## Supporting the Project
 
-Чтобы помочь поддержать текущую разработку и инфраструктуру, I2P теперь принимает пожертвования. Взносы поддерживают хостинг, разработку, документацию и другие расходы проекта. Для доноров из США взносы считаются благотворительными пожертвованиями, подлежащими налоговому вычету.
+To help sustain ongoing development and infrastructure, I2P is now accepting donations. Contributions support hosting, development, documentation, and other project costs. For U.S. donors, contributions are considered charitable tax-deductible donations.
 
-Если у вас есть возможность и желание поддержать проект, дополнительная информация доступна по адресу: https://i2p.net/donate
+If you are able and interested in supporting the project, more information is available at:   https://i2p.net/donate
 
-## Что дальше
+## What Comes Next
 
-Этот запуск является отправной точкой, а не конечной целью. Мы будем продолжать улучшать документацию, расширять переводы и совершенствовать сайт на основе отзывов сообщества.
+This launch is a starting point, not an endpoint. We will continue improving documentation, expanding translations, and refining the site based on community feedback.
 
-Если вы заметили проблемы, недостающую информацию или области, которые можно улучшить, пожалуйста, сообщите нам через форумы или GitLab. Многие из наиболее значимых изменений в I2P происходят непосредственно благодаря отзывам сообщества.
+If you notice issues, missing information, or areas that could be improved, please let us know through the forums or GitLab. Many of the most impactful changes to I2P come directly from community input.
 
-Спасибо всем, кто потратил время, приложил усилия и предоставил обратную связь для этого редизайна, а также всему сообществу I2P за продолжение развития и поддержки сети.
+Thank you to everyone who contributed time, effort, and feedback to this redesign, and to the broader I2P community for continuing to build and sustain the network.
