@@ -43,7 +43,7 @@ jobs:
           echo "  https://i2pgit.org/stormycloud/i2p.www/compare/main...${GITEA_BRANCH}"
 
       - name: Create Gitea Pull Request via API
-        if: github.event.action == 'opened' && secrets.GITEA_API_TOKEN != ''
+        if: github.event.action == 'opened'
         env:
           GITEA_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
