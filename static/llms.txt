@@ -1,0 +1,75 @@
+# I2P - The Invisible Internet Project
+
+> I2P is a fully encrypted private network layer designed for anonymous communication. It provides strong anonymity through garlic routing, unidirectional tunnels, and a distributed network database. I2P has been in active development since 2003 and supports applications including anonymous websites (eepsites), secure messaging, file sharing, and more.
+
+I2P differs from Tor by focusing on internal services rather than outproxy access to the clearnet. All traffic stays within the I2P network by default. The network uses garlic routing (bundling multiple encrypted messages together) and unidirectional tunnels (separate inbound and outbound paths) to provide stronger anonymity guarantees than onion routing alone.
+
+The reference implementation is written in Java, with alternative implementations in C++ (i2pd) and other languages. I2P runs on Windows, macOS, Linux, and Android.
+
+## Documentation
+
+- [Introduction to I2P](https://i2p.net/en/docs/overview/intro/): Non-technical overview of what I2P is and how it protects privacy
+- [Technical Introduction](https://i2p.net/en/docs/overview/tech-intro/): Architecture overview covering tunnels, netDb, and routing
+- [Threat Model](https://i2p.net/en/docs/overview/threat-model/): Security guarantees, known limitations, and adversary models
+- [FAQ](https://i2p.net/en/docs/overview/faq/): Common questions about router configuration, privacy, and troubleshooting
+- [Glossary](https://i2p.net/en/docs/overview/glossary/): Definitions of I2P-specific terminology
+
+## Core Concepts
+
+- [Garlic Routing](https://i2p.net/en/docs/overview/garlic-routing/): How I2P bundles messages for enhanced anonymity
+- [Tunnel Routing](https://i2p.net/en/docs/overview/tunnel-routing/): Unidirectional tunnel construction and lifecycle
+- [Network Database](https://i2p.net/en/docs/overview/network-database/): Distributed Kademlia DHT for router and destination lookups
+- [Transport Layer](https://i2p.net/en/docs/overview/transport/): NTCP2 and SSU2 transport protocols
+- [Naming and Addressing](https://i2p.net/en/docs/overview/naming/): How I2P addresses and naming conventions work
+
+## Protocol Specifications
+
+- [I2NP Specification](https://i2p.net/en/docs/specs/i2np/): I2P Network Protocol message formats
+- [I2CP Specification](https://i2p.net/en/docs/specs/i2cp/): I2P Control Protocol for application integration
+- [Cryptography](https://i2p.net/en/docs/specs/cryptography/): Encryption algorithms, signatures, and key exchange
+- [NTCP2](https://i2p.net/en/docs/specs/ntcp2/): TCP transport specification
+- [SSU2](https://i2p.net/en/docs/specs/ssu2/): UDP transport specification
+- [Streaming Library](https://i2p.net/en/docs/specs/streaming/): Reliable streaming protocol over I2P
+- [Common Structures](https://i2p.net/en/docs/specs/common-structures/): Shared data structure definitions
+
+## APIs
+
+- [SAM v3](https://i2p.net/en/docs/api/samv3/): Simple Anonymous Messaging API for application integration
+- [I2PTunnel](https://i2p.net/en/docs/api/i2ptunnel/): TCP tunnel configuration for existing applications
+- [Streaming API](https://i2p.net/en/docs/api/streaming/): Reliable stream connections over I2P
+- [Datagrams](https://i2p.net/en/docs/api/datagrams/): UDP-like messaging over I2P
+- [I2PControl](https://i2p.net/en/docs/api/i2pcontrol/): Router management and monitoring API
+
+## Guides
+
+- [Browser Configuration](https://i2p.net/en/docs/guides/browser-config/): Setting up browsers to access I2P sites
+- [Creating an Eepsite](https://i2p.net/en/docs/guides/creating-an-eepsite/): Hosting anonymous websites on I2P
+- [Windows Installation](https://i2p.net/en/docs/guides/windows-install/): Installing I2P on Windows
+- [Debian/Ubuntu Installation](https://i2p.net/en/docs/guides/debian-ubuntu-install/): Installing I2P on Debian-based Linux
+- [macOS Installation](https://i2p.net/en/docs/guides/macos-install/): Installing I2P on macOS
+
+## Applications
+
+- [BitTorrent over I2P](https://i2p.net/en/docs/applications/bittorrent/): Anonymous file sharing with I2PSnark
+- [IRC over I2P](https://i2p.net/en/docs/applications/irc/): Connecting to IRC networks anonymously
+- [Email (Susimail)](https://i2p.net/en/docs/applications/i2pmail/): Anonymous email within I2P
+- [Git over I2P](https://i2p.net/en/docs/applications/git/): Using Git repositories anonymously
+
+## Comparisons
+
+- [I2P vs Other Networks](https://i2p.net/en/docs/overview/comparison/): Comparison with Tor, Freenet, Lokinet, and GNUnet
+
+## Development
+
+- [New Developer Guide](https://i2p.net/en/docs/develop/new-developers/): Getting started with I2P development
+- [Building Applications](https://i2p.net/en/docs/develop/applications/): Creating applications that use I2P
+- [Development Guidelines](https://i2p.net/en/docs/develop/dev-guidelines/): Code style and contribution process
+
+## Optional
+
+- [Blog](https://i2p.net/en/blog/): News, release announcements, and development updates
+- [Enhancement Proposals](https://i2p.net/en/proposals/): I2P protocol improvement proposals
+- [Get Involved](https://i2p.net/en/get-involved/): Ways to contribute to the I2P project
+- [Downloads](https://i2p.net/en/downloads/): Installation packages for all platforms
+- [Contact](https://i2p.net/en/contact/): Team members and communication channels
+- [Research](https://i2p.net/en/research/): Academic research opportunities and collaboration

@@ -1,0 +1,59 @@
+name: Mirror from Gitea to GitHub
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # every 6 hours
+  workflow_dispatch: {}
+
+# Prevent concurrent mirror operations
+concurrency:
+  group: gitea-mirror
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout GitHub mirror
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: master
+
+      - name: Fetch from Gitea
+        run: |
+          set -euo pipefail
+          git remote add gitea "https://i2pgit.org/I2P_Developers/i2p.www.git"
+          git fetch --prune gitea
+
+      - name: Check if sync needed
+        id: check
+        run: |
+          set -euo pipefail
+          GITHUB_HEAD=$(git rev-parse HEAD)
+          GITEA_HEAD=$(git rev-parse gitea/master)
+
+          if [ "$GITHUB_HEAD" = "$GITEA_HEAD" ]; then
+            echo "Branches already in sync (both at $GITHUB_HEAD)"
+            echo "needs_sync=false" >> $GITHUB_OUTPUT
+          else
+            echo "Sync needed: GitHub=$GITHUB_HEAD, Gitea=$GITEA_HEAD"
+            echo "needs_sync=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Reset mirror branch to Gitea
+        if: steps.check.outputs.needs_sync == 'true'
+        run: |
+          set -euo pipefail
+          git checkout master || git checkout -b master
+          git reset --hard gitea/master
+
+      - name: Push to GitHub (mirror)
+        if: steps.check.outputs.needs_sync == 'true'
+        run: |
+          set -euo pipefail
+          git push --force-with-lease origin master
+          echo "Successfully synced Gitea master -> GitHub master"

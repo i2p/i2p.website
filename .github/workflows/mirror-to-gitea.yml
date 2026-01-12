@@ -1,0 +1,112 @@
+name: Mirror from GitHub to Gitea
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "30 */6 * * *"   # every 6 hours at :30 (offset from Gitea->GitHub)
+  workflow_dispatch: {}
+
+# Prevent concurrent mirror operations
+concurrency:
+  group: gitea-mirror
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  mirror-to-gitea:
+    runs-on: ubuntu-latest
+    # Skip if the push was from github-actions (prevents sync loops)
+    if: github.actor != 'github-actions[bot]' || github.event_name != 'push'
+
+    steps:
+      - name: Checkout GitHub repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: master
+
+      - name: Setup SSH for Gitea
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.GITEA_SSH_PRIVATE_KEY }}" > ~/.ssh/gitea_key
+          chmod 600 ~/.ssh/gitea_key
+
+          # Add Gitea host to known_hosts
+          ssh-keyscan -H i2pgit.org >> ~/.ssh/known_hosts 2>/dev/null
+
+          # Configure SSH to use the key for Gitea
+          cat >> ~/.ssh/config << EOF
+          Host i2pgit.org
+            HostName i2pgit.org
+            User git
+            IdentityFile ~/.ssh/gitea_key
+            StrictHostKeyChecking accept-new
+          EOF
+
+      - name: Add Gitea remote
+        run: |
+          git remote add gitea git@i2pgit.org:I2P_Developers/i2p.www.git
+          git fetch gitea
+
+      - name: Check sync status and divergence
+        id: check
+        run: |
+          set -euo pipefail
+
+          GITHUB_HEAD=$(git rev-parse HEAD)
+          GITEA_HEAD=$(git rev-parse gitea/master 2>/dev/null || echo "not-found")
+
+          if [ "$GITEA_HEAD" = "not-found" ]; then
+            echo "Gitea master branch not found - fresh sync needed"
+            echo "needs_sync=true" >> $GITHUB_OUTPUT
+            echo "diverged=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          if [ "$GITHUB_HEAD" = "$GITEA_HEAD" ]; then
+            echo "Already in sync (both at $GITHUB_HEAD)"
+            echo "needs_sync=false" >> $GITHUB_OUTPUT
+            echo "diverged=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Check if GitHub is ahead of Gitea (normal case - we can push)
+          if git merge-base --is-ancestor "$GITEA_HEAD" "$GITHUB_HEAD"; then
+            echo "GitHub is ahead of Gitea - safe to push"
+            echo "needs_sync=true" >> $GITHUB_OUTPUT
+            echo "diverged=false" >> $GITHUB_OUTPUT
+          # Check if Gitea is ahead of GitHub (Gitea has changes we don't have)
+          elif git merge-base --is-ancestor "$GITHUB_HEAD" "$GITEA_HEAD"; then
+            echo "Gitea is ahead of GitHub - skip push, wait for Gitea->GitHub sync"
+            echo "needs_sync=false" >> $GITHUB_OUTPUT
+            echo "diverged=false" >> $GITHUB_OUTPUT
+          else
+            # Branches have diverged - Gitea is source of truth
+            echo "WARNING: Branches have diverged! Gitea is source of truth."
+            echo "needs_sync=false" >> $GITHUB_OUTPUT
+            echo "diverged=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Alert on divergence
+        if: steps.check.outputs.diverged == 'true'
+        run: |
+          echo "::warning::GitHub and Gitea have diverged! Manual intervention may be required."
+          echo "Gitea is the source of truth. The next Gitea->GitHub sync will reset GitHub."
+          echo ""
+          echo "To see the differences:"
+          echo "  git log --oneline gitea/master..HEAD  # GitHub-only commits"
+          echo "  git log --oneline HEAD..gitea/master  # Gitea-only commits"
+
+      - name: Push to Gitea
+        if: steps.check.outputs.needs_sync == 'true'
+        run: |
+          set -euo pipefail
+
+          # Push master to master on Gitea
+          git push gitea master:master
+
+          echo "Successfully mirrored GitHub master -> Gitea master"

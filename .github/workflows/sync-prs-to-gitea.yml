@@ -1,0 +1,96 @@
+name: Sync GitHub PRs to Gitea
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to sync'
+        required: true
+        type: number
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  sync-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Setup SSH for Gitea
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.GITEA_SSH_PRIVATE_KEY }}" > ~/.ssh/gitea_key
+          chmod 600 ~/.ssh/gitea_key
+
+          ssh-keyscan -H i2pgit.org >> ~/.ssh/known_hosts 2>/dev/null
+
+          cat >> ~/.ssh/config << EOF
+          Host i2pgit.org
+            HostName i2pgit.org
+            User git
+            IdentityFile ~/.ssh/gitea_key
+            StrictHostKeyChecking accept-new
+          EOF
+
+      - name: Push PR branch to Gitea
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number || github.event.inputs.pr_number }}
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref || github.ref_name }}
+        run: |
+          git remote add gitea git@i2pgit.org:I2P_Developers/i2p.www.git
+
+          # Push the PR branch with a github-pr prefix
+          GITEA_BRANCH="github-pr-${PR_NUMBER}"
+          git push gitea "HEAD:refs/heads/${GITEA_BRANCH}" --force
+
+          echo "Pushed PR #${PR_NUMBER} to Gitea branch: ${GITEA_BRANCH}"
+          echo ""
+          echo "To create a Merge Request on Gitea, visit:"
+          echo "  https://i2pgit.org/I2P_Developers/i2p.www/compare/master...${GITEA_BRANCH}"
+
+      - name: Create Gitea Pull Request via API
+        if: github.event.action == 'opened' && secrets.GITEA_API_TOKEN != ''
+        env:
+          GITEA_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_USER: ${{ github.event.pull_request.user.login }}
+        run: |
+          GITEA_BRANCH="github-pr-${PR_NUMBER}"
+
+          # Escape the PR body for JSON
+          ESCAPED_BODY=$(echo "$PR_BODY" | jq -Rs .)
+
+          # Create PR via Gitea API
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            "https://i2pgit.org/api/v1/repos/I2P_Developers/i2p.www/pulls" \
+            -H "Authorization: token ${GITEA_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"title\": \"[GitHub PR #${PR_NUMBER}] ${PR_TITLE}\",
+              \"body\": \"Mirrored from GitHub PR #${PR_NUMBER} by @${PR_USER}\\n\\nOriginal: https://github.com/i2p/i2p.www/pull/${PR_NUMBER}\\n\\n---\\n\\n${ESCAPED_BODY}\",
+              \"head\": \"${GITEA_BRANCH}\",
+              \"base\": \"master\"
+            }")
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+
+          if [ "$HTTP_CODE" = "201" ]; then
+            GITEA_PR_URL=$(echo "$BODY" | jq -r '.html_url')
+            echo "Created Gitea MR: ${GITEA_PR_URL}"
+          elif [ "$HTTP_CODE" = "409" ]; then
+            echo "Gitea MR already exists for this branch"
+          else
+            echo "Warning: Failed to create Gitea MR (HTTP $HTTP_CODE)"
+            echo "$BODY"
+          fi
