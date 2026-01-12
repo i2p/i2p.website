@@ -3,7 +3,7 @@ title: "Privacy Policy"
 description: "Learn how I2P collects, uses, and protects your information when you visit our website."
 type: "legal"
 layout: "legal"
-lastUpdated: "2025-10"
+lastUpdated: "2026-01"
 ---
 
 ## Overview
@@ -14,14 +14,18 @@ The Invisible Internet Project ("I2P," "we," "us," or "our") is committed to pro
 
 ### Automatically Collected Information
 
-When you visit our website, certain information may be automatically collected by our hosting service and analytics tools, including:
+When you visit our website, we collect limited, non-personally identifiable analytics data to understand how our website is used and improve the user experience. This includes:
 
+- **Pages visited** - Which pages you view on our website
+- **Geographic location** - Country and city (derived from aggregated data, not from IP addresses)
+- **Visit time** - Date and time of your visits
+
+**We do NOT collect:**
 - IP addresses
-- Browser type and version
+- Browser type or version
 - Operating system
-- Pages visited and time spent on pages
 - Referring website addresses
-- Date and time of visits
+- Any personally identifiable information (PII)
 
 ### Information You Provide
 
@@ -98,6 +102,6 @@ If you have questions or concerns about this Privacy Policy, please contact us:
 
 ---
 
-**Last Updated**: October 2025
+**Last Updated**: January 2026
 
-This privacy policy applies to the I2P project website (geti2p.net) and related I2P project web properties.
+This privacy policy applies to the I2P project website (i2p.net, geti2p.net) and related I2P project web properties.
