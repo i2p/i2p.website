@@ -3,7 +3,7 @@ title: "Chính sách quyền riêng tư"
 description: "Tìm hiểu cách I2P thu thập, sử dụng và bảo vệ thông tin của bạn khi bạn truy cập trang web của chúng tôi."
 type: "pháp lý"
 layout: "legal"
-lastUpdated: "2025-10"
+lastUpdated: "2026-01"
 ---
 
 ## Tổng quan
@@ -12,16 +12,20 @@ The Invisible Internet Project ("I2P," "chúng tôi," "chúng tôi," hoặc "c�
 
 ## Thông tin chúng tôi thu thập
 
-### Automatically Collected Information
+### Thông tin được thu thập tự động
 
-Khi bạn truy cập trang web của chúng tôi, một số thông tin nhất định có thể được dịch vụ lưu trữ và các công cụ phân tích của chúng tôi tự động thu thập, bao gồm:
+Khi bạn truy cập trang web của chúng tôi, chúng tôi thu thập dữ liệu phân tích hạn chế và không thể nhận dạng cá nhân để hiểu cách sử dụng trang web của chúng tôi và cải thiện trải nghiệm người dùng. Điều này bao gồm:
 
-- IP addresses
-- Browser type and version
-- Operating system
-- Pages visited and time spent on pages
-- Referring website addresses
-- Date and time of visits
+- **Các trang đã truy cập** - Những trang bạn xem trên trang web của chúng tôi
+- **Vị trí địa lý** - Quốc gia và thành phố (được lấy từ dữ liệu tổng hợp, không phải từ địa chỉ IP)
+- **Thời gian truy cập** - Ngày và giờ các lần truy cập của bạn
+
+**Chúng tôi KHÔNG thu thập:**
+- Địa chỉ IP
+- Loại hoặc phiên bản trình duyệt
+- Hệ điều hành
+- Địa chỉ trang web giới thiệu
+- Bất kỳ thông tin nhận dạng cá nhân (PII) nào
 
 ### Information You Provide
 
@@ -100,4 +104,4 @@ Nếu bạn có câu hỏi hoặc quan ngại về Chính sách quyền riêng t
 
 **Cập nhật lần cuối**: Tháng 10 năm 2025
 
-Chính sách quyền riêng tư này áp dụng cho trang web của dự án I2P (geti2p.net) và các thuộc tính web liên quan của dự án I2P.
+Chính sách quyền riêng tư này áp dụng cho trang web của dự án I2P (i2p.net, geti2p.net) và các thuộc tính web liên quan của dự án I2P.

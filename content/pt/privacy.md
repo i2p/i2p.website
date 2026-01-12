@@ -3,7 +3,7 @@ title: "Política de Privacidade"
 description: "Saiba como o I2P coleta, usa e protege suas informações quando você visita nosso site."
 type: "jurídico"
 layout: "legal"
-lastUpdated: "2025-10"
+lastUpdated: "2026-01"
 ---
 
 ## Visão geral
@@ -12,16 +12,20 @@ O Projeto de Internet Invisível ("I2P," "nós," "nos," ou "nosso") está compro
 
 ## Information We Collect
 
-### Automatically Collected Information
+### Informações coletadas automaticamente
 
-Quando você visita nosso site, determinadas informações podem ser coletadas automaticamente pelo nosso serviço de hospedagem e por ferramentas de análise, incluindo:
+Quando você visita nosso site, coletamos dados analíticos limitados e não identificáveis pessoalmente para entender como nosso site é usado e melhorar a experiência do usuário. Isso inclui:
 
-- IP addresses
-- Browser type and version
-- Operating system
-- Pages visited and time spent on pages
-- Referring website addresses
-- Date and time of visits
+- **Páginas visitadas** - Quais páginas você visualiza em nosso site
+- **Localização geográfica** - País e cidade (derivados de dados agregados, não de endereços IP)
+- **Horário de visita** - Data e hora de suas visitas
+
+**NÃO coletamos:**
+- Endereços IP
+- Tipo ou versão do navegador
+- Sistema operacional
+- Endereços de sites de referência
+- Informações pessoalmente identificáveis (PII)
 
 ### Information You Provide
 
@@ -99,4 +103,4 @@ Se você tiver dúvidas ou preocupações sobre esta Política de Privacidade, p
 
 **Última atualização**: outubro de 2025
 
-Esta política de privacidade aplica-se ao site do projeto I2P (geti2p.net) e às propriedades web relacionadas do projeto I2P.
+Esta política de privacidade aplica-se ao site do projeto I2P (i2p.net, geti2p.net) e às propriedades web relacionadas do projeto I2P.

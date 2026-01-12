@@ -3,7 +3,7 @@ title: "سياسة الخصوصية"
 description: "Learn how I2P collects, uses, and protects your information when you visit our website."
 type: "قانوني"
 layout: "legal"
-lastUpdated: "2025-10"
+lastUpdated: "2026-01"
 ---
 
 ## نظرة عامة
@@ -12,16 +12,20 @@ lastUpdated: "2025-10"
 
 ## Information We Collect
 
-### Automatically Collected Information
+### المعلومات المُجمَّعة تلقائياً
 
-عند زيارتك لموقعنا الإلكتروني، قد يتم جمع بعض المعلومات تلقائيًا بواسطة خدمة الاستضافة وأدوات التحليلات لدينا، بما في ذلك:
+عند زيارة موقعنا الإلكتروني، نجمع بيانات تحليلية محدودة وغير قابلة لتحديد الهوية الشخصية لفهم كيفية استخدام موقعنا وتحسين تجربة المستخدم. يشمل ذلك:
 
-- IP addresses
-- Browser type and version
-- Operating system
-- Pages visited and time spent on pages
-- Referring website addresses
-- Date and time of visits
+- **الصفحات التي تمت زيارتها** - الصفحات التي تشاهدها على موقعنا
+- **الموقع الجغرافي** - البلد والمدينة (مشتقة من البيانات المجمعة، وليس من عناوين IP)
+- **وقت الزيارة** - تاريخ ووقت زياراتك
+
+**لا نجمع:**
+- عناوين IP
+- نوع أو إصدار المتصفح
+- نظام التشغيل
+- عناوين المواقع المُحيلة
+- أي معلومات تحدد الهوية الشخصية (PII)
 
 ### Information You Provide
 
@@ -102,4 +106,4 @@ We use the automatically collected information solely for:
 
 قدّم الترجمة فقط، ولا شيء غير ذلك:
 
-تنطبق سياسة الخصوصية هذه على موقع مشروع I2P (geti2p.net) وممتلكات الويب الأخرى ذات الصلة بمشروع I2P.
+تنطبق سياسة الخصوصية هذه على موقع مشروع I2P (i2p.net, geti2p.net) وممتلكات الويب الأخرى ذات الصلة بمشروع I2P.

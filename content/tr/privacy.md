@@ -3,7 +3,7 @@ title: "Gizlilik Politikası"
 description: "Web sitemizi ziyaret ettiğinizde I2P'nin bilgilerinizi nasıl topladığını, kullandığını ve koruduğunu öğrenin."
 type: "yasal"
 layout: "legal"
-lastUpdated: "2025-10"
+lastUpdated: "2026-01"
 ---
 
 ## Genel Bakış
@@ -12,16 +12,20 @@ Görünmez İnternet Projesi ("I2P", "biz", "bizi" veya "bizim"), gizliliğinizi
 
 ## Topladığımız Bilgiler
 
-### Automatically Collected Information
+### Otomatik Olarak Toplanan Bilgiler
 
-Web sitemizi ziyaret ettiğinizde, barındırma hizmetimiz ve analiz araçlarımız tarafından otomatik olarak toplanabilecek bazı bilgiler arasında şunlar yer alabilir:
+Web sitemizi ziyaret ettiğinizde, web sitemizin nasıl kullanıldığını anlamak ve kullanıcı deneyimini iyileştirmek için sınırlı, kişisel olarak tanımlanamayan analitik veriler topluyoruz. Bu şunları içerir:
 
-- IP addresses
-- Browser type and version
-- Operating system
-- Pages visited and time spent on pages
-- Referring website addresses
-- Date and time of visits
+- **Ziyaret edilen sayfalar** - Web sitemizde hangi sayfaları görüntülediğiniz
+- **Coğrafi konum** - Ülke ve şehir (IP adreslerinden değil, toplu verilerden türetilmiştir)
+- **Ziyaret zamanı** - Ziyaretlerinizin tarihi ve saati
+
+**Toplamadıklarımız:**
+- IP adresleri
+- Tarayıcı türü veya sürümü
+- İşletim sistemi
+- Yönlendiren web sitesi adresleri
+- Kişisel olarak tanımlanabilir bilgiler (PII)
 
 ### Information You Provide
 
@@ -99,4 +103,4 @@ Bu Gizlilik Politikası hakkında sorularınız veya endişeleriniz varsa, lütf
 
 **Son Güncelleme**: Ekim 2025
 
-Bu gizlilik politikası, I2P projesinin web sitesi (geti2p.net) ve I2P projesiyle ilişkili web varlıkları için geçerlidir.
+Bu gizlilik politikası, I2P projesinin web sitesi (i2p.net, geti2p.net) ve I2P projesiyle ilişkili web varlıkları için geçerlidir.

@@ -3,7 +3,7 @@ title: "개인정보 처리방침"
 description: "당사 웹사이트를 방문할 때 I2P가 귀하의 정보를 어떻게 수집, 사용 및 보호하는지 알아보세요."
 type: "법률"
 layout: "legal"
-lastUpdated: "2025-10"
+lastUpdated: "2026-01"
 ---
 
 ## 개요
@@ -12,16 +12,20 @@ The Invisible Internet Project(이하 "I2P", "저희", "우리" 또는 "당사")
 
 ## 당사가 수집하는 정보
 
-### Automatically Collected Information
+### 자동으로 수집되는 정보
 
-당사 웹사이트를 방문하시면, 호스팅 서비스와 분석 도구에 의해 다음과 같은 특정 정보가 자동으로 수집될 수 있습니다:
+웹사이트를 방문하실 때, 웹사이트 사용 방식을 이해하고 사용자 경험을 개선하기 위해 제한적이고 개인 식별이 불가능한 분석 데이터를 수집합니다. 여기에는 다음이 포함됩니다:
 
-- IP addresses
-- Browser type and version
-- Operating system
-- Pages visited and time spent on pages
-- Referring website addresses
-- Date and time of visits
+- **방문한 페이지** - 웹사이트에서 보시는 페이지
+- **지리적 위치** - 국가 및 도시 (IP 주소가 아닌 집계 데이터에서 파생)
+- **방문 시간** - 방문 날짜 및 시간
+
+**수집하지 않는 정보:**
+- IP 주소
+- 브라우저 유형 또는 버전
+- 운영 체제
+- 참조 웹사이트 주소
+- 개인 식별 정보(PII)
 
 ### Information You Provide
 
@@ -99,4 +103,4 @@ The Invisible Internet Project(이하 "I2P", "저희", "우리" 또는 "당사")
 
 **최종 업데이트**: 2025년 10월
 
-이 개인정보 처리방침은 I2P 프로젝트 웹사이트(geti2p.net) 및 관련 I2P 프로젝트 웹 자산에 적용됩니다.
+이 개인정보 처리방침은 I2P 프로젝트 웹사이트(i2p.net, geti2p.net) 및 관련 I2P 프로젝트 웹 자산에 적용됩니다.

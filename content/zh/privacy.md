@@ -3,7 +3,7 @@ title: "隐私政策"
 description: "了解当您访问我们的网站时，I2P 如何收集、使用并保护您的信息。"
 type: "法律"
 layout: "legal"
-lastUpdated: "2025-10"
+lastUpdated: "2026-01"
 ---
 
 ## 概述
@@ -12,16 +12,20 @@ lastUpdated: "2025-10"
 
 ## 我们收集的信息
 
-### Automatically Collected Information
+### 自动收集的信息
 
-当您访问我们的网站时，我们的托管服务和分析工具可能会自动收集某些信息，包括：
+当您访问我们的网站时，我们会收集有限的、不可识别个人身份的分析数据，以了解我们的网站如何被使用并改善用户体验。这包括：
 
-- IP addresses
-- Browser type and version
-- Operating system
-- Pages visited and time spent on pages
-- Referring website addresses
-- Date and time of visits
+- **访问的页面** - 您在我们网站上查看的页面
+- **地理位置** - 国家和城市（来自聚合数据，而非IP地址）
+- **访问时间** - 您访问的日期和时间
+
+**我们不收集：**
+- IP地址
+- 浏览器类型或版本
+- 操作系统
+- 引荐网站地址
+- 任何个人身份信息(PII)
 
 ### Information You Provide
 

@@ -3,7 +3,7 @@ title: "Zásady ochrany osobních údajů"
 description: "Zjistěte, jak I2P shromažďuje, používá a chrání vaše informace, když navštívíte naše webové stránky."
 type: "legal"
 layout: "legal"
-lastUpdated: "2025-10"
+lastUpdated: "2026-01"
 ---
 
 ## Přehled
@@ -12,16 +12,20 @@ The Invisible Internet Project ("I2P," "my," "nás," nebo "naše") se zavazuje c
 
 ## Informace, které shromažďujeme
 
-### Automatically Collected Information
+### Automaticky shromážděné informace
 
-Když navštívíte naše webové stránky, mohou být určité informace automaticky shromažďovány naším poskytovatelem hostingu a analytickými nástroji, včetně:
+Když navštívíte naše webové stránky, shromažďujeme omezená, neosobní analytická data, abychom pochopili, jak jsou naše webové stránky používány, a zlepšili uživatelskou zkušenost. To zahrnuje:
 
-- IP addresses
-- Browser type and version
-- Operating system
-- Pages visited and time spent on pages
-- Referring website addresses
-- Date and time of visits
+- **Navštívené stránky** - Které stránky na našich webových stránkách zobrazujete
+- **Geografická poloha** - Země a město (odvozeno z agregovaných dat, ne z IP adres)
+- **Čas návštěvy** - Datum a čas vašich návštěv
+
+**NEshromažďujeme:**
+- IP adresy
+- Typ nebo verzi prohlížeče
+- Operační systém
+- Adresy odkazujících webových stránek
+- Žádné osobní údaje (PII)
 
 ### Information You Provide
 
@@ -100,4 +104,4 @@ Máte-li dotazy nebo obavy ohledně těchto Zásad ochrany osobních údajů, pr
 
 **Naposledy aktualizováno**: říjen 2025
 
-Tato zásada ochrany osobních údajů se vztahuje na webové stránky projektu I2P (geti2p.net) a související webové služby projektu I2P.
+Tato zásada ochrany osobních údajů se vztahuje na webové stránky projektu I2P (i2p.net, geti2p.net) a související webové služby projektu I2P.

@@ -3,7 +3,7 @@ title: "Datenschutzerklärung"
 description: "Erfahren Sie, wie I2P Ihre Informationen erfasst, verwendet und schützt, wenn Sie unsere Website besuchen."
 type: "Rechtliches"
 layout: "legal"
-lastUpdated: "2025-10"
+lastUpdated: "2026-01"
 ---
 
 ## Übersicht
@@ -12,16 +12,20 @@ Das Invisible Internet Project ("I2P," "wir," "uns" oder "unser") verpflichtet s
 
 ## Informationen, die wir erheben
 
-### Automatically Collected Information
+### Automatisch erfasste Informationen
 
-Wenn Sie unsere Website besuchen, können bestimmte Informationen automatisch von unserem Hosting-Dienst und Analysetools erfasst werden, darunter:
+Wenn Sie unsere Website besuchen, erfassen wir begrenzte, nicht personenbezogene Analysedaten, um zu verstehen, wie unsere Website genutzt wird, und um die Benutzererfahrung zu verbessern. Dazu gehören:
 
-- IP addresses
-- Browser type and version
-- Operating system
-- Pages visited and time spent on pages
-- Referring website addresses
-- Date and time of visits
+- **Besuchte Seiten** - Welche Seiten Sie auf unserer Website ansehen
+- **Geografischer Standort** - Land und Stadt (abgeleitet aus aggregierten Daten, nicht aus IP-Adressen)
+- **Besuchszeit** - Datum und Uhrzeit Ihrer Besuche
+
+**Wir erfassen NICHT:**
+- IP-Adressen
+- Browsertyp oder -version
+- Betriebssystem
+- Verweisende Website-Adressen
+- Personenbezogene Daten (PII)
 
 ### Information You Provide
 
@@ -99,4 +103,4 @@ Wenn Sie Fragen oder Bedenken zu dieser Datenschutzerklärung haben, kontaktiere
 
 **Zuletzt aktualisiert**: Oktober 2025
 
-Diese Datenschutzrichtlinie gilt für die Website des I2P-Projekts (geti2p.net) und die zugehörigen Webpräsenzen des I2P-Projekts.
+Diese Datenschutzrichtlinie gilt für die Website des I2P-Projekts (i2p.net, geti2p.net) und die zugehörigen Webpräsenzen des I2P-Projekts.
