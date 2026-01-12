@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: master
+          ref: main
 
       - name: Fetch from Gitea
         run: |
@@ -48,12 +48,12 @@ jobs:
         if: steps.check.outputs.needs_sync == 'true'
         run: |
           set -euo pipefail
-          git checkout master || git checkout -b master
+          git checkout main || git checkout -b main
           git reset --hard gitea/master
 
       - name: Push to GitHub (mirror)
         if: steps.check.outputs.needs_sync == 'true'
         run: |
           set -euo pipefail
-          git push --force-with-lease origin master
-          echo "Successfully synced Gitea master -> GitHub master"
+          git push --force-with-lease origin main
+          echo "Successfully synced Gitea master -> GitHub main"
