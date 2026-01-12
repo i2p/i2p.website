@@ -34,7 +34,7 @@ jobs:
         run: |
           set -euo pipefail
           GITHUB_HEAD=$(git rev-parse HEAD)
-          GITEA_HEAD=$(git rev-parse gitea/master)
+          GITEA_HEAD=$(git rev-parse gitea/main)
 
           if [ "$GITHUB_HEAD" = "$GITEA_HEAD" ]; then
             echo "Branches already in sync (both at $GITHUB_HEAD)"
@@ -49,11 +49,11 @@ jobs:
         run: |
           set -euo pipefail
           git checkout main || git checkout -b main
-          git reset --hard gitea/master
+          git reset --hard gitea/main
 
       - name: Push to GitHub (mirror)
         if: steps.check.outputs.needs_sync == 'true'
         run: |
           set -euo pipefail
           git push --force-with-lease origin main
-          echo "Successfully synced Gitea master -> GitHub main"
+          echo "Successfully synced Gitea main -> GitHub main"

@@ -43,7 +43,7 @@ jobs:
           set -euo pipefail
 
           GITHUB_HEAD=$(git rev-parse HEAD)
-          GITEA_HEAD=$(git rev-parse gitea/master 2>/dev/null || echo "not-found")
+          GITEA_HEAD=$(git rev-parse gitea/main 2>/dev/null || echo "not-found")
 
           if [ "$GITEA_HEAD" = "not-found" ]; then
             echo "Gitea master branch not found - fresh sync needed"
@@ -92,6 +92,6 @@ jobs:
           set -euo pipefail
 
           # Push master to master on Gitea
-          git push gitea main:master
+          git push gitea main:main
 
           echo "Successfully mirrored GitHub master -> Gitea master"

@@ -40,7 +40,7 @@ jobs:
           echo "Pushed PR #${PR_NUMBER} to Gitea branch: ${GITEA_BRANCH}"
           echo ""
           echo "To create a Merge Request on Gitea, visit:"
-          echo "  https://i2pgit.org/stormycloud/i2p.www/compare/master...${GITEA_BRANCH}"
+          echo "  https://i2pgit.org/stormycloud/i2p.www/compare/main...${GITEA_BRANCH}"
 
       - name: Create Gitea Pull Request via API
         if: github.event.action == 'opened' && secrets.GITEA_API_TOKEN != ''
@@ -65,7 +65,7 @@ jobs:
               \"title\": \"[GitHub PR #${PR_NUMBER}] ${PR_TITLE}\",
               \"body\": \"Mirrored from GitHub PR #${PR_NUMBER} by @${PR_USER}\\n\\nOriginal: https://github.com/StormyCloudInc/i2p.www/pull/${PR_NUMBER}\\n\\n---\\n\\n${ESCAPED_BODY}\",
               \"head\": \"${GITEA_BRANCH}\",
-              \"base\": \"master\"
+              \"base\": \"main\"
             }")
 
           HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
