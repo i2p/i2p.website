@@ -234,10 +234,7 @@ Contains all download links, versions, and checksums for I2P releases.
 - **Only create/edit files in `content/en/`** - English is the source language
 - Translations are **automatically generated** by the CI/CD pipeline when new English content is detected
 - The pipeline will translate new content and commit it to the repository automatically
-- Never manually create or edit files in other language directories (`content/de/`, `content/fr/`, etc.)
 - Use frontmatter for metadata (title, description, date)
 - Images go in `static/images/`
 
-## License
 
-This project is part of the I2P Project. See [LICENSE](LICENSE) for details.
