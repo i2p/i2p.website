@@ -69,13 +69,7 @@ The Invisible Internet Project ("I2P," "we," "us," or "our") आपकी गो
 
 ## कुकीज़
 
-आपको निम्नलिखित अधिकार प्राप्त हैं:
-
-- Unsubscribe from our mailing list at any time
-- Request information about what data we have collected
-- Request deletion of your email address from our mailing list
-
-इन अधिकारों का उपयोग करने के लिए, कृपया हमसे **press@i2p.net** पर संपर्क करें
+हमारी वेबसाइट केवल बुनियादी कार्यक्षमता के लिए कुकीज़ का उपयोग कर सकती है। ये कुकीज़ आपको ट्रैक नहीं करती हैं या विश्लेषणात्मक डेटा एकत्र नहीं करती हैं।
 
 ## डेटा प्रतिधारण
 
@@ -97,11 +91,11 @@ The Invisible Internet Project ("I2P," "we," "us," or "our") आपकी गो
 
 यदि आपको इस गोपनीयता नीति के बारे में कोई प्रश्न या चिंताएँ हैं, तो कृपया हमसे संपर्क करें:
 
-- **Email**: press@i2p.net
-- **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
+- **ईमेल**: admin@i2p.net
+- **GPG कुंजी फ़िंगरप्रिंट**: `6BEA 3ED4 582D 7A49 C42E 6654 9DCF 89C0 714E EE89`
 
 ---
 
 **अंतिम अद्यतन**: अक्टूबर 2025
 
-यह गोपनीयता नीति I2P परियोजना की वेबसाइट (i2p.net, geti2p.net) और I2P परियोजना से संबंधित वेब प्रॉपर्टीज़ पर लागू होती है।
+यह गोपनीयता नीति I2P परियोजना की वेबसाइट (i2p.net) और I2P परियोजना से संबंधित वेब प्रॉपर्टीज़ पर लागू होती है।

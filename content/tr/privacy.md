@@ -69,13 +69,7 @@ Web sitemiz, temel işlevsellik ve analiz amacıyla çerezler kullanabilir. Bu �
 
 ## Çerezler
 
-Aşağıdaki haklara sahipsiniz:
-
-- Unsubscribe from our mailing list at any time
-- Request information about what data we have collected
-- Request deletion of your email address from our mailing list
-
-Bu hakları kullanmak için lütfen bizimle **press@i2p.net** adresinden iletişime geçin.
+Web sitemiz yalnızca temel işlevsellik için çerezler kullanabilir. Bu çerezler sizi takip etmez veya analitik veri toplamaz.
 
 ## Veri Saklama
 
@@ -97,10 +91,10 @@ Web sitemiz aracılığıyla toplanan bilgileri korumak için makul güvenlik ö
 
 Bu Gizlilik Politikası hakkında sorularınız veya endişeleriniz varsa, lütfen bizimle iletişime geçin:
 
-- **Email**: press@i2p.net
-- **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
+- **E-posta**: admin@i2p.net
+- **GPG Anahtar parmak izi**: `6BEA 3ED4 582D 7A49 C42E 6654 9DCF 89C0 714E EE89`
 
 
 **Son Güncelleme**: Ekim 2025
 
-Bu gizlilik politikası, I2P projesinin web sitesi (i2p.net, geti2p.net) ve I2P projesiyle ilişkili web varlıkları için geçerlidir.
+Bu gizlilik politikası, I2P projesinin web sitesi (i2p.net) ve I2P projesiyle ilişkili web varlıkları için geçerlidir.

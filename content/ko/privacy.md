@@ -69,13 +69,7 @@ The Invisible Internet Project(이하 "I2P", "저희", "우리" 또는 "당사")
 
 ## 쿠키
 
-귀하는 다음과 같은 권리가 있습니다:
-
-- Unsubscribe from our mailing list at any time
-- Request information about what data we have collected
-- Request deletion of your email address from our mailing list
-
-이러한 권리를 행사하시려면 **press@i2p.net**로 연락해 주십시오
+웹사이트는 기본 기능에만 쿠키를 사용할 수 있습니다. 이러한 쿠키는 귀하를 추적하거나 분석 데이터를 수집하지 않습니다.
 
 ## 데이터 보존
 
@@ -97,10 +91,10 @@ The Invisible Internet Project(이하 "I2P", "저희", "우리" 또는 "당사")
 
 이 개인정보 처리방침에 관해 질문이나 우려 사항이 있으시면 저희에게 연락해 주십시오:
 
-- **Email**: press@i2p.net
-- **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
+- **이메일**: admin@i2p.net
+- **GPG 키 지문**: `6BEA 3ED4 582D 7A49 C42E 6654 9DCF 89C0 714E EE89`
 
 
 **최종 업데이트**: 2025년 10월
 
-이 개인정보 처리방침은 I2P 프로젝트 웹사이트(i2p.net, geti2p.net) 및 관련 I2P 프로젝트 웹 자산에 적용됩니다.
+이 개인정보 처리방침은 I2P 프로젝트 웹사이트(i2p.net) 및 관련 I2P 프로젝트 웹 자산에 적용됩니다.

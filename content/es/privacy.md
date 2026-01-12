@@ -69,13 +69,7 @@ Nuestro sitio web puede utilizar cookies para funciones básicas y analítica. E
 
 ## Cookies
 
-Tiene derecho a:
-
-- Unsubscribe from our mailing list at any time
-- Request information about what data we have collected
-- Request deletion of your email address from our mailing list
-
-Para ejercer estos derechos, póngase en contacto con nosotros en **press@i2p.net**
+Nuestro sitio web puede utilizar cookies únicamente para funcionalidad básica. Estas cookies no lo rastrean ni recopilan datos analíticos.
 
 ## Retención de datos
 
@@ -97,10 +91,10 @@ Si bien implementamos medidas de seguridad razonables para proteger la informaci
 
 Si tiene preguntas o inquietudes sobre esta Política de Privacidad, póngase en contacto con nosotros:
 
-- **Email**: press@i2p.net
-- **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
+- **Email**: admin@i2p.net
+- **Huella digital de la clave GPG**: `6BEA 3ED4 582D 7A49 C42E 6654 9DCF 89C0 714E EE89`
 
 
 **Última actualización**: octubre de 2025
 
-Esta política de privacidad se aplica al sitio web del proyecto I2P (i2p.net, geti2p.net) y a las propiedades web relacionadas del proyecto I2P.
+Esta política de privacidad se aplica al sitio web del proyecto I2P (i2p.net) y a las propiedades web relacionadas del proyecto I2P.

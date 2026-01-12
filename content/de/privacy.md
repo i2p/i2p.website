@@ -69,13 +69,7 @@ Unsere Website kann Cookies für grundlegende Funktionen und zu Analysezwecken v
 
 ## Cookies
 
-Sie haben das Recht:
-
-- Unsubscribe from our mailing list at any time
-- Request information about what data we have collected
-- Request deletion of your email address from our mailing list
-
-Um diese Rechte auszuüben, kontaktieren Sie uns bitte unter **press@i2p.net**
+Unsere Website verwendet möglicherweise Cookies nur für grundlegende Funktionen. Diese Cookies verfolgen Sie nicht und sammeln keine Analysedaten.
 
 ## Datenaufbewahrung
 
@@ -97,10 +91,10 @@ Obwohl wir angemessene Sicherheitsmaßnahmen umsetzen, um die über unsere Websi
 
 Wenn Sie Fragen oder Bedenken zu dieser Datenschutzerklärung haben, kontaktieren Sie uns bitte:
 
-- **Email**: press@i2p.net
-- **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
+- **E-Mail**: admin@i2p.net
+- **GPG-Schlüssel-Fingerabdruck**: `6BEA 3ED4 582D 7A49 C42E 6654 9DCF 89C0 714E EE89`
 
 
 **Zuletzt aktualisiert**: Oktober 2025
 
-Diese Datenschutzrichtlinie gilt für die Website des I2P-Projekts (i2p.net, geti2p.net) und die zugehörigen Webpräsenzen des I2P-Projekts.
+Diese Datenschutzrichtlinie gilt für die Website des I2P-Projekts (i2p.net) und die zugehörigen Webpräsenzen des I2P-Projekts.

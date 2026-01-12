@@ -69,13 +69,7 @@ lastUpdated: "2026-01"
 
 ## Cookie
 
-您有权：
-
-- Unsubscribe from our mailing list at any time
-- Request information about what data we have collected
-- Request deletion of your email address from our mailing list
-
-要行使这些权利，请通过 **press@i2p.net** 与我们联系
+我们的网站可能仅将Cookie用于基本功能。这些Cookie不会跟踪您或收集分析数据。
 
 ## 数据保留
 
@@ -97,8 +91,8 @@ lastUpdated: "2026-01"
 
 如果您对本隐私政策有任何问题或疑虑，请联系我们：
 
-- **Email**: press@i2p.net
-- **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
+- **电子邮件**：admin@i2p.net
+- **GPG密钥指纹**：`6BEA 3ED4 582D 7A49 C42E 6654 9DCF 89C0 714E EE89`
 
 
 **最后更新**: 2025年10月

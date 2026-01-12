@@ -70,13 +70,7 @@ Trang web của chúng tôi có thể sử dụng cookie cho chức năng cơ b�
 
 ## Cookie
 
-Bạn có quyền:
-
-- Unsubscribe from our mailing list at any time
-- Request information about what data we have collected
-- Request deletion of your email address from our mailing list
-
-Để thực hiện các quyền này, vui lòng liên hệ với chúng tôi tại **press@i2p.net**
+Trang web của chúng tôi có thể sử dụng cookie chỉ cho chức năng cơ bản. Các cookie này không theo dõi bạn hoặc thu thập dữ liệu phân tích.
 
 ## Lưu giữ dữ liệu
 
@@ -98,10 +92,10 @@ Mặc dù chúng tôi áp dụng các biện pháp bảo mật phù hợp để 
 
 Nếu bạn có câu hỏi hoặc quan ngại về Chính sách quyền riêng tư này, vui lòng liên hệ với chúng tôi:
 
-- **Email**: press@i2p.net
-- **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
+- **Email**: admin@i2p.net
+- **Dấu vân tay khóa GPG**: `6BEA 3ED4 582D 7A49 C42E 6654 9DCF 89C0 714E EE89`
 
 
 **Cập nhật lần cuối**: Tháng 10 năm 2025
 
-Chính sách quyền riêng tư này áp dụng cho trang web của dự án I2P (i2p.net, geti2p.net) và các thuộc tính web liên quan của dự án I2P.
+Chính sách quyền riêng tư này áp dụng cho trang web của dự án I2P (i2p.net) và các thuộc tính web liên quan của dự án I2P.

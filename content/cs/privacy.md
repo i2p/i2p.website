@@ -70,13 +70,7 @@ Naše webové stránky mohou používat soubory cookie pro základní funkčnost
 
 ## Soubory cookie
 
-Máte právo:
-
-- Unsubscribe from our mailing list at any time
-- Request information about what data we have collected
-- Request deletion of your email address from our mailing list
-
-Chcete-li tato práva uplatnit, kontaktujte nás prosím na **press@i2p.net**
+Naše webové stránky mohou používat cookies pouze pro základní funkčnost. Tyto cookies vás nesledují ani neshromažďují analytická data.
 
 ## Uchovávání údajů
 
@@ -98,10 +92,10 @@ Ačkoli zavádíme přiměřená bezpečnostní opatření k ochraně informací
 
 Máte-li dotazy nebo obavy ohledně těchto Zásad ochrany osobních údajů, prosím, kontaktujte nás:
 
-- **Email**: press@i2p.net
-- **GPG Key fingerprint**: `48C7 AAAB 0B9E 4FE3 9535 9EBE 4B05 8F7D 13F6 E886`
+- **Email**: admin@i2p.net
+- **Otisk klíče GPG**: `6BEA 3ED4 582D 7A49 C42E 6654 9DCF 89C0 714E EE89`
 
 
 **Naposledy aktualizováno**: říjen 2025
 
-Tato zásada ochrany osobních údajů se vztahuje na webové stránky projektu I2P (i2p.net, geti2p.net) a související webové služby projektu I2P.
+Tato zásada ochrany osobních údajů se vztahuje na webové stránky projektu I2P (i2p.net) a související webové služby projektu I2P.
