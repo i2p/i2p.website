@@ -136,7 +136,7 @@ defaultContentLanguageInSubdir = true
   keywords = "i2p, privacy, anonymity, dark net, encryption, security"
 
   # GitLab repository configuration for "Edit this page" links
-  gitlabRepo = "stormycloud-group/i-2-p-www-v-2"
+  gitlabRepo = "github.com/i2p/i2p.www"
   gitlabBranch = "main"
 
   # Docs feedback configuration (zero-JS Cloudflare Worker)
