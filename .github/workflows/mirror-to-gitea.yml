@@ -49,7 +49,7 @@ jobs:
 
       - name: Add Gitea remote
         run: |
-          git remote add gitea git@i2pgit.org:I2P_Developers/i2p.www.git
+          git remote add gitea git@i2pgit.org:stormycloud/i2p.www.git
           git fetch gitea
 
       - name: Check sync status and divergence

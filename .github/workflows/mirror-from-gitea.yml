@@ -26,7 +26,7 @@ jobs:
       - name: Fetch from Gitea
         run: |
           set -euo pipefail
-          git remote add gitea "https://i2pgit.org/I2P_Developers/i2p.www.git"
+          git remote add gitea "https://i2pgit.org/stormycloud/i2p.www.git"
           git fetch --prune gitea
 
       - name: Check if sync needed

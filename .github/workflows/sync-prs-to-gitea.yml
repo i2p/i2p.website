@@ -45,7 +45,7 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number || github.event.inputs.pr_number }}
           PR_HEAD_REF: ${{ github.event.pull_request.head.ref || github.ref_name }}
         run: |
-          git remote add gitea git@i2pgit.org:I2P_Developers/i2p.www.git
+          git remote add gitea git@i2pgit.org:stormycloud/i2p.www.git
 
           # Push the PR branch with a github-pr prefix
           GITEA_BRANCH="github-pr-${PR_NUMBER}"
@@ -54,7 +54,7 @@ jobs:
           echo "Pushed PR #${PR_NUMBER} to Gitea branch: ${GITEA_BRANCH}"
           echo ""
           echo "To create a Merge Request on Gitea, visit:"
-          echo "  https://i2pgit.org/I2P_Developers/i2p.www/compare/master...${GITEA_BRANCH}"
+          echo "  https://i2pgit.org/stormycloud/i2p.www/compare/master...${GITEA_BRANCH}"
 
       - name: Create Gitea Pull Request via API
         if: github.event.action == 'opened' && secrets.GITEA_API_TOKEN != ''
@@ -72,12 +72,12 @@ jobs:
 
           # Create PR via Gitea API
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
-            "https://i2pgit.org/api/v1/repos/I2P_Developers/i2p.www/pulls" \
+            "https://i2pgit.org/api/v1/repos/stormycloud/i2p.www/pulls" \
             -H "Authorization: token ${GITEA_TOKEN}" \
             -H "Content-Type: application/json" \
             -d "{
               \"title\": \"[GitHub PR #${PR_NUMBER}] ${PR_TITLE}\",
-              \"body\": \"Mirrored from GitHub PR #${PR_NUMBER} by @${PR_USER}\\n\\nOriginal: https://github.com/i2p/i2p.www/pull/${PR_NUMBER}\\n\\n---\\n\\n${ESCAPED_BODY}\",
+              \"body\": \"Mirrored from GitHub PR #${PR_NUMBER} by @${PR_USER}\\n\\nOriginal: https://github.com/StormyCloudInc/i2p.www/pull/${PR_NUMBER}\\n\\n---\\n\\n${ESCAPED_BODY}\",
               \"head\": \"${GITEA_BRANCH}\",
               \"base\": \"master\"
             }")
