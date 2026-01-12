@@ -82,7 +82,8 @@ What would you like to do?
   1) Update Site Banner
   2) Add Research Paper
   3) Add Media/Press Entry
-  4) Exit
+  4) Add Proposal
+  5) Exit
 ```
 
 ### Individual Tools
@@ -114,6 +115,21 @@ Adds a new media mention or press coverage:
 ```bash
 ./scripts/tools/add_media.sh
 ```
+
+#### Add Proposal
+
+Creates a new I2P proposal with interactive editing and preview:
+
+```bash
+./scripts/tools/add_proposal.sh
+```
+
+Features:
+- Interactive prompts for proposal metadata (number, title, author, status, etc.)
+- Live preview using Hugo server
+- Generates both `.md` (Hugo content) and `.txt` (RST source) files
+- Validates proposal number uniqueness
+- Supports all proposal statuses (Open, Closed, Rejected, Draft, etc.)
 
 ### Translation Scripts
 
