@@ -29,27 +29,12 @@ jobs:
           fetch-depth: 0
           ref: master
 
-      - name: Setup SSH for Gitea
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.GITEA_SSH_PRIVATE_KEY }}" > ~/.ssh/gitea_key
-          chmod 600 ~/.ssh/gitea_key
-
-          # Add Gitea host to known_hosts
-          ssh-keyscan -H i2pgit.org >> ~/.ssh/known_hosts 2>/dev/null
-
-          # Configure SSH to use the key for Gitea
-          cat >> ~/.ssh/config << EOF
-          Host i2pgit.org
-            HostName i2pgit.org
-            User git
-            IdentityFile ~/.ssh/gitea_key
-            StrictHostKeyChecking accept-new
-          EOF
-
       - name: Add Gitea remote
+        env:
+          GITEA_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
         run: |
-          git remote add gitea git@i2pgit.org:stormycloud/i2p.www.git
+          # Use HTTPS with token authentication
+          git remote add gitea "https://${GITEA_TOKEN}@i2pgit.org/stormycloud/i2p.www.git"
           git fetch gitea
 
       - name: Check sync status and divergence

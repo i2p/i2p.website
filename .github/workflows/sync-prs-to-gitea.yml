@@ -24,28 +24,14 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
-      - name: Setup SSH for Gitea
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.GITEA_SSH_PRIVATE_KEY }}" > ~/.ssh/gitea_key
-          chmod 600 ~/.ssh/gitea_key
-
-          ssh-keyscan -H i2pgit.org >> ~/.ssh/known_hosts 2>/dev/null
-
-          cat >> ~/.ssh/config << EOF
-          Host i2pgit.org
-            HostName i2pgit.org
-            User git
-            IdentityFile ~/.ssh/gitea_key
-            StrictHostKeyChecking accept-new
-          EOF
-
       - name: Push PR branch to Gitea
         env:
+          GITEA_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number || github.event.inputs.pr_number }}
           PR_HEAD_REF: ${{ github.event.pull_request.head.ref || github.ref_name }}
         run: |
-          git remote add gitea git@i2pgit.org:stormycloud/i2p.www.git
+          # Use HTTPS with token authentication
+          git remote add gitea "https://${GITEA_TOKEN}@i2pgit.org/stormycloud/i2p.www.git"
 
           # Push the PR branch with a github-pr prefix
           GITEA_BRANCH="github-pr-${PR_NUMBER}"
