@@ -17,6 +17,18 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ .Permalink }}">
 
+    <!-- Canonical URL -->
+    {{- $canon := .Permalink -}}
+    {{- $canon = replace $canon "http://" "https://" -}}
+    {{- $canon = replace $canon "http://geti2p.net" "https://i2p.net" -}}
+    {{- $canon = replace $canon "https://geti2p.net" "https://i2p.net" -}}
+    {{- $canon = replace $canon "http://www.i2p.net" "https://i2p.net" -}}
+    {{- $canon = replace $canon "https://www.i2p.net" "https://i2p.net" -}}
+    {{- if not (hasPrefix $canon "https://i2p.net") -}}
+    {{- $canon = printf "https://i2p.net%s" .RelPermalink -}}
+    {{- end -}}
+    <link rel="canonical" href="{{ $canon }}" />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
     <link rel="icon" type="image/png" href="/images/i2plogo.png" sizes="32x32">
