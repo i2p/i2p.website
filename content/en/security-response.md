@@ -10,7 +10,7 @@ layout: "security-response"
 
 Discovered a security issue? Report it to **security@i2p.net** (PGP encouraged)
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Download PGP Key</a> | GPG Key fingerprint: `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Download PGP Key</a> | GPG Key fingerprint: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ Discovered a security issue? Report it to **security@i2p.net** (PGP encouraged)
 Use PGP/GPG encryption for all security reports:
 
 ```
-Fingerprint: 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+Fingerprint: EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 Include in your report:

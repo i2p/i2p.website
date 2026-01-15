@@ -10,7 +10,7 @@ layout: "security-response"
 
 보안 문제를 발견하셨나요? **security@i2p.net**으로 보고하세요 (PGP 권장).
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">PGP 키 다운로드</a> | GPG 키 지문: `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">PGP 키 다운로드</a> | GPG 키 지문: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ layout: "security-response"
 모든 보안 보고에 대해 PGP/GPG 암호화를 사용하세요:
 
 ```
-지문: 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+지문: EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 보고서에 포함할 내용:

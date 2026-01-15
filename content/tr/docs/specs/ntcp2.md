@@ -702,6 +702,8 @@ Data: Cryptographically random bytes
 ```
 **Kurallar:** - Varsa, padding (dolgu) çerçevede son blok MUTLAKA olmalıdır - Sıfır uzunluklu padding'e izin verilir - Her çerçevede yalnızca bir padding bloğuna izin verilir - Yalnızca padding içeren çerçevelere izin verilir - Options bloğunda müzakere edilen parametrelere uyulmalıdır
 
+**Uygulama Notu:** Java I2P uygulamaları şu anda dolguyu maksimum 256 bayt ile sınırlamaktadır.
+
 **İletiler 1-2'de Dolgu:** - AEAD (ilişkili verilerle kimlik doğrulamalı şifreleme) çerçevesinin dışında (açık metin) - Sonraki iletinin hash zincirine dahil edilir (kimliği doğrulanmış) - Sonraki iletide AEAD başarısız olduğunda kurcalama saptanır
 
 **Mesaj 3+ ve Veri Aşamasında Dolgu:** - AEAD (kimliği doğrulamalı ve ilişkili verili şifreleme) çerçevesinin içinde (şifrelenmiş ve kimlik doğrulaması yapılmış) - Trafik şekillendirme ve boyut gizleme için kullanılır

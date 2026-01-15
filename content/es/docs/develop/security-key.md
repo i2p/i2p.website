@@ -17,7 +17,7 @@ Para comunicación segura, por favor utilice nuestra clave PGP a continuación.
 
 - **Correo electrónico**: security@i2p.net
 - **ID de clave**: `176E1941`
-- **Huella digital**: `40DF FE20 7D79 9BEC 3AE8  7DEA 5F98 BE91 176E 1941`
+- **Huella digital**: `EA27 06D6 14F5 28DB 764B  F47E CFCD C461 75E6 694A`
 - **Tipo de clave**: RSA 4096-bit
 - **Creada**: 2025-10-19
 - **Expira**: 2030-11-19

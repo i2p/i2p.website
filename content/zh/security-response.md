@@ -10,7 +10,7 @@ layout: "security-response"
 
 发现安全问题？请报告至 **security@i2p.net**（建议使用PGP加密）
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">下载PGP密钥</a> | GPG密钥指纹：`40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">下载PGP密钥</a> | GPG密钥指纹：`EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ layout: "security-response"
 对于所有的安全报告，请使用PGP/GPG加密：
 
 ```
-指纹：40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+指纹：EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 在您的报告中包括：

@@ -10,7 +10,7 @@ layout: "security-response"
 
 Haben Sie ein Sicherheitsproblem entdeckt? Melden Sie es an **security@i2p.net** (PGP empfohlen)
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">PGP-Schlüssel herunterladen</a> | GPG-Schlüsselfingerabdruck: `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">PGP-Schlüssel herunterladen</a> | GPG-Schlüsselfingerabdruck: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ Haben Sie ein Sicherheitsproblem entdeckt? Melden Sie es an **security@i2p.net**
 Für alle Sicherheitsberichte PGP/GPG-Verschlüsselung verwenden:
 
 ```
-Fingerabdruck: 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+Fingerabdruck: EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 In Ihrem Bericht enthalten:

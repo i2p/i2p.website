@@ -17,7 +17,7 @@ Para comunicação segura, use nossa chave PGP abaixo.
 
 - **Email**: security@i2p.net
 - **ID da Chave**: `176E1941`
-- **Impressão digital**: `40DF FE20 7D79 9BEC 3AE8  7DEA 5F98 BE91 176E 1941`
+- **Impressão digital**: `EA27 06D6 14F5 28DB 764B  F47E CFCD C461 75E6 694A`
 - **Tipo de Chave**: RSA 4096-bit
 - **Criada**: 2025-10-19
 - **Expira**: 2030-11-19

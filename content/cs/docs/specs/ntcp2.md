@@ -702,6 +702,8 @@ Data: Cryptographically random bytes
 ```
 **Pravidla:** - Výplň MUSÍ být posledním blokem v rámci, pokud je přítomna - Výplň nulové délky je povolena - Pouze jeden blok výplně na rámec - Rámce pouze s výplní jsou povoleny - Měly by být dodrženy vyjednané parametry z Options block (blok s volbami)
 
+**Poznámka k implementaci:** Implementace Java I2P v současné době omezuje padding na maximálně 256 bajtů.
+
 **Výplň ve zprávách 1-2:** - Mimo rámec AEAD (v otevřeném textu) - Zahrnuto do hashového řetězce následující zprávy (autentizováno) - Manipulace je zjištěna, když AEAD následující zprávy selže
 
 **Výplň ve zprávě 3+ a v datové fázi:** - Uvnitř rámce AEAD (šifrovaného a autentizovaného) - Používá se pro tvarování provozu a zastírání velikosti

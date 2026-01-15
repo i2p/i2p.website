@@ -702,6 +702,8 @@ Data: Cryptographically random bytes
 ```
 **Règles :** - Le bloc de bourrage DOIT être le dernier bloc de la trame s'il est présent - Un bourrage de longueur nulle est autorisé - Un seul bloc de bourrage par trame - Les trames composées uniquement de bourrage sont autorisées - Devrait respecter les paramètres négociés du Options block (bloc d'options)
 
+**Note d'implémentation :** Les implémentations Java I2P limitent actuellement le remplissage à 256 octets maximum.
+
 **Bourrage dans les messages 1-2:** - Hors de la trame AEAD (chiffrement authentifié avec données associées) (texte en clair) - Inclus dans la chaîne de hachage du message suivant (authentifié) - La falsification est détectée lorsque l'AEAD du message suivant échoue
 
 **Bourrage dans Message 3+ et la phase de données:** - Dans la trame AEAD (chiffrée et authentifiée) - Utilisé pour la mise en forme du trafic et l'obfuscation de la taille

@@ -17,7 +17,7 @@ type: docs
 
 - **Email**: security@i2p.net
 - **Key ID**: `176E1941`
-- **Fingerprint**: `40DF FE20 7D79 9BEC 3AE8  7DEA 5F98 BE91 176E 1941`
+- **Fingerprint**: `EA27 06D6 14F5 28DB 764B  F47E CFCD C461 75E6 694A`
 - **Key Type**: RSA 4096-bit
 - **बनाया गया**: 2025-10-19
 - **समाप्त होता है**: 2030-11-19

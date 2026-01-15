@@ -702,6 +702,8 @@ Data: Cryptographically random bytes
 ```
 **Regeln:** - Padding MUSS der letzte Block im Frame sein, falls vorhanden - Padding mit Länge Null ist zulässig - Pro Frame ist nur ein Padding-Block zulässig - Nur aus Padding bestehende Frames sind zulässig - Sollte den ausgehandelten Parametern aus dem Options-Block entsprechen
 
+**Implementierungshinweis:** Java-I2P-Implementierungen begrenzen das Padding derzeit auf maximal 256 Bytes.
+
 **Padding in den Nachrichten 1-2:** - Außerhalb des AEAD (Authentifizierte Verschlüsselung mit zusätzlichen Daten)-Rahmens (Klartext) - In die Hash-Kette der nächsten Nachricht einbezogen (authentifiziert) - Manipulation wird erkannt, wenn die AEAD der nächsten Nachricht fehlschlägt
 
 **Padding in Nachricht 3+ und Datenphase:** - Innerhalb des AEAD-Frames (verschlüsselt und authentifiziert) - Wird für Traffic Shaping und Größenverschleierung verwendet

@@ -10,7 +10,7 @@ layout: "security-response"
 
 Phát hiện một vấn đề bảo mật? Báo cáo nó tới **security@i2p.net** (khuyến khích sử dụng PGP)
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Tải xuống Khóa PGP</a> | Dấu vân tay khóa GPG: `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Tải xuống Khóa PGP</a> | Dấu vân tay khóa GPG: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ Phát hiện một vấn đề bảo mật? Báo cáo nó tới **security@i2p.n
 Sử dụng mã hóa PGP/GPG cho tất cả các báo cáo bảo mật:
 
 ```
-Dấu vân tay: 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+Dấu vân tay: EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 Bao gồm trong báo cáo của bạn:

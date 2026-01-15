@@ -17,7 +17,7 @@ Pro bezpečnou komunikaci prosím použijte náš PGP klíč níže.
 
 - **Email**: security@i2p.net
 - **ID klíče**: `176E1941`
-- **Otisk**: `40DF FE20 7D79 9BEC 3AE8  7DEA 5F98 BE91 176E 1941`
+- **Otisk**: `EA27 06D6 14F5 28DB 764B  F47E CFCD C461 75E6 694A`
 - **Typ klíče**: RSA 4096-bit
 - **Vytvořeno**: 19. října 2025
 - **Vyprší**: 19. listopadu 2030

@@ -10,7 +10,7 @@ layout: "security-response"
 
 कोई सुरक्षा मुद्दा खोजा है? इसे **security@i2p.net** पर रिपोर्ट करें (PGP प्रोत्साहित)
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">PGP कुंजी डाउनलोड करें</a> | GPG कुंजी फिंगरप्रिंट: `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">PGP कुंजी डाउनलोड करें</a> | GPG कुंजी फिंगरप्रिंट: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ layout: "security-response"
 सभी सुरक्षा रिपोर्टों के लिए PGP/GPG एन्क्रिप्शन का उपयोग करें:
 
 ```
-फिंगरप्रिंट: 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+फिंगरप्रिंट: EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 अपनी रिपोर्ट में शामिल करें:

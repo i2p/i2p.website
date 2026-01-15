@@ -10,7 +10,7 @@ layout: "guvenlik-yaniti"
 
 Bir güvenlik sorunu mu keşfettiniz? Bunu **security@i2p.net** adresine bildirin (PGP teşvik edilir)
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">PGP Anahtarını İndir</a> | GPG Anahtarı parmak izi: `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">PGP Anahtarını İndir</a> | GPG Anahtarı parmak izi: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ Bir güvenlik sorunu mu keşfettiniz? Bunu **security@i2p.net** adresine bildiri
 Tüm güvenlik bildirimleri için PGP/GPG şifrelemesi kullanın:
 
 ```
-Parmak izi: 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+Parmak izi: EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 Raporunuzda dahil edin:

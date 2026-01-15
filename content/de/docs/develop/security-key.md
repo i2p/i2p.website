@@ -17,7 +17,7 @@ Für sichere Kommunikation verwenden Sie bitte unseren PGP-Schlüssel unten.
 
 - **E-Mail**: security@i2p.net
 - **Schlüssel-ID**: `176E1941`
-- **Fingerabdruck**: `40DF FE20 7D79 9BEC 3AE8  7DEA 5F98 BE91 176E 1941`
+- **Fingerabdruck**: `EA27 06D6 14F5 28DB 764B  F47E CFCD C461 75E6 694A`
 - **Schlüsseltyp**: RSA 4096-Bit
 - **Erstellt**: 19.10.2025
 - **Läuft ab**: 19.11.2030

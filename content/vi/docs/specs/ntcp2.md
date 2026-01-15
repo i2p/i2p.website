@@ -702,6 +702,8 @@ Data: Cryptographically random bytes
 ```
 **Quy tắc:** - Phần đệm PHẢI là khối cuối cùng trong khung nếu có - Cho phép phần đệm độ dài bằng 0 - Chỉ một khối đệm cho mỗi khung - Cho phép các khung chỉ có phần đệm - Nên tuân theo các tham số đã thương lượng từ khối Options
 
+**Ghi chú triển khai:** Các triển khai Java I2P hiện tại giới hạn padding tối đa 256 byte.
+
 **Đệm trong Thông điệp 1-2:** - Nằm ngoài khung AEAD (mã hóa xác thực kèm dữ liệu) (bản rõ) - Được đưa vào chuỗi băm của thông điệp tiếp theo (được xác thực) - Phát hiện giả mạo khi AEAD của thông điệp tiếp theo thất bại
 
 **Đệm trong Thông điệp 3+ và Giai đoạn Dữ liệu:** - Bên trong khung AEAD (mã hóa xác thực đồng thời; được mã hóa và xác thực) - Dùng để định hình lưu lượng và che giấu kích thước

@@ -10,7 +10,7 @@ layout: "security-response"
 
 اكتشفت مشكلة أمنية؟ قم بالإبلاغ عنها على **security@i2p.net** (تشجيع استخدام PGP)
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">تحميل مفتاح PGP</a> | بصمة مفتاح GPG: `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">تحميل مفتاح PGP</a> | بصمة مفتاح GPG: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ layout: "security-response"
 استخدام تشفير PGP/GPG لجميع تقارير الأمان:
 
 ```
-بصمة الإصبع: 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+بصمة الإصبع: EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 يجب تضمين في تقريرك:

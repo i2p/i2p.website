@@ -702,6 +702,8 @@ Data: Cryptographically random bytes
 ```
 **Reglas:** - El relleno DEBE ser el último bloque en la trama si está presente - Se permite relleno de longitud cero - Solo se permite un bloque de relleno por trama - Se permiten tramas solo de relleno - Debería cumplir con los parámetros negociados del bloque Options
 
+**Nota de implementación:** Las implementaciones de Java I2P actualmente limitan el relleno a un máximo de 256 bytes.
+
 **Relleno en los mensajes 1-2:** - Fuera de la trama AEAD (texto en claro) - Incluido en la cadena de hashes del siguiente mensaje (autenticado) - Se detecta manipulación cuando falla el AEAD del siguiente mensaje
 
 **Relleno en el Mensaje 3+ y en la Fase de Datos:** - Dentro de la trama AEAD (cifrado autenticado con datos asociados; cifrada y autenticada) - Se utiliza para el conformado del tráfico y la ofuscación del tamaño

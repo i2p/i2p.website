@@ -19,7 +19,7 @@ Please do not use these email addresses for support requests. For contact specif
   <a href="/keys/i2p-press-public.asc" download class="pgp-key-btn">Download PGP Key</a>  GPG Key fingerprint: `1EC0 62EF 8AF9 38A9 D0C9  BB55 B5D4 935D 59F0 6F69`
 
 - **security at i2p.net** - Vulnerability disclosure<br>
-  <a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Download PGP Key</a>  GPG Key fingerprint: `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+  <a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Download PGP Key</a>  GPG Key fingerprint: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 - **abuse at i2p.net** - Abuse reports
 

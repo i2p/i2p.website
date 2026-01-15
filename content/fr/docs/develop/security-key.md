@@ -17,7 +17,7 @@ Pour une communication sécurisée, veuillez utiliser notre clé PGP ci-dessous.
 
 - **Email** : security@i2p.net
 - **ID de clé** : `176E1941`
-- **Empreinte** : `40DF FE20 7D79 9BEC 3AE8  7DEA 5F98 BE91 176E 1941`
+- **Empreinte** : `EA27 06D6 14F5 28DB 764B  F47E CFCD C461 75E6 694A`
 - **Type de clé** : RSA 4096-bit
 - **Créée** : 2025-10-19
 - **Expire** : 2030-11-19

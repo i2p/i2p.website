@@ -702,6 +702,8 @@ Data: Cryptographically random bytes
 ```
 **Regras:** - O padding (preenchimento) DEVE ser o último bloco no quadro, se presente - Padding de comprimento zero é permitido - Apenas um bloco de padding por quadro - Quadros apenas de padding são permitidos - Deve respeitar os parâmetros negociados do bloco Options
 
+**Nota de implementação:** As implementações Java I2P atualmente limitam o preenchimento a no máximo 256 bytes.
+
 **Preenchimento nas mensagens 1-2:** - Fora do quadro AEAD (criptografia autenticada com dados associados) (texto em claro) - Incluído na cadeia de hash da próxima mensagem (autenticado) - Manipulação detectada quando o AEAD da próxima mensagem falha
 
 **Preenchimento em Message 3+ e Fase de Dados:** - Dentro do quadro AEAD (criptografado e autenticado) - Usado para modelagem de tráfego e ofuscação do tamanho

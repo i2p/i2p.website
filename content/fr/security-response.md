@@ -10,7 +10,7 @@ layout: "security-response"
 
 Avez-vous découvert un problème de sécurité ? Signalez-le à **security@i2p.net** (PGP encouragé)
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Télécharger la clé PGP</a> | Empreinte numérique de la clé GPG : `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Télécharger la clé PGP</a> | Empreinte numérique de la clé GPG : `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ Avez-vous découvert un problème de sécurité ? Signalez-le à **security@i2p.
 Utilisez le chiffrement PGP/GPG pour tous les rapports de sécurité :
 
 ```
-Empreinte numérique : 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+Empreinte numérique : EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 Incluez dans votre rapport :  

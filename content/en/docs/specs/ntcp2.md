@@ -810,6 +810,8 @@ Data: Cryptographically random bytes
 - Padding-only frames are allowed
 - Should adhere to negotiated parameters from Options block
 
+**Implementation Note:** Java I2P implementations currently limit padding to 256 bytes maximum.
+
 **Padding in Messages 1-2:**
 - Outside AEAD frame (cleartext)
 - Included in next message's hash chain (authenticated)

@@ -17,7 +17,7 @@ Güvenli iletişim için lütfen aşağıdaki PGP anahtarımızı kullanın.
 
 - **E-posta**: security@i2p.net
 - **Anahtar Kimliği**: `176E1941`
-- **Parmak İzi**: `40DF FE20 7D79 9BEC 3AE8  7DEA 5F98 BE91 176E 1941`
+- **Parmak İzi**: `EA27 06D6 14F5 28DB 764B  F47E CFCD C461 75E6 694A`
 - **Anahtar Türü**: RSA 4096-bit
 - **Oluşturulma**: 2025-10-19
 - **Son Kullanma**: 2030-11-19

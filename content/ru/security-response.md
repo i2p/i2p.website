@@ -10,7 +10,7 @@ layout: "security-response"
 
 Обнаружили проблему безопасности? Сообщите об этом на **security@i2p.net** (рекомендуется использование PGP)
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Скачать PGP ключ</a> | Отпечаток GPG ключа: `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Скачать PGP ключ</a> | Отпечаток GPG ключа: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ layout: "security-response"
 Используйте шифрование PGP/GPG для всех отчетов по безопасности:
 
 ```
-Отпечаток: 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+Отпечаток: EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 Включите в ваш отчет:

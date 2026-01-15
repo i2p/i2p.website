@@ -10,7 +10,7 @@ layout: "security-response"
 
 ¿Descubriste un problema de seguridad? Repórtalo a **security@i2p.net** (se recomienda PGP)
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Descargar clave PGP</a> | Huella digital de la clave GPG: `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Descargar clave PGP</a> | Huella digital de la clave GPG: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ layout: "security-response"
 Utiliza cifrado PGP/GPG para todos los informes de seguridad:
 
 ```
-Huella digital: 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+Huella digital: EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 Incluye en tu informe:

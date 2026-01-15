@@ -10,7 +10,7 @@ layout: "security-response"
 
 Descobriu um problema de segurança? Relate para **security@i2p.net** (PGP recomendado)
 
-<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Baixar Chave PGP</a> | Impressão digital da chave GPG: `40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941`
+<a href="/keys/i2p-security-public.asc" download class="pgp-key-btn">Baixar Chave PGP</a> | Impressão digital da chave GPG: `EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A`
 
 <div id="guidelines"></div>
 
@@ -58,7 +58,7 @@ Descobriu um problema de segurança? Relate para **security@i2p.net** (PGP recom
 Use criptografia PGP/GPG para todos os relatórios de segurança:
 
 ```
-Impressão digital: 40DF FE20 7D79 9BEC 3AE8 7DEA 5F98 BE91 176E 1941
+Impressão digital: EA27 06D6 14F5 28DB 764B F47E CFCD C461 75E6 694A
 ```
 
 Inclua no seu relatório:
