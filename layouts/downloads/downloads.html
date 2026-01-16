@@ -44,6 +44,9 @@
                             </svg>
                         </span>
                         {{ end }}
+                        {{ with .Site.Data.downloads.downloads.windows.sig }}
+                        <a href="{{ . }}" class="sig-link" title="GPG Signature - Key: {{ $.Site.Data.downloads.signing_key.fingerprint }}">Sig</a>
+                        {{ end }}
                     </div>
                 </div>
             </div>
@@ -81,6 +84,9 @@
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2"/>
                             </svg>
                         </span>
+                        {{ end }}
+                        {{ with .Site.Data.downloads.downloads.mac_linux.sig }}
+                        <a href="{{ . }}" class="sig-link" title="GPG Signature - Key: {{ $.Site.Data.downloads.signing_key.fingerprint }}">Sig</a>
                         {{ end }}
                     </div>
                 </div>
@@ -120,6 +126,9 @@
                             </svg>
                         </span>
                         {{ end }}
+                        {{ with .Site.Data.downloads.downloads.mac_linux.sig }}
+                        <a href="{{ . }}" class="sig-link" title="GPG Signature - Key: {{ $.Site.Data.downloads.signing_key.fingerprint }}">Sig</a>
+                        {{ end }}
                     </div>
                 </div>
             </div>
@@ -156,6 +165,9 @@
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2"/>
                             </svg>
                         </span>
+                        {{ end }}
+                        {{ with .Site.Data.downloads.downloads.android.sig }}
+                        <a href="{{ . }}" class="sig-link" title="GPG Signature - Key: {{ $.Site.Data.downloads.signing_key.fingerprint }}">Sig</a>
                         {{ end }}
                     </div>
                 </div>
@@ -194,6 +206,9 @@
                             </svg>
                         </span>
                         {{ end }}
+                        {{ with .Site.Data.downloads.downloads.windows.sig }}
+                        <a href="{{ . }}" class="sig-link" title="GPG Signature - Key: {{ $.Site.Data.downloads.signing_key.fingerprint }}">Sig</a>
+                        {{ end }}
                     </div>
                 </div>
             </div>
@@ -221,6 +236,9 @@
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2"/>
                             </svg>
                         </span>
+                        {{ end }}
+                        {{ with .Site.Data.downloads.downloads.windows_easy_installer.sig }}
+                        <a href="{{ . }}" class="sig-link" title="GPG Signature - Key: {{ $.Site.Data.downloads.signing_key.fingerprint }}">Sig</a>
                         {{ end }}
                     </div>
                 </div>
@@ -250,6 +268,9 @@
                             </svg>
                         </span>
                         {{ end }}
+                        {{ with .Site.Data.downloads.downloads.mac_linux.sig }}
+                        <a href="{{ . }}" class="sig-link" title="GPG Signature - Key: {{ $.Site.Data.downloads.signing_key.fingerprint }}">Sig</a>
+                        {{ end }}
                     </div>
                 </div>
             </div>
@@ -275,6 +296,9 @@
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2"/>
                             </svg>
                         </span>
+                        {{ end }}
+                        {{ with .Site.Data.downloads.downloads.android.sig }}
+                        <a href="{{ . }}" class="sig-link" title="GPG Signature - Key: {{ $.Site.Data.downloads.signing_key.fingerprint }}">Sig</a>
                         {{ end }}
                     </div>
                 </div>
@@ -332,6 +356,9 @@
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2"/>
                             </svg>
                         </span>
+                        {{ end }}
+                        {{ with .Site.Data.downloads.downloads.source.sig }}
+                        <a href="{{ . }}" class="sig-link" title="GPG Signature - Key: {{ $.Site.Data.downloads.signing_key.fingerprint }}">Sig</a>
                         {{ end }}
                     </div>
                 </div>

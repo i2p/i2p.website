@@ -1336,6 +1336,27 @@ html[data-ver="2.4"] .platform-card[data-platform="android"] {
     color: var(--color-primary);
 }
 
+.sig-link {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.sig-link:hover {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-primary);
+}
+
+/* Temporarily hide torrent download links */
+a[title="Torrent"],
+.alt-method[title="Torrent"],
+.mirror-link[title="Torrent"] {
+    display: none !important;
+}
+
 .checksum-badge {
     display: inline-flex;
     align-items: center;
