@@ -34,7 +34,7 @@ jobs:
           GITEA_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
         run: |
           # Use HTTPS with token authentication
-          git remote add gitea "https://${GITEA_TOKEN}@i2pgit.org/stormycloud/i2p.www.git"
+          git remote add gitea "https://${GITEA_TOKEN}@i2pgit.org/I2P_Developers/i2p.website.git"
           git fetch gitea
 
       - name: Check sync status and divergence
