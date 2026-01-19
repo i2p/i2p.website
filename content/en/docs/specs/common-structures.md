@@ -96,61 +96,61 @@ X25519 keys are supported in RouterIdentities as of release 0.9.48.
       <td style="border:1px solid var(--color-border); padding:0.6rem;">X25519</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.38</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Little-endian. See [ECIES](/docs/specs/ecies/) and [ECIES-ROUTERS](/docs/specs/ecies-routers/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Little-endian. See <a href="/docs/specs/ecies/">ECIES</a> and <a href="/docs/specs/ecies-routers/">ECIES-ROUTERS</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512_X25519</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for Leasesets only, not for RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768_X25519</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for Leasesets only, not for RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024_X25519</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for Leasesets only, not for RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">800</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for handshakes only, not for Leasesets, RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">1184</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for handshakes only, not for Leasesets, RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">1568</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for handshakes only, not for Leasesets, RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512_CT</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">768</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for handshakes only, not for Leasesets, RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768_CT</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">1088</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for handshakes only, not for Leasesets, RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024_CT</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">1568</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for handshakes only, not for Leasesets, RIs or Destinations</td>
     </tr>
   </tbody>
 </table>
@@ -210,43 +210,43 @@ Keys are big-endian unless otherwise noted.
       <td style="border:1px solid var(--color-border); padding:0.6rem;">X25519</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.38</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Little-endian. See [ECIES](/docs/specs/ecies/) and [ECIES-ROUTERS](/docs/specs/ecies-routers/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Little-endian. See <a href="/docs/specs/ecies/">ECIES</a> and <a href="/docs/specs/ecies-routers/">ECIES-ROUTERS</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512_X25519</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for Leasesets only, not for RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768_X25519</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for Leasesets only, not for RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024_X25519</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for Leasesets only, not for RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">1632</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for handshakes only, not for Leasesets, RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">2400</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for handshakes only, not for Leasesets, RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">3168</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for handshakes only, not for Leasesets, RIs or Destinations</td>
     </tr>
   </tbody>
 </table>
@@ -708,11 +708,11 @@ The key certificate payload contains:
   </thead>
   <tbody>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Signing Public Key Type ([Integer](#integer))</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Signing Public Key Type (<a href="#integer">Integer</a>)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Crypto Public Key Type ([Integer](#integer))</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Crypto Public Key Type (<a href="#integer">Integer</a>)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
     </tr>
     <tr>
@@ -811,14 +811,14 @@ The defined Signing Public Key types are:
       <td style="border:1px solid var(--color-border); padding:0.6rem;">9</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">64</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop134](/proposals/134-gost/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/134-gost/">Prop134</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (GOST)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">10</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">128</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop134](/proposals/134-gost/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/134-gost/">Prop134</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">RedDSA_SHA512_Ed25519</td>
@@ -832,63 +832,63 @@ The defined Signing Public Key types are:
       <td style="border:1px solid var(--color-border); padding:0.6rem;">12</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/169-pq-crypto/">Prop169</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">13</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/169-pq-crypto/">Prop169</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">14</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/169-pq-crypto/">Prop169</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">15</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/169-pq-crypto/">Prop169</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">16</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/169-pq-crypto/">Prop169</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">17</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/169-pq-crypto/">Prop169</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">18</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/169-pq-crypto/">Prop169</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">19</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/169-pq-crypto/">Prop169</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">20</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/169-pq-crypto/">Prop169</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved</td>
@@ -953,35 +953,35 @@ The defined Crypto Public Key types are:
       <td style="border:1px solid var(--color-border); padding:0.6rem;">4</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.38</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES](/docs/specs/ecies/) and proposal 156</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies/">ECIES</a> and proposal 156</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512_X25519</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">5</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for Leasesets only, not for RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768_X25519</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">6</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for Leasesets only, not for RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024_X25519</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">7</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See <a href="/docs/specs/ecies-hybrid/">ECIES-HYBRID</a>, for Leasesets only, not for RIs or Destinations</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (NONE)</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">255</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see <a href="/proposals/169-pq-crypto/">Prop169</a></td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved</td>
