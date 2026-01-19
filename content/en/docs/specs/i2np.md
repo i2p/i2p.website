@@ -2,7 +2,7 @@
 title: "I2P Network Protocol (I2NP)"
 description: "Router-to-router message formats, priorities, and size limits inside I2P."
 slug: "i2np"
-lastUpdated: "2025-10"
+lastUpdated: "2025-12"
 accurateFor: "2.10.0"
 ---
 ## Overview
@@ -259,6 +259,8 @@ msg_id :: Integer (4 bytes)
 
 expiration :: Date (8 bytes)
               Unix timestamp in milliseconds when this message expires
+              Implementations may reject messages with expirations too far in the future.
+              Recommended maximum expiration is 60s in the future.
 
 size :: Integer (2 bytes)
         Length of the payload (0 to ~61.2 KB for tunnel messages)

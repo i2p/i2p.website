@@ -3,7 +3,7 @@ title: "Post-Quantum Crypto Protocols"
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2025-06-12"
+lastupdated: "2026-01-16"
 status: "Open"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -79,6 +79,15 @@ See the Priorities and Rollout section below for details.
 | Hybrid SigTypes 15-17 | Preliminary |
 | Hybrid Dests | |
 
+
+### Status
+
+| Protocol / Feature | Status |
+|--------------------|--------|
+| Ratchet | Complete in Java I2P and i2pd |
+| NTCP2 | Beta, some details to be finalized, probably Q2 2026 |
+| SSU2 | Not started, probably Q3 2026 |
+| MLDSA SigTypes | Low priority, probably 2027+ |
 
 
 ## Design
@@ -1173,8 +1182,13 @@ Update the SSU2 specification [/docs/specs/ssu2/](/docs/specs/ssu2/) as follows:
 The long header is 32 bytes. It is used before a session is created, for Token Request, SessionRequest, SessionCreated, and Retry.
 It is also used for out-of-session Peer Test and Hole Punch messages.
 
-TODO: We could internally use the version field and use 3 for MLKEM512 and 4 for MLKEM768.
-Do we only do that for types 0 and 1 or for all 6 types?
+For PQ connections, set the ver (version) field to 3 or 4, to indicate MLKEM-512 or MLKEM-768.
+
+Discussion: Setting the version field to 3 or 4 may not be strictly necessary for all message types,
+but doing so aids earlier failure detection for unsupported post-quantum connections.
+Token Request and Retry (types 9 and 10) would be good to have versions 3/4 for consistency.
+Peer Test and Hole Punch messages (types 7 and 11) may not require this treatment
+but could follow the same pattern for uniformity.
 
 
 Before header encryption:
@@ -1197,8 +1211,7 @@ Before header encryption:
 
   type :: The message type = 0, 1, 7, 9, 10, or 11
 
-  ver :: The protocol version, equal to 2
-         TODO We could internally use the version field and use 3 for MLKEM512 and 4 for MLKEM768.
+  ver :: The protocol version = 2, 3, or 4 for non-PQ, MLKEM512, MLKEM768
 
   id :: 1 byte, the network ID (currently 2, except for test networks)
 
@@ -1431,6 +1444,14 @@ The protocol must be extended to support fragmentation.
 This will be done in a separate proposal TBD.
 Until that is completed, Relay and Peer Test will not be supported.
 
+TODO: Should the following remain version 2 (for compatibility with a non-PQ Bob),
+or should they be version 3/4 for PQ?
+
+- Relay Request
+- Relay Response
+- Relay Intro
+- Peer Test
+
 
 #### Issues
 
@@ -1591,7 +1612,7 @@ and 3 for PQ-only.
 
 ### Handshakes
 These are all hybrid protocols.
-Probably need to prefer MLKEM768; MLKEM512 is not secure enough.
+Implementations should prefer MLKEM768; MLKEM512 is not secure enough.
 
 NIST security categories [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf):
 
@@ -1782,37 +1803,41 @@ Implementation-dependent.
 
 
 ### NTCP2
-We can set the MSB of the ephemeral key
+
+We set the MSB of the ephemeral key
 (key[31] & 0x80) in the session request to indicate that this
 is a hybrid connection.
-This would allow us to run both standard NTCP and hybrid NTCP
+This allows us to run both standard NTCP and hybrid NTCP
 on the same port.
 Only one hybrid variant would be supported, and advertised in the router address.
 For example, v=2,3 or v=2,4 or v=2,5.
 
-If we don't do that, we need different transport address/port,
-and a new protocol name such as "NTCP1PQ1".
+#### Obfuscation
+
+As Alice, for a PQ connection, before obfuscation, set X[31] |= 0x80.
+This makes X an invalid X25519 public key.
+After obfuscation, AES-CBC will randomize it.
+The MSB of X will be random after obfuscation.
+
+As Bob, test if (X[31] & 0x80) != 0 after de-obfuscation.
+If so, it's a PQ connection.
+
+The minimum router version required for NTCP2-PQ is TBD.
 
 Note: Type codes are for internal use only. Routers will remain type 4,
 and support will be indicated in the router addresses.
-
-TODO
 
 
 ### SSU2
-MAY Need different transport address/port,
-but hopefully not, we have a header with flags for message 1.
-We could internally use the version field and use 3 for MLKEM512 and 4 for MLKEM768.
-Maybe just v=2,3,4 in the address would be sufficient.
-But we need identifiers for both new algorithms: 3a, 3b?
 
-Check and verify that SSU2 can handle the RI fragmented across
-multiple packets (6-8?). i2pd currently supports only 2 fragments max?
+We use the version field in the long header and set it to 3 for MLKEM512 and 4 for MLKEM768.
+v=2,3,4 in the address would be sufficient.
+
+Check and verify that SSU2 can handle MLDSA-signed RI fragmented across
+multiple packets (6-8?).
 
 Note: Type codes are for internal use only. Routers will remain type 4,
 and support will be indicated in the router addresses.
-
-TODO
 
 
 
