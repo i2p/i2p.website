@@ -7,11 +7,11 @@ accurateFor: "0.9.66"
 
 ## Overview
 
-**NOTE: OBSOLETE** - We now support three formats, in order of preference:
-
-- Maxmind geoip2 (GeoLite2-Country.mmdb) bundled with all installs except Debian packages and Android
-- Maxmind geoip1 (GeoIP.dat) in the Debian geoip-database package
-- The IPv4 Tor format (geoip.txt) and the custom IPv6 format (geoipv6.dat.gz) documented below, still supported but unused.
+> **NOTE: OBSOLETE** - We now support three formats, in order of preference:
+>
+> - Maxmind geoip2 (GeoLite2-Country.mmdb) bundled with all installs except Debian packages and Android
+> - Maxmind geoip1 (GeoIP.dat) in the Debian geoip-database package
+> - The IPv4 Tor format (geoip.txt) and the custom IPv6 format (geoipv6.dat.gz) documented below, still supported but unused.
 
 This page specifies the format of the various GeoIP files, used by the router to look up a country for an IP.
 
@@ -28,8 +28,8 @@ $ cut -d, -f5,6 < GeoIPCountryWhois.csv | sed 's/"//g' | sort | uniq > countries
 **Format specifications:**
 
 - Encoding is UTF-8
-- '#' in column 1 specifies a comment line
-- Entry lines are CountryCode,CountryName
+- `#` in column 1 specifies a comment line
+- Entry lines are `CountryCode,CountryName`
 - CountryCode is the ISO two-letter code, upper case
 - CountryName is in English
 
@@ -47,8 +47,8 @@ $ cut -d, -f5,6 < GeoIPCountryWhois.csv | sed 's/"//g' | sort | uniq > countries
 **Format specifications:**
 
 - Encoding is ASCII
-- '#' in column 1 specifies a comment line
-- Entry lines are FromIP,ToIP,CountryCode
+- `#` in column 1 specifies a comment line
+- Entry lines are `FromIP,ToIP,CountryCode`
 - FromIP and ToIP are unsigned integer representations of the 4-byte IP
 - CountryCode is the ISO two-letter code, upper case
 - Entry lines must be sorted by numeric FromIP
@@ -57,21 +57,21 @@ $ cut -d, -f5,6 < GeoIPCountryWhois.csv | sed 's/"//g' | sort | uniq > countries
 
 This is a compressed binary format designed for I2P. The file is gzipped. Ungzipped format:
 
-```
-  Bytes 0-9: Magic number "I2PGeoIPv6"
-  Bytes 10-11: Version (0x0001)
-  Bytes 12-15 Options (0x00000000) (future use)
-  Bytes 16-23: Creation date (ms since 1970-01-01)
-  Bytes 24-xx: Optional comment (UTF-8) terminated by zero byte
-  Bytes xx-255: null padding
-  Bytes 256-: 18 byte records:
-      8 byte from (/64)
-      8 byte to (/64)
-      2 byte ISO country code LOWER case (ASCII)
+```text
+Bytes 0-9: Magic number "I2PGeoIPv6"
+Bytes 10-11: Version (0x0001)
+Bytes 12-15 Options (0x00000000) (future use)
+Bytes 16-23: Creation date (ms since 1970-01-01)
+Bytes 24-xx: Optional comment (UTF-8) terminated by zero byte
+Bytes xx-255: null padding
+Bytes 256-: 18 byte records:
+    8 byte from (/64)
+    8 byte to (/64)
+    2 byte ISO country code LOWER case (ASCII)
 ```
 
-**NOTES:**
+**Notes:**
 
-- Data must be sorted (SIGNED long twos complement), no overlap. So the order is 80000000 ... FFFFFFFF 00000000 ... 7FFFFFFF.
-- The GeoIPv6.java class contains a program to generate this format from public sources such as the Maxmind GeoLite data.
+- Data must be sorted (SIGNED long twos complement), no overlap. So the order is `80000000 ... FFFFFFFF 00000000 ... 7FFFFFFF`.
+- The `GeoIPv6.java` class contains a program to generate this format from public sources such as the Maxmind GeoLite data.
 - IPv6 GeoIP lookup is supported as of release 0.9.8.
