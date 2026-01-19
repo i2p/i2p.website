@@ -2,124 +2,95 @@
 title: "Access Filter Format"
 description: "Syntax for tunnel access-control filter files"
 slug: "filter-format"
-lastUpdated: "2025-10"
-accurateFor: "2.10.0"
+lastUpdated: "2025-05"
+accurateFor: "0.9.66"
 type: docs
 ---
 
-Access filters let I2PTunnel server operators allow, deny, or throttle inbound connections based on the source Destination and recent connection rate. The filter is a plain text file of rules. The file is read top to bottom and the **first matching rule wins**.
+## Overview
 
-> Changes to the filter definition take effect **on tunnel restart**. Some builds may re-read file-based lists at runtime, but plan for a restart to guarantee changes are applied.
+The definition of a filter is a list of Strings. Blank lines and lines beginning with `#` are ignored. Changes in the filter definition take effect on restart of the tunnel.
 
-## File format
+Each line can represent one of these items:
 
-- One rule per line.  
-- Blank lines are ignored.  
-- `#` starts a comment that runs to end of line.  
-- Rules are evaluated in order; the first match is used.
+- Definition of a default threshold to apply to any remote destinations not listed in this file or any of the referenced files
+- Definition of a threshold to apply to a specific remote destination
+- Definition of a threshold to apply to remote destinations listed in a file
+- Definition of a threshold that if breached will cause the offending remote destination to be recorded in a specified file
+
+The order of the definitions matters. The first threshold for a given destination (whether explicit or listed in a file) overrides any future thresholds for the same destination, whether explicit or listed in a file.
 
 ## Thresholds
 
-A **threshold** defines how many connection attempts from a single Destination are permitted in a rolling time window.
+A threshold is defined by the number of connection attempts a remote destination is permitted to perform over a specified number of seconds before a "breach" occurs. For example the following threshold definition `15/5` means that the same remote destination is allowed to make 14 connection attempts over a 5 second period. If it makes one more attempt within the same period, the threshold will be breached.
 
-- **Numeric:** `N/S` means allow `N` connections per `S` seconds. Example: `15/5` permits up to 15 connections every 5 seconds. The `N+1` attempt within the window is rejected.  
-- **Keywords:** `allow` means no limit. `deny` means always reject.
+The threshold format can be one of the following:
 
-## Rule syntax
+- **Numeric definition** of number of connections over number of seconds - `15/5`, `30/60`, and so on. Note that if the number of connections is 1 (as for example in `1/1`) the first connection attempt will result in a breach.
+- The word **`allow`**. This threshold is never breached, i.e. infinite number of connection attempts is permitted.
+- The word **`deny`**. This threshold is always breached, i.e. no connection attempts will be allowed.
 
-Rules take the form:
+### Default Threshold
 
-```
-<threshold> <scope> <target>
-```
+The default threshold applies to any remote destinations that are not explicitly listed in the definition or in any of the referenced files. To set a default threshold use the keyword `default`. The following are examples of default thresholds:
 
-Where:
-
-- `<threshold>` is `N/S`, `allow`, or `deny`  
-- `<scope>` is one of `default`, `explicit`, `file`, or `record` (see below)  
-- `<target>` depends on scope
-
-### Default rule
-
-Applies when no other rule matches. Only **one** default rule is allowed. If omitted, unknown Destinations are permitted without restriction.
-
-```
+```text
 15/5 default
 allow default
 deny default
 ```
 
-### Explicit rule
+There can be only one definition of a default threshold per filter. If it's omitted, the filter will allow unknown connections by default.
 
-Targets a specific Destination by Base32 address (for example `example1.b32.i2p`) or full key.
+### Explicit Thresholds
 
-```
-15/5 explicit example1.b32.i2p
-deny explicit example2.b32.i2p
-allow explicit example3.b32.i2p
-```
+Explicit thresholds are applied to a remote destination listed in the definition itself. Examples:
 
-### File-based rule
-
-Targets **all** Destinations listed in an external file. Each line contains one Destination; `#` comments and blank lines are allowed.
-
-```
-15/5 file /var/i2p/throttled.txt
-deny file /var/i2p/blocked.txt
-allow file /var/i2p/trusted.txt
+```text
+15/5 explicit asdfasdfasdf.b32.i2p
+allow explicit fdsafdsafdsa.b32.i2p
+deny explicit qwerqwerqwer.b32.i2p
 ```
 
-> Operational note: Some implementations re-read file lists periodically. If you edit a list while the tunnel is running, expect a short delay before changes are noticed. Restart to apply immediately.
+### Bulk Thresholds
 
-### Recorder (progressive control)
+For convenience it is possible to maintain a list of destinations in a file and define a threshold for all of them in bulk. Examples:
 
-A **recorder** monitors connection attempts and writes Destinations that breach a threshold to a file. You can then reference that file in a `file` rule to apply throttles or blocks on future attempts.
-
+```text
+15/5 file /path/throttled_destinations.txt
+deny file /path/forbidden_destinations.txt
+allow file /path/unlimited_destinations.txt
 ```
-# Start permissive
+
+These files can be edited by hand while the tunnel is running. Changes to these files may take up to 10 seconds to take effect.
+
+## Recorders
+
+Recorders keep track of connection attempts made by a remote destination, and if that breaches a certain threshold, that destination gets recorded in a given file. Examples:
+
+```text
+30/5 record /path/aggressive.txt
+60/5 record /path/very_aggressive.txt
+```
+
+It is possible to use a recorder to record aggressive destinations to a given file, and then use that same file to throttle them. For example, the following snippet will define a filter that initially allows all connection attempts, but if any single destination exceeds 30 attempts per 5 seconds it gets throttled down to 15 attempts per 5 seconds:
+
+```text
+# by default there are no limits
 allow default
-
-# Record Destinations exceeding 30 connections in 5 seconds
-30/5 record /var/i2p/aggressive.txt
-
-# Apply throttling to recorded Destinations
-15/5 file /var/i2p/aggressive.txt
+# but record overly aggressive destinations
+30/5 record /path/throttled.txt
+# and any that end up in that file will get throttled in the future
+15/5 file /path/throttled.txt
 ```
 
-> Verify recorder support in your build before relying on it. Use `file` lists for guaranteed behavior.
+It is possible to use a recorder in one tunnel that writes to a file that throttles another tunnel. It is possible to reuse the same file with destinations in multiple tunnels. And of course, it is possible to edit these files by hand.
 
-## Evaluation order
+Here is an example filter definition that applies some throttling by default, no throttling for destinations in the file `friends.txt`, forbids any connections from destinations in the file `enemies.txt` and records any aggressive behavior in a file called `suspicious.txt`:
 
-Put specific rules first, then general ones. A common pattern:
-
-1. Explicit allows for trusted peers  
-2. Explicit denies for known abusers  
-3. File-based allow/deny lists  
-4. Recorders for progressive throttling  
-5. Default rule as a catch-all
-
-## Full example
-
+```text
+15/5 default
+allow file /path/friends.txt
+deny file /path/enemies.txt
+60/5 record /path/suspicious.txt
 ```
-# Moderate limits by default
-30/10 default
-
-# Always allow trusted peers
-allow explicit friend1.b32.i2p
-allow explicit friend2.b32.i2p
-
-# Block known bad actors
-deny file /var/i2p/blocklist.txt
-
-# Throttle aggressive sources
-15/5 file /var/i2p/throttle.txt
-
-# Automatically populate the throttle list
-60/5 record /var/i2p/throttle.txt
-```
-
-## Implementation notes
-
-- The access filter operates at the tunnel layer, before application handling, so abusive traffic can be rejected early.  
-- Place the filter file in your I2PTunnel configuration directory and restart the tunnel to apply changes.  
-- Share file-based lists across multiple tunnels if you want consistent policy across services.
