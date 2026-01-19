@@ -7,7 +7,7 @@ description: "Current development plans and historical milestones for the I2P ne
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** August 2025
+**Last Updated:** November 2025
 
 </div>
 
@@ -17,7 +17,7 @@ description: "Current development plans and historical milestones for the I2P ne
 
 ### Version 2.11.0
 <div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
-Target: Early December 2025
+Target: Late January / Early February 2026
 </div>
 
 - Hybrid PQ MLKEM Ratchet final, enable by default (prop. 169)

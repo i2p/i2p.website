@@ -2,7 +2,7 @@
 title: "NTCP2 Transport"
 description: "Noise-based TCP transport for router-to-router links"
 slug: "ntcp2"
-lastUpdated: "2025-10"
+lastUpdated: "2026-01"
 accurateFor: "0.9.66"
 type: docs
 ---
