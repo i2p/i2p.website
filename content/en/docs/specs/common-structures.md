@@ -1,677 +1,1181 @@
 ---
-title: "Common Structures"
-description: "Shared data types and serialization formats used across I2P specs"
-slug: "common-structures"
-lastUpdated: "2025-10"
-accurateFor: "2.10.0"
+title: "Common structures Specification"
+description: "Data types common to all I2P protocols"
+category: "Design"
+lastUpdated: "2025-06"
+accurateFor: "0.9.67"
 ---
 
-## Overview
+This document describes some data types common to all I2P protocols, like
+[I2NP](/docs/specs/i2np/), [I2CP](/docs/specs/i2cp/), [SSU](/docs/legacy/ssu/), etc.
 
-This document specifies the fundamental data structures used across all I2P protocols, including [I2NP](/docs/specs/i2np/), [I2CP](/docs/specs/i2cp/), [SSU2](/docs/specs/ssu2/), [NTCP2](/docs/specs/ntcp2/), and others. These common structures ensure interoperability between different I2P implementations and protocol layers.
 
-### Key Changes Since 0.9.58
-
-- ElGamal and DSA-SHA1 deprecated for Router Identities (use X25519 + EdDSA)
-- Post-quantum ML-KEM support in beta testing (opt-in as of 2.10.0)
-- Service record options standardized ([Proposal 167](/proposals/167-service-records/), implemented 0.9.66)
-- Compressible padding specifications finalized ([Proposal 161](/en/proposals/161-ri-dest-padding/), implemented 0.9.57)
-
----
-
-## Common Type Specifications
+## Common type specification
 
 ### Integer
 
-**Description:** Represents a non-negative integer in network byte order (big-endian).
+#### Description
+Represents a non-negative integer.
 
-**Contents:** 1 to 8 bytes representing an unsigned integer.
-
-**Usage:** Field lengths, counts, type identifiers, and numeric values throughout I2P protocols.
-
----
+#### Contents
+1 to 8 bytes in network byte order (big endian) representing an unsigned integer.
 
 ### Date
 
-**Description:** Timestamp representing milliseconds since Unix epoch (January 1, 1970 00:00:00 GMT).
+#### Description
+The number of milliseconds since midnight on January 1, 1970 in the GMT timezone.
+If the number is 0, the date is undefined or null.
 
-**Contents:** 8-byte Integer (unsigned long)
-
-**Special Values:**
-- `0` = Undefined or null date
-- Maximum value: `0xFFFFFFFFFFFFFFFF` (year 584,942,417,355)
-
-**Implementation Notes:**
-- Always UTC/GMT timezone
-- Millisecond precision required
-- Used for lease expiration, RouterInfo publication, and timestamp validation
-
----
+#### Contents
+8 byte [Integer](#integer)
 
 ### String
 
-**Description:** UTF-8 encoded string with length prefix.
+#### Description
+Represents a UTF-8 encoded string.
 
-**Format:**
-```
-+----+----+----+----+----+----+
-|len | UTF-8 encoded data...   |
-+----+----+----+----+----+----+
-
-len :: Integer (1 byte)
-       Value: 0-255 (string length in bytes, NOT characters)
-
-data :: UTF-8 encoded bytes
-        Length: 0-255 bytes
-```
-
-**Constraints:**
-- Maximum length: 255 bytes (not characters - multi-byte UTF-8 sequences count as multiple bytes)
-- Length may be zero (empty string)
-- Null terminator NOT included
-- String is NOT null-terminated
-
-**Important:** UTF-8 sequences can use multiple bytes per character. A string with 100 characters might exceed the 255-byte limit if using multi-byte characters.
-
----
-
-## Cryptographic Key Structures
+#### Contents
+1 or more bytes where the first byte is the number of bytes (not characters!)
+in the string and the remaining 0-255 bytes are the non-null terminated UTF-8
+encoded character array.  Length limit is 255 bytes (not characters). Length
+may be 0.
 
 ### PublicKey
 
-**Description:** Public key for asymmetric encryption. Key type and length are context-dependent or specified in a Key Certificate.
+#### Description
+This structure is used in ElGamal or other asymmetric encryption, representing only the exponent,
+not the primes, which are constant and defined in the cryptography
+specification [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy).
+Other encryption schemes are in the process of being defined, see the table below.
 
-**Default Type:** ElGamal (deprecated for Router Identities as of 0.9.58)
+#### Contents
+Key type and length are inferred from context or are specified in the Key
+Certificate of a Destination or RouterInfo, or the fields in a [LeaseSet2](#leaseset2) or other data structure.
+The default type is ElGamal.  As of release
+0.9.38, other types may be supported, depending on context.
+Keys are big-endian unless otherwise noted.
 
-**Supported Types:**
+X25519 keys are supported in Destinations and LeaseSet2 as of release 0.9.44.
+X25519 keys are supported in RouterIdentities as of release 0.9.48.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
     <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Length (bytes)</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Since</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Endianness</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Usage</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Status</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Length (bytes)</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Since</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Usage</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ElGamal</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">256</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Destinations only (unused field)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated for RIs</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">P256</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">64</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">See Proposal 145</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">P384</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">96</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">See Proposal 145</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">P521</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">132</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">See Proposal 145</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">X25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">4</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.38</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Little</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current standard</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Recommended</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM512_X25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">5</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mixed</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Hybrid PQ, LeaseSets only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM768_X25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">6</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mixed</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Hybrid PQ, LeaseSets only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM1024_X25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">7</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mixed</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Hybrid PQ, LeaseSets only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM512</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">800</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshakes only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM768</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1184</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshakes only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM1024</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1568</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshakes only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM512_CT</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">768</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshakes only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM768_CT</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1088</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshakes only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM1024_CT</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1568</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshakes only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ElGamal</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated for Router Identities as of 0.9.58; use for Destinations, as the public key field is unused there; discouraged for leasesets</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">P256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">64</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">TBD</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see proposal 145</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">P384</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">96</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">TBD</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see proposal 145</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">P521</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">132</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">TBD</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see proposal 145</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.38</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Little-endian. See [ECIES](/docs/specs/ecies/) and [ECIES-ROUTERS](/docs/specs/ecies-routers/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512_X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768_X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024_X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">800</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">1184</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">1568</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512_CT</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">768</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768_CT</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">1088</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024_CT</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">1568</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+    </tr>
   </tbody>
 </table>
 
-**Implementation Requirements:**
-
-1. **X25519 (Type 4) - Current Standard:**
-   - Used for ECIES-X25519-AEAD-Ratchet encryption
-   - Mandatory for Router Identities since 0.9.48
-   - Little-endian encoding (unlike other types)
-   - See [ECIES](/docs/specs/ecies/) and [ECIES-ROUTERS](/docs/specs/ecies/#routers)
-
-2. **ElGamal (Type 0) - Legacy:**
-   - Deprecated for Router Identities as of 0.9.58
-   - Still valid for Destinations (field unused since 0.6/2005)
-   - Uses constant primes defined in [ElGamal specification](/docs/specs/cryptography/)
-   - Support maintained for backward compatibility
-
-3. **MLKEM (Post-Quantum) - Beta:**
-   - Hybrid approach combines ML-KEM with X25519
-   - NOT enabled by default in 2.10.0
-   - Requires manual activation via Hidden Service Manager
-   - See [ECIES-HYBRID](/docs/specs/ecies/#hybrid) and [Proposal 169](/proposals/169-pq-crypto/)
-   - Type codes and specifications subject to change
-
-**JavaDoc:** [PublicKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html)
-
----
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html
 
 ### PrivateKey
 
-**Description:** Private key for asymmetric decryption, corresponding to PublicKey types.
+#### Description
+This structure is used in ElGamal or other asymmetric decryption, representing only the exponent,
+not the primes which are constant and defined in the cryptography specification
+[ELGAMAL](/docs/specs/cryptography/#elgamal-legacy).
+Other encryption schemes are in the process of being defined, see the table below.
 
-**Storage:** Type and length inferred from context or stored separately in data structures/key files.
-
-**Supported Types:**
+#### Contents
+Key type and length are inferred from context or are stored separately
+in a data structure or a private key file.
+The default type is ElGamal.  As of release
+0.9.38, other types may be supported, depending on context.
+Keys are big-endian unless otherwise noted.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
     <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Length (bytes)</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Since</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Endianness</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Usage</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Status</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Length (bytes)</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Since</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Usage</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ElGamal</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">256</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Destinations only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated for RIs</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">P256</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">See Proposal 145</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">P384</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">48</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">See Proposal 145</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">P521</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">66</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">See Proposal 145</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">X25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">4</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.38</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Little</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current standard</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Recommended</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM512_X25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">5</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mixed</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Hybrid PQ, LeaseSets only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM768_X25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">6</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mixed</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Hybrid PQ, LeaseSets only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM1024_X25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">7</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mixed</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Hybrid PQ, LeaseSets only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM512</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1632</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshakes only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM768</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2400</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshakes only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MLKEM1024</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3168</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshakes only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Beta</td></tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ElGamal</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated for Router Identities as of 0.9.58; use for Destinations, as the public key field is unused there; discouraged for leasesets</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">P256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">TBD</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see proposal 145</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">P384</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">48</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">TBD</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see proposal 145</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">P521</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">66</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">TBD</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see proposal 145</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.38</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Little-endian. See [ECIES](/docs/specs/ecies/) and [ECIES-ROUTERS](/docs/specs/ecies-routers/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512_X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768_X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024_X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">1632</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">2400</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">3168</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for handshakes only, not for Leasesets, RIs or Destinations</td>
+    </tr>
   </tbody>
 </table>
 
-**Security Notes:**
-- Private keys MUST be generated using cryptographically secure random number generators
-- X25519 private keys use scalar clamping as defined in RFC 7748
-- Key material MUST be securely erased from memory when no longer needed
-
-**JavaDoc:** [PrivateKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html)
-
----
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html
 
 ### SessionKey
 
-**Description:** Symmetric key for AES-256 encryption and decryption in I2P's tunnel and garlic encryption.
+#### Description
+This structure is used for symmetric AES256 encryption and decryption.
 
-**Contents:** 32 bytes (256 bits)
+#### Contents
+32 bytes
 
-**Usage:**
-- Tunnel layer encryption (AES-256/CBC with IV)
-- Garlic message encryption
-- End-to-end session encryption
-
-**Generation:** MUST use cryptographically secure random number generator.
-
-**JavaDoc:** [SessionKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html)
-
----
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html
 
 ### SigningPublicKey
 
-**Description:** Public key for signature verification. Type and length specified in Key Certificate of Destination or inferred from context.
+#### Description
+This structure is used for verifying signatures.
 
-**Default Type:** DSA_SHA1 (deprecated as of 0.9.58)
-
-**Supported Types:**
+#### Contents
+Key type and length are inferred from context or are specified in the Key
+Certificate of a Destination.  The default type is DSA_SHA1.  As of release
+0.9.12, other types may be supported, depending on context.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
     <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Length (bytes)</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Since</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Endianness</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Usage</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Status</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Length (bytes)</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Since</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Usage</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">DSA_SHA1</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">128</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Legacy only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_SHA256_P256</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">64</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Older Destinations</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_SHA384_P384</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">96</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Rare</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_SHA512_P521</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">132</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Rare</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RSA_SHA256_2048</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">4</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">256</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RSA_SHA384_3072</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">5</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">384</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RSA_SHA512_4096</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">6</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">512</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Recommended for SU3</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">EdDSA_SHA512_Ed25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">7</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.15</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Little</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current standard</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Recommended</strong></td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">EdDSA_SHA512_Ed25519ph</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">8</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.25</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Little</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Rare</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RedDSA_SHA512_Ed25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">11</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.39</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Little</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Encrypted leasesets only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Specialized</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved (GOST)</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">9</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">64</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Proposal 134</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved (GOST)</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">10</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">128</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Proposal 134</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved (MLDSA)</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">12-20</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TBD</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Proposal 169</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Experimental</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">65280-65534</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">Varies</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Varies</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Testing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Never production</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">65535</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Future expansion</td><td style="border:1px solid var(--color-border); padding:0.5rem;">-</td></tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">DSA_SHA1</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">128</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated for Router Identities as of 09.58; discouraged for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA256_P256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">64</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Older Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA384_P384</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">96</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Rarely used for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA512_P521</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">132</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Rarely used for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA256_2048</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA384_3072</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">384</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA512_4096</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">512</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">EdDSA_SHA512_Ed25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.15</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Recent Router Identities and Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">EdDSA_SHA512_Ed25519ph</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.25</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RedDSA_SHA512_Ed25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.39</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">For Destinations and encrypted leasesets only, never used for Router Identities</td>
+    </tr>
   </tbody>
 </table>
 
-**Implementation Requirements:**
+#### Notes
+* When a key is composed of two elements (for example points X,Y), it is
+  serialized by padding each element to length/2 with leading zeros if
+  necessary.
 
-1. **EdDSA_SHA512_Ed25519 (Type 7) - Current Standard:**
-   - Default for all new Router Identities and Destinations since late 2015
-   - Uses Ed25519 curve with SHA-512 hashing
-   - 32-byte public keys, 64-byte signatures
-   - Little-endian encoding (unlike most other types)
-   - High performance and security
+* All types are Big Endian, except for EdDSA and RedDSA, which are stored and transmitted
+  in a Little Endian format.
 
-2. **RedDSA_SHA512_Ed25519 (Type 11) - Specialized:**
-   - Used ONLY for encrypted leasesets and blinding
-   - Never used for Router Identities or standard Destinations
-   - Key differences from EdDSA:
-     - Private keys via modular reduction (not clamping)
-     - Signatures include 80 bytes of random data
-     - Uses public keys directly (not hashes of private keys)
-   - See [Red25519 specification](//docs/specs/red25519-signature-scheme/
-
-3. **DSA_SHA1 (Type 0) - Legacy:**
-   - Deprecated for Router Identities as of 0.9.58
-   - Discouraged for new Destinations
-   - 1024-bit DSA with SHA-1 (known weaknesses)
-   - Support maintained for compatibility only
-
-4. **Multi-element Keys:**
-   - When composed of two elements (e.g., ECDSA points X,Y)
-   - Each element padded to length/2 with leading zeros
-   - Example: 64-byte ECDSA key = 32-byte X + 32-byte Y
-
-**JavaDoc:** [SigningPublicKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html)
-
----
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html
 
 ### SigningPrivateKey
 
-**Description:** Private key for creating signatures, corresponding to SigningPublicKey types.
+#### Description
+This structure is used for creating signatures.
 
-**Storage:** Type and length specified at creation time.
-
-**Supported Types:**
+#### Contents
+Key type and length are specified when created.  The default type is DSA_SHA1.
+As of release 0.9.12, other types may be supported, depending on context.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
     <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Length (bytes)</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Since</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Endianness</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Usage</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Status</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Length (bytes)</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Since</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Usage</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">DSA_SHA1</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">20</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Legacy only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_SHA256_P256</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Older Destinations</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_SHA384_P384</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">48</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Rare</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_SHA512_P521</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">66</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Rare</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RSA_SHA256_2048</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">4</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">512</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RSA_SHA384_3072</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">5</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">768</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RSA_SHA512_4096</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">6</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1024</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Recommended for SU3</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">EdDSA_SHA512_Ed25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">7</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.15</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Little</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current standard</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Recommended</strong></td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">EdDSA_SHA512_Ed25519ph</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">8</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.25</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Little</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Rare</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RedDSA_SHA512_Ed25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">11</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.39</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Little</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Encrypted leasesets only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Specialized</td></tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">DSA_SHA1</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">20</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated for Router Identities as of 09.58; discouraged for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA256_P256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Older Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA384_P384</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">48</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Rarely used for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA512_P521</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">66</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Rarely used for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA256_2048</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">512</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA384_3072</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">768</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA512_4096</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">1024</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">EdDSA_SHA512_Ed25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.15</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Recent Router Identities and Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">EdDSA_SHA512_Ed25519ph</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.25</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RedDSA_SHA512_Ed25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.39</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">For Destinations and encrypted leasesets only, never used for Router Identities</td>
+    </tr>
   </tbody>
 </table>
 
-**Security Requirements:**
-- Generate using cryptographically secure random source
-- Protect with appropriate access controls
-- Securely erase from memory when finished
-- For EdDSA: 32-byte seed hashed with SHA-512, first 32 bytes become scalar (clamped)
-- For RedDSA: Different key generation (modular reduction instead of clamping)
+#### Notes
+* When a key is composed of two elements (for example points X,Y), it is
+  serialized by padding each element to length/2 with leading zeros if
+  necessary.
 
-**JavaDoc:** [SigningPrivateKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html)
+* All types are Big Endian, except for EdDSA and RedDSA, which are stored and transmitted
+  in a Little Endian format.
 
----
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html
 
 ### Signature
 
-**Description:** Cryptographic signature over data, using the signing algorithm corresponding to the SigningPrivateKey type.
+#### Description
+This structure represents the signature of some data.
 
-**Type and Length:** Inferred from the key type used for signing.
-
-**Supported Types:**
+#### Contents
+Signature type and length are inferred from the type of key used.  The default
+type is DSA_SHA1.  As of release 0.9.12, other types may be supported,
+depending on context.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
     <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Length (bytes)</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Since</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Endianness</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Usage</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Status</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Length (bytes)</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Since</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Usage</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">DSA_SHA1</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">40</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Legacy only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_SHA256_P256</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">64</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Older Destinations</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_SHA384_P384</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">96</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Rare</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_SHA512_P521</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">132</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Rare</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RSA_SHA256_2048</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">4</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">256</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RSA_SHA384_3072</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">5</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">384</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RSA_SHA512_4096</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">6</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">512</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Big</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current for SU3</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">EdDSA_SHA512_Ed25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">7</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">64</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.15</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Little</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current standard</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Recommended</strong></td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">EdDSA_SHA512_Ed25519ph</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">8</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">64</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.25</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Little</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline signing only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Rare</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RedDSA_SHA512_Ed25519</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">11</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">64</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0.9.39</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Little</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Encrypted leasesets only</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Specialized</td></tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">DSA_SHA1</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">40</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated for Router Identities as of 09.58; discouraged for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA256_P256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">64</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Older Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA384_P384</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">96</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Rarely used for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA512_P521</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">132</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Rarely used for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA256_2048</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA384_3072</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">384</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA512_4096</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">512</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">EdDSA_SHA512_Ed25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">64</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.15</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Recent Router Identities and Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">EdDSA_SHA512_Ed25519ph</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">64</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.25</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Offline signing, never used for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RedDSA_SHA512_Ed25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">64</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.39</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">For Destinations and encrypted leasesets only, never used for Router Identities</td>
+    </tr>
   </tbody>
 </table>
 
-**Format Notes:**
-- Multi-element signatures (e.g., ECDSA R,S values) are padded to length/2 per element with leading zeros
-- EdDSA and RedDSA use little-endian encoding
-- All other types use big-endian encoding
+#### Notes
+* When a signature is composed of two elements (for example values R,S), it is
+  serialized by padding each element to length/2 with leading zeros if
+  necessary.
 
-**Verification:**
-- Use the corresponding SigningPublicKey
-- Follow the signature algorithm specifications for the key type
-- Check that signature length matches expected length for the key type
+* All types are Big Endian, except for EdDSA and RedDSA, which are stored and transmitted
+  in a Little Endian format.
 
-**JavaDoc:** [Signature](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html)
-
----
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html
 
 ### Hash
 
-**Description:** SHA-256 hash of data, used throughout I2P for integrity verification and identification.
+#### Description
+Represents the SHA256 of some data.
 
-**Contents:** 32 bytes (256 bits)
+#### Contents
+32 bytes
 
-**Usage:**
-- Router Identity hashes (network database keys)
-- Destination hashes (network database keys)
-- Tunnel gateway identification in Leases
-- Data integrity verification
-- Tunnel ID generation
-
-**Algorithm:** SHA-256 as defined in FIPS 180-4
-
-**JavaDoc:** [Hash](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html)
-
----
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html
 
 ### Session Tag
 
-**Description:** Random number used for session identification and tag-based encryption.
+Note: Session Tags for ECIES-X25519 destinations (ratchet) and ECIES-X25519 routers
+are 8 bytes. See [ECIES](/docs/specs/ecies/) and [ECIES-ROUTERS](/docs/specs/ecies-routers/).
 
-**Important:** Session Tag size varies by encryption type:
-- **ElGamal/AES+SessionTag:** 32 bytes (legacy)
-- **ECIES-X25519:** 8 bytes (current standard)
+#### Description
+A random number
 
-**Current Standard (ECIES):**
-```
-Contents: 8 bytes
-Usage: Ratchet-based encryption for Destinations and Routers
-```
+#### Contents
+32 bytes
 
-See [ECIES](/docs/specs/ecies/) and [ECIES-ROUTERS](/docs/specs/ecies/#routers) for detailed specifications.
-
-**Legacy (ElGamal/AES):**
-```
-Contents: 32 bytes
-Usage: Deprecated encryption scheme
-```
-
-**Generation:** MUST use cryptographically secure random number generator.
-
-**JavaDoc:** [SessionTag](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html)
-
----
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html
 
 ### TunnelId
 
-**Description:** Unique identifier for a router's position in a tunnel. Each hop in a tunnel has its own TunnelId.
+#### Description
+Defines an identifier that is unique to each router in a tunnel.  A Tunnel ID
+is generally greater than zero; do not use a value of zero except in special
+cases.
 
-**Format:**
-```
-Contents: 4-byte Integer (unsigned 32-bit)
-Range: Generally > 0 (zero reserved for special cases)
-```
+#### Contents
+4 byte [Integer](#integer)
 
-**Usage:**
-- Identifies incoming/outgoing tunnel connections at each router
-- Different TunnelId at each hop in the tunnel chain
-- Used in Lease structures to identify gateway tunnels
-
-**Special Values:**
-- `0` = Reserved for special protocol uses (avoid in normal operation)
-- TunnelIds are locally significant to each router
-
-**JavaDoc:** [TunnelId](http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html)
-
----
-
-## Certificate Specifications
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html
 
 ### Certificate
 
-**Description:** Container for receipts, proof-of-work, or cryptographic metadata used throughout I2P.
+#### Description
+A certificate is a container for various receipts or proof of works used
+throughout the I2P network.
 
-**Format:**
+#### Contents
+1 byte [Integer](#integer) specifying certificate type, followed by a 2 byte [Integer](#integer)
+specifying the size of the certificate payload, then that many bytes.
+
 ```
-+----+----+----+----+----+----+-//
++----+----+----+----+----+-/
 |type| length  | payload
-+----+----+----+----+----+----+-//
++----+----+----+----+----+-/
 
-type :: Integer (1 byte)
-        Values: 0-5 (see types below)
+type :: `Integer`
+        length -> 1 byte
 
-length :: Integer (2 bytes, big-endian)
-          Size of payload in bytes
+        case 0 -> NULL
+        case 1 -> HASHCASH
+        case 2 -> HIDDEN
+        case 3 -> SIGNED
+        case 4 -> MULTIPLE
+        case 5 -> KEY
+
+length :: `Integer`
+          length -> 2 bytes
 
 payload :: data
            length -> $length bytes
 ```
 
-**Total Size:** 3 bytes minimum (NULL certificate), up to 65538 bytes maximum
+#### Notes
+* For [Router Identities](#routeridentity), the Certificate is always NULL through version
+  0.9.15. As of 0.9.16, a Key Certificate is used to specify the
+  key types. As of 0.9.48, X25519 encryption public key types
+  are allowed. See below.
 
-### Certificate Types
+* For [Garlic Cloves](/docs/specs/i2np/#struct-garlicclove), the Certificate is always NULL, no others are currently
+  implemented.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Payload Length</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Total Size</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Status</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">NULL</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Default/empty certificate</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">HASHCASH</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Varies</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Varies</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Unused (was for proof-of-work)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">HIDDEN</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Unused (hidden routers don't advertise)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">SIGNED</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem;">40 or 72</td><td style="border:1px solid var(--color-border); padding:0.5rem;">43 or 75</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Unused (DSA signature ± destination hash)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MULTIPLE</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">4</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Varies</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Varies</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Unused (multiple certificates)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">KEY</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">5</td><td style="border:1px solid var(--color-border); padding:0.5rem;">4+</td><td style="border:1px solid var(--color-border); padding:0.5rem;">7+</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>Current</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Specifies key types (see below)</td></tr>
-  </tbody>
-</table>
+* For [Garlic Messages](/docs/specs/i2np/#msg-garlic), the Certificate is always NULL, no others are
+  currently implemented.
 
-### Key Certificate (Type 5)
+* For [Destinations](#destination), the Certificate may be non-NULL. As of 0.9.12, a Key
+  Certificate may be used to specify the signing public key type. See below.
 
-**Introduction:** Version 0.9.12 (December 2013)
+* Implementers are cautioned to prohibit excess data in Certificates.
+  The appropriate length for each certificate type should be enforced.
 
-**Purpose:** Specifies non-default key types and stores excess key data beyond the standard 384-byte KeysAndCert structure.
-
-**Payload Structure:**
-```
-+----+----+----+----+----+----+----+----+-//
-|SPKtype|CPKtype| Excess SPK data     |
-+----+----+----+----+----+----+----+----+-//
-              | Excess CPK data...    |
-+----+----+----+----+----+----+----+----+
-
-SPKtype :: Signing Public Key Type (2 bytes)
-           See SigningPublicKey table above
-
-CPKtype :: Crypto Public Key Type (2 bytes)
-           See PublicKey table above
-
-Excess SPK data :: Signing key bytes beyond 128 bytes
-                   Length: 0 to 65531 bytes
-
-Excess CPK data :: Crypto key bytes beyond 256 bytes
-                   Length: 0 to remaining space
-```
-
-**Critical Implementation Notes:**
-
-1. **Key Type Order:**
-   - **WARNING:** Signing key type comes BEFORE Crypto key type
-   - This is counterintuitive but maintained for compatibility
-   - Order: SPKtype, CPKtype (not CPKtype, SPKtype)
-
-2. **Key Data Layout in KeysAndCert:**
-   ```
-   [Crypto Public Key (partial/complete)]
-   [Padding (if total key lengths < 384)]
-   [Signing Public Key (partial/complete)]
-   [Certificate Header (3 bytes)]
-   [Key Certificate (4+ bytes)]
-   [Excess Signing Key Data]
-   [Excess Crypto Key Data]
-   ```
-
-3. **Calculating Excess Key Data:**
-   - If Crypto Key > 256 bytes: Excess = (Crypto Length - 256)
-   - If Signing Key > 128 bytes: Excess = (Signing Length - 128)
-   - Padding = max(0, 384 - Crypto Length - Signing Length)
-
-**Examples (ElGamal Crypto Key):**
+#### Certificate Types
+The following certificate types are defined:
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
     <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Signing Key Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Total SPK Length</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Padding</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Excess in Cert</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Total Structure Size</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type Code</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Payload Length</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Total Length</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Notes</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">DSA_SHA1</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">128</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">387 + 7 = 394</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_P256</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">64</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">64</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">387 + 7 = 394</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_P384</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">96</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">387 + 7 = 394</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">ECDSA_P521</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">132</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">4</td><td style="border:1px solid var(--color-border); padding:0.5rem;">387 + 11 = 398</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RSA_2048</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">256</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">128</td><td style="border:1px solid var(--color-border); padding:0.5rem;">387 + 135 = 522</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RSA_4096</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">512</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">384</td><td style="border:1px solid var(--color-border); padding:0.5rem;">387 + 391 = 778</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">EdDSA</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">32</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">96</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">387 + 7 = 394</td></tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Null</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">3</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">HashCash</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">1</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">varies</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">varies</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated, unused. Payload contains an ASCII colon-separated hashcash string.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Hidden</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">3</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated, unused. Hidden routers generally do not announce that they are hidden.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Signed</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">3</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">40 or 72</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">43 or 75</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated, unused. Payload contains a 40-byte DSA signature, optionally followed by the 32-byte Hash of the signing Destination.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Multiple</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">4</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">varies</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">varies</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated, unused. Payload contains multiple certificates.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Key</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">5</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">4+</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">7+</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Since 0.9.12. See below for details.</td>
+    </tr>
   </tbody>
 </table>
 
-**Router Identity Requirements:**
-- NULL certificate used until version 0.9.15
-- Key Certificate required for non-default key types since 0.9.16
-- X25519 encryption keys supported since 0.9.48
 
-**Destination Requirements:**
-- NULL certificate OR Key Certificate (as needed)
-- Key Certificate required for non-default signing key types since 0.9.12
-- Crypto public key field unused since 0.6 (2005) but must still be present
+#### Key Certificates
+Key certificates were introduced in release 0.9.12.  Prior to that release, all
+PublicKeys were 256-byte ElGamal keys, and all SigningPublicKeys were 128-byte
+DSA-SHA1 keys.  A key certificate provides a mechanism to indicate the type of
+the PublicKey and SigningPublicKey in the Destination or RouterIdentity, and to
+package any key data in excess of the standard lengths.
 
-**Important Warnings:**
+By maintaining exactly 384 bytes before the certificate, and putting any excess
+key data inside the certificate, we maintain compatibility for any software
+that parses Destinations and Router Identities.
 
-1. **NULL vs KEY Certificate:**
-   - A KEY certificate with types (0,0) specifying ElGamal+DSA_SHA1 is allowed but discouraged
-   - Always use NULL certificate for ElGamal+DSA_SHA1 (canonical representation)
-   - KEY certificate with (0,0) is 4 bytes longer and may cause compatibility issues
-   - Some implementations may not handle (0,0) KEY certificates correctly
+The key certificate payload contains:
 
-2. **Excess Data Validation:**
-   - Implementations MUST verify certificate length matches expected length for key types
-   - Reject certificates with excess data that doesn't correspond to key types
-   - Prohibit trailing garbage data after valid certificate structure
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Data</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Length</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Signing Public Key Type ([Integer](#integer))</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Crypto Public Key Type ([Integer](#integer))</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Excess Signing Public Key Data</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0+</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Excess Crypto Public Key Data</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0+</td>
+    </tr>
+  </tbody>
+</table>
 
-**JavaDoc:** [Certificate](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html)
+Warning: The key type order is the opposite of what you may expect;
+the Signing Public Key Type is first.
 
----
+
+The defined Signing Public Key types are:
+
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type Code</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Total Public Key Length</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Since</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">DSA_SHA1</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">128</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated for Router Identities as of 0.9.58; discouraged for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA256_P256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">1</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">64</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Older Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA384_P384</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">96</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Rarely if ever used for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA512_P521</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">3</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">132</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Rarely if ever used for Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA256_2048</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">4</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Offline only; never used in Key Certificates for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA384_3072</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">5</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">384</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated Offline only; never used in Key Certificates for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA512_4096</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">6</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">512</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Offline only; never used in Key Certificates for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">EdDSA_SHA512_Ed25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">7</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.15</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Recent Router Identities and Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">EdDSA_SHA512_Ed25519ph</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">8</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.25</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Offline only; never used in Key Certificates for Router Identities or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (GOST)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">9</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">64</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop134](/proposals/134-gost/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (GOST)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">10</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">128</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop134](/proposals/134-gost/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RedDSA_SHA512_Ed25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">11</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.39</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">For Destinations and encrypted leasesets only; never used for Router Identities</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">13</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">14</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">15</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">16</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">17</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">18</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">19</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (MLDSA)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">20</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">65280-65534</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved for experimental use</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">65535</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved for future expansion</td>
+    </tr>
+  </tbody>
+</table>
+
+The defined Crypto Public Key types are:
+
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type Code</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Total Public Key Length</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Since</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ElGamal</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Deprecated for Router Identities as of 0.9.58; use for Destinations, as the public key field is unused there</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">P256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">1</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">64</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see proposal 145</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">P384</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">96</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see proposal 145</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">P521</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">3</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">132</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see proposal 145</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">4</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.38</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES](/docs/specs/ecies/) and proposal 156</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM512_X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">5</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM768_X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">6</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MLKEM1024_X25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">7</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.67</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">See [ECIES-HYBRID](/docs/specs/ecies-hybrid/), for Leasesets only, not for RIs or Destinations</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved (NONE)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">255</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved, see [Prop169](/proposals/169-pq-crypto/)</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">65280-65534</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved for experimental use</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">reserved</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">65535</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reserved for future expansion</td>
+    </tr>
+  </tbody>
+</table>
+
+When a Key Certificate is not present, the preceeding 384 bytes in the
+Destination or RouterIdentity are defined as the 256-byte ElGamal PublicKey
+followed by the 128-byte DSA-SHA1 SigningPublicKey.  When a Key Certificate is
+present, the preceeding 384 bytes are redefined as follows:
+
+* Complete or first portion of Crypto Public Key
+
+* Random padding if the total lengths of the two keys are less than 384 bytes
+
+* Complete or first portion of Signing Public Key
+
+The Crypto Public Key is aligned at the start and the Signing Public Key is
+aligned at the end.  The padding (if any) is in the middle.  The lengths and
+boundaries of the initial key data, the padding, and the excess key data
+portions in the certificates are not explicitly specified, but are derived from
+the lengths of the specified key types.  If the total lengths of the Crypto and
+Signing Public Keys exceed 384 bytes, the remainder will be contained in the
+Key Certificate.  If the Crypto Public Key length is not 256 bytes, the method
+for determining the boundary between the two keys is to be specified in a
+future revision of this document.
+
+Example layouts using an ElGamal Crypto Public Key and the Signing Public Key
+type indicated:
+
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Signing Key Type</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Padding Length</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Excess Signing Key Data in Cert</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">DSA_SHA1</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA256_P256</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">64</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA384_P384</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">32</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA_SHA512_P521</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">4</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA256_2048</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">128</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA384_3072</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">256</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RSA_SHA512_4096</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">384</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">EdDSA_SHA512_Ed25519</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">96</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">EdDSA_SHA512_Ed25519ph</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">96</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+    </tr>
+  </tbody>
+</table>
+
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html
+
+#### Notes
+
+* Implementers are cautioned to prohibit excess data in Key Certificates.
+  The appropriate length for each certificate type should be enforced.
+
+* A KEY certificate with types 0,0 (ElGamal,DSA_SHA1) is allowed but discouraged.
+  It is not well-tested and may cause issues in some implementations.
+  Use a NULL certificate in the canonical representation of a
+  (ElGamal,DSA_SHA1) Destination or RouterIdentity, which will be 4 bytes shorter
+  than using a KEY certificate.
+
 
 ### Mapping
 
-**Description:** Key-value property collection used for configuration and metadata.
+#### Description
+A set of key/value mappings or properties
 
-**Format:**
+#### Contents
+A 2-byte size Integer followed by a series of String=String; pairs.
+
+WARNING: Most uses of Mapping are in signed structures, where the
+Mapping entries must be sorted by key, so the signature is immutable.
+Failure to sort by key will result in signature failures!
+
+
 ```
 +----+----+----+----+----+----+----+----+
 |  size   | key_string (len + data)| =  |
 +----+----+----+----+----+----+----+----+
 | val_string (len + data)     | ;  | ...
 +----+----+----+----+----+----+----+
+size :: `Integer`
+        length -> 2 bytes
+        Total number of bytes that follow
 
-size :: Integer (2 bytes, big-endian)
-        Total number of bytes that follow (not including size field)
-        Range: 0 to 65535
+key_string :: `String`
+              A string (one byte length followed by UTF-8 encoded characters)
 
-key_string :: String
-              Format: 1-byte length + UTF-8 data
-              Length: 0-255 bytes
+= :: A single byte containing '='
 
-= :: Single byte (0x3D, '=' character)
+val_string :: `String`
+              A string (one byte length followed by UTF-8 encoded characters)
 
-val_string :: String
-              Format: 1-byte length + UTF-8 data
-              Length: 0-255 bytes
-
-; :: Single byte (0x3B, ';' character)
-
-[Repeat key_string = val_string ; for additional entries]
+; :: A single byte containing ';'
 ```
 
-**Size Limits:**
-- Key length: 0-255 bytes (+ 1 length byte)
-- Value length: 0-255 bytes (+ 1 length byte)
-- Total mapping size: 0-65535 bytes (+ 2 size field bytes)
-- Maximum structure size: 65537 bytes
+#### Notes
+* The encoding isn't optimal - we either need the '=' and ';' characters, or
+  the string lengths, but not both
 
-**Critical Sorting Requirement:**
+* Some documentation says that the strings may not include '=' or ';' but this
+  encoding supports them
 
-When mappings appear in **signed structures** (RouterInfo, RouterAddress, Destination properties, I2CP SessionConfig), entries MUST be sorted by key to ensure signature invariance:
+* Strings are defined to be UTF-8 but in the current implementation, I2CP uses
+  UTF-8 but I2NP does not. For example, UTF-8 strings in a RouterInfo options
+  mapping in a I2NP Database Store Message will be corrupted.
 
-1. **Sort Method:** Lexicographic ordering using Unicode code point values (equivalent to Java String.compareTo())
-2. **Case Sensitivity:** Keys and values are generally case-sensitive (application-dependent)
-3. **Duplicate Keys:** NOT allowed in signed structures (will cause signature verification failure)
-4. **Character Encoding:** UTF-8 byte-level comparison
+* The encoding allows duplicate keys, however in any usage where the mapping is
+  signed, duplicates may cause a signature failure.
 
-**Why Sorting Matters:**
-- Signatures are computed over the byte representation
-- Different key orders produce different signatures
-- Unsigned mappings don't require sorting but should follow the same convention
+* Mappings contained in I2NP messages (e.g. in a RouterAddress or RouterInfo)
+  must be sorted by key so that the signature will be invariant. Duplicate keys
+  are not allowed.
 
-**Implementation Notes:**
+* Mappings contained in an [I2CP SessionConfig](/docs/specs/i2cp/#struct-sessionconfig) must be sorted by key so that
+  the signature will be invariant. Duplicate keys are not allowed.
 
-1. **Encoding Redundancy:**
-   - Both `=` and `;` delimiters AND string length bytes are present
-   - This is inefficient but maintained for compatibility
-   - Length bytes are authoritative; delimiters are required but redundant
+* The sort method is defined as in Java String.compareTo(), using the Unicode
+  value of the characters.
 
-2. **Character Support:**
-   - Despite documentation, `=` and `;` ARE supported within strings (length bytes handle this)
-   - UTF-8 encoding supports full Unicode
-   - **Warning:** I2CP uses UTF-8, but I2NP historically did not handle UTF-8 correctly
-   - Use ASCII for I2NP mappings when possible for maximum compatibility
+* While it is application-dependent, keys and values are generally
+  case-sensitive.
 
-3. **Special Contexts:**
-   - **RouterInfo/RouterAddress:** MUST be sorted, no duplicates
-   - **I2CP SessionConfig:** MUST be sorted, no duplicates  
-   - **Application mappings:** Sorting recommended but not always required
+* Key and value string length limits are 255 bytes (not characters) each, plus
+  the length byte. Length byte may be 0.
 
-**Example (RouterInfo options):**
-```
-Mapping size: 45 bytes
-Sorted entries:
-  caps=L       (capabilities)
-  netId=2      (network ID)
-  router.version=0.9.67
-```
+* Total length limit is 65535 bytes, plus the 2 byte size field, or 65537
+  total.
 
-**JavaDoc:** [DataHelper](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html)
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html
 
----
 
-## Common Structure Specification
+## Common structure specification
 
 ### KeysAndCert
 
-**Description:** Fundamental structure combining encryption key, signing key, and certificate. Used as both RouterIdentity and Destination.
+#### Description
+An encryption public key, a signing public key, and a certificate, used as
+either a RouterIdentity or a Destination.
 
-**Structure:**
+#### Contents
+A [PublicKey](#publickey) followed by a [SigningPublicKey](#signingpublickey) and then a [Certificate](#certificate).
+
 ```
 +----+----+----+----+----+----+----+----+
 | public_key                            |
@@ -694,211 +1198,151 @@ Sorted entries:
 |                                       |
 +----+----+----+----+----+----+----+----+
 | certificate                           |
-+----+----+----+-//
++----+----+----+-/
 
-public_key :: PublicKey (partial or full)
-              Default: 256 bytes (ElGamal)
-              Other sizes: As specified in Key Certificate
+public_key :: `PublicKey` (partial or full)
+              length -> 256 bytes or as specified in key certificate
 
-padding :: Random data
-           Length: 0 bytes or as needed
-           CONSTRAINT: public_key + padding + signing_key = 384 bytes
+padding :: random data
+           length -> 0 bytes or as specified in key certificate
+           public_key length + padding length + signing_key length == 384 bytes
 
-signing_key :: SigningPublicKey (partial or full)
-               Default: 128 bytes (DSA_SHA1)
-               Other sizes: As specified in Key Certificate
+signing__key :: `SigningPublicKey` (partial or full)
+                length -> 128 bytes or as specified in key certificate
 
-certificate :: Certificate
-               Minimum: 3 bytes (NULL certificate)
-               Common: 7 bytes (Key Certificate with default keys)
+certificate :: `Certificate`
+               length -> >= 3 bytes
 
-TOTAL LENGTH: 387+ bytes (never assume exactly 387!)
+total length: 387+ bytes
 ```
 
-**Key Alignment:**
-- **Crypto Public Key:** Aligned at start (byte 0)
-- **Padding:** In the middle (if needed)
-- **Signing Public Key:** Aligned at end (byte 256 to byte 383)
-- **Certificate:** Starts at byte 384
 
-**Size Calculation:**
-```
-Total size = 384 + 3 + key_certificate_length
+#### Padding Generation Guidelines
+These guidelines were proposed in Proposal 161 and implemented in API version 0.9.57.
+These guidelines are backward-compatible with all versions since 0.6 (2005).
+See Proposal 161 for background and further information.
 
-For NULL certificate (ElGamal + DSA_SHA1):
-  Total = 384 + 3 = 387 bytes
+For any currently-used combination of key types other than ElGamal + DSA-SHA1,
+padding will be present. Additionally, for destinations, the 256-byte
+public key field has been unused since version 0.6 (2005).
 
-For Key Certificate (EdDSA + X25519):
-  Total = 384 + 3 + 4 = 391 bytes
+Implementers should generate the random data for
+Destination public keys, and Destination and Router Identity padding,
+so that it is compressible in various I2P protocols while
+still being secure, and without having Base 64 representations appear to be corrupt or insecure.
+This provides most of the benefits of removing the padding fields without any
+disruptive protocol changes.
 
-For larger keys (e.g., RSA_4096):
-  Total = 384 + 3 + 4 + excess_key_data_length
-```
+Strictly speaking, the 32-byte signing public key alone (in both Destinations and Router Identities)
+and the 32-byte encryption public key (in Router Identities only) is a random number
+that provides all the entropy necessary for the SHA-256 hashes of these structures
+to be cryptographically strong and randomly distributed in the network database DHT.
 
-### Padding Generation Guidelines ([Proposal 161](/en/proposals/161-ri-dest-padding/))
+However, out of an abundance of caution, we recommend a minimum of 32 bytes of random data
+be used in the ElG public key field and padding. Additionally, if the fields were all zeros,
+Base 64 destinations would contain long runs of AAAA characters, which may cause alarm
+or confusion to users.
 
-**Implementation Version:** 0.9.57 (January 2023, release 2.1.0)
+Repeat the 32 bytes of random data as necessary so the full KeysAndCert structure is highly compressible
+in I2P protocols such as I2NP Database Store Message, Streaming SYN, SSU2 handshake, and repliable Datagrams.
 
-**Background:**
-- For non-ElGamal+DSA keys, padding is present in the 384-byte fixed structure
-- For Destinations, the 256-byte public key field has been unused since 0.6 (2005)
-- Padding should be generated to be compressible while remaining secure
+Examples:
 
-**Requirements:**
+* A Router Identity with X25519 encryption type and Ed25519 signature type
+  will contain 10 copies (320 bytes) of the random data, for a savings of approximately 288 bytes when compressed.
 
-1. **Minimum Random Data:**
-   - Use at least 32 bytes of cryptographically secure random data
-   - This provides sufficient entropy for security
+* A Destination with Ed25519 signature type
+  will contain 11 copies (352 bytes) of the random data, for a savings of approximately 320 bytes when compressed.
 
-2. **Compression Strategy:**
-   - Repeat the 32 bytes throughout the padding/public key field
-   - Protocols like I2NP Database Store, Streaming SYN, SSU2 handshake use compression
-   - Significant bandwidth savings without compromising security
+Implementations must, of course, store the full 387+ byte structure because the SHA-256 hash of the structure
+covers the full contents.
 
-3. **Examples:**
 
-**Router Identity (X25519 + EdDSA):**
-```
-Structure:
-- 32 bytes X25519 public key
-- 320 bytes padding (10 copies of 32-byte random data)
-- 32 bytes EdDSA public key
-- 7 bytes Key Certificate
 
-Compression savings: ~288 bytes when compressed
-```
+#### Notes
+* Do not assume that these are always 387 bytes! They are 387 bytes plus the
+  certificate length specified at bytes 385-386, which may be non-zero.
 
-**Destination (ElGamal-unused + EdDSA):**
-```
-Structure:
-- 256 bytes unused ElGamal field (11 copies of 32-byte random data, truncated to 256)
-- 96 bytes padding (3 copies of 32-byte random data)
-- 32 bytes EdDSA public key  
-- 7 bytes Key Certificate
+* As of release 0.9.12, if the certificate is a Key Certificate, the boundaries
+  of the key fields may vary. See the Key Certificate section above for
+  details.
 
-Compression savings: ~320 bytes when compressed
-```
+* The Crypto Public Key is aligned at the start and the Signing Public Key is
+  aligned at the end. The padding (if any) is in the middle.
 
-4. **Why This Works:**
-   - SHA-256 hash of the complete structure still includes all entropy
-   - Network database DHT distribution depends only on the hash
-   - Signing key (32 bytes EdDSA/X25519) provides 256 bits of entropy
-   - Additional 32 bytes of repeated random data = 512 bits total entropy
-   - More than sufficient for cryptographic strength
-
-5. **Implementation Notes:**
-   - MUST store and transmit the full 387+ byte structure
-   - SHA-256 hash computed over complete uncompressed structure
-   - Compression applied at protocol layer (I2NP, Streaming, SSU2)
-   - Backward compatible with all versions since 0.6 (2005)
-
-**JavaDoc:** [KeysAndCert](http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html)
-
----
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html
 
 ### RouterIdentity
 
-**Description:** Uniquely identifies a router in the I2P network. Identical structure to KeysAndCert.
+#### Description
+Defines the way to uniquely identify a particular router
 
-**Format:** See KeysAndCert structure above
+#### Contents
+Identical to KeysAndCert.
 
-**Current Requirements (as of 0.9.58):**
+See [KeysAndCert](#keysandcert) for guidelines on generating the random data for
+the padding field.
 
-1. **Mandatory Key Types:**
-   - **Encryption:** X25519 (type 4, 32 bytes)
-   - **Signing:** EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
-   - **Certificate:** Key Certificate (type 5)
+#### Notes
+* The certificate for a RouterIdentity was always NULL until release 0.9.12.
 
-2. **Deprecated Key Types:**
-   - ElGamal (type 0) deprecated for Router Identities as of 0.9.58
-   - DSA_SHA1 (type 0) deprecated for Router Identities as of 0.9.58
-   - These should NOT be used for new routers
+* Do not assume that these are always 387 bytes! They are 387 bytes plus the
+  certificate length specified at bytes 385-386, which may be non-zero.
 
-3. **Typical Size:**
-   - X25519 + EdDSA with Key Certificate = 391 bytes
-   - 32 bytes X25519 public key
-   - 320 bytes padding (compressible per [Proposal 161](/en/proposals/161-ri-dest-padding/))
-   - 32 bytes EdDSA public key
-   - 7 bytes certificate (3-byte header + 4-byte key types)
+* As of release 0.9.12, if the certificate is a Key Certificate, the boundaries
+  of the key fields may vary. See the Key Certificate section above for
+  details.
 
-**Historical Evolution:**
-- Pre-0.9.16: Always NULL certificate (ElGamal + DSA_SHA1)
-- 0.9.16-0.9.47: Key Certificate support added
-- 0.9.48+: X25519 encryption keys supported
-- 0.9.58+: ElGamal and DSA_SHA1 deprecated
+* The Crypto Public Key is aligned at the start and the Signing Public Key is
+  aligned at the end. The padding (if any) is in the middle.
 
-**Network Database Key:**
-- RouterInfo keyed by SHA-256 hash of complete RouterIdentity
-- Hash computed over full 391+ byte structure (including padding)
+* RouterIdentities with a key certificate and a ECIES_X25519 public key
+  are supported as of release 0.9.48.
+  Prior to that, all RouterIdentities were ElGamal.
 
-**See Also:**
-- Padding generation guidelines ([Proposal 161](/en/proposals/161-ri-dest-padding/))
-- Key Certificate specification above
-
-**JavaDoc:** [RouterIdentity](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html)
-
----
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html
 
 ### Destination
 
-**Description:** Endpoint identifier for secure message delivery. Structurally identical to KeysAndCert, but with different usage semantics.
+#### Description
+A Destination defines a particular endpoint to which messages can be directed
+for secure delivery.
 
-**Format:** See KeysAndCert structure above
+#### Contents
+Identical to [KeysAndCert](#keysandcert), except that the public key is never used,
+and may contain random data instead of a valid ElGamal Public Key.
 
-**Critical Difference from RouterIdentity:**
-- **Public key field is UNUSED and may contain random data**
-- This field has been unused since version 0.6 (2005)
-- Was originally for old I2CP-to-I2CP encryption (disabled)
-- Currently only used as IV for deprecated LeaseSet encryption
+See [KeysAndCert](#keysandcert) for guidelines on generating the random data for
+the public key and padding fields.
 
-**Current Recommendations:**
+#### Notes
+* The public key of the destination was used for the old i2cp-to-i2cp
+  encryption which was disabled in version 0.6 (2005), it is currently unused except
+  for the IV for LeaseSet encryption, which is deprecated. The public key in
+  the LeaseSet is used instead.
 
-1. **Signing Key:**
-   - **Recommended:** EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
-   - Alternative: ECDSA types for older compatibility
-   - Avoid: DSA_SHA1 (deprecated, discouraged)
+* Do not assume that these are always 387 bytes! They are 387 bytes plus the
+  certificate length specified at bytes 385-386, which may be non-zero.
 
-2. **Encryption Key:**
-   - Field is unused but must be present
-   - **Recommended:** Fill with random data per [Proposal 161](/en/proposals/161-ri-dest-padding/) (compressible)
-   - Size: Always 256 bytes (ElGamal slot, even though not used for ElGamal)
+* As of release 0.9.12, if the certificate is a Key Certificate, the boundaries
+  of the key fields may vary. See the Key Certificate section above for
+  details.
 
-3. **Certificate:**
-   - NULL certificate for ElGamal + DSA_SHA1 (legacy only)
-   - Key Certificate for all other signing key types
+* The Crypto Public Key is aligned at the start and the Signing Public Key is
+  aligned at the end. The padding (if any) is in the middle.
 
-**Typical Modern Destination:**
-```
-Structure:
-- 256 bytes unused field (random data, compressible)
-- 96 bytes padding (random data, compressible)
-- 32 bytes EdDSA signing public key
-- 7 bytes Key Certificate
-
-Total: 391 bytes
-Compression savings: ~320 bytes
-```
-
-**Actual Encryption Key:**
-- Encryption key for the Destination is in the **LeaseSet**, not the Destination
-- LeaseSet contains current encryption public key(s)
-- See LeaseSet2 specification for encryption key handling
-
-**Network Database Key:**
-- LeaseSet keyed by SHA-256 hash of complete Destination
-- Hash computed over full 387+ byte structure
-
-**JavaDoc:** [Destination](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html)
-
----
-
-## Network Database Structures
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html
 
 ### Lease
 
-**Description:** Authorizes a specific tunnel to receive messages for a Destination. Part of the original LeaseSet format (type 1).
+#### Description
+Defines the authorization for a particular tunnel to receive messages targeting
+a [Destination](#destination).
 
-**Format:**
+#### Contents
+SHA256 [Hash](#hash) of the [RouterIdentity](#routeridentity) of the gateway router, then the [TunnelId](#tunnelid),
+and finally an end [Date](#date).
+
 ```
 +----+----+----+----+----+----+----+----+
 | tunnel_gw                             |
@@ -914,31 +1358,38 @@ Compression savings: ~320 bytes
                     |
 +----+----+----+----+
 
-tunnel_gw :: Hash (32 bytes)
-             SHA-256 hash of the gateway RouterIdentity
+tunnel_gw :: Hash of the `RouterIdentity` of the tunnel gateway
+             length -> 32 bytes
 
-tunnel_id :: TunnelId (4 bytes)
-             Tunnel identifier at the gateway router
+tunnel_id :: `TunnelId`
+             length -> 4 bytes
 
-end_date :: Date (8 bytes)
-            Expiration timestamp in milliseconds since epoch
+end_date :: `Date`
+            length -> 8 bytes
 ```
 
-**Total Size:** 44 bytes
+#### Notes
+* Total size: 44 bytes
 
-**Usage:**
-- Used only in original LeaseSet (type 1, deprecated)
-- For LeaseSet2 and later variants, use Lease2 instead
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html
 
-**JavaDoc:** [Lease](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html)
+### LeaseSet
 
----
+#### Description
+Contains all of the currently authorized [Leases](#lease) for a particular [Destination](#destination),
+the [PublicKey](#publickey) to which garlic messages can be encrypted, and then the
+[SigningPublicKey](#signingpublickey) that can be used to revoke this particular version of the
+structure. The LeaseSet is one of the two structures stored in the network
+database (the other being [RouterInfo](#routerinfo)), and is keyed under the SHA256 of the
+contained [Destination](#destination).
 
-### LeaseSet (Type 1)
+#### Contents
+[Destination](#destination), followed by a [PublicKey](#publickey) for encryption, then a [SigningPublicKey](#signingpublickey)
+which can be used to revoke this version of the LeaseSet, then a 1 byte
+[Integer](#integer) specifying how many [Lease](#lease) structures are in the set, followed by the
+actual [Lease](#lease) structures and finally a [Signature](#signature) of the previous bytes signed
+by the [Destination](#destination)'s [SigningPrivateKey](#signingprivatekey).
 
-**Description:** Original LeaseSet format. Contains authorized tunnels and keys for a Destination. Stored in network database. **Status: Deprecated** (use LeaseSet2 instead).
-
-**Structure:**
 ```
 +----+----+----+----+----+----+----+----+
 | destination                           |
@@ -994,88 +1445,77 @@ end_date :: Date (8 bytes)
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-destination :: Destination
-               Length: 387+ bytes
+destination :: `Destination`
+               length -> >= 387+ bytes
 
-encryption_key :: PublicKey (256 bytes, ElGamal)
-                  Used for end-to-end ElGamal/AES+SessionTag encryption
-                  Generated anew at each router startup (not persistent)
+encryption_key :: `PublicKey`
+                  length -> 256 bytes
 
-signing_key :: SigningPublicKey (128+ bytes)
-               Same type as Destination signing key
-               Used for LeaseSet revocation (unimplemented)
-               Generated anew at each router startup (not persistent)
+signing_key :: `SigningPublicKey`
+               length -> 128 bytes or as specified in destination's key
+                         certificate
 
-num :: Integer (1 byte)
-       Number of Leases to follow
-       Range: 0-16
+num :: `Integer`
+       length -> 1 byte
+       Number of leases to follow
+       value: 0 <= num <= 16
 
-leases :: Array of Lease structures
-          Length: $num × 44 bytes
-          Each Lease is 44 bytes
+leases :: [`Lease`]
+          length -> $num*44 bytes
 
-signature :: Signature (40+ bytes)
-             Length determined by Destination signing key type
-             Signed by Destination's SigningPrivateKey
+signature :: `Signature`
+             length -> 40 bytes or as specified in destination's key
+                       certificate
 ```
 
-**Database Storage:**
-- **Database Type:** 1
-- **Key:** SHA-256 hash of Destination
-- **Value:** Complete LeaseSet structure
+#### Notes
+* The public key of the destination was used for the old I2CP-to-I2CP
+  encryption which was disabled in version 0.6, it is currently unused.
 
-**Important Notes:**
+* The encryption key is used for end-to-end ElGamal/AES+SessionTag encryption
+  [ELGAMAL-AES](/docs/legacy/elgamal-aes/). It is currently generated anew at every router startup, it is
+  not persistent.
 
-1. **Destination Public Key Unused:**
-   - The encryption public key field in the Destination is unused
-   - Encryption key in the LeaseSet is the actual encryption key
+* The signature may be verified using the signing public key of the
+  destination.
 
-2. **Temporary Keys:**
-   - `encryption_key` is temporary (regenerated at router startup)
-   - `signing_key` is temporary (regenerated at router startup)
-   - Neither key is persistent across restarts
+* A LeaseSet with zero Leases is allowed but is unused.
+  It was intended for LeaseSet revocation, which is unimplemented.
+  All LeaseSet2 variants require at least one Lease.
 
-3. **Revocation (Unimplemented):**
-   - `signing_key` was intended for LeaseSet revocation
-   - Revocation mechanism never implemented
-   - Zero-lease LeaseSet was intended for revocation but is unused
+* The signing_key is currently unused. It was intended for LeaseSet revocation,
+  which is unimplemented. It is currently generated anew at every router
+  startup, it is not persistent. The signing key type is always the same as the
+  destination's signing key type.
 
-4. **Versioning/Timestamp:**
-   - LeaseSet has no explicit `published` timestamp field
-   - Version is the earliest expiration of all leases
-   - New LeaseSet must have earlier lease expiration to be accepted
+* The earliest expiration of all the Leases is treated as the timestamp or
+  version of the LeaseSet. Routers will generally not accept a store of a
+  LeaseSet unless it is "newer" than the current one. Take care when publishing
+  a new LeaseSet where the oldest Lease is the same as the oldest Lease in the
+  previous LeaseSet. The publishing router should generally increment the
+  expiration of the oldest Lease by at least 1 ms in that case.
 
-5. **Lease Expiration Publishing:**
-   - Pre-0.9.7: All leases published with same expiration (earliest)
-   - 0.9.7+: Actual individual lease expirations published
-   - This is an implementation detail, not part of the specification
+* Prior to release 0.9.7, when included in a DatabaseStore Message sent by the
+  originating router, the router set all the published leases' expirations to
+  the same value, that of the earliest lease. As of release 0.9.7, the router
+  publishes the actual lease expiration for each lease. This is an
+  implementation detail and not part of the structures specification.
 
-6. **Zero Leases:**
-   - LeaseSet with zero leases is technically allowed
-   - Intended for revocation (unimplemented)
-   - Unused in practice
-   - LeaseSet2 variants require at least one Lease
-
-**Deprecation:** LeaseSet type 1 is deprecated. New implementations should use **LeaseSet2 (type 3)** which provides:
-- Published timestamp field (better versioning)
-- Multiple encryption key support
-- Offline signature capability
-- 4-byte lease expirations (vs 8-byte)
-- More flexible options
-
-**JavaDoc:** [LeaseSet](http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html)
-
----
-
-## LeaseSet Variants
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html
 
 ### Lease2
 
-**Description:** Improved lease format with 4-byte expiration. Used in LeaseSet2 (type 3) and MetaLeaseSet (type 7).
+#### Description
+Defines the authorization for a particular tunnel to receive messages targeting
+a [Destination](#destination).
+Same as [Lease](#lease) but with a 4-byte end_date.
+Used by [LeaseSet2](#leaseset2).
+Supported as of 0.9.38; see proposal 123 for more information.
 
-**Introduction:** Version 0.9.38 (see [Proposal 123](/proposals/123-new-netdb-entries/))
+#### Contents
+SHA256 [Hash](#hash) of the [RouterIdentity](#routeridentity) of the gateway router, then the [TunnelId](#tunnelid),
+and finally a 4 byte end date.
 
-**Format:**
 ```
 +----+----+----+----+----+----+----+----+
 | tunnel_gw                             |
@@ -1089,48 +1529,36 @@ signature :: Signature (40+ bytes)
 |     tunnel_id     |      end_date     |
 +----+----+----+----+----+----+----+----+
 
-tunnel_gw :: Hash (32 bytes)
-             SHA-256 hash of gateway RouterIdentity
+tunnel_gw :: Hash of the `RouterIdentity` of the tunnel gateway
+             length -> 32 bytes
 
-tunnel_id :: TunnelId (4 bytes)
-             Tunnel identifier at gateway
+tunnel_id :: `TunnelId`
+             length -> 4 bytes
 
-end_date :: 4-byte timestamp (seconds since epoch)
-            Rolls over in year 2106
+end_date :: 4 byte date
+            length -> 4 bytes
+            Seconds since the epoch, rolls over in 2106.
+
 ```
 
-**Total Size:** 40 bytes (4 bytes smaller than original Lease)
+#### Notes
+* Total size: 40 bytes
 
-**Comparison with Original Lease:**
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Feature</th>
-      <th style="border:1pxsolid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Lease (Type&nbsp;1)</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Lease2 (Type&nbsp;3+)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Size</td><td style="border:1px solid var(--color-border); padding:0.5rem;">44 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">40 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Expiration Size</td><td style="border:1px solid var(--color-border); padding:0.5rem;">8 bytes (ms)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">4 bytes (seconds)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Precision</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Millisecond</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Second</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Rollover</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Year&nbsp;292,277,026,596</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Year&nbsp;2106</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Used In</td><td style="border:1px solid var(--color-border); padding:0.5rem;">LeaseSet (deprecated)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">LeaseSet2, MetaLeaseSet</td></tr>
-  </tbody>
-</table>
 
-**JavaDoc:** [Lease2](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html)
-
----
 
 ### OfflineSignature
 
-**Description:** Optional structure for pre-signed transient keys, allowing LeaseSet publication without online access to the Destination's private signing key.
+#### Description
+This is an optional part of the [LeaseSet2Header](#leaseset2header).
+Also used in streaming and I2CP.
+Supported as of 0.9.38; see proposal 123 for more information.
 
-**Introduction:** Version 0.9.38 (see [Proposal 123](/proposals/123-new-netdb-entries/))
+#### Contents
 
-**Format:**
+Contains an expiration, a sigtype and transient [SigningPublicKey](#signingpublickey), and a [Signature](#signature).
+
 ```
 +----+----+----+----+----+----+----+----+
 |     expires       | sigtype |         |
@@ -1146,88 +1574,38 @@ end_date :: 4-byte timestamp (seconds since epoch)
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-expires :: 4-byte timestamp (seconds since epoch)
-           Expiration of transient key validity
-           Rolls over in year 2106
+expires :: 4 byte date
+           length -> 4 bytes
+           Seconds since the epoch, rolls over in 2106.
 
-sigtype :: 2-byte signature type
-           Type of transient_public_key (see SigningPublicKey types)
+sigtype :: 2 byte type of the transient_public_key
+           length -> 2 bytes
 
-transient_public_key :: SigningPublicKey
-                        Length determined by sigtype
-                        Temporary signing key for LeaseSet
+transient_public_key :: `SigningPublicKey`
+                        length -> As inferred from the sigtype
 
-signature :: Signature
-             Length determined by Destination's signing key type
-             Signature of (expires || sigtype || transient_public_key)
-             Signed by Destination's permanent SigningPrivateKey
+signature :: `Signature`
+             length -> As inferred from the sigtype of the signing public key
+                       in the `Destination` that preceded this offline signature.
+             Signature of expires timestamp, transient sig type, and public key,
+             by the destination public key.
+
 ```
 
-**Purpose:**
-- Enables offline LeaseSet generation
-- Protects Destination master key from online exposure
-- Transient key can be revoked by publishing new LeaseSet without offline signature
+#### Notes
+* This section can, and should, be generated offline.
 
-**Usage Scenarios:**
-
-1. **High-Security Destinations:**
-   - Master signing key stored offline (HSM, cold storage)
-   - Transient keys generated offline for limited time periods
-   - Compromised transient key doesn't expose master key
-
-2. **Encrypted LeaseSet Publishing:**
-   - EncryptedLeaseSet can include offline signature
-   - Blinded public key + offline signature provides additional security
-
-**Security Considerations:**
-
-1. **Expiration Management:**
-   - Set reasonable expiration (days to weeks, not years)
-   - Generate new transient keys before expiration
-   - Shorter expiration = better security, more maintenance
-
-2. **Key Generation:**
-   - Generate transient keys offline in secure environment
-   - Sign with master key offline
-   - Transfer only signed transient key + signature to online router
-
-3. **Revocation:**
-   - Publish new LeaseSet without offline signature to implicitly revoke
-   - Or publish new LeaseSet with different transient key
-
-**Signature Verification:**
-```
-Data to sign: expires (4 bytes) || sigtype (2 bytes) || transient_public_key
-
-Verification:
-1. Extract Destination from LeaseSet
-2. Get Destination's SigningPublicKey
-3. Verify signature over (expires || sigtype || transient_public_key)
-4. Check that current time < expires
-5. If valid, use transient_public_key to verify LeaseSet signature
-```
-
-**Implementation Notes:**
-- Total size varies based on sigtype and Destination signing key type
-- Minimum size: 4 + 2 + 32 (EdDSA key) + 64 (EdDSA signature) = 102 bytes
-- Maximum practical size: ~600 bytes (RSA-4096 transient key + RSA-4096 signature)
-
-**Compatible With:**
-- LeaseSet2 (type 3)
-- EncryptedLeaseSet (type 5)
-- MetaLeaseSet (type 7)
-
-**See Also:** [Proposal 123](/proposals/123-new-netdb-entries/) for detailed offline signature protocol.
-
----
 
 ### LeaseSet2Header
 
-**Description:** Common header structure for LeaseSet2 (type 3) and MetaLeaseSet (type 7).
+#### Description
+This is the common part of the [LeaseSet2](#leaseset2) and [MetaLeaseSet](#metaleaseset).
+Supported as of 0.9.38; see proposal 123 for more information.
 
-**Introduction:** Version 0.9.38 (see [Proposal 123](/proposals/123-new-netdb-entries/))
+#### Contents
 
-**Format:**
+Contains the [Destination](#destination), two timestamps, and an optional [OfflineSignature](#offlinesignature).
+
 ```
 +----+----+----+----+----+----+----+----+
 | destination                           |
@@ -1247,122 +1625,71 @@ Verification:
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-destination :: Destination
-               Length: 387+ bytes
+destination :: `Destination`
+               length -> >= 387+ bytes
 
-published :: 4-byte timestamp (seconds since epoch)
-             Publication time of this LeaseSet
-             Rolls over in year 2106
+published :: 4 byte date
+             length -> 4 bytes
+             Seconds since the epoch, rolls over in 2106.
 
-expires :: 2-byte offset (seconds)
-           Offset from published timestamp
-           Maximum: 65535 seconds (18.2 hours)
+expires :: 2 byte time
+           length -> 2 bytes
+           Offset from published timestamp in seconds, 18.2 hours max
 
-flags :: 2 bytes (bit flags)
-         See flag definitions below
+flags :: 2 bytes
+  Bit order: 15 14 ... 3 2 1 0
+  Bit 0: If 0, no offline keys; if 1, offline keys
+  Bit 1: If 0, a standard published leaseset.
+         If 1, an unpublished leaseset. Should not be flooded, published, or
+         sent in response to a query. If this leaseset expires, do not query the
+         netdb for a new one, unless bit 2 is set.
+  Bit 2: If 0, a standard published leaseset.
+         If 1, this unencrypted leaseset will be blinded and encrypted when published.
+         If this leaseset expires, query the blinded location in the netdb for a new one.
+         If this bit is set to 1, set bit 1 to 1 also.
+         As of release 0.9.42.
+  Bits 15-3: set to 0 for compatibility with future uses
 
-offline_signature :: OfflineSignature (optional)
-                     Present only if flags bit 0 is set
-                     Variable length
+offline_signature :: `OfflineSignature`
+                     length -> varies
+                     Optional, only present if bit 0 is set in the flags.
+
 ```
 
-**Minimum Total Size:** 395 bytes (without offline signature)
+#### Notes
+* Total size: 395 bytes minimum
 
-**Flag Definitions (bit order: 15 14 ... 3 2 1 0):**
+* Maximum actual expires time is about 660 (11 minutes) for
+  [LeaseSet2](#leaseset2) and 65535 (the full 18.2 hours) for [MetaLeaseSet](#metaleaseset).
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Bit</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Name</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Offline Keys</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0 = No offline keys, 1 = Offline signature present</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Unpublished</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0 = Standard published, 1 = Unpublished (client-side only)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Blinded</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0 = Standard, 1 = Will be blinded when published</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3-15</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Must be 0 for compatibility</td></tr>
-  </tbody>
-</table>
+* [LeaseSet](#leaseset) (1) did not have a 'published' field, so versioning required
+  a search for the earliest lease. LeaseSet2 adds a 'published' field
+  with a resolution of one second. Routers should rate-limit sending
+  new leasesets to floodfills to a rate much slower than once a second (per destination).
+  If this is not implemented, then the code must ensure that each new leaseset
+  has a 'published' time at least one second later than the one before, or else
+  floodills will not store or flood the new leaseset.
 
-**Flag Details:**
 
-**Bit 0 - Offline Keys:**
-- `0`: No offline signature, use Destination's signing key to verify LeaseSet signature
-- `1`: OfflineSignature structure follows flags field
+### LeaseSet2
 
-**Bit 1 - Unpublished:**
-- `0`: Standard published LeaseSet, should be flooded to floodfills
-- `1`: Unpublished LeaseSet (client-side only)
-  - Should NOT be flooded, published, or sent in response to queries
-  - If expired, do NOT query netdb for replacement (unless bit 2 also set)
-  - Used for local tunnels or testing
+#### Description
+Contained in a I2NP DatabaseStore message of type 3.
+Supported as of 0.9.38; see proposal 123 for more information.
 
-**Bit 2 - Blinded (since 0.9.42):**
-- `0`: Standard LeaseSet
-- `1`: This unencrypted LeaseSet will be blinded and encrypted when published
-  - Published version will be EncryptedLeaseSet (type 5)
-  - If expired, query the **blinded location** in netdb for replacement
-  - Must also set bit 1 to 1 (unpublished + blinded)
-  - Used for encrypted hidden services
+Contains all of the currently authorized [Lease2](#lease2) for a particular [Destination](#destination),
+and the [PublicKey](#publickey) to which garlic messages can be encrypted.
+A LeaseSet is one of the two structures stored in the network
+database (the other being [RouterInfo](#routerinfo)), and is keyed under the SHA256 of the
+contained [Destination](#destination).
 
-**Expiration Limits:**
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">LeaseSet Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Maximum Expires Value</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Maximum Actual Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">LeaseSet2 (type 3)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈660 seconds</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈11 minutes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MetaLeaseSet (type 7)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">65,535 seconds</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈18.2 hours</td></tr>
-  </tbody>
-</table>
+#### Contents
+[LeaseSet2Header](#leaseset2header), followed by a options, then one or more [PublicKey](#publickey) for encryption,
+[Integer](#integer) specifying how many [Lease2](#lease2) structures are in the set, followed by the
+actual [Lease2](#lease2) structures and finally a [Signature](#signature) of the previous bytes signed
+by the [Destination](#destination)'s [SigningPrivateKey](#signingprivatekey) or the transient key.
 
-**Published Timestamp Requirements:**
-
-LeaseSet (type 1) did not have a published field, requiring searching for earliest lease expiration for versioning. LeaseSet2 adds explicit `published` timestamp with 1-second resolution.
-
-**Critical Implementation Note:**
-- Routers MUST rate-limit LeaseSet publishing to **much slower than once per second** per Destination
-- If publishing faster, ensure each new LeaseSet has `published` time at least 1 second later
-- Floodfills will reject LeaseSet if `published` time is not newer than current version
-- Recommended minimum interval: 10-60 seconds between publications
-
-**Calculation Examples:**
-
-**LeaseSet2 (11-minute max):**
-```
-published = 1704067200 (2024-01-01 00:00:00 UTC)
-expires = 660 (seconds)
-Actual expiration = 1704067200 + 660 = 1704067860 (2024-01-01 00:11:00 UTC)
-```
-
-**MetaLeaseSet (18.2-hour max):**
-```
-published = 1704067200 (2024-01-01 00:00:00 UTC)
-expires = 65535 (seconds)
-Actual expiration = 1704067200 + 65535 = 1704132735 (2024-01-01 18:12:15 UTC)
-```
-
-**Versioning:**
-- LeaseSet is considered "newer" if `published` timestamp is greater
-- Floodfills store and flood only the newest version
-- Take care when oldest Lease matches previous LeaseSet's oldest Lease
-
----
-
-### LeaseSet2 (Type 3)
-
-**Description:** Modern LeaseSet format with multiple encryption keys, offline signatures, and service records. Current standard for I2P hidden services.
-
-**Introduction:** Version 0.9.38 (see [Proposal 123](/proposals/123-new-netdb-entries/))
-
-**Structure:**
 ```
 +----+----+----+----+----+----+----+----+
 |         ls2_header                    |
@@ -1409,205 +1736,154 @@ Actual expiration = 1704067200 + 65535 = 1704132735 (2024-01-01 18:12:15 UTC)
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-ls2header :: LeaseSet2Header
-             Length: 395+ bytes (varies with offline signature)
+ls2header :: `LeaseSet2Header`
+             length -> varies
 
-options :: Mapping
-           Key-value pairs for service records and metadata
-           Length: 2+ bytes (size field + data)
+options :: `Mapping`
+           length -> varies, 2 bytes minimum
 
-numk :: Integer (1 byte)
-        Number of encryption keys
-        Range: 1 to (implementation-defined maximum, typically 8)
+numk :: `Integer`
+        length -> 1 byte
+        Number of key types, key lengths, and `PublicKey`s to follow
+        value: 1 <= numk <= max TBD
 
-keytype :: 2-byte encryption type
-           See PublicKey type table
+keytype :: The encryption type of the `PublicKey` to follow.
+           length -> 2 bytes
 
-keylen :: 2-byte key length
-          Must match keytype specification
+keylen :: The length of the `PublicKey` to follow.
+          Must match the specified length of the encryption type.
+          length -> 2 bytes
 
-encryption_key :: PublicKey
-                  Length: keylen bytes
-                  Type: keytype
+encryption_key :: `PublicKey`
+                  length -> keylen bytes
 
-[Repeat keytype/keylen/encryption_key for each key]
+num :: `Integer`
+       length -> 1 byte
+       Number of `Lease2`s to follow
+       value: 0 <= num <= 16
 
-num :: Integer (1 byte)
-       Number of Lease2s
-       Range: 1-16 (at least one required)
+leases :: [`Lease2`]
+          length -> $num*40 bytes
 
-leases :: Array of Lease2 structures
-          Length: $num × 40 bytes
+signature :: `Signature`
+             length -> 40 bytes or as specified in destination's key
+                       certificate, or by the sigtype of the transient public key,
+                       if present in the header
 
-signature :: Signature
-             Length determined by signing key type
-             Signed over entire structure including database type prefix
 ```
 
-**Database Storage:**
-- **Database Type:** 3
-- **Key:** SHA-256 hash of Destination
-- **Value:** Complete LeaseSet2 structure
 
-**Signature Computation:**
-```
-Data to sign: database_type (1 byte, value=3) || complete LeaseSet2 data
+#### Encryption Key Preference
 
-Verification:
-1. Prepend database type byte (0x03) to LeaseSet2 data
-2. If offline signature present:
-   - Verify offline signature against Destination key
-   - Verify LeaseSet2 signature against transient key
-3. Else:
-   - Verify LeaseSet2 signature against Destination key
-```
+For published (server) leasesets, the encryption keys are in order of server preference,
+most-preferred first. If clients support more than one encryption type, it is recommended
+that they honor the server preference and select the first supported type as the
+encryption method to use to connect to the server.
+Generally, the newer (higher-numbered) key types are more secure or efficient and
+are preferred, so the keys should be listed in reverse order of key type.
 
-### Encryption Key Preference Order
+However, clients may, implementation-dependent, select based on their preference instead,
+or use some method to determine the "combined" preference. This may be useful as
+a configuration option, or for debugging.
 
-**For Published (Server) LeaseSet:**
-- Keys listed in order of server preference (most preferred first)
-- Clients supporting multiple types SHOULD honor server preference
-- Select first supported type from the list
-- Generally, higher-numbered (newer) key types are more secure/efficient
-- Recommended order: List keys in reverse order by type code (newest first)
+The key order in unpublished (client) leasesets effectively does not matter, because
+connections will usually not be attempted to unpublished clients.
+Unless this order is used to determine a combined preference, as described above.
 
-**Example Server Preference:**
-```
-numk = 2
-Key 0: X25519 (type 4, 32 bytes)         [Most preferred]
-Key 1: ElGamal (type 0, 256 bytes)       [Legacy compatibility]
-```
 
-**For Unpublished (Client) LeaseSet:**
-- Key order effectively doesn't matter (connections rarely attempted to clients)
-- Follow same convention for consistency
+#### Options
+As of API 0.9.66, a standard format for service record options
+is defined. See proposal 167 for details.
+Options other than service records, using a different format,
+may be defined in the future.
 
-**Client Key Selection:**
-- Honor server preference (select first supported type)
-- Or use implementation-defined preference
-- Or determine combined preference based on both capabilities
+LS2 options MUST be sorted by key, so the signature is invariant.
 
-### Options Mapping
+Service record options are defined as follows:
 
-**Requirements:**
-- Options MUST be sorted by key (lexicographic, UTF-8 byte order)
-- Sorting ensures signature invariance
-- Duplicate keys NOT allowed
+- serviceoption := optionkey optionvalue
+- optionkey := _service._proto
+- service := The symbolic name of the desired service. Must be lower case. Example: "smtp".
+  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
+  Standard identifiers from [REGISTRY](http://www.dns-sd.org/ServiceTypes.html) or Linux /etc/services must be used if defined there.
+- proto := The transport protocol of the desired service. Must be lower case, either "tcp" or "udp".
+  "tcp" means streaming and "udp" means repliable datagrams.
+  Protocol indicators for raw datagrams and datagram2 may be defined later.
+  Allowed chars are [a-z0-9-] and must not start or end with a '-'.
+- optionvalue := self | srvrecord[,srvrecord]*
+- self := "0" ttl port [appoptions]
+- srvrecord := "1" ttl priority weight port target [appoptions]
+- ttl := time to live, integer seconds. Positive integer. Example: "86400".
+  A minimum of 86400 (one day) is recommended, see Recommendations section below for details.
+- priority := The priority of the target host, lower value means more preferred. Non-negative integer. Example: "0"
+  Only useful if more than one record, but required even if just one record.
+- weight := A relative weight for records with the same priority. Higher value means more chance of getting picked. Non-negative integer. Example: "0"
+  Only useful if more than one record, but required even if just one record.
+- port := The I2CP port on which the service is to be found. Non-negative integer. Example: "25"
+  Port 0 is supported but not recommended.
+- target := The hostname or b32 of the destination providing the service. A valid hostname as in [NAMING](/docs/overview/naming/). Must be lower case.
+  Example: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p" or "example.i2p".
+  b32 is recommended unless the hostname is "well known", i.e. in official or default address books.
+- appoptions := arbitrary text specific to the application, must not contain " " or ",". Encoding is UTF-8.
 
-**Standard Format ([Proposal 167](/proposals/167-service-records/)):**
+Examples:
 
-As of API 0.9.66 (June 2025, release 2.9.0), service record options follow a standardized format. See [Proposal 167](/proposals/167-service-records/) for complete specification.
+In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to one SMTP server:
 
-**Service Record Option Format:**
-```
-Key: _service._proto
-Value: record_type ttl [priority weight] port target [appoptions]
+"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-service :: Symbolic name of service (lowercase, [a-z0-9-])
-           Examples: smtp, http, irc, mumble
-           Use standard identifiers from IANA Service Name Registry
-           or Linux /etc/services when available
+In LS2 for aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointing to two SMTP servers:
 
-proto :: Transport protocol (lowercase, [a-z0-9-])
-         "tcp" = streaming protocol
-         "udp" = repliable datagrams
-         Protocol indicators for raw datagrams may be defined later
+"_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-record_type :: "0" (self-reference) or "1" (SRV record)
+In LS2 for bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, pointing to itself as a SMTP server:
 
-ttl :: Time to live in seconds (positive integer)
-       Recommended minimum: 86400 (one day)
-       Prevents frequent re-queries
+"_smtp._tcp" "0 999999 25"
 
-For record_type = 0 (self-reference):
-  port :: I2CP port number (non-negative integer)
-  appoptions :: Optional application-specific data (no spaces or commas)
 
-For record_type = 1 (SRV record):
-  priority :: Lower value = more preferred (non-negative integer)
-  weight :: Relative weight for same priority, higher = more likely (non-negative)
-  port :: I2CP port number (non-negative integer)
-  target :: Hostname or b32 of destination (lowercase)
-            Format: "example.i2p" or "aaaaa...aaaa.b32.i2p"
-            Recommend b32 unless hostname is "well known"
-  appoptions :: Optional application-specific data (no spaces or commas)
-```
+#### Notes
+* The public key of the destination was used for the old I2CP-to-I2CP
+  encryption which was disabled in version 0.6, it is currently unused.
 
-**Example Service Records:**
+* The encryption keys are used for end-to-end ElGamal/AES+SessionTag encryption
+  [ELGAMAL-AES](/docs/legacy/elgamal-aes/) (type 0) or other end-to-end encryption schemes.
+  See [ECIES](/docs/specs/ecies/) and proposals 145 and 156.
+  They may be generated anew at every router startup
+  or they may be persistent.
+  X25519 (type 4, see [ECIES](/docs/specs/ecies/)) is supported as of release 0.9.44.
 
-**1. Self-Referencing SMTP Server:**
-```
-Destination: aaaa...aaaa.b32.i2p (this LeaseSet)
-Option: "_smtp._tcp" = "0 999999 25"
+* The signature is over the data above, PREPENDED with the single byte
+  containing the DatabaseStore type (3).
 
-Meaning: This destination provides SMTP service on I2CP port 25
-```
+* The signature may be verified using the signing public key of the
+  destination, or the transient signing public key, if an offline signature
+  is included in the leaseset2 header.
 
-**2. Single External SMTP Server:**
-```
-Destination: aaaa...aaaa.b32.i2p (this LeaseSet)
-Option: "_smtp._tcp" = "1 86400 0 0 25 bbbb...bbbb.b32.i2p"
+* The key length is provided for each key, so that floodfills and clients
+  may parse the structure even if not all encryption types are known or supported.
 
-Meaning: SMTP service provided by bbbb...bbbb on port 25
-         TTL = 1 day, single server (priority=0, weight=0)
-```
+* See note on the 'published' field in [LeaseSet2Header](#leaseset2header)
 
-**3. Multiple SMTP Servers (Load Balancing):**
-```
-Destination: aaaa...aaaa.b32.i2p (this LeaseSet)
-Option: "_smtp._tcp" = "1 86400 0 0 25 bbbb...bbbb.b32.i2p,1 86400 1 0 25 cccc...cccc.b32.i2p"
+* The options mapping, if the size is greater than one, must be sorted by key, so the signature is invariant.
 
-Meaning: Two SMTP servers
-         bbbb...bbbb (priority=0, preferred)
-         cccc...cccc (priority=1, backup)
-```
 
-**4. HTTP Service with App Options:**
-```
-Option: "_http._tcp" = "0 86400 80 tls=1.3;cert=ed25519"
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html
 
-Meaning: HTTP on port 80 with TLS 1.3 and EdDSA certificates
-```
-
-**TTL Recommendations:**
-- Minimum: 86400 seconds (1 day)
-- Longer TTL reduces netdb query load
-- Balance between query reduction and service update propagation
-- For stable services: 604800 (7 days) or longer
-
-**Implementation Notes:**
-
-1. **Encryption Keys (as of 0.9.44):**
-   - ElGamal (type 0, 256 bytes): Legacy compatibility
-   - X25519 (type 4, 32 bytes): Current standard
-   - MLKEM variants: Post-quantum (beta, not finalized)
-
-2. **Key Length Validation:**
-   - Floodfills and clients MUST be able to parse unknown key types
-   - Use keylen field to skip unknown keys
-   - Do not fail parsing if key type is unknown
-
-3. **Published Timestamp:**
-   - See LeaseSet2Header notes about rate-limiting
-   - Minimum 1-second increment between publications
-   - Recommended: 10-60 seconds between publications
-
-4. **Encryption Type Migration:**
-   - Multiple keys support gradual migration
-   - List both old and new keys during transition period
-   - Remove old key after sufficient client upgrade period
-
-**JavaDoc:** [LeaseSet2](http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html)
-
----
 
 ### MetaLease
 
-**Description:** Lease structure for MetaLeaseSet that can reference other LeaseSets rather than tunnels. Used for load balancing and redundancy.
+#### Description
+Defines the authorization for a particular tunnel to receive messages targeting
+a [Destination](#destination).
+Same as [Lease2](#lease2) but with flags and cost instead of a tunnel id.
+Used by [MetaLeaseSet](#metaleaseset).
+Contained in a I2NP DatabaseStore message of type 7.
+Supported as of 0.9.38; see proposal 123 for more information.
 
-**Introduction:** Version 0.9.38, scheduled working 0.9.40 (see [Proposal 123](/proposals/123-new-netdb-entries/))
+#### Contents
+SHA256 [Hash](#hash) of the [RouterIdentity](#routeridentity) of the gateway router, then flags and cost,
+and finally a 4 byte end date.
 
-**Format:**
 ```
 +----+----+----+----+----+----+----+----+
 | tunnel_gw                             |
@@ -1621,99 +1897,56 @@ Meaning: HTTP on port 80 with TLS 1.3 and EdDSA certificates
 |    flags     |cost|      end_date     |
 +----+----+----+----+----+----+----+----+
 
-tunnel_gw :: Hash (32 bytes)
-             SHA-256 hash of:
-             - Gateway RouterIdentity (for type 1), OR
-             - Another MetaLeaseSet destination (for type 3/5/7)
+tunnel_gw :: Hash of the `RouterIdentity` of the tunnel gateway,
+             or the hash of another `MetaLeaseSet`.
+             length -> 32 bytes
 
-flags :: 3 bytes
+flags :: 3 bytes of flags
          Bit order: 23 22 ... 3 2 1 0
-         Bits 3-0: Entry type (see table below)
-         Bits 23-4: Reserved (must be 0)
+         Bits 3-0: Type of the entry.
+         If 0, unknown.
+         If 1, a `LeaseSet`.
+         If 3, a `LeaseSet2`.
+         If 5, a `MetaLeaseSet`.
+         Bits 23-4: set to 0 for compatibility with future uses
+         length -> 3 bytes
 
-cost :: 1 byte (0-255)
-        Lower value = higher priority
-        Used for load balancing
+cost :: 1 byte, 0-255. Lower value is higher priority.
+        length -> 1 byte
 
-end_date :: 4-byte timestamp (seconds since epoch)
-            Expiration time
-            Rolls over in year 2106
+end_date :: 4 byte date
+            length -> 4 bytes
+            Seconds since the epoch, rolls over in 2106.
+
 ```
 
-**Total Size:** 40 bytes
+#### Notes
+* Total size: 40 bytes
 
-**Entry Type (flags bits 3-0):**
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Unknown</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Unknown/invalid entry</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">LeaseSet</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Points to LeaseSet (type 1, deprecated)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">LeaseSet2</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Points to LeaseSet2 (type 3)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">EncryptedLeaseSet</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">5</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Points to EncryptedLeaseSet (type 5)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">MetaLeaseSet</td><td style="border:1px solid var(--color-border); padding:0.5rem; text-align-center?">7</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Points to another MetaLeaseSet (type 7)</td></tr>
-  </tbody>
-</table>
 
-**Usage Scenarios:**
 
-1. **Load Balancing:**
-   - MetaLeaseSet with multiple MetaLease entries
-   - Each entry points to different LeaseSet2
-   - Clients select based on cost field
+### MetaLeaseSet
 
-2. **Redundancy:**
-   - Multiple entries pointing to backup LeaseSets
-   - Fallback if primary LeaseSet unavailable
+#### Description
+Contained in a I2NP DatabaseStore message of type 7.
+Defined as of 0.9.38; scheduled to be working as of 0.9.40;
+see proposal 123 for more information.
 
-3. **Service Migration:**
-   - MetaLeaseSet points to new LeaseSet
-   - Allows smooth transition between Destinations
+Contains all of the currently authorized [MetaLease](#metalease) for a particular [Destination](#destination),
+and the [PublicKey](#publickey) to which garlic messages can be encrypted.
+A LeaseSet is one of the two structures stored in the network
+database (the other being [RouterInfo](#routerinfo)), and is keyed under the SHA256 of the
+contained [Destination](#destination).
 
-**Cost Field Usage:**
-- Lower cost = higher priority
-- Cost 0 = highest priority
-- Cost 255 = lowest priority
-- Clients SHOULD prefer lower-cost entries
-- Equal-cost entries may be load-balanced randomly
 
-**Comparison with Lease2:**
+#### Contents
+[LeaseSet2Header](#leaseset2header), followed by a options,
+[Integer](#integer) specifying how many [Lease2](#lease2) structures are in the set, followed by the
+actual [Lease2](#lease2) structures and finally a [Signature](#signature) of the previous bytes signed
+by the [Destination](#destination)'s [SigningPrivateKey](#signingprivatekey) or the transient key.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Feature</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Lease2</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">MetaLease</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Size</td><td style="border:1px solid var(--color-border); padding:0.5rem;">40 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">40 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Tunnel ID</td><td style="border:1px solid var(--color-border); padding:0.5rem;">4 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Replaced by flags (3 bytes) + cost (1 byte)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Points To</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Specific tunnel</td><td style="border:1px solid var(--color-border); padding:0.5rem;">LeaseSet or MetaLeaseSet</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Usage</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Direct tunnel reference</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Indirection/load balancing</td></tr>
-  </tbody>
-</table>
-
-**JavaDoc:** [MetaLease](http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html)
-
----
-
-### MetaLeaseSet (Type 7)
-
-**Description:** LeaseSet variant that contains MetaLease entries, providing indirection to other LeaseSets. Used for load balancing, redundancy, and service migration.
-
-**Introduction:** Defined 0.9.38, scheduled working 0.9.40 (see [Proposal 123](/proposals/123-new-netdb-entries/))
-
-**Status:** Specification complete. Production deployment status should be verified with current I2P releases.
-
-**Structure:**
 ```
 +----+----+----+----+----+----+----+----+
 |         ls2_header                    |
@@ -1758,164 +1991,70 @@ end_date :: 4-byte timestamp (seconds since epoch)
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-ls2header :: LeaseSet2Header
-             Length: 395+ bytes
+ls2header :: `LeaseSet2Header`
+             length -> varies
 
-options :: Mapping
-           Length: 2+ bytes (size + data)
-           MUST be sorted by key
+options :: `Mapping`
+           length -> varies, 2 bytes minimum
 
-num :: Integer (1 byte)
-       Number of MetaLease entries
-       Range: 1 to (implementation-defined, recommend 1-16)
+num :: `Integer`
+        length -> 1 byte
+        Number of `MetaLease`s to follow
+        value: 1 <= num <= max TBD
 
-metaleases :: Array of MetaLease structures
-              Length: $num × 40 bytes
+leases :: `MetaLease`s
+          length -> $numr*40 bytes
 
-numr :: Integer (1 byte)
-        Number of revocation hashes
-        Range: 0 to (implementation-defined, recommend 0-16)
+numr :: `Integer`
+        length -> 1 byte
+        Number of `Hash`es to follow
+        value: 0 <= numr <= max TBD
 
-revocations :: Array of Hash structures
-               Length: $numr × 32 bytes
-               SHA-256 hashes of revoked LeaseSet Destinations
+revocations :: [`Hash`]
+               length -> $numr*32 bytes
+
+signature :: `Signature`
+             length -> 40 bytes or as specified in destination's key
+                       certificate, or by the sigtype of the transient public key,
+                       if present in the header
+
 ```
 
-**Database Storage:**
-- **Database Type:** 7
-- **Key:** SHA-256 hash of Destination
-- **Value:** Complete MetaLeaseSet structure
+#### Notes
+* The public key of the destination was used for the old I2CP-to-I2CP
+  encryption which was disabled in version 0.6, it is currently unused.
 
-**Signature Computation:**
-```
-Data to sign: database_type (1 byte, value=7) || complete MetaLeaseSet data
+* The signature is over the data above, PREPENDED with the single byte
+  containing the DatabaseStore type (7).
 
-Verification:
-1. Prepend database type byte (0x07) to MetaLeaseSet data
-2. If offline signature present in header:
-   - Verify offline signature against Destination key
-   - Verify MetaLeaseSet signature against transient key
-3. Else:
-   - Verify MetaLeaseSet signature against Destination key
-```
+* The signature may be verified using the signing public key of the
+  destination, or the transient signing public key, if an offline signature
+  is included in the leaseset2 header.
 
-**Usage Scenarios:**
+* See note on the 'published' field in [LeaseSet2Header](#leaseset2header)
 
-**1. Load Balancing:**
-```
-MetaLeaseSet for primary.i2p:
-  MetaLease 0: cost=0, points to server1.i2p LeaseSet2
-  MetaLease 1: cost=0, points to server2.i2p LeaseSet2
-  MetaLease 2: cost=0, points to server3.i2p LeaseSet2
 
-Clients randomly select among equal-cost entries
-```
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html
 
-**2. Failover:**
-```
-MetaLeaseSet for service.i2p:
-  MetaLease 0: cost=0, points to primary.i2p LeaseSet2
-  MetaLease 1: cost=100, points to backup.i2p LeaseSet2
 
-Clients prefer cost=0 (primary), fall back to cost=100 (backup)
-```
 
-**3. Service Migration:**
-```
-MetaLeaseSet for old-domain.i2p:
-  MetaLease 0: cost=0, points to new-domain.i2p LeaseSet2
+### EncryptedLeaseSet
 
-Transparently redirects clients from old to new destination
-```
+#### Description
+Contained in a I2NP DatabaseStore message of type 5.
+Defined as of 0.9.38; working as of 0.9.39;
+see proposal 123 for more information.
 
-**4. Multi-Tier Architecture:**
-```
-MetaLeaseSet for service.i2p:
-  MetaLease 0: cost=0, points to region1-meta.i2p (another MetaLeaseSet)
-  MetaLease 1: cost=0, points to region2-meta.i2p (another MetaLeaseSet)
+Only the blinded key and expiration are visible in cleartext.
+The actual lease set is encrypted.
 
-Each region MetaLeaseSet points to regional servers
-Allows hierarchical load balancing
-```
+#### Contents
+A two byte signature type, the blinded [SigningPrivateKey](#signingprivatekey),
+published time, expiration, and flags.
+Then, a two byte length followed by encrypted data.
+Finally, a [Signature](#signature) of the previous bytes signed
+by the blinded [SigningPrivateKey](#signingprivatekey) or the transient key.
 
-**Revocation List:**
-
-The revocation list allows MetaLeaseSet to explicitly revoke previously published LeaseSets:
-
-- **Purpose:** Mark specific Destinations as no longer valid
-- **Contents:** SHA-256 hashes of revoked Destination structures
-- **Usage:** Clients MUST NOT use LeaseSets whose Destination hash appears in revocation list
-- **Typical Value:** Empty (numr=0) in most deployments
-
-**Example Revocation:**
-```
-Service migrates from dest-v1.i2p to dest-v2.i2p:
-  MetaLease 0: points to dest-v2.i2p
-  Revocations: [hash(dest-v1.i2p)]
-
-Clients will use v2 and ignore v1 even if cached
-```
-
-**Expiration Handling:**
-
-MetaLeaseSet uses LeaseSet2Header with maximum expires=65535 seconds (~18.2 hours):
-
-- Much longer than LeaseSet2 (max ~11 minutes)
-- Suitable for relatively static indirection
-- Referenced LeaseSets can have shorter expiration
-- Clients must check expiration of both MetaLeaseSet AND referenced LeaseSets
-
-**Options Mapping:**
-
-- Use same format as LeaseSet2 options
-- Can include service records ([Proposal 167](/proposals/167-service-records/))
-- MUST be sorted by key
-- Service records typically describe the ultimate service, not the indirection structure
-
-**Client Implementation Notes:**
-
-1. **Resolution Process:**
-   ```
-   1. Query netdb for MetaLeaseSet using SHA-256(Destination)
-   2. Parse MetaLeaseSet, extract MetaLease entries
-   3. Sort entries by cost (lower = better)
-   4. For each entry in cost order:
-      a. Extract LeaseSet hash from tunnel_gw field
-      b. Determine entry type from flags
-      c. Query netdb for referenced LeaseSet (may be another MetaLeaseSet)
-      d. Check revocation list
-      e. Check expiration
-      f. If valid, use the LeaseSet; else try next entry
-   ```
-
-2. **Caching:**
-   - Cache both MetaLeaseSet and referenced LeaseSets
-   - Check expiration of both levels
-   - Monitor for updated MetaLeaseSet publication
-
-3. **Failover:**
-   - If preferred entry fails, try next-lowest cost
-   - Consider marking failed entries temporarily unavailable
-   - Re-check periodically for recovery
-
-**Implementation Status:**
-
-[Proposal 123](/proposals/123-new-netdb-entries/) notes portions remain "in development." Implementers should:
-- Verify production readiness in target I2P version
-- Test MetaLeaseSet support before deployment
-- Check for updated specifications in newer I2P releases
-
-**JavaDoc:** [MetaLeaseSet](http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html)
-
----
-
-### EncryptedLeaseSet (Type 5)
-
-**Description:** Encrypted and blinded LeaseSet for enhanced privacy. Only the blinded public key and metadata are visible; actual leases and encryption keys are encrypted.
-
-**Introduction:** Defined 0.9.38, working 0.9.39 (see [Proposal 123](/proposals/123-new-netdb-entries/))
-
-**Structure:**
 ```
 +----+----+----+----+----+----+----+----+
 | sigtype |                             |
@@ -1947,242 +2086,98 @@ MetaLeaseSet uses LeaseSet2Header with maximum expires=65535 seconds (~18.2 hour
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-sigtype :: 2-byte signature type
-           Type of blinded_public_key
-           MUST be RedDSA_SHA512_Ed25519 (type 11)
+sigtype :: A two byte signature type of the public key to follow
+           length -> 2 bytes
 
-blinded_public_key :: SigningPublicKey (32 bytes for RedDSA)
-                      Blinded version of Destination signing key
-                      Used to verify signature on EncryptedLeaseSet
+blinded_public_key :: `SigningPublicKey`
+                      length -> As inferred from the sigtype
 
-published :: 4-byte timestamp (seconds since epoch)
-             Publication time
-             Rolls over in year 2106
+published :: 4 byte date
+             length -> 4 bytes
+             Seconds since the epoch, rolls over in 2106.
 
-expires :: 2-byte offset (seconds)
-           Offset from published
-           Maximum: 65535 seconds (18.2 hours)
-           Practical maximum for LeaseSet data: ~660 seconds (~11 min)
+expires :: 2 byte time
+           length -> 2 bytes
+           Offset from published timestamp in seconds, 18.2 hours max
 
 flags :: 2 bytes
-         Bit 0: Offline signature present (0=no, 1=yes)
-         Bit 1: Unpublished (0=published, 1=client-side only)
-         Bits 15-2: Reserved (must be 0)
+  Bit order: 15 14 ... 3 2 1 0
+  Bit 0: If 0, no offline keys; if 1, offline keys
+  Bit 1: If 0, a standard published leaseset.
+         If 1, an unpublished leaseset. Should not be flooded, published, or
+         sent in response to a query. If this leaseset expires, do not query the
+         netdb for a new one.
+  Bits 15-2: set to 0 for compatibility with future uses
 
-offline_signature :: OfflineSignature (optional)
-                     Present only if flags bit 0 = 1
-                     Variable length
+offline_signature :: `OfflineSignature`
+                     length -> varies
+                     Optional, only present if bit 0 is set in the flags.
 
-len :: 2-byte integer
-       Length of encrypted_data
-       Range: 1 to 65535
+len :: `Integer`
+        length -> 2 bytes
+        length of encrypted_data to follow
+        value: 1 <= num <= max TBD
 
-encrypted_data :: Encrypted payload
-                  Length: len bytes
-                  Contains encrypted LeaseSet2 or MetaLeaseSet
+encrypted_data :: Data encrypted
+                  length -> len bytes
 
-signature :: Signature (64 bytes for RedDSA)
-             Length determined by sigtype
-             Signed by blinded_public_key or transient key
+signature :: `Signature`
+             length -> As specified by the sigtype of the blinded pubic key,
+                       or by the sigtype of the transient public key,
+                       if present in the header
+
 ```
 
-**Database Storage:**
-- **Database Type:** 5
-- **Key:** SHA-256 hash of **blinded Destination** (not original Destination)
-- **Value:** Complete EncryptedLeaseSet structure
+#### Notes
+* The public key of the destination was used for the old I2CP-to-I2CP
+  encryption which was disabled in version 0.6, it is currently unused.
 
-**Critical Differences from LeaseSet2:**
+* The signature is over the data above, PREPENDED with the single byte
+  containing the DatabaseStore type (5).
 
-1. **Does NOT use LeaseSet2Header structure** (has similar fields but different layout)
-2. **Blinded public key** instead of full Destination
-3. **Encrypted payload** instead of cleartext leases and keys
-4. **Database key is hash of blinded Destination**, not original Destination
+* The signature may be verified using the signing public key of the
+  destination, or the transient signing public key, if an offline signature
+  is included in the leaseset2 header.
 
-**Signature Computation:**
-```
-Data to sign: database_type (1 byte, value=5) || complete EncryptedLeaseSet data
+* Blinding and encryption are specified in [EncryptedLeaseSet](/docs/specs/encryptedleaseset/)
 
-Verification:
-1. Prepend database type byte (0x05) to EncryptedLeaseSet data
-2. If offline signature present (flags bit 0 = 1):
-   - Verify offline signature against blinded public key
-   - Verify EncryptedLeaseSet signature against transient key
-3. Else:
-   - Verify EncryptedLeaseSet signature against blinded public key
-```
+* This structure does not use the [LeaseSet2Header](#leaseset2header).
 
-**Signature Type Requirement:**
+* Maximum actual expires time is about 660 (11 minutes), unless
+  it is an encrypted [MetaLeaseSet](#metaleaseset).
 
-**MUST use RedDSA_SHA512_Ed25519 (type 11):**
-- 32-byte blinded public keys
-- 64-byte signatures
-- Required for blinding security properties
-- See [Red25519 specification](//docs/specs/red25519-signature-scheme/
+* See proposal 123 for notes on using offline signatures
+  with encrypted leasesets.
 
-**Key Differences from EdDSA:**
-- Private keys via modular reduction (not clamping)
-- Signatures include 80 bytes of random data
-- Uses public keys directly (not hashes)
-- Enables secure blinding operation
+* See note on the 'published' field in [LeaseSet2Header](#leaseset2header)
+  (same issue, even though we do not use the LeaseSet2Header format here)
 
-**Blinding and Encryption:**
 
-See [EncryptedLeaseSet specification](/docs/specs/encryptedleaseset/) for complete details:
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html
 
-**1. Key Blinding:**
-```
-Blinding process (daily rotation):
-  secret = HKDF(original_signing_private_key, date_string, "i2pblinding1")
-  alpha = SHA-256(secret) mod L (where L is Ed25519 group order)
-  blinded_private_key = alpha * original_private_key
-  blinded_public_key = alpha * original_public_key
-```
 
-**2. Database Location:**
-```
-Client publishes to:
-  Key = SHA-256(blinded_destination)
-  
-Where blinded_destination uses:
-  - Blinded public key (signing key)
-  - Same unused public key field (random)
-  - Same certificate structure
-```
-
-**3. Encryption Layers (Three-Layer):**
-
-**Layer 1 - Authentication Layer (Client Access):**
-- Encryption: ChaCha20 stream cipher
-- Key derivation: HKDF with per-client secrets
-- Authenticated clients can decrypt outer layer
-
-**Layer 2 - Encryption Layer:**
-- Encryption: ChaCha20
-- Key: Derived from DH between client and server
-- Contains the actual LeaseSet2 or MetaLeaseSet
-
-**Layer 3 - Inner LeaseSet:**
-- Complete LeaseSet2 or MetaLeaseSet
-- Includes all tunnels, encryption keys, options
-- Only accessible after successful decryption
-
-**Encryption Key Derivation:**
-```
-Client has: ephemeral_client_private_key
-Server has: ephemeral_server_public_key (in encrypted_data)
-
-Shared secret = X25519(client_private, server_public)
-Encryption key = HKDF(shared_secret, context_info, "i2pblinding2")
-```
-
-**Discovery Process:**
-
-**For authorized clients:**
-```
-1. Client knows original Destination
-2. Client computes current blinded Destination (based on current date)
-3. Client computes database key: SHA-256(blinded_destination)
-4. Client queries netdb for EncryptedLeaseSet using blinded key
-5. Client decrypts layer 1 using authorization credentials
-6. Client decrypts layer 2 using DH shared secret
-7. Client extracts inner LeaseSet2/MetaLeaseSet
-8. Client uses tunnels from inner LeaseSet for communication
-```
-
-**For unauthorized clients:**
-- Cannot decrypt even if they find the EncryptedLeaseSet
-- Cannot determine original Destination from blinded version
-- Cannot link EncryptedLeaseSets across different blinding periods (daily rotation)
-
-**Expiration Times:**
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Content Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Maximum Expires</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">EncryptedLeaseSet (outer)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">65,535 sec (≈18.2 hr)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Full 2-byte expires field</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Inner LeaseSet2</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈660 sec (≈11 min)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Actual lease data practical maximum</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Inner MetaLeaseSet</td><td style="border:1px solid var(--color-border); padding:0.5rem;">65,535 sec (≈18.2 hr)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Indirection can be longer-lived</td></tr>
-  </tbody>
-</table>
-
-**Published Timestamp:**
-
-Same requirements as LeaseSet2Header:
-- Must increment by at least 1 second between publications
-- Floodfills reject if not newer than current version
-- Recommended: 10-60 seconds between publications
-
-**Offline Signatures with Encrypted LeaseSets:**
-
-Special considerations when using offline signatures:
-- Blinded public key rotates daily
-- Offline signature must be regenerated daily with new blinded key
-- OR use offline signature on inner LeaseSet, not outer EncryptedLeaseSet
-- See [Proposal 123](/proposals/123-new-netdb-entries/) notes
-
-**Implementation Notes:**
-
-1. **Client Authorization:**
-   - Multiple clients can be authorized with different keys
-   - Each authorized client has unique decryption credentials
-   - Revoke client by changing authorization keys
-
-2. **Daily Key Rotation:**
-   - Blinded keys change at UTC midnight
-   - Clients must recompute blinded Destination daily
-   - Old EncryptedLeaseSets become undiscoverable after rotation
-
-3. **Privacy Properties:**
-   - Floodfills cannot determine original Destination
-   - Unauthorized clients cannot access service
-   - Different blinding periods cannot be linked
-   - No cleartext metadata beyond expiration times
-
-4. **Performance:**
-   - Clients must perform daily blinding calculation
-   - Three-layer encryption adds computational overhead
-   - Consider caching decrypted inner LeaseSet
-
-**Security Considerations:**
-
-1. **Authorization Key Management:**
-   - Securely distribute client authorization credentials
-   - Use unique credentials per client for granular revocation
-   - Rotate authorization keys periodically
-
-2. **Clock Synchronization:**
-   - Daily blinding depends on synchronized UTC dates
-   - Clock skew can cause lookup failures
-   - Consider supporting previous/next day's blinding for tolerance
-
-3. **Metadata Leakage:**
-   - Published and expires fields are cleartext
-   - Pattern analysis might reveal service characteristics
-   - Randomize publication intervals if concerned
-
-**JavaDoc:** [EncryptedLeaseSet](http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html)
-
----
-
-## Router Structures
 
 ### RouterAddress
 
-**Description:** Defines connection information for a router through a specific transport protocol.
+#### Description
+This structure defines the means to contact a router through a transport
+protocol.
 
-**Format:**
+#### Contents
+1 byte [Integer](#integer) defining the relative cost of using the address, where 0 is
+free and 255 is expensive, followed by the expiration [Date](#date) after which the
+address should not be used, or if null, the address never expires. After that
+comes a [String](#string) defining the transport protocol this router address uses.
+Finally there is a [Mapping](#mapping) containing all of the transport specific options
+necessary to establish the connection, such as IP address, port number, email
+address, URL, etc.
+
 ```
 +----+----+----+----+----+----+----+----+
 |cost|           expiration
 +----+----+----+----+----+----+----+----+
      |        transport_style           |
-+----+----+----+----+-//-+----+----+----+
++----+----+----+----+-/-+----+----+----+
 |                                       |
 +                                       +
 |               options                 |
@@ -2191,176 +2186,52 @@ Special considerations when using offline signatures:
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-cost :: Integer (1 byte)
-        Relative cost, 0=free, 255=expensive
-        Typical values:
-          5-6: SSU2
-          10-11: NTCP2
+cost :: `Integer`
+        length -> 1 byte
 
-expiration :: Date (8 bytes)
-              MUST BE ALL ZEROS (see critical note below)
+        case 0 -> free
+        case 255 -> expensive
 
-transport_style :: String (1-256 bytes)
-                   Transport protocol name
-                   Current values: "SSU2", "NTCP2"
-                   Legacy: "SSU", "NTCP" (removed)
+expiration :: `Date` (must be all zeros, see notes below)
+              length -> 8 bytes
 
-options :: Mapping
-           Transport-specific configuration
-           Common options: "host", "port"
-           Transport-specific options vary
+              case null -> never expires
+
+transport_style :: `String`
+                   length -> 1-256 bytes
+
+options :: `Mapping`
 ```
 
-**CRITICAL - Expiration Field:**
+#### Notes
+* Cost is typically 5 or 6 for SSU, and 10 or 11 for NTCP.
 
-⚠️ **The expiration field MUST be set to all zeros (8 zero bytes).**
+* Expiration is currently unused, always null (all zeroes). As of release
+  0.9.3, the expiration is assumed zero and not stored, so any non-zero
+  expiration will fail in the RouterInfo signature verification. Implementing
+  expiration (or another use for these bytes) will be a backwards-incompatible
+  change. Routers MUST set this field to all zeros. As of release 0.9.12, a
+  non-zero expiration field is again recognized, however we must wait several
+  releases to use this field, until the vast majority of the network recognizes
+  it.
 
-- **Reason:** Since release 0.9.3, non-zero expiration causes signature verification failure
-- **History:** Expiration was originally unused, always null
-- **Current Status:** Field was recognized again as of 0.9.12, but must wait for network upgrade
-- **Implementation:** Always set to 0x0000000000000000
+* The following options, while not required, are standard and expected to be
+  present in most router addresses: "host" (an IPv4 or IPv6 address or host
+  name) and "port".
 
-Any non-zero expiration will cause the RouterInfo signature to fail validation.
-
-### Transport Protocols
-
-**Current Protocols (as of 2.10.0):**
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Protocol</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Status</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Introduced</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Removed</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>SSU2</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54 (May 2022)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Default since 0.9.56</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>NTCP2</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.36 (Aug 2018)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Active</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">NTCP</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Removed</td><td style="border:1px solid var(--color-border); padding:0.5rem;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50 (May 2021)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Use NTCP2</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">SSU</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Removed</td><td style="border:1px solid var(--color-border); padding:0.5rem;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">2.4.0 (Dec 2023)</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Use SSU2</td></tr>
-  </tbody>
-</table>
-
-**Transport Style Values:**
-- `"SSU2"`: Current UDP-based transport
-- `"NTCP2"`: Current TCP-based transport
-- `"NTCP"`: Legacy, removed (do not use)
-- `"SSU"`: Legacy, removed (do not use)
-
-### Common Options
-
-All transports typically include:
-```
-"host" = IPv4 or IPv6 address or hostname
-"port" = Port number (1-65535)
-```
-
-### SSU2-Specific Options
-
-See [SSU2 specification](/docs/specs/ssu2/) for complete details.
-
-**Required Options:**
-```
-"host" = IP address (IPv4 or IPv6)
-"port" = UDP port number
-"s" = Static X25519 public key (Base64, 44 characters = 32 bytes)
-"i" = Introduction key X25519 (Base64, 44 characters = 32 bytes)
-"v" = "2" (protocol version)
-```
-
-**Optional Options:**
-```
-"caps" = Capability string (e.g., "B" for bandwidth tier)
-"ihost0", "ihost1", ... = Introducer IP addresses
-"iport0", "iport1", ... = Introducer ports  
-"ikey0", "ikey1", ... = Introducer static keys (Base64, 44 chars)
-"itag0", "itag1", ... = Introducer relay tags
-"iexp0", "iexp1", ... = Introducer expiration timestamps
-"mtu" = Maximum transmission unit (default 1500, min 1280)
-"mtu6" = IPv6 MTU (if different from IPv4)
-```
-
-**Example SSU2 RouterAddress:**
-```
-cost: 5
-expiration: 0x0000000000000000
-transport_style: "SSU2"
-options:
-  host=198.51.100.42
-  port=12345
-  s=SGVsbG8gV29ybGQhIFRoaXMgaXMgYSBzYW1wbGUga2V5IQ==
-  i=QW5vdGhlciBTYW1wbGUgS2V5IGZvciBJbnRyb2R1Y3Rpb24=
-  v=2
-  caps=BC
-  mtu=1472
-```
-
-### NTCP2-Specific Options
-
-See [NTCP2 specification](/docs/specs/ntcp2/) for complete details.
-
-**Required Options:**
-```
-"host" = IP address (IPv4 or IPv6)
-"port" = TCP port number
-"s" = Static X25519 public key (Base64, 44 characters = 32 bytes)
-"i" = Initialization vector (Base64, 24 characters = 16 bytes)
-"v" = "2" (protocol version)
-```
-
-**Optional Options (since 0.9.50):**
-```
-"caps" = Capability string
-```
-
-**Example NTCP2 RouterAddress:**
-```
-cost: 10
-expiration: 0x0000000000000000
-transport_style: "NTCP2"
-options:
-  host=198.51.100.42
-  port=23456
-  s=SGVsbG8gV29ybGQhIFRoaXMgaXMgYSBzYW1wbGUga2V5IQ==
-  i=U2FtcGxlIElWIGhlcmU=
-  v=2
-```
-
-### Implementation Notes
-
-1. **Cost Values:**
-   - UDP (SSU2) typically lower cost (5-6) due to efficiency
-   - TCP (NTCP2) typically higher cost (10-11) due to overhead
-   - Lower cost = preferred transport
-
-2. **Multiple Addresses:**
-   - Routers may publish multiple RouterAddress entries
-   - Different transports (SSU2 and NTCP2)
-   - Different IP versions (IPv4 and IPv6)
-   - Clients select based on cost and capabilities
-
-3. **Hostname vs IP:**
-   - IP addresses preferred for performance
-   - Hostnames supported but add DNS lookup overhead
-   - Consider using IP for published RouterInfos
-
-4. **Base64 Encoding:**
-   - All keys and binary data encoded in Base64
-   - Standard Base64 (RFC 4648)
-   - No padding or non-standard characters
-
-**JavaDoc:** [RouterAddress](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.html)
-
----
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.html
 
 ### RouterInfo
 
-**Description:** Complete published information about a router, stored in the network database. Contains identity, addresses, and capabilities.
+#### Description
+Defines all of the data that a router wants to publish for the network to see.
+The [RouterInfo](#routerinfo) is one of two structures stored in the network database (the
+other being [LeaseSet](#leaseset)), and is keyed under the SHA256 of the contained
+[RouterIdentity](#routeridentity).
 
-**Format:**
+#### Contents
+[RouterIdentity](#routeridentity) followed by the [Date](#date), when the entry was published
+
 ```
 +----+----+----+----+----+----+----+----+
 | router_ident                          |
@@ -2392,9 +2263,9 @@ options:
 ~                                       ~
 ~                                       ~
 |                                       |
-+----+----+----+----+-//-+----+----+----+
++----+----+----+----+-/-+----+----+----+
 |psiz| options                          |
-+----+----+----+----+-//-+----+----+----+
++----+----+----+----+-/-+----+----+----+
 | signature                             |
 +                                       +
 |                                       |
@@ -2406,538 +2277,73 @@ options:
 |                                       |
 +----+----+----+----+----+----+----+----+
 
-router_ident :: RouterIdentity
-                Length: 387+ bytes (typically 391 for X25519+EdDSA)
+router_ident :: `RouterIdentity`
+                length -> >= 387+ bytes
 
-published :: Date (8 bytes)
-             Publication timestamp (milliseconds since epoch)
+published :: `Date`
+             length -> 8 bytes
 
-size :: Integer (1 byte)
-        Number of RouterAddress entries
-        Range: 0-255
+size :: `Integer`
+        length -> 1 byte
+        The number of `RouterAddress`es to follow, 0-255
 
-addresses :: Array of RouterAddress
-             Variable length
-             Each RouterAddress has variable size
+addresses :: [`RouterAddress`]
+             length -> varies
 
-peer_size :: Integer (1 byte)
-             Number of peer hashes (ALWAYS 0)
-             Historical, unused feature
+peer_size :: `Integer`
+             length -> 1 byte
+             The number of peer `Hash`es to follow, 0-255, unused, always zero
+             value -> 0
 
-options :: Mapping
-           Router capabilities and metadata
-           MUST be sorted by key
+options :: `Mapping`
 
-signature :: Signature
-             Length determined by router_ident signing key type
-             Typically 64 bytes (EdDSA)
-             Signed by router_ident's SigningPrivateKey
+signature :: `Signature`
+             length -> 40 bytes or as specified in router_ident's key
+                       certificate
 ```
 
-**Database Storage:**
-- **Database Type:** 0
-- **Key:** SHA-256 hash of RouterIdentity
-- **Value:** Complete RouterInfo structure
+#### Notes
+* The peer_size [Integer](#integer) may be followed by a list of that many router hashes.
+  This is currently unused. It was intended for a form of restricted routes,
+  which is unimplemented.
+  Certain implementations may require the list to be sorted so the signature is invariant.
+  To be researched before enabling this feature.
 
-**Published Timestamp:**
-- 8-byte Date (milliseconds since epoch)
-- Used for RouterInfo versioning
-- Routers publish new RouterInfo periodically
-- Floodfills keep newest version based on published timestamp
+* The signature may be verified using the signing public key of the
+  router_ident.
 
-**Address Sorting:**
-- **Historical:** Very old routers required addresses sorted by SHA-256 of their data
-- **Current:** Sorting NOT required, not worth implementing for compatibility
-- Addresses can be in any order
+* See the network database page [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo) for standard options that
+  are expected to be present in all router infos.
 
-**Peer Size Field (Historical):**
-- **Always 0** in modern I2P
-- Was intended for restricted routes (unimplemented)
-- If implemented, would be followed by that many Router Hashes
-- Some old implementations might have required sorted peer list
+* Very old routers required the addresses to be sorted by the SHA256 of their data
+  so the signature is invariant.
+  This is no longer required, and not worth implementing for backward compatibility.
 
-**Options Mapping:**
+JavaDoc: http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html
 
-Options MUST be sorted by key. Standard options include:
+### Delivery Instructions
 
-**Capability Options:**
-```
-"caps" = Capability string
-         Common values:
-           f = Floodfill (network database)
-           L or M or N or O = Bandwidth tier (L=lowest, O=highest)
-           R = Reachable
-           U = Unreachable/firewalled
-           Example: "fLRU" = Floodfill, Low bandwidth, Reachable, Unreachable
-```
+Tunnel Message Delivery Instructions are defined in the Tunnel Message
+Specification [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).
 
-**Network Options:**
-```
-"netId" = Network ID (default "2" for main I2P network)
-          Different values for test networks
+Garlic Message Delivery Instructions are defined in the I2NP Message
+Specification [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions).
 
-"router.version" = I2P version string
-                   Example: "0.9.67" or "2.10.0"
-```
-
-**Statistical Options:**
-```
-"stat_uptime" = Uptime in milliseconds
-"coreVersion" = Core I2P version
-"router.version" = Full router version string
-```
-
-See [Network Database RouterInfo documentation](/docs/specs/common-structures/#routerInfo) for complete list of standard options.
-
-**Signature Computation:**
-```
-Data to sign: Complete RouterInfo structure from router_ident through options
-
-Verification:
-1. Extract RouterIdentity from RouterInfo
-2. Get SigningPublicKey from RouterIdentity (type determines algorithm)
-3. Verify signature over all data preceding signature field
-4. Signature must match signing key type and length
-```
-
-**Typical Modern RouterInfo:**
-```
-RouterIdentity: 391 bytes (X25519+EdDSA with Key Certificate)
-Published: 8 bytes
-Size: 1 byte (typically 1-4 addresses)
-RouterAddress × N: Variable (typically 200-500 bytes each)
-Peer Size: 1 byte (value=0)
-Options: Variable (typically 50-200 bytes)
-Signature: 64 bytes (EdDSA)
-
-Total: ~1000-2500 bytes typical
-```
-
-**Implementation Notes:**
-
-1. **Multiple Addresses:**
-   - Routers typically publish 1-4 addresses
-   - IPv4 and IPv6 variants
-   - SSU2 and/or NTCP2 transports
-   - Each address independent
-
-2. **Versioning:**
-   - Newer RouterInfo has later `published` timestamp
-   - Routers republish every ~2 hours or when addresses change
-   - Floodfills store and flood only newest version
-
-3. **Validation:**
-   - Verify signature before accepting RouterInfo
-   - Check expiration field is all zeros in each RouterAddress
-   - Validate options mapping is sorted by key
-   - Check certificate and key types are known/supported
-
-4. **Network Database:**
-   - Floodfills store RouterInfo indexed by Hash(RouterIdentity)
-   - Stored for ~2 days after last publication
-   - Routers query floodfills to discover other routers
-
-**JavaDoc:** [RouterInfo](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html)
-
----
-
-## Implementation Notes
-
-### Byte Order (Endianness)
-
-**Default: Big-Endian (Network Byte Order)**
-
-Most I2P structures use big-endian byte order:
-- All Integer types (1-8 bytes)
-- Date timestamps
-- TunnelId
-- String length prefix
-- Certificate types and lengths
-- Key type codes
-- Mapping size fields
-
-**Exception: Little-Endian**
-
-The following key types use **little-endian** encoding:
-- **X25519** encryption keys (type 4)
-- **EdDSA_SHA512_Ed25519** signing keys (type 7)
-- **EdDSA_SHA512_Ed25519ph** signing keys (type 8)
-- **RedDSA_SHA512_Ed25519** signing keys (type 11)
-
-**Implementation:**
-```java
-// Big-endian (most structures)
-int value = ((bytes[0] & 0xFF) << 24) | 
-            ((bytes[1] & 0xFF) << 16) |
-            ((bytes[2] & 0xFF) << 8) | 
-            (bytes[3] & 0xFF);
-
-// Little-endian (X25519, EdDSA, RedDSA)
-int value = (bytes[0] & 0xFF) | 
-            ((bytes[1] & 0xFF) << 8) |
-            ((bytes[2] & 0xFF) << 16) | 
-            ((bytes[3] & 0xFF) << 24);
-```
-
-### Structure Versioning
-
-**Never Assume Fixed Sizes:**
-
-Many structures have variable length:
-- RouterIdentity: 387+ bytes (not always 387)
-- Destination: 387+ bytes (not always 387)
-- LeaseSet2: Varies significantly
-- Certificate: 3+ bytes
-
-**Always Read Size Fields:**
-- Certificate length at bytes 1-2
-- Mapping size at beginning
-- KeysAndCert always compute as 384 + 3 + certificate_length
-
-**Check for Excess Data:**
-- Prohibit trailing garbage after valid structures
-- Validate certificate lengths match key types
-- Enforce exact expected lengths for fixed-size types
-
-### Current Recommendations (October 2025)
-
-**For New Router Identities:**
-```
-Encryption: X25519 (type 4, 32 bytes)
-Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
-Certificate: Key Certificate (type 5)
-Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/en/proposals/161-ri-dest-padding/)
-```
-
-**For New Destinations:**
-```
-Unused Public Key Field: 256 bytes random (compressible)
-Signing: EdDSA_SHA512_Ed25519 (type 7, 32 bytes)
-Certificate: Key Certificate (type 5)
-Total Size: 391 bytes
-Padding: Compressible per [Proposal 161](/en/proposals/161-ri-dest-padding/)
-```
-
-**For New LeaseSets:**
-```
-Type: LeaseSet2 (type 3)
-Encryption Keys: X25519 (type 4, 32 bytes)
-Leases: At least 1, typically 3-5
-Options: Include service records per [Proposal 167](/proposals/167-service-records/)
-Signature: EdDSA (64 bytes)
-```
-
-**For Encrypted Services:**
-```
-Type: EncryptedLeaseSet (type 5)
-Blinding: RedDSA_SHA512_Ed25519 (type 11)
-Inner LeaseSet: LeaseSet2 (type 3)
-Rotation: Daily blinding key rotation
-Authorization: Per-client encryption keys
-```
-
-### Deprecated Features - Do Not Use
-
-**Deprecated Encryption:**
-- ElGamal (type 0) for Router Identities (deprecated 0.9.58)
-- ElGamal/AES+SessionTag encryption (use ECIES-X25519)
-
-**Deprecated Signing:**
-- DSA_SHA1 (type 0) for Router Identities (deprecated 0.9.58)
-- ECDSA variants (types 1-3) for new implementations
-- RSA variants (types 4-6) except for SU3 files
-
-**Deprecated Network Formats:**
-- LeaseSet type 1 (use LeaseSet2)
-- Lease (44 bytes, use Lease2)
-- Original Lease expiration format
-
-**Deprecated Transports:**
-- NTCP (removed 0.9.50)
-- SSU (removed 2.4.0)
-
-**Deprecated Certificates:**
-- HASHCASH (type 1)
-- HIDDEN (type 2)
-- SIGNED (type 3)
-- MULTIPLE (type 4)
-
-### Security Considerations
-
-**Key Generation:**
-- Always use cryptographically secure random number generators
-- Never reuse keys across different contexts
-- Protect private keys with appropriate access controls
-- Securely erase key material from memory when finished
-
-**Signature Verification:**
-- Always verify signatures before trusting data
-- Check signature length matches key type
-- Validate signed data includes expected fields
-- For sorted mappings, verify sort order before signing/verifying
-
-**Timestamp Validation:**
-- Check that published times are reasonable (not far future)
-- Validate lease expirations are not expired
-- Consider clock skew tolerance (±30 seconds typical)
-
-**Network Database:**
-- Validate all structures before storing
-- Enforce size limits to prevent DoS
-- Rate-limit queries and publications
-- Verify database keys match structure hashes
-
-### Compatibility Notes
-
-**Backward Compatibility:**
-- ElGamal and DSA_SHA1 still supported for legacy routers
-- Deprecated key types remain functional but discouraged
-- Compressible padding ([Proposal 161](/en/proposals/161-ri-dest-padding/)) backward compatible to 0.6
-
-**Forward Compatibility:**
-- Unknown key types can be parsed using length fields
-- Unknown certificate types can be skipped using length
-- Unknown signature types should be handled gracefully
-- Implementers should not fail on unknown optional features
-
-**Migration Strategies:**
-- Support both old and new key types during transition
-- LeaseSet2 can list multiple encryption keys
-- Offline signatures enable secure key rotation
-- MetaLeaseSet enables transparent service migration
-
-### Testing and Validation
-
-**Structure Validation:**
-- Verify all length fields are within expected ranges
-- Check that variable-length structures parse correctly
-- Validate that signatures verify successfully
-- Test with both minimum and maximum size structures
-
-**Edge Cases:**
-- Zero-length strings
-- Empty mappings
-- Minimum and maximum lease counts
-- Certificate with zero-length payload
-- Very large structures (near maximum sizes)
-
-**Interoperability:**
-- Test against official Java I2P implementation
-- Verify compatibility with i2pd
-- Test with various network database contents
-- Validate against known-good test vectors
-
----
 
 ## References
 
-### Specifications
-
-- [I2NP Protocol](/docs/specs/i2np/)
-- [I2CP Protocol](/docs/specs/i2cp/)
-- [SSU2 Transport](/docs/specs/ssu2/)
-- [NTCP2 Transport](/docs/specs/ntcp2/)
-- [Tunnel Protocol](/docs/specs/implementation/)
-- [Datagram Protocol](/docs/api/datagrams/)
-
-### Cryptography
-
-- [Cryptography Overview](/docs/specs/cryptography/)
-- [ElGamal/AES Encryption](/docs/legacy/elgamal-aes/)
-- [ECIES-X25519 Encryption](/docs/specs/ecies/)
-- [ECIES for Routers](/docs/specs/ecies/#routers)
-- [ECIES Hybrid (Post-Quantum)](/docs/specs/ecies/#hybrid)
-- [Red25519 Signatures](/docs/specs/red25519-signature-scheme/)
-- [Encrypted LeaseSet](/docs/specs/encryptedleaseset/)
-
-### Proposals
-
-- [Proposal 123: New netDB Entries](/proposals/123-new-netdb-entries/)
-- [Proposal 134: GOST Signature Types](/proposals/134-gost/)
-- [Proposal 136: Experimental Signature Types](/proposals/136-experimental-sigtypes/)
-- [Proposal 145: ECIES-P256](/proposals/145-ecies/)
-- [Proposal 156: ECIES Routers](/proposals/156-ecies-routers/)
-- [Proposal 161: Padding Generation](/en/proposals/161-ri-dest-padding/)
-- [Proposal 167: Service Records](/proposals/167-service-records/)
-- [Proposal 169: Post-Quantum Crypto](/proposals/169-pq-crypto/)
-- [All Proposals Index](/proposals/)
-
-### Network Database
-
-- [Network Database Overview](/docs/specs/common-structures/)
-- [RouterInfo Standard Options](/docs/specs/common-structures/#routerInfo)
-
-### JavaDoc API Reference
-
-- [Core Data Package](http://docs.i2p-projekt.de/javadoc/net/i2p/data/)
-- [PublicKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/PublicKey.html)
-- [PrivateKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/PrivateKey.html)
-- [SessionKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionKey.html)
-- [SigningPublicKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPublicKey.html)
-- [SigningPrivateKey](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SigningPrivateKey.html)
-- [Signature](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Signature.html)
-- [Hash](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Hash.html)
-- [SessionTag](http://docs.i2p-projekt.de/javadoc/net/i2p/data/SessionTag.html)
-- [TunnelId](http://docs.i2p-projekt.de/javadoc/net/i2p/data/TunnelId.html)
-- [Certificate](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Certificate.html)
-- [DataHelper](http://docs.i2p-projekt.de/javadoc/net/i2p/data/DataHelper.html)
-- [KeysAndCert](http://docs.i2p-projekt.de/javadoc/net/i2p/data/KeysAndCert.html)
-- [RouterIdentity](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterIdentity.html)
-- [Destination](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Destination.html)
-- [Lease](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease.html)
-- [LeaseSet](http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet.html)
-- [Lease2](http://docs.i2p-projekt.de/javadoc/net/i2p/data/Lease2.html)
-- [LeaseSet2](http://docs.i2p-projekt.de/javadoc/net/i2p/data/LeaseSet2.html)
-- [MetaLease](http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLease.html)
-- [MetaLeaseSet](http://docs.i2p-projekt.de/javadoc/net/i2p/data/MetaLeaseSet.html)
-- [EncryptedLeaseSet](http://docs.i2p-projekt.de/javadoc/net/i2p/data/EncryptedLeaseSet.html)
-- [RouterAddress](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterAddress.html)
-- [RouterInfo](http://docs.i2p-projekt.de/javadoc/net/i2p/data/router/RouterInfo.html)
-
-### External Standards
-
-- **RFC 7748 (X25519):** Elliptic Curves for Security
-- **RFC 7539 (ChaCha20):** ChaCha20 and Poly1305 for IETF Protocols
-- **RFC 4648 (Base64):** The Base16, Base32, and Base64 Data Encodings
-- **FIPS 180-4 (SHA-256):** Secure Hash Standard
-- **FIPS 204 (ML-DSA):** Module-Lattice-Based Digital Signature Standard
-- [IANA Service Registry](http://www.dns-sd.org/ServiceTypes.html)
-
-### Community Resources
-
-- [I2P Website](/)
-- [I2P Forum](https://i2pforum.net)
-- [I2P GitLab](https://i2pgit.org/I2P_Developers/i2p.i2p)
-- [I2P GitHub Mirror](https://github.com/i2p/i2p.i2p)
-- [Technical Documentation Index](/docs/)
-
-### Release Information
-
-- [I2P 2.10.0 Release](/en/blog/2025/09/08/i2p-2.10.0-release/)
-- [Release History](https://github.com/i2p/i2p.i2p/blob/master/history.txt)
-- [Changelog](https://github.com/i2p/i2p.i2p/blob/master/debian/changelog)
-
----
-
-## Appendix: Quick Reference Tables
-
-### Key Type Quick Reference
-
-**Current Standard (Recommended for all new implementations):**
-- **Encryption:** X25519 (type 4, 32 bytes, little-endian)
-- **Signing:** EdDSA_SHA512_Ed25519 (type 7, 32 bytes, little-endian)
-
-**Legacy (Supported but deprecated):**
-- **Encryption:** ElGamal (type 0, 256 bytes, big-endian)
-- **Signing:** DSA_SHA1 (type 0, 20-byte private / 128-byte public, big-endian)
-
-**Specialized:**
-- **Signing (Encrypted LeaseSet):** RedDSA_SHA512_Ed25519 (type 11, 32 bytes, little-endian)
-
-**Post-Quantum (Beta, not finalized):**
-- **Hybrid Encryption:** MLKEM_X25519 variants (types 5-7)
-- **Pure PQ Encryption:** MLKEM variants (no assigned type codes yet)
-
-### Structure Size Quick Reference
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Structure</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Minimum Size</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Typical Size</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Maximum Size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Integer</td><td style="border:1px solid var(--color-border); padding:0.5rem;">1 byte</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Varies</td><td style="border:1px solid var(--color-border); padding:0.5rem;">8 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Date</td><td style="border:1px solid var(--color-border); padding:0.5rem;">8 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">8 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">8 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">String</td><td style="border:1px solid var(--color-border); padding:0.5rem;">1 byte</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Varies</td><td style="border:1px solid var(--color-border); padding:0.5rem;">256 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">SessionKey</td><td style="border:1px solid var(--color-border); padding:0.5rem;">32 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">32 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">32 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Hash</td><td style="border:1px solid var(--color-border); padding:0.5rem;">32 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">32 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">32 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">TunnelId</td><td style="border:1px solid var(--color-border); padding:0.5rem;">4 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">4 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">4 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Certificate</td><td style="border:1px solid var(--color-border); padding:0.5rem;">3 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">7 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">65,538 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">KeysAndCert</td><td style="border:1px solid var(--color-border); padding:0.5rem;">387 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">391 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈1000+ bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RouterIdentity</td><td style="border:1px solid var(--color-border); padding:0.5rem;">387 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">391 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈1000+ bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Destination</td><td style="border:1px solid var(--color-border); padding:0.5rem;">387 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">391 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈1000+ bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Lease</td><td style="border:1px solid var(--color-border); padding:0.5rem;">44 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">44 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">44 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Lease2</td><td style="border:1px solid var(--color-border); padding:0.5rem;">40 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">40 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">40 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">LeaseSet</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈1000 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈1200 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈2000+ bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">LeaseSet2</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈500 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈800 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈2000+ bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">EncryptedLeaseSet</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈600 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈1000 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈3000+ bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RouterAddress</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈150 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈300 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈600 bytes</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">RouterInfo</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈1000 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈1500 bytes</td><td style="border:1px solid var(--color-border); padding:0.5rem;">≈3000+ bytes</td></tr>
-  </tbody>
-</table>
-
-### Database Type Quick Reference
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Structure</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Status</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">RouterInfo</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Stored under Hash(RouterIdentity)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1</td><td style="border:1px solid var(--color-border); padding:0.5rem;">LeaseSet</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Deprecated</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Use LeaseSet2 instead</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem;">LeaseSet2</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Stored under Hash(Destination)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">5</td><td style="border:1px solid var(--color-border); padding:0.5rem;">EncryptedLeaseSet</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Stored under Hash(Blinded Destination)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">7</td><td style="border:1px solid var(--color-border); padding:0.5rem;">MetaLeaseSet</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Defined</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Verify production status</td></tr>
-  </tbody>
-</table>
-
-### Transport Protocol Quick Reference
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Protocol</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Status</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Port Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Since</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">SSU2</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current</td><td style="border:1px solid var(--color-border); padding:0.5rem;">UDP</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Default since 0.9.56</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">NTCP2</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Current</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TCP</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.36</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Active</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">SSU</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Removed</td><td style="border:1px solid var(--color-border); padding:0.5rem;">UDP</td><td style="border:1px solid var(--color-border); padding:0.5rem;">-</td><td style="border:1pxsolid var(--color-border); padding:0.5rem;">Removed in 2.4.0</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">NTCP</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Removed</td><td style="border:1px solid var(--color-border); padding:0.5rem;">TCP</td><td style="border:1px solid var(--color-border); padding:0.5rem;">-</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Removed in 0.9.50</td></tr>
-  </tbody>
-</table>
-
-### Version Milestone Quick Reference
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Version</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">API</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Date</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Key Changes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.6</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.6.x</td><td style="border:1px solid var(--color-border); padding:0.5rem;">2005</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Destination encryption disabled</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Dec 2013</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Key Certificates introduced</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.15</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.15</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Sep 2015</td><td style="border:1px solid var(--color-border); padding:0.5rem;">EdDSA support added</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.16</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.16</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Nov 2015</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Router Key Certificates</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.36</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.36</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Aug 2018</td><td style="border:1px solid var(--color-border); padding:0.5rem;">NTCP2 introduced</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.38</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.38</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Nov 2018</td><td style="border:1px solid var(--color-border); padding:0.5rem;">LeaseSet2, X25519 for Destinations</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.39</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.39</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Dec 2018</td><td style="border:1px solid var(--color-border); padding:0.5rem;">EncryptedLeaseSet working</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.48</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jul 2020</td><td style="border:1px solid var(--color-border); padding:0.5rem;">X25519 for Router Identities</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.50</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2021</td><td style="border:1px solid var(--color-border); padding:0.5rem;">NTCP removed</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.54</td><td style="border:1px solid var(--color-border); padding:0.5rem;">May 2022</td><td style="border:1px solid var(--color-border); padding:0.5rem;">SSU2 testing</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.57</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jan 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 161](/en/proposals/161-ri-dest-padding/) padding (release 2.1.0)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.58</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Mar 2023</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ElGamal/DSA deprecated for RIs (2.2.0)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.66</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Jun 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">[Proposal 167](/proposals/167-service-records/) service records (2.9.0)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">0.9.67</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Sep 2025</td><td style="border:1px solid var(--color-border); padding:0.5rem;">ML-KEM beta support (2.10.0)</td></tr>
-  </tbody>
-</table>
-
----
+- [ECIES](/docs/specs/ecies/)
+- [ECIES-HYBRID](/docs/specs/ecies-hybrid/)
+- [ECIES-ROUTERS](/docs/specs/ecies-routers/)
+- [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy)
+- [ELGAMAL-AES](/docs/legacy/elgamal-aes/)
+- [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions)
+- [I2CP](/docs/specs/i2cp/)
+- [I2NP](/docs/specs/i2np/)
+- [NAMING](/docs/overview/naming/)
+- [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo)
+- [Prop134](/proposals/134-gost/)
+- [Prop169](/proposals/169-pq-crypto/)
+- [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)
+- [SSU](/docs/legacy/ssu/)
+- [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)

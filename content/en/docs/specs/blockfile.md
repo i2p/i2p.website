@@ -1,497 +1,215 @@
 ---
-title: "Blockfile Specification"
-description: "On-disk blockfile storage format used by I2P for hostname resolution"
-slug: "blockfile"
-lastUpdated: "2025-10"
-accurateFor: "2.10.0"
-type: docs
+title: "Blockfile and Hosts Database Specification"
+description: "Specification of the I2P blockfile file format and the tables in the hostsdb.blockfile used by the Blockfile Naming Service"
+category: "Formats"
+lastUpdated: "2023-11"
+accurateFor: "0.9.59"
 ---
 
 ## Overview
-This document specifies the **I2P blockfile file format** and the tables in the `hostsdb.blockfile` used by the **Blockfile Naming Service**.  
-For background, see [I2P Naming and Address Book](/docs/overview/naming).
 
-The blockfile enables **fast destination lookups** in a compact binary format.  
-Compared to the legacy `hosts.txt` system:
+This document specifies the I2P blockfile file format and the tables in
+the hostsdb.blockfile used by the Blockfile Naming Service [NAMING](/docs/overview/naming/).
 
-- Destinations are stored in binary, not Base64.  
-- Arbitrary metadata (e.g., added date, source, comments) can be attached.  
-- Lookup times are roughly **10× faster**.  
-- Disk use increases modestly.
+The blockfile provides fast Destination lookup in a compact format.
+While the blockfile page overhead is substantial, the destinations are
+stored in binary rather than in Base 64 as in the hosts.txt format. In
+addition, the blockfile provides the capability of arbitrary metadata
+storage (such as added date, source, and comments) for each entry. The
+metadata may be used in the future to provide advanced addressbook
+features. The blockfile storage requirement is a modest increase over
+the hosts.txt format, and the blockfile provides approximately 10x
+reduction in lookup times.
 
-A blockfile is an on-disk collection of sorted maps (key-value pairs) implemented as **skiplists**.  
-It was derived from the [Metanotion Blockfile Database](http://www.metanotion.net/software/sandbox/block.html).  
-This specification first defines the file structure, then describes how it is used by the `BlockfileNamingService`.
-
-> The Blockfile Naming Service replaced the old `hosts.txt` implementation in **I2P 0.8.8**.  
-> On initialization, it imports entries from `privatehosts.txt`, `userhosts.txt`, and `hosts.txt`.
-
----
+A blockfile is simply on-disk storage of multiple sorted maps (key-value
+pairs), implemented as skiplists. The blockfile format is adopted from
+the Metanotion Blockfile Database [METANOTION](http://www.metanotion.net/software/sandbox/block.html). First we will define the file
+format, then the use of that format by the BlockfileNamingService.
 
 ## Blockfile Format
-The format is composed of **1024-byte pages**, each prefixed with a **magic number** for integrity.  
-Pages are numbered starting at 1:
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Page</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">1</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Superblock (starts at byte 0)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Metaindex skiplist (starts at byte 1024)</td>
-    </tr>
-  </tbody>
-</table>
+The original blockfile spec was modified to add magic numbers to each
+page. The file is structured in 1024-byte pages. Pages are numbered
+starting from 1. The "superblock" is always at page 1, i.e. starting
+at byte 0 in the file. The metaindex skiplist is always at page 2, i.e.
+starting at byte 1024 in the file.
 
-All integers use **network byte order (big-endian)**.  
-2-byte values are unsigned; 4-byte values (page numbers) are signed and must be positive.
+All 2-byte integer values are unsigned. All 4-byte integer values (page
+numbers) are signed and negative values are illegal. All integer values
+are stored in network byte order (big endian).
 
-> **Threading:** The database is designed for **single-threaded access**; `BlockfileNamingService` provides synchronization.
+The database is designed to be opened and accessed by a single thread.
+The BlockfileNamingService provides synchronization.
 
----
+### Superblock format
 
-### Superblock Format
+```
+Byte      Contents
+0-5       Magic number     0x3141de493250 ("1A" 0xde "I2P")
+6         Major version    0x01
+7         Minor version    0x02
+8-15      File length      Total length in bytes
+16-19     First free list page
+20-21     Mounted flag     0x01 = yes
+22-23     Span size        Max number of key/value pairs per span (16 for hostsdb)
+                           Used for new skip lists.
+24-27     Page size        As of version 1.2. Prior to 1.2, 1024 is assumed.
+28-1023   unused
+```
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Byte</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0-5</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Magic number <code>0x3141de493250</code> (<code>"1A"</code> <code>0xde</code> <code>"I2P"</code>)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">6</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Major version <code>0x01</code></td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">7</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Minor version <code>0x02</code></td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">8-15</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">File length (in bytes)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">16-19</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">First free list page</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">20-21</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Mounted flag (<code>0x01</code> = yes)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">22-23</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Span size (max key/value pairs per span, 16 for hostsdb)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">24-27</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Page size (as of v1.2; 1024 before that)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">28-1023</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Unused</td>
-    </tr>
-  </tbody>
-</table>
+### Skip list block page format
 
----
+```
+Byte      Contents
+0-7       Magic number     0x536b69704c697374 "SkipList"
+8-11      First span page
+12-15     First level page
+16-19     Size (total number of keys - may only be valid at startup)
+20-23     Spans (total number of spans - may only be valid at startup)
+24-27     Levels (total number of levels - may only be valid at startup)
+28-29     Span size - As of version 1.2. Max number of key/value pairs per span.
+                      Prior to that, specified for all skiplists in the superblock.
+                      Used for new spans in this skip list.
+30-1023   unused
+```
 
-### Skip List Block Page Format
+### Skip level block page format
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Byte</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0-7</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Magic <code>0x536b69704c697374</code> (<code>"SkipList"</code>)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">8-11</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">First span page</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">12-15</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">First level page</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">16-19</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Size (total keys, valid at startup)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">20-23</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Spans (total spans, valid at startup)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">24-27</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Levels (total levels, valid at startup)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">28-29</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Span size (as of v1.2; used for new spans)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">30-1023</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Unused</td>
-    </tr>
-  </tbody>
-</table>
+All levels have a span. Not all spans have levels.
 
----
+```
+Byte      Contents
+0-7       Magic number     0x42534c6576656c73 "BSLevels"
+8-9       Max height
+10-11     Current height
+12-15     Span page
+16-       Next level pages ('current height' entries, 4 bytes each, lowest first)
+remaining bytes unused
+```
 
-### Skip Level Block Page Format
-Every level has a span, but not all spans have levels.
+### Skip span block page format
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Byte</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0-7</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Magic <code>0x42534c6576656c73</code> (<code>"BSLevels"</code>)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">8-9</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Max height</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">10-11</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Current height</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">12-15</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Span page</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">16-…</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Next level pages (<code>current height</code> × 4 bytes, lowest first)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">&mdash;</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Remaining bytes unused</td>
-    </tr>
-  </tbody>
-</table>
+Key/value structures are sorted by key within each span and across all spans.
+Key/value structures are sorted by key within each span.
+Spans other than the first span may not be empty.
 
----
+```
+Byte      Contents
+0-3       Magic number     0x5370616e "Span"
+4-7       First continuation page or 0
+8-11      Previous span page or 0
+12-15     Next span page or 0
+16-17     Max keys (16 for hostsdb)
+18-19     Size (current number of keys)
+20-1023   key/value structures
+```
 
-### Skip Span Block Page Format
-Key/value pairs are sorted by key across spans.  
-Non-first spans must not be empty.
+### Span Continuation block page format
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Byte</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0-3</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Magic <code>0x5370616e</code> (<code>"Span"</code>)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">4-7</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">First continuation page or 0</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">8-11</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Previous span page or 0</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">12-15</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Next span page or 0</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">16-17</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Max keys (16 for hostsdb)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">18-19</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Size (current keys)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">20-1023</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Key/value structures</td>
-    </tr>
-  </tbody>
-</table>
+```
+Byte      Contents
+0-3       Magic number     0x434f4e54 "CONT"
+4-7       Next continuation page or 0
+8-1023    key/value structures
+```
 
----
+### Key/value structure format
 
-### Span Continuation Block Page Format
+Key and value lengths must not be split across pages, i.e. all 4 bytes must be on the same page.
+If there is not enough room the last 1-3 bytes of a page are unused and the
+lengths will be at offset 8 in the continuation page. Key and value data
+may be split across pages. Max key and value lengths are 65535 bytes.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Byte</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0-3</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Magic <code>0x434f4e54</code> (<code>"CONT"</code>)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">4-7</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Next continuation page or 0</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">8-1023</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Key/value structures</td>
-    </tr>
-  </tbody>
-</table>
+```
+Byte      Contents
+0-1       key length in bytes
+2-3       value length in bytes
+4-        key data
+          value data
+```
 
----
+### Free list block page format
 
-### Key/Value Structure Format
-Key and value **length fields cannot span pages** (all 4 bytes must fit).  
-If insufficient space remains, pad up to 3 bytes and continue at offset 8 of the next page.
+```
+Byte      Contents
+0-7       Magic number     0x2366724c69737423 "#frList#"
+8-11      Next free list block or 0 if none
+12-15     Number of valid free pages in this block (0 - 252)
+16-1023   Free pages (4 bytes each), only the first (valid number) are valid
+```
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Byte</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0-1</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Key length (bytes)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2-3</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Value length (bytes)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">4-…</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Key data → Value data</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">&mdash;</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Max length = 65535 bytes each</td>
-    </tr>
-  </tbody>
-</table>
+### Free page block format
 
----
+```
+Byte      Contents
+0-7       Magic number     0x7e2146524545217e "~!FREE!~"
+8-1023    unused
+```
 
-### Free List Block Page Format
+The metaindex (located at page 2) is a mapping of US-ASCII strings to
+4-byte integers. The key is the name of the skiplist and the value is
+the page index of the skiplist.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Byte</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0-7</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Magic <code>0x2366724c69737423</code> (<code>"#frList#"</code>)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">8-11</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Next free list block or 0</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">12-15</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Number of valid free pages (0 – 252)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">16-1023</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Free page numbers (4 bytes each)</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-### Free Page Block Format
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Byte</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Contents</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0-7</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Magic <code>0x7e2146524545217e</code> (<code>"~!FREE!~"</code>)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">8-1023</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Unused</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-### Metaindex
-Located at page 2.  
-Maps **US-ASCII strings** → **4-byte integers**.  
-The key is the skiplist name; the value is the page index.
-
----
 
 ## Blockfile Naming Service Tables
-The service defines several skiplists.  
-Each span supports up to 16 entries.
 
----
+The tables created and used by the BlockfileNamingService are as
+follows. The maximum number of entries per span is 16.
 
 ### Properties Skiplist
-`%%__INFO__%%` contains one entry:
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Key</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>info</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">A Properties object (UTF-8 String / String map) serialized as a Mapping</td>
-    </tr>
-  </tbody>
-</table>
+`%%__INFO__%%` is the main database skiplist with String/Properties key/value
+entries containing only one entry:
 
-Typical fields:
+**info** - a Properties (UTF-8 String/String Map), serialized as a [Mapping](/docs/specs/common-structures/#type-mapping):
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Property</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>version</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>"4"</code></td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>created</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Java long (ms since epoch)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>upgraded</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Java long (ms since epoch, since DB v2)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>lists</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Comma-separated host DBs (e.g. <code>privatehosts.txt,userhosts.txt,hosts.txt</code>)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>listversion_*</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Version of each DB (used to detect partial upgrades, since v4)</td>
-    </tr>
-  </tbody>
-</table>
+- **version** - "4"
+- **created** - Java long time (ms)
+- **upgraded** - Java long time (ms) (as of database version 2)
+- **lists** - Comma-separated list of host databases, to be searched in-order for lookups. Almost always "privatehosts.txt,userhosts.txt,hosts.txt".
+- **listversion_*** - The version of each database in lists, for example: listversion_hosts.txt=4. Used to identify partial or aborted upgrade of individual lists. (as of database version 4)
 
----
 
 ### Reverse Lookup Skiplist
-`%%__REVERSE__%%` contains **Integer → Properties** entries (since DB v2).
 
-- **Key:** First 4 bytes of the SHA-256 hash of the Destination.  
-- **Value:** Properties object (serialized Mapping).  
-- Multiple entries handle collisions and multi-hostname Destinations.  
-- Each property key = hostname; value = empty string.
+`%%__REVERSE__%%` is the reverse lookup skiplist with Integer/Properties
+key/value entries (as of database version 2):
 
----
+- The skiplist keys are 4-byte Integers, the first 4 bytes of the hash of the [Destination](/docs/specs/common-structures/#struct-destination).
+- The skiplist values are each a Properties (a UTF-8 String/String Map) serialized as a [Mapping](/docs/specs/common-structures/#type-mapping)
+  - There may be multiple entries in the properties, each one is a reverse mapping, as there may be more than one hostname for a given destination, or there could be collisions with the same first 4 bytes of the hash.
+  - Each property key is a hostname.
+  - Each property value is the empty string.
 
-### Host Database Skiplists
-Each of `hosts.txt`, `userhosts.txt`, and `privatehosts.txt` maps hostnames → Destinations.
+### hosts.txt, userhosts.txt, and privatehosts.txt Skiplists
 
-Version 4 supports multiple Destinations per hostname (introduced in **I2P 0.9.26**).  
-Version 3 databases are migrated automatically.
+For each host database, there is a skiplist containing the hosts for
+that database. Note that the version 4 format supports multiple
+Destinations per hostname. This format was introduced in I2P release
+0.9.26. Version 3 databases are automatically migrated to version 4.
 
-#### Key
-UTF-8 string (hostname, lowercase, ending in `.i2p`)
+The keys/values in these skiplists are as follows:
 
-#### Value
-- **Version 4:**  
-  - 1 byte count of Property/Destination pairs  
-  - For each pair: Properties → Destination (binary)
-- **Version 3:**  
-  - Properties → Destination (binary)
+**key** - a UTF-8 String (the hostname)
 
-#### DestEntry Properties
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Key</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>a</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Time added (Java long ms)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>m</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Last modified (Java long ms)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>notes</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">User comments</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>s</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Source (file or subscription URL)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>v</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Signature verified (<code>true</code>/<code>false</code>)</td>
-    </tr>
-  </tbody>
-</table>
+**value** -
+- Database version 4: A DestEntry, which is a one-byte number of Properties/Destination pairs to follow. That number of pairs of: A Properties (a UTF-8 String/String Map) serialized as a [Mapping](/docs/specs/common-structures/#type-mapping) followed by a binary [Destination](/docs/specs/common-structures/#struct-destination) (serialized as usual).
+- Database version 3: a DestEntry, which is a Properties (a UTF-8 String/String Map) serialized as a [Mapping](/docs/specs/common-structures/#type-mapping) followed by a binary [Destination](/docs/specs/common-structures/#struct-destination) (serialized as usual).
 
----
+The DestEntry Properties typically contains:
 
-## Implementation Notes
-The `BlockfileNamingService` Java class implements this specification.  
+- **"a"** - The time added (Java long time in ms)
+- **"m"** - The time last modified (Java long time in ms)
+- **"notes"** - User-supplied comments
+- **"s"** - The original source of the entry (typically a file name or subscription URL)
+- **"v"** - If the signature of the entry was verified, "true" or "false"
 
-- Outside router context, the database opens **read-only** unless `i2p.naming.blockfile.writeInAppContext=true`.  
-- Not intended for multi-instance or multi-JVM access.  
-- Maintains three primary maps (`privatehosts`, `userhosts`, `hosts`) and a reverse map for fast lookups.
+Hostname keys are stored in lower-case and always end in ".i2p".
 
----
 
 ## References
-- [I2P Naming and Address Book Docs](/docs/overview/naming/)  
-- [Common Structures Specification](/docs/specs/common-structures/)  
-- [Metanotion Blockfile Database](http://www.metanotion.net/software/sandbox/block.html)  
-- [BlockfileNamingService JavaDoc](https://geti2p.net/javadoc/i2p/naming/BlockfileNamingService.html)
+
+- [Destination](/docs/specs/common-structures/#struct-destination)
+- [Mapping](/docs/specs/common-structures/#type-mapping)
+- [METANOTION](http://www.metanotion.net/software/sandbox/block.html)
+- [NAMING](/docs/overview/naming/)
