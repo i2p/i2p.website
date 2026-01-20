@@ -2,1678 +2,1040 @@
 title: "NTCP2 Transport"
 description: "Noise-based TCP transport for router-to-router links"
 slug: "ntcp2"
+category: "Transports"
 lastUpdated: "2026-01"
 accurateFor: "0.9.66"
-type: docs
 ---
 
 ## Overview
 
-NTCP2 replaces the legacy NTCP transport with a Noise-based handshake that resists traffic fingerprinting, encrypts length fields, and supports modern cipher suites. Routers may run NTCP2 alongside SSU2 as the two mandatory transport protocols in the I2P network. NTCP (version 1) was deprecated in 0.9.40 (May 2019) and completely removed in 0.9.50 (May 2021).
+NTCP2 is an authenticated key agreement protocol that improves the resistance of [NTCP](/docs/transport/ntcp) to various forms of automated identification and attacks.
+
+NTCP2 is designed for flexibility and coexistence with NTCP. It may be supported on the same port as NTCP, or a different port, or without simultaneous NTCP support at all. See the Published Router Info section below for details.
+
+As with other I2P transports, NTCP2 is defined solely for point-to-point (router-to-router) transport of I2NP messages. It is not a general-purpose data pipe.
+
+NTCP2 is supported as of version 0.9.36. See [Prop111](/proposals/111-ntcp-2) for the original proposal, including background discussion and additional information.
 
 ## Noise Protocol Framework
 
-NTCP2 uses the Noise Protocol Framework [Revision 33, 2017-10-04](https://noiseprotocol.org/noise.html) with I2P-specific extensions:
+NTCP2 uses the Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Revision 33, 2017-10-04). Noise has similar properties to the Station-To-Station protocol [STS](#references), which is the basis for the [SSU](/docs/transport/ssu) protocol. In Noise parlance, Alice is the initiator, and Bob is the responder.
 
-- **Pattern**: `Noise_XK_25519_ChaChaPoly_SHA256`
-- **Extended Identifier**: `Noise_XKaesobfse+hs2+hs3_25519_ChaChaPoly_SHA256` (for KDF initialization)
-- **DH Function**: X25519 (RFC 7748) - 32-byte keys, little-endian encoding
-- **Cipher**: AEAD_CHACHA20_POLY1305 (RFC 7539/RFC 8439)
-  - 12-byte nonce: first 4 bytes zero, last 8 bytes counter (little-endian)
-  - Maximum nonce value: 2^64 - 2 (connection must terminate before reaching 2^64 - 1)
-- **Hash Function**: SHA-256 (32-byte output)
-- **MAC**: Poly1305 (16-byte authentication tag)
+NTCP2 is based on the Noise protocol Noise_XK_25519_ChaChaPoly_SHA256. (The actual identifier for the initial key derivation function is "Noise_XKaesobfse+hs2+hs3_25519_ChaChaPoly_SHA256" to indicate I2P extensions - see KDF 1 section below) This Noise protocol uses the following primitives:
 
-### I2P-Specific Extensions
+- Handshake Pattern: XK Alice transmits her key to Bob (X) Alice knows Bob's static key already (K)
+- DH Function: X25519 X25519 DH with a key length of 32 bytes as specified in [RFC-7748](https://tools.ietf.org/html/rfc7748).
+- Cipher Function: ChaChaPoly AEAD_CHACHA20_POLY1305 as specified in [RFC-7539](https://tools.ietf.org/html/rfc7539) section 2.8. 12 byte nonce, with the first 4 bytes set to zero.
+- Hash Function: SHA256 Standard 32-byte hash, already used extensively in I2P.
 
-1. **AES Obfuscation**: Ephemeral keys encrypted with AES-256-CBC using Bob's router hash and published IV
-2. **Random Padding**: Cleartext padding in messages 1-2 (authenticated), AEAD padding in message 3+ (encrypted)
-3. **SipHash-2-4 Length Obfuscation**: Two-byte frame lengths XORed with SipHash output
-4. **Frame Structure**: Length-prefixed frames for data phase (TCP streaming compatibility)
-5. **Block-Based Payloads**: Structured data format with typed blocks
+## Additions to the Framework
 
-## Handshake Flow
+NTCP2 defines the following enhancements to Noise_XK_25519_ChaChaPoly_SHA256. These generally follow the guidelines in [NOISE](https://noiseprotocol.org/noise.html) section 13.
 
-```
-Alice (Initiator)             Bob (Responder)
-SessionRequest  ──────────────────────►
-                ◄────────────────────── SessionCreated
-SessionConfirmed ──────────────────────►
-```
+1)  Cleartext ephemeral keys are obfuscated with AES encryption using a known key and IV.
+2)  Random cleartext padding is added to messages 1 and 2. The cleartext padding is included in the handshake hash (MixHash) calculation. See the KDF sections below for message 2 and message 3 part 1. Random AEAD padding is added to message 3 and data phase messages.
+3)  A two-byte frame length field is added, as is required for Noise over TCP, and as in obfs4. This is used in the data phase messages only. Message 1 and 2 AEAD frames are fixed length. Message 3 part 1 AEAD frame is fixed length. Message 3 part 2 AEAD frame length is specified in message 1.
+4)  The two-byte frame length field is obfuscated with SipHash-2-4, as in obfs4.
+5)  The payload format is defined for messages 1,2,3, and the data phase. Of course, these are not defined in the framework.
 
-### Three-Message Handshake
+## Messages
 
-1. **SessionRequest** - Alice's obfuscated ephemeral key, options, padding hints
-2. **SessionCreated** - Bob's obfuscated ephemeral key, encrypted options, padding
-3. **SessionConfirmed** - Alice's encrypted static key and RouterInfo (two AEAD frames)
+All NTCP2 messages are less than or equal to 65537 bytes in length. The message format is based on Noise messages, with modifications for framing and indistinguishability. Implementations using standard Noise libraries may need to pre-process received messages to/from the Noise message format. All encrypted fields are AEAD ciphertexts.
 
-### Noise Message Patterns
+The establishment sequence is as follows:
 
 ```
-XK(s, rs):           Authentication   Confidentiality
-  <- s               (Bob's static key known in advance)
-  -> e, es                  0                2
-  <- e, ee                  2                1
-  -> s, se                  2                5
-  <-                        2                5
+Alice Bob
+
+SessionRequest -------------------> <------------------- SessionCreated SessionConfirmed ----------------->
 ```
 
-**Authentication Levels:**
-- 0: No authentication (any party could have sent)
-- 2: Sender authentication resistant to key-compromise impersonation (KCI)
+Using Noise terminology, the establishment and data sequence is as follows: (Payload Security Properties from [Noise](https://noiseprotocol.org/noise.html) )
 
-**Confidentiality Levels:**
-- 1: Ephemeral recipient (forward secrecy, no recipient authentication)
-- 2: Known recipient, forward secrecy for sender compromise only
-- 5: Strong forward secrecy (ephemeral-ephemeral + ephemeral-static DH)
-
-## Message Specifications
-
-### Key Notation
-
-- `RH_A` = Router Hash for Alice (32 bytes, SHA-256)
-- `RH_B` = Router Hash for Bob (32 bytes, SHA-256)
-- `||` = Concatenation operator
-- `byte(n)` = Single byte with value n
-- All multi-byte integers are **big-endian** unless specified otherwise
-- X25519 keys are **little-endian** (32 bytes)
-
-### Authenticated Encryption (ChaCha20-Poly1305)
-
-**Encryption Function:**
 ```
-AEAD_ChaCha20_Poly1305(key, nonce, associatedData, plaintext)
-  → (ciphertext || MAC)
+XK(s, rs): Authentication Confidentiality
+
+<- s \... -> e, es 0 2 <- e, ee 2 1 -> s, se 2 5 <- 2 5
 ```
 
-**Parameters:**
-- `key`: 32-byte cipher key from KDF
-- `nonce`: 12 bytes (4 zero bytes + 8-byte counter, little-endian)
-- `associatedData`: 32-byte hash in handshake phase; zero-length in data phase
-- `plaintext`: Data to encrypt (0+ bytes)
+Once a session has been established, Alice and Bob can exchange Data messages.
 
-**Output:**
-- Ciphertext: Same length as plaintext
-- MAC: 16 bytes (Poly1305 authentication tag)
+All message types (SessionRequest, SessionCreated, SessionConfirmed, Data and TimeSync) are specified in this section.
 
-**Nonce Management:**
-- Counter starts at 0 for each cipher instance
-- Increments for each AEAD operation in that direction
-- Separate counters for Alice→Bob and Bob→Alice in data phase
-- Must terminate connection before counter reaches 2^64 - 1
+Some notations:
 
-## Message 1: SessionRequest
+    - RH_A = Router Hash for Alice (32 bytes)
+    - RH_B = Router Hash for Bob (32 bytes)
 
-Alice initiates connection to Bob.
+### Authenticated Encryption
 
-**Noise Operations**: `e, es` (ephemeral key generation and exchange)
+There are three separate authenticated encryption instances (CipherStates). One during the handshake phase, and two (transmit and receive) for the data phase. Each has its own key from a KDF.
 
-### Raw Format
+Encrypted/authenticated data will be represented as
 
 ```
 +----+----+----+----+----+----+----+----+
-|                                       |
-+    AES-256-CBC Encrypted X (32B)      +
-|    Key: RH_B, IV: Bob's published IV  |
-+                                       +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|                                       |
-+    ChaChaPoly Frame (48 bytes)        +
-|    Plaintext: 32B (X + options)       |
-+    k from KDF-1, n=0, ad=h            +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|    Cleartext Padding (optional)       |
-+    Length specified in options         +
-|    0 to 65535 - 80 bytes              |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
+
+|                                       |
+
+    + + | Encrypted and authenticated data | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
 ```
 
-**Size Constraints:**
-- Minimum: 80 bytes (32 AES + 48 AEAD)
-- Maximum: 65535 bytes total
-- **Special case**: Max 287 bytes when connecting to "NTCP" addresses (version detection)
+#### ChaCha20/Poly1305
 
-### Decrypted Content
+Encrypted and authenticated data format.
+
+Inputs to the encryption/decryption functions:
 
 ```
-+----+----+----+----+----+----+----+----+
-|                                       |
-+    X (Alice ephemeral public key)     +
-|    32 bytes, X25519, little-endian    |
-+                                       +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|           Options Block               |
-+             (16 bytes)                +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|    Cleartext Padding (optional)       |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
+k :: 32 byte cipher key, as generated from KDF
+
+
+
+nonce :: Counter-based nonce, 12 bytes.
+
+Starts at 0 and incremented for each message. First four bytes are always zero. Last eight bytes are the counter, little-endian encoded. Maximum value is 2**64 - 2. Connection must be dropped and restarted after it reaches that value. The value 2**64 - 1 must never be sent.
+
+ad :: In handshake phase:
+
+Associated data, 32 bytes. The SHA256 hash of all preceding data. In data phase: Zero bytes
+
+data :: Plaintext data, 0 or more bytes
 ```
 
-### Options Block (16 bytes, big-endian)
+Output of the encryption function, input to the decryption function:
 
 ```
 +----+----+----+----+----+----+----+----+
-| id | ver|  padLen | m3p2len | Rsvd(0) |
-+----+----+----+----+----+----+----+----+
-|        tsA        |   Reserved (0)    |
-+----+----+----+----+----+----+----+----+
 
-id      : 1 byte  - Network ID (2 for mainnet, 16-254 for testnets)
-ver     : 1 byte  - Protocol version (currently 2)
-padLen  : 2 bytes - Padding length in this message (0-65455)
-m3p2len : 2 bytes - Length of SessionConfirmed part 2 frame
-Rsvd    : 2 bytes - Reserved, set to 0
-tsA     : 4 bytes - Unix timestamp (seconds since epoch)
-Reserved: 4 bytes - Reserved, set to 0
+[|Obfs Len |](##SUBST##|Obfs Len |) | +----+----+ + | ChaCha20 encrypted data | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ | Poly1305 Message Authentication Code | + (MAC) + | 16 bytes | +----+----+----+----+----+----+----+----+
+
+    Obfs Len :: Length of (encrypted data + MAC) to follow, 16 - 65535
+
+    :   Obfuscation using SipHash (see below) Not used in message 1 or 2, or message 3 part 1, where the length is fixed Not used in message 3 part 1, as the length is specified in message 1
+
+    encrypted data :: Same size as plaintext data, 0 - 65519 bytes
+
+    MAC :: Poly1305 message authentication code, 16 bytes
 ```
 
-**Critical Fields:**
-- **Network ID** (since 0.9.42): Fast rejection of cross-network connections
-- **m3p2len**: Exact size of message 3 part 2 (must match when sent)
+For ChaCha20, what is described here corresponds to [RFC-7539](https://tools.ietf.org/html/rfc7539), which is also used similarly in TLS [RFC-7905](https://tools.ietf.org/html/rfc7905).
 
-### Key Derivation Function (KDF-1)
+#### Notes
 
-**Initialize Protocol:**
-```
-protocol_name = "Noise_XKaesobfse+hs2+hs3_25519_ChaChaPoly_SHA256"
-h = SHA256(protocol_name)
-ck = h  // Chaining key initialized to hash
-```
+- Since ChaCha20 is a stream cipher, plaintexts need not be padded. Additional keystream bytes are discarded.
+- The key for the cipher (256 bits) is agreed upon by means of the SHA256 KDF. The details of the KDF for each message are in separate sections below.
+- ChaChaPoly frames for messages 1, 2, and the first part of message 3, are of known size. Starting with the second part of message 3, frames are of variable size. The message 3 part 1 size is specified in message 1. Starting with the data phase, frames are prepended with a two-byte length obfuscated with SipHash as in obfs4.
+- Padding is outside the authenticated data frame for messages 1 and 2. The padding is used in the KDF for the next message so tampering will be detected. Starting in message 3, padding is inside the authenticated data frame.
 
-**MixHash Operations:**
-```
-h = SHA256(h)                    // Null prologue
-h = SHA256(h || rs)              // Bob's static key (known)
-h = SHA256(h || e.pubkey)        // Alice's ephemeral key X
-// h is now the associated data for message 1 AEAD
-```
+#### AEAD Error Handling
 
-**MixKey Operation (es pattern):**
-```
-dh_result = X25519(Alice.ephemeral_private, Bob.static_public)
-temp_key = HMAC-SHA256(ck, dh_result)
-ck = HMAC-SHA256(temp_key, byte(0x01))
-k = HMAC-SHA256(temp_key, ck || byte(0x02))
-// k is the cipher key for message 1
-// ck is retained for message 2 KDF
-```
+- In messages 1, 2, and message 3 parts 1 and 2, the AEAD message size is known in advance. On an AEAD authentication failure, recipient must halt further message processing and close the connection without responding. This should be an abnormal close (TCP RST).
+- For probing resistance, in message 1, after an AEAD failure, Bob should set a random timeout (range TBD) and then read a random number of bytes (range TBD) before closing the socket. Bob should maintain a blacklist of IPs with repeated failures.
+- In the data phase, the AEAD message size is "encrypted" (obfuscated) with SipHash. Care must be taken to avoid creating a decryption oracle. On a data phase AEAD authentication failure, the recipient should set a random timeout (range TBD) and then read a random number of bytes (range TBD). After the read, or on read timeout, the recipient should send a payload with a termination block containing an "AEAD failure" reason code, and close the connection.
+- Take the same error action for an invalid length field value in the data phase.
 
-### Implementation Notes
+### Key Derivation Function (KDF) (for handshake message 1)
 
-1. **AES Obfuscation**: Used for DPI resistance only; anyone with Bob's router hash and IV can decrypt X
-2. **Replay Prevention**: Bob must cache X values (or encrypted equivalents) for at least 2*D seconds (D = max clock skew)
-3. **Timestamp Validation**: Bob must reject connections with |tsA - current_time| > D (typically D = 60 seconds)
-4. **Curve Validation**: Bob must verify X is a valid X25519 point
-5. **Fast Rejection**: Bob may check X[31] & 0x80 == 0 before decryption (valid X25519 keys have MSB clear)
-6. **Error Handling**: On any failure, Bob closes with TCP RST after random timeout and random byte read
-7. **Buffering**: Alice must flush entire message (including padding) at once for efficiency
-
-## Message 2: SessionCreated
-
-Bob responds to Alice.
-
-**Noise Operations**: `e, ee` (ephemeral-ephemeral DH)
-
-### Raw Format
+The KDF generates a handshake phase cipher key k from the DH result, using HMAC-SHA256(key, data) as defined in [RFC-2104](https://tools.ietf.org/html/rfc2104). These are the InitializeSymmetric(), MixHash(), and MixKey() functions, exactly as defined in the Noise spec.
 
 ```
-+----+----+----+----+----+----+----+----+
-|                                       |
-+    AES-256-CBC Encrypted Y (32B)      +
-|    Key: RH_B, IV: AES state from msg1 |
-+                                       +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|                                       |
-+    ChaChaPoly Frame (48 bytes)        +
-|    Plaintext: 32B (Y + options)       |
-+    k from KDF-2, n=0, ad=h            +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|    Cleartext Padding (optional)       |
-+    Length specified in options         +
-|    0 to 65535 - 80 bytes              |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
+This is the "e" message pattern:
+
+// Define protocol_name. Set protocol_name = "Noise_XKaesobfse+hs2+hs3_25519_ChaChaPoly_SHA256" (48 bytes, US-ASCII encoded, no NULL termination).
+
+// Define Hash h = 32 bytes h = SHA256(protocol_name);
+
+Define ck = 32 byte chaining key. Copy the h data to ck. Set ck = h
+
+Define rs = Bob's 32-byte static key as published in the RouterInfo
+
+// MixHash(null prologue) h = SHA256(h);
+
+// up until here, can all be precalculated by Alice for all outgoing connections
+
+// Alice must validate that Bob's static key is a valid point on the curve here.
+
+// Bob static key // MixHash(rs) // || below means append h = SHA256(h || rs);
+
+// up until here, can all be precalculated by Bob for all incoming connections
+
+This is the "e" message pattern:
+
+Alice generates her ephemeral DH key pair e.
+
+// Alice ephemeral key X // MixHash(e.pubkey) // || below means append h = SHA256(h || e.pubkey);
+
+// h is used as the associated data for the AEAD in message 1 // Retain the Hash h for the message 2 KDF
+
+End of "e" message pattern.
+
+This is the "es" message pattern:
+
+// DH(e, rs) == DH(s, re) Define input_key_material = 32 byte DH result of Alice's ephemeral key and Bob's static key Set input_key_material = X25519 DH result
+
+// MixKey(DH())
+
+Define temp_key = 32 bytes Define HMAC-SHA256(key, data) as in [RFC-2104](https://tools.ietf.org/html/rfc2104) // Generate a temp key from the chaining key and DH result // ck is the chaining key, defined above temp_key = HMAC-SHA256(ck, input_key_material) // overwrite the DH result in memory, no longer needed input_key_material = (all zeros)
+
+// Output 1 // Set a new chaining key from the temp key // byte() below means a single byte ck = HMAC-SHA256(temp_key, byte(0x01)).
+
+// Output 2 // Generate the cipher key k Define k = 32 bytes // || below means append // byte() below means a single byte k = HMAC-SHA256(temp_key, ck || byte(0x02)). // overwrite the temp_key in memory, no longer needed temp_key = (all zeros)
+
+// retain the chaining key ck for message 2 KDF
+
+End of "es" message pattern.
 ```
 
-### Decrypted Content
+### 1) SessionRequest
+
+Alice sends to Bob.
+
+Noise content: Alice's ephemeral key X Noise payload: 16 byte option block Non-noise payload: Random padding
+
+(Payload Security Properties from [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
-+----+----+----+----+----+----+----+----+
-|                                       |
-+    Y (Bob ephemeral public key)       +
-|    32 bytes, X25519, little-endian    |
-+                                       +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|           Options Block               |
-+             (16 bytes)                +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|    Cleartext Padding (optional)       |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
+XK(s, rs): Authentication Confidentiality
+
+-> e, es 0 2
+
+    Authentication: None (0). This payload may have been sent by any party, including an active attacker.
+
+    Confidentiality: 2. Encryption to a known recipient, forward secrecy for sender compromise only, vulnerable to replay. This payload is encrypted based only on DHs involving the recipient's static key pair. If the recipient's static private key is compromised, even at a later date, this payload can be decrypted. This message can also be replayed, since there's no ephemeral contribution from the recipient.
+
+    "e": Alice generates a new ephemeral key pair and stores it in the e
+
+    :   variable, writes the ephemeral public key as cleartext into the message buffer, and hashes the public key along with the old h to derive a new h.
+
+    "es": A DH is performed between the Alice's ephemeral key pair and the
+
+    :   Bob's static key pair. The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
 ```
 
-### Options Block (16 bytes, big-endian)
+The X value is encrypted to ensure payload indistinguishably and uniqueness, which are necessary DPI countermeasures. We use AES encryption to achieve this, rather than more complex and slower alternatives such as elligator2. Asymmetric encryption to Bob's router public key would be far too slow. AES encryption uses Bob's router hash as the key and Bob's IV as published in the network database.
 
-```
-+----+----+----+----+----+----+----+----+
-| Rsvd(0) | padLen  |   Reserved (0)    |
-+----+----+----+----+----+----+----+----+
-|        tsB        |   Reserved (0)    |
-+----+----+----+----+----+----+----+----+
+AES encryption is for DPI resistance only. Any party knowing Bob's router hash, and IV, which are published in the network database, may decrypt the X value in this message.
 
-Rsvd    : 2 bytes - Reserved, set to 0
-padLen  : 2 bytes - Padding length in this message
-Reserved: 10 bytes - Reserved, set to 0
-tsB     : 4 bytes - Unix timestamp (seconds since epoch)
-```
+The padding is not encrypted by Alice. It may be necessary for Bob to decrypt the padding, to inhibit timing attacks.
 
-### Key Derivation Function (KDF-2)
-
-**MixHash Operations:**
-```
-h = SHA256(h || encrypted_payload_msg1)  // 32-byte ciphertext
-if (msg1_padding_length > 0):
-    h = SHA256(h || padding_from_msg1)
-h = SHA256(h || e.pubkey)                // Bob's ephemeral key Y
-// h is now the associated data for message 2 AEAD
-```
-
-**MixKey Operation (ee pattern):**
-```
-dh_result = X25519(Bob.ephemeral_private, Alice.ephemeral_public)
-temp_key = HMAC-SHA256(ck, dh_result)
-ck = HMAC-SHA256(temp_key, byte(0x01))
-k = HMAC-SHA256(temp_key, ck || byte(0x02))
-// k is the cipher key for message 2
-// ck is retained for message 3 KDF
-```
-
-**Memory Cleanup:**
-```
-// Overwrite ephemeral keys after ee DH
-Alice.ephemeral_public = zeros(32)
-Alice.ephemeral_private = zeros(32)  // Bob side
-Bob.received_ephemeral = zeros(32)    // Bob side
-```
-
-### Implementation Notes
-
-1. **AES Chaining**: Y encryption uses AES-CBC state from message 1 (not reset)
-2. **Replay Prevention**: Alice must cache Y values for at least 2*D seconds
-3. **Timestamp Validation**: Alice must reject |tsB - current_time| > D
-4. **Curve Validation**: Alice must verify Y is a valid X25519 point
-5. **Error Handling**: Alice closes with TCP RST on any failure
-6. **Buffering**: Bob must flush entire message at once
-
-## Message 3: SessionConfirmed
-
-Alice confirms session and sends RouterInfo.
-
-**Noise Operations**: `s, se` (static key reveal and static-ephemeral DH)
-
-### Two-Part Structure
-
-Message 3 consists of **two separate AEAD frames**:
-
-1. **Part 1**: Fixed 48-byte frame with Alice's encrypted static key
-2. **Part 2**: Variable-length frame with RouterInfo, options, and padding
-
-### Raw Format
+Raw contents:
 
 ```
 +----+----+----+----+----+----+----+----+
-|    ChaChaPoly Frame 1 (48 bytes)      |
-+    Plaintext: Alice static key (32B)  +
-|    k from KDF-2, n=1, ad=h            |
-+                                       +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|                                       |
-+    ChaChaPoly Frame 2 (variable)      +
-|    Length specified in msg1.m3p2len   |
-+    k from KDF-3, n=0, ad=h            +
-|    Plaintext: RouterInfo + padding    |
-+                                       +
-|                                       |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
+
+|                                       |
+
+    + obfuscated with RH_B + | AES-CBC-256 encrypted X | + (32 bytes) + | | + + | | +----+----+----+----+----+----+----+----+ | | + + | ChaChaPoly frame | + (32 bytes) + | k defined in KDF for message 1 | + n = 0 + | see KDF for associated data | +----+----+----+----+----+----+----+----+ | unencrypted authenticated | ~ padding (optional) ~ | length defined in options block | +----+----+----+----+----+----+----+----+
+
+    X :: 32 bytes, AES-256-CBC encrypted X25519 ephemeral key, little endian
+
+    :   key: RH_B iv: As published in Bobs network database entry
+
+    padding :: Random data, 0 or more bytes.
+
+    :   Total message length must be 65535 bytes or less. Total message length must be 287 bytes or less if Bob is publishing his address as NTCP (see Version Detection section below). Alice and Bob will use the padding data in the KDF for message 2. It is authenticated so that any tampering will cause the next message to fail.
 ```
 
-**Size Constraints:**
-- Part 1: Exactly 48 bytes (32 plaintext + 16 MAC)
-- Part 2: Length specified in message 1 (m3p2len field)
-- Total maximum: 65535 bytes (part 1 max 48, so part 2 max 65487)
-
-### Decrypted Content
-
-**Part 1:**
-```
-+----+----+----+----+----+----+----+----+
-|                                       |
-+    S (Alice static public key)        +
-|    32 bytes, X25519, little-endian    |
-+                                       +
-|                                       |
-+----+----+----+----+----+----+----+----+
-```
-
-**Part 2:**
-```
-+----+----+----+----+----+----+----+----+
-|    Block: RouterInfo (required)       |
-+    Type=2, contains Alice's RI         +
-|                                       |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
-|    Block: Options (optional)          |
-+    Type=1, padding parameters          +
-|                                       |
-+----+----+----+----+----+----+----+----+
-|    Block: Padding (optional)          |
-+    Type=254, random data               +
-|    MUST be last block if present      |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
-```
-
-### Key Derivation Function (KDF-3)
-
-**Part 1 (s pattern):**
-```
-h = SHA256(h || encrypted_payload_msg2)  // 32-byte ciphertext
-if (msg2_padding_length > 0):
-    h = SHA256(h || padding_from_msg2)
-
-// Encrypt static key with message 2 cipher key
-ciphertext = AEAD_ChaCha20_Poly1305(k_msg2, n=1, h, Alice.static_public)
-h = SHA256(h || ciphertext)  // 48 bytes (32 + 16)
-// h is now the associated data for message 3 part 2
-```
-
-**Part 2 (se pattern):**
-```
-dh_result = X25519(Alice.static_private, Bob.ephemeral_public)
-temp_key = HMAC-SHA256(ck, dh_result)
-ck = HMAC-SHA256(temp_key, byte(0x01))
-k = HMAC-SHA256(temp_key, ck || byte(0x02))
-// k is the cipher key for message 3 part 2
-// ck is retained for data phase KDF
-
-ciphertext = AEAD_ChaCha20_Poly1305(k, n=0, h, payload)
-h = SHA256(h || ciphertext)
-// h is retained for SipHash KDF
-```
-
-**Memory Cleanup:**
-```
-// Overwrite Bob's ephemeral key after se DH
-Alice.received_ephemeral = zeros(32)  // Alice side
-Bob.ephemeral_public = zeros(32)       // Bob side
-Bob.ephemeral_private = zeros(32)      // Bob side
-```
-
-### Implementation Notes
-
-1. **RouterInfo Validation**: Bob must verify signature, timestamp, and key consistency
-2. **Key Matching**: Bob must verify Alice's static key in part 1 matches the key in RouterInfo
-3. **Static Key Location**: Look for matching "s" parameter in NTCP or NTCP2 RouterAddress
-4. **Block Order**: RouterInfo must be first, Options second (if present), Padding last (if present)
-5. **Length Planning**: Alice must ensure m3p2len in message 1 exactly matches part 2 length
-6. **Buffering**: Alice must flush both parts together as one TCP send
-7. **Optional Chaining**: Alice may append a data phase frame immediately for efficiency
-
-## Data Phase
-
-After handshake completion, all messages use variable-length AEAD frames with obfuscated length fields.
-
-### Key Derivation Function (Data Phase)
-
-**Split Function (Noise):**
-```
-// Generate transmit and receive keys
-zerolen = ""  // Zero-length byte array
-temp_key = HMAC-SHA256(ck, zerolen)
-
-// Alice transmits to Bob
-k_ab = HMAC-SHA256(temp_key, byte(0x01))
-
-// Bob transmits to Alice  
-k_ba = HMAC-SHA256(temp_key, k_ab || byte(0x02))
-
-// Cleanup
-ck = zeros(32)
-temp_key = zeros(32)
-```
-
-**SipHash Key Derivation:**
-```
-// Generate additional symmetric key for SipHash
-ask_master = HMAC-SHA256(temp_key, "ask" || byte(0x01))
-
-// "siphash" is 7 bytes US-ASCII
-temp_key2 = HMAC-SHA256(ask_master, h || "siphash")
-sip_master = HMAC-SHA256(temp_key2, byte(0x01))
-
-// Alice to Bob SipHash keys
-temp_key3 = HMAC-SHA256(sip_master, zerolen)
-sipkeys_ab = HMAC-SHA256(temp_key3, byte(0x01))
-sipk1_ab = sipkeys_ab[0:7]   // 8 bytes, little-endian
-sipk2_ab = sipkeys_ab[8:15]  // 8 bytes, little-endian
-sipiv_ab = sipkeys_ab[16:23] // 8 bytes, IV
-
-// Bob to Alice SipHash keys
-sipkeys_ba = HMAC-SHA256(temp_key3, sipkeys_ab || byte(0x02))
-sipk1_ba = sipkeys_ba[0:7]   // 8 bytes, little-endian
-sipk2_ba = sipkeys_ba[8:15]  // 8 bytes, little-endian
-sipiv_ba = sipkeys_ba[16:23] // 8 bytes, IV
-```
-
-### Frame Structure
+Unencrypted data (Poly1305 authentication tag not shown):
 
 ```
 +----+----+----+----+----+----+----+----+
-|Obfs Len |                             |
-+----+----+    ChaChaPoly Frame         +
-|    Encrypted Block Data               |
-+    k_ab (Alice→Bob) or k_ba (Bob→Alice)|
-|    Nonce starts at 0, increments      |
-+    No associated data (empty string)  +
-|                                       |
-~           .   .   .                   ~
-|                                       |
-+----+----+----+----+----+----+----+----+
-|    Poly1305 MAC (16 bytes)            |
-+----+----+----+----+----+----+----+----+
+
+|                                       |
+
+    + + | X | + (32 bytes) + | | + + | | +----+----+----+----+----+----+----+----+ | options | + (16 bytes) + | | +----+----+----+----+----+----+----+----+ | unencrypted authenticated | + padding (optional) + | length defined in options block | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+
+    X :: 32 bytes, X25519 ephemeral key, little endian
+
+    options :: options block, 16 bytes, see below
+
+    padding :: Random data, 0 or more bytes.
+
+    :   Total message length must be 65535 bytes or less. Total message length must be 287 bytes or less if Bob is publishing his address as "NTCP" (see Version Detection section below) Alice and Bob will use the padding data in the KDF for message 2. It is authenticated so that any tampering will cause the next message to fail.
 ```
 
-**Frame Constraints:**
-- Minimum: 18 bytes (2 obfuscated length + 0 plaintext + 16 MAC)
-- Maximum: 65537 bytes (2 obfuscated length + 65535 frame)
-- Recommended: Few KB per frame (minimize receiver latency)
-
-### SipHash Length Obfuscation
-
-**Purpose**: Prevent DPI identification of frame boundaries
-
-**Algorithm:**
-```
-// Initialization (per direction)
-IV[0] = sipiv  // From KDF
-
-// For each frame:
-IV[n] = SipHash-2-4(sipk1, sipk2, IV[n-1])
-Mask[n] = IV[n][0:1]  // First 2 bytes of IV
-ObfuscatedLength = ActualLength XOR Mask[n]
-
-// Send 2-byte ObfuscatedLength, then ActualLength bytes
-```
-
-**Decoding:**
-```
-// Receiver maintains identical IV chain
-IV[n] = SipHash-2-4(sipk1, sipk2, IV[n-1])
-Mask[n] = IV[n][0:1]
-ActualLength = ObfuscatedLength XOR Mask[n]
-// Read ActualLength bytes (includes 16-byte MAC)
-```
-
-**Notes:**
-- Separate IV chains for each direction (Alice→Bob and Bob→Alice)
-- If SipHash returns uint64, use least significant 2 bytes as mask
-- Convert uint64 to next IV as little-endian bytes
-
-### Block Format
-
-Each frame contains zero or more blocks:
+Options block: Note: All fields are big-endian.
 
 ```
 +----+----+----+----+----+----+----+----+
-|Type| Length  |       Data              |
-+----+----+----+                        +
-|                                       |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
 
-Type  : 1 byte  - Block type identifier
-Length: 2 bytes - Big-endian, data size (0-65516)
-Data  : Variable length payload
+| id | ver| padLen | m3p2len | Rsvd(0) |
+
+    +-------------------------------+-------------------------------+
+    | > tsA                         | > Reserved (0)                |
+    +-------------------------------+-------------------------------+
+
+    id :: 1 byte, the network ID (currently 2, except for test networks)
+
+    :   As of 0.9.42. See proposal 147.
+
+    ver :: 1 byte, protocol version (currently 2)
+
+    padLen :: 2 bytes, length of the padding, 0 or more
+
+    :   Min/max guidelines TBD. Random size from 0 to 31 bytes minimum? (Distribution is implementation-dependent)
+
+    m3p2Len :: 2 bytes, length of the the second AEAD frame in SessionConfirmed
+
+    :   (message 3 part 2) See notes below
+
+    Rsvd :: 2 bytes, set to 0 for compatibility with future options
+
+    tsA :: 4 bytes, Unix timestamp, unsigned seconds.
+
+    :   Wraps around in 2106
+
+    Reserved :: 4 bytes, set to 0 for compatibility with future options
 ```
 
-**Size Limits:**
-- Maximum frame: 65535 bytes (including MAC)
-- Maximum block space: 65519 bytes (frame - 16-byte MAC)
-- Maximum single block: 65519 bytes (3-byte header + 65516 data)
+#### Notes
 
-### Block Types
+- When the published address is "NTCP", Bob supports both NTCP and NTCP2 on the same port. For compatibility, when initiating a connection to an address published as "NTCP", Alice must limit the maximum size of this message, including padding, to 287 bytes or less. This facilitates automatic protocol identification by Bob. When published as "NTCP2", there is no size restriction. See the Published Addresses and Version Detection sections below.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Name</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">DateTime</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Time synchronization (4-byte timestamp)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Options</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Padding parameters, dummy traffic</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2</td><td style="border:1px solid var(--color-border); padding:0.5rem;">RouterInfo</td><td style="border:1px solid var(--color-border); padding:0.5rem;">RouterInfo delivery/flooding</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem;">I2NP</td><td style="border:1px solid var(--color-border); padding:0.5rem;">I2NP message with shortened header</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">4</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Termination</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Explicit connection close</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">224-253</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Experimental features</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">254</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Padding</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Random padding (must be last)</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">255</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Reserved</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Future extensions</td></tr>
-  </tbody>
-</table>
+- The unique X value in the initial AES block ensure that the ciphertext is different for every session.
 
-**Block Ordering Rules:**
-- **Message 3 part 2**: RouterInfo, Options (optional), Padding (optional) - NO other types
-- **Data phase**: Any order except:
-  - Padding MUST be last block if present
-  - Termination MUST be last block (except Padding) if present
-- Multiple I2NP blocks allowed per frame
-- Multiple Padding blocks NOT allowed per frame
+- Bob must reject connections where the timestamp value is too far off from the current time. Call the maximum delta time "D". Bob must maintain a local cache of previously-used handshake values and reject duplicates, to prevent replay attacks. Values in the cache must have a lifetime of at least 2*D. The cache values are implementation-dependent, however the 32-byte X value (or its encrypted equivalent) may be used.
 
-### Block Type 0: DateTime
+- Diffie-Hellman ephemeral keys may never be reused, to prevent cryptographic attacks, and reuse will be rejected as a replay attack.
 
-Time synchronization for clock skew detection.
+- The "KE" and "auth" options must be compatible, i.e. the shared secret K must be of the appropriate size. If more "auth" options are added, this could implicitly change the meaning of the "KE" flag to use a different KDF or a different truncation size.
+
+- Bob must validate that Alice's ephemeral key is a valid point on the curve here.
+
+- Padding should be limited to a reasonable amount. Bob may reject connections with excessive padding. Bob will specify his padding options in message 2. Min/max guidelines TBD. Random size from 0 to 31 bytes minimum? (Distribution is implementation-dependent) Java implementations currently limit padding to 256 bytes max.
+
+- On any error, including AEAD, DH, timestamp, apparent replay, or key validation failure, Bob must halt further message processing and close the connection without responding. This should be an abnormal close (TCP RST). For probing resistance, after an AEAD failure, Bob should set a random timeout (range TBD) and then read a random number of bytes (range TBD), before closing the socket.
+
+- Bob may do a fast MSB check for a valid key (X[31] & 0x80 == 0) before attempting decryption. If the high bit is set, implement probing resistance as for AEAD failures.
+
+- DoS Mitigation: DH is a relatively expensive operation. As with the previous NTCP protocol, routers should take all necessary measures to prevent CPU or connection exhaustion. Place limits on maximum active connections and maximum connection setups in progress. Enforce read timeouts (both per-read and total for "slowloris"). Limit repeated or simultaneous connections from the same source. Maintain blacklists for sources that repeatedly fail. Do not respond to AEAD failure.
+
+- To facilitate rapid version detection and handshaking, implementations must ensure that Alice buffers and then flushes the entire contents of the first message at once, including the padding. This increases the likelihood that the data will be contained in a single TCP packet (unless segmented by the OS or middleboxes), and received all at once by Bob. Additionally, implementations must ensure that Bob buffers and then flushes the entire contents of the second message at once, including the padding. and that Bob buffers and then flushes the entire contents of the third message at once. This is also for efficiency and to ensure the effectiveness of the random padding.
+
+- "ver" field: The overall Noise protocol, extensions, and NTCP protocol including payload specifications, indicating NTCP2. This field may be used to indicate support for future changes.
+
+- Message 3 part 2 length: This is the size of the second AEAD frame (including 16-byte MAC) containing Alice's Router Info and optional padding that will be sent in the SessionConfirmed message. As routers periodically regenerate and republish their Router Info, the size of the current Router Info may change before message 3 is sent. Implementations must choose one of two strategies:
+
+  a\) save the current Router Info to be sent in message 3, so the size is known, and optionally add room for padding;
+
+  b\) increase the specified size enough to allow for possible increase in the Router Info size, and always add padding when message 3 is actually sent. In either case, the "m3p2len" length included in message 1 must be exactly the size of that frame when sent in message 3.
+
+- Bob must fail the connection if any incoming data remains after validating message 1 and reading in the padding. There should be no extra data from Alice, as Bob has not responded with message 2 yet.
+
+- The network ID field is used to quickly identify cross-network connections. If this field is nonzero, and does not match Bob's network ID, Bob should disconnect and block future connections. Any connections from test networks should have a different ID and will fail the test. As of 0.9.42. See proposal 147 for more information.
+
+### Key Derivation Function (KDF) (for handshake message 2 and message 3 part 1)
+
+```
+// take h saved from message 1 KDF
+// MixHash(ciphertext)
+h = SHA256(h || 32 byte encrypted payload from message 1)
+
+// MixHash(padding)
+// Only if padding length is nonzero
+h = SHA256(h || random padding from message 1)
+
+This is the "e" message pattern:
+
+Bob generates his ephemeral DH key pair e.
+
+// h is from KDF for handshake message 1
+// Bob ephemeral key Y
+// MixHash(e.pubkey)
+// || below means append
+h = SHA256(h || e.pubkey);
+
+// h is used as the associated data for the AEAD in message 2
+// Retain the Hash h for the message 3 KDF
+
+End of "e" message pattern.
+
+This is the "ee" message pattern:
+
+// DH(e, re)
+Define input_key_material = 32 byte DH result of Alice's ephemeral key and Bob's ephemeral key
+Set input_key_material = X25519 DH result
+// overwrite Alice's ephemeral key in memory, no longer needed
+// Alice:
+e(public and private) = (all zeros)
+// Bob:
+re = (all zeros)
+
+// MixKey(DH())
+
+Define temp_key = 32 bytes
+Define HMAC-SHA256(key, data) as in [RFC-2104]_
+// Generate a temp key from the chaining key and DH result
+// ck is the chaining key, from the KDF for handshake message 1
+temp_key = HMAC-SHA256(ck, input_key_material)
+// overwrite the DH result in memory, no longer needed
+input_key_material = (all zeros)
+
+// Output 1
+// Set a new chaining key from the temp key
+// byte() below means a single byte
+ck =       HMAC-SHA256(temp_key, byte(0x01)).
+
+// Output 2
+// Generate the cipher key k
+Define k = 32 bytes
+// || below means append
+// byte() below means a single byte
+k =        HMAC-SHA256(temp_key, ck || byte(0x02)).
+// overwrite the temp_key in memory, no longer needed
+temp_key = (all zeros)
+
+// retain the chaining key ck for message 3 KDF
+
+End of "ee" message pattern.
+```
+
+### 2) SessionCreated
+
+Bob sends to Alice.
+
+Noise content: Bob's ephemeral key Y Noise payload: 16 byte option block Non-noise payload: Random padding
+
+(Payload Security Properties from [Noise](https://noiseprotocol.org/noise.html) )
+
+```
+XK(s, rs): Authentication Confidentiality
+
+<- e, ee 2 1
+
+    Authentication: 2. Sender authentication resistant to key-compromise impersonation (KCI). The sender authentication is based on an ephemeral-static DH ("es" or "se") between the sender's static key pair and the recipient's ephemeral key pair. Assuming the corresponding private keys are secure, this authentication cannot be forged.
+
+    Confidentiality: 1. Encryption to an ephemeral recipient. This payload has forward secrecy, since encryption involves an ephemeral-ephemeral DH ("ee"). However, the sender has not authenticated the recipient, so this payload might be sent to any party, including an active attacker.
+
+    "e": Bob generates a new ephemeral key pair and stores it in the e variable, writes the ephemeral public key as cleartext into the message buffer, and hashes the public key along with the old h to derive a new h.
+
+    "ee": A DH is performed between the Bob's ephemeral key pair and the Alice's ephemeral key pair. The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
+```
+
+The Y value is encrypted to ensure payload indistinguishably and uniqueness, which are necessary DPI countermeasures. We use AES encryption to achieve this, rather than more complex and slower alternatives such as elligator2. Asymmetric encryption to Alice's router public key would be far too slow. AES encryption uses Bob's router hash as the key and the AES state from message 1 (which was initialized with Bob's IV as published in the network database).
+
+AES encryption is for DPI resistance only. Any party knowing Bob's router hash and IV, which are published in the network database, and captured the first 32 bytes of message 1, may decrypt the Y value in this message.
+
+Raw contents:
+
+```
++----+----+----+----+----+----+----+----+
+
+|                                       |
+
+    + obfuscated with RH_B + | AES-CBC-256 encrypted Y | + (32 bytes) + | | + + | | +----+----+----+----+----+----+----+----+ | ChaChaPoly frame | + Encrypted and authenticated data + | 32 bytes | + k defined in KDF for message 2 + | n = 0; see KDF for associated data | + + | | +----+----+----+----+----+----+----+----+ | unencrypted authenticated | + padding (optional) + | length defined in options block | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+
+    Y :: 32 bytes, AES-256-CBC encrypted X25519 ephemeral key, little endian
+
+    :   key: RH_B iv: Using AES state from message 1
+```
+
+Unencrypted data (Poly1305 auth tag not shown):
+
+```
++----+----+----+----+----+----+----+----+
+
+|                                       |
+
+    + + | Y | + (32 bytes) + | | + + | | +----+----+----+----+----+----+----+----+ | options | + (16 bytes) + | | +----+----+----+----+----+----+----+----+ | unencrypted authenticated | + padding (optional) + | length defined in options block | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+
+    Y :: 32 bytes, X25519 ephemeral key, little endian
+
+    options :: options block, 16 bytes, see below
+
+    padding :: Random data, 0 or more bytes.
+
+    :   Total message length must be 65535 bytes or less. Alice and Bob will use the padding data in the KDF for message 3 part 1. It is authenticated so that any tampering will cause the next message to fail.
+```
+
+#### Notes
+
+- Alice must validate that Bob's ephemeral key is a valid point on the curve here.
+- Padding should be limited to a reasonable amount. Alice may reject connections with excessive padding. Alice will specify her padding options in message 3. Min/max guidelines TBD. Random size from 0 to 31 bytes minimum? (Distribution is implementation-dependent)
+- On any error, including AEAD, DH, timestamp, apparent replay, or key validation failure, Alice must halt further message processing and close the connection without responding. This should be an abnormal close (TCP RST).
+- To facilitate rapid handshaking, implementations must ensure that Bob buffers and then flushes the entire contents of the first message at once, including the padding. This increases the likelihood that the data will be contained in a single TCP packet (unless segmented by the OS or middleboxes), and received all at once by Alice. This is also for efficiency and to ensure the effectiveness of the random padding.
+- Alice must fail the connection if any incoming data remains after validating message 2 and reading in the padding. There should be no extra data from Bob, as Alice has not responded with message 3 yet.
+
+Options block: Note: All fields are big-endian.
+
+```
++----+----+----+----+----+----+----+----+
+
+| Rsvd(0) | padLen | Reserved (0) |
+
+    +-------------------------------+-------------------------------+
+    | > tsB                         | > Reserved (0)                |
+    +-------------------------------+-------------------------------+
+
+    Reserved :: 10 bytes total, set to 0 for compatibility with future options
+
+    padLen :: 2 bytes, big endian, length of the padding, 0 or more
+
+    :   Min/max guidelines TBD. Random size from 0 to 31 bytes minimum? (Distribution is implementation-dependent)
+
+    tsB :: 4 bytes, big endian, Unix timestamp, unsigned seconds.
+
+    :   Wraps around in 2106
+```
+
+#### Notes
+
+- Alice must reject connections where the timestamp value is too far off from the current time. Call the maximum delta time "D". Alice must maintain a local cache of previously-used handshake values and reject duplicates, to prevent replay attacks. Values in the cache must have a lifetime of at least 2*D. The cache values are implementation-dependent, however the 32-byte Y value (or its encrypted equivalent) may be used.
+
+#### Issues
+
+- Include min/max padding options here?
+
+### Encryption for for handshake message 3 part 1, using message 2 KDF)
+
+```
+// take h saved from message 2 KDF
+// MixHash(ciphertext)
+h = SHA256(h || 24 byte encrypted payload from message 2)
+
+// MixHash(padding)
+// Only if padding length is nonzero
+h = SHA256(h || random padding from message 2)
+// h is used as the associated data for the AEAD in message 3 part 1, below
+
+This is the "s" message pattern:
+
+Define s = Alice's static public key, 32 bytes
+
+// EncryptAndHash(s.publickey)
+// EncryptWithAd(h, s.publickey)
+// AEAD_ChaCha20_Poly1305(key, nonce, associatedData, data)
+// k is from handshake message 1
+// n is 1
+ciphertext = AEAD_ChaCha20_Poly1305(k, n++, h, s.publickey)
+// MixHash(ciphertext)
+// || below means append
+h = SHA256(h || ciphertext);
+
+// h is used as the associated data for the AEAD in message 3 part 2
+
+End of "s" message pattern.
+```
+
+### Key Derivation Function (KDF) (for handshake message 3 part 2)
+
+```
+This is the "se" message pattern:
+
+// DH(s, re) == DH(e, rs) Define input_key_material = 32 byte DH result of Alice's static key and Bob's ephemeral key Set input_key_material = X25519 DH result // overwrite Bob's ephemeral key in memory, no longer needed // Alice: re = (all zeros) // Bob: e(public and private) = (all zeros)
+
+// MixKey(DH())
+
+Define temp_key = 32 bytes Define HMAC-SHA256(key, data) as in [RFC-2104](https://tools.ietf.org/html/rfc2104) // Generate a temp key from the chaining key and DH result // ck is the chaining key, from the KDF for handshake message 1 temp_key = HMAC-SHA256(ck, input_key_material) // overwrite the DH result in memory, no longer needed input_key_material = (all zeros)
+
+// Output 1 // Set a new chaining key from the temp key // byte() below means a single byte ck = HMAC-SHA256(temp_key, byte(0x01)).
+
+// Output 2 // Generate the cipher key k Define k = 32 bytes // || below means append // byte() below means a single byte k = HMAC-SHA256(temp_key, ck || byte(0x02)).
+
+// h from message 3 part 1 is used as the associated data for the AEAD in message 3 part 2
+
+// EncryptAndHash(payload) // EncryptWithAd(h, payload) // AEAD_ChaCha20_Poly1305(key, nonce, associatedData, data) // n is 0 ciphertext = AEAD_ChaCha20_Poly1305(k, n++, h, payload) // MixHash(ciphertext) // || below means append h = SHA256(h || ciphertext);
+
+// retain the chaining key ck for the data phase KDF // retain the hash h for the data phase Additional Symmetric Key (SipHash) KDF
+
+End of "se" message pattern.
+
+// overwrite the temp_key in memory, no longer needed temp_key = (all zeros)
+```
+
+### 3) SessionConfirmed
+
+Alice sends to Bob.
+
+Noise content: Alice's static key Noise payload: Alice's RouterInfo and random padding Non-noise payload: none
+
+(Payload Security Properties from [Noise](https://noiseprotocol.org/noise.html) )
+
+```
+XK(s, rs): Authentication Confidentiality
+
+-> s, se 2 5
+
+    Authentication: 2. Sender authentication resistant to key-compromise impersonation (KCI). The sender authentication is based on an ephemeral-static DH ("es" or "se") between the sender's static key pair and the recipient's ephemeral key pair. Assuming the corresponding private keys are secure, this authentication cannot be forged.
+
+    Confidentiality: 5. Encryption to a known recipient, strong forward secrecy. This payload is encrypted based on an ephemeral-ephemeral DH as well as an ephemeral-static DH with the recipient's static key pair. Assuming the ephemeral private keys are secure, and the recipient is not being actively impersonated by an attacker that has stolen its static private key, this payload cannot be decrypted.
+
+    "s": Alice writes her static public key from the s variable into the message buffer, encrypting it, and hashes the output along with the old h to derive a new h.
+
+    "se": A DH is performed between the Alice's static key pair and the Bob's ephemeral key pair. The result is hashed along with the old ck to derive a new ck and k, and n is set to zero.
+```
+
+This contains two ChaChaPoly frames. The first is Alice's encrypted static public key. The second is the Noise payload: Alice's encrypted RouterInfo, optional options, and optional padding. They use different keys, because the MixKey() function is called in between.
+
+Raw contents:
+
+```
++----+----+----+----+----+----+----+----+
+
+|                                       |
+
+    + ChaChaPoly frame (48 bytes) + | Encrypted and authenticated | + Alice static key S + | (32 bytes) | + + | k defined in KDF for message 2 | + n = 1 + | see KDF for associated data | + + | | +----+----+----+----+----+----+----+----+ | | + Length specified in message 1 + | | + ChaChaPoly frame + | Encrypted and authenticated | + + | Alice RouterInfo | + using block format 2 + | Alice Options (optional) | + using block format 1 + | Arbitrary padding | + using block format 254 + | | + + | k defined in KDF for message 3 part 2 | + n = 0 + | see KDF for associated data | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+
+    S :: 32 bytes, ChaChaPoly encrypted Alice's X25519 static key, little endian
+
+    :   inside 48 byte ChaChaPoly frame
+```
+
+Unencrypted data (Poly1305 auth tags not shown):
+
+```
++----+----+----+----+----+----+----+----+
+
+|                                       |
+
+    + + | S | + Alice static key + | (32 bytes) | + + | | + + +----+----+----+----+----+----+----+----+ | | + + | | + + | Alice RouterInfo block | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ | | + Optional Options block + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ | | + Optional Padding block + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+
+    S :: 32 bytes, Alice's X25519 static key, little endian
+```
+
+#### Notes
+
+- Bob must perform the usual Router Info validation. Ensure the signature type is supported, verify the signature, verify the timestamp is within bounds, and any other checks necessary.
+
+- Bob must verify that Alice's static key received in the first frame matches the static key in the Router Info. Bob must first search the Router Info for a NTCP or NTCP2 Router Address with a matching version (v) option. See Published Router Info and Unpublished Router Info sections below.
+
+- If Bob has an older version of Alice's RouterInfo in his netdb, verify that the static key in the router info is the same in both, if present, and if the older version is less than XXX old (see key rotate time below)
+
+- Bob must validate that Alice's static key is a valid point on the curve here.
+
+- Options should be included, to specify padding parameters.
+
+- On any error, including AEAD, RI, DH, timestamp, or key validation failure, Bob must halt further message processing and close the connection without responding. This should be an abnormal close (TCP RST).
+
+- To facilitate rapid handshaking, implementations must ensure that Alice buffers and then flushes the entire contents of the third message at once, including both AEAD frames. This increases the likelihood that the data will be contained in a single TCP packet (unless segmented by the OS or middleboxes), and received all at once by Bob. This is also for efficiency and to ensure the effectiveness of the random padding.
+
+- Message 3 part 2 frame length: The length of this frame (including MAC) is sent by Alice in message 1. See that message for important notes on allowing enough room for padding.
+
+- Message 3 part 2 frame content: This format of this frame is the same as the format of data phase frames, except that the length of the frame is sent by Alice in message 1. See below for the data phase frame format. The frame must contain 1 to 3 blocks in the following order:
+
+  1)  Alice's Router Info block (required)
+  2)  Options block (optional)
+
+  3\) Padding block (optional) This frame must never contain any other block type.
+
+- Message 3 part 2 padding is not required if Alice appends a data phase frame (optionally containing padding) to the end of message 3 and sends both at once, as it will appear as one big stream of bytes to an observer. As Alice will generally, but not always, have an I2NP message to send to Bob (that's why she connected to him), this is the recommended implementation, for efficiency and to ensure the effectiveness of the random padding.
+
+- Total length of both Message 3 AEAD frames (parts 1 and 2) is 65535 bytes; part 1 is 48 bytes so part 2 max frame length is 65487; part 2 max plaintext length excluding MAC is 65471.
+
+### Key Derivation Function (KDF) (for data phase)
+
+The data phase uses a zero-length associated data input.
+
+The KDF generates two cipher keys k_ab and k_ba from the chaining key ck, using HMAC-SHA256(key, data) as defined in [RFC-2104](https://tools.ietf.org/html/rfc2104). This is the Split() function, exactly as defined in the Noise spec.
+
+```
+ck = from handshake phase
+
+// k_ab, k_ba = HKDF(ck, zerolen) // ask_master = HKDF(ck, zerolen, info="ask")
+
+// zerolen is a zero-length byte array temp_key = HMAC-SHA256(ck, zerolen) // overwrite the chaining key in memory, no longer needed ck = (all zeros)
+
+// Output 1 // cipher key, for Alice transmits to Bob (Noise doesn't make clear which is which, but Java code does) k_ab = HMAC-SHA256(temp_key, byte(0x01)).
+
+// Output 2 // cipher key, for Bob transmits to Alice (Noise doesn't make clear which is which, but Java code does) k_ba = HMAC-SHA256(temp_key, k_ab || byte(0x02)).
+
+KDF for SipHash for length field: Generate an Additional Symmetric Key (ask) for SipHash SipHash uses two 8-byte keys (big endian) and 8 byte IV for first data.
+
+// "ask" is 3 bytes, US-ASCII, no null termination ask_master = HMAC-SHA256(temp_key, "ask" || byte(0x01)) // sip_master = HKDF(ask_master, h || "siphash") // "siphash" is 7 bytes, US-ASCII, no null termination // overwrite previous temp_key in memory // h is from KDF for message 3 part 2 temp_key = HMAC-SHA256(ask_master, h || "siphash") // overwrite ask_master in memory, no longer needed ask_master = (all zeros) sip_master = HMAC-SHA256(temp_key, byte(0x01))
+
+Alice to Bob SipHash k1, k2, IV: // sipkeys_ab, sipkeys_ba = HKDF(sip_master, zerolen) // overwrite previous temp_key in memory temp_key = HMAC-SHA256(sip_master, zerolen) // overwrite sip_master in memory, no longer needed sip_master = (all zeros)
+
+sipkeys_ab = HMAC-SHA256(temp_key, byte(0x01)). sipk1_ab = sipkeys_ab[0:7], little endian sipk2_ab = sipkeys_ab[8:15], little endian sipiv_ab = sipkeys_ab[16:23]
+
+Bob to Alice SipHash k1, k2, IV:
+
+sipkeys_ba = HMAC-SHA256(temp_key, sipkeys_ab || byte(0x02)). sipk1_ba = sipkeys_ba[0:7], little endian sipk2_ba = sipkeys_ba[8:15], little endian sipiv_ba = sipkeys_ba[16:23]
+
+// overwrite the temp_key in memory, no longer needed temp_key = (all zeros)
+```
+
+### 4) Data Phase
+
+Noise payload: As defined below, including random padding Non-noise payload: none
+
+Starting with the 2nd part of message 3, all messages are inside an authenticated and encrypted ChaChaPoly "frame" with a prepended two-byte obfuscated length. All padding is inside the frame. Inside the frame is a standard format with zero or more "blocks". Each block has a one-byte type and a two-byte length. Types include date/time, I2NP message, options, termination, and padding.
+
+Note: Bob may, but is not required, to send his RouterInfo to Alice as his first message to Alice in the data phase.
+
+(Payload Security Properties from [Noise](https://noiseprotocol.org/noise.html) )
+
+```
+XK(s, rs): Authentication Confidentiality
+
+<- 2 5 -> 2 5
+
+    Authentication: 2. Sender authentication resistant to key-compromise impersonation (KCI). The sender authentication is based on an ephemeral-static DH ("es" or "se") between the sender's static key pair and the recipient's ephemeral key pair. Assuming the corresponding private keys are secure, this authentication cannot be forged.
+
+    Confidentiality: 5. Encryption to a known recipient, strong forward secrecy. This payload is encrypted based on an ephemeral-ephemeral DH as well as an ephemeral-static DH with the recipient's static key pair. Assuming the ephemeral private keys are secure, and the recipient is not being actively impersonated by an attacker that has stolen its static private key, this payload cannot be decrypted.
+```
+
+#### Notes
+
+- For efficiency and to minimize identification of the length field, implementations must ensure that the sender buffers and then flushes the entire contents of data messages at once, including the length field and the AEAD frame. This increases the likelihood that the data will be contained in a single TCP packet (unless segmented by the OS or middleboxes), and received all at once the other party. This is also for efficiency and to ensure the effectiveness of the random padding.
+- The router may choose to terminate the session on AEAD error, or may continue to attempt communications. If continuing, the router should terminate after repeated errors.
+
+#### SipHash obfuscated length
+
+Reference: [SipHash](https://www.131002.net/siphash/)
+
+Once both sides have completed the handshake, they transfer payloads that are then encrypted and authenticated in ChaChaPoly "frames".
+
+Each frame is preceded by a two-byte length, big endian. This length specifies the number of encrypted frame bytes to follow, including the MAC. To avoid transmitting identifiable length fields in stream, the frame length is obfuscated by XORing a mask derived from SipHash, as initialized from the data phase KDF. Note that the two directions have unique SipHash keys and IVs from the KDF.
+
+```
+sipk1, sipk2 = The SipHash keys from the KDF.  (two 8-byte long integers)
+    IV[0] = sipiv = The SipHash IV from the KDF. (8 bytes)
+    length is big endian.
+    For each frame:
+      IV[n] = SipHash-2-4(sipk1, sipk2, IV[n-1])
+      Mask[n] = First 2 bytes of IV[n]
+      obfuscatedLength = length ^ Mask[n]
+
+    The first length output will be XORed with with IV[1].
+```
+
+The receiver has the identical SipHash keys and IV. Decoding the length is done by deriving the mask used to obfsucate the length and XORing the truncated digest to obtain the length of the frame. The frame length is the total length of the encrypted frame including the MAC.
+
+#### Notes
+
+- If you use a SipHash library function that returns an unsigned long integer, use the least significant two bytes as the Mask. Convert the long integer to the next IV as little endian.
+
+#### Raw contents
+
+```
++----+----+----+----+----+----+----+----+
+
+[|obf size |](##SUBST##|obf size |) | +----+----+ + | | + ChaChaPoly frame + | Encrypted and authenticated | + key is k_ab for Alice to Bob + | key is k_ba for Bob to Alice | + as defined in KDF for data phase + | n starts at 0 and increments | + for each frame in that direction + | no associated data | + 16 bytes minimum + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+
+    obf size :: 2 bytes length obfuscated with SipHash
+
+    :   when de-obfuscated: 16 - 65535
+
+    Minimum size including length field is 18 bytes. Maximum size including length field is 65537 bytes. Obfuscated length is 2 bytes. Maximum ChaChaPoly frame is 65535 bytes.
+```
+
+#### Notes
+
+- As the receiver must get the entire frame to check the MAC, it is recommended that the sender limit frames to a few KB rather than maximizing the frame size. This will minimize latency at the receiver.
+
+#### Unencrypted data
+
+There are zero or more blocks in the encrypted frame. Each block contains a one-byte identifier, a two-byte length, and zero or more bytes of data.
+
+For extensibility, receivers must ignore blocks with unknown identifiers, and treat them as padding.
+
+Encrypted data is 65535 bytes max, including a 16-byte authentication header, so the max unencrypted data is 65519 bytes.
+
+(Poly1305 auth tag not shown):
+
+```
++----+----+----+----+----+----+----+----+
+
+[|blk |](##SUBST##|blk |) size | data | +----+----+----+ + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ [|blk |](##SUBST##|blk |) size | data | +----+----+----+ + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+ ~ . . . ~
+
+    blk :: 1 byte
+
+    :   0 for datetime 1 for options 2 for RouterInfo 3 for I2NP message 4 for termination 224-253 reserved for experimental features 254 for padding 255 reserved for future extension
+
+    size :: 2 bytes, big endian, size of data to follow, 0 - 65516 data :: the data
+
+    Maximum ChaChaPoly frame is 65535 bytes. Poly1305 tag is 16 bytes Maximum total block size is 65519 bytes Maximum single block size is 65519 bytes Block type is 1 byte Block length is 2 bytes Maximum single block data size is 65516 bytes.
+```
+
+#### Block Ordering Rules
+
+In the handshake message 3 part 2, order must be: RouterInfo, followed by Options if present, followed by Padding if present. No other blocks are allowed.
+
+In the data phase, order is unspecified, except for the following requirements: Padding, if present, must be the last block. Termination, if present, must be the last block except for Padding.
+
+There may be multiple I2NP blocks in a single frame. Multiple Padding blocks are not allowed in a single frame. Other block types probably won't have multiple blocks in a single frame, but it is not prohibited.
+
+#### DateTime
+
+Special case for time synchronization:
 
 ```
 +----+----+----+----+----+----+----+
-| 0  |    4    |     timestamp     |
-+----+----+----+----+----+----+----+
 
-Type     : 0
-Length   : 4 (big-endian)
-Timestamp: 4 bytes, Unix seconds (big-endian)
+| 0 | 4 | timestamp |
+
+    +----+----+----+----+----+----+----+
+
+    blk :: 0 size :: 2 bytes, big endian, value = 4 timestamp :: Unix timestamp, unsigned seconds. Wraps around in 2106
 ```
 
-**Implementation**: Round to nearest second to prevent clock bias accumulation.
+NOTE: Implementations must round to the nearest second to prevent clock bias in the network.
 
-### Block Type 1: Options
+#### Options
 
-Padding and traffic shaping parameters.
+Pass updated options. Options include: Min and max padding.
 
-```
-+----+----+----+----+----+----+----+----+
-| 1  |  size   |tmin|tmax|rmin|rmax|tdmy|
-+----+----+----+----+----+----+----+----+
-|tdmy|  rdmy   |  tdelay |  rdelay |    |
-+----+----+----+----+----+----+----+    +
-|         more_options (TBD)            |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
-
-Type  : 1
-Length: 12+ bytes (big-endian)
-```
-
-**Padding Ratios** (4.4 fixed-point float, value/16.0):
-- `tmin`: Transmit minimum padding ratio (0.0 - 15.9375)
-- `tmax`: Transmit maximum padding ratio (0.0 - 15.9375)
-- `rmin`: Receive minimum padding ratio (0.0 - 15.9375)
-- `rmax`: Receive maximum padding ratio (0.0 - 15.9375)
-
-**Examples:**
-- 0x00 = 0% padding
-- 0x01 = 6.25% padding
-- 0x10 = 100% padding (1:1 ratio)
-- 0x80 = 800% padding (8:1 ratio)
-
-**Dummy Traffic:**
-- `tdmy`: Max willing to send (2 bytes, bytes/sec average)
-- `rdmy`: Requested to receive (2 bytes, bytes/sec average)
-
-**Delay Insertion:**
-- `tdelay`: Max willing to insert (2 bytes, milliseconds average)
-- `rdelay`: Requested delay (2 bytes, milliseconds average)
-
-**Guidelines:**
-- Min values indicate desired traffic analysis resistance
-- Max values indicate bandwidth constraints
-- Sender should honor receiver's maximum
-- Sender may honor receiver's minimum within constraints
-- No enforcement mechanism; implementations may vary
-
-### Block Type 2: RouterInfo
-
-RouterInfo delivery for netdb population and flooding.
+Options block will be variable length.
 
 ```
 +----+----+----+----+----+----+----+----+
-| 2  |  size   |flg |    RouterInfo     |
-+----+----+----+----+                   +
-|                                       |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
 
-Type : 2
-Length: Flag (1 byte) + RouterInfo size
-Flag : Bit 0 = flood request (1) or local store (0)
-       Bits 1-7 = Reserved, set to 0
+| 1 | size [|tmin|](##SUBST##|tmin|)tmax[|rmin|](##SUBST##|rmin|)rmax[|tdmy|](##SUBST##|tdmy|)
+
+    +----+----+----+----+----+----+----+----+ [|tdmy|](##SUBST##|tdmy|) rdmy | tdelay | rdelay | | ~----+----+----+----+----+----+----+ ~ | more_options | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+
+    blk :: 1 size :: 2 bytes, big endian, size of options to follow, 12 bytes minimum
+
+    tmin, tmax, rmin, rmax :: requested padding limits
+
+    :   tmin and rmin are for desired resistance to traffic analysis. tmax and rmax are for bandwidth limits. tmin and tmax are the transmit limits for the router sending this options block. rmin and rmax are the receive limits for the router sending this options block. Each is a 4.4 fixed-point float representing 0 to 15.9375 (or think of it as an unsigned 8-bit integer divided by 16.0). This is the ratio of padding to data. Examples: Value of 0x00 means no padding Value of 0x01 means add 6 percent padding Value of 0x10 means add 100 percent padding Value of 0x80 means add 800 percent (8x) padding Alice and Bob will negotiate the minimum and maximum in each direction. These are guidelines, there is no enforcement. Sender should honor receiver's maximum. Sender may or may not honor receiver's minimum, within bandwidth constraints.
+
+    tdmy: Max dummy traffic willing to send, 2 bytes big endian, bytes/sec average rdmy: Requested dummy traffic, 2 bytes big endian, bytes/sec average tdelay: Max intra-message delay willing to insert, 2 bytes big endian, msec average rdelay: Requested intra-message delay, 2 bytes big endian, msec average
+
+    Padding distribution specified as additional parameters? Random delay specified as additional parameters?
+
+    more_options :: Format TBD
 ```
 
-**Usage:**
+#### Options Issues
 
-**In Message 3 Part 2** (handshake):
-- Alice sends her RouterInfo to Bob
-- Flood bit typically 0 (local storage)
-- RouterInfo NOT gzip compressed
+- Options format is TBD.
+- Options negotiation is TBD.
 
-**In Data Phase:**
-- Either party may send their updated RouterInfo
-- Flood bit = 1: Request floodfill distribution (if receiver is floodfill)
-- Flood bit = 0: Local netdb storage only
+#### RouterInfo
 
-**Validation Requirements:**
-1. Verify signature type is supported
-2. Verify RouterInfo signature
-3. Verify timestamp within acceptable bounds
-4. For handshake: Verify static key matches NTCP2 address "s" parameter
-5. For data phase: Verify router hash matches session peer
-6. Only flood RouterInfos with published addresses
-
-**Notes:**
-- No ACK mechanism (use I2NP DatabaseStore with reply token if needed)
-- May contain third-party RouterInfos (floodfill usage)
-- NOT gzip compressed (unlike I2NP DatabaseStore)
-
-### Block Type 3: I2NP Message
-
-I2NP message with shortened 9-byte header.
+Pass Alice's RouterInfo to Bob. Used in handshake message 3 part 2. Pass Alice's RouterInfo to Bob, or Bob's to Alice. Used optionally in the data phase.
 
 ```
 +----+----+----+----+----+----+----+----+
-| 3  |  size   |type|    msg_id         |
-+----+----+----+----+----+----+----+----+
-|   expiration  |     I2NP payload      |
-+----+----+----+                        +
-|                                       |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
 
-Type      : 3
-Length    : 9 + payload_size (big-endian)
-Type      : 1 byte, I2NP message type
-Msg_ID    : 4 bytes, big-endian, I2NP message ID
-Expiration: 4 bytes, big-endian, Unix timestamp (seconds)
-Payload   : I2NP message body (length = size - 9)
+| 2 | size [|flg |](##SUBST##|flg |) RouterInfo |
+
+    +----+----+----+----+ + | (Alice RI in handshake msg 3 part 2) | ~ (Alice, Bob, or third-party ~ | RI in data phase) | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+
+    blk :: 2 size :: 2 bytes, big endian, size of flag + router info to follow flg :: 1 byte flags bit order: 76543210 bit 0: 0 for local store, 1 for flood request bits 7-1: Unused, set to 0 for future compatibility routerinfo :: Alice's or Bob's RouterInfo
 ```
 
-**Differences from NTCP1:**
-- Expiration: 4 bytes (seconds) vs 8 bytes (milliseconds)
-- Length: Omitted (derivable from block length)
-- Checksum: Omitted (AEAD provides integrity)
-- Header: 9 bytes vs 16 bytes (44% reduction)
+#### Notes
 
-**Fragmentation:**
-- I2NP messages MUST NOT be fragmented across blocks
-- I2NP messages MUST NOT be fragmented across frames
-- Multiple I2NP blocks allowed per frame
+- When used in the data phase, receiver (Alice or Bob) shall validate that it's the same Router Hash as originally sent (for Alice) or sent to (for Bob). Then, treat it as a local I2NP DatabaseStore Message. Validate signature, validate more recent timestamp, and store in the local netdb. If the flag bit 0 is 1, and the receiving party is floodfill, treat it as a DatabaseStore Message with a nonzero reply token, and flood it to the nearest floodfills.
+- The Router Info is NOT compressed with gzip (unlike in a DatabaseStore Message, where it is)
+- Flooding must not be requested unless there are published RouterAddresses in the RouterInfo. The receiving router must not flood the RouterInfo unless there are published RouterAddresses in it.
+- Implementers must ensure that when reading a block, malformed or malicious data will not cause reads to overrun into the next block.
+- This protocol does not provide an acknowledgement that the RouterInfo was received, stored, or flooded (either in the handshake or data phase). If acknowledgement is desired, and the receiver is floodfill, the sender should instead send a standard I2NP DatabaseStoreMessage with a reply token.
 
-### Block Type 4: Termination
+#### Issues
 
-Explicit connection close with reason code.
+- Could also be used in data phase, instead of a I2NP DatabaseStoreMessage. For example, Bob could use it to start off the data phase.
+- Is it allowed for this to contain the RI for routers other than the originator, as a general replacement for DatabaseStoreMessages, e.g. for flooding by floodfills?
+
+#### I2NP Message
+
+An single I2NP message with a modified header. I2NP messages may not be fragmented across blocks or across ChaChaPoly frames.
+
+This uses the first 9 bytes from the standard NTCP I2NP header, and removes the last 7 bytes of the header, as follows: shorten the expiration from 8 to 4 bytes (seconds instead of milliseconds, same as for SSU), remove the 2 byte length (use the block size - 9), and remove the one-byte SHA256 checksum.
 
 ```
 +----+----+----+----+----+----+----+----+
-| 4  |  size   |  valid_frames_recv    |
-+----+----+----+----+----+----+----+----+
-| (continued) |rsn |   additional_data   |
-+----+----+----+----+                   +
-|                                       |
-~           .   .   .                   ~
-+----+----+----+----+----+----+----+----+
 
-Type            : 4
-Length          : 9+ bytes (big-endian)
-Valid_Frames_Recv: 8 bytes, big-endian (receive nonce value)
-                  0 if error in handshake phase
-Reason          : 1 byte (see table below)
-Additional_Data : Optional (format unspecified, for debugging)
+| 3 | size [|type|](##SUBST##|type|) msg id |
+
+    +-------------------------------+
+    | > short exp                   |
+    +-------------------------------+
+
+    ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+
+    blk :: 3 size :: 2 bytes, big endian, size of type + msg id + exp + message to follow I2NP message body size is (size - 9). type :: 1 byte, I2NP msg type, see I2NP spec msg id :: 4 bytes, big endian, I2NP message ID short exp :: 4 bytes, big endian, I2NP message expiration, Unix timestamp, unsigned seconds. Wraps around in 2106 message :: I2NP message body
 ```
 
-**Reason Codes:**
+#### Notes
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:center;">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Reason</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Phase</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">0</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Normal close / unspecified</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Any</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">1</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Termination received</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Data</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">2</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Idle timeout</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Data</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Router shutdown</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Data</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">4</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Data phase AEAD failure</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Data</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">5</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Incompatible options</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshake</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">6</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Incompatible signature type</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshake</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">7</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Clock skew</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshake</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">8</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Padding violation</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Any</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">9</td><td style="border:1px solid var(--color-border); padding:0.5rem;">AEAD framing error</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Data</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">10</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Payload format error</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Data</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">11</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Message 1 error</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshake</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">12</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Message 2 error</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshake</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">13</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Message 3 error</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshake</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">14</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Intra-frame read timeout</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Data</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">15</td><td style="border:1px solid var(--color-border); padding:0.5rem;">RouterInfo signature verification fail</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshake</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">16</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Static key parameter mismatch</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Handshake</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">17</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Banned</td><td style="border:1px solid var(--color-border); padding:0.5rem;">Any</td></tr>
-  </tbody>
-</table>
+- Implementers must ensure that when reading a block, malformed or malicious data will not cause reads to overrun into the next block.
 
-**Rules:**
-- Termination MUST be last non-padding block in frame
-- One termination block per frame maximum
-- Sender should close connection after sending
-- Receiver should close connection after receiving
+#### Termination
 
-**Error Handling:**
-- Handshake errors: Typically close with TCP RST (no termination block)
-- Data phase AEAD errors: Random timeout + random read, then send termination
-- See "AEAD Error Handling" section for security procedures
-
-### Block Type 254: Padding
-
-Random padding for traffic analysis resistance.
+Noise recommends an explicit termination message. Original NTCP doesn't have one. Drop the connection. This must be the last non-padding block in the frame.
 
 ```
 +----+----+----+----+----+----+----+----+
-|254 |  size   |     random_data       |
-+----+----+----+                        +
-|                                       |
-~           .   .   .                   ~
+
+| 4 | size | valid data frames |
+
+    +----+----+----+----+----+----+----+----+
+
+    :   received | rsn| addl data |
+
+    +----+----+----+----+ + ~ . . . ~ +----+----+----+----+----+----+----+----+
+
+    blk :: 4 size :: 2 bytes, big endian, value = 9 or more valid data frames received :: The number of valid AEAD data phase frames received (current receive nonce value) 0 if error occurs in handshake phase 8 bytes, big endian rsn :: reason, 1 byte: 0: normal close or unspecified 1: termination received 2: idle timeout 3: router shutdown 4: data phase AEAD failure 5: incompatible options 6: incompatible signature type 7: clock skew 8: padding violation 9: AEAD framing error 10: payload format error 11: message 1 error 12: message 2 error 13: message 3 error 14: intra-frame read timeout 15: RI signature verification fail 16: s parameter missing, invalid, or mismatched in RouterInfo 17: banned addl data :: optional, 0 or more bytes, for future expansion, debugging, or reason text. Format unspecified and may vary based on reason code.
+```
+
+#### Notes
+
+Not all reasons may actually be used, implementation dependent. Handshake failures will generally result in a close with TCP RST instead. See notes in handshake message sections above. Additional reasons listed are for consistency, logging, debugging, or if policy changes.
+
+#### Padding
+
+This is for padding inside AEAD frames. Padding for messages 1 and 2 are outside AEAD frames. All padding for message 3 and the data phase are inside AEAD frames.
+
+Padding inside AEAD should roughly adhere to the negotiated parameters. Bob sent his requested tx/rx min/max parameters in message 2. Alice sent her requested tx/rx min/max parameters in message 3. Updated options may be sent during the data phase. See options block information above.
+
+If present, this must be the last block in the frame.
+
+```
 +----+----+----+----+----+----+----+----+
 
-Type: 254
-Length: 0-65516 bytes (big-endian)
-Data: Cryptographically random bytes
+[|254 |](##SUBST##|254 |) size | padding | +----+----+----+ + | | ~ . . . ~ | | +----+----+----+----+----+----+----+----+
+
+    blk :: 254 size :: 2 bytes, big endian, size of padding to follow padding :: random data
 ```
 
-**Rules:**
-- Padding MUST be last block in frame if present
-- Zero-length padding is allowed
-- Only one padding block per frame
-- Padding-only frames are allowed
-- Should adhere to negotiated parameters from Options block
+#### Notes
 
-**Implementation Note:** Java I2P implementations currently limit padding to 256 bytes maximum.
+- Size = 0 is allowed.
+- Padding strategies TBD.
+- Minimum padding TBD.
+- Padding-only frames are allowed.
+- Padding defaults TBD.
+- See options block for padding parameter negotiation
+- See options block for min/max padding parameters
+- Noise limits messages to 64KB. If more padding is necessary, send multiple frames.
+- Router response on violation of negotiated padding is implementation-dependent.
 
-**Padding in Messages 1-2:**
-- Outside AEAD frame (cleartext)
-- Included in next message's hash chain (authenticated)
-- Tampering detected when next message AEAD fails
+#### Other block types
 
-**Padding in Message 3+ and Data Phase:**
-- Inside AEAD frame (encrypted and authenticated)
-- Used for traffic shaping and size obfuscation
+Implementations should ignore unknown block types for forward compatibility, except in message 3 part 2, where unknown blocks are not allowed.
 
-## AEAD Error Handling
+#### Future work
 
-**Critical Security Requirements:**
+- The padding length is either to be decided on a per-message basis and estimates of the length distribution, or random delays should be added. These countermeasures are to be included to resist DPI, as message sizes would otherwise reveal that I2P traffic is being carried by the transport protocol. The exact padding scheme is an area of future work.
 
-### Handshake Phase (Messages 1-3)
+### 5) Termination
 
-**Known Message Size:**
-- Message sizes are predetermined or specified in advance
-- AEAD authentication failure is unambiguous
+Connections may be terminated via normal or abnormal TCP socket close, or, as Noise recommends, an explicit termination message. The explicit termination message is defined in the data phase above.
 
-**Bob's Response to Message 1 Failure:**
-1. Set random timeout (range implementation-dependent, suggest 100-500ms)
-2. Read random number of bytes (range implementation-dependent, suggest 1KB-64KB)
-3. Close connection with TCP RST (no response)
-4. Blacklist source IP temporarily
-5. Track repeated failures for long-term bans
+Upon any normal or abnormal termination, routers should zero-out any in-memory ephemeral data, including handshake ephemeral keys, symmetric crypto keys, and related information.
 
-**Alice's Response to Message 2 Failure:**
-1. Close connection immediately with TCP RST
-2. No response to Bob
+## Published Router Info
 
-**Bob's Response to Message 3 Failure:**
-1. Close connection immediately with TCP RST
-2. No response to Alice
+### Capabilities
 
-### Data Phase
+As of release 0.9.50, the "caps" option is supported in NTCP2 addresses, similar to SSU. One or more capabilities may be published in the "caps" option. Capabilities may be in any order, but "46" is the recommended order, for consistency across implementations. There are two capabilities defined:
 
-**Obfuscated Message Size:**
-- Length field is SipHash-obfuscated
-- Invalid length or AEAD failure could indicate:
-  - Attacker probing
-  - Network corruption
-  - Desynchronized SipHash IV
-  - Malicious peer
+4: Indicates outbound IPv4 capability. If an IP is published in the host field, this capability is not necessary. If the router is hidden, or NTCP2 is outbound only, '4' and '6' may be combined in a single address.
 
-**Response to AEAD or Length Error:**
-1. Set random timeout (suggest 100-500ms)
-2. Read random number of bytes (suggest 1KB-64KB)
-3. Send termination block with reason code 4 (AEAD failure) or 9 (framing error)
-4. Close connection
+6: Indicates outbound IPv6 capability. If an IP is published in the host field, this capability is not necessary. If the router is hidden, or NTCP2 is outbound only, '4' and '6' may be combined in a single address.
 
-**Prevention of Decryption Oracle:**
-- Never reveal error type to peer before random timeout
-- Never skip length validation before AEAD check
-- Treat invalid length same as AEAD failure
-- Use identical error handling path for both errors
+### Published Addresses
 
-**Implementation Considerations:**
-- Some implementations may continue after AEAD errors if infrequent
-- Terminate after repeated errors (suggest threshold: 3-5 errors per hour)
-- Balance between error recovery and security
+The published RouterAddress (part of the RouterInfo) will have a protocol identifier of either "NTCP" or "NTCP2".
 
-## Published RouterInfo
+The RouterAddress must contain "host" and "port" options, as in the current NTCP protocol.
 
-### Router Address Format
+The RouterAddress must contain three options to indicate NTCP2 support:
 
-NTCP2 support is advertised through published RouterAddress entries with specific options.
+- s=(Base64 key) The current Noise static public key (s) for this RouterAddress. Base 64 encoded using the standard I2P Base 64 alphabet. 32 bytes in binary, 44 bytes as Base 64 encoded, little-endian X25519 public key.
+- i=(Base64 IV) The current IV for encrypting the X value in message 1 for this RouterAddress. Base 64 encoded using the standard I2P Base 64 alphabet. 16 bytes in binary, 24 bytes as Base 64 encoded, big-endian.
+- v=2 The current version (2). When published as "NTCP", additional support for version 1 is implied. Support for future versions will be with comma-separated values, e.g. v=2,3 Implementation should verify compatibility, including multiple versions if a comma is present. Comma-separated versions must be in numerical order.
 
-**Transport Style:**
-- `"NTCP2"` - NTCP2 only on this port
-- `"NTCP"` - Both NTCP and NTCP2 on this port (auto-detect)
-  - **Note**: NTCP (v1) support removed in 0.9.50 (May 2021)
-  - "NTCP" style is now obsolete; use "NTCP2"
+Alice must verify that all three options are present and valid before connecting using the NTCP2 protocol.
 
-### Required Options
+When published as "NTCP" with "s", "i", and "v" options, the router must accept incoming connections on that host and port for both NTCP and NTCP2 protocols, and automatically detect the protocol version.
 
-**All Published NTCP2 Addresses:**
+When published as "NTCP2" with "s", "i", and "v" options, the router accepts incoming connections on that host and port for the NTCP2 protocol only.
 
-1. **`host`** - IP address (IPv4 or IPv6) or hostname
-   - Format: Standard IP notation or domain name
-   - May be omitted for outbound-only or hidden routers
+If a router supports both NTCP1 and NTCP2 connections but does not implement automatic version detection for incoming connections, it must advertise both "NTCP" and "NTCP2" addresses, and include the NTCP2 options in the "NTCP2" address only. The router should set a lower cost value (higher priority) in the "NTCP2" address than the "NTCP" address, so NTCP2 is preferred.
 
-2. **`port`** - TCP port number
-   - Format: Integer, 1-65535
-   - May be omitted for outbound-only or hidden routers
-
-3. **`s`** - Static public key (X25519)
-   - Format: Base64-encoded, 44 characters
-   - Encoding: I2P Base64 alphabet
-   - Source: 32-byte X25519 public key, little-endian
-
-4. **`i`** - Initialization Vector for AES
-   - Format: Base64-encoded, 24 characters
-   - Encoding: I2P Base64 alphabet
-   - Source: 16-byte IV, big-endian
-
-5. **`v`** - Protocol version
-   - Format: Integer or comma-separated integers
-   - Current: `"2"`
-   - Future: `"2,3"` (must be in numerical order)
-
-**Optional Options:**
-
-6. **`caps`** - Capabilities (since 0.9.50)
-   - Format: String of capability characters
-   - Values:
-     - `"4"` - IPv4 outbound capability
-     - `"6"` - IPv6 outbound capability
-     - `"46"` - Both IPv4 and IPv6 (recommended order)
-   - Not needed if `host` is published
-   - Useful for hidden/firewalled routers
-
-7. **`cost`** - Address priority
-   - Format: Integer, 0-255
-   - Lower values = higher priority
-   - Suggested: 5-10 for normal addresses
-   - Suggested: 14 for unpublished addresses
-
-### Example RouterAddress Entries
-
-**Published IPv4 Address:**
-```
-<Address cost="5">
-  <transport_style>NTCP2</transport_style>
-  <options>
-    <host>192.0.2.1</host>
-    <port>8887</port>
-    <s>9EjeG7BZeznKbL9a2fXx8JBDPgLZbLmKbqY3QrNGJCo=</s>
-    <i>MDEyMzQ1Njc4OUFCQ0RFRg==</i>
-    <v>2</v>
-  </options>
-</Address>
-```
-
-**Hidden Router (Outbound Only):**
-```
-<Address cost="14">
-  <transport_style>NTCP2</transport_style>
-  <options>
-    <s>9EjeG7BZeznKbL9a2fXx8JBDPgLZbLmKbqY3QrNGJCo=</s>
-    <v>2</v>
-    <caps>4</caps>
-  </options>
-</Address>
-```
-
-**Dual-Stack Router:**
-```
-<!-- IPv4 Address -->
-<Address cost="5">
-  <transport_style>NTCP2</transport_style>
-  <options>
-    <host>192.0.2.1</host>
-    <port>8887</port>
-    <s>9EjeG7BZeznKbL9a2fXx8JBDPgLZbLmKbqY3QrNGJCo=</s>
-    <i>MDEyMzQ1Njc4OUFCQ0RFRg==</i>
-    <v>2</v>
-  </options>
-</Address>
-
-<!-- IPv6 Address (same keys, same port) -->
-<Address cost="5">
-  <transport_style>NTCP2</transport_style>
-  <options>
-    <host>2001:db8::1</host>
-    <port>8887</port>
-    <s>9EjeG7BZeznKbL9a2fXx8JBDPgLZbLmKbqY3QrNGJCo=</s>
-    <i>MDEyMzQ1Njc4OUFCQ0RFRg==</i>
-    <v>2</v>
-  </options>
-</Address>
-```
-
-**Important Rules:**
-- Multiple NTCP2 addresses with the **same port** MUST use **identical** `s`, `i`, and `v` values
-- Different ports may use different keys
-- Dual-stack routers should publish separate IPv4 and IPv6 addresses
+If multiple NTCP2 RouterAddresses (either as "NTCP" or "NTCP2") are published in the same RouterInfo (for additional IP addresses or ports), all addresses specifying the same port must contain the identical NTCP2 options and values. In particular, all must contain the same static key and iv.
 
 ### Unpublished NTCP2 Address
 
-**For Outbound-Only Routers:**
+If Alice does not publish her NTCP2 address (as "NTCP" or "NTCP2") for incoming connections, she must publish a "NTCP2" router address containing only her static key and NTCP2 version, so that Bob may validate the key after receiving Alice's RouterInfo in message 3 part 2.
 
-If a router does not accept incoming NTCP2 connections but initiates outbound connections, it MUST still publish a RouterAddress with:
+- s=(Base64 key) As defined above for published addresses.
+- v=2 As defined above for published addresses.
 
-```xml
-<Address cost="14">
-  <transport_style>NTCP2</transport_style>
-  <options>
-    <s>9EjeG7BZeznKbL9a2fXx8JBDPgLZbLmKbqY3QrNGJCo=</s>
-    <v>2</v>
-  </options>
-</Address>
-```
+This router address will not contain "i", "host" or "port" options, as these are not required for outbound NTCP2 connections. The published cost for this address does not strictly matter, as it is inbound only; however, it may be helpful to other routers if the cost is set higher (lower priority) than other addresses. The suggested value is 14.
 
-**Purpose:**
-- Allows Bob to validate Alice's static key during handshake
-- Required for message 3 part 2 RouterInfo verification
-- No `i`, `host`, or `port` needed (outbound only)
-
-**Alternative:**
-- Add `s` and `v` to existing published "NTCP" or SSU address
+Alice may also simply add the "s" and "v" options to an existing published "NTCP" address.
 
 ### Public Key and IV Rotation
 
-**Critical Security Policy:**
+Due to caching of RouterInfos, routers must not rotate the static public key or IV while the router is up, whether in a published address or not. Routers must persistently store this key and IV for reuse after an immediate restart, so incoming connections will continue to work, and restart times are not exposed. Routers must persistently store, or otherwise determine, last-shutdown time, so that the previous downtime may be calculated at startup.
 
-**General Rules:**
-1. **Never rotate while router is running**
-2. **Persistently store key and IV** across restarts
-3. **Track previous downtime** to determine rotation eligibility
+Subject to concerns about exposing restart times, routers may rotate this key or IV at startup if the router was previously down for some time (a couple hours at least).
 
-**Minimum Downtime Before Rotation:**
+If the router has any published NTCP2 RouterAddresses (as NTCP or NTCP2), the minimum downtime before rotation should be much longer, for example one month, unless the local IP address has changed or the router "rekeys".
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Router Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Min Downtime</th>
-      <th style="border:1px solid var(--color-border); padding:0.5rem; background:var(--color-bg-secondary); text-align:left;">Reason</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Published NTCP2 address</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>1 month</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Many routers cache RouterInfo</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">Published SSU only (no NTCP2)</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>1 day</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Moderate caching</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.5rem;">No published addresses (hidden)</td><td style="border:1px solid var(--color-border); padding:0.5rem;"><strong>2 hours</strong></td><td style="border:1px solid var(--color-border); padding:0.5rem;">Minimal impact</td></tr>
-  </tbody>
-</table>
+If the router has any published SSU RouterAddresses, but not NTCP2 (as NTCP or NTCP2) the minimum downtime before rotation should be longer, for example one day, unless the local IP address has changed or the router "rekeys". This applies even if the published SSU address has introducers.
 
-**Additional Triggers:**
-- Local IP address change: May rotate regardless of downtime
-- Router "rekey" (new Router Hash): Generate new keys
+If the router does not have any published RouterAddresses (NTCP, NTCP2, or SSU), the minimum downtime before rotation may be as short as two hours, even if the IP address changes, unless the router "rekeys".
 
-**Rationale:**
-- Prevents exposing restart times through key changes
-- Allows cached RouterInfos to expire naturally
-- Maintains network stability
-- Reduces failed connection attempts
+If the router "rekeys" to a different Router Hash, it should generate a new noise key and IV as well.
 
-**Implementation:**
-1. Store key, IV, and last-shutdown timestamp persistently
-2. At startup, calculate downtime = current_time - last_shutdown
-3. If downtime > minimum for router type, may rotate
-4. If IP changed or rekeying, may rotate
-5. Otherwise, reuse previous key and IV
+Implementations must be aware that changing the static public key or IV will prohibit incoming NTCP2 connections from routers that have cached an older RouterInfo. RouterInfo publishing, tunnel peer selection (including both OBGW and IB closest hop), zero-hop tunnel selection, transport selection, and other implementation strategies must take this into account.
 
-**IV Rotation:**
-- Subject to identical rules as key rotation
-- Only present in published addresses (not hidden routers)
-- Recommended to change IV whenever key changes
+IV rotation is subject to identical rules as key rotation, except that IVs are not present except in published RouterAddresses, so there is no IV for hidden or firewalled routers. If anything changes (version, key, options?) it is recommended that the IV change as well.
+
+Note: The minimum downtime before rekeying may be modified to ensure network health, and to prevent reseeding by a router down for a moderate amount of time.
 
 ## Version Detection
 
-**Context:** When `transportStyle="NTCP"` (legacy), Bob supports both NTCP v1 and v2 on the same port and must automatically detect the protocol version.
+When published as "NTCP", the router must automatically detect the protocol version for incoming connections.
 
-**Detection Algorithm:**
+This detection is implementation-dependent, but here is some general guidance.
 
-```
-1. Wait for at least 64 bytes (minimum NTCP2 message 1 size)
+To detect the version of an incoming NTCP connection, Bob proceeds as follows:
 
-2. If received ≥ 288 bytes:
-   → Connection is NTCP version 1 (NTCP1 message 1 is 288 bytes)
+- Wait for at least 64 bytes (minimum NTCP2 message 1 size)
 
-3. If received < 288 bytes:
-   
-   Option A (conservative, pre-NTCP2 majority):
-   a. Wait additional short time (e.g., 100-500ms)
-   b. If total received ≥ 288 bytes → NTCP1
-   c. Otherwise → Attempt NTCP2 decode
-   
-   Option B (aggressive, post-NTCP2 majority):
-   a. Attempt NTCP2 decode immediately:
-      - Decrypt first 32 bytes (X key) with AES-256-CBC
-      - Verify valid X25519 point (X[31] & 0x80 == 0)
-      - Verify AEAD frame
-   b. If decode succeeds → NTCP2
-   c. If decode fails → Wait for more data or NTCP1
-```
+- If the initial received data is 288 or more bytes, the incoming connection is version 1.
 
-**Fast MSB Check:**
-- Before AES decryption, verify: `encrypted_X[31] & 0x80 == 0`
-- Valid X25519 keys have high bit clear
-- Failure indicates likely NTCP1 (or attack)
-- Implement probing resistance (random timeout + read) on failure
+- If less than 288 bytes, either
 
-**Implementation Requirements:**
+  > - Wait for a short time for more data (good strategy before widespread NTCP2 adoption) if at least 288 total received, it's NTCP 1.
+  >
+  > - Try the first stages of decoding as version 2, if it fails, wait a short time for more data (good strategy after widespread NTCP2 adoption)
+  >
+  >   > - Decrypt the first 32 bytes (the X key) of the SessionRequest packet using AES-256 with key RH_B.
+  >   > - Verify a valid point on the curve. If it fails, wait a short time for more data for NTCP 1
+  >   > - Verify the AEAD frame. If it fails, wait a short time for more data for NTCP 1
 
-1. **Alice's Responsibility:**
-   - When connecting to "NTCP" address, limit message 1 to 287 bytes max
-   - Buffer and flush entire message 1 at once
-   - Increases likelihood of single TCP packet delivery
+Note that changes or additional strategies may be recommended if we detect active TCP segmentation attacks on NTCP 1.
 
-2. **Bob's Responsibility:**
-   - Buffer received data before deciding version
-   - Implement proper timeout handling
-   - Use TCP_NODELAY for rapid version detection
-   - Buffer and flush entire message 2 at once after version detected
+To facilitate rapid version detection and handshaking, implementations must ensure that Alice buffers and then flushes the entire contents of the first message at once, including the padding. This increases the likelihood that the data will be contained in a single TCP packet (unless segmented by the OS or middleboxes), and received all at once by Bob. This is also for efficiency and to ensure the effectiveness of the random padding. This applies to both NTCP and NTCP2 handshakes.
 
-**Security Considerations:**
-- Segmentation attacks: Bob should be resilient to TCP segmentation
-- Probing attacks: Implement random delays and byte reads on failures
-- DoS prevention: Limit concurrent pending connections
-- Read timeouts: Both per-read and total ("slowloris" protection)
+## Variants, Fallbacks, and General Issues
+
+- If Alice and Bob both support NTCP2, Alice should connect with NTCP2.
+- If Alice fails to connect to Bob using NTCP2 for any reason, the connection fails. Alice may not retry using NTCP 1.
 
 ## Clock Skew Guidelines
 
-**Timestamp Fields:**
-- Message 1: `tsA` (Alice's timestamp)
-- Message 2: `tsB` (Bob's timestamp)
-- Message 3+: Optional DateTime blocks
+Peer timestamps are included in the first two handshake messages, Session Request and Session Created. A clock skew between two peers of greater than +/- 60 seconds is generally fatal. If Bob thinks that his local clock is bad, he may adjust his clock using the calculated skew, or some external source. Otherwise, Bob should reply with a Session Created even if the maximum skew is exceeded, rather than simply closing the connection. This allows Alice to get Bob's timestamp and calculate the skew, and take action if necessary. Bob does not have Alice's router identity at this point, but to conserve resources, it may be desirable for Bob to ban incoming connections from Alice's IP for some period of time, or after repeated connection attempts with an excessive skew.
 
-**Maximum Skew (D):**
-- Typical: **±60 seconds**
-- Configurable per implementation
-- Skew > D is generally fatal
+Alice should adjust the calculated clock skew by subtracting half the RTT. If Alice thinks that her local clock is bad, she may adjust her clock using the calculated skew, or some external source. If Alice thinks that Bob's clock is bad, she may ban Bob for some period of time. In either case, Alice should close the connection.
 
-### Bob's Handling (Message 1)
-
-```
-1. Receive tsA from Alice
-2. skew = tsA - current_time
-3. If |skew| > D:
-   a. Still send message 2 (allows Alice to calculate skew)
-   b. Include tsB in message 2
-   c. Do NOT initiate handshake completion
-   d. Optionally: Temporary ban Alice's IP
-   e. After message 2 sent, close connection
-
-4. If |skew| ≤ D:
-   a. Continue handshake normally
-```
-
-**Rationale:** Sending message 2 even on skew allows Alice to diagnose clock issues.
-
-### Alice's Handling (Message 2)
-
-```
-1. Receive tsB from Bob
-2. RTT = (current_time_now - tsA_sent)
-3. adjusted_skew = (tsB - current_time_now) - (RTT / 2)
-4. If |adjusted_skew| > D:
-   a. Close connection immediately
-   b. If local clock suspect: Adjust clock or use external time source
-   c. If Bob's clock suspect: Temporary ban Bob
-   d. Log for operator review
-5. If |adjusted_skew| ≤ D:
-   a. Continue handshake normally
-   b. Optionally: Track skew for time synchronization
-```
-
-**RTT Adjustment:**
-- Subtract half RTT from calculated skew
-- Accounts for network propagation delay
-- More accurate skew estimation
-
-### Bob's Handling (Message 3)
-
-```
-1. If message 3 received (unlikely if skew exceeded in message 1)
-2. Recalculate skew = tsA_received - current_time
-3. If |adjusted_skew| > D:
-   a. Send termination block (reason code 7: clock skew)
-   b. Close connection
-   c. Ban Alice for period (e.g., 1-24 hours)
-```
-
-### Time Synchronization
-
-**DateTime Blocks (Data Phase):**
-- Periodically send DateTime block (type 0)
-- Receiver can use for clock adjustment
-- Round timestamp to nearest second (prevent bias)
-
-**External Time Sources:**
-- NTP (Network Time Protocol)
-- System clock synchronization
-- I2P network consensus time
-
-**Clock Adjustment Strategies:**
-- If local clock bad: Adjust system time or use offset
-- If peer clocks consistently bad: Flag peer issue
-- Track skew statistics for network health monitoring
-
-## Security Properties
-
-### Forward Secrecy
-
-**Achieved Through:**
-- Ephemeral Diffie-Hellman key exchange (X25519)
-- Three DH operations: es, ee, se (Noise XK pattern)
-- Ephemeral keys destroyed after handshake completion
-
-**Confidentiality Progression:**
-- Message 1: Level 2 (forward secrecy for sender compromise)
-- Message 2: Level 1 (ephemeral recipient)
-- Message 3+: Level 5 (strong forward secrecy)
-
-**Perfect Forward Secrecy:**
-- Compromise of long-term static keys does NOT reveal past session keys
-- Each session uses unique ephemeral keys
-- Ephemeral private keys never reused
-- Memory cleanup after key agreement
-
-**Limitations:**
-- Message 1 vulnerable if Bob's static key compromised (but forward secrecy from Alice compromise)
-- Replay attacks possible for message 1 (mitigated by timestamp and replay cache)
-
-### Authentication
-
-**Mutual Authentication:**
-- Alice authenticated by static key in message 3
-- Bob authenticated by possession of static private key (implicit from successful handshake)
-
-**Key Compromise Impersonation (KCI) Resistance:**
-- Authentication level 2 (resistant to KCI)
-- Attacker cannot impersonate Alice even with Alice's static private key (without Alice's ephemeral key)
-- Attacker cannot impersonate Bob even with Bob's static private key (without Bob's ephemeral key)
-
-**Static Key Verification:**
-- Alice knows Bob's static key in advance (from RouterInfo)
-- Bob verifies Alice's static key matches RouterInfo in message 3
-- Prevents man-in-the-middle attacks
-
-### Resistance to Traffic Analysis
-
-**DPI Countermeasures:**
-1. **AES Obfuscation:** Ephemeral keys encrypted, appears random
-2. **SipHash Length Obfuscation:** Frame lengths not plaintext
-3. **Random Padding:** Variable message sizes, no fixed patterns
-4. **Encrypted Frames:** All payload encrypted with ChaCha20
-
-**Replay Attack Prevention:**
-- Timestamp validation (±60 seconds)
-- Replay cache of ephemeral keys (lifetime 2*D)
-- Nonce increments prevent packet replay within session
-
-**Probing Resistance:**
-- Random timeouts on AEAD failures
-- Random byte reads before connection close
-- No responses on handshake failures
-- IP blacklisting for repeated failures
-
-**Padding Guidelines:**
-- Messages 1-2: Cleartext padding (authenticated)
-- Message 3+: Encrypted padding inside AEAD frames
-- Negotiated padding parameters (Options block)
-- Padding-only frames permitted
-
-### Denial of Service Mitigation
-
-**Connection Limits:**
-- Maximum active connections (implementation-dependent)
-- Maximum pending handshakes (e.g., 100-1000)
-- Per-IP connection limits (e.g., 3-10 simultaneous)
-
-**Resource Protection:**
-- DH operations rate-limited (expensive)
-- Read timeouts per-socket and total
-- "Slowloris" protection (total time limits)
-- IP blacklisting for abuse
-
-**Fast Rejection:**
-- Network ID mismatch → immediate close
-- Invalid X25519 point → fast MSB check before decryption
-- Timestamp out of bounds → close without computation
-- AEAD failure → no response, random delay
-
-**Probing Resistance:**
-- Random timeout: 100-500ms (implementation-dependent)
-- Random read: 1KB-64KB (implementation-dependent)
-- No error information to attacker
-- Close with TCP RST (no FIN handshake)
-
-### Cryptographic Security
-
-**Algorithms:**
-- **X25519**: 128-bit security, elliptic curve DH (Curve25519)
-- **ChaCha20**: 256-bit key stream cipher
-- **Poly1305**: Information-theoretically secure MAC
-- **SHA-256**: 128-bit collision resistance, 256-bit preimage resistance
-- **HMAC-SHA256**: PRF for key derivation
-
-**Key Sizes:**
-- Static keys: 32 bytes (256 bits)
-- Ephemeral keys: 32 bytes (256 bits)
-- Cipher keys: 32 bytes (256 bits)
-- MAC: 16 bytes (128 bits)
-
-**Known Issues:**
-- ChaCha20 nonce reuse is catastrophic (prevented by counter increment)
-- X25519 has small subgroup issues (mitigated by curve validation)
-- SHA-256 theoretically vulnerable to length extension (not exploitable in HMAC)
-
-**No Known Vulnerabilities (as of October 2025):**
-- Noise Protocol Framework widely analyzed
-- ChaCha20-Poly1305 deployed in TLS 1.3
-- X25519 standard in modern protocols
-- No practical attacks on construction
+If Alice does reply with Session Confirmed (probably because the skew is very close to the 60s limit, and the Alice and Bob calculations are not exactly the same due to RTT), Bob should adjust the calculated clock skew by subtracting half the RTT. If the adjusted clock skew exceeds the maximum, Bob should then reply with a Disconnect message containing a clock skew reason code, and close the connection. At this point, Bob has Alice's router identity, and may ban Alice for some period of time.
 
 ## References
 
-### Primary Specifications
-
-- **[NTCP2 Specification](/docs/specs/ntcp2/)** - Official I2P specification
-- **[Proposal 111](/proposals/111-ntcp-2/)** - Original design document with rationale
-- **[Noise Protocol Framework](https://noiseprotocol.org/noise.html)** - Revision 33 (2017-10-04)
-
-### Cryptographic Standards
-
-- **[RFC 7748](https://www.rfc-editor.org/rfc/rfc7748)** - Elliptic Curves for Security (X25519)
-- **[RFC 7539](https://www.rfc-editor.org/rfc/rfc7539)** - ChaCha20 and Poly1305 for IETF Protocols
-- **[RFC 8439](https://www.rfc-editor.org/rfc/rfc8439)** - ChaCha20-Poly1305 (obsoletes RFC 7539)
-- **[RFC 2104](https://www.rfc-editor.org/rfc/rfc2104)** - HMAC: Keyed-Hashing for Message Authentication
-- **[SipHash](https://www.131002.net/siphash/)** - SipHash-2-4 for hash function applications
-
-### Related I2P Specifications
-
-- **[I2NP Specification](/docs/specs/i2np/)** - I2P Network Protocol message format
-- **[Common Structures](/docs/specs/common-structures/)** - RouterInfo, RouterAddress formats
-- **[SSU Transport](/docs/legacy/ssu/)** - UDP transport (original, now SSU2)
-- **[Proposal 147](/proposals/147-transport-network-id-check/)** - Transport Network ID Check (0.9.42)
-
-### Implementation References
-
-- **[I2P Java](https://github.com/i2p/i2p.i2p)** - Reference implementation (Java)
-- **[i2pd](https://github.com/PurpleI2P/i2pd)** - C++ implementation
-- **[I2P Release Notes](/blog/)** - Version history and updates
-
-### Historical Context
-
-- **[Station-To-Station Protocol (STS)](https://en.wikipedia.org/wiki/Station-to-Station_protocol)** - Inspiration for Noise framework
-- **[obfs4](https://gitlab.com/yawning/obfs4)** - Pluggable transport (SipHash length obfuscation precedent)
-
-## Implementation Guidelines
-
-### Mandatory Requirements
-
-**For Compliance:**
-
-1. **Implement Complete Handshake:**
-   - Support all three messages with correct KDF chains
-   - Validate all AEAD tags
-   - Verify X25519 points are valid
-
-2. **Implement Data Phase:**
-   - SipHash length obfuscation (both directions)
-   - All block types: 0 (DateTime), 1 (Options), 2 (RouterInfo), 3 (I2NP), 4 (Termination), 254 (Padding)
-   - Proper nonce management (separate counters)
-
-3. **Security Features:**
-   - Replay prevention (cache ephemeral keys for 2*D)
-   - Timestamp validation (±60 seconds default)
-   - Random padding in messages 1-2
-   - AEAD error handling with random timeouts
-
-4. **RouterInfo Publishing:**
-   - Publish static key ("s"), IV ("i"), and version ("v")
-   - Rotate keys according to policy
-   - Support capabilities field ("caps") for hidden routers
-
-5. **Network Compatibility:**
-   - Support network ID field (currently 2 for mainnet)
-   - Interoperate with existing Java and i2pd implementations
-   - Handle both IPv4 and IPv6
-
-### Recommended Practices
-
-**Performance Optimization:**
-
-1. **Buffering Strategy:**
-   - Flush entire messages at once (messages 1, 2, 3)
-   - Use TCP_NODELAY for handshake messages
-   - Buffer multiple data blocks into single frames
-   - Limit frame size to few KB (minimize receiver latency)
-
-2. **Connection Management:**
-   - Reuse connections when possible
-   - Implement connection pooling
-   - Monitor connection health (DateTime blocks)
-
-3. **Memory Management:**
-   - Zero sensitive data after use (ephemeral keys, DH results)
-   - Limit concurrent handshakes (DoS prevention)
-   - Use memory pools for frequent allocations
-
-**Security Hardening:**
-
-1. **Probing Resistance:**
-   - Random timeouts: 100-500ms
-   - Random byte reads: 1KB-64KB
-   - IP blacklisting for repeated failures
-   - No error details to peers
-
-2. **Resource Limits:**
-   - Max connections per IP: 3-10
-   - Max pending handshakes: 100-1000
-   - Read timeouts: 30-60 seconds per operation
-   - Total connection timeout: 5 minutes for handshake
-
-3. **Key Management:**
-   - Persistent storage of static key and IV
-   - Secure random generation (cryptographic RNG)
-   - Follow rotation policies strictly
-   - Never reuse ephemeral keys
-
-**Monitoring and Diagnostics:**
-
-1. **Metrics:**
-   - Handshake success/failure rates
-   - AEAD error rates
-   - Clock skew distribution
-   - Connection duration statistics
-
-2. **Logging:**
-   - Log handshake failures with reason codes
-   - Log clock skew events
-   - Log banned IPs
-   - Never log sensitive key material
-
-3. **Testing:**
-   - Unit tests for KDF chains
-   - Integration tests with other implementations
-   - Fuzzing for packet handling
-   - Load testing for DoS resistance
-
-### Common Pitfalls
-
-**Critical Errors to Avoid:**
-
-1. **Nonce Reuse:**
-   - Never reset nonce counter mid-session
-   - Use separate counters for each direction
-   - Terminate before reaching 2^64 - 1
-
-2. **Key Rotation:**
-   - Never rotate keys while router is running
-   - Never reuse ephemeral keys across sessions
-   - Follow minimum downtime rules
-
-3. **Timestamp Handling:**
-   - Never accept expired timestamps
-   - Always adjust for RTT when calculating skew
-   - Round DateTime timestamps to seconds
-
-4. **AEAD Errors:**
-   - Never reveal error type to attacker
-   - Always use random timeout before closing
-   - Treat invalid length same as AEAD failure
-
-5. **Padding:**
-   - Never send padding outside negotiated bounds
-   - Always place padding block last
-   - Never multiple padding blocks per frame
-
-6. **RouterInfo:**
-   - Always verify static key matches RouterInfo
-   - Never flood RouterInfos without published addresses
-   - Always validate signatures
-
-### Testing Methodology
-
-**Unit Tests:**
-
-1. **Cryptographic Primitives:**
-   - Test vectors for X25519, ChaCha20, Poly1305, SHA-256
-   - HMAC-SHA256 test vectors
-   - SipHash-2-4 test vectors
-
-2. **KDF Chains:**
-   - Known-answer tests for all three messages
-   - Verify chaining key propagation
-   - Test SipHash IV generation
-
-3. **Message Parsing:**
-   - Valid message decoding
-   - Invalid message rejection
-   - Boundary conditions (empty, maximum size)
-
-**Integration Tests:**
-
-1. **Handshake:**
-   - Successful three-message exchange
-   - Clock skew rejection
-   - Replay attack detection
-   - Invalid key rejection
-
-2. **Data Phase:**
-   - I2NP message transfer
-   - RouterInfo exchange
-   - Padding handling
-   - Termination messages
-
-3. **Interoperability:**
-   - Test against Java I2P
-   - Test against i2pd
-   - Test IPv4 and IPv6
-   - Test published and hidden routers
-
-**Security Tests:**
-
-1. **Negative Tests:**
-   - Invalid AEAD tags
-   - Replayed messages
-   - Clock skew attacks
-   - Malformed frames
-
-2. **DoS Tests:**
-   - Connection flooding
-   - Slowloris attacks
-   - CPU exhaustion (excessive DH)
-   - Memory exhaustion
-
-3. **Fuzzing:**
-   - Random handshake messages
-   - Random data phase frames
-   - Random block types and sizes
-   - Invalid cryptographic values
-
-### Migration from NTCP
-
-**For Legacy NTCP Support (now removed):**
-
-NTCP (version 1) was removed in I2P 0.9.50 (May 2021). All current implementations must support NTCP2. Historical notes:
-
-1. **Transition Period (2018-2021):**
-   - 0.9.36: NTCP2 introduced (disabled by default)
-   - 0.9.37: NTCP2 enabled by default
-   - 0.9.40: NTCP deprecated
-   - 0.9.50: NTCP removed
-
-2. **Version Detection:**
-   - "NTCP" transportStyle indicated both versions supported
-   - "NTCP2" transportStyle indicated NTCP2 only
-   - Automatic detection via message size (287 vs 288 bytes)
-
-3. **Current Status:**
-   - All routers must support NTCP2
-   - "NTCP" transportStyle is obsolete
-   - Use "NTCP2" transportStyle exclusively
-
-## Appendix A: Noise XK Pattern
-
-**Standard Noise XK Pattern:**
-
-```
-XK(s, rs):
-  <- s
-  ...
-  -> e, es
-  <- e, ee
-  -> s, se
-```
-
-**Interpretation:**
-
-- `<-` : Message from responder (Bob) to initiator (Alice)
-- `->` : Message from initiator (Alice) to responder (Bob)
-- `s` : Static key (long-term identity key)
-- `rs` : Remote static key (peer's static key, known in advance)
-- `e` : Ephemeral key (session-specific, generated on-demand)
-- `es` : Ephemeral-Static DH (Alice ephemeral × Bob static)
-- `ee` : Ephemeral-Ephemeral DH (Alice ephemeral × Bob ephemeral)
-- `se` : Static-Ephemeral DH (Alice static × Bob ephemeral)
-
-**Key Agreement Sequence:**
-
-1. **Pre-message:** Alice knows Bob's static public key (from RouterInfo)
-2. **Message 1:** Alice sends ephemeral key, performs es DH
-3. **Message 2:** Bob sends ephemeral key, performs ee DH
-4. **Message 3:** Alice reveals static key, performs se DH
-
-**Security Properties:**
-
-- Alice authenticated: Yes (by message 3)
-- Bob authenticated: Yes (by possessing static private key)
-- Forward secrecy: Yes (ephemeral keys destroyed)
-- KCI resistance: Yes (authentication level 2)
-
-## Appendix B: Base64 Encoding
-
-**I2P Base64 Alphabet:**
-
-```
-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-~
-```
-
-**Differences from Standard Base64:**
-- Characters 62-63: `-~` instead of `+/`
-- Padding: Same (`=`) or omitted depending on context
-
-**Usage in NTCP2:**
-- Static key ("s"): 32 bytes → 44 characters (no padding)
-- IV ("i"): 16 bytes → 24 characters (no padding)
-
-**Encoding Example:**
-```python
-# 32-byte static key (hex): 
-# f4489e1bb0597b39ca6cbf5ad9f5f1f09043e02d96cb9aa6a63742b3462429aa
-
-# I2P Base64 encoded:
-# 9EjeG7BZeznKbL9a2fXx8JBDPgLZbLmKbqY3QrNGJCo=
-```
-
-## Appendix C: Packet Capture Analysis
-
-**Identifying NTCP2 Traffic:**
-
-1. **TCP Handshake:**
-   - Standard TCP SYN, SYN-ACK, ACK
-   - Destination port typically 8887 or similar
-
-2. **Message 1 (SessionRequest):**
-   - First application data from Alice
-   - 80-65535 bytes (typically few hundred)
-   - Appears random (AES-encrypted ephemeral key)
-   - 287 bytes max if connecting to "NTCP" address
-
-3. **Message 2 (SessionCreated):**
-   - Response from Bob
-   - 80-65535 bytes (typically few hundred)
-   - Also appears random
-
-4. **Message 3 (SessionConfirmed):**
-   - From Alice
-   - 48 bytes + variable (RouterInfo size + padding)
-   - Typically 1-4 KB
-
-5. **Data Phase:**
-   - Variable-length frames
-   - Length field obfuscated (appears random)
-   - Encrypted payload
-   - Padding makes size unpredictable
-
-**DPI Evasion:**
-- No plaintext headers
-- No fixed patterns
-- Length fields obfuscated
-- Random padding breaks size-based heuristics
-
-**Comparison to NTCP:**
-- NTCP message 1 always 288 bytes (identifiable)
-- NTCP2 message 1 size varies (not identifiable)
-- NTCP had recognizable patterns
-- NTCP2 designed to resist DPI
-
-## Appendix D: Version History
-
-**Major Milestones:**
-
-- **0.9.36** (August 23, 2018): NTCP2 introduced, disabled by default
-- **0.9.37** (October 4, 2018): NTCP2 enabled by default
-- **0.9.40** (May 20, 2019): NTCP deprecated
-- **0.9.42** (August 27, 2019): Network ID field added (Proposal 147)
-- **0.9.50** (May 17, 2021): NTCP removed, capabilities support added
-- **2.10.0** (September 9, 2025): Latest stable release
-
-**Protocol Stability:**
-- No breaking changes since 0.9.50
-- Ongoing improvements to probing resistance
-- Focus on performance and reliability
-- Post-quantum cryptography in development (not enabled by default)
-
-**Current Transport Status:**
-- NTCP2: Mandatory TCP transport
-- SSU2: Mandatory UDP transport
-- NTCP (v1): Removed
-- SSU (v1): Removed
+- [Common Structures](/docs/specs/common-structures)
+- [I2NP](/docs/specs/i2np)
+- [Network Database](/docs/how/network-database)
+- [NOISE - Noise Protocol Framework](https://noiseprotocol.org/noise.html)
+- [NTCP](/docs/transport/ntcp)
+- [Prop104](/proposals/104-tls-transport)
+- [Prop109](/proposals/109-pt-transport)
+- [Prop111](/proposals/111-ntcp-2)
+- [RFC-2104 - HMAC](https://tools.ietf.org/html/rfc2104)
+- [RFC-3526 - DH Groups](https://tools.ietf.org/html/rfc3526)
+- [RFC-6151](https://tools.ietf.org/html/rfc6151)
+- [RFC-7539 - ChaCha20-Poly1305](https://tools.ietf.org/html/rfc7539)
+- [RFC-7748 - X25519](https://tools.ietf.org/html/rfc7748)
+- [RFC-7905](https://tools.ietf.org/html/rfc7905)
+- [SipHash](https://www.131002.net/siphash/)
+- [SSU](/docs/transport/ssu)
+- **[STS]** Diffie, W.; van Oorschot P. C.; Wiener M. J., Authentication and Authenticated Key Exchanges
