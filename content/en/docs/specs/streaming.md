@@ -1,339 +1,271 @@
 ---
-title: "Streaming Protocol"
-description: "Reliable, TCP-like transport used by most I2P applications"
+title: "Streaming Protocol Specification"
+description: "Specification for the I2P streaming protocol providing TCP-like reliable transport"
 slug: "streaming"
-lastUpdated: "2025-10"
-accurateFor: "2.10.0"
-type: docs
+category: "Protocols"
+lastUpdated: "2023-10"
+accurateFor: "0.9.59"
 ---
 
 ## Overview
 
-The I2P Streaming Library provides reliable, in-order, and authenticated data delivery on top of I2P's unreliable message layer — analogous to TCP over IP. It is used by nearly all interactive I2P applications such as web browsing, IRC, email, and file sharing.
+See [Streaming Library](/docs/api/streaming) for an overview of the Streaming protocol.
 
-It ensures reliable transmission, congestion control, retransmission, and flow control across I2P’s high-latency anonymous tunnels. Each stream is fully encrypted end-to-end between destinations.
+## Protocol Versions
 
----
+The streaming protocol does not include a version field. The versions listed below are for Java I2P. Implementations and actual crypto support may vary. There is no way to determine if the far-end supports any particular version or feature. The table below is for general guidance as to the release dates for various features.
 
-## Core Design Principles
-
-The streaming library implements a **one-phase connection setup**, where SYN, ACK, and FIN flags may carry data payloads in the same message. This minimizes round-trips in high-latency environments — a small HTTP transaction can complete in a single round-trip.
-
-Congestion control and retransmission are modeled after TCP but adapted for I2P's environment. Window sizes are message-based, not byte-based, and tuned for tunnel latency and overhead. The protocol supports slow start, congestion avoidance, and exponential backoff similar to TCP's AIMD algorithm.
-
----
-
-## Architecture
-
-The streaming library operates between applications and the I2CP interface.
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Layer</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Responsibility</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Application</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Standard I2PSocket and I2PServerSocket usage</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Streaming Library</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Connection setup, sequencing, retransmission, and flow control</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>I2CP</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Tunnel creation, routing, and message handling</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>I2NP / Router Layer</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Transport through tunnels</td>
-    </tr>
-  </tbody>
-</table>
-
-Most users access it via I2PSocketManager, I2PTunnel, or SAMv3. The library transparently handles destination management, tunnel usage, and retransmissions.
-
----
-
-## Packet Format
-
-```
-+-----------------------------------------------+
-| Send Stream ID (4B) | Receive Stream ID (4B) |
-+-----------------------------------------------+
-| Sequence Number (4B) | Ack Through (4B)      |
-+-----------------------------------------------+
-| NACK Count (1B) | optional NACK list (4B each)
-+-----------------------------------------------+
-| Flags (1B) | Option Size (1B) | Options ...   |
-+-----------------------------------------------+
-| Payload ...                                  |
-```
-
-### Header Details
-
-- **Stream IDs**: 32-bit values uniquely identifying local and remote streams.
-- **Sequence Number**: Starts at 0 for SYN, increments per message.
-- **Ack Through**: Acknowledges all messages up to N, excluding those in the NACK list.
-- **Flags**: Bitmask controlling state and behavior.
-- **Options**: Variable-length list for RTT, MTU, and protocol negotiation.
-
-### Key Flags
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Flag</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Purpose</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">SYN</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Connection initiation</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ACK</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Acknowledge received packets</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">FIN</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Graceful close</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">RST</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reset connection</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">FROM_INCLUDED</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Sender’s destination included</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">SIGNATURE_INCLUDED</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Message signed by sender</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECHO / ECHO_REPLY</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Ping/Pong keepalive</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-## Flow Control and Reliability
-
-Streaming uses **message-based windowing**, unlike TCP's byte-based approach. The number of unacknowledged packets allowed in flight equals the current window size (default 128).
-
-### Mechanisms
-
-- **Congestion control:** Slow start and AIMD-based avoidance.  
-- **Choke/Unchoke:** Flow control signaling based on buffer occupancy.  
-- **Retransmission:** RFC 6298-based RTO calculation with exponential backoff.  
-- **Duplicate filtering:** Ensures reliability over potentially reordered messages.
-
-Typical configuration values:
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Parameter</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Default</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>maxWindowSize</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">128</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Max unacknowledged messages</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>maxMessageSize</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">1730</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Maximum payload bytes per message</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>initialRTO</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">9000 ms</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Initial retransmission timeout</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>inactivityTimeout</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">90000 ms</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Idle connection timeout</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>connectTimeout</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">300000 ms</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Connection establishment timeout</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-## Connection Establishment
-
-1. **Initiator** sends a SYN (optionally with payload and FROM_INCLUDED).  
-2. **Responder** replies with SYN+ACK (may include payload).  
-3. **Initiator** sends final ACK confirming establishment.
-
-Optional initial payloads allow data transmission before full handshake completion.
-
----
-
-## Implementation Details
-
-### Retransmission and Timeout
-
-The retransmission algorithm follows **RFC 6298**.  
-- **Initial RTO:** 9s  
-- **Min RTO:** 100ms  
-- **Max RTO:** 45s  
-- **Alpha:** 0.125  
-- **Beta:** 0.25  
-
-### Control Block Sharing
-
-Recent connections to the same peer reuse previous RTT and window data for faster ramp-up, avoiding “cold start” latency. Control blocks expire after several minutes.
-
-### MTU and Fragmentation
-
-- Default MTU: **1730 bytes** (fits two I2NP messages).  
-- ECIES destinations: **1812 bytes** (reduced overhead).  
-- Minimum supported MTU: 512 bytes.  
-
-Payload size excludes the 22-byte minimum streaming header.
-
----
-
-## Version History
+The features listed below are for the protocol itself. Various options for configuration are documented in the [Streaming Library](/docs/api/streaming) along with the Java I2P version in which they were implemented.
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
     <tr>
       <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Router Version</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Feature</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Streaming Features</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.7.1</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Protocol numbers defined in I2CP</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.58</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Bob's hash in NACKs field of SYN packet</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.39</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">OFFLINE_SIGNATURE option</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.36</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">I2CP protocol number enforced</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.20</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">FROM_INCLUDED no longer required in RESET</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.18</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">PINGs and PONGs may include a payload</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.15</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">EdDSA Ed25519 sig type</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA P-256, P-384, and P-521 sig types</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.11</td>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">Variable-length signatures</td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.12</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECDSA signature support</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.15</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Ed25519 signature support</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.18</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Ping/Pong payloads</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.20</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">FROM_INCLUDED not required in RESET</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.36</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Protocol enforcement enabled by default</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.39</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">OFFLINE_SIGNATURE support</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.9.58</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Bob’s hash added to NACK field in SYN</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2.10.0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Post-Quantum hybrid encryption (experimental)</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0.7.1</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Protocol numbers defined in I2CP</td>
     </tr>
   </tbody>
 </table>
 
----
+## Protocol Specification
 
-## Application-Level Usage
+### Packet Format
 
-### Java Example
+The format of a single packet in the streaming protocol is shown below. The minimum header size, without NACKs or option data, is 22 bytes.
 
-```java
-Properties props = new Properties();
-props.setProperty("i2p.streaming.maxWindowSize", "512");
-I2PSocketManager mgr = I2PSocketManagerFactory.createManager(props);
+There is no length field in the streaming protocol. Framing is provided by the lower layers - I2CP and I2NP.
 
-I2PSocket socket = mgr.connect(destination);
-InputStream in = socket.getInputStream();
-OutputStream out = socket.getOutputStream();
+```
++----+----+----+----+----+----+----+----+
+| send Stream ID    | rcv Stream ID     |
++----+----+----+----+----+----+----+----+
+| sequence  Num     | ack Through       |
++----+----+----+----+----+----+----+----+
+| nc |  nc*4 bytes of NACKs (optional)
++----+----+----+----+----+----+----+----+
+     | rd |  flags  | opt size| opt data
++----+----+----+----+----+----+----+----+
+   ...  (optional, see below)           |
++----+----+----+----+----+----+----+----+
+|   payload ...
++----+----+----+-//
 ```
 
-### SAMv3 and i2pd Support
+**sendStreamId** :: 4 byte [Integer](/docs/specs/common-structures#integer)
+: Random number selected by the packet recipient before sending the first SYN reply packet and constant for the life of the connection, greater than zero. 0 in the SYN message sent by the connection originator, and in subsequent messages, until a SYN reply is received, containing the peer's stream ID.
 
-- **SAMv3**: Provides STREAM and DATAGRAM modes for non-Java clients.  
-- **i2pd**: Exposes identical streaming parameters via configuration file options (e.g. `i2p.streaming.maxWindowSize`, `profile`, etc).
+**receiveStreamId** :: 4 byte [Integer](/docs/specs/common-structures#integer)
+: Random number selected by the packet originator before sending the first SYN packet and constant for the life of the connection, greater than zero. May be 0 if unknown, for example in a RESET packet.
 
----
+**sequenceNum** :: 4 byte [Integer](/docs/specs/common-structures#integer)
+: The sequence for this message, starting at 0 in the SYN message, and incremented by 1 in each message except for plain ACKs and retransmissions. If the sequenceNum is 0 and the SYN flag is not set, this is a plain ACK packet that should not be ACKed.
 
-## Choosing Between Streaming and Datagrams
+**ackThrough** :: 4 byte [Integer](/docs/specs/common-structures#integer)
+: The highest packet sequence number that was received on the receiveStreamId. This field is ignored on the initial connection packet (where receiveStreamId is the unknown id) or if the NO_ACK flag set. All packets up to and including this sequence number are ACKed, EXCEPT for those listed in NACKs below.
+
+**NACK count** :: 1 byte [Integer](/docs/specs/common-structures#integer)
+: The number of 4-byte NACKs in the next field, or 8 when used together with SYNCHRONIZE for replay prevention as of 0.9.58; see below.
+
+**NACKs** :: nc * 4 byte [Integer](/docs/specs/common-structures#integer)s
+: Sequence numbers less than ackThrough that are not yet received. Two NACKs of a packet is a request for a 'fast retransmit' of that packet. Also used together with SYNCHRONIZE for replay prevention as of 0.9.58; see below.
+
+**resendDelay** :: 1 byte [Integer](/docs/specs/common-structures#integer)
+: How long is the creator of this packet going to wait before resending this packet (if it hasn't yet been ACKed). The value is seconds since the packet was created. Currently ignored on receive.
+
+**flags** :: 2 byte value
+: See below.
+
+**option size** :: 2 byte [Integer](/docs/specs/common-structures#integer)
+: The number of bytes in the next field
+
+**option data** :: 0 or more bytes
+: As specified by the flags. See below.
+
+**payload** :: remaining packet size
+
+### Flags and Option Data Fields
+
+The flags field above specifies some metadata about the packet, and in turn may require certain additional data to be included. The flags are as follows. Any data structures specified must be added to the options area in the given order.
+
+Bit order: 15....0 (15 is MSB)
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
     <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Use Case</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Recommended Transport</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Reason</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Bit</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Flag</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Option Order</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Option Data</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Function</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTP, IRC, Email</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Streaming</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Requires reliability</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">SYNCHRONIZE</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Similar to TCP SYN. Set in the initial packet and in the first response. FROM_INCLUDED and SIGNATURE_INCLUDED must also be set.</td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">DNS</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Repliable Datagram</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Single request/response</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">1</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">CLOSE</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Similar to TCP FIN. If the response to a SYNCHRONIZE fits in a single message, the response will contain both SYNCHRONIZE and CLOSE. SIGNATURE_INCLUDED must also be set.</td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Telemetry, Logging</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Raw Datagram</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Best-effort acceptable</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">RESET</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Abnormal close. SIGNATURE_INCLUDED must also be set. Prior to release 0.9.20, due to a bug, FROM_INCLUDED must also be set.</td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">P2P DHT</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Datagram</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">High connection churn</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">3</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">SIGNATURE_INCLUDED</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">5</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">variable length <a href="/docs/specs/common-structures#signature">Signature</a></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Currently sent only with SYNCHRONIZE, CLOSE, and RESET, where it is required, and with ECHO, where it is required for a ping. The signature uses the Destination's <a href="/docs/specs/common-structures#signingprivatekey">SigningPrivateKey</a> to sign the entire header and payload with the space in the option data field for the signature being set to all zeroes. Prior to release 0.9.11, the signature was always 40 bytes. As of release 0.9.11, the signature may be variable-length, see below for details.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">4</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">SIGNATURE_REQUESTED</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Unused. Requests every packet in the other direction to have SIGNATURE_INCLUDED</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">5</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">FROM_INCLUDED</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">387+ byte <a href="/docs/specs/common-structures#destination">Destination</a></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Currently sent only with SYNCHRONIZE, where it is required, and with ECHO, where it is required for a ping. Prior to release 0.9.20, due to a bug, must also be sent with RESET.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">6</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">DELAY_REQUESTED</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">1</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">2 byte <a href="/docs/specs/common-structures#integer">Integer</a></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Optional delay. How many milliseconds the sender of this packet wants the recipient to wait before sending any more data. A value greater than 60000 indicates choking. A value of 0 requests an immediate ack.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">7</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">MAX_PACKET_SIZE_INCLUDED</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">3</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">2 byte <a href="/docs/specs/common-structures#integer">Integer</a></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">The maximum length of the payload. Send with SYNCHRONIZE.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">8</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">PROFILE_INTERACTIVE</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Unused or ignored; the interactive profile is unimplemented.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">9</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">ECHO</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Unused except by ping programs. If set, most other options are ignored. See the <a href="/docs/api/streaming">streaming docs</a>.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">10</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">NO_ACK</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">--</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">This flag simply tells the recipient to ignore the ackThrough field in the header. Currently set in the initial SYN packet, otherwise the ackThrough field is always valid. Note that this does not save any space, the ackThrough field is before the flags and is always present.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">11</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">OFFLINE_SIGNATURE</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">4</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">variable length <a href="/docs/specs/common-structures#offlinesignature">OfflineSig</a></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Contains the offline signature section from LS2. See proposal 123 and the common structures specification. FROM_INCLUDED must also be set. Contains an OfflineSig: 1) Expires timestamp (4 bytes, seconds since epoch, rolls over in 2106) 2) Transient sig type (2 bytes) 3) Transient <a href="/docs/specs/common-structures#signingpublickey">SigningPublicKey</a> (length as implied by sig type) 4) <a href="/docs/specs/common-structures#signature">Signature</a> of expires timestamp, transient sig type, and public key, by the destination public key. Length of sig as implied by the destination public key sig type.</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">12-15</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">unused</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;"></td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Set to zero for compatibility with future uses.</td>
     </tr>
   </tbody>
 </table>
 
----
+### Variable Length Signature Notes
 
-## Security and Post-Quantum Future
+Prior to release 0.9.11, the signature in the option field was always 40 bytes.
 
-Streaming sessions are end-to-end encrypted at the I2CP layer.  
-Post-quantum hybrid encryption (ML-KEM + X25519) is supported experimentally in 2.10.0 but disabled by default.
+As of release 0.9.11, the signature is variable length. The Signature type and length are inferred from the type of key used in the FROM_INCLUDED option and the [Signature](/docs/specs/common-structures#signature) documentation.
 
----
+As of release 0.9.39, the OFFLINE_SIGNATURE option is supported. If this option is present, the transient [SigningPublicKey](/docs/specs/common-structures#signingpublickey) is used to verify any signed packets, and the signature length and type are inferred from the transient SigningPublicKey in the option.
+
+- When a packet contains both FROM_INCLUDED and SIGNATURE_INCLUDED (as in SYNCHRONIZE), the inference may be made directly.
+
+- When a packet does not contain FROM_INCLUDED, the inference must be made from a previous SYNCHRONIZE packet.
+
+- When a packet does not contain FROM_INCLUDED, and there was no previous SYNCHRONIZE packet (for example a stray CLOSE or RESET packet), the inference can be made from the length of the remaining options (since SIGNATURE_INCLUDED is the last option), but the packet will probably be discarded anyway, since there is no FROM available to validate the signature. If more option fields are defined in the future, they must be accounted for.
+
+### Replay Prevention
+
+To prevent Bob from using a replay attack by storing a valid signed SYNCHRONIZE packet received from Alice and later sending it to a victim Charlie, Alice must include Bob's destination hash in the SYNCHRONIZE packet as follows:
+
+```
+Set NACK count field to 8
+Set the NACKs field to Bob's 32-byte destination hash
+```
+
+Upon reception of a SYNCHRONIZE, if the NACK count field is 8, Bob must interpret the NACKs field as a 32-byte destination hash, and must verify that it matches his destination hash. He must also verify the signature of the packet as usual, as that covers the entire packet including the NACK count and NACKs fields. If the NACK count is 8 and the NACKs field does not match, Bob must drop the packet.
+
+This is required for versions 0.9.58 and higher. This is backward-compatible with older versions, because NACKs are not expected in a SYNCHRONIZE packet. Destinations do not and cannot know what version the other end is running.
+
+No change is necessary for the SYNCHRONIZE ACK packet sent from Bob to Alice; do not include NACKs in that packet.
 
 ## References
 
-- [Streaming API Overview](/docs/specs/streaming/)  
-- [Streaming Protocol Specification](/docs/specs/streaming/)  
-- [I2CP Specification](/docs/specs/i2cp/)  
-- [Proposal 144: Streaming MTU Calculations](/proposals/144-ecies-x25519-aead-ratchet/)  
-- [I2P 2.10.0 Release Notes](/en/blog/2025/09/08/i2p-2.10.0-release/)
+- **[Destination]** [Destination](/docs/specs/common-structures#destination)
+- **[Integer]** [Integer](/docs/specs/common-structures#integer)
+- **[OfflineSig]** [OfflineSignature](/docs/specs/common-structures#offlinesignature)
+- **[Signature]** [Signature](/docs/specs/common-structures#signature)
+- **[SigningPrivateKey]** [SigningPrivateKey](/docs/specs/common-structures#signingprivatekey)
+- **[SigningPublicKey]** [SigningPublicKey](/docs/specs/common-structures#signingpublickey)
+- **[STREAMING]** [Streaming Library](/docs/api/streaming)
