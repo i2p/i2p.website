@@ -15,7 +15,7 @@ NOTE: OBSOLETE - This is the ElGamal tunnel build specification. See [tunnel-cre
 
 This document specifies the details of the encrypted tunnel build messages used to create tunnels using a "non-interactive telescoping" method. See the tunnel build document [TUNNEL-IMPL](/docs/tunnels/implementation/) for an overview of the process, including peer selection and ordering methods.
 
-The tunnel creation is accomplished by a single message passed along the path of peers in the tunnel, rewritten in place, and transmitted back to the tunnel creator. This single tunnel message is made up of a variable number of records (up to 8) - one for each potential peer in the tunnel. Individual records are asymmetrically (ElGamal [CRYPTO-ELG](/docs/how/cryptography/#elgamal)) encrypted to be read only by a specific peer along the path, while an additional symmetric layer of encryption (AES [CRYPTO-AES](/docs/how/cryptography/#AES)) is added at each hop so as to expose the asymmetrically encrypted record only at the appropriate time.
+The tunnel creation is accomplished by a single message passed along the path of peers in the tunnel, rewritten in place, and transmitted back to the tunnel creator. This single tunnel message is made up of a variable number of records (up to 8) - one for each potential peer in the tunnel. Individual records are asymmetrically (ElGamal [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)) encrypted to be read only by a specific peer along the path, while an additional symmetric layer of encryption (AES [CRYPTO-AES](/docs/specs/cryptography/#aes)) is added at each hop so as to expose the asymmetrically encrypted record only at the appropriate time.
 
 ### Number of Records
 
@@ -68,14 +68,14 @@ Every hop gets a random Tunnel ID, nonzero. The current and next-hop Tunnel IDs 
 
 #### Request Record Encryption
 
-That cleartext record is ElGamal 2048 encrypted [CRYPTO-ELG](/docs/how/cryptography/#elgamal) with the hop's public encryption key and formatted into a 528 byte record:
+That cleartext record is ElGamal 2048 encrypted [CRYPTO-ELG](/docs/specs/cryptography/#elgamal) with the hop's public encryption key and formatted into a 528 byte record:
 
 ```
 bytes   0-15: First 16 bytes of the SHA-256 of the current hop's router identity
 bytes 16-527: ElGamal-2048 encrypted request record
 ```
 
-In the 512-byte encrypted record, the ElGamal data contains bytes 1-256 and 258-513 of the 514-byte ElGamal encrypted block [CRYPTO-ELG](/docs/how/cryptography/#elgamal). The two padding bytes from the block (the zero bytes at locations 0 and 257) are removed.
+In the 512-byte encrypted record, the ElGamal data contains bytes 1-256 and 258-513 of the 514-byte ElGamal encrypted block [CRYPTO-ELG](/docs/specs/cryptography/#elgamal). The two padding bytes from the block (the zero bytes at locations 0 and 257) are removed.
 
 Since the cleartext uses the full field, there is no need for additional padding beyond `SHA256(cleartext) + cleartext`.
 
@@ -85,7 +85,7 @@ Each 528-byte record is then iteratively encrypted (using AES decryption, with t
 
 When a hop receives a TunnelBuildMessage, it looks through the records contained within it for one starting with their own identity hash (trimmed to 16 bytes). It then decrypts the ElGamal block from that record and retrieves the protected cleartext. At that point, they make sure the tunnel request is not a duplicate by feeding the AES-256 reply key into a Bloom filter. Duplicates or invalid requests are dropped. Records that are not stamped with the current hour, or the previous hour if shortly after the top of the hour, must be dropped. For example, take the hour in the timestamp, convert to a full time, then if it's more than 65 minutes behind or 5 minutes ahead of the current time, it is invalid. The Bloom filter must have a duration of at least one hour (plus a few minutes, to allow for clock skew), so that duplicate records in the current hour that are not rejected by checking the hour timestamp in the record, will be rejected by the filter.
 
-After deciding whether they will agree to participate in the tunnel or not, they replace the record that had contained the request with an encrypted reply block. All other records are AES-256 encrypted [CRYPTO-AES](/docs/how/cryptography/#AES) with the included reply key and IV. Each is AES/CBC encrypted separately with the same reply key and reply IV. The CBC mode is not continued (chained) across records.
+After deciding whether they will agree to participate in the tunnel or not, they replace the record that had contained the request with an encrypted reply block. All other records are AES-256 encrypted [CRYPTO-AES](/docs/specs/cryptography/#aes) with the included reply key and IV. Each is AES/CBC encrypted separately with the same reply key and reply IV. The CBC mode is not continued (chained) across records.
 
 Each hop knows only its own response. If it agrees, it will maintain the tunnel until expiration, even if it will not be used, as it cannot know whether all other hops agreed.
 
@@ -116,7 +116,7 @@ This is also described in the I2NP spec [BRR](/docs/specs/i2np/#struct-BuildRequ
 
 ### Tunnel Build Message Preparation
 
-When building a new Tunnel Build Message, all of the Build Request Records must first be built and asymmetrically encrypted using ElGamal [CRYPTO-ELG](/docs/how/cryptography/#elgamal). Each record is then preemptively decrypted with the reply keys and IVs of the hops earlier in the path, using AES [CRYPTO-AES](/docs/how/cryptography/#AES). That decryption should be run in reverse order so that the asymmetrically encrypted data will show up in the clear at the right hop after their predecessor encrypts it.
+When building a new Tunnel Build Message, all of the Build Request Records must first be built and asymmetrically encrypted using ElGamal [CRYPTO-ELG](/docs/specs/cryptography/#elgamal). Each record is then preemptively decrypted with the reply keys and IVs of the hops earlier in the path, using AES [CRYPTO-AES](/docs/specs/cryptography/#aes). That decryption should be run in reverse order so that the asymmetrically encrypted data will show up in the clear at the right hop after their predecessor encrypts it.
 
 The excess records not needed for individual requests are simply filled with random data by the creator.
 
@@ -136,7 +136,7 @@ For creation of an inbound tunnel, when the request reaches the inbound endpoint
 
 To process the reply records, the creator simply has to AES decrypt each record individually, using the reply key and IV of each hop in the tunnel after the peer (in reverse order). This then exposes the reply specifying whether they agree to participate in the tunnel or why they refuse. If they all agree, the tunnel is considered created and may be used immediately, but if anyone refuses, the tunnel is discarded.
 
-The agreements and rejections are noted in each peer's profile [PEER-SELECTION](/docs/how/peer-selection/), to be used in future assessments of peer tunnel capacity.
+The agreements and rejections are noted in each peer's profile [PEER-SELECTION](/docs/overview/tunnel-routing/), to be used in future assessments of peer tunnel capacity.
 
 ## History and Notes
 
@@ -160,10 +160,10 @@ Notes:
 ## References
 
 - [BRR](/docs/specs/i2np/#struct-BuildRequestRecord) - BuildRequestRecord specification
-- [CRYPTO-AES](/docs/how/cryptography/#AES) - AES encryption
-- [CRYPTO-ELG](/docs/how/cryptography/#elgamal) - ElGamal encryption
+- [CRYPTO-AES](/docs/specs/cryptography/#aes) - AES encryption
+- [CRYPTO-ELG](/docs/specs/cryptography/#elgamal) - ElGamal encryption
 - [HASHING-IT-OUT](http://www-users.cs.umn.edu/~hopper/hashing_it_out.pdf)
-- [PEER-SELECTION](/docs/how/peer-selection/)
+- [PEER-SELECTION](/docs/overview/tunnel-routing/)
 - [PREDECESSOR](http://forensics.umass.edu/pubs/wright-tissec.pdf)
 - [PREDECESSOR-2008](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf)
 - [TBM](/docs/specs/i2np/#struct-TunnelBuild) - TunnelBuildMessage
