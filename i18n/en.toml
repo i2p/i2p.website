@@ -238,6 +238,9 @@ disclaimer = "Your vote helps shape the future of I2P."
 message = "This translation was generated using machine learning and may not be 100% accurate."
 viewEnglish = "View English version"
 
+[docs]
+development = "Development"
+
 [languages]
 en = "English"
 es = "Spanish"

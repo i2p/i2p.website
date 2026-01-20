@@ -1,9 +1,468 @@
 ---
-title: "SAM v1"
-description: "Legacy Simple Anonymous Messaging protocol (deprecated)"
+title: "SAM V1 Specification"
+description: "Legacy Simple Anonymous Messaging protocol version 1 (deprecated)"
 slug: "sam"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
-reviewStatus: "needs-review"
 ---
 
+## Warning - Deprecated - Unsupported - Use [SAMv3](/docs/api/samv3)
+
+Specified below is version 1 of a simple client protocol for interacting with
+I2P.
+Newer alternatives:
+[SAM V2](/docs/api/samv2),
+[SAM V3](/docs/api/samv3),
+[BOB](/docs/api/bob).
+
+
+## Language libraries for the SAMv1 API
+
+- C
+- C#
+- Perl
+- Python
+
+The libraries are in the I2P source repository.
+
+### I2P 0.9.14 Changes
+
+The reported version remains "1.0".
+
+- DEST GENERATE now supports a SIGNATURE_TYPE parameter.
+- The MIN parameter in HELLO VERSION is now optional.
+- The MIN and MAX parameters in HELLO VERSION now support single-digit versions such as "3".
+
+
+## Version 1 Protocol
+
+Client application talks to SAM bridge, which deals with
+all of the I2P functionality (using the streaming
+lib for virtual streams, or I2CP directly for async messages).
+
+All client\<--\>SAM bridge communication is unencrypted and
+unauthenticated over a single TCP socket. Access to the SAM
+bridge should be protected through firewalls or other means
+(perhaps the bridge may have ACLs on what IPs it accepts
+connections from).
+
+All of these SAM messages are sent on a single line in plain ASCII,
+terminated by the newline character (\\n). The formatting shown
+below is merely for readability, and while the first two words in
+each message must stay in their specific order, the ordering of
+the key=value pairs can change (e.g. "ONE TWO A=B C=D" or
+"ONE TWO C=D A=B" are both perfectly valid constructions). In
+addition, the protocol is case-sensitive.
+
+SAM messages are interpreted in UTF-8. Key=value pairs must be separated by
+a single space. Values may be enclosed in double quotes if they contain spaces,
+e.g. key="long value text". There is no escaping mechanism.
+
+Communication can take three distinct forms:
+
+- [Virtual streams](/docs/api/streaming)
+- [Repliable datagrams](/docs/spec/datagrams#repliable) (messages with a FROM field)
+- [Anonymous datagrams](/docs/spec/datagrams#raw) (raw anonymous messages)
+
+
+## SAM Connection Handshake
+
+No SAM communication can occur until after the client and bridge have
+agreed on a protocol version, which is done by the client sending
+a HELLO and the bridge sending a HELLO REPLY:
+
+```
+HELLO VERSION MIN=$min MAX=$max
+```
+
+and
+
+```
+HELLO REPLY RESULT=$result VERSION=1.0
+```
+
+As of I2P 0.9.14, the MIN parameter is optional.
+The MAX parameter must be provided and be greater than or equal to "1" and
+less than "2" to use version 1.
+
+The RESULT value may be one of:
+
+- `OK`
+- `NOVERSION`
+
+
+## SAM Sessions
+
+A SAM session is created by a client opening a socket to the SAM
+bridge, operating a handshake, and sending a SESSION CREATE message,
+and the session terminates when the socket is disconnected.
+
+Each I2P Destination can only be used for one SAM session at a time,
+and can only use one of those forms (messages received through other
+forms are dropped).
+
+The SESSION CREATE message sent by the client to the bridge is as follows:
+
+```
+SESSION CREATE
+        STYLE={STREAM,DATAGRAM,RAW}
+        DESTINATION={$name,TRANSIENT}
+        [DIRECTION={BOTH,RECEIVE,CREATE}]
+        [option=value]*
+```
+
+DESTINATION specifies what destination should be used for
+sending and receiving messages/streams. If a $name is given, the
+SAM bridge looks through its own local storage (the sam.keys file) for an associated
+destination (and private key). If no association exists matching
+that name, it creates a new one. If the destination is specified
+as TRANSIENT, it always creates a new one.
+
+Note that DESTINATION is an identifier, *not* Base 64 encoded data.
+To specify the Destination, you must use [SAM V3](/docs/api/samv3).
+
+The DIRECTION can be specified for STREAM sessions only, instructing
+the bridge that the client will either be creating or receiving
+streams, or both. If this is not specified, BOTH will be assumed.
+Attempting to create an outbound stream when DIRECTION=RECEIVE
+should result in an error, and incoming streams when
+DIRECTION=CREATE will be ignored.
+
+Additional options given should be fed into the I2P session
+configuration if not interpreted by the SAM bridge (e.g.
+"tunnels.depthInbound=0"). These options are documented below.
+
+The SAM bridge itself should already be configured with what router
+it should communicate over I2P through (though if need be there may
+be a way to provide an override, e.g. i2cp.tcp.host=localhost and
+i2cp.tcp.port=7654).
+
+After receiving the session create message, the SAM bridge will reply
+with a session status message, as follows:
+
+```
+SESSION STATUS
+        RESULT=$result
+        DESTINATION={$name,TRANSIENT}
+        [MESSAGE=...]
+```
+
+The RESULT value may be one of:
+
+- `OK`
+- `DUPLICATED_DEST`
+- `I2P_ERROR`
+- `INVALID_KEY`
+
+If it's not OK, the MESSAGE should contain human-readable information
+as to why the session could not be created.
+
+Note that there is no warning given if the $name is not found and
+a transient destination is created instead.
+Note that the actual transient base 64 destination is not output in the reply;
+it is the $name or TRANSIENT as supplied in SESSION CREATE.
+If you need these features, you must use [SAM V3](/docs/api/samv3).
+
+
+## SAM Virtual Streams
+
+Virtual streams are guaranteed to be sent reliably and in order, with
+failure and success notification as soon as it is available.
+
+After establishing the session with STYLE=STREAM, both the client
+and the SAM bridge may asynchronously send various messages back and
+forth to manage the streams, as listed below:
+
+```
+STREAM CONNECT
+       ID=$id
+       DESTINATION=$destination
+```
+
+This establishes a new virtual connection from the local destination
+to the specified peer, marking it with the session-scoped unique ID.
+The unique ID is an ASCII base 10 integer from 1 through (2^31-1).
+
+The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+which is 516 or more base 64 characters (387 or more bytes in binary),
+depending on signature type.
+
+The SAM bridge must reply to this with a stream status message:
+
+```
+STREAM STATUS
+       RESULT=$result
+       ID=$id
+       [MESSAGE=...]
+```
+
+The RESULT value may be one of:
+
+- `OK`
+- `CANT_REACH_PEER`
+- `I2P_ERROR`
+- `INVALID_KEY`
+- `TIMEOUT`
+
+If the RESULT is OK, the destination specified is up and authorized
+the connection; if the connection was not possible (timeout, etc),
+RESULT will contain the appropriate error value (accompanied by an
+optional human-readable MESSAGE).
+
+On the receiving end, the SAM bridge simply notifies the client as follows:
+
+```
+STREAM CONNECTED
+       DESTINATION=$destination
+       ID=$id
+```
+
+This tells the client that the given destination has created a virtual
+connection with them. The following data stream will be marked with
+the given unique ID, that is an ASCII base 10 integer from -1 through
+-(2^31-1).
+
+The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+which is 516 or more base 64 characters (387 or more bytes in binary),
+depending on signature type.
+
+When the client wants to send data on the virtual connection, they
+do so as follows:
+
+```
+STREAM SEND
+       ID=$id
+       SIZE=$numBytes\n[$numBytes of data]
+```
+
+This adds the specified data to the buffer being sent to the peer
+over the virtual connection. The send size $numBytes is how many
+8bit bytes are included after the newline, which may be 1 through
+32768 (32KB).
+
+The SAM bridge will then do its best to deliver the message as
+quickly and efficiently as possible, perhaps buffering multiple SEND
+messages together. If there is an error delivering the data, or if
+the remote side closes the connection, the SAM bridge will tell the
+client:
+
+```
+STREAM CLOSED
+       RESULT=$result
+       ID=$id
+       [MESSAGE=...]
+```
+
+The RESULT value may be one of:
+
+- `OK`
+- `CANT_REACH_PEER`
+- `I2P_ERROR`
+- `PEER_NOT_FOUND`
+- `TIMEOUT`
+
+If the connection has been cleanly closed by the other peer, $result
+is set to OK. If $result is not OK, MESSAGE may convey a descriptive
+message, such as "peer unreachable", etc. Whenever a client would
+like to close the connection, they send the SAM bridge the close
+message:
+
+```
+STREAM CLOSE
+       ID=$id
+```
+
+The bridge then cleans up what it needs to and discards that ID - no
+further messages can be sent or received on it.
+
+For the other side of the communication, whenever the peer has sent
+some data and it is available for the client, the SAM bridge will
+promptly deliver it:
+
+```
+STREAM RECEIVED
+       ID=$id
+       SIZE=$numBytes\n[$numBytes of data]
+```
+
+All streams are implicitly closed by the connection between the SAM
+bridge and the client being dropped.
+
+
+## SAM Repliable Datagrams
+
+While I2P doesn't inherently contain a FROM address, for ease of use
+an additional layer is provided as repliable datagrams - unordered
+and unreliable messages of up to 31744 bytes that include a FROM
+address (leaving up to 1KB for header material). This FROM address
+is authenticated internally by SAM (making use of the destination's
+signing key to verify the source) and includes replay prevention.
+
+Minimum size is 1. For best delivery reliability, recommended maximum
+size is approximately 11 KB.
+
+After establishing a SAM session with STYLE=DATAGRAM, the client can
+send the SAM bridge:
+
+```
+DATAGRAM SEND
+         DESTINATION=$destination
+         SIZE=$numBytes\n[$numBytes of data]
+```
+
+When a datagram arrives, the bridge delivers it to the client via:
+
+```
+DATAGRAM RECEIVED
+         DESTINATION=$destination
+         SIZE=$numBytes\n[$numBytes of data]
+```
+
+The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+which is 516 or more base 64 characters (387 or more bytes in binary),
+depending on signature type.
+
+The SAM bridge never exposes to the client the authentication headers
+or other fields, merely the data that the sender provided. This
+continues until the session is closed (by the client dropping the
+connection).
+
+
+## SAM Anonymous Datagrams
+
+Squeezing the most out of I2P's bandwidth, SAM allows clients to send
+and receive anonymous datagrams, leaving authentication and reply
+information up to the client themselves. These datagrams are
+unreliable and unordered, and may be up to 32768 bytes.
+
+Minimum size is 1. For best delivery reliability, recommended maximum
+size is approximately 11 KB.
+
+After establishing a SAM session with STYLE=RAW, the client can
+send the SAM bridge:
+
+```
+RAW SEND
+    DESTINATION=$destination
+    SIZE=$numBytes\n[$numBytes of data]
+```
+
+The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+which is 516 or more base 64 characters (387 or more bytes in binary),
+depending on signature type.
+
+When a raw datagram arrives, the bridge delivers it to the client via:
+
+```
+RAW RECEIVED
+    SIZE=$numBytes\n[$numBytes of data]
+```
+
+
+## SAM Utility Functionality
+
+The following message can be used by the client to query the SAM
+bridge for name resolution:
+
+```
+NAMING LOOKUP
+       NAME=$name
+```
+
+which is answered by
+
+```
+NAMING REPLY
+       RESULT=$result
+       NAME=$name
+       [VALUE=$destination]
+       [MESSAGE=$message]
+```
+
+The RESULT value may be one of:
+
+- `OK`
+- `INVALID_KEY`
+- `KEY_NOT_FOUND`
+
+If NAME=ME, then the reply will contain the destination used by the
+current session (useful if you're using a TRANSIENT one). If $result
+is not OK, MESSAGE may convey a descriptive message, such as "bad
+format", etc.
+
+The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+which is 516 or more base 64 characters (387 or more bytes in binary),
+depending on signature type.
+
+Public and private base64 keys can be generated using the following message:
+
+```
+DEST GENERATE
+```
+
+which is answered by
+
+```
+DEST REPLY
+     PUB=$destination
+     PRIV=$privkey
+```
+
+As of I2P 0.9.14, an optional parameter SIGNATURE_TYPE is supported.
+The SIGNATURE_TYPE value may be any name (e.g. ECDSA_SHA256_P256, case insensitive) or number (e.g. 1)
+that is supported by [Key Certificates](/docs/spec/common-structures#type_Certificate).
+The default is DSA_SHA1.
+
+The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+which is 516 or more base 64 characters (387 or more bytes in binary),
+depending on signature type.
+
+The $privkey is the base 64 of the concatenation of the [Destination](/docs/spec/common-structures#type_Destination)
+followed by the [Private Key](/docs/spec/common-structures#type_PrivateKey)
+followed by the [Signing Private Key](/docs/spec/common-structures#type_SigningPrivateKey),
+which is 884 or more base 64 characters (663 or more bytes in binary),
+depending on signature type.
+
+
+## RESULT Values
+
+These are the values that can be carried by the RESULT field, with their meaning:
+
+| Value | Meaning |
+|-------|---------|
+| `OK` | Operation completed successfully |
+| `CANT_REACH_PEER` | The peer exists, but cannot be reached |
+| `DUPLICATED_DEST` | The specified Destination is already in use |
+| `I2P_ERROR` | A generic I2P error (e.g. I2CP disconnection, etc.) |
+| `INVALID_KEY` | The specified key is not valid (bad format, etc.) |
+| `KEY_NOT_FOUND` | The naming system can't resolve the given name |
+| `PEER_NOT_FOUND` | The peer cannot be found on the network |
+| `TIMEOUT` | Timeout while waiting for an event (e.g. peer answer) |
+
+
+## Tunnel, I2CP, and Streaming Options
+
+These options may be passed in as name=value pairs at the end of a
+SAM SESSION CREATE line.
+
+All sessions may include [I2CP options such as tunnel lengths](/docs/protocol/i2cp#options).
+STREAM sessions may include [Streaming lib options](/docs/api/streaming#options).
+See those references for option names and defaults.
+
+
+## Base 64 Notes
+
+Base 64 encoding must use the I2P standard Base 64 alphabet "A-Z, a-z, 0-9, -, ~".
+
+
+## Client Library Implementations
+
+Client libraries are available for C, C++, C#, Perl, and Python.
+These are in the apps/sam/ directory in the I2P Source Package.
+
+
+## Default SAM Setup
+
+The default SAM port is 7656. SAM is not enabled by default in the I2P Router;
+it must be started manually, or configured to start automatically,
+on the configure clients page in the router console, or in the clients.config file.

@@ -239,6 +239,9 @@ disclaimer = "Oyunuz I2P'nin geleceğini şekillendirmeye yardımcı olur."
 message = "Bu çeviri makine öğrenimi kullanılarak oluşturulmuştur ve %100 doğru olmayabilir."
 viewEnglish = "İngilizce versiyonu görüntüle"
 
+[docs]
+development = "Geliştirme"
+
 [languages]
 en = "İngilizce"
 es = "İspanyolca"

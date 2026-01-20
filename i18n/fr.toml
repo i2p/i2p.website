@@ -239,6 +239,9 @@ disclaimer = "Votre vote aide à façonner l'avenir d'I2P."
 message = "Cette traduction a été générée par apprentissage automatique et peut ne pas être exacte à 100%."
 viewEnglish = "Voir la version anglaise"
 
+[docs]
+development = "Développement"
+
 [languages]
 en = "Anglais"
 es = "Espagnol"

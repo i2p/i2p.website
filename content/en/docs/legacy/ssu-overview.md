@@ -1,0 +1,549 @@
+---
+title: "Secure Semireliable UDP (SSU)"
+description: "Original UDP transport used prior to SSU2 (deprecated)"
+slug: "ssu-overview"
+lastUpdated: "2025-01"
+accurateFor: "0.9.64"
+---
+
+**DEPRECATED** - SSU has been replaced by SSU2.
+SSU support was removed from i2pd in release 2.44.0 (API 0.9.56) 2022-11.
+SSU support was removed from Java I2P in release 2.4.0 (API 0.9.61) 2023-12.
+
+SSU (also called "UDP" in much of the I2P documentation and user interfaces)
+was one of two [transports](/docs/transport) implemented in I2P.
+The other is [NTCP2](/docs/spec/ntcp2).
+Support for [NTCP](/docs/legacy/ntcp) has been removed.
+
+SSU was introduced in I2P release 0.6.
+In a standard I2P installation, the router uses both NTCP and SSU for outbound connections.
+SSU-over-IPv6 is supported as of version 0.9.8.
+
+SSU is called "semireliable" because it will repeatedly retransmit unacknowledged messages,
+but only up to a maximum number of times. After that, the message is dropped.
+
+
+## SSU Services
+
+Like the NTCP transport, SSU provides reliable, encrypted, connection-oriented, point-to-point data transport.
+Unique to SSU, it also provides IP detection and NAT traversal services, including:
+
+- Cooperative NAT/Firewall traversal using [introducers](#introduction)
+- Local IP detection by inspection of incoming packets and [peer testing](#peerTesting)
+- Communication of firewall status and local IP, and changes to either to NTCP
+- Communication of firewall status and local IP, and changes to either, to the router and the user interface
+
+
+## Router Address Specification {#ra}
+
+The following properties are stored in the network database.
+
+- **Transport name:** SSU
+- **caps:** [B,C,4,6] [See below](#capabilities).
+- **host:** IP (IPv4 or IPv6).
+  Shortened IPv6 address (with "::") is allowed.
+  May or may not be present if firewalled.
+  Host names were previously allowed, but are deprecated as of release 0.9.32. See proposal 141.
+- **iexp[0-2]:** Expiration of this introducer.
+  ASCII digits, in seconds since the epoch.
+  Only present if firewalled, and introducers are required.
+  Optional (even if other properties for this introducer are present).
+  As of release 0.9.30, proposal 133.
+- **ihost[0-2]:** Introducer's IP (IPv4 or IPv6).
+  Host names were previously allowed, but are deprecated as of release 0.9.32. See proposal 141.
+  Shortened IPv6 address (with "::") is allowed.
+  Only present if firewalled, and introducers are required.
+  [See below](#introduction).
+- **ikey[0-2]:** Introducer's Base 64 introduction key. [See below](#key).
+  Only present if firewalled, and introducers are required.
+  [See below](#introduction).
+- **iport[0-2]:** Introducer's port 1024 - 65535.
+  Only present if firewalled, and introducers are required.
+  [See below](#introduction).
+- **itag[0-2]:** Introducer's tag 1 - (2^32 - 1)
+  ASCII digits.
+  Only present if firewalled, and introducers are required.
+  [See below](#introduction).
+- **key:** Base 64 introduction key. [See below](#key).
+- **mtu:** Optional. Default and max is 1484. Min is 620.
+  Must be present for IPv6, where the min is 1280 and the max is 1488
+  (max was 1472 prior to version 0.9.28).
+  IPv6 MTU must be a multiple of 16.
+  (IPv4 MTU + 4) must be a multiple of 16.
+  [See below](#mtu).
+- **port:** 1024 - 65535
+  May or may not be present if firewalled.
+
+
+# Protocol Details
+
+## Congestion Control {#congestioncontrol}
+
+SSU's need for only semireliable delivery, TCP-friendly operation,
+and the capacity for high throughput allows a great deal of latitude in
+congestion control. The congestion control algorithm outlined below is
+meant to be both efficient in bandwidth as well as simple to implement.
+
+Packets are scheduled according to the router's policy, taking care
+not to exceed the router's outbound capacity or to exceed the measured
+capacity of the remote peer. The measured capacity operates along the
+lines of TCP's slow start and congestion avoidance, with additive increases
+to the sending capacity and multiplicative decreases in face of congestion.
+Unlike for TCP, routers may give up on some messages after
+a given period or number of retransmissions while continuing to transmit
+other messages.
+
+The congestion detection techniques vary from TCP as well, since each
+message has its own unique and nonsequential identifier, and each message
+has a limited size - at most, 32KB. To efficiently transmit this feedback
+to the sender, the receiver periodically includes a list of fully ACKed
+message identifiers and may also include bitfields for partially received
+messages, where each bit represents the reception of a fragment. If
+duplicate fragments arrive, the message should be ACKed again, or if the
+message has still not been fully received, the bitfield should be
+retransmitted with any new updates.
+
+The current implementation does not pad the packets to
+any particular size, but instead just places a single message fragment into
+a packet and sends it off (careful not to exceed the MTU).
+
+### MTU {#mtu}
+
+As of router version 0.8.12,
+two MTU values are used for IPv4: 620 and 1484.
+The MTU value is adjusted based on the percentage of packets that are retransmitted.
+
+For both MTU values, it is desirable that (MTU % 16) == 12, so that
+the payload portion after the 28-byte IP/UDP header is a multiple of
+16 bytes, for encryption purposes.
+
+For the small MTU value, it is desirable to pack a 2646-byte
+Variable Tunnel Build Message efficiently into multiple packets;
+with a 620-byte MTU, it fits into 5 packets with nicely.
+
+Based on measurements, 1492 fits nearly all reasonably small I2NP messages
+(larger I2NP messages may be up to 1900 to 4500 bytes, which isn't going to fit
+into a live network MTU anyway).
+
+The MTU values were 608 and 1492 for releases 0.8.9 - 0.8.11.
+The large MTU was 1350 prior to release 0.8.9.
+
+The maximum receive packet size
+is 1571 bytes as of release 0.8.12.
+For releases 0.8.9 - 0.8.11 it was 1535 bytes.
+Prior to release 0.8.9 it was 2048 bytes.
+
+As of release 0.9.2, if a router's network interface MTU is less than 1484,
+it will publish that in the network database, and other routers should
+honor that when a connection is established.
+
+For IPv6, the minimum MTU is 1280. The IPv6 IP/UDP header is 48 bytes,
+so we use an MTU where (MTU % 16 == 0), which is true for 1280.
+The maximum IPv6 MTU is 1488.
+(max was 1472 prior to version 0.9.28).
+
+### Message Size Limits {#max}
+
+While the maximum message size is nominally 32KB, the practical
+limit differs. The protocol limits the number of fragments to 7 bits, or 128.
+The current implementation, however, limits each message to a maximum of 64 fragments,
+which is sufficient for 64 * 534 = 33.3 KB when using the 608 MTU.
+Due to overhead for bundled LeaseSets and session keys, the practical limit
+at the application level is about 6KB lower, or about 26KB.
+Further work is necessary to raise the UDP transport limit above 32KB.
+For connections using the larger MTU, larger messages are possible.
+
+
+## Idle Timeout
+
+Idle timeout and connection close is at the discretion of each endpoint and may vary.
+The current implementation lowers the timeout as the number of connections approaches the
+configured maximum, and raises the timeout when the connection count is low.
+The recommended minimum timeout is two minutes or more, and the recommended
+maximum timeout is ten minutes or more.
+
+
+## Keys {#keys}
+
+All encryption used is AES256/CBC with 32 byte keys and 16 byte IVs.
+When Alice originates a session with Bob,
+the MAC and session keys are negotiated as part of the DH exchange, and are then used
+for the HMAC and encryption, respectively. During the DH exchange,
+Bob's publicly knowable introKey is used for the MAC and encryption.
+
+Both the initial message and the subsequent
+reply use the introKey of the responder (Bob) - the responder does
+not need to know the introKey of the requester (Alice). The DSA
+signing key used by Bob should already be known to Alice when she
+contacts him, though Alice's DSA key may not already be known by
+Bob.
+
+Upon receiving a message, the receiver checks the "from" IP address and port
+with all established sessions - if there are matches,
+that session's MAC keys are tested in the HMAC. If none
+of those verify or if there are no matching IP addresses, the
+receiver tries their introKey in the MAC. If that does not verify,
+the packet is dropped. If it does verify, it is interpreted
+according to the message type, though if the receiver is overloaded,
+it may be dropped anyway.
+
+If Alice and Bob have an established session, but Alice loses the
+keys for some reason and she wants to contact Bob, she may at any
+time simply establish a new session through the SessionRequest and
+related messages. If Bob has lost the key but Alice does not know
+that, she will first attempt to prod him to reply, by sending a
+DataMessage with the wantReply flag set, and if Bob continually
+fails to reply, she will assume the key is lost and reestablish a
+new one.
+
+For the DH key agreement,
+[RFC3526](http://www.faqs.org/rfcs/rfc3526.html) 2048bit
+MODP group (#14) is used:
+
+```
+  p = 2^2048 - 2^1984 - 1 + 2^64 * { [2^1918 pi] + 124476 }
+  g = 2
+```
+
+These are the same p and g used for I2P's
+[ElGamal encryption](/docs/how/cryptography#elgamal).
+
+
+## Replay Prevention {#replay}
+
+Replay prevention at the SSU layer occurs by rejecting packets
+with exceedingly old timestamps or those which reuse an IV. To
+detect duplicate IVs, a sequence of Bloom filters are employed to
+"decay" periodically so that only recently added IVs are detected.
+
+The messageIds used in DataMessages are defined at layers above
+the SSU transport and are passed through transparently. These IDs
+are not in any particular order - in fact, they are likely to be
+entirely random. The SSU layer makes no attempt at messageId
+replay prevention - higher layers should take that into account.
+
+
+## Addressing {#addressing}
+
+To contact an SSU peer, one of two sets of information is necessary:
+a direct address, for when the peer is publicly reachable, or an
+indirect address, for using a third party to introduce the peer.
+There is no restriction on the number of addresses a peer may have.
+
+```
+    Direct: host, port, introKey, options
+  Indirect: tag, relayhost, port, relayIntroKey, targetIntroKey, options
+```
+
+Each of the addresses may also expose a series of options - special
+capabilities of that particular peer. For a list of available
+capabilities, see [below](#capabilities).
+
+The addresses, options, and capabilities are published in the [network database](/docs/how/network-database).
+
+
+## Direct Session Establishment {#direct}
+
+Direct session establishment is used when no third party is required for NAT traversal.
+The message sequence is as follows:
+
+### Connection Establishment (Direct) {#establishDirect}
+
+Alice connects directly to Bob.
+IPv6 is supported as of version 0.9.8.
+
+```
+        Alice                         Bob
+    SessionRequest --------------------->
+          <--------------------- SessionCreated
+    SessionConfirmed ------------------->
+          <--------------------- DeliveryStatusMessage
+          <--------------------- DatabaseStoreMessage
+    DatabaseStoreMessage --------------->
+    Data <--------------------------> Data
+```
+
+After the SessionConfirmed message is received, Bob sends a small
+[DeliveryStatus message](/docs/spec/i2np#msg_DeliveryStatus)
+as a confirmation.
+In this message, the 4-byte message ID is set to a random number, and the
+8-byte "arrival time" is set to the current network-wide ID, which is 2
+(i.e. 0x0000000000000002).
+
+After the status message is sent, the peers usually exchange
+[DatabaseStore messages](/docs/spec/i2np#msg_DatabaseStore)
+containing their
+[RouterInfos](/docs/spec/common-structures#struct_RouterInfo),
+however, this is not required.
+
+It does not appear that the type of the status message or its contents matters.
+It was originally added because the DatabaseStore message was delayed
+several seconds; since the store is now sent immediately, perhaps
+the status message can be eliminated.
+
+
+## Introduction {#introduction}
+
+Introduction keys are delivered through an external channel
+(the network database),
+where they have traditionally been identical to the router Hash through release 0.9.47,
+but may be random as of release 0.9.48.
+They must be used when establishing a session key. For the indirect
+address, the peer must first contact the relayhost and ask them for
+an introduction to the peer known at that relayhost under the given
+tag. If possible, the relayhost sends a message to the addressed
+peer telling them to contact the requesting peer, and also gives
+the requesting peer the IP and port on which the addressed peer is
+located. In addition, the peer establishing the connection must
+already know the public keys of the peer they are connecting to (but
+not necessary to any intermediary relay peer).
+
+Indirect session establishment by means of a third party introduction
+is necessary for efficient NAT traversal. Charlie, a router behind a
+NAT or firewall which does not allow unsolicited inbound UDP packets,
+first contacts a few peers, choosing some to serve as introducers. Each
+of these peers (Bob, Bill, Betty, etc) provide Charlie with an introduction
+tag - a 4 byte random number - which he then makes available to the public
+as methods of contacting him. Alice, a router who has Charlie's published
+contact methods, first sends a RelayRequest packet to one or more of the
+introducers, asking each to introduce her to Charlie (offering the
+introduction tag to identify Charlie). Bob then forwards a RelayIntro
+packet to Charlie including Alice's public IP and port number, then sends
+Alice back a RelayResponse packet containing Charlie's public IP and port
+number. When Charlie receives the RelayIntro packet, he sends off a small
+random packet to Alice's IP and port (poking a hole in his NAT/firewall),
+and when Alice receives Bob's RelayResponse packet, she begins a new
+full direction session establishment with the specified IP and port.
+
+### Connection Establishment (Indirect Using an Introducer) {#establishIndirect}
+
+Alice first connects to introducer Bob, who relays the request to Charlie.
+
+```
+        Alice                         Bob                  Charlie
+    RelayRequest ---------------------->
+         <-------------- RelayResponse    RelayIntro ----------->
+         <-------------------------------------------- HolePunch (data ignored)
+    SessionRequest -------------------------------------------->
+         <-------------------------------------------- SessionCreated
+    SessionConfirmed ------------------------------------------>
+         <-------------------------------------------- DeliveryStatusMessage
+         <-------------------------------------------- DatabaseStoreMessage
+    DatabaseStoreMessage -------------------------------------->
+    Data <--------------------------------------------------> Data
+```
+
+After the hole punch, the session is established between Alice and Charlie as in a direct establishment.
+
+### IPv6 Notes
+
+IPv6 is supported as of version 0.9.8.
+Published relay addresses may be IPv4 or IPv6, and
+Alice-Bob communication may be via IPv4 or IPv6.
+Through release 0.9.49, Bob-Charlie and Alice-Charlie communication is via IPv4 only.
+Relaying for IPv6 is supported as of release 0.9.50.
+See the specification for details.
+
+While the specification was changed as of version 0.9.8, Alice-Bob communication via IPv6 was not actually supported until version 0.9.50.
+Earlier versions of Java routers erroneously published the 'C' capability for IPv6 addresses,
+even though they did not actually act as an introducer via IPv6.
+Therefore, routers should only trust the 'C' capability on an IPv6 address if the router version is 0.9.50 or higher.
+
+
+## Peer Testing {#peerTesting}
+
+The automation of collaborative reachability testing for peers is
+enabled by a sequence of PeerTest messages. With its proper
+execution, a peer will be able to determine their own reachability
+and may update its behavior accordingly. The testing process is
+quite simple:
+
+```
+        Alice                  Bob                  Charlie
+    PeerTest ------------------->
+                             PeerTest-------------------->
+                                <-------------------PeerTest
+         <-------------------PeerTest
+         <------------------------------------------PeerTest
+    PeerTest------------------------------------------>
+         <------------------------------------------PeerTest
+```
+
+Each of the PeerTest messages carry a nonce identifying the
+test series itself, as initialized by Alice. If Alice doesn't
+get a particular message that she expects, she will retransmit
+accordingly, and based upon the data received or the messages
+missing, she will know her reachability. The various end states
+that may be reached are as follows:
+
+- If she doesn't receive a response from Bob, she will retransmit
+  up to a certain number of times, but if no response ever arrives,
+  she will know that her firewall or NAT is somehow misconfigured,
+  rejecting all inbound UDP packets even in direct response to an
+  outbound packet. Alternately, Bob may be down or unable to get
+  Charlie to reply.
+
+- If Alice doesn't receive a PeerTest message with the
+  expected nonce from a third party (Charlie), she will retransmit
+  her initial request to Bob up to a certain number of times, even
+  if she has received Bob's reply already. If Charlie's first message
+  still doesn't get through but Bob's does, she knows that she is
+  behind a NAT or firewall that is rejecting unsolicited connection
+  attempts and that port forwarding is not operating properly (the
+  IP and port that Bob offered up should be forwarded).
+
+- If Alice receives Bob's PeerTest message and both of Charlie's
+  PeerTest messages but the enclosed IP and port numbers in Bob's
+  and Charlie's second messages don't match, she knows that she is
+  behind a symmetric NAT, rewriting all of her outbound packets with
+  different 'from' ports for each peer contacted. She will need to
+  explicitly forward a port and always have that port exposed for
+  remote connectivity, ignoring further port discovery.
+
+- If Alice receives Charlie's first message but not his second,
+  she will retransmit her PeerTest message to Charlie up to a
+  certain number of times, but if no response is received she knows
+  that Charlie is either confused or no longer online.
+
+Alice should choose Bob arbitrarily from known peers who seem
+to be capable of participating in peer tests. Bob in turn should
+choose Charlie arbitrarily from peers that he knows who seem to be
+capable of participating in peer tests and who are on a different
+IP from both Bob and Alice. If the first error condition occurs
+(Alice doesn't get PeerTest messages from Bob), Alice may decide
+to designate a new peer as Bob and try again with a different nonce.
+
+Alice's introduction key is included in all of the PeerTest messages
+so that Charlie can contact her without knowing any additional information.
+As of release 0.9.15, Alice must have an established
+session with Bob, to prevent spoofing attacks.
+Alice must not have an established session with Charlie for the peer test
+to be valid.
+Alice may go on to establish a session
+with Charlie, but it is not required.
+
+### IPv6 Notes
+
+Through release 0.9.26, only testing of IPv4 addresses is supported.
+Only testing of IPv4 addresses is supported.
+Therefore, all Alice-Bob and Alice-Charlie communication must be via IPv4.
+Bob-Charlie communication, however, may be via IPv4 or IPv6.
+Alice's address, when specified in the PeerTest message, must be 4 bytes.
+As of release 0.9.27, testing of IPv6 addresses is supported,
+and Alice-Bob and Alice-Charlie communication may be via IPv6,
+if Bob and Charlie indicate support with a 'B' capability in their published IPv6 address.
+See [Proposal 126](/spec/proposals/126-ipv6-peer-testing) for details.
+
+Prior to release 0.9.50,
+Alice sends the request to Bob using an existing session over the transport (IPv4 or IPv6) that she wishes to test.
+When Bob receives a request from Alice via IPv4, Bob must select a Charlie that advertises an IPv4 address.
+When Bob receives a request from Alice via IPv6, Bob must select a Charlie that advertises an IPv6 address.
+The actual Bob-Charlie communication may be via IPv4 or IPv6 (i.e., independent of Alice's address type).
+
+As of release 0.9.50,
+If the message is over IPv6 for an IPv4 peer test,
+or (as of release 0.9.50) over IPv4 for an IPv6 peer test,
+Alice must include her introduction address and port.
+
+See [Proposal 158](/spec/proposals/158) for details.
+
+
+## Transmission Window, ACKs and Retransmissions {#acks}
+
+The DATA message may contain ACKs of full messages and
+partial ACKs of individual fragments of a message. See
+the data message section of
+[the protocol specification page](/docs/spec/ssu)
+for details.
+
+The details of windowing, ACK, and retransmission strategies are not specified
+here. See the Java code for the current implementation.
+During the establishment phase, and for peer testing, routers
+should implement exponential backoff for retransmission.
+For an established connection, routers should implement
+an adjustable transmission window, RTT estimate and timeout, similar to TCP
+or [streaming](/docs/api/streaming).
+See the code for initial, min and max parameters.
+
+
+## Security {#security}
+
+UDP source addresses may, of course, be spoofed.
+Additionally, the IPs and ports contained inside specific
+SSU messages (RelayRequest, RelayResponse, RelayIntro, PeerTest)
+may not be legitimate.
+Also, certain actions and responses may need to be rate-limited.
+
+The details of validation are not specified
+here. Implementers should add defenses where appropriate.
+
+
+## Peer Capabilities {#capabilities}
+
+One or more capabilities may be published in the "caps" option.
+Capabilities may be in any order, but "BC46" is the recommended order, for consistency across implementations.
+
+**B**
+: If the peer address contains the 'B' capability, that means
+they are willing and able to participate in peer tests as
+a 'Bob' or 'Charlie'.
+Through 0.9.26, peer testing was not supported for IPv6 addresses, and
+the 'B' capability, if present for an IPv6 address, must be ignored.
+As of 0.9.27, peer testing is supported for IPv6 addresses, and
+the presence or absence of the 'B' capability in an IPv6 address
+indicates actual support (or lack of support).
+
+**C**
+: If the peer address contains the 'C' capability, that means
+they are willing and able to serve as an introducer via that address - serving
+as an introducer Bob for an otherwise unreachable Charlie.
+Prior to release 0.9.50, Java routers incorrectly published the 'C'
+capability for IPv6 addresses, even though IPv6 introducers was not fully implemented.
+Therefore, routers should assume that versions prior to 0.9.50 cannot act as an introducer
+over IPv6, even if the 'C' capability is advertised.
+
+**4**
+: As of 0.9.50, indicates outbound IPv4 capability.
+If an IP is published in the host field, this capability is not necessary.
+If this is an address with introducers for IPv4 introductions, '4' should be included.
+If the router is hidden, '4' and '6' may be combined in a single address.
+
+**6**
+: As of 0.9.50, indicates outbound IPv6 capability.
+If an IP is published in the host field, this capability is not necessary.
+If this is an address with introducers for IPv6 introductions, '6' should be included (not currently supported).
+If the router is hidden, '4' and '6' may be combined in a single address.
+
+
+# Future Work {#future}
+
+Note: These issues will be addressed in the development of SSU2.
+
+- Analysis of current SSU performance, including assessment of window size adjustment
+  and other parameters, and adjustment of the protocol implementation to improve
+  performance, is a topic for future work.
+
+- The current implementation repeatedly sends acknowledgments for the same packets,
+  which unnecessarily increases overhead.
+
+- The default small MTU value of 620 should be analyzed and possibly increased.
+  The current MTU adjustment strategy should be evaluated.
+  Does a streaming lib 1730-byte packet fit in 3 small SSU packets? Probably not.
+
+- The protocol should be extended to exchange MTUs during the setup.
+
+- Rekeying is currently unimplemented and will never be.
+
+- The potential use of the 'challenge' fields in RelayIntro and RelayResponse,
+  and use of the padding field in SessionRequest and SessionCreated, is undocumented.
+
+- A set of fixed packet sizes may be appropriate to further hide the data
+  fragmentation to external adversaries, but the tunnel, garlic, and end to
+  end padding should be sufficient for most needs until then.
+
+- Signed-on times in SessionCreated and SessionConfirmed appear to be unused or unverified.
+
+
+# Specification {#spec}
+
+[Now on the SSU specification page](/docs/spec/ssu).

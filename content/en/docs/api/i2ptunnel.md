@@ -1,198 +1,307 @@
 ---
 title: "I2PTunnel"
 description: "Tool for interfacing with and providing services on I2P"
-lastUpdated: "2025-10"
-accurateFor: "2.10.0"
+slug: "i2ptunnel"
+lastUpdated: "2023-10"
+accurateFor: "0.9.59"
 ---
 
-## Overview
 
-I2PTunnel is a core I2P component for interfacing with and providing services on the I2P network. It enables TCP-based and media streaming applications to operate anonymously through tunnel abstraction. A tunnel’s destination can be defined by a [hostname](/docs/overview/naming), [Base32](/docs/overview/naming#base32), or a full destination key. 
+## Overview {#overview}
 
-Each established tunnel listens locally (e.g., `localhost:port`) and connects internally to I2P destinations. To host a service, create a tunnel pointing to the desired IP and port. A corresponding I2P destination key is generated, allowing the service to become globally reachable within the I2P network. The I2PTunnel web interface is available at [I2P Router Tunnel Manager](http://localhost:7657/i2ptunnel/).
+I2PTunnel is a tool for interfacing with and providing services on I2P.
+Destination of an I2PTunnel can be defined using a [hostname](/docs/overview/naming),
+[Base32](/docs/overview/naming#base32), or a full 516-byte destination key.
+An established I2PTunnel will be available on your client machine as localhost:port.
+If you wish to provide a service on I2P network, you simply create I2PTunnel to the
+appropriate ip_address:port. A corresponding 516-byte destination key will be generated
+for the service and it will become available throughout I2P.
+A web interface for I2PTunnel management is available on
+[localhost:7657/i2ptunnel/](http://localhost:7657/i2ptunnel/).
 
----
 
-## Default Services
+## Default Services {#default-services}
 
-### Server tunnel
+### Server Tunnels {#default-server-tunnels}
 
-- **I2P Webserver** – A tunnel to a Jetty webserver at [localhost:7658](http://localhost:7658) for easy hosting on I2P.  
-  - **Unix:** `$HOME/.i2p/eepsite/docroot`  
-  - **Windows:** `%LOCALAPPDATA%\I2P\I2P Site\docroot` → `C:\Users\<username>\AppData\Local\I2P\I2P Site\docroot`
+- **I2P Webserver** - A tunnel pointed to a Jetty webserver run
+  on [localhost:7658](http://localhost:7658) for convenient and quick hosting on I2P.
+  The document root is:
+  - **Unix** - `$HOME/.i2p/eepsite/docroot`
+  - **Windows** - `%LOCALAPPDATA%\I2P\I2P Site\docroot`, which expands to: `C:\Users\**username**\AppData\Local\I2P\I2P Site\docroot`
 
-### Client tunnels
 
-- **I2P HTTP Proxy** – `localhost:4444` – Used for browsing I2P and the Internet through outproxies.  
-- **I2P HTTPS Proxy** – `localhost:4445` – Secure variant of the HTTP proxy.  
-- **Irc2P** – `localhost:6668` – Default anonymous IRC network tunnel.  
-- **Git SSH (gitssh.idk.i2p)** – `localhost:7670` – Client tunnel for repository SSH access.  
-- **Postman SMTP** – `localhost:7659` – Client tunnel for outgoing mail.  
-- **Postman POP3** – `localhost:7660` – Client tunnel for incoming mail.
+### Client Tunnels {#default-client-tunnels}
 
-> Note: Only the I2P Webserver is a default **server tunnel**; all others are client tunnels connecting to external I2P services.
+- **I2P HTTP Proxy** - *localhost:4444* - A HTTP proxy used for browsing I2P and the regular internet anonymously through I2P. Browsing internet through I2P uses a random proxy specified by the "Outproxies:" option.
+- **Irc2P** - *localhost:6668* - An IRC tunnel to the default anonymous IRC network, Irc2P.
+- **gitssh.idk.i2p** - *localhost:7670* - SSH access to the project Git repository
+- **smtp.postman.i2p** - *localhost:7659* - A SMTP service provided by postman at hq.postman.i2p
+- **pop3.postman.i2p** - *localhost:7660* - The accompanying POP service of postman at hq.postman.i2p
 
----
 
-## Configuration
+## Configuration {#configuration}
 
-The I2PTunnel configuration specification is documented at [/spec/configuration](/docs/specs/configuration/).
+[I2PTunnel Configuration](/docs/spec/configuration)
 
----
 
-## Client Modes
+## Client Modes {#client-modes}
 
-### Standard
+### Standard {#client-modes-standard}
 
-Opens a local TCP port that connects to a service on an I2P destination. Supports multiple destination entries separated by commas for redundancy.
+Opens a local TCP port that connects to a service (like HTTP, FTP or SMTP) on a destination inside of I2P.
+The tunnel is directed to a random host from the comma separated (", ") list of destinations.
 
-### HTTP
 
-A proxy tunnel for HTTP/HTTPS requests. Supports local and remote outproxies, header stripping, caching, authentication, and transparent compression.
+### HTTP {#client-mode-http}
 
-**Privacy protections:**  
-- Strips headers: `Accept-*`, `Referer`, `Via`, `From`  
-- Replaces host headers with Base32 destinations  
-- Enforces RFC-compliant hop-by-hop stripping  
-- Adds support for transparent decompression  
-- Provides internal error pages and localized responses  
+A HTTP-client tunnel. The tunnel connects to the destination specified by the URL
+in a HTTP request. Supports proxying onto internet if an outproxy is provided. Strips HTTP connections of the following headers:
 
-**Compression behavior:**  
-- Requests may use custom header `X-Accept-Encoding: x-i2p-gzip`  
-- Responses with `Content-Encoding: x-i2p-gzip` are transparently decompressed  
-- Compression evaluated by MIME type and response length for efficiency  
+- **Accept\*:** (not including "Accept" and "Accept-Encoding") as they vary greatly between browsers and can be used as an identifier.
+- **Referer:**
+- **Via:**
+- **From:**
 
-**Persistence (new since 2.5.0):**  
-HTTP Keepalive and persistent connections are now supported for I2P-hosted services through the Hidden Services Manager. This reduces latency and connection overhead but does not yet enable full RFC 2616-compliant persistent sockets across all hops.
+The HTTP client proxy provides a number of services to protect the user
+and to provide a better user experience.
 
-**Pipelining:**  
-Remains unsupported and unnecessary; modern browsers have deprecated it.
+**Request header processing:**
+- Strip privacy-problematic headers
+- Routing to local or remote outproxy
+- Outproxy selection, caching, and reachability tracking
+- Hostname to destination lookups
+- Host header replacement to b32
+- Add header to indicate support for transparent decompression
+- Force connection: close
+- RFC-compliant proxy support
+- RFC-compliant hop-by-hop header processing and stripping
+- Optional digest and basic username/password authentication
+- Optional outproxy digest and basic username/password authentication
+- Buffering of all headers before passing through for efficiency
+- Jump server links
+- Jump response processing and forms (address helper)
+- Blinded b32 processing and credential forms
+- Supports standard HTTP and HTTPS (CONNECT) requests
 
-**User-Agent behavior:**  
-- **Outproxy:** Uses a current Firefox ESR User-Agent.  
-- **Internal:** `MYOB/6.66 (AN/ON)` for anonymity consistency.
+**Response header processing:**
+- Check for whether to decompress response
+- Force connection: close
+- RFC-compliant hop-by-hop header processing and stripping
+- Buffering of all headers before passing through for efficiency
 
-### IRC Client
+**HTTP error responses:**
+- For many common and not-so-common errors, so the user knows what happened
+- Over 20 unique translated, styled, and formatted error pages for various errors
+- Internal web server to serve forms, CSS, images, and errors
 
-Connects to I2P-based IRC servers. Allows a safe subset of commands while filtering identifiers for privacy.
 
-### SOCKS 4/4a/5
+#### Transparent Response Compression {#transparent-response-compression}
 
-Provides SOCKS proxy capability for TCP connections. UDP remains unimplemented in Java I2P (only in i2pd).
+The i2ptunnel response compression is requested with the HTTP header:
 
-### CONNECT
+- **X-Accept-Encoding:** x-i2p-gzip;q=1.0, identity;q=0.5, deflate;q=0, gzip;q=0, *;q=0
 
-Implements HTTP `CONNECT` tunneling for SSL/TLS connections.
+The server side strips this hop-by-hop header before sending the request to the web server.
+The elaborate header with all the q values is not necessary;
+servers should just look for "x-i2p-gzip" anywhere in the header.
 
-### Streamr
+The server side determines whether to compress the response based on
+the headers received from the webserver, including
+Content-Type, Content-Length, and Content-Encoding,
+to assess if the response is compressible and is worth the additional CPU required.
+If the server side compresses the response, it adds the following HTTP header:
 
-Enables UDP-style streaming via TCP-based encapsulation. Supports media streaming when paired with a corresponding Streamr server tunnel.
+- **Content-Encoding:** x-i2p-gzip
 
-![I2PTunnel Streamr diagram](/images/I2PTunnel-streamr.png)
+If this header is present in the response,
+the HTTP client proxy transparently decompresses it.
+The client side strips this header and gunzips before sending the response to the browser.
+Note that we still have the underlying gzip compression at the I2CP layer,
+which is still effective if the response is not compressed at the HTTP layer.
 
----
+This design and the current implementation violate RFC 2616 in several ways:
 
-## Server Modes
+- X-Accept-Encoding is not a standard header
+- Does not dechunk/chunk per-hop; it passes through chunking end-to-end
+- Passes Transfer-Encoding header through end-to-end
+- Uses Content-Encoding, not Transfer-Encoding, to specify the per-hop encoding
+- Prohibits x-i2p gzipping when Content-Encoding is set (but we probably don't want to do that anyway)
+- The server side gzips the server-sent chunking, rather than doing dechunk-gzip-rechunk and dechunk-gunzip-rechunk
+- The gzipped content is not chunked afterwards. RFC 2616 requires that all Transfer-Encoding other than "identity" is chunked.
+- Because there is no chunking outside (after) the gzip, it is more difficult to find the end of the data, making any implementation of keepalive harder.
+- RFC 2616 says Content-Length must not be sent if Transfer-Encoding is present, but we do. The spec says ignore Content-Length if Transfer-Encoding is present, which the browsers do, so it works for us.
 
-### Standard Server
+Changes to implement a standards-compliant hop-by-hop compression in a backward-compatible
+manner are a topic for further study.
+Any change to dechunk-gzip-rechunk would require a new encoding type, perhaps
+x-i2p-gzchunked.
+This would be identical to Transfer-Encoding: gzip, but would have to be
+signalled differently for compatibility reasons.
+Any change would require a formal proposal.
 
-Creates a TCP destination mapped to a local IP:port.
 
-### HTTP Server
+#### Transparent Request Compression {#transparent-request-compression}
 
-Creates a destination that interfaces with a local web server. Supports compression (`x-i2p-gzip`), header stripping, and DDoS protections. Now benefits from **persistent connection support** (v2.5.0+) and **thread pooling optimization** (v2.7.0–2.9.0).
+Not supported, although POST would benefit.
+Note that we still have the underlying gzip compression at the I2CP layer.
 
-### HTTP Bidirectional
 
-**Deprecated** – Still functional but discouraged. Acts as both HTTP server and client without outproxying. Primarily used for diagnostic loopback tests.
+#### Persistence {#persistence}
 
-### IRC Server
+The client and server proxies do not currently support RFC 2616 HTTP persistent sockets
+on any of the three hops (browser socket, I2P socket, server socket).
+Connection: close headers are injected at every hop.
+Changes to implement persistence are under investigation.
+These changes should be standards-compliant and backwards-compatible,
+and would not require a formal proposal.
 
-Creates a filtered destination for IRC services, passing client destination keys as hostnames.
 
-### Streamr Server
+#### Pipelining {#pipelining}
 
-Couples with a Streamr client tunnel to handle UDP-style data streams over I2P.
+The client and server proxies do not currently support RFC 2616 HTTP pipelining
+and there are no plans to do so.
+Modern browsers do not support pipelining through proxies because
+most proxies cannot implement it correctly.
 
----
 
-## New Features (2.4.0–2.10.0)
+#### Compatibility {#compatibility}
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Feature</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Introduced</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Keepalive/Persistent Connections</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2.5.0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTP tunnels now support persistent sockets for I2P-hosted services, improving performance.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Thread Pooling Optimization</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2.7.0-2.9.0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Reduced CPU overhead and latency by improving thread management.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Post-Quantum Encryption (ML-KEM)</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2.10.0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Optional hybrid X25519+ML-KEM encryption to resist future quantum attacks.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>NetDB Segmentation</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2.4.0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Isolates I2PTunnel contexts for improved security and privacy.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>SSU1 Removal / SSU2 Adoption</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2.4.0-2.6.0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Upgraded transport layer; transparent to users.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>I2P-over-Tor Blocking</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2.6.0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Prevents inefficient and unstable I2P-over-Tor routing.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Browser Proxy (Proposal 166)</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2.7.0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Introduced identity-aware proxy mode; details pending confirmation.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Java 17 Requirement (upcoming)</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2.11.0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Future release will require Java 17+.</td>
-    </tr>
-  </tbody>
-</table>
+Proxy implementations must work correctly with other implementations
+on the other side. Client proxies should work without a
+HTTP-aware server proxy (i.e. a standard tunnel) on the server side.
+Not all implementations support x-i2p-gzip.
 
----
 
-## Security Features
+#### User Agent {#user-agent}
 
-- **Header stripping** for anonymity (Accept, Referer, From, Via)
-- **User-Agent randomization** depending on in/outproxy
-- **POST rate limiting** and **Slowloris protection**
-- **Connection throttling** in streaming subsystems
-- **Network congestion handling** at tunnel layer
-- **NetDB isolation** preventing cross-application leaks
+Depending on if the tunnel is using an outproxy or not it will append the following User-Agent:
 
----
+- *Outproxy:* **User-Agent:** Uses the user agent from a recent Firefox release on Windows
+- *Internal I2P use:* **User-Agent:** MYOB/6.66 (AN/ON)
 
-## Technical Details
 
-- Default destination key size: 516 bytes (may exceed for extended LS2 certificates)  
-- Base32 addresses: `{52–56+ chars}.b32.i2p`  
-- Server tunnels remain compatible with both Java I2P and i2pd  
-- Deprecated feature: `httpbidirserver` only; no removals since 0.9.59  
-- Verified correct default ports and document roots for all platforms
+### IRC Client {#client-mode-irc}
 
----
+Creates a connection to a random IRC server specified by the comma separated (", ")
+list of destinations. Only a whitelisted subset of IRC commands are allowed due to anonymity concerns.
 
-## Summary
+The following allow list is for commands inbound from the IRC server to the IRC client.
 
-I2PTunnel remains the backbone of application integration with I2P. Between 0.9.59 and 2.10.0, it gained persistent connection support, post-quantum encryption, and major threading improvements. Most configurations remain compatible, but developers should verify their setups to ensure compliance with modern transport and security defaults.
+**Allow list:**
+- AUTHENTICATE
+- CAP
+- ERROR
+- H
+- JOIN
+- KICK
+- MODE
+- NICK
+- PART
+- PING
+- PROTOCTL
+- QUIT
+- TOPIC
+- WALLOPS
+
+There is also an allow list for commands outbound from the IRC client to the IRC server.
+It is quite large due to the number of IRC administrative commands.
+See the IRCFilter.java source for details.
+
+The outbound filter also modifies the following commands to strip identifying information:
+- NOTICE
+- PART
+- PING
+- PRIVMSG
+- QUIT
+- USER
+
+
+### SOCKS 4/4a/5 {#client-mode-socks}
+
+Enables using the I2P router as a SOCKS proxy.
+
+
+### SOCKS IRC {#client-mode-socks-irc}
+
+Enables using the I2P router as a SOCKS proxy with the command whitelist specified by
+[IRC](#client-mode-irc) client mode.
+
+
+### CONNECT {#client-mode-connect}
+
+Creates a HTTP tunnel and uses the HTTP request method "CONNECT"
+to build a TCP tunnel that usually is used for SSL and HTTPS.
+
+
+### Streamr {#client-mode-streamr}
+
+Creates a UDP-server attached to a Streamr client I2PTunnel. The streamr client tunnel will
+subscribe to a streamr server tunnel.
+
+![Streamr diagram](/images/I2PTunnel-streamr.png)
+
+
+## Server Modes {#server-modes}
+
+### Standard {#server-mode-standard}
+
+Creates a destination to a local ip:port with an open TCP port.
+
+
+### HTTP {#server-mode-http}
+
+Creates a destination to a local HTTP server ip:port. Supports gzip for requests with
+Accept-encoding: x-i2p-gzip, replies with Content-encoding: x-i2p-gzip in such a request.
+
+The HTTP server proxy provides a number of services to make hosting a website easier and more secure,
+and to provide a better user experience on the client side.
+
+**Request header processing:**
+- Header validation
+- Header spoof protection
+- Header size checks
+- Optional inproxy and user-agent rejection
+- Add X-I2P headers so the webserver knows where the request came from
+- Host header replacement to make webserver vhosts easier
+- Force connection: close
+- RFC-compliant hop-by-hop header processing and stripping
+- Buffering of all headers before passing through for efficiency
+
+**DDoS protection:**
+- POST throttling
+- Timeouts and slowloris protection
+- Additional throttling happens in streaming for all tunnel types
+
+**Response header processing:**
+- Stripping of some privacy-problematic headers
+- Mime type and other headers check for whether to compress response
+- Force connection: close
+- RFC-compliant hop-by-hop header processing and stripping
+- Buffering of all headers before passing through for efficiency
+
+**HTTP error responses:**
+- For many common and not-so-common errors and on throttling, so the client-side user knows what happened
+
+**Transparent response compression:**
+- The web server and/or the I2CP layer may compress, but the web server often does not, and it's most efficient to compress at a high layer, even if I2CP also compresses. The HTTP server proxy works cooperatively with the client-side proxy to transparently compress responses.
+
+
+### HTTP Bidirectional {#server-mode-http-bidir}
+
+*Deprecated*
+
+Functions as both a I2PTunnel HTTP Server, and a I2PTunnel HTTP client with no outproxying
+capabilities. An example application would be a web application that does client-type
+requests, or loopback-testing an I2P Site as a diagnostic tool.
+
+
+### IRC Server {#server-mode-irc}
+
+Creates a destination that filters the registration sequence of a client and passes
+the clients destination key as a hostname to the IRC-server.
+
+
+### Streamr {#server-mode-streamr}
+
+A UDP-client that connects to a media server is created. The UDP-Client is coupled with a Streamr server I2PTunnel.

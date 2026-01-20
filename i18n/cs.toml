@@ -239,6 +239,9 @@ disclaimer = "Váš hlas pomáhá utvářet budoucnost I2P."
 message = "Tento překlad byl vytvořen pomocí strojového učení a nemusí být 100% přesný."
 viewEnglish = "Zobrazit anglickou verzi"
 
+[docs]
+development = "Vývoj"
+
 [languages]
 en = "Angličtina"
 es = "Španělština"

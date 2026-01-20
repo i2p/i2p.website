@@ -6,7 +6,7 @@ lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 reviewStatus: "needs-review"
 ---
-
+-------------check add stuff--------------
 # I2PControl API Documentation
 
 I2PControl is a **JSON-RPC 2.0** API bundled with the I2P router (since version 0.9.39). It enables authenticated monitoring and control of the router via structured JSON requests.
@@ -400,7 +400,40 @@ curl -s -H "Content-Type: application/json" \
 
 ## 5. Error Codes
 
-In addition to standard JSON-RPC errors (`-32700`, `-32600`, etc.), I2PControl defines:
+### Standard JSON-RPC2 Error Codes
+
+<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
+  <thead>
+    <tr>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
+      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32700</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">JSON parse error</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32600</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid request</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32601</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Method not found</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32602</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid parameters</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32603</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Internal error</td>
+    </tr>
+  </tbody>
+</table>
+
+### I2PControl Specific Error Codes
 
 <table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
   <thead>
@@ -412,27 +445,27 @@ In addition to standard JSON-RPC errors (`-32700`, `-32600`, etc.), I2PControl d
   <tbody>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">-32001</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid password</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid password provided</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">-32002</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Missing token</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">No authentication token presented</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">-32003</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Token does not exist</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">Authentication token doesn't exist</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">-32004</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Token expired</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">The provided authentication token was expired and will be removed</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">-32005</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">API version missing</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">The version of the I2PControl API used wasn't specified, but is required to be specified</td>
     </tr>
     <tr>
       <td style="border:1px solid var(--color-border); padding:0.6rem;">-32006</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">API version unsupported</td>
+      <td style="border:1px solid var(--color-border); padding:0.6rem;">The version of the I2PControl API specified is not supported by I2PControl</td>
     </tr>
   </tbody>
 </table>

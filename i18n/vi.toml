@@ -239,6 +239,9 @@ disclaimer = "Phiếu bầu của bạn giúp định hình tương lai của I2
 message = "Bản dịch này được tạo bằng máy học và có thể không chính xác 100%."
 viewEnglish = "Xem phiên bản tiếng Anh"
 
+[docs]
+development = "Phát triển"
+
 [languages]
 en = "Tiếng Anh"
 es = "Tiếng Tây Ban Nha"

@@ -35,16 +35,7 @@
                     </h2>
                     <ul class="doc-list">
                         {{/* Dynamically list pages from content/{lang}/docs/overview/ */}}
-                        {{ $langPrefix := printf "%s/docs/overview/" .Lang }}
-                        {{ $overviewPages := slice }}
-                        {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir $langPrefix) (hasPrefix .File.Dir "docs/overview/") }}
-                            {{ $overviewPages = $overviewPages | append . }}
-                          {{ end }}
-                        {{ end }}
-                        {{ range sort $overviewPages "Title" }}
-                          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                        {{ end }}
+                        {{ range where .Site.RegularPages "Section" "docs" }}{{ $dir := replace .File.Dir "\\" "/" }}{{ if and (eq .Lang $.Lang) (hasPrefix $dir "docs/overview/") }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}{{ end }}
                     </ul>
                 </div>
 
@@ -56,16 +47,7 @@
                     </h2>
                     <ul class="doc-list">
                         {{/* Dynamically list pages from content/{lang}/docs/applications/ */}}
-                        {{ $appPrefix := printf "%s/docs/applications/" .Lang }}
-                        {{ $appPages := slice }}
-                        {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir $appPrefix) (hasPrefix .File.Dir "docs/applications/") }}
-                            {{ $appPages = $appPages | append . }}
-                          {{ end }}
-                        {{ end }}
-                        {{ range sort $appPages "Title" }}
-                          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                        {{ end }}
+                        {{ range where .Site.RegularPages "Section" "docs" }}{{ $dir := replace .File.Dir "\\" "/" }}{{ if and (eq .Lang $.Lang) (hasPrefix $dir "docs/applications/") }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}{{ end }}
                     </ul>
                 </div>
 
@@ -77,16 +59,7 @@
                     </h2>
                     <ul class="doc-list">
                         {{/* Dynamically list guides from content/{lang}/docs/guides/ */}}
-                        {{ $guidesPrefix := printf "%s/docs/guides/" .Lang }}
-                        {{ $guides := slice }}
-                        {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir $guidesPrefix) (hasPrefix .File.Dir "docs/guides/") }}
-                            {{ $guides = $guides | append . }}
-                          {{ end }}
-                        {{ end }}
-                        {{ range sort $guides "Title" }}
-                          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                        {{ end }}
+                        {{ range where .Site.RegularPages "Section" "docs" }}{{ $dir := replace .File.Dir "\\" "/" }}{{ if and (eq .Lang $.Lang) (hasPrefix $dir "docs/guides/") }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}{{ end }}
                     </ul>
                 </div>
 
@@ -94,20 +67,11 @@
                 <div class="doc-category">
                     <h2 class="category-title">
                         <span class="category-icon">🧑‍💻</span>
-                        Develop
+                        {{ i18n "docs.development" | default "Development" }}
                     </h2>
                     <ul class="doc-list">
-                        {{/* Dynamically list pages from content/{lang}/docs/develop/ */}}
-                        {{ $devPrefix := printf "%s/docs/develop/" .Lang }}
-                        {{ $devPages := slice }}
-                        {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir $devPrefix) (hasPrefix .File.Dir "docs/develop/") }}
-                            {{ $devPages = $devPages | append . }}
-                          {{ end }}
-                        {{ end }}
-                        {{ range sort $devPages "Title" }}
-                          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                        {{ end }}
+                        {{/* Dynamically list pages from content/{lang}/docs/development/ */}}
+                        {{ range where .Site.RegularPages "Section" "docs" }}{{ $dir := replace .File.Dir "\\" "/" }}{{ if and (eq .Lang $.Lang) (hasPrefix $dir "docs/development/") }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}{{ end }}
                         <li><a href="{{ relLangURL "get-involved/roadmap/" }}">Project Roadmap</a></li>
                         <li><a href="{{ relLangURL "/proposals/" }}">Proposals</a></li>
                     </ul>
@@ -121,16 +85,7 @@
                     </h2>
                     <ul class="doc-list">
                         {{/* Dynamically list pages from content/{lang}/docs/api/ */}}
-                        {{ $apiPrefix := printf "%s/docs/api/" .Lang }}
-                        {{ $apiPages := slice }}
-                        {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir $apiPrefix) (hasPrefix .File.Dir "docs/api/") }}
-                            {{ $apiPages = $apiPages | append . }}
-                          {{ end }}
-                        {{ end }}
-                        {{ range sort $apiPages "Title" }}
-                          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                        {{ end }}
+                        {{ range where .Site.RegularPages "Section" "docs" }}{{ $dir := replace .File.Dir "\\" "/" }}{{ if and (eq .Lang $.Lang) (hasPrefix $dir "docs/api/") }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}{{ end }}
                     </ul>
                 </div>
 
@@ -149,19 +104,10 @@
                         <li><a href="/docs/historical/i2p_philosophy.pdf" target="_blank">Invisible Internet Project (I2P) Philosophy - 2003</a></li>
                         <li><a href="/docs/historical/I2P-PET-CON-2009.1.pdf" target="_blank">Peer Profiling and Selection - 2009</a></li>
                         {{/* Historical discussion pages */}}
-                        {{ $historicalPrefix := printf "%s/docs/historical/" .Lang }}
-                        {{ $historicalPages := slice }}
-                        {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir $historicalPrefix) (hasPrefix .File.Dir "docs/historical/") }}
-                            {{ $historicalPages = $historicalPages | append . }}
-                          {{ end }}
-                        {{ end }}
-                        {{ range sort $historicalPages "Title" }}
-                          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                        {{ end }}
+                        {{ range where .Site.RegularPages "Section" "docs" }}{{ $dir := replace .File.Dir "\\" "/" }}{{ if and (eq .Lang $.Lang) (hasPrefix $dir "docs/historical/") }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}{{ end }}
                     </ul>
                 </div>
-    </div>
+            </div>
 
             <!-- Full-width sections for Specs and Legacy -->
             <div class="docs-full-width-sections">
@@ -173,16 +119,7 @@
                     </h2>
                     <ul class="doc-list doc-list-multi-column">
                         {{/* Dynamically list pages from content/{lang}/docs/specs/ */}}
-                        {{ $specPrefix := printf "%s/docs/specs/" .Lang }}
-                        {{ $specPages := slice }}
-                        {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir $specPrefix) (hasPrefix .File.Dir "docs/specs/") }}
-                            {{ $specPages = $specPages | append . }}
-                          {{ end }}
-                        {{ end }}
-                        {{ range sort $specPages "Title" }}
-                          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                        {{ end }}
+                        {{ range where .Site.RegularPages "Section" "docs" }}{{ $dir := replace .File.Dir "\\" "/" }}{{ if and (eq .Lang $.Lang) (hasPrefix $dir "docs/specs/") }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}{{ end }}
                     </ul>
                 </div>
 
@@ -194,20 +131,10 @@
                     </h2>
                     <ul class="doc-list doc-list-multi-column">
                         {{/* Dynamically list pages from content/{lang}/docs/legacy/ */}}
-                        {{ $legacyPrefix := printf "%s/docs/legacy/" .Lang }}
-                        {{ $legacyPages := slice }}
-                        {{ range .Site.RegularPages }}
-                          {{ if or (hasPrefix .File.Dir $legacyPrefix) (hasPrefix .File.Dir "docs/legacy/") }}
-                            {{ $legacyPages = $legacyPages | append . }}
-                          {{ end }}
-                        {{ end }}
-                        {{ range sort $legacyPages "Title" }}
-                          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                        {{ end }}
+                        {{ range where .Site.RegularPages "Section" "docs" }}{{ $dir := replace .File.Dir "\\" "/" }}{{ if and (eq .Lang $.Lang) (hasPrefix $dir "docs/legacy/") }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}{{ end }}
                     </ul>
                 </div>
             </div>
-    </div>
         </div>
     </div>
 </div>

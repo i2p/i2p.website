@@ -239,6 +239,9 @@ disclaimer = "您的投票将帮助塑造 I2P 的未来。"
 message = "此翻译是使用机器学习生成的，可能不是100%准确。"
 viewEnglish = "查看英文版本"
 
+[docs]
+development = "开发"
+
 [languages]
 en = "英语"
 es = "西班牙语"
