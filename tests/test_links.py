@@ -184,8 +184,16 @@ def test_markdown_internal_links(all_content_files, project_root):
 
         for match in link_pattern.finditer(content):
             url = match.group(1)
+
+            # Skip empty URLs
+            if not url or not url.strip():
+                continue
+
             # Clean up title part "link.md 'Title'"
-            url = url.split()[0]
+            parts = url.split()
+            if not parts:
+                continue
+            url = parts[0]
             # Strip anchor and query
             url = url.split("#")[0].split("?")[0]
 
