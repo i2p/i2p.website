@@ -36,6 +36,18 @@
             height: auto;
             margin-bottom: 2rem;
         }
+        .error-mascot.light-only {
+            display: block;
+        }
+        .error-mascot.dark-only {
+            display: none;
+        }
+        [data-theme="dark"] .error-mascot.light-only {
+            display: none;
+        }
+        [data-theme="dark"] .error-mascot.dark-only {
+            display: block;
+        }
         .error-title {
             font-size: 3rem;
             font-weight: 700;
@@ -59,7 +71,8 @@
     <main id="main-content">
         <div class="container">
             <div class="error-page">
-                <img src="/images/mascot-404.png" alt="404 - Page Not Found" class="error-mascot">
+                <img src="/images/mascot-404.png" alt="404 - Page Not Found" class="error-mascot light-only">
+                <img src="/images/mascot-404-dark.png" alt="404 - Page Not Found" class="error-mascot dark-only">
 
                 <h1 class="error-title">404</h1>
 
