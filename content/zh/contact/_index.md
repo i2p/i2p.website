@@ -25,27 +25,26 @@ Please do not use these email addresses for support requests. For contact specif
 
 ## 论坛 {#forums}
 
-请访问我们的 I2P 用户论坛 - [i2pforum.i2p](http://i2pforum.i2p/) (可在公共互联网通过 https://i2pforum.net 访问，并在 I2P 上通过 http://i2pforum.i2p 访问)
+请访问我们的I2P用户论坛 - [i2pforum.i2p](http://i2pforum.i2p/)（在非私有互联网上可通过 https://i2pforum.net 访问）。
 
-关于 I2P 开发的讨论主要在 [I2P 用户论坛](http://i2pforum.i2p) 进行。如果开发者 IRC 频道不活跃，通常从这里开始进行开发者相关咨询是最佳选择。一般性支持可通过 [I2P 用户论坛](http://i2pforum.i2p) 或 Subreddit 获取。
-
-## 社交媒体 {#social}
-
-- [Mastodon - https://mastodon.social/@i2p](https://mastodon.social/@i2p)
-- [Twitter - https://twitter.com/GetI2P](https://twitter.com/GetI2P)
-- [Reddit - https://old.reddit.com/r/i2p](https://old.reddit.com/r/i2p)
+关于I2P开发的讨论在[I2P用户论坛](http://i2pforum.i2p)进行。如果开发IRC频道不活跃，这里通常是开发者咨询的最佳起点。对于一般支持，请使用[I2P用户论坛](http://i2pforum.i2p)或Subreddit。
 
 ## IRC {#irc}
 
-我们的主要 IRC 网络是 I2P 内的 Irc2P 网络；在新安装 router 时，会为该网络设置一个默认的 tunnel。我们也活跃于多个标准网络，例如 [OFTC](http://www.oftc.net/oftc/OFTC)、[EIN](http://www.einirc.de/) 和 [Libera.Chat](https://libera.chat/)。这些网络上所有与 I2P 相关的频道都通过中继机器人与 Irc2P 上的主频道相连。
+我们的主要IRC网络是I2P内的Irc2P网络；新路由器安装时会默认设置到此网络的隧道。我们也出现在多个标准网络上，如[OFTC](http://www.oftc.net/oftc/OFTC)、[EIN](http://www.einirc.de/)和[Libera.Chat](https://libera.chat/)。所有这些网络上的I2P相关频道都通过中继机器人链接到Irc2P上的主频道。
 
-**通道列表：**
+**频道列表：**
 
 ```
 #i2p       - General i2p discussion and help channel
 #i2p-chat  - Offtopic
 #i2p-dev   - Development talk
 ```
+
+<a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">Web IRC客户端（测试版）</a>
+
+<small>从明网连接到I2P IRC。100%无JavaScript，由安全的<a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a>提供支持。</small>
+
 ## 邮件列表
 
 在本网站页脚输入您的电子邮件地址，加入我们的邮件列表，接收有关 I2P 的更新和公告。

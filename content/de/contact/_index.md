@@ -25,27 +25,26 @@ Bitte verwenden Sie diese E-Mail-Adressen nicht für Supportanfragen. Für Anlie
 
 ## Foren {#forums}
 
-Bitte besuchen Sie unser I2P-Benutzerforum - [i2pforum.i2p](http://i2pforum.i2p/) (verfügbar im öffentlichen Internet unter https://i2pforum.net und auf I2P unter http://i2pforum.i2p)
+Bitte besuchen Sie unser I2P-Benutzerforum - [i2pforum.i2p](http://i2pforum.i2p/) (verfügbar im nicht-privaten Internet unter https://i2pforum.net.
 
-Die Diskussion über die Entwicklung von I2P findet im [I2P‑Benutzerforum](http://i2pforum.i2p) statt. Dies ist in der Regel die beste Anlaufstelle für Entwickleranfragen, falls der Dev‑IRC‑Kanal inaktiv ist. Für allgemeinen Support verwenden Sie entweder das [I2P‑Benutzerforum](http://i2pforum.i2p) oder das Subreddit.
-
-## Soziale Medien {#social}
-
-- [Mastodon - https://mastodon.social/@i2p](https://mastodon.social/@i2p)
-- [Twitter - https://twitter.com/GetI2P](https://twitter.com/GetI2P)
-- [Reddit - https://old.reddit.com/r/i2p](https://old.reddit.com/r/i2p)
+Die Diskussion über I2Ps Entwicklung findet im [I2P-Benutzerforum](http://i2pforum.i2p) statt. Dies ist normalerweise der beste Ort, um mit Entwickleranfragen zu beginnen, falls der Entwickler-IRC-Kanal inaktiv ist. Für allgemeine Unterstützung verwenden Sie entweder das [I2P-Benutzerforum](http://i2pforum.i2p) oder das Subreddit.
 
 ## IRC {#irc}
 
-Unser primäres IRC-Netzwerk ist das Irc2P-Netzwerk innerhalb von I2P; ein voreingestellter tunnel zu diesem Netzwerk wird bei neuen router-Installationen eingerichtet. Wir sind außerdem auf mehreren Standardnetzwerken wie [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) und [Libera.Chat](https://libera.chat/) vertreten. Alle I2P-bezogenen Kanäle in all diesen Netzwerken sind über Relay-Bots mit den Hauptkanälen auf Irc2P verbunden.
+Unser primäres IRC-Netzwerk ist das Irc2P-Netzwerk innerhalb von I2P; ein Standard-Tunnel zu diesem Netzwerk wird bei neuen Router-Installationen eingerichtet. Wir sind auch in mehreren Standard-Netzwerken wie [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) und [Libera.Chat](https://libera.chat/) präsent. Alle I2P-bezogenen Kanäle in all diesen Netzwerken sind über Relay-Bots mit den Hauptkanälen auf Irc2P verknüpft.
 
 **Kanalliste:**
 
 ```
-#i2p       - General i2p discussion and help channel
+#i2p       - Allgemeine i2p-Diskussion und Hilfekanal
 #i2p-chat  - Offtopic
-#i2p-dev   - Development talk
+#i2p-dev   - Entwicklungsgespräche
 ```
+
+<a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">Web IRC Client (Beta)</a>
+
+<small>Verbinden Sie sich mit I2P IRC aus dem Clearnet. 100% JavaScript-frei, angetrieben von der sicheren <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a>.</small>
+
 ## Mailinglisten
 
 Abonnieren Sie unsere Mailingliste, indem Sie Ihre E‑Mail‑Adresse in der Fußzeile dieser Website eingeben, um Updates und Ankündigungen zu I2P zu erhalten.

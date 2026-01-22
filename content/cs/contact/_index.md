@@ -25,9 +25,9 @@ Nepoužívejte prosím tyto e‑mailové adresy pro žádosti o podporu. Pro kon
 
 ## Fóra {#forums}
 
-Navštivte prosím naše uživatelské fórum I2P - [i2pforum.i2p](http://i2pforum.i2p/) (dostupné na běžném internetu na https://i2pforum.net a v I2P na http://i2pforum.i2p)
+Prosím, navštivte naše uživatelské fórum I2P - [i2pforum.i2p](http://i2pforum.i2p/) (dostupné na nesoukromém internetu na https://i2pforum.net.
 
-Diskuse o vývoji I2P probíhá na [I2P uživatelském fóru](http://i2pforum.i2p). To je obvykle nejlepší místo, kde začít s vývojářskými dotazy, pokud je vývojářský IRC kanál neaktivní. Pro obecnou podporu použijte buď [I2P uživatelské fórum](http://i2pforum.i2p) nebo Subreddit.
+Diskuse o vývoji I2P probíhá na [uživatelském fóru I2P](http://i2pforum.i2p). To je obvykle nejlepší místo, kde začít s vývojářskými dotazy, pokud je vývojářský IRC kanál neaktivní. Pro obecnou podporu použijte buď [uživatelské fórum I2P](http://i2pforum.i2p) nebo Subreddit.
 
 ## Sociální média {#social}
 
@@ -37,15 +37,20 @@ Diskuse o vývoji I2P probíhá na [I2P uživatelském fóru](http://i2pforum.i2
 
 ## IRC {#irc}
 
-Naší hlavní IRC sítí je síť Irc2P v rámci I2P; výchozí tunnel do této sítě se nastaví při instalaci nového routeru. Jsme také přítomni na několika standardních sítích, jako jsou [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) a [Libera.Chat](https://libera.chat/). Všechny kanály související s I2P na všech těchto sítích jsou propojeny s hlavními kanály na Irc2P prostřednictvím relay botů.
+Naší primární IRC sítí je síť Irc2P v rámci I2P; s novými instalacemi routeru je nastaven výchozí tunel do této sítě. Jsme také přítomni na více standardních sítích jako [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) a [Libera.Chat](https://libera.chat/). Všechny kanály související s I2P na všech těchto sítích jsou propojeny s hlavními kanály na Irc2P prostřednictvím relay botů.
 
 **Seznam kanálů:**
 
 ```
-#i2p       - General i2p discussion and help channel
-#i2p-chat  - Offtopic
-#i2p-dev   - Development talk
+#i2p       - Obecná diskuse a kanál nápovědy i2p
+#i2p-chat  - Mimo téma
+#i2p-dev   - Vývojářské rozhovory
 ```
+
+<a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">Webový IRC klient (Beta)</a>
+
+<small>Připojte se k I2P IRC z clearnetu. 100% bez JavaScriptu, poháněno bezpečným <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a>.</small>
+
 ## E-mailové konference
 
 Připojte se k naší poštovní konferenci zadáním své e‑mailové adresy v zápatí tohoto webu, abyste dostávali aktuality a oznámení o I2P.

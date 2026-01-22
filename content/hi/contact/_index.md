@@ -23,29 +23,33 @@ layout: "contact"
 
 - **abuse at i2p.net** - Abuse reports
 
-## फोरम {#forums}
+## Forums {#forums}
 
-कृपया हमारे I2P उपयोगकर्ता फ़ोरम पर जाएँ - [i2pforum.i2p](http://i2pforum.i2p/) (सार्वजनिक इंटरनेट पर https://i2pforum.net और I2P पर http://i2pforum.i2p उपलब्ध है)
+कृपया हमारे I2P उपयोगकर्ता फोरम पर जाएं - [i2pforum.i2p](http://i2pforum.i2p/) (गैर-निजी इंटरनेट पर https://i2pforum.net पर उपलब्ध है।
 
-I2P के विकास पर चर्चा [I2P यूज़र फ़ोरम](http://i2pforum.i2p) पर होती है। यदि डेवलपर IRC चैनल निष्क्रिय हो, तो डेवलपर से संबंधित पूछताछ शुरू करने के लिए यह आमतौर पर सबसे अच्छा स्थान है। सामान्य सहायता के लिए [I2P यूज़र फ़ोरम](http://i2pforum.i2p) या Subreddit का उपयोग करें।
+I2P के विकास के बारे में चर्चा [I2P उपयोगकर्ता फोरम](http://i2pforum.i2p) पर होती है। यदि dev IRC चैनल निष्क्रिय है तो डेवलपर पूछताछ शुरू करने के लिए यह आमतौर पर सबसे अच्छी जगह है। सामान्य सहायता के लिए [I2P उपयोगकर्ता फोरम](http://i2pforum.i2p) या Subreddit का उपयोग करें।
 
 ## सोशल मीडिया {#social}
 
 - [Mastodon - https://mastodon.social/@i2p](https://mastodon.social/@i2p)
 - [Twitter - https://twitter.com/GetI2P](https://twitter.com/GetI2P)
 - [Reddit - https://old.reddit.com/r/i2p](https://old.reddit.com/r/i2p)
-
 ## IRC {#irc}
 
-हमारा प्राथमिक IRC नेटवर्क I2P के भीतर Irc2P नेटवर्क है; इस नेटवर्क के लिए एक डिफ़ॉल्ट tunnel नए router की स्थापना के साथ सेट अप कर दी जाती है। हम [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) और [Libera.Chat](https://libera.chat/) जैसे कई मानक नेटवर्क्स पर भी मौजूद हैं। इन सभी नेटवर्क्स पर I2P-संबंधित सभी चैनल relay bots के माध्यम से Irc2P के मुख्य चैनलों से जुड़े हुए हैं।
+हमारा मुख्य IRC नेटवर्क I2P के भीतर Irc2P नेटवर्क है; नए राउटर इंस्टॉल के साथ इस नेटवर्क के लिए एक डिफ़ॉल्ट टनल स्थापित किया गया है। हम [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) और [Libera.Chat](https://libera.chat/) जैसे कई मानक नेटवर्क पर भी उपस्थित हैं। इन सभी नेटवर्क पर सभी I2P-संबंधित चैनल रिले बॉट्स के माध्यम से Irc2P पर मुख्य चैनलों से जुड़े हुए हैं।
 
 **चैनल सूची:**
 
 ```
-#i2p       - General i2p discussion and help channel
-#i2p-chat  - Offtopic
-#i2p-dev   - Development talk
+#i2p       - सामान्य i2p चर्चा और सहायता चैनल
+#i2p-chat  - विषय से अलग
+#i2p-dev   - विकास चर्चा
 ```
+
+<a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">Web IRC Client (Beta)</a>
+
+<small>clearnet से I2P IRC से कनेक्ट करें। 100% JavaScript-मुक्त, सुरक्षित <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a> द्वारा संचालित।</small>
+
 ## मेलिंग सूचियाँ
 
 I2P के बारे में अपडेट और घोषणाएँ प्राप्त करने के लिए, इस वेबसाइट के फ़ुटर में अपना ईमेल दर्ज करके हमारी मेलिंग सूची से जुड़ें।

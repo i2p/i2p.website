@@ -25,7 +25,7 @@ Please do not use these email addresses for support requests. For contact specif
 
 ## Forums {#forums}
 
-Please visit our I2P user forum - [i2pforum.i2p](http://i2pforum.i2p/) (available on non-private internet at https://i2pforum.net and on I2P at http://i2pforum.i2p)
+Please visit our I2P user forum - [i2pforum.i2p](http://i2pforum.i2p/) (available on non-private internet at https://i2pforum.net.
 
 The discussion about I2P's development happens on the [I2P user forum](http://i2pforum.i2p). This is usually the best place to start with developer inquiries, if the dev IRC channel is inactive. For general support use either the [I2P user forum](http://i2pforum.i2p) or the Subreddit.
 
@@ -46,6 +46,10 @@ Our primary IRC network is the Irc2P network within I2P; a default tunnel to thi
 #i2p-chat  - Offtopic
 #i2p-dev   - Development talk
 ```
+
+<a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">Web IRC Client (Beta)</a>
+
+<small>Connect to I2P IRC from the clearnet. 100% JavaScript-free, powered by the secure <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a>.</small>
 
 ## Mailing Lists
 

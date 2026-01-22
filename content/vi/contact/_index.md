@@ -23,29 +23,33 @@ Vui lòng không sử dụng các địa chỉ email này cho các yêu cầu h�
 
 - **abuse at i2p.net** - Abuse reports
 
-## Diễn đàn {#forums}
+## Forums {#forums}
 
-Vui lòng truy cập diễn đàn người dùng I2P của chúng tôi - [i2pforum.i2p](http://i2pforum.i2p/) (có sẵn trên Internet công khai tại https://i2pforum.net và trên I2P tại http://i2pforum.i2p)
+Vui lòng truy cập diễn đàn người dùng I2P của chúng tôi - [i2pforum.i2p](http://i2pforum.i2p/) (có sẵn trên internet không riêng tư tại https://i2pforum.net.
 
-Các thảo luận về việc phát triển I2P diễn ra trên [diễn đàn người dùng I2P](http://i2pforum.i2p). Đây thường là nơi tốt nhất để bắt đầu cho các thắc mắc của nhà phát triển, nếu kênh IRC dành cho nhà phát triển không hoạt động. Đối với hỗ trợ chung, hãy sử dụng [diễn đàn người dùng I2P](http://i2pforum.i2p) hoặc Subreddit.
+Thảo luận về việc phát triển I2P diễn ra trên [diễn đàn người dùng I2P](http://i2pforum.i2p). Đây thường là nơi tốt nhất để bắt đầu với các câu hỏi của nhà phát triển, nếu kênh IRC dev không hoạt động. Để được hỗ trợ chung, hãy sử dụng [diễn đàn người dùng I2P](http://i2pforum.i2p) hoặc Subreddit.
 
 ## Mạng xã hội {#social}
 
 - [Mastodon - https://mastodon.social/@i2p](https://mastodon.social/@i2p)
 - [Twitter - https://twitter.com/GetI2P](https://twitter.com/GetI2P)
 - [Reddit - https://old.reddit.com/r/i2p](https://old.reddit.com/r/i2p)
-
 ## IRC {#irc}
 
-Mạng IRC chính của chúng tôi là mạng Irc2P trong I2P; một tunnel mặc định đến mạng này được thiết lập sẵn khi cài đặt router mới. Chúng tôi cũng hiện diện trên nhiều mạng chuẩn như [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) và [Libera.Chat](https://libera.chat/). Tất cả các kênh liên quan đến I2P trên tất cả các mạng này đều được liên kết với các kênh chính trên Irc2P thông qua các bot chuyển tiếp.
+Mạng IRC chính của chúng tôi là mạng Irc2P trong I2P; một tunnel mặc định đến mạng này được thiết lập với các cài đặt router mới. Chúng tôi cũng có mặt trên nhiều mạng tiêu chuẩn như [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) và [Libera.Chat](https://libera.chat/). Tất cả các kênh liên quan đến I2P trên tất cả các mạng này đều được liên kết với các kênh chính trên Irc2P thông qua các bot chuyển tiếp.
 
 **Danh sách kênh:**
 
 ```
-#i2p       - General i2p discussion and help channel
-#i2p-chat  - Offtopic
-#i2p-dev   - Development talk
+#i2p       - Kênh thảo luận chung về i2p và trợ giúp
+#i2p-chat  - Nội dung ngoài chủ đề
+#i2p-dev   - Thảo luận về phát triển
 ```
+
+<a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">Web IRC Client (Beta)</a>
+
+<small>Kết nối với I2P IRC từ clearnet. 100% không có JavaScript, được hỗ trợ bởi <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a> bảo mật.</small>
+
 ## Danh sách thư
 
 Hãy tham gia danh sách gửi thư của chúng tôi bằng cách nhập địa chỉ email của bạn ở phần chân trang của trang web này để nhận các bản cập nhật và thông báo về I2P.

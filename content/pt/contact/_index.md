@@ -25,9 +25,9 @@ Por favor, não use estes endereços de e-mail para solicitações de suporte. P
 
 ## Fóruns {#forums}
 
-Por favor, visite o nosso fórum de usuários do I2P - [i2pforum.i2p](http://i2pforum.i2p/) (disponível na internet não privada em https://i2pforum.net e na I2P em http://i2pforum.i2p)
+Por favor visite o nosso fórum de usuários I2P - [i2pforum.i2p](http://i2pforum.i2p/) (disponível na internet não-privada em https://i2pforum.net.
 
-A discussão sobre o desenvolvimento do I2P acontece no [fórum de usuários do I2P](http://i2pforum.i2p). Este é geralmente o melhor lugar para começar com consultas de desenvolvimento, caso o canal de IRC de desenvolvimento esteja inativo. Para suporte geral, use o [fórum de usuários do I2P](http://i2pforum.i2p) ou o Subreddit.
+A discussão sobre o desenvolvimento do I2P acontece no [fórum de usuários I2P](http://i2pforum.i2p). Este é geralmente o melhor lugar para começar com consultas de desenvolvedores, se o canal IRC de desenvolvimento estiver inativo. Para suporte geral use o [fórum de usuários I2P](http://i2pforum.i2p) ou o Subreddit.
 
 ## Redes Sociais {#social}
 
@@ -37,15 +37,20 @@ A discussão sobre o desenvolvimento do I2P acontece no [fórum de usuários do 
 
 ## IRC {#irc}
 
-Nossa rede de IRC principal é a rede Irc2P dentro do I2P; um tunnel padrão para essa rede é configurado em novas instalações do router. Estamos também presentes em várias redes padrão como [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) e [Libera.Chat](https://libera.chat/). Todos os canais relacionados ao I2P em todas essas redes estão vinculados aos canais principais no Irc2P por meio de bots de retransmissão.
+Nossa rede IRC principal é a rede Irc2P dentro do I2P; um túnel padrão para esta rede é configurado com novas instalações de roteador. Também estamos presentes em múltiplas redes padrão como [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) e [Libera.Chat](https://libera.chat/). Todos os canais relacionados ao I2P em todas essas redes estão conectados aos canais principais no Irc2P via bots de retransmissão.
 
 **Lista de canais:**
 
 ```
-#i2p       - General i2p discussion and help channel
-#i2p-chat  - Offtopic
-#i2p-dev   - Development talk
+#i2p       - Canal geral de discussão e ajuda sobre i2p
+#i2p-chat  - Assuntos diversos
+#i2p-dev   - Discussões sobre desenvolvimento
 ```
+
+<a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">Cliente IRC Web (Beta)</a>
+
+<small>Conecte-se ao IRC I2P a partir da clearnet. 100% livre de JavaScript, alimentado pela API SAMv3 segura <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a>.</small>
+
 ## Listas de discussão
 
 Inscreva-se na nossa lista de e-mails inserindo seu e-mail no rodapé deste site para receber atualizações e anúncios sobre o I2P.

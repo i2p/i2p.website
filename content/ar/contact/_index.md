@@ -25,9 +25,9 @@ layout: "contact"
 
 ## المنتديات {#forums}
 
-يرجى زيارة منتدى مستخدمي I2P الخاص بنا - [i2pforum.i2p](http://i2pforum.i2p/) (متاح على الإنترنت العام عبر https://i2pforum.net وعلى I2P عبر http://i2pforum.i2p)
+يرجى زيارة منتدى مستخدمي I2P - [i2pforum.i2p](http://i2pforum.i2p/) (متاح على الإنترنت غير الخاص على https://i2pforum.net.
 
-تجري مناقشة تطوير I2P على [منتدى مستخدمي I2P](http://i2pforum.i2p). عادةً ما يكون هذا أفضل مكان للبدء بشأن استفسارات المطورين، إذا كانت قناة المطورين على IRC غير نشطة. للدعم العام استخدم إما [منتدى مستخدمي I2P](http://i2pforum.i2p) أو Subreddit (مجتمع فرعي على Reddit).
+تحدث المناقشة حول تطوير I2P في [منتدى مستخدمي I2P](http://i2pforum.i2p). هذا عادة أفضل مكان للبدء بالاستفسارات التطويرية، إذا كانت قناة IRC الخاصة بالتطوير غير نشطة. للدعم العام استخدم إما [منتدى مستخدمي I2P](http://i2pforum.i2p) أو Subreddit.
 
 ## وسائل التواصل الاجتماعي {#social}
 
@@ -35,9 +35,9 @@ layout: "contact"
 - [Twitter - https://twitter.com/GetI2P](https://twitter.com/GetI2P)
 - [Reddit - https://old.reddit.com/r/i2p](https://old.reddit.com/r/i2p)
 
-## آي آر سي {#irc}
+## IRC {#irc}
 
-شبكة IRC الأساسية لدينا هي شبكة Irc2P ضمن I2P؛ ويتم إعداد tunnel افتراضي إلى هذه الشبكة مع عمليات تثبيت router الجديدة. نحن أيضًا متواجدون على عدة شبكات قياسية مثل [OFTC](http://www.oftc.net/oftc/OFTC)، [EIN](http://www.einirc.de/) و[Libera.Chat](https://libera.chat/). جميع القنوات المتعلقة بـ I2P على كل هذه الشبكات مرتبطة بالقنوات الرئيسية على Irc2P عبر بوتات الترحيل.
+شبكة IRC الأساسية لدينا هي شبكة Irc2P داخل I2P؛ يتم إعداد نفق افتراضي لهذه الشبكة مع تثبيت الموجه الجديد. نحن موجودون أيضاً على شبكات قياسية متعددة مثل [OFTC](http://www.oftc.net/oftc/OFTC)، [EIN](http://www.einirc.de/) و [Libera.Chat](https://libera.chat/). جميع القنوات المتعلقة بـ I2P على كل هذه الشبكات مربوطة بالقنوات الرئيسية على Irc2P عبر روبوتات التتابع.
 
 **قائمة القنوات:**
 
@@ -46,6 +46,11 @@ layout: "contact"
 #i2p-chat  - Offtopic
 #i2p-dev   - Development talk
 ```
+
+<a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">عميل IRC الويب (تجريبي)</a>
+
+<small>اتصل بـ I2P IRC من الشبكة المفتوحة. خالٍ من JavaScript بنسبة 100%، مدعوم بـ <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a> الآمن.</small>
+
 ## القوائم البريدية
 
 انضم إلى قائمتنا البريدية عبر إدخال بريدك الإلكتروني في تذييل هذا الموقع لتلقي التحديثات والإعلانات المتعلقة بـ I2P.

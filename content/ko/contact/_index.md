@@ -23,29 +23,28 @@ layout: "contact"
 
 - **abuse at i2p.net** - Abuse reports
 
-## 포럼 {#forums}
+## Forums {#forums}
 
-저희 I2P 사용자 포럼을 방문해 주세요 - [i2pforum.i2p](http://i2pforum.i2p/) (일반 인터넷에서는 https://i2pforum.net, I2P에서는 http://i2pforum.i2p 에서 이용 가능합니다)
+I2P 사용자 포럼을 방문해 주세요 - [i2pforum.i2p](http://i2pforum.i2p/) (비공개가 아닌 인터넷에서는 https://i2pforum.net 에서 이용 가능).
 
-I2P 개발에 관한 논의는 [I2P 사용자 포럼](http://i2pforum.i2p)에서 이루어집니다. 개발자 IRC 채널이 비활성화되어 있을 때, 이곳이 개발 관련 문의를 시작하기에 보통 가장 적합한 장소입니다. 일반적인 지원은 [I2P 사용자 포럼](http://i2pforum.i2p) 또는 Subreddit을 이용하세요.
-
-## 소셜 미디어 {#social}
-
-- [Mastodon - https://mastodon.social/@i2p](https://mastodon.social/@i2p)
-- [Twitter - https://twitter.com/GetI2P](https://twitter.com/GetI2P)
-- [Reddit - https://old.reddit.com/r/i2p](https://old.reddit.com/r/i2p)
+I2P 개발에 대한 논의는 [I2P 사용자 포럼](http://i2pforum.i2p)에서 이루어집니다. 개발자 IRC 채널이 비활성 상태인 경우, 개발자 문의를 시작하기에 가장 좋은 장소입니다. 일반적인 지원을 받으려면 [I2P 사용자 포럼](http://i2pforum.i2p) 또는 Subreddit을 이용하세요.
 
 ## IRC {#irc}
 
-저희의 기본 IRC 네트워크는 I2P 내부의 Irc2P 네트워크입니다. 새로운 router를 설치하면 이 네트워크로 연결되는 기본 tunnel이 설정됩니다. 또한 [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) 및 [Libera.Chat](https://libera.chat/)과 같은 여러 표준 네트워크에서도 활동하고 있습니다. 이들 모든 네트워크의 I2P 관련 채널은 릴레이 봇을 통해 Irc2P의 주요 채널과 연결되어 있습니다.
+우리의 주요 IRC 네트워크는 I2P 내의 Irc2P 네트워크입니다. 새로운 라우터 설치 시 이 네트워크로의 기본 터널이 설정됩니다. 또한 [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/), [Libera.Chat](https://libera.chat/)과 같은 여러 표준 네트워크에도 참여하고 있습니다. 이 모든 네트워크의 I2P 관련 채널들은 릴레이 봇을 통해 Irc2P의 메인 채널과 연결되어 있습니다.
 
 **채널 목록:**
 
 ```
-#i2p       - General i2p discussion and help channel
-#i2p-chat  - Offtopic
-#i2p-dev   - Development talk
+#i2p       - 일반 i2p 토론 및 도움말 채널
+#i2p-chat  - 주제에서 벗어난 대화
+#i2p-dev   - 개발 관련 대화
 ```
+
+<a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">웹 IRC 클라이언트 (베타)</a>
+
+<small>클리어넷에서 I2P IRC에 연결하세요. 100% JavaScript 없이, 보안이 강화된 <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a>로 구동됩니다.</small>
+
 ## 메일링 리스트
 
 I2P 관련 업데이트와 공지사항을 받으려면 이 웹사이트의 푸터(footer)에 이메일을 입력하여 메일링 리스트에 가입하세요.

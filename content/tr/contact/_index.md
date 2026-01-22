@@ -25,27 +25,26 @@ Lütfen destek talepleri için bu e-posta adreslerini kullanmayın. Araştırma,
 
 ## Forumlar {#forums}
 
-Lütfen I2P kullanıcı forumumuzu ziyaret edin - [i2pforum.i2p](http://i2pforum.i2p/) (açık internette https://i2pforum.net adresinden ve I2P üzerinde http://i2pforum.i2p adresinden erişilebilir)
+Lütfen I2P kullanıcı forumumuzu ziyaret edin - [i2pforum.i2p](http://i2pforum.i2p/) (özel olmayan internette https://i2pforum.net adresinde mevcuttur.
 
-I2P'nin geliştirilmesiyle ilgili tartışmalar [I2P kullanıcı forumunda](http://i2pforum.i2p) gerçekleşir. Geliştiriciye yönelik sorular için, geliştirici IRC kanalı etkin değilse, genellikle en iyi başlangıç noktası burasıdır. Genel destek için [I2P kullanıcı forumunu](http://i2pforum.i2p) veya Subreddit'i kullanın.
-
-## Sosyal Medya {#social}
-
-- [Mastodon - https://mastodon.social/@i2p](https://mastodon.social/@i2p)
-- [Twitter - https://twitter.com/GetI2P](https://twitter.com/GetI2P)
-- [Reddit - https://old.reddit.com/r/i2p](https://old.reddit.com/r/i2p)
+I2P geliştirmesi hakkındaki tartışmalar [I2P kullanıcı forumu](http://i2pforum.i2p)'nda gerçekleşir. Bu genellikle geliştirici sorularına başlamak için en iyi yerdir, eğer geliştirici IRC kanalı aktif değilse. Genel destek için [I2P kullanıcı forumu](http://i2pforum.i2p) ya da Subreddit'i kullanın.
 
 ## IRC {#irc}
 
-Birincil IRC ağımız, I2P içindeki Irc2P ağıdır; yeni router kurulumları sırasında bu ağa varsayılan bir tunnel kurulur. Ayrıca [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) ve [Libera.Chat](https://libera.chat/) gibi birden çok standart ağda da bulunuyoruz. Bu ağlardaki tüm I2P ile ilgili kanallar, aktarım botları aracılığıyla Irc2P'deki ana kanallara bağlıdır.
+Birincil IRC ağımız I2P içindeki Irc2P ağıdır; yeni router kurulumlarıyla bu ağa varsayılan bir tünel kurulur. Ayrıca [OFTC](http://www.oftc.net/oftc/OFTC), [EIN](http://www.einirc.de/) ve [Libera.Chat](https://libera.chat/) gibi birden fazla standart ağda da bulunuyoruz. Bu ağlardaki tüm I2P ile ilgili kanallar, aktarım botları aracılığıyla Irc2P'deki ana kanallara bağlıdır.
 
 **Kanal listesi:**
 
 ```
-#i2p       - General i2p discussion and help channel
-#i2p-chat  - Offtopic
-#i2p-dev   - Development talk
+#i2p       - Genel i2p tartışma ve yardım kanalı
+#i2p-chat  - Konu dışı
+#i2p-dev   - Geliştirme konuşmaları
 ```
+
+<a href="https://irc.i2p.net" class="btn btn-primary" target="_blank" rel="noopener">Web IRC İstemcisi (Beta)</a>
+
+<small>Clearnet'ten I2P IRC'ye bağlanın. %100 JavaScript-siz, güvenli <a href="https://github.com/go-i2p/go-i2p" target="_blank" rel="noopener">Go SAMv3 API</a> ile güçlendirilmiştir.</small>
+
 ## E-posta Listeleri
 
 I2P ile ilgili güncellemeler ve duyurular almak için e-postanızı bu web sitesinin altbilgisine girerek posta listemize katılın.
