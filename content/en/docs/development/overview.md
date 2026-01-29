@@ -117,7 +117,7 @@ aliases:
 
 - [Router software updates](/docs/specs/updates)
 - [Router reseed specification](/docs/misc/reseed)
-- [Performance](/docs/overview/peer-selection)
+- [Performance](/docs/overview/performance)
 - [Configuration File Format](/docs/specs/configuration)
 - [GeoIP File Format](/docs/legacy/geoip)
 - [Ports used by I2P](/docs/overview/ports)
