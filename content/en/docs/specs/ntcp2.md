@@ -1024,7 +1024,7 @@ If Alice does reply with Session Confirmed (probably because the skew is very cl
 
 - [Common Structures](/docs/specs/common-structures)
 - [I2NP](/docs/specs/i2np)
-- [Network Database](/docs/how/network-database)
+- [Network Database](/docs/overview/network-database)
 - [NOISE - Noise Protocol Framework](https://noiseprotocol.org/noise.html)
 - [NTCP](/docs/transport/ntcp)
 - [Prop104](/proposals/104-tls-transport)

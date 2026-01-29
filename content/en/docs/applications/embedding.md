@@ -1,217 +1,244 @@
 ---
-title: "Embedding I2P in Your Application"
-description: "Updated practical guidance for bundling an I2P router with your app responsibly"
+title: "Embedding I2P in your Application"
+description: "Guidelines for bundling an I2P router with your application"
 slug: "embedding"
-lastUpdated: "2025-10"
-accurateFor: "2.10.0"
+lastUpdated: "2023-01"
+accurateFor: "2.1.0"
 ---
 
-Bundling I2P with your application is a powerful way to onboard users—but only if the router is configured responsibly. 
+## Overview
 
-## 1. Coordinate with Router Teams
+This page is about bundling the entire I2P router binary with your application. It is not about writing an application to work with I2P (either bundled or external). However, many of the guidelines may be useful even if not bundling a router.
 
-- Contact the **Java I2P** and **i2pd** maintainers before bundling. They can review your defaults and highlight compatibility concerns.
-- Choose the router implementation that fits your stack:
-  - **Java/Scala** → Java I2P
-  - **C/C++** → i2pd
-  - **Other languages** → bundle a router and integrate using [SAM v3](/docs/api/samv3/) or [I2CP](/docs/specs/i2cp/)
-- Verify redistribution terms for router binaries and dependencies (Java runtime, ICU, etc.).
+Lots of projects are bundling, or talking about bundling, I2P. That's great if done right. If done wrong, it could cause real harm to our network. The I2P router is complex, and it can be a challenge to hide all the complexity from your users. This page discusses some general guidelines.
 
-## 2. Recommended Configuration Defaults
+Most of these guidelines apply equally to Java I2P or i2pd. However, some guidelines are specific to Java I2P and are noted below.
 
-Aim for “contribute more than you consume.” Modern defaults prioritize network health and stability.
+### Talk to us
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Setting</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Recommended Default (2025)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Bandwidth share</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">80% for participating tunnels </td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Tunnel quantities</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">i2pd: 3 inbound / 3 outbound; Java I2P: 2 inbound / 2 outbound. </td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Signature &amp; encryption</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Use Ed25519 (<code>SIGNATURE_TYPE=7</code>) and advertise ECIES-X25519 + ElGamal (<code>i2cp.leaseSetEncType=4,0</code>).</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Client protocols</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Use SAM v3 or I2CP.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">API listeners</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Bind SAM/I2CP to <code>127.0.0.1</code> only. Disable if not needed.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">UI toggles</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Expose bandwidth controls, logs, and an opt-in checkbox for participating tunnels.</td>
-    </tr>
-  </tbody>
-</table>
+Start a dialog. We're here to help. Applications that embed I2P are the most promising - and exciting - opportunities for us to grow the network and improve anonymity for everyone.
 
-### Participating Tunnels Remain Essential
+### Choose your router wisely
 
-Do **not** disable participating tunnels.
+If your application is in Java or Scala, it's an easy choice - use the Java router. If in C/C++, we recommend i2pd. The development of i2pcpp has stopped. For apps in other languages, best to use SAM or BOB or SOCKS and bundle the Java router as a separate process. Some of the following only applies to the Java router.
 
-1. Routers that don’t relay perform worse themselves.  
-2. The network depends on voluntary capacity sharing.  
-3. Cover traffic (relayed traffic) improves anonymity.
+### Licensing
 
-**Official minimums:**
-- Shared bandwidth: ≥ 12 KB/s  
-- Floodfill auto-opt-in: ≥ 128 KB/s  
-- Recommended: 2 inbound / 2 outbound tunnels (Java I2P default)
+Ensure you meet the license requirements of the software you are bundling.
 
-## 3. Persistence and Reseeding
+---
 
-Persistent state directories (`netDb/`, profiles, certificates) must be preserved between runs.
+## Configuration
 
-Without persistence, your users will trigger reseeds at every startup—degrading performance and increasing load on reseed servers.
+### Verify default configuration
 
-If persistence is impossible (e.g., containers or ephemeral installs):
+A correct default configuration is crucial. Most users will not change the defaults. The defaults for your application may need to be different than the defaults for the router you are bundling. Override the router defaults if necessary.
 
-1. Bundle **1,000–2,000 router infos** in the installer.  
-2. Operate one or more custom reseed servers to offload public ones.
+Some important defaults to review: Max bandwidth, tunnel quantity and length, max participating tunnels. A lot of this depends on the expected bandwidth and usage patterns of your app.
 
-Configuration variables:
-- Base directory: `i2p.dir.base`
-- Config directory: `i2p.dir.config`
-- Include `certificates/` for reseeding.
+Configure enough bandwidth and tunnels to allow your users to contribute to the network. Consider disabling external I2CP, as you probably don't need it and it would conflict with any other running I2P instance. Also look at the configs for disabling killing of the JVM on exit, for example.
 
-## 4. Security and Exposure
+### Participating Traffic Considerations
 
-- Keep router console (`127.0.0.1:7657`) local-only.  
-- Use HTTPS if exposing UI externally.  
-- Disable external SAM/I2CP unless required.  
-- Review included plugins—ship only what your app supports.  
-- Always include authentication for remote console access.
+It may be tempting for you to disable participating traffic. There's several ways to do this (hidden mode, setting max tunnels to 0, setting shared bandwidth below 12 KBytes/sec). Without participating traffic, you don't have to worry about graceful shutdown, your users don't see bandwidth usage not generated by them, etc. However, there's lots of reasons why you should allow participating tunnels.
 
-**Security features introduced since 2.5.0:**
-- NetDB isolation between applications (2.4.0+)  
-- DoS mitigation and Tor blocklists (2.5.1)  
-- NTCP2 probing resistance (2.9.0)  
-- Floodfill router selection improvements (2.6.0+)
+First of all, the router doesn't work that well if it doesn't have a chance to "integrate" with the network, which is helped tremendously by others building tunnels through you.
 
-## 5. Supported APIs (2025)
+Secondly, over 90% of the routers in the current network allow participating traffic. It's the default in the Java router. If your application doesn't route for others and it gets really popular, then it's a leech on the network, and it upsets the balance we have now. If it gets really big, then we become Tor, and spend our time begging for people to enable relaying.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">API</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Status</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>SAM v3 (3.3)</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">✅ Active</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Recommended bridge for non-Java apps.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>I2CP</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">✅ Active</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Stable protocol core, used internally by Java I2P.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>I2PControl</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">✅ Active</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">JSON-RPC API; plugin maintained.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>BOB</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">⚠️ Deprecated</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Removed from Java I2P since 1.7.0; use SAM v3 instead.</td>
-    </tr>
-  </tbody>
-</table>
+Thirdly, participating traffic is cover traffic that helps your users' anonymity.
 
-All official docs are located under `/docs/api/` — the old `/spec/samv3/` path does **not** exist.
+We strongly discourage you from disabling participating traffic by default. If you do this and your application gets hugely popular, it could break the network.
 
-## 6. Networking and Ports
+### Persistence
 
-Typical default ports:
-- 4444 – HTTP Proxy  
-- 4445 – HTTPS Proxy  
-- 7654 – I2CP  
-- 7656 – SAM Bridge  
-- 7657 – Router Console  
-- 7658 – Local I2P site  
-- 6668 – IRC Proxy  
-- 9000–31000 – Random router port (UDP/TCP inbound)
+You must save the router's data (netdb, configuration, etc.) between runs of the router. I2P does not work well if you must reseed each startup, and that's a huge load on our reseed servers, and not very good for anonymity either. Even if you bundle router infos, I2P needs saved profile data for best performance. Without persistence, your users will have a poor startup experience.
 
-Routers select a random inbound port on first run. Forwarding improves performance, but UPnP may handle this automatically.
+There are two possibilities if you cannot provide persistence. Either of these eliminates your project's load on our reseed servers and will significantly improve startup time.
 
-## 7. Modern Changes (2024–2025)
+1) Set up your own project reseed server(s) that serve much more than the usual number of router infos in the reseed, say, several hundred. Configure the router to use only your servers.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Change</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Status</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>SSU1 Transport</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Removed</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">SSU2 is now the exclusive UDP transport.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>I2P-over-Tor</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Blocked</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Since 2.6.0 (July 2024).</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Datagram2/3</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Added</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Authenticated, repliable datagram formats (2.9.0).</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>LeaseSet service records</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Added</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Enables service discovery (Proposal 167).</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Tunnel build parameters</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Improved</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Adaptive congestion handling (2.9.0+).</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Post-quantum crypto</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Introduced (beta)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ML-KEM hybrid ratchet, opt-in from 2.10.0.</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Java 17 requirement</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Announced</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Becomes mandatory in 2.11.0 (early 2026).</td>
-    </tr>
-  </tbody>
-</table>
+2) Bundle one to two thousand router infos in your installer.
 
-## 8. User Experience and Testing
+Also, delay or stagger your tunnel startup, to give the router a chance to integrate before building a lot of tunnels.
 
-- Communicate what I2P does and why bandwidth is shared.
-- Provide router diagnostics (bandwidth, tunnels, reseed status).
-- Test bundles on Windows, macOS, and Linux (low-RAM included).
-- Verify interop with both **Java I2P** and **i2pd** peers.
-- Test recovery from network drops and ungraceful exits.
+### Configurability
 
-## 9. Community Resources
+Give your users a way to change the configuration of the important settings. We understand that you will probably want to hide most of I2P's complexity, but it's important to show some basic settings. In addition to the defaults above, some network settings such as UPnP, IP/port may be helpful.
 
-- Forum: [i2pforum.net](https://i2pforum.net) or `http://i2pforum.i2p` inside I2P.  
-- Code: [i2pgit.org/I2P_Developers/i2p.i2p](https://i2pgit.org/I2P_Developers/i2p.i2p).  
-- IRC (Irc2P network): `#i2p-dev`, `#i2pd`.  
-  - `#i2papps` unverified; may not exist.  
-  - Clarify which network (Irc2P vs ilita.i2p) hosts your channel.
+### Floodfill Considerations
 
-Embedding responsibly means balancing user experience, performance, and network contribution. Use these defaults, stay in sync with router maintainers, and test under real-world load before release.
+Above a certain bandwidth setting, and meeting other health criteria, your router will become floodfill, which may cause a large increase in connections and memory usage (at least with the Java router). Think about whether that's OK. You can disable floodfill, but then your fastest users aren't contributing what they could. It also depends on the typical uptime for your application.
+
+### Reseeding
+
+Decide if you are bundling router infos or using our reseed hosts. The Java reseed host list is in the source code, so if you keep your source up to date, the host list will be also. Be aware of possible blocking by hostile governments.
+
+### Use Shared Clients
+
+Java I2P i2ptunnel supports shared clients, where clients may be configured to use a single pool. If you require multiple clients, and if consistent with your security goals, configure the clients to be shared.
+
+### Limit Tunnel Quantity
+
+Specify tunnel quantity explicitly with the options `inbound.quantity` and `outbound.quantity`. The default in Java I2P is 2; the default in i2pd is higher. Specify in the SESSION CREATE line using SAM to get consistent settings with both routers. Two each in/out is sufficient for most low-to-medium bandwidth and low-to-medium fanout applications. Servers and high-fanout P2P applications may need more. See [this forum post](http://zzz.i2p/topics/1584) for guidance on calculating requirements for high-traffic servers and applications.
+
+### Specify SAM SIGNATURE_TYPE
+
+SAM defaults to DSA_SHA1 for destinations, which is not what you want. Ed25519 (type 7) is the correct selection. Add SIGNATURE_TYPE=7 to the DEST GENERATE command, or to the SESSION CREATE command for DESTINATION=TRANSIENT.
+
+### Limit SAM Sessions
+
+Most applications will only need one SAM session. SAM provides the ability to quickly overwhelm the local router, or even the broader network, if a large number of sessions are created. If multiple sub-services can use a single session, set them up with a PRIMARY session and SUBSESSIONS (not currently supported on i2pd). A reasonable limit to sessions is 3 or 4 total, or maybe up to 10 for rare situations. If you do have multiple sessions, be sure to specify a low tunnel quantity for each, see above.
+
+In almost no situation should you require a unique session per-connection. Without careful design, this could quickly DDoS the network. Carefully consider if your security goals require unique sessions. Please consult with the Java I2P or i2pd developers before implementing per-connection sessions.
+
+### Reduce Network Resource Usage
+
+Note that these options are not currently supported on i2pd. These options are supported via I2CP and SAM (except delay-open, which is via i2ptunnel only). See the I2CP documentation (and, for delay-open, the i2ptunnel configuration documentation) for details.
+
+Consider setting your application tunnels to delay-open, reduce-on-idle and/or close-on-idle. This is straightforward if using i2ptunnel but you'll have to implement some of it yourself if using I2CP directly. See i2psnark for code that reduces tunnel count and then closes the tunnel, even in the presence of some background DHT activity.
+
+---
+
+## Life Cycle
+
+### Updatability
+
+Have an auto-update feature if at all possible, or at least auto-notification of a new version. Our biggest fear is a huge number of routers out there that can't be updated. We have about 6-8 releases a year of the Java router, and it's critical to the health of the network that the users keep up. We usually have over 80% of the network on the latest release within 6 weeks after the release, and we'd like to keep it that way. You don't need to worry about disabling the router's built-in auto-update function, as that code is in the router console, which you presumably are not bundling.
+
+### Rollout
+
+Have a gradual rollout plan. Don't overwhelm the network all at once. We currently have approximately 25K unique users per day and 40K uniques per month. We are probably able to handle growth of 2-3X per year without too much issue. If you anticipate a faster rampup than that, OR the bandwidth distribution (or uptime distribution, or any other significant characteristic) of your userbase is significantly different from our current userbase, we really need to have a discussion. The bigger your growth plans, the more important everything else in this checklist is.
+
+### Design for and Encourage Long Uptimes
+
+Tell your users that I2P works best if it keeps running. It may be several minutes after startup before it works well, and even more after first install. If your average uptime is less than an hour, I2P is probably the wrong solution.
+
+---
+
+## User Interface
+
+### Show Status
+
+Provide some indication to the user that the application tunnels are ready. Encourage patience.
+
+### Graceful Shutdown
+
+If possible, delay the shutdown until your participating tunnels expire. Don't let your users break tunnels easily, or at least ask them to confirm.
+
+### Education and Donation
+
+It would be nice if you give your users links to learn more about I2P and to donate.
+
+### External Router Option
+
+Depending on your user base and application, it may be helpful to provide an option or a separate package to use an external router.
+
+---
+
+## Other Topics
+
+### Use of other Common Services
+
+If you plan to use or link to other common I2P services (news feeds, hosts.txt subscriptions, trackers, outproxies, etc.), make sure you aren't overloading them, and talk to the people who are running them to make sure it's ok.
+
+### Time / NTP Issues
+
+Note: This section refers to Java I2P. i2pd does not include an SNTP client.
+
+I2P includes an SNTP client. I2P requires correct time to operate. It will compensate for a skewed system clock but this may delay startup. You may disable I2P's SNTP queries, but this isn't advised unless your application makes sure the system clock is correct.
+
+### Choose What and How you Bundle
+
+Note: This section refers to Java I2P only.
+
+At a minimum you will need i2p.jar, router.jar, streaming.jar, and mstreaming.jar. You may omit the two streaming jars for a datagram-only app. Some apps may need more, e.g. i2ptunnel.jar or addressbook.jar. Don't forget jbigi.jar, or a subset of it for the platforms you support, to make the crypto much faster. Java 7 or higher is required to build. If you're building Debian / Ubuntu packages, you should require the I2P package from our PPA instead of bundling it. You almost certainly do not need susimail, susidns, the router console, and i2psnark, for example.
+
+The following files should be included in the I2P installation directory, specified with the "i2p.dir.base" property. Don't forget the certificates/ directory, which is required for reseeding, and blocklist.txt for IP validation. The geoip directory is optional, but recommended so the router can make decisions based on location. If including geoip, be sure to put the file GeoLite2-Country.mmdb in that directory (gunzip it from installer/resources/GeoLite2-Country.mmdb.gz). The hosts.txt file may be necessary, you may modify it to include any hosts your application uses. You may add a router.config file to the base directory to override initial defaults. Review and edit or remove the clients.config and i2ptunnel.config files.
+
+License requirements may require you to include the LICENSES.txt file and the licenses directory.
+
+- You may also wish to bundle a hosts.txt file.
+- Be sure to specify a bootclasspath if you are compiling Java I2P for your release, rather than taking our binaries.
+
+### Android considerations
+
+Note: This section refers to Java I2P only.
+
+Our Android router app may be shared by multiple clients. If it is not installed, the user will be prompted when he starts a client app.
+
+Some developers have expressed concern that this is a poor user experience, and they wish to embed the router in their app. We do have an Android router service library on our roadmap, which could make embedding easier. More information needed.
+
+If you require assistance, please contact us.
+
+### Maven jars
+
+Note: This section refers to Java I2P only.
+
+We have a limited number of our jars on [Maven Central](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22net.i2p%22). There are numerous trac tickets for us to address that will improve and expand the released jars on Maven Central.
+
+If you require assistance, please contact us.
+
+### Datagram (DHT) considerations
+
+If your application is using I2P datagrams, e.g. for a DHT, there's lots of advanced options available to reduce overhead and increase reliability. This may take some time and experimentation to get working well. Be aware of size/reliability tradeoffs. Talk to us for help. It is possible - and recommended - to use Datagrams and Streaming on the same Destination. Don't create separate Destinations for this. Don't try to store your unrelated data in the existing network DHTs (iMule, bote, bittorrent, and router). Build your own. If you are hardcoding seed nodes, we recommend that you have several.
+
+### Outproxies
+
+I2P outproxies to the clearnet are a limited resource. Use outproxies only for normal user-initiated web browsing or other limited traffic. For any other usage, consult with and get approval from the outproxy operator.
+
+### Comarketing
+
+Let's work together. Don't wait until it's done. Give us your Twitter handle and start tweeting about it, we will return the favor.
+
+### Malware
+
+Please don't use I2P for evil. It could cause great harm both to our network and our reputation.
+
+### Join Us
+
+This may be obvious, but join the community. Run I2P 24/7. Start an I2P Site about your project. Hang out in IRC #i2p-dev. Post on the forums. Spread the word. We can help get you users, testers, translators, or even coders.
+
+---
+
+## Examples
+
+### Application Examples
+
+You may wish to install and play with the I2P Android app, and look at its code, for an example of an application that bundles the router. See what we expose to the user and what we hide. Look at the state machine we use to start and stop the router. Other examples are: Vuze, the Nightweb Android app, iMule, TAILS, iCloak, and Monero.
+
+### Code Example
+
+Note: This section refers to Java I2P only.
+
+None of the above actually tells you how to write your code to bundle the Java router, so following is a brief example.
+
+```java
+import java.util.Properties;
+import net.i2p.router.Router;
+
+	Properties p = new Properties();
+        // add your configuration settings, directories, etc.
+        // where to find the I2P installation files
+	p.addProperty("i2p.dir.base", baseDir);
+        // where to find the I2P data files
+	p.addProperty("i2p.dir.config", configDir);
+        // bandwidth limits in K bytes per second
+	p.addProperty("i2np.inboundKBytesPerSecond", "50");
+	p.addProperty("i2np.outboundKBytesPerSecond", "50");
+	p.addProperty("router.sharePercentage", "80");
+	p.addProperty("foo", "bar");
+	Router r = new Router(p);
+        // don't call exit() when the router stops
+	r.setKillVMOnEnd(false);
+	r.runRouter();
+
+	...
+
+	r.shutdownGracefully();
+	// will shutdown in 11 minutes or less
+```
+
+This code is for the case where your application starts the router, as in our Android app. You could also have the router start the application via the clients.config and i2ptunnel.config files, together with Jetty webapps, as is done in our Java packages. As always, state management is the difficult part.
+
+See also: [the Router javadocs](http://idk.i2p/javadoc-i2p/net/i2p/router/Router.html).

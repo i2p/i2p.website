@@ -24,13 +24,13 @@ Následující funkce nejsou implementovány od verze 0.9.46:
 
 ## Přehled
 
-Toto je návrh prvního nového typu end-to-end šifrování od začátků I2P, který má nahradit ElGamal/AES+SessionTags [Elg-AES](/docs/legacy/elgamal-aes/).
+Toto je návrh prvního nového typu end-to-end šifrování od začátků I2P, který má nahradit ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/).
 
 Vychází z předchozí práce následovně:
 
 - Specifikace společných struktur [Common Structures](/docs/specs/common-structures/)
 - Specifikace [I2NP](/docs/specs/i2np/) včetně LS2
-- ElGamal/AES+Session Tags [Elg-AES](/docs/legacy/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) přehled nové asymetrické kryptografie
 - Nízkoúrovňový přehled kryptografie [CRYPTO-ELG](/docs/specs/cryptography/)
 - ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)

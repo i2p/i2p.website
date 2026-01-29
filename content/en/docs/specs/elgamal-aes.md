@@ -139,13 +139,13 @@ The unencrypted ElGamal data is 222 bytes long, containing:
    +----+----+----+----+----+----+
 ```
 
-The 32-byte [Session Key](/docs/spec/common-structures#type_SessionKey)
+The 32-byte [Session Key](/docs/specs/common-structures#type_SessionKey)
 is the identifier for the session.
 The 32-byte Pre-IV will be used to generate the IV for the AES block that follows;
 the IV is the first 16 bytes of the SHA-256 Hash of the Pre-IV.
 
 The 222 byte payload is encrypted
-[using ElGamal](/docs/how/cryptography#elgamal)
+[using ElGamal](/docs/specs/cryptography#elgamal)
 and the encrypted block is 514 bytes long.
 
 ### AES Block {#aes}
@@ -226,7 +226,7 @@ Padding:
 
 Minimum length: 48 bytes
 
-The data is then [AES Encrypted](/docs/how/cryptography),
+The data is then [AES Encrypted](/docs/specs/cryptography),
 using the session key and IV (calculated from the pre-IV) from the ElGamal section.
 The encrypted AES Block length is variable but is always a multiple of 16 bytes.
 
@@ -292,7 +292,7 @@ and the low tag threshold for the current session.
 For brief streaming connections or datagrams, these options may be used to significantly reduce bandwidth.
 See the [I2CP options specification](/docs/protocol/i2cp#options) for details.
 The session settings may also be overridden on a per-message basis.
-See the [I2CP Send Message Expires specification](/docs/spec/i2cp#msg_SendMessageExpires) for details.
+See the [I2CP Send Message Expires specification](/docs/specs/i2cp#msg_SendMessageExpires) for details.
 
 
 ## Future Work {#future}
@@ -335,6 +335,6 @@ impact on overall performance.
 
 - Several of these ideas may require a new I2NP message type, or
   set a flag in the
-  [Delivery Instructions](/docs/spec/tunnel-message#struct_TunnelMessageDeliveryInstructions),
+  [Delivery Instructions](/docs/specs/tunnel-message#struct_TunnelMessageDeliveryInstructions),
   or set a magic number in the first few bytes of the Session Key field
   and accept a small risk of the random Session Key matching the magic number.

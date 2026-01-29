@@ -8,7 +8,7 @@ accurateFor: "historical"
 
 Following is a discussion about NTCP that took place in March 2007.
 It has not been updated to reflect current implementation.
-For the current NTCP specification see [the NTCP2 page](/docs/spec/ntcp2).
+For the current NTCP specification see [the NTCP2 page](/docs/specs/ntcp2).
 
 
 ## NTCP vs. SSU Discussion, March 2007 {#ntcp-ssu}

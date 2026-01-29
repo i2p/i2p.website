@@ -342,10 +342,10 @@ By default, the client-to-SAM bridge communication is unencrypted and unauthenti
 I2P communications can take several distinct forms:
 
 - [Virtual streams](/docs/api/streaming)
-- [Repliable and authenticated datagrams](/docs/spec/datagrams#repliable) (messages with a FROM field)
-- [Anonymous datagrams](/docs/spec/datagrams#raw) (raw anonymous messages)
-- [Datagram2](/docs/spec/datagrams#datagram2) (a new repliable and authenticated format)
-- [Datagram3](/docs/spec/datagrams#datagram3) (a new repliable but unauthenticated format)
+- [Repliable and authenticated datagrams](/docs/specs/datagrams#repliable) (messages with a FROM field)
+- [Anonymous datagrams](/docs/specs/datagrams#raw) (raw anonymous messages)
+- [Datagram2](/docs/specs/datagrams#datagram2) (a new repliable and authenticated format)
+- [Datagram3](/docs/specs/datagrams#datagram3) (a new repliable but unauthenticated format)
 
 I2P communications are supported by I2P sessions, and each I2P session is bound to an address (called destination). An I2P session is associated with one of the three types above, and cannot carry communications of another type, unless using [PRIMARY sessions](#sam-primary-sessions-v33-and-higher).
 
@@ -499,9 +499,9 @@ The session creation message can only use one of these forms (messages received 
           [option=value]*                      # I2CP and streaming options
 ```
 
-DESTINATION specifies what destination should be used for sending and receiving messages/streams. The $privkey is the base 64 of the concatenation of the [Destination](/docs/spec/common-structures#type_Destination) followed by the [Private Key](/docs/spec/common-structures#type_PrivateKey) followed by the [Signing Private Key](/docs/spec/common-structures#type_SigningPrivateKey), optionally followed by the [Offline Signature](/docs/spec/common-structures#struct_OfflineSignature), which is 663 or more bytes in binary and 884 or more bytes in base 64, depending on signature type. The binary format is specified in Private Key File. See additional notes about the [Private Key](/docs/spec/common-structures#type_PrivateKey) in the Destination Key Generation section below.
+DESTINATION specifies what destination should be used for sending and receiving messages/streams. The $privkey is the base 64 of the concatenation of the [Destination](/docs/specs/common-structures#type_Destination) followed by the [Private Key](/docs/specs/common-structures#type_PrivateKey) followed by the [Signing Private Key](/docs/specs/common-structures#type_SigningPrivateKey), optionally followed by the [Offline Signature](/docs/specs/common-structures#struct_OfflineSignature), which is 663 or more bytes in binary and 884 or more bytes in base 64, depending on signature type. The binary format is specified in Private Key File. See additional notes about the [Private Key](/docs/specs/common-structures#type_PrivateKey) in the Destination Key Generation section below.
 
-If the signing private key is all zeros, the [Offline Signature](/docs/spec/common-structures#struct_OfflineSignature) section follows. Offline signatures are only supported for STREAM and RAW sessions. Offline signatures may not be created with DESTINATION=TRANSIENT. The format of the offline signature section is:
+If the signing private key is all zeros, the [Offline Signature](/docs/specs/common-structures#struct_OfflineSignature) section follows. Offline signatures are only supported for STREAM and RAW sessions. Offline signatures may not be created with DESTINATION=TRANSIENT. The format of the offline signature section is:
 
 1. Expires timestamp (4 bytes, big endian, seconds since epoch, rolls over in 2106)
 2. Sig type of transient Signing Public Key (2 bytes, big endian)
@@ -509,7 +509,7 @@ If the signing private key is all zeros, the [Offline Signature](/docs/spec/comm
 4. Signature of above three fields by offline key (length as specified by destination sig type)
 5. Transient Signing Private key (length as specified by transient sig type)
 
-If the destination is specified as TRANSIENT, the SAM bridge creates a new destination. As of version 3.1 (I2P 0.9.14), if the destination is TRANSIENT, an optional parameter SIGNATURE_TYPE is supported. The SIGNATURE_TYPE value may be any name (e.g. ECDSA_SHA256_P256, case insensitive) or number (e.g. 1) supported by [Key Certificates](/docs/spec/common-structures#type_Certificate). The default is DSA_SHA1, which is NOT what you want. For most applications, please specify SIGNATURE_TYPE=7.
+If the destination is specified as TRANSIENT, the SAM bridge creates a new destination. As of version 3.1 (I2P 0.9.14), if the destination is TRANSIENT, an optional parameter SIGNATURE_TYPE is supported. The SIGNATURE_TYPE value may be any name (e.g. ECDSA_SHA256_P256, case insensitive) or number (e.g. 1) supported by [Key Certificates](/docs/specs/common-structures#type_Certificate). The default is DSA_SHA1, which is NOT what you want. For most applications, please specify SIGNATURE_TYPE=7.
 
 $nickname is the choice of the client. No whitespace is allowed.
 
@@ -529,9 +529,9 @@ If the creation was successful:
 <-  SESSION STATUS RESULT=OK DESTINATION=$privkey
 ```
 
-The $privkey is the base 64 of the concatenation of the [Destination](/docs/spec/common-structures#type_Destination) followed by the [Private Key](/docs/spec/common-structures#type_PrivateKey) followed by the [Signing Private Key](/docs/spec/common-structures#type_SigningPrivateKey), optionally followed by the [Offline Signature](/docs/spec/common-structures#struct_OfflineSignature), which is 663 or more bytes in binary and 884 or more bytes in base 64, depending on signature type. The binary format is specified in Private Key File.
+The $privkey is the base 64 of the concatenation of the [Destination](/docs/specs/common-structures#type_Destination) followed by the [Private Key](/docs/specs/common-structures#type_PrivateKey) followed by the [Signing Private Key](/docs/specs/common-structures#type_SigningPrivateKey), optionally followed by the [Offline Signature](/docs/specs/common-structures#struct_OfflineSignature), which is 663 or more bytes in binary and 884 or more bytes in base 64, depending on signature type. The binary format is specified in Private Key File.
 
-If the SESSION CREATE contained a signing private key of all zeros and an [Offline Signature](/docs/spec/common-structures#struct_OfflineSignature) section, the SESSION STATUS reply will include the same data in the same format. See the SESSION CREATE section above for details.
+If the SESSION CREATE contained a signing private key of all zeros and an [Offline Signature](/docs/specs/common-structures#struct_OfflineSignature) section, the SESSION STATUS reply will include the same data in the same format. See the SESSION CREATE section above for details.
 
 If the nickname is already associated with a session:
 
@@ -590,7 +590,7 @@ A client asks for a connection by:
 
 This establishes a new virtual connection from the local session whose ID is $nickname to the specified peer.
 
-The target is $destination, which is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type.
+The target is $destination, which is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type.
 
 **NOTE:** Since about 2014 (SAM v3.1), Java I2P has also supported hostnames and b32 addresses for the $destination, but this was previously undocumented. Hostnames and b32 addresses are now officially supported by Java I2P as of release 0.9.48. The i2pd router supports hostnames and b32 addresses as of release 2.38.0 (0.9.50). For both routers, "b32" support includes support extended "b33" addresses for blinded destinations.
 
@@ -800,7 +800,7 @@ $destination
 
 - 3.0 is the version of SAM. As of SAM 3.2, any 3.x is allowed.
 - $nickname is the id of the DATAGRAM session that will be used
-- The target is $destination, which is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type. **NOTE:** Since about 2014 (SAM v3.1), Java I2P has also supported hostnames and b32 addresses for the $destination, but this was previously undocumented. Hostnames and b32 addresses are now officially supported by Java I2P as of release 0.9.48. The i2pd router does not currently support hostnames and b32 addresses; support may be added in a future release.
+- The target is $destination, which is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type. **NOTE:** Since about 2014 (SAM v3.1), Java I2P has also supported hostnames and b32 addresses for the $destination, but this was previously undocumented. Hostnames and b32 addresses are now officially supported by Java I2P as of release 0.9.48. The i2pd router does not currently support hostnames and b32 addresses; support may be added in a future release.
 - All options are per-datagram settings that override the defaults specified in the SESSION CREATE.
 - Version 3.3 options SEND_TAGS, TAG_THRESHOLD, EXPIRES, and SEND_LEASESET will be passed to [I2CP](/docs/protocol/i2cp) if supported. See [the I2CP specification](/docs/protocol/i2cp#msg_SendMessageExpire) for details. Support by the SAM server is optional, it will ignore these options if unsupported.
 - this line is '\\n' terminated.
@@ -825,7 +825,7 @@ When a datagram arrives, the bridge delivers it to the client via the message:
        [$numBytes of data]
 ```
 
-The source is $destination, which is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type.
+The source is $destination, which is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type.
 
 The SAM bridge never exposes to the client the authentication headers or other fields, merely the data that the sender provided. This continues until the session is closed (by the client dropping the connection).
 
@@ -849,7 +849,7 @@ When creating a datagram session, the client can ask SAM to forward incoming mes
           [option=value]*                      # I2CP options
 ```
 
-The $privkey is the base 64 of the concatenation of the [Destination](/docs/spec/common-structures#type_Destination) followed by the [Private Key](/docs/spec/common-structures#type_PrivateKey) followed by the [Signing Private Key](/docs/spec/common-structures#type_SigningPrivateKey), optionally followed by the [Offline Signature](/docs/spec/common-structures#struct_OfflineSignature), which is 884 or more base 64 characters (663 or more bytes in binary), depending on signature type. The binary format is specified in Private Key File.
+The $privkey is the base 64 of the concatenation of the [Destination](/docs/specs/common-structures#type_Destination) followed by the [Private Key](/docs/specs/common-structures#type_PrivateKey) followed by the [Signing Private Key](/docs/specs/common-structures#type_SigningPrivateKey), optionally followed by the [Offline Signature](/docs/specs/common-structures#struct_OfflineSignature), which is 884 or more base 64 characters (663 or more bytes in binary), depending on signature type. The binary format is specified in Private Key File.
 
 Offline signatures are supported for RAW, DATAGRAM2, and DATAGRAM3 datagrams, but not for DATAGRAM. See the SESSION CREATE section above and the DATAGRAM2/3 section below for details.
 
@@ -885,7 +885,7 @@ PROTOCOL=nnn
 $datagram_payload
 ```
 
-The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type.
+The $destination is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type.
 
 #### SAM Anonymous (Raw) Datagrams
 
@@ -929,7 +929,7 @@ For an alternate method of sending anonymous datagrams, see [RAW SEND](#datagram
 
 #### Datagram 2/3
 
-Datagram 2/3 are new formats specified in early 2025. No known implementations currently exist. Check implementation documentation for current status. See [the specification](/docs/spec/datagrams) for more information.
+Datagram 2/3 are new formats specified in early 2025. No known implementations currently exist. Check implementation documentation for current status. See [the specification](/docs/specs/datagrams) for more information.
 
 There are no current plans to increase the SAM version to indicate Datagram 2/3 support. This may be problematic as implementations may wish to support Datagram 2/3 but not SAM v3.3 features. Any version change is TBD.
 
@@ -1083,7 +1083,7 @@ KEY_NOT_FOUND
 
 If NAME=ME, then the reply will contain the destination used by the current session (useful if you're using a TRANSIENT one). If $result is not OK, MESSAGE may convey a descriptive message, such as "bad format", etc. INVALID_KEY implies that something is wrong with $name in the request, possibly invalid characters.
 
-The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type.
+The $destination is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type.
 
 NAMING LOOKUP does not require that a session has been created first. However, in some implementations, a .b32.i2p lookup which is uncached and requires a network query may fail, as no client tunnels are available for the lookup.
 
@@ -1116,13 +1116,13 @@ DEST REPLY
      PRIV=$privkey
 ```
 
-As of version 3.1 (I2P 0.9.14), an optional parameter SIGNATURE_TYPE is supported. The SIGNATURE_TYPE value may be any name (e.g. ECDSA_SHA256_P256, case insensitive) or number (e.g. 1) that is supported by [Key Certificates](/docs/spec/common-structures#type_Certificate). The default is DSA_SHA1, which is NOT what you want. For most applications, please specify SIGNATURE_TYPE=7.
+As of version 3.1 (I2P 0.9.14), an optional parameter SIGNATURE_TYPE is supported. The SIGNATURE_TYPE value may be any name (e.g. ECDSA_SHA256_P256, case insensitive) or number (e.g. 1) that is supported by [Key Certificates](/docs/specs/common-structures#type_Certificate). The default is DSA_SHA1, which is NOT what you want. For most applications, please specify SIGNATURE_TYPE=7.
 
-The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type.
+The $destination is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination), which is 516 or more base 64 characters (387 or more bytes in binary), depending on signature type.
 
-The $privkey is the base 64 of the concatenation of the [Destination](/docs/spec/common-structures#type_Destination) followed by the [Private Key](/docs/spec/common-structures#type_PrivateKey) followed by the [Signing Private Key](/docs/spec/common-structures#type_SigningPrivateKey), which is 884 or more base 64 characters (663 or more bytes in binary), depending on signature type. The binary format is specified in Private Key File.
+The $privkey is the base 64 of the concatenation of the [Destination](/docs/specs/common-structures#type_Destination) followed by the [Private Key](/docs/specs/common-structures#type_PrivateKey) followed by the [Signing Private Key](/docs/specs/common-structures#type_SigningPrivateKey), which is 884 or more base 64 characters (663 or more bytes in binary), depending on signature type. The binary format is specified in Private Key File.
 
-Notes about the 256-byte binary [Private Key](/docs/spec/common-structures#type_PrivateKey): This field has been unused since version 0.6 (2005). SAM implementations may send random data or all zeros in this field; do not be alarmed about a string of AAAA in the base 64. Most applications will simply store the base 64 string and return it as-is in the SESSION CREATE, or decode to binary for storage, then encode again for SESSION CREATE. Applications may, however, decode the base 64, parse the binary following the PrivateKeyFile specification, discard the 256-byte private key portion, and then replace it with 256 bytes of random data or all zeros when re-encoding it for the SESSION CREATE. ALL other fields in the PrivateKeyFile specification must be preserved. This would save 256 bytes of file system storage but is probably not worth the trouble for most applications. See proposal 161 for additional information and background.
+Notes about the 256-byte binary [Private Key](/docs/specs/common-structures#type_PrivateKey): This field has been unused since version 0.6 (2005). SAM implementations may send random data or all zeros in this field; do not be alarmed about a string of AAAA in the base 64. Most applications will simply store the base 64 string and return it as-is in the SESSION CREATE, or decode to binary for storage, then encode again for SESSION CREATE. Applications may, however, decode the base 64, parse the binary following the PrivateKeyFile specification, discard the 256-byte private key portion, and then replace it with 256 bytes of random data or all zeros when re-encoding it for the SESSION CREATE. ALL other fields in the PrivateKeyFile specification must be preserved. This would save 256 bytes of file system storage but is probably not worth the trouble for most applications. See proposal 161 for additional information and background.
 
 DEST GENERATE does not require that a session has been created first.
 

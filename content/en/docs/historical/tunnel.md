@@ -9,11 +9,11 @@ accurateFor: "0.9.41"
 Note: This document contains older information about alternatives to the
 current tunnel implementation in I2P,
 and speculation on future possibilities. For current information see
-[the tunnel page](/docs/spec/tunnel-implementation).
+[the tunnel page](/docs/specs/tunnel-implementation).
 
 That page documents the current tunnel build implementation as of release 0.6.1.10.
 The older tunnel build method, used prior to release 0.6.1.10, is documented on
-[the old tunnel page](/docs/tunnels/old-implementation).
+[the old tunnel page](/docs/historical/tunnel-alt).
 
 
 ### Configuration Alternatives {#config}
@@ -160,7 +160,7 @@ Reference:
 #### Old Tunnel Build Method {#tunnel.building.old}
 
 The old tunnel build method, used prior to release 0.6.1.10, is documented on
-[the old tunnel page](/docs/tunnels/old-implementation).
+[the old tunnel page](/docs/historical/tunnel-alt).
 This was an "all at once" or "parallel" method,
 where messages were sent in parallel to each of the participants.
 
@@ -223,7 +223,7 @@ Sponge has proposed using 'tokens' of some sort.
 Any students of tunnel building must study the historical record leading up to the current method,
 especially the various anonymity vulnerabilities that may exist in various methods.
 The mail archives from October 2005 are particularly helpful.
-As stated on [the tunnel creation specification](/docs/spec/tunnel-creation),
+As stated on [the tunnel creation specification](/docs/specs/tunnel-creation),
 the current strategy came about during a discussion on the I2P mailing list between
 Michael Rogers, Matthew Toseland (toad), and jrandom regarding the predecessor attack.
 

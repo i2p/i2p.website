@@ -24,13 +24,13 @@ Aşağıdaki özellikler 0.9.46 sürümü itibariyle uygulanmamıştır:
 
 ## Genel Bakış
 
-Bu, I2P'nin başlangıcından bu yana ilk yeni uçtan uca şifreleme türü için bir öneridir ve ElGamal/AES+SessionTags [Elg-AES](/docs/legacy/elgamal-aes/) sistemini değiştirmeyi amaçlamaktadır.
+Bu, I2P'nin başlangıcından bu yana ilk yeni uçtan uca şifreleme türü için bir öneridir ve ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/) sistemini değiştirmeyi amaçlamaktadır.
 
 Aşağıdaki önceki çalışmalara dayanır:
 
 - Ortak yapılar spec [Common Structures](/docs/specs/common-structures/)
 - LS2 dahil [I2NP](/docs/specs/i2np/) spec
-- ElGamal/AES+Session Tags [Elg-AES](/docs/legacy/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) yeni asimetrik kripto genel bakış
 - Düşük seviye kripto genel bakış [CRYPTO-ELG](/docs/specs/cryptography/)
 - ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)

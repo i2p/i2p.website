@@ -1,6 +1,7 @@
 ---
 title: "Blockfile and Hosts Database Specification"
 description: "Specification of the I2P blockfile file format and the tables in the hostsdb.blockfile used by the Blockfile Naming Service"
+slug: "blockfile"
 category: "Formats"
 lastUpdated: "2023-11"
 accurateFor: "0.9.59"

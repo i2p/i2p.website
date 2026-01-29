@@ -42,7 +42,7 @@ A web interface for I2PTunnel management is available on
 
 ## Configuration {#configuration}
 
-[I2PTunnel Configuration](/docs/spec/configuration)
+[I2PTunnel Configuration](/docs/specs/configuration)
 
 
 ## Client Modes {#client-modes}

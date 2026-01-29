@@ -24,13 +24,13 @@ As seguintes funcionalidades não estão implementadas a partir da versão 0.9.4
 
 ## Visão Geral
 
-Esta é uma proposta para o primeiro novo tipo de criptografia ponta a ponta desde o início do I2P, para substituir ElGamal/AES+SessionTags [Elg-AES](/docs/legacy/elgamal-aes/).
+Esta é uma proposta para o primeiro novo tipo de criptografia ponta a ponta desde o início do I2P, para substituir ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/).
 
 Baseia-se no trabalho anterior da seguinte forma:
 
 - Especificação de estruturas comuns [Common Structures](/docs/specs/common-structures/)
 - Especificação [I2NP](/docs/specs/i2np/) incluindo LS2
-- ElGamal/AES+Session Tags [Elg-AES](/docs/legacy/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) visão geral da nova criptografia assimétrica
 - Visão geral da criptografia de baixo nível [CRYPTO-ELG](/docs/specs/cryptography/)
 - ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)

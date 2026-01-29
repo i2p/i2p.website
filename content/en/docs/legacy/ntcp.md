@@ -9,7 +9,7 @@ accurateFor: "0.9.52"
 DEPRECATED, NO LONGER SUPPORTED.
 Disabled by default as of 0.9.40 2019-05.
 Support removed as of 0.9.50 2021-05.
-Replaced by [NTCP2](/docs/spec/ntcp2).
+Replaced by [NTCP2](/docs/specs/ntcp2).
 NTCP is a Java NIO-based transport introduced in I2P release 0.6.1.22.
 Java NIO (new I/O) does not suffer from the 1 thread per connection issues of the old TCP transport.
 NTCP-over-IPv6 is supported as of version 0.9.8.
@@ -139,7 +139,7 @@ Alice                   contacts                      Bob
 
 The initial 2048-bit DH key exchange
 uses the same shared prime (p) and generator (g) as that used for I2P's
-[ElGamal encryption](/docs/how/cryptography#elgamal).
+[ElGamal encryption](/docs/specs/cryptography#elgamal).
 
 The DH key exchange consists of a number of steps, displayed below.
 The mapping between these steps and the messages sent between I2P routers,
@@ -155,7 +155,7 @@ is marked in bold.
 
 The sessionKey is then used to exchange identities in **Message 3** and **Message 4**.
 The exponent (x and y) length for the DH exchange is documented on the
-[cryptography page](/docs/how/cryptography#exponent).
+[cryptography page](/docs/specs/cryptography#exponent).
 
 #### Session Key Details
 
@@ -169,11 +169,11 @@ The 32-byte session key is created as follows:
 #### Message 1 (Session Request)
 
 This is the DH request. Alice already has Bob's
-[Router Identity](/docs/spec/common-structures#struct_RouterIdentity),
+[Router Identity](/docs/specs/common-structures#struct_RouterIdentity),
 IP address, and port, as contained in his
-[Router Info](/docs/spec/common-structures#struct_RouterInfo),
+[Router Info](/docs/specs/common-structures#struct_RouterInfo),
 which was published to the
-[network database](/docs/how/network-database).
+[network database](/docs/overview/network-database).
 Alice sends Bob:
 
 ```
@@ -362,7 +362,7 @@ Encrypted Contents:
 - Bob verifies the signature, and on failure, drops the connection.
 - Bob may drop the connection if the clock skew with Alice is too high as calculated using tsA.
 - Alice will use the last 16 bytes of the encrypted contents of this message as the IV for the next message.
-- Through release 0.9.15, the router identity was always 387 bytes, the signature was always a 40 byte DSA signature, and the padding was always 15 bytes. As of release 0.9.16, the router identity may be longer than 387 bytes, and the signature type and length are implied by the type of the [Signing Public Key](/docs/spec/common-structures#type_SigningPublicKey) in Alice's [Router Identity](/docs/spec/common-structures#struct_RouterIdentity). The padding is as necessary to a multiple of 16 bytes for the entire unencrypted contents.
+- Through release 0.9.15, the router identity was always 387 bytes, the signature was always a 40 byte DSA signature, and the padding was always 15 bytes. As of release 0.9.16, the router identity may be longer than 387 bytes, and the signature type and length are implied by the type of the [Signing Public Key](/docs/specs/common-structures#type_SigningPublicKey) in Alice's [Router Identity](/docs/specs/common-structures#struct_RouterIdentity). The padding is as necessary to a multiple of 16 bytes for the entire unencrypted contents.
 - The total length of the message cannot be determined without partially decrypting it to read the Router Identity. As the minimum length of the Router Identity is 387 bytes, and the minimum Signature length is 40 (for DSA), the minimum total message size is 2 + 387 + 4 + (signature length) + (padding to 16 bytes), or 2 + 387 + 4 + 40 + 15 = 448 for DSA. The receiver could read that minimum amount before decrypting to determine the actual Router Identity length. For small Certificates in the Router Identity, that will probably be the entire message, and there will not be any more bytes in the message to require an additional decryption operation.
 
 
@@ -421,7 +421,7 @@ Encrypted Contents:
 
 - Alice verifies the signature, and on failure, drops the connection.
 - Bob will use the last 16 bytes of the encrypted contents of this message as the IV for the next message.
-- Through release 0.9.15, the signature was always a 40 byte DSA signature and the padding was always 8 bytes. As of release 0.9.16, the signature type and length are implied by the type of the [Signing Public Key](/docs/spec/common-structures#type_SigningPublicKey) in Bob's [Router Identity](/docs/spec/common-structures#struct_RouterIdentity). The padding is as necessary to a multiple of 16 bytes for the entire unencrypted contents.
+- Through release 0.9.15, the signature was always a 40 byte DSA signature and the padding was always 8 bytes. As of release 0.9.16, the signature type and length are implied by the type of the [Signing Public Key](/docs/specs/common-structures#type_SigningPublicKey) in Bob's [Router Identity](/docs/specs/common-structures#struct_RouterIdentity). The padding is as necessary to a multiple of 16 bytes for the entire unencrypted contents.
 
 
 #### After Establishment

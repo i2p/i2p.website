@@ -51,14 +51,14 @@ available for client applications, exposing TCP-esque operation,
 including message reordering, retransmission, congestion control, etc.
 
 An overview of I2P tunnel terminology is
-[on the tunnel overview page](/docs/how/tunnel-routing).
+[on the tunnel overview page](/docs/overview/tunnel-routing).
 
 
 ## Tunnel Operation (Message Processing) {#tunnel.operation}
 
 ### Overview
 
-After a tunnel is built, [I2NP messages](/docs/spec/i2np) are processed and passed through it.
+After a tunnel is built, [I2NP messages](/docs/specs/i2np) are processed and passed through it.
 Tunnel operation has four distinct processes, taken on by various
 peers in the tunnel.
 
@@ -96,8 +96,8 @@ so that the plaintext is revealed at the outbound endpoint.
 #### Message Preprocessing {#tunnel.preprocessing}
 
 A tunnel gateway's function is to fragment and pack
-[I2NP messages](/docs/spec/i2np) into fixed-size
-[tunnel messages](/docs/spec/tunnel-message)
+[I2NP messages](/docs/specs/i2np) into fixed-size
+[tunnel messages](/docs/specs/tunnel-message)
 and encrypt the tunnel messages.
 Tunnel messages contain the following:
 
@@ -122,7 +122,7 @@ tunnel message. The endpoint will attempt to rebuild the I2NP message from the
 fragments for a short period of time, but will discard them as necessary.
 
 Details are in the
-[tunnel message specification](/docs/spec/tunnel-message).
+[tunnel message specification](/docs/specs/tunnel-message).
 
 
 ### Gateway Encryption
@@ -211,7 +211,7 @@ is to find underutilized high capacity peers so that they can be promoted for
 use in client tunnels.
 
 Exploratory peer selection is discussed further on the
-[Peer Profiling and Selection page](/docs/how/peer-selection).
+[Peer Profiling and Selection page](/docs/overview/peer-selection).
 
 
 #### Client Tunnel Peer Selection {#tunnel.selection.client}
@@ -223,7 +223,7 @@ However, there are several important details beyond that basic selection that
 should be adhered to, depending upon the client's anonymity needs.
 
 Client peer selection is discussed further on the
-[Peer Profiling and Selection page](/docs/how/peer-selection).
+[Peer Profiling and Selection page](/docs/overview/peer-selection).
 
 
 #### Peer Ordering within Tunnels {#ordering}
@@ -264,7 +264,7 @@ decrypted and forwarded. In the terminology of
 this is "non-interactive" telescopic tunnel building.
 
 This tunnel request preparation, delivery, and response method is
-[designed](/docs/spec/tunnel-creation) to reduce the number of
+[designed](/docs/specs/tunnel-creation) to reduce the number of
 predecessors exposed, cuts the number of messages transmitted, verifies proper
 connectivity, and avoids the message counting attack of traditional telescopic
 tunnel creation.
@@ -273,7 +273,7 @@ part of the tunnel, is termed "interactive" telescopic tunnel building in
 the "Hashing it out" paper.)
 
 The details of tunnel request and response messages, and their encryption,
-[are specified here](/docs/spec/tunnel-creation).
+[are specified here](/docs/specs/tunnel-creation).
 
 Peers may reject tunnel creation requests for a variety of reasons, though
 a series of four increasingly severe rejections are known: probabilistic rejection
@@ -283,7 +283,7 @@ those four are interpreted by the tunnel creator to help adjust their profile of
 the router in question.
 
 For more information on peer profiling, see the
-[Peer Profiling and Selection page](/docs/how/peer-selection).
+[Peer Profiling and Selection page](/docs/overview/peer-selection).
 
 
 ### Tunnel Pools {#tunnel.pooling}
@@ -295,7 +295,7 @@ out of the appropriate pool at random. Overall, there are two exploratory tunnel
 pools - one inbound and one outbound - each using the router's default configuration.
 In addition, there is a pair of pools for each local destination -
 one inbound and one outbound tunnel pool. Those pools use the configuration specified
-when the local destination connects to the router via [I2CP](/docs/spec/i2cp), or the router's defaults if
+when the local destination connects to the router via [I2CP](/docs/specs/i2cp), or the router's defaults if
 not specified.
 
 Each pool has within its configuration a few key settings, defining how many
@@ -303,12 +303,12 @@ tunnels to keep active, how many backup tunnels to maintain in case of failure,
 how long the tunnels should be, whether those
 lengths should be randomized, as
 well as any of the other settings allowed when configuring individual tunnels.
-Configuration options are specified on the [I2CP page](/docs/spec/i2cp).
+Configuration options are specified on the [I2CP page](/docs/specs/i2cp).
 
 
 ### Tunnel Lengths and Defaults {#length}
 
-[On the tunnel overview page](/docs/how/tunnel-routing#length).
+[On the tunnel overview page](/docs/overview/tunnel-routing#length).
 
 
 ### Anticipatory Build Strategy and Priority {#strategy}

@@ -1,302 +1,95 @@
 ---
-title: "Transport Layer"
-description: "Understanding I2P's transport layer - point-to-point communication methods between routers including NTCP2 and SSU2"
+title: "Transport Overview"
+description: "Overview of I2P's transport layer for point-to-point router communication"
 slug: "transport"
-lastUpdated: "2025-03"
-accurateFor: "2.10.0"
+lastUpdated: "2018-06"
+accurateFor: "0.9.36"
 ---
 
----
+## Transports in I2P
 
-## 1. Overview
+A "transport" in I2P is a method for direct, point-to-point communication between two routers. Transports must provide confidentiality and integrity against external adversaries while authenticating that the router contacted is the one who should receive a given message.
 
-A **transport** in I2P is a method for direct, point-to-point communication between routers. These mechanisms ensure confidentiality and integrity while verifying router authentication.
+I2P supports multiple transports simultaneously. There are three transports currently implemented:
 
-Each transport operates using connection paradigms featuring authentication, flow control, acknowledgments, and retransmission capabilities.
+1. [NTCP](/docs/legacy/ntcp/), a Java New I/O (NIO) TCP transport
+2. [SSU](/docs/legacy/ssu/), or Secure Semireliable UDP
+3. [NTCP2](/docs/specs/ntcp2/), a new version of NTCP
 
----
-
-## 2. Current Transports
-
-I2P currently supports two primary transports:
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Transport</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Protocol</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>NTCP2</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">TCP</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Noise-based TCP transport with modern encryption (as of 0.9.36)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>SSU2</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">UDP</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Secure Semireliable UDP with modern encryption (as of 0.9.56)</td>
-    </tr>
-  </tbody>
-</table>
-
-### 2.1 Legacy Transports (Deprecated)
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Transport</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Protocol</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>NTCP</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">TCP</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Replaced by NTCP2; removed in 0.9.62</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>SSU</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">UDP</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Replaced by SSU2; removed in 0.9.62</td>
-    </tr>
-  </tbody>
-</table>
+Each provides a "connection" paradigm, with authentication, flow control, acknowledgments and retransmission.
 
 ---
 
-## 3. Transport Services
+## Transport Services
 
-The transport subsystem provides the following services:
+The transport subsystem in I2P provides the following services:
 
-### 3.1 Message Delivery
-
-- Dependable [I2NP](/docs/specs/i2np/) message delivery (transports handle I2NP messaging exclusively)
-- In-order delivery is **NOT guaranteed** universally
-- Priority-based message queuing
-
-### 3.2 Connection Management
-
-- Connection establishment and closure
-- Connection limit management with threshold enforcement
-- Per-peer status tracking
-- Automated and manual peer ban list enforcement
-
-### 3.3 Network Configuration
-
-- Multiple router addresses per transport (IPv4 and IPv6 support since v0.9.8)
-- UPnP firewall port opening
-- NAT/Firewall traversal support
-- Local IP detection via multiple methods
-
-### 3.4 Security
-
-- Encryption for point-to-point exchanges
-- IP address validation per local rules
-- Clock consensus determination (NTP backup)
-
-### 3.5 Bandwidth Management
-
-- Inbound and outbound bandwidth limits
-- Optimal transport selection for outgoing messages
+- Reliable delivery of [I2NP](/docs/specs/i2np/) messages. Transports support I2NP message delivery ONLY. They are not general-purpose data pipes.
+- In-order delivery of messages is NOT guaranteed by all transports.
+- Maintain a set of router addresses, one or more for each transport, that the router publishes as its global contact information (the RouterInfo). Each transport may connect using one of these addresses, which may be IPv4 or (as of version 0.9.8) IPv6.
+- Selection of the best transport for each outgoing message
+- Queueing of outbound messages by priority
+- Bandwidth limiting, both outbound and inbound, according to router configuration
+- Setup and teardown of transport connections
+- Encryption of point-to-point communications
+- Maintenance of connection limits for each transport, implementation of various thresholds for these limits, and communication of threshold status to the router so it may make operational changes based on the status
+- Firewall port opening using UPnP (Universal Plug and Play)
+- Cooperative NAT/Firewall traversal
+- Local IP detection by various methods, including UPnP, inspection of incoming connections, and enumeration of network devices
+- Coordination of firewall status and local IP, and changes to either, among the transports
+- Communication of firewall status and local IP, and changes to either, to the router and the user interface
+- Determination of a consensus clock, which is used to periodically update the router's clock, as a backup for NTP
+- Maintenance of status for each peer, including whether it is connected, whether it was recently connected, and whether it was reachable in the last attempt
+- Qualification of valid IP addresses according to a local rule set
+- Honoring the automated and manual lists of banned peers maintained by the router, and refusing outbound and inbound connections to those peers
 
 ---
 
-## 4. Transport Addresses
+## Transport Addresses
 
-The subsystem maintains router contact points listing:
+The transport subsystem maintains a set of router addresses, each of which lists a transport method, IP, and port. These addresses constitute the advertised contact points, and are published by the router to the network database. Addresses may also contain an arbitrary set of additional options.
 
-- Transport method (NTCP2, SSU2)
-- IP address
-- Port number
-- Optional parameters
+Each transport method may publish multiple router addresses.
 
-Multiple addresses per transport method are possible.
+Typical scenarios are:
 
-### 4.1 Common Address Configurations
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Configuration</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Hidden</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Routers with no published addresses</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Firewalled</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Routers publishing SSU2 addresses with "introducer" peer lists for NAT traversal</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Unrestricted</strong></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Routers advertising both NTCP2 and SSU2 addresses on IPv4 and/or IPv6</td>
-    </tr>
-  </tbody>
-</table>
+- A router has no published addresses, so it is considered "hidden" and cannot receive incoming connections
+- A router is firewalled, and therefore publishes an SSU address which contains a list of cooperating peers or "introducers" who will assist in NAT traversal (see [the SSU spec](/docs/legacy/ssu/) for details)
+- A router is not firewalled or its NAT ports are open; it publishes both NTCP and SSU addresses containing directly-accessible IP and ports.
 
 ---
 
-## 5. Transport Selection
+## Transport Selection
 
-The system selects transports for [I2NP messages](/docs/specs/i2np/) independently of upper-layer protocols. Selection employs a **bidding system** where each transport submits bids, with the lowest value winning.
+The transport system delivers [I2NP messages](/docs/specs/i2np/) only. The transport selected for any message is independent of the upper-layer protocols and contents (router or client messages, whether an external application was using TCP or UDP to connect to I2P, whether the upper layer was using [the streaming library](/docs/api/streaming/) or [datagrams](/docs/api/datagrams/), etc.).
 
-### 5.1 Bid Determination Factors
+For each outgoing message, the transport system solicits "bids" from each transport. The transport bidding the lowest (best) value wins the bid and receives the message for delivery. A transport may refuse to bid.
 
-- Transport preference settings
-- Existing peer connections
-- Current versus threshold connection counts
-- Recent connection attempt history
-- Message size constraints
-- Peer RouterInfo transport capabilities
-- Connection directness (direct versus introducer-dependent)
-- Peer advertised transport preferences
+Whether a transport bids, and with what value, depend on numerous factors:
 
-Generally, two routers maintain single-transport connections simultaneously, though simultaneous multi-transport connections are possible.
+- Configuration of transport preferences
+- Whether the transport is already connected to the peer
+- The number of current connections compared to various connection limit thresholds
+- Whether recent connection attempts to the peer have failed
+- The size of the message, as different transports have different size limits
+- Whether the peer can accept incoming connections for that transport, as advertised in its RouterInfo
+- Whether the connection would be indirect (requiring introducers) or direct
+- The peer's transport preference, as advertised in its RouterInfo
 
----
-
-## 6. NTCP2
-
-**NTCP2** (New Transport Protocol 2) is the modern TCP-based transport for I2P, introduced in version 0.9.36.
-
-### 6.1 Key Features
-
-- Based on the **Noise Protocol Framework** (Noise_XK pattern)
-- Uses **X25519** for key exchange
-- Uses **ChaCha20/Poly1305** for authenticated encryption
-- Uses **BLAKE2s** for hashing
-- Protocol obfuscation to resist DPI (Deep Packet Inspection)
-- Optional padding for traffic analysis resistance
-
-### 6.2 Connection Establishment
-
-1. **Session Request** (Alice → Bob): Ephemeral X25519 key + encrypted payload
-2. **Session Created** (Bob → Alice): Ephemeral key + encrypted confirmation
-3. **Session Confirmed** (Alice → Bob): Final handshake with RouterInfo
-
-All subsequent data is encrypted with session keys derived from the handshake.
-
-See the [NTCP2 Specification](/docs/specs/ntcp2/) for full details.
+In general, the bid values are selected so that two routers are only connected by a single transport at any one time. However, this is not a requirement.
 
 ---
 
-## 7. SSU2
+## New Transports and Future Work
 
-**SSU2** (Secure Semireliable UDP 2) is the modern UDP-based transport for I2P, introduced in version 0.9.56.
+Additional transports may be developed, including:
 
-### 7.1 Key Features
+- A TLS/SSH look-alike transport
+- An "indirect" transport for routers that are not reachable by all other routers (one form of "restricted routes")
+- Tor-compatible pluggable transports
 
-- Based on the **Noise Protocol Framework** (Noise_XK pattern)
-- Uses **X25519** for key exchange
-- Uses **ChaCha20/Poly1305** for authenticated encryption
-- Semireliable delivery with selective acknowledgments
-- NAT traversal via hole punching and relay/introduction
-- Connection migration support
-- Path MTU discovery
+Work continues on adjusting default connection limits for each transport. I2P is designed as a "mesh network", where it is assumed that any router can connect to any other router. This assumption may be broken by routers that have exceeded their connection limits, and by routers that are behind restrictive state firewalls (restricted routes).
 
-### 7.2 Advantages over SSU (Legacy)
+The current connection limits are higher for SSU than for NTCP, based on the assumption that the memory requirements for an NTCP connection are higher than that for SSU. However, as NTCP buffers are partially in the kernel and SSU buffers are on the Java heap, that assumption is difficult to verify.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Feature</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">SSU (Legacy)</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">SSU2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Encryption</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ElGamal + AES</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">X25519 + ChaCha20/Poly1305</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Header encryption</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Partial</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Full (ChaCha20)</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Connection ID</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Fixed</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Encrypted, rotatable</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">NAT traversal</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Basic introduction</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Enhanced hole punching + relay</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Obfuscation</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Minimal</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Improved (variable padding)</td>
-    </tr>
-  </tbody>
-</table>
-
-See the [SSU2 Specification](/docs/specs/ssu2/) for full details.
-
----
-
-## 8. NAT Traversal
-
-Both transports support NAT traversal to allow firewalled routers to participate in the network.
-
-### 8.1 SSU2 Introduction
-
-When a router cannot receive inbound connections directly:
-
-1. Router publishes **introducer** addresses in its RouterInfo
-2. Connecting peer sends an introduction request to the introducer
-3. Introducer relays connection information to the firewalled router
-4. Firewalled router initiates outbound connection (hole punch)
-5. Direct communication established
-
-### 8.2 NTCP2 and Firewalls
-
-NTCP2 requires inbound TCP connectivity. Routers behind NAT can:
-
-- Use UPnP to automatically open ports
-- Manually configure port forwarding
-- Rely on SSU2 for inbound connections while using NTCP2 for outbound
-
----
-
-## 9. Protocol Obfuscation
-
-Both modern transports incorporate obfuscation features:
-
-- **Random padding** in handshake messages
-- **Encrypted headers** that don't reveal protocol signatures
-- **Variable-length messages** to resist traffic analysis
-- **No fixed patterns** in connection establishment
-
-> **Note**: Transport-layer obfuscation complements but does not replace the anonymity provided by I2P's tunnel architecture.
-
----
-
-## 10. Future Development
-
-Planned research and improvements include:
-
-- **Pluggable transports** – Tor-compatible obfuscation plugins
-- **QUIC-based transport** – Investigation of QUIC protocol benefits
-- **Connection limit optimization** – Research into optimal peer connection limits
-- **Enhanced padding strategies** – Improved traffic analysis resistance
-
----
-
-## 11. References
-
-- [NTCP2 Specification](/docs/specs/ntcp2/) – Noise-based TCP transport
-- [SSU2 Specification](/docs/specs/ssu2/) – Secure Semireliable UDP 2
-- [I2NP Specification](/docs/specs/i2np/) – I2P Network Protocol messages
-- [Common Structures](/docs/specs/common-structures/) – RouterInfo and address structures
-- [Historical NTCP Discussion](/docs/ntcp/) – Legacy transport development history
-- [Legacy SSU Documentation](/docs/legacy/ssu/) – Original SSU specification (deprecated)
+Analyze [Breaking and Improving Protocol Obfuscation](http://www.iis.se/docs/hjelmvik_breaking.pdf) and see how transport-layer padding may improve things.

@@ -1,6 +1,7 @@
 ---
 title: "Common structures Specification"
 description: "Data types common to all I2P protocols"
+slug: "common-structures"
 category: "Design"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"
@@ -1473,7 +1474,7 @@ signature :: `Signature`
   encryption which was disabled in version 0.6, it is currently unused.
 
 * The encryption key is used for end-to-end ElGamal/AES+SessionTag encryption
-  [ELGAMAL-AES](/docs/legacy/elgamal-aes/). It is currently generated anew at every router startup, it is
+  [ELGAMAL-AES](/docs/specs/elgamal-aes/). It is currently generated anew at every router startup, it is
   not persistent.
 
 * The signature may be verified using the signing public key of the
@@ -1846,7 +1847,7 @@ In LS2 for bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, pointing to its
   encryption which was disabled in version 0.6, it is currently unused.
 
 * The encryption keys are used for end-to-end ElGamal/AES+SessionTag encryption
-  [ELGAMAL-AES](/docs/legacy/elgamal-aes/) (type 0) or other end-to-end encryption schemes.
+  [ELGAMAL-AES](/docs/specs/elgamal-aes/) (type 0) or other end-to-end encryption schemes.
   See [ECIES](/docs/specs/ecies/) and proposals 145 and 156.
   They may be generated anew at every router startup
   or they may be persistent.
@@ -2336,7 +2337,7 @@ Specification [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instruct
 - [ECIES-HYBRID](/docs/specs/ecies-hybrid/)
 - [ECIES-ROUTERS](/docs/specs/ecies-routers/)
 - [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy)
-- [ELGAMAL-AES](/docs/legacy/elgamal-aes/)
+- [ELGAMAL-AES](/docs/specs/elgamal-aes/)
 - [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions)
 - [I2CP](/docs/specs/i2cp/)
 - [I2NP](/docs/specs/i2np/)

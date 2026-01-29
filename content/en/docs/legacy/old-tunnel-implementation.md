@@ -6,7 +6,7 @@ lastUpdated: "2016-11"
 accurateFor: "historical"
 ---
 
-**Note: Obsolete - NOT used! Replaced in 0.6.1.10 - see [current implementation](/docs/spec/tunnel-implementation) for the active specification.**
+**Note: Obsolete - NOT used! Replaced in 0.6.1.10 - see [current implementation](/docs/specs/tunnel-implementation) for the active specification.**
 
 
 ## 1) Tunnel overview {#tunnel.overview}

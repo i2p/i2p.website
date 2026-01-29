@@ -9,7 +9,7 @@ accurateFor: "0.9.49"
 
 ## Overview
 
-This document specifies the format of tunnel messages. For general information about tunnels see the [tunnel documentation](/docs/tunnels/implementation).
+This document specifies the format of tunnel messages. For general information about tunnels see the [tunnel documentation](/docs/specs/tunnel-implementation).
 
 ## Message Preprocessing
 
@@ -19,7 +19,7 @@ A gateway *preprocesses* [I2NP](/docs/specs/i2np) messages by fragmenting and co
 
 While I2NP messages are variable size from 0 to almost 64 KB, tunnel messages are fixed-size, approximately 1 KB. Fixed message size restricts several types of attacks that are possible from observing message size.
 
-After the tunnel messages are created, they are encrypted as described in the [tunnel documentation](/docs/tunnels/implementation).
+After the tunnel messages are created, they are encrypted as described in the [tunnel documentation](/docs/specs/tunnel-implementation).
 
 ### Tunnel Message (Encrypted)
 
@@ -233,4 +233,4 @@ Tunnel messages may contain only padding (i.e. no delivery instructions or messa
 - **[I2NP]** [I2NP Protocol](/docs/specs/i2np)
 - **[I2NP-GC]** [GarlicClove](/docs/specs/i2np#garlicclove)
 - **[I2NP-GCDI]** [GarlicCloveDeliveryInstructions](/docs/specs/i2np#garlicclovedeliveryinstructions)
-- **[TUNNEL-IMPL]** [Tunnel Implementation](/docs/tunnels/implementation)
+- **[TUNNEL-IMPL]** [Tunnel Implementation](/docs/specs/tunnel-implementation)

@@ -3453,7 +3453,7 @@ We specify above that the token must be a randomly-generated 8 byte value, not g
 
 - **[Common]** [Common Structures Specification](/docs/specs/common-structures)
 - **[ECIES]** [ECIES-X25519-AEAD-Ratchet Specification](/docs/specs/ecies)
-- **[NetDB]** [Network Database](/docs/how/network-database)
+- **[NetDB]** [Network Database](/docs/overview/network-database)
 - **[NOISE]** [Noise Protocol Framework](https://noiseprotocol.org/noise.html)
 - **[Nonces]** [Nonce-Disrespecting Adversaries](https://eprint.iacr.org/2019/624.pdf)
 - **[NTCP]** [NTCP Transport](/docs/transport/ntcp)

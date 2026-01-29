@@ -11,11 +11,11 @@ accurateFor: "0.9.27"
 This page describes the origins and design of I2P's unidirectional tunnels.
 For further information see:
 
-- [Tunnel overview page](/docs/how/tunnel-routing)
-- [Tunnel specification](/docs/tunnels/implementation)
-- [Tunnel creation specification](/docs/spec/tunnel-creation)
+- [Tunnel overview page](/docs/overview/tunnel-routing)
+- [Tunnel specification](/docs/specs/tunnel-implementation)
+- [Tunnel creation specification](/docs/specs/tunnel-creation)
 - [Tunnel design discussion](/docs/discussions/tunnel)
-- [Peer selection](/docs/how/peer-selection)
+- [Peer selection](/docs/overview/peer-selection)
 
 
 ## Review

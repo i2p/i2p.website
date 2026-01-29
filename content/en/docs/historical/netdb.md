@@ -7,7 +7,7 @@ accurateFor: "0.7"
 ---
 
 NOTE: The following is a discussion of the history of netdb implementation and is not current information.
-See [the main netdb page](/docs/how/network-database) for current documentation.
+See [the main netdb page](/docs/overview/network-database) for current documentation.
 
 
 ## History {#status}
@@ -305,7 +305,7 @@ Not necessarily DHT-based.
 ### Floodfill TODO List {#todo}
 
 NOTE: The following is not current information.
-See [the main netdb page](/docs/how/network-database) for the current status and a list of future work.
+See [the main netdb page](/docs/overview/network-database) for the current status and a list of future work.
 
 The network was down to only one floodfill for a couple of hours on March 13, 2008
 (approx. 18:00 - 20:00 UTC),
@@ -372,7 +372,7 @@ Recently completed:
   we are now at the minimum number of stats required to monitor the network.
 - [In Release 0.6.3]
   Manual list of floodfill peers to exclude
-  ([blocklists](/docs/how/threat-model#blocklist) by router ident)
+  ([blocklists](/docs/overview/threat-model#blocklist) by router ident)
 - [In Release 0.6.3]
   Better floodfill peer selection for stores:
   Avoid peers whose netDb is old, or have a recent failed store,

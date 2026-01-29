@@ -13,7 +13,7 @@ Welcome to the I2P documentation. This site provides guides, explanations, and t
 
 ## Documentation Structure
 
-- **[How I2P Works](/docs/how/)** - Conceptual explanations of I2P's design and operation
+- **[How I2P Works](/docs/overview/)** - Conceptual explanations of I2P's design and operation
 - **[Applications](/docs/applications/)** - Guides for using specific applications over I2P
 - **[Guides](/docs/guides/)** - User and developer tutorials
 - **[Development](/docs/develop/)** - Resources for I2P developers

@@ -1,6 +1,7 @@
 ---
 title: "Configuration File Specification"
 description: "Specification of I2P configuration files used by the router and applications"
+slug: "configuration"
 category: "Formats"
 lastUpdated: "2023-01"
 accurateFor: "0.9.57"

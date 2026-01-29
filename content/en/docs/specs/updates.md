@@ -210,7 +210,7 @@ The signature covers the entire header starting at byte 0, through the end of th
 
 While signature verification and content extraction may be implemented in one pass, an implementation must read and buffer the first 10 bytes to determine the hash type before starting to verify.
 
-Signature lengths for the various signature types are given in the [Signature](/docs/specs/common-structures#signature) specification. Pad the signature with leading zeros if necessary. See the [cryptography details page](/docs/how/cryptography#sig) for parameters of the various signature types.
+Signature lengths for the various signature types are given in the [Signature](/docs/specs/common-structures#signature) specification. Pad the signature with leading zeros if necessary. See the [cryptography details page](/docs/specs/cryptography#sig) for parameters of the various signature types.
 
 ### Notes
 
@@ -410,7 +410,7 @@ TBD, unimplemented, see proposal 130. Blocklist updates are delivered in the new
 
 ## References
 
-- **[CRYPTO-SIG]** [Cryptography - Signatures](/docs/how/cryptography#sig)
+- **[CRYPTO-SIG]** [Cryptography - Signatures](/docs/specs/cryptography#sig)
 - **[I2P-SRC]** [I2P Source Code](https://github.com/i2p/i2p.i2p)
 - **[PLUGIN]** [Plugin Specification](/docs/specs/plugin)
 - **[Python]** [Python RSA Raw Signatures](https://stackoverflow.com/questions/59573121/python-rsa-sign-a-string-with-nonewithrsa/68301530#68301530)

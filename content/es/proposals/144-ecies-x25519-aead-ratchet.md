@@ -24,13 +24,13 @@ Las siguientes características no están implementadas a partir de la versión 
 
 ## Descripción general
 
-Esta es una propuesta para el primer nuevo tipo de cifrado de extremo a extremo desde el comienzo de I2P, para reemplazar ElGamal/AES+SessionTags [Elg-AES](/docs/legacy/elgamal-aes/).
+Esta es una propuesta para el primer nuevo tipo de cifrado de extremo a extremo desde el comienzo de I2P, para reemplazar ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/).
 
 Se basa en trabajos previos de la siguiente manera:
 
 - Especificación de estructuras comunes [Common Structures](/docs/specs/common-structures/)
 - Especificación de [I2NP](/docs/specs/i2np/) incluyendo LS2
-- ElGamal/AES+Session Tags [Elg-AES](/docs/legacy/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) descripción general de criptografía asimétrica nueva
 - Descripción general de criptografía de bajo nivel [CRYPTO-ELG](/docs/specs/cryptography/)
 - ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)

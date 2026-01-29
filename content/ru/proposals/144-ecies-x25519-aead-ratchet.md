@@ -24,13 +24,13 @@ toc: true
 
 ## Обзор
 
-Это предложение для первого нового типа сквозного шифрования с самого начала I2P, чтобы заменить ElGamal/AES+SessionTags [Elg-AES](/docs/legacy/elgamal-aes/).
+Это предложение для первого нового типа сквозного шифрования с самого начала I2P, чтобы заменить ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/).
 
 Это основано на предыдущих работах следующим образом:
 
 - Спецификация общих структур [Common Structures](/docs/specs/common-structures/)
 - Спецификация [I2NP](/docs/specs/i2np/), включая LS2
-- ElGamal/AES+Session Tags [Elg-AES](/docs/legacy/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) обзор новой асимметричной криптографии
 - Низкоуровневый обзор криптографии [CRYPTO-ELG](/docs/specs/cryptography/)
 - ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)

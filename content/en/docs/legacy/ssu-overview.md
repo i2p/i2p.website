@@ -12,7 +12,7 @@ SSU support was removed from Java I2P in release 2.4.0 (API 0.9.61) 2023-12.
 
 SSU (also called "UDP" in much of the I2P documentation and user interfaces)
 was one of two [transports](/docs/transport) implemented in I2P.
-The other is [NTCP2](/docs/spec/ntcp2).
+The other is [NTCP2](/docs/specs/ntcp2).
 Support for [NTCP](/docs/legacy/ntcp) has been removed.
 
 SSU was introduced in I2P release 0.6.
@@ -206,7 +206,7 @@ MODP group (#14) is used:
 ```
 
 These are the same p and g used for I2P's
-[ElGamal encryption](/docs/how/cryptography#elgamal).
+[ElGamal encryption](/docs/specs/cryptography#elgamal).
 
 
 ## Replay Prevention {#replay}
@@ -239,7 +239,7 @@ Each of the addresses may also expose a series of options - special
 capabilities of that particular peer. For a list of available
 capabilities, see [below](#capabilities).
 
-The addresses, options, and capabilities are published in the [network database](/docs/how/network-database).
+The addresses, options, and capabilities are published in the [network database](/docs/overview/network-database).
 
 
 ## Direct Session Establishment {#direct}
@@ -264,16 +264,16 @@ IPv6 is supported as of version 0.9.8.
 ```
 
 After the SessionConfirmed message is received, Bob sends a small
-[DeliveryStatus message](/docs/spec/i2np#msg_DeliveryStatus)
+[DeliveryStatus message](/docs/specs/i2np#msg_DeliveryStatus)
 as a confirmation.
 In this message, the 4-byte message ID is set to a random number, and the
 8-byte "arrival time" is set to the current network-wide ID, which is 2
 (i.e. 0x0000000000000002).
 
 After the status message is sent, the peers usually exchange
-[DatabaseStore messages](/docs/spec/i2np#msg_DatabaseStore)
+[DatabaseStore messages](/docs/specs/i2np#msg_DatabaseStore)
 containing their
-[RouterInfos](/docs/spec/common-structures#struct_RouterInfo),
+[RouterInfos](/docs/specs/common-structures#struct_RouterInfo),
 however, this is not required.
 
 It does not appear that the type of the status message or its contents matters.
@@ -453,7 +453,7 @@ See [Proposal 158](/spec/proposals/158) for details.
 The DATA message may contain ACKs of full messages and
 partial ACKs of individual fragments of a message. See
 the data message section of
-[the protocol specification page](/docs/spec/ssu)
+[the protocol specification page](/docs/legacy/ssu)
 for details.
 
 The details of windowing, ACK, and retransmission strategies are not specified
@@ -546,4 +546,4 @@ Note: These issues will be addressed in the development of SSU2.
 
 # Specification {#spec}
 
-[Now on the SSU specification page](/docs/spec/ssu).
+[Now on the SSU specification page](/docs/legacy/ssu).

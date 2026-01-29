@@ -24,13 +24,13 @@ toc: true
 
 ## 개요
 
-이것은 I2P 시작 이래 첫 번째 새로운 end-to-end 암호화 유형에 대한 제안으로, ElGamal/AES+SessionTags [Elg-AES](/docs/legacy/elgamal-aes/)를 대체하기 위한 것입니다.
+이것은 I2P 시작 이래 첫 번째 새로운 end-to-end 암호화 유형에 대한 제안으로, ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/)를 대체하기 위한 것입니다.
 
 다음과 같은 이전 작업에 의존합니다:
 
 - 공통 구조 명세 [Common Structures](/docs/specs/common-structures/)
 - LS2를 포함한 [I2NP](/docs/specs/i2np/) 명세
-- ElGamal/AES+Session Tags [Elg-AES](/docs/legacy/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) 새로운 비대칭 암호화 개요
 - 저수준 암호화 개요 [CRYPTO-ELG](/docs/specs/cryptography/)
 - ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)

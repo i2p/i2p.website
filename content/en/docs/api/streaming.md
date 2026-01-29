@@ -18,7 +18,7 @@ The other end-to-end transport library for client communication is the
 [datagram library](/docs/specs/datagrams).
 
 The streaming library is a layer on top of the core
-[I2CP API](/docs/spec/i2cp) that allows reliable, in-order, and authenticated streams
+[I2CP API](/docs/specs/i2cp) that allows reliable, in-order, and authenticated streams
 of messages to operate across an unreliable, unordered, and unauthenticated
 message layer. Just like the TCP to IP relationship, this streaming
 functionality has a whole series of tradeoffs and optimizations available, but
@@ -52,14 +52,14 @@ it contains a full windowing implementation.
 ## API {#api}
 
 The streaming library API provides a standard socket paradigm to Java applications.
-The lower-level [I2CP](/docs/spec/i2cp) API is completely hidden, except that
-applications may pass [I2CP parameters](/docs/spec/i2cp#options) through the
+The lower-level [I2CP](/docs/specs/i2cp) API is completely hidden, except that
+applications may pass [I2CP parameters](/docs/specs/i2cp#options) through the
 streaming library, to be interpreted by I2CP.
 
 The standard interface to the streaming lib is for the application to use the
 I2PSocketManagerFactory to create an I2PSocketManager. The application then asks the
 socket manager for an I2PSession, which will cause
-a connection to the router via [I2CP](/docs/spec/i2cp). The application
+a connection to the router via [I2CP](/docs/specs/i2cp). The application
 can then setup connections with an I2PSocket or
 receive connections with an I2PServerSocket.
 
@@ -334,7 +334,7 @@ latency, reliability, and efficiency, especially for long-lived connections.
 ### Data Integrity {#integrity}
 
 Data integrity is assured by the gzip CRC-32 checksum implemented in
-[the I2CP layer](/docs/spec/i2cp#format).
+[the I2CP layer](/docs/specs/i2cp#format).
 There is no checksum field in the streaming protocol.
 
 
@@ -342,8 +342,8 @@ There is no checksum field in the streaming protocol.
 
 Each packet is sent through I2P as a single message (or as an individual clove in a
 [Garlic Message](/docs/overview/garlic-routing)). Message encapsulation is implemented
-in the underlying [I2CP](/docs/spec/i2cp), [I2NP](/docs/spec/i2np), and
-[tunnel message](/docs/spec/tunnel-message) layers. There is no packet delimiter
+in the underlying [I2CP](/docs/specs/i2cp), [I2NP](/docs/specs/i2np), and
+[tunnel message](/docs/specs/tunnel-message) layers. There is no packet delimiter
 mechanism or payload length field in the streaming protocol.
 
 

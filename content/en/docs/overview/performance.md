@@ -1,112 +1,154 @@
 ---
-title: "Performance"
-description: "I2P network performance: how it behaves today, historical improvements, and ideas for future tuning"
-slug: "performance"
-lastUpdated: "2025-10"
-accurateFor: "2.10.0"
-reviewStatus: "needs-review"
+title: "Peer Profiling and Selection"
+description: "How I2P routers profile peers and select them for tunnel building"
+slug: "peer-selection"
+lastUpdated: "2024-02"
+accurateFor: "0.9.62"
 ---
 
-## I2P Network Performance: Speed, Connections and Resource Management
+## NOTE
 
-The I2P network is fully dynamic. Each client is known to other nodes and tests locally known nodes for reachability and capacity. Only reachable and capable nodes are saved to a local NetDB. During the tunnel building process, the best resources are selected from this pool to build tunnels with. Because testing happens continuously, the pool of nodes changes. Each I2P node knows a different part of the NetDB, meaning that each router has a different set of I2P nodes to be used for tunnels. Even if two routers have the same subset of known nodes, the tests for reachability and capacity will likely show different results, as the other routers could be under load just as one router tests, but be free when the second router tests.
-
-This describes why each I2P node has different nodes to build tunnels. Because every I2P node has a different latency and bandwidth, tunnels (which are built via those nodes) have different latency and bandwidth values. And because every I2P node has different tunnels built, no two I2P nodes have the same tunnel sets.
-
-A server/client is known as a "destination" and each destination has at least one inbound and one outbound tunnel. The default is 3 hops per tunnel. This adds up to 12 hops (12 different I2P nodes) for a full round trip client → server → client.
-
-Each data package is sent through 6 other I2P nodes until it reaches the server:
-
-client - hop1 - hop2 - hop3 - hopa1 - hopa2 - hopa3 - server
-
-and on the way back 6 different I2P nodes:
-
-server - hopb1 - hopb2 - hopb3 - hopc1 - hopc2 - hopc3 - client
-
-Traffic on the network needs an ACK before new data is sent; it needs to wait until an ACK returns from a server: send data, wait for ACK, send more data, wait for ACK. As the RTT (Round Trip Time) adds up from the latency of each individual I2P node and each connection on this round trip, it takes usually 1–3 seconds until an ACK comes back to the client. Because of TCP and I2P transport design, a data package has a limited size. Together these conditions set a limit max bandwidth per tunnel of roughly 20–50 kB/s. However, if only one hop in the tunnel has only 5 kB/s bandwidth to spend, the whole tunnel is limited to 5 kB/s, independent of the latency and other limitations.
-
-Encryption, latency, and how a tunnel is built makes it quite expensive in CPU time to build a tunnel. This is why a destination is only allowed to have a maximum of 6 inbound and 6 outbound tunnels to transport data. With a max of 50 kB/s per tunnel, a destination could use roughly 300 kB/s traffic combined (in reality it could be more if shorter tunnels are used with low or no anonymity available). Used tunnels are discarded every 10 minutes and new ones are built. This change of tunnels, and sometimes clients that shut down or lose their connection to the network, will sometimes break tunnels and connections. An example of this can be seen on the IRC2P Network in loss of connection (ping timeout) or when using eepget.
-
-With a limited set of destinations and a limited set of tunnels per destination, one I2P node only uses a limited set of tunnels across other I2P nodes. For example, if an I2P node is "hop1" in the small example above, it only sees one participating tunnel originating from the client. If we sum up the whole I2P network, only a rather limited number of participating tunnels could be built with a limited amount of bandwidth all together. If one distributes these limited numbers across the number of I2P nodes, there is only a fraction of available bandwidth/capacity available for use.
-
-To remain anonymous, one router should not be used by the whole network for building tunnels. If one router does act as a tunnel router for all I2P nodes, it becomes a very real central point of failure as well as a central point to gather IPs and data from clients. This is why the network distributes traffic across nodes in the tunnel building process.
-
-Another consideration for performance is the way I2P handles mesh networking. Each connection hop‑to‑hop utilizes one TCP or UDP connection on I2P nodes. With 1000 connections, one sees 1000 TCP connections. That is quite a lot, and some home and small office routers only allow a small number of connections. I2P tries to limit these connections to under 1500 per UDP and per TCP type. This limits the amount of traffic routed across an I2P node as well.
-
-If a node is reachable, and has a bandwidth setting of >128 kB/s shared and is reachable 24/7, it should be used after some time for participating traffic. If it is down in between, the testing of an I2P node done by other nodes will tell them it is not reachable. This blocks a node for at least 24 hours on other nodes. So, the other nodes which tested that node as down will not use that node for 24 hours for building tunnels. This is why your traffic is lower after a restart/shutdown of your I2P router for a minimum of 24 hours.
-
-Additionally, other I2P nodes need to know an I2P router to test it for reachability and capacity. This process can be made faster when you interact with the network, for instance by using applications or visiting I2P sites, which will result in more tunnel building and therefore more activity and reachability for testing by nodes on the network.
-
-## Performance History (selected)
-
-Over the years, I2P has seen a number of notable performance improvements:
-
-### Native math
-
-Implemented via JNI bindings to the GNU MP library (GMP) to accelerate BigInteger `modPow`, which previously dominated CPU time. Early results showed dramatic speedups in public‑key cryptography. See: /misc/jbigi/
-
-### Garlic wrapping a "reply" LeaseSet (tuned)
-
-Previously, replies often required a network database lookup for the sender’s LeaseSet. Bundling the sender’s LeaseSet in the initial garlic improves reply latency. This is now done selectively (start of a connection or when the LeaseSet changes) to reduce overhead.
-
-### More efficient TCP rejection
-
-Moved some validation steps earlier in the transport handshake to reject bad peers sooner (wrong clocks, bad NAT/firewall, incompatible versions), saving CPU and bandwidth.
-
-### Tunnel testing adjustments
-
-Use context‑aware tunnel testing: avoid testing tunnels already known to be passing data; favor testing when idle. This reduces overhead and speeds detection of failing tunnels.
-
-### Persistent tunnel/lease selection
-
-Persisting selections for a given connection reduces out‑of‑order delivery and allows the streaming library to increase window sizes, improving throughput.
-
-### Compress selected data structures
-
-GZip or similar for verbose structures (e.g., RouterInfo options) reduces bandwidth where appropriate.
-
-### Full streaming protocol
-
-Replacement for the simplistic “ministreaming” protocol. Modern streaming includes selective ACKs and congestion control tailored to I2P’s anonymous, message‑oriented substrate. See: /docs/api/streaming/
-
-## Future Performance Improvements (historical ideas)
-
-Below are ideas documented historically as potential improvements. Many are obsolete, implemented, or superseded by architectural changes.
-
-### Better peer profiling and selection
-
-Improve how routers choose peers for tunnel building to avoid slow or overloaded ones, while remaining resistant to Sybil attacks by powerful adversaries.
-
-### Network database tuning
-
-Reduce unnecessary exploration when the keyspace is stable; tune how many peers are returned in lookups and how many concurrent searches are performed.
-
-### Session Tag tuning and improvements (legacy)
-
-For the legacy ElGamal/AES+SessionTag scheme, smarter expiration and replenishment strategies reduce ElGamal fallbacks and wasted tags.
-
-### Migrate SessionTag to synchronized PRNG (legacy)
-
-Generate tags from a synchronized PRNG seeded during a new session establishment, reducing per‑message overhead from pre‑delivered tags.
-
-### Longer‑lasting tunnels
-
-Longer tunnel lifetimes coupled with healing can reduce rebuild overheads; balance with anonymity and reliability.
-
-### Efficient transport rejection and testing
-
-Reject invalid peers earlier and make tunnel tests more context‑aware to reduce contention and latency.
-
-### Miscellaneous protocol and implementation tuning
-
-Selective LeaseSet bundling, compressed RouterInfo options, and adoption of the full streaming protocol all contribute to better perceived performance.
+This page describes the Java I2P implementation of peer profiling and selection as of 2010. While still broadly accurate, some details may no longer be correct. We continue to evolve banning, blocking, and selection strategies to address newer threats, attacks, and network conditions. The current network has multiple router implementations with various versions. Other I2P implementations may have completely different profiling and selection strategies, or may not use profiling at all.
 
 ---
 
-See also:
+## Overview
 
-- [Tunnel Routing](/docs/overview/tunnel-routing/)
-- [Peer Selection](/docs/overview/tunnel-routing/)
-- [Transports](/docs/overview/transport/)
-- [SSU2 Specification](/docs/specs/ssu2/) and [NTCP2 Specification](/docs/specs/ntcp2/)
+### Peer Profiling
 
+**Peer profiling** is the process of collecting data based on the **observed** performance of other routers or peers, and classifying those peers into groups. Profiling does **not** use any claimed performance data published by the peer itself in the [network database](/docs/overview/network-database/).
+
+Profiles are used for two purposes:
+
+1. Selecting peers to relay our traffic through, which is discussed below
+2. Choosing peers from the set of floodfill routers to use for network database storage and queries, which is discussed on the [network database](/docs/overview/network-database/) page
+
+### Peer Selection
+
+**Peer selection** is the process of choosing which routers on the network we want to relay our messages to go through (which peers will we ask to join our tunnels). To accomplish this, we keep track of how each peer performs (the peer's "profile") and use that data to estimate how fast they are, how often they will be able to accept our requests, and whether they seem to be overloaded or otherwise unable to perform what they agree to reliably.
+
+Unlike some other anonymous networks, in I2P, claimed bandwidth is untrusted and is **only** used to avoid those peers advertising very low bandwidth insufficient for routing tunnels. All peer selection is done through profiling. This prevents simple attacks based on peers claiming high bandwidth in order to capture large numbers of tunnels. It also makes [timing attacks](/docs/overview/threat-model/#timing) more difficult.
+
+Peer selection is done quite frequently, as a router may maintain a large number of client and exploratory tunnels, and a tunnel lifetime is only 10 minutes.
+
+### Further Information
+
+For more information see the paper [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf) presented at [PET-CON 2009.1](http://web.archive.org/web/20100413184504/http://www.pet-con.org/index.php/PET_Convention_2009.1). See [below](#notes) for notes on minor changes since the paper was published.
+
+---
+
+## Profiles
+
+Each peer has a set of data points collected about them, including statistics about how long it takes for them to reply to a network database query, how often their tunnels fail, and how many new peers they are able to introduce us to, as well as simple data points such as when we last heard from them or when the last communication error occurred. The specific data points gathered can be found in the [code](http://idk.i2p/javadoc-i2p/net/i2p/router/peermanager/PeerProfile.html).
+
+Profiles are fairly small, a few KB. To control memory usage, the profile expiration time lessens as the number of profiles grows. Profiles are kept in memory until router shutdown, when they are written to disk. At startup, the profiles are read so the router need not reinitialize all profiles, thus allowing a router to quickly re-integrate into the network after startup.
+
+---
+
+## Peer Summaries
+
+While the profiles themselves can be considered a summary of a peer's performance, to allow for effective peer selection we break each summary down into four simple values, representing the peer's speed, its capacity, how well integrated into the network it is, and whether it is failing.
+
+### Speed
+
+The speed calculation simply goes through the profile and estimates how much data we can send or receive on a single tunnel through the peer in a minute. For this estimate it just looks at performance in the previous minute.
+
+### Capacity
+
+The capacity calculation simply goes through the profile and estimates how many tunnels the peer would agree to participate in over a given time period. For this estimate it looks at how many tunnel build requests the peer has accepted, rejected, and dropped, and how many of the agreed-to tunnels later failed. While the calculation is time-weighted so that recent activity counts more than later activity, statistics up to 48 hours old may be included.
+
+Recognizing and avoiding unreliable and unreachable peers is critically important. Unfortunately, as the tunnel building and testing require the participation of several peers, it is difficult to positively identify the cause of a dropped build request or test failure. The router assigns a probability of failure to each of the peers, and uses that probability in the capacity calculation. Drops and test failures are weighted much higher than rejections.
+
+---
+
+## Peer organization
+
+As mentioned above, we drill through each peer's profile to come up with a few key calculations, and based upon those, we organize each peer into three groups - fast, high capacity, and standard.
+
+The groupings are not mutually exclusive, nor are they unrelated:
+
+- A peer is considered "high capacity" if its capacity calculation meets or exceeds the median of all peers.
+- A peer is considered "fast" if they are already "high capacity" and their speed calculation meets or exceeds the median of all peers.
+- A peer is considered "standard" if it is not "high capacity"
+
+These groupings are implemented in the router's [ProfileOrganizer](http://idk.i2p/javadoc-i2p/net/i2p/router/peermanager/ProfileOrganizer.html).
+
+### Group size limits
+
+The size of the groups may be limited.
+
+- The fast group is limited to 30 peers. If there would be more, only the ones with the highest speed rating are placed in the group.
+- The high capacity group is limited to 75 peers (including the fast group). If there would be more, only the ones with the highest capacity rating are placed in the group.
+- The standard group has no fixed limit, but is somewhat smaller than the number of RouterInfos stored in the local network database. On an active router in today's network, there may be about 1000 RouterInfos and 500 peer profiles (including those in the fast and high capacity groups)
+
+---
+
+## Recalculation and Stability
+
+Summaries are recalculated, and peers are resorted into groups, every 45 seconds.
+
+The groups tend to be fairly stable, that is, there is not much "churn" in the rankings at each recalculation. Peers in the fast and high capacity groups get more tunnels build through them, which increases their speed and capacity ratings, which reinforces their presence in the group.
+
+---
+
+## Peer Selection
+
+The router selects peers from the above groups to build tunnels through.
+
+### Peer Selection for Client Tunnels
+
+Client tunnels are used for application traffic, such as for HTTP proxies and web servers.
+
+To reduce the susceptibility to [some attacks](http://blog.torproject.org/blog/one-cell-enough), and increase performance, peers for building client tunnels are chosen randomly from the smallest group, which is the "fast" group. There is no bias toward selecting peers that were previously participants in a tunnel for the same client.
+
+### Peer Selection for Exploratory Tunnels
+
+Exploratory tunnels are used for router administrative purposes, such as network database traffic and testing client tunnels. Exploratory tunnels are also used to contact previously unconnected routers, which is why they are called "exploratory". These tunnels are usually low-bandwidth.
+
+Peers for building exploratory tunnels are generally chosen randomly from the standard group. If the success rate of these build attempts is low compared to the client tunnel build success rate, the router will select a weighted average of peers randomly from the high capacity group instead. This helps maintain a satisfactory build success rate even when network performance is poor. There is no bias toward selecting peers that were previously participants in an exploratory tunnel.
+
+As the standard group includes a very large subset of all peers the router knows about, exploratory tunnels are essentially built through a random selection of all peers, until the build success rate becomes too low.
+
+### Restrictions
+
+To prevent some simple attacks, and for performance, there are the following restrictions:
+
+- Two peers from the same /16 IP space may not be in the same tunnel.
+- A peer may participate in a maximum of 33% of all tunnels created by the router.
+- Peers with extremely low bandwidth are not used.
+- Peers for which a recent connection attempt failed are not used.
+
+### Peer Ordering in Tunnels
+
+Peers are ordered within tunnels to deal with the [predecessor attack](http://forensics.umass.edu/pubs/wright-tissec.pdf) ([2008 update](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf)). More information is on the [tunnel page](/docs/specs/tunnel-impl/#ordering).
+
+---
+
+## Future Work
+
+- Continue to analyze an tune speed and capacity calculations as necessary
+- Implement a more aggressive ejection strategy if necessary to control memory usage as the network grows
+- Evaluate group size limits
+- Use GeoIP data to include or exclude certain peers, if configured
+
+---
+
+## Notes
+
+For those reading the paper [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf), please keep in mind the following minor changes in I2P since the paper's publication:
+
+- The Integration calculation is still not used
+- In the paper, "groups" are called "tiers"
+- The "Failing" tier is no longer used
+- The "Not Failing" tier is now named "Standard"
+
+---
+
+## References
+
+- [Peer Profiling and Selection in the I2P Anonymous Network](/static/pdf/I2P-PET-CON-2009.1.pdf)
+- [One Cell Enough](http://blog.torproject.org/blog/one-cell-enough)
+- [Tor Entry Guards](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
+- [Murdoch 2007 Paper](http://freehaven.net/anonbib/#murdoch-pet2007)
+- [Tune-up for Tor](http://www.crhc.uiuc.edu/~nikita/papers/tuneup-cr.pdf)
+- [Low-resource Routing Attacks Against Tor](http://cs.gmu.edu/~mccoy/papers/wpes25-bauer.pdf)

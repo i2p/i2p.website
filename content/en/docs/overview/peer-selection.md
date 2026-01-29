@@ -201,7 +201,7 @@ To prevent some simple attacks, and for performance, there are the following res
 Peers are ordered within tunnels to
 to deal with the [predecessor attack](http://forensics.umass.edu/pubs/wright-tissec.pdf)
 ([2008 update](http://forensics.umass.edu/pubs/wright.tissec.2008.pdf)).
-More information is on the [tunnel page](/docs/spec/tunnel-implementation#ordering).
+More information is on the [tunnel page](/docs/specs/tunnel-implementation#ordering).
 
 
 ## Future Work {#future}

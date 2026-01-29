@@ -1,6 +1,7 @@
 ---
 title: "B32 for Encrypted Leasesets"
 description: "Base 32 address format for encrypted LS2 leasesets"
+slug: "b32encrypted"
 category: "Design"
 lastUpdated: "2020-08"
 accurateFor: "0.9.47"

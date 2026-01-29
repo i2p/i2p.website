@@ -27,13 +27,13 @@ The following features are not implemented as of 0.9.46:
 ## Overview
 
 This is a proposal for the first new end-to-end encryption type
-since the beginning of I2P, to replace ElGamal/AES+SessionTags [Elg-AES](/docs/legacy/elgamal-aes/).
+since the beginning of I2P, to replace ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/).
 
 It relies on previous work as follows:
 
 - Common structures spec [Common Structures](/docs/specs/common-structures/)
 - [I2NP](/docs/specs/i2np/) spec including LS2
-- ElGamal/AES+Session Tags [Elg-AES](/docs/legacy/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) new asymmetric crypto overview
 - Low-level crypto overview [CRYPTO-ELG](/docs/specs/cryptography/)
 - ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)
@@ -3452,7 +3452,7 @@ either ECIES-only, or dual-key.
 
 * [Common](/docs/specs/common-structures/)
 * [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)
-* [ElG-AES](/docs/legacy/elgamal-aes/)
+* [ElG-AES](/docs/specs/elgamal-aes/)
 * [Elligator2](https://elligator.cr.yp.to/elligator-20130828.pdf)
 * [GARLICSPEC](/docs/overview/garlic-routing/)
 * [I2CP](/docs/specs/i2cp/)

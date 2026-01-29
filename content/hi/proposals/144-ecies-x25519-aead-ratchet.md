@@ -24,13 +24,13 @@ toc: true
 
 ## अवलोकन
 
-यह I2P की शुरुआत से पहले नए end-to-end encryption प्रकार का एक प्रस्ताव है, जो ElGamal/AES+SessionTags [Elg-AES](/docs/legacy/elgamal-aes/) को बदलने के लिए है।
+यह I2P की शुरुआत से पहले नए end-to-end encryption प्रकार का एक प्रस्ताव है, जो ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/) को बदलने के लिए है।
 
 यह निम्नलिखित पूर्व कार्य पर आधारित है:
 
 - Common structures spec [Common Structures](/docs/specs/common-structures/)
 - [I2NP](/docs/specs/i2np/) spec जिसमें LS2 शामिल है
-- ElGamal/AES+Session Tags [Elg-AES](/docs/legacy/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) नया asymmetric crypto अवलोकन
 - निम्न-स्तरीय crypto अवलोकन [CRYPTO-ELG](/docs/specs/cryptography/)
 - ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)

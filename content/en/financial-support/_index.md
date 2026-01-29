@@ -1,9 +1,7 @@
 ---
 title: "Support I2P"
 slug: "financial-support"
-layout: docs/single
-type: docs
-hideSidebar: true
+layout: single
 aliases:
   - "/donate"
   - "/en/donate"

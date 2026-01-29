@@ -1,6 +1,7 @@
 ---
 title: "GeoIP File Formats"
 description: "Legacy GeoIP file format specifications for IP to country lookups"
+slug: "geoip"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

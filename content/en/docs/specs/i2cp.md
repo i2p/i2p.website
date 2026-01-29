@@ -30,7 +30,7 @@ passed via an internal JVM interface. I2CP is also supported externally
 by the C++ router i2pd.
 
 More information is on the I2CP Overview page
-[I2CP](/docs/how/i2cp/).
+[I2CP](/docs/specs/i2cp/).
 
 ## Sessions
 
@@ -54,7 +54,7 @@ the session is destroyed.
 Note: The examples below do not show the Protocol Byte (0x2a) that must
 be sent from the client to the router when first connecting. More
 information about connection initialization is on the I2CP Overview page
-[I2CP](/docs/how/i2cp/).
+[I2CP](/docs/specs/i2cp/).
 
 ### Standard Session Establish
 
@@ -390,7 +390,7 @@ Destination to another.
 #### Notes
 
 The payload is in a gzip format as specified on the I2CP Overview page
-[I2CP-FORMAT](/docs/how/i2cp/#format).
+[I2CP-FORMAT](/docs/specs/i2cp/#format).
 
 Actual message length limit is about 64 KB.
 
@@ -411,7 +411,7 @@ Defines the configuration options for a particular client session.
 #### Notes
 
 - The options are specified on the I2CP Overview page
-  [I2CP-OPTIONS](/docs/how/i2cp/#options).
+  [I2CP-OPTIONS](/docs/specs/i2cp/#options).
 - The [Mapping](/docs/specs/common-structures/#mapping) must be sorted by key so that
   the signature will be validated correctly in the router.
 - The creation date must be within +/- 30 seconds of the current time
@@ -428,7 +428,7 @@ Defines the configuration options for a particular client session.
   is verified with the
   [SigningPublicKey](/docs/specs/common-structures/#signingpublickey) specified in
   i2cp.leaseSetTransientPublicKey. See
-  [I2CP-OPTIONS](/docs/how/i2cp/#options) for details.
+  [I2CP-OPTIONS](/docs/specs/i2cp/#options) for details.
 
 ### Session ID {#struct-SessionId}
 
@@ -1841,7 +1841,7 @@ Additional SetDate messages will not be sent to clients in the same JVM.
 - [Destination](/docs/specs/common-structures/#destination)
 - [EncryptedLeaseSet](/docs/specs/common-structures/#leaseset2)
 - [Hash](/docs/specs/common-structures/#hash)
-- [I2CP Overview](/docs/how/i2cp/)
+- [I2CP Overview](/docs/specs/i2cp/)
 - [I2CP Javadocs](http://javadoc.i2p.net/net/i2p/data/i2cp/package-summary.html)
 - [Integer](/docs/specs/common-structures/#integer)
 - [Lease](/docs/specs/common-structures/#lease)

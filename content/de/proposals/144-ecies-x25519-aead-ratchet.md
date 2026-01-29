@@ -24,13 +24,13 @@ Die folgenden Funktionen sind ab Version 0.9.46 nicht implementiert:
 
 ## Überblick
 
-Dies ist ein Vorschlag für den ersten neuen End-to-End-Verschlüsselungstyp seit den Anfängen von I2P, um ElGamal/AES+SessionTags [Elg-AES](/docs/legacy/elgamal-aes/) zu ersetzen.
+Dies ist ein Vorschlag für den ersten neuen End-to-End-Verschlüsselungstyp seit den Anfängen von I2P, um ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/) zu ersetzen.
 
 Es basiert auf folgenden Vorarbeiten:
 
 - Common Structures Spezifikation [Common Structures](/docs/specs/common-structures/)
 - [I2NP](/docs/specs/i2np/) Spezifikation einschließlich LS2
-- ElGamal/AES+Session Tags [Elg-AES](/docs/legacy/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) Überblick über neue asymmetrische Kryptographie
 - Low-Level-Kryptographie-Überblick [CRYPTO-ELG](/docs/specs/cryptography/)
 - ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)

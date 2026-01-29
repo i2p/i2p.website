@@ -9,7 +9,7 @@ accurateFor: "0.9.66"
 
 ## Datagram Overview {#overview}
 
-Datagrams build upon the base [I2CP](/docs/spec/i2cp) to provide authenticated
+Datagrams build upon the base [I2CP](/docs/specs/i2cp) to provide authenticated
 and repliable messages in a standard format. This lets applications reliably read
 the "from" address out of a datagram and know that the address really sent the
 message. This is necessary for some applications since the base I2P message is
@@ -18,7 +18,7 @@ message and sender are authenticated by signing the payload.
 
 Datagrams, like [streaming library packets](/docs/api/streaming),
 are an application-level construct.
-These protocols are independent of the low-level [transports](/docs/spec/transports);
+These protocols are independent of the low-level [transports](/docs/overview/transport);
 the protocols are converted to I2NP messages by the router, and
 either protocol may be carried by either transport.
 
@@ -59,7 +59,7 @@ As datagrams are not connection-oriented, the application may require
 port numbers to correlate datagrams with particular peers or communications sessions,
 as is traditional with UDP over IP.
 Applications may add 'from' and 'to' ports to the I2CP (gzip) header as described in
-the [I2CP page](/docs/spec/i2cp#format).
+the [I2CP page](/docs/specs/i2cp#format).
 
 There is no method within the datagram API to specify whether it is non-repliable (raw)
 or repliable. The application should be designed to expect the appropriate type.
@@ -82,7 +82,7 @@ for the reply, returning the nonce from the request.
 ### Data Integrity {#integrity}
 
 Data integrity is assured by the gzip CRC-32 checksum implemented in
-[the I2CP layer](/docs/spec/i2cp#format).
+[the I2CP layer](/docs/specs/i2cp#format).
 Authenticated datagrams (Datagram1 and Datagram2) also ensure integrity.
 There is no checksum field in the datagram protocol.
 
@@ -92,9 +92,9 @@ There is no checksum field in the datagram protocol.
 Each datagram is sent through I2P as a single message (or as an individual clove in a
 [Garlic Message](/docs/overview/garlic-routing)).
 Message encapsulation is implemented in the underlying
-[I2CP](/docs/spec/i2cp),
-[I2NP](/docs/spec/i2np), and
-[tunnel message](/docs/spec/tunnel-message) layers.
+[I2CP](/docs/specs/i2cp),
+[I2NP](/docs/specs/i2np), and
+[tunnel message](/docs/specs/tunnel-message) layers.
 There is no packet delimiter mechanism or length field in the datagram protocol.
 
 

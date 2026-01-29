@@ -26,7 +26,7 @@ aliases:
 - [Application Development Overview and Guide](/docs/development/applications)
 - [Naming and Address Book](/docs/overview/naming)
 - [Address Book Subscription Feed Commands](/docs/specs/subscription)
-- [Plugins Overview](/docs/applications/plugins)
+- [Plugins Overview](/docs/guides/plugins)
 - [Plugin Specification](/docs/specs/plugin)
 - [Managed Clients](/docs/applications/managed-clients)
 - [Embedding the router in your application](/docs/applications/embedding)
@@ -67,7 +67,7 @@ aliases:
 - [ECIES-X25519-AEAD-Ratchet encryption for destinations](/docs/specs/ecies)
 - [Hybrid ECIES-X25519 encryption](/docs/specs/ecies-hybrid)
 - [ECIES-X25519 encryption for routers](/docs/specs/ecies-routers)
-- [ElGamal/AES+SessionTag encryption](/docs/legacy/elgamal-aes)
+- [ElGamal/AES+SessionTag encryption](/docs/specs/elgamal-aes)
 - [ElGamal and AES cryptography details](/docs/specs/cryptography)
 
 
@@ -94,13 +94,13 @@ aliases:
 - [Peer profiling and selection](/docs/overview/peer-selection)
 - [Tunnel routing overview](/docs/overview/tunnel-routing)
 - [Garlic routing and terminology](/docs/overview/garlic-routing)
-- [Tunnel building and encryption](/docs/legacy/tunnel-creation)
-- [ElGamal/AES for build request encryption](/docs/legacy/elgamal-tunnel-creation)
+- [Tunnel building and encryption](/docs/specs/tunnel-creation)
+- [ElGamal/AES for build request encryption](/docs/specs/elgamal-tunnel-creation)
 - [ElGamal and AES cryptography details](/docs/specs/cryptography)
-- [Tunnel building specification (ElGamal)](/docs/legacy/tunnel-creation)
+- [Tunnel building specification (ElGamal)](/docs/specs/tunnel-creation)
 - [Tunnel building specification (ECIES-X25519)](/docs/specs/tunnel-creation-ecies)
-- [Low-level tunnel message specification](/docs/legacy/tunnel-message)
-- [Unidirectional Tunnels](/docs/legacy/unidirectional-tunnels)
+- [Low-level tunnel message specification](/docs/specs/tunnel-message)
+- [Unidirectional Tunnels](/docs/legacy/unidirectional)
 - [Peer Profiling and Selection in the I2P Anonymous Network - 2009 (PDF)](/docs/historical/I2P-PET-CON-2009.1.pdf)
 
 
@@ -117,7 +117,7 @@ aliases:
 
 - [Router software updates](/docs/specs/updates)
 - [Router reseed specification](/docs/misc/reseed)
-- [Performance](/docs/overview/performance)
+- [Performance](/docs/overview/peer-selection)
 - [Configuration File Format](/docs/specs/configuration)
 - [GeoIP File Format](/docs/legacy/geoip)
 - [Ports used by I2P](/docs/overview/ports)

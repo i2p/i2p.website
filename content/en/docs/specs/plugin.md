@@ -419,5 +419,5 @@ None of this should be a problem on initial install - you should not ever have t
 ## References
 
 -   [Configuration File Specification](/docs/specs/configuration)
--   [DSA Cryptography](/docs/how/cryptography#DSA)
+-   [DSA Cryptography](/docs/specs/cryptography#DSA)
 -   [Updates Specification](/docs/specs/updates)

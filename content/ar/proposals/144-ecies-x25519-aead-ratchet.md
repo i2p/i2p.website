@@ -24,13 +24,13 @@ toc: true
 
 ## نظرة عامة
 
-هذا اقتراح لأول نوع تشفير جديد من طرف إلى طرف منذ بداية I2P، لاستبدال ElGamal/AES+SessionTags [Elg-AES](/docs/legacy/elgamal-aes/).
+هذا اقتراح لأول نوع تشفير جديد من طرف إلى طرف منذ بداية I2P، لاستبدال ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/).
 
 يعتمد على العمل السابق كما يلي:
 
 - مواصفات الهياكل المشتركة [Common Structures](/docs/specs/common-structures/)
 - مواصفات [I2NP](/docs/specs/i2np/) بما في ذلك LS2
-- ElGamal/AES+Session Tags [Elg-AES](/docs/legacy/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) نظرة عامة على التشفير غير المتماثل الجديد
 - نظرة عامة على التشفير منخفض المستوى [CRYPTO-ELG](/docs/specs/cryptography/)
 - ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)

@@ -61,8 +61,8 @@ e.g. key="long value text". There is no escaping mechanism.
 Communication can take three distinct forms:
 
 - [Virtual streams](/docs/api/streaming)
-- [Repliable datagrams](/docs/spec/datagrams#repliable) (messages with a FROM field)
-- [Anonymous datagrams](/docs/spec/datagrams#raw) (raw anonymous messages)
+- [Repliable datagrams](/docs/specs/datagrams#repliable) (messages with a FROM field)
+- [Anonymous datagrams](/docs/specs/datagrams#raw) (raw anonymous messages)
 
 
 ## SAM Connection Handshake
@@ -183,7 +183,7 @@ This establishes a new virtual connection from the local destination
 to the specified peer, marking it with the session-scoped unique ID.
 The unique ID is an ASCII base 10 integer from 1 through (2^31-1).
 
-The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+The $destination is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination),
 which is 516 or more base 64 characters (387 or more bytes in binary),
 depending on signature type.
 
@@ -222,7 +222,7 @@ connection with them. The following data stream will be marked with
 the given unique ID, that is an ASCII base 10 integer from -1 through
 -(2^31-1).
 
-The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+The $destination is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination),
 which is 516 or more base 64 characters (387 or more bytes in binary),
 depending on signature type.
 
@@ -318,7 +318,7 @@ DATAGRAM RECEIVED
          SIZE=$numBytes\n[$numBytes of data]
 ```
 
-The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+The $destination is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination),
 which is 516 or more base 64 characters (387 or more bytes in binary),
 depending on signature type.
 
@@ -347,7 +347,7 @@ RAW SEND
     SIZE=$numBytes\n[$numBytes of data]
 ```
 
-The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+The $destination is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination),
 which is 516 or more base 64 characters (387 or more bytes in binary),
 depending on signature type.
 
@@ -390,7 +390,7 @@ current session (useful if you're using a TRANSIENT one). If $result
 is not OK, MESSAGE may convey a descriptive message, such as "bad
 format", etc.
 
-The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+The $destination is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination),
 which is 516 or more base 64 characters (387 or more bytes in binary),
 depending on signature type.
 
@@ -410,16 +410,16 @@ DEST REPLY
 
 As of I2P 0.9.14, an optional parameter SIGNATURE_TYPE is supported.
 The SIGNATURE_TYPE value may be any name (e.g. ECDSA_SHA256_P256, case insensitive) or number (e.g. 1)
-that is supported by [Key Certificates](/docs/spec/common-structures#type_Certificate).
+that is supported by [Key Certificates](/docs/specs/common-structures#type_Certificate).
 The default is DSA_SHA1.
 
-The $destination is the base 64 of the [Destination](/docs/spec/common-structures#type_Destination),
+The $destination is the base 64 of the [Destination](/docs/specs/common-structures#type_Destination),
 which is 516 or more base 64 characters (387 or more bytes in binary),
 depending on signature type.
 
-The $privkey is the base 64 of the concatenation of the [Destination](/docs/spec/common-structures#type_Destination)
-followed by the [Private Key](/docs/spec/common-structures#type_PrivateKey)
-followed by the [Signing Private Key](/docs/spec/common-structures#type_SigningPrivateKey),
+The $privkey is the base 64 of the concatenation of the [Destination](/docs/specs/common-structures#type_Destination)
+followed by the [Private Key](/docs/specs/common-structures#type_PrivateKey)
+followed by the [Signing Private Key](/docs/specs/common-structures#type_SigningPrivateKey),
 which is 884 or more base 64 characters (663 or more bytes in binary),
 depending on signature type.
 

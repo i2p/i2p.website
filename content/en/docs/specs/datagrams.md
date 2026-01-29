@@ -1,6 +1,7 @@
 ---
 title: "Datagram Specification"
 description: "Specification of I2P datagram message formats including raw, repliable, and authenticated types"
+slug: "datagrams"
 category: "Protocols"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

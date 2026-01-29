@@ -1,6 +1,7 @@
 ---
 title: "Creating and Running an I2P Reseed Server"
 description: "Complete guide to setting up and operating an I2P reseed server to help new routers join the network"
+slug: "reseed-server"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

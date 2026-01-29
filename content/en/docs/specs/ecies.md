@@ -28,15 +28,15 @@ For the MLKEM PQ Hybrid version of this protocol, see
 ## Overview
 
 This is the new end-to-end encryption protocol to replace
-ElGamal/AES+SessionTags [ElG-AES](/docs/how/elgamal-aes/).
+ElGamal/AES+SessionTags [ElG-AES](/docs/specs/elgamal-aes/).
 
 It relies on previous work as follows:
 
 - Common structures spec [Common](/docs/specs/common-structures/)
 - [I2NP](/docs/specs/i2np/) spec including LS2
-- ElGamal/AES+Session Tags [Elg-AES](/docs/how/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - <http://zzz.i2p/topics/1768> new asymmetric crypto overview
-- Low-level crypto overview [CRYPTO-ELG](/docs/how/cryptography/#elgamal)
+- Low-level crypto overview [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)
 - ECIES <http://zzz.i2p/topics/2418>
 - [NTCP2](/docs/specs/ntcp2/) [Prop111](/proposals/111-ntcp2/)
 - 123 New netDB Entries
@@ -2856,12 +2856,12 @@ are either ECIES-only, or dual-key.
 ## References
 
 - [Common](/docs/specs/common-structures/)
-- [CRYPTO-ELG](/docs/how/cryptography/#elgamal)
+- [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)
 - [Datagrams](/docs/specs/datagrams/)
 - [ECIES-HYBRID](/docs/specs/ecies-hybrid/)
-- [ElG-AES](/docs/how/elgamal-aes/)
+- [ElG-AES](/docs/specs/elgamal-aes/)
 - [Elligator2](https://elligator.cr.yp.to/elligator-20130828.pdf) - See also [Elligator article](https://www.imperialviolet.org/2013/12/25/elligator.html) and OBFS4 code
-- [GARLICSPEC](/docs/how/garlic-routing/)
+- [GARLICSPEC](/docs/overview/garlic-routing/)
 - [I2CP](/docs/specs/i2cp/)
 - [I2NP](/docs/specs/i2np/)
 - [NOISE](https://noiseprotocol.org/noise.html)

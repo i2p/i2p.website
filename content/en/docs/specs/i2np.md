@@ -234,7 +234,7 @@ DEPRECATED, only used in the current network when a tunnel contains an ElGamal r
 
 #### Description
 
-One Record in a set of multiple records to request the creation of one hop in the tunnel. For more details see the [tunnel overview](/docs/tunnels/implementation/) and the [ElGamal tunnel creation specification](/docs/legacy/tunnel-creation/).
+One Record in a set of multiple records to request the creation of one hop in the tunnel. For more details see the [tunnel overview](/docs/specs/tunnel-implementation/) and the [ElGamal tunnel creation specification](/docs/specs/tunnel-creation/).
 
 For ECIES-X25519 BuildRequestRecords, see [ECIES Tunnel Creation](/docs/specs/tunnel-creation-ecies/).
 
@@ -387,7 +387,7 @@ total length: 222
 
 - In the 512-byte encrypted record, the ElGamal data contains bytes 1-256 and 258-513 of the 514-byte ElGamal encrypted block [CRYPTO-ELG](/docs/specs/cryptography/#elgamal). The two padding bytes from the block (the zero bytes at locations 0 and 257) are removed.
 
-- See the [tunnel creation specification](/docs/legacy/tunnel-creation/) for details on field contents.
+- See the [tunnel creation specification](/docs/specs/tunnel-creation/) for details on field contents.
 
 ### BuildResponseRecord {#struct-BuildResponseRecord}
 
@@ -395,7 +395,7 @@ DEPRECATED, only used in the current network when a tunnel contains an ElGamal r
 
 #### Description
 
-One Record in a set of multiple records with responses to a build request. For more details see the [tunnel overview](/docs/tunnels/implementation/) and the [ElGamal tunnel creation specification](/docs/legacy/tunnel-creation/).
+One Record in a set of multiple records with responses to a build request. For more details see the [tunnel overview](/docs/specs/tunnel-implementation/) and the [ElGamal tunnel creation specification](/docs/specs/tunnel-creation/).
 
 For ECIES-X25519 BuildResponseRecords, see [ECIES Tunnel Creation](/docs/specs/tunnel-creation-ecies/).
 
@@ -435,7 +435,7 @@ total length: 528
 
 - The random data field could, in the future, be used to return congestion or peer connectivity information back to the requestor.
 
-- See the [tunnel creation specification](/docs/legacy/tunnel-creation/) for details on the reply field.
+- See the [tunnel creation specification](/docs/specs/tunnel-creation/) for details on the reply field.
 
 ### ShortBuildRequestRecord {#struct-ShortBuildRequestRecord}
 
@@ -1301,7 +1301,7 @@ Expiration :: Date (8 bytes)
 
 - Actual max length is less than 64 KB; see [I2NP](/docs/protocol/i2np/).
 
-- See also the [ElGamal/AES specification](/docs/legacy/elgamal-aes/).
+- See also the [ElGamal/AES specification](/docs/specs/elgamal-aes/).
 
 - See also the [garlic routing specification](/docs/overview/garlic-routing/).
 
@@ -1437,7 +1437,7 @@ total size: 8*528 = 4224 bytes
 
 - As of 0.9.48, may also contain ECIES-X25519 BuildRequestRecords, see [ECIES Tunnel Creation](/docs/specs/tunnel-creation-ecies/).
 
-- See also the [tunnel creation specification](/docs/legacy/tunnel-creation/).
+- See also the [tunnel creation specification](/docs/specs/tunnel-creation/).
 
 - The I2NP message ID for this message must be set according to the tunnel creation specification.
 
@@ -1455,7 +1455,7 @@ Same format as TunnelBuildMessage, with BuildResponseRecords
 
 - As of 0.9.48, may also contain ECIES-X25519 BuildResponseRecords, see [ECIES Tunnel Creation](/docs/specs/tunnel-creation-ecies/).
 
-- See also the [tunnel creation specification](/docs/legacy/tunnel-creation/).
+- See also the [tunnel creation specification](/docs/specs/tunnel-creation/).
 
 - The I2NP message ID for this message must be set according to the tunnel creation specification.
 
@@ -1485,7 +1485,7 @@ total size: 1+$num*528
 
 - This message was introduced in router version 0.7.12, and may not be sent to tunnel participants earlier than that version.
 
-- See also the [tunnel creation specification](/docs/legacy/tunnel-creation/).
+- See also the [tunnel creation specification](/docs/specs/tunnel-creation/).
 
 - The I2NP message ID for this message must be set according to the tunnel creation specification.
 
@@ -1507,7 +1507,7 @@ Same format as VariableTunnelBuildMessage, with BuildResponseRecords.
 
 - This message was introduced in router version 0.7.12, and may not be sent to tunnel participants earlier than that version.
 
-- See also the [tunnel creation specification](/docs/legacy/tunnel-creation/).
+- See also the [tunnel creation specification](/docs/specs/tunnel-creation/).
 
 - The I2NP message ID for this message must be set according to the tunnel creation specification.
 
@@ -1569,7 +1569,7 @@ Same format as ShortTunnelBuildMessage, with ShortBuildResponseRecords.
 - **[Date]** [Common Structures - Date](/docs/specs/common-structures/#date)
 - **[ECIES]** [ECIES Specification](/docs/specs/ecies/)
 - **[ECIES-ROUTERS]** [ECIES Routers Specification](/docs/specs/ecies-routers/)
-- **[ElG-AES]** [ElGamal/AES](/docs/legacy/elgamal-aes/)
+- **[ElG-AES]** [ElGamal/AES](/docs/specs/elgamal-aes/)
 - **[GARLICSPEC]** [Garlic Routing](/docs/overview/garlic-routing/)
 - **[Hash]** [Common Structures - Hash](/docs/specs/common-structures/#hash)
 - **[I2NP]** [I2NP Protocol](/docs/protocol/i2np/)
@@ -1582,8 +1582,8 @@ Same format as ShortTunnelBuildMessage, with ShortBuildResponseRecords.
 - **[SSU-ED]** [SSU Transport - Establish Direct](/docs/transports/ssu/#establishDirect)
 - **[SSU2]** [SSU2 Specification](/docs/specs/ssu2/)
 - **[TMDI]** [Tunnel Message Delivery Instructions](/docs/legacy/tunnel-message/#tunnel-message-delivery-instructions)
-- **[TUNNEL-CREATION]** [Tunnel Creation Specification](/docs/legacy/tunnel-creation/)
+- **[TUNNEL-CREATION]** [Tunnel Creation Specification](/docs/specs/tunnel-creation/)
 - **[TUNNEL-CREATION-ECIES]** [ECIES Tunnel Creation](/docs/specs/tunnel-creation-ecies/)
-- **[TUNNEL-IMPL]** [Tunnel Implementation](/docs/tunnels/implementation/)
+- **[TUNNEL-IMPL]** [Tunnel Implementation](/docs/specs/tunnel-implementation/)
 - **[TUNNEL-MSG]** [Tunnel Message Specification](/docs/legacy/tunnel-message/)
 - **[TunnelId]** [Common Structures - TunnelId](/docs/specs/common-structures/#tunnelid)

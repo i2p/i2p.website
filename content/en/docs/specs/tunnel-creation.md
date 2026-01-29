@@ -13,7 +13,7 @@ accurateFor: "0.9.66"
 
 NOTE: OBSOLETE - This is the ElGamal tunnel build specification. See [tunnel-creation-ecies](/docs/specs/tunnel-creation-ecies/) for the X25519 tunnel build specification.
 
-This document specifies the details of the encrypted tunnel build messages used to create tunnels using a "non-interactive telescoping" method. See the tunnel build document [TUNNEL-IMPL](/docs/tunnels/implementation/) for an overview of the process, including peer selection and ordering methods.
+This document specifies the details of the encrypted tunnel build messages used to create tunnels using a "non-interactive telescoping" method. See the tunnel build document [TUNNEL-IMPL](/docs/specs/tunnel-implementation/) for an overview of the process, including peer selection and ordering methods.
 
 The tunnel creation is accomplished by a single message passed along the path of peers in the tunnel, rewritten in place, and transmitted back to the tunnel creator. This single tunnel message is made up of a variable number of records (up to 8) - one for each potential peer in the tunnel. Individual records are asymmetrically (ElGamal [CRYPTO-ELG](/docs/specs/cryptography/#elgamal)) encrypted to be read only by a specific peer along the path, while an additional symmetric layer of encryption (AES [CRYPTO-AES](/docs/specs/cryptography/#aes)) is added at each hop so as to expose the asymmetrically encrypted record only at the appropriate time.
 
@@ -126,7 +126,7 @@ For outbound tunnels, the delivery is done directly from the tunnel creator to t
 
 ### Tunnel Build Message Endpoint Handling
 
-For creation of an outbound tunnel, when the request reaches an outbound endpoint (as determined by the 'allow messages to anyone' flag), the hop is processed as usual, encrypting a reply in place of the record and encrypting all of the other records, but since there is no 'next hop' to forward the TunnelBuildMessage on to, it instead places the encrypted reply records into a TunnelBuildReplyMessage ([TBRM](/docs/specs/i2np/#struct-TunnelBuildReply)) or VariableTunnelBuildReplyMessage ([VTBRM](/docs/specs/i2np/#struct-VariableTunnelBuildReply)) (the type of message and number of records must match that of the request) and delivers it to the reply tunnel specified within the request record. That reply tunnel forwards the Tunnel Build Reply Message back to the tunnel creator, just as for any other message [TUNNEL-OP](/docs/tunnels/implementation/#tunnel.operation). The tunnel creator then processes it, as described below.
+For creation of an outbound tunnel, when the request reaches an outbound endpoint (as determined by the 'allow messages to anyone' flag), the hop is processed as usual, encrypting a reply in place of the record and encrypting all of the other records, but since there is no 'next hop' to forward the TunnelBuildMessage on to, it instead places the encrypted reply records into a TunnelBuildReplyMessage ([TBRM](/docs/specs/i2np/#struct-TunnelBuildReply)) or VariableTunnelBuildReplyMessage ([VTBRM](/docs/specs/i2np/#struct-VariableTunnelBuildReply)) (the type of message and number of records must match that of the request) and delivers it to the reply tunnel specified within the request record. That reply tunnel forwards the Tunnel Build Reply Message back to the tunnel creator, just as for any other message [TUNNEL-OP](/docs/specs/tunnel-implementation/#tunnel.operation). The tunnel creator then processes it, as described below.
 
 The reply tunnel was selected by the creator as follows: Generally it is an inbound tunnel from the same pool as the new outbound tunnel being built. If no inbound tunnel is available in that pool, an inbound exploratory tunnel is used. At startup, when no inbound exploratory tunnel exists yet, a fake 0-hop inbound tunnel is used.
 
@@ -170,7 +170,7 @@ Notes:
 - [TBRM](/docs/specs/i2np/#struct-TunnelBuildReply) - TunnelBuildReplyMessage
 - [TUNBUILD-REASONING](http://zzz.i2p/archive/2005-10/msg00129.html)
 - [TUNBUILD-SUMMARY](http://zzz.i2p/archive/2005-10/msg00138.html)
-- [TUNNEL-IMPL](/docs/tunnels/implementation/)
-- [TUNNEL-OP](/docs/tunnels/implementation/#tunnel.operation)
+- [TUNNEL-IMPL](/docs/specs/tunnel-implementation/)
+- [TUNNEL-OP](/docs/specs/tunnel-implementation/#tunnel.operation)
 - [VTBM](/docs/specs/i2np/#struct-VariableTunnelBuild) - VariableTunnelBuildMessage
 - [VTBRM](/docs/specs/i2np/#struct-VariableTunnelBuildReply) - VariableTunnelBuildReplyMessage

@@ -1,6 +1,7 @@
 ---
 title: "PQ Hybrid ECIES-X25519-AEAD-Ratchet"
 description: "Post-quantum hybrid variant of the ECIES encryption protocol using ML-KEM"
+slug: "ecies-hybrid"
 category: "Protocols"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

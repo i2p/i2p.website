@@ -1,9 +1,7 @@
 ---
 title: "Apoya a I2P"
 slug: "financial-support"
-layout: docs/single
-type: docs
-hideSidebar: verdadero
+layout: single
 ---
 
 <style>   .support-container {     max-width: 1100px;     margin: 0 auto;   }

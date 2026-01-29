@@ -9,7 +9,7 @@ accurateFor: "0.9.66"
 ## Overview {#tunnelcreate-overview}
 
 NOTE: OBSOLETE - This is the ElGamal tunnel build specification.
-See the [X25519 tunnel build specification](/docs/spec/tunnel-creation-ecies) for the current method.
+See the [X25519 tunnel build specification](/docs/specs/tunnel-creation-ecies) for the current method.
 
 This document specifies the details of the encrypted tunnel build messages used
 to create tunnels using a "non-interactive telescoping" method. See the tunnel
@@ -301,18 +301,18 @@ Notes:
 
 ## References {#ref}
 
-- [BRR] https://geti2p.net/spec/i2np#struct-buildrequestrecord
-- [CRYPTO-AES] https://geti2p.net/en/docs/how/cryptography#AES
-- [CRYPTO-ELG] https://geti2p.net/en/docs/how/cryptography#elgamal
+- [BRR] /docs/specs/i2np#struct-buildrequestrecord
+- [CRYPTO-AES] /docs/specs/cryptography#AES
+- [CRYPTO-ELG] /docs/specs/cryptography#elgamal
 - [HASHING-IT-OUT] http://www-users.cs.umn.edu/~hopper/hashing_it_out.pdf
-- [PEER-SELECTION] https://geti2p.net/en/docs/how/peer-selection
+- [PEER-SELECTION] /docs/overview/peer-selection
 - [PREDECESSOR] http://forensics.umass.edu/pubs/wright-tissec.pdf
 - [PREDECESSOR-2008] http://forensics.umass.edu/pubs/wright.tissec.2008.pdf
-- [TBM] https://geti2p.net/spec/i2np#msg-tunnelbuild
-- [TBRM] https://geti2p.net/spec/i2np#msg-tunnelbuildreply
+- [TBM] /docs/specs/i2np#msg-tunnelbuild
+- [TBRM] /docs/specs/i2np#msg-tunnelbuildreply
 - [TUNBUILD-REASONING] http://zzz.i2p/archive/2005-10/msg00129.html
 - [TUNBUILD-SUMMARY] http://zzz.i2p/archive/2005-10/msg00138.html
-- [TUNNEL-IMPL] https://geti2p.net/en/docs/tunnels/implementation
-- [TUNNEL-OP] https://geti2p.net/en/docs/tunnels/implementation#tunnel.operation
-- [VTBM] https://geti2p.net/spec/i2np#msg-variabletunnelbuild
-- [VTBRM] https://geti2p.net/spec/i2np#msg-variabletunnelbuildreply
+- [TUNNEL-IMPL] /docs/specs/tunnel-implementation
+- [TUNNEL-OP] /docs/specs/tunnel-implementation#tunnel.operation
+- [VTBM] /docs/specs/i2np#msg-variabletunnelbuild
+- [VTBRM] /docs/specs/i2np#msg-variabletunnelbuildreply

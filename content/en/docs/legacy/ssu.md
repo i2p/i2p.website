@@ -20,7 +20,7 @@ See the [SSU overview](/docs/transport/ssu/) for more information.
 ## DH Key Exchange {#dh}
 
 The initial 2048-bit DH key exchange is described on the [SSU Keys page](/docs/transport/ssu/#keys).
-This exchange uses the same shared prime as that used for I2P's [ElGamal encryption](/docs/how/cryptography/#elgamal).
+This exchange uses the same shared prime as that used for I2P's [ElGamal encryption](/docs/specs/cryptography/#elgamal).
 
 ## Message Header {#header}
 
@@ -45,7 +45,7 @@ constructed from the exchanged DH key (see details below), as specified
 for each message below.
 
 **WARNING** - the HMAC-MD5-128 used here is non-standard, see
-[HMAC details](/docs/how/cryptography/#udp) for more information.
+[HMAC details](/docs/specs/cryptography/#udp) for more information.
 
 The payload itself (that is, the message starting with the flag byte) is
 AES256/CBC encrypted with the IV and the sessionKey, with replay
@@ -193,7 +193,7 @@ to routers older than release 0.9.24.
 ## Padding
 
 All messages contain 0 or more bytes of padding. Each message must be
-padded to a 16 byte boundary, as required by the [AES256 encryption layer](/docs/how/cryptography/#AES).
+padded to a 16 byte boundary, as required by the [AES256 encryption layer](/docs/specs/cryptography/#AES).
 
 Through release 0.9.7, messages were only padded to the next 16 byte
 boundary, and messages not a multiple of 16 bytes could possibly be
@@ -1060,11 +1060,11 @@ sequence.
 
 ## References
 
-- [AES Encryption](/docs/how/cryptography/#AES)
+- [AES Encryption](/docs/specs/cryptography/#AES)
 - [Common Structures Specification](/docs/specs/common-structures/)
 - [Date](/docs/specs/common-structures/#date)
-- [ElGamal Encryption](/docs/how/cryptography/#elgamal)
-- [HMAC Details](/docs/how/cryptography/#udp)
+- [ElGamal Encryption](/docs/specs/cryptography/#elgamal)
+- [HMAC Details](/docs/specs/cryptography/#udp)
 - [I2P Source](https://github.com/i2p/i2p.i2p)
 - [i2pd Source](https://github.com/PurpleI2P/i2pd)
 - [KeyCertificate](/docs/specs/common-structures/#key-certificates)

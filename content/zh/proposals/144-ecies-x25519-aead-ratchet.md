@@ -24,13 +24,13 @@ toc: true
 
 ## 概述
 
-这是自 I2P 诞生以来第一个新的端到端加密类型提案，用于替换 ElGamal/AES+SessionTags [Elg-AES](/docs/legacy/elgamal-aes/)。
+这是自 I2P 诞生以来第一个新的端到端加密类型提案，用于替换 ElGamal/AES+SessionTags [Elg-AES](/docs/specs/elgamal-aes/)。
 
 它依赖于以下先前的工作：
 
 - 通用结构规范 [Common Structures](/docs/specs/common-structures/)
 - [I2NP](/docs/specs/i2np/) 规范包含 LS2
-- ElGamal/AES+Session Tags [Elg-AES](/docs/legacy/elgamal-aes/)
+- ElGamal/AES+Session Tags [Elg-AES](/docs/specs/elgamal-aes/)
 - [http://zzz.i2p/topics/1768](http://zzz.i2p/topics/1768) 新的非对称加密概述
 - 底层加密概述 [CRYPTO-ELG](/docs/specs/cryptography/)
 - ECIES [http://zzz.i2p/topics/2418](http://zzz.i2p/topics/2418)
