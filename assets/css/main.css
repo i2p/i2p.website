@@ -1269,6 +1269,10 @@ html[data-ver="2.4"] .platform-card[data-platform="android"] {
     border-color: var(--color-border);
 }
 
+.coming-soon-section {
+    display: none;
+}
+
 .coming-soon-badge {
     display: inline-block;
     background-color: var(--color-text-muted);

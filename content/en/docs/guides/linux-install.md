@@ -14,17 +14,15 @@ There are two ways to install I2P on Linux. Choose the method that best fits you
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
 
-<div style="border: 2px solid #22c55e; border-radius: 8px; padding: 1.5rem; background: var(--background-secondary); display: flex; flex-direction: column;">
+<div class="coming-soon-section" style="border: 2px solid #22c55e; border-radius: 8px; padding: 1.5rem; background: var(--background-secondary); display: flex; flex-direction: column;">
 
-### Easy Install Script (Recommended)
+### Easy Install Script (Coming Soon)
 
 **Best for most users**
 
 A single command that automatically detects your distribution and installs I2P on most Linux distros.
 
 <div style="flex-grow: 1;"></div>
-
-<a href="#easy-install" style="display: inline-block; background: #22c55e; color: white; padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; margin-top: 1rem;">Easy Install Guide &rarr;</a>
 
 </div>
 
@@ -46,15 +44,11 @@ Run commands manually for your specific distribution and understand what each st
 
 ---
 
+<div class="coming-soon-section">
+
 ## Easy Install
 
 The one-line installer automatically detects your Linux distribution and installs I2P with the correct repository and signing keys.
-
-**Before running**, you can [review the installation script](https://i2p.net/installlinux.sh).
-
-```bash
-curl -fsSL https://i2p.net/installlinux.sh | sudo bash
-```
 
 **What this does:**
 - Detects your Linux distribution (Debian, Ubuntu, Fedora, CentOS/RHEL, openSUSE)
@@ -62,6 +56,8 @@ curl -fsSL https://i2p.net/installlinux.sh | sudo bash
 - Installs I2P
 
 After installation completes, skip to [Post-Installation Configuration](#post-installation-configuration).
+
+</div>
 
 ---
 
