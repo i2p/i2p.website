@@ -17,7 +17,7 @@ defaultContentLanguageInSubdir = true
 
 # Use update_banner.sh to update banner message
   [params.banner]
-    enabled = true  # Set to true to display the banner
+    enabled = false  # Set to true to display the banner
     dismissible = true  # Allow users to dismiss the banner
     id = "banner-4"  # Unique ID for localStorage (increment number (eg 1 > 2 > 3) to display new banner)
     link_page = "blog/2026-02-09-i2p-2-11-0-release"  # Content path for banner link (uses .GetPage for auto language resolution)

@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
+#
+# I2P Linux Easy Installer
+# Detects distro and installs I2P via the appropriate package manager.
+# Supports Debian, Ubuntu, Fedora, CentOS/RHEL, openSUSE, and Docker fallback.
+# Offers Basic (defaults) or Advanced (bandwidth, port, UPnP) configuration.
+#
+# Maintained by: StormyCloud Inc.
+#   admin@stormycloud.org / admin@i2p.net
+# Co-maintainer: eyedeekay (idk)
+#   idk@stormycloud.org
+#
 set -e
 
 # Helper: set a key=value in a config file (update if exists, append if not)
