@@ -6,8 +6,8 @@ The official website for the Invisible Internet Project (I2P), built with [Hugo]
 
 ```bash
 # Clone the repository
-git clone https://github.com/i2p/i2p.www.git
-cd i2p.www
+git clone https://github.com/i2p/i2p.website.git
+cd i2p.website
 
 # Install Hugo (v0.147.8+ required)
 # macOS: brew install hugo
@@ -23,7 +23,7 @@ hugo --minify
 ## Project Structure
 
 ```
-i2p.www/
+i2p.website/
 ├── assets/css/          # Main stylesheet (main.css)
 ├── content/             # Markdown content by language
 │   ├── en/              # English (source language)
