@@ -1,0 +1,59 @@
+{{- $data := .Site.Data.downloads -}}
+{
+  "version": "1.0",
+  "timestamp": {{ now.Unix }},
+  "current_version": "{{ $data.current_version }}",
+  "android_version": "{{ $data.android_version }}",
+  "signing_key": {
+    "name": "{{ $data.signing_key.name }}",
+    "fingerprint": "{{ $data.signing_key.fingerprint }}",
+    "key_url": "{{ $data.signing_key.key_url }}"
+  },
+  "releases": [
+    {{- $index := 0 -}}
+    {{- range $key, $release := $data.downloads -}}
+    {{- if $index }},{{ end }}
+    {
+      "id": "{{ $key }}",
+      "name": "{{ if eq $key "windows" }}Windows{{ else if eq $key "windows_easy_installer" }}Windows (Easy Installer){{ else if eq $key "mac_easy_installer" }}macOS (Apple Silicon){{ else if eq $key "mac_linux" }}macOS / Linux{{ else if eq $key "android" }}Android{{ else if eq $key "source" }}Source Code{{ else }}{{ $key }}{{ end }}",
+      "file": "{{ $release.file }}",
+      "size": "{{ $release.size }}",
+      {{- if $release.requirements }}
+      "requirements": "{{ $release.requirements }}",
+      {{- end }}
+      {{- if $release.beta }}
+      "beta": true,
+      {{- end }}
+      "sha256": "{{ $release.sha256 }}",
+      {{- if $release.sig }}
+      "signature": "{{ $release.sig }}",
+      {{- end }}
+      "links": {
+        {{- $link_index := 0 -}}
+        {{- range $link_key, $link_url := $release.links -}}
+        {{- if $link_index }},{{ end }}
+        "{{ $link_key }}": "{{ $link_url }}"
+        {{- $link_index = add $link_index 1 -}}
+        {{- end }}
+      }
+    }
+    {{- $index = add $index 1 -}}
+    {{- end }}
+  ],
+  "mirrors": {
+    {{- $mirror_index := 0 -}}
+    {{- range $mirror_key, $mirror := $data.mirrors -}}
+    {{- if $mirror_index }},{{ end }}
+    "{{ $mirror_key }}": {
+      "name": "{{ $mirror.name }}",
+      "location": "{{ $mirror.location }}",
+      "url": "{{ $mirror.url }}"
+    }
+    {{- $mirror_index = add $mirror_index 1 -}}
+    {{- end }}
+  },
+  "resources": {
+    "archive": "{{ $data.resources.archive }}",
+    "pgp_keys": "{{ $data.resources.pgp_keys }}"
+  }
+}
