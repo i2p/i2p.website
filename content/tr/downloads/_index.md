@@ -4,6 +4,6 @@ description: "Windows, macOS, Linux, Android ve daha fazlası için I2P'nin en s
 type: "downloads"
 layout: "downloads"
 outputs:
-  - html
-  - json
+  - HTML
+  - JSON
 ---

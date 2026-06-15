@@ -4,6 +4,6 @@ description: "Stáhněte si nejnovější verzi I2P pro Windows, macOS, Linux, A
 type: "downloads"
 layout: "downloads"
 outputs:
-  - html
-  - json
+  - HTML
+  - JSON
 ---

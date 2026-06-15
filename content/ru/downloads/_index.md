@@ -4,6 +4,6 @@ description: "Скачайте последнюю версию I2P для Window
 type: "downloads"
 layout: "downloads"
 outputs:
-  - html
-  - json
+  - HTML
+  - JSON
 ---

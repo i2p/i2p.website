@@ -4,6 +4,6 @@ description: "Windows, macOS, Linux, Android और अधिक के लि�
 type: "downloads"
 layout: "downloads"
 outputs:
-  - html
-  - json
+  - HTML
+  - JSON
 ---

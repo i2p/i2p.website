@@ -4,6 +4,6 @@ description: "下载适用于 Windows、macOS、Linux、Android 等平台的最�
 type: "downloads"
 layout: "downloads"
 outputs:
-  - html
-  - json
+  - HTML
+  - JSON
 ---

@@ -4,6 +4,6 @@ description: "Windows, macOS, Linux, Android 등에서 사용할 수 있는 최�
 type: "downloads"
 layout: "downloads"
 outputs:
-  - html
-  - json
+  - HTML
+  - JSON
 ---

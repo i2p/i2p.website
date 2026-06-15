@@ -4,6 +4,6 @@ description: "Download the latest version of I2P for Windows, macOS, Linux, Andr
 type: "downloads"
 layout: "downloads"
 outputs:
-  - html
-  - json
+  - HTML
+  - JSON
 ---

@@ -4,6 +4,6 @@ description: "Tải xuống phiên bản mới nhất của I2P cho Windows, mac
 type: "downloads"
 layout: "downloads"
 outputs:
-  - html
-  - json
+  - HTML
+  - JSON
 ---

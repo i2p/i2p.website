@@ -4,6 +4,6 @@ description: "قم بتنزيل أحدث إصدار من I2P لنظام Windows 
 type: "downloads"
 layout: "downloads"
 outputs:
-  - html
-  - json
+  - HTML
+  - JSON
 ---
