@@ -58,7 +58,7 @@ jobs:
           sudo npm install -g svgo
 
       - name: Build with Hugo
-        run: hugo --minify --gc
+        run: hugo build --minify --gc
 
       - name: Copy extensionless static files missed by Hugo
         run: |
