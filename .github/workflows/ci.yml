@@ -85,6 +85,13 @@ jobs:
           echo "Updating HTML references to WebP..."
           find public -name "*.html" -type f -exec sed -i -e 's/\.png/\.webp/g' -e 's/\.jpg/\.webp/g' -e 's/\.jpeg/\.webp/g' {} +
 
+      - name: Verify JSON files exist before upload
+        run: |
+          echo "Checking for JSON endpoint files..."
+          find public -path "*/downloads/index.json" | head -5
+          echo "Total JSON files in public/:"
+          find public -name "*.json" | wc -l
+
       - name: Upload Build Artifact
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
@@ -210,7 +217,7 @@ jobs:
         if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.147.8'
+          hugo-version: '0.163.0'
           extended: true
 
       - name: Build Site (for dispatch)
@@ -228,6 +235,13 @@ jobs:
         with:
           name: public-site
           path: public
+
+      - name: Verify JSON files exist after download
+        run: |
+          echo "Checking JSON files after download..."
+          find public -path "*/downloads/index.json" | head -5
+          echo "Total JSON files:"
+          find public -name "*.json" | wc -l
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -258,7 +272,7 @@ jobs:
         if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.147.8'
+          hugo-version: '0.163.0'
           extended: true
 
       - name: Build Site (for dispatch)
@@ -276,6 +290,14 @@ jobs:
         with:
           name: public-site
           path: public
+
+      - name: Verify JSON files before SSH deployment (primary)
+        run: |
+          echo "Checking JSON files before SSH deploy..."
+          find public -path "*/downloads/index.json" | head -5
+          echo "Total JSON files:"
+          find public -name "*.json" | wc -l
+          ls -lh public/en/downloads/index.json 2>/dev/null || echo "ERROR: en/downloads/index.json not found!"
 
       - name: Deploy via Rsync
         env:
@@ -319,7 +341,7 @@ jobs:
         if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.147.8'
+          hugo-version: '0.163.0'
           extended: true
 
       - name: Build Site (for dispatch)
@@ -337,6 +359,14 @@ jobs:
         with:
           name: public-site
           path: public
+
+      - name: Verify JSON files before SSH deployment (secondary)
+        run: |
+          echo "Checking JSON files before SSH deploy (secondary)..."
+          find public -path "*/downloads/index.json" | head -5
+          echo "Total JSON files:"
+          find public -name "*.json" | wc -l
+          ls -lh public/en/downloads/index.json 2>/dev/null || echo "ERROR: en/downloads/index.json not found!"
 
       - name: Deploy via Rsync
         env:
