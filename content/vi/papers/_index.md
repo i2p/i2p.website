@@ -7,6 +7,26 @@ type: "papers"
 
 
 <h2 class="paper-year" data-year="2025">2025</h2>
+<div class="paper-entry" data-year="2025" data-title="Coordinated Deployment and Reachability Asymmetry of Chinese I2P Routers" data-authors="Hang Chen, Anonymous CN volunteer">
+    <div class="paper-title"><a href="https://zenodo.org/records/21169969" target="_blank">Coordinated Deployment and Reachability Asymmetry of Chinese I2P Routers</a></div>
+    <div class="paper-authors">Hang Chen, Anonymous CN volunteer</div>
+    <div class="paper-venue">Zenodo technical report, July 2025.</div>
+    <div class="paper-actions">
+        <div class="bibtex-wrapper">
+            <button class="bibtex-toggle">Show BibTeX</button>
+            <div class="bibtex-content">@techreport{chen2025,
+  title = {Coordinated Deployment and Reachability Asymmetry of Chinese I2P Routers},
+  author = {Hang Chen and Anonymous CN volunteer},
+  institution = {Zenodo},
+  year = {2025},
+  month = {July},
+  doi = {10.5281/zenodo.21169969},
+  url = {https://zenodo.org/records/21169969},
+  www_section = {Network measurement},
+}</div>
+        </div>
+    </div>
+</div>
 <div class="paper-entry" data-year="2025" data-title="Resilience of the Invisible Internet Project: A Computational Analysis" data-authors="Siddique Abubakr Muntaka and Jacques Bou Abdo">
     <div class="paper-title"><a href="/docs/research/muntaka2025.pdf" target="_blank">Resilience of the Invisible Internet Project: A Computational Analysis</a></div>
     <div class="paper-authors">Siddique Abubakr Muntaka and Jacques Bou Abdo</div>

@@ -5,8 +5,8 @@ slug: "samv3"
 aliases:
   - "/docs/api/samv3"
   - "/docs/api/samv3/"
-lastUpdated: "2026-05"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 SAM is a simple client protocol for interacting with I2P. SAM is the recommended protocol for non-Java applications to connect to the I2P network, and is supported by multiple router implementations. Java applications should use the streaming or I2CP APIs directly.
@@ -324,6 +324,15 @@ Version 3.3 was introduced in Java I2P release 0.9.25 (March 2016). Note that i2
 
 - The same session may be used for streams, datagrams, and raw simultaneously. Incoming packets and streams will be routed based on I2P protocol and to-port. See [the PRIMARY section below](#sam-primary-sessions-v33-and-higher).
 - DATAGRAM SEND and RAW SEND now support options SEND_TAGS, TAG_THRESHOLD, EXPIRES, and SEND_LEASESET. See [the datagram sending section below](#sending-repliable-or-raw-datagrams).
+
+### 2025-04 Changes
+
+Two proposals were approved and incorporated into the specification here in April 2025. There is no version change to indicate support.
+Some implementations do not support yet, and in other implementations, support is preliminary.
+
+- Datagram 2/3 support (proposal 163). Specified in SESSION CREATE and SESSION ADD (subsessions). See below.
+- Retrieval of leaseset options (proposal 167). Specified with NAMING LOOKUP OPTIONS=true. See below.
+
 
 ## Version 3 Protocol
 
