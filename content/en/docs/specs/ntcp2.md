@@ -3,8 +3,8 @@ title: "NTCP2 Transport"
 description: "Noise-based TCP transport for router-to-router links"
 slug: "ntcp2"
 category: "Transports"
-lastUpdated: "2026-03"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 ## Overview
@@ -873,7 +873,8 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 
 - Message 3 part 2 padding is not required if Alice appends a data phase frame (optionally containing padding) to the end of message 3 and sends both at once, as it will appear as one big stream of bytes to an observer. As Alice will generally, but not always, have an I2NP message to send to Bob (that's why she connected to him), this is the recommended implementation, for efficiency and to ensure the effectiveness of the random padding.
 
-- Total length of both Message 3 AEAD frames (parts 1 and 2) is 65535 bytes; part 1 is 48 bytes so part 2 max frame length is 65487; part 2 max plaintext length excluding MAC is 65471.
+- Theoretical max total length of both Message 3 AEAD frames (parts 1 and 2) is 65535 bytes; part 1 is 48 bytes so part 2 max frame length is 65487; part 2 max plaintext length excluding MAC is 65471.
+  WARNING: Some implementations enforce much smaller lengths. Java I2P currently limits the total length to 4096 bytes. Do not add excessive padding.
 
 ### Key Derivation Function (KDF) (for data phase)
 
