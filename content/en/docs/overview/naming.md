@@ -117,7 +117,7 @@ Naming Rules:
 - 67 characters maximum, including the '.i2p'.
 - Must not contain '..'.
 - Must not contain '.-' or '-.' (as of 0.6.1.33).
-- Must not contain '--' except in 'xn--' for IDN.
+- Must not contain `--` except in `xn--` for IDN.
 - Base32 hostnames (*.b32.i2p) are reserved for base 32 use and so are not allowed to be imported.
 - Certain hostnames reserved for project use are not allowed (proxy.i2p, router.i2p, console.i2p, mail.i2p, *.proxy.i2p, *.router.i2p, *.console.i2p, *.mail.i2p, and others)
 - Hostnames starting with 'www.' are discouraged and are rejected by some registration services. Some addressbook implementations automatically strip 'www.' prefixes from lookups. So registring 'www.example.i2p' is unnecessary, and registering a different destination for 'www.example.i2p' and 'example.i2p' will make 'www.example.i2p' unreachable for some users.
@@ -130,7 +130,7 @@ Any name received via subscription that passes all the checks is added via the l
 
 Note that the '.' symbols in a host name are of no significance, and do not denote any actual naming or trust hierarchy. If the name 'host.i2p' already exists, there is nothing to prevent anybody from adding a name 'a.host.i2p' to their hosts.txt, and this name can be imported by others' address book. Methods to deny subdomains to non-domain 'owners' (certificates?), and the desirability and feasibility of these methods, are topics for future discussion.
 
-International Domain Names (IDN) also work in i2p (using punycode 'xn--' form). To see IDN .i2p domain names rendered correctly in Firefox's location bar, add 'network.IDN.whitelist.i2p (boolean) = true' in about:config.
+International Domain Names (IDN) also work in i2p (using punycode `xn--` form). To see IDN .i2p domain names rendered correctly in Firefox's location bar, add 'network.IDN.whitelist.i2p (boolean) = true' in about:config.
 
 As the address book application does not use privatehosts.txt at all, in practice this file is the only place where it is appropriate to place private aliases or "pet names" for sites already in hosts.txt.
 

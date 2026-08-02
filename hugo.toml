@@ -196,6 +196,8 @@ defaultContentLanguageInSubdir = true
     tabWidth = 4
 
   [markup.goldmark]
+    [markup.goldmark.extensions.typographer]
+      enDash = '--'
     [markup.goldmark.renderer]
       unsafe = true
     [markup.goldmark.parser]

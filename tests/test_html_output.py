@@ -48,6 +48,23 @@ def test_root_html_valid(build_hugo_site: Path) -> None:
     assert "</body>" in content, "Missing closing </body> tag"
 
 
+def test_punycode_prefix_preserved(build_hugo_site: Path) -> None:
+    """Technical identifiers containing double hyphens must render verbatim."""
+    page = (
+        build_hugo_site
+        / "en"
+        / "docs"
+        / "overview"
+        / "naming"
+        / "index.html"
+    )
+    content = page.read_text(encoding="utf-8")
+
+    assert "xn--" in content
+    assert "xn&ndash;" not in content
+    assert "xn–" not in content
+
+
 def test_rss_feeds_all_languages(build_hugo_site: Path) -> None:
     """Test that RSS feeds exist for all languages."""
     expected_languages = [

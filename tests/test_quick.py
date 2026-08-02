@@ -58,6 +58,11 @@ class TestConfigSyntax:
             )
             assert "title" in lang_config, f"Language {lang_code} missing title"
 
+    def test_goldmark_preserves_double_hyphens(self, hugo_config: dict):
+        """Goldmark must not replace double hyphens in technical identifiers."""
+        typographer = hugo_config["markup"]["goldmark"]["extensions"]["typographer"]
+        assert typographer["enDash"] == "--"
+
     def test_i18n_files_valid_toml(self, i18n_files: Dict[str, Path]):
         """All i18n/*.toml files must be valid TOML."""
         invalid = []
