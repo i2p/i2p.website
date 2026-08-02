@@ -3,8 +3,8 @@ title: "NTCP2 전송"
 description: "router 간 연결을 위한 Noise 기반 TCP 전송"
 slug: "ntcp2"
 category: "전송 계층"
-lastUpdated: "2026-02"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 ## 개요
@@ -281,13 +281,15 @@ AES 암호화는 DPI 저항을 위한 목적으로만 사용됩니다. Bob의 ro
 +                                       +
 |                                       |
 +----+----+----+----+----+----+----+----+
-|                                       |
-+                                       +
-|   ChaChaPoly frame                    |
-+             (32 bytes)                +
+|   ChaChaPoly encrypted data           |
++             (16 bytes)                +
 |   k defined in KDF for message 1      |
 +   n = 0                               +
 |   see KDF for associated data         |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
+|                                       |
 +----+----+----+----+----+----+----+----+
 |     unencrypted authenticated         |
 ~         padding (optional)            ~
@@ -523,12 +525,14 @@ AES 암호화는 DPI 저항을 위한 것입니다. Bob의 router 해시와 IV�
 +                                       +
 |                                       |
 +----+----+----+----+----+----+----+----+
-|   ChaChaPoly frame                    |
-+   Encrypted and authenticated data    +
-|   32 bytes                            |
-+   k defined in KDF for message 2      +
-|   n = 0; see KDF for associated data  |
-+                                       +
+|   ChaChaPoly encrypted data (options) |
++   16 bytes                            +
+|   k defined in KDF for message 2      |
++   n = 0; see KDF for associated data  +
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
 |                                       |
 +----+----+----+----+----+----+----+----+
 |     unencrypted authenticated         |
@@ -739,35 +743,35 @@ XK(s, rs):           Authentication   Confidentiality
 ```
 +----+----+----+----+----+----+----+----+
 |                                       |
-+   ChaChaPoly frame (48 bytes)         +
-|   Encrypted and authenticated         |
-+   Alice static key S                  +
-|      (32 bytes)                       |
-+                                       +
-|     k defined in KDF for message 2    |
-+     n = 1                             +
-|     see KDF for associated data       |
-+                                       +
++   ChaCha20 encrypted data (32 bytes)  +
+|   Alice static key S                  |
++     k defined in KDF for message 2    +
+|   n = 1 see KDF for associated data   |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
 |                                       |
 +----+----+----+----+----+----+----+----+
 |                                       |
-+     Length specified in message 1     +
++   ChaCha20 encrypted data             +
+|     Length specified in message 1     |
++     (including 16 byte MAC to follow) +
 |                                       |
-+   ChaChaPoly frame                    +
-|   Encrypted and authenticated         |
-+                                       +
-|       Alice RouterInfo                |
-+       using block format 2            +
-|       Alice Options (optional)        |
-+       using block format 1            +
-|       Arbitrary padding               |
-+       using block format 254          +
-|                                       |
++       Alice RouterInfo                +
+|       using block format 2            |
++       Alice Options (optional)        +
+|       using block format 1            |
++       Arbitrary padding               +
+|       using block format 254          |
 +                                       +
 | k defined in KDF for message 3 part 2 |
 +     n = 0                             +
 |     see KDF for associated data       |
 ~               .   .   .               ~
+|                                       |
++----+----+----+----+----+----+----+----+
+|                                       |
++        Poly1305 MAC (16 bytes)        +
 |                                       |
 +----+----+----+----+----+----+----+----+
 
@@ -836,7 +840,8 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 
 - Alice가 메시지 3의 끝에 데이터 단계 프레임을 추가하고(선택적으로 패딩 포함) 둘을 한 번에 보내는 경우, 관찰자에게는 하나의 큰 바이트 스트림으로 보이기 때문에 메시지 3 파트 2 패딩이 필요하지 않습니다. Alice는 일반적으로(항상은 아니지만) Bob에게 보낼 I2NP 메시지를 가지고 있으므로(그래서 그에게 연결한 것입니다), 효율성과 랜덤 패딩의 효과를 보장하기 위해 이 방법이 권장되는 구현입니다.
 
-- Message 3 AEAD 프레임 두 부분(파트 1과 파트 2)의 총 길이는 65535바이트입니다. 파트 1이 48바이트이므로 파트 2의 최대 프레임 길이는 65487바이트이고, MAC을 제외한 파트 2의 최대 평문 길이는 65471바이트입니다.
+- 메시지 3 AEAD 프레임(부분 1과 2)의 이론적 최대 총 길이는 65535바이트이다. 부분 1은 48바이트이므로, 부분 2의 최대 프레임 길이는 65487이다. MAC을 제외한 부분 2의 최대 평문 길이는 65471이다.
+경고: 일부 구현체는 훨씬 더 작은 길이를 강제 적용한다. Java I2P는 현재 총 길이를 4096바이트로 제한하고 있다. 과도한 패딩을 추가하지 마십시오.
 
 ### 키 유도 함수 (KDF) (데이터 단계용)
 

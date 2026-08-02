@@ -30,11 +30,14 @@ Example usage:
         --copy-html
 
 Environment:
-    ANTHROPIC_API_KEY (required)
+    ANTHROPIC_API_KEY (required for --provider claude)
+    TOGETHER_API_KEY (required for --provider together)
+    OPENROUTER_API_KEY (required for --provider openrouter)
 """
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import hashlib
 import json
 import os
@@ -47,12 +50,6 @@ from pathlib import Path
 from typing import List, Optional, Dict
 
 import unicodedata
-
-try:
-    import anthropic
-except ImportError:
-    print("Error: anthropic package not installed. Run: pip install anthropic", file=sys.stderr)
-    sys.exit(1)
 
 TRANSLATION_HASHES_FILE = Path(__file__).resolve().parent / "claude_translation_hashes.json"
 TRANSLATION_LOG = Path(__file__).resolve().parent / "claude_translation_log.json"
@@ -330,6 +327,13 @@ class Token:
 
 class ClaudeTranslator:
     def __init__(self, api_key: str, model: str = "claude-sonnet-4-20250514") -> None:
+        try:
+            import anthropic
+        except ImportError:
+            print("Error: anthropic package not installed. Run: pip install anthropic", file=sys.stderr)
+            sys.exit(1)
+
+        self.anthropic = anthropic
         self.client = anthropic.Anthropic(api_key=api_key)
         self.model = model
 
@@ -380,7 +384,7 @@ class ClaudeTranslator:
 
                 return translated
 
-            except anthropic.RateLimitError as exc:
+            except self.anthropic.RateLimitError as exc:
                 last_exc = exc
                 # Use Retry-After header if available, otherwise exponential backoff
                 wait = getattr(exc, "retry_after", None) or (2 ** attempt * 5)
@@ -388,7 +392,7 @@ class ClaudeTranslator:
                       f"waiting {wait}s...", file=sys.stderr)
                 time.sleep(wait)
 
-            except anthropic.APIStatusError as exc:
+            except self.anthropic.APIStatusError as exc:
                 last_exc = exc
                 if exc.status_code >= 500:
                     wait = 2 ** attempt * 2
@@ -399,7 +403,7 @@ class ClaudeTranslator:
                     # 4xx errors (except 429) are not retryable
                     raise RuntimeError(f"Claude API request failed: {exc}") from exc
 
-            except anthropic.APIConnectionError as exc:
+            except self.anthropic.APIConnectionError as exc:
                 last_exc = exc
                 wait = 2 ** attempt * 2
                 print(f"  Connection error (attempt {attempt + 1}/{max_retries}), "
@@ -507,6 +511,33 @@ class TogetherTranslator:
         ) from last_exc
 
 
+class OpenRouterTranslator(TogetherTranslator):
+    """Translate text segments through OpenRouter's OpenAI-compatible API."""
+
+    def __init__(
+        self, api_key: str,
+        model: str = "qwen/qwen3-235b-a22b-2507"
+    ) -> None:
+        try:
+            from openai import OpenAI
+        except ImportError:
+            print("Error: openai package required for OpenRouter. "
+                  "Install with: pip install openai", file=sys.stderr)
+            sys.exit(1)
+
+        self.client = OpenAI(
+            api_key=api_key,
+            base_url="https://openrouter.ai/api/v1",
+            default_headers={
+                "HTTP-Referer": "https://geti2p.net",
+                "X-OpenRouter-Title": "I2P Website Translation",
+            },
+        )
+        self.model = model
+        self.total_input_tokens = 0
+        self.total_output_tokens = 0
+
+
 # =============================================================================
 # POST-TRANSLATION VALIDATION
 # =============================================================================
@@ -606,9 +637,10 @@ def validate_translation(
     Checks:
     1. URLs preserved (all source URLs appear in translation)
     2. Code spans preserved (backtick content unchanged)
-    3. No script contamination (e.g., Cyrillic in Arabic output)
-    4. Translation is not empty
-    5. Translation is not identical to source (unless very short/technical)
+    3. Numeric literals preserved exactly
+    4. No script contamination (e.g., Cyrillic in Arabic output)
+    5. Translation is not empty
+    6. Translation is not identical to source (unless very short/technical)
     """
     errors = []
 
@@ -638,7 +670,17 @@ def validate_translation(
                     f"Modified code spans: {', '.join(list(significant_missing)[:3])}"
                 )
 
-    # 4. Script contamination
+    # 4. Numeric literal preservation. Technical values, sizes, protocol
+    # versions, and message numbers must not change during translation.
+    source_numbers = Counter(re.findall(r"\d+", source))
+    translated_numbers = Counter(re.findall(r"\d+", translated))
+    if source_numbers != translated_numbers:
+        errors.append(
+            "Modified numeric literals: "
+            f"expected {dict(source_numbers)}, got {dict(translated_numbers)}"
+        )
+
+    # 5. Script contamination
     contamination = _detect_script_contamination(translated, target_lang)
     if contamination:
         details = ", ".join(
@@ -646,7 +688,7 @@ def validate_translation(
         )
         errors.append(f"Script contamination: {details}")
 
-    # 5. Unchanged translation (for non-trivial, non-technical text)
+    # 6. Unchanged translation (for non-trivial, non-technical text)
     # Skip this check for headings (often contain technical names that stay English)
     # and for short text (< 50 chars) which is often mostly technical terms
     if (len(source) > 50 and segment_type not in ("heading", "frontmatter")
@@ -964,7 +1006,12 @@ def _merge_cache(target: Dict, source: Dict) -> None:
                 target_file.setdefault("segments", {})[seg_id] = seg_data
             else:
                 target_seg = target_file["segments"][seg_id]
-                target_seg["source_hash"] = seg_data["source_hash"]
+                if target_seg.get("source_hash") != seg_data.get("source_hash"):
+                    # Translations for the old source text are stale. Replace
+                    # the segment; concurrent writers for the new source hash
+                    # will merge through the branch below.
+                    target_file["segments"][seg_id] = seg_data
+                    continue
                 for lang, trans in seg_data.get("translations", {}).items():
                     target_seg.setdefault("translations", {})[lang] = trans
 
@@ -976,13 +1023,21 @@ def save_segment_cache(cache: Dict) -> None:
     see a partially-written file. Also uses file locking to serialize
     concurrent writers (merge before write).
     """
-    import fcntl
     import tempfile
 
     lock_file = SEGMENT_CACHE_FILE.with_suffix(".lock")
 
-    with open(lock_file, "w") as lf:
-        fcntl.flock(lf, fcntl.LOCK_EX)
+    with open(lock_file, "a+b") as lf:
+        if os.name == "nt":
+            import msvcrt
+            if lf.tell() == 0:
+                lf.write(b"\0")
+                lf.flush()
+            lf.seek(0)
+            msvcrt.locking(lf.fileno(), msvcrt.LK_LOCK, 1)
+        else:
+            import fcntl
+            fcntl.flock(lf, fcntl.LOCK_EX)
         try:
             # Re-read current cache from disk to pick up changes from
             # other parallel processes, then merge our updates in
@@ -1015,7 +1070,11 @@ def save_segment_cache(cache: Dict) -> None:
                     pass
                 raise
         finally:
-            fcntl.flock(lf, fcntl.LOCK_UN)
+            if os.name == "nt":
+                lf.seek(0)
+                msvcrt.locking(lf.fileno(), msvcrt.LK_UNLCK, 1)
+            else:
+                fcntl.flock(lf, fcntl.LOCK_UN)
 
 
 def get_cached_translation(
@@ -1077,11 +1136,11 @@ def update_segment_cache(
 
     segments = cache["files"][file_path_str]["segments"]
 
-    if segment_id not in segments:
+    if (segment_id not in segments or
+            segments[segment_id].get("source_hash") != source_hash):
+        # Never carry translations forward when the source text changed.
         segments[segment_id] = {"source_hash": source_hash, "translations": {}}
 
-    # Update source hash (in case it changed)
-    segments[segment_id]["source_hash"] = source_hash
     segments[segment_id]["translations"][target_lang] = translation
 
 
@@ -2037,11 +2096,14 @@ def main() -> int:
     parser.add_argument("--copy-html", action="store_true", help="Copy HTML files without translation (for data files like papers.html)")
 
     # Provider options
-    parser.add_argument("--provider", choices=["claude", "together"], default="claude",
+    parser.add_argument("--provider", choices=["claude", "together", "openrouter"], default="claude",
                         help="Translation provider (default: claude)")
     parser.add_argument("--together-model",
                         default="Qwen/Qwen3-235B-A22B-Instruct-2507-tput",
                         help="Together AI model (default: Qwen/Qwen3-235B-A22B-Instruct-2507-tput)")
+    parser.add_argument("--openrouter-model",
+                        default="qwen/qwen3-235b-a22b-2507",
+                        help="OpenRouter model (default: qwen/qwen3-235b-a22b-2507)")
     parser.add_argument("--no-validate", dest="validate", action="store_false", default=True,
                         help="Disable post-translation validation")
 
@@ -2105,11 +2167,12 @@ def main() -> int:
         return 1
 
     # Get API key based on provider
-    if args.provider == "together":
-        api_key = os.getenv("TOGETHER_API_KEY")
+    if args.provider in ("together", "openrouter"):
+        env_name = "TOGETHER_API_KEY" if args.provider == "together" else "OPENROUTER_API_KEY"
+        api_key = os.getenv(env_name)
         if not api_key:
-            print("Error: TOGETHER_API_KEY environment variable is required "
-                  "when using --provider together", file=sys.stderr)
+            print(f"Error: {env_name} environment variable is required "
+                  f"when using --provider {args.provider}", file=sys.stderr)
             return 1
     else:
         api_key = os.getenv("ANTHROPIC_API_KEY")
@@ -2188,6 +2251,9 @@ def main() -> int:
     if args.provider == "together":
         translator = TogetherTranslator(api_key=api_key, model=args.together_model)
         provider_label = f"Together AI ({args.together_model})"
+    elif args.provider == "openrouter":
+        translator = OpenRouterTranslator(api_key=api_key, model=args.openrouter_model)
+        provider_label = f"OpenRouter ({args.openrouter_model})"
     else:
         translator = ClaudeTranslator(api_key=api_key, model=args.model)
         provider_label = f"Claude ({args.model})"
@@ -2258,7 +2324,8 @@ def main() -> int:
                 print(f"  Misses (API calls): {total_cache_misses}")
                 print(f"  Total segments: {total_segments}")
         if isinstance(translator, TogetherTranslator):
-            print(f"\nTogether AI Token Usage:")
+            usage_label = "OpenRouter" if isinstance(translator, OpenRouterTranslator) else "Together AI"
+            print(f"\n{usage_label} Token Usage:")
             print(f"  Input tokens: {translator.total_input_tokens:,}")
             print(f"  Output tokens: {translator.total_output_tokens:,}")
             # Qwen3-235B pricing: $0.20/M input, $0.60/M output

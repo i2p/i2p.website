@@ -5,8 +5,8 @@ slug: "samv3"
 aliases:
   - "/docs/api/samv3"
   - "/docs/api/samv3/"
-lastUpdated: "2026-05"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 SAM은 I2P와 상호작용하기 위한 간단한 클라이언트 프로토콜입니다. SAM은 비Java 애플리케이션이 I2P 네트워크에 연결하기 위한 권장 프로토콜이며, 여러 router 구현에서 지원됩니다. Java 애플리케이션은 streaming 또는 I2CP API를 직접 사용해야 합니다.
@@ -227,12 +227,12 @@ SAMv3 버전은 I2P 릴리스 0.7.3(2009년 5월)에 도입되었으며 안정�
 
 기본적인 TCP 전용 피어투피어 애플리케이션을 구현하려면, 클라이언트는 다음 명령어들을 지원해야 합니다:
 
-- `HELLO VERSION MIN=3.1 MAX=3.1` - 이후 나올 모든 명령에 필요함
-- `DEST GENERATE SIGNATURE_TYPE=7` - 개인 키와 목적지 생성을 위해 사용
-- `NAMING LOOKUP NAME=...` - .i2p 주소를 목적지로 변환하기 위해 사용
-- `SESSION CREATE STYLE=STREAM ID=... DESTINATION=... i2cp.leaseSetEncType=6,4` - STREAM CONNECT 및 STREAM ACCEPT를 위해 필요함
-- `STREAM CONNECT ID=... DESTINATION=...` - 외부 연결을 만들기 위해 사용
-- `STREAM ACCEPT ID=...` - 들어오는 연결을 수락하기 위해 사용
+- `HELLO VERSION MIN=3.1 MAX=3.1` - 나머지 모든 명령에 필요함
+- `DEST GENERATE SIGNATURE_TYPE=7` - 개인 키와 destination 생성을 위해
+- `NAMING LOOKUP NAME=...` - .i2p 주소를 destination으로 변환하기 위해
+- `SESSION CREATE STYLE=STREAM ID=... DESTINATION=... i2cp.leaseSetEncType=4,0` - STREAM CONNECT와 STREAM ACCEPT에 필요
+- `STREAM CONNECT ID=... DESTINATION=...` - 나가는 연결을 만들기 위해
+- `STREAM ACCEPT ID=...` - 들어오는 연결을 수락하기 위해
 
 ## 개발자를 위한 일반 지침
 
@@ -258,7 +258,7 @@ I2P는 여러 서명 및 암호화 유형을 지원합니다. 하위 호환성�
 
 서명 유형은 DEST GENERATE 및 SESSION CREATE (일시적인 경우) 명령에서 지정됩니다. 모든 클라이언트는 `SIGNATURE_TYPE=7` (Ed25519)로 설정해야 합니다.
 
-암호화 유형은 SESSION CREATE 명령에서 지정됩니다. 여러 암호화 유형이 허용됩니다. 클라이언트는 `i2cp.leaseSetEncType=4`(ECIES-X25519 전용) 또는 `i2cp.leaseSetEncType=6,4`(API 0.9.67 이상을 지원하는 라우터의 경우 MLKEM-768 및 ECIES-X25519) 중 하나를 설정해야 합니다.
+암호화 유형은 SESSION CREATE 명령에서 지정됩니다. 여러 암호화 유형이 허용됩니다. 클라이언트는 `i2cp.leaseSetEncType=4` (ECIES-X25519 전용) 또는 `i2cp.leaseSetEncType=4,0` (호환성이 필요한 경우 ECIES-X25519 및 ElGamal)을 설정해야 합니다.
 
 ## 버전 3 변경사항
 
@@ -324,31 +324,38 @@ SAM v3는 또한 I2P를 통해 데이터그램을 전송하기 위한 UDP 포트
 - 동일한 세션이 스트림, 데이터그램 및 raw를 동시에 사용할 수 있습니다. 들어오는 패킷과 스트림은 I2P 프로토콜과 to-port를 기반으로 라우팅됩니다. [아래 PRIMARY 섹션](#sam-primary-sessions-v33-and-higher)을 참조하세요.
 - DATAGRAM SEND 및 RAW SEND는 이제 SEND_TAGS, TAG_THRESHOLD, EXPIRES, SEND_LEASESET 옵션을 지원합니다. [아래 데이터그램 전송 섹션](#sending-repliable-or-raw-datagrams)을 참조하세요.
 
+### 2025-04 변경 사항
+
+2025년 4월 여기에서 두 가지 제안이 승인되어 명세에 반영되었습니다. 지원 여부를 나타내기 위한 버전 변경은 없습니다. 일부 구현체는 아직 이를 지원하지 않으며, 다른 구현체의 경우 지원이 초기 단계입니다.
+
+- Datagram 2/3 지원 (제안 163). SESSION CREATE 및 SESSION ADD(서브세션)에서 지정됨. 아래 참조.
+- leaseset 옵션 검색 (제안 167). NAMING LOOKUP OPTIONS=true로 지정됨. 아래 참조.
+
 ## 버전 3 프로토콜
 
-### Simple Anonymous Messaging (SAM) 버전 3.3 사양 개요
+### 간단한 익명 메시징(SAM) 버전 3.3 사양 개요
 
-클라이언트 애플리케이션은 SAM bridge와 통신하며, 이 브리지는 모든 I2P 기능을 처리합니다 (가상 스트림을 위해 [streaming library](/docs/api/streaming)를 사용하거나, 데이터그램을 위해 [I2CP](/docs/protocol/i2cp)를 직접 사용).
+클라이언트 응용 프로그램은 SAM 브리지와 통신하며, SAM 브리지는 모든 I2P 기능을 처리합니다([가상 스트림의 경우 스트리밍 라이브러리](/docs/api/streaming) 사용, 데이터그램의 경우 [I2CP](/docs/protocol/i2cp) 직접 사용).
 
-기본적으로 클라이언트와 SAM 브리지 간의 통신은 암호화되지 않으며 인증되지 않습니다. SAM 브리지는 SSL/TLS 연결을 지원할 수 있으나, 구성 및 구현 세부사항은 이 명세서의 범위를 벗어납니다. SAMv3.2부터는 초기 핸드셰이크에서 선택적 인증 사용자/비밀번호 매개변수가 지원되며, 브리지에서 이를 요구할 수 있습니다.
+기본적으로 클라이언트와 SAM 브리지 간의 통신은 암호화되지 않으며 인증되지 않습니다. SAM 브리지는 SSL/TLS 연결을 지원할 수 있으나, 설정 및 구현에 관한 자세한 내용은 이 사양의 범위를 벗어납니다. SAM 3.2부터 초기 핸드셰이크 시 선택적인 인증 사용자 이름/비밀번호 매개변수가 지원되며, 브리지에서 이를 요구할 수 있습니다.
 
-I2P 통신은 여러 가지 구별되는 형태를 가질 수 있습니다:
+I2P 통신은 여러 가지 형태를 가질 수 있습니다:
 
 - [가상 스트림](/docs/api/streaming)
-- [응답 가능하고 인증된 datagram](/docs/specs/datagrams#repliable) (FROM 필드가 있는 메시지)
-- [익명 datagram](/docs/specs/datagrams#raw) (원시 익명 메시지)
+- [응답 가능하고 인증된 데이터그램](/docs/specs/datagrams#repliable) (FROM 필드가 있는 메시지)
+- [익명 데이터그램](/docs/specs/datagrams#raw) (순수한 익명 메시지)
 - [Datagram2](/docs/specs/datagrams#datagram2) (새로운 응답 가능하고 인증된 형식)
-- [Datagram3](/docs/specs/datagrams#datagram3) (새로운 응답 가능하지만 인증되지 않은 형식)
+- [Datagram3](/docs/specs/datagrams#datagram3) (새로운 응답 가능하지만 비인증 형식)
 
-I2P 통신은 I2P 세션에 의해 지원되며, 각 I2P 세션은 주소(destination이라고 함)에 바인딩됩니다. I2P 세션은 위의 세 가지 유형 중 하나와 연결되며, [PRIMARY 세션](#sam-primary-sessions-v33-and-higher)을 사용하지 않는 한 다른 유형의 통신을 수행할 수 없습니다.
+I2P 통신은 I2P 세션에 의해 지원되며, 각 I2P 세션은 주소(목적지라고 함)에 연결되어 있습니다. I2P 세션은 위의 세 가지 유형 중 하나와 연결되며, [기본 세션](#sam-primary-sessions-v33-and-higher)을 사용하지 않는 한 다른 유형의 통신을 처리할 수 없습니다.
 
-### 인코딩과 이스케이핑
+### 인코딩 및 이스케이프
 
-이러한 모든 SAM 메시지는 개행 문자(\\n)로 종료되는 단일 라인으로 전송됩니다. SAM 3.2 이전에는 7비트 ASCII만 지원되었습니다. SAM 3.2부터는 인코딩이 UTF-8이어야 합니다. UTF8로 인코딩된 모든 키나 값이 작동해야 합니다.
+이 모든 SAM 메시지는 개행 문자(\\n)로 끝나는 단일 줄에 전송된다. SAM 3.2 이전에는 7비트 ASCII만 지원되었다. SAM 3.2부터 인코딩은 UTF-8이어야 한다. 모든 UTF-8로 인코딩된 키와 값이 정상적으로 동작해야 한다.
 
-아래 명세서에서 보여지는 형식은 단순히 가독성을 위한 것이며, 각 메시지의 첫 두 단어는 특정 순서를 유지해야 하지만, key=value 쌍들의 순서는 변경될 수 있습니다 (예: "ONE TWO A=B C=D" 또는 "ONE TWO C=D A=B" 모두 완전히 유효한 구조입니다). 또한 이 프로토콜은 대소문자를 구분합니다. 다음에서 메시지 예제는 클라이언트에서 SAM bridge로 보낸 메시지의 경우 "->"로, SAM bridge에서 클라이언트로 보낸 메시지의 경우 "<-"로 표시됩니다.
+아래 명세에 표시된 형식은 단지 가독성을 위한 것이며, 각 메시지의 첫 두 단어는 특정 순서를 유지해야 하지만 key=value 쌍들의 순서는 변경될 수 있습니다(예: "ONE TWO A=B C=D"나 "ONE TWO C=D A=B" 모두 유효한 표현입니다). 또한 이 프로토콜은 대소문자를 구분합니다. 다음 예시에서 클라이언트가 SAM 브리지로 전송하는 메시지는 "->"로, SAM 브리지가 클라이언트로 전송하는 메시지는 "<-"로 표시합니다.
 
-기본 명령어 또는 응답 라인은 다음 형식 중 하나를 취합니다:
+기본 명령문 또는 응답 라인은 다음 형식 중 하나를 가집니다:
 
 ```
 COMMAND SUBCOMMAND [key=value] [key=value] ...
@@ -356,23 +363,23 @@ COMMAND                                           # As of SAM 3.2
 PING[ arbitrary text]                             # As of SAM 3.2
 PONG[ arbitrary text]                             # As of SAM 3.2
 ```
-SUBCOMMAND 없는 COMMAND는 SAMv3.2의 일부 새로운 명령어에서만 지원됩니다.
+SAM 3.2에서만 일부 새로운 명령어에 대해 서브명령어 없이 명령어(COMMAND)를 사용하는 것이 지원됩니다.
 
-Key=value 쌍은 단일 공백으로 구분되어야 합니다. (SAMv3.2부터는 여러 공백이 허용됩니다) 값에 공백이 포함된 경우 큰따옴표로 둘러싸야 합니다. 예: key="long value text". (SAMv3.2 이전에는 일부 구현에서 이것이 안정적으로 작동하지 않았습니다)
+키=값 쌍은 반드시 단일 공백으로 구분되어야 합니다. (SAM 3.2부터는 여러 개의 공백 사용이 허용됨) 값에 공백이 포함된 경우 반드시 큰따옴표로 둘러싸야 합니다. 예: key="긴 값 텍스트". (SAM 3.2 이전에는 일부 구현에서 이 방식이 신뢰성 있게 작동하지 않을 수 있음)
 
-SAMv3 3.2 이전에는 이스케이프 메커니즘이 없었습니다. SAMv3 3.2부터는 큰따옴표를 백슬래시 '\\'로 이스케이프할 수 있고, 백슬래시는 두 개의 백슬래시 '\\\\'로 표현할 수 있습니다.
+SAM 3.2 이전에는 이스케이프 메커니즘이 존재하지 않았습니다. SAM 3.2부터는 큰따옴표를 백슬래시 '\'로 이스케이프할 수 있으며, 백슬래시 자체는 두 개의 백슬래시 '\\\\'로 표현할 수 있습니다.
 
 ### 빈 값
 
-SAMv3.2부터, KEY, KEY=, 또는 KEY=""와 같은 빈 옵션 값이 허용될 수 있으며, 이는 구현에 따라 달라집니다.
+SAM 3.2 기준으로, KEY, KEY=, 또는 KEY=""와 같은 빈 옵션 값이 구현 방식에 따라 허용될 수 있습니다.
 
 ### 대소문자 구분
 
-명세에 따르면, 프로토콜은 대소문자를 구분합니다. 서버가 telnet을 통한 테스트의 편의를 위해 명령을 대문자로 매핑하는 것이 권장되지만 필수는 아닙니다. 이렇게 하면 예를 들어 "hello version"이 작동할 수 있습니다. 이는 구현에 따라 달라집니다. 키나 값을 대문자로 매핑하지 마십시오. 이는 [I2CP](/docs/protocol/i2cp) 옵션을 손상시킬 수 있습니다.
+지정된 프로토콜은 대소문자를 구분합니다. 테스트를 위해 telnet을 사용할 때의 편의를 고려하여, 서버가 명령어를 대문자로 매핑하도록 권장하지만 필수 사항은 아닙니다. 예를 들어 "hello version"과 같은 입력이 작동할 수 있도록 해줍니다. 이는 구현 방식에 따라 달라질 수 있습니다. [I2CP](/docs/protocol/i2cp) 옵션이 손상될 수 있으므로 키나 값을 대문자로 매핑해서는 안 됩니다.
 
 ### SAM 연결 핸드셰이크
 
-클라이언트와 bridge가 프로토콜 버전에 합의하기 전까지는 SAM 통신이 발생할 수 없으며, 이는 클라이언트가 HELLO를 보내고 bridge가 HELLO REPLY를 보내는 방식으로 이루어집니다:
+클라이언트와 브리지가 프로토콜 버전에 합의하기 전까지는 SAM 통신이 이루어질 수 없으며, 이 과정은 클라이언트가 HELLO을 전송하고 브리지가 HELLO REPLY를 응답하는 방식으로 수행됩니다:
 
 ```
 ->  HELLO VERSION
@@ -386,38 +393,38 @@ SAMv3.2부터, KEY, KEY=, 또는 KEY=""와 같은 빈 옵션 값이 허용될 �
 ```
 <-  HELLO REPLY RESULT=OK VERSION=3.1
 ```
-버전 3.1(I2P 0.9.14)부터 MIN과 MAX 매개변수는 선택사항입니다. SAM은 MIN과 MAX 제약 조건이 주어졌을 때 가능한 가장 높은 버전을, 또는 제약 조건이 주어지지 않았을 때 현재 서버 버전을 항상 반환합니다.
+버전 3.1(I2P 0.9.14)부터 MIN 및 MAX 매개변수는 선택 사항입니다. SAM은 주어진 MIN 및 MAX 제약 조건 내에서 가능한 가장 높은 버전을 항상 반환하며, 제약 조건이 없을 경우 현재 서버 버전을 반환합니다.
 
-SAM bridge가 적합한 버전을 찾을 수 없는 경우 다음과 같이 응답합니다:
+SAM 브리지가 적절한 버전을 찾을 수 없는 경우, 다음과 같이 응답합니다:
 
 ```
 <- HELLO REPLY RESULT=NOVERSION
 ```
-잘못된 요청 형식과 같은 오류가 발생한 경우 다음과 같이 응답합니다:
+요청 형식이 잘못되는 등의 오류가 발생하면 다음과 같이 응답합니다:
 
 ```
 <- HELLO REPLY RESULT=I2P_ERROR MESSAGE="$message"
 ```
 #### SSL
 
-서버의 제어 소켓은 서버와 클라이언트에서 구성된 대로 선택적으로 SSL/TLS 지원을 제공할 수 있습니다. 구현체는 다른 전송 계층도 제공할 수 있으며, 이는 프로토콜 정의의 범위를 벗어납니다.
+서버의 제어 소켓은 서버와 클라이언트의 설정에 따라 선택적으로 SSL/TLS 지원을 제공할 수 있습니다. 구현체는 다른 전송 계층을 추가로 제공할 수도 있으나, 이는 프로토콜 정의의 범위를 벗어납니다.
 
 #### 인증
 
-인증을 위해 클라이언트는 HELLO 매개변수에 USER="xxx" PASSWORD="yyy"를 추가합니다. 사용자 이름과 비밀번호에 대한 큰따옴표는 권장되지만 필수는 아닙니다. 사용자 이름이나 비밀번호 내부의 큰따옴표는 백슬래시로 이스케이프해야 합니다. 실패 시 서버는 I2P_ERROR와 메시지로 응답합니다. 인증이 필요한 SAM 서버에서는 SSL을 활성화하는 것이 권장됩니다.
+인증을 위해 클라이언트는 USER="xxx" PASSWORD="yyy"를 HELLO 파라미터에 추가합니다. 사용자 이름과 비밀번호에는 큰따옴표를 사용하는 것이 권장되지만 필수 사항은 아닙니다. 사용자 이름이나 비밀번호 내부의 큰따옴표는 백슬래시로 이스케이프되어야 합니다. 인증에 실패할 경우 서버는 I2P_ERROR와 메시지를 응답으로 보냅니다. 인증이 필요한 SAM 서버에서는 SSL을 활성화하는 것이 권장됩니다.
 
 #### 타임아웃
 
-서버는 HELLO 또는 후속 명령에 대한 타임아웃을 구현할 수 있으며, 이는 구현에 따라 다릅니다. 클라이언트는 연결 후 즉시 HELLO와 다음 명령을 보내야 합니다.
+서버는 HELLO 또는 후속 명령어에 대해 구현 방식에 따라 타임아웃을 적용할 수 있습니다. 클라이언트는 연결 후 즉시 HELLO와 다음 명령어를 전송해야 합니다.
 
-HELLO를 받기 전에 타임아웃이 발생하면, bridge는 다음과 같이 응답합니다:
+HELLO를 받기 전에 시간 초과가 발생하면 브리지는 다음으로 응답합니다:
 
 ```
 <- HELLO REPLY RESULT=I2P_ERROR MESSAGE="$message"
 ```
 그리고 연결을 끊습니다.
 
-HELLO가 수신된 후 다음 명령이 오기 전에 타임아웃이 발생하면, 브리지는 다음과 같이 응답합니다:
+HELLO를 수신한 후 다음 명령을 받기 전에 타임아웃이 발생하면 브리지는 다음과 같이 응답합니다:
 
 ```
 <- SESSION STATUS RESULT=I2P_ERROR MESSAGE="$message"
@@ -438,17 +445,17 @@ SESSION 명령의 경우, 지정된 포트와 프로토콜은 해당 세션의 �
 
 I2CP 포트는 I2P 소켓과 데이터그램을 위한 것입니다. SAM에 연결하는 로컬 소켓과는 관련이 없습니다.
 
-- 포트 0은 유효하며 특별한 의미를 갖습니다.
-- 포트 1-1023은 특별하거나 권한이 필요하지 않습니다.
+- 포트 0은 유효하며 특별한 의미를 가집니다.
+- 포트 1~1023은 특별하거나 권한이 부여된 것이 아닙니다.
 - 서버는 기본적으로 포트 0에서 수신 대기하며, 이는 "모든 포트"를 의미합니다.
-- 클라이언트는 기본적으로 포트 0으로 전송하며, 이는 "모든 포트"를 의미합니다.
+- 클라이언트는 기본적으로 포트 0으로 전송하며, 이는 "임의의 포트"를 의미합니다.
 - 클라이언트는 기본적으로 포트 0에서 전송하며, 이는 "지정되지 않음"을 의미합니다.
-- 서버는 포트 0에서 서비스를 수신 대기하고 동시에 더 높은 포트에서 다른 서비스를 수신 대기할 수 있습니다. 이 경우 포트 0 서비스가 기본값이 되며, 들어오는 소켓이나 데이터그램 포트가 다른 서비스와 일치하지 않을 때 연결됩니다.
-- 대부분의 I2P 목적지는 하나의 서비스만 실행하므로, 기본값을 사용하고 I2CP 포트 구성을 무시해도 됩니다.
+- 서버는 포트 0에서 서비스를 수신 대기하고 다른 고급 포트에서도 추가 서비스를 수신 대기할 수 있습니다. 이 경우 포트 0의 서비스가 기본값이며, 들어오는 소켓 또는 데이터그램 포트가 다른 서비스와 일치하지 않을 때 해당 서비스에 연결됩니다.
+- 대부분의 I2P 목적지는 하나의 서비스만 실행 중이므로 기본값을 사용하고 I2CP 포트 설정을 무시해도 됩니다.
 - I2CP 포트를 지정하려면 SAM 3.2 또는 3.3이 필요합니다.
-- I2CP 포트가 필요하지 않다면 SAM 3.2 또는 3.3이 필요하지 않으며, 3.1로도 충분합니다.
-- 프로토콜 0은 유효하며 "모든 프로토콜"을 의미합니다. 이는 권장되지 않으며 아마 작동하지 않을 것입니다.
-- I2P 소켓은 내부 연결 ID로 추적됩니다. 따라서 dest:port:dest:port:protocol의 5-tuple이 고유할 필요가 없습니다. 예를 들어, 두 목적지 간에 동일한 포트를 가진 여러 소켓이 있을 수 있습니다. 클라이언트는 아웃바운드 연결을 위해 "사용 가능한 포트"를 선택할 필요가 없습니다.
+- I2CP 포트가 필요하지 않다면 SAM 3.2 또는 3.3이 필요 없으며, 3.1로 충분합니다.
+- 프로토콜 0은 유효하며 "임의의 프로토콜"을 의미하지만, 이는 권장되지 않으며 작동하지 않을 가능성이 높습니다.
+- I2P 소켓은 내부 연결 ID에 의해 추적됩니다. 따라서 dest:port:dest:port:protocol의 5튜플이 유일할 필요는 없습니다. 예를 들어, 두 목적지 사이에 동일한 포트를 사용하는 여러 소켓이 존재할 수 있습니다. 클라이언트는 아웃바운드 연결을 위해 "사용 가능한 포트"를 선택할 필요가 없습니다.
 
 여러 subsession을 사용하는 SAM 3.3 애플리케이션을 설계하는 경우, 포트와 프로토콜을 효과적으로 사용하는 방법에 대해 신중히 고려하십시오. 자세한 정보는 [I2CP](/docs/protocol/i2cp) 명세서를 참조하십시오.
 
@@ -461,7 +468,7 @@ SAM 세션은 클라이언트가 SAM bridge에 소켓을 열고, 핸드셰이크
 각 세션은 다음과 고유하게 연결됩니다:
 
 - 클라이언트가 세션을 생성하는 소켓
-- 해당 ID (또는 닉네임)
+- 해당 ID(또는 별명)
 
 #### 세션 생성 요청
 
@@ -488,11 +495,11 @@ DESTINATION은 메시지/스트림을 송수신하는 데 사용해야 할 desti
 
 서명 개인키가 모두 0인 경우, [Offline Signature](/docs/specs/common-structures#struct_OfflineSignature) 섹션이 따라옵니다. 오프라인 서명은 STREAM 및 RAW 세션에서만 지원됩니다. 오프라인 서명은 DESTINATION=TRANSIENT로 생성할 수 없습니다. 오프라인 서명 섹션의 형식은 다음과 같습니다:
 
-1. 만료 타임스탬프 (4바이트, 빅 엔디안, 에포크 이후 초 단위, 2106년에 롤오버)
-2. 임시 서명 공개 키의 서명 타입 (2바이트, 빅 엔디안)
-3. 임시 서명 공개 키 (임시 서명 타입에 의해 지정된 길이)
-4. 오프라인 키에 의한 위 세 필드의 서명 (목적지 서명 타입에 의해 지정된 길이)
-5. 임시 서명 개인 키 (임시 서명 타입에 의해 지정된 길이)
+1. 만료 타임스탬프 (4바이트, 빅 엔디언, 에포크 이후 초 단위, 2106년에 롤오버 발생)
+2. 일시적 서명 공개 키의 서명 유형 (2바이트, 빅 엔디언)
+3. 일시적 서명 공개 키 (일시적 서명 유형에서 지정한 길이)
+4. 오프라인 키로 서명한 위 세 필드의 서명 (목적지 서명 유형에서 지정한 길이)
+5. 일시적 서명 개인 키 (일시적 서명 유형에서 지정한 길이)
 
 destination이 TRANSIENT로 지정되면, SAM bridge는 새로운 destination을 생성합니다. 버전 3.1(I2P 0.9.14)부터 destination이 TRANSIENT인 경우, 선택적 매개변수 SIGNATURE_TYPE이 지원됩니다. SIGNATURE_TYPE 값은 [Key Certificates](/docs/specs/common-structures#type_Certificate)에서 지원하는 모든 이름(예: ECDSA_SHA256_P256, 대소문자 구분 안함) 또는 숫자(예: 1)가 될 수 있습니다. 기본값은 DSA_SHA1이며, 이는 원하는 것이 아닙니다. 대부분의 애플리케이션의 경우 SIGNATURE_TYPE=7을 지정해 주세요.
 
@@ -549,11 +556,11 @@ SAM 세션은 연결된 소켓과 함께 생성되고 소멸됩니다. 소켓이
 
 Stream은 두 I2P destination 간의 양방향 통신 소켓이지만, 그 열기는 둘 중 하나에 의해 요청되어야 합니다. 이후에 CONNECT 명령은 SAM 클라이언트가 그러한 요청을 위해 사용합니다. FORWARD / ACCEPT 명령은 SAM 클라이언트가 다른 I2P destination에서 오는 요청을 수신하고자 할 때 사용합니다.
 
-### SAM Virtual Streams: CONNECT
+### SAM 가상 스트림: 연결
 
 클라이언트는 다음과 같이 연결을 요청합니다:
 
-- SAM bridge와 새 소켓 열기
+- SAM 브리지와 새로운 소켓 열기
 - 위와 동일한 HELLO 핸드셰이크 전달
 - STREAM CONNECT 명령 전송
 
@@ -598,12 +605,12 @@ RESULT가 OK이면, 현재 소켓을 통과하는 모든 나머지 데이터가 
 
 router 스트림 연결 타임아웃은 내부적으로 약 1분이며, 구현에 따라 달라집니다. 응답을 기다리는 타임아웃을 더 짧게 설정하지 마십시오.
 
-### SAM Virtual Streams: ACCEPT
+### SAM 가상 스트림: 수락
 
 클라이언트가 들어오는 연결 요청을 기다리는 방법:
 
-- SAM bridge와 새로운 소켓 열기
-- 위와 동일한 HELLO 핸드셰이크 전달
+- SAM 브리지로 새 소켓 열기
+- 위와 동일한 HELLO 핸드세이크 전달
 - STREAM ACCEPT 명령 전송
 
 #### 요청 수락
@@ -660,13 +667,13 @@ TO_PORT=nnn                        # SAM 3.2 or higher only
 ```
 소켓을 즉시 닫기 전에. 물론 이 줄은 유효한 Base 64 destination으로 디코딩할 수 없습니다.
 
-### SAM Virtual Streams: FORWARD
+### SAM 가상 스트림: FORWARD
 
 클라이언트는 일반적인 소켓 서버를 사용하여 I2P에서 오는 연결 요청을 기다릴 수 있습니다. 이를 위해 클라이언트는 다음을 해야 합니다:
 
-- SAM bridge와 새로운 소켓을 엽니다
+- SAM 브리지와 새로운 소켓을 엽니다
 - 위와 동일한 HELLO 핸드셰이크를 전달합니다
-- forward 명령을 전송합니다
+- 포워드 명령을 보냅니다
 
 #### 전달 요청
 
@@ -724,9 +731,9 @@ SAMv3는 로컬 데이터그램 소켓을 통해 데이터그램을 송수신하
 
 I2P는 네 가지 유형의 데이터그램을 지원합니다:
 
-- 응답 가능하고 인증된 데이터그램은 발신자의 목적지가 접두사로 붙고 발신자의 서명을 포함하므로, 수신자는 발신자의 목적지가 스푸핑되지 않았음을 확인할 수 있고 데이터그램에 응답할 수 있습니다. 새로운 Datagram2 형식도 응답 가능하고 인증됩니다.
-- 새로운 Datagram3 형식은 응답 가능하지만 인증되지 않습니다. 발신자 정보는 검증되지 않습니다.
-- Raw 데이터그램은 발신자의 목적지나 서명을 포함하지 않습니다.
+- 응답 가능하고 인증된 데이터그램은 발신자의 대상 주소로 시작하며, 발신자의 서명을 포함하여 수신자가 발신자 주소가 위조되지 않았는지 확인하고 데이터그램에 응답할 수 있도록 합니다. 새로운 Datagram2 형식도 응답 가능하고 인증됩니다.
+- 새로운 Datagram3 형식은 응답은 가능하지만 인증되지 않습니다. 발신자 정보는 검증되지 않습니다.
+- Raw 데이터그램은 발신자의 대상 주소나 서명을 포함하지 않습니다.
 
 기본 I2CP 포트는 응답 가능한 데이터그램과 raw 데이터그램 모두에 대해 정의됩니다. raw 데이터그램의 경우 I2CP 포트를 변경할 수 있습니다.
 
@@ -765,12 +772,12 @@ $destination
                                      # Default is true
 \n
 ```
-- 3.0은 SAM의 버전입니다. SAM 3.2부터는 모든 3.x 버전이 허용됩니다.
-- $nickname은 사용될 DATAGRAM 세션의 ID입니다
-- 대상은 $destination이며, 이는 [Destination](/docs/specs/common-structures#type_Destination)의 base 64로, 서명 유형에 따라 516개 이상의 base 64 문자(바이너리로 387바이트 이상)입니다. **참고:** 2014년경(SAM v3.1)부터 Java I2P는 $destination에 대해 호스트명과 b32 주소도 지원했지만, 이전에는 문서화되지 않았습니다. 호스트명과 b32 주소는 Java I2P 릴리스 0.9.48부터 공식적으로 지원됩니다. i2pd router는 현재 호스트명과 b32 주소를 지원하지 않으며, 향후 릴리스에서 지원이 추가될 수 있습니다.
-- 모든 옵션은 SESSION CREATE에서 지정된 기본값을 재정의하는 데이터그램별 설정입니다.
-- 버전 3.3 옵션 SEND_TAGS, TAG_THRESHOLD, EXPIRES, SEND_LEASESET은 지원되는 경우 [I2CP](/docs/protocol/i2cp)로 전달됩니다. 자세한 내용은 [I2CP 사양](/docs/protocol/i2cp#msg_SendMessageExpire)을 참조하세요. SAM 서버의 지원은 선택사항이며, 지원되지 않는 경우 이러한 옵션을 무시합니다.
-- 이 라인은 '\\n'으로 종료됩니다.
+- 3.0은 SAM의 버전입니다. SAM 3.2부터는 3.x 계열의 모든 버전이 허용됩니다.
+- $nickname은 사용될 DATAGRAM 세션의 ID입니다.
+- 대상은 $destination이며, 이는 [Destination](/docs/specs/common-structures#type_Destination)의 base64 인코딩된 값으로, 서명 유형에 따라 516자 이상의 base64 문자(이진 형태로 387바이트 이상)를 가집니다. **참고:** 약 2014년경(SAM v3.1부터) Java I2P는 $destination에 대해 호스트명과 b32 주소도 지원해 왔으나, 이전까지는 문서화되지 않았습니다. 호스트명 및 b32 주소는 Java I2P 릴리스 0.9.48부터 공식적으로 지원됩니다. i2pd 라우터는 현재 호스트명과 b32 주소를 지원하지 않으며, 향후 릴리스에서 지원이 추가될 수 있습니다.
+- 모든 옵션은 SESSION CREATE에서 지정한 기본값을 재정의하는 데이터그램별 설정입니다.
+- SEND_TAGS, TAG_THRESHOLD, EXPIRES, SEND_LEASESET 등 3.3 버전의 옵션은 지원되는 경우 [I2CP](/docs/protocol/i2cp)로 전달됩니다. 자세한 내용은 [I2CP 사양](/docs/protocol/i2cp#msg_SendMessageExpire)을 참조하세요. SAM 서버의 이러한 옵션 지원은 선택적이며, 미지원 시 해당 옵션은 무시됩니다.
+- 이 줄은 '\\n'으로 종료됩니다.
 
 첫 번째 줄은 메시지의 나머지 데이터를 지정된 목적지로 보내기 전에 SAM에 의해 삭제됩니다.
 
@@ -859,7 +866,7 @@ STYLE=RAW로 SAM 세션을 설정한 후, 클라이언트는 [응답 가능한 �
 
 익명 데이터그램의 경우에도 두 가지 데이터그램 수신 방법을 모두 사용할 수 있습니다.
 
-수신된 데이터그램은 SESSION CREATE 명령에서 전달 PORT가 지정되지 않은 경우, 데이터그램 세션이 열린 소켓에 SAM에 의해 작성됩니다. 이는 데이터그램을 수신하는 v1/v2 호환 방식입니다.
+수신된 데이터그램은 SESSION CREATE 명령에서 포워딩 PORT가 지정되지 않은 경우, 데이터그램 세션이 열린 소켓에 SAMv3에 의해 작성됩니다. 이는 데이터그램을 수신하는 v1/v2 호환 방식입니다.
 
 ```
 <- RAW RECEIVED
@@ -875,7 +882,7 @@ STYLE=RAW로 SAM 세션을 설정한 후, 클라이언트는 [응답 가능한 �
 ```
 $datagram_payload
 ```
-SAM 3.2부터, SESSION CREATE에서 HEADER=true가 지정되면, 전달되는 raw datagram 앞에 다음과 같은 헤더 라인이 추가됩니다:
+SAM 3.2부터, SESSION CREATE에서 HEADER=true가 지정되면, 전달되는 원시 데이터그램 앞에 다음과 같은 헤더 라인이 추가됩니다:
 
 ```
 FROM_PORT=nnn
@@ -922,7 +929,7 @@ SAMv3에서 데이터그램을 전송하는 권장 방법은 위에서 설명한
 
 DATAGRAM2 및 DATAGRAM3 형식은 V1/V2 호환 방식으로 지원되지 *않습니다*.
 
-### SAM PRIMARY 세션 (V3.3 이상)
+### SAM 주 세션 (V3.3 이상)
 
 *버전 3.3은 I2P 릴리스 0.9.25에서 도입되었습니다.*
 
@@ -994,7 +1001,7 @@ LISTEN_PORT는 로컬 I2P 포트로, 즉 들어오는 데이터에 대한 수신
 
 #### 서브세션 중지
 
-PRIMARY 세션이 생성된 동일한 제어 소켓을 사용하여:
+PRIMARY 세션이 생성된 것과 동일한 제어 소켓을 사용하여:
 
 ```
 ->  SESSION REMOVE
@@ -1002,7 +1009,7 @@ PRIMARY 세션이 생성된 동일한 제어 소켓을 사용하여:
 ```
 이것은 기본 세션에서 하위 세션을 제거합니다. SESSION REMOVE에는 다른 옵션을 설정하지 마세요. 하위 세션은 제어 소켓, 즉 기본 세션을 생성한 동일한 연결에서 제거되어야 합니다. 하위 세션이 제거된 후에는 닫히며 데이터를 보내거나 받는 데 사용할 수 없습니다.
 
-SAM bridge는 [표준 SESSION CREATE에 대한 응답](#session-creation-response)과 같이 성공 또는 실패로 응답합니다.
+SAM bridge는 [표준 SESSION CREATE에 대한 응답](#session-creation-response)에서와 같이 성공 또는 실패로 응답합니다.
 
 ### SAM 유틸리티 명령어
 
@@ -1036,7 +1043,7 @@ KEY_NOT_FOUND
 ```
 NAME=ME인 경우, 응답에는 현재 세션에서 사용하는 destination이 포함됩니다 (TRANSIENT를 사용하는 경우 유용함). $result가 OK가 아닌 경우, MESSAGE에는 "bad format" 등과 같은 설명 메시지가 포함될 수 있습니다. INVALID_KEY는 요청의 $name에 문제가 있음을 의미하며, 유효하지 않은 문자가 포함되었을 가능성이 있습니다.
 
-$destination은 [Destination](/docs/specs/common-structures#type_Destination)의 base 64 인코딩으로, 서명 유형에 따라 516자 이상의 base 64 문자(바이너리로 387바이트 이상)입니다.
+$destination은 [Destination](/docs/specs/common-structures#type_Destination)의 base 64 인코딩으로, 서명 유형에 따라 516개 이상의 base 64 문자(바이너리에서 387바이트 이상)입니다.
 
 NAMING LOOKUP은 세션이 먼저 생성될 필요가 없습니다. 하지만 일부 구현에서는 캐시되지 않고 네트워크 쿼리가 필요한 .b32.i2p 조회가 실패할 수 있는데, 이는 조회를 위한 클라이언트 tunnel이 사용할 수 없기 때문입니다.
 
@@ -1060,7 +1067,7 @@ NAMING REPLY RESULT=OK NAME=example.i2p VALUE=base64dest OPTION:_smtp._tcp="1 86
 ->  DEST GENERATE
           [SIGNATURE_TYPE=value]               # SAM 3.1 or higher only, default DSA_SHA1
 ```
-에 대한 답변은
+다음과 같이 답변됩니다
 
 ```
 DEST REPLY
@@ -1069,7 +1076,7 @@ DEST REPLY
 ```
 버전 3.1(I2P 0.9.14) 기준으로 선택적 매개변수 SIGNATURE_TYPE이 지원됩니다. SIGNATURE_TYPE 값은 [키 인증서](/docs/specs/common-structures#type_Certificate)에서 지원하는 임의의 이름(예: ECDSA_SHA256_P256, 대소문자 구분 없음) 또는 숫자(예: 1)일 수 있습니다. 기본값은 DSA_SHA1이며, 이는 원하는 값이 아닙니다. 대부분의 애플리케이션에서는 SIGNATURE_TYPE=7을 지정하시기 바랍니다.
 
-$destination은 [Destination](/docs/specs/common-structures#type_Destination)의 base 64이며, 서명 유형에 따라 516자 이상의 base 64 문자(바이너리로는 387바이트 이상)입니다.
+$destination은 [Destination](/docs/specs/common-structures#type_Destination)의 base 64 인코딩으로, 서명 유형에 따라 516개 이상의 base 64 문자(바이너리에서 387바이트 이상)입니다.
 
 $privkey는 [Destination](/docs/specs/common-structures#type_Destination) 다음에 [Private Key](/docs/specs/common-structures#type_PrivateKey), 그 다음에 [Signing Private Key](/docs/specs/common-structures#type_SigningPrivateKey)를 연결한 것의 base 64 인코딩으로, 서명 유형에 따라 884개 이상의 base 64 문자(바이너리로는 663바이트 이상)입니다. 바이너리 형식은 Private Key File에 명시되어 있습니다.
 
@@ -1120,16 +1127,16 @@ HELP는 먼저 세션이 생성될 필요가 없습니다.
 
 AUTH 명령을 사용한 인증 구성. SAM 서버는 자격 증명의 지속적인 저장을 용이하게 하기 위해 이러한 명령을 구현할 수 있습니다. 이러한 명령 이외의 인증 구성은 구현별로 다르며 이 사양의 범위를 벗어납니다.
 
-- AUTH ENABLE은 후속 연결에서 인증을 활성화합니다
-- AUTH DISABLE은 후속 연결에서 인증을 비활성화합니다
+- AUTH ENABLE는 이후 연결에 대한 인증을 활성화합니다
+- AUTH DISABLE는 이후 연결에 대한 인증을 비활성화합니다
 - AUTH ADD USER="foo" PASSWORD="bar"는 사용자/비밀번호를 추가합니다
-- AUTH REMOVE USER="foo"는 이 사용자를 제거합니다
+- AUTH REMOVE USER="foo"는 해당 사용자를 제거합니다
 
 사용자와 비밀번호에 대해 큰따옴표를 사용하는 것이 권장되지만 필수는 아닙니다. 사용자 또는 비밀번호 내의 큰따옴표는 백슬래시로 이스케이프해야 합니다. 실패 시 서버는 I2P_ERROR와 메시지로 응답합니다.
 
 AUTH는 세션이 먼저 생성되어야 한다는 요구사항이 없습니다.
 
-### RESULT 값들
+### RESULT 값
 
 다음은 RESULT 필드가 가질 수 있는 값들과 그 의미입니다:
 
@@ -1148,7 +1155,7 @@ LEASESET_NOT_FOUND  See Name Lookup Options above. As of router API 0.9.66.
 
 OK를 제외한 RESULT를 포함하는 대부분의 응답에는 추가 정보가 담긴 MESSAGE도 포함됩니다. MESSAGE는 일반적으로 문제 디버깅에 도움이 됩니다. 그러나 MESSAGE 문자열은 구현에 따라 달라지며, SAM 서버가 현재 로케일로 번역할 수도 있고 번역하지 않을 수도 있으며, 예외와 같은 내부 구현별 정보를 포함할 수 있고, 예고 없이 변경될 수 있습니다. SAM 클라이언트는 MESSAGE 문자열을 사용자에게 노출하도록 선택할 수 있지만, 이러한 문자열을 기반으로 프로그래밍적 결정을 내려서는 안 됩니다. 그렇게 하면 불안정할 수 있기 때문입니다.
 
-### Tunnel, I2CP, 및 스트리밍 옵션
+### 터널, I2CP 및 스트리밍 옵션
 
 이러한 옵션들은 SAM SESSION CREATE 라인에서 name=value 쌍으로 전달될 수 있습니다.
 
@@ -1156,7 +1163,7 @@ OK를 제외한 RESULT를 포함하는 대부분의 응답에는 추가 정보�
 
 옵션 이름과 기본값에 대해서는 해당 참고 문서를 확인하세요. 참조된 문서는 Java router 구현에 대한 것입니다. 기본값은 변경될 수 있습니다. 옵션 이름과 값은 대소문자를 구분합니다. 다른 router 구현체들은 모든 옵션을 지원하지 않을 수 있으며 다른 기본값을 가질 수 있습니다. 자세한 내용은 router 문서를 참조하세요.
 
-### BASE 64 참고사항
+### BASE 64 참고 사항
 
 Base 64 인코딩은 I2P 표준 Base 64 알파벳 "A-Z, a-z, 0-9, -, ~"을 사용해야 합니다.
 

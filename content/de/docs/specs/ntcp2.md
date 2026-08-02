@@ -3,8 +3,8 @@ title: "NTCP2 Transport"
 description: "Noise-basierter TCP-Transport für router-zu-router Verbindungen"
 slug: "ntcp2"
 category: "Transports"
-lastUpdated: "2026-03"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 ## Übersicht
@@ -842,7 +842,8 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 
 - Message 3 Teil 2 Padding ist nicht erforderlich, wenn Alice einen Data-Phase-Frame (der optional Padding enthalten kann) an das Ende von Message 3 anhängt und beide auf einmal sendet, da dies für einen Beobachter wie ein großer zusammenhängender Datenstrom aussieht. Da Alice im Allgemeinen, aber nicht immer, eine I2NP-Nachricht an Bob zu senden hat (deshalb hat sie sich mit ihm verbunden), ist dies die empfohlene Implementierung, sowohl aus Effizienzgründen als auch um die Wirksamkeit des zufälligen Paddings zu gewährleisten.
 
-- Die Gesamtlänge beider Message 3 AEAD-Frames (Teil 1 und 2) beträgt 65535 Bytes; Teil 1 ist 48 Bytes, daher beträgt die maximale Frame-Länge von Teil 2 65487; die maximale Klartext-Länge von Teil 2 ohne MAC beträgt 65471.
+- Die theoretische maximale Gesamtlänge beider AEAD-Frames der Nachricht 3 (Teile 1 und 2) beträgt 65535 Bytes; Teil 1 umfasst 48 Bytes, daher beträgt die maximale Länge für Teil 2 65487 Bytes; die maximale Klartextlänge für Teil 2 ohne MAC beträgt 65471 Bytes.
+  WARNUNG: Einige Implementierungen setzen deutlich kleinere Längen voraus. Java I2P begrenzt derzeit die Gesamtlänge auf 4096 Bytes. Fügen Sie keine übermäßige Auffüllung hinzu.
 
 ### Schlüsselableitungsfunktion (KDF) (für Datenphase)
 

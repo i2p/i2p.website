@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # CI Translation Script
-# Automatically translates changed content/en/ files using Together AI (Qwen3-235B)
+# Automatically translates changed content/en/ files using OpenRouter (Qwen3-235B)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
@@ -34,8 +34,8 @@ relpath() {
 }
 
 # Check required environment variables
-if [ -z "${TOGETHER_API_KEY:-}" ]; then
-    log_error "TOGETHER_API_KEY environment variable is required"
+if [ -z "${OPENROUTER_API_KEY:-}" ]; then
+    log_error "OPENROUTER_API_KEY environment variable is required"
     exit 1
 fi
 
@@ -147,7 +147,7 @@ translate_language() {
         if python3 "$PYTHON_SCRIPT" \
             --source "$FILE_PATH" \
             --target-lang "$TARGET_LANG" \
-            --provider together \
+            --provider openrouter \
             --overwrite \
             --output-root "$REPO_ROOT" \
             --quiet \

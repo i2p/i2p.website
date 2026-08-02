@@ -5,8 +5,8 @@ slug: "samv3"
 aliases:
   - "/docs/api/samv3"
   - "/docs/api/samv3/"
-lastUpdated: "2026-05"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 SAM est un protocole client simple permettant d'interagir avec I2P. SAM est le protocole recommandé pour que les applications non-Java se connectent au réseau I2P, et est pris en charge par plusieurs implémentations de routeur. Les applications Java devraient utiliser directement les API de streaming ou I2CP.
@@ -324,15 +324,22 @@ La version 3.3 a été introduite dans la version 0.9.25 de Java I2P (mars 2016)
 - La même session peut être utilisée simultanément pour des flux, des datagrammes et du mode brut. Les paquets et flux entrants seront acheminés selon le protocole I2P et le port de destination. Voir [la section PRIMARY ci-dessous](#sam-primary-sessions-v33-and-higher).
 - DATAGRAM SEND et RAW SEND prennent désormais en charge les options SEND_TAGS, TAG_THRESHOLD, EXPIRES et SEND_LEASESET. Voir [la section sur l'envoi de datagrammes ci-dessous](#sending-repliable-or-raw-datagrams).
 
+### Modifications de 2025-04
+
+Deux propositions ont été approuvées et intégrées à la spécification ici en avril 2025. Aucune modification de version n'indique le support. Certaines implémentations ne prennent pas encore en charge ces ajouts, et chez d'autres, le support est préliminaire.
+
+- Prise en charge des datagrammes 2/3 (proposition 163). Spécifié dans SESSION CREATE et SESSION ADD (sous-sessions). Voir ci-dessous.
+- Récupération des options de leaseset (proposition 167). Spécifié avec NAMING LOOKUP OPTIONS=true. Voir ci-dessous.
+
 ## Protocole version 3
 
-### Spécification de la version 3.3 de Simple Anonymous Messaging (SAM) - Aperçu général
+### Spécification de la version 3.3 du protocole SAM (Simple Anonymous Messaging) - Aperçu général
 
 L'application cliente communique avec le pont SAM, qui gère toutes les fonctionnalités I2P (en utilisant la [bibliothèque de streaming](/docs/api/streaming) pour les flux virtuels, ou [I2CP](/docs/protocol/i2cp) directement pour les datagrammes).
 
-Par défaut, la communication entre le client et le pont SAM est ni chiffrée ni authentifiée. Le pont SAM peut prendre en charge des connexions SSL/TLS ; les détails de configuration et de mise en œuvre ne relèvent pas du champ d'application de cette spécification. À partir de SAM 3.2, des paramètres optionnels d'authentification (nom d'utilisateur/mot de passe) sont pris en charge lors de la poignée de main initiale et peuvent être exigés par le pont.
+Par défaut, la communication entre le client et le pont SAM est ni chiffrée ni authentifiée. Le pont SAM peut prendre en charge des connexions SSL/TLS ; les détails de configuration et d'implémentation ne relèvent pas du champ d'application de cette spécification. À compter de SAM 3.2, des paramètres optionnels d'authentification (nom d'utilisateur/mot de passe) sont pris en charge lors de la poignée de main initiale et peuvent être exigés par le pont.
 
-Les communications I2P peuvent prendre plusieurs formes distinctes :
+Les communications I2P peuvent prendre plusieurs formes différentes :
 
 - [Flux virtuels](/docs/api/streaming)
 - [Datagrammes répondables et authentifiés](/docs/specs/datagrams#repliable) (messages avec un champ FROM)
@@ -340,13 +347,13 @@ Les communications I2P peuvent prendre plusieurs formes distinctes :
 - [Datagram2](/docs/specs/datagrams#datagram2) (un nouveau format répondable et authentifié)
 - [Datagram3](/docs/specs/datagrams#datagram3) (un nouveau format répondable mais non authentifié)
 
-Les communications I2P sont prises en charge par des sessions I2P, et chaque session I2P est liée à une adresse (appelée destination). Une session I2P est associée à l'un des trois types ci-dessus, et ne peut pas transporter des communications d'un autre type, sauf en utilisant des [sessions principales](#sam-primary-sessions-v33-and-higher).
+Les communications I2P sont prises en charge par des sessions I2P, et chaque session I2P est liée à une adresse (appelée destination). Une session I2P est associée à l'un des trois types ci-dessus, et ne peut pas transporter des communications d'un autre type, sauf en utilisant des [sessions primaires](#sam-primary-sessions-v33-and-higher).
 
 ### Encodage et échappement
 
-Tous ces messages SAM sont envoyés sur une seule ligne, terminée par le caractère de nouvelle ligne (\\n). Avant SAM 3.2, seul l'ASCII 7 bits était pris en charge. Depuis SAM 3.2, l'encodage doit être en UTF-8. Toutes les clés ou valeurs encodées en UTF-8 devraient fonctionner.
+Tous ces messages SAM sont envoyés sur une seule ligne, terminée par le caractère de nouvelle ligne (\\n). Avant SAM 3.2, seul l'ASCII 7 bits était pris en charge. À partir de SAM 3.2, l'encodage doit être en UTF-8. Toutes les clés ou valeurs encodées en UTF-8 devraient fonctionner.
 
-La mise en forme indiquée dans cette spécification ci-dessous est uniquement destinée à la lisibilité. Bien que les deux premiers mots de chaque message doivent rester dans un ordre précis, l'ordre des paires clé=valeur peut varier (par exemple, « ONE TWO A=B C=D » ou « ONE TWO C=D A=B » sont tous deux des constructions parfaitement valides). En outre, le protocole respecte la casse. Dans la suite, les exemples de messages sont précédés de « -> » pour les messages envoyés par le client au pont SAM, et de « <- » pour les messages envoyés par le pont SAM au client.
+La mise en forme indiquée dans cette spécification ci-dessous est uniquement destinée à la lisibilité. Bien que les deux premiers mots de chaque message doivent rester dans un ordre précis, l'ordre des paires clé=valeur peut varier (par exemple, « ONE TWO A=B C=D » ou « ONE TWO C=D A=B » sont tous deux des constructions parfaitement valides). En outre, le protocole respecte la casse. Dans ce qui suit, les exemples de messages sont précédés de « -> » pour les messages envoyés par le client au pont SAM, et de « <- » pour les messages envoyés par le pont SAM au client.
 
 La ligne de commande ou de réponse de base prend l'une des formes suivantes :
 
@@ -356,7 +363,7 @@ COMMAND                                           # As of SAM 3.2
 PING[ arbitrary text]                             # As of SAM 3.2
 PONG[ arbitrary text]                             # As of SAM 3.2
 ```
-COMMAND sans SUBCOMMAND est pris en charge pour certaines nouvelles commandes dans SAM 3.2 uniquement.
+COMMAND sans SUBCOMMAND est pris en charge uniquement pour certaines nouvelles commandes dans SAM 3.2.
 
 Les paires clé=valeur doivent être séparées par un seul espace. (À partir de SAM 3.2, plusieurs espaces sont autorisés.) Les valeurs doivent être entourées de guillemets doubles si elles contiennent des espaces, par exemple : key="longue valeur texte". (Avant SAM 3.2, cela ne fonctionnait pas de manière fiable dans certaines implémentations))
 
@@ -364,15 +371,15 @@ Avant SAM 3.2, il n'existait aucun mécanisme d'échappement. À compter de SAM 
 
 ### Valeurs vides
 
-À partir de SAM 3.2, des valeurs d'options vides telles que KEY, KEY= ou KEY="" peuvent être autorisées, selon l'implémentation.
+À compter de SAM 3.2, les valeurs d'options vides telles que KEY, KEY= ou KEY="" peuvent être autorisées, selon l'implémentation.
 
 ### Sensibilité à la casse
 
-Le protocole, tel qu'il est spécifié, respecte la casse. Il est recommandé, bien que non obligatoire, que le serveur convertisse les commandes en majuscules, afin de faciliter les tests via telnet. Cela permettrait, par exemple, que « hello version » fonctionne. Cela dépend de l'implémentation. Ne convertissez pas les clés ou les valeurs en majuscules, car cela corromprait les options [I2CP](/docs/protocol/i2cp).
+Le protocole, tel que spécifié, respecte la casse. Il est recommandé, mais non obligatoire, que le serveur convertisse les commandes en majuscules, afin de faciliter les tests via telnet. Cela permettrait, par exemple, que « hello version » fonctionne. Ceci dépend de l'implémentation. Ne pas convertir les clés ou les valeurs en majuscules, car cela corromprait les options [I2CP](/docs/protocol/i2cp).
 
-### Établissement de la connexion SAM
+### Négociation de connexion SAM
 
-Aucune communication SAM ne peut avoir lieu avant que le client et le pont n'aient convenu d'une version de protocole, ce qui est réalisé lorsque le client envoie un HELLO et que le pont répond avec un HELLO REPLY :
+Aucune communication SAM ne peut avoir lieu avant que le client et le pont aient convenu d'une version de protocole, ce qui est réalisé en envoyant par le client un HELLO et par le pont une réponse HELLO REPLY :
 
 ```
 ->  HELLO VERSION
@@ -400,17 +407,17 @@ Si une erreur s'est produite, par exemple un format de requête incorrect, il r�
 ```
 #### SSL
 
-La socket de contrôle du serveur peut éventuellement offrir un support SSL/TLS, selon la configuration du serveur et du client. Les implémentations peuvent également offrir d'autres couches de transport ; cela dépasse le cadre de la définition du protocole.
+La socket de contrôle du serveur peut éventuellement offrir un support SSL/TLS, tel que configuré sur le serveur et le client. Les implémentations peuvent également proposer d'autres couches de transport ; cela dépasse le cadre de la définition du protocole.
 
 #### Autorisation
 
-Pour l'authentification, le client ajoute USER="xxx" PASSWORD="yyy" aux paramètres HELLO. Les guillemets doubles pour l'utilisateur et le mot de passe sont recommandés mais pas obligatoires. Un guillemet double à l'intérieur d'un nom d'utilisateur ou d'un mot de passe doit être échappé avec une barre oblique inverse (\). En cas d'échec, le serveur répondra avec un I2P_ERROR et un message. Il est recommandé d'activer SSL sur tout serveur SAM où une authentification est requise.
+Pour l'autorisation, le client ajoute USER="xxx" PASSWORD="yyy" aux paramètres HELLO. Les guillemets doubles pour l'utilisateur et le mot de passe sont recommandés mais pas obligatoires. Un guillemet double à l'intérieur d'un nom d'utilisateur ou d'un mot de passe doit être échappé avec une barre oblique inversée. En cas d'échec, le serveur répondra avec un I2P_ERROR et un message. Il est recommandé d'activer SSL sur tout serveur SAM où une autorisation est requise.
 
 #### Délais d'expiration
 
-Les serveurs peuvent implémenter des délais d'expiration (timeouts) pour la commande HELLO ou pour les commandes suivantes, selon l'implémentation. Les clients doivent envoyer rapidement la commande HELLO et la commande suivante après la connexion.
+Les serveurs peuvent implémenter des délais d'expiration pour la commande HELLO ou pour les commandes ultérieures, selon l'implémentation. Les clients doivent envoyer rapidement la commande HELLO et la commande suivante après la connexion.
 
-Si un délai d'expiration se produit avant la réception du HELLO, le pont répond par :
+Si un délai d'attente expire avant la réception du HELLO, le pont répond par :
 
 ```
 <- HELLO REPLY RESULT=I2P_ERROR MESSAGE="$message"
@@ -443,12 +450,12 @@ Les ports I2CP sont destinés aux sockets et datagrammes I2P. Ils n'ont aucun ra
 - Les serveurs écoutent sur le port 0 par défaut, ce qui signifie « tous les ports ».
 - Les clients envoient vers le port 0 par défaut, ce qui signifie « n'importe quel port ».
 - Les clients envoient depuis le port 0 par défaut, ce qui signifie « non spécifié ».
-- Un serveur peut avoir un service à l'écoute sur le port 0 et d'autres services à l'écoute sur des ports supérieurs. Dans ce cas, le service sur le port 0 est celui par défaut et sera utilisé si le port entrant de la socket ou du datagramme ne correspond à aucun autre service.
+- Un serveur peut avoir un service à l'écoute sur le port 0 et d'autres services à l'écoute sur des ports supérieurs. Dans ce cas, le service sur le port 0 est celui par défaut, et il sera utilisé si le port de la socket entrante ou du datagramme ne correspond à aucun autre service.
 - La plupart des destinations I2P n'exécutent qu'un seul service, vous pouvez donc utiliser les valeurs par défaut et ignorer la configuration des ports I2CP.
 - SAM 3.2 ou 3.3 est requis pour spécifier les ports I2CP.
 - Si vous n'avez pas besoin de spécifier les ports I2CP, vous n'avez pas besoin de SAM 3.2 ou 3.3 ; SAM 3.1 est suffisant.
 - Le protocole 0 est valide et signifie « n'importe quel protocole ». Cette option n'est pas recommandée et ne fonctionnera probablement pas.
-- Les sockets I2P sont suivies par un identifiant interne de connexion. Par conséquent, il n'est pas nécessaire que le 5-uplet dest:port:dest:port:protocole soit unique. Par exemple, plusieurs sockets peuvent exister avec les mêmes ports entre deux destinations. Les clients n'ont pas besoin de choisir un « port libre » pour une connexion sortante.
+- Les sockets I2P sont suivis par un identifiant interne de connexion. Par conséquent, il n'est pas nécessaire que le 5-uplet dest:port:dest:port:protocole soit unique. Par exemple, il peut exister plusieurs sockets avec les mêmes ports entre deux destinations. Les clients n'ont pas besoin de choisir un « port libre » pour une connexion sortante.
 
 Si vous concevez une application SAM 3.3 avec plusieurs sous-sessions, réfléchissez attentivement à la manière d'utiliser efficacement les ports et les protocoles. Consultez la spécification [I2CP](/docs/protocol/i2cp) pour plus d'informations.
 
@@ -460,8 +467,8 @@ Chaque destination I2P enregistrée est associée de manière unique à un ident
 
 Chaque session est associée de manière unique à :
 
-- la socket depuis laquelle le client crée la session
-- son identifiant (ou surnom)
+- la socket à partir de laquelle le client crée la session
+- son ID (ou pseudonyme)
 
 #### Demande de création de session
 
@@ -549,7 +556,7 @@ Les flux virtuels sont garantis comme étant envoyés de manière fiable et dans
 
 Les flux sont des sockets de communication bidirectionnels entre deux destinations I2P, mais leur ouverture doit être demandée par l'une d'entre elles. Par la suite, les commandes CONNECT sont utilisées par le client SAM pour effectuer une telle demande. Les commandes FORWARD / ACCEPT sont utilisées par le client SAM lorsqu'il souhaite écouter les demandes provenant d'autres destinations I2P.
 
-### Flux virtuels SAM : CONNECT
+### Flux virtuels SAM : CONNECTER
 
 Un client demande une connexion en :
 
@@ -598,7 +605,7 @@ Si le RÉSULTAT est OK, toutes les données restantes transitant par la socket a
 
 Le délai d'expiration interne de la connexion du flux du routeur est d'environ une minute, selon l'implémentation. Ne définissez pas un délai d'attente plus court en attendant la réponse.
 
-### Flux virtuels SAM : ACCEPTER
+### SAM Virtual Streams : ACCEPTER
 
 Un client attend une demande de connexion entrante en :
 
@@ -665,7 +672,7 @@ avant de fermer immédiatement la socket. Bien sûr, cette ligne n'est pas déco
 Un client peut utiliser un serveur de sockets classique et attendre des demandes de connexion provenant d'I2P. Pour cela, le client doit :
 
 - ouvrir une nouvelle socket avec le pont SAM
-- transmettre la même poignée de main HELLO qu'au-dessus
+- envoyer la même poignée de main HELLO qu'au-dessus
 - envoyer la commande forward
 
 #### Demande de transfert
@@ -724,8 +731,8 @@ SAMv3 fournit des mécanismes pour envoyer et recevoir des datagrammes via des s
 
 I2P prend en charge quatre types de datagrammes :
 
-- Les datagrammes répondables et authentifiés sont préfixés avec la destination de l'expéditeur et contiennent la signature de l'expéditeur, permettant au destinataire de vérifier que la destination de l'expéditeur n'a pas été falsifiée, et de répondre au datagramme. Le nouveau format Datagram2 est également répondable et authentifié.
-- Le nouveau format Datagram3 est répondable mais non authentifié. Les informations de l'expéditeur ne sont pas vérifiées.
+- Les datagrammes réutilisables et authentifiés sont préfixés avec la destination de l'expéditeur et contiennent la signature de l'expéditeur, ce qui permet au destinataire de vérifier que la destination de l'expéditeur n'a pas été falsifiée, et de répondre au datagramme. Le nouveau format Datagram2 est également réutilisable et authentifié.
+- Le nouveau format Datagram3 est réutilisable mais non authentifié. Les informations de l'expéditeur ne sont pas vérifiées.
 - Les datagrammes bruts ne contiennent ni la destination de l'expéditeur ni de signature.
 
 Les ports I2CP par défaut sont définis pour les datagrammes avec accusé de réception et les datagrammes bruts. Le port I2CP peut être modifié pour les datagrammes bruts.
@@ -768,8 +775,8 @@ $destination
 - 3.0 est la version de SAM. À partir de SAM 3.2, toute version 3.x est autorisée.
 - $nickname est l'identifiant de la session DATAGRAM qui sera utilisée
 - La cible est $destination, qui correspond à la représentation en base 64 de la [Destination](/docs/specs/common-structures#type_Destination), soit 516 caractères base 64 ou plus (387 octets ou plus en binaire), selon le type de signature. **REMARQUE :** Depuis environ 2014 (SAM v3.1), Java I2P prend également en charge les noms d'hôte et les adresses b32 pour $destination, bien que cela n'ait pas été documenté auparavant. Les noms d'hôte et les adresses b32 sont désormais officiellement pris en charge par Java I2P à compter de la version 0.9.48. Le routeur i2pd ne prend actuellement pas en charge les noms d'hôte ni les adresses b32 ; cette fonctionnalité pourrait être ajoutée dans une version ultérieure.
-- Toutes les options sont des paramètres par datagramme qui remplacent les valeurs par défaut spécifiées dans SESSION CREATE.
-- Les options de la version 3.3 SEND_TAGS, TAG_THRESHOLD, EXPIRES et SEND_LEASESET seront transmises à [I2CP](/docs/protocol/i2cp) si elles sont prises en charge. Voir [la spécification I2CP](/docs/protocol/i2cp#msg_SendMessageExpire) pour plus de détails. La prise en charge par le serveur SAM est facultative ; il ignorera ces options si elles ne sont pas prises en charge.
+- Toutes les options sont des paramètres par datagramme qui remplacent les valeurs par défaut spécifiées dans la commande SESSION CREATE.
+- Les options de version 3.3 SEND_TAGS, TAG_THRESHOLD, EXPIRES et SEND_LEASESET seront transmises à [I2CP](/docs/protocol/i2cp) si elles sont prises en charge. Voir [la spécification I2CP](/docs/protocol/i2cp#msg_SendMessageExpire) pour plus de détails. La prise en charge par le serveur SAM est facultative ; ces options seront ignorées si elles ne sont pas prises en charge.
 - cette ligne se termine par '\\n'.
 
 La première ligne sera ignorée par SAM avant l'envoi des données restantes du message à la destination spécifiée.
@@ -1120,8 +1127,8 @@ HELP ne nécessite pas qu'une session ait été créée au préalable.
 
 Configuration de l'autorisation utilisant la commande AUTH. Un serveur SAM peut implémenter ces commandes afin de faciliter le stockage persistant des identifiants. La configuration de l'authentification autrement que par ces commandes dépend de l'implémentation et n'entre pas dans le cadre de cette spécification.
 
-- AUTH ENABLE active l'autorisation pour les connexions suivantes
-- AUTH DISABLE désactive l'autorisation pour les connexions suivantes
+- AUTH ENABLE active l'autorisation sur les connexions ultérieures
+- AUTH DISABLE désactive l'autorisation sur les connexions ultérieures
 - AUTH ADD USER="foo" PASSWORD="bar" ajoute un utilisateur/mot de passe
 - AUTH REMOVE USER="foo" supprime cet utilisateur
 
@@ -1160,7 +1167,7 @@ Voir ces références pour les noms d'options et les valeurs par défaut. La doc
 
 Le codage Base 64 doit utiliser l'alphabet Base 64 standard I2P « A-Z, a-z, 0-9, -, ~ ».
 
-### Configuration par défaut de SAM
+### Configuration SAM par défaut
 
 Le port SAM par défaut est 7656. SAM n'est pas activé par défaut dans le routeur Java I2P ; il doit être démarré manuellement, ou configuré pour démarrer automatiquement, sur la page de configuration des clients dans la console du routeur, ou dans le fichier clients.config. Le port UDP SAM par défaut est 7655, en écoute sur 127.0.0.1. Ces valeurs peuvent être modifiées dans le routeur Java en ajoutant les arguments sam.udp.port=nnnnn et/ou sam.udp.host=w.x.y.z à l'appel, ou sur la ligne SESSION.
 

@@ -3,8 +3,8 @@ title: "Transporte NTCP2"
 description: "Transporte TCP baseado em Noise para conexões router-to-router"
 slug: "ntcp2"
 category: "Transportes"
-lastUpdated: "2026-03"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 ## Visão Geral
@@ -842,7 +842,8 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 
 - O preenchimento da parte 2 da mensagem 3 não é necessário se Alice anexar um quadro de fase de dados (opcionalmente contendo preenchimento) ao final da mensagem 3 e enviar ambos de uma vez, pois aparecerá como um grande fluxo de bytes para um observador. Como Alice geralmente, mas nem sempre, terá uma mensagem I2NP para enviar para Bob (é por isso que ela se conectou a ele), esta é a implementação recomendada, por eficiência e para garantir a eficácia do preenchimento aleatório.
 
-- O comprimento total de ambos os quadros AEAD da Mensagem 3 (partes 1 e 2) é de 65535 bytes; a parte 1 tem 48 bytes, então o comprimento máximo do quadro da parte 2 é 65487; o comprimento máximo do texto simples da parte 2, excluindo MAC, é 65471.
+- O comprimento máximo teórico total de ambos os quadros AEAD da Mensagem 3 (partes 1 e 2) é de 65535 bytes; a parte 1 tem 48 bytes, portanto o comprimento máximo do quadro da parte 2 é de 65487; o comprimento máximo de texto claro da parte 2, excluindo o MAC, é de 65471.
+  AVISO: Algumas implementações impõem comprimentos muito menores. O Java I2P atualmente limita o comprimento total a 4096 bytes. Não adicione preenchimento excessivo.
 
 ### Função de Derivação de Chave (KDF) (para fase de dados)
 

@@ -5,8 +5,8 @@ slug: "samv3"
 aliases:
   - "/docs/api/samv3"
   - "/docs/api/samv3/"
-lastUpdated: "2026-05"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 SAM là một giao thức khách hàng đơn giản để tương tác với I2P. SAM là giao thức được khuyến nghị cho các ứng dụng không dùng Java khi kết nối với mạng I2P, và được hỗ trợ bởi nhiều triển khai router khác nhau. Các ứng dụng Java nên sử dụng trực tiếp các API streaming hoặc I2CP.
@@ -324,15 +324,22 @@ Phiên bản 3.3 được giới thiệu trong bản phát hành Java I2P 0.9.25
 - Cùng một phiên có thể được sử dụng đồng thời cho stream, datagram và raw. Các gói tin và stream đến sẽ được định tuyến dựa trên giao thức I2P và cổng đến (to-port). Xem [mục PHIÊN CHÍNH bên dưới](#sam-primary-sessions-v33-and-higher).
 - DATAGRAM SEND và RAW SEND hiện hỗ trợ các tùy chọn SEND_TAGS, TAG_THRESHOLD, EXPIRES và SEND_LEASESET. Xem [mục gửi datagram có phản hồi hoặc dạng raw bên dưới](#sending-repliable-or-raw-datagrams).
 
+### Thay đổi tháng 04 năm 2025
+
+Hai đề xuất đã được phê duyệt và tích hợp vào đặc tả tại đây vào tháng 4 năm 2025. Không có sự thay đổi phiên bản nào để chỉ rõ việc hỗ trợ. Một số phần triển khai vẫn chưa hỗ trợ, và ở những phần triển khai khác, việc hỗ trợ vẫn còn ở giai đoạn sơ bộ.
+
+- Hỗ trợ Datagram 2/3 (đề xuất 163). Được chỉ định trong SESSION CREATE và SESSION ADD (subsessions). Xem bên dưới.
+- Truy xuất các tùy chọn leaseset (đề xuất 167). Được chỉ định bằng NAMING LOOKUP OPTIONS=true. Xem bên dưới.
+
 ## Giao thức phiên bản 3
 
-### Tổng quan Đặc tả Phiên bản 3.3 của Giao thức Gửi tin nhắn Nặc danh Đơn giản (SAM)
+### Tổng quan đặc tả Phiên bản 3.3 của Giao thức Tin nhắn Nặc danh Đơn giản (SAM)
 
-Ứng dụng client giao tiếp với cầu nối SAM, cái mà xử lý toàn bộ chức năng I2P (sử dụng [thư viện streaming](/docs/api/streaming) cho các luồng ảo, hoặc trực tiếp [I2CP](/docs/protocol/i2cp) cho các datagram).
+Ứng dụng khách giao tiếp với cầu nối SAM, cái này xử lý toàn bộ các chức năng I2P (sử dụng [thư viện streaming](/docs/api/streaming) cho các luồng ảo, hoặc trực tiếp dùng [I2CP](/docs/protocol/i2cp) cho các gói tin datagram).
 
-Theo mặc định, việc truyền thông giữa client và cầu nối SAM là không được mã hóa và không được xác thực. Cầu nối SAM có thể hỗ trợ các kết nối SSL/TLS; các chi tiết cấu hình và triển khai nằm ngoài phạm vi của đặc tả này. Kể từ SAM 3.2, các tham số xác thực tùy chọn tên người dùng/mật khẩu được hỗ trợ trong quá trình bắt tay ban đầu và có thể được cầu nối yêu cầu.
+Theo mặc định, giao tiếp giữa client và cầu nối SAM là không được mã hóa và không được xác thực. Cầu nối SAM có thể hỗ trợ các kết nối SSL/TLS; các chi tiết cấu hình và triển khai nằm ngoài phạm vi của đặc tả này. Kể từ SAM 3.2, các tham số xác thực tùy chọn tên người dùng/mật khẩu được hỗ trợ trong quá trình bắt tay ban đầu và có thể được yêu cầu bởi cầu nối.
 
-Giao tiếp I2P có thể có nhiều hình thức khác nhau:
+Các giao tiếp I2P có thể có nhiều hình thức khác nhau:
 
 - [Luồng ảo](/docs/api/streaming)
 - [Các datagram có thể trả lời và được xác thực](/docs/specs/datagrams#repliable) (tin nhắn có trường FROM)
@@ -340,13 +347,13 @@ Giao tiếp I2P có thể có nhiều hình thức khác nhau:
 - [Datagram2](/docs/specs/datagrams#datagram2) (định dạng mới có thể trả lời và được xác thực)
 - [Datagram3](/docs/specs/datagrams#datagram3) (định dạng mới có thể trả lời nhưng không được xác thực)
 
-Các phiên I2P hỗ trợ việc truyền thông qua I2P, và mỗi phiên I2P được liên kết với một địa chỉ (gọi là đích). Một phiên I2P được liên kết với một trong ba loại nêu trên, và không thể truyền tải thông tin của loại khác, trừ khi sử dụng [phiên chính (PRIMARY sessions)](#sam-primary-sessions-v33-and-higher).
+Các phiên I2P hỗ trợ truyền thông I2P, và mỗi phiên I2P được liên kết với một địa chỉ (gọi là đích). Một phiên I2P được liên kết với một trong ba loại nêu trên, và không thể thực hiện truyền thông của loại khác, trừ khi sử dụng [phiên CHÍNH (PRIMARY sessions)](#sam-primary-sessions-v33-and-higher).
 
 ### Mã hóa và Thoát ký tự
 
-Tất cả các tin nhắn SAM này được gửi trên một dòng duy nhất, kết thúc bằng ký tự xuống dòng (\\n). Trước SAM 3.2, chỉ hỗ trợ ASCII 7-bit. Kể từ SAM 3.2, mã hóa phải là UTF-8. Mọi khóa hoặc giá trị được mã hóa bằng UTF-8 đều phải hoạt động được.
+Tất cả các tin nhắn SAM này được gửi trên một dòng duy nhất, kết thúc bằng ký tự xuống dòng (\\n). Trước phiên bản SAM 3.2, chỉ hỗ trợ ASCII 7-bit. Kể từ SAM 3.2, mã hóa phải là UTF-8. Mọi khóa hoặc giá trị được mã hóa bằng UTF-8 đều phải hoạt động.
 
-Định dạng được hiển thị trong đặc tả này bên dưới chỉ nhằm mục đích dễ đọc, và mặc dù hai từ đầu tiên trong mỗi tin nhắn phải giữ nguyên thứ tự cụ thể của chúng, thứ tự của các cặp khóa=giá trị có thể thay đổi (ví dụ: "ONE TWO A=B C=D" hoặc "ONE TWO C=D A=B" đều là các cấu trúc hợp lệ). Ngoài ra, giao thức này phân biệt chữ hoa chữ thường. Trong phần tiếp theo, các ví dụ tin nhắn được đặt trước bởi "->" đối với các tin nhắn do client gửi đến cầu nối SAM, và bởi "<-" đối với các tin nhắn do cầu nối SAM gửi đến client.
+Định dạng được hiển thị trong đặc tả này bên dưới chỉ nhằm mục đích dễ đọc, và mặc dù hai từ đầu tiên trong mỗi tin nhắn phải giữ nguyên thứ tự cụ thể của chúng, thứ tự các cặp khóa=giá trị có thể thay đổi (ví dụ: "ONE TWO A=B C=D" hoặc "ONE TWO C=D A=B" đều là các cấu trúc hợp lệ). Ngoài ra, giao thức này phân biệt chữ hoa chữ thường. Trong các phần tiếp theo, các ví dụ tin nhắn được đặt trước bởi "->" đối với các tin nhắn do client gửi đến cầu nối SAM, và bởi "<-" đối với các tin nhắn do cầu nối SAM gửi đến client.
 
 Dòng lệnh hoặc phản hồi cơ bản có một trong các dạng sau:
 
@@ -356,23 +363,23 @@ COMMAND                                           # As of SAM 3.2
 PING[ arbitrary text]                             # As of SAM 3.2
 PONG[ arbitrary text]                             # As of SAM 3.2
 ```
-LỆNH mà không có LỆNH CON chỉ được hỗ trợ đối với một số lệnh mới trong SAM 3.2.
+LỆNH mà không có PHIÊN LỆNH chỉ được hỗ trợ đối với một số lệnh mới trong SAM 3.2.
 
-Các cặp khóa=giá trị phải được phân tách bằng một dấu cách duy nhất. (Kể từ SAM 3.2, cho phép nhiều dấu cách) Giá trị phải được đặt trong dấu ngoặc kép nếu chứa khoảng trắng, ví dụ: key="văn bản giá trị dài". (Trước SAM 3.2, cách này không hoạt động đáng tin cậy trong một số triển khai)
+Các cặp khóa=giá trị phải được phân tách bằng một dấu cách duy nhất. (Kể từ SAM 3.2, cho phép nhiều dấu cách) Giá trị phải được đặt trong dấu ngoặc kép nếu chứa khoảng trắng, ví dụ: key="văn bản giá trị dài". (Trước SAM 3.2, tính năng này hoạt động không ổn định trong một số triển khai)
 
 Trước SAM 3.2, không có cơ chế thoát ký tự. Kể từ SAM 3.2, dấu ngoặc kép có thể được thoát bằng dấu gạch ngược '\\' và một dấu gạch ngược có thể được biểu diễn bằng hai dấu gạch ngược '\\\\'.
 
 ### Giá trị trống
 
-Tính từ SAM 3.2, các giá trị tùy chọn trống như KEY, KEY=, hoặc KEY="" có thể được cho phép, tùy thuộc vào cách triển khai.
+Tính đến SAM 3.2, các giá trị tùy chọn trống như KEY, KEY=, hoặc KEY="" có thể được cho phép, tùy thuộc vào cách triển khai.
 
-### Độ nhạy chữ hoa chữ thường
+### Độ nhạy chữ hoa/thường
 
-Giao thức, như đã được quy định, phân biệt chữ hoa chữ thường. Việc khuyến nghị nhưng không bắt buộc máy chủ ánh xạ các lệnh thành chữ hoa để thuận tiện kiểm thử thông qua telnet. Điều này sẽ cho phép, ví dụ, lệnh "hello version" hoạt động được. Việc này phụ thuộc vào cách triển khai cụ thể. Không được ánh xạ các khóa hoặc giá trị sang chữ hoa, vì điều đó sẽ làm hỏng các tùy chọn [I2CP](/docs/protocol/i2cp).
+Giao thức, như đã được quy định, phân biệt chữ hoa chữ thường. Nên nhưng không bắt buộc máy chủ ánh xạ các lệnh thành chữ in hoa để thuận tiện cho việc kiểm thử thông qua telnet. Ví dụ, điều này cho phép lệnh "hello version" hoạt động được. Việc này phụ thuộc vào cách triển khai. Không được ánh xạ các khóa hoặc giá trị thành chữ hoa, vì điều đó sẽ làm hỏng các tùy chọn [I2CP](/docs/protocol/i2cp).
 
 ### Thiết lập kết nối SAM
 
-Không thể có bất kỳ giao tiếp SAM nào xảy ra cho đến khi máy khách và cầu nối đạt được thỏa thuận về phiên bản giao thức, việc này được thực hiện bằng cách máy khách gửi một tin nhắn HELLO và cầu nối phản hồi bằng tin nhắn HELLO REPLY:
+Không thể có bất kỳ giao tiếp SAM nào xảy ra cho đến khi client và bridge đạt được thỏa thuận về phiên bản giao thức, việc này được thực hiện bằng cách client gửi một tin nhắn HELLO và bridge phản hồi bằng tin nhắn HELLO REPLY:
 
 ```
 ->  HELLO VERSION
@@ -386,7 +393,7 @@ và
 ```
 <-  HELLO REPLY RESULT=OK VERSION=3.1
 ```
-Kể từ phiên bản 3.1 (I2P 0.9.14), các tham số MIN và MAX là tùy chọn. SAM sẽ luôn trả về phiên bản cao nhất có thể dựa trên các ràng buộc MIN và MAX, hoặc phiên bản máy chủ hiện tại nếu không có ràng buộc nào được cung cấp.
+Kể từ phiên bản 3.1 (I2P 0.9.14), các tham số MIN và MAX là tùy chọn. SAM sẽ luôn trả về phiên bản cao nhất có thể dựa trên các ràng buộc MIN và MAX, hoặc phiên bản máy chủ hiện tại nếu không có ràng buộc nào được đưa ra.
 
 Nếu cầu nối SAM không thể tìm thấy phiên bản phù hợp, nó sẽ phản hồi bằng:
 
@@ -404,20 +411,20 @@ Socket điều khiển của máy chủ có thể tùy chọn hỗ trợ SSL/TLS
 
 #### Xác thực
 
-Để xác thực, máy khách thêm USER="xxx" PASSWORD="yyy" vào các tham số HELLO. Nên dùng dấu ngoặc kép cho tên người dùng và mật khẩu nhưng không bắt buộc. Dấu ngoặc kép bên trong tên người dùng hoặc mật khẩu phải được thoát bằng dấu gạch ngược. Nếu thất bại, máy chủ sẽ phản hồi bằng I2P_ERROR kèm theo thông báo. Nên bật SSL trên mọi máy chủ SAM nơi yêu cầu xác thực.
+Để xác thực, client thêm USER="xxx" PASSWORD="yyy" vào các tham số HELLO. Nên sử dụng dấu ngoặc kép cho tên người dùng và mật khẩu, nhưng không bắt buộc. Nếu có dấu ngoặc kép bên trong tên người dùng hoặc mật khẩu, cần thêm dấu gạch ngược để thoát. Khi thất bại, máy chủ sẽ phản hồi bằng I2P_ERROR cùng một thông báo. Nên bật SSL trên mọi máy chủ SAM nơi yêu cầu xác thực.
 
 #### Thời gian chờ
 
-Các máy chủ có thể thiết lập thời gian chờ cho lệnh HELLO hoặc các lệnh tiếp theo, tùy thuộc vào cách triển khai. Máy khách nên gửi nhanh lệnh HELLO và lệnh tiếp theo ngay sau khi kết nối.
+Các máy chủ có thể triển khai thời gian chờ cho lệnh HELLO hoặc các lệnh tiếp theo, tùy thuộc vào cách triển khai. Máy khách nên gửi nhanh lệnh HELLO và lệnh tiếp theo ngay sau khi kết nối.
 
-Nếu thời gian chờ hết hạn trước khi nhận được HELLO, cầu nối sẽ phản hồi bằng:
+Nếu xảy ra hết thời gian chờ trước khi nhận được HELLO, cầu nối sẽ phản hồi bằng:
 
 ```
 <- HELLO REPLY RESULT=I2P_ERROR MESSAGE="$message"
 ```
 và sau đó ngắt kết nối.
 
-Nếu xảy ra hết thời gian sau khi nhận được HELLO nhưng trước lệnh tiếp theo, cầu nối sẽ phản hồi bằng:
+Nếu thời gian chờ hết hạn sau khi nhận được HELLO nhưng trước lệnh tiếp theo, cầu nối sẽ phản hồi bằng:
 
 ```
 <- SESSION STATUS RESULT=I2P_ERROR MESSAGE="$message"
@@ -440,15 +447,15 @@ Các cổng I2CP dùng cho socket và datagram I2P. Chúng không liên quan đ�
 
 - Cổng 0 là hợp lệ và có ý nghĩa đặc biệt.
 - Các cổng 1-1023 không đặc biệt hay được cấp quyền đặc biệt.
-- Máy chủ lắng nghe trên cổng 0 theo mặc định, có nghĩa là "tất cả các cổng".
-- Máy khách gửi đến cổng 0 theo mặc định, có nghĩa là "bất kỳ cổng nào".
-- Máy khách gửi từ cổng 0 theo mặc định, có nghĩa là "chưa xác định".
-- Máy chủ có thể có một dịch vụ đang lắng nghe trên cổng 0 và các dịch vụ khác đang lắng nghe trên các cổng cao hơn. Trong trường hợp đó, dịch vụ trên cổng 0 sẽ là mặc định, và sẽ được kết nối nếu cổng của socket hoặc datagram đầu vào không khớp với dịch vụ nào khác.
+- Máy chủ mặc định lắng nghe trên cổng 0, có nghĩa là "tất cả các cổng".
+- Máy khách mặc định gửi đến cổng 0, có nghĩa là "bất kỳ cổng nào".
+- Máy khách mặc định gửi từ cổng 0, có nghĩa là "chưa xác định".
+- Máy chủ có thể có một dịch vụ lắng nghe trên cổng 0 và các dịch vụ khác lắng nghe trên các cổng cao hơn. Trong trường hợp đó, dịch vụ cổng 0 là mặc định và sẽ được kết nối nếu cổng socket hoặc datagram đầu vào không khớp với dịch vụ nào khác.
 - Hầu hết các điểm đến I2P chỉ chạy một dịch vụ, do đó bạn có thể sử dụng các giá trị mặc định và bỏ qua cấu hình cổng I2CP.
-- SAM 3.2 hoặc 3.3 là bắt buộc để chỉ định cổng I2CP.
-- Nếu bạn không cần dùng đến cổng I2CP, thì bạn không cần SAM 3.2 hay 3.3; SAM 3.1 là đủ.
-- Giao thức 0 là hợp lệ và có nghĩa là "bất kỳ giao thức nào". Tuy nhiên, điều này không được khuyến khích và có thể sẽ không hoạt động.
-- Các socket I2P được theo dõi thông qua một ID kết nối nội bộ. Do đó, không yêu cầu 5-bộ (dest:port:dest:port:protocol) phải là duy nhất. Ví dụ, có thể tồn tại nhiều socket với cùng cổng giữa hai điểm đến. Máy khách không cần phải chọn một "cổng trống" cho kết nối đi.
+- Cần dùng SAM 3.2 hoặc 3.3 để chỉ định cổng I2CP.
+- Nếu bạn không cần chỉ định cổng I2CP, thì bạn không cần SAM 3.2 hay 3.3; SAM 3.1 là đủ.
+- Giao thức 0 là hợp lệ và có nghĩa là "bất kỳ giao thức nào". Tuy nhiên điều này không được khuyến khích và có thể sẽ không hoạt động.
+- Các socket I2P được theo dõi thông qua một ID kết nối nội bộ. Do đó, không yêu cầu 5-tuple gồm dest:port:dest:port:protocol phải là duy nhất. Ví dụ, có thể có nhiều socket với cùng cổng giữa hai điểm đến. Máy khách không cần phải chọn "cổng trống" cho một kết nối đi ra.
 
 Nếu bạn đang thiết kế một ứng dụng SAM 3.3 với nhiều phiên con, hãy cân nhắc kỹ cách sử dụng các cổng và giao thức một cách hiệu quả. Xem đặc tả [I2CP](/docs/protocol/i2cp) để biết thêm thông tin.
 
@@ -488,10 +495,10 @@ DESTINATION xác định đích sẽ được sử dụng để gửi và nhận
 
 Nếu khóa riêng dùng để ký toàn bộ là số không, thì phần [Chữ ký ngoại tuyến](/docs/specs/common-structures#struct_OfflineSignature) sẽ được đưa ra. Chữ ký ngoại tuyến chỉ được hỗ trợ cho các phiên STREAM và RAW. Chữ ký ngoại tuyến không được tạo với DESTINATION=TRANSIENT. Định dạng của phần chữ ký ngoại tuyến như sau:
 
-1. Thời gian hết hạn (4 byte, big endian, số giây kể từ thời điểm mốc, tràn số vào năm 2106)
+1. Thời điểm hết hạn (4 byte, big endian, số giây kể từ thời điểm khởi tạo, tràn vào năm 2106)
 2. Loại chữ ký của Khóa công khai ký tạm thời (2 byte, big endian)
 3. Khóa công khai ký tạm thời (độ dài theo quy định bởi loại chữ ký tạm thời)
-4. Chữ ký của ba trường trên bởi khóa ngoại tuyến (độ dài theo quy định bởi loại chữ ký đích)
+4. Chữ ký của ba trường trên do khóa ngoại tuyến tạo (độ dài theo quy định bởi loại chữ ký đích)
 5. Khóa riêng ký tạm thời (độ dài theo quy định bởi loại chữ ký tạm thời)
 
 Nếu đích được chỉ định là TRANSIENT, cầu nối SAM sẽ tạo một đích mới. Kể từ phiên bản 3.1 (I2P 0.9.14), nếu đích là TRANSIENT, tham số tùy chọn SIGNATURE_TYPE được hỗ trợ. Giá trị SIGNATURE_TYPE có thể là bất kỳ tên nào (ví dụ: ECDSA_SHA256_P256, không phân biệt chữ hoa/thường) hoặc số (ví dụ: 1) được hỗ trợ bởi [Chứng chỉ khóa](/docs/specs/common-structures#type_Certificate). Giá trị mặc định là DSA_SHA1, điều này KHÔNG PHẢI là thứ bạn muốn. Đối với hầu hết các ứng dụng, vui lòng chỉ định SIGNATURE_TYPE=7.
@@ -543,18 +550,18 @@ Lưu ý rằng bộ định tuyến sẽ xây dựng các đường hầm trư�
 
 Các phiên SAM tồn tại và chấm dứt cùng với socket mà chúng được liên kết. Khi socket bị đóng, phiên sẽ chấm dứt, và mọi kết nối sử dụng phiên đó cũng đồng thời ngừng hoạt động. Và ngược lại, khi phiên chấm dứt vì bất kỳ lý do gì, cầu nối SAM sẽ đóng socket.
 
-### Luồng Ảo SAM
+### SAM Virtual Streams
 
 Các luồng ảo được đảm bảo gửi một cách đáng tin cậy và theo đúng thứ tự, với thông báo lỗi hoặc thành công ngay khi có thể.
 
 Các stream là các ổ cắm giao tiếp hai chiều giữa hai điểm đến I2P, nhưng việc mở stream phải do một trong hai bên yêu cầu. Sau đây, các lệnh CONNECT được sử dụng bởi client SAM để gửi yêu cầu đó. Các lệnh FORWARD / ACCEPT được sử dụng bởi client SAM khi nó muốn lắng nghe các yêu cầu đến từ các điểm đến I2P khác.
 
-### Luồng Ảo SAM: KẾT NỐI
+### Luồng ảo SAM: KẾT NỐI
 
 Một client yêu cầu kết nối bằng cách:
 
 - mở một socket mới với cầu nối SAM
-- truyền cùng bản chào HELLO như trên
+- truyền cùng bản chào tay HELLO như trên
 - gửi lệnh STREAM CONNECT
 
 #### Yêu cầu kết nối
@@ -598,12 +605,12 @@ Nếu KẾT QUẢ là OK, toàn bộ dữ liệu còn lại đi qua socket hiệ
 
 Thời gian chờ kết nối luồng của bộ định tuyến bên trong khoảng một phút, tùy thuộc vào cách triển khai. Không đặt thời gian chờ ngắn hơn khi chờ phản hồi.
 
-### Luồng ảo SAM: CHẤP NHẬN
+### SAM Virtual Streams: CHẤP NHẬN
 
 Một máy khách chờ yêu cầu kết nối đến bằng cách:
 
 - mở một socket mới với cầu nối SAM
-- truyền cùng bản chào HELLO như trên
+- truyền cùng handshake HELLO như trên
 - gửi lệnh STREAM ACCEPT
 
 #### Chấp nhận yêu cầu
@@ -665,7 +672,7 @@ trước khi đóng ngay lập tức kết nối socket. Dòng này tất nhiên
 Một máy khách có thể sử dụng máy chủ socket thông thường và chờ các yêu cầu kết nối đến từ I2P. Để làm được điều đó, máy khách phải:
 
 - mở một socket mới với cầu nối SAM
-- gửi lệnh bắt tay HELLO giống như ở trên
+- gửi handshake HELLO giống như ở trên
 - gửi lệnh chuyển tiếp (forward command)
 
 #### Yêu cầu chuyển tiếp
@@ -724,9 +731,9 @@ SAMv3 cung cấp các cơ chế để gửi và nhận các gói tin qua các �
 
 I2P hỗ trợ bốn loại datagram:
 
-- Các datagram có thể trả lời và được xác thực được đặt tiền tố bằng đích của người gửi, và chứa chữ ký của người gửi, để người nhận có thể xác minh rằng đích của người gửi không bị giả mạo, và có thể trả lời lại datagram. Định dạng Datagram2 mới cũng có thể trả lời và được xác thực.
+- Các gói tin có thể trả lời và được xác thực được đặt trước bằng đích của người gửi, và chứa chữ ký của người gửi, để người nhận có thể xác minh rằng đích của người gửi không bị giả mạo, và có thể phản hồi lại gói tin. Định dạng Datagram2 mới cũng có khả năng trả lời và được xác thực.
 - Định dạng Datagram3 mới có thể trả lời nhưng không được xác thực. Thông tin người gửi không được xác minh.
-- Các datagram thô không chứa đích của người gửi cũng như chữ ký nào.
+- Các gói tin thô (raw datagrams) không chứa đích của người gửi cũng như chữ ký nào.
 
 Các cổng I2CP mặc định được xác định cho cả datagram có thể trả lời và datagram thô. Cổng I2CP có thể được thay đổi đối với datagram thô.
 
@@ -765,10 +772,10 @@ $destination
                                      # Default is true
 \n
 ```
-- 3.0 là phiên bản của SAM. Kể từ SAM 3.2, mọi phiên bản 3.x đều được chấp nhận.
+- 3.0 là phiên bản của SAM. Kể từ SAM 3.2, mọi phiên bản 3.x đều được cho phép.
 - $nickname là ID của phiên DATAGRAM sẽ được sử dụng
-- Mục tiêu là $destination, là chuỗi cơ số 64 của [Destination](/docs/specs/common-structures#type_Destination), có độ dài 516 ký tự cơ số 64 trở lên (tương đương 387 byte trở lên ở dạng nhị phân), tùy thuộc vào loại chữ ký. **LƯU Ý:** Kể từ khoảng năm 2014 (SAM v3.1), Java I2P đã hỗ trợ tên miền và địa chỉ b32 cho $destination, nhưng trước đây thông tin này chưa được ghi tài liệu. Tên miền và địa chỉ b32 hiện đã được Java I2P chính thức hỗ trợ kể từ phiên bản 0.9.48. Trình định tuyến i2pd hiện tại chưa hỗ trợ tên miền và địa chỉ b32; tính năng này có thể được thêm vào trong các phiên bản tương lai.
-- Tất cả các tùy chọn là các thiết lập riêng cho từng datagram, ghi đè các giá trị mặc định được chỉ định trong SESSION CREATE.
+- Mục tiêu là $destination, chính là dạng base 64 của [Destination](/docs/specs/common-structures#type_Destination), gồm 516 ký tự base 64 hoặc hơn (387 byte hoặc nhiều hơn ở dạng nhị phân), tùy theo loại chữ ký. **LƯU Ý:** Từ khoảng năm 2014 (SAM v3.1), Java I2P cũng hỗ trợ tên miền và địa chỉ b32 cho $destination, nhưng trước đây tính năng này chưa được tài liệu hóa. Tên miền và địa chỉ b32 hiện đã được Java I2P hỗ trợ chính thức kể từ phiên bản 0.9.48. Trình định tuyến i2pd hiện tại không hỗ trợ tên miền và địa chỉ b32; tính năng này có thể được thêm vào trong các phiên bản tương lai.
+- Tất cả các tùy chọn đều là thiết lập riêng cho từng datagram, ghi đè lên các giá trị mặc định được chỉ định trong SESSION CREATE.
 - Các tùy chọn phiên bản 3.3 SEND_TAGS, TAG_THRESHOLD, EXPIRES và SEND_LEASESET sẽ được truyền tới [I2CP](/docs/protocol/i2cp) nếu được hỗ trợ. Xem [đặc tả I2CP](/docs/protocol/i2cp#msg_SendMessageExpire) để biết chi tiết. Việc hỗ trợ các tùy chọn này bởi máy chủ SAM là tùy chọn, và sẽ bỏ qua nếu không được hỗ trợ.
 - dòng này kết thúc bằng '\\n'.
 
@@ -922,7 +929,7 @@ Các lệnh này *không* hỗ trợ tham số ID. Các gói tin được gửi 
 
 Các định dạng DATAGRAM2 và DATAGRAM3 *không* được hỗ trợ theo cách tương thích với V1/V2.
 
-### Phiên SAM PRIMARY (V3.3 trở lên)
+### Phiên SAM CHÍNH (V3.3 trở lên)
 
 *Phiên bản 3.3 được giới thiệu trong bản phát hành I2P 0.9.25.*
 
@@ -1120,8 +1127,8 @@ HELP không yêu cầu phải tạo phiên trước tiên.
 
 Cấu hình ủy quyền sử dụng lệnh AUTH. Máy chủ SAM có thể triển khai các lệnh này để hỗ trợ lưu trữ thông tin đăng nhập một cách bền vững. Việc cấu hình xác thực bằng các phương pháp khác ngoài các lệnh này phụ thuộc vào từng phần triển khai cụ thể và nằm ngoài phạm vi của đặc tả này.
 
-- AUTH ENABLE kích hoạt xác thực cho các kết nối tiếp theo
-- AUTH DISABLE vô hiệu hóa xác thực cho các kết nối tiếp theo
+- AUTH ENABLE bật xác thực cho các kết nối tiếp theo
+- AUTH DISABLE tắt xác thực cho các kết nối tiếp theo
 - AUTH ADD USER="foo" PASSWORD="bar" thêm người dùng/mật khẩu
 - AUTH REMOVE USER="foo" xóa người dùng này
 
@@ -1129,7 +1136,7 @@ Nên dùng dấu ngoặc kép cho tên người dùng và mật khẩu nhưng kh
 
 AUTH không yêu cầu phiên phải được tạo trước tiên.
 
-### Giá trị RESULT
+### Các giá trị RESULT
 
 Đây là các giá trị có thể được mang bởi trường RESULT, cùng với ý nghĩa của chúng:
 
@@ -1148,7 +1155,7 @@ Các triển khai khác nhau có thể không nhất quán về việc trả v�
 
 Hầu hết các phản hồi có RESULT khác ngoài OK cũng sẽ bao gồm một MESSAGE chứa thông tin bổ sung. Nội dung MESSAGE thường hữu ích để gỡ lỗi các sự cố. Tuy nhiên, các chuỗi MESSAGE phụ thuộc vào cách triển khai cụ thể, có thể được hoặc không được máy chủ SAM dịch sang ngôn ngữ hiện tại, có thể chứa thông tin nội bộ đặc thù triển khai như các ngoại lệ, và có thể thay đổi mà không cần thông báo trước. Mặc dù các ứng dụng khách SAM có thể lựa chọn hiển thị các chuỗi MESSAGE cho người dùng, họ không nên đưa ra các quyết định trong chương trình dựa trên những chuỗi này, vì điều đó sẽ khiến hệ thống trở nên kém ổn định.
 
-### Tùy chọn Tường lỗ, I2CP và Truyền dữ liệu
+### Tùy chọn Tunnels, I2CP và Streaming
 
 Các tùy chọn này có thể được truyền vào dưới dạng các cặp tên=giá trị trong dòng SAM SESSION CREATE.
 
@@ -1156,7 +1163,7 @@ Tất cả các phiên có thể bao gồm [các tùy chọn I2CP như độ dà
 
 Xem các tài liệu tham khảo đó để biết tên tùy chọn và giá trị mặc định. Tài liệu được tham chiếu ở đây dành cho triển khai router bằng Java. Các giá trị mặc định có thể thay đổi theo thời gian. Tên và giá trị tùy chọn phân biệt chữ hoa chữ thường. Các triển khai router khác có thể không hỗ trợ tất cả các tùy chọn và có thể có giá trị mặc định khác nhau; vui lòng tham khảo tài liệu của router cụ thể để biết chi tiết.
 
-### Ghi chú về BASE 64
+### Ghi chú BASE 64
 
 Việc mã hóa Base 64 phải sử dụng bảng chữ cái Base 64 chuẩn I2P là "A-Z, a-z, 0-9, -, ~".
 

@@ -5,8 +5,8 @@ slug: "samv3"
 aliases:
   - "/docs/api/samv3"
   - "/docs/api/samv3/"
-lastUpdated: "2026-05"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 SAM je jednoduchý klientský protokol pro komunikaci s I2P. SAM je doporučeným protokolem pro ne-Java aplikace, které se připojují k síti I2P, a je podporován více implementacemi routerů. Java aplikace by měly používat streamovací rozhraní nebo I2CP API přímo.
@@ -324,31 +324,38 @@ Verze 3.3 byla představena v Java I2P verzi 0.9.25 (březen 2016). Vezměte na 
 - Stejné sezení může být použito současně pro proudy, datagramy a raw režim. Příchozí pakety a proudy budou směrovány na základě I2P protokolu a cílového portu. Viz [sekce PRIMARY níže](#sam-primary-sessions-v33-and-higher).
 - Příkazy DATAGRAM SEND a RAW SEND nyní podporují možnosti SEND_TAGS, TAG_THRESHOLD, EXPIRES a SEND_LEASESET. Viz [sekce odesílání datagramů níže](#sending-repliable-or-raw-datagrams).
 
+### Změny v roce 2025-04
+
+Dva návrhy byly schváleny a začleněny do specifikace v dubnu 2025. Verze se nemění, aby byla naznačena podpora. Některé implementace ji ještě nepodporují a u jiných je podpora zatím předběžná.
+
+- Podpora datagramu 2/3 (návrh 163). Určeno v SESSION CREATE a SESSION ADD (podrelace). Viz níže.
+- Načítání možností leasesetu (návrh 167). Určeno pomocí NAMING LOOKUP OPTIONS=true. Viz níže.
+
 ## Protokol verze 3
 
-### Přehled specifikace jednoduché anonymní zprávy (SAM) verze 3.3
+### Specifikace rozhraní Jednoduché anonymní zprávy (SAM) verze 3.3 – přehled
 
-Klientská aplikace komunikuje s SAM mostem, který zpracovává veškerou funkcionalitu I2P (pomocí [streamovací knihovny](/docs/api/streaming) pro virtuální proudy nebo přímo [I2CP](/docs/protocol/i2cp) pro datagramy).
+Klientská aplikace komunikuje s mostem SAM, který zpracovává veškerou funkcionalitu I2P (s využitím [knihovny pro streamování](/docs/api/streaming) pro virtuální proudy nebo přímo [I2CP](/docs/protocol/i2cp) pro datagramy).
 
-Ve výchozím nastavení je komunikace mezi klientem a SAM mostem nešifrovaná a bez ověření. SAM most může podporovat SSL/TLS připojení; konfigurace a implementační detaily jsou mimo rámec této specifikace. Od verze SAM 3.2 jsou v úvodním handshake podporovány volitelné parametry pro ověření (uživatel/heslo), které mohou být mostem vyžadovány.
+Ve výchozím nastavení je komunikace mezi klientem a SAM mostem nešifrovaná a bez ověření totožnosti. SAM most může podporovat SSL/TLS připojení; konfigurace a implementační detaily jsou mimo rozsah této specifikace. Od verze SAM 3.2 jsou ve výchozím handshake podporovány volitelné parametry pro ověření (uživatelské jméno/heslo), které mohou být mostem vyžadovány.
 
-Komunikace v rámci I2P může mít několik různých forem:
+Komunikace v rámci I2P může probíhat několika odlišnými způsoby:
 
 - [Virtuální proudy](/docs/api/streaming)
 - [Odpovědné a ověřené datagramy](/docs/specs/datagrams#repliable) (zprávy s polem FROM)
-- [Anonymní datagramy](/docs/specs/datagrams#raw) (hrubé anonymní zprávy)
+- [Anonymní datagramy](/docs/specs/datagrams#raw) (surové anonymní zprávy)
 - [Datagram2](/docs/specs/datagrams#datagram2) (nový formát odpovědných a ověřených zpráv)
 - [Datagram3](/docs/specs/datagrams#datagram3) (nový formát odpovědných, ale neověřených zpráv)
 
-Komunikace v rámci I2P je podporována prostřednictvím I2P relací a každá I2P relace je vázána na adresu (tzv. cíl). I2P relace je spojena s jedním ze tří výše uvedených typů a nemůže přenášet komunikaci jiného typu, pokud nepoužívá [hlavní relace](#sam-primary-sessions-v33-and-higher).
+Komunikace v rámci I2P je podporována I2P relacemi a každá I2P relace je vázána na adresu (označovanou jako cíl). Každá I2P relace je spojena s jedním ze tří výše uvedených typů a nemůže přenášet komunikaci jiného typu, pokud nepoužívá [hlavní relace](#sam-primary-sessions-v33-and-higher).
 
 ### Kódování a řídicí znaky
 
-Všechny tyto zprávy SAM jsou odesílány na jediném řádku ukončeném znakem nového řádku (\\n). Před verzí SAM 3.2 byl podporován pouze 7bitový ASCII. Od verze SAM 3.2 musí být kódování UTF-8. Měly by fungovat jakékoli klíče nebo hodnoty zakódované v UTF-8.
+Všechny tyto zprávy SAM jsou odesílány na jednom řádku a končí znakem nového řádku (\\n). Před verzí SAM 3.2 byl podporován pouze 7bitový ASCII. Od verze SAM 3.2 musí být kódování UTF-8. Měly by fungovat všechny klíče a hodnoty kódované v UTF-8.
 
-Formátování uvedené v této specifikaci níže je pouze pro čitelnost a zatímco první dvě slova v každé zprávě musí zůstat ve svém konkrétním pořadí, pořadí dvojic klíč=hodnota se může měnit (např. „ONE TWO A=B C=D“ nebo „ONE TWO C=D A=B“ jsou obě plně platné konstrukce). Kromě toho je protokol citlivý na velikost písmen. Níže jsou příklady zpráv označeny „->“ pro zprávy odesílané klientem mostu SAM a „<-“ pro zprávy odesílané mostem SAM klientovi.
+Formátování uvedené v této specifikaci níže je určeno pouze pro čitelnost. Zatímco první dvě slova každé zprávy musí zůstat ve stanoveném pořadí, pořadí dvojic klíč=hodnota může být změněno (např. „ONE TWO A=B C=D“ nebo „ONE TWO C=D A=B“ jsou obě platné konstrukce). Kromě toho je protokol citlivý na velikost písmen. Následující příklady zpráv jsou označeny šipkou „->“ pro zprávy odesílané klientem do SAM mostu a šipkou „<-“ pro zprávy odesílané SAM mostem ke klientovi.
 
-Základní příkazový řádek nebo řádek odpovědi má jednu z následujících forem:
+Základní příkaz nebo odpověď má jednu z následujících podob:
 
 ```
 COMMAND SUBCOMMAND [key=value] [key=value] ...
@@ -356,23 +363,23 @@ COMMAND                                           # As of SAM 3.2
 PING[ arbitrary text]                             # As of SAM 3.2
 PONG[ arbitrary text]                             # As of SAM 3.2
 ```
-PŘÍKAZ bez PODPŘÍKAZU je podporován pouze pro některé nové příkazy ve verzi SAM 3.2.
+PŘÍKAZ bez PODPŘÍKAZU je podporován pouze pro některé nové příkazy v SAM 3.2.
 
-Dvojice klíč=hodnota musí být odděleny jednou mezerou. (Od SAM 3.2 jsou povoleny i více mezer.) Hodnoty musí být uzavřeny do uvozovek, pokud obsahují mezery, např. klíč="dlouhý text hodnoty". (Před SAM 3.2 to nefungovalo spolehlivě v některých implementacích))
+Páry klíč=hodnota musí být odděleny jednou mezerou. (Od SAM 3.2 jsou povoleny i více mezer.) Pokud hodnoty obsahují mezery, musí být uzavřeny do dvojitých uvozovek, např. klíč="dlouhý text hodnoty". (Před verzí SAM 3.2 to v některých implementacích nefungovalo spolehlivě)
 
 Před verzí SAM 3.2 neexistoval žádný mechanismus pro escapování. Od verze SAM 3.2 mohou být uvozovky escapovány zpětným lomítkem '\\' a samotné zpětné lomítko může být reprezentováno jako dvojice zpětných lomítek '\\\\'.
 
 ### Prázdné hodnoty
 
-Od verze SAM 3.2 mohou být prázdné hodnoty volby, jako například KEY, KEY= nebo KEY="", povoleny, v závislosti na implementaci.
+Počínaje SAM 3.2 jsou prázdné hodnoty volby, jako KEY, KEY= nebo KEY="", povoleny v závislosti na implementaci.
 
 ### Citlivost na velikost písmen
 
-Protokol, jak je specifikován, rozlišuje velikost písmen. Doporučuje se (nikoli vyžaduje), aby server mapoval příkazy na velká písmena, aby bylo snazší testování pomocí telnetu. To by například umožnilo, aby fungoval příkaz "hello version". Toto je závislé na implementaci. Neprovádějte mapování klíčů nebo hodnot na velká písmena, protože by to poškodilo možnosti [I2CP](/docs/protocol/i2cp).
+Protokol, jak je specifikován, rozlišuje velikost písmen. Doporučuje se (nikoli vyžaduje), aby server mapoval příkazy na velká písmena, aby bylo snazší testování pomocí telnetu. To by například umožnilo použití příkazu "hello version". Toto chování závisí na implementaci. Klíče ani hodnoty nesmí být mapovány na velká písmena, protože by to poškodilo možnosti [I2CP](/docs/protocol/i2cp).
 
-### Navázání spojení SAM
+### Připojovací handshake SAM
 
-Žádná komunikace SAM nemůže proběhnout dříve, než se klient a most dohodnou na verzi protokolu, což je provedeno tak, že klient pošle příkaz HELLO a most odpoví HELLO REPLY:
+Žádná SAM komunikace nemůže proběhnout dříve, než se klient a most dohodnou na verzi protokolu, což je provedeno tak, že klient pošle HELLO a most pošle HELLO REPLY:
 
 ```
 ->  HELLO VERSION
@@ -386,25 +393,25 @@ a
 ```
 <-  HELLO REPLY RESULT=OK VERSION=3.1
 ```
-Počínaje verzí 3.1 (I2P 0.9.14) jsou parametry MIN a MAX volitelné. SAM vždy vrátí nejvyšší možnou verzi v rámci daných omezení MIN a MAX, nebo aktuální verzi serveru, pokud nejsou zadána žádná omezení.
+Od verze 3.1 (I2P 0.9.14) jsou parametry MIN a MAX volitelné. SAM vždy vrátí nejvyšší možnou verzi v rámci omezení MIN a MAX, případně aktuální verzi serveru, pokud nejsou zadána žádná omezení.
 
-Pokud most SAM nenajde vhodnou verzi, odpoví:
+Pokud most SAM nedokáže najít vhodnou verzi, odpoví:
 
 ```
 <- HELLO REPLY RESULT=NOVERSION
 ```
-Pokud dojde k nějaké chybě, například špatnému formátu požadavku, odpoví následovně:
+Pokud dojde k nějaké chybě, například kvůli špatnému formátu požadavku, odpoví následovně:
 
 ```
 <- HELLO REPLY RESULT=I2P_ERROR MESSAGE="$message"
 ```
 #### SSL
 
-Řídicí soket serveru může volitelně nabízet podporu SSL/TLS, jak je nakonfigurováno na straně serveru a klienta. Implementace mohou nabízet i další transportní vrstvy; toto je mimo rámec definice protokolu.
+Řídicí socket serveru může volitelně nabízet podporu SSL/TLS, jak je nakonfigurováno na serveru a klientovi. Implementace mohou nabízet i další transportní vrstvy; toto je mimo rámec definice protokolu.
 
 #### Autorizace
 
-Pro autorizaci klient přidá do parametrů příkazu HELLO položky USER="xxx" PASSWORD="yyy". U uživatele a hesla jsou dvojité uvozovky doporučeny, ale nevyžadovány. Pokud se ve jménu uživatele nebo v hesle vyskytuje dvojitá uvozovka, musí být uvozena zpětným lomítkem. V případě chyby server odpoví zprávou I2P_ERROR a popisem problému. U všech SAM serverů, kde je vyžadována autorizace, se doporučuje povolit SSL.
+Pro autorizaci klient přidá do parametrů příkazu HELLO položky USER="xxx" PASSWORD="yyy". U uživatele a hesla se doporučuje (ale není vyžadováno) použít uvozovky. Uvozovka uvnitř uživatelského jména nebo hesla musí být ohraničena zpětným lomítkem. V případě chyby server odpoví zprávou I2P_ERROR a popisem chyby. Doporučuje se povolit SSL na všech SAM serverech, kde je vyžadována autorizace.
 
 #### Časové limity
 
@@ -417,7 +424,7 @@ Pokud dojde k vypršení časového limitu před přijetím zprávy HELLO, most 
 ```
 a poté se odpojí.
 
-Pokud dojde k časovému limitu po přijetí zprávy HELLO, ale před následujícím příkazem, most odpoví:
+Pokud dojde k časovému limitu po přijetí zprávy HELLO, ale před příkazem následujícím po ní, odpoví most následujícím způsobem:
 
 ```
 <- SESSION STATUS RESULT=I2P_ERROR MESSAGE="$message"
@@ -440,15 +447,15 @@ I2CP porty jsou určeny pro I2P sokety a datagramy. Nemají žádný vztah k mí
 
 - Port 0 je platný a má speciální význam.
 - Porty 1–1023 nejsou speciální ani privilegované.
-- Servery standardně naslouchají na portu 0, což znamená „všechny porty“.
-- Klienti standardně odesílají na port 0, což znamená „libovolný port“.
-- Klienti standardně odesílají z portu 0, což znamená „nespecifikovaný“.
-- Servery mohou mít službu naslouchající na portu 0 a další služby naslouchající na vyšších portech. V takovém případě je služba na portu 0 výchozí a připojí se k ní, pokud příchozí port soketu nebo datagramu neodpovídá žádné jiné službě.
-- Na většině cílů I2P běží pouze jedna služba, takže můžete použít výchozí nastavení a konfiguraci I2CP portů ignorovat.
-- Pro určení I2CP portů je vyžadován SAM 3.2 nebo 3.3.
-- Pokud nepotřebujete I2CP porty, nepotřebujete ani SAM 3.2 nebo 3.3; verze 3.1 je dostačující.
-- Protokol 0 je platný a znamená „libovolný protokol“. Toto není doporučeno a pravděpodobně nebude fungovat.
-- I2P sokety jsou sledovány pomocí interního identifikátoru spojení. Proto není vyžadováno, aby byla pětice dest:port:dest:port:protokol unikátní. Například může existovat více soketů se stejnými porty mezi dvěma cíli. Klienti nemusí vybírat „volný port“ pro odchozí spojení.
+- Servery naslouchají na portu 0 ve výchozím nastavení, což znamená „všechny porty“.
+- Klienti odesílají na port 0 ve výchozím nastavení, což znamená „libovolný port“.
+- Klienti odesílají z portu 0 ve výchozím nastavení, což znamená „nespecifikováno“.
+- Servery mohou mít službu naslouchající na portu 0 a zároveň další služby naslouchající na vyšších portech. V takovém případě je služba na portu 0 výchozí a bude použita, pokud port příchozího socketu nebo datagramu neodpovídá žádné jiné službě.
+- Většina cílů I2P má spuštěnou pouze jednu službu, takže můžete používat výchozí hodnoty a konfiguraci I2CP portů ignorovat.
+- Pro zadání I2CP portů je vyžadován SAM 3.2 nebo 3.3.
+- Pokud nepotřebujete I2CP porty, nepotřebujete SAM 3.2 ani 3.3; 3.1 je dostačující.
+- Protokol 0 je platný a znamená „libovolný protokol“. Toto se nedoporučuje a pravděpodobně nebude fungovat.
+- I2P sokety jsou sledovány pomocí interního identifikátoru spojení. Proto není vyžadováno, aby byla 5-tice dest:port:dest:port:protokol unikátní. Například může existovat více soketů se stejnými porty mezi dvěma cíli. Klienti nemusí vybírat „volný port“ pro odchozí spojení.
 
 Pokud navrhujete aplikaci pro SAM 3.3 s více pods relacemi, důkladně zvažte, jak efektivně využívat porty a protokoly. Další informace naleznete ve specifikaci [I2CP](/docs/protocol/i2cp).
 
@@ -492,7 +499,7 @@ Pokud je privátní klíč pro podepisování tvořen samými nulami, následuje
 2. Typ podpisu dočasného veřejného klíče pro podepisování (2 bajty, big endian)  
 3. Dočasný veřejný klíč pro podepisování (délka dle specifikace typu dočasného podpisu)  
 4. Podpis výše uvedených tří polí offline klíčem (délka dle specifikace typu podpisu cíle)  
-5. Dočasný privátní klíč pro podepisování (délka dle specifikace typu dočasného podpisu)
+5. Dočasný soukromý klíč pro podepisování (délka dle specifikace typu dočasného podpisu)
 
 Pokud je cíl určen jako TRANSIENT, vytvoří SAM most nový cíl. Počínaje verzí 3.1 (I2P 0.9.14) je při použití přechodného cíle podporován volitelný parametr SIGNATURE_TYPE. Hodnota SIGNATURE_TYPE může být libovolný název (např. ECDSA_SHA256_P256, velikost písmen se nerozlišuje) nebo číslo (např. 1), které je podporováno [Key Certificates](/docs/specs/common-structures#type_Certificate). Výchozí hodnotou je DSA_SHA1, což obvykle nechcete. Pro většinu aplikací doporučujeme uvést SIGNATURE_TYPE=7.
 
@@ -549,7 +556,7 @@ Virtuální proudy jsou zaručeně odesílány spolehlivě a ve správném pořa
 
 Streamy jsou obousměrné komunikační sokety mezi dvěma I2P cíli, ale jejich otevření musí být vyžádáno jednou ze stran. Poté jsou příkazy CONNECT používány SAM klientem pro takovou žádost. Příkazy FORWARD / ACCEPT jsou používány SAM klientem, když chce naslouchat žádostem přicházejícím z jiných I2P cílů.
 
-### Virtuální proudy SAM: PŘIPOJIT
+### Virtuální proudy SAM: CONNECT
 
 Klient požaduje připojení tímto způsobem:
 
@@ -598,7 +605,7 @@ Pokud je VÝSLEDEK OK, veškerá zbývající data procházející aktuálním s
 
 Časový limit pro interní připojení streamu směrovače je přibližně jedna minuta, v závislosti na implementaci. Nenastavujte kratší časový limit pro čekání na odpověď.
 
-### Virtuální proudy SAM: PŘIJMOUT
+### SAM Virtuální proudy: PŘIJMOUT
 
 Klient čeká na příchozí požadavek na připojení tím, že:
 
@@ -660,12 +667,12 @@ V některých vzácných případech může SAM most narazit na chybu po odesl�
 ```
 před okamžitým uzavřením soketu. Tento řádek samozřejmě nelze dekódovat jako platnou Base 64 destinaci.
 
-### Virtuální proudy SAM: PŘEPOSÍLÁNÍ
+### Virtuální proudy SAM: PŘESMĚROVÁNÍ
 
 Klient může použít běžný soketový server a čekat na požadavky na připojení přicházející z I2P. K tomu musí klient:
 
 - otevřete nový socket pomocí SAM mostu
-- předejte stejný úvodní handshake jako výše
+- předejte stejný úvodní handshake HELLO jako výše
 - odešlete příkaz pro přeposílání
 
 #### Předat požadavek
@@ -724,8 +731,8 @@ SAMv3 poskytuje mechanismy pro odesílání a příjem datagramů přes místní
 
 I2P podporuje čtyři typy datagramů:
 
-- Datagrams zpětně odpovědné a ověřené jsou předřazeny cílem odesílatele a obsahují podpis odesílatele, takže příjemce může ověřit, že cíl odesílatele nebyl falšován, a může na datagram odpovědět. Nový formát Datagram2 je rovněž zpětně odpovědný a ověřený.
-- Nový formát Datagram3 je zpětně odpovědný, ale není ověřený. Informace o odesílateli nejsou ověřeny.
+- Datagramy, které lze odpovědět a které jsou ověřené, jsou předřazeny cílem odesílatele a obsahují podpis odesílatele, takže příjemce může ověřit, že cíl odesílatele nebyl falšován, a může na datagram reagovat. Nový formát Datagram2 je také odpovídací a ověřený.
+- Nový formát Datagram3 je odpovídací, ale není ověřený. Informace o odesílateli nejsou ověřeny.
 - Syrové datagramy neobsahují cíl odesílatele ani podpis.
 
 Výchozí I2CP porty jsou definovány pro oba typy – odpovědi i raw datagramy. I2CP port může být změněn pro raw datagramy.
@@ -765,11 +772,11 @@ $destination
                                      # Default is true
 \n
 ```
-- 3.0 je verze SAM. Od verze SAM 3.2 je povolena libovolná verze 3.x.
-- $nickname je identifikátor relace DATAGRAM, která bude použita
-- Cílem je $destination, což je base64 reprezentace [Destination](/docs/specs/common-structures#type_Destination), která má 516 nebo více znaků v base64 (387 nebo více bajtů v binární podobě), v závislosti na typu podpisu. **Poznámka:** Od roku 2014 (SAM v3.1) podporuje Java I2P také doménová jména a b32 adresy pro $destination, ale dříve to nebylo zdokumentováno. Doménová jména a b32 adresy jsou nyní oficiálně podporovány v Java I2P od verze 0.9.48. Směrovač i2pd aktuálně doménová jména a b32 adresy nepodporuje; podpora může být přidána v budoucí verzi.
-- Všechny volby jsou nastavení na úrovni jednotlivých datagramů, které přepisují výchozí hodnoty zadané při SESSION CREATE.
-- Volby verze 3.3 SEND_TAGS, TAG_THRESHOLD, EXPIRES a SEND_LEASESET budou předány do [I2CP](/docs/protocol/i2cp), pokud jsou podporovány. Podrobnosti viz [specifikace I2CP](/docs/protocol/i2cp#msg_SendMessageExpire). Podpora těchto možností ze strany SAM serveru je nepovinná – server je v případě nepodpory ignoruje.
+- 3.0 je verze SAM. Počínaje SAM 3.2 je povolena libovolná verze 3.x.
+- $nickname je ID relace DATAGRAM, která bude použita
+- Cílem je $destination, což je base 64 reprezentace [Destination](/docs/specs/common-structures#type_Destination), která má 516 nebo více znaků v base 64 (387 nebo více bajtů v binární podobě), v závislosti na typu podpisu. **Poznámka:** Od přibližně roku 2014 (SAM v3.1) podporuje Java I2P také doménová jména a b32 adresy pro $destination, ale to nebylo dříve zdokumentováno. Doménová jména a b32 adresy jsou nyní oficiálně podporovány Java I2P od verze 0.9.48. Směrovač i2pd aktuálně doménová jména a b32 adresy nepodporuje; podpora může být přidána v budoucí verzi.
+- Všechny volby jsou nastavení na úrovni jednotlivých datagramů, která přepisují výchozí hodnoty zadané v SESSION CREATE.
+- Volby verze 3.3 SEND_TAGS, TAG_THRESHOLD, EXPIRES a SEND_LEASESET budou předány [I2CP](/docs/protocol/i2cp), pokud jsou podporovány. Podrobnosti viz [specifikace I2CP](/docs/protocol/i2cp#msg_SendMessageExpire). Podpora těchto možností SAM serverem je volitelná – pokud nejsou podporovány, server je bude ignorovat.
 - tento řádek je ukončen znakem '\\n'.
 
 První řádek bude SAMem zahoděn před odesláním zbývajících dat zprávy do zadaného cíle.
@@ -922,7 +929,7 @@ Tyto příkazy *nepodporují* parametr ID. Datagramy jsou odesílány do naposle
 
 Formáty DATAGRAM2 a DATAGRAM3 nejsou podporovány kompatibilním způsobem pro V1/V2.
 
-### SAM hlavní relace (V3.3 a vyšší)
+### SAM Hlavní relace (V3.3 a vyšší)
 
 *Verze 3.3 byla představena ve vydání I2P 0.9.25.*
 
@@ -1120,16 +1127,16 @@ HELP nevyžaduje, aby byla nejprve vytvořena relace.
 
 Konfigurace autorizace pomocí příkazu AUTH. SAM server může tyto příkazy implementovat za účelem trvalého ukládání přihlašovacích údajů. Konfigurace ověřování jiným způsobem než pomocí těchto příkazů je specifická pro danou implementaci a není předmětem této specifikace.
 
-- AUTH ENABLE povolí autorizaci pro následující připojení
-- AUTH DISABLE zakáže autorizaci pro následující připojení
-- AUTH ADD USER="foo" PASSWORD="bar" přidá uživatele/heslo
+- AUTH ENABLE povolí autorizaci pro následné připojení
+- AUTH DISABLE zakáže autorizaci pro následné připojení
+- AUTH ADD USER="foo" PASSWORD="bar" přidá uživatele a heslo
 - AUTH REMOVE USER="foo" odstraní tohoto uživatele
 
 Dvojité uvozovky pro uživatele a heslo jsou doporučeny, ale nejsou vyžadovány. Dvojité uvozovky uvnitř uživatelského jména nebo hesla musí být ohraničeny zpětným lomítkem. V případě chyby server odpoví zprávou I2P_ERROR a zprávou.
 
 AUTH nevyžaduje, aby byla nejprve vytvořena relace.
 
-### Hodnoty VÝSLEDKU
+### Hodnoty RESULT
 
 Toto jsou hodnoty, které může pole RESULT obsahovat, včetně jejich významu:
 
@@ -1148,7 +1155,7 @@ Různé implementace se mohou lišit v tom, který výsledek (RESULT) je vrácen
 
 Většina odpovědí s výsledkem jiným než OK bude obsahovat také zprávu (MESSAGE) s dodatečnými informacemi. Tato zpráva bude obvykle užitečná při odstraňování problémů. Zprávy MESSAGE však závisí na konkrétní implementaci, mohou být přeloženy serverem SAM do aktuální lokalizace nebo nemusí, mohou obsahovat interní implementační informace jako výjimky a mohou být bez předchozího upozornění změněny. Klienti SAM mohou zprávy MESSAGE zobrazovat uživatelům, ale neměli by na jejich základě dělat programová rozhodnutí, protože by to bylo zranitelné.
 
-### Možnosti tunelu, I2CP a streamování
+### Nastavení tunelu, I2CP a streamování
 
 Tyto možnosti mohou být předány jako páry název=hodnota v řádku SAM SESSION CREATE.
 

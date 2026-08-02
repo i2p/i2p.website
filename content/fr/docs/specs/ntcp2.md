@@ -3,8 +3,8 @@ title: "Transport NTCP2"
 description: "Transport TCP basé sur Noise pour les liaisons router-à-router"
 slug: "ntcp2"
 category: "Transports"
-lastUpdated: "2026-03"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 ## Aperçu
@@ -842,7 +842,8 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 
 - Le padding de la partie 2 du message 3 n'est pas requis si Alice ajoute une trame de phase de données (contenant optionnellement du padding) à la fin du message 3 et envoie les deux en même temps, car cela apparaîtra comme un gros flux d'octets à un observateur. Comme Alice aura généralement, mais pas toujours, un message I2NP à envoyer à Bob (c'est pourquoi elle s'est connectée à lui), c'est l'implémentation recommandée, pour l'efficacité et pour garantir l'efficacité du padding aléatoire.
 
-- La longueur totale des deux trames AEAD du Message 3 (parties 1 et 2) est de 65535 octets ; la partie 1 fait 48 octets donc la longueur maximale de trame de la partie 2 est de 65487 ; la longueur maximale de texte en clair de la partie 2 excluant le MAC est de 65471.
+- La longueur théorique maximale totale des deux trames AEAD du message 3 (parties 1 et 2) est de 65535 octets ; la partie 1 fait 48 octets, donc la longueur maximale de la trame de la partie 2 est de 65487 ; la longueur maximale du texte en clair de la partie 2, hors MAC, est de 65471.
+  AVERTISSEMENT : Certaines implémentations appliquent des limites beaucoup plus strictes. Java I2P limite actuellement la longueur totale à 4096 octets. N'ajoutez pas de remplissage excessif.
 
 ### Fonction de dérivation de clé (KDF) (pour la phase de données)
 

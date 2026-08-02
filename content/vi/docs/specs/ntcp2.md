@@ -3,8 +3,8 @@ title: "Truyền tải NTCP2"
 description: "Giao thức TCP dựa trên nhiễu cho các kết nối liên kết từ bộ định tuyến đến bộ định tuyến"
 slug: "ntcp2"
 category: "Truyền tải"
-lastUpdated: "2026-03"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 ## Tổng quan
@@ -483,7 +483,7 @@ Bob gửi cho Alice.
 
 Nội dung nhiễu: Khóa tạm thời Y của Bob, Dữ liệu tải nhiễu: khối tùy chọn 16 byte, Dữ liệu tải không nhiễu: độn ngẫu nhiên
 
-(Tính năng bảo mật tải trọng từ [Noise](https://noiseprotocol.org/noise.html))
+(Thuộc tính Bảo mật Payload từ [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
 XK(s, rs):           Authentication   Confidentiality
@@ -513,7 +513,7 @@ Giá trị Y được mã hóa để đảm bảo tính không thể phân biệ
 
 Mã hóa AES chỉ nhằm chống lại việc kiểm tra sâu gói tin (DPI). Bất kỳ bên nào biết được băm router và IV của Bob, những thông tin này được công bố trong cơ sở dữ liệu mạng, và đã thu thập được 32 byte đầu tiên của thông điệp 1, đều có thể giải mã giá trị Y trong thông điệp này.
 
-Nội dung gốc:
+Nội dung thô:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -587,7 +587,7 @@ padding :: Random data, 0 or more bytes.
 - Để hỗ trợ việc bắt tay nhanh chóng, các triển khai phải đảm bảo rằng Bob sẽ lưu tạm (buffer) và sau đó gửi ngay toàn bộ nội dung của thông điệp đầu tiên một lần, bao gồm cả dữ liệu đệm. Điều này làm tăng khả năng dữ liệu sẽ nằm gọn trong một gói TCP duy nhất (trừ khi bị phân mảnh bởi hệ điều hành hoặc các thiết bị trung gian), và được Alice nhận toàn bộ cùng lúc. Việc này cũng nhằm tăng hiệu quả và đảm bảo tính hiệu lực của dữ liệu đệm ngẫu nhiên.
 - Alice phải hủy bỏ kết nối nếu còn bất kỳ dữ liệu nào gửi đến sau khi xác thực thông điệp 2 và đọc xong phần dữ liệu đệm. Không nên có dữ liệu bổ sung nào từ Bob, vì lúc này Alice vẫn chưa phản hồi bằng thông điệp 3.
 
-Khối tùy chọn: Lưu ý: Tất cả các trường đều theo thứ tự big-endian.
+Khối tùy chọn: Lưu ý: Tất cả các trường đều là big-endian.
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -707,7 +707,7 @@ Alice gửi cho Bob.
 
 Nội dung nhiễu: Khóa tĩnh của Alice, tải trọng Noise: RouterInfo của Alice và phần đệm ngẫu nhiên, tải trọng không phải Noise: không có
 
-(Tính năng bảo mật tải trọng từ [Noise](https://noiseprotocol.org/noise.html))
+(Các Thuộc Tính Bảo Mật Payload từ [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
 XK(s, rs):           Authentication   Confidentiality
@@ -738,7 +738,7 @@ XK(s, rs):           Authentication   Confidentiality
 ```
 Phần này chứa hai khung ChaChaPoly. Khung đầu tiên là khóa công khai tĩnh đã được mã hóa của Alice. Khung thứ hai là dữ liệu tải Noise: RouterInfo đã được mã hóa của Alice, các tùy chọn tùy chọn và phần đệm tùy chọn. Chúng sử dụng các khóa khác nhau, vì hàm MixKey() được gọi ở giữa.
 
-Nội dung gốc:
+Nội dung thô:
 
 ```
 +----+----+----+----+----+----+----+----+
@@ -840,7 +840,8 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 
 - Phần đệm của tin nhắn 3, phần 2 là không bắt buộc nếu Alice thêm một khung pha dữ liệu (có thể chứa phần đệm) vào cuối tin nhắn 3 và gửi cả hai cùng lúc, vì đối với người quan sát, nó sẽ trông giống như một luồng byte lớn duy nhất. Vì thông thường (mặc dù không phải lúc nào cũng vậy) Alice sẽ có một tin nhắn I2NP để gửi cho Bob (đó là lý do cô ấy kết nối với anh ta), nên đây là cách triển khai được khuyến nghị nhằm tăng hiệu quả và đảm bảo hiệu lực của phần đệm ngẫu nhiên.
 
-- Tổng độ dài của cả hai khung AEAD trong Thông điệp 3 (phần 1 và 2) là 65535 byte; phần 1 dài 48 byte nên độ dài tối đa của khung phần 2 là 65487; độ dài tối đa dữ liệu gốc của phần 2 (không tính MAC) là 65471.
+- Độ dài tối đa lý thuyết của cả hai khung Message 3 AEAD (phần 1 và 2) là 65535 byte; phần 1 dài 48 byte nên độ dài khung tối đa của phần 2 là 65487; độ dài văn bản gốc tối đa của phần 2 (không tính MAC) là 65471.
+  CẢNH BÁO: Một số triển khai áp dụng giới hạn nhỏ hơn nhiều. Java I2P hiện đang giới hạn tổng độ dài ở mức 4096 byte. Không nên thêm khoảng đệm quá mức.
 
 ### Hàm suy xuất khóa (KDF) (cho giai đoạn dữ liệu)
 
@@ -913,7 +914,7 @@ Bắt đầu từ phần thứ 2 của tin nhắn 3, tất cả các tin nhắn 
 
 Lưu ý: Bob có thể, nhưng không bắt buộc, gửi RouterInfo của mình cho Alice như tin nhắn đầu tiên trong giai đoạn dữ liệu.
 
-(Tính năng bảo mật tải trọng từ [Noise](https://noiseprotocol.org/noise.html))
+(Thuộc tính Bảo mật Payload từ [Noise](https://noiseprotocol.org/noise.html) )
 
 ```
 XK(s, rs):           Authentication   Confidentiality

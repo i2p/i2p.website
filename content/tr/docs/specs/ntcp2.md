@@ -3,8 +3,8 @@ title: "NTCP2 Transport"
 description: "Router'dan router'a bağlantılar için Noise tabanlı TCP taşıma protokolü"
 slug: "ntcp2"
 category: "Taşımalar"
-lastUpdated: "2026-03"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 ## Genel Bakış
@@ -840,7 +840,8 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 
 - Alice, mesaj 3'ün sonuna bir veri aşaması çerçevesi (isteğe bağlı olarak padding içeren) ekleyip her ikisini birden gönderirse, mesaj 3 bölüm 2 padding'i gerekli değildir, çünkü bir gözlemciye tek bir büyük bayt akışı gibi görünecektir. Alice genellikle (ama her zaman değil) Bob'a gönderecek bir I2NP mesajı olduğundan (bu yüzden ona bağlandı), bu uygulama hem verimlilik hem de rastgele padding'in etkinliğini sağlamak için önerilir.
 
-- Her iki Mesaj 3 AEAD çerçevesinin (bölüm 1 ve 2) toplam uzunluğu 65535 bayttır; bölüm 1 48 bayt olduğundan bölüm 2'nin maksimum çerçeve uzunluğu 65487'dir; bölüm 2'nin MAC hariç maksimum düz metin uzunluğu 65471'dir.
+- Mesaj 3 AEAD çerçevelerinin (1. ve 2. parçalar) teorik maksimum toplam uzunluğu 65535 bayttır; 1. parça 48 bayt olduğundan 2. parçanın maksimum çerçeve uzunluğu 65487'dir; MAC hariç 2. parçanın maksimum düz metin uzunluğu 65471'dir.
+  UYARI: Bazı uygulamalar çok daha küçük uzunluklar zorunlu kılar. Java I2P şu anda toplam uzunluğu 4096 bayta sınırlar. Aşırı dolgu ekleme.
 
 ### Anahtar Türetme Fonksiyonu (KDF) (veri aşaması için)
 

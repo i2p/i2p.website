@@ -3,8 +3,8 @@ title: "NTCP2 Transport"
 description: "TCP transport založený na Noise protokolu pro spojení router-router"
 slug: "ntcp2"
 category: "Transporty"
-lastUpdated: "2026-03"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 ## Přehled
@@ -843,7 +843,8 @@ S :: 32 bytes, Alice's X25519 static key, little endian
 
 - Výplň druhé části zprávy 3 není vyžadována, pokud Alice připojí rámec datové fáze (volitelně obsahující výplň) na konec zprávy 3 a pošle obě najednou, protože se pozorovateli budou jevit jako jeden velký proud bajtů. Jelikož Alice bude obecně, ale ne vždy, mít I2NP zprávu k odeslání Bobovi (proto se k němu připojila), je toto doporučená implementace kvůli efektivitě a zajištění účinnosti náhodné výplně.
 
-- Celková délka obou Message 3 AEAD rámců (část 1 a 2) je 65535 bajtů; část 1 má 48 bajtů, takže maximální délka rámce části 2 je 65487; maximální délka prostého textu části 2 bez MAC je 65471.
+- Teoretická maximální celková délka obou AEAD rámců zprávy 3 (části 1 a 2) je 65535 bajtů; část 1 má 48 bajtů, takže maximální délka rámce části 2 je 65487 bajtů; maximální délka otevřeného textu části 2 bez MAC je 65471 bajtů.
+  VAROVÁNÍ: Některé implementace vynucují mnohem menší délky. Java I2P aktuálně omezuje celkovou délku na 4096 bajtů. Nepoužívejte nadměrné doplňování.
 
 ### Funkce pro odvození klíčů (KDF) (pro datovou fázi)
 

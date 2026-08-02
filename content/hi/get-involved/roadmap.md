@@ -10,33 +10,24 @@ description: "I2P नेटवर्क के लिए वर्तमान �
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** 2026-05
+**Last Updated:** 2026-07
 
 </div>
 ## 🎯 आगामी रिलीज़
 
 <div style="border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 2rem;">
 
-### Version 2.13.0
+### Version 2.14.0
 <div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
-Target: August 2026
+Target: Late October 2026
 </div>
 
-- SSU2-PQ transport (prop. 169)
-- I2CP lookup support for LS service record parameters (prop. 167)
-- Continue work on per-tunnel throttling and bandwidth parameters
-- Connection limit management improvements
-- Memory usage reduction for floodfills
-- Peer profile management improvements
-- Refactor Noise initialization
-- Remember deleted hosts in addressbook so they don't return
-- SSU2 token management improvements
-- SSU2 peer test improvements
-- Security fixes to address audit issues
-- Update minidns to 1.1.1
-- Update json-simple to 2.3.1
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
+- Conflicts addressbook
+- Performance improvements
 
+</div>
 
 ---
 
@@ -45,6 +36,31 @@ Target: August 2026
 ### 2026 Releases
 
 <div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
+
+**Version 2.13.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released July 20, 2026</span>
+
+- SSU2-PQ transport (prop. 169)
+- I2CP lookup support for LS service record parameters (prop. 167)
+- Finish per-tunnel throttling and bandwidth parameters (prop. 168)
+- Connection limit management improvements
+- Experimental susimail standalone build option
+- Memory usage reduction for floodfills
+- Peer profile management fixes and improvements
+- Refactor Noise initialization
+- Remember deleted hosts in addressbook so they don't return
+- SSU2 token management improvements
+- SSU2 peer test improvements
+- Security fixes to address audit issues
+- Tunnel test imrovements
+- Update minidns to 1.1.1
+- Update json-simple to 2.3.1
+- Update bouncycastle MLKEM to 1.84
+
+</div>
+
+
+
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
 **Version 2.12.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released April 20, 2026</span>
 

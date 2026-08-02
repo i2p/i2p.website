@@ -5,8 +5,8 @@ slug: "samv3"
 aliases:
   - "/docs/api/samv3"
   - "/docs/api/samv3/"
-lastUpdated: "2026-05"
-accurateFor: "0.9.69"
+lastUpdated: "2026-07"
+accurateFor: "0.9.70"
 ---
 
 SAM, I2P ile etkileşim kurmak için basit bir istemci protokolüdür. SAM, Java dışı uygulamaların I2P ağına bağlanması için önerilen protokoldür ve birden fazla yönlendirici uygulaması tarafından desteklenir. Java uygulamaları doğrudan streaming veya I2CP API'lerini kullanmalıdır.
@@ -324,31 +324,38 @@ Sürüm 3.3, Java I2P 0.9.25 sürümünde (Mart 2016) tanıtıldı. i2pd'nin şu
 - Aynı oturum aynı anda akışlar, datagramlar ve ham veri için kullanılabilir. Gelen paketler ve akışlar I2P protokolüne ve hedef portuna göre yönlendirilir. Aşağıdaki [BİRİNCİL oturumlar bölümüne](#sam-primary-sessions-v33-and-higher) bakın.
 - DATAGRAM GÖNDER ve HAM GÖNDER artık SEND_TAGS, TAG_THRESHOLD, EXPIRES ve SEND_LEASESET seçeneklerini desteklemektedir. Aşağıdaki [datagram gönderme bölümüne](#sending-repliable-or-raw-datagrams) bakın.
 
+### 2025-04 Değişiklikler
+
+Nisan 2025'te burada belirtmeye iki öneri onaylanarak dahil edildi. Desteği gösteren bir sürüm değişikliği yoktur. Bazı uygulamalar henüz desteklemiyor ve diğer uygulamalarda destek ön karardır.
+
+- Datagram 2/3 desteği (öneri 163). OTURUM OLUŞTUR ve OTURUM EKLE'de (alt oturumlar) belirtilir. Aşağıya bakın.
+- LeaseSet seçeneklerinin alınması (öneri 167). AD ARAMA SEÇENEKLERİ=true ile belirtilir. Aşağıya bakın.
+
 ## Sürüm 3 Protokolü
 
-### Basit Anonim Mesajlaşma (SAM) Sürüm 3.3 Özellikleri Özeti
+### Basit Anonim Mesajlaşma (SAM) Sürüm 3.3 Özellikleri Genel Bakış
 
-İstemci uygulaması, I2P işlevselliğinin tamamını ele alan SAM köprüsüyle konuşur (sanal akışlar için [akış kütüphanesini](/docs/api/streaming) veya datagramlar için doğrudan [I2CP](/docs/protocol/i2cp) kullanarak).
+İstemci uygulaması, I2P işlevselliğinin tamamını yöneten SAM köprüsüyle konuşur (sanal akışlar için [akış kütüphanesi](/docs/api/streaming) veya datagramlar için doğrudan [I2CP](/docs/protocol/i2cp) kullanarak).
 
-Varsayılan olarak, istemci ile SAM köprüsü arasındaki iletişim şifrelenmemiş ve kimliği doğrulanmamıştır. SAM köprüsü SSL/TLS bağlantılarını destekleyebilir; yapılandırma ve uygulama ayrıntıları bu belgenin kapsamı dışındadır. SAM 3.2 itibarıyla, başlangıç el sıkışmasında isteğe bağlı kimlik doğrulama kullanıcı adı/parola parametreleri desteklenir ve köprü tarafından zorunlu kılınabilir.
+Varsayılan olarak, istemci ile SAM köprüsü arasındaki iletişim şifrelenmemiş ve kimliği doğrulanmamıştır. SAM köprüsü SSL/TLS bağlantılarını destekleyebilir; yapılandırma ve uygulama ayrıntıları bu belgenin kapsamı dışındadır. SAM 3.2'den itibaren, başlangıç el sıkışmasında isteğe bağlı kimlik doğrulama kullanıcı adı/parola parametreleri desteklenir ve köprü tarafından zorunlu kılınabilir.
 
-I2P iletişimi birkaç farklı biçimde olabilir:
+I2P iletişimleri birkaç farklı biçimde olabilir:
 
 - [Sanal akışlar](/docs/api/streaming)
-- [Yanıtlanabilir ve kimliği doğrulanmış veri birimleri](/docs/specs/datagrams#repliable) (FROM alanına sahip iletiler)
+- [Yanıtlamalı ve kimliği doğrulanmış veri birimleri](/docs/specs/datagrams#repliable) (FROM alanı içeren iletiler)
 - [Anonim veri birimleri](/docs/specs/datagrams#raw) (ham anonim iletiler)
-- [Datagram2](/docs/specs/datagrams#datagram2) (yeni bir yanıtlanabilir ve kimliği doğrulanmış biçim)
-- [Datagram3](/docs/specs/datagrams#datagram3) (yeni bir yanıtlanabilir ancak kimliği doğrulanmamış biçim)
+- [Datagram2](/docs/specs/datagrams#datagram2) (yeni bir yanıtlamalı ve kimliği doğrulanmış biçim)
+- [Datagram3](/docs/specs/datagrams#datagram3) (yeni bir yanıtlamalı ancak kimliği doğrulanmamış biçim)
 
-I2P iletişimleri, I2P oturumları tarafından desteklenir ve her I2P oturumu bir adrese (hedef olarak adlandırılır) bağlıdır. Bir I2P oturumu yukarıdaki üç türden biriyle ilişkilidir ve [BİRİNCİL oturumlar](#sam-primary-sessions-v33-and-higher) kullanılmadıkça başka türdeki iletimleri taşıyamaz.
+I2P iletişimleri, I2P oturumları tarafından desteklenir ve her I2P oturumu bir adrese (hedef olarak adlandırılır) bağlanır. Bir I2P oturumu yukarıdaki üç türden biriyle ilişkilidir ve [BİRİNCİL oturumlar](#sam-primary-sessions-v33-and-higher) kullanılmadığı sürece başka türdeki iletişimleri taşıyamaz.
 
 ### Kodlama ve Kaçış
 
-Bu SAM mesajlarının tümü tek bir satırda gönderilir ve yeni satır karakteriyle (\\n) sonlandırılır. SAM 3.2'ye kadar yalnızca 7 bitlik ASCII destekleniyordu. SAM 3.2'den itibaren kodlama UTF-8 olmalıdır. Herhangi bir UTF8 ile kodlanmış anahtar veya değer çalışmalıdır.
+Bu SAM mesajlarının tümü tek bir satırda gönderilir ve yeni satır karakteriyle (\\n) sonlandırılır. SAM 3.2'ye kadar yalnızca 7 bitlik ASCII destekleniyordu. SAM 3.2'den itibaren kodlama UTF-8 olmalıdır. Herhangi bir UTF8 ile kodlanmış anahtar veya değer düzgün çalışmalıdır.
 
-Aşağıda bu spesifikasyonda gösterilen biçimlendirme yalnızca okunabilirlik içindir ve her mesajdaki ilk iki kelimenin belirli sıralarında kalması gerekse de, anahtar=değer çiftlerinin sırası değişebilir (örneğin "ONE TWO A=B C=D" veya "ONE TWO C=D A=B" her ikisi de tamamen geçerli yapılardır). Ek olarak, protokol büyük/küçük harfe duyarlıdır. Aşağıda, mesaj örneklerinin önünde istemciden SAM köprüsüne gönderilen mesajlar için "->", SAM köprüsünden istemciye gönderilen mesajlar için "<-" bulunur.
+Aşağıdaki bu belgede gösterilen biçimlendirme yalnızca okunabilirlik içindir ve her mesajdaki ilk iki kelimenin belirli sıralarında kalması gerekse de, anahtar=değer çiftlerinin sırası değişebilir (örneğin "ONE TWO A=B C=D" veya "ONE TWO C=D A=B" her ikisi de tamamen geçerli yapılardır). Ek olarak protokol büyük/küçük harfe duyarlıdır. Aşağıdaki örneklerde, istemci tarafından SAM köprüsüne gönderilen mesajlar "->" ile, SAM köprüsü tarafından istemciye gönderilen mesajlar ise "<-" ile işaretlenmiştir.
 
-Temel komut veya yanıt satırı aşağıdaki biçimlerden birini alır:
+Temel komut veya yanıt satırı aşağıdaki formlardan birini alır:
 
 ```
 COMMAND SUBCOMMAND [key=value] [key=value] ...
@@ -356,23 +363,23 @@ COMMAND                                           # As of SAM 3.2
 PING[ arbitrary text]                             # As of SAM 3.2
 PONG[ arbitrary text]                             # As of SAM 3.2
 ```
-SAM 3.2'de yalnızca bazı yeni komutlar için BİR ALT KOMUT OLMADAN KOMUT kullanımı desteklenir.
+SAM 3.2'de yalnızca bazı yeni komutlar için BİR ALT KOMUTSIZ KOMUT desteklenir.
 
-Anahtar=değer çiftleri tek bir boşlukla ayrılmalıdır. (SAM 3.2'den itibaren, birden fazla boşluk kullanılmasına izin verilir.) Değerler boşluk içeriyorsa çift tırnak içine alınmalıdır, örneğin key="uzun değer metni". (SAM 3.2'den önce, bazı uygulamalarda bu güvenilir şekilde çalışmıyordu)
+Anahtar=değer çiftleri tek bir boşlukla ayrılmalıdır. (SAM 3.2'den itibaren, birden fazla boşluk kullanılmasına izin verilir) Değerler boşluk içeriyorsa çift tırnak içine alınmalıdır, örneğin key="uzun değer metni". (SAM 3.2'den önce bazı uygulamalarda bu, güvenilir şekilde çalışmıyordu)
 
-SAM 3.2 öncesinde bir kaçış mekanizması yoktu. SAM 3.2'den itibaren çift tırnaklar bir ters eğik çizgiyle '\\', ters eğik çizgi ise iki ters eğik çizgiyle '\\\\' kaçış karakteri olarak temsil edilebilir.
+SAM 3.2'den önce kaçış mekanizması yoktu. SAM 3.2 itibarıyla çift tırnaklar bir ters eğik çizgiyle '\\', ters eğik çizgi ise iki ters eğik çizgiyle '\\\\' temsil edilebilir.
 
 ### Boş Değerler
 
-SAM 3.2 itibariyle, KEY, KEY= veya KEY="" gibi boş seçenek değerlerine izin verilebilir ve bu durum uygulamaya bağlıdır.
+SAM 3.2 itibarıyla, KEY, KEY= veya KEY="" gibi boş seçenek değerlerine izin verilebilir ve bu durum uygulamaya bağlıdır.
 
 ### Büyük/Küçük Harf Duyarlılığı
 
-Belirtildiği gibi protokol büyük/küçük harfe duyarlıdır. Telnet üzerinden test etmeyi kolaylaştırmak için sunucunun komutları büyük harfe dönüştürmesi önerilir ancak zorunlu değildir. Bu sayede örneğin "hello version" komutu çalışır hale gelir. Bu durum uygulamaya bağlıdır. [I2CP](/docs/protocol/i2cp) seçeneklerinin bozulmasına neden olacağı için anahtarları veya değerleri büyük harfe dönüştürmeyin.
+Belirtildiği gibi protokol, büyük/küçük harfe duyarlıdır. Telnet üzerinden test etmeyi kolaylaştırmak için sunucunun komutları büyük harfe dönüştürmesi önerilir ancak zorunlu değildir. Bu, örneğin "hello version" komutunun çalışmasına olanak tanır. Bu durum, uygulamaya bağlıdır. [I2CP](/docs/protocol/i2cp) seçeneklerinin bozulmasına neden olacağı için anahtarları veya değerleri büyük harfe dönüştürmeyin.
 
 ### SAM Bağlantı El Sıkışması
 
-İstemci ve köprü, bir protokol sürümü üzerinde anlaşana kadar SAM iletişimi gerçekleşemez ve bu, istemcinin bir HELLO göndermesi ve köprünün bir HELLO REPLY göndermesiyle yapılır:
+İstemci ve köprü, bir protokol sürümünde anlaşana kadar SAM iletişimi gerçekleşemez ve bu, istemcinin bir HELLO göndermesi ve köprünün bir HELLO REPLY göndermesiyle yapılır:
 
 ```
 ->  HELLO VERSION
@@ -386,38 +393,38 @@ ve
 ```
 <-  HELLO REPLY RESULT=OK VERSION=3.1
 ```
-3.1 sürümünden itibaren (I2P 0.9.14), MİN ve MAKS parametreleri isteğe bağlıdır. SAM, verilen MİN ve MAKS sınırlamalarına göre mümkün olan en yüksek sürümü döndürecektir veya hiçbir sınırlama verilmemişse geçerli sunucu sürümünü döndürecektir.
+3.1 sürümünden itibaren (I2P 0.9.14), MIN ve MAX parametreleri isteğe bağlıdır. SAM, verilen MIN ve MAX sınırlamalarına göre mümkün olan en yüksek sürümü döndürür veya hiçbir sınırlama verilmemişse geçerli sunucu sürümünü döndürür.
 
-Eğer SAM köprüsü uygun bir sürüm bulamazsa şu şekilde yanıt verir:
+Eğer SAM köprüsü uygun bir versiyon bulamazsa şu şekilde yanıt verir:
 
 ```
 <- HELLO REPLY RESULT=NOVERSION
 ```
-Bazı hatalar oluşursa, örneğin hatalı bir istek formatı varsa, şu şekilde yanıt verir:
+Eğer kötü bir istek formatı gibi bir hata oluşursa, şu şekilde yanıt verir:
 
 ```
 <- HELLO REPLY RESULT=I2P_ERROR MESSAGE="$message"
 ```
 #### SSL
 
-Sunucunun kontrol soketi, sunucu ve istemcide yapılandırıldığı şekilde isteğe bağlı olarak SSL/TLS desteğine sahip olabilir. Uygulamalar başka taşıma katmanlarını da sunabilir; bu, protokol tanımının kapsamı dışında kalır.
+Sunucunun kontrol soketi, sunucu ve istemci tarafından yapılandırıldığı şekilde isteğe bağlı olarak SSL/TLS destekleyebilir. Uygulamalar diğer taşıma katmanlarını da sunabilir; bu, protokol tanımının kapsamı dışında kalır.
 
 #### Yetkilendirme
 
-Yetkilendirme için istemci, HELLO parametrelerine USER="xxx" PASSWORD="yyy" ekler. Kullanıcı adı ve parola için çift tırnak kullanılması önerilir ancak zorunlu değildir. Kullanıcı adı veya paroladaki bir çift tırnak, ters eğik çizgi ile kaçış kodu alınmalıdır. Başarısızlık durumunda sunucu bir I2P_ERROR ve bir mesaj ile yanıt verir. Yetkilendirme gerektiren SAM sunucularında SSL'nin etkinleştirilmesi önerilir.
+Yetkilendirme için, istemci HELLO parametrelerine USER="xxx" PASSWORD="yyy" ekler. Kullanıcı adı ve parola için çift tırnak kullanımı önerilir ancak zorunlu değildir. Kullanıcı adı veya paroladaki bir çift tırnak işareti ters eğik çizgi ile kaçrılmalıdır. Başarısızlık durumunda sunucu bir I2P_ERROR ve mesaj ile yanıt verir. Yetkilendirme gerektiren SAM sunucularında SSL'nin etkinleştirilmesi önerilir.
 
 #### Zaman Aşımı
 
-Sunucular, HELLO veya sonraki komutlar için uygulamaya bağlı zaman aşımı uygulayabilir. İstemciler, bağlandıktan sonra HELLO ve bir sonraki komutu hemen göndermelidir.
+Sunucular, HELLO veya sonraki komutlar için uygulamaya bağlı zaman aşımları uygulayabilir. İstemciler, bağlandıktan sonra HELLO ve bir sonraki komutu derhal göndermelidir.
 
-HELLO alındıktan önce bir zaman aşımı olursa, köprü şu şekilde yanıt verir:
+HELLO alındadan önce bir zaman aşımı olursa, köprü şu şekilde yanıt verir:
 
 ```
 <- HELLO REPLY RESULT=I2P_ERROR MESSAGE="$message"
 ```
 ve ardından bağlantıyı keser.
 
-HELLO alındıktan sonra ancak bir sonraki komuttan önce bir zaman aşımı oluşursa, köprü şu şekilde yanıt verir:
+HELLO alındıktan sonra ancak bir sonraki komuttan önce zaman aşımı olursa, köprü şu şekilde yanıt verir:
 
 ```
 <- SESSION STATUS RESULT=I2P_ERROR MESSAGE="$message"
@@ -439,16 +446,16 @@ SESSION komutları için belirtilen portlar ve protokol, bu oturum için varsay�
 I2CP portları, I2P soketleri ve veriagramları içindir. SAM'a bağlanan yerel soketlerinizle ilgisi yoktur.
 
 - Port 0 geçerlidir ve özel bir anlamı vardır.
-- Portlar 1-1023 özel veya ayrıcalıklı değildir.
-- Sunucular, varsayılan olarak "tüm portlar" anlamına gelen port 0'da dinler.
-- İstemciler, varsayılan olarak "herhangi bir port" anlamına gelen port 0'a gönderir.
-- İstemciler, varsayılan olarak "belirtilmemiş" anlamına gelen port 0'dan gönderir.
-- Sunucular, port 0'da dinleyen bir hizmete ve daha yüksek portlarda dinleyen diğer hizmetlere sahip olabilir. Bu durumda port 0 hizmeti varsayılan olur ve gelen soket veya datagram portu başka bir hizmetle eşleşmiyorsa bu hizmete bağlanılır.
-- Çoğu I2P hedefinde yalnızca bir hizmet çalışır, bu yüzden varsayılanları kullanabilir ve I2CP port yapılandırmasını göz ardı edebilirsiniz.
+- 1-1023 arası portlar özel veya ayrıcalıklı değildir.
+- Sunucular varsayılan olarak "tüm portlar" anlamına gelen port 0'da dinler.
+- İstemciler varsayılan olarak "herhangi bir port" anlamına gelen port 0'a gönderim yapar.
+- İstemciler varsayılan olarak "belirsiz" anlamına gelen port 0'dan gönderim yapar.
+- Sunucular, port 0'da çalışan bir hizmete ve daha yüksek portlarda çalışan diğer hizmetlere sahip olabilir. Bu durumda port 0 hizmeti varsayılan olur ve gelen soket veya datagram portu başka bir hizmetle eşleşmiyorsa bu hizmete bağlanılır.
+- Çoğu I2P hedefinde yalnızca bir hizmet çalışır; bu yüzden varsayılanları kullanabilir ve I2CP port yapılandırmasını göz ardı edebilirsiniz.
 - I2CP portlarını belirtmek için SAM 3.2 veya 3.3 gereklidir.
 - I2CP portlarına ihtiyacınız yoksa, SAM 3.2 veya 3.3'e de ihtiyacınız yoktur; 3.1 yeterlidir.
 - Protokol 0 geçerlidir ve "herhangi bir protokol" anlamına gelir. Bu önerilmez ve büyük olasılıkla çalışmaz.
-- I2P soketleri, iç bir bağlantı kimliği (ID) ile takip edilir. Bu nedenle, kaynak:port:hedef:port:protokol 5-lisini benzersiz olma zorunluluğu yoktur. Örneğin, iki hedef arasında aynı portlara sahip birden fazla soket olabilir. İstemcilerin giden bir bağlantı için "boş bir port" seçmesi gerekmez.
+- I2P soketleri dahili bir bağlantı kimliği (ID) ile izlenir. Bu nedenle, dest:port:dest:port:protokol 5-lisine benzersiz olma zorunluluğu yoktur. Örneğin, iki hedef arasında aynı portlara sahip birden fazla soket olabilir. İstemciler, giden bir bağlantı için "boş port" seçmek zorunda değildir.
 
 Birden fazla alt oturum içeren bir SAM 3.3 uygulaması geliştiriyorsanız, port ve protokolleri nasıl etkili kullanacağınızı dikkatlice düşünün. Daha fazla bilgi için [I2CP](/docs/protocol/i2cp) spesifikasyonuna bakın.
 
@@ -460,8 +467,8 @@ Kayıtlı her I2P Hedefi, benzersiz bir oturum kimliği (veya takma ad) ile ili�
 
 Her oturum, aşağıdakilerle eşsiz şekilde ilişkilidir:
 
-- İstemcinin oturumu oluşturduğu soket
-- Kimliği (veya takma adı)
+- istemcinin oturumu oluşturduğu soket
+- kimliği (veya takma adı)
 
 #### Oturum Oluşturma İsteği
 
@@ -488,10 +495,10 @@ HEDİS, mesaj/akışların gönderilmesi ve alınması için kullanılacak hedef
 
 İmzalama özel anahtarı tümüyle sıfır ise, [Çevrimdışı İmza](/docs/specs/common-structures#struct_OfflineSignature) bölümü takip eder. Çevrimdışı imzalar yalnızca STREAM ve RAW oturumlar için desteklenir. Çevrimdışı imzalar DESTINATION=TRANSIENT ile oluşturulamaz. Çevrimdışı imza bölümünün biçimi şöyledir:
 
-1. Bitiş zaman damgası (4 bayt, büyük endian, epoch'tan beri geçen saniye, 2106'da sıfırlanır)
-2. Geçici İmzalama Genel Anahtarı'nın imza türü (2 bayt, büyük endian)
-3. Geçici İmzalama Genel Anahtarı (geçici imza türüne göre belirlenen uzunlukta)
-4. Yukarıdaki üç alanın çevrimdışı anahtarla imzası (hedef imza türüne göre belirlenen uzunlukta)
+1. Bitiş zaman damgası (4 bayt, büyük endian, epoch'tan beri geçen saniye cinsinden, 2106'da sıfırlanır)
+2. Geçici İmzalama Ortak Anahtarı'nın imza türü (2 bayt, büyük endian)
+3. Geçici İmzalama Ortak Anahtarı (geçici imza türüne göre belirlenen uzunlukta)
+4. Yukarıdaki üç alanın çevrimdışı anahtar ile imzası (hedef imza türüne göre belirlenen uzunlukta)
 5. Geçici İmzalama Özel Anahtarı (geçici imza türüne göre belirlenen uzunlukta)
 
 Hedef TRANSIENT olarak belirtildiyse, SAM köprüsü yeni bir hedef oluşturur. Sürüm 3.1'den itibaren (I2P 0.9.14), hedef TRANSIENT ise isteğe bağlı bir SIGNATURE_TYPE parametresi desteklenir. SIGNATURE_TYPE değeri [Key Certificates](/docs/specs/common-structures#type_Certificate) tarafından desteklenen herhangi bir isim (örneğin ECDSA_SHA256_P256, büyük/küçük harf duyarsız) veya sayı (örneğin 1) olabilir. Varsayılan değer DSA_SHA1'dir ve bu istenen şey DEĞİLDİR. Çoğu uygulama için lütfen SIGNATURE_TYPE=7 olarak belirtin.
@@ -553,7 +560,7 @@ Akışlar, iki I2P hedefi arasındaki çift yönlü iletişim soketleridir ancak
 
 Bir istemci, bir bağlantıyı şu şekilde ister:
 
-- SAM köprüsüyle yeni bir soket açmak
+- SAM köprüsü ile yeni bir soket açmak
 - yukarıdakiyle aynı HELLO el sıkışmasını iletmek
 - STREAM CONNECT komutunu göndermek
 
@@ -666,7 +673,7 @@ Bir istemci, normal bir soket sunucusu kullanabilir ve I2P'den gelen bağlantı 
 
 - SAM köprüsüyle yeni bir soket açın
 - yukarıdakiyle aynı HELLO el sıkışmasını iletin
-- ileri komutunu gönderin
+- ileri yönlendirme komutunu gönderin
 
 #### İleri İstek
 
@@ -765,12 +772,12 @@ $destination
                                      # Default is true
 \n
 ```
-- 3.0, SAM'ın sürümüdür. SAM 3.2'den beri, herhangi bir 3.x sürümü kabul edilir.
-- $nickname, kullanılacak DATAGRAM oturumunun kimliğidir.
-- Hedef, [Destination](/docs/specs/common-structures#type_Destination) yapısının base 64 formatında ifade edilmiş hâli olan $destination'dır ve imza türüne bağlı olarak 516 veya daha fazla base 64 karakteri (ikili biçimde 387 veya daha fazla bayt) içerir. **NOT:** Yaklaşık 2014'ten beri (SAM v3.1), Java I2P, $destination için hostname'leri ve b32 adresleri desteklemektedir ancak bu özellik daha önce belgelenmemiştir. Hostname'ler ve b32 adresleri, 0.9.48 sürümünden itibaren Java I2P tarafından resmi olarak desteklenmektedir. i2pd yönlendiricisi şu anda hostname'leri ve b32 adresleri desteklememektedir; bu destek gelecekteki bir sürümde eklenebilir.
-- Tüm seçenekler, OTURUM OLUŞTUR (SESSION CREATE) aşamasında belirtilen varsayılanları geçersiz kılan, datagram başına ayarlardır.
-- 3.3 sürümüne ait SEND_TAGS, TAG_THRESHOLD, EXPIRES ve SEND_LEASESET seçenekleri, destekleniyorsa [I2CP](/docs/protocol/i2cp)'ye aktarılır. Ayrıntılar için [I2CP belirtimine](/docs/protocol/i2cp#msg_SendMessageExpire) bakın. SAM sunucusu tarafından bu seçeneklerin desteklenmesi isteğe bağlıdır ve desteklenmiyorsa bu seçenekler göz ardı edilir.
-- bu satır '\\n' ile sonlandırılmıştır.
+- 3.0, SAM'ın sürümüdür. SAM 3.2'den beri herhangi bir 3.x sürümü kabul edilir.
+- $nickname, kullanılacak DATAGRAM oturumunun kimliğidir
+- Hedef, [Destination](/docs/specs/common-structures#type_Destination) yapısının base 64 formatında ifade edilmiş hâli olan $destination değeridir ve bu değer imza türüne bağlı olarak 516 ya da daha fazla base 64 karakteri (ikili sistemde 387 veya daha fazla bayt) kapsar. **NOT:** Yaklaşık 2014 yılından beri (SAM v3.1 itibarıyla), Java I2P $destination için hostname'leri ve b32 adresleri desteklemektedir ancak bu özellik önceki yıllarda belgelenmemişti. Hostname'ler ve b32 adresleri, Java I2P'nin 0.9.48 sürümünden itibaren resmi olarak desteklenmektedir. i2pd yönlendiricisi şu anda hostname'leri ve b32 adresleri desteklememektedir; bu destek gelecekteki bir sürüme eklenebilir.
+- Tüm seçenekler, OTURUM OLUŞTUR (SESSION CREATE) aşamasında belirtilen varsayılanları geçersiz kılan, veri birimi başına ayarlardır.
+- 3.3 sürümüne ait SEND_TAGS, TAG_THRESHOLD, EXPIRES ve SEND_LEASESET seçenekleri, destekleniyorsa [I2CP](/docs/protocol/i2cp)'ye iletilir. Ayrıntılar için [I2CP spesifikasyonuna](/docs/protocol/i2cp#msg_SendMessageExpire) bakınız. SAM sunucusu tarafından bu seçeneklerin desteklenmesi zorunlu değildir ve desteklenmiyorsa bu seçenekler göz ardı edilir.
+- bu satır '\\n' ile sonlandırılır.
 
 İlk satır, kalan mesaj verisi belirtilen hedefe gönderilmeden önce SAM tarafından yok sayılacaktır.
 
@@ -1004,7 +1011,7 @@ Bu, bir alt oturumu birincil oturumdan kaldırır. OTURUM KALDIR (SESSION REMOVE
 
 SAM köprüsü, [standart OTURUM OLUŞTURMA yanıtındaki gibi](#session-creation-response) başarı veya başarısızlık ile yanıt verecektir.
 
-### SAM Yardımcı Programı Komutları
+### SAM Yardımcı Komutları
 
 Bazı yardımcı komutlar önceden var olan bir oturum gerektirir, bazıları ise gerektirmez. Ayrıntılar için aşağıya bakın.
 
@@ -1122,7 +1129,7 @@ AUTH komutunu kullanarak yetkilendirme yapılandırması. SAM sunucusu, kimlik b
 
 - AUTH ENABLE, sonraki bağlantılar üzerinde yetkilendirmeyi etkinleştirir
 - AUTH DISABLE, sonraki bağlantılar üzerinde yetkilendirmeyi devre dışı bırakır
-- AUTH ADD USER="foo" PASSWORD="bar", bir kullanıcı/parola ekler
+- AUTH ADD USER="foo" PASSWORD="bar", bir kullanıcı/şifre ekler
 - AUTH REMOVE USER="foo", bu kullanıcıyı kaldırır
 
 Kullanıcı adı ve parola için çift tırnak kullanımı önerilir ancak zorunlu değildir. Kullanıcı adı veya paroladaki bir çift tırnak, ters eğik çizgi ile kaçışmalıdır. Başarısızlık durumunda sunucu bir I2P_ERROR ve bir mesaj ile yanıt verir.
