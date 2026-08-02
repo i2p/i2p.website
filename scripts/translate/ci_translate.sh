@@ -241,8 +241,11 @@ if [ ${#SUCCESSFULLY_TRANSLATED_FILES[@]} -gt 0 ]; then
     git config user.name "github-actions[bot]"
     git config user.email "github-actions[bot]@users.noreply.github.com"
 
-    # Add segment cache (includes file hashes and segment translations)
-    git add scripts/translate/claude_segment_cache.json 2>/dev/null || true
+    # Stage all tracked state files the translator writes during a run.
+    # Anything left unstaged makes the pre-push rebase below refuse to run.
+    git add scripts/translate/claude_segment_cache.json \
+            scripts/translate/claude_translation_log.json \
+            scripts/translate/claude_translation_hashes.json 2>/dev/null || true
 
     # Find and add all translated files for each target language
     for TARGET_LANG in $TARGET_LANGUAGES; do
@@ -278,7 +281,7 @@ if [ ${#SUCCESSFULLY_TRANSLATED_FILES[@]} -gt 0 ]; then
         # (e.g. Gitea mirror pushing back a previous translation commit)
         log_info "Rebasing on latest origin/$CURRENT_BRANCH before pushing..."
         git fetch origin "$CURRENT_BRANCH"
-        git rebase "origin/$CURRENT_BRANCH" || {
+        git rebase --autostash "origin/$CURRENT_BRANCH" || {
             log_error "Failed to rebase on origin/$CURRENT_BRANCH"
             git rebase --abort 2>/dev/null || true
             exit 1
