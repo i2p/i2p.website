@@ -2,7 +2,7 @@
 # Update this single file for new releases - all language pages read from here
 
 current_version: "2.13.0"
-android_version: "2.12.0"
+android_version: "2.13.0"
 
 # GPG Signing Key (idk - for releases 0.9.57+)
 signing_key:
@@ -22,6 +22,19 @@ downloads:
       torrent: "magnet:?xt=urn:btih:missing"
       i2p: "http://mirror.stormycloud.i2p/2.13.0/i2pinstall_2.13.0_windows.exe"
       tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.13.0/i2pinstall_2.13.0_windows.exe"
+
+  windows_easy_installer:
+    file: "I2P-Windows-Easy-Install-Bundle.exe"
+    size: "~163M"
+    requirements: "No Java needed - bundles Java runtime"
+    sha256: "1960f9254efd2594eada55bf75f57fbd63667ddd765aa1af43d0bf602cd460b1"
+    beta: true
+    links:
+      primary: "https://files.i2p.net/2.13.0/I2P-Windows-Easy-Install-Bundle.exe"
+      mirror: "https://mirror.stormycloud.org/2.13.0/I2P-Windows-Easy-Install-Bundle.exe"
+      torrent: "magnet:?xt=urn:btih:missing"
+      i2p: "http://mirror.stormycloud.i2p/2.13.0/I2P-Windows-Easy-Install-Bundle.exe"
+      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.13.0/I2P-Windows-Easy-Install-Bundle.exe"
 
   mac_easy_installer:
     file: "I2P-2.13.0.dmg"
@@ -50,6 +63,18 @@ downloads:
       i2p: "http://mirror.stormycloud.i2p/2.13.0/i2pinstall_2.13.0.jar"
       tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.13.0/i2pinstall_2.13.0.jar"
 
+  android:
+    file: "I2P-2.13.0.apk"
+    size: "~9.3M"
+    requirements: "Android 5.0+"
+    sha256: "62b8dfc58b517582b9c737e3ed70ac484eaffd5a6ab50537080aac65967e1c0a"
+    links:
+      primary: "https://files.i2p.net/2.13.0/I2P-2.13.0.apk"
+      mirror: "https://mirror.stormycloud.org/2.13.0/I2P-2.13.0.apk"
+      torrent: "magnet:?xt=urn:btih:missing"
+      i2p: "http://mirror.stormycloud.i2p/2.13.0/I2P-2.13.0.apk"
+      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.13.0/I2P-2.13.0.apk"
+
   source:
     file: "i2psource_2.13.0.tar.bz2"
     size: "~38M"
@@ -59,18 +84,6 @@ downloads:
       primary: "https://files.i2p.net/2.13.0/i2psource_2.13.0.tar.bz2"
       torrent: "magnet:?xt=urn:btih:missing"
       github: "https://github.com/i2p/i2p.i2p"
-
-  android:
-    file: "I2P-2.12.0.apk"
-    size: "~9.3M"
-    requirements: "Android 5.0+"
-    sha256: "d39dce38320d689d1841fb0c43dd559b174f5b672a6a554808f48a13d43018d4"
-    links:
-      primary: "https://files.i2p.net/2.12.0/I2P-2.12.0.apk"
-      mirror: "https://mirror.stormycloud.org/2.12.0/I2P-2.12.0.apk"
-      torrent: "magnet:?xt=urn:btih:missing"
-      i2p: "http://mirror.stormycloud.i2p/2.12.0/I2P-2.12.0.apk"
-      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.12.0/I2P-2.12.0.apk"
 
 # Mirrors
 mirrors:
