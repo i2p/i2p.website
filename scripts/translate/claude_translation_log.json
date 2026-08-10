@@ -922,5 +922,137 @@
     "segments": 12,
     "cache_hits": 1,
     "cache_misses": 11
+  },
+  {
+    "timestamp": "2026-08-10T01:38:13.036006Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/es/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "es",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T01:38:13.053842Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/tr/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "tr",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T01:38:13.331667Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/hi/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "hi",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T01:38:13.370788Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/de/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "de",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T01:38:13.671490Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ko/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "ko",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T01:38:13.949162Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ru/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "ru",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T01:38:14.220050Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ar/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "ar",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T01:38:14.406427Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/pt/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "pt",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T01:38:14.436255Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/fr/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "fr",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T01:38:14.453369Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/zh/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "zh",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T01:38:14.469470Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/vi/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "vi",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T01:38:14.477906Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/overview/naming.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/cs/docs/overview/naming.md",
+    "source_lang": "en",
+    "target_lang": "cs",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 95,
+    "cache_hits": 95,
+    "cache_misses": 0
   }
 ]
