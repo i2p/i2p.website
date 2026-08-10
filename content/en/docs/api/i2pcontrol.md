@@ -16,35 +16,12 @@ I2PControl is a **JSON-RPC 2.0** API bundled with the I2P router (since version 
 
 ## 1. Overview & Access
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Implementation</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Default Endpoint</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Protocol</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Enabled by Default</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Java I2P (2.10.0+)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>http://127.0.0.1:7657/jsonrpc/</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTP</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">❌ Must be enabled via WebApps (Router Console)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Bundled webapp</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">i2pd (C++ implementation)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>https://127.0.0.1:7650/</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTPS</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">✅ Enabled by default</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Legacy plugin behavior</td>
-    </tr>
-  </tbody>
-</table>
+| Implementation             | Default Endpoint                 | Protocol | Enabled by Default                             | Notes                  |
+|----------------------------|----------------------------------|----------|------------------------------------------------|------------------------|
+| Java I2P (2.10.0+)         | `http://127.0.0.1:7657/jsonrpc/` | HTTP     | ❌ Must be enabled via WebApps (Router Console) | Bundled webapp         |
+| i2pd (C++ implementation)  | `https://127.0.0.1:7650/`        | HTTPS    | ✅ Enabled by default                           | Legacy plugin behavior |
 
-In the Java I2P case, you must go to **Router Console → WebApps → I2PControl** and enable it (set to start automatically).  
+In the Java I2P case, you must go to **Router Console → WebApps → I2PControl** and enable it (set to start automatically).
 Once active, all methods require that you first authenticate and receive a session token.
 
 ---
@@ -120,22 +97,12 @@ curl -s -H "Content-Type: application/json" \
 }
 ```
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Field</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Direction</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>API</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Request</td><td style="border:1px solid var(--color-border); padding:0.6rem;">long</td><td style="border:1px solid var(--color-border); padding:0.6rem;">I2PControl API version requested by the client. Use <code>1</code>.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>Password</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Request</td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Password used to authenticate with I2PControl.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>API</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Response</td><td style="border:1px solid var(--color-border); padding:0.6rem;">long</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Primary API version implemented by the server.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>Token</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Response</td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Authentication token used for subsequent requests.</td></tr>
-  </tbody>
-</table>
+| Field      | Direction | Type   | Description                                              |
+|------------|-----------|--------|----------------------------------------------------------|
+| `API`      | Request   | long   | I2PControl API version requested by the client. Use `1`. |
+| `Password` | Request   | String | Password used to authenticate with I2PControl.           |
+| `API`      | Response  | long   | Primary API version implemented by the server.           |
+| `Token`    | Response  | String | Authentication token used for subsequent requests.       |
 
 You must include that `Token` in all subsequent requests in the `params`.
 
@@ -172,118 +139,47 @@ Include each desired key in `params` with any value. Only requested keys are ret
 
 #### Router and Bandwidth Fields
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Key</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.status</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Free-format, translated router status intended for display.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.uptime</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">long</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Router uptime in milliseconds. Older i2pd versions may return a string.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.version</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Full router version.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.status</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">long</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Network status code; see the table below.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.bw.inbound.1s</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">double</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Current inbound bandwidth in bytes per second.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.bw.inbound.15s</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">double</td><td style="border:1px solid var(--color-border); padding:0.6rem;">15-second average inbound bandwidth in bytes per second.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.bw.outbound.1s</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">double</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Current outbound bandwidth in bytes per second.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.bw.outbound.15s</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">double</td><td style="border:1px solid var(--color-border); padding:0.6rem;">15-second average outbound bandwidth in bytes per second.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.tunnels.participating</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">long</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Number of tunnels in which this router is participating.</td></tr>
-  </tbody>
-</table>
+| Key                                    | Type   | Description                                                             |
+|----------------------------------------|--------|-------------------------------------------------------------------------|
+| `i2p.router.status`                    | String | Free-format, translated router status intended for display.             |
+| `i2p.router.uptime`                    | long   | Router uptime in milliseconds. Older i2pd versions may return a string. |
+| `i2p.router.version`                   | String | Full router version.                                                    |
+| `i2p.router.net.status`                | long   | Network status code; see the table below.                               |
+| `i2p.router.net.bw.inbound.1s`         | double | Current inbound bandwidth in bytes per second.                          |
+| `i2p.router.net.bw.inbound.15s`        | double | 15-second average inbound bandwidth in bytes per second.                |
+| `i2p.router.net.bw.outbound.1s`        | double | Current outbound bandwidth in bytes per second.                         |
+| `i2p.router.net.bw.outbound.15s`       | double | 15-second average outbound bandwidth in bytes per second.               |
+| `i2p.router.net.tunnels.participating` | long   | Number of tunnels in which this router is participating.                |
 
 #### Status Code Enum (`i2p.router.net.status`)
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">OK</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">1</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">TESTING</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">FIREWALLED</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">3</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HIDDEN</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">4</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_AND_FAST</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">5</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_AND_FLOODFILL</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">6</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_WITH_INBOUND_TCP</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">7</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_WITH_UDP_DISABLED</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">8</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_I2CP</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">9</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_CLOCK_SKEW</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">10</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_PRIVATE_TCP_ADDRESS</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">11</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_SYMMETRIC_NAT</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">12</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_UDP_PORT_IN_USE</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">13</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_NO_ACTIVE_PEERS_CHECK_CONNECTION_AND_FIREWALL</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">14</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_UDP_DISABLED_AND_TCP_UNSET</td>
-    </tr>
-  </tbody>
-</table>
+| Code | Meaning                                             |
+|------|-----------------------------------------------------|
+| 0    | OK                                                  |
+| 1    | TESTING                                             |
+| 2    | FIREWALLED                                          |
+| 3    | HIDDEN                                              |
+| 4    | WARN_FIREWALLED_AND_FAST                            |
+| 5    | WARN_FIREWALLED_AND_FLOODFILL                       |
+| 6    | WARN_FIREWALLED_WITH_INBOUND_TCP                    |
+| 7    | WARN_FIREWALLED_WITH_UDP_DISABLED                   |
+| 8    | ERROR_I2CP                                          |
+| 9    | ERROR_CLOCK_SKEW                                    |
+| 10   | ERROR_PRIVATE_TCP_ADDRESS                           |
+| 11   | ERROR_SYMMETRIC_NAT                                 |
+| 12   | ERROR_UDP_PORT_IN_USE                               |
+| 13   | ERROR_NO_ACTIVE_PEERS_CHECK_CONNECTION_AND_FIREWALL |
+| 14   | ERROR_UDP_DISABLED_AND_TCP_UNSET                    |
 
 #### NetDB and Peer Fields
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Key</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.netdb.knownpeers</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">long</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Number of known peers, excluding the local router.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.netdb.activepeers</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">long</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Number of active peers.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.netdb.fastpeers</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">long</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Number of peers classified as fast.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.netdb.highcapacitypeers</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">long</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Number of peers classified as high capacity.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.netdb.isreseeding</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">boolean</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Whether a reseed is in progress.</td></tr>
-  </tbody>
-</table>
+| Key                                  | Type    | Description                                        |
+|--------------------------------------|---------|----------------------------------------------------|
+| `i2p.router.netdb.knownpeers`        | long    | Number of known peers, excluding the local router. |
+| `i2p.router.netdb.activepeers`       | long    | Number of active peers.                            |
+| `i2p.router.netdb.fastpeers`         | long    | Number of peers classified as fast.                |
+| `i2p.router.netdb.highcapacitypeers` | long    | Number of peers classified as high capacity.       |
+| `i2p.router.netdb.isreseeding`       | boolean | Whether a reseed is in progress.                   |
 
 ---
 
@@ -291,19 +187,10 @@ Include each desired key in `params` with any value. Only requested keys are ret
 
 Used to fetch rate metrics (e.g. bandwidth, tunnel success) over a given time window.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Parameter</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>Stat</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Router RateStat name.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>Period</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">long</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Rate period in milliseconds.</td></tr>
-  </tbody>
-</table>
+| Parameter | Type   | Description                  |
+|-----------|--------|------------------------------|
+| `Stat`    | String | Router RateStat name.        |
+| `Period`  | long   | Rate period in milliseconds. |
 
 **Request Example**
 
@@ -340,24 +227,15 @@ curl -s -H "Content-Type: application/json" \
 
 Perform administrative actions.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Parameter</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Result</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>Restart</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">null</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Initiates an immediate router restart.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>RestartGraceful</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">null</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Restarts after participating tunnels expire.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>Shutdown</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">null</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Initiates an immediate router shutdown.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>ShutdownGraceful</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">null</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Shuts down after participating tunnels expire.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>Reseed</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">null</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Starts a router reseed.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>FindUpdates</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">boolean or String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Blocking. Searches for a signed router update.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>Update</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Blocking. Starts a signed router update and returns its final status.</td></tr>
-  </tbody>
-</table>
+| Parameter          | Result            | Description                                                           |
+|--------------------|-------------------|-----------------------------------------------------------------------|
+| `Restart`          | null              | Initiates an immediate router restart.                                |
+| `RestartGraceful`  | null              | Restarts after participating tunnels expire.                          |
+| `Shutdown`         | null              | Initiates an immediate router shutdown.                               |
+| `ShutdownGraceful` | null              | Shuts down after participating tunnels expire.                        |
+| `Reseed`           | null              | Starts a router reseed.                                               |
+| `FindUpdates`      | boolean or String | Blocking. Searches for a signed router update.                        |
+| `Update`           | String            | Blocking. Starts a signed router update and returns its final status. |
 
 **Request Example**
 
@@ -395,29 +273,20 @@ Get or set network configuration parameters (ports, upnp, bandwidth share, etc.)
 
 Submit a key with `null` to read its current value, or submit a String to change it.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Key</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Accepted Value</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.ntcp.port</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String, 1–65535</td><td style="border:1px solid var(--color-border); padding:0.6rem;">NTCP port; a change requires restart.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.ntcp.hostname</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">NTCP hostname; a change requires restart.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.ntcp.autoip</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>always</code>, <code>true</code>, or <code>false</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">NTCP automatic address selection.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.ssu.port</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String, 1–65535</td><td style="border:1px solid var(--color-border); padding:0.6rem;">SSU port; a change requires restart.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.ssu.hostname</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">SSU external hostname; a change requires restart.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.ssu.autoip</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>ssu</code>, <code>local,ssu</code>, <code>upnp,ssu</code>, or <code>local,upnp,ssu</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">SSU address-discovery sources.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.ssu.detectedip</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">null</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Read-only detected SSU address.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.upnp</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">UPnP setting.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.bw.share</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String, 0–100</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Percentage of bandwidth available for participating tunnels.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.bw.in</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Non-negative integer String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Inbound bandwidth limit in KiB/s.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.bw.out</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Non-negative integer String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Outbound bandwidth limit in KiB/s.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2p.router.net.laptopmode</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Laptop mode setting.</td></tr>
-  </tbody>
-</table>
+| Key                             | Accepted Value                                      | Description                                                  |
+|---------------------------------|-----------------------------------------------------|--------------------------------------------------------------|
+| `i2p.router.net.ntcp.port`      | String, 1–65535                                     | NTCP port; a change requires restart.                        |
+| `i2p.router.net.ntcp.hostname`  | String                                              | NTCP hostname; a change requires restart.                    |
+| `i2p.router.net.ntcp.autoip`    | `always`, `true`, or `false`                        | NTCP automatic address selection.                            |
+| `i2p.router.net.ssu.port`       | String, 1–65535                                     | SSU port; a change requires restart.                         |
+| `i2p.router.net.ssu.hostname`   | String                                              | SSU external hostname; a change requires restart.            |
+| `i2p.router.net.ssu.autoip`     | `ssu`, `local,ssu`, `upnp,ssu`, or `local,upnp,ssu` | SSU address-discovery sources.                               |
+| `i2p.router.net.ssu.detectedip` | null                                                | Read-only detected SSU address.                              |
+| `i2p.router.net.upnp`           | String                                              | UPnP setting.                                                |
+| `i2p.router.net.bw.share`       | String, 0–100                                       | Percentage of bandwidth available for participating tunnels. |
+| `i2p.router.net.bw.in`          | Non-negative integer String                         | Inbound bandwidth limit in KiB/s.                            |
+| `i2p.router.net.bw.out`         | Non-negative integer String                         | Outbound bandwidth limit in KiB/s.                           |
+| `i2p.router.net.laptopmode`     | String                                              | Laptop mode setting.                                         |
 
 **Request Example (get current values)**
 
@@ -463,21 +332,12 @@ curl -s -H "Content-Type: application/json" \
 
 Allows manipulating internal router parameters.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Parameter</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>get</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Returns one setting inside a <code>get</code> result object.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>getAll</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">n/a</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Returns the complete configuration map inside <code>getAll</code>.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>set</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Map&lt;String, String&gt;</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Updates the supplied settings without removing other keys.</td></tr>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>setAll</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">Map&lt;String, String&gt;</td><td style="border:1px solid var(--color-border); padding:0.6rem;"><strong>Destructive:</strong> replaces all settings and removes keys not supplied.</td></tr>
-  </tbody>
-</table>
+| Parameter | Type                | Description                                                           |
+|-----------|---------------------|-----------------------------------------------------------------------|
+| `get`     | String              | Returns one setting inside a `get` result object.                     |
+| `getAll`  | n/a                 | Returns the complete configuration map inside `getAll`.               |
+| `set`     | Map<String, String> | Updates the supplied settings without removing other keys.            |
+| `setAll`  | Map<String, String> | **Destructive:** replaces all settings and removes keys not supplied. |
 
 Parameter names are case-sensitive and use the lower camel-case spelling shown above.
 
@@ -516,18 +376,9 @@ curl -s -H "Content-Type: application/json" \
 
 Echoes a String for debugging and connectivity checks.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Parameter</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>Echo</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Value returned as <code>Result</code>.</td></tr>
-  </tbody>
-</table>
+| Parameter | Type   | Description                 |
+|-----------|--------|-----------------------------|
+| `Echo`    | String | Value returned as `Result`. |
 
 ```json
 {
@@ -557,18 +408,9 @@ Echoes a String for debugging and connectivity checks.
 
 Manages I2PControl itself. The current Java handler supports password changes.
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Parameter</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Type</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td style="border:1px solid var(--color-border); padding:0.6rem;"><code>i2pcontrol.password</code></td><td style="border:1px solid var(--color-border); padding:0.6rem;">String</td><td style="border:1px solid var(--color-border); padding:0.6rem;">Sets a new I2PControl password and revokes existing authentication tokens.</td></tr>
-  </tbody>
-</table>
+| Parameter             | Type   | Description                                                                |
+|-----------------------|--------|----------------------------------------------------------------------------|
+| `i2pcontrol.password` | String | Sets a new I2PControl password and revokes existing authentication tokens. |
 
 The result contains `SettingsSaved`. If the password was changed, the result also contains `"i2pcontrol.password": null`. Listen-address and listen-port settings from the legacy standalone plugin are not active in the current Java handler.
 
@@ -578,82 +420,33 @@ The result contains `SettingsSaved`. If the password was changed, the result als
 
 ### Standard JSON-RPC2 Error Codes
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32700</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">JSON parse error</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32600</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid request</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32601</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Method not found</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32602</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid parameters</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32603</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Internal error</td>
-    </tr>
-  </tbody>
-</table>
+| Code   | Meaning            |
+|--------|--------------------|
+| -32700 | JSON parse error   |
+| -32600 | Invalid request    |
+| -32601 | Method not found   |
+| -32602 | Invalid parameters |
+| -32603 | Internal error     |
 
 ### I2PControl Specific Error Codes
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32001</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid password provided</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32002</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">No authentication token presented</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32003</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Authentication token doesn't exist</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32004</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The provided authentication token was expired and will be removed</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32005</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The version of the I2PControl API used wasn't specified, but is required to be specified</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32006</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The version of the I2PControl API specified is not supported by I2PControl</td>
-    </tr>
-  </tbody>
-</table>
+| Code   | Meaning                                                                                  |
+|--------|------------------------------------------------------------------------------------------|
+| -32001 | Invalid password provided                                                                |
+| -32002 | No authentication token presented                                                        |
+| -32003 | Authentication token doesn't exist                                                       |
+| -32004 | The provided authentication token was expired and will be removed                        |
+| -32005 | The version of the I2PControl API used wasn't specified, but is required to be specified |
+| -32006 | The version of the I2PControl API specified is not supported by I2PControl               |
 
 ---
 
 ## 6. Usage & Best Practices
 
-- Always include the `Token` parameter (except when authenticating).  
-- Change the default password (`itoopie`) upon first use.  
-- For Java I2P, ensure the I2PControl webapp is enabled via WebApps.  
-- Be prepared for slight variations: some fields may be numbers or strings, depending on I2P version.  
+- Always include the `Token` parameter (except when authenticating).
+- Change the default password (`itoopie`) upon first use.
+- For Java I2P, ensure the I2PControl webapp is enabled via WebApps.
+- Be prepared for slight variations: some fields may be numbers or strings, depending on I2P version.
 - Wrap long status strings for display-friendly output.
 
 ---
