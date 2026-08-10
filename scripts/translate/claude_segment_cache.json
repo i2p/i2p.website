@@ -98464,6 +98464,657 @@
         }
       },
       "file_hash": "328a3064bed4b52b30c7360bb399ee8fd6d1ecb82a3c93a87c9482ccabff5203"
+    },
+    "en/proposals/172-bep6-allowed-fast.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "dfdf4e2e6e6da646",
+          "translations": {
+            "de": "Schnelle Erweiterung (BEP 6) Ermöglicht schnelles Herunterladen mit Ziel-Hash-Peer-Identität",
+            "pt": "Extensão Rápida (BEP 6) Rápido Permitido com Identidade de Par por Hash de Destino",
+            "vi": "Phần mở rộng nhanh (BEP 6) Cho phép nhanh với định danh máy ngang hàng theo băm đích",
+            "fr": "Extension rapide (BEP 6) : Fast autorisé avec identité de pair basée sur le hachage de la destination",
+            "zh": "快速扩展（BEP 6）允许使用目标哈希对等身份进行快速连接",
+            "es": "Extensión rápida (BEP 6) Rápido permitido con identidad de par hash de destino",
+            "ru": "Расширение Fast (BEP 6): разрешено быстрое соединение с идентификатором пира по хешу назначения",
+            "ar": "امتداد سريع (BEP 6) مسموح به سريع مع هوية نظير بهاش الوجهة",
+            "tr": "Hızlı Uzantı (BEP 6) Hedefleme-Hash Eş Kimliği ile Hızlıya İzin Verildi",
+            "ko": "대상 해시 피어 식별자를 사용하는 빠른 확장(BEP 6) 허용",
+            "hi": "तेज एक्सटेंशन (BEP 6) लक्ष्य-हैश साथी पहचान के साथ तेज की अनुमति दी गई",
+            "cs": "Rychlé rozšíření (BEP 6) – povolené rychlé připojení s identitou peeru na základě hashovací funkce cíle"
+          }
+        },
+        "fm_status": {
+          "source_hash": "ebf12ef47cf575b3",
+          "translations": {
+            "de": "Entwurf",
+            "pt": "Rascunho",
+            "vi": "Bản nháp",
+            "fr": "Brouillon",
+            "zh": "草稿",
+            "es": "Borrador",
+            "ru": "Черновик",
+            "ar": "مسودة",
+            "tr": "Taslak",
+            "ko": "초안",
+            "hi": "प्रारूप",
+            "cs": "Návrh"
+          }
+        },
+        "h2_001": {
+          "source_hash": "d4b1ea5708dd5329",
+          "translations": {
+            "de": "Übersicht",
+            "pt": "Visão geral",
+            "vi": "Tổng quan",
+            "fr": "Aperçu",
+            "zh": "概述",
+            "es": "Descripción general",
+            "ru": "Обзор",
+            "ar": "نظرة عامة",
+            "tr": "Genel Bakış",
+            "ko": "개요",
+            "hi": "अवलोकन",
+            "cs": "Přehled"
+          }
+        },
+        "p_001": {
+          "source_hash": "f2ac136a67654574",
+          "translations": {
+            "de": "BEP 6 (Fast Extension) umfasst fünf Funktionen: **Have All / Have None**, **Reject Requests**, **Suggestions** und **Allowed Fast**. Das Wire-Protokoll — Aushandlungsbit, Nachrichten-IDs und Choke-Semantik — ist transportunabhängig und funktioniert unverändert über I2P-Streaming. Der einzige Teil von BEP 6, der nicht direkt auf I2P abgebildet werden kann, ist die **Allowed Fast Set Generation**, da diese anhand der IPv4-Adresse des Peers definiert ist. I2P-Peers besitzen keine IPs; sie werden durch 32-Byte lange Destination-Hashes identifiziert.",
+            "pt": "O BEP 6 (Extensão Rápida) inclui cinco recursos: **Have All / Have None**, **Reject Requests**, **Suggestions** e **Allowed Fast**. O protocolo de comunicação — bit de negociação, IDs de mensagens e semântica de choke — é independente do transporte e funciona inalterado sobre o streaming I2P. A única parte do BEP 6 que não pode ser mapeada diretamente para o I2P é a **geração do conjunto Allowed Fast**, pois ela é definida em termos do endereço IPv4 do peer. Os peers I2P não possuem IPs; eles são identificados por hashes de destino de 32 bytes.",
+            "vi": "Gói mở rộng BEP 6 (Fast Extension) bao gồm năm tính năng: **Have All / Have None**, **Reject Requests**, **Suggestions**, và **Allowed Fast**. Giao thức truyền tải — bit đàm phán, ID tin nhắn và ngữ nghĩa choke — không phụ thuộc vào phương tiện truyền dẫn và hoạt động nguyên bản trên dòng truyền I2P. Phần duy nhất của BEP 6 không thể ánh xạ trực tiếp sang I2P là **việc tạo tập hợp Allowed Fast**, vì nó được định nghĩa dựa trên địa chỉ IPv4 của máy ngang hàng. Các máy ngang hàng I2P không có địa chỉ IP; chúng được xác định bằng các giá trị băm đích dài 32 byte.",
+            "fr": "Le BEP 6 (extension Fast) regroupe cinq fonctionnalités : **Have All / Have None**, **Reject Requests**, **Suggestions** et **Allowed Fast**. Le protocole réseau — bit de négociation, identifiants de message et sémantique de choke — est indépendant du transport et fonctionne tel quel sur le streaming I2P. La seule partie du BEP 6 qui ne peut pas être directement transposée à I2P est la **génération de l'ensemble Allowed Fast**, car elle est définie en fonction de l'adresse IPv4 du pair. Les pairs I2P n'ont pas d'adresses IP ; ils sont identifiés par des hachages de destination de 32 octets.",
+            "zh": "BEP 6（快速扩展）包含五个功能：**拥有全部 / 无任何内容**、**拒绝请求**、**建议** 和 **允许快速**。其线缆协议——协商位、消息ID和阻塞语义——与传输方式无关，可直接在I2P流式传输上运行。BEP 6 中唯一无法直接映射到 I2P 的部分是 **允许快速集合的生成**，因为该机制是基于对等方的 IPv4 地址定义的。而 I2P 对等方没有 IP 地址，它们通过 32 字节的目的地哈希来标识。",
+            "es": "BEP 6 (extensión Fast) incluye cinco características: **Have All / Have None**, **Reject Requests**, **Suggestions** y **Allowed Fast**. El protocolo de comunicación —bit de negociación, IDs de mensajes y semántica de choke— es independiente del transporte y funciona tal cual sobre el streaming de I2P. La única parte de BEP 6 que no puede mapearse directamente a I2P es la **generación del conjunto Allowed Fast**, porque está definida en términos de la dirección IPv4 del par. Los pares en I2P no tienen direcciones IP; se identifican mediante hashes de destino de 32 bytes.",
+            "ru": "BEP 6 (расширение Fast Extension) включает пять функций: **Have All / Have None**, **Reject Requests**, **Suggestions** и **Allowed Fast**. Протокол передачи данных — бит согласования, идентификаторы сообщений и семантика блокировки — не зависит от транспорта и работает без изменений поверх I2P-потоков. Единственная часть BEP 6, которую нельзя напрямую сопоставить с I2P, — это **генерация набора Allowed Fast**, поскольку она определяется через IPv4-адрес пира. Пиры I2P не имеют IP-адресов; они идентифицируются хэшами назначения длиной 32 байта.",
+            "ar": "تحزم BEP 6 (الامتداد السريع) خمس ميزات: **امتلاك الكل / عدم امتلاك شيء**، **رفض الطلبات**، **الاقتراحات**، و**السريع المسموح**. إن بروتوكول النقل — بت التفاوض، ومعرفات الرسائل، ومعاني الاختناق — لا يعتمد على نمط النقل وهو يعمل كما هو عبر البث في I2P. الجزء الوحيد من BEP 6 الذي لا يمكن ربطه مباشرةً بـ I2P هو **إنشاء مجموعة السريع المسموح**، لأن تعريفه يعتمد على عنوان IPv4 للنقطة الطرفية. النقاط الطرفية في I2P ليس لديها عناوين IP؛ بل تُعرف بواسطة هاشات وجهة بطول 32 بايتًا.",
+            "tr": "BEP 6 (Hızlı Eklenti), beş özelliği bir araya getirir: **Tümüne Sahip / Hiçbiri Yok**, **İstekleri Reddet**, **Öneriler** ve **İzin Verilen Hızlı**. İletim protokolü — anlaşma biti, mesaj kimlikleri ve choke anlambilimi — taşıma yönteminden bağımsızdır ve I2P akışında olduğu gibi doğrudan çalışır. BEP 6'nın I2P'ye doğrudan eşlenemeyen tek bölümü, eşin IPv4 adresi açısından tanımlandığı için **İzin Verilen Hızlı kümesi oluşturma**dır. I2P eşlerinin IP adresi yoktur; bunlar 32 baytlık hedef karmaları ile tanımlanır.",
+            "ko": "BEP 6(패스트 확장)은 **Have All / Have None**, **요청 거부**, **제안**, 그리고 **허용된 빠른 전송**(Allowed Fast)이라는 다섯 가지 기능을 포함한다. 와이어 프로토콜 — 즉, 협상 비트, 메시지 ID, 그리고 체크 의미 체계 — 는 전송 방식에 독립적이며 I2P 스트리밍 위에서도 그대로 동작한다. 그러나 BEP 6 중에서 I2P로 직접 매핑할 수 없는 유일한 부분은 **허용된 빠른 전송 세트 생성**(Allowed Fast set generation)인데, 이는 피어의 IPv4 주소를 기준으로 정의되기 때문이다. I2P 피어는 IP 주소를 가지지 않으며, 32바이트의 목적지 해시로 식별된다.",
+            "hi": "BEP 6 (फास्ट एक्सटेंशन) पाँच सुविधाओं को पैक करता है: **हैव ऑल / हैव नोन**, **रिजेक्ट रिक्वेस्ट**, **सजेशन**, और **अलाउड फास्ट**। वायर प्रोटोकॉल — नेगोशिएशन बिट, मैसेज आईडी, और चोक सेमेंटिक्स — ट्रांसपोर्ट-एग्नॉस्टिक है और I2P स्ट्रीमिंग के ऊपर जैसा-का-तैसा काम करता है। BEP 6 का एकमात्र हिस्सा जिसे I2P पर सीधे मैप नहीं किया जा सकता, वह है **अलाउड फास्ट सेट जनरेशन**, क्योंकि इसे पीयर के IPv4 पते के संदर्भ में परिभाषित किया गया है। I2P पीयर्स के पास कोई IP नहीं होते; वे 32-बाइट डेस्टिनेशन हैश द्वारा पहचाने जाते हैं।",
+            "cs": "BEP 6 (rozšíření Fast Extension) zahrnuje pět funkcí: **Have All / Have None**, **Reject Requests**, **Suggestions** a **Allowed fast**. Protokol na úrovni „drátu“ — bit pro vyjednávání, ID zpráv a sémantika udušování — je nezávislý na přenosovém prostředí a bez dalšího funguje přes I2P streamování. Jedinou částí BEP 6, kterou nelze přímo mapovat na I2P, je **generování množiny Allowed Fast**, protože je definována na základě IPv4 adresy protějšku. Protějšky v I2P žádné IP adresy nemají; identifikují se 32bytovými hashi destinací."
+          }
+        },
+        "p_002": {
+          "source_hash": "bf7a02792722916a",
+          "translations": {
+            "de": "Dieser Vorschlag standardisiert die Erzeugung eines I2P-internen „Allowed Fast“-Sets, sodass alle I2P-Torrent-Clients für denselben Peer und dieselbe Torrent *identische* erlaubte Fast-Sets generieren, wodurch die Funktion zwischen verschiedenen Implementierungen nützlich (und überprüfbar) wird.",
+            "pt": "Esta proposta padroniza a geração de conjuntos \"Allowed Fast\" nativos do I2P, de modo que todos os clientes de torrent I2P gerem conjuntos *idênticos* de allowed fast para o mesmo par e torrent, tornando o recurso útil (e verificável) entre diferentes implementações.",
+            "vi": "Đề xuất này chuẩn hóa việc tạo bộ dữ liệu \"Allowed Fast\" gốc trên I2P để tất cả các client torrent I2P đều tạo ra các bộ \"allowed fast\" *giống hệt nhau* cho cùng một peer và torrent, giúp tính năng này trở nên hữu ích (và có thể kiểm chứng được) trên mọi triển khai khác nhau.",
+            "fr": "Cette proposition standardise la génération d'un ensemble « Allowed Fast » natif I2P, de sorte que tous les clients torrent I2P génèrent des ensembles allowed fast *identiques* pour un même pair et un même torrent, rendant cette fonctionnalité utile (et vérifiable) à travers différentes implémentations.",
+            "zh": "该提案标准化了一种I2P原生的“允许快速集”（Allowed Fast set）生成方式，使得所有I2P种子客户端在相同对等节点和种子情况下生成完全相同的允许快速集，从而使该功能在不同实现之间具有可用性且可验证。",
+            "es": "Esta propuesta estandariza la generación de un conjunto de Allowed Fast nativo de I2P, de modo que todos los clientes torrent de I2P generen conjuntos de allowed fast *idénticos* para el mismo par y torrent, haciendo que esta función sea útil (y verificable) entre diferentes implementaciones.",
+            "ru": "Данный стандарт предлагает унифицированный способ формирования набора разрешённых быстрых соединений (Allowed Fast), нативный для I2P, чтобы все торрент-клиенты I2P генерировали *идентичные* наборы разрешённых быстрых соединений для одного и того же пира и торрента, что делает эту функцию полезной (и проверяемой) в разных реализациях.",
+            "ar": "يُوحّد هذا الاقتراح إنشاء مجموعة \"Allowed Fast\" الأصلية في I2P بحيث تُولّد جميع عميلات التورنت في I2P *نفس* مجموعة \"Allowed Fast\" لكل نظير وتورنت، ما يجعل الميزة مفيدة (وقابلة للتحقق) عبر مختلف التنفيذات.",
+            "tr": "Bu öneri, aynı peer ve torrent için tüm I2P torrent istemcilerinin *aynı* izin verilen hızlı kümelerini oluşturmasını sağlayan, I2P yerel bir İzin Verilen Hızlı Küme oluşturma yöntemini standartlaştırır ve bu özelliği uygulamalar arasında faydalı (ve doğrulanabilir) hale getirir.",
+            "ko": "이 제안은 모든 I2P 토렌트 클라이언트가 동일한 피어와 토렌트에 대해 동일한 allowed fast 집합을 생성하도록 I2P 네이티브 allowed fast 집합 생성 방식을 표준화함으로써, 해당 기능이 다양한 구현 간에 유용하고 검증 가능하도록 합니다.",
+            "hi": "यह प्रस्ताव एक I2P-स्वदेशी अनुमति प्राप्त त्वरित समुच्चय (Allowed Fast set) उत्पत्ति को मानकीकृत करता है ताकि सभी I2P टोरेंट क्लाइंट एक ही पीयर और टोरेंट के लिए *समान* अनुमति प्राप्त त्वरित समुच्चय उत्पन्न करें, जिससे यह सुविधा सभी कार्यान्वयन में उपयोगी (और सत्याप्य) बन जाए।",
+            "cs": "Tento návrh standardizuje generování seznamu povolených rychlých (Allowed Fast) připojení nativně v I2P, takže všechny I2P klienty pro torrenty budou generovat *identické* sady povolených rychlých připojení pro stejného protějška a stejný torrent, čímž se tato funkce stane užitečnou (a ověřitelnou) napříč různými implementacemi."
+          }
+        },
+        "h2_002": {
+          "source_hash": "89b1f4c3df983454",
+          "translations": {
+            "de": "Motivation",
+            "pt": "Motivação",
+            "vi": "Động lực",
+            "fr": "Motivation",
+            "zh": "动机",
+            "es": "Motivación",
+            "ru": "Мотивация",
+            "ar": "الدافع",
+            "tr": "Motivasyon",
+            "ko": "동기",
+            "hi": "अभिप्रेरणा",
+            "cs": "Motivace"
+          }
+        },
+        "p_003": {
+          "source_hash": "5999bc211922e729",
+          "translations": {
+            "de": "Neue Peers benötigen die ersten paar Teile, bevor das Tauschprinzip (tit-for-tat) von BitTorrent richtig in Schwung kommt. Auf I2P verläuft dieser Anstieg langsamer als im Klarnetz: Die Verbindungseinrichtung und die Übergabe von Teilen durchlaufen mehrere Hops über Tunnels mit hoher Latenz, wodurch das Zeitfenster zwischen Verbindungsaufbau und erster gegenseitiger Freigabe (unchoke) länger wird. „Allowed Fast“ greift dieses Zeitfenster direkt an – einem neu startenden Peer wird eine kleine Anzahl von Teilen erlaubt, selbst wenn er noch gedrosselt (choked) ist, sodass er sofort Daten erhält und früher mit dem Gegentausch beginnen kann.",
+            "pt": "Novos pares precisam dos primeiros blocos antes que o sistema de troca justa do BitTorrent possa acelerar. Na I2P, essa aceleração é mais lenta do que na rede clara: a configuração da conexão e a entrega de blocos atravessam vários saltos em túneis de alta latência, tornando o intervalo entre a conexão e o primeiro desbloqueio recíproco mais longo. O \"Allowed Fast\" ataca diretamente esse intervalo — um par inicial tem permissão para receber um pequeno número de blocos mesmo quando está bloqueado, recebe dados imediatamente e pode começar a retribuir mais cedo.",
+            "vi": "Các máy ngang hàng mới cần có được một vài mảnh dữ liệu đầu tiên trước khi cơ chế \"cho-đổi-lấy\" của BitTorrent có thể hoạt động hiệu quả. Trên I2P, quá trình này diễn ra chậm hơn so với mạng rõ (clearnet): việc thiết lập kết nối và truyền tải mảnh dữ liệu phải đi qua nhiều chặng trong các đường hầm có độ trễ cao, do đó khoảng thời gian giữa lúc kết nối và lúc nhận được unchoke (giải khóa gửi dữ liệu) đầu tiên mang tính tương hỗ sẽ dài hơn. Tính năng Cho Phép Nhanh (Allowed Fast) trực tiếp giải quyết vấn đề này — một máy ngang hàng mới bắt đầu được phép nhận một số lượng nhỏ mảnh dữ liệu ngay cả khi đang bị khóa (choked), từ đó nhận dữ liệu ngay lập tức và có thể bắt đầu chia sẻ lại (reciprocate) sớm hơn.",
+            "fr": "Les nouveaux pairs ont besoin des premiers morceaux avant que le système « donne pour donne » du BitTorrent ne puisse s'accélérer. Sur I2P, cette accélération est plus lente que sur le réseau clair : la configuration de la connexion et la livraison des morceaux traversent plusieurs sauts par des tunnels à forte latence, ce qui allonge la fenêtre entre la connexion et le premier déblocage réciproque. Allowed Fast attaque directement cette fenêtre — un pair en démarrage se voit autoriser un petit nombre de morceaux même lorsqu'il est bloqué, reçoit immédiatement des données, et peut commencer à échanger plus tôt.",
+            "zh": "新的对等节点在获得前几个数据块后，BitTorrent 的“以牙还牙”机制才能逐步加速。在 I2P 网络上，这个加速过程比在明网（clearnet）上更慢：连接建立和数据块传输需要经过多个高延迟的跳转隧道，因此从建立连接到第一次互惠性“解阻塞”（unchoke）之间的时间窗口更长。允许的快速开始（Allowed Fast）机制直接针对这一时间窗口——即使在被阻塞（choked）状态下，初始节点仍被允许获取少量数据块，从而立即获得数据，并能更早开始回馈。",
+            "es": "Los nuevos pares necesitan los primeros fragmentos antes de que el sistema BitTorrent de \"ojo por ojo\" pueda acelerarse. En I2P, esta aceleración es más lenta que en la red convencional: la configuración de la conexión y la entrega de fragmentos atraviesan varios saltos a través de túneles de alta latencia, por lo que el periodo entre la conexión y el primer desbloqueo recíproco es más largo. Allowed Fast ataca directamente este periodo: se permite a un par recién conectado obtener un pequeño número de fragmentos incluso mientras está bloqueado, recibe datos inmediatamente y puede comenzar a reciprocitar antes.",
+            "ru": "Новым пирам необходимы первые несколько кусочков, прежде чем механизм BitTorrent'а «за кусок — кусок» сможет набрать обороты. В I2P этот процесс происходит медленнее, чем в открытой сети: установка соединения и доставка кусочков проходят через несколько высокозадержечных туннелей, из-за чего интервал между подключением и первым взаимным разблокированием становится длиннее. Возможность «Быстрой раздачи» напрямую решает эту проблему — стартующему пирам разрешается получить небольшое количество кусочков, даже будучи заблокированным, получать данные сразу и начинать взаимный обмен раньше.",
+            "ar": "يحتاج الأقران الجدد إلى استلام القطع الأولى قبل أن تتمكن آلية BitTorrent المتبادلة (tit-for-tat) من التسارع. في شبكة I2P تكون هذه العملية أبطأ مقارنة بالشبكة العادية (clearnet): حيث تعبر إعدادات الاتصال وتوصيل القطع عدة قفزات عبر أنفاق عالية التأخر، ما يجعل الفترة الزمنية بين الاتصال وأول فتح متبادل للقطع (unchoke) أطول. يعالج خيار \"Allowed Fast\" هذه المشكلة مباشرة — إذ يُسمح للنقطة الطرفية الجديدة بإرسال عدد صغير من القطع حتى أثناء الحظر (choked)، وبالتالي تتلقى البيانات فورًا وتستطيع البدء في المبادلة بشكل أسرع.",
+            "tr": "Yeni eşlerin BitTorrent'in \"göze göz\" mekanizmasının hızlanabilmesi için ilk birkaç parçaya ihtiyacı vardır. I2P üzerinde bu artış süreci açık internete göre daha yavaştır: bağlantı kurulumu ve parça teslimi yüksek gecikmeli tünellerin birkaç sıçramasını geçer, bu yüzden bağlanma ile ilk karşılıklı serbest bırakma arasındaki zaman dilimi daha uzundır. İzin Verilen Hızlı (Allowed Fast), bu zaman dilimine doğrudan saldıran bir yöntemdir — başlangıçtaki bir eşe boğulmuş (choked) olsa bile sınırlı sayıda parça gönderimine izin verilir, hemen veri alır ve daha erken karşılık vermeye başlayabilir.",
+            "ko": "새로운 피어들은 비트토런트의 티포탯(tit-for-tat) 방식이 본격화되기 전에 처음 몇 개의 조각을 받아야 합니다. I2P에서는 일반 인터넷(clearnet)보다 이 과정이 더 느립니다. 연결 설정과 조각 전달이 지연 시간이 큰 여러 개의 튜널 홉(hop)을 거쳐야 하기 때문에, 연결 후 처음으로 상호적으로 언촉(unchoke)되는 시점까지의 시간이 더 길어집니다. '허용된 빠른 전송'(Allowed Fast)은 바로 이 시간 창을 직접적으로 해결합니다. 즉, 시작하는 피어가 여전히 촉(choked) 상태일지라도 소수의 조각을 받을 수 있도록 허용되어 즉시 데이터를 수신하고, 더 빨리 상호 교환을 시작할 수 있게 됩니다.",
+            "hi": "नए पीयर्स को बिटटॉरेंट के 'आप मुझे, मैं आपको' (tit-for-tat) के तेज़ होने से पहले पहले कुछ टुकड़ों की आवश्यकता होती है। I2P पर यह प्रक्रिया सामान्य नेटवर्क (clearnet) की तुलना में धीमी होती है: कनेक्शन स्थापित करना और टुकड़े भेजना उच्च-विलंबता वाली कई हॉप्स वाली टनल्स से गुज़रता है, इसलिए कनेक्ट होने और पहली पारस्परिक अनचोक के बीच का समय अधिक लंबा होता है। अनुमति प्राप्त फास्ट (Allowed Fast) इसी समयावधि पर सीधे प्रभाव डालता है — एक शुरुआती पीयर को चोक होने के दौरान भी कुछ सीमित टुकड़े लेने की अनुमति होती है, जिससे उसे तुरंत डेटा मिल जाता है और वह जल्दी पारस्परिकता शुरू कर सकता है।",
+            "cs": "Noví protějšky potřebují první kousky, než se může na BitTorrentu rozjet systém „za dar za dar“. V síti I2P je tento nástup pomalejší než na clearnetu: nastavení spojení a přenos bloků musí projít několika skoky vysokolatencních tunelů, takže doba mezi připojením a prvním vzájemným uvolněním je delší. Možnost Allowed Fast přímo řeší tento problém – nový protějšek může získat malý počet bloků hned, i když je stále potlačen (choked), což mu umožní rychleji začít s navracením dat."
+          }
+        },
+        "p_004": {
+          "source_hash": "cf0b0a274cca1efa",
+          "translations": {
+            "de": "Das Referenz-BEP 6 berechnet die erlaubte Fast-Set-Auswahl anhand der IPv4-Adresse des Peers, um sicherzustellen, dass der *Absender* Stücke auswählen kann, die für den *Empfänger* eindeutig sind (ein Benutzer mit vielen IPs kann nicht viele Sätze sammeln). Unter I2P übernimmt der Ziel-Hash des Peers dieselbe Bindungsfunktion und ist für beide Enden jeder Verbindung verfügbar, wodurch die Auswahl deterministisch und *lokal überprüfbar* wird – eine Eigenschaft, die das IP-basierte Verfahren nicht bieten kann.",
+            "pt": "O BEP 6 de referência calcula o conjunto rápido permitido a partir do endereço IPv4 do par para garantir que o *remetente* possa escolher partes únicas para o *receptor* (um usuário com muitos IPs não pode coletar muitos conjuntos). No I2P, o hash de destino do par desempenha o mesmo papel de vinculação e está disponível em ambas as extremidades de cada conexão, o que torna o conjunto determinístico *e localmente verificável* — algo que o esquema baseado em IP não pode oferecer.",
+            "vi": "BEP tham chiếu 6 tính toán tập hợp nhanh cho phép dựa trên địa chỉ IPv4 của máy ngang hàng để đảm bảo rằng *người gửi* có thể chọn các mảnh dữ liệu duy nhất đối với *người nhận* (một người dùng có nhiều địa chỉ IP không thể thu thập nhiều tập hợp). Trên I2P, mã băm địa chỉ đích của máy ngang hàng đảm nhận vai trò ràng buộc tương tự và sẵn có cho cả hai đầu cuối của mọi kết nối, nhờ đó tập hợp trở nên xác định được và có thể xác minh cục bộ — điều mà phương pháp dựa trên IP không thể cung cấp.",
+            "fr": "Le BEP 6 de référence calcule l'ensemble rapide autorisé à partir de l'adresse IPv4 du pair afin de garantir que l'*expéditeur* puisse sélectionner des morceaux uniques pour le *destinataire* (un utilisateur disposant de plusieurs adresses IP ne peut pas récolter de nombreux ensembles). Sur I2P, le hachage de destination du pair remplit le même rôle de liaison et est accessible aux deux extrémités de chaque connexion, ce qui rend l'ensemble déterministe et *vérifiable localement* — une caractéristique que le schéma basé sur l'IP ne peut pas offrir.",
+            "zh": "参考 BEP 6 使用对等方的 IPv4 地址来计算允许的快速集合，以确保*发送方*可以选择对*接收方*唯一的数据块（即一个用户即使拥有多个 IP 也无法获取多个集合）。在 I2P 上，对等方的目标哈希起到相同的绑定作用，并且在每条连接的两端都可获取，这使得该集合具有确定性且可本地验证——这是基于 IP 的方案无法提供的特性。",
+            "es": "El BEP 6 de referencia calcula el conjunto rápido permitido a partir de la dirección IPv4 del par para garantizar que el *emisor* pueda seleccionar piezas únicas para el *receptor* (un usuario con muchas IPs no puede obtener muchos conjuntos). En I2P, el hash de destino del par cumple la misma función de vinculación y está disponible en ambos extremos de cada conexión, lo que hace que el conjunto sea determinista y *verificable localmente* — algo que el esquema basado en IP no puede ofrecer.",
+            "ru": "Справочный BEP 6 вычисляет разрешённый быстрый набор на основе IPv4-адреса пира, чтобы гарантировать, что *отправитель* может выбирать фрагменты, уникальные для *получателя* (один пользователь с множеством IP не может собрать много наборов). В I2P хеш назначения пира выполняет ту же привязывающую функцию и доступен обоим концам каждого соединения, что делает набор детерминированным и *локально проверяемым* — чего схема, основанная на IP, предложить не может.",
+            "ar": "تحسب BEP 6 المرجعية المجموعة السريعة المسموحة من عنوان IPv4 للطرف المتصل لضمان أن *المرسل* يمكنه اختيار قطع فريدة بالنسبة إلى *المستقبل* (أي لا يمكن لمستخدم واحد يمتلك العديد من عناوين IP أن يجمع العديد من المجموعات). في شبكة I2P، يؤدي تجزئة وجهة الطرف نفس الدور التقييدي، وهي متاحة لكلا طرفي كل اتصال، ما يجعل المجموعة محددة وقابلة للتحقق محليًا — وهي ميزة لا يمكن أن يوفرها النظام القائم على عناوين IP.",
+            "tr": "Referans BEP 6, *gönderenin* parçaları *alıcıya* özgü seçmesini garanti etmek için kullanıcının IPv4 adresinden izin verilen hızlı kümeyi hesaplar (tek bir kullanıcı birden fazla IP ile birçok küme toplayamaz). I2P üzerinde, eşin hedef adresi aynı bağlama rolünü üstlenir ve her bağlantının iki ucunun da erişimine açıktır; bu da kümeyi *belirleyici ve yerel olarak doğrulanabilir* kılar — bu özellik, IP tabanlı şemanın sunamadığı bir özelliktir.",
+            "ko": "참조 BEP 6은 피어의 IPv4 주소로부터 허용 가능한 빠른 세트를 계산하여 *송신자*가 *수신자*만 가진 조각들을 선택할 수 있도록 보장한다(여러 IP를 가진 한 사용자가 여러 세트를 수집하는 것을 방지). I2P에서는 피어의 목적지 해시가 동일한 결합 역할을 하며 모든 연결의 양 끝에서 사용 가능하므로, 이 세트는 결정적이며 로컬에서 검증 가능하다 — 이것은 IP 기반 방식이 제공할 수 없는 특성이다.",
+            "hi": "संदर्भ BEP 6 प्राप्तकर्ता के लिए अद्वितीय टुकड़ों का चयन करने सुनिश्चित करने हेतु पीयर के IPv4 पते से अनुमत त्वरित सेट की गणना करता है (*एक उपयोगकर्ता के पास कई आईपी होने पर भी कई सेट एकत्रित नहीं कर सकता*)। I2P पर, पीयर का गंतव्य हैश प्रत्येक कनेक्शन के दोनों छोरों पर उपलब्ध बाइंडिंग भूमिका निभाता है, जिससे सेट निर्धारित और स्थानीय रूप से सत्याप्य बन जाता है — जो आईपी-आधारित योजना प्रदान नहीं कर सकती।",
+            "cs": "Referenční BEP 6 vypočítává povolenou rychlou sadu na základě IPv4 adresy protějšku, aby zajistil, že *odesílatel* může vybírat kousky jedinečné pro *příjemce* (jeden uživatel s mnoha IP adresami nemůže shromažďovat mnoho sad). V síti I2P plní stejnou vázací funkci hash destinace protějšku, který je dostupný oběma koncům každého spojení, čímž je sada deterministická *a místně ověřitelná* — což je něco, co schéma založené na IP nemůže nabídnout."
+          }
+        },
+        "h2_003": {
+          "source_hash": "01108c1f11ac220a",
+          "translations": {
+            "de": "Änderungen an BEP 6",
+            "pt": "Modificações para BEP 6",
+            "vi": "Sửa đổi đối với BEP 6",
+            "fr": "Modifications apportées à la BEP 6",
+            "zh": "对 BEP 6 的修改",
+            "es": "Modificaciones a BEP 6",
+            "ru": "Модификации BEP 6",
+            "ar": "تعديلات على BEP 6",
+            "tr": "BEP 6'ya Yapılan Değişiklikler",
+            "ko": "BEP 6 수정",
+            "hi": "BEP 6 में संशोधन",
+            "cs": "Úpravy BEP 6"
+          }
+        },
+        "p_005": {
+          "source_hash": "0e808c0e88bb3e2a",
+          "translations": {
+            "de": "Die Verhandlung der Fast Extension und alle vier Nachrichtentypen werden unverändert übernommen:",
+            "pt": "A negociação da extensão rápida e todos os quatro tipos de mensagens são adotados inalterados:",
+            "vi": "Việc thương lượng phần mở rộng Fast và cả bốn loại tin nhắn được áp dụng nguyên样:",
+            "fr": "La négociation de l'extension Fast et les quatre types de messages sont adoptés sans changement :",
+            "zh": "快速扩展协商和全部四种消息类型均未经更改地采用：",
+            "es": "La negociación de la extensión rápida y los cuatro tipos de mensajes se adoptan sin cambios:",
+            "ru": "Согласование расширения Fast и все четыре типа сообщений принимаются без изменений:",
+            "ar": "يتم اعتماد مفاوضات الامتداد السريع وجميع أنواع الرسائل الأربعة دون تغيير:",
+            "tr": "Hızlı Uzantı anlaşması ve dört mesaj türü olduğu gibi benimsenmiştir:",
+            "ko": "빠른 확장 협상과 네 가지 메시지 유형은 변경되지 않은 채 채택된다:",
+            "hi": "त्वरित एक्सटेंशन नेगोशिएशन और सभी चार संदेश प्रकार बिना किसी परिवर्तन के अपनाए गए हैं:",
+            "cs": "Vyjednávání rozšíření Fast Extension a všechny čtyři typy zpráv jsou převzaty beze změny:"
+          }
+        },
+        "list_001": {
+          "source_hash": "df47e1e76530930c",
+          "translations": {
+            "de": "- Verhandlung: drittes niederwertigste Bit des letzten reservierten Bytes, `reserved[7] |= 0x04`, beide Enden\n- Have All `<len=0x0001><op=0x0E>`, Have None `<len=0x0001><op=0x0F>`\n- Vorschlag Stück `<len=0x0005><op=0x0D><index>`\n- Ablehnung der Anfrage `<len=0x000D><op=0x10><index><begin><length>`\n- Erlaubt Schnell `<len=0x0005><op=0x11><index>`\n- Jede Anfrage führt genau zu einer Antwort (Stück oder Ablehnung); Choke lehnt nicht mehr implizit ausstehende Anfragen ab",
+            "pt": "- Negociação: terceiro bit menos significativo do último byte reservado, `reserved[7] |= 0x04`, em ambas as extremidades\n- Tem Tudo `<len=0x0001><op=0x0E>`, Não Tem Nenhum `<len=0x0001><op=0x0F>`\n- Sugerir Pedaço `<len=0x0005><op=0x0D><index>`\n- Rejeitar Solicitação `<len=0x000D><op=0x10><index><begin><length>`\n- Rápido Permitido `<len=0x0005><op=0x11><index>`\n- Cada solicitação resulta em exatamente uma resposta (pedaço ou rejeição); estrangulamento não rejeita mais implicitamente solicitações pendentes",
+            "vi": "- Đàm phán: bit nhỏ nhất thứ ba của byte dành riêng cuối cùng, `reserved[7] |= 0x04`, cả hai đầu\n- Have All `<len=0x0001><op=0x0E>`, Have None `<len=0x0001><op=0x0F>`\n- Gợi ý mảnh `<len=0x0005><op=0x0D><index>`\n- Từ chối yêu cầu `<len=0x000D><op=0x10><index><begin><length>`\n- Cho phép nhanh `<len=0x0005><op=0x11><index>`\n- Mỗi yêu cầu đều dẫn đến đúng một phản hồi (mảnh hoặc từ chối); việc kẹt (choke) không còn ngầm từ chối các yêu cầu đang chờ",
+            "fr": "- Négociation : troisième bit le moins significatif du dernier octet réservé, `reserved[7] |= 0x04`, des deux côtés  \n- Have All `<len=0x0001><op=0x0E>`, Have None `<len=0x0001><op=0x0F>`  \n- Suggest Piece `<len=0x0005><op=0x0D><index>`  \n- Reject Request `<len=0x000D><op=0x10><index><begin><length>`  \n- Allowed Fast `<len=0x0005><op=0x11><index>`  \n- Chaque requête entraîne exactement une réponse (pièce ou rejet) ; le blocage (choke) n'entraîne plus implicitement le rejet des requêtes en attente",
+            "zh": "- 协商：最后一个保留字节的第三最低有效位，`reserved[7] |= 0x04`，两端均需设置\n- 拥有全部 `<len=0x0001><op=0x0E>`，未拥有任何 `<len=0x0001><op=0x0F>`\n- 建议片段 `<len=0x0005><op=0x0D><index>`\n- 拒绝请求 `<len=0x000D><op=0x10><index><begin><length>`\n- 允许快速请求 `<len=0x0005><op=0x11><index>`\n- 每个请求都会产生一个且仅一个响应（数据块或拒绝）；拥塞控制不再隐式拒绝待处理请求",
+            "es": "- Negociación: tercer bit menos significativo del último byte reservado, `reserved[7] |= 0x04`, ambos extremos\n- Tener Todo `<len=0x0001><op=0x0E>`, No Tener Nada `<len=0x0001><op=0x0F>`\n- Sugerir Trozo `<len=0x0005><op=0x0D><index>`\n- Rechazar Solicitud `<len=0x000D><op=0x10><index><begin><length>`\n- Rápido Permitido `<len=0x0005><op=0x11><index>`\n- Cada solicitud da como resultado exactamente una respuesta (trozo o rechazo); el bloqueo ya no rechaza implícitamente las solicitudes pendientes",
+            "ru": "- Переговоры: третий наименее значащий бит последнего зарезервированного байта, `reserved[7] |= 0x04`, с обеих сторон\n- Have All `<len=0x0001><op=0x0E>`, Have None `<len=0x0001><op=0x0F>`\n- Suggest Piece `<len=0x0005><op=0x0D><index>`\n- Reject Request `<len=0x000D><op=0x10><index><begin><length>`\n- Allowed Fast `<len=0x0005><op=0x11><index>`\n- Каждый запрос приводит ровно к одному ответу (piece или reject); choke больше не отклоняет неявно ожидающие запросы",
+            "ar": "- التفاوض: البت الأقل أهمية الثالث في البايت المحفوظ الأخير، `reserved[7] |= 0x04`، من كلا الطرفين\n- تم التحقق من الكل `<len=0x0001><op=0x0E>`، لم يتم التحقق من أي شيء `<len=0x0001><op=0x0F>`\n- اقتراح جزء `<len=0x0005><op=0x0D><index>`\n- رفض الطلب `<len=0x000D><op=0x10><index><begin><length>`\n- السماح بالتنزيل السريع `<len=0x0005><op=0x11><index>`\n- كل طلب يؤدي إلى استجابة واحدة بالضبط (جزء أو رفض)؛ لم يعد الحظر يرفض تلقائيًا الطلبات المعلقة",
+            "tr": "- Müzakere: son ayrılmış baytın üçüncü en düşük anlamlı biti, `reserved[7] |= 0x04`, her iki uçta da\n- Hepsi Var `<len=0x0001><op=0x0E>`, Hiçbiri Yok `<len=0x0001><op=0x0F>`\n- Parça Öner: `<len=0x0005><op=0x0D><index>`\n- İsteği Reddet: `<len=0x000D><op=0x10><index><begin><length>`\n- Hızlıya İzin Verildi: `<len=0x0005><op=0x11><index>`\n- Her istek tam olarak bir yanıtla sonuçlanır (parça veya red); choke artık bekleyen istekleri örtük olarak reddetmez",
+            "ko": "- 협상: 마지막 예약된 바이트의 세 번째로 낮은 중요 비트, `reserved[7] |= 0x04`, 양쪽 모두\n- 모두 있음 `<len=0x0001><op=0x0E>`, 모두 없음 `<len=0x0001><op=0x0F>`\n- 조각 제안 `<len=0x0005><op=0x0D><index>`\n- 요청 거부 `<len=0x000D><op=0x10><index><begin><length>`\n- 허용된 빠른 요청 `<len=0x0005><op=0x11><index>`\n- 모든 요청은 정확히 하나의 응답(조각 또는 거부)을 생성함; 더 이상 요청이 보류 중일 때 자동 거부되지 않음",
+            "hi": "- निगोशिएशन: अंतिम आरक्षित बाइट का तीसरा सबसे कम महत्वपूर्ण बिट, `reserved[7] |= 0x04`, दोनों छोरों पर\n- हैव ऑल `<len=0x0001><op=0x0E>`, हैव नोन `<len=0x0001><op=0x0F>`\n- सुझाव पीस `<len=0x0005><op=0x0D><index>`\n- अनुरोध अस्वीकृत करें `<len=0x000D><op=0x10><index><begin><length>`\n- अनुमत फास्ट `<len=0x0005><op=0x11><index>`\n- प्रत्येक अनुरोध का परिणाम ठीक एक प्रतिक्रिया (पीस या अस्वीकृत) होता है; चोक अब लंबित अनुरोधों को अंतर्निहित रूप से अस्वीकार नहीं करता है",
+            "cs": "- Vyjednávání: třetí nejméně významný bit posledního rezervovaného bajtu, `reserved[7] |= 0x04`, na obou koncích\n- Má vše `<len=0x0001><op=0x0E>`, Nemá nic `<len=0x0001><op=0x0F>`\n- Navrhnout kus `<len=0x0005><op=0x0D><index>`\n- Zamítnout požadavek `<len=0x000D><op=0x10><index><begin><length>`\n- Povoleno rychlé `<len=0x0005><op=0x11><index>`\n- Každý požadavek má za následek přesně jednu odpověď (kus nebo zamítnutí); ucpaní již nezamítá implicitně čekající požadavky"
+          }
+        },
+        "p_006": {
+          "source_hash": "0358a4c54da58f56",
+          "translations": {
+            "de": "Die einzige Abweichung liegt bei der Erzeugung des Allowed-Fast-Sets, bei dem die IP-Bytes durch Bytes des Ziel-Hashs des Peers ersetzt werden.",
+            "pt": "O único desvio está na geração do conjunto Allowed Fast, substituindo os bytes do IP pelos bytes do hash do destino do par.",
+            "vi": "Sự khác biệt duy nhất nằm trong việc tạo tập Hợp lệ Nhanh, thay thế các byte IP bằng các byte của băm đích đến của nút ngang hàng.",
+            "fr": "La seule différence réside dans la génération de l'ensemble Allowed Fast, où les octets de l'adresse IP sont remplacés par les octets du hachage de destination du pair.",
+            "zh": "唯一的偏差在于允许的快速集合生成中，使用对等方目标哈希的字节替换了IP地址的字节。",
+            "es": "La única desviación está en la generación del conjunto Permitido Rápido, reemplazando los bytes de la IP con bytes del hash de destino del par.",
+            "ru": "Единственное отклонение заключается в генерации набора разрешённых быстрых соединений, где байты IP-адреса заменяются байтами хэша назначения пира.",
+            "ar": "الانحراف الوحيد هو في إنشاء مجموعة \"السريع المسموح\"، حيث يتم استبدال بايتات عنوان IP ببايتات هاش وجهة الند.",
+            "tr": "Tek istisna, izin verilen hızlı küme oluşturmada, IP baytlarının eşin hedef karması baytlarıyla değiştirilmesidir.",
+            "ko": "유일한 차이점은 허용된 빠른(Fast) 집합 생성 과정에서 IP 바이트를 피어의 대상 해시(destination hash) 바이트로 대체한다는 것이다.",
+            "hi": "एकल विचलन अनुमत त्वरित सेट उत्पादन में है, जहाँ समकक्ष के गंतव्य हैश के बाइट्स के साथ आईपी बाइट्स को प्रतिस्थापित किया जाता है।",
+            "cs": "Jediná odchylka spočívá v generování sady Allowed Fast, kde jsou bajty IP nahrazeny bajty hashové adresy protějšku."
+          }
+        },
+        "h3_001": {
+          "source_hash": "5cd463f86c471f2d",
+          "translations": {
+            "de": "Abweichung: Hash-Bytes anstelle der maskierten IP",
+            "pt": "Desvio: bytes de hash em vez de IP mascarado",
+            "vi": "Lệch hướng: byte băm thay vì IP đã được che",
+            "fr": "Dérivation : hacher les octets au lieu de l'IP masquée",
+            "zh": "偏差：使用哈希字节代替掩码 IP",
+            "es": "Desviación: bytes de hash en lugar de IP enmascarada",
+            "ru": "Отклонение: хеш-байты вместо маскированного IP",
+            "ar": "الانحراف: بايتات الهاش بدلاً من عنوان IP المقنّع",
+            "tr": "Sapma: IP'nin maskelenmesi yerine hash baytları",
+            "ko": "편차: 마스킹된 IP 대신 해시 바이트 사용",
+            "hi": "विचलन: मास्क किए गए आईपी के बजाय हैश बाइट्स",
+            "cs": "Odchylka: bajty hash místo maskované IP"
+          }
+        },
+        "p_007": {
+          "source_hash": "9a96bf68bf66a08b",
+          "translations": {
+            "de": "Siehe BEP 6, Schritt (1):",
+            "pt": "Consulte o BEP 6, passo (1):",
+            "vi": "Tham chiếu BEP 6, bước (1):",
+            "fr": "Référence BEP 6, étape (1) :",
+            "zh": "参考 BEP 6，步骤 (1)：",
+            "es": "Referencia BEP 6, paso (1):",
+            "ru": "См. BEP 6, шаг (1):",
+            "ar": "راجع BEP 6، الخطوة (1):",
+            "tr": "Referans BEP 6, adım (1):",
+            "ko": "BEP 6 참조, 단계 (1):",
+            "hi": "संदर्भ BEP 6, चरण (1):",
+            "cs": "Viz BEP 6, krok (1):"
+          }
+        },
+        "p_008": {
+          "source_hash": "4139ae71549482c2",
+          "translations": {
+            "de": "Das nimmt drei Bytes der IPv4-Adresse des Peers und **setzt das 4. Byte auf Null**. Dies ist eine Subnetz-Heuristik: Benutzer, die mehrere IPs im selben /24-Netz erhalten können, sollten nicht mehrere erlaubte Fast-Sets erhalten.",
+            "pt": "Isso utiliza três bytes do endereço IPv4 do par e **zera o 4º byte**. Esta é uma heurística de sub-rede: usuários que conseguem obter múltiplos IPs na mesma sub-rede /24 não devem obter múltiplos conjuntos rápidos permitidos.",
+            "vi": "Điều đó lấy ba byte từ địa chỉ IPv4 của máy ngang hàng và **đặt byte thứ 4 bằng không**. Đây là một phương pháp ước lượng theo mạng con: những người dùng có thể lấy nhiều địa chỉ IP trong cùng mạng /24 không nên nhận được nhiều bộ nút cho phép nhanh khác nhau.",
+            "fr": "Cela prend trois octets de l'adresse IPv4 du pair et **met le 4e octet à zéro**. Il s'agit d'une heuristique de sous-réseau : les utilisateurs qui peuvent obtenir plusieurs adresses IP sur le même /24 ne devraient pas obtenir plusieurs ensembles rapides autorisés.",
+            "zh": "这会取对等方IPv4地址的三个字节，并将第四个字节置零。这是一种子网启发式方法：能够在同一个/24子网内获取多个IP的用户，不应获得多个允许的快速集合。",
+            "es": "Eso toma tres bytes de la dirección IPv4 del par y **pone a cero el 4º byte**. Esta es una heurística de subred: los usuarios que puedan obtener múltiples IPs en la misma red /24 no deberían obtener múltiples conjuntos rápidos permitidos.",
+            "ru": "Это занимает три байта IPv4-адреса пира и **обнуляет 4-й байт**. Это эвристика подсети: пользователи, которые могут получить несколько IP-адресов в одной и той же подсети /24, не должны получать несколько наборов разрешённых быстрых узлов.",
+            "ar": "هذا يستخدم ثلاثة بايتات من عنوان IPv4 للطرف المتصل ويُصفر البايت الرابع. هذه طريقة تقديرية للشبكة الفرعية: يجب ألا يحصل المستخدمون الذين يستطيعون الحصول على عناوين IP متعددة ضمن نفس الشبكة /24 على مجموعات سريعة مسموحة متعددة.",
+            "tr": "Bu, eşin IPv4 adresinin üç baytını alır ve **4. baytı sıfırlar**. Bu bir alt ağ sezgisel yöntemidir: aynı /24 içinde birden fazla IP edinebilen kullanıcılar, birden fazla izinli hızlı küme elde etmemelidir.",
+            "ko": "이는 피어의 IPv4 주소에서 세 바이트를 사용하고 **4번째 바이트를 0으로 설정**합니다. 이는 서브넷 휴리스틱 방식입니다: 동일한 /24 서브넷 내에서 여러 IP를 확보할 수 있는 사용자는 여러 개의 허용된 고속 집합을 얻을 수 없어야 합니다.",
+            "hi": "यह पीयर के IPv4 पते के तीन बाइट लेता है और **चौथे बाइट को शून्य कर देता है**। यह एक सबनेट ह्यूरिस्टिक है: उन उपयोगकर्ताओं को, जो एक ही /24 पर कई IP प्राप्त कर सकते हैं, कई अनुमति प्राप्त त्वरित सेट प्राप्त नहीं करने चाहिए।",
+            "cs": "To využívá tři bajty IP adresy protějšku IPv4 a **nuluje 4. bajt**. Jedná se o podsíťovou heuristiku: uživatelé, kteří mohou získat více IP adres ve stejné síti /24, by neměli získat více sad povolených rychlých uzlů."
+          }
+        },
+        "p_009": {
+          "source_hash": "abbefe02bd8b5633",
+          "translations": {
+            "de": "Unsere I2P-Version ersetzt dies durch die ersten vier Bytes des 32-Byte-Destinations-Hashs des Peers:",
+            "pt": "A nossa versão do I2P substitui isso pelos primeiros quatro bytes do hash de destino de 32 bytes do peer:",
+            "vi": "Phiên bản I2P của chúng tôi thay thế điều này bằng bốn byte đầu tiên của băm đích 32 byte của peer:",
+            "fr": "Notre version d'I2P remplace cela par les quatre premiers octets du hachage de destination de 32 octets du pair :",
+            "zh": "我们的 I2P 版本使用对等方 32 字节目标哈希的前四个字节来替换此值：",
+            "es": "Nuestra versión de I2P reemplaza esto con los primeros cuatro bytes del hash de destino de 32 bytes del par:",
+            "ru": "Наша версия I2P заменяет это на первые четыре байта хэша назначения узла длиной 32 байта:",
+            "ar": "يقوم إصدار I2P الخاص بنا باستبدال هذا بأول أربع بايتات من هاش الوجهة البالغ 32 بايتًا للطرف المتصل:",
+            "tr": "I2P versiyonumuz bunu, eşin 32 baytlık hedef adresinin ilk dört baytıyla değiştirir:",
+            "ko": "우리의 I2P 버전은 이를 상대방의 32바이트 목적지 해시의 처음 네 바이트로 대체합니다:",
+            "hi": "हमारा I2P संस्करण इसे पीयर के 32-बाइट गंतव्य हैश के पहले चार बाइट से बदल देता है:",
+            "cs": "Naše verze I2P to nahradí prvními čtyřmi byty 32-byte hashovací hodnoty destinace protějšku:"
+          }
+        },
+        "p_010": {
+          "source_hash": "e698c2c46a7f34b5",
+          "translations": {
+            "de": "Der Unterschied zur Referenzimplementierung:",
+            "pt": "A distinção em relação à implementação de referência:",
+            "vi": "Sự khác biệt so với phiên bản tham chiếu:",
+            "fr": "La distinction par rapport à l'implémentation de référence :",
+            "zh": "与参考实现的区别：",
+            "es": "La diferencia con respecto a la implementación de referencia:",
+            "ru": "Отличие от эталонной реализации:",
+            "ar": "التمييز عن التنفيذ المرجعي:",
+            "tr": "Referans uygulamadan farkı:",
+            "ko": "기준 구현과의 차이점:",
+            "hi": "संदर्भ कार्यान्वयन से अंतर:",
+            "cs": "Rozdíl od referenční implementace:"
+          }
+        },
+        "p_011": {
+          "source_hash": "f39e43ac941bd574",
+          "translations": {
+            "de": "> „Das sind 3 Bytes der IP, gefolgt von einer Null. Du bist 4 Bytes des Hashs. Es unterscheidet sich von BEP 6, weil dort keine IP vorhanden ist und das 4. Byte nicht auf Null gesetzt wird.“",
+            "pt": "> \"São 3 bytes do IP seguidos por um zero. Você tem 4 bytes do hash. É diferente do BEP 6 porque não há IP e não está zerando o 4º byte.\"",
+            "vi": "> \"Đó là 3 byte của địa chỉ IP theo sau bởi một byte zero. Bạn là 4 byte của băm. Nó khác với BEP 6 vì không có địa chỉ IP và nó không đặt byte thứ 4 bằng zero.\"",
+            "fr": "« Ce sont les 3 octets de l'IP suivis par un zéro. Vous êtes les 4 octets du hachage. C'est différent de BEP 6 parce qu'il n'y a pas d'IP et on ne met pas à zéro le 4e octet. »",
+            "zh": "> “那是IP的3个字节，后跟一个零。接着是你哈希值的4个字节。这与BEP 6不同，因为没有IP，并且不会将第4个字节置零。”",
+            "es": "> \"Son 3 bytes de la IP seguidos por un cero. Tú eres 4 bytes del hash. Es diferente del BEP 6 porque no hay IP y no está poniendo a cero el cuarto byte.\"",
+            "ru": "> «Это 3 байта IP-адреса, за которыми следует ноль. Вы — 4 байта хэша. Отличается от BEP 6, потому что здесь нет IP-адреса, и 4-й байт не обнуляется.»",
+            "ar": "> \"هذا هو 3 بايتات من عنوان IP متبوعة بصفر. أنت 4 بايتات من الهاش. وهو يختلف عن BEP 6 لأنها لا تحتوي على عنوان IP، ولا تقوم بتصفير البايت الرابع.\"",
+            "tr": "> \"Bu, IP'nin 3 baytı artı bir sıfır. Sen de hash'in 4 baytısın. BEP 6'dan farklı çünkü IP yok ve 4. bayt sıfırlanmıyor.\"",
+            "ko": "> \"그것은 IP의 3바이트 다음에 0이 오는 것입니다. 당신은 해시의 4바이트입니다. IP가 없고 4번째 바이트를 0으로 만들지 않기 때문에 BEP 6과 다릅니다.\"",
+            "hi": "> \"यह IP के 3 बाइट्स होते हैं जिसके बाद एक शून्य आता है। आपके पास हैश के 4 बाइट्स होते हैं। यह BEP 6 से अलग है क्योंकि इसमें कोई IP नहीं होता और यह चौथे बाइट को शून्य नहीं करता।\"",
+            "cs": "> „To jsou 3 bajty IP následované nulou. Vy jste 4 bajty hash. Liší se to od BEP 6, protože tam není IP a neguluje se 4. bajt.“"
+          }
+        },
+        "p_012": {
+          "source_hash": "cb3764597c3891ad",
+          "translations": {
+            "de": "Beide Enden einer I2P-Verbindung kennen bereits den Ziel-Hash des Peers (dies ist die Adresse, zu der die Verbindung aufgebaut wurde), weshalb kein zusätzlicher Austausch, keine NAT-Erkennung und keine externe IP-Erkennung erforderlich sind – nichts davon existiert in I2P.",
+            "pt": "Ambas as extremidades de uma conexão I2P já conhecem o hash de destino do par (é o endereço ao qual a conexão foi feita/dele), portanto, isso não exige troca adicional, descoberta de NAT ou detecção de IP externo — nenhum dos quais existe no I2P.",
+            "vi": "Cả hai đầu của một kết nối I2P đều đã biết mã băm đích của máy ngang hàng (đó là địa chỉ mà kết nối được thiết lập đến/từ), do đó không cần trao đổi thêm, không cần phát hiện NAT và không cần phát hiện IP bên ngoài — những thứ này hoàn toàn không tồn tại trên I2P.",
+            "fr": "Les deux extrémités d'une connexion I2P connaissent déjà le hachage de destination du pair (il s'agit de l'adresse à laquelle la connexion a été établie), ce qui ne nécessite aucun échange supplémentaire, aucune découverte NAT, ni détection d'IP externe — aucun de ces mécanismes n'existant sur I2P.",
+            "zh": "I2P 连接的两端已经知道对等方的目的地哈希（即建立连接时所使用的地址），因此无需额外的交换、NAT 发现或外部 IP 检测——而这些机制在 I2P 上本就不存在。",
+            "es": "Ambos extremos de una conexión I2P ya conocen el hash de destino del par (es la dirección a/la cual se estableció la conexión), por lo que no requiere intercambio adicional, descubrimiento NAT ni detección de IP externa; nada de lo cual existe en I2P.",
+            "ru": "Оба конца соединения I2P уже знают хэш назначения узла (это адрес, к которому/от которого было установлено соединение), поэтому не требуется дополнительный обмен, обнаружение NAT или определение внешнего IP-адреса — ничего из этого в I2P не существует.",
+            "ar": "كلا طرفي اتصال I2P يعرفان بالفعل كتلة تحديد موقع الطرف (وهي العنوان الذي تم الاتصال به/منه)، وبالتالي لا يتطلب هذا أي تبادل إضافي، ولا اكتشاف NAT، ولا كشف عنوان IP الخارجي — ولا أي من هذه الأمور موجود في I2P.",
+            "tr": "Bir I2P bağlantısının her iki ucu da zaten karşı tarafın hedef adresi karmasını bilmektedir (bu, bağlantının kurulduğu/kurulduğu adresidir), bu yüzden ek bir değiş tokuş, NAT keşfi veya harici IP tespiti gerekmez — I2P üzerinde bunlardan hiçbiri mevcut değildir.",
+            "ko": "I2P 연결의 양쪽 끝점은 이미 상대방의 대상 해시를 알고 있습니다(이는 연결이 생성된/생성된 주소이기 때문입니다). 따라서 추가적인 교환이나 NAT 탐지, 외부 IP 감지가 필요하지 않으며, 이러한 기능은 I2P에서 아예 존재하지 않습니다.",
+            "hi": "I2P कनेक्शन के दोनों छोर पहले से ही पीयर के गंतव्य हैश को जानते हैं (यह वह पता है जिसकी ओर/जिसकी तरफ से कनेक्शन बनाया गया था), इसलिए इसके लिए कोई अतिरिक्त आदान-प्रदान, कोई NAT खोज या कोई बाहरी IP का पता लगाने की आवश्यकता नहीं होती — जो भी I2P पर मौजूद नहीं हैं।",
+            "cs": "Oba konce I2P spojení již znají hash cíle protějšku (jedná se o adresu, ke které/od které bylo spojení vytvořeno), takže není potřeba žádná dodatečná výměna, zjišťování NAT ani detekce externí IP — žádná z těchto věcí v I2P neexistuje."
+          }
+        },
+        "h3_002": {
+          "source_hash": "097a1bf52fa2a983",
+          "translations": {
+            "de": "Erlaubter schneller Generierungsalgorithmus",
+            "pt": "Algoritmo de geração rápida permitido",
+            "vi": "Thuật toán tạo nhanh được phép",
+            "fr": "Algorithme de génération rapide autorisé",
+            "zh": "允许的快速生成算法",
+            "es": "Algoritmo permitido de generación rápida",
+            "ru": "Разрешенный быстрый алгоритм генерации",
+            "ar": "خوارزمية التوليد السريع المسموح بها",
+            "tr": "İzin verilen Hızlı üretim algoritması",
+            "ko": "허용된 빠른 생성 알고리즘",
+            "hi": "अनुमत त्वरित उत्पादन एल्गोरिथ्म",
+            "cs": "Povolený rychlý algoritmus generování"
+          }
+        },
+        "p_013": {
+          "source_hash": "b3109d3471a46a20",
+          "translations": {
+            "de": "Sei `hash` der 32-Byte lange Ziel-Hash des empfangenden Peers, `infohash` der 20-Byte lange Infohash des Torrents, `sz` die Anzahl der Teile im Torrent, `k` die endgültige Anzahl der Teile in der erlaubten Fast-Set (10, wie in BEP 6), und `a` die Ausgabe-Menge:",
+            "pt": "Seja `hash` o hash de destino de 32 bytes do par receptor, `infohash` o infohash do torrent de 20 bytes, `sz` o número de partes no torrent, `k` o número final de partes no conjunto de envio rápido permitido (10, conforme BEP 6) e `a` o conjunto de saída:",
+            "vi": "Gọi `hash` là mã băm đích 32 byte của máy ngang hàng nhận, `infohash` là mã băm thông tin 20 byte của torrent, `sz` là số lượng các phần trong torrent, `k` là số lượng cuối cùng các phần trong tập hợp cho phép nhanh (10, như trong BEP 6), và `a` là tập hợp đầu ra:",
+            "fr": "Soit `hash` le hachage de destination de 32 octets du pair destinataire, `infohash` le hachage d'information du torrent de 20 octets, `sz` le nombre de morceaux dans le torrent, `k` le nombre final de morceaux dans l'ensemble autorisé rapide (10, comme dans BEP 6), et `a` l'ensemble de sortie :",
+            "zh": "设 `hash` 为接收端对等体的 32 字节目标哈希，`infohash` 为 torrent 的 20 字节 infohash，`sz` 为 torrent 中的分片数量，`k` 为允许快速集（allowed fast set）中最终的分片数量（如 BEP 6 中所述为 10），`a` 为输出集：",
+            "es": "Sea `hash` el hash de destino de 32 bytes del par receptor, `infohash` el infohash del torrent de 20 bytes, `sz` el número de piezas en el torrent, `k` el número final de piezas en el conjunto de transferencia rápida permitida (10, como en BEP 6), y `a` el conjunto de salida:",
+            "ru": "Пусть `hash` — это 32-байтовый хэш назначения принимающего узла, `infohash` — 20-байтовый infohash торрента, `sz` — количество частей в торренте, `k` — конечное количество частей в разрешённом быстром наборе (10, как в BEP 6), а `a` — выходной набор:",
+            "ar": "ليكن `hash` هو الهاش 32 بايت للمستلم، و`infohash` هو هاش المعلومات 20 بايت للتيار، و`sz` هو عدد القطع في التورنت، و`k` هو العدد النهائي للقطع في مجموعة السرعة المسموحة (10، كما في BEP 6)، و`a` هي المجموعة الناتجة:",
+            "tr": "`hash`, alıcı eşin 32 baytlık hedef karmasını, `infohash` torrentin 20 baytlık bilgi karmasını, `sz` torrentteki parça sayısını, `k` izin verilen hızlı kümedeki son parça sayısını (BEP 6'daki gibi 10), ve `a` çıktıyı temsil etsin:",
+            "ko": "`hash`를 수신 피어의 32바이트 목적지 해시, `infohash`를 토렌트의 20바이트 infohash, `sz`를 토렌트의 조각 수, `k`를 허용된 빠른 설정의 최종 조각 수(BEP 6에 따라 10)라고 하고, `a`를 출력 세트라고 하자:",
+            "hi": "मान लें कि `hash` प्राप्त करने वाले पीयर का 32-बाइट गंतव्य हैश है, `infohash` टोरेंट का 20-बाइट इन्फोहैश है, `sz` टोरेंट में पीसेज़ की संख्या है, `k` अनुमत त्वरित सेट में पीसेज़ की अंतिम संख्या (BEP 6 के अनुसार 10) है, और `a` आउटपुट सेट है:",
+            "cs": "Nechť `hash` je 32mi bytový hash cíle přijímajícího protějšku, `infohash` 20ti bytový infohash torrentu, `sz` počet kousků v torrentu, `k` finální počet kousků v sadě povolených rychlých (10, jak v BEP 6) a `a` výstupní sada:"
+          }
+        },
+        "p_014": {
+          "source_hash": "da4f7ea58d963b1a",
+          "translations": {
+            "de": "Hinweise:",
+            "pt": "Notas:",
+            "vi": "Ghi chú:",
+            "fr": "Notes :",
+            "zh": "备注：",
+            "es": "Notas:",
+            "ru": "Примечания:",
+            "ar": "ملاحظات:",
+            "tr": "Notlar:",
+            "ko": "참고:",
+            "hi": "नोट्स:",
+            "cs": "Poznámky:"
+          }
+        },
+        "list_002": {
+          "source_hash": "b01b0bd1d2465c1f",
+          "translations": {
+            "de": "- 4 Bytes des Ziel-Hash ersetzen die 3 maskierten IP-Bytes. Alle vier Bytes tragen \n  Hash-Entropie; keines wird auf null gesetzt.\n- Wie in BEP 6 erzeugt die SHA1-Kette eine lange, pseudorandomartige Sequenz, die in \n  Segmentindizes unterteilt ist; `k = 10` entspricht dem Referenzstandardwert.\n- Die Allowed-Fast-Nachricht ist nur ein Hinweis: Der Empfänger DARF sie nicht so interpretieren, \n  dass der Sender das Segment besitzt – lediglich, dass der Sender das Segment senden wird, während er gedrosselt ist.",
+            "pt": "- 4 bytes do hash de destino substituem os 3 bytes IP mascarados. Todos os quatro bytes carregam entropia do hash; nenhum é zerado.\n- Como no BEP 6, a cadeia SHA1 produz uma sequência pseudorrandômica longa, particionada em índices de pedaços; `k = 10` corresponde ao padrão de referência.\n- A mensagem Allowed Fast é apenas orientativa: o receptor NÃO DEVE interpretá-la como indicação de que o remetente possui o pedaço — somente que o remetente fornecerá esse pedaço enquanto estiver sufocado.",
+            "vi": "- 4 byte của băm đích thay thế 3 byte IP đã bị che dấu. Cả bốn byte đều mang entropy băm; không có byte nào bị đặt bằng không.\n- Như trong BEP 6, chuỗi SHA1 tạo ra một dãy giả ngẫu nhiên dài, được chia thành các chỉ số mảnh; `k = 10` phù hợp với giá trị mặc định tham chiếu.\n- Thông điệp Allowed Fast chỉ mang tính chất gợi ý: người nhận KHÔNG ĐƯỢC hiểu rằng người gửi đang có mảnh đó — mà chỉ rằng người gửi sẽ cung cấp mảnh đó ngay cả khi bị nghẽn.",
+            "fr": "- 4 octets du hachage de destination remplacent les 3 octets IP masqués. Les quatre octets transportent de l'entropie de hachage ; aucun n'est mis à zéro.\n- Comme dans BEP 6, la chaîne SHA1 produit une longue séquence pseudo-aléatoire, divisée en indices de morceaux ; `k = 10` correspond à la valeur par défaut de référence.\n- Le message Allowed Fast est indicatif : le destinataire NE DOIT PAS l'interpréter comme signifiant que l'expéditeur possède le morceau — seulement que l'expéditeur fournira ce morceau même s'il est étouffé.",
+            "zh": "- 目标哈希的4个字节替换了3个被掩码的IP字节。所有四个字节都携带哈希熵，没有字节被置零。\n- 与BEP 6中一样，SHA1链生成一个长的伪随机序列，并划分为块索引；`k = 10` 与参考默认值一致。\n- Allowed Fast消息仅为建议性质：接收方绝不能将其解释为发送方拥有该数据块，而仅表示发送方在被阻断时仍会提供该数据块。",
+            "es": "- 4 bytes del hash de destino reemplazan los 3 bytes IP enmascarados. Los cuatro bytes contienen entropía del hash; ninguno se pone a cero.\n- Como en BEP 6, la cadena SHA1 produce una secuencia pseudoraleatoria larga, dividida en índices de fragmentos; `k = 10` coincide con el valor predeterminado de referencia.\n- El mensaje Allowed Fast es orientativo: el receptor NO DEBE interpretarlo como que el remitente posee el fragmento, sino únicamente que el remitente proporcionará ese fragmento mientras esté estrangulado.",
+            "ru": "- 4 байта хэша назначения заменяют 3 замаскированных байта IP-адреса. Все четыре байта содержат энтропию хэша; ни один из них не обнуляется.\n- Как и в BEP 6, цепочка SHA1 генерирует длинную псевдослучайную последовательность, разделяемую на индексы кусков; значение `k = 10` соответствует значению по умолчанию в эталонной реализации.\n- Сообщение Allowed Fast носит рекомендательный характер: получатель НЕ ДОЛЖЕН интерпретировать его как признак наличия у отправителя куска — только как указание, что отправитель будет раздавать этот кусок, даже находясь в состоянии подавления (choked).",
+            "ar": "- 4 بايتات من تجزئة الوجهة تستبدل 3 بايتات IP معطّلة. جميع البايتات الأربع تحمل إنتروبيا التجزئة؛ ولا تُفرغ أي منها.\n- كما في BEP 6، فإن سلسلة SHA1 تنتج تسلسلاً شبه عشوائي طويل يُقسّم إلى فهارس قطع؛ حيث إن `k = 10` يتطابق مع الإعداد الافتراضي المرجعي.\n- رسالة \"Allowed Fast\" هي توجيهية: على المستقبل ألا يفسرها على أنها تعني أن المرسل يمتلك القطعة — بل فقط أن المرسل سيُقدِّم تلك القطعة أثناء الاختناق.",
+            "tr": "- Hedef hash'in 4 baytı, maskelenmiş IP'nin 3 baytını değiştirir. Tüm dört bayt hash entropy'sini taşır; sıfırlanmış olanı yoktur.\n- BEP 6'da olduğu gibi, SHA1 zinciri parçalara ayrılan uzun bir sözde rastgele dizi üretir; `k = 10` referans varsayılanıyla eşleşir.\n- Allowed Fast mesajı yalnızca bilgilendirme amaçlıdır: alıcı, gönderenin o parçaya sahip olduğu anlamını çıkarmamalıdır — sadece gönderenin tıkanmışken (choked) o parçayı sunacağını belirtir.",
+            "ko": "- 대상 해시의 4바이트가 마스킹된 IP 바이트 3개를 대체한다. 네 바이트 모두 해시 엔트로피를 포함하며, 어떤 바이트도 0으로 설정되지 않는다.\n- BEP 6과 마찬가지로, SHA1 체인이 긴 의사 난수열을 생성하며, 이를 조각 인덱스로 분할한다. `k = 10`은 참조 기본값과 일치한다.\n- 허용된 Fast 메시지는 참고용이다: 수신 측은 이를 발신 측이 해당 조각을 보유하고 있다고 해석해서는 안 되며, 오직 발신 측이 통제 상태에서도 해당 조각을 제공할 것임을 의미할 뿐이다.",
+            "hi": "- गंतव्य हैश के 4 बाइट्स 3 मास्क किए गए आईपी बाइट्स को प्रतिस्थापित करते हैं। सभी चार बाइट्स हैश एंट्रॉपी ले जाते हैं; कोई भी शून्य नहीं होता।\n- BEP 6 की तरह, SHA1 श्रृंखला एक लंबी छद्म यादृच्छिक अनुक्रम उत्पन्न करती है, जिसे टुकड़ों के सूचकांक में विभाजित किया जाता है; `k = 10` संदर्भ डिफ़ॉल्ट से मेल खाता है।\n- अनुमत त्वरित संदेश सलाहकारी होता है: प्राप्तकर्ता को यह मानना नहीं चाहिए कि प्रेषक के पास वह टुकड़ा है — केवल इतना कि प्रेषक दमित होने के दौरान उस टुकड़े की सेवा करेगा।",
+            "cs": "- 4 bajty hashovací funkce cíle nahrazují 3 maskované bajty IP adresy. Všechny čtyři bajty obsahují entropii hashovací funkce; žádný není vynulován.\n- Stejně jako v BEP 6, řetězec SHA1 generuje dlouhou pseudonáhodnou posloupnost, rozdělenou na indexy bloků; `k = 10` odpovídá výchozímu nastavení reference.\n- Zpráva Allowed Fast má doporučující charakter: příjemce NESMÍ interpretovat tuto zprávu jako indikaci, že odesílatel blok vlastní — pouze že odesílatel bude tento blok poskytovat i při blokování spojení."
+          }
+        },
+        "h2_004": {
+          "source_hash": "d5b67bc930cd33c0",
+          "translations": {
+            "de": "Vorteile",
+            "pt": "Benefícios",
+            "vi": "Lợi ích",
+            "fr": "Avantages",
+            "zh": "优势",
+            "es": "Beneficios",
+            "ru": "Преимущества",
+            "ar": "الفوائد",
+            "tr": "Avantajlar",
+            "ko": "장점",
+            "hi": "लाभ",
+            "cs": "Výhody"
+          }
+        },
+        "table_001": {
+          "source_hash": "b347ef8d9f9f192e",
+          "translations": {
+            "de": "| Bereich            | Vorteil                                                                                                                                                                                       |\n| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Start-Latenz       | Neue Peers laden die ersten Stücke bereits während des Choking, wodurch die langsameren Tit-for-Tat-Anfangsphase über mehrhüpfige I2P-Tunnel verkürzt wird                                       |\n| Determinismus      | Die Menge ist eine reine Funktion aus Ziel-Hash + Infohash, sodass jede Implementierung dieselbe Menge berechnet – anders als bei IP-basiertem BEP 6, wo die Sicht des Senders auf die IP des Empfängers abweichen kann (NAT) |\n| Überprüfbarkeit    | Der empfangende Peer kennt seinen eigenen Ziel-Hash und kann die Menge lokal neu berechnen und überprüfen, wodurch fehlerhafte Sender erkannt werden können                                       |\n| Keine IP-Technik   | Kein NAT-Traversieren, keine External-IP-Ermittlung oder Subnet-Heuristiken – alles Dinge, die auf I2P unmöglich oder bedeutungslos sind                                                      |\n| Identitätsbindung  | Nur eine schnelle Menge pro Ziel erlaubt. Ein Nutzer mit vielen Zielen erhält jeweils eine eigene Menge – dieselbe Anti-Gaming-Eigenschaft, die die IP-Maske im Klarnetz bietet                     |\n| Datenschutz        | Es wird niemals eine IP-Adresse übertragen oder in der Berechnung impliziert                                                                                                                   |\n| Bandbreite         | „Have All“ / „Have None“ ersetzt den vollständigen Bitfeld-Status bei großen Torrents; „Reject“ beseitigt redundante Neuanfragen                                                               |",
+            "pt": "| Área              | Benefício                                                                                                                                                                                       |\n| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Latência de inicialização | Novos pares baixam os primeiros pedaços mesmo quando bloqueados, reduzindo a rampa de troca lenta típica de túneis I2P de múltiplos saltos                                                                       |\n| Determinismo       | O conjunto é uma função pura do hash de destino + infohash, portanto qualquer implementação calcula o mesmo conjunto — diferentemente do BEP 6 baseado em IP, onde a visão do remetente sobre o IP do receptor pode diferir (NAT) |\n| Verificabilidade   | O par receptor conhece seu próprio hash de destino e pode recomputar localmente e validar o conjunto, detectando remetentes com comportamento incorreto                                                               |\n| Sem mecanismos IP  | Sem necessidade de traversão de NAT, descoberta de IP externo ou heurísticas de sub-rede — todos esses mecanismos são impossíveis ou sem sentido no I2P                                                             |\n| Vinculação à identidade | Um único conjunto rápido permitido por destino. Um usuário com muitos destinos obtém um conjunto para cada um — a mesma propriedade anti-manipulação fornecida pela máscara de IP na rede clara                                        |\n| Privacidade        | Nenhum endereço IP é transmitido ou implícito no cálculo                                                                                                                               |\n| Largura de banda   | \"Tem Tudo\" / \"Não Tem Nenhum\" substitui o campo de bits completo em torrents grandes; \"Reject\" elimina requisições redundantes                                                                                       |",
+            "vi": "| Khu vực            | Lợi ích                                                                                                                                                                                       |\n| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Độ trễ khởi động    | Các peer mới kéo các mảnh đầu tiên ngay cả khi bị nghẽn, rút ngắn quá trình tăng tốc tit-for-tat vốn chậm hơn trên các đường hầm I2P đa nút                                                                 |\n| Tính xác định       | Tập hợp là hàm thuần túy của băm đích + infohash, do đó mọi triển khai đều tính ra cùng một tập — không giống như BEP 6 dựa trên IP, nơi quan điểm của người gửi về IP người nhận có thể khác nhau (do NAT) |\n| Khả năng kiểm chứng | Peer nhận biết rõ băm đích của chính mình và có thể tự tính lại, xác minh tập hợp, từ đó phát hiện người gửi hành xử sai                                                                                |\n| Không cần cơ chế IP | Không cần vượt NAT, phát hiện IP công cộng hay các phương pháp suy đoán mạng con — tất cả đều bất khả thi hoặc vô nghĩa trên I2P                                                                          |\n| Liên kết định danh  | Chỉ một tập nhanh được cho phép cho mỗi đích. Người dùng có nhiều đích sẽ nhận được một tập cho mỗi cái — cùng tính chất chống gian lận mà mặt nạ IP cung cấp trên mạng rõ ràng                             |\n| Riêng tư            | Không có địa chỉ IP nào được truyền hay ngụ ý trong quá trình tính toán                                                                                                                              |\n| Băng thông          | Have All / Have None thay thế trường bit đầy đủ trong các torrent lớn; Reject loại bỏ các yêu cầu lại dư thừa                                                                                       |",
+            "fr": "| Domaine             | Avantage                                                                                                                                                                                       |\n| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Latence au démarrage | Les nouveaux pairs téléchargent les premiers morceaux même lorsqu'ils sont étouffés, réduisant ainsi la phase initiale d'échange progressif, plus lente via les tunnels I2P multi-sauts                                                                 |\n| Déterminisme         | L'ensemble est une fonction pure du hachage de destination + infohash, donc toute implémentation calcule le même ensemble — contrairement au BEP 6 basé sur IP, où la vision que l'expéditeur a de l'IP du destinataire peut différer (NAT) |\n| Vérifiabilité        | Le pair récepteur connaît son propre hachage de destination et peut recalculer localement et valider l'ensemble, détectant ainsi les expéditeurs malhonnêtes                                                               |\n| Pas de mécanisme IP  | Pas de traversée NAT, pas de découverte d'IP externe, ni d'heuristiques de sous-réseau — tout cela étant impossible ou dénué de sens sur I2P                                                                             |\n| Lien d'identité      | Un seul ensemble rapide autorisé par destination. Un utilisateur possédant plusieurs destinations obtient un ensemble par destination — conservant ainsi la même propriété anti-triche que fournissait le masque IP sur le clairnet                                        |\n| Confidentialité      | Aucune adresse IP n'est jamais transmise ni implicite dans le calcul                                                                                                                               |\n| Bande passante       | « Avoir Tout » / « Avoir Rien » remplace le bitfield complet pour les gros torrents ; « Rejeter » supprime les demandes redondantes                                                                                       |",
+            "zh": "| 领域             | 优势                                                                                                                                                                                       |\n| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| 启动延迟         | 新的对等节点在被阻塞时即可拉取第一块数据，缩短了“以上传换下载”的启动过程，这在多跳 I2P 隧道中尤其有效，因为传统方式会更慢                                                                       |\n| 确定性           | 该集合完全由目标哈希（destination hash）和 infohash 决定，因此任何实现都会计算出相同的集合 —— 与基于 IP 的 BEP 6 不同，在后者中，发送方对接收方 IP 地址的视图可能因 NAT 而不同                     |\n| 可验证性         | 接收方对等节点知道自己的目标哈希，可本地重新计算并验证该集合，从而检测到行为异常的发送方                                                                                                       |\n| 无需 IP 机制     | 无需 NAT 穿透、外部 IP 发现或子网启发式方法 —— 这些在 I2P 上均不可能或无意义                                                                                                                 |\n| 身份绑定         | 每个目标地址仅允许一个快速集合。拥有多个目标地址的用户将为每个地址各获得一个集合 —— 这与明网中 IP 掩码提供的防作弊特性相同                                                                       |\n| 隐私             | 在整个计算过程中，从不传输或暗示任何 IP 地址                                                                                                                                                 |\n| 带宽             | 对大型种子，“全有 / 全无”（Have All / Have None）取代了完整的位字段；Reject 消息消除了冗余的重新请求                                                                                          |",
+            "es": "| Área              | Beneficio                                                                                                                                                                                       |\n| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Latencia de inicio | Los nuevos pares descargan los primeros fragmentos incluso cuando están bloqueados, acortando la fase inicial de intercambio lenta que se produce en túneles I2P de múltiples saltos                                                                     |\n| Determinismo       | El conjunto es una función pura del hash de destino + infohash, por lo que cualquier implementación calcula el mismo conjunto — a diferencia del BEP 6 basado en IP, donde la percepción del emisor sobre la IP del receptor puede diferir (NAT) |\n| Verificabilidad    | El par receptor conoce su propio hash de destino y puede volver a calcular y validar localmente el conjunto, detectando emisores con mal comportamiento                                       |\n| Sin mecanismo IP   | No se requiere travesía de NAT, descubrimiento de IP externa ni heurísticas de subred — todos ellos imposibles o carentes de sentido en I2P                                                   |\n| Vinculación de identidad | Un conjunto rápido permitido por destino. Un usuario con muchos destinos obtiene un conjunto por cada uno — la misma propiedad anti-manipulación que proporcionaba la máscara IP en clearnet |\n| Privacidad         | Nunca se transmite ni se infiere ninguna dirección IP en el cálculo                                                                                                                           |\n| Ancho de banda     | \"Tengo todo\" / \"No tengo nada\" reemplaza el bitfield completo en torrents grandes; \"Rechazar\" elimina re-peticiones redundantes                                                               |",
+            "ru": "| Область            | Преимущество                                                                                                                                                                                       |\n| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Задержка запуска   | Новые пиры получают первые части, находясь в состоянии блокировки, что сокращает медленный процесс tit-for-tat, особенно затягивающийся при использовании многошаговых туннелей I2P                                                                       |\n| Детерминированность | Набор — это чистая функция от хеша назначения + infohash, поэтому любая реализация вычисляет один и тот же набор — в отличие от IP-ориентированного BEP 6, где представление отправителя об IP-адресе получателя может отличаться (из-за NAT) |\n| Проверяемость      | Получающий пириент знает собственный хеш назначения и может локально пересчитать и проверить набор, обнаруживая недобросовестных отправителей                                                               |\n| Отсутствие IP-механизмов | Не требуется преодоление NAT, определение внешнего IP, эвристики подсетей — всё это невозможно или бессмысленно в I2P                                                                             |\n| Привязка к идентификатору | Разрешён только один быстрый набор на одно назначение. Пользователь с множеством адресов получает по одному набору на каждый — та же защита от злоупотреблений, которую IP-маска обеспечивает в открытом интернете                                        |\n| Конфиденциальность | Ни при вычислениях, ни в передаче никогда не участвует IP-адрес                                                                                                                               |\n| Пропускная способность | «Имею всё» / «Имею ничего» заменяет полное битовое поле в крупных торрент-файлах; команда Reject устраняет избыточные повторные запросы                                                                                       |",
+            "ar": "| المجال            | الفائدة                                                                                                                                                                                                 |\n|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| زمن البدء         | يستخدم الطرف الجديد القطع الأولى أثناء الحظر، مما يقلل من فترة الزيادة التدريجية (tit-for-tat ramp) التي تكون أبطأ عبر الاتصالات متعددة الوصلات في شبكة I2P                                                                 |\n| التنبؤية          | المجموعة هي دالة نقية (pure function) من الـ destination hash + infohash، وبالتالي فإن أي تنفيذ يحسب نفس المجموعة — على عكس BEP 6 المعتمد على IP، حيث قد يختلف رأي المرسل حول عنوان المستقبل (بسبب NAT) |\n| إمكانية التحقق   | يعرف الطرف المستقبل الـ destination hash الخاص به ويمكنه إعادة حساب وتحقق من صحة المجموعة محليًا، مما يمكنه من كشف المرسلين غير المتعاونين                                                               |\n| عدم استخدام آليات IP | لا حاجة لتجاوز NAT، أو اكتشاف الـ external-IP، أو خوارزميات تحديد الشبكات الفرعية — وهي كلها إما مستحيلة أو بلا معنى في شبكة I2P                                                                            |\n| ربط الهوية        | مجموعة سريعة واحدة مسموح بها لكل عنوان (destination). المستخدم الذي يملك عناوين كثيرة يحصل على مجموعة واحدة لكل عنوان — نفس الخاصية الوقائية ضد التلاعب (anti-gaming) التي يوفرها قناع IP في الشبكة العامة |\n| الخصوصية         | لا يتم إرسال عنوان IP قط، ولا يُستدل عليه ضمن الحسابات                                                                                                                                                    |\n| عرض النطاق الترددي | يحل \"Have All / Have None\" محل الحقل البيتي الكامل في الـ torrent الكبيرة؛ ويزيل \"Reject\" الطلبات المكررة                                                                                            |",
+            "tr": "| Alan             | Fayda                                                                                                                                                                                       |\n| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Başlangıç gecikmesi | Yeni eşler, çoklu zıplı I2P tüneli üzerinden daha yavaş olan tit-for-tat rampasını kısaltmak için engellenirken ilk parçaları çeker                                                                         |\n| Belirlilik      | Küme, yalnızca hedef hash + infohash değerlerine bağlıdır, bu yüzden her uygulama aynı kümeyi hesaplar — IP tabanlı BEP 6'nın aksine, gönderenin alıcının IP'sini NAT nedeniyle farklı görebileceği durumlarda olduğu gibi |\n| Doğrulanabilirlik    | Alıcı eş, kendi hedef hash'ini bildiği için kümeyi yerel olarak yeniden hesaplayabilir ve doğrulayabilir, böylece kötü niyetli davranan gönderenleri tespit edebilir                                                               |\n| IP mekanizması yok  | NAT geçişi, dış IP keşfi veya alt ağ heuristiklerine gerek yok — I2P üzerinde imkansız ya da anlamsız olan tüm bu işlemlerden kurtarır                                                                             |\n| Kimlik bağlama | Her hedef için yalnızca bir hızlı kümeye izin verilir. Birden fazla hedefe sahip kullanıcılar, her biri için ayrı ayrı birer küme alır — açık internet üzerinde IP maskesinin sağladığı aynı anti-oyun özelliği |\n| Gizlilik          | Hesaplama sırasında hiçbir IP adresi iletilmez veya ima edilmez                                                                                                                               |\n| Bant genişliği        | Büyük торрентlerde tam bit alanını Have All / Have None değiştirir; Reject gereksiz tekrar isteklerini ortadan kaldırır                                                                                       |",
+            "ko": "| 영역             | 이점                                                                                                                                                                                       |\n| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| 시작 대기 시간  | 새로운 피어는 choked 상태에서도 첫 번째 조각을 가져오므로, 다중 홉 I2P 터널에서 더 느린 tit-for-tat 초기화 과정을 단축시킵니다.                                                              |\n| 결정성           | 이 집합은 대상 해시와 infohash의 순수 함수이므로, 모든 구현체가 동일한 집합을 계산할 수 있습니다. 반면 IP 기반 BEP 6에서는 발신자의 수신자 IP 인식이 (NAT로 인해) 다를 수 있습니다.         |\n| 검증 가능성      | 수신 피어는 자신의 대상 해시를 알고 있으며, 해당 집합을 로컬에서 다시 계산하고 유효성을 검사함으로써 잘못된 동작을 하는 송신자를 탐지할 수 있습니다.                                             |\n| IP 메커니즘 없음 | NAT 통과, 외부 IP 탐지, 서브넷 휴리스틱 등이 필요하지 않으며, 이러한 기법들은 I2P 상에서는 불가능하거나 의미가 없습니다.                                                                     |\n| 신원 바인딩      | 목적지당 하나의 빠른 집합만 허용됩니다. 여러 목적지를 가진 사용자는 각각 하나의 집합만 받게 되며, 이는 일반 인터넷에서 IP 마스크가 제공하는 것과 동일한 게임 방지 특성을 제공합니다.        |\n| 개인정보 보호    | 계산 과정에서 IP 주소가 전송되거나 암시되지 않습니다.                                                                                                                                         |\n| 대역폭           | 대용량 트래커에서는 전체 비트필드 대신 Have All / Have None을 사용하며, Reject 명령어는 중복된 재요청을 제거합니다.                                                                           |",
+            "hi": "| क्षेत्र            | लाभ                                                                                                                                                                                       |\n| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| प्रारंभ देरी       | नए पीयर चॉक के दौरान पहले टुकड़ों को पुल करते हैं, जिससे मल्टी-हॉप I2P टनल पर धीमे टाइट-फॉर-टैट रैंप को छोटा किया जा सकता है                                                              |\n| निश्चितता         | सेट केवल गंतव्य हैश + इन्फोहैश का शुद्ध फलन है, इसलिए कोई भी लागूकरण समान सेट की गणना करता है — IP-आधारित BEP 6 के विपरीत, जहां प्रेषक का प्राप्तकर्ता के IP का दृश्य अलग हो सकता है (NAT के कारण) |\n| सत्यापन योग्यता   | प्राप्त करने वाला पीयर अपना गंतव्य हैश जानता है और स्थानीय रूप से सेट की पुनः गणना व मान्यता कर सकता है, जिससे गलत तरीके से काम करने वाले प्रेषकों का पता लगाया जा सकता है                      |\n| कोई IP तंत्र नहीं | कोई NAT पारगमन, बाह्य-IP खोज या सबनेट तर्क नहीं — ये सभी I2P पर असंभव या अर्थहीन हैं                                                                                                     |\n| पहचान बाइंडिंग    | एक गंतव्य के लिए केवल एक तेज़ सेट की अनुमति है। कई गंतव्यों वाले उपयोगकर्ता को एक-एक सेट मिलता है — यही एंटी-गेमिंग गुण clearnet पर IP मास्क द्वारा प्रदान किया गया था                          |\n| गोपनीयता          | कभी भी कोई IP पता संचारित या गणना में संकेतित नहीं होता है                                                                                                                                   |\n| बैंडविड्थ         | बड़े टोरेंट पर पूरे बिटफील्ड को \"हैव ऑल / हैव नोन\" प्रतिस्थापित करता है; रिजेक्ट अतिरंजित पुनः-अनुरोधों को हटा देता है                                                                           |",
+            "cs": "| Oblast             | Výhoda                                                                                                                                                                                       |\n| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Latence spuštění   | Noví protějšci stahují první kousky i při dusení, čímž se zkracuje tit-for-tat rozběh, který je na víceuzlových I2P tunelech pomalejší                                                           |\n| Determinismus      | Množina je čistou funkcí hashové hodnoty cíle + infohash, takže jakákoliv implementace vypočítá stejnou množinu — na rozdíl od IP-založeného BEP 6, kde může pohled odesílatele na IP příjemce lišit (NAT) |\n| Ověřitelnost       | Přijímající protějšek zná svůj vlastní hash cíle a může množinu lokálně přepočítat a ověřit, čímž odhalí nekorektně se chovající odesílatele                                                     |\n| Žádný IP mechanizmus | Žádné NAT průchody, zjišťování externí IP ani subnet heuristiky — všechno toto je na I2P nemožné nebo bez smyslu                                                                                  |\n| Vázání identity    | Jedna povolená rychlá množina na jeden cíl. Uživatel s mnoha cíli získá jednu množinu pro každý — stejnou anti-abusivní vlastnost, kterou poskytovala IP maska na clearnetu                         |\n| Soukromí           | Během výpočtu není nikdy přenášena ani naznačena žádná IP adresa                                                                                                                                |\n| Šířka pásma        | „Mám vše“ / „Nemám nic“ nahrazuje celé bitové pole u velkých torrentů; Reject odstraňuje redundantní opakované požadavky                                                                        |"
+          }
+        },
+        "h2_005": {
+          "source_hash": "74285500eacf0204",
+          "translations": {
+            "de": "Implementierungsüberlegungen",
+            "pt": "Considerações sobre implementação",
+            "vi": "Các yếu tố cần cân nhắc khi triển khai",
+            "fr": "Considérations relatives à la mise en œuvre",
+            "zh": "实现考虑",
+            "es": "Consideraciones de implementación",
+            "ru": "Соображения по реализации",
+            "ar": "الاعتبارات المتعلقة بالتنفيذ",
+            "tr": "Uygulama hususları",
+            "ko": "구현 고려 사항",
+            "hi": "कार्यान्वयन पर विचार",
+            "cs": "Předpoklady pro implementaci"
+          }
+        },
+        "list_003": {
+          "source_hash": "a9817606ecaffb4b",
+          "translations": {
+            "de": "- **Peer-Identität**: Der Ziel-Hash des Peers wird aus der Streaming-Verbindung abgeleitet (das Ziel der Sitzung) und ist für beide Enden identisch. Bei ausgehenden Verbindungen verwende das Ziel, mit dem verbunden wurde; bei eingehenden Verbindungen das Ziel, von dem die Verbindung stammt.\n- **Verhandlung**: Sende `reserved[7] |= 0x04` im Handshake; sende Fast Extension-Nachrichten nur, wenn der Peer im Handshake ebenfalls das Bit gesetzt hat; falls ein Peer Fast Extension-Nachrichten ohne vorherige Vereinbarung sendet, schließe die Verbindung.\n- **Have All / Have None**: Sende unmittelbar nach dem Handshake genau eine der Nachrichten Bitfeld / Have All / Have None. Verwende Have All für Seeds, Have None bis zum ersten Stück.\n- **Allowed Fast (Sendeseite)**: Werbe nur Stücke an, die du tatsächlich besitzt; der Empfänger darf diese auch bei unterdrückter Übertragung (choked) anfordern. Begrenze die *angebotene* Menge (z. B. lehne Allowed-Fast-Anfragen von einem Peer ab, der bereits mehr als `k` Stücke besitzt, gemäß BEP 6 Empfehlung).\n- **Allowed Fast (Empfangsseite)**: Speichere die Menge; erlaube Anfragen für diese Stücke auch bei unterdrückter Übertragung; optional kann die Menge verifiziert werden, indem sie aus deinem eigenen Ziel-Hash und dem Info-Hash neu berechnet wird; ignoriere Stücke, die nicht in der berechneten Menge liegen.\n- **Reject**: Jede Anfrage muss genau eine Antwort erhalten; bei Unterdrückung (choke) lehne alle Anfragen ab, die nicht im Allowed-Fast-Set liegen, anstatt den Peer stumm zu ignorieren.\n- **Größe der Menge**: Verwende `k = 10` zur Kompatibilität; Peers dürfen unter Last einen niedrigeren `k`-Wert wählen, aber beide Seiten sollten nur das bewerben, was sie tatsächlich bereitstellen.\n- **Stückgrenze**: `index = y % sz` muss die Gesamtanzahl der Stücke des Torrents (`sz`) verwenden; ignoriere Indizes ≥ sz (zur Sicherheit), da eine Hashkette nicht pro Stückbereich begrenzt ist.\n- **Abwärtskompatibilität**: Clients, die das Fast-Bit nicht aushandeln, erhalten diese Nachrichten einfach nie; keine weiteren Protokolländerungen sind erforderlich.",
+            "pt": "- **Identidade do par**: o hash de destino do par é obtido a partir da conexão de streaming (o destino da sessão) e é o mesmo valor usado por ambas as extremidades. Para conexões de saída, use o destino ao qual você se conectou; para conexões de entrada, use o destino de onde a conexão veio.\n- **Negociação**: envie `reserved[7] |= 0x04` no handshake; envie mensagens Fast Extension apenas se o handshake do par também tiver definido esse bit; se um par enviar mensagens Fast Extension sem negociação, feche a conexão.\n- **Have All / Have None**: envie exatamente um dos três — bitfield, Have All ou Have None — imediatamente após o handshake. Use Have All para seeds e Have None até a primeira peça.\n- **Lado que envia Allowed Fast**: anuncie apenas peças que você realmente possui; o receptor pode solicitá-las mesmo quando estiver choked. Limite o conjunto *servido* (por exemplo, rejeite solicitações allowed-fast de um par que já possui mais de `k` peças, conforme orientação da BEP 6).\n- **Lado que recebe Allowed Fast**: armazene o conjunto; permita solicitações para essas peças mesmo quando choked; opcionalmente, verifique o conjunto recalculando-o a partir do seu próprio hash de destino e do infohash, e ignore peças que não estejam no conjunto calculado.\n- **Reject**: cada solicitação DEVE receber exatamente uma resposta; ao ser choked, rejeite tudo o que não estiver no conjunto allowed fast, em vez de silenciar silenciosamente o par.\n- **Tamanho do conjunto**: use `k = 10` para compatibilidade; pares podem escolher um valor menor de `k` sob carga, mas ambas as extremidades devem anunciar apenas o que realmente irão servir.\n- **Limite da peça**: `index = y % sz` deve usar a contagem total de peças do torrent `sz`; ignore índices >= sz (medida defensiva), já que uma cadeia de hash não é limitada por faixa de peças.\n- **Compatibilidade reversa**: clientes que não negociarem o bit fast simplesmente nunca verão essas mensagens; nenhuma outra alteração de protocolo é necessária.",
+            "vi": "- **Danh tính ngang hàng**: băm đích của ngang hàng được lấy từ kết nối streaming (đích của phiên) và là giá trị giống nhau mà cả hai đầu đều sử dụng. Với kết nối đi, hãy dùng đích mà bạn đã kết nối tới; với kết nối đến, dùng đích mà kết nối đến từ đó.\n- **Thương lượng**: gửi `reserved[7] |= 0x04` trong quá trình bắt tay; chỉ gửi các tin nhắn Mở rộng Nhanh nếu phần bắt tay của ngang hàng cũng đặt bit này; nếu một ngang hàng gửi tin nhắn Mở rộng Nhanh mà không thương lượng, hãy đóng kết nối.\n- **Có Toàn bộ / Không có Gì**: ngay sau khi bắt tay, hãy gửi chính xác một trong các tin nhắn: bitfield / Có Toàn bộ / Không có Gì. Gửi Có Toàn bộ đối với seed, Không có Gì cho đến khi có mảnh đầu tiên.\n- **Phía gửi Cho phép Nhanh**: chỉ quảng bá các mảnh mà bạn thực sự có; phía nhận có thể yêu cầu chúng ngay cả khi bị nghẽn. Giới hạn tập *được phục vụ* (ví dụ: từ chối các yêu cầu allowed-fast từ một ngang hàng đã giữ hơn `k` mảnh, theo hướng dẫn BEP 6).\n- **Phía nhận Cho phép Nhanh**: lưu trữ tập hợp; cho phép yêu cầu các mảnh đó ngay cả khi bị nghẽn; tùy chọn xác minh tập hợp bằng cách tính lại từ băm đích của bạn và infohash, và bỏ qua các mảnh không nằm trong tập hợp đã tính.\n- **Từ chối**: mọi yêu cầu PHẢI nhận đúng một phản hồi; khi bị nghẽn, hãy từ chối mọi thứ không nằm trong tập Cho phép Nhanh thay vì im lặng ngắt kết nối ngang hàng.\n- **Kích thước tập hợp**: dùng `k = 10` để đảm bảo tương thích; các ngang hàng có thể tự do chọn `k` thấp hơn khi tải cao, nhưng cả hai đầu đều nên quảng bá chỉ những gì họ thực sự phục vụ.\n- **Giới hạn mảnh**: `index = y % sz` phải dùng tổng số mảnh `sz` của torrent; bỏ qua các chỉ số >= sz (phòng thủ), vì chuỗi băm không bị giới hạn theo phạm vi mảnh.\n- **Tương thích ngược**: các client không thương lượng bit fast sẽ đơn giản không bao giờ thấy các tin nhắn này; không cần thay đổi giao thức nào khác.",
+            "fr": "- **Identité du pair** : le hachage de destination du pair est obtenu à partir de la connexion de flux (la destination de la session), et correspond à la même valeur utilisée par les deux extrémités. Pour les connexions sortantes, utilisez la destination à laquelle vous vous êtes connecté ; pour les connexions entrantes, utilisez la destination d’où provient la connexion.\n- **Négociation** : envoyez `reserved[7] |= 0x04` dans l’échange initial (handshake) ; n’envoyez des messages Fast Extension que si le handshake du pair a également activé ce bit ; si un pair envoie des messages Fast Extension sans négociation préalable, fermez la connexion.\n- **Have All / Have None** : envoyez exactement un seul message parmi bitfield / Have All / Have None immédiatement après le handshake. Utilisez Have All pour les seeders, Have None jusqu’à obtention du premier morceau.\n- **Côté émetteur Allowed Fast** : annoncez uniquement les morceaux que vous possédez réellement ; le destinataire peut les demander même s’il est étouffé (choked). Limitez l'ensemble *servi* (par exemple, rejetez les demandes allowed-fast provenant d’un pair qui détient déjà plus de `k` morceaux, conformément aux recommandations de la BEP 6).\n- **Côté récepteur Allowed Fast** : stockez l’ensemble reçu ; autorisez les demandes de ces morceaux même en état d’étouffement (choked) ; éventuellement, vérifiez cet ensemble en le recalculant à partir de votre propre hachage de destination et de l’infohash, et ignorez les morceaux absents de l’ensemble recalculé.\n- **Reject** : chaque demande doit recevoir exactement une réponse ; en cas d’étouffement (choke), rejetez toutes les demandes qui ne font pas partie de l’ensemble allowed fast, au lieu de simplement ignorer silencieusement le pair.\n- **Taille de l’ensemble** : utilisez `k = 10` pour assurer la compatibilité ; les pairs peuvent choisir une valeur inférieure sous charge, mais les deux extrémités ne doivent annoncer que ce qu’elles sont effectivement prêtes à fournir.\n- **Limite des morceaux** : `index = y % sz` doit utiliser le nombre total de morceaux du torrent `sz` ; ignorez les indices ≥ sz (mesure défensive), car une chaîne de hachage n’est pas limitée par plage de morceaux.\n- **Compatibilité ascendante** : les clients qui ne négocient pas le bit fast n’auront tout simplement jamais connaissance de ces messages ; aucune autre modification du protocole n’est nécessaire.",
+            "zh": "- **对等体身份**：通过对等流连接（会话的目标）获取对等体的目标哈希，该值在连接两端使用相同。对于出站连接，使用你所连接的目标；对于入站连接，使用连接来源的目标。\n- **协商**：在握手过程中发送 `reserved[7] |= 0x04`；仅当对等体的握手也设置了该位时，才发送 Fast Extension 消息；如果对等体在未协商的情况下发送 Fast Extension 消息，则关闭连接。\n- **Have All / Have None**：在握手完成后立即发送 bitfield / Have All / Have None 中的**唯一一个**。种子端发送 Have All，下载初期尚未拥有任何分片时发送 Have None。\n- **Allowed Fast 发送端**：仅宣告你实际拥有的分片；接收方可在此被阻塞（choked）状态下请求这些分片。应限制所“提供”的集合（例如，根据 BEP 6 建议，当某个对等体已持有超过 `k` 个分片时，拒绝其 allowed-fast 请求）。\n- **Allowed Fast 接收端**：存储收到的集合；允许在被阻塞状态下请求这些分片；可选地，可通过你自己的目标哈希和 infohash 重新计算该集合，以验证其正确性，并忽略不在计算结果中的分片。\n- **Reject**：每个请求**必须**收到且仅收到一个响应；当处于阻塞状态时，应显式拒绝所有不在 allowed fast 集合中的请求，而非静默忽略对等体。\n- **集合大小**：为兼容性使用 `k = 10`；在高负载下，对等体可自由选择更小的 `k`，但两端都应仅宣告自己实际能提供的部分。\n- **分片边界**：`index = y % sz` 必须使用 torrent 的总分片数 `sz`；忽略所有大于等于 `sz` 的索引（防御性处理），因为哈希链并未按分片范围进行截断。\n- **向后兼容**：未协商 fast 位的客户端将完全看不到这些消息；无需其他协议更改。",
+            "es": "- **Identidad del par**: el hash de destino del par se obtiene de la conexión de transmisión (el destino de la sesión), y es el mismo valor que utilizan ambos extremos. Para conexiones salientes, use el destino al que se conectó; para conexiones entrantes, use el destino desde el cual llegó la conexión.\n- **Negociación**: envíe `reserved[7] |= 0x04` en el saludo inicial (handshake); solo envíe mensajes de extensión rápida (Fast Extension) si el saludo del par también tiene activado ese bit; si un par envía mensajes de extensión rápida sin negociación, cierre la conexión.\n- **Tengo todo / No tengo nada**: envíe exactamente uno de los siguientes mensajes —campo de bits (bitfield), Tengo todo (Have All) o No tengo nada (Have None)— inmediatamente después del saludo. Use Tengo todo para semillas, y No tengo nada hasta obtener la primera pieza.\n- **Lado que envía Tengo rápido (Allowed Fast)**: solo anuncie piezas que realmente posea; el receptor podría solicitarlas incluso si está estrangulado (choked). Limite el conjunto *servido* (por ejemplo, rechace solicitudes de tipo allowed-fast de un par que ya posea más de `k` piezas, según la recomendación de BEP 6).\n- **Lado que recibe Tengo rápido (Allowed Fast)**: almacene el conjunto recibido; permita solicitudes de esas piezas incluso cuando esté estrangulado; opcionalmente, verifique el conjunto recalculándolo a partir de su propio hash de destino y del infohash, e ignore las piezas que no estén en el conjunto calculado.\n- **Rechazo**: cada solicitud DEBE recibir exactamente una respuesta; cuando esté estrangulado, rechace todo lo que no esté en el conjunto de Tengo rápido, en lugar de silenciar pasivamente al par.\n- **Tamaño del conjunto**: use `k = 10` para mantener compatibilidad; los pares pueden elegir un valor menor de `k` bajo carga, pero ambos extremos deben anunciar únicamente lo que realmente servirán.\n- **Límite de pieza**: `index = y % sz` debe usar el número total de piezas del torrent `sz`; ignore los índices mayores o iguales a `sz` (medida defensiva), ya que una cadena hash no se limita por rango de piezas.\n- **Compatibilidad hacia atrás**: los clientes que no negocian el bit rápido simplemente nunca verán estos mensajes; no se requieren otros cambios de protocolo.",
+            "ru": "- **Идентификация пира**: хэш назначения пира берётся из потокового соединения (назначение сессии) и является одинаковым значением для обеих сторон. Для исходящих соединений используйте назначение, с которым установили соединение; для входящих — назначение, откуда пришло соединение.\n- **Согласование**: отправляйте `reserved[7] |= 0x04` при рукопожатии; посылайте сообщения расширения Fast только если у пира в рукопожатии также установлен этот бит; если пир присылает сообщения Fast без согласования, закрывайте соединение.\n- **Have All / Have None**: сразу после рукопожатия отправляйте ровно одно из: битовое поле / Have All / Have None. Используйте Have All для сидов, Have None — до получения первого блока.\n- **Сторона отправки Allowed Fast**: объявляйте только те блоки, которые у вас действительно есть; получатель может запрашивать их даже при подавлении. Ограничивайте *обслуживаемый* набор (например, отклоняйте запросы allowed-fast от пира, у которого уже больше `k` блоков, согласно рекомендациям BEP 6).\n- **Сторона получения Allowed Fast**: сохраняйте полученный набор; разрешайте запросы на эти блоки даже при подавлении; опционально проверяйте набор, пересчитывая его из собственного хэша назначения и infohash, и игнорируйте блоки, отсутствующие в вычисленном наборе.\n- **Reject**: каждый запрос ДОЛЖЕН получить ровно один ответ; при подавлении отклоняйте всё, что не входит в набор allowed fast, вместо того чтобы молча игнорировать пира.\n- **Размер набора**: для совместимости используйте `k = 10`; пиры могут выбирать меньшее `k` при высокой нагрузке, но обе стороны должны объявлять только то, что реально готовы отдавать.\n- **Ограничение по блокам**: `index = y % sz` должен использовать общее количество блоков в торренте `sz`; игнорируйте индексы >= sz (защитная мера), поскольку цепочка хэшей не ограничивается диапазоном блоков.\n- **Обратная совместимость**: клиенты, не согласующие бит fast, просто никогда не видят этих сообщений; другие изменения протокола не требуются.",
+            "ar": "- **هوية الند**: يتم الحصول على تجزئة وجهة الند من اتصال البث (الوجهة الخاصة بالجلسة)، وهي القيمة نفسها التي يستخدمها كلا الطرفين. بالنسبة للاتصالات الصادرة، استخدم الوجهة التي قمت بالاتصال بها؛ وبالنسبة للواردة، استخدم الوجهة التي جاء منها الاتصال.\n- **التفاوض**: أرسل `reserved[7] |= 0x04` في عملية الإمساك (handshake)؛ ولا تُرسَل رسائل Fast Extension إلا إذا كان الند قد عيّن نفس البت في إمساكه أيضًا؛ وإذا أرسل ند رسائل Fast Extension دون تفاوض، فاقطع الاتصال.\n- **Have All / Have None**: أرسل واحدة فقط من بين bitfield أو Have All أو Have None مباشرة بعد الإمساك. استخدم Have All للبذور (seeds)، وHave None حتى القطعة الأولى.\n- **الجانب المرسل لـ Allowed Fast**: عرّف فقط القطع التي تملكها فعليًا؛ إذ يمكن للمستقبل طلبها أثناء الحظر (choked). حدّ المجموعة التي تم خدمتها (مثلاً: ارفض طلبات allowed-fast من ند يحتفظ بالفعل بأكثر من `k` قطعة، وفقًا لتوجيهات BEP 6).\n- **الجانب المستقبل لـ Allowed Fast**: احفظ المجموعة؛ اسمح بطلبات تلك القطع أثناء الحظر؛ ويمكنك اختيار التحقق من المجموعة بإعادة حسابها باستخدام تجزئة وجهتك الخاصة ومعرّف المعلومات (infohash)، وتجاهل القطع غير الموجودة في المجموعة المحسوبة.\n- **Reject**: يجب أن يتلقى كل طلب ردًا واحدًا بالضبط؛ عند الحظر، ارفض كل شيء ليس ضمن مجموعة allowed fast بدلًا من إسكات الند بصمت.\n- **حجم المجموعة**: استخدم `k = 10` لتحقيق التوافق؛ يُسمح للندود باختيار قيمة `k` أقل تحت الأحمال، ولكن كلا الطرفين يجب أن يعلن فقط عن ما يستطيع خدمته.\n- **الحد على القطعة**: يجب أن تستخدم `index = y % sz` عدد القطع الكلي `sz` الخاص بالتورنت؛ تجاهل الفهارس >= sz (احترازيًا)، لأن سلسلة التجزئة ليست مقيدة بنطاق القطعة.\n- **التوافق العكسي**: العميلات التي لا تتفاوض على البت السريع لن ترى هذه الرسائل مطلقًا؛ ولا تتطلب أي تغييرات أخرى في البروتوكول.",
+            "tr": "- **Eş kimliği**: eşin hedef karması, akış bağlantısından (oturumun hedefi) alınır ve her iki tarafın da kullandığı aynı değerdir. Giden bağlantılar için bağlandığınız hedefi kullanın; gelen bağlantılar için ise bağlantının geldiği hedefi kullanın.\n- **Müzakere**: el sıkışma sırasında `reserved[7] |= 0x04` değerini gönderin; yalnızca eşin el sıkışmasında bu bit ayarlanmışsa Hızlı Uzantı mesajları gönderin; bir eş müzakere olmadan Hızlı Uzantı mesajları gönderirse bağlantıyı kapatın.\n- **Hepsine Sahip / Hiçbirine Sahip**: el sıkışmadan hemen sonra bit alanı / Hepsine Sahip / Hiçbirine Sahip mesajlarından sadece birini gönderin. Çekirdekler için Hepsine Sahip, ilk parça alınıncaya kadar Hiçbirine Sahip kullanın.\n- **Hızlı gönderim tarafı**: yalnızca gerçekten sahip olduğunuz parçaları duyurun; alıcı, boğulmuş olsa bile bu parçaları talep edebilir. *Sunulan* kümesini sınırlayın (örneğin, zaten `k` adetten fazla parça tutan bir eşten gelen \"izin verilen hızlı\" isteklerini reddedin; BEP 6 rehberliğine göre).\n- **Hızlı alım tarafı**: gelen kümeyi saklayın; boğulmuş olsa bile bu parçalar için isteklere izin verin; isteğe bağlı olarak kendi hedef karmınız ve bilgi karması (infohash) kullanarak kümeyi yeniden hesaplayıp doğrulayın ve hesaplanan kümede olmayan parçaları dikkate almayın.\n- **Reddetme**: her isteğin tam olarak bir yanıtı OLMALIDIR; boğulma durumunda, eşin sessiz kalmasını sağlayarak değil, izin verilen hızlı kümesinde olmayan tüm istekleri reddedin.\n- **Küme boyutu**: uyumluluk için `k = 10` kullanın; eşler yük altında daha düşük bir `k` seçmekte serbesttir ancak her iki taraf da yalnızca sunmayı planladıkları şeyleri duyurmalıdır.\n- **Parça sınırı**: `index = y % sz` ifadesinde torrentin toplam parça sayısı olan `sz` kullanılmalıdır; bir hash zinciri parça aralığına göre sınırlanmadığından, `sz`'den büyük veya eşit olan indisleri yok sayın (savunma amaçlı).\n- **Geriye dönük uyumluluk**: hızlı biti müzakere etmeyen istemciler bu mesajları asla görmez; başka protokol değişikliği gerekmez.",
+            "ko": "- **피어 식별**: 스트리밍 연결(세션의 목적지)에서 피어의 목적지 해시를 가져오며, 이 값은 양쪽 끝에서 동일하게 사용됩니다. 아웃바운드 연결의 경우 연결한 목적지를 사용하고, 인바운드 연결의 경우 연결이 수신된 목적지를 사용합니다.\n- **협상**: 핸드셰이크 중 `reserved[7] |= 0x04`를 전송합니다. 상대방 핸드셰이크에서도 해당 비트가 설정된 경우에만 Fast Extension 메시지를 전송합니다. 피어가 협상 없이 Fast Extension 메시지를 보내는 경우 연결을 종료합니다.\n- **Have All / Have None**: 핸드셰이크 직후 bitfield / Have All / Have None 중 정확히 하나만 전송합니다. 시드의 경우 Have All을, 첫 번째 조각을 받기 전까지는 Have None을 사용합니다.\n- **Allowed Fast 송신 측**: 실제로 소유한 조각만 광고해야 합니다. 수신 측은 차단된 상태에서도 해당 조각을 요청할 수 있습니다. *제공된* 조각 집합의 크기를 제한하세요 (예: BEP 6 권고에 따라, 이미 `k`개 이상의 조각을 보유한 피어의 allowed-fast 요청을 거부).\n- **Allowed Fast 수신 측**: 집합을 저장하고, 차단된 상태에서도 해당 조각에 대한 요청을 허용합니다. 선택적으로, 자신의 목적지 해시와 infohash를 사용해 집합을 다시 계산하여 검증하고, 계산된 집합에 없는 조각은 무시합니다.\n- **Reject**: 모든 요청은 정확히 하나의 응답을 받아야 합니다. 차단 시, 피어를 조용히 침묵시키는 대신 allowed fast 집합에 없는 모든 요청을 거부해야 합니다.\n- **집합 크기**: 호환성을 위해 `k = 10`을 사용하세요. 부하 상황에서 피어는 더 낮은 `k`를 선택할 수 있지만, 양쪽 모두 실제로 제공할 수 있는 것만 광고해야 합니다.\n- **조각 범위 제한**: `index = y % sz`는 토렌트의 전체 조각 수 `sz`를 사용해야 합니다. 해시 체인은 조각 범위에 따라 절단되지 않으므로, `sz` 이상의 인덱스는 무시합니다(방어적 처리).\n- **하위 호환성**: fast 비트를 협상하지 않은 클라이언트는 이러한 메시지를 전혀 수신하지 않으며, 추가 프로토콜 변경은 필요 없습니다.",
+            "hi": "- **पीयर पहचान**: पीयर का गंतव्य हैश स्ट्रीमिंग कनेक्शन (सत्र का गंतव्य) से प्राप्त किया जाता है, और दोनों छोरों द्वारा उपयोग किया जाने वाला मान समान होता है। आउटबाउंड कनेक्शन के लिए आपके द्वारा कनेक्ट हुए गंतव्य का उपयोग करें; इनबाउंड के लिए उस गंतव्य का उपयोग करें जहाँ से कनेक्शन आया हो।\n- **मार्गदर्शन (Negotiation)**: हैंडशेक में `reserved[7] |= 0x04` भेजें; केवल तभी फ़ास्ट एक्सटेंशन संदेश भेजें जब पीयर के हैंडशेक ने भी उस बिट को सेट किया हो; यदि कोई पीयर बिना मार्गदर्शन के फ़ास्ट एक्सटेंशन संदेश भेजता है, तो कनेक्शन बंद कर दें।\n- **हैव ऑल / हैव नोन**: हैंडशेक के तुरंत बाद केवल एक ही भेजें—बिटफील्ड / हैव ऑल / हैव नोन। बीज (seeds) के लिए हैव ऑल, पहले पीस तक हैव नोन।\n- **अनुमत त्वरित भेजने वाला पक्ष**: केवल उन्हीं पीसेज को विज्ञापित करें जो आपके पास वास्तव में हैं; प्राप्तकर्ता उन्हें चोक होने के बावजूद अनुरोध कर सकता है। *सर्विस किए गए* सेट को सीमित करें (उदाहरण के लिए, एक पीयर से एलाउड-फ़ास्ट अनुरोध अस्वीकार करें जो पहले से ही BEP 6 दिशानिर्देश के अनुसार `k` पीसेज से अधिक रखता हो)।\n- **अनुमत त्वरित प्राप्तकर्ता पक्ष**: सेट को स्टोर करें; चोक होने के दौरान उन पीसेज के अनुरोध की अनुमति दें; वैकल्पिक रूप से अपने स्वयं के गंतव्य हैश और इन्फोहैश से सेट की पुनः गणना करके इसकी पुष्टि करें, और गणना किए गए सेट में न आने वाली पीसेज को नजरअंदाज करें।\n- **अस्वीकार (Reject)**: प्रत्येक अनुरोध को ठीक एक प्रतिक्रिया मिलनी चाहिए; चोक होने पर, पीयर को चुपचाप बंद करने के बजाय अनुमत त्वरित सेट में न आने वाली सभी चीजें अस्वीकार करें।\n- **सेट आकार**: संगतता के लिए `k = 10` का उपयोग करें; लोड के तहत पीयर कम `k` चुनने के लिए स्वतंत्र हैं, लेकिन दोनों छोरों को केवल वही विज्ञापित करना चाहिए जो वे वास्तव में सेव करेंगे।\n- **पीस सीमा**: `index = y % sz` के लिए टॉरेंट की कुल पीस संख्या `sz` का उपयोग किया जाना चाहिए; `sz` से बड़े इंडेक्स को अनदेखा करें (सावधानी के लिए), क्योंकि हैश श्रृंखला पीस सीमा के अनुसार सीमित नहीं होती।\n- **पिछड़ी संगतता**: जो क्लाइंट फ़ास्ट बिट का मार्गदर्शन नहीं करते हैं वे इन संदेशों को कभी नहीं देखते; कोई अन्य प्रोटोकॉल परिवर्तन आवश्यक नहीं है।",
+            "cs": "- **Identita protějšku**: hash cíle protějšku je získán ze streamovacího připojení (cíl relace) a je stejnou hodnotou, kterou používají obě strany. U odchozích připojení použijte cíl, ke kterému jste se připojili; u příchozích připojení použijte cíl, ze kterého připojení přišlo.\n- **Vyjednávání**: pošlete `reserved[7] |= 0x04` ve handshake; zprávy Fast Extension posílejte pouze tehdy, byl-li bit nastaven i handshake protějšku; pokud protějšek pošle zprávy Fast Extension bez vyjednání, připojení ukončete.\n- **Mám vše / Nemám nic**: hned po handshake pošlete přesně jednu z možností bitfield / Mám vše / Nemám nic. U seedů pošlete „Mám vše“, u ostatních „Nemám nic“, dokud nedostanete první část.\n- **Strana odesílání Allowed Fast**: inzerujte pouze části, které skutečně máte; příjemce je může požadovat i když je dusí (choked). Omezte *servírovanou* množinu (např. odmítněte požadavky allowed-fast od protějšku, který již drží více než `k` částí, dle doporučení BEP 6).\n- **Strana příjmu Allowed Fast**: množinu uložte; umožněte požadavky na tyto části i když dusíte; volitelně množinu ověřte přepočítáním z vlastního hash cíle a infohash, a ignorujte části, které nejsou ve vypočtené množině.\n- **Reject**: každý požadavek musí získat přesně jednu odpověď; při dusení odmítněte všechny požadavky, které nejsou v množině allowed fast, namísto toho, aby byl protějšek beze slova ignorován.\n- **Velikost množiny**: pro kompatibilitu použijte `k = 10`; klienti si mohou zvolit nižší `k` při zátěži, ale obě strany by měly inzerovat pouze to, co skutečně poskytují.\n- **Omezení části**: `index = y % sz` musí používat celkový počet částí torrentu `sz`; ignorujte indexy >= sz (preventivně), protože řetěz hash není omezen rozsahem částí.\n- **Zpětná kompatibilita**: klienti, kteří nevyjednají fast bit, jednoduše nikdy tyto zprávy nevidí; žádné další změny protokolu nejsou vyžadovány."
+          }
+        },
+        "h2_006": {
+          "source_hash": "dfd0d1f8a5364b89",
+          "translations": {
+            "de": "Referenzimplementierungen",
+            "pt": "Implementações de referência",
+            "vi": "Các triển khai tham khảo",
+            "fr": "Implémentations de référence",
+            "zh": "参考实现",
+            "es": "Implementaciones de referencia",
+            "ru": "Референсные реализации",
+            "ar": "التنفيذات المرجعية",
+            "tr": "Referans uygulamaları",
+            "ko": "참조 구현",
+            "hi": "संदर्भ कार्यान्वयन",
+            "cs": "Referenční implementace"
+          }
+        },
+        "p_015": {
+          "source_hash": "a6d798fc8df50522",
+          "translations": {
+            "de": "Der Algorithmus ist klein und eigenständig – nur ein paar Dutzend Zeilen in jeder beliebigen Sprache. Alle drei Beispiele unten berechnen für identische Eingaben dieselbe Menge (`hash[0:4] ++ infohash`, SHA1-Kette, `y % sz`, mit `k = 10`).",
+            "pt": "O algoritmo é pequeno e autossuficiente — algumas dezenas de linhas em qualquer linguagem. Os três exemplos abaixo calculam o mesmo conjunto para entradas idênticas (`hash[0:4] ++ infohash`, cadeia SHA1, `y % sz`, com `k = 10`).",
+            "vi": "Thuật toán nhỏ gọn và tự chứa — chỉ vài chục dòng trong bất kỳ ngôn ngữ nào. Cả ba ví dụ bên dưới đều tính toán ra tập hợp giống hệt nhau với đầu vào giống nhệt nhau (`hash[0:4] ++ infohash`, chuỗi SHA1, `y % sz`, giới hạn `k = 10`).",
+            "fr": "L'algorithme est petit et autonome — une dizaine de lignes dans n'importe quel langage. Les trois exemples ci-dessous calculent le même ensemble pour des entrées identiques (`hash[0:4] ++ infohash`, chaîne SHA1, `y % sz`, avec `k = 10` comme limite).",
+            "zh": "该算法小巧且自包含——用任何语言编写都只有几十行代码。下面三个示例在相同输入（`hash[0:4] ++ infohash`、SHA1 链、`y % sz`，上限 `k = 10`）下计算出完全相同的结果集。",
+            "es": "El algoritmo es pequeño y autónomo: unas pocas docenas de líneas en cualquier lenguaje. Los tres ejemplos siguientes calculan el mismo conjunto para entradas idénticas (`hash[0:4] ++ infohash`, cadena SHA1, `y % sz`, con `k = 10`).",
+            "ru": "Алгоритм небольшой и автономный — всего несколько десятков строк на любом языке. Все три приведённых ниже примера вычисляют одинаковый набор при одинаковых входных данных (`hash[0:4] ++ infohash`, цепочка SHA1, `y % sz`, с ограничением `k = 10`).",
+            "ar": "الخوارزمية صغيرة ومكتفية بذاتها — بضعة عشرات من الأسطر في أي لغة برمجة. الحسابات الثلاثة أدناه تعطي المجموعة نفسها عند إدخال نفس المدخلات (`hash[0:4] ++ infohash`، سلسلة SHA1، `y % sz`، مع تحديد `k = 10`).",
+            "tr": "Algoritma küçük ve kendi içinde kapsamlı — herhangi bir dilde birkaç düzine satır. Aşağıdaki üç örnek de aynı girdiler için (`hash[0:4] ++ infohash`, SHA1 zinciri, `y % sz`, sınır `k = 10`) özdeş kümeyi hesaplar.",
+            "ko": "이 알고리즘은 작고 독립적이며, 어떤 언어로 구현하더라도 수십 줄 정도로 간단하다. 아래의 세 가지 예시는 동일한 입력(`hash[0:4] ++ infohash`, SHA1 체인, `y % sz`, `k = 10`으로 제한)에 대해 동일한 집합을 계산한다.",
+            "hi": "यह एल्गोरिदम छोटा और स्वतंत्र है — किसी भी भाषा में कुछ दर्जन पंक्तियाँ। नीचे दिए गए तीनों उदाहरण समान इनपुट (`hash[0:4] ++ infohash`, SHA1 श्रृंखला, `y % sz`, कैप `k = 10`) के लिए समान सेट की गणना करते हैं।",
+            "cs": "Algoritmus je malý a samostatný – několik desítek řádků v libovolném jazyce. Všechny tři níže uvedené příklady počítají stejnou množinu pro stejné vstupy (`hash[0:4] ++ infohash`, řetězec SHA1, `y % sz`, s omezením `k = 10`)."
+          }
+        },
+        "h3_003": {
+          "source_hash": "c1ba60ce13586503",
+          "translations": {
+            "de": "Java",
+            "pt": "Java",
+            "vi": "Java",
+            "fr": "Java",
+            "zh": "Java",
+            "es": "Java",
+            "ru": "Java",
+            "ar": "جافا",
+            "tr": "Java",
+            "ko": "자바",
+            "hi": "जावा",
+            "cs": "Java"
+          }
+        },
+        "h3_004": {
+          "source_hash": "f1deb75fa21d3c47",
+          "translations": {
+            "de": "C++",
+            "pt": "C++",
+            "vi": "C++",
+            "fr": "C++",
+            "zh": "C++",
+            "es": "C++",
+            "ru": "C++",
+            "ar": "C++",
+            "tr": "C++",
+            "ko": "C++",
+            "hi": "सी++",
+            "cs": "C++"
+          }
+        },
+        "h3_005": {
+          "source_hash": "18885f27b5af9012",
+          "translations": {
+            "de": "Python",
+            "pt": "Python",
+            "vi": "Python",
+            "fr": "Python",
+            "zh": "Python",
+            "es": "Python",
+            "ru": "Python",
+            "ar": "بايثون",
+            "tr": "Python",
+            "ko": "파이썬",
+            "hi": "पायथन",
+            "cs": "Python"
+          }
+        },
+        "h2_007": {
+          "source_hash": "b37ddf1f6e0fac69",
+          "translations": {
+            "de": "Kompatibilität",
+            "pt": "Compatibilidade",
+            "vi": "Tương thích",
+            "fr": "Compatibilité",
+            "zh": "兼容性",
+            "es": "Compatibilidad",
+            "ru": "Совместимость",
+            "ar": "التوافق",
+            "tr": "Uyumluluk",
+            "ko": "호환성",
+            "hi": "सुसंगतता",
+            "cs": "Kompatibilita"
+          }
+        },
+        "list_004": {
+          "source_hash": "a348871c963f7bfa",
+          "translations": {
+            "de": "- **Drahtkompatibel**: das Aushandlungsbit und die Nachrichtenformate sind byte-identisch mit dem Clearnet-BEP 6; nur die Eingabe für die Set-Generierung unterscheidet sich.\n- **Nicht interoperabel über Netzwerke hinweg**: Ein I2P-Client und ein Clearnet-Client können ohnehin nicht miteinander verbinden; die Abweichung betrifft nur die Peer-Identitäts-Bytes, niemals das Drahtformat.\n- **Innerhalb von I2P**: Jeder Client, der diesen Vorschlag implementiert, berechnet identische erlaubte Fast-Sets und kann diese wechselseitig bereitstellen und überprüfen. Clients, die „Allowed Fast“ ignorieren, behandeln es einfach als eine nicht verbindliche Empfehlung und verlieren lediglich den Startvorteil.",
+            "pt": "- **Compatível com o protocolo**: o bit de negociação e os formatos de mensagem são byte-a-byte idênticos ao BEP 6 da rede clara; apenas a entrada para geração do conjunto difere.\n- **Não interoperável entre redes**: um cliente I2P e um cliente da rede clara não podem se conectar entre si de qualquer forma; a divergência afeta apenas os bytes de identidade do par, nunca o formato do protocolo.\n- **Dentro do I2P**: qualquer cliente que implemente esta proposta calcula conjuntos rápidos permitidos idênticos e pode fornecê-los e verificá-los de forma intercambiável. Clientes que ignoram o Allowed Fast simplesmente o tratam como uma recomendação sem efeito e perdem apenas o benefício de inicialização.",
+            "vi": "- **Tương thích về mặt dây nối**: bit thương lượng và định dạng tin nhắn giống hệt từng byte so với BEP 6 mạng rõ (clearnet); chỉ đầu vào tạo bộ là khác biệt.\n- **Không tương tác được giữa các mạng**: một khách hàng I2P và một khách hàng mạng rõ dù sao cũng không thể kết nối tới nhau; sự sai lệch này chỉ ảnh hưởng đến các byte định danh ngang hàng, không bao giờ ảnh hưởng đến định dạng truyền tải.\n- **Trong nội bộ I2P**: bất kỳ khách hàng nào triển khai đề xuất này đều tính toán ra các bộ Fast được Cho Phép giống hệt nhau và có thể cung cấp hoặc xác minh chúng thay thế cho nhau. Các khách hàng bỏ qua Allowed Fast sẽ coi đây là một lời khuyên không hiệu lực và chỉ mất đi lợi ích khởi động nhanh.",
+            "fr": "- **Compatible au niveau du protocole** : le bit de négociation et les formats de message sont strictement identiques en octets au BEP 6 du réseau clair ; seule l'entrée pour la génération du jeu diffère.\n- **Non-interopérable entre réseaux** : un client I2P et un client du réseau clair ne peuvent de toute façon pas se connecter entre eux ; l'écart affecte uniquement les octets d'identité des pairs, jamais le format du protocole.\n- **Au sein d'I2P** : tout client implémentant cette proposition calcule des ensembles rapides autorisés identiques et peut les servir et les vérifier indifféremment. Les clients qui ignorent Allowed Fast le considèrent simplement comme une recommandation sans effet et ne perdent que l'avantage au démarrage.",
+            "zh": "- **线缆兼容**：协商位和消息格式与 clearnet BEP 6 字节级一致；只有集合生成的输入不同。\n- **跨网络不互通**：I2P 客户端和 clearnet 客户端本来也无法互相连接；这种差异仅影响对等体身份字节，从不影响线缆格式。\n- **在 I2P 内部**：任何实现此提议的客户端都能计算出相同的允许快速集合，并可交替地提供和验证它们。忽略 Allowed Fast 的客户端仅将其视为无操作建议，仅损失启动时的优势。",
+            "es": "- **Compatible con el protocolo**: el bit de negociación y los formatos de mensaje son idénticos byte a byte al BEP 6 de clearnet; solo difiere la entrada para la generación del conjunto.\n- **No interoperable entre redes**: un cliente I2P y un cliente de clearnet no pueden conectarse entre sí de todos modos; la diferencia afecta únicamente a los bytes de identidad del par, nunca al formato del protocolo.\n- **Dentro de I2P**: cualquier cliente que implemente esta propuesta calcula conjuntos rápidos permitidos idénticos y puede servirlos y verificarlos indistintamente. Los clientes que ignoran Allowed Fast simplemente lo tratan como una sugerencia sin efecto y solo pierden el beneficio de inicio.",
+            "ru": "- **Совместимо по протоколу**: бит переговоров и форматы сообщений байт-идентичны \n  clearnet BEP 6; различается только входные данные для генерации набора.\n- **Не взаимодействует между сетями**: клиент I2P и клиент обычной сети всё равно \n  не могут соединиться друг с другом; отклонение затрагивает только байты идентичности пира, \n  но никогда — формат передачи по проводу.\n- **Внутри I2P**: любой клиент, реализующий это предложение, вычисляет идентичные разрешённые \n  быстрые наборы и может одинаково обслуживать и проверять их. Клиенты, игнорирующие \n  Allowed Fast, просто воспринимают его как рекомендательную команду без действия и теряют \n  только преимущество быстрого запуска.",
+            "ar": "- **متوافق على مستوى السلك**: بت التفاوض وتنسيقات الرسائل متطابقة بايتاً مع\n  BEP 6 على الشبكة الواضحة؛ فقط يختلف مدخل توليد المجموعة.\n- **غير قابل للتشغيل المتبادل عبر الشبكات**: لا يمكن لعميل I2P وعميل شبكة واضحة الاتصال ببعضهما على أي حال؛ هذا الاختلاف يؤثر فقط على بايتات هوية الند، وليس أبداً على تنسيق السلك.\n- **ضمن I2P**: أي عميل يُنفذ هذا الاقتراح يحسب مجموعات \"السريع المسموح\" المسموح بها بشكل مطابق ويمكنه تقديمها والتحقق منها بالتبادل. أما العملاء الذين تتجاهل \"السريع المسموح\" فتعتبره ببساطة إشعارًا استشاريًا بلا تأثير، وتفقد فقط فائدة بدء التشغيل.",
+            "tr": "- **Teli uyumlu**: anlaşma biti ve mesaj formatları açık internet BEP 6 ile bayt-bayt aynıdır; sadece set oluşturma girdisi farklıdır.\n- **Ağlar arasında birlikte çalışılır değil**: bir I2P istemcisi ile açık internet istemcisi zaten birbirine bağlanamaz; sapma yalnızca eş kimlik baytlarını etkiler, asla tel formatını etkilemez.\n- **I2P içinde**: bu öneriyi uygulayan herhangi bir istemci, aynı izin verilen Hızlı setlerini hesaplar ve bunları birbiriyle değiştirerek sunabilir ve doğrulayabilir. İzin Verilen Hızlı'ya (Allowed Fast) dikkat etmeyen istemciler bunu yalnızca bir işlem önerisi olarak değerlendirir ve yalnızca başlangıç faydasını kaybeder.",
+            "ko": "- **와이어 호환 가능**: 협상 비트 및 메시지 형식은 평문 네트워크 BEP 6과 바이트 단위로 동일하며, 세트 생성 입력만 다릅니다.\n- **네트워크 간 비상호 운용 가능**: I2P 클라이언트와 평문 네트워크 클라이언트는 어차피 서로 연결할 수 없으며, 이 차이는 피어 식별자 바이트에만 영향을 미치고 결코 와이어 형식에는 영향을 주지 않습니다.\n- **I2P 내부에서**: 이 제안을 구현한 모든 클라이언트는 동일한 허용 고속 세트를 계산하며, 이를 상호 교환 가능하게 제공하고 검증할 수 있습니다. 허용 고속(Allowed Fast)을 무시하는 클라이언트는 이를 단순한 권고 사항으로 간주하여 시작 이점만 상실할 뿐입니다.",
+            "hi": "- **वायर-अनुकूल**: सौदेबाजी बिट और संदेश प्रारूप क्लियरनेट BEP 6 के समान बाइट-समान हैं; केवल सेट-उत्पत्ति इनपुट भिन्न होता है।\n- **नेटवर्क के पार अनुरूप नहीं**: एक I2P क्लाइंट और एक क्लियरनेट क्लाइंट आपस में कनेक्ट नहीं कर सकते इसलिए; विचलन केवल पीयर-पहचान बाइट्स को प्रभावित करता है, कभी भी वायर प्रारूप को नहीं।\n- **I2P के भीतर**: इस प्रस्ताव को लागू करने वाला कोई भी क्लाइंट समान अनुमत फास्ट सेट की गणना करता है और उन्हें आपस में बदलकर सेवा और सत्यापन कर सकता है। जो क्लाइंट अनुमत फास्ट को अनदेखा करते हैं, वे इसे केवल एक नो-ऑप सलाह के रूप में मानते हैं और केवल प्रारंभ-अप लाभ खो देते हैं।",
+            "cs": "- **Kompatibilní na úrovni vedení**: negociační bity a formáty zpráv jsou bajtově identické s clearnet BEP 6; liší se pouze vstup pro generování sady.\n- **Neinteroperabilní napříč sítěmi**: klient I2P a klient clearnetu stejně nemohou navázat spojení; odchylka ovlivňuje pouze bajty identifikující peer, nikdy ne formát přenosu.\n- **Uvnitř I2P**: všechny klienty implementující tuto výzvu počítají identické povolené rychlé sady a mohou je vzájemně poskytovat a ověřovat. Klienti, kteří ignorují Povolené rychlé, to považují za doporučení bez účinku a ztrácejí pouze výhodu při spuštění."
+          }
+        },
+        "h2_008": {
+          "source_hash": "5e0a96ef86c219c3",
+          "translations": {
+            "de": "Offene Fragen",
+            "pt": "Perguntas em aberto",
+            "vi": "Các câu hỏi chưa có lời giải",
+            "fr": "Questions ouvertes",
+            "zh": "待解决的问题",
+            "es": "Preguntas abiertas",
+            "ru": "Открытые вопросы",
+            "ar": "أسئلة مفتوحة",
+            "tr": "Açık sorular",
+            "ko": "열린 질문들",
+            "hi": "खुले प्रश्न",
+            "cs": "Otevřené otázky"
+          }
+        },
+        "list_005": {
+          "source_hash": "259d4df52a5aa970",
+          "translations": {
+            "de": "1. Sollte die Set-Größe `k` bei 10 festgehalten werden oder lastadaptiv sein (z. B. kleiner bei starker Anfragebelastung), wie BEP 6 erlaubt?\n2. Sollten Empfänger das Set gegenüber ihrem eigenen Ziel-Hash überprüfen und Indizes verwerfen, die nicht übereinstimmen (Schutz gegen fehlerhafte oder bösartige Sender)? Empfohlen: Ja.\n3. Den 4-Byte-*Präfix* (Bytes 0–3) wählen, wie gezeigt, oder die *letzten* 4 Bytes – jedes feste 4-Byte-Fenster ergibt dieselben Eigenschaften; der Präfix behält die natürliche Byte-Reihenfolge des Referenzcodes bei (`hash[0:4]`).",
+            "pt": "1. O tamanho do conjunto `k` deve permanecer fixo em 10, ou deve ser adaptativo conforme a carga (por exemplo, menor sob alta carga de solicitações), conforme permitido pelo BEP 6?\n2. Os destinatários devem verificar o conjunto contra seu próprio hash de destino e descartar índices incompatíveis (proteção contra remetentes com defeito ou maliciosos)? Recomenda-se sim.\n3. Escolher o *prefixo* de 4 bytes (bytes 0-3) conforme mostrado, ou os últimos 4 bytes — qualquer janela fixa de 4 bytes produz as mesmas propriedades; o prefixo mantém a ordem natural dos bytes no código de referência (`hash[0:4]`).",
+            "vi": "1. Kích thước bộ `k` nên giữ cố định ở mức 10, hay nên thích ứng theo tải (ví dụ: giảm khi tải yêu cầu cao) như cho phép bởi BEP 6?\n2. Người nhận có nên xác minh bộ dữ liệu dựa trên băm đích của riêng họ và loại bỏ các chỉ số không khớp (phòng thủ chống người gửi lỗi hoặc độc hại)? Khuyến nghị: nên.\n3. Chọn phần *đầu* 4 byte (byte 0-3) như trình bày, hay 4 byte *cuối cùng* — bất kỳ khoảng 4 byte cố định nào cũng cho các đặc tính tương tự; dùng phần đầu giữ thứ tự byte tự nhiên trong mã tham chiếu (`hash[0:4]`).",
+            "fr": "1. La taille de l'ensemble `k` doit-elle rester fixe à 10, ou s'adapter à la charge (par exemple, plus petite sous une forte charge de requêtes), comme le permet BEP 6 ?\n2. Les destinataires doivent-ils vérifier que l'ensemble correspond au hachage de leur propre destination et rejeter les indices incohérents (protection contre des émetteurs bogués ou malveillants) ? Recommandé : oui.\n3. Faut-il choisir le *préfixe* de 4 octets (octets 0-3) comme indiqué, ou bien les 4 derniers octets — n'importe quelle fenêtre fixe de 4 octets offre les mêmes propriétés ; le préfixe conserve l'ordre naturel des octets dans le code de référence (`hash[0:4]`).",
+            "zh": "1. 集合大小 `k` 应该固定为 10，还是根据负载自适应调整（例如在请求负载较高时减少）？BEP 6 允许后者。\n2. 接收方是否应针对自身的目标哈希值验证该集合，并丢弃不匹配的索引（以防御有缺陷或恶意的发送方）？建议为“是”。\n3. 应选择如图所示的前 4 字节 *前缀*（字节 0-3），还是最后 4 字节 —— 任意固定的 4 字节窗口都能提供相同的性质；而使用前缀可保持参考代码中的字节顺序自然（`hash[0:4]`）。",
+            "es": "1. ¿Debe mantenerse el tamaño del conjunto `k` fijo en 10, o debe adaptarse según la carga (por ejemplo, reducirse bajo alta carga de solicitudes) como permite BEP 6?\n2. ¿Deben los receptores verificar el conjunto frente al hash de su propio destino y descartar los índices que no coincidan (protección contra emisores defectuosos o maliciosos)? Se recomienda: sí.\n3. Elegir el *prefijo* de 4 bytes (bytes 0-3) como se muestra, o los últimos 4 bytes; cualquier ventana fija de 4 bytes ofrece las mismas propiedades; usar el prefijo mantiene el orden de bytes natural en el código de referencia (`hash[0:4]`).",
+            "ru": "1. Должен ли размер набора `k` оставаться фиксированным на уровне 10 или быть адаптивным в зависимости от нагрузки (например, меньше при высокой нагрузке запросов), как это разрешено в BEP 6?\n2. Должны ли получатели проверять набор по собственному хешу назначения и отбрасывать несовпадающие индексы (защита от неисправных или вредоносных отправителей)? Рекомендуется: да.\n3. Выбрать 4-байтовый *префикс* (байты 0–3), как показано, или *последние* 4 байта — любое фиксированное 4-байтовое окно обеспечивает одинаковые свойства; использование префикса сохраняет естественный порядок байтов в опорном коде (`hash[0:4]`).",
+            "ar": "1. هل يجب أن يبقى حجم المجموعة `k` ثابتًا عند 10، أم أن يكون متكيفًا مع الحمل (مثلاً أقل عند ارتفاع عدد الطلبات) كما يسمح به BEP 6؟\n2. هل يجب على المستقبل التحقق من المجموعة باستخدام تجزئة الوجهة الخاصة به ورفض الفهارس غير المتطابقة (لحماية ضد مرسلات خاطئة أو خبيثة)؟ يُوصى بالإجابة بنعم.\n3. اختيار البادئة ذات 4 بايت *الأولى* (البايتات 0-3) كما هو موضح، أو اختيار آخر 4 بايت — أي نافذة ثابتة بحجم 4 بايت تعطي الخصائص نفسها؛ استخدام البادئة يحافظ على ترتيب البايتات طبيعيًا كما في الكود المرجعي (`hash[0:4]`).",
+            "tr": "1. Küme boyutu `k` sabit olarak 10'da mı kalmalı, yoksa BEP 6'nın izin verdiği gibi istek yükü yüksekken daha düşük değerler alacak şekilde yük-eşgüdümlemeli mi olmalıdır?\n2. Alıcılar, küme değerini kendi hedef karmaları ile karşılaştırıp uyuşmayan dizinleri reddetmeli mi (hatalı ya da kötü niyetli gönderenlere karşı koruma)? Önerilen: evet.\n3. Gösterildiği gibi 4 baytlık *önek* (0-3. baytlar) mi seçilmeli, yoksa son 4 bayt mı? Her sabit 4 baytlık pencere aynı özellikleri verir; önek, referans kodun bayt sıralamasını doğal tutar (`hash[0:4]`).",
+            "ko": "1. 집합 크기 `k`를 10으로 고정해야 하는가, 아니면 BEP 6에서 허용하는 것처럼 요청 부하가 클 때 줄이는 등의 부하 적응형으로 해야 하는가?\n2. 수신 측에서 수신한 집합을 자신의 대상 해시와 비교하여 일치하지 않는 인덱스는 폐기해야 하는가? (버그가 있거나 악의적인 송신자에 대한 방어) 권장되는 답은 '예'이다.\n3. 아래와 같이 4바이트 *접두사* (바이트 0-3)를 선택할 것인지, 혹은 마지막 4바이트를 선택할 것인지 — 임의의 고정된 4바이트 구간은 동일한 성질을 제공하며, 접두사를 사용하면 참조 코드의 바이트 순서가 자연스럽게 유지된다 (`hash[0:4]`).",
+            "hi": "1. क्या सेट आकार `k` को 10 पर स्थिर रखा जाना चाहिए, या लोड-अनुकूली होना चाहिए (उदाहरण के लिए, भारी अनुरोध भार के तहत कम) जैसा कि BEP 6 अनुमति देता है?\n2. क्या प्राप्तकर्ताओं को अपने स्वयं के गंतव्य हैश के खिलाफ सेट को सत्यापित करना चाहिए और गलत मिलान वाले सूचकांकों को त्याग देना चाहिए (गलत या दुर्भावनापूर्ण प्रेषकों के खिलाफ रक्षा)? अनुशंसित: हां।\n3. दिखाए गए अनुसार 4-बाइट *उपसर्ग* (बाइट 0-3) चुनें, या अंतिम 4 बाइट — कोई भी निश्चित 4-बाइट विंडो समान गुण प्रदान करती है; उपसर्ग संदर्भ कोड के बाइट क्रम को प्राकृतिक बनाए रखता है (`hash[0:4]`)।",
+            "cs": "1. Má být velikost sady `k` pevně stanovena na 10, nebo by měla být přizpůsobivá podle zatížení (např. menší při vysoké zátěži požadavků), jak to umožňuje BEP 6?\n2. Mají příjemci ověřovat sadu vůči své vlastní cílové hodnotě hash a zahazovat nesouladící indexy (ochrana proti chybným nebo zlomyslným odesílatelům)? Doporučuje se ano.\n3. Vybrat 4bajtovou *předponu* (bajty 0–3) jako uvedeno, nebo poslední 4 bajty — jakékoli pevné 4bajtové okno poskytuje stejné vlastnosti; použití předpony zachovává přirozené pořadí bajtů ve vzorovém kódu (`hash[0:4]`)."
+          }
+        },
+        "h2_009": {
+          "source_hash": "857be0b1fee8cf3f",
+          "translations": {
+            "de": "Stand der Technik",
+            "pt": "Técnica anterior",
+            "vi": "Công nghệ trước đó",
+            "fr": "État de la technique",
+            "zh": "现有技术",
+            "es": "Estado de la técnica",
+            "ru": "Предшествующий уровень техники",
+            "ar": "الفن السابق",
+            "tr": "Önceki sanat",
+            "ko": "기존 기술",
+            "hi": "पूर्व कला",
+            "cs": "Předchozí technologie"
+          }
+        },
+        "list_006": {
+          "source_hash": "5ba7a2d066331be0",
+          "translations": {
+            "de": "- Referenz: [BEP 6 Fast Extension](https://www.bittorrent.org/beps/bep_0006.html)\n- Referenzimplementierung in I2PSnark: `PeerState.sendAllowedFast()` /\n  `generateAllowedFastSet()` in\n  `apps/i2psnark/java/src/org/klomp/snark/PeerState.java` (@seit 0.9.71+)\n- Funktioniert zusammen mit BEP 40 (kanonische Peer-Priorität) und BEP 21 (teilweise Seeds), beide werden von I2PSnark unterstützt",
+            "pt": "- Referência: [BEP 6 Fast Extension](https://www.bittorrent.org/beps/bep_0006.html)\n- Implementação de referência do I2PSnark: `PeerState.sendAllowedFast()` / `generateAllowedFastSet()` em `apps/i2psnark/java/src/org/klomp/snark/PeerState.java` (@since 0.9.71+)\n- Funciona em conjunto com BEP 40 (prioridade canônica de peers) e BEP 21 (sementes parciais), ambos suportados pelo I2PSnark",
+            "vi": "- Tham khảo: [BEP 6 Fast Extension](https://www.bittorrent.org/beps/bep_0006.html)\n- Triển khai tham chiếu của I2PSnark: `PeerState.sendAllowedFast()` /\n  `generateAllowedFastSet()` trong\n  `apps/i2psnark/java/src/org/klomp/snark/PeerState.java` (@since 0.9.71+)\n- Hoạt động cùng với BEP 40 (ưu tiên ngang hàng chính thống) và BEP 21 (chia sẻ từng phần), cả hai đều được I2PSnark hỗ trợ",
+            "fr": "- Référence : [Extension rapide BEP 6](https://www.bittorrent.org/beps/bep_0006.html)\n- Implémentation de référence dans I2PSnark : `PeerState.sendAllowedFast()` / `generateAllowedFastSet()` dans `apps/i2psnark/java/src/org/klomp/snark/PeerState.java` (@depuis 0.9.71+)\n- Fonctionne conjointement avec la BEP 40 (priorité canonique des pairs) et la BEP 21 (partiels seeds), toutes deux prises en charge par I2PSnark",
+            "zh": "- 参考：[BEP 6 快速扩展](https://www.bittorrent.org/beps/bep_0006.html)\n- I2PSnark 参考实现：`apps/i2psnark/java/src/org/klomp/snark/PeerState.java` 中的 `PeerState.sendAllowedFast()` / `generateAllowedFastSet()`（自 0.9.71+ 版本起）\n- 与 BEP 40（标准对等节点优先级）和 BEP 21（部分种子）协同工作，I2PSnark 已支持这两项扩展",
+            "es": "- Referencia: [BEP 6 Fast Extension](https://www.bittorrent.org/beps/bep_0006.html)\n- Implementación de referencia en I2PSnark: `PeerState.sendAllowedFast()` /  \n  `generateAllowedFastSet()` en  \n  `apps/i2psnark/java/src/org/klomp/snark/PeerState.java` (@since 0.9.71+)\n- Funciona conjuntamente con BEP 40 (prioridad canónica de peers) y BEP 21 (seeds parciales), ambos compatibles con I2PSnark",
+            "ru": "- Справка: [Расширение BEP 6 Fast](https://www.bittorrent.org/beps/bep_0006.html)\n- Референсная реализация I2PSnark: `PeerState.sendAllowedFast()` /\n  `generateAllowedFastSet()` в\n  `apps/i2psnark/java/src/org/klomp/snark/PeerState.java` (@since 0.9.71+)\n- Работает совместно с BEP 40 (канонический приоритет пиров) и BEP 21 (частичные сиды), оба поддерживаются I2PSnark",
+            "ar": "- المرجع: [امتداد BitTorrent السريع (BEP 6)](https://www.bittorrent.org/beps/bep_0006.html)\n- التنفيذ المرجعي في I2PSnark: `PeerState.sendAllowedFast()` /  \n  `generateAllowedFastSet()` في  \n  `apps/i2psnark/java/src/org/klomp/snark/PeerState.java` (@since 0.9.71+)\n- يعمل بالتزامن مع BEP 40 (أولوية الندود القياسية) وBEP 21 (البذور الجزئية)، وكلاهما مدعوم في I2PSnark",
+            "tr": "- Referans: [BEP 6 Hızlı Eklenti](https://www.bittorrent.org/beps/bep_0006.html)\n- I2PSnark referans uygulaması: `apps/i2psnark/java/src/org/klomp/snark/PeerState.java` içindeki `PeerState.sendAllowedFast()` / `generateAllowedFastSet()` (@since 0.9.71+)\n- BEP 40 (kanonik eş önceliği) ve BEP 21 (kısmi paylaşımcılar) ile birlikte çalışır; her ikisi de I2PSnark tarafından desteklenir",
+            "ko": "- 참고: [BEP 6 Fast Extension](https://www.bittorrent.org/beps/bep_0006.html)\n- I2PSnark 참조 구현: `apps/i2psnark/java/src/org/klomp/snark/PeerState.java` 내 `PeerState.sendAllowedFast()` / `generateAllowedFastSet()` (@since 0.9.71+)\n- BEP 40 (표준 피어 우선순위) 및 BEP 21 (부분 시드), 즉 I2PSnark에서 지원하는 두 가지 기능과 함께 작동함",
+            "hi": "- संदर्भ: [BEP 6 फास्ट एक्सटेंशन](https://www.bittorrent.org/beps/bep_0006.html)\n- I2PSnark संदर्भ कार्यान्वयन: `apps/i2psnark/java/src/org/klomp/snark/PeerState.java` में `PeerState.sendAllowedFast()` / `generateAllowedFastSet()` (@since 0.9.71+)\n- यह BEP 40 (मानक पीयर प्राथमिकता) और BEP 21 (आंशिक सीड्स) के साथ संयोजन में काम करता है, जिन दोनों को I2PSnark द्वारा समर्थित किया जाता है",
+            "cs": "- Reference: [BEP 6 Fast Extension](https://www.bittorrent.org/beps/bep_0006.html)\n- Referenční implementace I2PSnark: `PeerState.sendAllowedFast()` /\n  `generateAllowedFastSet()` v\n  `apps/i2psnark/java/src/org/klomp/snark/PeerState.java` (@since 0.9.71+)\n- Funguje ve spojení s BEP 40 (kanonická priorita peerů) a BEP 21 (částečné seedy), které jsou oba podporovány I2PSnark"
+          }
+        }
+      },
+      "file_hash": "774f02c6a2a613abae6d6ba826cdbea04c8c65431e77bce82fd710cd2df3f147"
     }
   }
 }

@@ -1054,5 +1054,137 @@
     "segments": 95,
     "cache_hits": 95,
     "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-08-10T15:56:04.663879Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/de/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "de",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
+  },
+  {
+    "timestamp": "2026-08-10T15:56:08.461244Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/pt/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "pt",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
+  },
+  {
+    "timestamp": "2026-08-10T15:56:34.893543Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/vi/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "vi",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
+  },
+  {
+    "timestamp": "2026-08-10T15:56:40.785300Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/fr/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "fr",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
+  },
+  {
+    "timestamp": "2026-08-10T15:56:45.197604Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/zh/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "zh",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
+  },
+  {
+    "timestamp": "2026-08-10T15:56:50.498026Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/es/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "es",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
+  },
+  {
+    "timestamp": "2026-08-10T15:56:56.118895Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ru/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "ru",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
+  },
+  {
+    "timestamp": "2026-08-10T15:56:56.984726Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ar/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "ar",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
+  },
+  {
+    "timestamp": "2026-08-10T15:57:09.883198Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/tr/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "tr",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
+  },
+  {
+    "timestamp": "2026-08-10T15:57:16.637684Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ko/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "ko",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
+  },
+  {
+    "timestamp": "2026-08-10T15:57:46.170567Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/hi/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "hi",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
+  },
+  {
+    "timestamp": "2026-08-10T15:58:03.010287Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/proposals/172-bep6-allowed-fast.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/cs/proposals/172-bep6-allowed-fast.md",
+    "source_lang": "en",
+    "target_lang": "cs",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 38,
+    "cache_hits": 0,
+    "cache_misses": 38
   }
 ]
