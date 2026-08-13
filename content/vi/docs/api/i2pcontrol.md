@@ -2,57 +2,32 @@
 title: "I2PControl JSON-RPC"
 description: "API quản lý router từ xa thông qua webapp I2PControl"
 slug: "i2pcontrol"
-lastUpdated: "2025-10"
-accurateFor: "2.10.0"
+lastUpdated: "2026-07-10"
+accurateFor: "2.12.0"
 reviewStatus: "needs-review"
 ---
 
--------------kiểm tra thêm nội dung--------------
-
 # Tài liệu API I2PControl
+
+-------------kiểm tra thêm nội dung--------------
 
 I2PControl là một API **JSON-RPC 2.0** được tích hợp sẵn với I2P router (từ phiên bản 0.9.39). Nó cho phép giám sát và điều khiển router đã được xác thực thông qua các yêu cầu JSON có cấu trúc.
 
 > **Mật khẩu mặc định:** `itoopie` — đây là mật khẩu gốc từ nhà máy và **nên được thay đổi** ngay lập tức để đảm bảo bảo mật.
 
----
-
 ## 1. Tổng quan & Truy cập
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Implementation</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Default Endpoint</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Protocol</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Enabled by Default</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Java I2P (2.10.0+)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>http://127.0.0.1:7657/jsonrpc/</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTP</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">❌ Must be enabled via WebApps (Router Console)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Bundled webapp</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">i2pd (C++ implementation)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>https://127.0.0.1:7650/</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTPS</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">✅ Enabled by default</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Legacy plugin behavior</td>
-    </tr>
-  </tbody>
-</table>
-Trong trường hợp Java I2P, bạn phải vào **Router Console → WebApps → I2PControl** và bật nó (đặt khởi động tự động). Khi đã hoạt động, tất cả các phương thức đều yêu cầu bạn phải xác thực trước và nhận token phiên.
-
+| Implementation             | Default Endpoint                 | Protocol | Enabled by Default                             | Notes                  |
+|----------------------------|----------------------------------|----------|------------------------------------------------|------------------------|
+| Java I2P (2.10.0+)         | `http://127.0.0.1:7657/jsonrpc/` | HTTP     | ❌ Phải bật thông qua WebApps (Router Console) | Ứng dụng web tích hợp  |
+| i2pd (C++ implementation)  | `https://127.0.0.1:7650/`        | HTTPS    | ✅ Được bật theo mặc định                       | Hành vi plugin cũ      |
 ---
+
+Trong trường hợp Java I2P, bạn phải vào **Router Console → WebApps → I2PControl** và bật nó (đặt khởi động tự động). Khi đã hoạt động, tất cả các phương thức đều yêu cầu bạn phải xác thực trước và nhận token phiên.
 
 ## 2. Định dạng JSON-RPC
 
-Tất cả các yêu cầu đều tuân theo cấu trúc JSON-RPC 2.0:
+---
 
 ```json
 {
@@ -64,7 +39,7 @@ Tất cả các yêu cầu đều tuân theo cấu trúc JSON-RPC 2.0:
   }
 }
 ```
-Một phản hồi thành công bao gồm trường `result`; khi thất bại, một đối tượng `error` sẽ được trả về:
+Tất cả các yêu cầu đều tuân theo cấu trúc JSON-RPC 2.0:
 
 ```json
 {
@@ -73,7 +48,7 @@ Một phản hồi thành công bao gồm trường `result`; khi thất bại, 
   "result": { /* data */ }
 }
 ```
-hoặc
+Một phản hồi thành công bao gồm trường `result`; khi thất bại, một đối tượng `error` sẽ được trả về:
 
 ```json
 {
@@ -85,7 +60,7 @@ hoặc
   }
 }
 ```
----
+hoặc
 
 ## 3. Luồng Xác thực
 
@@ -116,17 +91,23 @@ curl -s -H "Content-Type: application/json" \
   }
 }
 ```
-Bạn phải bao gồm `Token` đó trong tất cả các yêu cầu tiếp theo trong `params`.
-
+| Trường      | Hướng     | Kiểu   | Mô tả                                                    |
+|------------|-----------|--------|----------------------------------------------------------|
+| `API`      | Yêu cầu   | long   | Phiên bản API I2PControl mà client yêu cầu. Sử dụng `1`. |
+| `Password` | Yêu cầu   | String | Mật khẩu dùng để xác thực với I2PControl.                |
+| `API`      | Phản hồi  | long   | Phiên bản API chính được triển khai bởi server.          |
+| `Token`    | Phản hồi  | String | Mã xác thực dùng cho các yêu cầu tiếp theo.              |
 ---
+
+Bạn phải bao gồm `Token` đó trong tất cả các yêu cầu tiếp theo trong `params`.
 
 ## 4. Phương thức & Điểm cuối
 
 ### 4.1 RouterInfo
 
-Lấy dữ liệu telemetry chính về router.
+---
 
-**Ví dụ Yêu cầu**
+Lấy dữ liệu telemetry chính về router.
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -146,87 +127,60 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**Các Trường Phản Hồi (result)** Theo tài liệu chính thức (GetI2P): - `i2p.router.status` (String) — trạng thái có thể đọc được - `i2p.router.uptime` (long) — mili giây (hoặc chuỗi cho i2pd cũ hơn) :contentReference[oaicite:0]{index=0} - `i2p.router.version` (String) — chuỗi phiên bản :contentReference[oaicite:1]{index=1} - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — băng thông đến theo B/s :contentReference[oaicite:2]{index=2} - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — băng thông đi theo B/s :contentReference[oaicite:3]{index=3} - `i2p.router.net.status` (long) — mã trạng thái số (xem enum bên dưới) :contentReference[oaicite:4]{index=4} - `i2p.router.net.tunnels.participating` (long) — số lượng tunnel tham gia :contentReference[oaicite:5]{index=5} - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — thống kê peer của netDB :contentReference[oaicite:6]{index=6} - `i2p.router.netdb.isreseeding` (boolean) — có đang thực hiện reseed hay không :contentReference[oaicite:7]{index=7} - `i2p.router.netdb.knownpeers` (long) — tổng số peer đã biết :contentReference[oaicite:8]{index=8}
+**Ví dụ Yêu cầu**
 
 #### Enum Mã Trạng Thái (`i2p.router.net.status`)
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">OK</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">1</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">TESTING</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">FIREWALLED</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">3</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HIDDEN</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">4</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_AND_FAST</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">5</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_AND_FLOODFILL</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">6</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_WITH_INBOUND_TCP</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">7</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_WITH_UDP_DISABLED</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">8</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_I2CP</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">9</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_CLOCK_SKEW</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">10</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_PRIVATE_TCP_ADDRESS</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">11</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_SYMMETRIC_NAT</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">12</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_UDP_PORT_IN_USE</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">13</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_NO_ACTIVE_PEERS_CHECK_CONNECTION_AND_FIREWALL</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">14</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_UDP_DISABLED_AND_TCP_UNSET</td>
-    </tr>
-  </tbody>
-</table>
----
+| Key                                    | Type   | Mô tả                                                                 |
+|----------------------------------------|--------|----------------------------------------------------------------------|
+| `i2p.router.status`                    | String | Trạng thái router dưới dạng văn bản tự do, đã được dịch để hiển thị. |
+| `i2p.router.uptime`                    | long   | Thời gian hoạt động của router tính bằng mili giây. Một số phiên bản i2pd cũ hơn có thể trả về chuỗi ký tự. |
+| `i2p.router.version`                   | String | Phiên bản đầy đủ của router.                                         |
+| `i2p.router.net.status`                | long   | Mã trạng thái mạng; xem bảng dưới đây.                               |
+| `i2p.router.net.bw.inbound.1s`         | double | Băng thông đầu vào hiện tại tính bằng byte mỗi giây.                 |
+| `i2p.router.net.bw.inbound.15s`        | double | Băng thông trung bình đầu vào trong 15 giây tính bằng byte mỗi giây. |
+| `i2p.router.net.bw.outbound.1s`        | double | Băng thông đầu ra hiện tại tính bằng byte mỗi giây.                  |
+| `i2p.router.net.bw.outbound.15s`       | double | Băng thông trung bình đầu ra trong 15 giây tính bằng byte mỗi giây.  |
+| `i2p.router.net.tunnels.participating` | long   | Số lượng tunnel mà router này đang tham gia.                         |
+#### Liệt kê mã trạng thái (`i2p.router.net.status`)
+
+| Code | Ý nghĩa                                             |
+|------|-----------------------------------------------------|
+| 0    | Thành công                                          |
+| 1    | ĐANG KIỂM TRA                                       |
+| 2    | BỊ CHẶN BỞI TƯỜNG LỬA                               |
+| 3    | ẨN                                                 |
+| 4    | CẢNH BÁO: BỊ CHẶN BỞI TƯỜNG LỬA VÀ KẾT NỐI NHANH     |
+| 5    | CẢNH BÁO: BỊ CHẶN BỞI TƯỜNG LỬA VÀ LÀ MÁY FLOODFILL   |
+| 6    | CẢNH BÁO: BỊ CHẶN BỞI TƯỜNG LỬA NHƯNG CÓ TCP ĐẦU VÀO |
+| 7    | CẢNH BÁO: BỊ CHẶN BỞI TƯỜNG LỬA VÀ UDP BỊ TẮT        |
+| 8    | LỖI I2CP                                            |
+| 9    | LỖI ĐỒNG HỒ LỆCH THỜI GIAN                          |
+| 10   | LỖI ĐỊA CHỈ TCP RIÊNG TƯ                             |
+| 11   | LỖI NAT ĐỐI XỨNG                                    |
+| 12   | LỖI CỔNG UDP ĐÃ ĐƯỢC SỬ DỤNG                        |
+| 13   | LỖI: KHÔNG CÓ PEER NÀO HOẠT ĐỘNG, KIỂM TRA KẾT NỐI VÀ TƯỜNG LỬA |
+| 14   | LỖI: UDP BỊ TẮT VÀ TCP CHƯA ĐƯỢC THIẾT LẬP           |
+#### Cơ sở dữ liệu mạng và các trường ngang hàng
+
+| Key                                  | Type    | Mô tả                                              |
+|--------------------------------------|---------|----------------------------------------------------|
+| `i2p.router.netdb.knownpeers`        | long    | Số lượng peer đã biết, không bao gồm router cục bộ. |
+| `i2p.router.netdb.activepeers`       | long    | Số lượng peer đang hoạt động.                     |
+| `i2p.router.netdb.fastpeers`         | long    | Số lượng peer được phân loại là nhanh.            |
+| `i2p.router.netdb.highcapacitypeers` | long    | Số lượng peer được phân loại là có sức chứa cao.  |
+| `i2p.router.netdb.isreseeding`       | boolean | Cho biết liệu việc reseed có đang được thực hiện hay không. |
+**Các Trường Phản Hồi (result)** Theo tài liệu chính thức (GetI2P): - `i2p.router.status` (String) — trạng thái có thể đọc được - `i2p.router.uptime` (long) — mili giây (hoặc chuỗi cho i2pd cũ hơn) :contentReference[oaicite:0]{index=0} - `i2p.router.version` (String) — chuỗi phiên bản :contentReference[oaicite:1]{index=1} - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — băng thông đến theo B/s :contentReference[oaicite:2]{index=2} - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — băng thông đi theo B/s :contentReference[oaicite:3]{index=3} - `i2p.router.net.status` (long) — mã trạng thái số (xem enum bên dưới) :contentReference[oaicite:4]{index=4} - `i2p.router.net.tunnels.participating` (long) — số lượng tunnel tham gia :contentReference[oaicite:5]{index=5} - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — thống kê peer của netDB :contentReference[oaicite:6]{index=6} - `i2p.router.netdb.isreseeding` (boolean) — có đang thực hiện reseed hay không :contentReference[oaicite:7]{index=7} - `i2p.router.netdb.knownpeers` (long) — tổng số peer đã biết :contentReference[oaicite:8]{index=8}
 
 ### 4.2 GetRate
 
-Được sử dụng để lấy các chỉ số tốc độ (ví dụ: băng thông, tỷ lệ thành công tunnel) trong một khoảng thời gian nhất định.
+---
 
-**Ví dụ Yêu cầu**
+| Tham số | Kiểu   | Mô tả                        |
+|---------|--------|------------------------------|
+| `Stat`  | Chuỗi  | Tên RateStat của bộ định tuyến. |
+| `Period`| dài    | Chu kỳ tính theo mili giây.  |
+Được sử dụng để lấy các chỉ số tốc độ (ví dụ: băng thông, tỷ lệ thành công tunnel) trong một khoảng thời gian nhất định.
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -242,26 +196,33 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**Phản hồi mẫu**
+**Ví dụ Yêu cầu**
 
 ```json
 {
   "jsonrpc": "2.0",
   "id": "3",
   "result": {
-    "Rate": 12345.67
+    "Result": 12345.67
   }
 }
 ```
----
+**Phản hồi mẫu**
 
 ### 4.3 RouterManager
 
+---
+
+| Tham số             | Kết quả           | Mô tả                                                                |
+|---------------------|-------------------|----------------------------------------------------------------------|
+| `Restart`           | null              | Khởi động lại bộ định tuyến ngay lập tức.                            |
+| `RestartGraceful`   | null              | Khởi động lại sau khi các tunnel tham gia hết hạn.                  |
+| `Shutdown`          | null              | Tắt bộ định tuyến ngay lập tức.                                     |
+| `ShutdownGraceful`  | null              | Tắt sau khi các tunnel tham gia hết hạn.                            |
+| `Reseed`            | null              | Bắt đầu quá trình reseed cho bộ định tuyến.                         |
+| `FindUpdates`       | boolean hoặc String | Chặn. Tìm kiếm bản cập nhật bộ định tuyến đã ký.                   |
+| `Update`            | String            | Chặn. Bắt đầu cập nhật bộ định tuyến đã ký và trả về trạng thái cuối. |
 Thực hiện các hành động quản trị.
-
-**Các tham số / phương thức được phép**   - `Restart`, `RestartGraceful`   - `Shutdown`, `ShutdownGraceful`   - `Reseed`, `FindUpdates`, `Update` :contentReference[oaicite:10]{index=10}
-
-**Ví dụ Request**
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -276,7 +237,7 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**Phản hồi thành công**
+**Các tham số / phương thức được phép**   - `Restart`, `RestartGraceful`   - `Shutdown`, `ShutdownGraceful`   - `Reseed`, `FindUpdates`, `Update` :contentReference[oaicite:10]{index=10}
 
 ```json
 {
@@ -287,13 +248,29 @@ curl -s -H "Content-Type: application/json" \
   }
 }
 ```
----
+**Ví dụ Request**
 
 ### 4.4 NetworkSetting
 
-Lấy hoặc thiết lập các tham số cấu hình mạng (cổng, upnp, chia sẻ băng thông, v.v.)
+**Phản hồi thành công**
 
-**Ví dụ Request (lấy giá trị hiện tại)**
+---
+
+| Chìa khóa                            | Giá trị được chấp nhận                                   | Mô tả                                                         |
+|--------------------------------------|----------------------------------------------------------|--------------------------------------------------------------|
+| `i2p.router.net.ntcp.port`           | Chuỗi, 1–65535                                          | Cổng NTCP; thay đổi yêu cầu khởi động lại.                  |
+| `i2p.router.net.ntcp.hostname`       | Chuỗi                                                   | Tên máy chủ NTCP; thay đổi yêu cầu khởi động lại.           |
+| `i2p.router.net.ntcp.autoip`         | `always`, `true`, hoặc `false`                          | Tự động chọn địa chỉ cho NTCP.                               |
+| `i2p.router.net.ssu.port`            | Chuỗi, 1–65535                                          | Cổng SSU; thay đổi yêu cầu khởi động lại.                   |
+| `i2p.router.net.ssu.hostname`        | Chuỗi                                                   | Tên máy chủ ngoài SSU; thay đổi yêu cầu khởi động lại.       |
+| `i2p.router.net.ssu.autoip`          | `ssu`, `local,ssu`, `upnp,ssu`, hoặc `local,upnp,ssu`   | Các nguồn phát hiện địa chỉ cho SSU.                         |
+| `i2p.router.net.ssu.detectedip`      | null                                                    | Địa chỉ SSU được phát hiện (chỉ đọc).                        |
+| `i2p.router.net.upnp`                | Chuỗi                                                   | Thiết lập UPnP.                                              |
+| `i2p.router.net.bw.share`            | Chuỗi, 0–100                                            | Phần trăm băng thông dùng cho các tunnel tham gia.          |
+| `i2p.router.net.bw.in`               | Chuỗi số nguyên không âm                                | Giới hạn băng thông vào tính theo KiB/s.                    |
+| `i2p.router.net.bw.out`              | Chuỗi số nguyên không âm                                | Giới hạn băng thông ra tính theo KiB/s.                     |
+| `i2p.router.net.laptopmode`          | Chuỗi                                                   | Thiết lập chế độ máy tính xách tay.                          |
+Lấy hoặc thiết lập các tham số cấu hình mạng (cổng, upnp, chia sẻ băng thông, v.v.)
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -311,7 +288,7 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**Phản Hồi Mẫu**
+**Ví dụ Request (lấy giá trị hiện tại)**
 
 ```json
 {
@@ -322,17 +299,25 @@ curl -s -H "Content-Type: application/json" \
     "i2p.router.net.ssu.port": "5678",
     "i2p.router.net.bw.share": "50",
     "i2p.router.net.upnp": "true",
-    "SettingsSaved": true,
+    "SettingsSaved": false,
     "RestartNeeded": false
   }
 }
 ```
-> Lưu ý: các phiên bản i2pd trước 2.41 có thể trả về các kiểu số thay vì chuỗi — client nên xử lý cả hai. :contentReference[oaicite:11]{index=11}
+**Phản Hồi Mẫu**
 
----
+> Lưu ý: các phiên bản i2pd trước 2.41 có thể trả về các kiểu số thay vì chuỗi — client nên xử lý cả hai. :contentReference[oaicite:11]{index=11}
 
 ### 4.5 Cài đặt Nâng cao
 
+---
+
+| Tham số | Kiểu | Mô tả |
+|-----------|---------------------|-----------------------------------------------------------------------|
+| `get`     | Chuỗi              | Trả về một thiết lập bên trong đối tượng kết quả `get`.                     |
+| `getAll`  | không áp dụng       | Trả về toàn bộ bản đồ cấu hình bên trong `getAll`.               |
+| `set`     | Bản đồ<String, String> | Cập nhật các thiết lập được cung cấp mà không xóa các khóa khác.            |
+| `setAll`  | Bản đồ<String, String> | **Có tính phá hủy:** thay thế tất cả các thiết lập và xóa các khóa không được cung cấp. |
 Cho phép thao tác các tham số bên trong router.
 
 **Ví dụ Yêu cầu**
@@ -345,7 +330,7 @@ curl -s -H "Content-Type: application/json" \
         "method": "AdvancedSettings",
         "params": {
           "Token": "a1b2c3d4e5",
-          "Set": {
+          "set": {
             "router.sharePercentage": "75",
             "i2np.flushInterval": "6000"
           }
@@ -359,87 +344,73 @@ curl -s -H "Content-Type: application/json" \
 {
   "jsonrpc": "2.0",
   "id": "6",
+  "result": {}
+}
+```
+---
+
+### Mã Lỗi Chuẩn JSON-RPC2
+
+---
+
+| Tham số | Kiểu | Mô tả |
+|-----------|--------|-----------------------------|
+| `Echo`    | Chuỗi | Giá trị được trả về như `Result`. |
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "7",
+  "method": "Echo",
+  "params": {
+    "Token": "a1b2c3d4e5",
+    "Echo": "hello"
+  }
+}
+```
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "7",
   "result": {
-    "Set": {
-      "router.sharePercentage": "75",
-      "i2np.flushInterval": "6000"
-    }
+    "Result": "hello"
   }
 }
 ```
 ---
 
-## 5. Mã Lỗi
-
-### Mã Lỗi Chuẩn JSON-RPC2
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32700</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">JSON parse error</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32600</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid request</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32601</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Method not found</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32602</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid parameters</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32603</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Internal error</td>
-    </tr>
-  </tbody>
-</table>
 ### Mã Lỗi Cụ Thể của I2PControl
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32001</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid password provided</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32002</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">No authentication token presented</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32003</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Authentication token doesn't exist</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32004</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The provided authentication token was expired and will be removed</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32005</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The version of the I2PControl API used wasn't specified, but is required to be specified</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32006</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The version of the I2PControl API specified is not supported by I2PControl</td>
-    </tr>
-  </tbody>
-</table>
----
+Quản lý chính I2PControl. Trình xử lý Java hiện tại hỗ trợ thay đổi mật khẩu.
+
+| Tham số               | Kiểu   | Mô tả                                                                      |
+|-----------------------|--------|----------------------------------------------------------------------------|
+| `i2pcontrol.password` | Chuỗi  | Đặt mật khẩu I2PControl mới và hủy các mã xác thực hiện tại.               |
+Kết quả chứa `SettingsSaved`. Nếu mật khẩu đã được thay đổi, kết quả cũng chứa `"i2pcontrol.password": null`. Các cài đặt địa chỉ và cổng lắng nghe từ plugin độc lập cũ không còn hiệu lực trong bộ xử lý Java hiện tại.
+
+> **Mật khẩu mặc định:** `itoopie` — đây là mật khẩu gốc từ nhà máy và **nên được thay đổi** ngay lập tức để đảm bảo bảo mật.
+
+## 5. Mã Lỗi
+
+### Mã lỗi JSON-RPC2 tiêu chuẩn
+
+| Code   | Ý nghĩa               |
+|--------|-----------------------|
+| -32700 | Lỗi phân tích JSON   |
+| -32600 | Yêu cầu không hợp lệ  |
+| -32601 | Không tìm thấy phương thức |
+| -32602 | Tham số không hợp lệ  |
+| -32603 | Lỗi nội bộ            |
+### Mã lỗi riêng của I2PControl
+
+| Mã lỗi  | Ý nghĩa                                                                                  |
+|--------|------------------------------------------------------------------------------------------|
+| -32001 | Mật khẩu cung cấp không hợp lệ                                                           |
+| -32002 | Không có token xác thực được cung cấp                                                    |
+| -32003 | Token xác thực không tồn tại                                                             |
+| -32004 | Token xác thực cung cấp đã hết hạn và sẽ bị xóa                                          |
+| -32005 | Phiên bản API I2PControl được dùng chưa được chỉ định, nhưng bắt buộc phải chỉ định      |
+| -32006 | Phiên bản API I2PControl được chỉ định không được I2PControl hỗ trợ                     |
+> **Mật khẩu mặc định:** `itoopie` — đây là mật khẩu gốc từ nhà máy và **nên được thay đổi** ngay lập tức để đảm bảo bảo mật.
 
 ## 6. Sử dụng & Các phương pháp tốt nhất
 
@@ -449,4 +420,4 @@ curl -s -H "Content-Type: application/json" \
 - Chuẩn bị cho những biến đổi nhỏ: một số trường có thể là số hoặc chuỗi, tùy thuộc vào phiên bản I2P.  
 - Ngắt dòng các chuỗi trạng thái dài để hiển thị thân thiện hơn.
 
----
+> **Mật khẩu mặc định:** `itoopie` — đây là mật khẩu gốc từ nhà máy và **nên được thay đổi** ngay lập tức để đảm bảo bảo mật.

@@ -2,57 +2,32 @@
 title: "I2PControl JSON-RPC"
 description: "واجهة برمجة تطبيقات إدارة router عن بُعد عبر تطبيق I2PControl الويب"
 slug: "i2pcontrol"
-lastUpdated: "2025-10"
-accurateFor: "2.10.0"
+lastUpdated: "2026-07-10"
+accurateFor: "2.12.0"
 reviewStatus: "needs-review"
 ---
 
--------------تحقق من إضافة الأشياء--------------
-
 # توثيق واجهة برمجة التطبيقات I2PControl
+
+-------------تحقق من إضافة الأشياء--------------
 
 I2PControl هو واجهة برمجة تطبيقات **JSON-RPC 2.0** مدمجة مع router I2P (منذ الإصدار 0.9.39). يمكّن من المراقبة والتحكم المصادق عليه في router عبر طلبات JSON منظمة.
 
 > **كلمة المرور الافتراضية:** `itoopie` — هذه هي القيمة الافتراضية من المصنع و**يجب تغييرها** فوراً لأغراض الأمان.
 
----
-
 ## 1. نظرة عامة والوصول
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Implementation</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Default Endpoint</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Protocol</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Enabled by Default</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Java I2P (2.10.0+)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>http://127.0.0.1:7657/jsonrpc/</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTP</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">❌ Must be enabled via WebApps (Router Console)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Bundled webapp</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">i2pd (C++ implementation)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>https://127.0.0.1:7650/</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTPS</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">✅ Enabled by default</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Legacy plugin behavior</td>
-    </tr>
-  </tbody>
-</table>
-في حالة Java I2P، يجب أن تذهب إلى **Router Console → WebApps → I2PControl** وتفعيله (اضبطه للبدء تلقائياً). بمجرد تنشيطه، تتطلب جميع الطرق أن تقوم أولاً بالمصادقة وتلقي رمز الجلسة.
-
+| التنفيذ                     | النقطة الطرفية الافتراضية                 | البروتوكول | ممكّن افتراضيًا                             | الملاحظات                  |
+|----------------------------|----------------------------------|----------|------------------------------------------------|------------------------|
+| Java I2P (2.10.0+)         | `http://127.0.0.1:7657/jsonrpc/` | HTTP     | ❌ يجب تمكينه عبر تطبيقات الويب (وحدة تحكم الموجه) | تطبيق ويب مدمج         |
+| i2pd (التنفيذ بلغة C++)    | `https://127.0.0.1:7650/`        | HTTPS    | ✅ ممكّن افتراضيًا                           | سلوك الإضافات القديمة |
 ---
+
+في حالة Java I2P، يجب أن تذهب إلى **Router Console → WebApps → I2PControl** وتفعيله (اضبطه للبدء تلقائياً). بمجرد تنشيطه، تتطلب جميع الطرق أن تقوم أولاً بالمصادقة وتلقي رمز الجلسة.
 
 ## 2. تنسيق JSON-RPC
 
-جميع الطلبات تتبع بنية JSON-RPC 2.0:
+---
 
 ```json
 {
@@ -64,7 +39,7 @@ I2PControl هو واجهة برمجة تطبيقات **JSON-RPC 2.0** مدمجة
   }
 }
 ```
-تتضمن الاستجابة الناجحة حقل `result`؛ وفي حالة الفشل، يتم إرجاع كائن `error`:
+جميع الطلبات تتبع بنية JSON-RPC 2.0:
 
 ```json
 {
@@ -73,7 +48,7 @@ I2PControl هو واجهة برمجة تطبيقات **JSON-RPC 2.0** مدمجة
   "result": { /* data */ }
 }
 ```
-أو
+تتضمن الاستجابة الناجحة حقل `result`؛ وفي حالة الفشل، يتم إرجاع كائن `error`:
 
 ```json
 {
@@ -85,7 +60,7 @@ I2PControl هو واجهة برمجة تطبيقات **JSON-RPC 2.0** مدمجة
   }
 }
 ```
----
+أو
 
 ## 3. تدفق المصادقة
 
@@ -116,17 +91,23 @@ curl -s -H "Content-Type: application/json" \
   }
 }
 ```
-يجب أن تتضمن هذا `Token` في جميع الطلبات اللاحقة ضمن `params`.
-
+| الحقل      | الاتجاه     | النوع  | الوصف                                                      |
+|------------|-----------|--------|----------------------------------------------------------|
+| `API`      | طلب       | long   | إصدار واجهة برمجة تطبيقات I2PControl الذي يطلبه العميل. استخدم `1`. |
+| `Password` | طلب       | String | كلمة المرور المستخدمة للمصادقة مع I2PControl.             |
+| `API`      | استجابة   | long   | إصدار واجهة برمجة التطبيقات الأساسي المُنفَّذ من قبل الخادم.     |
+| `Token`    | استجابة   | String | رمز المصادقة المستخدم للطلبات اللاحقة.                     |
 ---
+
+يجب أن تتضمن هذا `Token` في جميع الطلبات اللاحقة ضمن `params`.
 
 ## 4. الطرق والنقاط النهائية
 
 ### 4.1 معلومات الموجه (RouterInfo)
 
-يجلب بيانات القياس الرئيسية حول الـ router.
+---
 
-**مثال على الطلب**
+يجلب بيانات القياس الرئيسية حول الـ router.
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -146,87 +127,60 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**حقول الاستجابة (result)**   وفقاً للوثائق الرسمية (GetI2P):   - `i2p.router.status` (String) — حالة قابلة للقراءة البشرية   - `i2p.router.uptime` (long) — بالميلي ثانية (أو نص لإصدارات i2pd الأقدم) :contentReference[oaicite:0]{index=0}   - `i2p.router.version` (String) — نص الإصدار :contentReference[oaicite:1]{index=1}   - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — عرض النطاق الداخل بوحدة B/s :contentReference[oaicite:2]{index=2}   - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — عرض النطاق الخارج بوحدة B/s :contentReference[oaicite:3]{index=3}   - `i2p.router.net.status` (long) — رمز الحالة الرقمي (انظر التعداد أدناه) :contentReference[oaicite:4]{index=4}   - `i2p.router.net.tunnels.participating` (long) — عدد الأنفاق المشاركة :contentReference[oaicite:5]{index=5}   - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — إحصائيات النظراء في netDB :contentReference[oaicite:6]{index=6}   - `i2p.router.netdb.isreseeding` (boolean) — ما إذا كانت إعادة البذر نشطة :contentReference[oaicite:7]{index=7}   - `i2p.router.netdb.knownpeers` (long) — إجمالي النظراء المعروفين :contentReference[oaicite:8]{index=8}
+**مثال على الطلب**
 
 #### تعداد رمز الحالة (`i2p.router.net.status`)
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">OK</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">1</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">TESTING</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">FIREWALLED</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">3</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HIDDEN</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">4</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_AND_FAST</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">5</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_AND_FLOODFILL</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">6</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_WITH_INBOUND_TCP</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">7</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_WITH_UDP_DISABLED</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">8</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_I2CP</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">9</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_CLOCK_SKEW</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">10</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_PRIVATE_TCP_ADDRESS</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">11</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_SYMMETRIC_NAT</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">12</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_UDP_PORT_IN_USE</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">13</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_NO_ACTIVE_PEERS_CHECK_CONNECTION_AND_FIREWALL</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">14</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_UDP_DISABLED_AND_TCP_UNSET</td>
-    </tr>
-  </tbody>
-</table>
----
+| المفتاح                                    | النوع   | الوصف                                                             |
+|----------------------------------------|--------|-------------------------------------------------------------------------|
+| `i2p.router.status`                    | سلسلة نصية | حالة الموجه بتنسيق حر، مُترجمة ومخصصة للعرض.             |
+| `i2p.router.uptime`                    | long   | مدة تشغيل الموجه بوحدة الميلي ثانية. قد تُرجع إصدارات i2pd الأقدم سلسلة نصية. |
+| `i2p.router.version`                   | سلسلة نصية | إصدار الموجه الكامل.                                                    |
+| `i2p.router.net.status`                | long   | رمز حالة الشبكة؛ انظر الجدول أدناه.                               |
+| `i2p.router.net.bw.inbound.1s`         | double | عرض النطاق الوارد الحالي بالبايت في الثانية.                          |
+| `i2p.router.net.bw.inbound.15s`        | double | متوسط عرض النطاق الوارد على مدى 15 ثانية بالبايت في الثانية.                |
+| `i2p.router.net.bw.outbound.1s`        | double | عرض النطاق الصادر الحالي بالبايت في الثانية.                         |
+| `i2p.router.net.bw.outbound.15s`       | double | متوسط عرض النطاق الصادر على مدى 15 ثانية بالبايت في الثانية.               |
+| `i2p.router.net.tunnels.participating` | long   | عدد الأنفاق التي يشارك فيها هذا الموجه.                |
+#### تعداد رمز الحالة (`i2p.router.net.status`)
+
+| الكود | المعنى                                             |
+|------|-----------------------------------------------------|
+| 0    | ناجح                                                  |
+| 1    | قيد الاختبار                                             |
+| 2    | محجوب بواسطة جدار ناري                                          |
+| 3    | مخفي                                              |
+| 4    | تحذير: محجوب وسريع                            |
+| 5    | تحذير: محجوب وعامل تكرار                       |
+| 6    | تحذير: محجوب مع اتصال داخلي عبر TCP                    |
+| 7    | تحذير: محجوب مع تعطيل UDP                   |
+| 8    | خطأ في I2CP                                          |
+| 9    | خطأ في توقيت الساعة                                    |
+| 10   | خطأ في عنوان TCP الخاص                           |
+| 11   | خطأ في NAT متماثل                                 |
+| 12   | خطأ: منفذ UDP قيد الاستخدام                               |
+| 13   | خطأ: لا توجد عقد نشطة، تحقق من الاتصال والجدار الناري |
+| 14   | خطأ: تم تعطيل UDP ولم يتم تعيين TCP                    |
+#### قاعدة البيانات الشبكية (NetDB) وحقول العقدة
+
+| المفتاح                                  | النوع    | الوصف                                        |
+|--------------------------------------|---------|---------------------------------------------|
+| `i2p.router.netdb.knownpeers`        | long    | عدد الأقران المعروفين، باستثناء الراوتر المحلي. |
+| `i2p.router.netdb.activepeers`       | long    | عدد الأقران النشطين.                            |
+| `i2p.router.netdb.fastpeers`         | long    | عدد الأقران المصنّفين على أنهم سريعون.                |
+| `i2p.router.netdb.highcapacitypeers` | long    | عدد الأقران المصنّفين على أنهم عاليو السعة.       |
+| `i2p.router.netdb.isreseeding`       | boolean | ما إذا كان إعادة التزود (reseed) جارٍ تنفيذها.                   |
+**حقول الاستجابة (result)**   وفقاً للوثائق الرسمية (GetI2P):   - `i2p.router.status` (String) — حالة قابلة للقراءة البشرية   - `i2p.router.uptime` (long) — بالميلي ثانية (أو نص لإصدارات i2pd الأقدم) :contentReference[oaicite:0]{index=0}   - `i2p.router.version` (String) — نص الإصدار :contentReference[oaicite:1]{index=1}   - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — عرض النطاق الداخل بوحدة B/s :contentReference[oaicite:2]{index=2}   - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — عرض النطاق الخارج بوحدة B/s :contentReference[oaicite:3]{index=3}   - `i2p.router.net.status` (long) — رمز الحالة الرقمي (انظر التعداد أدناه) :contentReference[oaicite:4]{index=4}   - `i2p.router.net.tunnels.participating` (long) — عدد الأنفاق المشاركة :contentReference[oaicite:5]{index=5}   - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — إحصائيات النظراء في netDB :contentReference[oaicite:6]{index=6}   - `i2p.router.netdb.isreseeding` (boolean) — ما إذا كانت إعادة البذر نشطة :contentReference[oaicite:7]{index=7}   - `i2p.router.netdb.knownpeers` (long) — إجمالي النظراء المعروفين :contentReference[oaicite:8]{index=8}
 
 ### 4.2 GetRate
 
-يُستخدم لجلب مقاييس المعدل (مثل عرض النطاق الترددي، نجاح tunnel) خلال إطار زمني محدد.
+---
 
-**مثال على الطلب**
+| المعامل | النوع | الوصف |
+|-----------|--------|------------------------------|
+| `Stat` | String | اسم RateStat في الموجه. |
+| `Period` | long | فترة المعدل بالميللي ثانية. |
+يُستخدم لجلب مقاييس المعدل (مثل عرض النطاق الترددي، نجاح tunnel) خلال إطار زمني محدد.
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -242,26 +196,33 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**استجابة نموذجية**
+**مثال على الطلب**
 
 ```json
 {
   "jsonrpc": "2.0",
   "id": "3",
   "result": {
-    "Rate": 12345.67
+    "Result": 12345.67
   }
 }
 ```
----
+**استجابة نموذجية**
 
 ### 4.3 RouterManager
 
+---
+
+| المعلمة            | النتيجة           | الوصف                                                                 |
+|--------------------|-------------------|----------------------------------------------------------------------|
+| `Restart`          | null              | يبدأ إعادة تشغيل فورية للراوتر.                                       |
+| `RestartGraceful`  | null              | يعيد التشغيل بعد انتهاء صلاحية النفق المشارك.                          |
+| `Shutdown`         | null              | يبدأ إيقاف فوري للراوتر.                                              |
+| `ShutdownGraceful` | null              | يوقف التشغيل بعد انتهاء صلاحية النفق المشارك.                          |
+| `Reseed`           | null              | يبدأ إعادة زرع الراوتر (reseed).                                      |
+| `FindUpdates`      | قيمة منطقية أو سلسلة نصية | يعمل بشكل مقيد (Blocking). يبحث عن تحديث موقع للراوتر.                 |
+| `Update`           | سلسلة نصية         | يعمل بشكل مقيد (Blocking). يبدأ تحديثًا موقعًا للراوتر ويعيد حالته النهائية. |
 تنفيذ الإجراءات الإدارية.
-
-**المعاملات / الطرق المسموحة**   - `Restart`, `RestartGraceful`   - `Shutdown`, `ShutdownGraceful`   - `Reseed`, `FindUpdates`, `Update` :contentReference[oaicite:10]{index=10}
-
-**مثال على الطلب**
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -276,7 +237,7 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**الاستجابة الناجحة**
+**المعاملات / الطرق المسموحة**   - `Restart`, `RestartGraceful`   - `Shutdown`, `ShutdownGraceful`   - `Reseed`, `FindUpdates`, `Update` :contentReference[oaicite:10]{index=10}
 
 ```json
 {
@@ -287,13 +248,29 @@ curl -s -H "Content-Type: application/json" \
   }
 }
 ```
----
+**مثال على الطلب**
 
 ### 4.4 NetworkSetting
 
-الحصول على أو تعيين معاملات تكوين الشبكة (المنافذ، upnp، مشاركة عرض النطاق الترددي، إلخ)
+**الاستجابة الناجحة**
 
-**مثال على الطلب (الحصول على القيم الحالية)**
+---
+
+| المفتاح                             | القيمة المقبولة                                      | الوصف                                                  |
+|---------------------------------|-----------------------------------------------------|--------------------------------------------------------------|
+| `i2p.router.net.ntcp.port`      | نص، 1–65535                                     | منفذ NTCP؛ يتطلب التغيير إعادة التشغيل.                        |
+| `i2p.router.net.ntcp.hostname`  | نص                                              | اسم المضيف لـ NTCP؛ يتطلب التغيير إعادة التشغيل.                    |
+| `i2p.router.net.ntcp.autoip`    | `always`، `true`، أو `false`                        | اختيار تلقائي للعنوان عبر NTCP.                            |
+| `i2p.router.net.ssu.port`       | نص، 1–65535                                     | منفذ SSU؛ يتطلب التغيير إعادة التشغيل.                         |
+| `i2p.router.net.ssu.hostname`   | نص                                              | اسم المضيف الخارجي لـ SSU؛ يتطلب التغيير إعادة التشغيل.            |
+| `i2p.router.net.ssu.autoip`     | `ssu`، `local,ssu`، `upnp,ssu`، أو `local,upnp,ssu` | مصادر اكتشاف عنوان SSU.                               |
+| `i2p.router.net.ssu.detectedip` | null                                                | العنوان المكتشف لـ SSU (للقراءة فقط).                              |
+| `i2p.router.net.upnp`           | نص                                              | إعداد UPnP.                                                |
+| `i2p.router.net.bw.share`       | نص، 0–100                                       | النسبة المئوية للنطاق الترددي المتاح للمشاركة في الأنفاق. |
+| `i2p.router.net.bw.in`          | نص عدد صحيح غير سالب                         | حد النطاق الترددي الوارد بوحدة كيبيت/ثانية.                            |
+| `i2p.router.net.bw.out`         | نص عدد صحيح غير سالب                         | حد النطاق الترددي الصادر بوحدة كيبيت/ثانية.                           |
+| `i2p.router.net.laptopmode`     | نص                                              | إعداد وضع الكمبيوتر المحمول.                                         |
+الحصول على أو تعيين معاملات تكوين الشبكة (المنافذ، upnp، مشاركة عرض النطاق الترددي، إلخ)
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -311,7 +288,7 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**نموذج الاستجابة**
+**مثال على الطلب (الحصول على القيم الحالية)**
 
 ```json
 {
@@ -322,17 +299,25 @@ curl -s -H "Content-Type: application/json" \
     "i2p.router.net.ssu.port": "5678",
     "i2p.router.net.bw.share": "50",
     "i2p.router.net.upnp": "true",
-    "SettingsSaved": true,
+    "SettingsSaved": false,
     "RestartNeeded": false
   }
 }
 ```
-> ملاحظة: إصدارات i2pd السابقة للإصدار 2.41 قد ترجع أنواع رقمية بدلاً من النصوص — يجب على العملاء التعامل مع كلا النوعين. :contentReference[oaicite:11]{index=11}
+**نموذج الاستجابة**
 
----
+> ملاحظة: إصدارات i2pd السابقة للإصدار 2.41 قد ترجع أنواع رقمية بدلاً من النصوص — يجب على العملاء التعامل مع كلا النوعين. :contentReference[oaicite:11]{index=11}
 
 ### 4.5 الإعدادات المتقدمة
 
+---
+
+| المعلمة | النوع | الوصف |
+|-----------|---------------------|-----------------------------------------------------------------------|
+| `get`     | String              | يعيد إعدادًا واحدًا داخل كائن نتيجة `get`.                     |
+| `getAll`  | n/a                 | يعيد خريطة التهيئة الكاملة داخل `getAll`.               |
+| `set`     | Map<String, String> | يقوم بتحديث الإعدادات المقدمة دون إزالة المفاتيح الأخرى.            |
+| `seAll`   | Map<String, String> | **مدمّر:** يستبدل جميع الإعدادات ويحذف المفاتيح غير المقدمة. |
 يسمح بالتلاعب في معاملات router الداخلية.
 
 **مثال على الطلب**
@@ -345,7 +330,7 @@ curl -s -H "Content-Type: application/json" \
         "method": "AdvancedSettings",
         "params": {
           "Token": "a1b2c3d4e5",
-          "Set": {
+          "set": {
             "router.sharePercentage": "75",
             "i2np.flushInterval": "6000"
           }
@@ -359,87 +344,73 @@ curl -s -H "Content-Type: application/json" \
 {
   "jsonrpc": "2.0",
   "id": "6",
+  "result": {}
+}
+```
+---
+
+### رموز أخطاء JSON-RPC2 المعيارية
+
+---
+
+| المعلمة | النوع | الوصف |
+|-----------|--------|-----------------------------|
+| `Echo`    | سلسلة | القيمة التي تُرجع كـ `Result`. |
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "7",
+  "method": "Echo",
+  "params": {
+    "Token": "a1b2c3d4e5",
+    "Echo": "hello"
+  }
+}
+```
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "7",
   "result": {
-    "Set": {
-      "router.sharePercentage": "75",
-      "i2np.flushInterval": "6000"
-    }
+    "Result": "hello"
   }
 }
 ```
 ---
 
-## 5. رموز الخطأ
-
-### رموز أخطاء JSON-RPC2 المعيارية
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32700</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">JSON parse error</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32600</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid request</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32601</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Method not found</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32602</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid parameters</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32603</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Internal error</td>
-    </tr>
-  </tbody>
-</table>
 ### رموز الأخطاء الخاصة بـ I2PControl
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32001</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid password provided</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32002</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">No authentication token presented</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32003</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Authentication token doesn't exist</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32004</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The provided authentication token was expired and will be removed</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32005</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The version of the I2PControl API used wasn't specified, but is required to be specified</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32006</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The version of the I2PControl API specified is not supported by I2PControl</td>
-    </tr>
-  </tbody>
-</table>
----
+يُدير I2PControl نفسه. يدعم المعالج الحالي لـ Java تغيير كلمات المرور.
+
+| المعلمة | النوع | الوصف |
+|-----------------------|--------|----------------------------------------------------------------------------|
+| `i2pcontrol.password` | نص | تعيّن كلمة مرور جديدة لـ I2PControl وتلغي الرموز المصادقة الحالية. |
+تحتوي النتيجة على `SettingsSaved`. وإذا تم تغيير كلمة المرور، فإن النتيجة تحتوي أيضًا على `"i2pcontrol.password": null`. إعدادات عنوان الاستماع (listen-address) ومنفذ الاستماع (listen-port) من الإضافة القديمة المستقلة غير نشطة في معالج جافا الحالي.
+
+> **كلمة المرور الافتراضية:** `itoopie` — هذه هي القيمة الافتراضية من المصنع و**يجب تغييرها** فوراً لأغراض الأمان.
+
+## 5. رموز الخطأ
+
+### أكواد الأخطاء القياسية لـ JSON-RPC2
+
+| الكود  | المعنى               |
+|--------|---------------------|
+| -32700 | خطأ في تحليل JSON  |
+| -32600 | طلب غير صالح         |
+| -32601 | الطريقة غير موجودة   |
+| -32602 | معلمات غير صالحة     |
+| -32603 | خطأ داخلي            |
+### أكواد الأخطاء الخاصة بـ I2PControl
+
+| الكود   | المعنى                                                                                  |
+|--------|------------------------------------------------------------------------------------------|
+| -32001 | تم إدخال كلمة مرور غير صحيحة                                                                |
+| -32002 | لم يتم تقديم رمز المصادقة                                                        |
+| -32003 | رمز المصادقة غير موجود                                                       |
+| -32004 | انتهت صلاحية رمز المصادقة المقدم وسيتم إزالته                        |
+| -32005 | لم يتم تحديد إصدار واجهة برمجة تطبيقات I2PControl المستخدمة، مع أن ذلك مطلوب |
+| -32006 | الإصدار المحدد من واجهة برمجة تطبيقات I2PControl غير مدعوم من قِبل I2PControl               |
+> **كلمة المرور الافتراضية:** `itoopie` — هذه هي القيمة الافتراضية من المصنع و**يجب تغييرها** فوراً لأغراض الأمان.
 
 ## 6. الاستخدام وأفضل الممارسات
 
@@ -449,4 +420,4 @@ curl -s -H "Content-Type: application/json" \
 - كن مستعداً لاختلافات طفيفة: قد تكون بعض الحقول أرقاماً أو نصوصاً، حسب إصدار I2P.
 - قم بلف سلاسل الحالة الطويلة للحصول على مخرجات سهلة القراءة.
 
----
+> **كلمة المرور الافتراضية:** `itoopie` — هذه هي القيمة الافتراضية من المصنع و**يجب تغييرها** فوراً لأغراض الأمان.

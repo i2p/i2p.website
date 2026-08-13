@@ -2,57 +2,32 @@
 title: "I2PControl JSON-RPC"
 description: "API pro vzdálenou správu routeru přes webovou aplikaci I2PControl"
 slug: "i2pcontrol"
-lastUpdated: "2025-10"
-accurateFor: "2.10.0"
+lastUpdated: "2026-07-10"
+accurateFor: "2.12.0"
 reviewStatus: "needs-review"
 ---
 
--------------zkontrolovat přidání věcí--------------
-
 # Dokumentace I2PControl API
+
+-------------zkontrolovat přidání věcí--------------
 
 I2PControl je **JSON-RPC 2.0** API dodávané s I2P routerem (od verze 0.9.39). Umožňuje autentifikované monitorování a ovládání routeru prostřednictvím strukturovaných JSON požadavků.
 
 > **Výchozí heslo:** `itoopie` — toto je tovární výchozí nastavení a **mělo by být okamžitě změněno** z bezpečnostních důvodů.
 
----
-
 ## 1. Přehled a přístup
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Implementation</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Default Endpoint</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Protocol</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Enabled by Default</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Java I2P (2.10.0+)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>http://127.0.0.1:7657/jsonrpc/</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTP</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">❌ Must be enabled via WebApps (Router Console)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Bundled webapp</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">i2pd (C++ implementation)</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;"><code>https://127.0.0.1:7650/</code></td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HTTPS</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">✅ Enabled by default</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Legacy plugin behavior</td>
-    </tr>
-  </tbody>
-</table>
-V případě Java I2P musíte jít do **Router Console → WebApps → I2PControl** a povolit ho (nastavit na automatické spuštění). Jakmile je aktivní, všechny metody vyžadují, abyste se nejprve autentifikovali a obdrželi token relace.
-
+| Implementace               | Výchozí koncový bod                     | Protokol | Povoleno ve výchozím nastavení                 | Poznámky               |
+|----------------------------|----------------------------------------|----------|------------------------------------------------|------------------------|
+| Java I2P (2.10.0+)         | `http://127.0.0.1:7657/jsonrpc/`       | HTTP     | ❌ Musí být povoleno přes webové aplikace (konzole směrovače) | Dodávaná webová aplikace |
+| i2pd (C++ implementace)    | `https://127.0.0.1:7650/`              | HTTPS    | ✅ Povoleno ve výchozím nastavení               | Chování staršího pluginu |
 ---
+
+V případě Java I2P musíte jít do **Router Console → WebApps → I2PControl** a povolit ho (nastavit na automatické spuštění). Jakmile je aktivní, všechny metody vyžadují, abyste se nejprve autentifikovali a obdrželi token relace.
 
 ## 2. Formát JSON-RPC
 
-Všechny požadavky dodržují strukturu JSON-RPC 2.0:
+---
 
 ```json
 {
@@ -64,7 +39,7 @@ Všechny požadavky dodržují strukturu JSON-RPC 2.0:
   }
 }
 ```
-Úspěšná odpověď obsahuje pole `result`; při selhání je vrácen objekt `error`:
+Všechny požadavky dodržují strukturu JSON-RPC 2.0:
 
 ```json
 {
@@ -73,7 +48,7 @@ Všechny požadavky dodržují strukturu JSON-RPC 2.0:
   "result": { /* data */ }
 }
 ```
-nebo
+Úspěšná odpověď obsahuje pole `result`; při selhání je vrácen objekt `error`:
 
 ```json
 {
@@ -85,7 +60,7 @@ nebo
   }
 }
 ```
----
+nebo
 
 ## 3. Tok autentizace
 
@@ -116,17 +91,23 @@ curl -s -H "Content-Type: application/json" \
   }
 }
 ```
-Tento `Token` musíte zahrnout do všech následujících požadavků v `params`.
-
+| Pole       | Směr      | Typ    | Popis                                                    |
+|------------|-----------|--------|----------------------------------------------------------|
+| `API`      | Požadavek | long   | Verze I2PControl API požadovaná klientem. Použijte `1`.  |
+| `Password` | Požadavek | String | Heslo použité k ověření u I2PControl.                    |
+| `API`      | Odpověď   | long   | Primární verze API implementovaná serverem.              |
+| `Token`    | Odpověď   | String | Ověřovací token použitý pro následné požadavky.         |
 ---
+
+Tento `Token` musíte zahrnout do všech následujících požadavků v `params`.
 
 ## 4. Metody a koncové body
 
 ### 4.1 RouterInfo
 
-Získává klíčovou telemetrii o routeru.
+---
 
-**Příklad požadavku**
+Získává klíčovou telemetrii o routeru.
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -146,87 +127,60 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**Pole odpovědi (result)**   Podle oficiální dokumentace (GetI2P):   - `i2p.router.status` (String) — čitelný stav   - `i2p.router.uptime` (long) — milisekundy (nebo string pro starší i2pd) :contentReference[oaicite:0]{index=0}   - `i2p.router.version` (String) — řetězec verze :contentReference[oaicite:1]{index=1}   - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — příchozí šířka pásma v B/s :contentReference[oaicite:2]{index=2}   - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — odchozí šířka pásma v B/s :contentReference[oaicite:3]{index=3}   - `i2p.router.net.status` (long) — číselný stavový kód (viz výčet níže) :contentReference[oaicite:4]{index=4}   - `i2p.router.net.tunnels.participating` (long) — počet účastnických tunelů :contentReference[oaicite:5]{index=5}   - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — statistiky peerů v netDb :contentReference[oaicite:6]{index=6}   - `i2p.router.netdb.isreseeding` (boolean) — zda je aktivní reseed :contentReference[oaicite:7]{index=7}   - `i2p.router.netdb.knownpeers` (long) — celkový počet známých peerů :contentReference[oaicite:8]{index=8}
+**Příklad požadavku**
 
 #### Status Code Enum (`i2p.router.net.status`)
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">0</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">OK</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">1</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">TESTING</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">2</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">FIREWALLED</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">3</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">HIDDEN</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">4</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_AND_FAST</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">5</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_AND_FLOODFILL</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">6</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_WITH_INBOUND_TCP</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">7</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">WARN_FIREWALLED_WITH_UDP_DISABLED</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">8</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_I2CP</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">9</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_CLOCK_SKEW</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">10</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_PRIVATE_TCP_ADDRESS</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">11</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_SYMMETRIC_NAT</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">12</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_UDP_PORT_IN_USE</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">13</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_NO_ACTIVE_PEERS_CHECK_CONNECTION_AND_FIREWALL</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">14</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">ERROR_UDP_DISABLED_AND_TCP_UNSET</td>
-    </tr>
-  </tbody>
-</table>
----
+| Klíč                                   | Typ    | Popis                                                                  |
+|----------------------------------------|--------|------------------------------------------------------------------------|
+| `i2p.router.status`                    | Řetězec| Volný formát, přeložený stav směrovače určený pro zobrazení.            |
+| `i2p.router.uptime`                    | long   | Doba běhu směrovače v milisekundách. Starší verze i2pd mohou vracet řetězec. |
+| `i2p.router.version`                   | Řetězec| Plná verze směrovače.                                                  |
+| `i2p.router.net.status`                | long   | Kód síťového stavu; viz níže uvedená tabulka.                           |
+| `i2p.router.net.bw.inbound.1s`         | double | Aktuální příchozí šířka pásma v bajtech za sekundu.                    |
+| `i2p.router.net.bw.inbound.15s`        | double | Průměrná příchozí šířka pásma za 15 sekund v bajtech za sekundu.         |
+| `i2p.router.net.bw.outbound.1s`        | double | Aktuální odchozí šířka pásma v bajtech za sekundu.                      |
+| `i2p.router.net.bw.outbound.15s`       | double | Průměrná odchozí šířka pásma za 15 sekund v bajtech za sekundu.         |
+| `i2p.router.net.tunnels.participating` | long   | Počet tunelů, ve kterých tento směrovač účinkuje.                       |
+#### Výčet stavového kódu (`i2p.router.net.status`)
+
+| Kód | Význam                                              |
+|-----|-----------------------------------------------------|
+| 0   | OK                                                  |
+| 1   | TESTOVÁNÍ                                           |
+| 2   | ZABLOKOVÁNO FIREWALLU                               |
+| 3   | SKRYTÝ                                              |
+| 4   | VAROVÁNÍ_ZABLOKOVÁNO_FIREWALLU_A_RYCHLÝ             |
+| 5   | VAROVÁNÍ_ZABLOKOVÁNO_FIREWALLU_A_FLOODFILL           |
+| 6   | VAROVÁNÍ_ZABLOKOVÁNO_FIREWALLU_S_PŘÍCHODNÝM_TCP      |
+| 7   | VAROVÁNÍ_ZABLOKOVÁNO_FIREWALLU_A_UDP_VYPNUTO         |
+| 8   | CHYBA_I2CP                                          |
+| 9   | CHYBA_ROZDÍLU_V_ČASE                                |
+| 10  | CHYBA_SOUKROMÉ_TCP_ADRESY                           |
+| 11  | CHYBA_SYMETRICKÉ_NAT                                |
+| 12  | CHYBA_UDP_PORT_UŽ_OBSAZEN                           |
+| 13  | CHYBA_ŽÁDNÍ_AKTIVNÍ_PARTNEŘI_ZKONTROLUJTE_PŘIPOJENÍ_A_FIREWALL |
+| 14  | CHYBA_UDP_VYPNUTO_A_TCP_NE nastaveno                |
+#### Síťová databáze a pole protějšku
+
+| Klíč                                 | Typ     | Popis                                              |
+|--------------------------------------|---------|----------------------------------------------------|
+| `i2p.router.netdb.knownpeers`        | long    | Počet známých peerů, s výjimkou místního směrovače. |
+| `i2p.router.netdb.activepeers`       | long    | Počet aktivních peerů.                             |
+| `i2p.router.netdb.fastpeers`         | long    | Počet peerů klasifikovaných jako rychlé.           |
+| `i2p.router.netdb.highcapacitypeers` | long    | Počet peerů klasifikovaných jako vysoké kapacity.  |
+| `i2p.router.netdb.isreseeding`       | boolean | Udává, zda probíhá opětovné zasazování (reseed).   |
+**Pole odpovědi (result)**   Podle oficiální dokumentace (GetI2P):   - `i2p.router.status` (String) — čitelný stav   - `i2p.router.uptime` (long) — milisekundy (nebo string pro starší i2pd) :contentReference[oaicite:0]{index=0}   - `i2p.router.version` (String) — řetězec verze :contentReference[oaicite:1]{index=1}   - `i2p.router.net.bw.inbound.1s`, `i2p.router.net.bw.inbound.15s` (double) — příchozí šířka pásma v B/s :contentReference[oaicite:2]{index=2}   - `i2p.router.net.bw.outbound.1s`, `i2p.router.net.bw.outbound.15s` (double) — odchozí šířka pásma v B/s :contentReference[oaicite:3]{index=3}   - `i2p.router.net.status` (long) — číselný stavový kód (viz výčet níže) :contentReference[oaicite:4]{index=4}   - `i2p.router.net.tunnels.participating` (long) — počet účastnických tunelů :contentReference[oaicite:5]{index=5}   - `i2p.router.netdb.activepeers`, `fastpeers`, `highcapacitypeers` (long) — statistiky peerů v netDb :contentReference[oaicite:6]{index=6}   - `i2p.router.netdb.isreseeding` (boolean) — zda je aktivní reseed :contentReference[oaicite:7]{index=7}   - `i2p.router.netdb.knownpeers` (long) — celkový počet známých peerů :contentReference[oaicite:8]{index=8}
 
 ### 4.2 GetRate
 
-Používá se k načtení metrik rychlosti (např. šířka pásma, úspěšnost tunnelů) během daného časového okna.
+---
 
-**Příklad požadavku**
+| Parametr | Typ    | Popis                          |
+|----------|--------|--------------------------------|
+| `Stat`   | Řetězec| Název RateStat směrovače.       |
+| `Period` | long   | Doba výpočtu v milisekundách.  |
+Používá se k načtení metrik rychlosti (např. šířka pásma, úspěšnost tunnelů) během daného časového okna.
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -242,26 +196,33 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**Ukázková odpověď**
+**Příklad požadavku**
 
 ```json
 {
   "jsonrpc": "2.0",
   "id": "3",
   "result": {
-    "Rate": 12345.67
+    "Result": 12345.67
   }
 }
 ```
----
+**Ukázková odpověď**
 
 ### 4.3 RouterManager
 
+---
+
+| Parametr            | Výsledek          | Popis                                                                 |
+|---------------------|-------------------|----------------------------------------------------------------------|
+| `Restart`           | null              | Spustí okamžité restartování směrovače.                               |
+| `RestartGraceful`   | null              | Restartuje po vypršení platnosti zapojených tunelů.                  |
+| `Shutdown`          | null              | Spustí okamžité vypnutí směrovače.                                    |
+| `ShutdownGraceful`  | null              | Vypne po vypršení platnosti zapojených tunelů.                       |
+| `Reseed`            | null              | Spustí reseedování směrovače.                                         |
+| `FindUpdates`       | boolean nebo String | Blokující. Hledá podepsanou aktualizaci směrovače.                   |
+| `Update`            | String            | Blokující. Spustí podepsanou aktualizaci směrovače a vrátí její konečný stav. |
 Provádět administrativní akce.
-
-**Povolené parametry / metody**   - `Restart`, `RestartGraceful`   - `Shutdown`, `ShutdownGraceful`   - `Reseed`, `FindUpdates`, `Update` :contentReference[oaicite:10]{index=10}
-
-**Příklad požadavku**
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -276,7 +237,7 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**Úspěšná odpověď**
+**Povolené parametry / metody**   - `Restart`, `RestartGraceful`   - `Shutdown`, `ShutdownGraceful`   - `Reseed`, `FindUpdates`, `Update` :contentReference[oaicite:10]{index=10}
 
 ```json
 {
@@ -287,13 +248,29 @@ curl -s -H "Content-Type: application/json" \
   }
 }
 ```
----
+**Příklad požadavku**
 
 ### 4.4 NetworkSetting
 
-Získat nebo nastavit parametry konfigurace sítě (porty, upnp, sdílení šířky pásma, atd.)
+**Úspěšná odpověď**
 
-**Příklad požadavku (získání aktuálních hodnot)**
+---
+
+| Klíč                            | Přijatá hodnota                                     | Popis                                                      |
+|---------------------------------|-----------------------------------------------------|------------------------------------------------------------|
+| `i2p.router.net.ntcp.port`      | Řetězec, 1–65535                                    | NTCP port; změna vyžaduje restart.                         |
+| `i2p.router.net.ntcp.hostname`  | Řetězec                                             | NTCP hostname; změna vyžaduje restart.                     |
+| `i2p.router.net.ntcp.autoip`    | `always`, `true` nebo `false`                       | Automatický výběr adresy NTCP.                             |
+| `i2p.router.net.ssu.port`       | Řetězec, 1–65535                                    | SSU port; změna vyžaduje restart.                          |
+| `i2p.router.net.ssu.hostname`   | Řetězec                                             | Externí SSU hostname; změna vyžaduje restart.              |
+| `i2p.router.net.ssu.autoip`     | `ssu`, `local,ssu`, `upnp,ssu` nebo `local,upnp,ssu`| Zdroje detekce adresy pro SSU.                             |
+| `i2p.router.net.ssu.detectedip` | null                                                | Pouze pro čtení, zjištěná SSU adresa.                      |
+| `i2p.router.net.upnp`           | Řetězec                                             | Nastavení UPnP.                                            |
+| `i2p.router.net.bw.share`       | Řetězec, 0–100                                      | Procento šířky pásma dostupné pro účast v tunelech.        |
+| `i2p.router.net.bw.in`          | Řetězec s nezáporným celým číslem                  | Limit vstupní šířky pásma v KiB/s.                         |
+| `i2p.router.net.bw.out`         | Řetězec s nezáporným celým číslem                  | Limit výstupní šířky pásma v KiB/s.                        |
+| `i2p.router.net.laptopmode`     | Řetězec                                             | Nastavení režimu notebooku.                                |
+Získat nebo nastavit parametry konfigurace sítě (porty, upnp, sdílení šířky pásma, atd.)
 
 ```bash
 curl -s -H "Content-Type: application/json" \
@@ -311,7 +288,7 @@ curl -s -H "Content-Type: application/json" \
       }' \
   http://127.0.0.1:7657/jsonrpc/
 ```
-**Ukázková odpověď**
+**Příklad požadavku (získání aktuálních hodnot)**
 
 ```json
 {
@@ -322,17 +299,25 @@ curl -s -H "Content-Type: application/json" \
     "i2p.router.net.ssu.port": "5678",
     "i2p.router.net.bw.share": "50",
     "i2p.router.net.upnp": "true",
-    "SettingsSaved": true,
+    "SettingsSaved": false,
     "RestartNeeded": false
   }
 }
 ```
-> Poznámka: verze i2pd starší než 2.41 mohou vracet číselné typy namísto řetězců — klienti by měli zvládnout oba případy. :contentReference[oaicite:11]{index=11}
+**Ukázková odpověď**
 
----
+> Poznámka: verze i2pd starší než 2.41 mohou vracet číselné typy namísto řetězců — klienti by měli zvládnout oba případy. :contentReference[oaicite:11]{index=11}
 
 ### 4.5 Pokročilé nastavení
 
+---
+
+| Parametr | Typ | Popis |
+|-----------|-----|-------|
+| `get` | Řetězec | Vrací jedno nastavení uvnitř objektu výsledku `get`. |
+| `getAll` | n/a | Vrací kompletní mapu konfigurace uvnitř `getAll`. |
+| `set` | Mapa&lt;Řetězec, Řetězec&gt; | Aktualizuje dodaná nastavení, aniž by odstranila ostatní klíče. |
+| `setAll` | Mapa&lt;Řetězec, Řetězec&gt; | **Ničivé:** nahradí všechna nastavení a odstraní klíče, které nebyly poskytnuty. |
 Umožňuje manipulaci s interními parametry routeru.
 
 **Příklad požadavku**
@@ -345,7 +330,7 @@ curl -s -H "Content-Type: application/json" \
         "method": "AdvancedSettings",
         "params": {
           "Token": "a1b2c3d4e5",
-          "Set": {
+          "set": {
             "router.sharePercentage": "75",
             "i2np.flushInterval": "6000"
           }
@@ -359,87 +344,73 @@ curl -s -H "Content-Type: application/json" \
 {
   "jsonrpc": "2.0",
   "id": "6",
+  "result": {}
+}
+```
+---
+
+### Standardní chybové kódy JSON-RPC2
+
+---
+
+| Parametr | Typ | Popis |
+|-----------|--------|-----------------------------|
+| `Echo`    | Řetězec | Hodnota vrácená jako `Result`. |
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "7",
+  "method": "Echo",
+  "params": {
+    "Token": "a1b2c3d4e5",
+    "Echo": "hello"
+  }
+}
+```
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "7",
   "result": {
-    "Set": {
-      "router.sharePercentage": "75",
-      "i2np.flushInterval": "6000"
-    }
+    "Result": "hello"
   }
 }
 ```
 ---
 
-## 5. Kódy chyb
-
-### Standardní chybové kódy JSON-RPC2
-
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32700</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">JSON parse error</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32600</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid request</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32601</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Method not found</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32602</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid parameters</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32603</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Internal error</td>
-    </tr>
-  </tbody>
-</table>
 ### I2PControl specifické chybové kódy
 
-<table style="width:100%; border-collapse:collapse; margin-bottom:1.5rem;">
-  <thead>
-    <tr>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Code</th>
-      <th style="border:1px solid var(--color-border); padding:0.6rem; text-align:left; background:var(--color-bg-secondary);">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32001</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Invalid password provided</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32002</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">No authentication token presented</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32003</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">Authentication token doesn't exist</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32004</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The provided authentication token was expired and will be removed</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32005</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The version of the I2PControl API used wasn't specified, but is required to be specified</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">-32006</td>
-      <td style="border:1px solid var(--color-border); padding:0.6rem;">The version of the I2PControl API specified is not supported by I2PControl</td>
-    </tr>
-  </tbody>
-</table>
----
+Spravuje samotné I2PControl. Aktuální Java obsluha podporuje změnu hesla.
+
+| Parametr                   | Typ    | Popis                                                                 |
+|----------------------------|--------|-----------------------------------------------------------------------|
+| `i2pcontrol.password`      | String | Nastaví nové heslo I2PControl a zruší stávající ověřovací tokeny.     |
+Výsledek obsahuje `SettingsSaved`. Pokud bylo heslo změněno, výsledek také obsahuje `"i2pcontrol.password": null`. Nastavení listen-address a listen-port z běžného samostatného pluginu nejsou v aktuálním Java handleru aktivní.
+
+> **Výchozí heslo:** `itoopie` — toto je tovární výchozí nastavení a **mělo by být okamžitě změněno** z bezpečnostních důvodů.
+
+## 5. Kódy chyb
+
+### Standardní kódy chyb JSON-RPC2
+
+| Kód    | Význam               |
+|--------|----------------------|
+| -32700 | Chyba parsování JSON |
+| -32600 | Neplatný požadavek    |
+| -32601 | Metoda nenalezena    |
+| -32602 | Neplatné parametry   |
+| -32603 | Vnitřní chyba        |
+### Specifické chybové kódy I2PControl
+
+| Kód    | Význam                                                                                   |
+|--------|------------------------------------------------------------------------------------------|
+| -32001 | Bylo zadáno neplatné heslo                                                               |
+| -32002 | Nebyl předložen žádný ověřovací token                                                     |
+| -32003 | Ověřovací token neexistuje                                                               |
+| -32004 | Zadaný ověřovací token vypršel a bude odstraněn                                          |
+| -32005 | Verze I2PControl API nebyla uvedena, ale je vyžadována                                  |
+| -32006 | Uvedená verze I2PControl API není službou I2PControl podporována                         |
+> **Výchozí heslo:** `itoopie` — toto je tovární výchozí nastavení a **mělo by být okamžitě změněno** z bezpečnostních důvodů.
 
 ## 6. Použití a nejlepší postupy
 
@@ -449,4 +420,4 @@ curl -s -H "Content-Type: application/json" \
 - Buďte připraveni na drobné variace: některá pole mohou být čísla nebo řetězce v závislosti na verzi I2P.
 - Zalamujte dlouhé stavové řetězce pro přívětivý výstup pro zobrazení.
 
----
+> **Výchozí heslo:** `itoopie` — toto je tovární výchozí nastavení a **mělo by být okamžitě změněno** z bezpečnostních důvodů.
