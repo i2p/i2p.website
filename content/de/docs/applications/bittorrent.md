@@ -2,8 +2,8 @@
 title: "Bittorrent über I2P"
 description: "Protokollspezifikationen für BitTorrent-Clients und -Tracker auf I2P"
 slug: "bittorrent"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-08"
+accurateFor: "0.9.70"
 ---
 
 Es gibt mehrere BitTorrent-Clients und -Tracker auf I2P. Da I2P-Adressierung eine Destination anstelle einer IP-Adresse und eines Ports verwendet, sind geringfügige Änderungen an Tracker- und Client-Software für den Betrieb auf I2P erforderlich. Diese Änderungen sind unten spezifiziert. Beachten Sie sorgfältig die Richtlinien für die Kompatibilität mit älteren I2P-Clients und -Trackern.
@@ -149,6 +149,12 @@ In einer Torrent-Datei ist der "nodes"-Schlüssel des trackerlosen Torrent-Wört
 ## Datagram (UDP) Tracker
 
 Die Spezifikation für UDP announces in I2P wurde im Juni 2025 finalisiert. Unterstützung in verschiedenen I2P-Clients und Trackern wird später in 2025 ausgerollt. Unterschiede zu [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) sind in [der UDP announce-Spezifikation](/docs/specs/udp-announces/) dokumentiert. Die Spezifikation erfordert auch Unterstützung für [die neuen Datagram 2/3-Formate](/docs/specs/datagrams/).
+
+---
+
+## Zusätzliche Informationen
+
+Eine vorläufige Spezifikation zur Berechnung des erlaubten Fast-Set ist in [Vorschlag 172](/proposals/172-bep6-allowed-fast) enthalten.
 
 ---
 

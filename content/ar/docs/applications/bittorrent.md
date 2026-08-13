@@ -2,8 +2,8 @@
 title: "Bittorrent عبر I2P"
 description: "مواصفات البروتوكول لعملاء BitTorrent ومتتبعات الملفات على I2P"
 slug: "bittorrent"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-08"
+accurateFor: "0.9.70"
 ---
 
 يوجد عدة عملاء وخوادم تتبع bittorrent على I2P. نظراً لأن عنونة I2P تستخدم Destination بدلاً من عنوان IP ومنفذ، فإن تغييرات طفيفة مطلوبة على برامج خوادم التتبع والعملاء للعمل على I2P. هذه التغييرات محددة أدناه. لاحظ بعناية الإرشادات للتوافق مع عملاء وخوادم تتبع I2P الأقدم.
@@ -149,6 +149,12 @@ I2P PEX يعتمد على ut_pex. حيث أنه لا يبدو أن هناك مو
 ## متتبعات Datagram (UDP)
 
 تم الانتهاء من مواصفات UDP announces في I2P في 2025-06. سيتم طرح الدعم في عملاء I2P والـ trackers المختلفة لاحقاً في عام 2025. الاختلافات عن [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) موثقة في [مواصفات UDP announce](/docs/specs/udp-announces/). تتطلب المواصفات أيضاً دعم [تنسيقات Datagram 2/3 الجديدة](/docs/specs/datagrams/).
+
+---
+
+## معلومات إضافية
+
+توجد مواصفات أولية لحساب مجموعة السرعة السريعة المسموح بها في [الاقتراح 172](/proposals/172-bep6-allowed-fast)
 
 ---
 

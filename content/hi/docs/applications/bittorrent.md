@@ -2,8 +2,8 @@
 title: "I2P पर Bittorrent"
 description: "I2P पर BitTorrent clients और trackers के लिए प्रोटोकॉल विनिर्देश"
 slug: "bittorrent"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-08"
+accurateFor: "0.9.70"
 ---
 
 I2P पर कई bittorrent clients और trackers उपलब्ध हैं। चूंकि I2P addressing IP और port के बजाय Destination का उपयोग करती है, I2P पर संचालन के लिए tracker और client software में मामूली बदलाव आवश्यक हैं। ये बदलाव नीचे निर्दिष्ट हैं। पुराने I2P clients और trackers के साथ संगतता के लिए दिशानिर्देशों को ध्यान से नोट करें।
@@ -149,6 +149,12 @@ Compact node info 54 बाइट्स का है (20 बाइट Node ID +
 ## डेटाग्राम (UDP) ट्रैकर्स
 
 I2P में UDP announces के लिए स्पेसिफिकेशन 2025-06 में अंतिम रूप दिया गया था। विभिन्न I2P clients और trackers में समर्थन 2025 में बाद में उपलब्ध होगा। [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) से अंतर [UDP announce specification](/docs/specs/udp-announces/) में प्रलेखित है। स्पेसिफिकेशन में [नए Datagram 2/3 formats](/docs/specs/datagrams/) के लिए समर्थन की भी आवश्यकता है।
+
+---
+
+## अतिरिक्त जानकारी
+
+अनुमत फास्ट सेट की गणना के लिए एक प्रारंभिक विनिर्देश [प्रस्ताव 172](/proposals/172-bep6-allowed-fast) में दिया गया है।
 
 ---
 

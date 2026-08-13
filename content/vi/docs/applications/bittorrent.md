@@ -2,8 +2,8 @@
 title: "Bittorrent trên I2P"
 description: "Đặc tả giao thức cho các client BitTorrent và tracker trên I2P"
 slug: "bittorrent"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-08"
+accurateFor: "0.9.70"
 ---
 
 Có một số client và tracker bittorrent trên I2P. Vì địa chỉ I2P sử dụng Destination thay vì IP và port, nên cần có một số thay đổi nhỏ đối với phần mềm tracker và client để hoạt động trên I2P. Những thay đổi này được mô tả bên dưới. Lưu ý kỹ các hướng dẫn về khả năng tương thích với các client và tracker I2P cũ hơn.
@@ -153,6 +153,12 @@ Trong file torrent, khóa "nodes" của từ điển torrent trackerless vẫn �
 ---
 
 ## Thông Tin Bổ Sung
+
+Một đặc tả sơ bộ để tính toán tập hợp nhanh được phép đã được nêu trong [Đề xuất 172](/proposals/172-bep6-allowed-fast)
+
+---
+
+## Thông tin bổ sung
 
 - Các tiêu chuẩn I2P bittorrent thường được thảo luận trên [zzz.i2p](http://zzz.i2p/).
 - Một biểu đồ về khả năng của phần mềm tracker hiện tại cũng [có sẵn tại đây](http://zzz.i2p/files/trackers.html).

@@ -2,8 +2,8 @@
 title: "通过 I2P 使用 BitTorrent"
 description: "I2P 上 BitTorrent 客户端和追踪器的协议规范"
 slug: "bittorrent"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-08"
+accurateFor: "0.9.70"
 ---
 
 I2P 上有多个 bittorrent 客户端和 tracker。由于 I2P 寻址使用 Destination 而不是 IP 和端口，因此需要对 tracker 和客户端软件进行少量修改以在 I2P 上运行。这些修改在下文中进行了说明。请仔细注意与旧版 I2P 客户端和 tracker 兼容性的指导原则。
@@ -149,6 +149,12 @@ I2P PEX 基于 ut_pex。由于似乎没有 ut_pex 的正式规范可用，可能
 ## 数据报 (UDP) Tracker
 
 I2P 中 UDP announce 的规范已于 2025 年 6 月最终确定。各种 I2P 客户端和 tracker 的支持将在 2025 年晚些时候陆续推出。与 [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) 的差异记录在 [UDP announce 规范](/docs/specs/udp-announces/) 中。该规范还要求支持 [新的 Datagram 2/3 格式](/docs/specs/datagrams/)。
+
+---
+
+## 附加信息
+
+关于计算允许的快速集合的初步规范见[提案 172](/proposals/172-bep6-allowed-fast)
 
 ---
 

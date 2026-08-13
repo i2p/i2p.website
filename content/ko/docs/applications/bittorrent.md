@@ -2,8 +2,8 @@
 title: "I2P를 통한 Bittorrent"
 description: "I2P에서 BitTorrent 클라이언트와 트래커를 위한 프로토콜 사양"
 slug: "bittorrent"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-08"
+accurateFor: "0.9.70"
 ---
 
 I2P에는 여러 bittorrent 클라이언트와 트래커가 있습니다. I2P 주소 체계는 IP와 포트 대신 Destination을 사용하므로, I2P에서 작동하려면 트래커와 클라이언트 소프트웨어에 약간의 변경이 필요합니다. 이러한 변경 사항은 아래에 명시되어 있습니다. 기존 I2P 클라이언트 및 트래커와의 호환성을 위한 지침을 주의 깊게 확인하시기 바랍니다.
@@ -149,6 +149,12 @@ Compact node info는 20바이트 Node ID + 4바이트 IP + 2바이트 포트 대
 ## 데이터그램 (UDP) 트래커
 
 I2P의 UDP announce 사양은 2025년 6월에 확정되었습니다. 다양한 I2P 클라이언트와 tracker에서의 지원은 2025년 후반에 순차적으로 출시될 예정입니다. [BEP 15](http://www.bittorrent.org/beps/bep_0015.html)와의 차이점은 [UDP announce 사양](/docs/specs/udp-announces/)에 문서화되어 있습니다. 이 사양은 또한 [새로운 Datagram 2/3 형식](/docs/specs/datagrams/) 지원을 요구합니다.
+
+---
+
+## 추가 정보
+
+빠른 집합(fast set)을 계산하기 위한 예비 사양은 [제안 172](/proposals/172-bep6-allowed-fast)에 있습니다.
 
 ---
 

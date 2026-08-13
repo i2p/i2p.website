@@ -1318,5 +1318,137 @@
     "segments": 78,
     "cache_hits": 59,
     "cache_misses": 19
+  },
+  {
+    "timestamp": "2026-08-13T19:50:07.668148Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/zh/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "zh",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-08-13T19:50:09.428301Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/hi/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "hi",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-08-13T19:50:09.526160Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/de/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "de",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-08-13T19:50:09.670927Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/tr/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "tr",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-08-13T19:50:09.696989Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ar/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "ar",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-08-13T19:50:10.126435Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/fr/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "fr",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-08-13T19:50:10.585331Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/es/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "es",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-08-13T19:50:10.763931Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/pt/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "pt",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-08-13T19:50:11.097465Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ko/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "ko",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-08-13T19:50:11.132526Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/cs/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "cs",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-08-13T19:50:11.397662Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ru/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "ru",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-08-13T19:50:12.026819Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/applications/bittorrent.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/vi/docs/applications/bittorrent.md",
+    "source_lang": "en",
+    "target_lang": "vi",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 80,
+    "cache_hits": 78,
+    "cache_misses": 2
   }
 ]

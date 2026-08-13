@@ -2,8 +2,8 @@
 title: "Bittorrent přes I2P"
 description: "Specifikace protokolu pro BitTorrent klienty a trackery na I2P"
 slug: "bittorrent"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-08"
+accurateFor: "0.9.70"
 ---
 
 Na I2P existuje několik bittorrent klientů a trackerů. Protože I2P adresování používá Destination namísto IP a portu, jsou potřeba menší změny v tracker a klientském softwaru pro provoz na I2P. Tyto změny jsou specifikovány níže. Pozorně si všimněte pokynů pro kompatibilitu se staršími I2P klienty a trackery.
@@ -153,6 +153,12 @@ Specifikace pro UDP announces v I2P byla finalizována v červnu 2025. Podpora v
 ---
 
 ## Dodatečné informace
+
+Předběžná specifikace pro výpočet povolené rychlé sady je uvedena v [Návrhu 172](/proposals/172-bep6-allowed-fast)
+
+---
+
+## Další informace
 
 - I2P bittorrent standardy se obecně diskutují na [zzz.i2p](http://zzz.i2p/).
 - Graf současných možností tracker softwaru je [také dostupný tam](http://zzz.i2p/files/trackers.html).

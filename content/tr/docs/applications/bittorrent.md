@@ -2,8 +2,8 @@
 title: "I2P üzerinden Bittorrent"
 description: "I2P üzerindeki BitTorrent istemcileri ve tracker'ları için protokol spesifikasyonları"
 slug: "bittorrent"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-08"
+accurateFor: "0.9.70"
 ---
 
 I2P üzerinde birkaç bittorrent istemcisi ve tracker bulunmaktadır. I2P adresleme sistemi IP ve port yerine Destination kullandığından, tracker ve istemci yazılımlarında I2P üzerinde çalışabilmek için küçük değişiklikler gereklidir. Bu değişiklikler aşağıda belirtilmiştir. Eski I2P istemcileri ve tracker'ları ile uyumluluk yönergelerine dikkatli bir şekilde uyun.
@@ -153,6 +153,12 @@ I2P'de UDP duyurularının spesifikasyonu 2025-06'da tamamlandı. Çeşitli I2P 
 ---
 
 ## Ek Bilgiler
+
+İzin verilen hızlı seti hesaplamak için ön bir belirtim [Teklif 172](/proposals/172-bep6-allowed-fast) adresindedir
+
+---
+
+## Ek Bilgi
 
 - I2P bittorrent standartları genellikle [zzz.i2p](http://zzz.i2p/) üzerinde tartışılır.
 - Mevcut tracker yazılımı yeteneklerinin bir tablosu [orada da mevcuttur](http://zzz.i2p/files/trackers.html).

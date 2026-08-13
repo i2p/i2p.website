@@ -2,8 +2,8 @@
 title: "Bittorrent sobre I2P"
 description: "Especificaciones de protocolo para clientes BitTorrent y trackers en I2P"
 slug: "bittorrent"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-08"
+accurateFor: "0.9.70"
 ---
 
 Hay varios clientes y trackers de BitTorrent en I2P. Como el direccionamiento de I2P utiliza un Destination en lugar de una IP y puerto, se requieren cambios menores en el software del tracker y cliente para operar en I2P. Estos cambios se especifican a continuación. Observe cuidadosamente las pautas para la compatibilidad con clientes y trackers de I2P más antiguos.
@@ -153,6 +153,12 @@ La especificación para anuncios UDP en I2P se finalizó en 2025-06. El soporte 
 ---
 
 ## Información Adicional
+
+Una especificación preliminar para calcular el conjunto rápido permitido se encuentra en [Propuesta 172](/proposals/172-bep6-allowed-fast)
+
+---
+
+## Información adicional
 
 - Los estándares de bittorrent de I2P generalmente se discuten en [zzz.i2p](http://zzz.i2p/).
 - Un gráfico de las capacidades actuales del software de tracker está [también disponible allí](http://zzz.i2p/files/trackers.html).
