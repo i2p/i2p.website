@@ -150,7 +150,6 @@ type: "papers"
     <div class="paper-authors">Jacques Bou Abdo and Liaquat Hossain</div>
     <div class="paper-venue">In the Complex Networks and their Applications XII, February 2024.</div>
     <div class="paper-actions">
-
         <div class="bibtex-wrapper">
             <button class="bibtex-toggle">Show BibTeX</button>
             <div class="bibtex-content">@inproceedings{abdo,
@@ -176,7 +175,6 @@ type: "papers"
     <div class="paper-venue">In the 2024 11th International Conference on Computing for Sustainable Global Development
         (INDIACom), April 2024.</div>
     <div class="paper-actions">
-
         <div class="bibtex-wrapper">
             <button class="bibtex-toggle">Show BibTeX</button>
             <div class="bibtex-content">@inproceedings{wangchuk,
@@ -222,7 +220,6 @@ type: "papers"
     <div class="paper-authors">Yu Chih-Wei</div>
     <div class="paper-venue">Ph.D. thesis, Beijing University of Posts and Telecommunications, 2021.</div>
     <div class="paper-actions">
-
         <div class="bibtex-wrapper">
             <button class="bibtex-toggle">Show BibTeX</button>
             <div class="bibtex-content">@phdthesis{yu2021,
@@ -729,7 +726,6 @@ type: "papers"
     <div class="paper-authors">Wilson Bazli and Hurst</div>
     <div class="paper-venue">In System Science & Control Engeneering 2017(5), June 2017, pages 278-286.</div>
     <div class="paper-actions">
-
         <div class="bibtex-wrapper">
             <button class="bibtex-toggle">Show BibTeX</button>
             <div class="bibtex-content">@article{bazli2017-the-dark-side-of-i2p,
@@ -794,7 +790,6 @@ type: "papers"
     <div class="paper-authors">Hamish Haughey, Gregory Epiphaniou, and Haider M. Al-Khateeb</div>
     <div class="paper-venue">In Network Security 2016(3), March 2016, pages 10-18.</div>
     <div class="paper-actions">
-
         <div class="bibtex-wrapper">
             <button class="bibtex-toggle">Show BibTeX</button>
             <div class="bibtex-content">@article{haughey2016,
@@ -819,7 +814,6 @@ type: "papers"
     <div class="paper-venue">In the Proceedings of the 2016 IEEE International Conference on Industrial Technology
         (ICIT), March 2016.</div>
     <div class="paper-actions">
-
         <div class="bibtex-wrapper">
             <button class="bibtex-toggle">Show BibTeX</button>
             <div class="bibtex-content">@inproceedings{ali2016,
@@ -910,7 +904,6 @@ type: "papers"
     <div class="paper-venue">In the Proceedings of the 2016 22nd International Conference on Automation and Computing
         (ICAC), September 2016.</div>
     <div class="paper-actions">
-
         <div class="bibtex-wrapper">
             <button class="bibtex-toggle">Show BibTeX</button>
             <div class="bibtex-content">@inproceedings{wilson2016,
@@ -1166,7 +1159,6 @@ type: "papers"
     <div class="paper-venue">In International Journal of Applied Engineering Research 9(20), 2014, pages 7333-7345.
     </div>
     <div class="paper-actions">
-
         <div class="bibtex-wrapper">
             <button class="bibtex-toggle">Show BibTeX</button>
             <div class="bibtex-content">@article{karthigeyan2014,
@@ -1314,7 +1306,6 @@ type: "papers"
     <div class="paper-authors">Xue Bin Wang, Pei Peng Liu, Cheng Long Li, and Qing Feng Tan</div>
     <div class="paper-venue">In Applied Mechanics and Materials 427-429, September 2013, pages 2223-2228.</div>
     <div class="paper-actions">
-
         <div class="bibtex-wrapper">
             <button class="bibtex-toggle">Show BibTeX</button>
             <div class="bibtex-content">@article{wang2013,
@@ -1566,7 +1557,6 @@ type: "papers"
     <div class="paper-venue">In the Proceedings of ICN 2011, The Tenth International Conference on Networks, St.
         Maarten, The Netherlands Antilles, January 2011.</div>
     <div class="paper-actions">
-
         <div class="bibtex-wrapper">
             <button class="bibtex-toggle">Show BibTeX</button>
             <div class="bibtex-content">@inproceedings{zantout2011,
@@ -1763,7 +1753,6 @@ type: "papers"
     <div class="paper-venue">Masters's thesis, Université catholique de Louvain - Département des sciences politiques et
         sociales, 2009.</div>
     <div class="paper-actions">
-
         <div class="bibtex-wrapper">
             <button class="bibtex-toggle">Show BibTeX</button>
             <div class="bibtex-content">@mastersthesis{delmer-mthesis,
