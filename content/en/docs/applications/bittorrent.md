@@ -2,8 +2,8 @@
 title: "Bittorrent over I2P"
 description: "Protocol specifications for BitTorrent clients and trackers on I2P"
 slug: "bittorrent"
-lastUpdated: "2025-06"
-accurateFor: "0.9.67"
+lastUpdated: "2026-08"
+accurateFor: "0.9.70"
 ---
 
 There are several bittorrent clients and trackers on I2P. As I2P addressing uses a Destination instead of an IP and port, minor changes are required to tracker and client software for operation on I2P. These changes are specified below. Note carefully the guidelines for compatibility with older I2P clients and trackers.
@@ -46,7 +46,7 @@ For more guidance to developers on ensuring your application uses only the resou
 
 Clients generally include a fake port=6881 parameter in the announce, for compatibility with older trackers. Trackers may ignore the port parameter, and should not require it.
 
-The ip parameter is the base 64 of the client's [Destination](/docs/specs/common-structures/#struct_Destination), using the I2P Base 64 alphabet [A-Z][a-z][0-9]-~. [Destinations](/docs/specs/common-structures/#struct_Destination) are 387+ bytes, so the Base 64 is 516+ bytes. Clients generally append ".i2p" to the Base 64 Destination for compatibility with older trackers. Trackers should not require an appended ".i2p".
+The ip parameter is the base 64 of the client's [Destination](/docs/specs/common-structures/#struct_Destination), using the I2P Base 64 alphabet [A-Z][a-z][0-9]-~. [Destinations](/docs/specs/common-structures/#struct_Destination) are 387+ bytes, so the Base 64 is 516+ bytes. Clients MUST append ".i2p" to the Base 64 Destination for compatibility with some older trackers. Trackers should not require an appended ".i2p".
 
 Other parameters are the same as in standard bittorrent.
 
@@ -149,6 +149,12 @@ In a torrent file, the trackerless torrent dictionary "nodes" key is TBD. It cou
 ## Datagram (UDP) Trackers
 
 The specification for UDP announces in I2P was finalized 2025-06. Support in various I2P clients and trackers will be rolling out later in 2025. Differences from [BEP 15](http://www.bittorrent.org/beps/bep_0015.html) are documented in [the UDP announce specification](/docs/specs/udp-announces/). The specification also requires support for [the new Datagram 2/3 formats](/docs/specs/datagrams/).
+
+---
+
+## BEP 6 Allowed Fast Calculation
+
+A preliminary specification for calculating the allowed fast set is in [Proposal 172](/proposals/172-bep6-allowed-fast)
 
 ---
 
