@@ -1948,7 +1948,7 @@ img[src*="netdb_get_routerinfo_2.svg"] {
     padding: 0;
 }
 
-.contact-content table {
+table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: var(--spacing-xl);
@@ -1956,23 +1956,24 @@ img[src*="netdb_get_routerinfo_2.svg"] {
     border: 1px solid var(--color-border);
 }
 
-.contact-content thead {
+thead {
     background-color: var(--color-bg-secondary);
 }
 
-.contact-content th {
+th, td {
     padding: var(--spacing-md);
     text-align: left;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+}
+
+th {
     font-weight: 600;
     border-bottom: 2px solid var(--color-border);
 }
 
-.contact-content td {
-    padding: var(--spacing-md);
-    border-bottom: 1px solid var(--color-border);
-}
-
-.contact-content tbody tr:hover {
+tbody tr:hover {
     background-color: var(--color-bg-secondary);
 }
 
@@ -1981,12 +1982,12 @@ img[src*="netdb_get_routerinfo_2.svg"] {
         font-size: 2rem;
     }
 
-    .contact-content table {
+    table {
         font-size: 0.875rem;
     }
 
-    .contact-content th,
-    .contact-content td {
+    th,
+    td {
         padding: var(--spacing-sm);
     }
 }
