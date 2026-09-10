@@ -1450,5 +1450,126 @@
     "segments": 80,
     "cache_hits": 78,
     "cache_misses": 2
+  },
+  {
+    "timestamp": "2026-09-10T15:07:51.050419Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/get-involved/roadmap.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/hi/get-involved/roadmap.md",
+    "source_lang": "en",
+    "target_lang": "hi",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 3,
+    "cache_hits": 3,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-09-10T15:07:51.341938Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/get-involved/roadmap.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/pt/get-involved/roadmap.md",
+    "source_lang": "en",
+    "target_lang": "pt",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 3,
+    "cache_hits": 3,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-09-10T15:07:51.463732Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/get-involved/roadmap.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/es/get-involved/roadmap.md",
+    "source_lang": "en",
+    "target_lang": "es",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 3,
+    "cache_hits": 3,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-09-10T15:07:51.891735Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/get-involved/roadmap.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/de/get-involved/roadmap.md",
+    "source_lang": "en",
+    "target_lang": "de",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 3,
+    "cache_hits": 3,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-09-10T15:07:52.182667Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/get-involved/roadmap.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/zh/get-involved/roadmap.md",
+    "source_lang": "en",
+    "target_lang": "zh",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 3,
+    "cache_hits": 3,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-09-10T15:07:52.295727Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/get-involved/roadmap.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ru/get-involved/roadmap.md",
+    "source_lang": "en",
+    "target_lang": "ru",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 3,
+    "cache_hits": 3,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-09-10T15:07:52.408870Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/get-involved/roadmap.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/vi/get-involved/roadmap.md",
+    "source_lang": "en",
+    "target_lang": "vi",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 3,
+    "cache_hits": 3,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-09-10T15:07:52.670045Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/get-involved/roadmap.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/cs/get-involved/roadmap.md",
+    "source_lang": "en",
+    "target_lang": "cs",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 3,
+    "cache_hits": 3,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-09-10T15:07:52.686790Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/get-involved/roadmap.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ko/get-involved/roadmap.md",
+    "source_lang": "en",
+    "target_lang": "ko",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 3,
+    "cache_hits": 3,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-09-10T15:07:52.700914Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/get-involved/roadmap.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/tr/get-involved/roadmap.md",
+    "source_lang": "en",
+    "target_lang": "tr",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 3,
+    "cache_hits": 3,
+    "cache_misses": 0
+  },
+  {
+    "timestamp": "2026-09-10T15:07:52.707690Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/get-involved/roadmap.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/fr/get-involved/roadmap.md",
+    "source_lang": "en",
+    "target_lang": "fr",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 3,
+    "cache_hits": 3,
+    "cache_misses": 0
   }
 ]

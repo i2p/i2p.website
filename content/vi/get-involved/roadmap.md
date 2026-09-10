@@ -24,8 +24,16 @@ Target: Late October 2026
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
+- Build fix for gettext 1.0
+- Build fix for izpack 5.2.6
+- Build fixes for gradle
 - Conflicts addressbook
+- Fix SAM datagram 2/3 subsessions
+- i2psnark bug fixes, speedups, security fixes, memory reduction, and improvements
+- i2psnark js audio player
+- i2psnark prep for v2 support
 - Performance improvements
+- Streaming speedups and synch fixes
 
 </div>
 
