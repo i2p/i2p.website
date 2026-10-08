@@ -161,7 +161,7 @@ The router selects peers from the above groups to build tunnels through.
 
 Client tunnels are used for application traffic, such as for HTTP proxies and web servers.
 
-To reduce the susceptibility to [some attacks](http://blog.torproject.org/blog/one-cell-enough),
+To reduce the susceptibility to [some attacks](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/),
 and increase performance,
 peers for building client tunnels are chosen randomly from the smallest group, which is the "fast" group.
 There is no bias toward selecting peers that were previously participants in a tunnel for the same client.
@@ -227,7 +227,7 @@ please keep in mind the following minor changes in I2P since the paper's publica
 ## References {#references}
 
 - [Peer Profiling and Selection in the I2P Anonymous Network](/pdf/I2P-PET-CON-2009.1.pdf)
-- [One Cell Enough](http://blog.torproject.org/blog/one-cell-enough)
+- [One Cell Enough](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/)
 - [Tor Entry Guards](https://wiki.torproject.org/noreply/TheOnionRouter/TorFAQ#EntryGuards)
 - [Murdoch 2007 Paper](http://freehaven.net/anonbib/#murdoch-pet2007)
 - [Tune-up for Tor](http://www.crhc.uiuc.edu/~nikita/papers/tuneup-cr.pdf)

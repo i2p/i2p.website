@@ -104,7 +104,7 @@ With two or more remote routers in a tunnel, the costs of mounting the traffic a
 
 ### 3-hop (or more) tunnels
 
-To reduce the susceptibility to [some attacks](http://blog.torproject.org/blog/one-cell-enough), 3 or more hops are recommended for the highest level of protection. [Recent studies](http://blog.torproject.org/blog/one-cell-enough) also conclude that more than 3 hops does not provide additional protection.
+To reduce the susceptibility to [some attacks](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/), 3 or more hops are recommended for the highest level of protection. [Recent studies](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/) also conclude that more than 3 hops does not provide additional protection.
 
 ### Tunnel default lengths
 

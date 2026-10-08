@@ -83,7 +83,7 @@ Even in total, these defenses are not a complete solution. Also, we have made so
 
 In the future, it could be possible for peers who can afford significant delays (per nontrivial delays and batching strategies). In addition, this is only relevant for destinations that other people know about — a private group whose destination is only known to trusted peers does not have to worry, as an adversary can't "ping" them to mount the attack.
 
-Reference: [One Cell Enough](http://blog.torproject.org/blog/one-cell-enough)
+Reference: [One Cell Enough](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/)
 
 ### Denial of Service Attacks
 
