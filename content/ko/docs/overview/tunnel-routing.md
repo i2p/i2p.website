@@ -103,7 +103,7 @@ tunnel에 두 개 이상의 원격 router가 있는 경우, 많은 원격 router
 
 ### 3-hop (또는 그 이상) tunnel
 
-[일부 공격](http://blog.torproject.org/blog/one-cell-enough)에 대한 취약성을 줄이기 위해, 최고 수준의 보호를 위해서는 3개 이상의 hop이 권장됩니다. [최근 연구](http://blog.torproject.org/blog/one-cell-enough)에서도 3개를 초과하는 hop은 추가적인 보호를 제공하지 않는다고 결론지었습니다.
+일부 공격에 대한 취약성을 줄이기 위해 최고 수준의 보호를 위해 3개 이상의 홉(hop)을 사용하는 것이 권장됩니다. [최근 연구](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/)에서는 3개를 초과하는 홉이 추가적인 보호를 제공하지 않는다고 결론짓고 있습니다.
 
 ### Tunnel 기본 길이
 

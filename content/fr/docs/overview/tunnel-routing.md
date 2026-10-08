@@ -103,7 +103,7 @@ Avec deux ou plusieurs routers distants dans un tunnel, les coûts de mise en œ
 
 ### Tunnels à 3 sauts (ou plus)
 
-Pour réduire la susceptibilité à [certaines attaques](http://blog.torproject.org/blog/one-cell-enough), 3 sauts ou plus sont recommandés pour le plus haut niveau de protection. [Des études récentes](http://blog.torproject.org/blog/one-cell-enough) concluent également que plus de 3 sauts n'apporte pas de protection supplémentaire.
+Pour réduire la vulnérabilité à [certaines attaques](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/), 3 sauts ou plus sont recommandés pour un niveau de protection maximal. [Des études récentes](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/) concluent également qu'au-delà de 3 sauts, aucune protection supplémentaire n'est apportée.
 
 ### Longueurs par défaut des tunnels
 

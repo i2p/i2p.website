@@ -103,7 +103,7 @@ Với hai hoặc nhiều router từ xa trong một tunnel, chi phí để thự
 
 ### Tunnel 3-hop (hoặc nhiều hơn)
 
-Để giảm khả năng bị tấn công bởi [một số kiểu tấn công](http://blog.torproject.org/blog/one-cell-enough), khuyến nghị sử dụng 3 hoặc nhiều hop hơn để đạt mức độ bảo vệ cao nhất. [Các nghiên cứu gần đây](http://blog.torproject.org/blog/one-cell-enough) cũng kết luận rằng sử dụng nhiều hơn 3 hop không mang lại thêm sự bảo vệ nào.
+Để giảm khả năng bị [một số cuộc tấn công](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/), nên sử dụng 3 hoặc nhiều hơn các bước nhảy (hop) để đạt mức bảo vệ cao nhất. [Các nghiên cứu gần đây](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/) cũng kết luận rằng việc sử dụng nhiều hơn 3 bước nhảy không mang lại thêm sự bảo vệ nào.
 
 ### Độ dài mặc định của tunnel
 

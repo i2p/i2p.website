@@ -103,7 +103,7 @@ Bei zwei oder mehr remote routers in einem tunnel steigen die Kosten für die Du
 
 ### 3-Hop (oder mehr) Tunnel
 
-Um die Anfälligkeit für [einige Angriffe](http://blog.torproject.org/blog/one-cell-enough) zu reduzieren, werden 3 oder mehr Hops für das höchste Schutzniveau empfohlen. [Neuere Studien](http://blog.torproject.org/blog/one-cell-enough) kommen auch zu dem Schluss, dass mehr als 3 Hops keinen zusätzlichen Schutz bieten.
+Um die Anfälligkeit für [bestimmte Angriffe](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/) zu verringern, werden 3 oder mehr Hops für den höchsten Schutzgrad empfohlen. [Aktuelle Studien](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/) kommen außerdem zu dem Schluss, dass mehr als 3 Hops keinen zusätzlichen Schutz bieten.
 
 ### Standard-Tunnel-Längen
 

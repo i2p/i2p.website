@@ -103,7 +103,7 @@ Bir tunnel'da iki veya daha fazla uzak router bulunduğunda, trafik analizi sald
 
 ### 3-hop (veya daha fazla) tunnel'lar
 
-[Bazı saldırılara](http://blog.torproject.org/blog/one-cell-enough) karşı savunmasızlığı azaltmak için, en yüksek koruma seviyesi için 3 veya daha fazla hop önerilir. [Son çalışmalar](http://blog.torproject.org/blog/one-cell-enough) ayrıca 3'ten fazla hop'un ek koruma sağlamadığı sonucuna varmaktadır.
+[Bazı saldırılara](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/) karşı hassasiyeti azaltmak için en yüksek koruma düzeyi için 3 veya daha fazla zıplama önerilir. [Son yapılan çalışmalar](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/), 3'ten fazla zıplamanın ek koruma sağlamadığını da sonuca varmaktadır.
 
 ### Tunnel varsayılan uzunlukları
 

@@ -103,7 +103,7 @@ Con dos o más routers remotos en un túnel, los costos de montar el ataque de a
 
 ### tunnels de 3 saltos (o más)
 
-Para reducir la susceptibilidad a [algunos ataques](http://blog.torproject.org/blog/one-cell-enough), se recomiendan 3 o más saltos para el mayor nivel de protección. [Estudios recientes](http://blog.torproject.org/blog/one-cell-enough) también concluyen que más de 3 saltos no proporciona protección adicional.
+Para reducir la susceptibilidad a [algunos ataques](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/), se recomiendan 3 o más saltos para el nivel más alto de protección. [Estudios recientes](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/) también concluyen que más de 3 saltos no proporciona una protección adicional.
 
 ### Longitudes predeterminadas de tunnel
 

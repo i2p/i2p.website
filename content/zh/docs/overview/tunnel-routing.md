@@ -103,7 +103,7 @@ F: Inbound Endpoint (Bob)
 
 ### 3跳（或更多）tunnel
 
-为了降低对[某些攻击](http://blog.torproject.org/blog/one-cell-enough)的易感性，建议使用3个或更多跳数以获得最高级别的保护。[最近的研究](http://blog.torproject.org/blog/one-cell-enough)也得出结论，超过3个跳数并不能提供额外的保护。
+为了降低遭受[某些攻击](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/)的风险，建议使用3个或更多跳数以获得最高级别的保护。[最近的研究](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/)也得出结论：超过3个跳数并不能提供额外的保护。
 
 ### Tunnel 默认长度
 

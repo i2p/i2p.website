@@ -103,7 +103,7 @@ F: Inbound Endpoint (Bob)
 
 ### أنفاق ثلاثية القفزات (أو أكثر)
 
-لتقليل القابلية للتعرض [لبعض الهجمات](http://blog.torproject.org/blog/one-cell-enough)، يُنصح باستخدام 3 أو أكثر من القفزات لأعلى مستوى من الحماية. [الدراسات الحديثة](http://blog.torproject.org/blog/one-cell-enough) تخلص أيضاً إلى أن أكثر من 3 قفزات لا توفر حماية إضافية.
+لتقليل القابلية [لبعض الهجمات](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/)، يُوصى باستخدام 3 عقد أو أكثر لتحقيق أعلى مستوى من الحماية. كما تُخلص [دراسات حديثة](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/) إلى أن استخدام أكثر من 3 عقد لا يوفر حماية إضافية.
 
 ### أطوال tunnel الافتراضية
 

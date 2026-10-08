@@ -103,7 +103,7 @@ Se dvěma nebo více vzdálenými routery v tunelu se náklady na provedení út
 
 ### 3-hop (nebo více) tunnely
 
-Pro snížení náchylnosti k [některým útokům](http://blog.torproject.org/blog/one-cell-enough) se doporučují 3 nebo více hopů pro nejvyšší úroveň ochrany. [Nedávné studie](http://blog.torproject.org/blog/one-cell-enough) také dospěly k závěru, že více než 3 hopy neposkytují dodatečnou ochranu.
+Aby se snížila náchylnost k [některým útokům](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/), pro nejvyšší úroveň ochrany se doporučuje 3 nebo více skoků. [Nedávné studie](https://blog.torproject.org/one-cell-enough-break-tors-anonymity/) také ukazují, že více než 3 skoky nepřináší další ochranu.
 
 ### Výchozí délky tunelů
 
