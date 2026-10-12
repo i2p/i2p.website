@@ -6,8 +6,8 @@ aliases:
   - "/docs/specs/common-structures"
   - "/docs/specs/common-structures/"
 category: "Design"
-lastUpdated: "2026-03"
-accurateFor: "0.9.68"
+lastUpdated: "2026-10"
+accurateFor: "0.9.71"
 ---
 
 This document describes some data types common to all I2P protocols, like
@@ -1356,6 +1356,8 @@ JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Dest
 ### Lease
 
 #### Description
+DEPRECATED. Use LeaseSet2 and Lease2.
+
 Defines the authorization for a particular tunnel to receive messages targeting
 a [Destination](#destination).
 
@@ -1407,6 +1409,8 @@ JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html
 ### LeaseSet
 
 #### Description
+DEPRECATED. Use LeaseSet2 and Lease2.
+
 Contains all of the currently authorized [Leases](#lease) for a particular [Destination](#destination),
 the [PublicKey](#publickey) to which garlic messages can be encrypted, and then the
 [SigningPublicKey](#signingpublickey) that can be used to revoke this particular version of the
@@ -1980,6 +1984,8 @@ JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseS
 ### MetaLease
 
 #### Description
+PRELIMINARY. Not fully supported.
+
 Defines the authorization for a particular tunnel to receive messages targeting
 a [Destination](#destination).
 Same as [Lease2](#lease2) but with flags and cost instead of a tunnel id.
@@ -2054,8 +2060,10 @@ JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLe
 ### MetaLeaseSet
 
 #### Description
+PRELIMINARY. Not fully supported.
+
 Contained in a I2NP DatabaseStore message of type 7.
-Defined as of 0.9.38; scheduled to be working as of 0.9.40;
+Defined as of 0.9.38;
 see proposal 123 for more information.
 
 Contains all of the currently authorized [MetaLease](#metalease) for a particular [Destination](#destination),
