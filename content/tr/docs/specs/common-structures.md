@@ -2,10 +2,12 @@
 title: "Ortak Yapılar Belirtimi"
 description: "Tüm I2P protokollerinde ortak olan veri türleri"
 slug: "common-structures"
-aliases: 
+aliases:
+  - "/docs/specs/common-structures"
+  - "/docs/specs/common-structures/"
 category: "Tasarım"
-lastUpdated: "2026-03"
-accurateFor: "0.9.68"
+lastUpdated: "2026-10"
+accurateFor: "0.9.71"
 ---
 
 Bu belge, [I2NP](/docs/specs/i2np/), [I2CP](/docs/specs/i2cp/), [SSU](/docs/legacy/ssu/) vb. gibi tüm I2P protokollerinde ortak olan bazı veri türlerini açıklar.
@@ -1254,11 +1256,13 @@ JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Dest
 
 #### İçindekiler
 
-Belirli bir tunnel'ın bir [Destination](#destination)'ı hedefleyen mesajları almak için yetkilendirmesini tanımlar.
+KULLANIMI BIRAKILDI. LeaseSet2 ve Lease2 kullanın.
+
+Belirli bir tünelin bir [Hedef](#destination)'e yönelik mesajları alma yetkisini tanımlar.
 
 #### Açıklama
 
-Gateway router'ın [RouterIdentity](#routeridentity)'sinin SHA256 [Hash](#hash)'i, ardından [TunnelId](#tunnelid) ve son olarak bitiş [Date](#date)'i.
+Ağ geçidi yönlendiricisinin [RouterIdentity](#routeridentity)'sinin SHA256 [Hash](#hash'ı), ardından [TunnelId](#tunnelid) ve son olarak bir bitiş [Date](#date).
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1303,7 +1307,9 @@ JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html
 
 #### İçindekiler
 
-Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [Lease](#lease)'leri, garlic mesajlarının şifrelenebileceği [PublicKey](#publickey)'i ve ardından yapının bu belirli sürümünü iptal etmek için kullanılabilecek [SigningPublicKey](#signingpublickey)'i içerir. LeaseSet, ağ veritabanında saklanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo)'dur) ve içerdiği [Destination](#destination)'ın SHA256'sı altında anahtarlanır.
+KULLANIMI BIRAKILDI. LeaseSet2 ve Lease2 kullanın.
+
+Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [Leases](#lease) içeriğini, sarmal iletilerin şifrelenmek üzere kullanılabileceği [PublicKey](#publickey) ve bu yapının bu sürümünü iptal etmek için kullanılabilecek [SigningPublicKey](#signingpublickey) içerir. LeaseSet, ağ veritabanında depolanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo)) ve içindeki [Destination](#destination)'in SHA256 değeriyle anahtarlanır.
 
 #### Notlar
 
@@ -1432,7 +1438,7 @@ Belirli bir tunnel'ın bir [Destination](#destination)'ı hedefleyen mesajları 
 
 #### Notlar
 
-Gateway router'ın [RouterIdentity](#routeridentity)'sinin SHA256 [Hash](#hash)'i, ardından [TunnelId](#tunnelid) ve son olarak 4 byte'lık bitiş tarihi.
+Ağ geçidi yönlendiricisinin [RouterIdentity](#routeridentity)'sinin [Hash](#hash) değerinin SHA256'sı, ardından [TunnelId](#tunnelid) ve son olarak 4 baytlık bir bitiş tarihi.
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1478,7 +1484,7 @@ JavaDoc: [net.i2p.data.Lease2](http://docs.i2p-projekt.de/net/i2p/data/Lease2.ht
 
 #### İçindekiler
 
-Bu, [LeaseSet2Header](#leaseset2header)'ın isteğe bağlı bir parçasıdır. Ayrıca streaming ve I2CP'de de kullanılır. 0.9.38 sürümünden itibaren desteklenir; daha fazla bilgi için proposal 123'e bakın.
+Bu, [LeaseSet2Header](#leaseset2header)'ın isteğe bağlı bir parçasıdır. Akış ve I2CP'de de kullanılır. 0.9.38'den bu yana desteklenmektedir; daha fazla bilgi için öneri 123'e bakın.
 
 #### Notlar
 
@@ -1541,7 +1547,7 @@ signature :: `Signature`
 
 #### İçindekiler
 
-Bu, [LeaseSet2](#leaseset2) ve [MetaLeaseSet](#metaleaseset)'in ortak kısmıdır. 0.9.38 sürümünden itibaren desteklenmektedir; daha fazla bilgi için 123 numaralı öneriyi inceleyin.
+Bu, [LeaseSet2](#leaseset2) ve [MetaLeaseSet](#metaleaseset) arasındaki ortak kısımdır. 0.9.38'den bu yana desteklenmektedir; daha fazla bilgi için öneri 123'e bakınız.
 
 #### Notlar
 
@@ -1641,13 +1647,13 @@ offline_signature :: `OfflineSignature`
 
 #### İçindekiler
 
-Tip 3 I2NP DatabaseStore mesajında bulunur. 0.9.38 sürümünden itibaren desteklenir; daha fazla bilgi için 123 numaralı öneriyi inceleyin.
+Tür 3'ün I2NP DatabaseStore mesajında yer alır. 0.9.38'den beri desteklenir; daha fazla bilgi için öneri 123'e bakın.
 
 Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [Lease2](#lease2)'leri ve garlic mesajlarının şifrelenebileceği [PublicKey](#publickey)'i içerir. LeaseSet, ağ veritabanında saklanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo)), ve içerdiği [Destination](#destination)'ın SHA256 değeri altında anahtarlanır.
 
 #### Şifreleme Anahtarı Tercihi
 
-[LeaseSet2Header](#leaseset2header), ardından seçenekler, sonra şifreleme için bir veya daha fazla [PublicKey](#publickey), kümede kaç [Lease2](#lease2) yapısı bulunduğunu belirten [Integer](#integer), ardından gerçek [Lease2](#lease2) yapıları ve son olarak önceki baytların [Destination](#destination)'ın [SigningPrivateKey](#signingprivatekey) veya geçici anahtarı tarafından imzalandığı bir [Signature](#signature).
+[LeaseSet2Header](#leaseset2header), ardından şifreleme için bir veya daha fazla [PublicKey](#publickey), set içinde kaç tane [Lease2](#lease2) yapısı olduğunu belirten bir [Integer](#integer), ardından bu [Lease2](#lease2) yapıları ve son olarak önceki baytların [Destination](#destination)'in [SigningPrivateKey](#signingprivatekey)'ı ya da geçici anahtar tarafından imzalanmış [Signature](#signature) yapısı.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -1753,31 +1759,31 @@ signature :: `Signature`
 
 Yayınlanmış (sunucu) leaseSet'ler için, şifreleme anahtarları sunucu tercihine göre sıralanır, en tercih edilen ilk sırada yer alır. İstemciler birden fazla şifreleme türünü destekliyorsa, sunucu tercihini gözetmeleri ve sunucuya bağlanmak için destekledikleri ilk türü şifreleme yöntemi olarak seçmeleri önerilir. Genel olarak, daha yeni (daha yüksek numaralı) anahtar türleri daha güvenli veya verimlidir ve tercih edilir, bu nedenle anahtarlar anahtar türünün ters sırasına göre listelenmelidir.
 
-Ancak, istemciler uygulama-bağımlı olarak bunun yerine kendi tercihlerine göre seçim yapabilir veya "birleşik" tercihi belirlemek için bazı yöntemler kullanabilir. Bu, bir yapılandırma seçeneği olarak veya hata ayıklama için yararlı olabilir.
+Ancak istemciler, uygulamaya bağlı olarak tercihlerine göre seçim yapabilir veya "kombine" tercihi belirlemek için bazı yöntemler kullanabilir. Bu, bir yapılandırma seçeneği olarak veya hata ayıklama amacıyla faydalı olabilir.
 
 Yayınlanmamış (istemci) leaseset'lerdeki anahtar sırası etkili bir şekilde önemli değildir, çünkü yayınlanmamış istemcilere genellikle bağlantı girişiminde bulunulmaz. Bu sıra, yukarıda açıklandığı gibi birleşik bir tercihi belirlemek için kullanılmadığı sürece.
 
 #### Notlar
 
-API 0.9.66 itibariyle, servis kaydı seçenekleri için standart bir format tanımlanmıştır. Ayrıntılar için öneri 167'ye bakınız. Farklı bir format kullanan servis kayıtları dışındaki seçenekler gelecekte tanımlanabilir.
+API 0.9.66 itibariyle, hizmet kaydı seçenekleri için standart bir biçim tanımlanmıştır. Ayrıntılar için öneri 167'ye bakın. Farklı bir biçim kullanan ve hizmet kayıtlarından farklı diğer seçenekler gelecekte tanımlanabilir.
 
 LS2 seçenekleri anahtar değerine göre sıralanmalıdır, böylece imza değişmez kalır.
 
-Servis kaydı seçenekleri aşağıdaki gibi tanımlanır:
+Hizmet kaydı seçenekleri şu şekilde tanımlanır:
 
 * Hedefin public key'i, 0.6 sürümünde devre dışı bırakılan eski I2CP-to-I2CP şifrelemesi için kullanılıyordu, şu anda kullanılmıyor.
 
 Örnekler:
 
-LS2'de aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için, bir SMTP sunucusuna işaret ederek:
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için LS2, bir SMTP sunucusunu gösteriyor:
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-LS2'de aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için, iki SMTP sunucusuna işaret eden:
+İki SMTP sunucusunu işaret eden aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için LS2:
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-LS2'de bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p için, kendisini bir SMTP sunucusu olarak gösteren:
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p için LS2'de, kendisini bir SMTP sunucusu olarak gösterir:
 
 "_smtp._tcp" "0 999999 25"
 
@@ -1808,11 +1814,13 @@ JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseS
 
 #### İçindekiler
 
+ÖN BILGI. Tam olarak desteklenmemektedir.
+
 Belirli bir tunnel'ın bir [Destination](#destination)'ı hedefleyen mesajları alması için yetkilendirmeyi tanımlar. [Lease2](#lease2) ile aynıdır ancak tunnel id yerine bayraklar ve maliyet içerir. [MetaLeaseSet](#metaleaseset) tarafından kullanılır. Tip 7 I2NP DatabaseStore mesajında bulunur. 0.9.38 sürümünden itibaren desteklenir; daha fazla bilgi için proposal 123'e bakın.
 
 #### Notlar
 
-Gateway router'ın [RouterIdentity](#routeridentity)'sinin SHA256 [Hash](#hash)'i, ardından bayraklar ve maliyet, ve son olarak 4 byte'lık bitiş tarihi.
+Ağ geçidi yönlendiricisinin [RouterIdentity](#routeridentity) değerinin SHA256 [Hash](#hash'ı), ardından bayraklar ve maliyet, ve son olarak 4 baytlık bir bitiş tarihi.
 
 ```bytefield
 tunnel_gw | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1869,13 +1877,15 @@ JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLe
 
 #### İçindekiler
 
-Tip 7'li bir I2NP DatabaseStore mesajında bulunur. 0.9.38 sürümünden itibaren tanımlanmıştır; 0.9.40 sürümünden itibaren çalışması planlanmıştır; daha fazla bilgi için 123 numaralı öneriye bakınız.
+ÖN BILGI. Tam olarak desteklenmemektedir.
 
-Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [MetaLease](#metalease) ve garlic mesajlarının şifrelenebileceği [PublicKey](#publickey) içerir. LeaseSet, ağ veritabanında saklanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo) olan) ve içerdiği [Destination](#destination)'ın SHA256'sı altında anahtarlanır.
+Tür 7 olan bir I2NP DatabaseStore mesajının içinde yer alır. 0.9.38 sürümünden itibaren tanımlanmıştır; daha fazla bilgi için öneri 123'e bakınız.
+
+Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [MetaLease](#metalease) bilgilerini ve garlic mesajlarının şifrelenebileceği [PublicKey](#publickey)'i içerir. LeaseSet, ağ veritabanında (netDb) depolanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo)'dır) ve içindeki [Destination](#destination)'in SHA256 değeri ile anahtarlanır.
 
 #### Notlar
 
-[LeaseSet2Header](#leaseset2header), ardından seçenekler, sette kaç tane [Lease2](#lease2) yapısı olduğunu belirten bir [Integer](#integer), ardından gerçek [Lease2](#lease2) yapıları ve son olarak önceki baytların [Destination](#destination)'ın [SigningPrivateKey](#signingprivatekey)'i veya geçici anahtar tarafından imzalanmış [Signature](#signature)'ı.
+[LeaseSet2Header](#leaseset2header), ardından bir seçenek, içinde kaç tane [Lease2](#lease2) yapısı bulunduğunu belirten bir [Integer](#integer), ardından gerçek [Lease2](#lease2) yapıları ve son olarak önceki baytların [Destination](#destination)'in [SigningPrivateKey](#signingprivatekey) veya geçici anahtarı ile imzalanmış bir [Signature](#signature) gelir.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -1980,13 +1990,13 @@ JavaDoc: [net.i2p.data.MetaLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/Met
 
 #### İçindekiler
 
-Tip 5 I2NP DatabaseStore mesajında bulunur. 0.9.38 sürümünden itibaren tanımlanmıştır; 0.9.39 sürümünden itibaren çalışmaktadır; daha fazla bilgi için öneri 123'e bakın.
+Tür 5 olan bir I2NP DatabaseStore mesajının içinde yer alır. 0.9.38'den itibaren tanımlanmıştır ve 0.9.39'dan itibaren çalışmaktadır; daha fazla bilgi için öneri 123'e bakınız.
 
-Sadece blinded key ve son kullanma tarihi açık metin olarak görülebilir. Gerçek lease set şifrelidir.
+Yalnızca körleştirilmiş anahtar ve süre sonu açık metin olarak görünür. Gerçek lease set şifrelenmiştir.
 
 #### Notlar
 
-İki baytlık imza türü, kör edilmiş [SigningPrivateKey](#signingprivatekey), yayınlanma zamanı, son kullanma tarihi ve bayraklar. Ardından, iki baytlık uzunluk ve şifrelenmiş veri. Son olarak, kör edilmiş [SigningPrivateKey](#signingprivatekey) veya geçici anahtar tarafından imzalanmış önceki baytların [Signature](#signature)'ı.
+İki baytlık bir imza türü, körleştirilmiş [SigningPrivateKey](#signingprivatekey), yayımlanma zamanı, sona erme süresi ve bayraklar. Ardından, iki baytlık bir uzunluk ve şifrelenmiş veri gelir. Son olarak, körleştirilmiş [SigningPrivateKey](#signingprivatekey) veya geçici anahtar tarafından önceki baytların imzalanmasıyla oluşturulan bir [Signature](#signature) bulunur.
 
 ```bytefield
 sigtype            | 2 | red    | 2 bytes
@@ -2061,11 +2071,11 @@ JavaDoc: [net.i2p.data.EncryptedLeaseSet](http://docs.i2p-projekt.de/net/i2p/dat
 
 #### İçindekiler
 
-Bu yapı, bir router ile taşıma protokolü aracılığıyla iletişim kurma yöntemlerini tanımlar.
+Bu yapı, bir yönlendiriciye bir taşıma protokolü aracılığıyla nasıl ulaşılacağını tanımlar.
 
 #### Notlar
 
-Adresi kullanmanın göreceli maliyetini tanımlayan 1 byte [Integer](#integer), burada 0 ücretsiz ve 255 pahalı anlamına gelir, ardından adresin kullanılmaması gereken son kullanma [Date](#date) tarihi gelir, veya null ise adresin süresi asla dolmaz. Bundan sonra bu router adresinin kullandığı taşıma protokolünü tanımlayan bir [String](#string) gelir. Son olarak, IP adresi, port numarası, e-posta adresi, URL vb. gibi bağlantıyı kurmak için gerekli tüm taşıma protokolüne özgü seçenekleri içeren bir [Mapping](#mapping) bulunur.
+0 ücretsiz ve 255 çok maliyetli olmak üzere, adresin kullanımının göreceli maliyetini tanımlayan 1 bayt [Tamsayı](#integer), ardından adresin kullanılmaması gereken son kullanma [Tarihi](#date) ya da null ise adresin süresinin dolmayacağı belirtilir. Bundan sonra bu yönlendirici adresinin kullandığı taşıma protokolünü tanımlayan bir [Dize](#string) gelir. Son olarak IP adresi, port numarası, e-posta adresi, URL vb. bağlantıyı kurmak için taşıma yöntemine özgü tüm seçenekleri içeren bir [Eşleme](#mapping) bulunur.
 
 ```bytefield
 cost            | 1 | green  | Integer, 1 byte
@@ -2114,7 +2124,7 @@ Bir router'ın ağın görmesi için yayınlamak istediği tüm verileri tanıml
 
 #### Notlar
 
-[RouterIdentity](#routeridentity) ardından girişin yayınlandığı [Date](#date)
+Girişin yayınlandığı [Tarih](#tarih) ile birlikte [RouterKimliği](#routerkimliği)
 
 ```bytefield
 router_ident           | 8 | blue   | RouterIdentity, >= 387+ bytes
@@ -2209,7 +2219,7 @@ JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/dat
 
 ### Teslimat Talimatları
 
-Tunnel Message Delivery Instructions, Tunnel Message Specification [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) belgesinde tanımlanmıştır.
+Tünel Mesaj Teslim Talimatları, Tünel Mesajı Spesifikasyonu'nda [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) olarak tanımlanmıştır.
 
 Garlic Message Delivery Instructions, I2NP Mesaj Spesifikasyonunda [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions) tanımlanmıştır.
 

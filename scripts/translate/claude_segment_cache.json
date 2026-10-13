@@ -22884,20 +22884,20 @@
           }
         },
         "p_073": {
-          "source_hash": "4ac55e5570bd7c36",
+          "source_hash": "19f8bed77f69de7a",
           "translations": {
-            "zh": "定义特定 tunnel 接收针对 [Destination](#destination) 消息的授权。",
-            "es": "Define la autorización para que un túnel en particular reciba mensajes dirigidos a un [Destination](#destination).",
-            "ko": "특정 tunnel이 [Destination](#destination)을 대상으로 하는 메시지를 수신할 수 있는 권한을 정의합니다.",
-            "ru": "Определяет авторизацию для конкретного tunnel на получение сообщений, предназначенных для [Destination](#destination).",
-            "cs": "Definuje autorizaci pro konkrétní tunnel k přijímání zpráv určených pro [Destination](#destination).",
-            "de": "Definiert die Berechtigung für einen bestimmten tunnel, Nachrichten zu empfangen, die auf ein [Destination](#destination) abzielen.",
-            "fr": "Définit l'autorisation pour un tunnel particulier de recevoir des messages ciblant une [Destination](#destination).",
-            "tr": "Belirli bir tunnel'ın bir [Destination](#destination)'ı hedefleyen mesajları almak için yetkilendirmesini tanımlar.",
-            "vi": "Xác định quyền ủy quyền cho một tunnel cụ thể để nhận các thông điệp nhắm đến một [Destination](#destination).",
-            "hi": "एक विशेष tunnel के लिए प्राधिकरण को परिभाषित करता है ताकि वह [Destination](#destination) को लक्षित संदेशों को प्राप्त कर सके।",
-            "ar": "يُعرّف التفويض لنفق معين لاستقبال الرسائل المستهدفة إلى [Destination](#destination).",
-            "pt": "Define a autorização para um tunnel específico receber mensagens direcionadas a um [Destination](#destination)."
+            "fr": "OBSOLÈTE. Utilisez LeaseSet2 et Lease2.",
+            "zh": "已弃用。请使用 LeaseSet2 和 Lease2。",
+            "de": "VERALTET. Verwenden Sie LeaseSet2 und Lease2.",
+            "vi": "ĐÃ LOẠI BỎ. Hãy sử dụng LeaseSet2 và Lease2.",
+            "cs": "ZASTARALÉ. Použijte LeaseSet2 a Lease2.",
+            "pt": "OBSOLETO. Use LeaseSet2 e Lease2.",
+            "es": "OBSOLETO. Utilice LeaseSet2 y Lease2.",
+            "ar": "مُهمل. استخدم LeaseSet2 و Lease2.",
+            "ko": "사용 중단됨. LeaseSet2 및 Lease2를 사용하십시오.",
+            "tr": "KULLANIMI BIRAKILDI. LeaseSet2 ve Lease2 kullanın.",
+            "ru": "УСТАРЕЛО. Используйте LeaseSet2 и Lease2.",
+            "hi": "पुराना। LeaseSet2 और Lease2 का उपयोग करें।"
           }
         },
         "h4_049": {
@@ -22918,37 +22918,37 @@
           }
         },
         "p_074": {
-          "source_hash": "ed1c00e822776af5",
+          "source_hash": "4ac55e5570bd7c36",
           "translations": {
-            "zh": "gateway router 的 [RouterIdentity](#routeridentity) 的 SHA256 [Hash](#hash)，然后是 [TunnelId](#tunnelid)，最后是结束 [Date](#date)。",
-            "es": "SHA256 [Hash](#hash) de la [RouterIdentity](#routeridentity) del router de puerta de enlace, luego el [TunnelId](#tunnelid), y finalmente una [Date](#date) de finalización.",
-            "ko": "게이트웨이 router의 [RouterIdentity](#routeridentity)의 SHA256 [Hash](#hash), 그 다음 [TunnelId](#tunnelid), 마지막으로 종료 [Date](#date).",
-            "ru": "SHA256 [Hash](#hash) от [RouterIdentity](#routeridentity) шлюзового router'а, затем [TunnelId](#tunnelid), и наконец конечная [Date](#date).",
-            "cs": "SHA256 [Hash](#hash) [RouterIdentity](#routeridentity) gateway routeru, poté [TunnelId](#tunnelid) a nakonec konečné [Date](#date).",
-            "de": "SHA256 [Hash](#hash) der [RouterIdentity](#routeridentity) des Gateway-Routers, dann die [TunnelId](#tunnelid) und schließlich ein End-[Date](#date).",
-            "fr": "SHA256 [Hash](#hash) de la [RouterIdentity](#routeridentity) du router passerelle, puis le [TunnelId](#tunnelid), et enfin une [Date](#date) de fin.",
-            "tr": "Gateway router'ın [RouterIdentity](#routeridentity)'sinin SHA256 [Hash](#hash)'i, ardından [TunnelId](#tunnelid) ve son olarak bitiş [Date](#date)'i.",
-            "vi": "SHA256 [Hash](#hash) của [RouterIdentity](#routeridentity) của gateway router, sau đó là [TunnelId](#tunnelid), và cuối cùng là [Date](#date) kết thúc.",
-            "hi": "gateway router के [RouterIdentity](#routeridentity) का SHA256 [Hash](#hash), फिर [TunnelId](#tunnelid), और अंत में एक समाप्ति [Date](#date)।",
-            "ar": "SHA256 [Hash](#hash) لـ [RouterIdentity](#routeridentity) الخاص بـ router البوابة، ثم [TunnelId](#tunnelid)، وأخيراً [Date](#date) النهاية.",
-            "pt": "SHA256 [Hash](#hash) da [RouterIdentity](#routeridentity) do router de gateway, depois o [TunnelId](#tunnelid), e finalmente uma [Date](#date) de término."
+            "fr": "Définit l'autorisation pour un tunnel particulier de recevoir des messages destinés à une [Destination](#destination).",
+            "zh": "定义特定隧道接收以[目标](#destination)为目的地的消息的授权。",
+            "de": "Definiert die Autorisierung für einen bestimmten Tunnel, Nachrichten zu empfangen, die ein [Ziel](#destination) adressieren.",
+            "vi": "Xác định quyền ủy quyền cho một tunnel cụ thể để nhận các tin nhắn nhắm đến một [Destination](#destination).",
+            "cs": "Definuje autorizaci konkrétního tunelu pro příjem zpráv určených pro [cíl](#destination).",
+            "pt": "Define a autorização para que um túnel específico receba mensagens direcionadas a um [Destination](#destination).",
+            "es": "Define la autorización para que un túnel específico reciba mensajes dirigidos a un [Destination](#destination).",
+            "ar": "يُعرِّف الصلاحية الخاصة بقناة معينة لتلقي الرسائل المستهدفة إلى [وجهة](#destination).",
+            "ko": "특정 터널이 [대상(Destination)](#destination)을 타겟으로 하는 메시지를 수신할 수 있도록 허가를 정의합니다.",
+            "tr": "Belirli bir tünelin bir [Hedef](#destination)'e yönelik mesajları alma yetkisini tanımlar.",
+            "ru": "Определяет авторизацию для конкретного туннеля на получение сообщений, адресованных [Destination](#destination).",
+            "hi": "एक [Destination](#destination) को लक्षित करने वाले संदेश प्राप्त करने के लिए एक विशेष टनल के लिए प्राधिकरण निर्धारित करता है।"
           }
         },
         "p_075": {
-          "source_hash": "f9ac62d633fdaa62",
+          "source_hash": "ed1c00e822776af5",
           "translations": {
-            "zh": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
-            "es": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
-            "ko": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
-            "ru": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
-            "cs": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
-            "de": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
-            "fr": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
-            "tr": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
-            "vi": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
-            "hi": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
-            "ar": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
-            "pt": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)"
+            "fr": "SHA256 du [Hash](#hash) du [RouterIdentity](#routeridentity) du routeur passerelle, puis le [TunnelId](#tunnelid), et enfin une [Date](#date) de fin.",
+            "zh": "网关路由器的 [RouterIdentity](#routeridentity) 的 SHA256 [Hash](#hash)，然后是 [TunnelId](#tunnelid)，最后是一个结束 [Date](#date)。",
+            "de": "SHA256-[Hash](#hash) der [RouterIdentity](#routeridentity) des Gateway-Routers, danach die [TunnelId](#tunnelid) und schließlich ein End-[Datum](#date).",
+            "vi": "SHA256 [Hash](#hash) của [RouterIdentity](#routeridentity) của bộ định tuyến cổng, sau đó là [TunnelId](#tunnelid), và cuối cùng là một [Date](#date) kết thúc.",
+            "cs": "SHA256 [hash](#hash) [RouterIdentity](#routeridentity) brány, poté [TunnelId](#tunnelid) a nakonec koncové [Datum](#date).",
+            "pt": "SHA256 do [Hash](#hash) do [RouterIdentity](#routeridentity) do roteador gateway, seguido pelo [TunnelId](#tunnelid) e finalmente uma [Date](#date) de término.",
+            "es": "SHA256 del [Hash](#hash) de la [RouterIdentity](#routeridentity) del router de puerta de enlace, seguido del [TunnelId](#tunnelid) y finalmente una [Date](#date) de finalización.",
+            "ar": "دالة التجزئة SHA256 [Hash](#hash) الخاصة بهوية الموجه [RouterIdentity](#routeridentity) للموجه البوابة، ثم المعرف الخاص بالأنبوب [TunnelId](#tunnelid)، وأخيرًا التاريخ النهائي [Date](#date).",
+            "ko": "게이트웨이 라우터의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그 다음 [TunnelId](#tunnelid), 마지막으로 종료 [Date](#date).",
+            "tr": "Ağ geçidi yönlendiricisinin [RouterIdentity](#routeridentity)'sinin SHA256 [Hash](#hash'ı), ardından [TunnelId](#tunnelid) ve son olarak bir bitiş [Date](#date).",
+            "ru": "SHA256 [хэш](#hash) [RouterIdentity](#routeridentity) шлюзового маршрутизатора, затем [TunnelId](#tunnelid) и, наконец, конечная [дата](#date).",
+            "hi": "गेटवे राउटर के [राउटर आइडेंटिटी](#routeridentity) का SHA256 [हैश](#hash), फिर [टनल आइडी](#tunnelid), और अंत में एक समाप्ति [तिथि](#date)।"
           }
         },
         "h3_019": {
@@ -22986,20 +22986,20 @@
           }
         },
         "p_076": {
-          "source_hash": "68a097b23dc49b5b",
+          "source_hash": "f9ac62d633fdaa62",
           "translations": {
-            "zh": "包含特定 [Destination](#destination) 的所有当前授权 [Leases](#lease)、可用于加密 garlic 消息的 [PublicKey](#publickey)，以及可用于撤销此特定版本结构的 [SigningPublicKey](#signingpublickey)。LeaseSet 是存储在网络数据库中的两种结构之一（另一种是 [RouterInfo](#routerinfo)），并以所包含 [Destination](#destination) 的 SHA256 值作为键值。",
-            "es": "Contiene todos los [Leases](#lease) actualmente autorizados para un [Destination](#destination) particular, la [PublicKey](#publickey) a la cual se pueden cifrar los mensajes garlic, y luego la [SigningPublicKey](#signingpublickey) que puede usarse para revocar esta versión particular de la estructura. El LeaseSet es una de las dos estructuras almacenadas en la base de datos de red (la otra siendo [RouterInfo](#routerinfo)), y está indexado bajo el SHA256 del [Destination](#destination) contenido.",
-            "ko": "특정 [Destination](#destination)에 대해 현재 승인된 모든 [Lease](#lease)들, garlic 메시지가 암호화될 수 있는 [PublicKey](#publickey), 그리고 이 구조체의 특정 버전을 취소하는 데 사용될 수 있는 [SigningPublicKey](#signingpublickey)를 포함합니다. LeaseSet은 네트워크 데이터베이스에 저장되는 두 구조체 중 하나이며 (다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256 해시를 키로 사용합니다.",
-            "ru": "Содержит все текущие авторизованные [Leases](#lease) для конкретного [Destination](#destination), [PublicKey](#publickey), с помощью которого можно шифровать garlic сообщения, а затем [SigningPublicKey](#signingpublickey), который может использоваться для отзыва данной конкретной версии структуры. LeaseSet является одной из двух структур, хранящихся в сетевой базе данных (другой является [RouterInfo](#routerinfo)), и индексируется по SHA256 содержащегося [Destination](#destination).",
-            "cs": "Obsahuje všechny aktuálně autorizované [Leases](#lease) pro konkrétní [Destination](#destination), [PublicKey](#publickey), kterým lze šifrovat garlic zprávy, a poté [SigningPublicKey](#signingpublickey), který lze použít k odvolání této konkrétní verze struktury. LeaseSet je jedna ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je klíčována pod SHA256 obsažené [Destination](#destination).",
-            "de": "Enthält alle derzeit autorisierten [Leases](#lease) für eine bestimmte [Destination](#destination), den [PublicKey](#publickey), mit dem garlic-Nachrichten verschlüsselt werden können, und dann den [SigningPublicKey](#signingpublickey), der verwendet werden kann, um diese bestimmte Version der Struktur zu widerrufen. Das LeaseSet ist eine der beiden Strukturen, die in der Netzwerkdatenbank gespeichert werden (die andere ist [RouterInfo](#routerinfo)), und wird unter dem SHA256 der enthaltenen [Destination](#destination) gespeichert.",
-            "fr": "Contient tous les [Leases](#lease) actuellement autorisés pour une [Destination](#destination) particulière, la [PublicKey](#publickey) avec laquelle les messages garlic peuvent être chiffrés, puis la [SigningPublicKey](#signingpublickey) qui peut être utilisée pour révoquer cette version particulière de la structure. Le leaseSet est l'une des deux structures stockées dans la base de données réseau (l'autre étant [RouterInfo](#routerinfo)), et est indexé sous le SHA256 de la [Destination](#destination) contenue.",
-            "tr": "Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [Lease](#lease)'leri, garlic mesajlarının şifrelenebileceği [PublicKey](#publickey)'i ve ardından yapının bu belirli sürümünü iptal etmek için kullanılabilecek [SigningPublicKey](#signingpublickey)'i içerir. LeaseSet, ağ veritabanında saklanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo)'dur) ve içerdiği [Destination](#destination)'ın SHA256'sı altında anahtarlanır.",
-            "vi": "Chứa tất cả các [Lease](#lease) hiện được ủy quyền cho một [Destination](#destination) cụ thể, [PublicKey](#publickey) mà các thông điệp garlic có thể được mã hóa, và sau đó là [SigningPublicKey](#signingpublickey) có thể được sử dụng để thu hồi phiên bản cụ thể này của cấu trúc. LeaseSet là một trong hai cấu trúc được lưu trữ trong cơ sở dữ liệu mạng (cấu trúc kia là [RouterInfo](#routerinfo)), và được đánh khóa dưới SHA256 của [Destination](#destination) có chứa.",
-            "hi": "एक विशिष्ट [Destination](#destination) के लिए वर्तमान में अधिकृत सभी [Leases](#lease) को शामिल करता है, [PublicKey](#publickey) जिससे garlic messages को एन्क्रिप्ट किया जा सकता है, और फिर [SigningPublicKey](#signingpublickey) जो इस संरचना के इस विशेष संस्करण को रद्द करने के लिए उपयोग किया जा सकता है। LeaseSet नेटवर्क डेटाबेस में संग्रहीत दो संरचनाओं में से एक है (दूसरी [RouterInfo](#routerinfo) है), और यह निहित [Destination](#destination) के SHA256 के तहत keyed है।",
-            "ar": "يحتوي على جميع عقود الإيجار ([Leases](#lease)) المصرح بها حاليًا لوجهة ([Destination](#destination)) معينة، و[المفتاح العام](#publickey) الذي يمكن تشفير رسائل garlic إليه، ثم [مفتاح التوقيع العام](#signingpublickey) الذي يمكن استخدامه لإلغاء هذا الإصدار المحدد من البنية. إن LeaseSet هو واحد من البنيتين المخزونتين في قاعدة بيانات الشبكة (الأخرى هي [RouterInfo](#routerinfo))، ويتم فهرسته تحت SHA256 للوجهة ([Destination](#destination)) المحتواة.",
-            "pt": "Contém todos os [Leases](#lease) atualmente autorizados para um [Destination](#destination) específico, a [PublicKey](#publickey) para a qual as mensagens garlic podem ser criptografadas, e então a [SigningPublicKey](#signingpublickey) que pode ser usada para revogar esta versão específica da estrutura. O leaseSet é uma das duas estruturas armazenadas no netDb (a outra sendo [RouterInfo](#routerinfo)), e é indexado sob o SHA256 do [Destination](#destination) contido."
+            "fr": "JavaDoc : [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
+            "zh": "JavaDoc：[net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
+            "de": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
+            "vi": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
+            "cs": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
+            "pt": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
+            "es": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
+            "ar": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
+            "ko": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
+            "tr": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
+            "ru": "JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)",
+            "hi": "जावाडॉक: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)"
           }
         },
         "h4_051": {
@@ -23173,20 +23173,20 @@
           }
         },
         "p_078": {
-          "source_hash": "f99a76417277f01d",
+          "source_hash": "68a097b23dc49b5b",
           "translations": {
-            "zh": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
-            "es": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
-            "ko": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
-            "ru": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
-            "cs": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
-            "de": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
-            "fr": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
-            "tr": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
-            "vi": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
-            "hi": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
-            "ar": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
-            "pt": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)"
+            "fr": "Contient tous les [Leases](#lease) actuellement autorisés pour un [Destination](#destination) particulier, la [PublicKey](#publickey) permettant de chiffrer les messages au format garlic, puis la [SigningPublicKey](#signingpublickey) qui peut être utilisée pour révoquer cette version spécifique de la structure. Le LeaseSet est l'une des deux structures stockées dans la base de données du réseau (l'autre étant [RouterInfo](#routerinfo)), et est indexé selon le hachage SHA256 du [Destination](#destination) qu'il contient.",
+            "zh": "包含特定[Destination](#destination)当前已授权的所有[Leases](#lease)，可用于加密garlic消息的[PublicKey](#publickey)，以及可用于撤销此特定版本结构的[SigningPublicKey](#signingpublickey)。LeaseSet是存储在网络数据库中的两种结构之一（另一种是[RouterInfo](#routerinfo)），其键值为所包含[Destination](#destination)的SHA256哈希值。",
+            "de": "Enthält alle derzeit autorisierten [Leases](#lease) für ein bestimmtes [Destination](#destination), den [PublicKey](#publickey), an den verschlüsselte Garlic-Nachrichten gesendet werden können, sowie den [SigningPublicKey](#signingpublickey), der verwendet werden kann, um diese bestimmte Version der Struktur zurückzuziehen. Der LeaseSet ist eine der beiden Strukturen, die in der Netzwerkdatenbank gespeichert werden (die andere ist [RouterInfo](#routerinfo)), und wird unter dem SHA256-Hash des enthaltenen [Destination](#destination) indiziert.",
+            "vi": "Chứa tất cả các [Leases](#lease) hiện đang được ủy quyền cho một [Destination](#destination) cụ thể, [PublicKey](#publickey) dùng để mã hóa các thông điệp garlic, và [SigningPublicKey](#signingpublickey) có thể được sử dụng để thu hồi phiên bản cụ thể này của cấu trúc. LeaseSet là một trong hai cấu trúc được lưu trữ trong cơ sở dữ liệu mạng (cấu trúc còn lại là [RouterInfo](#routerinfo)), và được đánh chỉ mục theo SHA256 của [Destination](#destination) chứa bên trong.",
+            "cs": "Obsahuje všechny aktuálně autorizované [Leases](#lease) pro konkrétní [Destination](#destination), [PublicKey](#publickey), na který lze šifrovat garlic zprávy, a dále [SigningPublicKey](#signingpublickey), který lze použít k odvolání této konkrétní verze struktury. LeaseSet je jednou ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je indexován pod SHA256 obsaženého [Destination](#destination).",
+            "pt": "Contém todas as [Leases](#lease) atualmente autorizadas para um determinado [Destination](#destination), a [PublicKey](#publickey) na qual mensagens garlic podem ser criptografadas, e então a [SigningPublicKey](#signingpublickey) que pode ser usada para revogar esta versão específica da estrutura. O LeaseSet é uma das duas estruturas armazenadas no banco de dados da rede (a outra sendo [RouterInfo](#routerinfo)) e é indexado pelo SHA256 do [Destination](#destination) contido.",
+            "es": "Contiene todas las [Leases](#lease) actualmente autorizadas para un [Destination](#destination) particular, la [PublicKey](#publickey) con la que se pueden cifrar los mensajes de ajo (garlic), y luego la [SigningPublicKey](#signingpublickey) que puede utilizarse para revocar esta versión particular de la estructura. El LeaseSet es una de las dos estructuras almacenadas en la base de datos de red (la otra es [RouterInfo](#routerinfo)), y se indexa mediante el SHA256 del [Destination](#destination) contenido.",
+            "ar": "يحتوي على جميع [الإيجارات](#lease) المصرح بها حاليًا لـ [وجهة](#destination) معينة، و[مفتاح العمومي](#publickey) الذي يمكن تشفير رسائل الثوم (garlic) إليه، ثم [مفتاح التوقيع العمومي](#signingpublickey) الذي يمكن استخدامه لإلغاء هذا الإصدار المحدد من الهيكل. يُعدّ \"LeaseSet\" أحد الهيكلَين المخزَّنين في قاعدة بيانات الشبكة (والهيكل الآخر هو [RouterInfo](#routerinfo))، ويُفتَّح باستخدام دالة التجزئة SHA256 للـ[وجهة](#destination) المحتواة فيه.",
+            "ko": "특정 [Destination](#destination)에 대한 현재 승인된 모든 [Leases](#lease)를 포함하며, 마늘 암호화(garlic encryption) 메시지를 암호화하는 데 사용할 수 있는 [PublicKey](#publickey)와 이 구조의 특정 버전을 폐기(revoke)하는 데 사용할 수 있는 [SigningPublicKey](#signingpublickey)를 포함합니다. LeaseSet은 네트워크 데이터베이스(netDb)에 저장되는 두 가지 구조 중 하나이며(다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256 해시 값으로 키가 지정됩니다.",
+            "tr": "Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [Leases](#lease) içeriğini, sarmal iletilerin şifrelenmek üzere kullanılabileceği [PublicKey](#publickey) ve bu yapının bu sürümünü iptal etmek için kullanılabilecek [SigningPublicKey](#signingpublickey) içerir. LeaseSet, ağ veritabanında depolanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo)) ve içindeki [Destination](#destination)'in SHA256 değeriyle anahtarlanır.",
+            "ru": "Содержит все в настоящее время авторизованные [аренды](#lease) для определённого [адресата](#destination), [открытый ключ](#publickey), по которому можно шифровать чесночные сообщения, а также [ключ подписи](#signingpublickey), который может быть использован для отмены данной версии структуры. LeaseSet — это одна из двух структур, хранящихся в сетевой базе данных (вторая — [RouterInfo](#routerinfo)), и индексируется по SHA256 от содержащегося [адресата](#destination).",
+            "hi": "एक विशेष [Destination](#destination) के लिए वर्तमान में अधिकृत सभी [Leases](#lease) को शामिल करता है, वह [PublicKey](#publickey) जिस पर गैर्लिक संदेश एन्क्रिप्ट किए जा सकते हैं, और फिर वह [SigningPublicKey](#signingpublickey) जिसका उपयोग इस संरचना के विशेष संस्करण को रद्द करने के लिए किया जा सकता है। LeaseSet नेटवर्क डेटाबेस में संग्रहीत दो संरचनाओं में से एक है (दूसरा [RouterInfo](#routerinfo) है), और इसे उसमें शामिल [Destination](#destination) के SHA256 के तहत संग्रहीत किया जाता है।"
           }
         },
         "h3_020": {
@@ -23258,20 +23258,20 @@
           }
         },
         "p_080": {
-          "source_hash": "69f561be244e9795",
+          "source_hash": "f99a76417277f01d",
           "translations": {
-            "zh": "网关 router 的 [RouterIdentity](#routeridentity) 的 SHA256 [Hash](#hash)，然后是 [TunnelId](#tunnelid)，最后是 4 字节的结束日期。",
-            "es": "SHA256 [Hash](#hash) de la [RouterIdentity](#routeridentity) del router de puerta de enlace, luego el [TunnelId](#tunnelid), y finalmente una fecha de finalización de 4 bytes.",
-            "ko": "게이트웨이 router의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그 다음 [TunnelId](#tunnelid), 그리고 마지막으로 4바이트 종료 날짜.",
-            "ru": "SHA256 [Hash](#hash) от [RouterIdentity](#routeridentity) шлюзового router'а, затем [TunnelId](#tunnelid), и наконец 4-байтная дата окончания.",
-            "cs": "SHA256 [Hash](#hash) [RouterIdentity](#routeridentity) gateway routeru, poté [TunnelId](#tunnelid) a nakonec 4bajtové datum ukončení.",
-            "de": "SHA256 [Hash](#hash) der [RouterIdentity](#routeridentity) des Gateway-Routers, dann die [TunnelId](#tunnelid) und schließlich ein 4-Byte-Enddatum.",
-            "fr": "[Hash](#hash) SHA256 de la [RouterIdentity](#routeridentity) du router passerelle, puis le [TunnelId](#tunnelid), et enfin une date de fin sur 4 octets.",
-            "tr": "Gateway router'ın [RouterIdentity](#routeridentity)'sinin SHA256 [Hash](#hash)'i, ardından [TunnelId](#tunnelid) ve son olarak 4 byte'lık bitiş tarihi.",
-            "vi": "SHA256 [Hash](#hash) của [RouterIdentity](#routeridentity) của gateway router, sau đó là [TunnelId](#tunnelid), và cuối cùng là ngày kết thúc 4 byte.",
-            "hi": "गेटवे router की [RouterIdentity](#routeridentity) का SHA256 [Hash](#hash), फिर [TunnelId](#tunnelid), और अंत में 4 byte end date।",
-            "ar": "SHA256 [Hash](#hash) لـ [RouterIdentity](#routeridentity) الخاص بـ router البوابة، ثم [TunnelId](#tunnelid)، وأخيراً تاريخ انتهاء من 4 بايت.",
-            "pt": "SHA256 [Hash](#hash) da [RouterIdentity](#routeridentity) do router gateway, depois o [TunnelId](#tunnelid), e finalmente uma data de término de 4 bytes."
+            "fr": "JavaDoc : [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
+            "zh": "JavaDoc：[net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
+            "de": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
+            "vi": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
+            "cs": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
+            "pt": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
+            "es": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
+            "ar": "مستندات جافا: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
+            "ko": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
+            "tr": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
+            "ru": "JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)",
+            "hi": "जावाडॉक: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)"
           }
         },
         "h4_055": {
@@ -23360,20 +23360,20 @@
           }
         },
         "p_082": {
-          "source_hash": "b7bc128e4548618c",
+          "source_hash": "69f561be244e9795",
           "translations": {
-            "zh": "这是 [LeaseSet2Header](#leaseset2header) 的可选部分。也用于流传输和 I2CP。自 0.9.38 版本开始支持；更多信息请参见提案 123。",
-            "es": "Esta es una parte opcional del [LeaseSet2Header](#leaseset2header). También se usa en streaming e I2CP. Compatible desde la versión 0.9.38; consulta la propuesta 123 para más información.",
-            "ko": "이는 [LeaseSet2Header](#leaseset2header)의 선택적 부분입니다. streaming과 I2CP에서도 사용됩니다. 0.9.38부터 지원되며, 자세한 정보는 제안서 123을 참조하십시오.",
-            "ru": "Это необязательная часть [LeaseSet2Header](#leaseset2header). Также используется в streaming и I2CP. Поддерживается начиная с версии 0.9.38; см. предложение 123 для получения дополнительной информации.",
-            "cs": "Toto je volitelná část [LeaseSet2Header](#leaseset2header). Také se používá ve streaming a I2CP. Podporováno od verze 0.9.38; více informací viz návrh 123.",
-            "de": "Dies ist ein optionaler Teil des [LeaseSet2Header](#leaseset2header). Wird auch in streaming und I2CP verwendet. Unterstützt seit 0.9.38; siehe Vorschlag 123 für weitere Informationen.",
-            "fr": "Il s'agit d'une partie optionnelle de [LeaseSet2Header](#leaseset2header). Également utilisée dans le streaming et I2CP. Prise en charge à partir de la version 0.9.38 ; voir la proposition 123 pour plus d'informations.",
-            "tr": "Bu, [LeaseSet2Header](#leaseset2header)'ın isteğe bağlı bir parçasıdır. Ayrıca streaming ve I2CP'de de kullanılır. 0.9.38 sürümünden itibaren desteklenir; daha fazla bilgi için proposal 123'e bakın.",
-            "vi": "Đây là một phần tùy chọn của [LeaseSet2Header](#leaseset2header). Cũng được sử dụng trong streaming và I2CP. Được hỗ trợ từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.",
-            "hi": "यह [LeaseSet2Header](#leaseset2header) का एक वैकल्पिक हिस्सा है। streaming और I2CP में भी उपयोग किया जाता है। 0.9.38 से समर्थित; अधिक जानकारी के लिए proposal 123 देखें।",
-            "ar": "هذا جزء اختياري من [LeaseSet2Header](#leaseset2header). يُستخدم أيضاً في streaming و I2CP. مدعوم اعتباراً من الإصدار 0.9.38؛ راجع الاقتراح 123 لمزيد من المعلومات.",
-            "pt": "Esta é uma parte opcional do [LeaseSet2Header](#leaseset2header). Também usado em streaming e I2CP. Suportado a partir da versão 0.9.38; veja a proposta 123 para mais informações."
+            "fr": "Le hachage SHA256 [Hash](#hash) du [RouterIdentity](#routeridentity) du routeur passerelle, suivi du [TunnelId](#tunnelid), puis d'une date de fin sur 4 octets.",
+            "zh": "网关路由器的[路由器标识](#routeridentity)的SHA256 [哈希值](#hash)，然后是[隧道ID](#tunnelid)，最后是4字节的结束日期。",
+            "de": "SHA256-[Hash](#hash) der [RouterIdentity](#routeridentity) des Gateway-Routers, dann die [TunnelId](#tunnelid) und schließlich ein 4-Byte-langes Enddatum.",
+            "vi": "SHA256 của [RouterIdentity](#routeridentity) của bộ định tuyến cổng, sau đó là [TunnelId](#tunnelid), và cuối cùng là ngày kết thúc 4 byte.",
+            "cs": "SHA256 [hash](#hash) [RouterIdentity](#routeridentity) brány, poté [TunnelId](#tunnelid) a nakonec 4 bajty určující koncové datum.",
+            "pt": "SHA256 do [Hash](#hash) da [RouterIdentity](#routeridentity) do roteador de gateway, seguido do [TunnelId](#tunnelid) e, finalmente, uma data de término de 4 bytes.",
+            "es": "SHA256 del [Hash](#hash) del [RouterIdentity](#routeridentity) del router de puerta de enlace, luego el [TunnelId](#tunnelid), y finalmente una fecha de expiración de 4 bytes.",
+            "ar": "SHA256 [هاش](#hash) لـ [RouterIdentity](#routeridentity) الراوتر البوابة، ثم [TunnelId](#tunnelid)، وأخيراً تاريخ انتهاء مكوّن من 4 بايتات.",
+            "ko": "게이트웨이 라우터의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그다음 [TunnelId](#tunnelid), 마지막으로 4바이트의 종료 날짜.",
+            "tr": "Ağ geçidi yönlendiricisinin [RouterIdentity](#routeridentity)'sinin [Hash](#hash) değerinin SHA256'sı, ardından [TunnelId](#tunnelid) ve son olarak 4 baytlık bir bitiş tarihi.",
+            "ru": "SHA256 [хэш](#hash) от [RouterIdentity](#routeridentity) шлюза, затем [TunnelId](#tunnelid) и, наконец, 4-байтовая дата окончания.",
+            "hi": "गेटवे राउटर के [राउटर पहचान](#routeridentity) का SHA256 [हैश](#hash), फिर [टनल आइडी](#tunnelid), और अंत में एक 4 बाइट की समाप्ति तिथि।"
           }
         },
         "h4_057": {
@@ -23479,20 +23479,20 @@
           }
         },
         "p_084": {
-          "source_hash": "369974d670f464be",
+          "source_hash": "b7bc128e4548618c",
           "translations": {
-            "zh": "这是 [LeaseSet2](#leaseset2) 和 [MetaLeaseSet](#metaleaseset) 的公共部分。自 0.9.38 版本开始支持；详见提案 123 获取更多信息。",
-            "es": "Esta es la parte común del [LeaseSet2](#leaseset2) y [MetaLeaseSet](#metaleaseset). Soportado desde la versión 0.9.38; consulta la propuesta 123 para más información.",
-            "ko": "이것은 [LeaseSet2](#leaseset2)와 [MetaLeaseSet](#metaleaseset)의 공통 부분입니다. 0.9.38부터 지원됩니다; 자세한 정보는 proposal 123을 참조하십시오.",
-            "ru": "Это общая часть [LeaseSet2](#leaseset2) и [MetaLeaseSet](#metaleaseset). Поддерживается начиная с версии 0.9.38; см. предложение 123 для получения дополнительной информации.",
-            "cs": "Toto je společná část [LeaseSet2](#leaseset2) a [MetaLeaseSet](#metaleaseset). Podporováno od verze 0.9.38; více informací v návrhu 123.",
-            "de": "Dies ist der gemeinsame Teil des [LeaseSet2](#leaseset2) und [MetaLeaseSet](#metaleaseset). Unterstützt seit 0.9.38; siehe Vorschlag 123 für weitere Informationen.",
-            "fr": "Ceci est la partie commune du [LeaseSet2](#leaseset2) et du [MetaLeaseSet](#metaleaseset). Pris en charge depuis la version 0.9.38 ; voir la proposition 123 pour plus d'informations.",
-            "tr": "Bu, [LeaseSet2](#leaseset2) ve [MetaLeaseSet](#metaleaseset)'in ortak kısmıdır. 0.9.38 sürümünden itibaren desteklenmektedir; daha fazla bilgi için 123 numaralı öneriyi inceleyin.",
-            "vi": "Đây là phần chung của [LeaseSet2](#leaseset2) và [MetaLeaseSet](#metaleaseset). Được hỗ trợ từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.",
-            "hi": "यह [LeaseSet2](#leaseset2) और [MetaLeaseSet](#metaleaseset) का सामान्य भाग है। 0.9.38 से समर्थित; अधिक जानकारी के लिए प्रस्ताव 123 देखें।",
-            "ar": "هذا هو الجزء المشترك من [LeaseSet2](#leaseset2) و [MetaLeaseSet](#metaleaseset). مدعوم اعتبارًا من الإصدار 0.9.38؛ راجع المقترح 123 لمزيد من المعلومات.",
-            "pt": "Esta é a parte comum do [LeaseSet2](#leaseset2) e [MetaLeaseSet](#metaleaseset). Suportado a partir da versão 0.9.38; consulte a proposta 123 para mais informações."
+            "fr": "Il s'agit d'une partie facultative de l'élément [LeaseSet2Header](#leaseset2header). Également utilisé dans le streaming et I2CP. Pris en charge depuis la version 0.9.38 ; voir la proposition 123 pour plus d'informations.",
+            "zh": "这是 [LeaseSet2Header](#leaseset2header) 的可选部分。也用于流媒体和 I2CP。自 0.9.38 版本起支持；更多信息请参见提案 123。",
+            "de": "Dies ist ein optionaler Teil des [LeaseSet2Header](#leaseset2header). Wird ebenfalls in Streaming und I2CP verwendet. Unterstützt ab 0.9.38; weitere Informationen finden sich in Vorschlag 123.",
+            "vi": "Đây là phần tùy chọn của [LeaseSet2Header](#leaseset2header). Cũng được sử dụng trong streaming và I2CP. Được hỗ trợ kể từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.",
+            "cs": "Toto je volitelná část [LeaseSet2Header](#leaseset2header). Používá se také ve streamování a I2CP. Podporováno od verze 0.9.38; více informací viz návrh 123.",
+            "pt": "Esta é uma parte opcional do [LeaseSet2Header](#leaseset2header). Também utilizada no streaming e no I2CP. Suportada desde a versão 0.9.38; veja a proposta 123 para mais informações.",
+            "es": "Esta es una parte opcional del [LeaseSet2Header](#leaseset2header). También se utiliza en streaming y I2CP. Compatible desde la versión 0.9.38; véase la propuesta 123 para más información.",
+            "ar": "هذا جزء اختياري من [LeaseSet2Header](#leaseset2header). ويُستخدم أيضًا في البث وفي I2CP. مدعوم بدءًا من الإصدار 0.9.38؛ انظر الاقتراح 123 لمزيد من المعلومات.",
+            "ko": "이것은 [LeaseSet2Header](#leaseset2header)의 선택적 부분입니다. 스트리밍 및 I2CP에서도 사용됩니다. 0.9.38 버전부터 지원되며, 자세한 내용은 제안서 123을 참조하세요.",
+            "tr": "Bu, [LeaseSet2Header](#leaseset2header)'ın isteğe bağlı bir parçasıdır. Akış ve I2CP'de de kullanılır. 0.9.38'den bu yana desteklenmektedir; daha fazla bilgi için öneri 123'e bakın.",
+            "ru": "Это необязательная часть [LeaseSet2Header](#leaseset2header). Также используется в потоковой передаче и I2CP. Поддерживается начиная с версии 0.9.38; дополнительную информацию см. в предложении 123.",
+            "hi": "यह [LeaseSet2Header](#leaseset2header) का एक वैकल्पिक भाग है। इसका उपयोग स्ट्रीमिंग और I2CP में भी किया जाता है। संस्करण 0.9.38 से इसका समर्थन किया जा रहा है; अधिक जानकारी के लिए प्रस्ताव 123 देखें।"
           }
         },
         "h4_060": {
@@ -23649,20 +23649,20 @@
           }
         },
         "p_086": {
-          "source_hash": "399ce018f8186704",
+          "source_hash": "369974d670f464be",
           "translations": {
-            "zh": "包含在类型为 3 的 I2NP DatabaseStore 消息中。从 0.9.38 版本开始支持；更多信息请参见提案 123。",
-            "es": "Contenido en un mensaje I2NP DatabaseStore de tipo 3. Compatible desde la versión 0.9.38; consulta la propuesta 123 para más información.",
-            "ko": "타입 3의 I2NP DatabaseStore 메시지에 포함됩니다. 0.9.38부터 지원되며, 자세한 정보는 proposal 123을 참조하세요.",
-            "ru": "Содержится в I2NP сообщении DatabaseStore типа 3. Поддерживается начиная с версии 0.9.38; подробную информацию см. в предложении 123.",
-            "cs": "Obsaženo v I2NP DatabaseStore zprávě typu 3. Podporováno od verze 0.9.38; více informací najdete v návrhu 123.",
-            "de": "Enthalten in einer I2NP DatabaseStore-Nachricht vom Typ 3. Unterstützt ab Version 0.9.38; siehe Vorschlag 123 für weitere Informationen.",
-            "fr": "Contenu dans un message I2NP DatabaseStore de type 3. Pris en charge depuis la version 0.9.38 ; voir la proposition 123 pour plus d'informations.",
-            "tr": "Tip 3 I2NP DatabaseStore mesajında bulunur. 0.9.38 sürümünden itibaren desteklenir; daha fazla bilgi için 123 numaralı öneriyi inceleyin.",
-            "vi": "Được chứa trong thông điệp I2NP DatabaseStore loại 3. Được hỗ trợ từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.",
-            "hi": "I2NP DatabaseStore संदेश के प्रकार 3 में निहित। 0.9.38 से समर्थित; अधिक जानकारी के लिए प्रस्ताव 123 देखें।",
-            "ar": "متضمن في رسالة I2NP DatabaseStore من النوع 3. مدعوم اعتباراً من الإصدار 0.9.38؛ راجع المقترح 123 للمزيد من المعلومات.",
-            "pt": "Contido numa mensagem I2NP DatabaseStore do tipo 3. Suportado a partir da versão 0.9.38; consulte a proposta 123 para mais informações."
+            "fr": "Ceci est la partie commune du [LeaseSet2](#leaseset2) et du [MetaLeaseSet](#metaleaseset). Pris en charge depuis la version 0.9.38 ; voir la proposition 123 pour plus d'informations.",
+            "zh": "这是 [LeaseSet2](#leaseset2) 和 [MetaLeaseSet](#metaleaseset) 的公共部分。自 0.9.38 版本起支持；更多信息请参见提案 123。",
+            "de": "Dies ist der gemeinsame Teil des [LeaseSet2](#leaseset2) und des [MetaLeaseSet](#metaleaseset). Unterstützt ab 0.9.38; weitere Informationen finden Sie in Vorschlag 123.",
+            "vi": "Đây là phần chung của [LeaseSet2](#leaseset2) và [MetaLeaseSet](#metaleaseset). Được hỗ trợ kể từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.",
+            "cs": "Toto je společná část [LeaseSet2](#leaseset2) a [MetaLeaseSet](#metaleaseset). Podporováno od verze 0.9.38; více informací viz návrh 123.",
+            "pt": "Esta é a parte comum do [LeaseSet2](#leaseset2) e do [MetaLeaseSet](#metaleaseset). Suportado a partir da versão 0.9.38; veja a proposta 123 para mais informações.",
+            "es": "Esta es la parte común del [LeaseSet2](#leaseset2) y el [MetaLeaseSet](#metaleaseset). Compatible desde la versión 0.9.38; ver la propuesta 123 para más información.",
+            "ar": "هذا هو الجزء المشترك بين [LeaseSet2](#leaseset2) و [MetaLeaseSet](#metaleaseset). مدعوم بدءًا من الإصدار 0.9.38؛ انظر الاقتراح 123 لمزيد من المعلومات.",
+            "ko": "이것은 [LeaseSet2](#leaseset2)와 [MetaLeaseSet](#metaleaseset)의 공통 부분입니다. 0.9.38부터 지원되며, 자세한 내용은 proposal 123을 참조하십시오.",
+            "tr": "Bu, [LeaseSet2](#leaseset2) ve [MetaLeaseSet](#metaleaseset) arasındaki ortak kısımdır. 0.9.38'den bu yana desteklenmektedir; daha fazla bilgi için öneri 123'e bakınız.",
+            "ru": "Это общая часть [LeaseSet2](#leaseset2) и [MetaLeaseSet](#metaleaseset). Поддерживается начиная с версии 0.9.38; дополнительную информацию см. в предложении 123.",
+            "hi": "यह [LeaseSet2](#leaseset2) और [MetaLeaseSet](#metaleaseset) का सामान्य भाग है। संस्करण 0.9.38 से समर्थित; अधिक जानकारी के लिए प्रस्ताव 123 देखें।"
           }
         },
         "p_087": {
@@ -23700,20 +23700,20 @@
           }
         },
         "p_088": {
-          "source_hash": "bfa043f84e9ddb7e",
+          "source_hash": "399ce018f8186704",
           "translations": {
-            "zh": "[LeaseSet2Header](#leaseset2header)，接着是选项，然后是一个或多个用于加密的 [PublicKey](#publickey)，[Integer](#integer) 指定集合中有多少个 [Lease2](#lease2) 结构，接着是实际的 [Lease2](#lease2) 结构，最后是由 [Destination](#destination) 的 [SigningPrivateKey](#signingprivatekey) 或临时密钥签名的前述字节的 [Signature](#signature)。",
-            "es": "[LeaseSet2Header](#leaseset2header), seguido de opciones, luego una o más [PublicKey](#publickey) para encriptación, [Integer](#integer) especificando cuántas estructuras [Lease2](#lease2) están en el conjunto, seguido de las estructuras [Lease2](#lease2) reales y finalmente una [Signature](#signature) de los bytes anteriores firmados por la [SigningPrivateKey](#signingprivatekey) del [Destination](#destination) o la clave transitoria.",
-            "ko": "[LeaseSet2Header](#leaseset2header), 그 다음 옵션들, 그리고 암호화를 위한 하나 이상의 [PublicKey](#publickey), 세트에 있는 [Lease2](#lease2) 구조체의 개수를 명시하는 [Integer](#integer), 그 다음 실제 [Lease2](#lease2) 구조체들, 마지막으로 [Destination](#destination)의 [SigningPrivateKey](#signingprivatekey) 또는 임시 키로 서명된 이전 바이트들의 [Signature](#signature).",
-            "ru": "[LeaseSet2Header](#leaseset2header), за которым следуют опции, затем один или более [PublicKey](#publickey) для шифрования, [Integer](#integer), указывающий количество структур [Lease2](#lease2) в наборе, за которым следуют фактические структуры [Lease2](#lease2) и, наконец, [Signature](#signature) предыдущих байтов, подписанная [SigningPrivateKey](#signingprivatekey) [Destination](#destination) или временным ключом.",
-            "cs": "[LeaseSet2Header](#leaseset2header), následovaný možnostmi, pak jeden nebo více [PublicKey](#publickey) pro šifrování, [Integer](#integer) určující kolik [Lease2](#lease2) struktur je v sadě, následovaný skutečnými [Lease2](#lease2) strukturami a nakonec [Signature](#signature) předchozích bytů podepsaný [Destination](#destination) [SigningPrivateKey](#signingprivatekey) nebo přechodným klíčem.",
-            "de": "[LeaseSet2Header](#leaseset2header), gefolgt von Optionen, dann einem oder mehreren [PublicKey](#publickey) für die Verschlüsselung, [Integer](#integer) der angibt, wie viele [Lease2](#lease2) Strukturen im Set enthalten sind, gefolgt von den tatsächlichen [Lease2](#lease2) Strukturen und schließlich einer [Signature](#signature) der vorherigen Bytes, signiert vom [SigningPrivateKey](#signingprivatekey) der [Destination](#destination) oder dem temporären Schlüssel.",
-            "fr": "[LeaseSet2Header](#leaseset2header), suivi d'options, puis une ou plusieurs [PublicKey](#publickey) pour le chiffrement, un [Integer](#integer) spécifiant combien de structures [Lease2](#lease2) sont dans l'ensemble, suivi des structures [Lease2](#lease2) réelles et enfin une [Signature](#signature) des octets précédents signés par la [SigningPrivateKey](#signingprivatekey) de la [Destination](#destination) ou la clé transitoire.",
-            "tr": "[LeaseSet2Header](#leaseset2header), ardından seçenekler, sonra şifreleme için bir veya daha fazla [PublicKey](#publickey), kümede kaç [Lease2](#lease2) yapısı bulunduğunu belirten [Integer](#integer), ardından gerçek [Lease2](#lease2) yapıları ve son olarak önceki baytların [Destination](#destination)'ın [SigningPrivateKey](#signingprivatekey) veya geçici anahtarı tarafından imzalandığı bir [Signature](#signature).",
-            "vi": "[LeaseSet2Header](#leaseset2header), theo sau bởi các tùy chọn, sau đó một hoặc nhiều [PublicKey](#publickey) để mã hóa, [Integer](#integer) chỉ định có bao nhiều cấu trúc [Lease2](#lease2) trong tập hợp, theo sau bởi các cấu trúc [Lease2](#lease2) thực tế và cuối cùng là một [Signature](#signature) của các byte trước đó được ký bởi [SigningPrivateKey](#signingprivatekey) của [Destination](#destination) hoặc khóa tạm thời.",
-            "hi": "[LeaseSet2Header](#leaseset2header), उसके बाद options, फिर एक या अधिक [PublicKey](#publickey) एन्क्रिप्शन के लिए, [Integer](#integer) जो निर्दिष्ट करता है कि set में कितने [Lease2](#lease2) structures हैं, उसके बाद वास्तविक [Lease2](#lease2) structures और अंत में पिछले bytes का [Signature](#signature) जो [Destination](#destination) की [SigningPrivateKey](#signingprivatekey) या transient key द्वारा signed है।",
-            "ar": "[LeaseSet2Header](#leaseset2header)، متبوعاً بخيارات، ثم واحد أو أكثر من [PublicKey](#publickey) للتشفير، [Integer](#integer) يحدد كم عدد هياكل [Lease2](#lease2) في المجموعة، متبوعاً بهياكل [Lease2](#lease2) الفعلية وأخيراً [Signature](#signature) للبايتات السابقة موقعة بواسطة [SigningPrivateKey](#signingprivatekey) الخاص بـ [Destination](#destination) أو المفتاح المؤقت.",
-            "pt": "[LeaseSet2Header](#leaseset2header), seguido por opções, depois uma ou mais [PublicKey](#publickey) para criptografia, [Integer](#integer) especificando quantas estruturas [Lease2](#lease2) estão no conjunto, seguido pelas estruturas [Lease2](#lease2) reais e finalmente uma [Signature](#signature) dos bytes anteriores assinados pela [SigningPrivateKey](#signingprivatekey) do [Destination](#destination) ou pela chave transitória."
+            "fr": "Contenu dans un message I2NP de type DatabaseStore 3. Pris en charge depuis la version 0.9.38 ; voir la proposition 123 pour plus d'informations.",
+            "zh": "包含在类型为3的I2NP DatabaseStore消息中。自0.9.38版本起支持；更多信息请参见提案123。",
+            "de": "Enthalten in einer I2NP-DatabaseStore-Nachricht vom Typ 3. Unterstützt ab 0.9.38; siehe Vorschlag 123 für weitere Informationen.",
+            "vi": "Được chứa trong tin nhắn I2NP DatabaseStore loại 3. Được hỗ trợ kể từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.",
+            "cs": "Obsaženo ve zprávě I2NP DatabaseStore typu 3. Podporováno od verze 0.9.38; více informací viz návrh 123.",
+            "pt": "Contido em uma mensagem I2NP do tipo DatabaseStore 3. Suportado a partir da versão 0.9.38; veja a proposta 123 para mais informações.",
+            "es": "Contenido en un mensaje I2NP DatabaseStore de tipo 3. Compatible desde la versión 0.9.38; ver la propuesta 123 para más información.",
+            "ar": "موجود في رسالة I2NP من النوع DatabaseStore رقم 3. مدعوم بدءًا من الإصدار 0.9.38؛ راجع الاقتراح 123 لمزيد من المعلومات.",
+            "ko": "유형 3의 I2NP DatabaseStore 메시지에 포함됨. 0.9.38 버전부터 지원되며, 자세한 내용은 제안서 123을 참조하세요.",
+            "tr": "Tür 3'ün I2NP DatabaseStore mesajında yer alır. 0.9.38'den beri desteklenir; daha fazla bilgi için öneri 123'e bakın.",
+            "ru": "Содержится в сообщении I2NP DatabaseStore типа 3. Поддерживается начиная с версии 0.9.38; подробности см. в предложении 123.",
+            "hi": "प्रकार 3 के I2NP डेटाबेसस्टोर संदेश में शामिल। 0.9.38 से समर्थित; अधिक जानकारी के लिए प्रस्ताव 123 देखें।"
           }
         },
         "h4_064": {
@@ -23751,20 +23751,20 @@
           }
         },
         "p_090": {
-          "source_hash": "bfef4bfff5845ca0",
+          "source_hash": "bfa043f84e9ddb7e",
           "translations": {
-            "zh": "但是，客户端可能会根据实现方式，基于自己的偏好进行选择，或使用某种方法来确定\"组合\"偏好。这可能作为配置选项或用于调试很有用。",
-            "es": "Sin embargo, los clientes pueden, dependiendo de la implementación, seleccionar basándose en su preferencia en su lugar, o usar algún método para determinar la preferencia \"combinada\". Esto puede ser útil como una opción de configuración, o para depuración.",
-            "ko": "그러나 클라이언트는 구현에 따라 자신의 선호도에 기반하여 선택하거나, \"결합된\" 선호도를 결정하는 방법을 사용할 수 있습니다. 이는 구성 옵션이나 디버깅에 유용할 수 있습니다.",
-            "ru": "Однако клиенты могут, в зависимости от реализации, выбирать основываясь на своих предпочтениях, или использовать некоторый метод для определения \"комбинированного\" предпочтения. Это может быть полезно как опция конфигурации или для отладки.",
-            "cs": "Klienti však mohou, v závislosti na implementaci, vybírat podle svých vlastních preferencí, nebo použít nějakou metodu k určení \"kombinované\" preference. To může být užitečné jako konfigurační možnost nebo pro ladění.",
-            "de": "Clients können jedoch, abhängig von der Implementierung, stattdessen basierend auf ihrer eigenen Präferenz auswählen oder eine Methode verwenden, um die \"kombinierte\" Präferenz zu bestimmen. Dies kann als Konfigurationsoption oder zum Debugging nützlich sein.",
-            "fr": "Cependant, les clients peuvent, selon l'implémentation, sélectionner en fonction de leurs préférences à la place, ou utiliser une méthode pour déterminer la préférence \"combinée\". Cela peut être utile comme option de configuration, ou pour le débogage.",
-            "tr": "Ancak, istemciler uygulama-bağımlı olarak bunun yerine kendi tercihlerine göre seçim yapabilir veya \"birleşik\" tercihi belirlemek için bazı yöntemler kullanabilir. Bu, bir yapılandırma seçeneği olarak veya hata ayıklama için yararlı olabilir.",
-            "vi": "Tuy nhiên, các client có thể, tùy thuộc vào cách triển khai, lựa chọn dựa trên sở thích của họ thay vì vậy, hoặc sử dụng một số phương pháp để xác định sở thích \"kết hợp\". Điều này có thể hữu ích như một tùy chọn cấu hình, hoặc để gỡ lỗi.",
-            "hi": "हालांकि, क्लाइंट्स अपनी preference के आधार पर implementation-dependent तरीके से चुन सकते हैं, या \"combined\" preference निर्धारित करने के लिए कोई method का उपयोग कर सकते हैं। यह एक configuration option के रूप में या debugging के लिए उपयोगी हो सकता है।",
-            "ar": "ومع ذلك، قد يقوم العملاء، بناءً على التطبيق، بالاختيار بدلاً من ذلك بناءً على تفضيلاتهم، أو استخدام بعض الطرق لتحديد التفضيل \"المدمج\". قد يكون هذا مفيداً كخيار تكوين، أو لأغراض التشخيص.",
-            "pt": "No entanto, os clientes podem, dependendo da implementação, selecionar com base em sua preferência em vez disso, ou usar algum método para determinar a preferência \"combinada\". Isso pode ser útil como uma opção de configuração, ou para depuração."
+            "fr": "[LeaseSet2Header](#leaseset2header), suivi par des options, puis une ou plusieurs [PublicKey](#publickey) pour le chiffrement, un [Integer](#integer) indiquant le nombre de structures [Lease2](#lease2) présentes dans l'ensemble, suivi des structures [Lease2](#lease2) elles-mêmes, et enfin une [Signature](#signature) des octets précédents signée par la [SigningPrivateKey](#signingprivatekey) du [Destination](#destination) ou par la clé transitoire.",
+            "zh": "[LeaseSet2Header](#leaseset2header)，后跟选项，接着是一个或多个用于加密的 [PublicKey](#publickey)，然后是一个 [Integer](#integer)，用于指定该集合中包含多少个 [Lease2](#lease2) 结构，随后是实际的 [Lease2](#lease2) 结构，最后是由 [Destination](#destination) 的 [SigningPrivateKey](#signingprivatekey) 或临时密钥对前述所有字节进行签名的 [Signature](#signature)。",
+            "de": "[LeaseSet2Header](#leaseset2header), gefolgt von Optionen, dann ein oder mehrere [PublicKey](#publickey) für die Verschlüsselung, eine [Integer](#integer)-Angabe, wie viele [Lease2](#lease2)-Strukturen in dem Set enthalten sind, gefolgt von den eigentlichen [Lease2](#lease2)-Strukturen und schließlich einer [Signature](#signature) der vorherigen Bytes, signiert mit dem [SigningPrivateKey](#signingprivatekey) des [Destination](#destination) oder dem transienten Schlüssel.",
+            "vi": "[LeaseSet2Header](#leaseset2header), tiếp theo là các tùy chọn, sau đó là một hoặc nhiều [PublicKey](#publickey) dùng để mã hóa, [Integer](#integer) chỉ định có bao nhiêu cấu trúc [Lease2](#lease2) trong tập hợp, tiếp theo là các cấu trúc [Lease2](#lease2) thực tế và cuối cùng là [Signature](#signature) của các byte trước đó được ký bởi [SigningPrivateKey](#signingprivatekey) của [Destination](#destination) hoặc khóa tạm thời.",
+            "cs": "[LeaseSet2Header](#leaseset2header), následovaný volbami, poté jedním nebo více [PublicKey](#publickey) pro šifrování, [Integer](#integer) udávající počet struktur [Lease2](#lease2) v sadě, následovanými skutečnými strukturami [Lease2](#lease2) a nakonec [Signature](#signature) předchozích bajtů podepsanou [SigningPrivateKey](#signingprivatekey) [Destination](#destination) nebo přechodným klíčem.",
+            "pt": "[LeaseSet2Header](#leaseset2header), seguido por opções, depois uma ou mais [PublicKey](#publickey) para criptografia, um [Integer](#integer) especificando quantas estruturas [Lease2](#lease2) estão no conjunto, seguidas pelas estruturas [Lease2](#lease2) reais e, finalmente, uma [Signature](#signature) dos bytes anteriores assinada pela [SigningPrivateKey](#signingprivatekey) do [Destination](#destination) ou pela chave transitória.",
+            "es": "[LeaseSet2Header](#leaseset2header), seguido por opciones, luego una o más [PublicKey](#publickey) para cifrado, un [Integer](#integer) que especifica cuántas estructuras [Lease2](#lease2) hay en el conjunto, seguido por las estructuras [Lease2](#lease2) reales y finalmente una [Signature](#signature) de los bytes anteriores firmada por la [SigningPrivateKey](#destination)'s [SigningPrivateKey](#signingprivatekey) o la clave transitoria.",
+            "ar": "[LeaseSet2Header](#leaseset2header)، يليه خيارات، ثم واحد أو أكثر من [PublicKey](#publickey) للتشفير، و[Integer](#integer) يحدد عدد هياكل [Lease2](#lease2) الموجودة في المجموعة، تليها هياكل [Lease2](#lease2) الفعلية، وأخيرًا [Signature](#signature) للبايتات السابقة موقعة بواسطة [SigningPrivateKey](#signingprivatekey) الخاص بـ [Destination](#destination) أو بالمفتاح العابر.",
+            "ko": "[LeaseSet2Header](#leaseset2header) 다음에 옵션이 오고, 그 후 암호화를 위한 하나 이상의 [PublicKey](#publickey), [Lease2](#lease2) 구조체의 개수를 나타내는 [Integer](#integer), 실제 [Lease2](#lease2) 구조체들, 마지막으로 [Destination](#destination)의 [SigningPrivateKey](#signingprivatekey) 또는 일시 키가 이전 바이트들을 서명한 [Signature](#signature)가 온다.",
+            "tr": "[LeaseSet2Header](#leaseset2header), ardından şifreleme için bir veya daha fazla [PublicKey](#publickey), set içinde kaç tane [Lease2](#lease2) yapısı olduğunu belirten bir [Integer](#integer), ardından bu [Lease2](#lease2) yapıları ve son olarak önceki baytların [Destination](#destination)'in [SigningPrivateKey](#signingprivatekey)'ı ya da geçici anahtar tarafından imzalanmış [Signature](#signature) yapısı.",
+            "ru": "[LeaseSet2Header](#leaseset2header), за которым следуют параметры, затем один или несколько [PublicKey](#publickey) для шифрования, [Integer](#integer), указывающий количество структур [Lease2](#lease2) в наборе, за которым следуют сами структуры [Lease2](#lease2), и, наконец, [Signature](#signature) предыдущих байтов, подписанная [SigningPrivateKey](#signingprivatekey) [Destination](#destination) или временным ключом.",
+            "hi": "[LeaseSet2Header](#leaseset2header), उसके बाद विकल्प, फिर एन्क्रिप्शन के लिए एक या अधिक [PublicKey](#publickey), [Lease2](#lease2) संरचनाओं की संख्या निर्दिष्ट करने वाला [Integer](#integer), उसके बाद वास्तविक [Lease2](#lease2) संरचनाएँ, और अंत में पिछले बाइट्स का एक [Signature](#signature), जो [Destination](#destination) के [SigningPrivateKey](#signingprivatekey) या पारगमन कुंजी द्वारा हस्ताक्षरित हो।"
           }
         },
         "p_091": {
@@ -23802,20 +23802,20 @@
           }
         },
         "p_092": {
-          "source_hash": "d125a342400df5ec",
+          "source_hash": "bfef4bfff5845ca0",
           "translations": {
-            "zh": "从 API 0.9.66 开始，定义了服务记录选项的标准格式。详见提案 167。将来可能会定义使用不同格式的非服务记录选项。",
-            "es": "A partir de la API 0.9.66, se define un formato estándar para las opciones de registros de servicio. Consulta la propuesta 167 para obtener más detalles. Las opciones distintas a los registros de servicio, que utilicen un formato diferente, pueden definirse en el futuro.",
-            "ko": "API 0.9.66부터 서비스 레코드 옵션에 대한 표준 형식이 정의되었습니다. 자세한 내용은 proposal 167을 참조하십시오. 서비스 레코드가 아닌 다른 형식을 사용하는 옵션들은 향후 정의될 수 있습니다.",
-            "ru": "Начиная с API 0.9.66 определен стандартный формат для опций записей служб. Подробности см. в предложении 167. В будущем могут быть определены опции, отличные от записей служб, использующие другой формат.",
-            "cs": "Od API 0.9.66 je definován standardní formát pro možnosti záznamů služeb. Podrobnosti najdete v návrhu 167. V budoucnu mohou být definovány další možnosti kromě záznamů služeb s použitím jiného formátu.",
-            "de": "Ab API 0.9.66 ist ein Standardformat für Service-Record-Optionen definiert. Siehe Vorschlag 167 für Details. Optionen außer Service Records, die ein anderes Format verwenden, können in Zukunft definiert werden.",
-            "fr": "À partir de l'API 0.9.66, un format standard pour les options d'enregistrement de service est défini. Voir la proposition 167 pour plus de détails. Des options autres que les enregistrements de service, utilisant un format différent, pourront être définies à l'avenir.",
-            "tr": "API 0.9.66 itibariyle, servis kaydı seçenekleri için standart bir format tanımlanmıştır. Ayrıntılar için öneri 167'ye bakınız. Farklı bir format kullanan servis kayıtları dışındaki seçenekler gelecekte tanımlanabilir.",
-            "vi": "Kể từ API 0.9.66, một định dạng chuẩn cho các tùy chọn service record đã được định nghĩa. Xem đề xuất 167 để biết chi tiết. Các tùy chọn khác ngoài service records, sử dụng định dạng khác, có thể được định nghĩa trong tương lai.",
-            "hi": "API 0.9.66 के अनुसार, service record विकल्पों के लिए एक मानक प्रारूप परिभाषित है। विवरण के लिए proposal 167 देखें। service records के अलावा अन्य विकल्प, जो एक अलग प्रारूप का उपयोग करते हैं, भविष्य में परिभाषित किए जा सकते हैं।",
-            "ar": "اعتباراً من API 0.9.66، تم تحديد تنسيق معياري لخيارات سجل الخدمة. راجع الاقتراح 167 للتفاصيل. قد يتم تحديد خيارات أخرى غير سجلات الخدمة، باستخدام تنسيق مختلف، في المستقبل.",
-            "pt": "A partir da API 0.9.66, é definido um formato padrão para opções de registro de serviço. Consulte a proposta 167 para detalhes. Opções diferentes dos registros de serviço, usando um formato diferente, podem ser definidas no futuro."
+            "fr": "Cependant, les clients peuvent, selon l'implémentation, choisir en fonction de leurs préférences ou utiliser une méthode pour déterminer la préférence « combinée ». Cela peut être utile comme option de configuration ou à des fins de débogage.",
+            "zh": "然而，客户端可能会根据其实现方式的不同，选择基于其自身偏好，或使用某种方法来确定“综合”偏好。这可以作为配置选项，或用于调试。",
+            "de": "Clients können jedoch abhängig von der Implementierung stattdessen basierend auf ihren Präferenzen auswählen oder eine Methode verwenden, um die „kombinierte“ Präferenz zu bestimmen. Dies kann als Konfigurationsoption oder für Debugging-Zwecke nützlich sein.",
+            "vi": "Tuy nhiên, các client có thể, tùy theo cách triển khai, chọn dựa trên sở thích của chúng, hoặc sử dụng một số phương pháp để xác định sở thích \"kết hợp\". Điều này có thể hữu ích như một tùy chọn cấu hình, hoặc để gỡ lỗi.",
+            "cs": "Klienti však mohou v závislosti na implementaci vybírat podle svých preferencí nebo použít nějakou metodu k určení „kombinované“ preference. To může být užitečné jako konfigurační možnost nebo pro účely ladění.",
+            "pt": "No entanto, os clientes podem, dependendo da implementação, selecionar com base em sua preferência ou usar algum método para determinar a preferência \"combinada\". Isso pode ser útil como uma opção de configuração ou para depuração.",
+            "es": "Sin embargo, los clientes pueden, dependiendo de la implementación, seleccionar según su preferencia o utilizar algún método para determinar la preferencia \"combinada\". Esto puede ser útil como una opción de configuración o para depuración.",
+            "ar": "ومع ذلك، قد تختار العميلات، حسب التنفيذ، بناءً على تفضيلاتها بدلًا من ذلك، أو استخدام طريقة ما لتحديد التفضيل \"المدمج\". قد يكون هذا مفيدًا كخيار تهيئة، أو لأغراض التصحيح.",
+            "ko": "그러나 클라이언트는 구현 방식에 따라 사용자의 선호에 기반하여 선택하거나, \"통합된\" 선호를 결정하기 위한 어떤 방법을 사용할 수 있습니다. 이것은 설정 옵션으로 사용하거나 디버깅에 유용할 수 있습니다.",
+            "tr": "Ancak istemciler, uygulamaya bağlı olarak tercihlerine göre seçim yapabilir veya \"kombine\" tercihi belirlemek için bazı yöntemler kullanabilir. Bu, bir yapılandırma seçeneği olarak veya hata ayıklama amacıyla faydalı olabilir.",
+            "ru": "Тем не менее, клиенты могут в зависимости от реализации выбирать на основе своих предпочтений или использовать некоторый метод для определения «объединённых» предпочтений. Это может быть полезно как опция конфигурации или для отладки.",
+            "hi": "हालाँकि, क्लाइंट अपनी पसंद के आधार पर, लागूकरण-पर-निर्भर, चयन कर सकते हैं, या \"संयुक्त\" पसंद निर्धारित करने के लिए कुछ विधि का उपयोग कर सकते हैं। यह एक विन्यास विकल्प के रूप में, या डिबगिंग के लिए उपयोगी हो सकता है।"
           }
         },
         "p_093": {
@@ -23836,20 +23836,20 @@
           }
         },
         "p_094": {
-          "source_hash": "37fb982e508ed9f9",
+          "source_hash": "d125a342400df5ec",
           "translations": {
-            "zh": "服务记录选项定义如下：",
-            "es": "Las opciones de registro de servicio se definen de la siguiente manera:",
-            "ko": "서비스 레코드 옵션은 다음과 같이 정의됩니다:",
-            "ru": "Опции записи сервиса определяются следующим образом:",
-            "cs": "Možnosti záznamu služby jsou definovány následovně:",
-            "de": "Service-Datensatz-Optionen sind wie folgt definiert:",
-            "fr": "Les options d'enregistrement de service sont définies comme suit :",
-            "tr": "Servis kaydı seçenekleri aşağıdaki gibi tanımlanır:",
-            "vi": "Các tùy chọn bản ghi dịch vụ được định nghĩa như sau:",
-            "hi": "सेवा रिकॉर्ड विकल्प निम्नलिखित प्रकार से परिभाषित हैं:",
-            "ar": "خيارات سجل الخدمة محددة كما يلي:",
-            "pt": "As opções de registro de serviço são definidas da seguinte forma:"
+            "fr": "À compter de l'API 0.9.66, un format standard pour les options des enregistrements de service est défini. Voir la proposition 167 pour plus de détails. Des options autres que les enregistrements de service, utilisant un format différent, pourraient être définies à l'avenir.",
+            "zh": "自 API 0.9.66 起，已定义了服务记录选项的标准格式。详情请参见提案 167。未来可能会定义使用不同格式的非服务记录类选项。",
+            "de": "Ab API 0.9.66 ist ein Standardformat für Optionen von Dienstekontaktdaten definiert. Details finden Sie in Vorschlag 167. Optionen, die keine Dienstekontaktdaten sind und ein anderes Format verwenden, können in Zukunft definiert werden.",
+            "vi": "Kể từ API 0.9.66, một định dạng tiêu chuẩn cho các tùy chọn bản ghi dịch vụ đã được xác định. Xem đề xuất 167 để biết chi tiết. Các tùy chọn khác ngoài bản ghi dịch vụ, sử dụng định dạng khác, có thể được định nghĩa trong tương lai.",
+            "cs": "Od API 0.9.66 je definován standardní formát pro možnosti záznamu služby. Podrobnosti viz návrh 167. Možnosti jiné než záznamy služeb, používající jiný formát, mohou být definovány v budoucnu.",
+            "pt": "A partir da API 0.9.66, um formato padrão para opções de registros de serviço foi definido. Veja a proposta 167 para detalhes. Opções diferentes dos registros de serviço, usando um formato distinto, podem ser definidas no futuro.",
+            "es": "A partir de la API 0.9.66, se ha definido un formato estándar para las opciones de registros de servicio. Consulte la propuesta 167 para obtener más detalles. En el futuro podrían definirse opciones distintas a los registros de servicio, utilizando un formato diferente.",
+            "ar": "اعتبارًا من واجهة برمجة التطبيقات (API) 0.9.66، تم تعريف تنسيق قياسي لخيارات سجل الخدمة. راجع الاقتراح 167 للحصول على التفاصيل. قد تُعرَّف في المستقبل خيارات أخرى غير سجلات الخدمة، وتستخدم تنسيقًا مختلفًا.",
+            "ko": "API 0.9.66부터 서비스 레코드 옵션에 대한 표준 형식이 정의되었습니다. 자세한 내용은 제안서 167을 참조하세요. 다른 형식을 사용하는 서비스 레코드 이외의 옵션은 향후 정의될 수 있습니다.",
+            "tr": "API 0.9.66 itibariyle, hizmet kaydı seçenekleri için standart bir biçim tanımlanmıştır. Ayrıntılar için öneri 167'ye bakın. Farklı bir biçim kullanan ve hizmet kayıtlarından farklı diğer seçenekler gelecekte tanımlanabilir.",
+            "ru": "Начиная с API 0.9.66, определён стандартный формат параметров записи службы. Подробности см. в предложении 167. Параметры, отличные от записей службы и использующие другой формат, могут быть определены в будущем.",
+            "hi": "API 0.9.66 के रूप में, सेवा रिकॉर्ड विकल्पों के लिए एक मानक प्रारूप परिभाषित किया गया है। विवरण के लिए प्रस्ताव 167 देखें। भविष्य में अलग प्रारूप का उपयोग करके सेवा रिकॉर्ड के अलावा अन्य विकल्प परिभाषित किए जा सकते हैं।"
           }
         },
         "list_055": {
@@ -23887,20 +23887,20 @@
           }
         },
         "p_096": {
-          "source_hash": "bf0218b1b59b323c",
+          "source_hash": "37fb982e508ed9f9",
           "translations": {
-            "zh": "在 LS2 中对于 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p，指向一个 SMTP 服务器：",
-            "es": "En LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apuntando a un servidor SMTP:",
-            "ko": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p에 대한 LS2에서 하나의 SMTP 서버를 가리키는 경우:",
-            "ru": "В LS2 для aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, указывающем на один SMTP-сервер:",
-            "cs": "V LS2 pro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, ukazující na jeden SMTP server:",
-            "de": "In LS2 für aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, zeigend auf einen SMTP-Server:",
-            "fr": "Dans LS2 pour aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointant vers un serveur SMTP :",
-            "tr": "LS2'de aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için, bir SMTP sunucusuna işaret ederek:",
-            "vi": "Trong LS2 cho aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, trỏ đến một máy chủ SMTP:",
-            "hi": "LS2 में aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p के लिए, एक SMTP server की ओर इशारा करते हुए:",
-            "ar": "في LS2 لـ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p، يشير إلى خادم SMTP واحد:",
-            "pt": "No LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apontando para um servidor SMTP:"
+            "fr": "Les options d'enregistrement de service sont définies comme suit :",
+            "zh": "服务记录选项定义如下：",
+            "de": "Die Optionen für den Dienst-Datensatz sind wie folgt definiert:",
+            "vi": "Các tùy chọn bản ghi dịch vụ được định nghĩa như sau:",
+            "cs": "Možnosti záznamu služby jsou definovány následovně:",
+            "pt": "As opções de registro de serviço são definidas da seguinte forma:",
+            "es": "Las opciones de registro de servicio se definen de la siguiente manera:",
+            "ar": "تُعرّف خيارات سجل الخدمة كما يلي:",
+            "ko": "서비스 기록 옵션은 다음과 같이 정의됩니다:",
+            "tr": "Hizmet kaydı seçenekleri şu şekilde tanımlanır:",
+            "ru": "Параметры записи службы определяются следующим образом:",
+            "hi": "सेवा रिकॉर्ड विकल्प निम्नानुसार परिभाषित किए गए हैं:"
           }
         },
         "p_097": {
@@ -23921,20 +23921,20 @@
           }
         },
         "p_098": {
-          "source_hash": "5184d1d5d9b7e005",
+          "source_hash": "bf0218b1b59b323c",
           "translations": {
-            "zh": "在 LS2 中，对于 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p，指向两个 SMTP 服务器：",
-            "es": "En LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apuntando a dos servidores SMTP:",
-            "ko": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p에 대한 LS2에서 두 개의 SMTP 서버를 가리키는 경우:",
-            "ru": "В LS2 для aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, указывающем на два SMTP-сервера:",
-            "cs": "V LS2 pro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, ukazující na dva SMTP servery:",
-            "de": "In LS2 für aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, verweisend auf zwei SMTP-Server:",
-            "fr": "Dans LS2 pour aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointant vers deux serveurs SMTP :",
-            "tr": "LS2'de aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için, iki SMTP sunucusuna işaret eden:",
-            "vi": "Trong LS2 cho aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, trỏ đến hai máy chủ SMTP:",
-            "hi": "LS2 में aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p के लिए, दो SMTP सर्वरों की ओर इशारा करते हुए:",
-            "ar": "في LS2 لـ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p، يشير إلى خادمي SMTP:",
-            "pt": "No LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apontando para dois servidores SMTP:"
+            "fr": "Dans LS2 pour aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointant vers un serveur SMTP :",
+            "zh": "在 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p 的 LS2 中，指向一个 SMTP 服务器：",
+            "de": "In LS2 für aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, verweist auf einen SMTP-Server:",
+            "vi": "Trong LS2 đối với aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, trỏ tới một máy chủ SMTP:",
+            "cs": "V LS2 pro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, odkazující na jeden SMTP server:",
+            "pt": "No LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apontando para um servidor SMTP:",
+            "es": "En LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apuntando a un servidor SMTP:",
+            "ar": "في LS2 للعنوان aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p، والذي يشير إلى خادم SMTP واحد:",
+            "ko": "LS2에서 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p가 하나의 SMTP 서버를 가리키는 경우:",
+            "tr": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için LS2, bir SMTP sunucusunu gösteriyor:",
+            "ru": "В LS2 для aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, указывающий на один SMTP-сервер:",
+            "hi": "LS2 में aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p के लिए, जो एक SMTP सर्वर की ओर इशारा करता है:"
           }
         },
         "p_099": {
@@ -23955,20 +23955,20 @@
           }
         },
         "p_100": {
-          "source_hash": "7390ea21acbfa134",
+          "source_hash": "5184d1d5d9b7e005",
           "translations": {
-            "zh": "在 LS2 中，对于 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p，指向自身作为 SMTP 服务器：",
-            "es": "En LS2 para bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, apuntando a sí mismo como servidor SMTP:",
-            "ko": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p에 대한 LS2에서, 자신을 SMTP 서버로 가리키는 경우:",
-            "ru": "В LS2 для bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, указывающем на себя как SMTP сервер:",
-            "cs": "V LS2 pro bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, odkazující sám na sebe jako SMTP server:",
-            "de": "In LS2 für bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, zeigend auf sich selbst als SMTP-Server:",
-            "fr": "Dans LS2 pour bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, pointant vers lui-même en tant que serveur SMTP :",
-            "tr": "LS2'de bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p için, kendisini bir SMTP sunucusu olarak gösteren:",
-            "vi": "Trong LS2 cho bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, trỏ đến chính nó như một máy chủ SMTP:",
-            "hi": "LS2 में bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p के लिए, जो खुद को एक SMTP सर्वर के रूप में इंगित कर रहा है:",
-            "ar": "في LS2 لـ bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p، يشير إلى نفسه كخادم SMTP:",
-            "pt": "No LS2 para bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, apontando para si mesmo como um servidor SMTP:"
+            "fr": "Dans LS2 pour aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, pointant vers deux serveurs SMTP :",
+            "zh": "在 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p 的 LS2 中，指向两个 SMTP 服务器：",
+            "de": "In LS2 für aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, mit Verweis auf zwei SMTP-Server:",
+            "vi": "Trong LS2 cho aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, trỏ tới hai máy chủ SMTP:",
+            "cs": "V LS2 pro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, který odkazuje na dva servery SMTP:",
+            "pt": "No LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apontando para dois servidores SMTP:",
+            "es": "En LS2 para aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, apuntando a dos servidores SMTP:",
+            "ar": "في LS2 لـ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p، يشير إلى خادمي SMTP اثنين:",
+            "ko": "LS2에서 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p가 두 개의 SMTP 서버를 가리키는 경우:",
+            "tr": "İki SMTP sunucusunu işaret eden aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p için LS2:",
+            "ru": "В LS2 для aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, указывающий на два сервера SMTP:",
+            "hi": "LS2 में aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p के लिए, दो SMTP सर्वर की ओर इंगित करते हुए:"
           }
         },
         "p_101": {
@@ -24125,20 +24125,20 @@
           }
         },
         "p_102": {
-          "source_hash": "4ffacf0ebb390898",
+          "source_hash": "7390ea21acbfa134",
           "translations": {
-            "zh": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
-            "es": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
-            "ko": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
-            "ru": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
-            "cs": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
-            "de": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
-            "fr": "JavaDoc : [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
-            "tr": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
-            "vi": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
-            "hi": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
-            "ar": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
-            "pt": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)"
+            "fr": "Dans LS2 pour bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, pointant vers lui-même en tant que serveur SMTP :",
+            "zh": "在 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p 的 LS2 中，指向其自身作为 SMTP 服务器：",
+            "de": "In LS2 für bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, das auf sich selbst als SMTP-Server verweist:",
+            "vi": "Trong LS2 cho bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, trỏ đến chính nó như một máy chủ SMTP:",
+            "cs": "V LS2 pro bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, který odkazuje sám na sebe jako na SMTP server:",
+            "pt": "Em LS2 para bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, apontando para si mesmo como servidor SMTP:",
+            "es": "En LS2 para bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, apuntando a sí mismo como servidor SMTP:",
+            "ar": "في LS2 لعنوان bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p، يشير إلى نفسه كخادم SMTP:",
+            "ko": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p의 LS2에서 자체를 SMTP 서버로 가리킬 경우:",
+            "tr": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p için LS2'de, kendisini bir SMTP sunucusu olarak gösterir:",
+            "ru": "В LS2 для bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, указывающего на себя как SMTP-сервер:",
+            "hi": "LS2 में bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p के लिए, जो स्वयं को SMTP सर्वर के रूप में इंगित करता है:"
           }
         },
         "h3_024": {
@@ -24210,20 +24210,20 @@
           }
         },
         "p_104": {
-          "source_hash": "66cae0830d057f6b",
+          "source_hash": "4ffacf0ebb390898",
           "translations": {
-            "zh": "网关 router 的 [RouterIdentity](#routeridentity) 的 SHA256 [Hash](#hash)，然后是标志和成本，最后是 4 字节的结束日期。",
-            "es": "SHA256 [Hash](#hash) de la [RouterIdentity](#routeridentity) del router de puerta de enlace, luego banderas y costo, y finalmente una fecha de finalización de 4 bytes.",
-            "ko": "게이트웨이 router의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그 다음 플래그와 비용, 마지막으로 4바이트 종료 날짜.",
-            "ru": "SHA256 [Hash](#hash) от [RouterIdentity](#routeridentity) шлюзового router, затем флаги и стоимость, и наконец 4-байтная дата окончания.",
-            "cs": "SHA256 [Hash](#hash) [RouterIdentity](#routeridentity) gateway routeru, poté příznaky a náklady, a nakonec 4bajtové datum ukončení.",
-            "de": "SHA256 [Hash](#hash) der [RouterIdentity](#routeridentity) des Gateway-Routers, dann Flags und Kosten, und schließlich ein 4-Byte-Enddatum.",
-            "fr": "[Hachage](#hash) SHA256 de la [RouterIdentity](#routeridentity) du router passerelle, puis les drapeaux et le coût, et enfin une date de fin sur 4 octets.",
-            "tr": "Gateway router'ın [RouterIdentity](#routeridentity)'sinin SHA256 [Hash](#hash)'i, ardından bayraklar ve maliyet, ve son olarak 4 byte'lık bitiş tarihi.",
-            "vi": "SHA256 [Hash](#hash) của [RouterIdentity](#routeridentity) của gateway router, sau đó là flags và cost, và cuối cùng là ngày kết thúc 4 byte.",
-            "hi": "गेटवे router की [RouterIdentity](#routeridentity) का SHA256 [Hash](#hash), फिर flags और cost, और अंत में 4 byte का अंतिम दिनांक।",
-            "ar": "[Hash](#hash) SHA256 لـ [RouterIdentity](#routeridentity) الخاص بـ gateway router، ثم flags والتكلفة، وأخيراً تاريخ انتهاء من 4 بايت.",
-            "pt": "SHA256 [Hash](#hash) da [RouterIdentity](#routeridentity) do router gateway, depois flags e custo, e finalmente uma data de término de 4 bytes."
+            "fr": "JavaDoc : [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
+            "zh": "JavaDoc：[net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
+            "de": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
+            "vi": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
+            "cs": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
+            "pt": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
+            "es": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
+            "ar": "توثيق جافا: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
+            "ko": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
+            "tr": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
+            "ru": "JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)",
+            "hi": "जावाडॉक: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)"
           }
         },
         "h4_069": {
@@ -24261,20 +24261,20 @@
           }
         },
         "p_105": {
-          "source_hash": "7c707f1049004b5e",
+          "source_hash": "258a760d240f8064",
           "translations": {
-            "zh": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
-            "es": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
-            "ko": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
-            "ru": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
-            "cs": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
-            "de": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
-            "fr": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
-            "tr": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
-            "vi": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
-            "hi": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
-            "ar": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
-            "pt": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)"
+            "fr": "PRÉLIMINAIRE. Prise en charge pas encore complète.",
+            "zh": "初步版本，尚未完全支持。",
+            "de": "VORLÄUFIG. Nicht vollständig unterstützt.",
+            "vi": "BAN ĐẦU. Không được hỗ trợ đầy đủ.",
+            "cs": "PŘEDBĚŽNÉ. Plně podporováno není.",
+            "pt": "PRELIMINAR. Não totalmente suportado.",
+            "es": "PRELIMINAR. No completamente soportado.",
+            "ar": "مبدئي. غير مدعوم بالكامل.",
+            "ko": "예비. 완전히 지원되지 않음.",
+            "tr": "ÖN BILGI. Tam olarak desteklenmemektedir.",
+            "ru": "ПРЕДВАРИТЕЛЬНАЯ ИНФОРМАЦИЯ. Полная поддержка отсутствует.",
+            "hi": "प्रारंभिक। पूरी तरह से समर्थित नहीं।"
           }
         },
         "h3_025": {
@@ -24329,20 +24329,20 @@
           }
         },
         "p_107": {
-          "source_hash": "d11e5643b3508e1e",
+          "source_hash": "66cae0830d057f6b",
           "translations": {
-            "zh": "包含特定 [Destination](#destination) 当前所有已授权的 [MetaLease](#metalease)，以及可用于加密 garlic 消息的 [PublicKey](#publickey)。LeaseSet 是存储在网络数据库中的两种结构之一（另一种是 [RouterInfo](#routerinfo)），使用所包含 [Destination](#destination) 的 SHA256 值作为索引键。",
-            "es": "Contiene todos los [MetaLease](#metalease) actualmente autorizados para un [Destination](#destination) particular, y la [PublicKey](#publickey) a la cual se pueden cifrar los mensajes garlic. Un LeaseSet es una de las dos estructuras almacenadas en la base de datos de red (la otra siendo [RouterInfo](#routerinfo)), y está indexado bajo el SHA256 del [Destination](#destination) contenido.",
-            "ko": "특정 [Destination](#destination)에 대해 현재 승인된 모든 [MetaLease](#metalease)와 garlic 메시지를 암호화할 수 있는 [PublicKey](#publickey)를 포함합니다. LeaseSet은 네트워크 데이터베이스에 저장되는 두 가지 구조 중 하나이며(다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256으로 키가 지정됩니다.",
-            "ru": "Содержит все текущие авторизованные [MetaLease](#metalease) для определённого [Destination](#destination) и [PublicKey](#publickey), с помощью которого можно зашифровать garlic сообщения. LeaseSet является одной из двух структур, хранящихся в сетевой базе данных (вторая — [RouterInfo](#routerinfo)), и индексируется по SHA256 содержащегося [Destination](#destination).",
-            "cs": "Obsahuje všechny aktuálně autorizované [MetaLease](#metalease) pro konkrétní [Destination](#destination) a [PublicKey](#publickey), kterým lze šifrovat garlic zprávy. LeaseSet je jedna ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je indexována pod SHA256 obsaženého [Destination](#destination).",
-            "de": "Enthält alle derzeit autorisierten [MetaLease](#metalease) für eine bestimmte [Destination](#destination) und den [PublicKey](#publickey), mit dem garlic messages verschlüsselt werden können. Ein leaseSet ist eine der beiden Strukturen, die in der Netzwerkdatenbank gespeichert sind (die andere ist [RouterInfo](#routerinfo)), und wird unter dem SHA256 der enthaltenen [Destination](#destination) indiziert.",
-            "fr": "Contient tous les [MetaLease](#metalease) actuellement autorisés pour une [Destination](#destination) particulière, et la [PublicKey](#publickey) avec laquelle les messages garlic peuvent être chiffrés. Un LeaseSet est l'une des deux structures stockées dans la base de données réseau (l'autre étant [RouterInfo](#routerinfo)), et est indexé sous le SHA256 de la [Destination](#destination) contenue.",
-            "tr": "Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [MetaLease](#metalease) ve garlic mesajlarının şifrelenebileceği [PublicKey](#publickey) içerir. LeaseSet, ağ veritabanında saklanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo) olan) ve içerdiği [Destination](#destination)'ın SHA256'sı altında anahtarlanır.",
-            "vi": "Chứa tất cả [MetaLease](#metalease) hiện được ủy quyền cho một [Destination](#destination) cụ thể, và [PublicKey](#publickey) mà các tin nhắn garlic encryption có thể được mã hóa. LeaseSet là một trong hai cấu trúc được lưu trữ trong cơ sở dữ liệu mạng (cấu trúc kia là [RouterInfo](#routerinfo)), và được đánh khóa dưới SHA256 của [Destination](#destination) chứa trong đó.",
-            "hi": "एक विशेष [Destination](#destination) के लिए वर्तमान में अधिकृत सभी [MetaLease](#metalease) और [PublicKey](#publickey) शामिल करता है जिससे garlic messages को एन्क्रिप्ट किया जा सकता है। एक LeaseSet network database में संग्रहीत दो संरचनाओं में से एक है (दूसरी [RouterInfo](#routerinfo) है), और यह निहित [Destination](#destination) के SHA256 के तहत keyed है।",
-            "ar": "يحتوي على جميع [MetaLease](#metalease) المعتمدة حاليًا لـ [Destination](#destination) معين، و[PublicKey](#publickey) التي يمكن تشفير رسائل garlic إليها. LeaseSet هو أحد البنيتين المخزنتين في قاعدة بيانات الشبكة (والأخرى هي [RouterInfo](#routerinfo))، ويتم فهرسته تحت SHA256 الخاص بـ [Destination](#destination) المتضمن.",
-            "pt": "Contém todos os [MetaLease](#metalease) atualmente autorizados para um [Destination](#destination) específico, e a [PublicKey](#publickey) para a qual as mensagens garlic podem ser criptografadas. Um LeaseSet é uma das duas estruturas armazenadas no banco de dados da rede (a outra sendo [RouterInfo](#routerinfo)), e é indexado sob o SHA256 do [Destination](#destination) contido."
+            "fr": "SHA256 du [Hash](#hash) du [RouterIdentity](#routeridentity) du routeur passerelle, puis les indicateurs et le coût, et enfin une date de fin sur 4 octets.",
+            "zh": "网关路由器的 [RouterIdentity](#routeridentity) 的 SHA256 [Hash](#hash)，然后是标志和成本，最后是 4 字节的结束日期。",
+            "de": "SHA256-[Hash](#hash) der [RouterIdentity](#routeridentity) des Gateway-Routers, danach Flags und Kosten und schließlich ein 4-Byte-langes Enddatum.",
+            "vi": "SHA256 của [RouterIdentity](#routeridentity) của bộ định tuyến cổng, sau đó là các cờ và chi phí, và cuối cùng là ngày kết thúc 4 byte.",
+            "cs": "SHA256 [hash](#hash) [RouterIdentity](#routeridentity) brány, poté příznaky a cena a nakonec 4bytové datum ukončení.",
+            "pt": "SHA256 [Hash](#hash) do [RouterIdentity](#routeridentity) do roteador gateway, seguido de flags e custo, e finalmente uma data de expiração de 4 bytes.",
+            "es": "SHA256 del [Hash](#hash) de la [RouterIdentity](#routeridentity) del router de puerta de enlace, seguido de las banderas y el costo, y finalmente una fecha de finalización de 4 bytes.",
+            "ar": "دالة التجزئة SHA256 [Hash](#hash) الخاصة بهوية الموجه [RouterIdentity](#routeridentity) للموجه البوابة، ثم العلمات والتكلفة، وأخيرًا تاريخ الانتهاء المؤلف من 4 بايت.",
+            "ko": "게이트웨이 라우터의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그 후 플래그와 비용, 마지막으로 4바이트의 종료 날짜.",
+            "tr": "Ağ geçidi yönlendiricisinin [RouterIdentity](#routeridentity) değerinin SHA256 [Hash](#hash'ı), ardından bayraklar ve maliyet, ve son olarak 4 baytlık bir bitiş tarihi.",
+            "ru": "SHA256 [хэш](#hash) [RouterIdentity](#routeridentity) шлюзового маршрутизатора, затем флаги и стоимость, и, наконец, 4-байтовая дата окончания.",
+            "hi": "गेटवे राउटर के [RouterIdentity](#routeridentity) का SHA256 [Hash](#hash), फिर फ्लैग और लागत, और अंत में एक 4 बाइट की समाप्ति तिथि।"
           }
         },
         "h4_071": {
@@ -24363,20 +24363,20 @@
           }
         },
         "p_108": {
-          "source_hash": "0b90f266c935395e",
+          "source_hash": "7c707f1049004b5e",
           "translations": {
-            "zh": "[LeaseSet2Header](#leaseset2header)，后跟选项，[Integer](#integer) 指定集合中有多少个 [Lease2](#lease2) 结构，然后是实际的 [Lease2](#lease2) 结构，最后是由 [Destination](#destination) 的 [SigningPrivateKey](#signingprivatekey) 或临时密钥签名的前述字节的 [Signature](#signature)。",
-            "es": "[LeaseSet2Header](#leaseset2header), seguido de opciones, un [Integer](#integer) que especifica cuántas estructuras [Lease2](#lease2) hay en el conjunto, seguido de las estructuras [Lease2](#lease2) reales y finalmente una [Signature](#signature) de los bytes anteriores firmada por la [SigningPrivateKey](#signingprivatekey) del [Destination](#destination) o la clave transitoria.",
-            "ko": "[LeaseSet2Header](#leaseset2header), 그 다음에 옵션들, 세트에 포함된 [Lease2](#lease2) 구조체의 개수를 지정하는 [Integer](#integer), 그 다음에 실제 [Lease2](#lease2) 구조체들, 마지막으로 [Destination](#destination)의 [SigningPrivateKey](#signingprivatekey) 또는 임시 키로 서명된 이전 바이트들의 [Signature](#signature).",
-            "ru": "[LeaseSet2Header](#leaseset2header), за которым следует options, [Integer](#integer), указывающий количество структур [Lease2](#lease2) в наборе, затем сами структуры [Lease2](#lease2) и, наконец, [Signature](#signature) предыдущих байтов, подписанная [SigningPrivateKey](#signingprivatekey) [Destination](#destination) или транзитным ключом.",
-            "cs": "[LeaseSet2Header](#leaseset2header), následovaný možnostmi, [Integer](#integer) specifikující kolik struktur [Lease2](#lease2) je v sadě, následovaný skutečnými strukturami [Lease2](#lease2) a nakonec [Signature](#signature) předchozích bytů podepsaných [SigningPrivateKey](#signingprivatekey) [Destination](#destination) nebo přechodným klíčem.",
-            "de": "[LeaseSet2Header](#leaseset2header), gefolgt von Optionen, [Integer](#integer), der angibt, wie viele [Lease2](#lease2)-Strukturen im Set enthalten sind, gefolgt von den tatsächlichen [Lease2](#lease2)-Strukturen und schließlich einer [Signature](#signature) der vorherigen Bytes, signiert vom [SigningPrivateKey](#signingprivatekey) der [Destination](#destination) oder dem temporären Schlüssel.",
-            "fr": "[LeaseSet2Header](#leaseset2header), suivi d'options, [Integer](#integer) spécifiant combien de structures [Lease2](#lease2) sont dans l'ensemble, suivi des structures [Lease2](#lease2) actuelles et finalement une [Signature](#signature) des octets précédents signés par la [SigningPrivateKey](#signingprivatekey) de la [Destination](#destination) ou la clé transitoire.",
-            "tr": "[LeaseSet2Header](#leaseset2header), ardından seçenekler, sette kaç tane [Lease2](#lease2) yapısı olduğunu belirten bir [Integer](#integer), ardından gerçek [Lease2](#lease2) yapıları ve son olarak önceki baytların [Destination](#destination)'ın [SigningPrivateKey](#signingprivatekey)'i veya geçici anahtar tarafından imzalanmış [Signature](#signature)'ı.",
-            "vi": "[LeaseSet2Header](#leaseset2header), theo sau bởi các tùy chọn, [Integer](#integer) chỉ định có bao nhiêu cấu trúc [Lease2](#lease2) trong tập hợp, tiếp theo là các cấu trúc [Lease2](#lease2) thực tế và cuối cùng là một [Signature](#signature) của các byte trước đó được ký bởi [SigningPrivateKey](#signingprivatekey) của [Destination](#destination) hoặc khóa tạm thời.",
-            "hi": "[LeaseSet2Header](#leaseset2header), इसके बाद विकल्प, [Integer](#integer) जो निर्दिष्ट करता है कि सेट में कितनी [Lease2](#lease2) संरचनाएं हैं, इसके बाद वास्तविक [Lease2](#lease2) संरचनाएं और अंत में [Destination](#destination) की [SigningPrivateKey](#signingprivatekey) या transient key द्वारा हस्ताक्षरित पिछले bytes का एक [Signature](#signature)।",
-            "ar": "[LeaseSet2Header](#leaseset2header)، متبوعًا بالخيارات، [Integer](#integer) يحدد عدد هياكل [Lease2](#lease2) الموجودة في المجموعة، متبوعًا بهياكل [Lease2](#lease2) الفعلية وأخيرًا [Signature](#signature) للبايتات السابقة موقعة بواسطة [SigningPrivateKey](#signingprivatekey) الخاص بـ [Destination](#destination) أو المفتاح المؤقت.",
-            "pt": "[LeaseSet2Header](#leaseset2header), seguido por opções, [Integer](#integer) especificando quantas estruturas [Lease2](#lease2) estão no conjunto, seguido pelas estruturas [Lease2](#lease2) reais e finalmente uma [Signature](#signature) dos bytes anteriores assinados pela [SigningPrivateKey](#signingprivatekey) do [Destination](#destination) ou pela chave transitória."
+            "fr": "JavaDoc : [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
+            "zh": "JavaDoc：[net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
+            "de": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
+            "vi": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
+            "cs": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
+            "pt": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
+            "es": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
+            "ar": "مستندات جافا: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
+            "ko": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
+            "tr": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
+            "ru": "JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)",
+            "hi": "जावाडॉक: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)"
           }
         },
         "h4_072": {
@@ -24516,37 +24516,37 @@
           }
         },
         "p_110": {
-          "source_hash": "391f84f695ccfb2c",
+          "source_hash": "01e083540bd7138e",
           "translations": {
-            "zh": "包含在类型为5的I2NP DatabaseStore消息中。自0.9.38版本定义；自0.9.39版本开始工作；更多信息请参见提案123。",
-            "es": "Contenido en un mensaje I2NP DatabaseStore de tipo 5. Definido desde 0.9.38; funcionando desde 0.9.39; consulta la propuesta 123 para más información.",
-            "ko": "타입 5의 I2NP DatabaseStore 메시지에 포함됩니다. 0.9.38부터 정의되었으며, 0.9.39부터 작동합니다. 자세한 정보는 제안서 123을 참조하세요.",
-            "ru": "Содержится в I2NP сообщении DatabaseStore типа 5. Определено с версии 0.9.38; работает с версии 0.9.39; см. предложение 123 для получения дополнительной информации.",
-            "cs": "Obsaženo ve zprávě I2NP DatabaseStore typu 5. Definováno od verze 0.9.38; funkční od verze 0.9.39; více informací viz návrh 123.",
-            "de": "Enthalten in einer I2NP DatabaseStore-Nachricht vom Typ 5. Definiert seit 0.9.38; funktionsfähig seit 0.9.39; siehe Vorschlag 123 für weitere Informationen.",
-            "fr": "Contenu dans un message I2NP DatabaseStore de type 5. Défini à partir de la version 0.9.38 ; fonctionnel à partir de la version 0.9.39 ; voir la proposition 123 pour plus d'informations.",
-            "tr": "Tip 5 I2NP DatabaseStore mesajında bulunur. 0.9.38 sürümünden itibaren tanımlanmıştır; 0.9.39 sürümünden itibaren çalışmaktadır; daha fazla bilgi için öneri 123'e bakın.",
-            "vi": "Được chứa trong thông điệp I2NP DatabaseStore loại 5. Được định nghĩa từ phiên bản 0.9.38; hoạt động từ phiên bản 0.9.39; xem đề xuất 123 để biết thêm thông tin.",
-            "hi": "टाइप 5 के I2NP DatabaseStore संदेश में समाहित। 0.9.38 के रूप में परिभाषित; 0.9.39 के रूप में कार्यरत; अधिक जानकारी के लिए प्रस्ताव 123 देखें।",
-            "ar": "موجود في رسالة I2NP DatabaseStore من النوع 5. تم تعريفه اعتباراً من الإصدار 0.9.38؛ يعمل اعتباراً من الإصدار 0.9.39؛ راجع الاقتراح 123 للمزيد من المعلومات.",
-            "pt": "Contido numa mensagem I2NP DatabaseStore do tipo 5. Definido a partir da versão 0.9.38; funcional a partir da versão 0.9.39; consulte a proposta 123 para mais informações."
+            "fr": "Contenu dans un message I2NP de type DatabaseStore 7. Défini depuis la version 0.9.38 ; voir la proposition 123 pour plus d'informations.",
+            "zh": "包含在类型为7的I2NP DatabaseStore消息中。自0.9.38版本起定义；更多信息请参见提案123。",
+            "de": "Enthalten in einer I2NP-DatabaseStore-Nachricht vom Typ 7. Definiert ab 0.9.38; siehe Vorschlag 123 für weitere Informationen.",
+            "vi": "Được chứa trong tin nhắn DatabaseStore của I2NP loại 7. Được định nghĩa kể từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.",
+            "cs": "Obsaženo ve zprávě I2NP DatabaseStore typu 7. Definováno od verze 0.9.38; více informací viz návrh 123.",
+            "pt": "Contido numa mensagem I2NP do tipo DatabaseStore 7. Definido a partir da versão 0.9.38; veja a proposta 123 para mais informações.",
+            "es": "Contenido en un mensaje I2NP DatabaseStore de tipo 7. Definido desde la versión 0.9.38; véase la propuesta 123 para más información.",
+            "ar": "موجود في رسالة I2NP من النوع DatabaseStore رقم 7. تم تعريفه بدءًا من الإصدار 0.9.38؛ انظر الاقتراح 123 للحصول على مزيد من المعلومات.",
+            "ko": "유형 7의 I2NP DatabaseStore 메시지에 포함됨. 0.9.38 버전부터 정의되었으며, 자세한 내용은 제안서 123을 참조하세요.",
+            "tr": "Tür 7 olan bir I2NP DatabaseStore mesajının içinde yer alır. 0.9.38 sürümünden itibaren tanımlanmıştır; daha fazla bilgi için öneri 123'e bakınız.",
+            "ru": "Содержится в сообщении I2NP DatabaseStore типа 7. Определено начиная с версии 0.9.38; см. предложение 123 для получения дополнительной информации.",
+            "hi": "प्रकार 7 के I2NP डेटाबेसस्टोर संदेश में शामिल। 0.9.38 से परिभाषित; अधिक जानकारी के लिए प्रस्ताव 123 देखें।"
           }
         },
         "p_111": {
-          "source_hash": "9ac62993fa6b477c",
+          "source_hash": "d11e5643b3508e1e",
           "translations": {
-            "zh": "只有盲化密钥和过期时间以明文形式可见。实际的 leaseSet 是加密的。",
-            "es": "Solo la clave ciega y la expiración son visibles en texto claro. El leaseSet real está cifrado.",
-            "ko": "블라인드 키와 만료 시간만 평문으로 볼 수 있습니다. 실제 leaseSet은 암호화되어 있습니다.",
-            "ru": "Только затемнённый ключ и время истечения видны в открытом тексте. Сам leaseSet зашифрован.",
-            "cs": "Pouze blinded klíč a doba vypršení jsou viditelné v nešifrovaném textu. Skutečný leaseSet je šifrovaný.",
-            "de": "Nur der blinded key und das Ablaufdatum sind im Klartext sichtbar. Das tatsächliche leaseSet ist verschlüsselt.",
-            "fr": "Seuls la clé masquée et l'expiration sont visibles en texte clair. Le leaseSet réel est chiffré.",
-            "tr": "Sadece blinded key ve son kullanma tarihi açık metin olarak görülebilir. Gerçek lease set şifrelidir.",
-            "vi": "Chỉ có blinded key và thời gian hết hạn hiển thị dưới dạng văn bản rõ. LeaseSet thực tế được mã hóa.",
-            "hi": "केवल blinded key और expiration cleartext में दिखाई देते हैं। वास्तविक lease set एन्क्रिप्टेड है।",
-            "ar": "فقط المفتاح المُعمى وتاريخ انتهاء الصلاحية مرئيان كنص واضح. أما leaseSet الفعلي فهو مُشفر.",
-            "pt": "Apenas a chave cega e a expiração são visíveis em texto claro. O leaseSet real está criptografado."
+            "fr": "Contient tous les [MetaLease](#metalease) actuellement autorisés pour un [Destination](#destination) donné, ainsi que la [PublicKey](#publickey) permettant de chiffrer les messages au moyen du chiffrement garlic. Un LeaseSet est l'une des deux structures stockées dans la base de données du réseau (l'autre étant [RouterInfo](#routerinfo)) et est indexé selon le hachage SHA256 du [Destination](#destination) qu'il contient.",
+            "zh": "包含特定[Destination](#destination)当前已授权的所有[MetaLease](#metalease)，以及可用于加密大蒜消息的[PublicKey](#publickey)。LeaseSet 是存储在网络数据库中的两种结构之一（另一种是[RouterInfo](#routerinfo)），其键值为所包含[Destination](#destination)的SHA256哈希值。",
+            "de": "Enthält alle derzeit autorisierten [MetaLease](#metalease) für ein bestimmtes [Destination](#destination) sowie den [PublicKey](#publickey), mit dem Garlic-Nachrichten verschlüsselt werden können. Ein LeaseSet ist eine der beiden Strukturen, die in der Netzwerkdatenbank gespeichert werden (die andere ist [RouterInfo](#routerinfo)), und wird unter dem SHA256-Hash des enthaltenen [Destination](#destination) indiziert.",
+            "vi": "Chứa toàn bộ [MetaLease](#metalease) hiện đang được ủy quyền cho một [Destination](#destination) cụ thể, cùng với [PublicKey](#publickey) dùng để mã hóa các thông điệp garlic. LeaseSet là một trong hai cấu trúc được lưu trữ trong cơ sở dữ liệu mạng (cấu trúc còn lại là [RouterInfo](#routerinfo)), và được đánh chỉ mục theo giá trị SHA256 của [Destination](#destination) chứa bên trong.",
+            "cs": "Obsahuje všechny aktuálně autorizované [MetaLease](#metalease) pro konkrétní [Destination](#destination) a [PublicKey](#publickey), na který lze šifrovat garlic zprávy. LeaseSet je jednou ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je indexován pomocí SHA256 obsaženého [Destination](#destination).",
+            "pt": "Contém todas as [MetaLease](#metalease) atualmente autorizadas para um [Destination](#destination) específico e a [PublicKey](#publickey) na qual mensagens garlic podem ser criptografadas. Um LeaseSet é uma das duas estruturas armazenadas no banco de dados da rede (a outra sendo [RouterInfo](#routerinfo)) e é indexado pelo SHA256 do [Destination](#destination) contido.",
+            "es": "Contiene todos los [MetaLease](#metalease) actualmente autorizados para un [Destination](#destination) determinado, y la [PublicKey](#publickey) con la que se pueden cifrar los mensajes de ajo. Un LeaseSet es una de las dos estructuras almacenadas en la base de datos de la red (la otra es [RouterInfo](#routerinfo)), y se indexa mediante el SHA256 del [Destination](#destination) contenido.",
+            "ar": "يحتوي على جميع عقود [MetaLease](#metalease) المصرح بها حاليًا لموقع [Destination](#destination) معين، وكذلك على [PublicKey](#publickey) الذي يمكن تشفير رسائل الثوم (garlic) إليه. يُعدّ LeaseSet إحدى الهيكلين المخزَّنين في قاعدة البيانات الشبكية (والهيكل الآخر هو [RouterInfo](#routerinfo))، ويتم فهرسته باستخدام تجزئة SHA256 الخاصة بـ [Destination](#destination) المضمنة فيه.",
+            "ko": "특정 [Destination](#destination)에 대해 현재 승인된 모든 [MetaLease](#metalease)와 마늘 암호화(garlic encryption) 메시지를 암호화할 수 있는 [PublicKey](#publickey)를 포함한다. LeaseSet은 네트워크 데이터베이스(netDb)에 저장되는 두 가지 구조 중 하나이며(다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256 해시값을 키로 사용한다.",
+            "tr": "Belirli bir [Destination](#destination) için şu anda yetkilendirilmiş tüm [MetaLease](#metalease) bilgilerini ve garlic mesajlarının şifrelenebileceği [PublicKey](#publickey)'i içerir. LeaseSet, ağ veritabanında (netDb) depolanan iki yapıdan biridir (diğeri [RouterInfo](#routerinfo)'dır) ve içindeki [Destination](#destination)'in SHA256 değeri ile anahtarlanır.",
+            "ru": "Содержит все текущие авторизованные [MetaLease](#metalease) для конкретного [Destination](#destination) и [PublicKey](#publickey), по которому можно шифровать сообщения с использованием garlic-шифрования. LeaseSet — это одна из двух структур, хранящихся в сетевой базе данных (вторая — [RouterInfo](#routerinfo)), и идентифицируется по SHA256 от содержащегося [Destination](#destination).",
+            "hi": "एक विशिष्ट [Destination](#destination) के लिए वर्तमान में प्राधिकृत सभी [MetaLease](#metalease) को शामिल करता है, और वह [PublicKey](#publickey) जिस पर लहसुन एन्क्रिप्शन (garlic encryption) संदेश भेजे जा सकते हैं। LeaseSet नेटवर्क डेटाबेस में संग्रहीत दो संरचनाओं में से एक है (दूसरा [RouterInfo](#routerinfo) है), और इसे शामिल [Destination](#destination) के SHA256 के अंतर्गत कुंजीबद्ध किया जाता है।"
           }
         },
         "h4_074": {
@@ -24567,20 +24567,20 @@
           }
         },
         "p_112": {
-          "source_hash": "d1217855346debe0",
+          "source_hash": "0b90f266c935395e",
           "translations": {
-            "zh": "一个两字节的签名类型，盲化的 [SigningPrivateKey](#signingprivatekey)，发布时间，过期时间和标志位。然后是一个两字节的长度，后跟加密数据。最后是由盲化的 [SigningPrivateKey](#signingprivatekey) 或临时密钥对前面字节进行签名的 [Signature](#signature)。",
-            "es": "Un tipo de firma de dos bytes, la [SigningPrivateKey](#signingprivatekey) ciega, tiempo de publicación, expiración y flags. Luego, una longitud de dos bytes seguida de datos cifrados. Finalmente, una [Signature](#signature) de los bytes anteriores firmada por la [SigningPrivateKey](#signingprivatekey) ciega o la clave transitoria.",
-            "ko": "2바이트 서명 타입, 블라인드된 [SigningPrivateKey](#signingprivatekey), 발행 시간, 만료 시간, 그리고 플래그. 그 다음, 2바이트 길이와 그에 따른 암호화된 데이터. 마지막으로, 블라인드된 [SigningPrivateKey](#signingprivatekey) 또는 임시 키로 서명된 이전 바이트들의 [Signature](#signature).",
-            "ru": "Двухбайтовый тип подписи, скрытый [SigningPrivateKey](#signingprivatekey), время публикации, срок действия и флаги. Затем двухбайтовая длина, за которой следуют зашифрованные данные. Наконец, [Signature](#signature) предыдущих байтов, подписанная скрытым [SigningPrivateKey](#signingprivatekey) или временным ключом.",
-            "cs": "Dvoubajtový typ podpisu, zaslepený [SigningPrivateKey](#signingprivatekey), čas publikování, vypršení a příznaky. Poté dvoubajtová délka následovaná zašifrovanými daty. Nakonec [Signature](#signature) předchozích bajtů podepsaná zaslepeným [SigningPrivateKey](#signingprivatekey) nebo přechodným klíčem.",
-            "de": "Ein zwei Byte Signaturtyp, der geblendete [SigningPrivateKey](#signingprivatekey), Veröffentlichungszeit, Ablaufzeit und Flags. Dann eine zwei Byte Länge gefolgt von verschlüsselten Daten. Schließlich eine [Signature](#signature) der vorherigen Bytes, signiert durch den geblendeten [SigningPrivateKey](#signingprivatekey) oder den temporären Schlüssel.",
-            "fr": "Un type de signature de deux octets, la [SigningPrivateKey](#signingprivatekey) aveuglée, l'heure de publication, l'expiration et les drapeaux. Puis, une longueur de deux octets suivie de données chiffrées. Enfin, une [Signature](#signature) des octets précédents signée par la [SigningPrivateKey](#signingprivatekey) aveuglée ou la clé transitoire.",
-            "tr": "İki baytlık imza türü, kör edilmiş [SigningPrivateKey](#signingprivatekey), yayınlanma zamanı, son kullanma tarihi ve bayraklar. Ardından, iki baytlık uzunluk ve şifrelenmiş veri. Son olarak, kör edilmiş [SigningPrivateKey](#signingprivatekey) veya geçici anahtar tarafından imzalanmış önceki baytların [Signature](#signature)'ı.",
-            "vi": "Một loại chữ ký hai byte, [SigningPrivateKey](#signingprivatekey) được làm mù, thời gian xuất bản, thời gian hết hạn và các cờ. Tiếp theo, một độ dài hai byte theo sau là dữ liệu được mã hóa. Cuối cùng, một [Signature](#signature) của các byte trước đó được ký bởi [SigningPrivateKey](#signingprivatekey) được làm mù hoặc khóa tạm thời.",
-            "hi": "दो बाइट का signature type, blinded [SigningPrivateKey](#signingprivatekey), प्रकाशित समय, समाप्ति, और flags। फिर, दो बाइट की length के बाद encrypted data। अंत में, blinded [SigningPrivateKey](#signingprivatekey) या transient key द्वारा sign किए गए पिछले bytes का एक [Signature](#signature)।",
-            "ar": "نوع توقيع من بايتين، [SigningPrivateKey](#signingprivatekey) المُعمى، وقت النشر، انتهاء الصلاحية، والأعلام. ثم، طول من بايتين متبوعًا ببيانات مُشفرة. وأخيرًا، [Signature](#signature) للبايتات السابقة موقعة بواسطة [SigningPrivateKey](#signingprivatekey) المُعمى أو المفتاح المؤقت.",
-            "pt": "Um tipo de assinatura de dois bytes, a [SigningPrivateKey](#signingprivatekey) cegada, tempo de publicação, expiração e flags. Em seguida, um comprimento de dois bytes seguido por dados criptografados. Finalmente, uma [Signature](#signature) dos bytes anteriores assinada pela [SigningPrivateKey](#signingprivatekey) cegada ou pela chave transitória."
+            "fr": "[LeaseSet2Header](#leaseset2header), suivi par des options, un [Integer](#integer) indiquant le nombre de structures [Lease2](#lease2) présentes dans l'ensemble, puis les structures [Lease2](#lease2) elles-mêmes, et enfin une [Signature](#signature) des octets précédents signée par la [SigningPrivateKey](#signingprivatekey) de la [Destination](#destination) ou par la clé transitoire.",
+            "zh": "[LeaseSet2Header](#leaseset2header)，后跟一个选项，[Integer](#integer) 指定该集合中包含多少个 [Lease2](#lease2) 结构，接着是实际的 [Lease2](#lease2) 结构，最后是由 [Destination](#destination) 的 [SigningPrivateKey](#signingprivatekey) 或临时密钥签名的前述所有字节的 [Signature](#signature)。",
+            "de": "[LeaseSet2Header](#leaseset2header), gefolgt von Optionen, einer [Integer](#integer)-Angabe, die festlegt, wie viele [Lease2](#lease2)-Strukturen im Set enthalten sind, dann die eigentlichen [Lease2](#lease2)-Strukturen und schließlich eine [Signatur](#signature) der vorherigen Bytes, signiert mit dem [SigningPrivateKey](#signingprivatekey) des [Destination](#destination) oder dem transienten Schlüssel.",
+            "vi": "[LeaseSet2Header](#leaseset2header), theo sau bởi các tùy chọn, một [Integer](#integer) chỉ định số lượng cấu trúc [Lease2](#lease2) có trong tập hợp, tiếp theo là các cấu trúc [Lease2](#lease2) thực tế và cuối cùng là một [Signature](#signature) của các byte trước đó được ký bởi [SigningPrivateKey](#signingprivatekey) của [Destination](#destination) hoặc khóa tạm thời.",
+            "cs": "[LeaseSet2Header](#leaseset2header), následovaný možnostmi, [Integer](#integer) udávající počet struktur [Lease2](#lease2) v sadě, následovanými skutečnými strukturami [Lease2](#lease2) a nakonec [Signature](#signature) předchozích bajtů podepsaných [SigningPrivateKey](#signingprivatekey) [Destination](#destination) nebo přechodným klíčem.",
+            "pt": "[Cabeçalho LeaseSet2](#leaseset2header), seguido por opções, um [Integer](#integer) especificando quantas estruturas [Lease2](#lease2) estão no conjunto, seguido pelas estruturas [Lease2](#lease2) reais e, finalmente, uma [Assinatura](#signature) dos bytes anteriores assinada pela [ChavePrivadaAssinatura](#signingprivatekey) do [Destino](#destination) ou pela chave transitória.",
+            "es": "[LeaseSet2Header](#leaseset2header), seguido por opciones, un [Integer](#integer) que especifica cuántas estructuras [Lease2](#lease2) hay en el conjunto, seguido de las estructuras [Lease2](#lease2) reales y finalmente una [Signature](#signature) de los bytes anteriores firmados por la [SigningPrivateKey](#destination) del [Destination](#destination) o por la clave transitoria.",
+            "ar": "[LeaseSet2Header](#leaseset2header)، متبوعًا بخيارات، و[Integer](#integer) يحدد عدد هياكل [Lease2](#lease2) الموجودة في المجموعة، ثم تتبعها هياكل [Lease2](#lease2) الفعلية، وأخيرًا [Signature](#signature) للبايتات السابقة موقعة بواسطة [SigningPrivateKey](#signingprivatekey) الخاصة بـ [Destination](#destination) أو بالمفتاح العابر.",
+            "ko": "[LeaseSet2Header](#leaseset2header)에 이어, 집합에 포함된 [Lease2](#lease2) 구조체의 개수를 나타내는 옵션 [Integer](#integer) 값, 실제 [Lease2](#lease2) 구조체들, 그리고 마지막으로 [Destination](#destination)의 [SigningPrivateKey](#signingprivatekey) 또는 일시적 키가 이전 바이트들을 서명한 [Signature](#signature)가 온다.",
+            "tr": "[LeaseSet2Header](#leaseset2header), ardından bir seçenek, içinde kaç tane [Lease2](#lease2) yapısı bulunduğunu belirten bir [Integer](#integer), ardından gerçek [Lease2](#lease2) yapıları ve son olarak önceki baytların [Destination](#destination)'in [SigningPrivateKey](#signingprivatekey) veya geçici anahtarı ile imzalanmış bir [Signature](#signature) gelir.",
+            "ru": "[LeaseSet2Header](#leaseset2header), за которым следует параметр [Integer](#integer), указывающий количество структур [Lease2](#lease2) в наборе, затем сами структуры [Lease2](#lease2), и в завершение — [Signature](#signature), подписанная [SigningPrivateKey](#signingprivatekey) [Destination](#destination) или временным ключом.",
+            "hi": "[LeaseSet2Header](#leaseset2header), उसके बाद विकल्प, [Integer](#integer) जो यह निर्दिष्ट करता है कि सेट में कितनी [Lease2](#lease2) संरचनाएँ हैं, उसके बाद वास्तविक [Lease2](#lease2) संरचनाएँ और अंत में पिछले बाइट्स का एक [Signature](#signature), जो [Destination](#destination) की [SigningPrivateKey](#signingprivatekey) या पारगमन कुंजी द्वारा हस्ताक्षरित है।"
           }
         },
         "h4_075": {
@@ -24805,20 +24805,20 @@
           }
         },
         "p_114": {
-          "source_hash": "e3ee737d289d5cfb",
+          "source_hash": "391f84f695ccfb2c",
           "translations": {
-            "zh": "此结构定义了通过传输协议联系 router 的方式。",
-            "es": "Esta estructura define los medios para contactar un router a través de un protocolo de transporte.",
-            "ko": "이 구조는 전송 프로토콜을 통해 router에 연결하는 방법을 정의합니다.",
-            "ru": "Эта структура определяет способы связи с router через транспортный протокол.",
-            "cs": "Tato struktura definuje způsoby, jak kontaktovat router prostřednictvím transportního protokolu.",
-            "de": "Diese Struktur definiert die Mittel, um einen Router über ein Transportprotokoll zu kontaktieren.",
-            "fr": "Cette structure définit les moyens de contacter un router via un protocole de transport.",
-            "tr": "Bu yapı, bir router ile taşıma protokolü aracılığıyla iletişim kurma yöntemlerini tanımlar.",
-            "vi": "Cấu trúc này định nghĩa phương tiện để liên lạc với một router thông qua giao thức truyền tải.",
-            "hi": "यह संरचना transport protocol के माध्यम से router से संपर्क करने का साधन परिभाषित करती है।",
-            "ar": "تحدد هذه البنية وسائل الاتصال مع router من خلال بروتوكول النقل.",
-            "pt": "Esta estrutura define os meios para contactar um router através de um protocolo de transporte."
+            "fr": "Contenu dans un message I2NP de type DatabaseStore 5. Défini à partir de la version 0.9.38 ; fonctionnel à partir de la version 0.9.39 ; voir la proposition 123 pour plus d'informations.",
+            "zh": "包含在类型为5的I2NP DatabaseStore消息中。自0.9.38版本起定义，自0.9.39版本起生效；更多信息请参见提案123。",
+            "de": "Enthalten in einer I2NP DatabaseStore-Nachricht vom Typ 5. Definiert ab 0.9.38; funktionsfähig ab 0.9.39; siehe Vorschlag 123 für weitere Informationen.",
+            "vi": "Được chứa trong tin nhắn I2NP DatabaseStore loại 5. Được định nghĩa kể từ phiên bản 0.9.38; hoạt động kể từ phiên bản 0.9.39; xem đề xuất 123 để biết thêm thông tin.",
+            "cs": "Obsaženo ve zprávě I2NP DatabaseStore typu 5. Definováno od verze 0.9.38; funguje od verze 0.9.39; více informací viz návrh 123.",
+            "pt": "Contido em uma mensagem I2NP DatabaseStore do tipo 5. Definido a partir da versão 0.9.38; funcionando a partir da versão 0.9.39; veja a proposta 123 para mais informações.",
+            "es": "Contenido en un mensaje I2NP de tipo DatabaseStore 5. Definido a partir de la versión 0.9.38; funciona a partir de la versión 0.9.39; ver la propuesta 123 para más información.",
+            "ar": "محتوى في رسالة I2NP من النوع DatabaseStore رقم 5. تم تعريفه بدءًا من الإصدار 0.9.38؛ وبدأ العمل به بدءًا من الإصدار 0.9.39؛ انظر الاقتراح 123 لمزيد من المعلومات.",
+            "ko": "유형 5의 I2NP DatabaseStore 메시지에 포함되어 있습니다. 0.9.38 버전부터 정의되었으며, 0.9.39 버전부터 작동합니다. 자세한 내용은 제안서 123을 참조하세요.",
+            "tr": "Tür 5 olan bir I2NP DatabaseStore mesajının içinde yer alır. 0.9.38'den itibaren tanımlanmıştır ve 0.9.39'dan itibaren çalışmaktadır; daha fazla bilgi için öneri 123'e bakınız.",
+            "ru": "Содержится в сообщении I2NP DatabaseStore типа 5. Определено начиная с версии 0.9.38; работает с версии 0.9.39 и выше; см. предложение 123 для получения дополнительной информации.",
+            "hi": "प्रकार 5 के I2NP डेटाबेसस्टोर संदेश में शामिल। 0.9.38 से परिभाषित; 0.9.39 से कार्यरत; अधिक जानकारी के लिए प्रस्ताव 123 देखें।"
           }
         },
         "h4_077": {
@@ -24839,20 +24839,20 @@
           }
         },
         "p_115": {
-          "source_hash": "635a62ca0f8d1f57",
+          "source_hash": "9ac62993fa6b477c",
           "translations": {
-            "zh": "1 字节 [Integer](#integer) 定义使用该地址的相对成本，其中 0 表示免费，255 表示昂贵，后面跟着过期 [Date](#date)，超过该日期后不应使用该地址，如果为 null，则地址永不过期。之后是一个 [String](#string)，定义此 router 地址使用的传输协议。最后是一个 [Mapping](#mapping)，包含建立连接所需的所有传输协议特定选项，如 IP 地址、端口号、电子邮件地址、URL 等。",
-            "es": "1 byte [Integer](#integer) que define el costo relativo de usar la dirección, donde 0 es gratuito y 255 es costoso, seguido por la [Date](#date) de expiración después de la cual la dirección no debería usarse, o si es null, la dirección nunca expira. Después viene un [String](#string) que define el protocolo de transporte que esta dirección de router usa. Finalmente hay un [Mapping](#mapping) que contiene todas las opciones específicas del transporte necesarias para establecer la conexión, como dirección IP, número de puerto, dirección de correo electrónico, URL, etc.",
-            "ko": "주소 사용의 상대적 비용을 정의하는 1바이트 [Integer](#integer) (0은 무료, 255는 비싼 비용을 의미), 이어서 주소가 사용되지 않아야 하는 만료 [Date](#date) (null인 경우 주소가 만료되지 않음). 그 다음에는 이 router 주소가 사용하는 전송 프로토콜을 정의하는 [String](#string)이 온다. 마지막으로 IP 주소, 포트 번호, 이메일 주소, URL 등과 같이 연결을 설정하는 데 필요한 모든 전송별 옵션을 포함하는 [Mapping](#mapping)이 있다.",
-            "ru": "1 байт [Integer](#integer), определяющий относительную стоимость использования адреса, где 0 означает бесплатно, а 255 - дорого, за которым следует дата истечения [Date](#date), после которой адрес не должен использоваться, или если null, то адрес никогда не истекает. После этого идет [String](#string), определяющая транспортный протокол, который использует данный router адрес. Наконец, есть [Mapping](#mapping), содержащий все специфичные для транспорта опции, необходимые для установления соединения, такие как IP-адрес, номер порта, email адрес, URL и т.д.",
-            "cs": "1 byte [Integer](#integer) definující relativní náklady na použití adresy, kde 0 je zdarma a 255 je drahé, následované datem vypršení [Date](#date), po kterém by adresa neměla být použita, nebo pokud je null, adresa nikdy nevyprší. Poté následuje [String](#string) definující transportní protokol, který tato router adresa používá. Nakonec je zde [Mapping](#mapping) obsahující všechny transportně specifické možnosti potřebné k navázání spojení, jako je IP adresa, číslo portu, e-mailová adresa, URL atd.",
-            "de": "1 Byte [Integer](#integer), der die relativen Kosten für die Verwendung der Adresse definiert, wobei 0 kostenlos und 255 teuer ist, gefolgt vom Ablauf-[Date](#date), nach dem die Adresse nicht mehr verwendet werden sollte, oder falls null, läuft die Adresse niemals ab. Danach kommt ein [String](#string), der das Transportprotokoll definiert, das diese router-Adresse verwendet. Schließlich gibt es ein [Mapping](#mapping), das alle transportspezifischen Optionen enthält, die zur Herstellung der Verbindung erforderlich sind, wie IP-Adresse, Port-Nummer, E-Mail-Adresse, URL, etc.",
-            "fr": "1 octet [Integer](#integer) définissant le coût relatif d'utilisation de l'adresse, où 0 est gratuit et 255 est coûteux, suivi de la [Date](#date) d'expiration après laquelle l'adresse ne doit pas être utilisée, ou si nulle, l'adresse n'expire jamais. Après cela vient une [String](#string) définissant le protocole de transport que cette adresse router utilise. Finalement, il y a un [Mapping](#mapping) contenant toutes les options spécifiques au transport nécessaires pour établir la connexion, comme l'adresse IP, le numéro de port, l'adresse email, l'URL, etc.",
-            "tr": "Adresi kullanmanın göreceli maliyetini tanımlayan 1 byte [Integer](#integer), burada 0 ücretsiz ve 255 pahalı anlamına gelir, ardından adresin kullanılmaması gereken son kullanma [Date](#date) tarihi gelir, veya null ise adresin süresi asla dolmaz. Bundan sonra bu router adresinin kullandığı taşıma protokolünü tanımlayan bir [String](#string) gelir. Son olarak, IP adresi, port numarası, e-posta adresi, URL vb. gibi bağlantıyı kurmak için gerekli tüm taşıma protokolüne özgü seçenekleri içeren bir [Mapping](#mapping) bulunur.",
-            "vi": "1 byte [Integer](#integer) định nghĩa chi phí tương đối khi sử dụng địa chỉ, trong đó 0 là miễn phí và 255 là đắt đỏ, theo sau là [Date](#date) hết hạn sau đó địa chỉ không nên được sử dụng, hoặc nếu null thì địa chỉ không bao giờ hết hạn. Sau đó là một [String](#string) định nghĩa giao thức vận chuyển mà địa chỉ router này sử dụng. Cuối cùng có một [Mapping](#mapping) chứa tất cả các tùy chọn cụ thể cho phương thức vận chuyển cần thiết để thiết lập kết nối, như địa chỉ IP, số cổng, địa chỉ email, URL, v.v.",
-            "hi": "1 byte [Integer](#integer) जो address के उपयोग की सापेक्षिक लागत को परिभाषित करता है, जहाँ 0 मुफ्त है और 255 महंगा है, इसके बाद expiration [Date](#date) आती है जिसके बाद address का उपयोग नहीं करना चाहिए, या यदि null है, तो address कभी expire नहीं होता। इसके बाद एक [String](#string) आता है जो transport protocol को परिभाषित करता है जिसका यह router address उपयोग करता है। अंत में एक [Mapping](#mapping) होता है जिसमें connection स्थापित करने के लिए आवश्यक सभी transport specific विकल्प होते हैं, जैसे IP address, port number, email address, URL, आदि।",
-            "ar": "1 بايت [Integer](#integer) يحدد التكلفة النسبية لاستخدام العنوان، حيث 0 يعني مجاني و 255 يعني مكلف، متبوعًا بتاريخ انتهاء الصلاحية [Date](#date) الذي بعده يجب عدم استخدام العنوان، أو إذا كان فارغًا، فإن العنوان لا ينتهي أبدًا. بعد ذلك يأتي [String](#string) يحدد بروتوكول النقل الذي يستخدمه عنوان router هذا. وأخيرًا يوجد [Mapping](#mapping) يحتوي على جميع الخيارات المحددة للنقل اللازمة لإنشاء الاتصال، مثل عنوان IP ورقم المنفذ وعنوان البريد الإلكتروني وURL، إلخ.",
-            "pt": "1 byte [Integer](#integer) definindo o custo relativo de usar o endereço, onde 0 é gratuito e 255 é caro, seguido pela [Date](#date) de expiração após a qual o endereço não deve ser usado, ou se nulo, o endereço nunca expira. Depois disso vem uma [String](#string) definindo o protocolo de transporte que este endereço de router usa. Finalmente há um [Mapping](#mapping) contendo todas as opções específicas do transporte necessárias para estabelecer a conexão, como endereço IP, número da porta, endereço de email, URL, etc."
+            "fr": "Seule la clé masquée et la date d'expiration sont visibles en texte clair. Le jeu de baux réel est chiffré.",
+            "zh": "只有盲化密钥和过期时间以明文形式可见。实际的leaseSet是加密的。",
+            "de": "Nur der verblendete Schlüssel und das Ablaufdatum sind im Klartext sichtbar. Der eigentliche LeaseSet ist verschlüsselt.",
+            "vi": "Chỉ khóa bị che khuất và thời gian hết hạn là hiển thị dạng văn bản rõ. Tập thuê thực tế đã được mã hóa.",
+            "cs": "Ve volném textu jsou viditelné pouze zaslepený klíč a doba platnosti. Skutečná sada nájemních smluv je šifrována.",
+            "pt": "Apenas a chave ofuscada e a expiração são visíveis em texto claro. O conjunto de leases real é criptografado.",
+            "es": "Solo la clave cegada y la expiración son visibles en texto claro. El conjunto de arrendamiento real está cifrado.",
+            "ar": "لا يكون المفتاح المخفي ووقت انتهاء الصلاحية فقط مرئيين بشكل نصي واضح. يتم تشفير مجموعة الإيجار الفعلية.",
+            "ko": "평문으로는 블라인드 키와 만료 시간만 볼 수 있으며, 실제 리스 세트는 암호화되어 있습니다.",
+            "tr": "Yalnızca körleştirilmiş anahtar ve süre sonu açık metin olarak görünür. Gerçek lease set şifrelenmiştir.",
+            "ru": "Только ослеплённый ключ и срок действия видны в открытом виде. Фактический leaseSet зашифрован.",
+            "hi": "केवल ब्लाइंड कुंजी और समाप्ति स्पष्ट पाठ में दृश्यमान हैं। वास्तविक लीज सेट एन्क्रिप्टेड है।"
           }
         },
         "h4_078": {
@@ -24941,20 +24941,20 @@
           }
         },
         "p_116": {
-          "source_hash": "0321a0d6933380fc",
+          "source_hash": "d1217855346debe0",
           "translations": {
-            "zh": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
-            "es": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
-            "ko": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
-            "ru": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
-            "cs": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
-            "de": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
-            "fr": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
-            "tr": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
-            "vi": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
-            "hi": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
-            "ar": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
-            "pt": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)"
+            "fr": "Un type de signature sur deux octets, la [SigningPrivateKey](#signingprivatekey) masquée, l'horodatage de publication, la date d'expiration et les indicateurs. Puis, une longueur sur deux octets suivie de données chiffrées. Enfin, une [Signature](#signature) des octets précédents signée par la [SigningPrivateKey](#signingprivatekey) masquée ou par la clé transitoire.",
+            "zh": "一个两字节的签名类型，包含已加密的[SigningPrivateKey](#signingprivatekey)、发布时间、过期时间以及标志位。随后是两个字节的长度，后跟加密数据。最后是由已加密的[SigningPrivateKey](#signingprivatekey)或临时密钥签名的前述字节的[Signature](#signature)。",
+            "de": "Ein zweibytiges Signaturtyp-Feld, der blinde [SigningPrivateKey](#signingprivatekey), Veröffentlichungszeit, Ablaufzeit und Flags. Danach eine zweibytige Länge, gefolgt von verschlüsselten Daten. Abschließend eine [Signature](#signature) der vorhergehenden Bytes, signiert mit dem blinden [SigningPrivateKey](#signingprivatekey) oder dem transienten Schlüssel.",
+            "vi": "Một loại chữ ký gồm hai byte, [Khóa riêng ký](#signingprivatekey) đã được làm mờ, thời gian công bố, thời hạn hiệu lực và các cờ. Tiếp theo là độ dài hai byte theo sau bởi dữ liệu đã được mã hóa. Cuối cùng là một [Chữ ký](#signature) của các byte trước đó, được ký bởi [Khóa riêng ký](#signingprivatekey) đã được làm mờ hoặc khóa tạm thời.",
+            "cs": "Dvoubajtový typ podpisu, zveřejněný [SigningPrivateKey](#signingprivatekey) s časem zveřejnění, expirací a příznaky. Poté dvoubajtová délka následovaná šifrovanými daty. Nakonec [Signature](#signature) předchozích bajtů podepsaná zoslepeným [SigningPrivateKey](#signingprivatekey) nebo přechodným klíčem.",
+            "pt": "Um tipo de assinatura de dois bytes, a [SigningPrivateKey](#signingprivatekey) ofuscada, o tempo de publicação, expiração e flags. Em seguida, um comprimento de dois bytes seguido por dados criptografados. Finalmente, uma [Signature](#signature) dos bytes anteriores assinada pela [SigningPrivateKey](#signingprivatekey) ofuscada ou pela chave transitória.",
+            "es": "Un tipo de firma de dos bytes, la [SigningPrivateKey](#signingprivatekey) ofuscada, la hora de publicación, la expiración y las banderas. Luego, una longitud de dos bytes seguida de datos cifrados. Finalmente, una [Signature](#signature) de los bytes anteriores firmada por la [SigningPrivateKey](#signingprivatekey) ofuscada o por la clave transitoria.",
+            "ar": "نوع توقيع مكوّن من بايتين، و[مفتاح التوقيع الخاص المموّه](#signingprivatekey)، ووقت النشر، وانتهاء الصلاحية، والعلم. ثم طول مكوّن من بايتين يتبعه البيانات المشفرة. وأخيرًا، [توقيع](#signature) للبايتات السابقة تم توقيعه بواسطة المفتاح المموّه [SigningPrivateKey](#signingprivatekey) أو المفتاح العابر.",
+            "ko": "2바이트의 서명 유형, 블라인드 처리된 [SigningPrivateKey](#signingprivatekey), 게시 시간, 만료 시간 및 플래그. 그 후, 2바이트 길이 정보와 암호화된 데이터가 뒤따른다. 마지막으로 블라인드 처리된 [SigningPrivateKey](#signingprivatekey) 또는 일시적 키로 서명된 이전 바이트들의 [Signature](#signature)가 온다.",
+            "tr": "İki baytlık bir imza türü, körleştirilmiş [SigningPrivateKey](#signingprivatekey), yayımlanma zamanı, sona erme süresi ve bayraklar. Ardından, iki baytlık bir uzunluk ve şifrelenmiş veri gelir. Son olarak, körleştirilmiş [SigningPrivateKey](#signingprivatekey) veya geçici anahtar tarafından önceki baytların imzalanmasıyla oluşturulan bir [Signature](#signature) bulunur.",
+            "ru": "Двухбайтовый тип подписи, ослеплённый [SigningPrivateKey](#signingprivatekey), время публикации, срок действия и флаги. Затем двухбайтовая длина, за которой следуют зашифрованные данные. Наконец, [Signature](#signature) предыдущих байтов, подписанная ослеплённым [SigningPrivateKey](#signingprivatekey) или временным ключом.",
+            "hi": "एक दो-बाइट हस्ताक्षर प्रकार, ब्लाइंडेड [SigningPrivateKey](#signingprivatekey), प्रकाशन समय, समाप्ति और झंडियाँ। फिर, एक दो-बाइट लंबाई जिसके बाद एन्क्रिप्टेड डेटा होता है। अंत में, पिछले बाइट्स का एक [Signature](#signature), जिस पर हस्ताक्षर ब्लाइंडेड [SigningPrivateKey](#signingprivatekey) या ट्रांजिएंट कुंजी द्वारा किया गया हो।"
           }
         },
         "h3_028": {
@@ -25026,20 +25026,20 @@
           }
         },
         "p_118": {
-          "source_hash": "99c300d5b00376c1",
+          "source_hash": "e3ee737d289d5cfb",
           "translations": {
-            "zh": "[RouterIdentity](#routeridentity) 后跟 [Date](#date)，表示条目发布的时间",
-            "es": "[RouterIdentity](#routeridentity) seguido de la [Date](#date), cuando se publicó la entrada",
-            "ko": "항목이 게시된 날짜인 [Date](#date)가 뒤따르는 [RouterIdentity](#routeridentity)",
-            "ru": "[RouterIdentity](#routeridentity), за которым следует [Date](#date), когда запись была опубликована",
-            "cs": "[RouterIdentity](#routeridentity) následovaná [Date](#date), kdy byl záznam publikován",
-            "de": "[RouterIdentity](#routeridentity) gefolgt vom [Date](#date), wann der Eintrag veröffentlicht wurde",
-            "fr": "[RouterIdentity](#routeridentity) suivi de la [Date](#date), quand l'entrée a été publiée",
-            "tr": "[RouterIdentity](#routeridentity) ardından girişin yayınlandığı [Date](#date)",
-            "vi": "[RouterIdentity](#routeridentity) theo sau bởi [Date](#date), khi mục này được xuất bản",
-            "hi": "[RouterIdentity](#routeridentity) के बाद [Date](#date), जब एंट्री प्रकाशित की गई थी",
-            "ar": "[RouterIdentity](#routeridentity) متبوعة بـ [Date](#date)، عندما تم نشر الإدخال",
-            "pt": "[RouterIdentity](#routeridentity) seguido pela [Date](#date), quando a entrada foi publicada"
+            "fr": "Cette structure définit les moyens de contacter un routeur via un protocole de transport.",
+            "zh": "此结构定义了通过传输协议联系路由器的方式。",
+            "de": "Diese Struktur definiert die Mittel, um einen Router über ein Transportprotokoll zu kontaktieren.",
+            "vi": "Cấu trúc này xác định phương thức để liên lạc với một router thông qua giao thức truyền tải.",
+            "cs": "Tato struktura definuje prostředky pro kontaktování směrovače prostřednictvím přenosového protokolu.",
+            "pt": "Essa estrutura define os meios para contatar um roteador por meio de um protocolo de transporte.",
+            "es": "Esta estructura define los medios para contactar a un router a través de un protocolo de transporte.",
+            "ar": "يُعرّف هذا الهيكل الوسيلة للتواصل مع جهاز توجيه من خلال بروتوكول نقل.",
+            "ko": "이 구조는 전송 프로토콜을 통해 라우터에 연결하는 방법을 정의한다.",
+            "tr": "Bu yapı, bir yönlendiriciye bir taşıma protokolü aracılığıyla nasıl ulaşılacağını tanımlar.",
+            "ru": "Эта структура определяет способ взаимодействия с роутером через транспортный протокол.",
+            "hi": "यह संरचना एक ट्रांसपोर्ट प्रोटोकॉल के माध्यम से राउटर से संपर्क करने के साधनों को परिभाषित करती है।"
           }
         },
         "list_081": {
@@ -25077,20 +25077,20 @@
           }
         },
         "p_119": {
-          "source_hash": "b2caf69ac09caf19",
+          "source_hash": "635a62ca0f8d1f57",
           "translations": {
-            "zh": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
-            "es": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
-            "ko": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
-            "ru": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
-            "cs": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
-            "de": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
-            "fr": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
-            "tr": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
-            "vi": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
-            "hi": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
-            "ar": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
-            "pt": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)"
+            "fr": "1 octet [Integer](#integer) définissant le coût relatif d'utilisation de l'adresse, où 0 signifie gratuit et 255 coûteux, suivi de la [Date](#date) d'expiration après laquelle l'adresse ne devrait plus être utilisée, ou, si nulle, l'adresse n'expire jamais. Suit ensuite une [String](#string) définissant le protocole de transport utilisé par cette adresse de routeur. Enfin, un [Mapping](#mapping) contient toutes les options spécifiques au transport nécessaires pour établir la connexion, telles que l'adresse IP, le numéro de port, l'adresse e-mail, l'URL, etc.",
+            "zh": "1 字节的[整数](#integer)，定义使用该地址的相对成本，其中 0 表示免费，255 表示昂贵；接着是[日期](#date)，表示该地址过期的时间，若为 null 则表示该地址永不过期。随后是一个[字符串](#string)，定义此路由器地址所使用的传输协议。最后是一个[映射](#mapping)，包含建立连接所需的所有特定于传输方式的选项，例如 IP 地址、端口号、电子邮件地址、URL 等。",
+            "de": "1 Byte [Integer](#integer), das die relative Nutzungskosten der Adresse definiert, wobei 0 kostenlos und 255 teuer bedeutet, gefolgt von dem Ablauf-[Datum](#date), nach dem die Adresse nicht mehr verwendet werden sollte; falls null, läuft die Adresse niemals ab. Danach folgt ein [String](#string), der das Transportprotokoll angibt, das diese Routeradresse verwendet. Abschließend folgt eine [Zuordnung](#mapping), die alle transportprotokollspezifischen Optionen enthält, die für den Verbindungsaufbau erforderlich sind, wie z. B. IP-Adresse, Portnummer, E-Mail-Adresse, URL usw.",
+            "vi": "1 byte [Integer](#integer) xác định chi phí tương đối khi sử dụng địa chỉ, trong đó 0 là miễn phí và 255 là đắt, theo sau là [Date](#date) thời gian hết hạn mà sau đó địa chỉ không nên được sử dụng, hoặc nếu là null thì địa chỉ không bao giờ hết hạn. Tiếp theo là một [String](#string) mô tả giao thức truyền tải mà địa chỉ router này sử dụng. Cuối cùng là một [Mapping](#mapping) chứa tất cả các tùy chọn riêng biệt theo từng giao thức truyền tải cần thiết để thiết lập kết nối, chẳng hạn như địa chỉ IP, số cổng, địa chỉ email, URL, v.v.",
+            "cs": "1 bajt [Integer](#integer) definující relativní náklady na použití adresy, kde 0 znamená zdarma a 255 drahé, následované [Date](#date) vypršením platnosti, po kterém by se adresa neměla používat, nebo pokud je hodnota null, adresa nikdy nevyprší. Dále následuje [String](#string) definující transportní protokol, který tato adresa směrovače používá. Nakonec je zde [Mapping](#mapping) obsahující všechny transportně specifické volby potřebné k navázání spojení, jako je IP adresa, číslo portu, e-mailová adresa, URL atd.",
+            "pt": "1 byte [Integer](#integer) definindo o custo relativo para usar o endereço, onde 0 é gratuito e 255 é caro, seguido pela [Date](#date) de expiração após a qual o endereço não deve ser usado, ou, se nula, o endereço nunca expira. Depois disso vem uma [String](#string) definindo o protocolo de transporte que este endereço de roteador utiliza. Finalmente, há um [Mapping](#mapping) contendo todas as opções específicas do transporte necessárias para estabelecer a conexão, como endereço IP, número da porta, endereço de e-mail, URL, etc.",
+            "es": "1 byte [Integer](#integer) que define el costo relativo de usar la dirección, donde 0 es gratis y 255 es muy costoso, seguido por la [Date](#date) de expiración después de la cual no se debería usar la dirección, o si es nula, la dirección nunca expira. Luego viene un [String](#string) que define el protocolo de transporte que utiliza esta dirección de enrutador. Finalmente, hay un [Mapping](#mapping) que contiene todas las opciones específicas del transporte necesarias para establecer la conexión, como dirección IP, número de puerto, dirección de correo electrónico, URL, etc.",
+            "ar": "بايت واحد [Integer](#integer) يعرّف التكلفة النسبية لاستخدام العنوان، حيث إن القيمة `1` تعني مجانًا والقيمة `255` تعني باهظة التكلفة، متبوعًا بـ [Date](#date) انتهاء الصلاحية الذي بعدم لا ينبغي استخدام العنوان بعده، أو إذا كانت القيمة null، فإن العنوان لا ينتهي صلاحيته أبدًا. بعد ذلك يأتي [String](#string) يحدد بروتوكول النقل الذي يستخدمه عنوان الموجه هذا. وأخيرًا، يوجد [Mapping](#mapping) يحتوي على جميع الخيارات الخاصة بالنقل اللازمة لإنشاء الاتصال، مثل عنوان IP، ورقم المنفذ، وعنوان البريد الإلكتروني، وURL، إلخ.",
+            "ko": "0은 무료이고 255는 비싸다는 의미인 상대적 비용을 나타내는 1바이트 [정수](#integer) 값, 그리고 이 주소가 더 이상 사용되지 않아야 하는 만료 시점인 [날짜](#date) (null인 경우 만료되지 않음). 그 다음에는 이 라우터 주소가 사용하는 전송 프로토콜을 정의하는 [문자열](#string)이 온다. 마지막으로 연결을 수립하는 데 필요한 전송 방식별 옵션들(예: IP 주소, 포트 번호, 이메일 주소, URL 등)을 포함하는 [매핑](#mapping)이 위치한다.",
+            "tr": "0 ücretsiz ve 255 çok maliyetli olmak üzere, adresin kullanımının göreceli maliyetini tanımlayan 1 bayt [Tamsayı](#integer), ardından adresin kullanılmaması gereken son kullanma [Tarihi](#date) ya da null ise adresin süresinin dolmayacağı belirtilir. Bundan sonra bu yönlendirici adresinin kullandığı taşıma protokolünü tanımlayan bir [Dize](#string) gelir. Son olarak IP adresi, port numarası, e-posta adresi, URL vb. bağlantıyı kurmak için taşıma yöntemine özgü tüm seçenekleri içeren bir [Eşleme](#mapping) bulunur.",
+            "ru": "1 байт [Integer](#integer), определяющий относительную стоимость использования адреса, где 0 — бесплатно, а 255 — дорого, за которым следует [Date](#date) истечения срока действия, после которого адрес не должен использоваться, или значение null, означающее, что адрес никогда не истекает. Далее идет [String](#string), определяющий транспортный протокол, используемый этим адресом маршрутизатора. Наконец, следует [Mapping](#mapping), содержащий все транспортно-зависимые параметры, необходимые для установления соединения, такие как IP-адрес, номер порта, email-адрес, URL и т.д.",
+            "hi": "1 बाइट [Integer](#integer), जो पते के उपयोग की सापेक्ष लागत को परिभाषित करता है, जहाँ 0 का अर्थ मुफ्त और 255 का अर्थ महंगा होता है, उसके बाद [Date](#date) आती है जिसके बाद पते का उपयोग नहीं किया जाना चाहिए, या यदि शून्य हो तो पता कभी समाप्त नहीं होता। इसके बाद परिवहन प्रोटोकॉल को परिभाषित करने वाला एक [String](#string) आता है जिसका इस राउटर पते द्वारा उपयोग किया जाता है। अंत में सभी परिवहन-विशिष्ट विकल्पों वाला एक [Mapping](#mapping) होता है जो संपर्क स्थापित करने के लिए आवश्यक होते हैं, जैसे आईपी पता, पोर्ट नंबर, ईमेल पता, यूआरएल, आदि।"
           }
         },
         "h3_029": {
@@ -25111,20 +25111,20 @@
           }
         },
         "p_120": {
-          "source_hash": "61484402c388be82",
+          "source_hash": "0321a0d6933380fc",
           "translations": {
-            "zh": "Tunnel Message Delivery Instructions 在 Tunnel Message Specification [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) 中定义。",
-            "es": "Las Instrucciones de Entrega de Mensajes de Tunnel están definidas en la Especificación de Mensajes de Tunnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
-            "ko": "Tunnel 메시지 전달 지침은 Tunnel 메시지 사양 [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)에 정의되어 있습니다.",
-            "ru": "Инструкции доставки tunnel сообщений определены в спецификации Tunnel Message [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
-            "cs": "Instrukce pro doručování tunnel zpráv jsou definovány ve specifikaci Tunnel Message Specification [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
-            "de": "Tunnel Message Delivery Instructions sind in der Tunnel Message Specification [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) definiert.",
-            "fr": "Les instructions de livraison des messages tunnel sont définies dans la spécification des messages tunnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
-            "tr": "Tunnel Message Delivery Instructions, Tunnel Message Specification [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) belgesinde tanımlanmıştır.",
-            "vi": "Hướng dẫn Gửi Tin nhắn Tunnel được định nghĩa trong Đặc tả Tin nhắn Tunnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
-            "hi": "Tunnel Message Delivery Instructions को Tunnel Message Specification [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) में परिभाषित किया गया है।",
-            "ar": "تعليمات تسليم رسائل الأنفاق معرّفة في مواصفات رسائل الأنفاق [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
-            "pt": "As Instruções de Entrega de Mensagem de Tunnel são definidas na Especificação de Mensagem de Tunnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)."
+            "fr": "JavaDoc : [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
+            "zh": "JavaDoc：[net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
+            "de": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
+            "vi": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
+            "cs": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
+            "pt": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
+            "es": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
+            "ar": "مستندات جافا: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
+            "ko": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
+            "tr": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
+            "ru": "JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)",
+            "hi": "जावाडॉक: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)"
           }
         },
         "p_121": {
@@ -25228,9 +25228,60 @@
             "pt": "- [ECIES](/docs/specs/ecies/)\n- [ECIES-HYBRID](/docs/specs/ecies-hybrid/)\n- [ECIES-ROUTERS](/docs/specs/ecies-routers/)\n- [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy)\n- [ELGAMAL-AES](/docs/specs/elgamal-aes/)\n- [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions)\n- [I2CP](/docs/specs/i2cp/)\n- [I2NP](/docs/specs/i2np/)\n- [NAMING](/docs/overview/naming/)\n- [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo)\n- [Prop134](/proposals/134-gost/)\n- [Prop169](/proposals/169-pq-crypto/)\n- [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)\n- [SSU](/docs/legacy/ssu/)\n- [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)",
             "hi": "- [ECIES](/docs/specs/ecies/)\n- [ECIES-HYBRID](/docs/specs/ecies-hybrid/)\n- [ECIES-ROUTERS](/docs/specs/ecies-routers/)\n- [ELGAMAL](/docs/specs/cryptography/#elgamal-legacy)\n- [ELGAMAL-AES](/docs/specs/elgamal-aes/)\n- [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions)\n- [I2CP](/docs/specs/i2cp/)\n- [I2NP](/docs/specs/i2np/)\n- [NAMING](/docs/overview/naming/)\n- [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo)\n- [Prop134](/proposals/134-gost/)\n- [Prop169](/proposals/169-pq-crypto/)\n- [REGISTRY](http://www.dns-sd.org/ServiceTypes.html)\n- [SSU](/docs/legacy/ssu/)\n- [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)"
           }
+        },
+        "p_122": {
+          "source_hash": "99c300d5b00376c1",
+          "translations": {
+            "fr": "[RouterIdentity](#routeridentity) suivi par la [Date](#date) à laquelle l'entrée a été publiée",
+            "zh": "[RouterIdentity](#routeridentity) 后跟该条目发布时的 [Date](#date)",
+            "de": "[RouterIdentity](#routeridentity), gefolgt vom [Datum](#datum), wann der Eintrag veröffentlicht wurde",
+            "vi": "[RouterIdentity](#routeridentity) theo sau bởi [Date](#date), khi mục nhập được công bố",
+            "cs": "[RouterIdentity](#routeridentity) následované [Date](#date), kdy byl záznam publikován",
+            "pt": "[RouterIdentity](#routeridentity) seguido pela [Date](#date), quando a entrada foi publicada",
+            "es": "[RouterIdentity](#routeridentity) seguido por la [Date](#date), cuando se publicó la entrada",
+            "ar": "[RouterIdentity](#routeridentity) يليها [Date](#date)، عند نشر المدخل",
+            "ko": "[RouterIdentity](#routeridentity) 다음에 이 엔트리가 게시된 [Date](#date)가 옴",
+            "tr": "Girişin yayınlandığı [Tarih](#tarih) ile birlikte [RouterKimliği](#routerkimliği)",
+            "ru": "[RouterIdentity](#routeridentity), за которым следует [Date](#date) публикации записи",
+            "hi": "[RouterIdentity](#routeridentity) के बाद [Date](#date), जब प्रविष्टि प्रकाशित की गई थी"
+          }
+        },
+        "p_123": {
+          "source_hash": "b2caf69ac09caf19",
+          "translations": {
+            "fr": "JavaDoc : [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
+            "zh": "JavaDoc：[net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
+            "de": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
+            "vi": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
+            "cs": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
+            "pt": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
+            "es": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
+            "ar": "توثيق جافا: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
+            "ko": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
+            "tr": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
+            "ru": "JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)",
+            "hi": "जावाडॉक: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)"
+          }
+        },
+        "p_124": {
+          "source_hash": "61484402c388be82",
+          "translations": {
+            "fr": "Les instructions de livraison des messages de tunnel sont définies dans la spécification du message de tunnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
+            "zh": "隧道消息传递指令在隧道消息规范 [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) 中定义。",
+            "de": "Die Anweisungen für die Tunnelnachrichtenübermittlung sind in der Tunnelnachrichtenspezifikation [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) definiert.",
+            "vi": "Hướng dẫn Giao tin nhắn qua Tunnels được định nghĩa trong Đặc tả Tin nhắn Tunnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
+            "cs": "Pokyny pro doručení tunelové zprávy jsou definovány ve specifikaci tunelové zprávy [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
+            "pt": "As Instruções de Entrega de Mensagens em Túnel são definidas na Especificação de Mensagem de Túnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
+            "es": "Las instrucciones de entrega de mensajes de túnel están definidas en la Especificación de Mensajes de Túnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
+            "ar": "يتم تعريف تعليمات تسليم رسالة النفق في وثيقة مواصفات النفق [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
+            "ko": "터널 메시지 전달 지침은 터널 메시지 명세 [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)에서 정의된다.",
+            "tr": "Tünel Mesaj Teslim Talimatları, Tünel Mesajı Spesifikasyonu'nda [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) olarak tanımlanmıştır.",
+            "ru": "Инструкции по доставке туннельных сообщений определены в спецификации туннельных сообщений [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).",
+            "hi": "टनल संदेश वितरण निर्देश [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) में टनल संदेश विनिर्देश में परिभाषित किए गए हैं।"
+          }
         }
       },
-      "file_hash": "302bfb5d261037210ff03ceb1829205ee0c561fae95c60147a1bbf7d4c1f7bef"
+      "file_hash": "5b7df98c0453067c179f3173c122bcdfeeac254cb60b37891760e1fadc75413f"
     },
     "en/blog/2026-03-01-i2p-2-11-0-release.md": {
       "segments": {},

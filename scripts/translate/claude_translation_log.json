@@ -1956,5 +1956,137 @@
     "segments": 58,
     "cache_hits": 57,
     "cache_misses": 1
+  },
+  {
+    "timestamp": "2026-10-13T15:50:43.886508Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/fr/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "fr",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-13T15:50:51.113959Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/zh/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "zh",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-13T15:51:09.459376Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/de/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "de",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-13T15:51:12.399285Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/vi/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "vi",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-13T15:51:22.394208Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/cs/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "cs",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-13T15:51:25.980736Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/pt/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "pt",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-13T15:51:27.943783Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/es/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "es",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-13T15:51:33.606987Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ar/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "ar",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-13T15:51:38.439346Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ko/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "ko",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-13T15:51:43.216255Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/tr/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "tr",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-13T15:51:47.223663Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ru/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "ru",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-13T15:52:08.085954Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/docs/specs/common-structures.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/hi/docs/specs/common-structures.md",
+    "source_lang": "en",
+    "target_lang": "hi",
+    "model": "qwen/qwen3-235b-a22b-2507",
+    "segments": 327,
+    "cache_hits": 294,
+    "cache_misses": 33
   }
 ]

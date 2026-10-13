@@ -2,10 +2,12 @@
 title: "Spécification des structures communes"
 description: "Types de données communs à tous les protocoles I2P"
 slug: "common-structures"
-aliases: 
+aliases:
+  - "/docs/specs/common-structures"
+  - "/docs/specs/common-structures/"
 category: "Conception"
-lastUpdated: "2026-03"
-accurateFor: "0.9.68"
+lastUpdated: "2026-10"
+accurateFor: "0.9.71"
 ---
 
 Ce document décrit certains types de données communs à tous les protocoles I2P, comme [I2NP](/docs/specs/i2np/), [I2CP](/docs/specs/i2cp/), [SSU](/docs/legacy/ssu/), etc.
@@ -1267,11 +1269,13 @@ JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Dest
 
 #### Sommaire
 
-Définit l'autorisation pour un tunnel particulier de recevoir des messages ciblant une [Destination](#destination).
+OBSOLÈTE. Utilisez LeaseSet2 et Lease2.
+
+Définit l'autorisation pour un tunnel particulier de recevoir des messages destinés à une [Destination](#destination).
 
 #### Description
 
-SHA256 [Hash](#hash) de la [RouterIdentity](#routeridentity) du router passerelle, puis le [TunnelId](#tunnelid), et enfin une [Date](#date) de fin.
+SHA256 du [Hash](#hash) du [RouterIdentity](#routeridentity) du routeur passerelle, puis le [TunnelId](#tunnelid), et enfin une [Date](#date) de fin.
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1310,13 +1314,15 @@ end_date :: `Date`
 ```
 
 </details>
-JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)
+JavaDoc : [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)
 
 ### LeaseSet
 
 #### Sommaire
 
-Contient tous les [Leases](#lease) actuellement autorisés pour une [Destination](#destination) particulière, la [PublicKey](#publickey) avec laquelle les messages garlic peuvent être chiffrés, puis la [SigningPublicKey](#signingpublickey) qui peut être utilisée pour révoquer cette version particulière de la structure. Le leaseSet est l'une des deux structures stockées dans la base de données réseau (l'autre étant [RouterInfo](#routerinfo)), et est indexé sous le SHA256 de la [Destination](#destination) contenue.
+OBSOLÈTE. Utilisez LeaseSet2 et Lease2.
+
+Contient tous les [Leases](#lease) actuellement autorisés pour un [Destination](#destination) particulier, la [PublicKey](#publickey) permettant de chiffrer les messages au format garlic, puis la [SigningPublicKey](#signingpublickey) qui peut être utilisée pour révoquer cette version spécifique de la structure. Le LeaseSet est l'une des deux structures stockées dans la base de données du réseau (l'autre étant [RouterInfo](#routerinfo)), et est indexé selon le hachage SHA256 du [Destination](#destination) qu'il contient.
 
 #### Notes
 
@@ -1435,7 +1441,7 @@ signature :: `Signature`
 
 * Taille totale : 40 octets
 
-JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)
+JavaDoc : [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)
 
 ### Lease2
 
@@ -1445,7 +1451,7 @@ Définit l'autorisation pour un tunnel particulier de recevoir des messages cibl
 
 #### Notes
 
-[Hash](#hash) SHA256 de la [RouterIdentity](#routeridentity) du router passerelle, puis le [TunnelId](#tunnelid), et enfin une date de fin sur 4 octets.
+Le hachage SHA256 [Hash](#hash) du [RouterIdentity](#routeridentity) du routeur passerelle, suivi du [TunnelId](#tunnelid), puis d'une date de fin sur 4 octets.
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1491,7 +1497,7 @@ JavaDoc: [net.i2p.data.Lease2](http://docs.i2p-projekt.de/net/i2p/data/Lease2.ht
 
 #### Sommaire
 
-Il s'agit d'une partie optionnelle de [LeaseSet2Header](#leaseset2header). Également utilisée dans le streaming et I2CP. Prise en charge à partir de la version 0.9.38 ; voir la proposition 123 pour plus d'informations.
+Il s'agit d'une partie facultative de l'élément [LeaseSet2Header](#leaseset2header). Également utilisé dans le streaming et I2CP. Pris en charge depuis la version 0.9.38 ; voir la proposition 123 pour plus d'informations.
 
 #### Notes
 
@@ -1661,13 +1667,13 @@ offline_signature :: `OfflineSignature`
 
 #### Sommaire
 
-Contenu dans un message I2NP DatabaseStore de type 3. Pris en charge depuis la version 0.9.38 ; voir la proposition 123 pour plus d'informations.
+Contenu dans un message I2NP de type DatabaseStore 3. Pris en charge depuis la version 0.9.38 ; voir la proposition 123 pour plus d'informations.
 
 Contient tous les [Lease2](#lease2) actuellement autorisés pour une [Destination](#destination) particulière, et la [PublicKey](#publickey) avec laquelle les messages garlic peuvent être chiffrés. Un LeaseSet est l'une des deux structures stockées dans la base de données réseau (l'autre étant [RouterInfo](#routerinfo)), et est indexé sous le SHA256 de la [Destination](#destination) contenue.
 
 #### Préférence de clé de chiffrement
 
-[LeaseSet2Header](#leaseset2header), suivi d'options, puis une ou plusieurs [PublicKey](#publickey) pour le chiffrement, un [Integer](#integer) spécifiant combien de structures [Lease2](#lease2) sont dans l'ensemble, suivi des structures [Lease2](#lease2) réelles et enfin une [Signature](#signature) des octets précédents signés par la [SigningPrivateKey](#signingprivatekey) de la [Destination](#destination) ou la clé transitoire.
+[LeaseSet2Header](#leaseset2header), suivi par des options, puis une ou plusieurs [PublicKey](#publickey) pour le chiffrement, un [Integer](#integer) indiquant le nombre de structures [Lease2](#lease2) présentes dans l'ensemble, suivi des structures [Lease2](#lease2) elles-mêmes, et enfin une [Signature](#signature) des octets précédents signée par la [SigningPrivateKey](#signingprivatekey) du [Destination](#destination) ou par la clé transitoire.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -1773,13 +1779,13 @@ signature :: `Signature`
 
 Pour les leasesets publiés (serveur), les clés de chiffrement sont classées par ordre de préférence du serveur, la plus préférée en premier. Si les clients prennent en charge plus d'un type de chiffrement, il est recommandé qu'ils respectent la préférence du serveur et sélectionnent le premier type pris en charge comme méthode de chiffrement à utiliser pour se connecter au serveur. En général, les types de clés plus récents (numérotés plus haut) sont plus sécurisés ou efficaces et sont préférés, donc les clés devraient être listées dans l'ordre inverse du type de clé.
 
-Cependant, les clients peuvent, selon l'implémentation, sélectionner en fonction de leurs préférences à la place, ou utiliser une méthode pour déterminer la préférence "combinée". Cela peut être utile comme option de configuration, ou pour le débogage.
+Cependant, les clients peuvent, selon l'implémentation, choisir en fonction de leurs préférences ou utiliser une méthode pour déterminer la préférence « combinée ». Cela peut être utile comme option de configuration ou à des fins de débogage.
 
 L'ordre des clés dans les leasesets non publiés (client) n'a effectivement pas d'importance, car les connexions ne seront généralement pas tentées vers des clients non publiés. À moins que cet ordre ne soit utilisé pour déterminer une préférence combinée, comme décrit ci-dessus.
 
 #### Notes
 
-À partir de l'API 0.9.66, un format standard pour les options d'enregistrement de service est défini. Voir la proposition 167 pour plus de détails. Des options autres que les enregistrements de service, utilisant un format différent, pourront être définies à l'avenir.
+À compter de l'API 0.9.66, un format standard pour les options des enregistrements de service est défini. Voir la proposition 167 pour plus de détails. Des options autres que les enregistrements de service, utilisant un format différent, pourraient être définies à l'avenir.
 
 Les options LS2 DOIVENT être triées par clé, afin que la signature soit invariante.
 
@@ -1829,11 +1835,13 @@ JavaDoc : [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/Lease
 
 #### Contenu
 
+PRÉLIMINAIRE. Prise en charge pas encore complète.
+
 Définit l'autorisation pour un tunnel particulier de recevoir des messages ciblant une [Destination](#destination). Identique à [Lease2](#lease2) mais avec des drapeaux et un coût au lieu d'un identifiant de tunnel. Utilisé par [MetaLeaseSet](#metaleaseset). Contenu dans un message I2NP DatabaseStore de type 7. Pris en charge à partir de la version 0.9.38 ; voir la proposition 123 pour plus d'informations.
 
 #### Notes
 
-[Hachage](#hash) SHA256 de la [RouterIdentity](#routeridentity) du router passerelle, puis les drapeaux et le coût, et enfin une date de fin sur 4 octets.
+SHA256 du [Hash](#hash) du [RouterIdentity](#routeridentity) du routeur passerelle, puis les indicateurs et le coût, et enfin une date de fin sur 4 octets.
 
 ```bytefield
 tunnel_gw | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1884,19 +1892,21 @@ end_date :: 4 byte date
 
 * La clé publique de la destination était utilisée pour l'ancien chiffrement I2CP vers I2CP qui a été désactivé dans la version 0.6, elle n'est actuellement pas utilisée.
 
-JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)
+JavaDoc : [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)
 
 ### MetaLeaseSet
 
 #### Sommaire
 
-Contenu dans un message I2NP DatabaseStore de type 7. Défini à partir de la version 0.9.38 ; prévu pour être opérationnel à partir de la version 0.9.40 ; voir la proposition 123 pour plus d'informations.
+PRÉLIMINAIRE. Prise en charge pas encore complète.
 
-Contient tous les [MetaLease](#metalease) actuellement autorisés pour une [Destination](#destination) particulière, et la [PublicKey](#publickey) avec laquelle les messages garlic peuvent être chiffrés. Un LeaseSet est l'une des deux structures stockées dans la base de données réseau (l'autre étant [RouterInfo](#routerinfo)), et est indexé sous le SHA256 de la [Destination](#destination) contenue.
+Contenu dans un message I2NP de type DatabaseStore 7. Défini depuis la version 0.9.38 ; voir la proposition 123 pour plus d'informations.
+
+Contient tous les [MetaLease](#metalease) actuellement autorisés pour un [Destination](#destination) donné, ainsi que la [PublicKey](#publickey) permettant de chiffrer les messages au moyen du chiffrement garlic. Un LeaseSet est l'une des deux structures stockées dans la base de données du réseau (l'autre étant [RouterInfo](#routerinfo)) et est indexé selon le hachage SHA256 du [Destination](#destination) qu'il contient.
 
 #### Notes
 
-[LeaseSet2Header](#leaseset2header), suivi d'options, [Integer](#integer) spécifiant combien de structures [Lease2](#lease2) sont dans l'ensemble, suivi des structures [Lease2](#lease2) actuelles et finalement une [Signature](#signature) des octets précédents signés par la [SigningPrivateKey](#signingprivatekey) de la [Destination](#destination) ou la clé transitoire.
+[LeaseSet2Header](#leaseset2header), suivi par des options, un [Integer](#integer) indiquant le nombre de structures [Lease2](#lease2) présentes dans l'ensemble, puis les structures [Lease2](#lease2) elles-mêmes, et enfin une [Signature](#signature) des octets précédents signée par la [SigningPrivateKey](#signingprivatekey) de la [Destination](#destination) ou par la clé transitoire.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -2002,13 +2012,13 @@ JavaDoc: [net.i2p.data.MetaLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/Met
 
 #### Sommaire
 
-Contenu dans un message I2NP DatabaseStore de type 5. Défini à partir de la version 0.9.38 ; fonctionnel à partir de la version 0.9.39 ; voir la proposition 123 pour plus d'informations.
+Contenu dans un message I2NP de type DatabaseStore 5. Défini à partir de la version 0.9.38 ; fonctionnel à partir de la version 0.9.39 ; voir la proposition 123 pour plus d'informations.
 
-Seuls la clé masquée et l'expiration sont visibles en texte clair. Le leaseSet réel est chiffré.
+Seule la clé masquée et la date d'expiration sont visibles en texte clair. Le jeu de baux réel est chiffré.
 
 #### Notes
 
-Un type de signature de deux octets, la [SigningPrivateKey](#signingprivatekey) aveuglée, l'heure de publication, l'expiration et les drapeaux. Puis, une longueur de deux octets suivie de données chiffrées. Enfin, une [Signature](#signature) des octets précédents signée par la [SigningPrivateKey](#signingprivatekey) aveuglée ou la clé transitoire.
+Un type de signature sur deux octets, la [SigningPrivateKey](#signingprivatekey) masquée, l'horodatage de publication, la date d'expiration et les indicateurs. Puis, une longueur sur deux octets suivie de données chiffrées. Enfin, une [Signature](#signature) des octets précédents signée par la [SigningPrivateKey](#signingprivatekey) masquée ou par la clé transitoire.
 
 ```bytefield
 sigtype            | 2 | red    | 2 bytes
@@ -2086,11 +2096,11 @@ JavaDoc: [net.i2p.data.EncryptedLeaseSet](http://docs.i2p-projekt.de/net/i2p/dat
 
 #### Sommaire
 
-Cette structure définit les moyens de contacter un router via un protocole de transport.
+Cette structure définit les moyens de contacter un routeur via un protocole de transport.
 
 #### Notes
 
-1 octet [Integer](#integer) définissant le coût relatif d'utilisation de l'adresse, où 0 est gratuit et 255 est coûteux, suivi de la [Date](#date) d'expiration après laquelle l'adresse ne doit pas être utilisée, ou si nulle, l'adresse n'expire jamais. Après cela vient une [String](#string) définissant le protocole de transport que cette adresse router utilise. Finalement, il y a un [Mapping](#mapping) contenant toutes les options spécifiques au transport nécessaires pour établir la connexion, comme l'adresse IP, le numéro de port, l'adresse email, l'URL, etc.
+1 octet [Integer](#integer) définissant le coût relatif d'utilisation de l'adresse, où 0 signifie gratuit et 255 coûteux, suivi de la [Date](#date) d'expiration après laquelle l'adresse ne devrait plus être utilisée, ou, si nulle, l'adresse n'expire jamais. Suit ensuite une [String](#string) définissant le protocole de transport utilisé par cette adresse de routeur. Enfin, un [Mapping](#mapping) contient toutes les options spécifiques au transport nécessaires pour établir la connexion, telles que l'adresse IP, le numéro de port, l'adresse e-mail, l'URL, etc.
 
 ```bytefield
 cost            | 1 | green  | Integer, 1 byte
@@ -2132,7 +2142,7 @@ options         | 8 | purple | Mapping
 * Voir la page de base de données réseau [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo) pour les options standard qui
   sont censées être présentes dans tous les router infos.
 
-JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)
+JavaDoc : [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)
 
 ### RouterInfo
 
@@ -2142,7 +2152,7 @@ Définit toutes les données qu'un router souhaite publier pour que le réseau p
 
 #### Notes
 
-[RouterIdentity](#routeridentity) suivi de la [Date](#date), quand l'entrée a été publiée
+[RouterIdentity](#routeridentity) suivi par la [Date](#date) à laquelle l'entrée a été publiée
 
 ```bytefield
 router_ident           | 8 | blue   | RouterIdentity, >= 387+ bytes
@@ -2234,11 +2244,11 @@ signature              | 8 | cyan   | Signature, 40+ bytes
 * Les routeurs très anciens exigeaient que les adresses soient triées selon le hachage SHA256 de leurs données afin que la signature reste invariante.  
 Cela n'est plus nécessaire, et il n'est pas utile de l'implémenter pour assurer la compatibilité ascendante.
 
-JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)
+JavaDoc : [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)
 
 ### Instructions de livraison
 
-Les instructions de livraison des messages tunnel sont définies dans la spécification des messages tunnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).
+Les instructions de livraison des messages de tunnel sont définies dans la spécification du message de tunnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).
 
 Les instructions de livraison des messages garlic sont définies dans la spécification des messages I2NP [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions).
 

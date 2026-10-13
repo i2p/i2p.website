@@ -2,10 +2,12 @@
 title: "مواصفات الهياكل الشائعة"
 description: "أنواع البيانات المشتركة لجميع بروتوكولات I2P"
 slug: "common-structures"
-aliases: 
+aliases:
+  - "/docs/specs/common-structures"
+  - "/docs/specs/common-structures/"
 category: "التصميم"
-lastUpdated: "2026-03"
-accurateFor: "0.9.68"
+lastUpdated: "2026-10"
+accurateFor: "0.9.71"
 ---
 
 تصف هذه الوثيقة بعض أنواع البيانات الشائعة لجميع بروتوكولات I2P، مثل [I2NP](/docs/specs/i2np/)، و[I2CP](/docs/specs/i2cp/)، و[SSU](/docs/legacy/ssu/)، إلخ.
@@ -1258,11 +1260,13 @@ JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Dest
 
 #### المحتويات
 
-يُعرّف التفويض لنفق معين لاستقبال الرسائل المستهدفة إلى [Destination](#destination).
+مُهمل. استخدم LeaseSet2 و Lease2.
+
+يُعرِّف الصلاحية الخاصة بقناة معينة لتلقي الرسائل المستهدفة إلى [وجهة](#destination).
 
 #### الوصف
 
-SHA256 [Hash](#hash) لـ [RouterIdentity](#routeridentity) الخاص بـ router البوابة، ثم [TunnelId](#tunnelid)، وأخيراً [Date](#date) النهاية.
+دالة التجزئة SHA256 [Hash](#hash) الخاصة بهوية الموجه [RouterIdentity](#routeridentity) للموجه البوابة، ثم المعرف الخاص بالأنبوب [TunnelId](#tunnelid)، وأخيرًا التاريخ النهائي [Date](#date).
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1307,7 +1311,9 @@ JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html
 
 #### المحتويات
 
-يحتوي على جميع عقود الإيجار ([Leases](#lease)) المصرح بها حاليًا لوجهة ([Destination](#destination)) معينة، و[المفتاح العام](#publickey) الذي يمكن تشفير رسائل garlic إليه، ثم [مفتاح التوقيع العام](#signingpublickey) الذي يمكن استخدامه لإلغاء هذا الإصدار المحدد من البنية. إن LeaseSet هو واحد من البنيتين المخزونتين في قاعدة بيانات الشبكة (الأخرى هي [RouterInfo](#routerinfo))، ويتم فهرسته تحت SHA256 للوجهة ([Destination](#destination)) المحتواة.
+مُهمل. استخدم LeaseSet2 و Lease2.
+
+يحتوي على جميع [الإيجارات](#lease) المصرح بها حاليًا لـ [وجهة](#destination) معينة، و[مفتاح العمومي](#publickey) الذي يمكن تشفير رسائل الثوم (garlic) إليه، ثم [مفتاح التوقيع العمومي](#signingpublickey) الذي يمكن استخدامه لإلغاء هذا الإصدار المحدد من الهيكل. يُعدّ "LeaseSet" أحد الهيكلَين المخزَّنين في قاعدة بيانات الشبكة (والهيكل الآخر هو [RouterInfo](#routerinfo))، ويُفتَّح باستخدام دالة التجزئة SHA256 للـ[وجهة](#destination) المحتواة فيه.
 
 #### ملاحظات
 
@@ -1425,7 +1431,7 @@ signature :: `Signature`
 
 * الحجم الإجمالي: 40 بايت
 
-JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)
+مستندات جافا: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)
 
 ### Lease2
 
@@ -1435,7 +1441,7 @@ JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSe
 
 #### ملاحظات
 
-SHA256 [Hash](#hash) لـ [RouterIdentity](#routeridentity) الخاص بـ router البوابة، ثم [TunnelId](#tunnelid)، وأخيراً تاريخ انتهاء من 4 بايت.
+SHA256 [هاش](#hash) لـ [RouterIdentity](#routeridentity) الراوتر البوابة، ثم [TunnelId](#tunnelid)، وأخيراً تاريخ انتهاء مكوّن من 4 بايتات.
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1481,7 +1487,7 @@ JavaDoc: [net.i2p.data.Lease2](http://docs.i2p-projekt.de/net/i2p/data/Lease2.ht
 
 #### المحتويات
 
-هذا جزء اختياري من [LeaseSet2Header](#leaseset2header). يُستخدم أيضاً في streaming و I2CP. مدعوم اعتباراً من الإصدار 0.9.38؛ راجع الاقتراح 123 لمزيد من المعلومات.
+هذا جزء اختياري من [LeaseSet2Header](#leaseset2header). ويُستخدم أيضًا في البث وفي I2CP. مدعوم بدءًا من الإصدار 0.9.38؛ انظر الاقتراح 123 لمزيد من المعلومات.
 
 #### ملاحظات
 
@@ -1544,7 +1550,7 @@ signature :: `Signature`
 
 #### المحتويات
 
-هذا هو الجزء المشترك من [LeaseSet2](#leaseset2) و [MetaLeaseSet](#metaleaseset). مدعوم اعتبارًا من الإصدار 0.9.38؛ راجع المقترح 123 لمزيد من المعلومات.
+هذا هو الجزء المشترك بين [LeaseSet2](#leaseset2) و [MetaLeaseSet](#metaleaseset). مدعوم بدءًا من الإصدار 0.9.38؛ انظر الاقتراح 123 لمزيد من المعلومات.
 
 #### ملاحظات
 
@@ -1651,13 +1657,13 @@ offline_signature :: `OfflineSignature`
 
 #### المحتويات
 
-متضمن في رسالة I2NP DatabaseStore من النوع 3. مدعوم اعتباراً من الإصدار 0.9.38؛ راجع المقترح 123 للمزيد من المعلومات.
+موجود في رسالة I2NP من النوع DatabaseStore رقم 3. مدعوم بدءًا من الإصدار 0.9.38؛ راجع الاقتراح 123 لمزيد من المعلومات.
 
 يحتوي على جميع [Lease2](#lease2) المعتمدة حالياً لـ [Destination](#destination) معين، و[PublicKey](#publickey) التي يمكن تشفير رسائل garlic إليها. LeaseSet هو أحد الهيكلين المخزنين في قاعدة بيانات الشبكة (والآخر هو [RouterInfo](#routerinfo))، ويتم فهرسته تحت SHA256 للـ [Destination](#destination) المحتوى.
 
 #### تفضيل مفتاح التشفير
 
-[LeaseSet2Header](#leaseset2header)، متبوعاً بخيارات، ثم واحد أو أكثر من [PublicKey](#publickey) للتشفير، [Integer](#integer) يحدد كم عدد هياكل [Lease2](#lease2) في المجموعة، متبوعاً بهياكل [Lease2](#lease2) الفعلية وأخيراً [Signature](#signature) للبايتات السابقة موقعة بواسطة [SigningPrivateKey](#signingprivatekey) الخاص بـ [Destination](#destination) أو المفتاح المؤقت.
+[LeaseSet2Header](#leaseset2header)، يليه خيارات، ثم واحد أو أكثر من [PublicKey](#publickey) للتشفير، و[Integer](#integer) يحدد عدد هياكل [Lease2](#lease2) الموجودة في المجموعة، تليها هياكل [Lease2](#lease2) الفعلية، وأخيرًا [Signature](#signature) للبايتات السابقة موقعة بواسطة [SigningPrivateKey](#signingprivatekey) الخاص بـ [Destination](#destination) أو بالمفتاح العابر.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -1763,31 +1769,31 @@ signature :: `Signature`
 
 بالنسبة لـ leasesets المنشورة (الخادم)، مفاتيح التشفير مرتبة حسب تفضيل الخادم، الأكثر تفضيلاً أولاً. إذا كان العملاء يدعمون أكثر من نوع تشفير واحد، يُنصح بأن يحترموا تفضيل الخادم ويختاروا النوع المدعوم الأول كطريقة التشفير المستخدمة للاتصال بالخادم. بشكل عام، أنواع المفاتيح الأحدث (ذات الأرقام الأعلى) أكثر أماناً أو كفاءة ومفضلة، لذا يجب أن تُدرج المفاتيح بترتيب عكسي لنوع المفتاح.
 
-ومع ذلك، قد يقوم العملاء، بناءً على التطبيق، بالاختيار بدلاً من ذلك بناءً على تفضيلاتهم، أو استخدام بعض الطرق لتحديد التفضيل "المدمج". قد يكون هذا مفيداً كخيار تكوين، أو لأغراض التشخيص.
+ومع ذلك، قد تختار العميلات، حسب التنفيذ، بناءً على تفضيلاتها بدلًا من ذلك، أو استخدام طريقة ما لتحديد التفضيل "المدمج". قد يكون هذا مفيدًا كخيار تهيئة، أو لأغراض التصحيح.
 
 ترتيب المفاتيح في leasesets غير المنشورة (العميل) لا يهم فعليًا، لأن الاتصالات عادة لن تُحاول مع العملاء غير المنشورين. ما لم يُستخدم هذا الترتيب لتحديد تفضيل مدمج، كما هو موضح أعلاه.
 
 #### ملاحظات
 
-اعتباراً من API 0.9.66، تم تحديد تنسيق معياري لخيارات سجل الخدمة. راجع الاقتراح 167 للتفاصيل. قد يتم تحديد خيارات أخرى غير سجلات الخدمة، باستخدام تنسيق مختلف، في المستقبل.
+اعتبارًا من واجهة برمجة التطبيقات (API) 0.9.66، تم تعريف تنسيق قياسي لخيارات سجل الخدمة. راجع الاقتراح 167 للحصول على التفاصيل. قد تُعرَّف في المستقبل خيارات أخرى غير سجلات الخدمة، وتستخدم تنسيقًا مختلفًا.
 
 يجب ترتيب خيارات LS2 حسب المفتاح، بحيث يكون التوقيع ثابتاً.
 
-خيارات سجل الخدمة محددة كما يلي:
+تُعرّف خيارات سجل الخدمة كما يلي:
 
 * تم استخدام المفتاح العام للوجهة في التشفير القديم من I2CP إلى I2CP والذي تم تعطيله في الإصدار 0.6، وهو حالياً غير مستخدم.
 
 أمثلة:
 
-في LS2 لـ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p، يشير إلى خادم SMTP واحد:
+في LS2 للعنوان aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p، والذي يشير إلى خادم SMTP واحد:
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-في LS2 لـ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p، يشير إلى خادمي SMTP:
+في LS2 لـ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p، يشير إلى خادمي SMTP اثنين:
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-في LS2 لـ bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p، يشير إلى نفسه كخادم SMTP:
+في LS2 لعنوان bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p، يشير إلى نفسه كخادم SMTP:
 
 "_smtp._tcp" "0 999999 25"
 
@@ -1812,17 +1818,19 @@ signature :: `Signature`
 
 * الحجم الإجمالي: 40 بايت
 
-JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)
+توثيق جافا: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)
 
 ### MetaLease
 
 #### المحتويات
 
+مبدئي. غير مدعوم بالكامل.
+
 يحدد التفويض لـ tunnel معين لتلقي الرسائل المستهدفة لـ [Destination](#destination). نفس [Lease2](#lease2) ولكن مع العلامات والتكلفة بدلاً من معرف الـ tunnel. يُستخدم بواسطة [MetaLeaseSet](#metaleaseset). محتوى في رسالة I2NP DatabaseStore من النوع 7. مدعوم اعتباراً من الإصدار 0.9.38؛ انظر المقترح 123 لمزيد من المعلومات.
 
 #### ملاحظات
 
-[Hash](#hash) SHA256 لـ [RouterIdentity](#routeridentity) الخاص بـ gateway router، ثم flags والتكلفة، وأخيراً تاريخ انتهاء من 4 بايت.
+دالة التجزئة SHA256 [Hash](#hash) الخاصة بهوية الموجه [RouterIdentity](#routeridentity) للموجه البوابة، ثم العلمات والتكلفة، وأخيرًا تاريخ الانتهاء المؤلف من 4 بايت.
 
 ```bytefield
 tunnel_gw | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1873,19 +1881,21 @@ end_date :: 4 byte date
 
 * تم استخدام المفتاح العام للوجهة للتشفير القديم من I2CP إلى I2CP الذي تم تعطيله في الإصدار 0.6، وهو حالياً غير مستخدم.
 
-JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)
+مستندات جافا: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)
 
 ### MetaLeaseSet
 
 #### المحتويات
 
-موجود في رسالة I2NP DatabaseStore من النوع 7. تم تعريفه اعتباراً من الإصدار 0.9.38؛ ومجدول للعمل اعتباراً من الإصدار 0.9.40؛ انظر الاقتراح 123 لمزيد من المعلومات.
+مبدئي. غير مدعوم بالكامل.
 
-يحتوي على جميع [MetaLease](#metalease) المعتمدة حاليًا لـ [Destination](#destination) معين، و[PublicKey](#publickey) التي يمكن تشفير رسائل garlic إليها. LeaseSet هو أحد البنيتين المخزنتين في قاعدة بيانات الشبكة (والأخرى هي [RouterInfo](#routerinfo))، ويتم فهرسته تحت SHA256 الخاص بـ [Destination](#destination) المتضمن.
+موجود في رسالة I2NP من النوع DatabaseStore رقم 7. تم تعريفه بدءًا من الإصدار 0.9.38؛ انظر الاقتراح 123 للحصول على مزيد من المعلومات.
+
+يحتوي على جميع عقود [MetaLease](#metalease) المصرح بها حاليًا لموقع [Destination](#destination) معين، وكذلك على [PublicKey](#publickey) الذي يمكن تشفير رسائل الثوم (garlic) إليه. يُعدّ LeaseSet إحدى الهيكلين المخزَّنين في قاعدة البيانات الشبكية (والهيكل الآخر هو [RouterInfo](#routerinfo))، ويتم فهرسته باستخدام تجزئة SHA256 الخاصة بـ [Destination](#destination) المضمنة فيه.
 
 #### ملاحظات
 
-[LeaseSet2Header](#leaseset2header)، متبوعًا بالخيارات، [Integer](#integer) يحدد عدد هياكل [Lease2](#lease2) الموجودة في المجموعة، متبوعًا بهياكل [Lease2](#lease2) الفعلية وأخيرًا [Signature](#signature) للبايتات السابقة موقعة بواسطة [SigningPrivateKey](#signingprivatekey) الخاص بـ [Destination](#destination) أو المفتاح المؤقت.
+[LeaseSet2Header](#leaseset2header)، متبوعًا بخيارات، و[Integer](#integer) يحدد عدد هياكل [Lease2](#lease2) الموجودة في المجموعة، ثم تتبعها هياكل [Lease2](#lease2) الفعلية، وأخيرًا [Signature](#signature) للبايتات السابقة موقعة بواسطة [SigningPrivateKey](#signingprivatekey) الخاصة بـ [Destination](#destination) أو بالمفتاح العابر.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -1990,13 +2000,13 @@ JavaDoc: [net.i2p.data.MetaLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/Met
 
 #### المحتويات
 
-موجود في رسالة I2NP DatabaseStore من النوع 5. تم تعريفه اعتباراً من الإصدار 0.9.38؛ يعمل اعتباراً من الإصدار 0.9.39؛ راجع الاقتراح 123 للمزيد من المعلومات.
+محتوى في رسالة I2NP من النوع DatabaseStore رقم 5. تم تعريفه بدءًا من الإصدار 0.9.38؛ وبدأ العمل به بدءًا من الإصدار 0.9.39؛ انظر الاقتراح 123 لمزيد من المعلومات.
 
-فقط المفتاح المُعمى وتاريخ انتهاء الصلاحية مرئيان كنص واضح. أما leaseSet الفعلي فهو مُشفر.
+لا يكون المفتاح المخفي ووقت انتهاء الصلاحية فقط مرئيين بشكل نصي واضح. يتم تشفير مجموعة الإيجار الفعلية.
 
 #### ملاحظات
 
-نوع توقيع من بايتين، [SigningPrivateKey](#signingprivatekey) المُعمى، وقت النشر، انتهاء الصلاحية، والأعلام. ثم، طول من بايتين متبوعًا ببيانات مُشفرة. وأخيرًا، [Signature](#signature) للبايتات السابقة موقعة بواسطة [SigningPrivateKey](#signingprivatekey) المُعمى أو المفتاح المؤقت.
+نوع توقيع مكوّن من بايتين، و[مفتاح التوقيع الخاص المموّه](#signingprivatekey)، ووقت النشر، وانتهاء الصلاحية، والعلم. ثم طول مكوّن من بايتين يتبعه البيانات المشفرة. وأخيرًا، [توقيع](#signature) للبايتات السابقة تم توقيعه بواسطة المفتاح المموّه [SigningPrivateKey](#signingprivatekey) أو المفتاح العابر.
 
 ```bytefield
 sigtype            | 2 | red    | 2 bytes
@@ -2071,11 +2081,11 @@ JavaDoc: [net.i2p.data.EncryptedLeaseSet](http://docs.i2p-projekt.de/net/i2p/dat
 
 #### المحتويات
 
-تحدد هذه البنية وسائل الاتصال مع router من خلال بروتوكول النقل.
+يُعرّف هذا الهيكل الوسيلة للتواصل مع جهاز توجيه من خلال بروتوكول نقل.
 
 #### ملاحظات
 
-1 بايت [Integer](#integer) يحدد التكلفة النسبية لاستخدام العنوان، حيث 0 يعني مجاني و 255 يعني مكلف، متبوعًا بتاريخ انتهاء الصلاحية [Date](#date) الذي بعده يجب عدم استخدام العنوان، أو إذا كان فارغًا، فإن العنوان لا ينتهي أبدًا. بعد ذلك يأتي [String](#string) يحدد بروتوكول النقل الذي يستخدمه عنوان router هذا. وأخيرًا يوجد [Mapping](#mapping) يحتوي على جميع الخيارات المحددة للنقل اللازمة لإنشاء الاتصال، مثل عنوان IP ورقم المنفذ وعنوان البريد الإلكتروني وURL، إلخ.
+بايت واحد [Integer](#integer) يعرّف التكلفة النسبية لاستخدام العنوان، حيث إن القيمة `1` تعني مجانًا والقيمة `255` تعني باهظة التكلفة، متبوعًا بـ [Date](#date) انتهاء الصلاحية الذي بعدم لا ينبغي استخدام العنوان بعده، أو إذا كانت القيمة null، فإن العنوان لا ينتهي صلاحيته أبدًا. بعد ذلك يأتي [String](#string) يحدد بروتوكول النقل الذي يستخدمه عنوان الموجه هذا. وأخيرًا، يوجد [Mapping](#mapping) يحتوي على جميع الخيارات الخاصة بالنقل اللازمة لإنشاء الاتصال، مثل عنوان IP، ورقم المنفذ، وعنوان البريد الإلكتروني، وURL، إلخ.
 
 ```bytefield
 cost            | 1 | green  | Integer, 1 byte
@@ -2115,7 +2125,7 @@ options         | 8 | purple | Mapping
 
 * انظر صفحة قاعدة بيانات الشبكة [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo) للاطلاع على الخيارات القياسية المتوقع وجودها في جميع معلومات router.
 
-JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)
+مستندات جافا: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)
 
 ### RouterInfo
 
@@ -2125,7 +2135,7 @@ JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/
 
 #### ملاحظات
 
-[RouterIdentity](#routeridentity) متبوعة بـ [Date](#date)، عندما تم نشر الإدخال
+[RouterIdentity](#routeridentity) يليها [Date](#date)، عند نشر المدخل
 
 ```bytefield
 router_ident           | 8 | blue   | RouterIdentity, >= 387+ bytes
@@ -2217,11 +2227,11 @@ signature              | 8 | cyan   | Signature, 40+ bytes
   حتى تكون التوقيعات ثابتة (لا تتغير).
   لم يعد هذا الشرط مطلوبًا، ولا يستحق التنفيذ من أجل التوافق مع الإصدارات السابقة.
 
-JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)
+توثيق جافا: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)
 
 ### تعليمات التسليم
 
-تعليمات تسليم رسائل الأنفاق معرّفة في مواصفات رسائل الأنفاق [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).
+يتم تعريف تعليمات تسليم رسالة النفق في وثيقة مواصفات النفق [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).
 
 يتم تعريف تعليمات تسليم رسائل Garlic في مواصفات رسائل I2NP [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions).
 

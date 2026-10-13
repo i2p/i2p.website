@@ -2,10 +2,12 @@
 title: "Đặc tả cấu trúc chung"
 description: "Các kiểu dữ liệu chung cho tất cả giao thức I2P"
 slug: "common-structures"
-aliases: 
+aliases:
+  - "/docs/specs/common-structures"
+  - "/docs/specs/common-structures/"
 category: "Thiết kế"
-lastUpdated: "2026-03"
-accurateFor: "0.9.68"
+lastUpdated: "2026-10"
+accurateFor: "0.9.71"
 ---
 
 Tài liệu này mô tả một số kiểu dữ liệu chung cho tất cả các giao thức I2P, như [I2NP](/docs/specs/i2np/), [I2CP](/docs/specs/i2cp/), [SSU](/docs/legacy/ssu/), v.v.
@@ -1265,11 +1267,13 @@ JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Dest
 
 #### Mục lục
 
-Xác định quyền ủy quyền cho một tunnel cụ thể để nhận các thông điệp nhắm đến một [Destination](#destination).
+ĐÃ LOẠI BỎ. Hãy sử dụng LeaseSet2 và Lease2.
+
+Xác định quyền ủy quyền cho một tunnel cụ thể để nhận các tin nhắn nhắm đến một [Destination](#destination).
 
 #### Mô tả
 
-SHA256 [Hash](#hash) của [RouterIdentity](#routeridentity) của gateway router, sau đó là [TunnelId](#tunnelid), và cuối cùng là [Date](#date) kết thúc.
+SHA256 [Hash](#hash) của [RouterIdentity](#routeridentity) của bộ định tuyến cổng, sau đó là [TunnelId](#tunnelid), và cuối cùng là một [Date](#date) kết thúc.
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1314,7 +1318,9 @@ JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html
 
 #### Mục lục
 
-Chứa tất cả các [Lease](#lease) hiện được ủy quyền cho một [Destination](#destination) cụ thể, [PublicKey](#publickey) mà các thông điệp garlic có thể được mã hóa, và sau đó là [SigningPublicKey](#signingpublickey) có thể được sử dụng để thu hồi phiên bản cụ thể này của cấu trúc. LeaseSet là một trong hai cấu trúc được lưu trữ trong cơ sở dữ liệu mạng (cấu trúc kia là [RouterInfo](#routerinfo)), và được đánh khóa dưới SHA256 của [Destination](#destination) có chứa.
+ĐÃ LOẠI BỎ. Hãy sử dụng LeaseSet2 và Lease2.
+
+Chứa tất cả các [Leases](#lease) hiện đang được ủy quyền cho một [Destination](#destination) cụ thể, [PublicKey](#publickey) dùng để mã hóa các thông điệp garlic, và [SigningPublicKey](#signingpublickey) có thể được sử dụng để thu hồi phiên bản cụ thể này của cấu trúc. LeaseSet là một trong hai cấu trúc được lưu trữ trong cơ sở dữ liệu mạng (cấu trúc còn lại là [RouterInfo](#routerinfo)), và được đánh chỉ mục theo SHA256 của [Destination](#destination) chứa bên trong.
 
 #### Ghi chú
 
@@ -1443,7 +1449,7 @@ JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSe
 
 #### Ghi chú
 
-SHA256 [Hash](#hash) của [RouterIdentity](#routeridentity) của gateway router, sau đó là [TunnelId](#tunnelid), và cuối cùng là ngày kết thúc 4 byte.
+SHA256 của [RouterIdentity](#routeridentity) của bộ định tuyến cổng, sau đó là [TunnelId](#tunnelid), và cuối cùng là ngày kết thúc 4 byte.
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1489,7 +1495,7 @@ JavaDoc: [net.i2p.data.Lease2](http://docs.i2p-projekt.de/net/i2p/data/Lease2.ht
 
 #### Nội dung
 
-Đây là một phần tùy chọn của [LeaseSet2Header](#leaseset2header). Cũng được sử dụng trong streaming và I2CP. Được hỗ trợ từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.
+Đây là phần tùy chọn của [LeaseSet2Header](#leaseset2header). Cũng được sử dụng trong streaming và I2CP. Được hỗ trợ kể từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.
 
 #### Ghi chú
 
@@ -1552,7 +1558,7 @@ signature :: `Signature`
 
 #### Nội dung
 
-Đây là phần chung của [LeaseSet2](#leaseset2) và [MetaLeaseSet](#metaleaseset). Được hỗ trợ từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.
+Đây là phần chung của [LeaseSet2](#leaseset2) và [MetaLeaseSet](#metaleaseset). Được hỗ trợ kể từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.
 
 #### Ghi chú
 
@@ -1659,13 +1665,13 @@ offline_signature :: `OfflineSignature`
 
 #### Nội dung
 
-Được chứa trong thông điệp I2NP DatabaseStore loại 3. Được hỗ trợ từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.
+Được chứa trong tin nhắn I2NP DatabaseStore loại 3. Được hỗ trợ kể từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.
 
 Chứa tất cả các [Lease2](#lease2) hiện được ủy quyền cho một [Destination](#destination) cụ thể, và [PublicKey](#publickey) mà các tin nhắn garlic encryption có thể được mã hóa. LeaseSet là một trong hai cấu trúc được lưu trữ trong cơ sở dữ liệu mạng (cấu trúc kia là [RouterInfo](#routerinfo)), và được lập chỉ mục dưới mã SHA256 của [Destination](#destination) chứa trong đó.
 
 #### Tùy chọn Khóa Mã hóa
 
-[LeaseSet2Header](#leaseset2header), theo sau bởi các tùy chọn, sau đó một hoặc nhiều [PublicKey](#publickey) để mã hóa, [Integer](#integer) chỉ định có bao nhiều cấu trúc [Lease2](#lease2) trong tập hợp, theo sau bởi các cấu trúc [Lease2](#lease2) thực tế và cuối cùng là một [Signature](#signature) của các byte trước đó được ký bởi [SigningPrivateKey](#signingprivatekey) của [Destination](#destination) hoặc khóa tạm thời.
+[LeaseSet2Header](#leaseset2header), tiếp theo là các tùy chọn, sau đó là một hoặc nhiều [PublicKey](#publickey) dùng để mã hóa, [Integer](#integer) chỉ định có bao nhiêu cấu trúc [Lease2](#lease2) trong tập hợp, tiếp theo là các cấu trúc [Lease2](#lease2) thực tế và cuối cùng là [Signature](#signature) của các byte trước đó được ký bởi [SigningPrivateKey](#signingprivatekey) của [Destination](#destination) hoặc khóa tạm thời.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -1771,13 +1777,13 @@ signature :: `Signature`
 
 Đối với các leaseSet đã được công bố (server), các khóa mã hóa được sắp xếp theo thứ tự ưu tiên của server, khóa được ưu tiên nhất đứng đầu. Nếu client hỗ trợ nhiều hơn một loại mã hóa, khuyến nghị chúng tuân thủ sự ưu tiên của server và chọn loại được hỗ trợ đầu tiên làm phương thức mã hóa để sử dụng khi kết nối tới server. Nhìn chung, các loại khóa mới hơn (có số thứ tự cao hơn) an toàn hơn hoặc hiệu quả hơn và được ưu tiên, vì vậy các khóa nên được liệt kê theo thứ tự ngược của loại khóa.
 
-Tuy nhiên, các client có thể, tùy thuộc vào cách triển khai, lựa chọn dựa trên sở thích của họ thay vì vậy, hoặc sử dụng một số phương pháp để xác định sở thích "kết hợp". Điều này có thể hữu ích như một tùy chọn cấu hình, hoặc để gỡ lỗi.
+Tuy nhiên, các client có thể, tùy theo cách triển khai, chọn dựa trên sở thích của chúng, hoặc sử dụng một số phương pháp để xác định sở thích "kết hợp". Điều này có thể hữu ích như một tùy chọn cấu hình, hoặc để gỡ lỗi.
 
 Thứ tự khóa trong các leaseSet chưa được xuất bản (client) thực tế không quan trọng, vì các kết nối thường sẽ không được thử nghiệm đến các client chưa được xuất bản. Trừ khi thứ tự này được sử dụng để xác định một ưu tiên kết hợp, như đã mô tả ở trên.
 
 #### Ghi chú
 
-Kể từ API 0.9.66, một định dạng chuẩn cho các tùy chọn service record đã được định nghĩa. Xem đề xuất 167 để biết chi tiết. Các tùy chọn khác ngoài service records, sử dụng định dạng khác, có thể được định nghĩa trong tương lai.
+Kể từ API 0.9.66, một định dạng tiêu chuẩn cho các tùy chọn bản ghi dịch vụ đã được xác định. Xem đề xuất 167 để biết chi tiết. Các tùy chọn khác ngoài bản ghi dịch vụ, sử dụng định dạng khác, có thể được định nghĩa trong tương lai.
 
 Các tùy chọn LS2 PHẢI được sắp xếp theo khóa, do đó chữ ký là bất biến.
 
@@ -1787,11 +1793,11 @@ Các tùy chọn bản ghi dịch vụ được định nghĩa như sau:
 
 Ví dụ:
 
-Trong LS2 cho aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, trỏ đến một máy chủ SMTP:
+Trong LS2 đối với aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, trỏ tới một máy chủ SMTP:
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-Trong LS2 cho aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, trỏ đến hai máy chủ SMTP:
+Trong LS2 cho aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, trỏ tới hai máy chủ SMTP:
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
@@ -1827,11 +1833,13 @@ JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseS
 
 #### Mục lục
 
+BAN ĐẦU. Không được hỗ trợ đầy đủ.
+
 Định nghĩa quyền ủy quyền cho một tunnel cụ thể để nhận tin nhắn nhắm đến một [Destination](#destination). Giống như [Lease2](#lease2) nhưng với flags và cost thay vì tunnel id. Được sử dụng bởi [MetaLeaseSet](#metaleaseset). Chứa trong tin nhắn I2NP DatabaseStore loại 7. Được hỗ trợ từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.
 
 #### Ghi chú
 
-SHA256 [Hash](#hash) của [RouterIdentity](#routeridentity) của gateway router, sau đó là flags và cost, và cuối cùng là ngày kết thúc 4 byte.
+SHA256 của [RouterIdentity](#routeridentity) của bộ định tuyến cổng, sau đó là các cờ và chi phí, và cuối cùng là ngày kết thúc 4 byte.
 
 ```bytefield
 tunnel_gw | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1888,13 +1896,15 @@ JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLe
 
 #### Mục lục
 
-Được chứa trong một thông điệp I2NP DatabaseStore loại 7. Được định nghĩa từ phiên bản 0.9.38; dự kiến hoạt động từ phiên bản 0.9.40; xem đề xuất 123 để biết thêm thông tin.
+BAN ĐẦU. Không được hỗ trợ đầy đủ.
 
-Chứa tất cả [MetaLease](#metalease) hiện được ủy quyền cho một [Destination](#destination) cụ thể, và [PublicKey](#publickey) mà các tin nhắn garlic encryption có thể được mã hóa. LeaseSet là một trong hai cấu trúc được lưu trữ trong cơ sở dữ liệu mạng (cấu trúc kia là [RouterInfo](#routerinfo)), và được đánh khóa dưới SHA256 của [Destination](#destination) chứa trong đó.
+Được chứa trong tin nhắn DatabaseStore của I2NP loại 7. Được định nghĩa kể từ phiên bản 0.9.38; xem đề xuất 123 để biết thêm thông tin.
+
+Chứa toàn bộ [MetaLease](#metalease) hiện đang được ủy quyền cho một [Destination](#destination) cụ thể, cùng với [PublicKey](#publickey) dùng để mã hóa các thông điệp garlic. LeaseSet là một trong hai cấu trúc được lưu trữ trong cơ sở dữ liệu mạng (cấu trúc còn lại là [RouterInfo](#routerinfo)), và được đánh chỉ mục theo giá trị SHA256 của [Destination](#destination) chứa bên trong.
 
 #### Ghi chú
 
-[LeaseSet2Header](#leaseset2header), theo sau bởi các tùy chọn, [Integer](#integer) chỉ định có bao nhiêu cấu trúc [Lease2](#lease2) trong tập hợp, tiếp theo là các cấu trúc [Lease2](#lease2) thực tế và cuối cùng là một [Signature](#signature) của các byte trước đó được ký bởi [SigningPrivateKey](#signingprivatekey) của [Destination](#destination) hoặc khóa tạm thời.
+[LeaseSet2Header](#leaseset2header), theo sau bởi các tùy chọn, một [Integer](#integer) chỉ định số lượng cấu trúc [Lease2](#lease2) có trong tập hợp, tiếp theo là các cấu trúc [Lease2](#lease2) thực tế và cuối cùng là một [Signature](#signature) của các byte trước đó được ký bởi [SigningPrivateKey](#signingprivatekey) của [Destination](#destination) hoặc khóa tạm thời.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -2002,13 +2012,13 @@ JavaDoc: [net.i2p.data.MetaLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/Met
 
 #### Mục lục
 
-Được chứa trong thông điệp I2NP DatabaseStore loại 5. Được định nghĩa từ phiên bản 0.9.38; hoạt động từ phiên bản 0.9.39; xem đề xuất 123 để biết thêm thông tin.
+Được chứa trong tin nhắn I2NP DatabaseStore loại 5. Được định nghĩa kể từ phiên bản 0.9.38; hoạt động kể từ phiên bản 0.9.39; xem đề xuất 123 để biết thêm thông tin.
 
-Chỉ có blinded key và thời gian hết hạn hiển thị dưới dạng văn bản rõ. LeaseSet thực tế được mã hóa.
+Chỉ khóa bị che khuất và thời gian hết hạn là hiển thị dạng văn bản rõ. Tập thuê thực tế đã được mã hóa.
 
 #### Ghi chú
 
-Một loại chữ ký hai byte, [SigningPrivateKey](#signingprivatekey) được làm mù, thời gian xuất bản, thời gian hết hạn và các cờ. Tiếp theo, một độ dài hai byte theo sau là dữ liệu được mã hóa. Cuối cùng, một [Signature](#signature) của các byte trước đó được ký bởi [SigningPrivateKey](#signingprivatekey) được làm mù hoặc khóa tạm thời.
+Một loại chữ ký gồm hai byte, [Khóa riêng ký](#signingprivatekey) đã được làm mờ, thời gian công bố, thời hạn hiệu lực và các cờ. Tiếp theo là độ dài hai byte theo sau bởi dữ liệu đã được mã hóa. Cuối cùng là một [Chữ ký](#signature) của các byte trước đó, được ký bởi [Khóa riêng ký](#signingprivatekey) đã được làm mờ hoặc khóa tạm thời.
 
 ```bytefield
 sigtype            | 2 | red    | 2 bytes
@@ -2087,11 +2097,11 @@ JavaDoc: [net.i2p.data.EncryptedLeaseSet](http://docs.i2p-projekt.de/net/i2p/dat
 
 #### Mục lục
 
-Cấu trúc này định nghĩa phương tiện để liên lạc với một router thông qua giao thức truyền tải.
+Cấu trúc này xác định phương thức để liên lạc với một router thông qua giao thức truyền tải.
 
 #### Ghi chú
 
-1 byte [Integer](#integer) định nghĩa chi phí tương đối khi sử dụng địa chỉ, trong đó 0 là miễn phí và 255 là đắt đỏ, theo sau là [Date](#date) hết hạn sau đó địa chỉ không nên được sử dụng, hoặc nếu null thì địa chỉ không bao giờ hết hạn. Sau đó là một [String](#string) định nghĩa giao thức vận chuyển mà địa chỉ router này sử dụng. Cuối cùng có một [Mapping](#mapping) chứa tất cả các tùy chọn cụ thể cho phương thức vận chuyển cần thiết để thiết lập kết nối, như địa chỉ IP, số cổng, địa chỉ email, URL, v.v.
+1 byte [Integer](#integer) xác định chi phí tương đối khi sử dụng địa chỉ, trong đó 0 là miễn phí và 255 là đắt, theo sau là [Date](#date) thời gian hết hạn mà sau đó địa chỉ không nên được sử dụng, hoặc nếu là null thì địa chỉ không bao giờ hết hạn. Tiếp theo là một [String](#string) mô tả giao thức truyền tải mà địa chỉ router này sử dụng. Cuối cùng là một [Mapping](#mapping) chứa tất cả các tùy chọn riêng biệt theo từng giao thức truyền tải cần thiết để thiết lập kết nối, chẳng hạn như địa chỉ IP, số cổng, địa chỉ email, URL, v.v.
 
 ```bytefield
 cost            | 1 | green  | Integer, 1 byte
@@ -2141,7 +2151,7 @@ JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/
 
 #### Ghi chú
 
-[RouterIdentity](#routeridentity) theo sau bởi [Date](#date), khi mục này được xuất bản
+[RouterIdentity](#routeridentity) theo sau bởi [Date](#date), khi mục nhập được công bố
 
 ```bytefield
 router_ident           | 8 | blue   | RouterIdentity, >= 387+ bytes
@@ -2238,7 +2248,7 @@ JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/dat
 
 ### Hướng Dẫn Giao Hàng
 
-Hướng dẫn Gửi Tin nhắn Tunnel được định nghĩa trong Đặc tả Tin nhắn Tunnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).
+Hướng dẫn Giao tin nhắn qua Tunnels được định nghĩa trong Đặc tả Tin nhắn Tunnel [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).
 
 Garlic Message Delivery Instructions được định nghĩa trong I2NP Message Specification [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions).
 

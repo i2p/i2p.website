@@ -2,10 +2,12 @@
 title: "Specifikace běžných struktur"
 description: "Datové typy společné pro všechny I2P protokoly"
 slug: "common-structures"
-aliases: 
+aliases:
+  - "/docs/specs/common-structures"
+  - "/docs/specs/common-structures/"
 category: "Design"
-lastUpdated: "2026-03"
-accurateFor: "0.9.68"
+lastUpdated: "2026-10"
+accurateFor: "0.9.71"
 ---
 
 Tento dokument popisuje některé datové typy společné všem I2P protokolům, jako je [I2NP](/docs/specs/i2np/), [I2CP](/docs/specs/i2cp/), [SSU](/docs/legacy/ssu/), atd.
@@ -1265,11 +1267,13 @@ JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Dest
 
 #### Obsah
 
-Definuje autorizaci pro konkrétní tunnel k přijímání zpráv určených pro [Destination](#destination).
+ZASTARALÉ. Použijte LeaseSet2 a Lease2.
+
+Definuje autorizaci konkrétního tunelu pro příjem zpráv určených pro [cíl](#destination).
 
 #### Popis
 
-SHA256 [Hash](#hash) [RouterIdentity](#routeridentity) gateway routeru, poté [TunnelId](#tunnelid) a nakonec konečné [Date](#date).
+SHA256 [hash](#hash) [RouterIdentity](#routeridentity) brány, poté [TunnelId](#tunnelid) a nakonec koncové [Datum](#date).
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1314,7 +1318,9 @@ JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html
 
 #### Obsah
 
-Obsahuje všechny aktuálně autorizované [Leases](#lease) pro konkrétní [Destination](#destination), [PublicKey](#publickey), kterým lze šifrovat garlic zprávy, a poté [SigningPublicKey](#signingpublickey), který lze použít k odvolání této konkrétní verze struktury. LeaseSet je jedna ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je klíčována pod SHA256 obsažené [Destination](#destination).
+ZASTARALÉ. Použijte LeaseSet2 a Lease2.
+
+Obsahuje všechny aktuálně autorizované [Leases](#lease) pro konkrétní [Destination](#destination), [PublicKey](#publickey), na který lze šifrovat garlic zprávy, a dále [SigningPublicKey](#signingpublickey), který lze použít k odvolání této konkrétní verze struktury. LeaseSet je jednou ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je indexován pod SHA256 obsaženého [Destination](#destination).
 
 #### Poznámky
 
@@ -1446,7 +1452,7 @@ Definuje autorizaci pro konkrétní tunnel přijímat zprávy zaměřené na [De
 
 #### Poznámky
 
-SHA256 [Hash](#hash) [RouterIdentity](#routeridentity) gateway routeru, poté [TunnelId](#tunnelid) a nakonec 4bajtové datum ukončení.
+SHA256 [hash](#hash) [RouterIdentity](#routeridentity) brány, poté [TunnelId](#tunnelid) a nakonec 4 bajty určující koncové datum.
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1492,7 +1498,7 @@ JavaDoc: [net.i2p.data.Lease2](http://docs.i2p-projekt.de/net/i2p/data/Lease2.ht
 
 #### Obsah
 
-Toto je volitelná část [LeaseSet2Header](#leaseset2header). Také se používá ve streaming a I2CP. Podporováno od verze 0.9.38; více informací viz návrh 123.
+Toto je volitelná část [LeaseSet2Header](#leaseset2header). Používá se také ve streamování a I2CP. Podporováno od verze 0.9.38; více informací viz návrh 123.
 
 #### Poznámky
 
@@ -1555,7 +1561,7 @@ signature :: `Signature`
 
 #### Obsah
 
-Toto je společná část [LeaseSet2](#leaseset2) a [MetaLeaseSet](#metaleaseset). Podporováno od verze 0.9.38; více informací v návrhu 123.
+Toto je společná část [LeaseSet2](#leaseset2) a [MetaLeaseSet](#metaleaseset). Podporováno od verze 0.9.38; více informací viz návrh 123.
 
 #### Poznámky
 
@@ -1662,13 +1668,13 @@ offline_signature :: `OfflineSignature`
 
 #### Obsah
 
-Obsaženo v I2NP DatabaseStore zprávě typu 3. Podporováno od verze 0.9.38; více informací najdete v návrhu 123.
+Obsaženo ve zprávě I2NP DatabaseStore typu 3. Podporováno od verze 0.9.38; více informací viz návrh 123.
 
 Obsahuje všechny aktuálně autorizované [Lease2](#lease2) pro konkrétní [Destination](#destination) a [PublicKey](#publickey), kterým mohou být garlic zprávy šifrovány. LeaseSet je jedna ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je klíčována pod SHA256 obsaženého [Destination](#destination).
 
 #### Preference šifrovacího klíče
 
-[LeaseSet2Header](#leaseset2header), následovaný možnostmi, pak jeden nebo více [PublicKey](#publickey) pro šifrování, [Integer](#integer) určující kolik [Lease2](#lease2) struktur je v sadě, následovaný skutečnými [Lease2](#lease2) strukturami a nakonec [Signature](#signature) předchozích bytů podepsaný [Destination](#destination) [SigningPrivateKey](#signingprivatekey) nebo přechodným klíčem.
+[LeaseSet2Header](#leaseset2header), následovaný volbami, poté jedním nebo více [PublicKey](#publickey) pro šifrování, [Integer](#integer) udávající počet struktur [Lease2](#lease2) v sadě, následovanými skutečnými strukturami [Lease2](#lease2) a nakonec [Signature](#signature) předchozích bajtů podepsanou [SigningPrivateKey](#signingprivatekey) [Destination](#destination) nebo přechodným klíčem.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -1774,13 +1780,13 @@ signature :: `Signature`
 
 Pro publikované (serverové) leaseSety jsou šifrovací klíče seřazeny podle preference serveru, s nejpreferovanějším jako prvním. Pokud klienti podporují více než jeden typ šifrování, doporučuje se, aby respektovali preferenci serveru a vybrali první podporovaný typ jako šifrovací metodu pro připojení k serveru. Obecně jsou novější (s vyšším číslem) typy klíčů bezpečnější nebo efektivnější a jsou preferované, takže klíče by měly být uvedeny v opačném pořadí podle typu klíče.
 
-Klienti však mohou, v závislosti na implementaci, vybírat podle svých vlastních preferencí, nebo použít nějakou metodu k určení "kombinované" preference. To může být užitečné jako konfigurační možnost nebo pro ladění.
+Klienti však mohou v závislosti na implementaci vybírat podle svých preferencí nebo použít nějakou metodu k určení „kombinované“ preference. To může být užitečné jako konfigurační možnost nebo pro účely ladění.
 
 Pořadí klíčů v nepublikovaných (klientských) leaseStech v podstatě nezáleží, protože spojení obvykle nebudou pokoušena k nepublikovaným klientům. Pokud se toto pořadí nepoužívá k určení kombinované preference, jak je popsáno výše.
 
 #### Poznámky
 
-Od API 0.9.66 je definován standardní formát pro možnosti záznamů služeb. Podrobnosti najdete v návrhu 167. V budoucnu mohou být definovány další možnosti kromě záznamů služeb s použitím jiného formátu.
+Od API 0.9.66 je definován standardní formát pro možnosti záznamu služby. Podrobnosti viz návrh 167. Možnosti jiné než záznamy služeb, používající jiný formát, mohou být definovány v budoucnu.
 
 Volby LS2 MUSÍ být seřazeny podle klíče, takže podpis je neměnný.
 
@@ -1790,15 +1796,15 @@ Možnosti záznamu služby jsou definovány následovně:
 
 Příklady:
 
-V LS2 pro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, ukazující na jeden SMTP server:
+V LS2 pro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, odkazující na jeden SMTP server:
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-V LS2 pro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, ukazující na dva SMTP servery:
+V LS2 pro aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p, který odkazuje na dva servery SMTP:
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-V LS2 pro bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, odkazující sám na sebe jako SMTP server:
+V LS2 pro bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p, který odkazuje sám na sebe jako na SMTP server:
 
 "_smtp._tcp" "0 999999 25"
 
@@ -1830,11 +1836,13 @@ JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseS
 
 #### Obsah
 
+PŘEDBĚŽNÉ. Plně podporováno není.
+
 Definuje autorizaci pro konkrétní tunnel pro přijímání zpráv cílených na [Destination](#destination). Stejné jako [Lease2](#lease2), ale s příznaky a cenou namísto tunnel id. Používá [MetaLeaseSet](#metaleaseset). Obsaženo v I2NP DatabaseStore zprávě typu 7. Podporováno od verze 0.9.38; viz návrh 123 pro více informací.
 
 #### Poznámky
 
-SHA256 [Hash](#hash) [RouterIdentity](#routeridentity) gateway routeru, poté příznaky a náklady, a nakonec 4bajtové datum ukončení.
+SHA256 [hash](#hash) [RouterIdentity](#routeridentity) brány, poté příznaky a cena a nakonec 4bytové datum ukončení.
 
 ```bytefield
 tunnel_gw | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1891,13 +1899,15 @@ JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLe
 
 #### Obsah
 
-Obsaženo v I2NP DatabaseStore zprávě typu 7. Definováno od verze 0.9.38; naplánováno k fungování od verze 0.9.40; viz návrh 123 pro více informací.
+PŘEDBĚŽNÉ. Plně podporováno není.
 
-Obsahuje všechny aktuálně autorizované [MetaLease](#metalease) pro konkrétní [Destination](#destination) a [PublicKey](#publickey), kterým lze šifrovat garlic zprávy. LeaseSet je jedna ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je indexována pod SHA256 obsaženého [Destination](#destination).
+Obsaženo ve zprávě I2NP DatabaseStore typu 7. Definováno od verze 0.9.38; více informací viz návrh 123.
+
+Obsahuje všechny aktuálně autorizované [MetaLease](#metalease) pro konkrétní [Destination](#destination) a [PublicKey](#publickey), na který lze šifrovat garlic zprávy. LeaseSet je jednou ze dvou struktur uložených v síťové databázi (druhou je [RouterInfo](#routerinfo)) a je indexován pomocí SHA256 obsaženého [Destination](#destination).
 
 #### Poznámky
 
-[LeaseSet2Header](#leaseset2header), následovaný možnostmi, [Integer](#integer) specifikující kolik struktur [Lease2](#lease2) je v sadě, následovaný skutečnými strukturami [Lease2](#lease2) a nakonec [Signature](#signature) předchozích bytů podepsaných [SigningPrivateKey](#signingprivatekey) [Destination](#destination) nebo přechodným klíčem.
+[LeaseSet2Header](#leaseset2header), následovaný možnostmi, [Integer](#integer) udávající počet struktur [Lease2](#lease2) v sadě, následovanými skutečnými strukturami [Lease2](#lease2) a nakonec [Signature](#signature) předchozích bajtů podepsaných [SigningPrivateKey](#signingprivatekey) [Destination](#destination) nebo přechodným klíčem.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -2003,13 +2013,13 @@ JavaDoc: [net.i2p.data.MetaLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/Met
 
 #### Obsah
 
-Obsaženo ve zprávě I2NP DatabaseStore typu 5. Definováno od verze 0.9.38; funkční od verze 0.9.39; více informací viz návrh 123.
+Obsaženo ve zprávě I2NP DatabaseStore typu 5. Definováno od verze 0.9.38; funguje od verze 0.9.39; více informací viz návrh 123.
 
-Pouze blinded klíč a doba vypršení jsou viditelné v nešifrovaném textu. Skutečný leaseSet je šifrovaný.
+Ve volném textu jsou viditelné pouze zaslepený klíč a doba platnosti. Skutečná sada nájemních smluv je šifrována.
 
 #### Poznámky
 
-Dvoubajtový typ podpisu, zaslepený [SigningPrivateKey](#signingprivatekey), čas publikování, vypršení a příznaky. Poté dvoubajtová délka následovaná zašifrovanými daty. Nakonec [Signature](#signature) předchozích bajtů podepsaná zaslepeným [SigningPrivateKey](#signingprivatekey) nebo přechodným klíčem.
+Dvoubajtový typ podpisu, zveřejněný [SigningPrivateKey](#signingprivatekey) s časem zveřejnění, expirací a příznaky. Poté dvoubajtová délka následovaná šifrovanými daty. Nakonec [Signature](#signature) předchozích bajtů podepsaná zoslepeným [SigningPrivateKey](#signingprivatekey) nebo přechodným klíčem.
 
 ```bytefield
 sigtype            | 2 | red    | 2 bytes
@@ -2087,11 +2097,11 @@ JavaDoc: [net.i2p.data.EncryptedLeaseSet](http://docs.i2p-projekt.de/net/i2p/dat
 
 #### Obsah
 
-Tato struktura definuje způsoby, jak kontaktovat router prostřednictvím transportního protokolu.
+Tato struktura definuje prostředky pro kontaktování směrovače prostřednictvím přenosového protokolu.
 
 #### Poznámky
 
-1 byte [Integer](#integer) definující relativní náklady na použití adresy, kde 0 je zdarma a 255 je drahé, následované datem vypršení [Date](#date), po kterém by adresa neměla být použita, nebo pokud je null, adresa nikdy nevyprší. Poté následuje [String](#string) definující transportní protokol, který tato router adresa používá. Nakonec je zde [Mapping](#mapping) obsahující všechny transportně specifické možnosti potřebné k navázání spojení, jako je IP adresa, číslo portu, e-mailová adresa, URL atd.
+1 bajt [Integer](#integer) definující relativní náklady na použití adresy, kde 0 znamená zdarma a 255 drahé, následované [Date](#date) vypršením platnosti, po kterém by se adresa neměla používat, nebo pokud je hodnota null, adresa nikdy nevyprší. Dále následuje [String](#string) definující transportní protokol, který tato adresa směrovače používá. Nakonec je zde [Mapping](#mapping) obsahující všechny transportně specifické volby potřebné k navázání spojení, jako je IP adresa, číslo portu, e-mailová adresa, URL atd.
 
 ```bytefield
 cost            | 1 | green  | Integer, 1 byte
@@ -2142,7 +2152,7 @@ Definuje všechna data, která chce router publikovat, aby je mohla síť vidět
 
 #### Poznámky
 
-[RouterIdentity](#routeridentity) následovaná [Date](#date), kdy byl záznam publikován
+[RouterIdentity](#routeridentity) následované [Date](#date), kdy byl záznam publikován
 
 ```bytefield
 router_ident           | 8 | blue   | RouterIdentity, >= 387+ bytes
@@ -2239,7 +2249,7 @@ JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/dat
 
 ### Instrukce pro doručení
 
-Instrukce pro doručování tunnel zpráv jsou definovány ve specifikaci Tunnel Message Specification [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).
+Pokyny pro doručení tunelové zprávy jsou definovány ve specifikaci tunelové zprávy [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions).
 
 Instrukce pro doručování Garlic zpráv jsou definovány ve specifikaci I2NP zpráv [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions).
 

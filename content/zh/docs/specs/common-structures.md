@@ -2,10 +2,12 @@
 title: "通用结构规范"
 description: "所有 I2P 协议通用的数据类型"
 slug: "common-structures"
-aliases: 
+aliases:
+  - "/docs/specs/common-structures"
+  - "/docs/specs/common-structures/"
 category: "设计"
-lastUpdated: "2026-03"
-accurateFor: "0.9.68"
+lastUpdated: "2026-10"
+accurateFor: "0.9.71"
 ---
 
 本文档描述了所有I2P协议中通用的一些数据类型，如[I2NP](/docs/specs/i2np/)、[I2CP](/docs/specs/i2cp/)、[SSU](/docs/legacy/ssu/)等。
@@ -1251,11 +1253,13 @@ JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Dest
 
 #### 目录
 
-定义特定 tunnel 接收针对 [Destination](#destination) 消息的授权。
+已弃用。请使用 LeaseSet2 和 Lease2。
+
+定义特定隧道接收以[目标](#destination)为目的地的消息的授权。
 
 #### 描述
 
-gateway router 的 [RouterIdentity](#routeridentity) 的 SHA256 [Hash](#hash)，然后是 [TunnelId](#tunnelid)，最后是结束 [Date](#date)。
+网关路由器的 [RouterIdentity](#routeridentity) 的 SHA256 [Hash](#hash)，然后是 [TunnelId](#tunnelid)，最后是一个结束 [Date](#date)。
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1294,13 +1298,15 @@ end_date :: `Date`
 ```
 
 </details>
-JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)
+JavaDoc：[net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html)
 
 ### LeaseSet
 
 #### 目录
 
-包含特定 [Destination](#destination) 的所有当前授权 [Leases](#lease)、可用于加密 garlic 消息的 [PublicKey](#publickey)，以及可用于撤销此特定版本结构的 [SigningPublicKey](#signingpublickey)。LeaseSet 是存储在网络数据库中的两种结构之一（另一种是 [RouterInfo](#routerinfo)），并以所包含 [Destination](#destination) 的 SHA256 值作为键值。
+已弃用。请使用 LeaseSet2 和 Lease2。
+
+包含特定[Destination](#destination)当前已授权的所有[Leases](#lease)，可用于加密garlic消息的[PublicKey](#publickey)，以及可用于撤销此特定版本结构的[SigningPublicKey](#signingpublickey)。LeaseSet是存储在网络数据库中的两种结构之一（另一种是[RouterInfo](#routerinfo)），其键值为所包含[Destination](#destination)的SHA256哈希值。
 
 #### 注意事项
 
@@ -1418,7 +1424,7 @@ signature :: `Signature`
 
 * 总大小：40 字节
 
-JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)
+JavaDoc：[net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet.html)
 
 ### Lease2
 
@@ -1428,7 +1434,7 @@ JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSe
 
 #### 注意事项
 
-网关 router 的 [RouterIdentity](#routeridentity) 的 SHA256 [Hash](#hash)，然后是 [TunnelId](#tunnelid)，最后是 4 字节的结束日期。
+网关路由器的[路由器标识](#routeridentity)的SHA256 [哈希值](#hash)，然后是[隧道ID](#tunnelid)，最后是4字节的结束日期。
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1474,7 +1480,7 @@ JavaDoc: [net.i2p.data.Lease2](http://docs.i2p-projekt.de/net/i2p/data/Lease2.ht
 
 #### 目录
 
-这是 [LeaseSet2Header](#leaseset2header) 的可选部分。也用于流传输和 I2CP。自 0.9.38 版本开始支持；更多信息请参见提案 123。
+这是 [LeaseSet2Header](#leaseset2header) 的可选部分。也用于流媒体和 I2CP。自 0.9.38 版本起支持；更多信息请参见提案 123。
 
 #### 注意事项
 
@@ -1537,7 +1543,7 @@ signature :: `Signature`
 
 #### 目录
 
-这是 [LeaseSet2](#leaseset2) 和 [MetaLeaseSet](#metaleaseset) 的公共部分。自 0.9.38 版本开始支持；详见提案 123 获取更多信息。
+这是 [LeaseSet2](#leaseset2) 和 [MetaLeaseSet](#metaleaseset) 的公共部分。自 0.9.38 版本起支持；更多信息请参见提案 123。
 
 #### 注释
 
@@ -1637,13 +1643,13 @@ offline_signature :: `OfflineSignature`
 
 #### 目录
 
-包含在类型为 3 的 I2NP DatabaseStore 消息中。从 0.9.38 版本开始支持；更多信息请参见提案 123。
+包含在类型为3的I2NP DatabaseStore消息中。自0.9.38版本起支持；更多信息请参见提案123。
 
 包含特定[Destination](#destination)的所有当前授权[Lease2](#lease2)，以及可用于加密garlic消息的[PublicKey](#publickey)。LeaseSet是存储在网络数据库中的两种结构之一（另一种是[RouterInfo](#routerinfo)），并以所包含[Destination](#destination)的SHA256值作为键。
 
 #### 加密密钥偏好设置
 
-[LeaseSet2Header](#leaseset2header)，接着是选项，然后是一个或多个用于加密的 [PublicKey](#publickey)，[Integer](#integer) 指定集合中有多少个 [Lease2](#lease2) 结构，接着是实际的 [Lease2](#lease2) 结构，最后是由 [Destination](#destination) 的 [SigningPrivateKey](#signingprivatekey) 或临时密钥签名的前述字节的 [Signature](#signature)。
+[LeaseSet2Header](#leaseset2header)，后跟选项，接着是一个或多个用于加密的 [PublicKey](#publickey)，然后是一个 [Integer](#integer)，用于指定该集合中包含多少个 [Lease2](#lease2) 结构，随后是实际的 [Lease2](#lease2) 结构，最后是由 [Destination](#destination) 的 [SigningPrivateKey](#signingprivatekey) 或临时密钥对前述所有字节进行签名的 [Signature](#signature)。
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -1749,13 +1755,13 @@ signature :: `Signature`
 
 对于已发布的（服务器）leaseSet，加密密钥按照服务器偏好顺序排列，最偏好的在前。如果客户端支持多种加密类型，建议它们遵循服务器偏好，选择第一个支持的类型作为连接到服务器的加密方法。通常，较新的（编号较高的）密钥类型更安全或更高效，因此更受偏好，所以密钥应该按照密钥类型的逆序排列。
 
-但是，客户端可能会根据实现方式，基于自己的偏好进行选择，或使用某种方法来确定"组合"偏好。这可能作为配置选项或用于调试很有用。
+然而，客户端可能会根据其实现方式的不同，选择基于其自身偏好，或使用某种方法来确定“综合”偏好。这可以作为配置选项，或用于调试。
 
 未发布的（客户端）leaseSet 中的密钥顺序实际上并不重要，因为通常不会尝试连接到未发布的客户端。除非如上所述，此顺序用于确定组合偏好。
 
 #### 注释
 
-从 API 0.9.66 开始，定义了服务记录选项的标准格式。详见提案 167。将来可能会定义使用不同格式的非服务记录选项。
+自 API 0.9.66 起，已定义了服务记录选项的标准格式。详情请参见提案 167。未来可能会定义使用不同格式的非服务记录类选项。
 
 LS2 选项必须按键排序，这样签名就是不变的。
 
@@ -1765,15 +1771,15 @@ LS2 选项必须按键排序，这样签名就是不变的。
 
 示例：
 
-在 LS2 中对于 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p，指向一个 SMTP 服务器：
+在 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p 的 LS2 中，指向一个 SMTP 服务器：
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-在 LS2 中，对于 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p，指向两个 SMTP 服务器：
+在 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p 的 LS2 中，指向两个 SMTP 服务器：
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-在 LS2 中，对于 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p，指向自身作为 SMTP 服务器：
+在 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p 的 LS2 中，指向其自身作为 SMTP 服务器：
 
 "_smtp._tcp" "0 999999 25"
 
@@ -1798,17 +1804,19 @@ LS2 选项必须按键排序，这样签名就是不变的。
 
 * 总大小：40 字节
 
-JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)
+JavaDoc：[net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseSet2.html)
 
 ### MetaLease
 
 #### 目录
 
+初步版本，尚未完全支持。
+
 定义特定 tunnel 接收目标为某个 [Destination](#destination) 的消息的授权。与 [Lease2](#lease2) 相同，但使用标志和成本而不是 tunnel id。由 [MetaLeaseSet](#metaleaseset) 使用。包含在类型为 7 的 I2NP DatabaseStore 消息中。从 0.9.38 版本开始支持；详细信息请参见提案 123。
 
 #### 注记
 
-网关 router 的 [RouterIdentity](#routeridentity) 的 SHA256 [Hash](#hash)，然后是标志和成本，最后是 4 字节的结束日期。
+网关路由器的 [RouterIdentity](#routeridentity) 的 SHA256 [Hash](#hash)，然后是标志和成本，最后是 4 字节的结束日期。
 
 ```bytefield
 tunnel_gw | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1859,19 +1867,21 @@ end_date :: 4 byte date
 
 * 目标地址的公钥曾用于旧的 I2CP 到 I2CP 加密，该功能在 0.6 版本中被禁用，目前未使用。
 
-JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)
+JavaDoc：[net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLease.html)
 
 ### MetaLeaseSet
 
 #### 目录
 
-包含在类型为 7 的 I2NP DatabaseStore 消息中。从 0.9.38 版本开始定义；计划在 0.9.40 版本开始工作；更多信息请参见提案 123。
+初步版本，尚未完全支持。
 
-包含特定 [Destination](#destination) 当前所有已授权的 [MetaLease](#metalease)，以及可用于加密 garlic 消息的 [PublicKey](#publickey)。LeaseSet 是存储在网络数据库中的两种结构之一（另一种是 [RouterInfo](#routerinfo)），使用所包含 [Destination](#destination) 的 SHA256 值作为索引键。
+包含在类型为7的I2NP DatabaseStore消息中。自0.9.38版本起定义；更多信息请参见提案123。
+
+包含特定[Destination](#destination)当前已授权的所有[MetaLease](#metalease)，以及可用于加密大蒜消息的[PublicKey](#publickey)。LeaseSet 是存储在网络数据库中的两种结构之一（另一种是[RouterInfo](#routerinfo)），其键值为所包含[Destination](#destination)的SHA256哈希值。
 
 #### 注意事项
 
-[LeaseSet2Header](#leaseset2header)，后跟选项，[Integer](#integer) 指定集合中有多少个 [Lease2](#lease2) 结构，然后是实际的 [Lease2](#lease2) 结构，最后是由 [Destination](#destination) 的 [SigningPrivateKey](#signingprivatekey) 或临时密钥签名的前述字节的 [Signature](#signature)。
+[LeaseSet2Header](#leaseset2header)，后跟一个选项，[Integer](#integer) 指定该集合中包含多少个 [Lease2](#lease2) 结构，接着是实际的 [Lease2](#lease2) 结构，最后是由 [Destination](#destination) 的 [SigningPrivateKey](#signingprivatekey) 或临时密钥签名的前述所有字节的 [Signature](#signature)。
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -1976,13 +1986,13 @@ JavaDoc: [net.i2p.data.MetaLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/Met
 
 #### 目录
 
-包含在类型为5的I2NP DatabaseStore消息中。自0.9.38版本定义；自0.9.39版本开始工作；更多信息请参见提案123。
+包含在类型为5的I2NP DatabaseStore消息中。自0.9.38版本起定义，自0.9.39版本起生效；更多信息请参见提案123。
 
-只有盲化密钥和过期时间以明文形式可见。实际的 leaseSet 是加密的。
+只有盲化密钥和过期时间以明文形式可见。实际的leaseSet是加密的。
 
 #### 注释
 
-一个两字节的签名类型，盲化的 [SigningPrivateKey](#signingprivatekey)，发布时间，过期时间和标志位。然后是一个两字节的长度，后跟加密数据。最后是由盲化的 [SigningPrivateKey](#signingprivatekey) 或临时密钥对前面字节进行签名的 [Signature](#signature)。
+一个两字节的签名类型，包含已加密的[SigningPrivateKey](#signingprivatekey)、发布时间、过期时间以及标志位。随后是两个字节的长度，后跟加密数据。最后是由已加密的[SigningPrivateKey](#signingprivatekey)或临时密钥签名的前述字节的[Signature](#signature)。
 
 ```bytefield
 sigtype            | 2 | red    | 2 bytes
@@ -2057,11 +2067,11 @@ JavaDoc: [net.i2p.data.EncryptedLeaseSet](http://docs.i2p-projekt.de/net/i2p/dat
 
 #### 目录
 
-此结构定义了通过传输协议联系 router 的方式。
+此结构定义了通过传输协议联系路由器的方式。
 
 #### 注意事项
 
-1 字节 [Integer](#integer) 定义使用该地址的相对成本，其中 0 表示免费，255 表示昂贵，后面跟着过期 [Date](#date)，超过该日期后不应使用该地址，如果为 null，则地址永不过期。之后是一个 [String](#string)，定义此 router 地址使用的传输协议。最后是一个 [Mapping](#mapping)，包含建立连接所需的所有传输协议特定选项，如 IP 地址、端口号、电子邮件地址、URL 等。
+1 字节的[整数](#integer)，定义使用该地址的相对成本，其中 0 表示免费，255 表示昂贵；接着是[日期](#date)，表示该地址过期的时间，若为 null 则表示该地址永不过期。随后是一个[字符串](#string)，定义此路由器地址所使用的传输协议。最后是一个[映射](#mapping)，包含建立连接所需的所有特定于传输方式的选项，例如 IP 地址、端口号、电子邮件地址、URL 等。
 
 ```bytefield
 cost            | 1 | green  | Integer, 1 byte
@@ -2101,7 +2111,7 @@ options         | 8 | purple | Mapping
 
 * 查看网络数据库页面 [NETDB-ROUTERINFO](/docs/overview/network-database/#routerinfo) 了解预期在所有 router 信息中出现的标准选项。
 
-JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)
+JavaDoc：[net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/data/router/RouterAddress.html)
 
 ### RouterInfo
 
@@ -2111,7 +2121,7 @@ JavaDoc: [net.i2p.data.router.RouterAddress](http://docs.i2p-projekt.de/net/i2p/
 
 #### 注意事项
 
-[RouterIdentity](#routeridentity) 后跟 [Date](#date)，表示条目发布的时间
+[RouterIdentity](#routeridentity) 后跟该条目发布时的 [Date](#date)
 
 ```bytefield
 router_ident           | 8 | blue   | RouterIdentity, >= 387+ bytes
@@ -2201,11 +2211,11 @@ signature              | 8 | cyan   | Signature, 40+ bytes
 * 非常旧的路由器要求地址按照其数据的 SHA256 值进行排序，以确保签名不变。
   这一要求现已不再需要，且为向后兼容而实现也不值得。
 
-JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)
+JavaDoc：[net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/data/router/RouterInfo.html)
 
 ### 交付说明
 
-Tunnel Message Delivery Instructions 在 Tunnel Message Specification [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) 中定义。
+隧道消息传递指令在隧道消息规范 [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions) 中定义。
 
 Garlic Message 传递指令在 I2NP 消息规范 [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions) 中定义。
 

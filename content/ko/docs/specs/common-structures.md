@@ -2,10 +2,12 @@
 title: "공통 구조 명세서"
 description: "모든 I2P 프로토콜에 공통되는 데이터 타입"
 slug: "common-structures"
-aliases: 
+aliases:
+  - "/docs/specs/common-structures"
+  - "/docs/specs/common-structures/"
 category: "설계"
-lastUpdated: "2026-03"
-accurateFor: "0.9.68"
+lastUpdated: "2026-10"
+accurateFor: "0.9.71"
 ---
 
 이 문서는 [I2NP](/docs/specs/i2np/), [I2CP](/docs/specs/i2cp/), [SSU](/docs/legacy/ssu/) 등과 같은 모든 I2P 프로토콜에 공통으로 사용되는 일부 데이터 타입을 설명합니다.
@@ -1255,11 +1257,13 @@ JavaDoc: [net.i2p.data.Destination](http://docs.i2p-projekt.de/net/i2p/data/Dest
 
 #### 목차
 
-특정 tunnel이 [Destination](#destination)을 대상으로 하는 메시지를 수신할 수 있는 권한을 정의합니다.
+사용 중단됨. LeaseSet2 및 Lease2를 사용하십시오.
+
+특정 터널이 [대상(Destination)](#destination)을 타겟으로 하는 메시지를 수신할 수 있도록 허가를 정의합니다.
 
 #### 설명
 
-게이트웨이 router의 [RouterIdentity](#routeridentity)의 SHA256 [Hash](#hash), 그 다음 [TunnelId](#tunnelid), 마지막으로 종료 [Date](#date).
+게이트웨이 라우터의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그 다음 [TunnelId](#tunnelid), 마지막으로 종료 [Date](#date).
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1304,7 +1308,9 @@ JavaDoc: [net.i2p.data.Lease](http://docs.i2p-projekt.de/net/i2p/data/Lease.html
 
 #### 목차
 
-특정 [Destination](#destination)에 대해 현재 승인된 모든 [Lease](#lease)들, garlic 메시지가 암호화될 수 있는 [PublicKey](#publickey), 그리고 이 구조체의 특정 버전을 취소하는 데 사용될 수 있는 [SigningPublicKey](#signingpublickey)를 포함합니다. LeaseSet은 네트워크 데이터베이스에 저장되는 두 구조체 중 하나이며 (다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256 해시를 키로 사용합니다.
+사용 중단됨. LeaseSet2 및 Lease2를 사용하십시오.
+
+특정 [Destination](#destination)에 대한 현재 승인된 모든 [Leases](#lease)를 포함하며, 마늘 암호화(garlic encryption) 메시지를 암호화하는 데 사용할 수 있는 [PublicKey](#publickey)와 이 구조의 특정 버전을 폐기(revoke)하는 데 사용할 수 있는 [SigningPublicKey](#signingpublickey)를 포함합니다. LeaseSet은 네트워크 데이터베이스(netDb)에 저장되는 두 가지 구조 중 하나이며(다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256 해시 값으로 키가 지정됩니다.
 
 #### 참고사항
 
@@ -1431,7 +1437,7 @@ JavaDoc: [net.i2p.data.LeaseSet](http://docs.i2p-projekt.de/net/i2p/data/LeaseSe
 
 #### 참고사항
 
-게이트웨이 router의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그 다음 [TunnelId](#tunnelid), 그리고 마지막으로 4바이트 종료 날짜.
+게이트웨이 라우터의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그다음 [TunnelId](#tunnelid), 마지막으로 4바이트의 종료 날짜.
 
 ```bytefield
 tunnel_gw   | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1477,7 +1483,7 @@ JavaDoc: [net.i2p.data.Lease2](http://docs.i2p-projekt.de/net/i2p/data/Lease2.ht
 
 #### 목차
 
-이는 [LeaseSet2Header](#leaseset2header)의 선택적 부분입니다. streaming과 I2CP에서도 사용됩니다. 0.9.38부터 지원되며, 자세한 정보는 제안서 123을 참조하십시오.
+이것은 [LeaseSet2Header](#leaseset2header)의 선택적 부분입니다. 스트리밍 및 I2CP에서도 사용됩니다. 0.9.38 버전부터 지원되며, 자세한 내용은 제안서 123을 참조하세요.
 
 #### 참고사항
 
@@ -1540,7 +1546,7 @@ signature :: `Signature`
 
 #### 목차
 
-이것은 [LeaseSet2](#leaseset2)와 [MetaLeaseSet](#metaleaseset)의 공통 부분입니다. 0.9.38부터 지원됩니다; 자세한 정보는 proposal 123을 참조하십시오.
+이것은 [LeaseSet2](#leaseset2)와 [MetaLeaseSet](#metaleaseset)의 공통 부분입니다. 0.9.38부터 지원되며, 자세한 내용은 proposal 123을 참조하십시오.
 
 #### 참고사항
 
@@ -1646,13 +1652,13 @@ offline_signature :: `OfflineSignature`
 
 #### 목차
 
-타입 3의 I2NP DatabaseStore 메시지에 포함됩니다. 0.9.38부터 지원되며, 자세한 정보는 proposal 123을 참조하세요.
+유형 3의 I2NP DatabaseStore 메시지에 포함됨. 0.9.38 버전부터 지원되며, 자세한 내용은 제안서 123을 참조하세요.
 
 특정 [Destination](#destination)에 대해 현재 승인된 모든 [Lease2](#lease2)와 garlic 메시지를 암호화할 수 있는 [PublicKey](#publickey)를 포함합니다. LeaseSet은 네트워크 데이터베이스에 저장되는 두 가지 구조 중 하나이며 (다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256 해시 값을 키로 사용합니다.
 
 #### 암호화 키 선호도
 
-[LeaseSet2Header](#leaseset2header), 그 다음 옵션들, 그리고 암호화를 위한 하나 이상의 [PublicKey](#publickey), 세트에 있는 [Lease2](#lease2) 구조체의 개수를 명시하는 [Integer](#integer), 그 다음 실제 [Lease2](#lease2) 구조체들, 마지막으로 [Destination](#destination)의 [SigningPrivateKey](#signingprivatekey) 또는 임시 키로 서명된 이전 바이트들의 [Signature](#signature).
+[LeaseSet2Header](#leaseset2header) 다음에 옵션이 오고, 그 후 암호화를 위한 하나 이상의 [PublicKey](#publickey), [Lease2](#lease2) 구조체의 개수를 나타내는 [Integer](#integer), 실제 [Lease2](#lease2) 구조체들, 마지막으로 [Destination](#destination)의 [SigningPrivateKey](#signingprivatekey) 또는 일시 키가 이전 바이트들을 서명한 [Signature](#signature)가 온다.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -1758,31 +1764,31 @@ signature :: `Signature`
 
 게시된(서버) leaseSet의 경우, 암호화 키들은 서버 선호도 순으로 배열되며, 가장 선호되는 것이 먼저 옵니다. 클라이언트가 둘 이상의 암호화 유형을 지원하는 경우, 서버의 선호도를 존중하여 서버에 연결할 때 사용할 암호화 방법으로 지원되는 첫 번째 유형을 선택하는 것이 권장됩니다. 일반적으로 더 새로운(번호가 높은) 키 유형들이 더 안전하거나 효율적이어서 선호되므로, 키들은 키 유형의 역순으로 나열되어야 합니다.
 
-그러나 클라이언트는 구현에 따라 자신의 선호도에 기반하여 선택하거나, "결합된" 선호도를 결정하는 방법을 사용할 수 있습니다. 이는 구성 옵션이나 디버깅에 유용할 수 있습니다.
+그러나 클라이언트는 구현 방식에 따라 사용자의 선호에 기반하여 선택하거나, "통합된" 선호를 결정하기 위한 어떤 방법을 사용할 수 있습니다. 이것은 설정 옵션으로 사용하거나 디버깅에 유용할 수 있습니다.
 
 게시되지 않은 (클라이언트) leaseSet에서 키 순서는 실질적으로 중요하지 않습니다. 게시되지 않은 클라이언트에 대한 연결은 일반적으로 시도되지 않기 때문입니다. 위에서 설명한 바와 같이 이 순서가 결합된 선호도를 결정하는 데 사용되는 경우를 제외하고는 말입니다.
 
 #### 참고 사항
 
-API 0.9.66부터 서비스 레코드 옵션에 대한 표준 형식이 정의되었습니다. 자세한 내용은 proposal 167을 참조하십시오. 서비스 레코드가 아닌 다른 형식을 사용하는 옵션들은 향후 정의될 수 있습니다.
+API 0.9.66부터 서비스 레코드 옵션에 대한 표준 형식이 정의되었습니다. 자세한 내용은 제안서 167을 참조하세요. 다른 형식을 사용하는 서비스 레코드 이외의 옵션은 향후 정의될 수 있습니다.
 
 LS2 옵션은 키로 정렬되어야 하므로 서명이 불변입니다.
 
-서비스 레코드 옵션은 다음과 같이 정의됩니다:
+서비스 기록 옵션은 다음과 같이 정의됩니다:
 
 * 목적지의 공개 키는 버전 0.6에서 비활성화된 이전 I2CP-to-I2CP 암호화에 사용되었으며, 현재는 사용되지 않습니다.
 
-예제:
+예시:
 
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p에 대한 LS2에서 하나의 SMTP 서버를 가리키는 경우:
+LS2에서 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p가 하나의 SMTP 서버를 가리키는 경우:
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p"
 
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p에 대한 LS2에서 두 개의 SMTP 서버를 가리키는 경우:
+LS2에서 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.b32.i2p가 두 개의 SMTP 서버를 가리키는 경우:
 
 "_smtp._tcp" "1 86400 0 0 25 bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p,86400 1 0 25 cccccccccccccccccccccccccccccccccccccccccccc.b32.i2p"
 
-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p에 대한 LS2에서, 자신을 SMTP 서버로 가리키는 경우:
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.b32.i2p의 LS2에서 자체를 SMTP 서버로 가리킬 경우:
 
 "_smtp._tcp" "0 999999 25"
 
@@ -1812,11 +1818,13 @@ JavaDoc: [net.i2p.data.LeaseSet2](http://docs.i2p-projekt.de/net/i2p/data/LeaseS
 
 #### 목차
 
+예비. 완전히 지원되지 않음.
+
 특정 tunnel이 [Destination](#destination)을 대상으로 하는 메시지를 수신할 수 있는 권한을 정의합니다. [Lease2](#lease2)와 동일하지만 tunnel id 대신 플래그와 비용을 사용합니다. [MetaLeaseSet](#metaleaseset)에서 사용됩니다. 타입 7의 I2NP DatabaseStore 메시지에 포함됩니다. 0.9.38부터 지원됩니다. 자세한 정보는 proposal 123을 참조하세요.
 
 #### 참고 사항
 
-게이트웨이 router의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그 다음 플래그와 비용, 마지막으로 4바이트 종료 날짜.
+게이트웨이 라우터의 [RouterIdentity](#routeridentity)에 대한 SHA256 [Hash](#hash), 그 후 플래그와 비용, 마지막으로 4바이트의 종료 날짜.
 
 ```bytefield
 tunnel_gw | 8 | blue   | Hash of the RouterIdentity of the tunnel gateway, 32 bytes
@@ -1873,13 +1881,15 @@ JavaDoc: [net.i2p.data.MetaLease](http://docs.i2p-projekt.de/net/i2p/data/MetaLe
 
 #### 목차
 
-타입 7의 I2NP DatabaseStore 메시지에 포함됩니다. 0.9.38부터 정의되었으며, 0.9.40부터 작동하도록 예정되어 있습니다. 자세한 정보는 제안서 123을 참조하세요.
+예비. 완전히 지원되지 않음.
 
-특정 [Destination](#destination)에 대해 현재 승인된 모든 [MetaLease](#metalease)와 garlic 메시지를 암호화할 수 있는 [PublicKey](#publickey)를 포함합니다. LeaseSet은 네트워크 데이터베이스에 저장되는 두 가지 구조 중 하나이며(다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256으로 키가 지정됩니다.
+유형 7의 I2NP DatabaseStore 메시지에 포함됨. 0.9.38 버전부터 정의되었으며, 자세한 내용은 제안서 123을 참조하세요.
+
+특정 [Destination](#destination)에 대해 현재 승인된 모든 [MetaLease](#metalease)와 마늘 암호화(garlic encryption) 메시지를 암호화할 수 있는 [PublicKey](#publickey)를 포함한다. LeaseSet은 네트워크 데이터베이스(netDb)에 저장되는 두 가지 구조 중 하나이며(다른 하나는 [RouterInfo](#routerinfo)), 포함된 [Destination](#destination)의 SHA256 해시값을 키로 사용한다.
 
 #### 참고사항
 
-[LeaseSet2Header](#leaseset2header), 그 다음에 옵션들, 세트에 포함된 [Lease2](#lease2) 구조체의 개수를 지정하는 [Integer](#integer), 그 다음에 실제 [Lease2](#lease2) 구조체들, 마지막으로 [Destination](#destination)의 [SigningPrivateKey](#signingprivatekey) 또는 임시 키로 서명된 이전 바이트들의 [Signature](#signature).
+[LeaseSet2Header](#leaseset2header)에 이어, 집합에 포함된 [Lease2](#lease2) 구조체의 개수를 나타내는 옵션 [Integer](#integer) 값, 실제 [Lease2](#lease2) 구조체들, 그리고 마지막으로 [Destination](#destination)의 [SigningPrivateKey](#signingprivatekey) 또는 일시적 키가 이전 바이트들을 서명한 [Signature](#signature)가 온다.
 
 ```bytefield
 ls2_header       | 8 | blue   | LeaseSet2Header, varies
@@ -1984,13 +1994,13 @@ JavaDoc: [net.i2p.data.MetaLeaseSet](http://docs.i2p-projekt.de/net/i2p/data/Met
 
 #### 목차
 
-타입 5의 I2NP DatabaseStore 메시지에 포함됩니다. 0.9.38부터 정의되었으며, 0.9.39부터 작동합니다. 자세한 정보는 제안서 123을 참조하세요.
+유형 5의 I2NP DatabaseStore 메시지에 포함되어 있습니다. 0.9.38 버전부터 정의되었으며, 0.9.39 버전부터 작동합니다. 자세한 내용은 제안서 123을 참조하세요.
 
-블라인드 키와 만료 시간만 평문으로 볼 수 있습니다. 실제 leaseSet은 암호화되어 있습니다.
+평문으로는 블라인드 키와 만료 시간만 볼 수 있으며, 실제 리스 세트는 암호화되어 있습니다.
 
 #### 참고사항
 
-2바이트 서명 타입, 블라인드된 [SigningPrivateKey](#signingprivatekey), 발행 시간, 만료 시간, 그리고 플래그. 그 다음, 2바이트 길이와 그에 따른 암호화된 데이터. 마지막으로, 블라인드된 [SigningPrivateKey](#signingprivatekey) 또는 임시 키로 서명된 이전 바이트들의 [Signature](#signature).
+2바이트의 서명 유형, 블라인드 처리된 [SigningPrivateKey](#signingprivatekey), 게시 시간, 만료 시간 및 플래그. 그 후, 2바이트 길이 정보와 암호화된 데이터가 뒤따른다. 마지막으로 블라인드 처리된 [SigningPrivateKey](#signingprivatekey) 또는 일시적 키로 서명된 이전 바이트들의 [Signature](#signature)가 온다.
 
 ```bytefield
 sigtype            | 2 | red    | 2 bytes
@@ -2065,11 +2075,11 @@ JavaDoc: [net.i2p.data.EncryptedLeaseSet](http://docs.i2p-projekt.de/net/i2p/dat
 
 #### 목차
 
-이 구조는 전송 프로토콜을 통해 router에 연결하는 방법을 정의합니다.
+이 구조는 전송 프로토콜을 통해 라우터에 연결하는 방법을 정의한다.
 
 #### 참고 사항
 
-주소 사용의 상대적 비용을 정의하는 1바이트 [Integer](#integer) (0은 무료, 255는 비싼 비용을 의미), 이어서 주소가 사용되지 않아야 하는 만료 [Date](#date) (null인 경우 주소가 만료되지 않음). 그 다음에는 이 router 주소가 사용하는 전송 프로토콜을 정의하는 [String](#string)이 온다. 마지막으로 IP 주소, 포트 번호, 이메일 주소, URL 등과 같이 연결을 설정하는 데 필요한 모든 전송별 옵션을 포함하는 [Mapping](#mapping)이 있다.
+0은 무료이고 255는 비싸다는 의미인 상대적 비용을 나타내는 1바이트 [정수](#integer) 값, 그리고 이 주소가 더 이상 사용되지 않아야 하는 만료 시점인 [날짜](#date) (null인 경우 만료되지 않음). 그 다음에는 이 라우터 주소가 사용하는 전송 프로토콜을 정의하는 [문자열](#string)이 온다. 마지막으로 연결을 수립하는 데 필요한 전송 방식별 옵션들(예: IP 주소, 포트 번호, 이메일 주소, URL 등)을 포함하는 [매핑](#mapping)이 위치한다.
 
 ```bytefield
 cost            | 1 | green  | Integer, 1 byte
@@ -2119,7 +2129,7 @@ router가 네트워크에 공개하고자 하는 모든 데이터를 정의합�
 
 #### 참고 사항
 
-항목이 게시된 날짜인 [Date](#date)가 뒤따르는 [RouterIdentity](#routeridentity)
+[RouterIdentity](#routeridentity) 다음에 이 엔트리가 게시된 [Date](#date)가 옴
 
 ```bytefield
 router_ident           | 8 | blue   | RouterIdentity, >= 387+ bytes
@@ -2214,7 +2224,7 @@ JavaDoc: [net.i2p.data.router.RouterInfo](http://docs.i2p-projekt.de/net/i2p/dat
 
 ### 배송 지침
 
-Tunnel 메시지 전달 지침은 Tunnel 메시지 사양 [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)에 정의되어 있습니다.
+터널 메시지 전달 지침은 터널 메시지 명세 [TUNNEL-DELIVERY](/docs/specs/tunnel-message/#struct-tunnelmessagedeliveryinstructions)에서 정의된다.
 
 Garlic Message Delivery Instructions는 I2NP Message Specification [GARLIC-DELIVERY](/docs/specs/i2np/#garlic-clove-delivery-instructions)에서 정의됩니다.
 
