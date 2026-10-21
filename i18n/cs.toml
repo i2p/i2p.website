@@ -277,9 +277,9 @@ thankYou = "Děkujeme za podporu soukromí a svobody na internetu!"
 everyContribution = "Každý příspěvek, velký i malý, pomáhá udržet I2P silný a nezávislý."
 
 [banner]
-banner_message = "I2P 2.12.0 vydáno!"
-banner_link_text = "Stáhnout nyní"
-banner_link_url = "/blog/2026/04/20/i2p-2.12.0-release/"
+banner_message = "Vyšla verze 2.14.0"
+banner_link_text = "Stáhněte si ještě dnes!"
+banner_link_url = "/blog/2026/10/20/i2p_2.14.0_release/"
 banner_close = "Zavřít banner"
 
 [donatePage]

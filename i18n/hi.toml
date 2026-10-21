@@ -277,9 +277,9 @@ thankYou = "इंटरनेट गोपनीयता और स्वत�
 everyContribution = "हर योगदान, बड़ा या छोटा, I2P को मजबूत और स्वतंत्र बनाए रखने में मदद करता है।"
 
 [banner]
-banner_message = "I2P 2.12.0 जारी!"
-banner_link_text = "अभी डाउनलोड करें"
-banner_link_url = "/blog/2026/04/20/i2p-2.12.0-release/"
+banner_message = "2.14.0 जारी हो गया"
+banner_link_text = "आज ही डाउनलोड करें!"
+banner_link_url = "/blog/2026/10/20/i2p_2.14.0_release/"
 banner_close = "बैनर बंद करें"
 
 [donatePage]

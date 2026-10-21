@@ -17,9 +17,9 @@ defaultContentLanguageInSubdir = true
 
 # Use update_banner.sh to update banner message
   [params.banner]
-    enabled = false  # Set to true to display the banner
+    enabled = true  # Set to true to display the banner
     dismissible = true  # Allow users to dismiss the banner
-    id = "banner-6"  # Unique ID for localStorage (increment number (eg 1 > 2 > 3) to display new banner)
+    id = "banner-7"  # Unique ID for localStorage (increment number (eg 1 > 2 > 3) to display new banner)
     # link_page = ""  # Content path for banner link (uses .GetPage for auto language resolution). Leave empty/commented to use i18n banner_link_url instead.
 
 # Multilingual Configuration

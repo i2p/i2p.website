@@ -42,7 +42,6 @@ downloads:
     requirements: "Apple Silicon - No Java needed"
     sha256: "1327330c5a3e97c468e5822084e14b92832d5455a4522b99ee6f535d6604d51c"
     sig: "https://files.i2p.net/2.14.0/I2P-2.14.0.dmg.sig"
-    beta: true
     links:
       primary: "https://files.i2p.net/2.14.0/I2P-2.14.0.dmg"
       mirror: "https://mirror.stormycloud.org/2.14.0/I2P-2.14.0.dmg"
