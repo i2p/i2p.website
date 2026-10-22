@@ -2088,5 +2088,137 @@
     "segments": 327,
     "cache_hits": 294,
     "cache_misses": 33
+  },
+  {
+    "timestamp": "2026-10-22T01:10:32.302024Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ru/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "ru",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
+  },
+  {
+    "timestamp": "2026-10-22T01:10:32.374030Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/vi/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "vi",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
+  },
+  {
+    "timestamp": "2026-10-22T01:10:33.115384Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/tr/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "tr",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
+  },
+  {
+    "timestamp": "2026-10-22T01:10:34.136428Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/fr/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "fr",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
+  },
+  {
+    "timestamp": "2026-10-22T01:10:35.856992Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/es/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "es",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
+  },
+  {
+    "timestamp": "2026-10-22T01:10:36.978112Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/zh/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "zh",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
+  },
+  {
+    "timestamp": "2026-10-22T01:10:41.771547Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/cs/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "cs",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
+  },
+  {
+    "timestamp": "2026-10-22T01:10:43.840922Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/pt/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "pt",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
+  },
+  {
+    "timestamp": "2026-10-22T01:10:44.628571Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/de/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "de",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
+  },
+  {
+    "timestamp": "2026-10-22T01:10:52.455721Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ar/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "ar",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
+  },
+  {
+    "timestamp": "2026-10-22T01:10:57.096913Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/hi/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "hi",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
+  },
+  {
+    "timestamp": "2026-10-22T01:11:32.520915Z",
+    "source": "/home/runner/work/i2p.website/i2p.website/content/en/blog/2026-10-20-i2p-2-14-0-release.md",
+    "target": "/home/runner/work/i2p.website/i2p.website/content/ko/blog/2026-10-20-i2p-2-14-0-release.md",
+    "source_lang": "en",
+    "target_lang": "ko",
+    "model": "deepseek/deepseek-v4.1-flash-1017",
+    "segments": 21,
+    "cache_hits": 1,
+    "cache_misses": 20
   }
 ]
