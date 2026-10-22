@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # CI Translation Script
-# Automatically translates changed content/en/ files using OpenRouter (Qwen3-235B)
+# Automatically translates changed content/en/ files using OpenRouter (DeepSeek V4.1 Flash)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"

@@ -79,7 +79,9 @@ TRANSLATION RULES:
 3. Keep project and software names in English exactly as written: i2pd, Go-I2P, Emissary, I2P+, Java I2P, Kovri, XD, MuWire, BiglyBT
 4. Preserve ALL Markdown formatting exactly (headings, lists, links, inline code)
 5. Translate naturally for meaning, not literally
-6. For technical terms without equivalents: keep English + add localized explanation in parentheses (once per document)
+6. For technical terms, use the term {target_lang}-speaking software developers actually use; if that is the English term, or there is no natural equivalent, keep the English term rather than inventing a translation. Do not add explanations in parentheses
+7. When keeping English terms, apply {target_lang} grammar around them (articles, gender, plurals, capitalization)
+8. Match the existing tone: concise, neutral, and formal. Do not address the reader informally
 
 EXAMPLE INPUT:
 <source_text>
@@ -438,9 +440,6 @@ class TogetherTranslator:
     """
 
     provider_name = "Together"
-    extra_body: dict | None = None
-
-    provider_name = "Together"
 
     def __init__(
         self, api_key: str,
@@ -493,7 +492,6 @@ class TogetherTranslator:
                         {"role": "user", "content": user_prompt},
                     ],
                     max_tokens=4096,
-                    extra_body=self.extra_body,
                 )
 
                 if response.usage:
@@ -540,18 +538,10 @@ class OpenRouterTranslator(TogetherTranslator):
     """Translate text segments through OpenRouter's OpenAI-compatible API."""
 
     provider_name = "OpenRouter"
-    # Try the most reliable upstream providers first, then let OpenRouter
-    # fall back to any other provider serving the model
-    extra_body = {
-        "provider": {
-            "order": ["Parasail", "DeepInfra"],
-            "allow_fallbacks": True,
-        },
-    }
 
     def __init__(
         self, api_key: str,
-        model: str = "qwen/qwen3-235b-a22b-2507"
+        model: str = "deepseek/deepseek-v4.1-flash-1017"
     ) -> None:
         try:
             from openai import OpenAI
@@ -820,7 +810,6 @@ def translate_with_validation(
                         {"role": "user", "content": correction_prompt},
                     ],
                     max_tokens=4096,
-                    extra_body=translator.extra_body,
                 )
                 if response.usage:
                     translator.total_input_tokens += response.usage.prompt_tokens
@@ -1624,6 +1613,9 @@ def tokenize_markdown(text: str) -> List[Token]:
             # Stop if we hit an indented code block (4+ spaces or tab)
             if lines[i].startswith("    ") or lines[i].startswith("\t"):
                 break
+            # A bullet list can interrupt a paragraph (e.g. "**Label**" followed by "- item")
+            if para_lines and lines[i].lstrip().startswith(("- ", "* ", "+ ")):
+                break
             para_lines.append(lines[i])
             i += 1
         if para_lines:
@@ -2138,8 +2130,8 @@ def main() -> int:
                         default="Qwen/Qwen3-235B-A22B-Instruct-2507-tput",
                         help="Together AI model (default: Qwen/Qwen3-235B-A22B-Instruct-2507-tput)")
     parser.add_argument("--openrouter-model",
-                        default="qwen/qwen3-235b-a22b-2507",
-                        help="OpenRouter model (default: qwen/qwen3-235b-a22b-2507)")
+                        default="deepseek/deepseek-v4.1-flash-1017",
+                        help="OpenRouter model (default: deepseek/deepseek-v4.1-flash-1017)")
     parser.add_argument("--no-validate", dest="validate", action="store_false", default=True,
                         help="Disable post-translation validation")
 
@@ -2364,10 +2356,16 @@ def main() -> int:
             print(f"\n{usage_label} Token Usage:")
             print(f"  Input tokens: {translator.total_input_tokens:,}")
             print(f"  Output tokens: {translator.total_output_tokens:,}")
-            # Qwen3-235B pricing: $0.20/M input, $0.60/M output
-            input_cost = translator.total_input_tokens * 0.20 / 1_000_000
-            output_cost = translator.total_output_tokens * 0.60 / 1_000_000
-            print(f"  Estimated cost: ${input_cost + output_cost:.6f}")
+            # $/M tokens (input, output) for the default models
+            pricing = {
+                "deepseek/deepseek-v4.1-flash-1017": (0.15, 0.60),
+                "Qwen/Qwen3-235B-A22B-Instruct-2507-tput": (0.20, 0.60),
+            }
+            if translator.model in pricing:
+                in_rate, out_rate = pricing[translator.model]
+                input_cost = translator.total_input_tokens * in_rate / 1_000_000
+                output_cost = translator.total_output_tokens * out_rate / 1_000_000
+                print(f"  Estimated cost: ${input_cost + output_cost:.6f}")
         if failed:
             print(f"\nFailed files:")
             for f in failed:
