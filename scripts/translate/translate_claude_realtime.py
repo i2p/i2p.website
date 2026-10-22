@@ -422,12 +422,25 @@ class ClaudeTranslator:
 # TOGETHER AI (OPENAI-COMPATIBLE) TRANSLATOR
 # =============================================================================
 
+class EmptyResponseError(Exception):
+    """Provider returned a completion with no choices or content."""
+
+
+class EmptyResponseError(Exception):
+    """Provider returned a completion with no choices or content."""
+
+
 class TogetherTranslator:
     """Translate text segments using Together AI's OpenAI-compatible API.
 
     Designed for Qwen3-235B-A22B-Instruct which provides good translation
     quality at ~7.5x lower cost than Claude Sonnet.
     """
+
+    provider_name = "Together"
+    extra_body: dict | None = None
+
+    provider_name = "Together"
 
     def __init__(
         self, api_key: str,
@@ -480,11 +493,18 @@ class TogetherTranslator:
                         {"role": "user", "content": user_prompt},
                     ],
                     max_tokens=4096,
+                    extra_body=self.extra_body,
                 )
 
                 if response.usage:
                     self.total_input_tokens += response.usage.prompt_tokens
                     self.total_output_tokens += response.usage.completion_tokens
+
+                # OpenRouter can return HTTP 200 with no choices when the
+                # upstream provider errors (e.g. rate limited); retry those
+                if not response.choices or response.choices[0].message.content is None:
+                    upstream = (response.model_extra or {}).get("error")
+                    raise EmptyResponseError(f"empty response from provider: {upstream}")
 
                 raw_translation = response.choices[0].message.content.strip()
                 translated = clean_translation_artifacts(raw_translation)
@@ -493,7 +513,12 @@ class TogetherTranslator:
             except Exception as exc:
                 last_exc = exc
                 error_str = str(exc).lower()
-                if "rate" in error_str or "429" in error_str:
+                if isinstance(exc, EmptyResponseError):
+                    wait = 2 ** attempt * 5
+                    print(f"  Empty response (attempt {attempt + 1}/{max_retries}), "
+                          f"waiting {wait}s...", file=sys.stderr)
+                    time.sleep(wait)
+                elif "rate" in error_str or "429" in error_str:
                     wait = 2 ** attempt * 5
                     print(f"  Rate limited (attempt {attempt + 1}/{max_retries}), "
                           f"waiting {wait}s...", file=sys.stderr)
@@ -504,15 +529,25 @@ class TogetherTranslator:
                           f"waiting {wait}s...", file=sys.stderr)
                     time.sleep(wait)
                 else:
-                    raise RuntimeError(f"Together API error: {exc}") from exc
+                    raise RuntimeError(f"{self.provider_name} API error: {exc}") from exc
 
         raise RuntimeError(
-            f"Together API failed after {max_retries} retries: {last_exc}"
+            f"{self.provider_name} API failed after {max_retries} retries: {last_exc}"
         ) from last_exc
 
 
 class OpenRouterTranslator(TogetherTranslator):
     """Translate text segments through OpenRouter's OpenAI-compatible API."""
+
+    provider_name = "OpenRouter"
+    # Try the most reliable upstream providers first, then let OpenRouter
+    # fall back to any other provider serving the model
+    extra_body = {
+        "provider": {
+            "order": ["Parasail", "DeepInfra"],
+            "allow_fallbacks": True,
+        },
+    }
 
     def __init__(
         self, api_key: str,
@@ -785,6 +820,7 @@ def translate_with_validation(
                         {"role": "user", "content": correction_prompt},
                     ],
                     max_tokens=4096,
+                    extra_body=translator.extra_body,
                 )
                 if response.usage:
                     translator.total_input_tokens += response.usage.prompt_tokens
