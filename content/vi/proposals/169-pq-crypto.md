@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-04-09"
+lastupdated: "2026-10-23"
 status: "Mở"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.70"
@@ -373,7 +373,7 @@ Mẫu ekem1 được định nghĩa như sau, như đã nêu trong mục 4 của
 
 
 ```
-#### Vấn đề
+#### 1b) Định dạng phiên mới (có ràng buộc)
 
 Phần này áp dụng cho cả hai giao thức IK và XK.
 
@@ -458,7 +458,7 @@ For Bob:
 ```
 ### Noise Handshake KDF
 
-#### Vấn đề
+#### 1b) Định dạng phiên mới (có ràng buộc)
 
 - Chúng ta có nên ngừng gửi dữ liệu ratchet 0-RTT (ngoại trừ LS)?
 - Chúng ta có nên chuyển ratchet từ IK sang XK nếu không gửi dữ liệu 0-RTT?
@@ -505,7 +505,7 @@ kem_shared_key được trộn vào khóa liên kết bằng MixHash(). Xem ph�
 
 HOẶC
 
-Đối với IK: Sau mẫu tin nhắn 'es' và trước mẫu tin nhắn 's', hãy thêm:
+Đối với IK: Sau mẫu tin nhắn 'ee' và trước mẫu tin nhắn 'se', hãy thêm:
 
 ```
 This is the "e1" message pattern:
@@ -535,7 +535,7 @@ This is the "e1" message pattern:
 
 HOẶC
 
-Đối với IK: Sau mẫu tin nhắn 'es' và trước mẫu tin nhắn 's', hãy thêm:
+Đối với IK: Sau mẫu tin nhắn 'ee' và trước mẫu tin nhắn 'se', hãy thêm:
 
 ```
 This is the "e1" message pattern:
@@ -563,7 +563,7 @@ Cập nhật đặc tả ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) 
 
 HOẶC
 
-Đối với IK: Sau mẫu tin nhắn 'ee' và trước mẫu tin nhắn 'se', hãy thêm:
+Định dạng được mã hóa:
 
 ```
 This is the "ekem1" message pattern:
@@ -634,17 +634,17 @@ unchanged
 
 Thay đổi: Ratchet hiện tại có phần tải rỗng cho phần ChaCha đầu tiên, và phần tải nằm ở phần thứ hai. Với ML-KEM, giờ đây có ba phần. Phần đầu tiên chứa văn bản mã hóa PQ đã được mã hóa. Phần thứ hai có phần tải rỗng. Phần thứ ba chứa phần tải.
 
-#### Các định danh nhiễu
+#### Tiêu đề dài
 
 - "Noise_IKhfselg2_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM768_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM1024_ChaChaPoly_SHA256"
 
-#### 1b) Định dạng phiên mới (có ràng buộc)
+#### Tiêu đề ngắn
 
 Thay đổi: Ratchet hiện tại chứa khóa tĩnh trong phần ChaCha đầu tiên, và tải trọng trong phần thứ hai. Với ML-KEM, giờ đây có ba phần. Phần đầu tiên chứa khóa công khai PQ đã được mã hóa. Phần thứ hai chứa khóa tĩnh. Phần thứ ba chứa tải trọng.
 
-Định dạng được mã hóa:
+Định dạng mã hóa:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -746,7 +746,7 @@ Lưu ý rằng phần tải phải chứa một khối DateTime, do đó kích t
 
 Thay đổi: NTCP2 hiện tại chỉ chứa các tùy chọn trong một phần ChaCha duy nhất. Với ML-KEM, sẽ có một phần ChaCha mới trước các tùy chọn, chứa khóa công khai PQ đã được mã hóa.
 
-Định dạng được mã hóa:
+Định dạng mã hóa:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -835,7 +835,7 @@ Lưu ý rằng mặc dù thông thường thông điệp 2 sẽ có phần tải
 
 Cập nhật đặc tả NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) như sau:
 
-#### Các định danh nhiễu
+#### Tiêu đề dài
 
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
@@ -1012,12 +1012,12 @@ Dữ liệu chưa được mã hóa (thẻ xác thực Poly1305 không hiển th
 ```
 Kích thước:
 
-| Loại | Mã loại | Độ dài Y | Độ dài Msg 2 | Độ dài Msg 2 đã mã hóa | Độ dài Msg 2 đã giải mã | Độ dài CT PQ | Độ dài tùy chọn |
+| Loại | Mã loại | Độ dài Y | Độ dài Msg 2 | Độ dài Msg 2 đã mã hóa | Độ dài Msg 2 đã giải mã | Độ dài bản mã PQ | Độ dài tùy chọn |
 |------|-----------|-------|-----------|---------------|---------------|-----------|---------|
-| X25519 | 4 | 32 | 64+đệm | 32 | 16 | -- | 16 |
-| MLKEM512_X25519 | 5 | 32 | 848+đệm | 816 | 784 | 768 | 16 |
-| MLKEM768_X25519 | 6 | 32 | 1136+đệm | 1104 | 1104 | 1088 | 16 |
-| MLKEM1024_X25519 | 7 | 32 | 1616+đệm | 1584 | 1584 | 1568 | 16 |
+| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
+| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |
+| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |
+| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |
 Lưu ý: Mã loại chỉ dùng nội bộ. Các bộ định tuyến sẽ giữ nguyên loại 4, và khả năng hỗ trợ sẽ được chỉ ra trong địa chỉ bộ định tuyến.
 
 #### 3) SessionConfirmed
@@ -1056,14 +1056,14 @@ Sử dụng kích thước tin nhắn đã xác định làm độ đệm tối 
 
 Cập nhật đặc tả SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) như sau:
 
-#### Các định danh nhiễu
+#### Tiêu đề dài
 
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
 
 Lưu ý rằng MLKEM-1024 KHÔNG được hỗ trợ cho SSU2, vì khóa quá lớn để vừa trong một gói tin datagram chuẩn 1500 byte.
 
-#### Tiêu đề dài
+#### Kích thước phiên mới
 
 Tiêu đề dài gồm 32 byte. Nó được sử dụng trước khi tạo một phiên, cho các yêu cầu Token, SessionRequest, SessionCreated và Retry. Nó cũng được dùng cho các tin nhắn Kiểm thử ngang hàng (Peer Test) và Chọc lỗ (Hole Punch) ngoài phiên.
 
@@ -1073,16 +1073,20 @@ Trong các tin nhắn tiếp theo, hãy đặt trường ver (phiên bản) tron
 - (1) Phiên đã tạo
 - (9) Thử lại (lưu ý: Thử lại với Chấm dứt có thể chứa bất kỳ phiên bản 2-4 nào)
 - (10) Yêu cầu mã thông báo
+- (11) Hole Punch
 
 Trong tin nhắn sau đây, hãy đặt trường ver (phiên bản) trong tiêu đề dài thành bất kỳ giá trị nào từ 2 đến 4, vì việc chọn phiên bản là do Alice quyết định, không phải Charlie. Việc luôn đặt giá trị này thành 2 là chấp nhận được. Các triển khai nên chấp nhận mọi giá trị từ 2 đến 4.
 
-- (11) Đục lỗ (Hole Punch)
+- (7) Kiểm tra ngang hàng (tin nhắn ngoài phiên 5-7)
 
 Trong thông điệp dưới đây, hãy đặt trường ver (phiên bản) trong phần tiêu đề dài thành 2, như thông thường, ngay cả khi hỗ trợ MLKEM-512 hoặc MLKEM-768. Các triển khai cũng có thể đặt giá trị thành 3 hoặc 4 nếu đầu kia hỗ trợ, nhưng điều này không bắt buộc. Các triển khai nên chấp nhận bất kỳ giá trị nào từ 2 đến 4.
 
-- (7) Kiểm tra ngang hàng (tin nhắn ngoài phiên 5-7)
+- Yêu cầu chuyển tiếp
+- Phản hồi chuyển tiếp
+- Giới thiệu chuyển tiếp
+- Kiểm tra ngang hàng
 
-Thảo luận: Việc đặt trường phiên bản thành 3 hoặc 4 có thể không bắt buộc đối với tất cả các loại tin nhắn, nhưng việc này hỗ trợ phát hiện lỗi sớm hơn đối với các kết nối hậu lượng tử không được hỗ trợ. Các tin nhắn Yêu cầu Token và Thử lại (loại 9 và 10) nên có phiên bản 3/4 để đảm bảo tính nhất quán. Tin nhắn Kiểm tra ngang hàng (loại 7) nằm ngoài phiên và không thể hiện ý định khởi tạo phiên.
+Kích thước, không bao gồm phần đầu IP:
 
 Trước khi mã hóa tiêu đề:
 
@@ -1115,7 +1119,7 @@ Trước khi mã hóa tiêu đề:
   Token :: 8 bytes, unsigned big endian integer
 
 ```
-#### Tiêu đề ngắn
+#### Che dấu
 
 unchanged
 
@@ -1339,10 +1343,11 @@ unchanged
 
 Sử dụng cùng địa chỉ/cổng như khi không dùng PQ và không bị tường lửa chặn. Hỗ trợ một hoặc cả hai biến thể PQ. Trong địa chỉ bộ định tuyến, công bố v=2 (như thông thường) và tham số mới pq=[3|4|3,4|4,3] để chỉ MLKEM 512/768/cả hai. Các bộ định tuyến có MTU nhỏ hơn giá trị tối thiểu được quy định bên dưới không được phép công bố tham số "pq" chứa "4". Công bố 4,3 để thể hiện ưu tiên MLKEM-768 hoặc 3,4 để thể hiện ưu tiên MLKEM-512. Phiên bản thực tế do bộ khởi tạo quyết định, và ưu tiên có thể không được tuân thủ. Các bộ định tuyến có MTU nhỏ hơn giá trị tối thiểu được quy định bên dưới không được kết nối bằng MLKEM768. Các bộ định tuyến cũ hơn sẽ bỏ qua tham số pq và kết nối theo kiểu không PQ như thông thường.
 
-- Yêu cầu chuyển tiếp
-- Phản hồi chuyển tiếp
-- Giới thiệu chuyển tiếp
-- Kiểm tra ngang hàng
+- SAMv3
+- Bittorrent
+- Hướng dẫn dành cho nhà phát triển
+- Đặt tên / sổ địa chỉ / máy chủ chuyển tiếp
+- Tài liệu khác
 
 Chữ ký PQ: Các khối Relay, khối Kiểm thử Ngang hàng (Peer Test) và tin nhắn Kiểm thử Ngang hàng đều chứa chữ ký. Tiếc là chữ ký PQ lớn hơn MTU. Hiện tại không có cơ chế nào để phân mảnh các khối hoặc tin nhắn Relay hay Kiểm thử Ngang hàng qua nhiều gói UDP. Giao thức cần được mở rộng để hỗ trợ phân mảnh. Việc này sẽ được thực hiện trong một đề xuất riêng biệt sẽ được công bố sau. Cho đến khi hoàn tất, chức năng Relay và Kiểm thử Ngang hàng sẽ không được hỗ trợ.
 
@@ -1384,11 +1389,9 @@ Kích thước Destination tối đa mới sẽ là 2599 (3468 ở cơ số 64).
 
 Cập nhật các tài liệu khác cung cấp hướng dẫn về kích thước Destination, bao gồm:
 
-- SAMv3
-- Bittorrent
-- Hướng dẫn dành cho nhà phát triển
-- Đặt tên / sổ địa chỉ / máy chủ nhảy
-- Các tài liệu khác
+- Nếu thông điệp 1 nhỏ hơn 919 byte, đó là giao thức ratchet hiện tại.
+- Nếu thông điệp 1 lớn hơn hoặc bằng 919 byte, có khả năng là MLKEM512_X25519.
+  Hãy thử MLKEM512_X25519 trước, và nếu thất bại, hãy thử giao thức ratchet hiện tại.
 
 ## Phân tích chi phí phát sinh
 
@@ -1539,24 +1542,29 @@ Việc tự động phân loại/phát hiện nhiều giao thức trên cùng m�
 
 Vì vậy, chiến lược được khuyến nghị là:
 
-- Nếu tin nhắn 1 nhỏ hơn 919 byte, đó là giao thức ratchet hiện tại.
-- Nếu tin nhắn 1 lớn hơn hoặc bằng 919 byte, có khả năng là MLKEM512_X25519.
-  Hãy thử MLKEM512_X25519 trước, và nếu thất bại, hãy thử giao thức ratchet hiện tại.
+- X25519 + MLKEM512  
+- X25519 + MLKEM768  
+- X25519 + MLKEM1024
 
 Điều này sẽ cho phép chúng ta hỗ trợ hiệu quả giao thức ratchet chuẩn và ratchet lai trên cùng một đích đến, giống như trước đây chúng ta đã hỗ trợ ElGamal và ratchet trên cùng một đích đến. Do đó, chúng ta có thể chuyển đổi sang giao thức lai MLKEM nhanh hơn nhiều so với việc không thể hỗ trợ đa giao thức trên cùng một đích đến, vì chúng ta có thể thêm hỗ trợ MLKEM vào các đích đến hiện có.
 
 Các tổ hợp được hỗ trợ bắt buộc là:
 
-- X25519 + MLKEM512  
-- X25519 + MLKEM768  
-- X25519 + MLKEM1024
-
-Các tổ hợp sau đây có thể phức tạp và KHÔNG bắt buộc phải được hỗ trợ, nhưng có thể được hỗ trợ tùy theo cách triển khai:
-
 - Hơn một MLKEM
 - ElG + một hoặc nhiều MLKEM
 - X25519 + một hoặc nhiều MLKEM
 - ElG + X25519 + một hoặc nhiều MLKEM
+
+Các tổ hợp sau đây có thể phức tạp và KHÔNG bắt buộc phải được hỗ trợ, nhưng có thể được hỗ trợ tùy theo cách triển khai:
+
+- Lựa chọn hàm băm Noise – nên giữ SHA256 hay nâng cấp?
+  SHA256 dự kiến sẽ an toàn thêm 20-30 năm nữa và không bị đe dọa bởi máy tính lượng tử (PQ),
+  Xem [bản trình bày của NIST](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) và [bản trình bày của NCCOE](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+  Nếu SHA256 bị phá vỡ, chúng ta sẽ gặp các vấn đề nghiêm trọng hơn (netDb).
+- Cổng riêng cho NTCP2, địa chỉ router riêng biệt
+- Kiểm thử chức năng relay / peer trên SSU2
+- Trường phiên bản SSU2
+- Phiên bản địa chỉ router SSU2
 
 Chúng ta có thể sẽ không cố gắng hỗ trợ nhiều thuật toán MLKEM (ví dụ: MLKEM512_X25519 và MLKEM_768_X25519) trên cùng một đích đến. Hãy chọn chỉ một thuật toán; tuy nhiên, điều này phụ thuộc vào việc chúng ta chọn một biến thể MLKEM ưu tiên để các kênh client HTTP có thể sử dụng. Phụ thuộc vào cách triển khai.
 
@@ -1679,7 +1687,7 @@ Nếu chúng ta không thể hỗ trợ cả giao thức ratchet cũ và mới t
 
 Chúng ta nên có thể thử lần lượt từng cái một, giống như cách chúng ta đã làm với X25519, để được chứng minh.
 
-## Vấn đề
+## 1b) Định dạng phiên mới (có ràng buộc)
 
 SHA256 dự kiến sẽ an toàn trong vòng 20-30 năm nữa, không bị đe dọa bởi máy tính lượng tử (PQ), xem [bản trình bày của NIST](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) và [bản trình bày của NCCOE](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf). Nếu SHA256 bị phá vỡ, chúng ta sẽ gặp những vấn đề nghiêm trọng hơn (netDb).
 

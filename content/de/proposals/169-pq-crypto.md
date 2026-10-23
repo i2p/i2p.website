@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-04-09"
+lastupdated: "2026-10-23"
 status: "Öffnen"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -373,7 +373,7 @@ Das ekem1-Muster ist wie folgt definiert, wie in der [Noise HFS-Spezifikation](h
 
 
 ```
-#### Probleme
+#### 1b) Neues Session-Format (mit Bindung)
 
 Dieser Abschnitt gilt sowohl für IK- als auch für XK-Protokolle.
 
@@ -458,7 +458,7 @@ For Bob:
 ```
 ### Noise Handshake KDF
 
-#### Probleme
+#### 1b) Neues Session-Format (mit Bindung)
 
 - Sollten wir die Handshake-Hash-Funktion ändern? Siehe [Vergleich](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
   SHA256 ist nicht anfällig für PQ, aber wenn wir unsere
@@ -511,7 +511,7 @@ Für XK: Nach dem 'ee' Nachrichtenmuster und vor der Nutzlast, hinzufügen:
 
 ODER
 
-Für IK: Nach dem 'es' Nachrichtenmuster und vor dem 's' Nachrichtenmuster hinzufügen:
+Für IK: Nach dem 'ee' Nachrichtenmuster und vor dem 'se' Nachrichtenmuster, füge hinzu:
 
 ```
 This is the "e1" message pattern:
@@ -569,7 +569,7 @@ Aktualisiere die ECIES-Ratchet-Spezifikation [/docs/specs/ecies/](/docs/specs/ec
 
 ODER
 
-Für IK: Nach dem 'ee' Nachrichtenmuster und vor dem 'se' Nachrichtenmuster, füge hinzu:
+Verschlüsseltes Format:
 
 ```
 This is the "ekem1" message pattern:
@@ -640,17 +640,17 @@ unverändert
 
 Änderungen: Der aktuelle Ratchet hat eine leere Nutzlast für den ersten ChaCha-Abschnitt und die Nutzlast im zweiten Abschnitt. Mit ML-KEM gibt es nun drei Abschnitte. Der erste Abschnitt enthält den verschlüsselten PQ-Chiffretext. Der zweite Abschnitt hat eine leere Nutzlast. Der dritte Abschnitt enthält die Nutzlast.
 
-#### Noise-Identifikatoren
+#### Langer Header
 
 - "Noise_IKhfselg2_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM768_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM1024_ChaChaPoly_SHA256"
 
-#### 1b) Neues Session-Format (mit Bindung)
+#### Kurzer Header
 
 Änderungen: Der aktuelle ratchet enthielt den statischen Schlüssel im ersten ChaCha-Abschnitt und die Nutzdaten im zweiten Abschnitt. Mit ML-KEM gibt es nun drei Abschnitte. Der erste Abschnitt enthält den verschlüsselten PQ-öffentlichen Schlüssel. Der zweite Abschnitt enthält den statischen Schlüssel. Der dritte Abschnitt enthält die Nutzdaten.
 
-Verschlüsseltes Format:
+Entschlüsseltes Format:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1018,12 +1018,12 @@ Größen:
 ```
 Größen:
 
-| Typ | Typ Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |
+| Typ | Typ-Code | Y-Länge | Nachricht-2-Länge | Nachricht-2-Enc-Länge | Nachricht-2-Dec-Länge | PQ-CT-Länge | opt-Länge |
 |------|-----------|-------|-----------|---------------|---------------|-----------|---------|
 | X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
 | MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |
-| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |
-| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |
+| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |
+| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |
 Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
 
 #### 3) SessionConfirmed
@@ -1069,26 +1069,30 @@ Beachten Sie, dass MLKEM-1024 für SSU2 NICHT unterstützt wird, da die Schlüss
 
 Der lange Header ist 32 Bytes groß. Er wird verwendet, bevor eine Sitzung erstellt wird, für Token Request, SessionRequest, SessionCreated und Retry. Er wird auch für sitzungsunabhängige Peer Test und Hole Punch Nachrichten verwendet.
 
-#### Langer Header
+#### Forward Secrecy
 
 In den folgenden Nachrichten setzen Sie das ver (Version) Feld im langen Header auf 3 oder 4, um MLKEM-512 oder MLKEM-768 anzuzeigen.
 
 In den folgenden Nachrichten setzen Sie das ver (Version) Feld im langen Header wie üblich auf 2, auch wenn MLKEM-512 oder MLKEM-768 unterstützt wird. Implementierungen können den Wert auch auf 3 oder 4 setzen, wenn die Gegenstelle dies unterstützt, aber das ist nicht notwendig. Implementierungen sollten jeden Wert von 2-4 akzeptieren.
 
-- (0) Sitzungsanfrage
-- (1) Sitzung erstellt
-- (9) Wiederholung (Hinweis: Wiederholung mit Beendigung kann eine beliebige Version 2–4 enthalten)
-- (10) Token-Anfrage
-
-Setzen Sie im folgenden Nachrichtentext das Feld „ver“ (Version) im langen Header auf eine beliebige Version 2–4, da die Wahl der Version bei Alice und nicht bei Charlie liegt. Es ist akzeptabel, dieses Feld immer auf 2 zu setzen. Implementierungen sollten jeden Wert zwischen 2 und 4 akzeptieren.
-
+- (0) Session Request
+- (1) Session Created
+- (9) Retry
+- (10) Token Request
 - (11) Hole Punch
 
-Setzen Sie im folgenden Nachrichtentext das Feld „ver“ (Version) im langen Header wie üblich auf 2, auch wenn MLKEM-512 oder MLKEM-768 unterstützt wird. Implementierungen dürfen den Wert auch auf 3 oder 4 setzen, falls das andere Ende dies unterstützt, dies ist jedoch nicht erforderlich. Implementierungen sollten jeden Wert zwischen 2 und 4 akzeptieren.
+Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht gezeigt):
 
-- (7) Peer-Test (Nachrichten außerhalb der Sitzung 5–7)
+- (7) Peer Test (Nachrichten außerhalb der Sitzung 5-7)
 
-Diskussion: Das Setzen des Versionsfeldes auf 3 oder 4 ist möglicherweise nicht für alle Nachrichtentypen streng notwendig, hilft aber bei der frühen Erkennung von Fehlern bei nicht unterstützten post-quanten-sicheren Verbindungen. Token-Anfrage- und Wiederholungs-Nachrichten (Typen 9 und 10) sollten aus Konsistenzgründen die Versionen 3/4 verwenden. Peer-Test-Nachrichten (Typ 7) sind außerhalb der Sitzung und zeigen nicht die Absicht an, eine Sitzung zu initiieren.
+Größen, ohne IP-Overhead:
+
+- Relay Request
+- Relay Response
+- Relay Intro
+- Peer Test
+
+Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angezeigt.
 
 unverändert
 
@@ -1121,7 +1125,7 @@ unverändert
   Token :: 8 bytes, unsigned big endian integer
 
 ```
-#### Kurzer Header
+#### Neue Sitzungsgröße
 
 unverändert
 
@@ -1227,7 +1231,7 @@ Unverschlüsselte Daten (Poly1305-Authentifizierungs-Tag nicht gezeigt):
   |     see below for allowed blocks      |
   +----+----+----+----+----+----+----+----+
 ```
-Größen, ohne IP-Overhead:
+Minimale MTU für MLKEM768_X25519: Etwa 1316 für IPv4 und 1336 für IPv6.
 
 | Typ | Typ Code | X len | Msg 1 len | Msg 1 Enc len | Msg 1 Dec len | PQ key len | pl len |
 |------|-----------|-------|-----------|---------------|---------------|------------|--------|
@@ -1345,10 +1349,11 @@ unverändert
 
 Die folgenden Blöcke enthalten Versionsfelder. Sie bleiben Version 2 (für Kompatibilität mit einem nicht-PQ Bob) und werden nicht zu Version 3/4 für PQ geändert.
 
-- Weiterleitungsanfrage
-- Weiterleitungsantwort
-- Weiterleitungsinfo
-- Peertest
+- SAMv3
+- Bittorrent
+- Entwicklerrichtlinien
+- Benennung / Adressbuch / Jump-Server
+- Andere Dokumente
 
 Verwenden Sie in allen Fällen wie gewohnt den SSU2-Transportnamen. MLKEM-1024 wird nicht unterstützt.
 
@@ -1390,11 +1395,9 @@ Für reine PQ-Signaturen von SU3-Dateien verwenden Sie die OIDs, die im [IETF-En
 
 Beachten Sie, dass wir Ed25519-Signierung von SU3-Dateien nicht zulassen, und obwohl wir Ed25519ph-Signierung definiert haben, haben wir uns nie auf eine OID dafür geeinigt oder sie verwendet.
 
-- SAMv3
-- Bittorrent
-- Entwicklerrichtlinien
-- Namensgebung / Adressbuch / Sprungserver
-- Weitere Dokumente
+- Wenn Nachricht 1 weniger als 919 Bytes hat, ist es das aktuelle ratchet-Protokoll.
+- Wenn Nachricht 1 größer oder gleich 919 Bytes ist, ist es wahrscheinlich MLKEM512_X25519.
+  Versuche zuerst MLKEM512_X25519, und falls es fehlschlägt, versuche das aktuelle ratchet-Protokoll.
 
 ## Overhead-Analyse
 
@@ -1545,24 +1548,29 @@ Wir verwenden den normalen Signierungsprozess (genannt Pure ML-DSA Signature Gen
 
 Eine Größenerhöhung führt zu deutlich mehr tunnel-Fragmentierung für NetDB-Speicherungen, Streaming-Handshakes und andere Nachrichten. Prüfen Sie auf Leistungs- und Zuverlässigkeitsänderungen.
 
-- Wenn Nachricht 1 kleiner als 919 Bytes ist, handelt es sich um das aktuelle Ratchet-Protokoll.
-- Wenn Nachricht 1 größer oder gleich 919 Bytes ist, handelt es sich wahrscheinlich um MLKEM512_X25519.
-  Versuchen Sie zuerst MLKEM512_X25519, und falls dies fehlschlägt, versuchen Sie das aktuelle Ratchet-Protokoll.
+- X25519 + MLKEM512
+- X25519 + MLKEM768
+- X25519 + MLKEM1024
 
 Finden und überprüfen Sie jeglichen Code, der die Bytegröße von Router-Infos und leasesets begrenzt.
 
 Überprüfen und möglicherweise reduzieren der maximalen LS/RI, die im RAM oder auf der Festplatte gespeichert werden, um den Speicherplatzzuwachs zu begrenzen. Mindestbandbreitenanforderungen für floodfills erhöhen?
 
-- X25519 + MLKEM512
-- X25519 + MLKEM768
-- X25519 + MLKEM1024
-
-Eine automatische Klassifizierung/Erkennung mehrerer Protokolle auf denselben tunneln sollte basierend auf einer Längenprüfung von Nachricht 1 (New Session Message) möglich sein. Mit MLKEM512_X25519 als Beispiel ist Nachricht 1 um 816 Bytes größer als das aktuelle ratchet-Protokoll, und die minimale Größe von Nachricht 1 (mit nur einer DateTime-Nutzlast) beträgt 919 Bytes. Die meisten Nachricht-1-Größen mit aktuellem ratchet haben eine Nutzlast von weniger als 816 Bytes, sodass sie als nicht-hybrid ratchet klassifiziert werden können. Große Nachrichten sind wahrscheinlich POSTs, die selten sind.
-
 - Mehr als ein MLKEM
 - ElG + ein oder mehrere MLKEM
 - X25519 + ein oder mehrere MLKEM
 - ElG + X25519 + ein oder mehrere MLKEM
+
+Eine automatische Klassifizierung/Erkennung mehrerer Protokolle auf denselben tunneln sollte basierend auf einer Längenprüfung von Nachricht 1 (New Session Message) möglich sein. Mit MLKEM512_X25519 als Beispiel ist Nachricht 1 um 816 Bytes größer als das aktuelle ratchet-Protokoll, und die minimale Größe von Nachricht 1 (mit nur einer DateTime-Nutzlast) beträgt 919 Bytes. Die meisten Nachricht-1-Größen mit aktuellem ratchet haben eine Nutzlast von weniger als 816 Bytes, sodass sie als nicht-hybrid ratchet klassifiziert werden können. Große Nachrichten sind wahrscheinlich POSTs, die selten sind.
+
+- Noise Hash Auswahl - bei SHA256 bleiben oder upgraden?
+  SHA256 sollte noch weitere 20-30 Jahre gut sein, nicht durch PQ bedroht,
+  Siehe [NIST Präsentation](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) und [NCCOE Präsentation](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+  Falls SHA256 gebrochen wird, haben wir schlimmere Probleme (netdb).
+- NTCP2 separater Port, separate router Adresse
+- SSU2 relay / peer Test
+- SSU2 Versionsfeld
+- SSU2 router Adresse Version
 
 Die empfohlene Strategie ist also:
 
@@ -1576,7 +1584,7 @@ Die folgenden Kombinationen können komplex sein und müssen NICHT unterstützt 
 
 Wir werden möglicherweise nicht versuchen, mehrere MLKEM-Algorithmen (zum Beispiel MLKEM512_X25519 und MLKEM_768_X25519) am selben Ziel zu unterstützen. Wählen Sie nur einen aus; dies hängt jedoch davon ab, dass wir eine bevorzugte MLKEM-Variante auswählen, damit HTTP-Client-tunnel eine verwenden können. Implementierungsabhängig.
 
-#### Forward Secrecy
+#### Größe der neuen Sitzung
 
 Wir KÖNNEN versuchen, drei Algorithmen (zum Beispiel X25519, MLKEM512_X25519 und MLKEM769_X25519) für dasselbe Ziel zu unterstützen. Die Klassifizierung und Wiederholungsstrategie könnten zu komplex sein. Die Konfiguration und Benutzeroberfläche für die Konfiguration könnten zu komplex sein. Implementierungsabhängig.
 
@@ -1584,7 +1592,7 @@ Wir KÖNNEN versuchen, drei Algorithmen (zum Beispiel X25519, MLKEM512_X25519 un
 
 Wir werden wahrscheinlich NICHT versuchen, ElGamal und Hybrid-Algorithmen am selben Ziel zu unterstützen. ElGamal ist veraltet, und ElGamal + Hybrid allein (ohne X25519) macht nicht viel Sinn. Außerdem sind sowohl ElGamal- als auch Hybrid New Session Messages groß, sodass Klassifizierungsstrategien oft beide Entschlüsselungen versuchen müssten, was ineffizient wäre. Implementierungsabhängig.
 
-#### Neue Sitzungsgröße
+#### Verschleierung
 
 Clients können dieselben oder unterschiedliche X25519 statische Schlüssel für die X25519 und die hybriden Protokolle auf denselben tunnels verwenden, implementierungsabhängig.
 

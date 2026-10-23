@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-04-09"
+lastupdated: "2026-10-23"
 status: "Abrir"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -373,7 +373,7 @@ El patrón ekem1 se define de la siguiente manera, según lo especificado en la 
 
 
 ```
-#### Problemas
+#### 1b) Formato de nueva sesión (con vinculación)
 
 Esta sección aplica tanto a los protocolos IK como XK.
 
@@ -458,7 +458,7 @@ For Bob:
 ```
 ### KDF del protocolo de enlace Noise
 
-#### Problemas
+#### 1b) Formato de nueva sesión (con vinculación)
 
 - ¿Deberíamos dejar de enviar datos ratchet 0-RTT (distintos del LS)?
 - ¿Deberíamos cambiar el ratchet de IK a XK si no enviamos datos 0-RTT?
@@ -505,7 +505,7 @@ Para XK: Después del patrón de mensaje 'ee' y antes del payload, añadir:
 
 O
 
-Para IK: Después del patrón de mensaje 'es' y antes del patrón de mensaje 's', agregue:
+Para IK: Después del patrón de mensaje 'ee' y antes del patrón de mensaje 'se', agregar:
 
 ```
 This is the "e1" message pattern:
@@ -535,7 +535,7 @@ Para XK: Después del patrón de mensaje 'ee' y antes del payload, añadir:
 
 O
 
-Para IK: Después del patrón de mensaje 'es' y antes del patrón de mensaje 's', agregue:
+Para IK: Después del patrón de mensaje 'ee' y antes del patrón de mensaje 'se', agregar:
 
 ```
 This is the "e1" message pattern:
@@ -563,7 +563,7 @@ Actualizar la especificación ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/eci
 
 O
 
-Para IK: Después del patrón de mensaje 'ee' y antes del patrón de mensaje 'se', agregar:
+Formato cifrado:
 
 ```
 This is the "ekem1" message pattern:
@@ -634,13 +634,13 @@ sin cambios
 
 Cambios: El ratchet actual tiene un payload vacío para la primera sección ChaCha, y el payload en la segunda sección. Con ML-KEM, ahora hay tres secciones. La primera sección contiene el texto cifrado PQ encriptado. La segunda sección tiene un payload vacío. La tercera sección contiene el payload.
 
-#### Identificadores de ruido
+#### Encabezado largo
 
 - "Noise_IKhfselg2_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM768_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM1024_ChaChaPoly_SHA256"
 
-#### 1b) Nuevo formato de sesión (con enlace)
+#### Encabezado corto
 
 Cambios: El ratchet actual contenía la clave estática en la primera sección ChaCha y el payload (carga útil) en la segunda sección. Con ML-KEM, ahora hay tres secciones. La primera sección contiene la clave pública PQ cifrada. La segunda sección contiene la clave estática. La tercera sección contiene el payload.
 
@@ -835,7 +835,7 @@ Ten en cuenta que, aunque el mensaje 2 normalmente tendrá un payload no nulo, l
 
 Actualizar la especificación NTCP2 [/docs/specs/ntcp2/](/docs/specs/ntcp2/) de la siguiente manera:
 
-#### Identificadores de ruido
+#### Encabezado largo
 
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfsaesobfse+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
@@ -1012,12 +1012,12 @@ Datos sin cifrar (etiqueta de autenticación Poly1305 no mostrada):
 ```
 Tamaños:
 
-| Tipo | Código de Tipo | Longitud Y | Longitud Msg 2 | Longitud Msg 2 Enc | Longitud Msg 2 Dec | Longitud PQ CT | Longitud opt |
-|------|----------------|------------|----------------|--------------------|--------------------|----------------|--------------|
+| Tipo | Código de tipo | Long. Y | Long. Msg 2 | Long. Msg 2 Enc | Long. Msg 2 Dec | Long. PQ CT | Long. opt |
+|------|-----------|-------|-----------|---------------|---------------|-----------|---------|
 | X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
 | MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |
-| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |
-| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |
+| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |
+| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |
 Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
 
 #### 3) SessionConfirmed
@@ -1032,7 +1032,7 @@ Sin cambios
 
 En todos los casos, utilice el nombre de transporte NTCP2 como de costumbre.
 
-Utilice la misma dirección/puerto que en la configuración sin PQ y sin firewall. Solo se admite una variante PQ. En la dirección del router, publique v=2 (como es habitual) y el nuevo parámetro pq=[3|4|5] para indicar MLKEM 512/768/1024. Alice establece el bit más significativo de la clave efímera (key[31] & 0x80) en la solicitud de sesión para indicar que esta es una conexión híbrida. Vea arriba. Los routers antiguos ignorarán el parámetro pq y se conectarán sin PQ como de costumbre.
+Utilice la misma dirección/puerto que para una conexión no PQ y sin firewall. Solo se admite una variante PQ. En la dirección del router, publique v=2 (como de costumbre) y el nuevo parámetro pq=[3|4|5] para indicar MLKEM 512/768/1024. Alice establece el MSB de la clave efímera (key[31] & 0x80) en la solicitud de sesión para indicar que se trata de una conexión híbrida. Véase arriba. Los routers más antiguos ignorarán el parámetro pq y se conectarán como no PQ de la forma habitual.
 
 Direcciones con firewall (sin IP publicada): En la dirección del router, publicar v=2 (como de costumbre). No es necesario publicar un parámetro pq.
 
@@ -1046,7 +1046,7 @@ Hasta la API 0.9.68 (versión 2.11.0), Java I2P implementaba un máximo de 256 b
 
 Utilizar el tamaño de mensaje definido como el relleno máximo, es decir, el relleno máximo duplicará el tamaño del mensaje para las conexiones PQ, de la siguiente manera:
 
-Usa el tamaño de mensaje definido como relleno máximo, es decir, el relleno máximo duplicará el tamaño del mensaje para conexiones PQ, como sigue:
+Utilice el tamaño de mensaje definido como el padding máximo, es decir, el padding máximo duplicará el tamaño del mensaje para conexiones PQ, de la siguiente manera:
 
 | Relleno Máximo del Mensaje | no-PQ (hasta 0.9.68) | no-PQ (desde 0.9.69) | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
 |---------------------|----------------------|-----------------------|-----------|-----------|------------|
@@ -1056,14 +1056,14 @@ Usa el tamaño de mensaje definido como relleno máximo, es decir, el relleno m�
 
 Tenga en cuenta que MLKEM-1024 NO es compatible con SSU2, ya que las claves son demasiado grandes para caber dentro de un datagrama estándar de 1500 bytes.
 
-#### Identificadores de ruido
+#### Encabezado largo
 
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_XKhfschaobfse+hs1+hs2+hs3_25519+MLKEM768_ChaChaPoly_SHA256"
 
 El encabezado largo tiene 32 bytes. Se utiliza antes de que se cree una sesión, para los mensajes Token Request, SessionRequest, SessionCreated y Retry. También se utiliza para los mensajes Peer Test y Hole Punch fuera de sesión.
 
-#### Encabezado largo
+#### Tamaño de nueva sesión
 
 En los siguientes mensajes, establezca el campo ver (versión) en el encabezado largo a 3 o 4, para indicar MLKEM-512 o MLKEM-768.
 
@@ -1071,20 +1071,24 @@ En los siguientes mensajes, establece el campo ver (versión) en la cabecera lar
 
 - (0) Solicitud de sesión
 - (1) Sesión creada
-- (9) Reintentar (nota: Reintento con terminación puede contener cualquier versión 2-4)
+- (9) Reintentar
 - (10) Solicitud de token
+- (11) Hole Punch
 
 En el siguiente mensaje, establezca el campo ver (versión) en la cabecera larga a cualquier versión entre 2 y 4, porque la elección de la versión corresponde a Alice, no a Charlie. Es aceptable establecerla siempre en 2. Las implementaciones deben aceptar cualquier valor entre 2 y 4.
 
-- (11) Perforación de agujero
+- (7) Prueba de par (mensajes fuera de sesión 5-7)
 
-En el siguiente mensaje, establezca el campo ver (versión) en el encabezado largo a 2, como es habitual, incluso si se admite MLKEM-512 o MLKEM-768. Las implementaciones también pueden establecer el valor en 3 o 4, si el otro extremo lo admite, pero esto no es necesario. Las implementaciones deben aceptar cualquier valor entre 2 y 4.
+Tamaños, sin incluir la sobrecarga IP:
 
-- (7) Prueba de pares (mensajes fuera de sesión 5-7)
-
-Discusión: Establecer el campo de versión en 3 o 4 puede no ser estrictamente necesario para todos los tipos de mensajes, pero hacerlo ayuda a detectar fallas más tempranas en conexiones poscuánticas no admitidas. Las solicitudes de token y reintento (tipos 9 y 10) deben tener versiones 3/4 por consistencia. Los mensajes de prueba entre pares (tipo 7) están fuera de sesión y no indican la intención de iniciar una sesión.
+- Relay Request (Solicitud de retransmisión)
+- Relay Response (Respuesta de retransmisión)
+- Relay Intro (Introducción de retransmisión)
+- Peer Test (Prueba de par)
 
 Antes del cifrado de cabecera:
+
+Antes del cifrado de cabeceras:
 
 ```
 
@@ -1115,7 +1119,7 @@ Antes del cifrado de cabecera:
   Token :: 8 bytes, unsigned big endian integer
 
 ```
-#### Encabezado corto
+#### Ofuscación
 
 sin cambios
 
@@ -1231,7 +1235,7 @@ Tamaños, sin incluir la sobrecarga IP:
 | MLKEM1024_X25519 | 7 | n/a | demasiado grande | | | | |
 Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
 
-MTU mínimo para MLKEM768_X25519: 1318 para IPv4 y 1338 para IPv6. Ver más abajo.
+MTU mínimo para MLKEM768_X25519: 1318 para IPv4 y 1338 para IPv6. Véase más abajo.
 
 Tamaño máximo: utiliza el MTU de Bob tal como se publica en su RouterInfo, o el valor predeterminado de 1500 si no está presente en el RouterInfo. No uses MLKEM768_X25519 si el MTU publicado es demasiado bajo.
 
@@ -1323,7 +1327,7 @@ Tamaños, sin incluir la sobrecarga IP:
 | MLKEM1024_X25519 | 7 | n/a | demasiado grande | | | | |
 Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
 
-MTU mínimo para MLKEM768_X25519: 1318 para IPv4 y 1338 para IPv6. Ver más abajo.
+MTU mínimo para MLKEM768_X25519: 1318 para IPv4 y 1338 para IPv6. Véase más abajo.
 
 Firmas PQ: Los bloques Relay, los bloques Peer Test y los mensajes Peer Test contienen firmas. Desafortunadamente, las firmas PQ son más grandes que el MTU. Actualmente no existe ningún mecanismo para fragmentar bloques o mensajes Relay o Peer Test en múltiples paquetes UDP. El protocolo debe extenderse para admitir la fragmentación. Esto se realizará en una propuesta separada que está por definirse. Hasta que se complete, Relay y Peer Test no serán compatibles.
 
@@ -1339,10 +1343,11 @@ sin cambios
 
 Los siguientes bloques contienen campos de versión. Permanecerán en la versión 2 (por compatibilidad con un Bob no-PQ) y no cambiarán a la versión 3/4 para PQ.
 
-- Solicitud de retransmisión
-- Respuesta de retransmisión
-- Introducción de retransmisión
-- Prueba de pares
+- SAMv3
+- Bittorrent
+- Guías para desarrolladores
+- Nomenclatura / libreta de direcciones / servidores de salto
+- Otros documentos
 
 En todos los casos, utilice el nombre de transporte SSU2 como de costumbre. MLKEM-1024 no es compatible.
 
@@ -1354,7 +1359,7 @@ Ten cuidado de no superar el MTU con MLKEM768. El MTU mínimo para MLKEM768_X255
 
 Direcciones con firewall (sin IP publicada): En la dirección del router, publicar v=2 (como de costumbre). El parámetro pq DEBE publicarse en las direcciones con firewall para admitir el relay (retransmisión).
 
-Direcciones detrás de firewall (sin IP publicada): En la dirección del router, publicar v=2 (como es habitual). El parámetro pq DEBE publicarse en direcciones detrás de firewall, para permitir el reenvío (relay).
+Direcciones con firewall (sin IP publicada): En la dirección del router, publique v=2 (como de costumbre). El parámetro pq DEBE publicarse en las direcciones con firewall, para admitir relay.
 
 En la especificación actual, los mensajes 1 y 2 están definidos para tener una cantidad "razonable" de relleno, con un rango recomendado de 0 a 31 bytes y sin un máximo especificado.
 
@@ -1380,15 +1385,13 @@ El nuevo tamaño máximo de Destination será de 2599 bytes (3468 en base 64).
 
 ### Otras Especificaciones
 
-El nuevo tamaño máximo de Destino será 2599 (3468 en base 64).
+El nuevo tamaño máximo de Destination será 2599 (3468 en base 64).
 
 Aumento de tamaño (bytes):
 
-- SAMv3
-- Bittorrent
-- Directrices para desarrolladores
-- Sistemas de nombres / libreta de direcciones / servidores de salto
-- Otros documentos
+- Si el mensaje 1 tiene menos de 919 bytes, corresponde al protocolo ratchet actual.
+- Si el mensaje 1 tiene 919 bytes o más, probablemente sea MLKEM512_X25519.
+  Intentar primero con MLKEM512_X25519 y, si falla, intentar con el protocolo ratchet actual.
 
 ## Análisis de Sobrecarga
 
@@ -1539,24 +1542,29 @@ Por lo tanto, la estrategia recomendada es:
 
 Esto debería permitirnos soportar eficientemente el ratchet estándar y el ratchet híbrido en el mismo destino, tal como anteriormente soportábamos ElGamal y ratchet en el mismo destino. Por lo tanto, podemos migrar al protocolo híbrido MLKEM mucho más rápidamente que si no pudiéramos soportar protocolos duales para el mismo destino, ya que podemos añadir soporte MLKEM a los destinos existentes.
 
-- Si el mensaje 1 es menor a 919 bytes, se trata del protocolo de ratchet actual.
-- Si el mensaje 1 es mayor o igual a 919 bytes, probablemente sea MLKEM512_X25519.
-  Intente primero con MLKEM512_X25519, y si falla, pruebe con el protocolo de ratchet actual.
+- X25519 + MLKEM512
+- X25519 + MLKEM768
+- X25519 + MLKEM1024
 
 Las combinaciones compatibles requeridas son:
 
 Las siguientes combinaciones pueden ser complejas y NO es obligatorio que sean compatibles, aunque podrían serlo dependiendo de la implementación:
 
-- X25519 + MLKEM512
-- X25519 + MLKEM768
-- X25519 + MLKEM1024
-
-Es posible que no intentemos admitir múltiples algoritmos MLKEM (por ejemplo, MLKEM512_X25519 y MLKEM_768_X25519) en el mismo destino. Selecciona solo uno; sin embargo, eso depende de que elijamos una variante MLKEM preferida, para que los túneles de cliente HTTP puedan usar una. Depende de la implementación.
-
 - Más de un MLKEM
 - ElG + uno o más MLKEM
 - X25519 + uno o más MLKEM
 - ElG + X25519 + uno o más MLKEM
+
+Es posible que no intentemos admitir múltiples algoritmos MLKEM (por ejemplo, MLKEM512_X25519 y MLKEM_768_X25519) en el mismo destino. Selecciona solo uno; sin embargo, eso depende de que elijamos una variante MLKEM preferida, para que los túneles de cliente HTTP puedan usar una. Depende de la implementación.
+
+- Selección de Hash para Noise - ¿quedarse con SHA256 o actualizar?
+  SHA256 debería ser seguro durante otros 20-30 años, no está amenazado por PQ (computación cuántica post-cuántica),
+  Ver [presentación del NIST](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) y [presentación del NCCOE](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+  Si SHA256 se rompe, tendremos problemas peores (netdb).
+- NTCP2 puerto separado, dirección de router separada
+- SSU2 relay / prueba de pares
+- Campo de versión SSU2
+- Versión de dirección de router SSU2
 
 PODEMOS intentar soportar tres algoritmos (por ejemplo X25519, MLKEM512_X25519 y MLKEM769_X25519) en el mismo destino. La clasificación y la estrategia de reintento pueden resultar demasiado complejas. La configuración y la interfaz de usuario de configuración pueden ser demasiado complejas. Depende de la implementación.
 
@@ -1638,7 +1646,7 @@ Los routers verifican las firmas de los leaseSet y, por lo tanto, no pueden cone
 
 #### Destinos de tipo 12-17
 
-Los routers verifican las firmas de los leaseset y por lo tanto no pueden conectarse, ni recibir leasesets para destinos de tipo 12-17. Se necesitarían varios ciclos de lanzamiento para depurar y garantizar el soporte antes de habilitarlo por defecto.
+Los routers verifican las firmas de leaseSet y, por lo tanto, no pueden conectarse ni recibir leaseSets para destinos de tipo 12-17. Se necesitarían varios ciclos de lanzamiento para depurar y asegurar el soporte antes de habilitarlo por defecto.
 
 Estas pueden estar presentes en el LS con claves X25519 de tipo 4 más antiguas. Los routers más antiguos ignorarán las claves desconocidas.
 
@@ -1679,7 +1687,7 @@ Deberíamos poder simplemente intentar uno y luego el otro, como hicimos con X25
 
 Deberíamos poder simplemente intentar uno y luego el otro, como hicimos con X25519, para comprobarlo.
 
-## Problemas
+## 1b) Formato de nueva sesión (con vinculación)
 
 SHA256 debería ser seguro durante otros 20-30 años, sin amenazas por computación cuántica (PQ), ver [presentación de NIST](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) y [presentación de NCCOE](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf). Si SHA256 se rompe, tendremos problemas más graves (netDb).
 

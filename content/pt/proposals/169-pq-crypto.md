@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-04-09"
+lastupdated: "2026-10-23"
 status: "Abrir"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -373,7 +373,7 @@ O padrão ekem1 é definido como segue, conforme especificado na [especificaçã
 
 
 ```
-#### Problemas
+#### 1b) Novo formato de sessão (com vinculação)
 
 Esta seção se aplica tanto aos protocolos IK quanto XK.
 
@@ -458,7 +458,7 @@ For Bob:
 ```
 ### KDF do Handshake Noise
 
-#### Problemas
+#### 1b) Novo formato de sessão (com vinculação)
 
 - Devemos parar de enviar dados ratchet 0-RTT (além do LS)?
 - Devemos mudar o ratchet de IK para XK se não enviarmos dados 0-RTT?
@@ -505,7 +505,7 @@ Para XK: Após o padrão de mensagem 'ee' e antes do payload, adicione:
 
 OU
 
-Para IK: Após o padrão de mensagem 'es' e antes do padrão de mensagem 's', adicione:
+Para IK: Após o padrão de mensagem 'ee' e antes do padrão de mensagem 'se', adicionar:
 
 ```
 This is the "e1" message pattern:
@@ -563,7 +563,7 @@ Atualize a especificação ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/
 
 OU
 
-Para IK: Após o padrão de mensagem 'ee' e antes do padrão de mensagem 'se', adicionar:
+Formato criptografado:
 
 ```
 This is the "ekem1" message pattern:
@@ -634,17 +634,17 @@ inalterado
 
 Mudanças: O ratchet atual tem uma carga útil vazia para a primeira seção ChaCha, e a carga útil na segunda seção. Com ML-KEM, agora existem três seções. A primeira seção contém o texto cifrado PQ criptografado. A segunda seção tem uma carga útil vazia. A terceira seção contém a carga útil.
 
-#### Identificadores Noise
+#### Cabeçalho Longo
 
 - "Noise_IKhfselg2_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM768_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM1024_ChaChaPoly_SHA256"
 
-#### 1b) Novo formato de sessão (com vinculação)
+#### Cabeçalho Curto
 
 Alterações: O ratchet atual continha a chave estática na primeira seção ChaCha, e o payload na segunda seção. Com ML-KEM, agora há três seções. A primeira seção contém a chave pública PQ criptografada. A segunda seção contém a chave estática. A terceira seção contém o payload.
 
-Formato criptografado:
+Formato descriptografado:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1012,12 +1012,12 @@ Tamanhos:
 ```
 Tamanhos:
 
-| Tipo | Código do Tipo | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |
-|------|----------------|-------|-----------|---------------|---------------|-----------|---------|
+| Tipo | Código do tipo | Comprimento Y | Comprimento Msg 2 | Comprimento Msg 2 Enc | Comprimento Msg 2 Dec | Comprimento PQ CT | Comprimento opt |
+|------|-----------|-------|-----------|---------------|---------------|-----------|---------|
 | X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
 | MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |
-| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |
-| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |
+| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |
+| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |
 Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão como tipo 4, e o suporte será indicado nos endereços do router.
 
 #### 3) SessionConfirmed
@@ -1063,7 +1063,7 @@ Note que MLKEM-1024 NÃO é suportado para SSU2, pois as chaves são muito grand
 
 O cabeçalho longo tem 32 bytes. É usado antes de uma sessão ser criada, para Token Request, SessionRequest, SessionCreated e Retry. Também é usado para mensagens Peer Test e Hole Punch fora de sessão.
 
-#### Cabeçalho Longo
+#### Tamanho da Nova Sessão
 
 Nas mensagens seguintes, defina o campo ver (versão) no cabeçalho longo para 3 ou 4, para indicar MLKEM-512 ou MLKEM-768.
 
@@ -1071,18 +1071,22 @@ Nas mensagens seguintes, defina o campo ver (version) no cabeçalho longo para 2
 
 - (0) Solicitação de Sessão
 - (1) Sessão Criada
-- (9) Repetir (observação: Repetir com Término pode conter qualquer versão de 2 a 4)
+- (9) Tentar Novamente
 - (10) Solicitação de Token
+- (11) Perfuração de Hole
 
-Na mensagem a seguir, defina o campo ver (versão) no cabeçalho longo para qualquer versão entre 2 e 4, pois a escolha da versão é de Alice, não de Charlie. Definir sempre como 2 é aceitável. As implementações devem aceitar qualquer valor entre 2 e 4.
+Dados não criptografados (tag de autenticação Poly1305 não mostrada):
 
-- (11) Furo de perfuração
+- (7) Teste de Peer (mensagens fora de sessão 5-7)
 
-Na mensagem a seguir, defina o campo ver (versão) no cabeçalho longo como 2, como de costume, mesmo que MLKEM-512 ou MLKEM-768 seja suportado. Implementações também podem definir o valor como 3 ou 4, se a outra extremidade suportar, mas isso não é necessário. Implementações devem aceitar qualquer valor entre 2 e 4.
+Tamanhos, não incluindo overhead do IP:
 
-- (7) Teste de Par (mensagens fora da sessão 5-7)
+- Solicitação de Relay
+- Resposta de Relay
+- Introdução de Relay
+- Teste de Peer
 
-Discussão: Definir o campo de versão como 3 ou 4 pode não ser estritamente necessário para todos os tipos de mensagem, mas fazê-lo ajuda na detecção precoce de falhas em conexões pós-quânticas não suportadas. As mensagens Token Request e Retry (tipos 9 e 10) devem ter versões 3/4 por consistência. As mensagens Peer Test (tipo 7) são fora de sessão e não indicam a intenção de iniciar uma sessão.
+Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão como tipo 4, e o suporte será indicado nos endereços do router.
 
 inalterado
 
@@ -1115,7 +1119,7 @@ inalterado
   Token :: 8 bytes, unsigned big endian integer
 
 ```
-#### Cabeçalho Curto
+#### Ofuscação
 
 inalterado
 
@@ -1221,7 +1225,7 @@ Dados não criptografados (tag de autenticação Poly1305 não mostrada):
   |     see below for allowed blocks      |
   +----+----+----+----+----+----+----+----+
 ```
-Tamanhos, não incluindo sobrecarga IP:
+MTU mínimo para MLKEM768_X25519: 1318 para IPv4 e 1338 para IPv6. Veja abaixo.
 
 | Tipo | Código do Tipo | Tamanho X | Tamanho Msg 1 | Tamanho Msg 1 Criptografada | Tamanho Msg 1 Descriptografada | Tamanho chave PQ | Tamanho pl |
 |------|----------------|-----------|---------------|-------------------------------|----------------------------------|------------------|------------|
@@ -1339,10 +1343,11 @@ inalterado
 
 Os seguintes blocos contêm campos de versão. Eles permanecerão na versão 2 (para compatibilidade com um Bob não-PQ), e não mudarão para a versão 3/4 para PQ.
 
-- Solicitação de Retransmissão
-- Resposta de Retransmissão
-- Introdução de Retransmissão
-- Teste de Par
+- SAMv3
+- Bittorrent
+- Diretrizes para desenvolvedores
+- Nomenclatura / catálogo de endereços / servidores de redirecionamento
+- Outros documentos
 
 Em todos os casos, use o nome do transporte SSU2 como de costume. MLKEM-1024 não é suportado.
 
@@ -1384,11 +1389,9 @@ Atualize outros documentos que fornecem orientação sobre tamanhos de Destinati
 
 Aumento de tamanho (bytes):
 
-- SAMv3
-- Bittorrent
-- Diretrizes para desenvolvedores
-- Nomenclatura / agenda de endereços / servidores jump
-- Outros documentos
+- Se a mensagem 1 for menor que 919 bytes, é o protocolo ratchet atual.
+- Se a mensagem 1 for maior ou igual a 919 bytes, provavelmente é MLKEM512_X25519.
+  Tente MLKEM512_X25519 primeiro e, se falhar, tente o protocolo ratchet atual.
 
 ## Análise de Sobrecarga
 
@@ -1539,24 +1542,29 @@ Portanto, a estratégia recomendada é:
 
 Isso deve nos permitir suportar eficientemente o ratchet padrão e o ratchet híbrido no mesmo destino, assim como anteriormente suportávamos ElGamal e ratchet no mesmo destino. Portanto, podemos migrar para o protocolo híbrido MLKEM muito mais rapidamente do que se não pudéssemos suportar protocolos duplos para o mesmo destino, porque podemos adicionar suporte MLKEM a destinos existentes.
 
-- Se a mensagem 1 for menor que 919 bytes, é o protocolo de trava atual.
-- Se a mensagem 1 for maior ou igual a 919 bytes, provavelmente é MLKEM512_X25519.
-  Tente MLKEM512_X25519 primeiro, e se falhar, tente o protocolo de trava atual.
+- X25519 + MLKEM512
+- X25519 + MLKEM768
+- X25519 + MLKEM1024
 
 As combinações suportadas obrigatórias são:
 
 As seguintes combinações podem ser complexas e NÃO são obrigatórias de serem suportadas, mas podem ser, dependendo da implementação:
 
-- X25519 + MLKEM512
-- X25519 + MLKEM768
-- X25519 + MLKEM1024
-
-Pode ser que não tentemos suportar múltiplos algoritmos MLKEM (por exemplo, MLKEM512_X25519 e MLKEM_768_X25519) no mesmo destino. Escolha apenas um; no entanto, isso depende de selecionarmos uma variante MLKEM preferida, para que os túneis de cliente HTTP possam usar uma. Dependente da implementação.
-
 - Mais de um MLKEM
 - ElG + um ou mais MLKEM
 - X25519 + um ou mais MLKEM
 - ElG + X25519 + um ou mais MLKEM
+
+Pode ser que não tentemos suportar múltiplos algoritmos MLKEM (por exemplo, MLKEM512_X25519 e MLKEM_768_X25519) no mesmo destino. Escolha apenas um; no entanto, isso depende de selecionarmos uma variante MLKEM preferida, para que os túneis de cliente HTTP possam usar uma. Dependente da implementação.
+
+- Seleção de Noise Hash - manter SHA256 ou atualizar?
+  SHA256 deve ser bom por mais 20-30 anos, não ameaçado por PQ,
+  Veja [apresentação NIST](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) e [apresentação NCCOE](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+  Se SHA256 for quebrado, temos problemas piores (netdb).
+- NTCP2 porta separada, endereço de router separado
+- SSU2 relay / teste de peer
+- Campo de versão SSU2
+- Versão de endereço de router SSU2
 
 Nós PODEMOS tentar suportar três algoritmos (por exemplo X25519, MLKEM512_X25519, e MLKEM769_X25519) no mesmo destino. A classificação e estratégia de repetição podem ser muito complexas. A configuração e interface de configuração podem ser muito complexas. Dependente da implementação.
 

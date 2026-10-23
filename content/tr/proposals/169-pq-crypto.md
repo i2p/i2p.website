@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-04-09"
+lastupdated: "2026-10-23"
 status: "Aç"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -373,7 +373,7 @@ ekem1 deseni, [Noise HFS spec](https://github.com/noiseprotocol/noise_hfs_spec/b
 
 
 ```
-#### Sorunlar
+#### 1b) Yeni oturum formatı (bağlama ile)
 
 Bu bölüm hem IK hem de XK protokolleri için geçerlidir.
 
@@ -458,7 +458,7 @@ For Bob:
 ```
 ### Noise Handshake KDF
 
-#### Sorunlar
+#### 1b) Yeni oturum formatı (bağlama ile)
 
 - Handshake hash fonksiyonunu değiştirmeli miyiz? [Karşılaştırmaya](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3) bakın.
   SHA256 PQ'ya karşı savunmasız değil, ancak hash fonksiyonumuzu yükseltmek istiyorsak,
@@ -511,7 +511,7 @@ XK için: 'ee' mesaj deseninden sonra ve payload'dan önce, şunu ekleyin:
 
 VEYA
 
-IK için: 'es' mesaj deseni sonrasında ve 's' mesaj deseni öncesinde, şunu ekleyin:
+IK için: 'ee' mesaj kalıbından sonra ve 'se' mesaj kalıbından önce, şunları ekleyin:
 
 ```
 This is the "e1" message pattern:
@@ -569,7 +569,7 @@ ECIES-Ratchet spesifikasyonunu [/docs/specs/ecies/](/docs/specs/ecies/) aşağı
 
 VEYA
 
-IK için: 'ee' mesaj kalıbından sonra ve 'se' mesaj kalıbından önce, şunları ekleyin:
+Şifrelenmiş format:
 
 ```
 This is the "ekem1" message pattern:
@@ -640,17 +640,17 @@ değişmedi
 
 Değişiklikler: Mevcut ratchet, ilk ChaCha bölümü için boş bir payload'a ve ikinci bölümde payload'a sahiptir. ML-KEM ile artık üç bölüm bulunmaktadır. İlk bölüm şifrelenmiş PQ ciphertext'ini içerir. İkinci bölümde boş bir payload bulunur. Üçüncü bölüm payload'ı içerir.
 
-#### Noise tanımlayıcıları
+#### Uzun Başlık
 
 - "Noise_IKhfselg2_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM768_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM1024_ChaChaPoly_SHA256"
 
-#### 1b) Yeni oturum formatı (bağlama ile)
+#### Kısa Başlık
 
 Değişiklikler: Mevcut ratchet, statik anahtarı ilk ChaCha bölümünde ve yükü ikinci bölümde içeriyordu. ML-KEM ile artık üç bölüm bulunmakta. İlk bölüm şifreli PQ genel anahtarını içeriyor. İkinci bölüm statik anahtarı içeriyor. Üçüncü bölüm yükü içeriyor.
 
-Şifrelenmiş format:
+Şifresi çözülmüş format:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1018,12 +1018,12 @@ Boyutlar:
 ```
 Boyutlar:
 
-| Tip | Tip Kodu | Y uzunluğu | Msg 2 uzunluğu | Msg 2 Şif uzunluğu | Msg 2 Çöz uzunluğu | PQ CT uzunluğu | seç uzunluğu |
+| Tip | Tip Kodu | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |
 |------|-----------|-------|-----------|---------------|---------------|-----------|---------|
 | X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
 | MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |
-| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |
-| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |
+| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |
+| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |
 Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
 
 #### 3) SessionConfirmed
@@ -1069,7 +1069,7 @@ MLKEM-1024'ün SSU2 için desteklenmediğini unutmayın, çünkü anahtarlar sta
 
 Uzun başlık 32 bayttır. Bir oturum oluşturulmadan önce Token Request, SessionRequest, SessionCreated ve Retry için kullanılır. Ayrıca oturum-dışı Peer Test ve Hole Punch mesajları için de kullanılır.
 
-#### Uzun Başlık
+#### İleri Gizlilik
 
 Aşağıdaki mesajlarda, MLKEM-512 veya MLKEM-768'i belirtmek için uzun başlıktaki ver (sürüm) alanını 3 veya 4 olarak ayarlayın.
 
@@ -1077,18 +1077,22 @@ Aşağıdaki mesajlarda, MLKEM-512 veya MLKEM-768 desteklense bile, uzun başlı
 
 - (0) Oturum İsteği
 - (1) Oturum Oluşturuldu
-- (9) Yeniden Dene (not: Kapatma ile Yeniden Dene, herhangi bir 2-4 sürümünü içerebilir)
+- (9) Yeniden Deneme
 - (10) Token İsteği
+- (11) Delik Delme
 
-Aşağıdaki mesajda, uzun başlıktaki ver (sürüm) alanını 2-4 arası herhangi bir sürüm olarak ayarlayın, çünkü sürüm seçimi Charlie'nin değil Alice'in seçimidir. Her zaman 2 olarak ayarlamak kabul edilebilir. Uygulamalar 2-4 arası herhangi bir değeri kabul etmelidir.
+Şifrelenmemiş veri (Poly1305 kimlik doğrulama etiketi gösterilmemiş):
 
-- (11) Delik Açma
+- (7) Peer Test (oturum dışı mesajlar 5-7)
 
-Aşağıdaki mesajda, MLKEM-512 veya MLKEM-768 desteklense bile, uzun başlıkta ver (versiyon) alanını her zamanki gibi 2 olarak ayarlayın. Uygulamalar, karşı taraf desteklerse değeri 3 veya 4 olarak da ayarlayabilir, ancak bu gerekli değildir. Uygulamalar, 2-4 arası herhangi bir değeri kabul etmelidir.
+IP yükü dahil olmayan boyutlar:
 
-- (7) Eş Testi (oturum dışı mesajlar 5-7)
+- Relay İsteği
+- Relay Yanıtı
+- Relay Tanıtımı
+- Eş Testi
 
-Tartışma: Sürüm alanının 3 veya 4 olarak ayarlanması tüm mesaj türleri için kesinlikle gerekli olmayabilir, ancak bunu yapmak desteklenmeyen kuantum sonrası bağlantılar için erken hata tespitini kolaylaştırır. Belirteç İstek ve Yeniden Deneme (türler 9 ve 10) mesajları tutarlılık açısından 3/4 sürümüne sahip olmalıdır. Eş Testi mesajları (tür 7) oturum dışıdır ve bir oturum başlatma niyetini belirtmez.
+Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar 4 türünde kalacak ve destek router adreslerinde belirtilecektir.
 
 değişmemiş
 
@@ -1121,7 +1125,7 @@ değişmemiş
   Token :: 8 bytes, unsigned big endian integer
 
 ```
-#### Kısa Başlık
+#### Yeni Oturum Boyutu
 
 değişmedi
 
@@ -1227,7 +1231,7 @@ Ham içerikler:
   |     see below for allowed blocks      |
   +----+----+----+----+----+----+----+----+
 ```
-IP ek yükü dahil edilmeyerek boyutlar:
+MLKEM768_X25519 için minimum MTU: IPv4 için yaklaşık 1316 ve IPv6 için 1336.
 
 | Tür | Tür Kodu | X uzunluk | Msg 1 uzunluk | Msg 1 Şif uzunluk | Msg 1 Çöz uzunluk | PQ anahtar uzunluk | pl uzunluk |
 |------|-----------|-------|-----------|---------------|---------------|------------|--------|
@@ -1345,10 +1349,11 @@ değişmedi
 
 Aşağıdaki bloklar sürüm alanları içerir. Bunlar sürüm 2'de kalacak (PQ olmayan Bob ile uyumluluk için) ve PQ için sürüm 3/4'e değişmeyecek.
 
-- Yönlendirme İsteği
-- Yönlendirme Yanıtı
-- Yönlendirme Tanıtımı
-- Eş Testi
+- SAMv3
+- Bittorrent
+- Geliştirici yönergeleri
+- Adlandırma / adres defteri / jump sunucuları
+- Diğer belgeler
 
 Tüm durumlarda, SSU2 transport adını her zamanki gibi kullanın. MLKEM-1024 desteklenmez.
 
@@ -1390,11 +1395,9 @@ SU3 dosyalarının PQ-only imzaları için, sertifikalarda non-prehash varyantla
 
 SU3 dosyalarının Ed25519 ile imzalanmasına izin vermediğimizi ve Ed25519ph imzalamayı tanımlamış olmamıza rağmen, bunun için hiçbir zaman bir OID üzerinde anlaşmadığımızı veya kullanmadığımızı unutmayın.
 
-- SAMv3
-- Bittorrent
-- Geliştirici kuralları
-- İsimlendirme / adres defteri / atlama sunucuları
-- Diğer belgeler
+- Eğer mesaj 1, 919 bayttan küçükse, mevcut ratchet protokolüdür.
+- Eğer mesaj 1, 919 bayt veya daha büyükse, muhtemelen MLKEM512_X25519'dur.
+  Önce MLKEM512_X25519'u deneyin, başarısız olursa mevcut ratchet protokolünü deneyin.
 
 ## Ek Yük Analizi
 
@@ -1545,24 +1548,29 @@ Normal imzalama sürecini (Pure ML-DSA Signature Generation olarak adlandırıl�
 
 Boyut artışı, NetDB depolamaları, streaming el sıkışmaları ve diğer mesajlar için çok daha fazla tunnel fragmentasyonuna neden olacaktır. Performans ve güvenilirlik değişikliklerini kontrol edin.
 
-- Mesaj 1 919 bayttan küçükse, mevcut ratchet protokolüdür.
-- Mesaj 1 919 bayttan büyükse veya eşitse, büyük olasılıkla MLKEM512_X25519'dir.
-  Önce MLKEM512_X25519'ı deneyin ve başarısız olursa mevcut ratchet protokolünü deneyin.
+- X25519 + MLKEM512
+- X25519 + MLKEM768
+- X25519 + MLKEM1024
 
 Router bilgilerinin ve leaseSet'lerin bayt boyutunu sınırlayan herhangi bir kodu bulun ve kontrol edin.
 
 RAM'de veya diskte depolanan maksimum LS/RI sayısını gözden geçir ve muhtemelen azalt, depolama artışını sınırlamak için. floodfill'ler için minimum bant genişliği gereksinimlerini artır?
 
-- X25519 + MLKEM512
-- X25519 + MLKEM768
-- X25519 + MLKEM1024
-
-Aynı tunnel'lar üzerinde birden fazla protokolün otomatik sınıflandırılması/tespiti, mesaj 1'in (New Session Message) uzunluk kontrolüne dayalı olarak mümkün olmalıdır. MLKEM512_X25519 örnek olarak alındığında, mesaj 1 uzunluğu mevcut ratchet protokolünden 816 bayt daha büyüktür ve minimum mesaj 1 boyutu (yalnızca DateTime payload dahil) 919 bayttır. Mevcut ratchet ile çoğu mesaj 1 boyutu 816 bayttan daha az payload'a sahiptir, bu nedenle hibrit olmayan ratchet olarak sınıflandırılabilirler. Büyük mesajlar muhtemelen nadiren görülen POST'lardır.
-
 - Birden fazla MLKEM
 - ElG + bir veya daha fazla MLKEM
 - X25519 + bir veya daha fazla MLKEM
 - ElG + X25519 + bir veya daha fazla MLKEM
+
+Aynı tunnel'lar üzerinde birden fazla protokolün otomatik sınıflandırılması/tespiti, mesaj 1'in (New Session Message) uzunluk kontrolüne dayalı olarak mümkün olmalıdır. MLKEM512_X25519 örnek olarak alındığında, mesaj 1 uzunluğu mevcut ratchet protokolünden 816 bayt daha büyüktür ve minimum mesaj 1 boyutu (yalnızca DateTime payload dahil) 919 bayttır. Mevcut ratchet ile çoğu mesaj 1 boyutu 816 bayttan daha az payload'a sahiptir, bu nedenle hibrit olmayan ratchet olarak sınıflandırılabilirler. Büyük mesajlar muhtemelen nadiren görülen POST'lardır.
+
+- Noise Hash seçimi - SHA256 ile devam mı yoksa yükseltme mi?
+  SHA256'nın 20-30 yıl daha iyi olması gerekiyor, PQ tarafından tehdit edilmiyor,
+  [NIST sunumuna](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) ve [NCCOE sunumuna](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf) bakın.
+  Eğer SHA256 kırılırsa daha kötü sorunlarımız olur (netdb).
+- NTCP2 ayrı port, ayrı router adresi
+- SSU2 relay / peer test
+- SSU2 sürüm alanı
+- SSU2 router adres sürümü
 
 Bu nedenle önerilen strateji şudur:
 
@@ -1576,7 +1584,7 @@ Aşağıdaki kombinasyonlar karmaşık olabilir ve desteklenmesi ZORUNLU DEĞİL
 
 Aynı hedef üzerinde birden fazla MLKEM algoritmasını (örneğin, MLKEM512_X25519 ve MLKEM_768_X25519) desteklemeye çalışmayabiliriz. Sadece birini seçin; ancak bu, tercih edilen bir MLKEM varyantı seçmemize bağlıdır, böylece HTTP istemci tunnel'ları birini kullanabilir. Uygulama bağımlıdır.
 
-#### İleri Gizlilik
+#### Yeni Oturum Boyutu
 
 Aynı hedef üzerinde üç algoritmayı (örneğin X25519, MLKEM512_X25519 ve MLKEM769_X25519) desteklemeye çalışabiliriz. Sınıflandırma ve yeniden deneme stratejisi çok karmaşık olabilir. Yapılandırma ve yapılandırma arayüzü çok karmaşık olabilir. Uygulamaya bağlıdır.
 
@@ -1584,7 +1592,7 @@ Aynı hedef üzerinde üç algoritmayı (örneğin X25519, MLKEM512_X25519 ve ML
 
 Muhtemelen aynı hedef üzerinde ElGamal ve hibrit algoritmaları desteklemeye ÇALIŞMAYACAĞIZ. ElGamal eskimiştir ve ElGamal + hibrit sadece (X25519 yok) pek mantıklı değildir. Ayrıca, ElGamal ve Hibrit Yeni Oturum Mesajları her ikisi de büyüktür, bu nedenle sınıflandırma stratejileri genellikle her iki şifre çözme işlemini de denemek zorunda kalacaktır, bu da verimsiz olacaktır. Uygulamaya bağlıdır.
 
-#### Yeni Oturum Boyutu
+#### Gizleme
 
 İstemciler aynı tunnel'lar üzerinde X25519 ve hibrit protokoller için aynı veya farklı X25519 statik anahtarları kullanabilirler, bu implementasyon-bağımlıdır.
 

@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-04-09"
+lastupdated: "2026-10-23"
 status: "Otevřít"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -373,7 +373,7 @@ Vzor ekem1 je definován následovně, jak je specifikováno v [Noise HFS spec](
 
 
 ```
-#### Problémy
+#### 1b) Nový formát relace (s vazbou)
 
 Tato sekce se vztahuje na protokoly IK i XK.
 
@@ -458,7 +458,7 @@ For Bob:
 ```
 ### Noise Handshake KDF
 
-#### Problémy
+#### 1b) Nový formát relace (s vazbou)
 
 - Měli bychom změnit hash funkci pro handshake? Viz [porovnání](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3).
   SHA256 není zranitelná vůči PQ, ale pokud chceme upgradovat
@@ -511,7 +511,7 @@ Pro XK: Po vzoru zprávy 'ee' a před nákladem přidat:
 
 NEBO
 
-Pro IK: Po vzoru zprávy 'es' a před vzorem zprávy 's' přidejte:
+Pro IK: Po vzoru zprávy 'ee' a před vzorem zprávy 'se' přidejte:
 
 ```
 This is the "e1" message pattern:
@@ -569,7 +569,7 @@ Aktualizujte specifikaci ECIES-Ratchet [/docs/specs/ecies/](/docs/specs/ecies/) 
 
 NEBO
 
-Pro IK: Po vzoru zprávy 'ee' a před vzorem zprávy 'se' přidejte:
+Šifrovaný formát:
 
 ```
 This is the "ekem1" message pattern:
@@ -640,17 +640,17 @@ nezměněno
 
 Změny: Současný ratchet má prázdný payload pro první ChaCha sekci a payload ve druhé sekci. S ML-KEM jsou nyní tři sekce. První sekce obsahuje šifrovaný PQ ciphertext. Druhá sekce má prázdný payload. Třetí sekce obsahuje payload.
 
-#### Identifikátory Noise
+#### Dlouhá hlavička
 
 - "Noise_IKhfselg2_25519+MLKEM512_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM768_ChaChaPoly_SHA256"
 - "Noise_IKhfselg2_25519+MLKEM1024_ChaChaPoly_SHA256"
 
-#### 1b) Nový formát relace (s vazbou)
+#### Krátká hlavička
 
 Změny: Současný ratchet obsahoval statický klíč v první sekci ChaCha a payload ve druhé sekci. S ML-KEM nyní existují tři sekce. První sekce obsahuje zašifrovaný PQ veřejný klíč. Druhá sekce obsahuje statický klíč. Třetí sekce obsahuje payload.
 
-Šifrovaný formát:
+Dešifrovaný formát:
 
 ```
   +----+----+----+----+----+----+----+----+
@@ -1018,12 +1018,12 @@ Velikosti:
 ```
 Velikosti:
 
-| Typ | Kód typu | Y délka | Msg 2 délka | Msg 2 Enc délka | Msg 2 Dec délka | PQ CT délka | opt délka |
-|-----|----------|---------|-------------|-----------------|-----------------|-------------|-----------|
+| Typ | Kód typu | Délka Y | Délka Msg 2 | Délka Enc Msg 2 | Délka Dec Msg 2 | Délka PQ CT | Délka opt |
+|------|-----------|-------|-----------|---------------|---------------|-----------|---------|
 | X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |
 | MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |
-| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |
-| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |
+| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |
+| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |
 Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routerů.
 
 #### 3) SessionConfirmed
@@ -1069,26 +1069,30 @@ Poznamenejte, že MLKEM-1024 NENÍ podporován pro SSU2, protože klíče jsou p
 
 Dlouhá hlavička má 32 bajtů. Používá se před vytvořením relace pro Token Request, SessionRequest, SessionCreated a Retry. Používá se také pro zprávy Peer Test a Hole Punch mimo relaci.
 
-#### Dlouhá hlavička
+#### Forward Secrecy
 
 V následujících zprávách nastavte pole ver (verze) v dlouhé hlavičce na 3 nebo 4, což označuje MLKEM-512 nebo MLKEM-768.
 
 V následujících zprávách nastavte pole ver (verze) v dlouhé hlavičce na 2, jako obvykle, i když je podporováno MLKEM-512 nebo MLKEM-768. Implementace mohou také nastavit hodnotu na 3 nebo 4, pokud ji druhá strana podporuje, ale není to nutné. Implementace by měly přijímat jakoukoliv hodnotu 2-4.
 
-- (0) Požadavek na relaci
+- (0) Požadavek relace
 - (1) Relace vytvořena
-- (9) Opakování (poznámka: Opakování s ukončením může obsahovat jakoukoli verzi 2–4)
-- (10) Požadavek na token
+- (9) Opakovat
+- (10) Požadavek tokenu
+- (11) Hole Punch
 
-Ve zprávě níže nastavte pole ver (verze) v dlouhém záhlaví na libovolnou verzi 2–4, protože volbu verze provádí Alice, nikoli Charlie. Přijatelné je ji vždy nastavit na 2. Implementace by měly přijímat jakoukoli hodnotu v rozsahu 2–4.
+Nešifrovaná data (Poly1305 autentifikační tag není zobrazen):
 
-- (11) Průraz otvoru
+- (7) Test protějšku (zprávy mimo relaci 5-7)
 
-V následující zprávě nastavte pole ver (verze) v dlouhém záhlaví na hodnotu 2, jak je obvyklé, i když je podporován MLKEM-512 nebo MLKEM-768. Implementace mohou hodnotu nastavit na 3 nebo 4, pokud to druhá strana podporuje, ale není to nutné. Implementace by měly přijímat jakoukoli hodnotu v rozsahu 2–4.
+Velikosti, nezahrnují režii IP protokolu:
 
-- (7) Testování protějšku (mimo relační zprávy 5–7)
+- Relay Request
+- Relay Response
+- Relay Intro
+- Peer Test
 
-Diskuze: Nastavení pole verze na 3 nebo 4 nemusí být striktně nutné pro všechny typy zpráv, ale pomáhá dřívější detekci selhání u nepodporovaných post-kvantových připojení. Zprávy Token Request a Retry (typy 9 a 10) by měly mít verze 3/4 z důvodu konzistence. Zprávy Peer Test (typ 7) jsou mimo relaci a nesvědčí o záměru iniciovat relaci.
+Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routeru.
 
 nezměněno
 
@@ -1121,7 +1125,7 @@ nezměněno
   Token :: 8 bytes, unsigned big endian integer
 
 ```
-#### Krátká hlavička
+#### Velikost nové relace
 
 nezměněno
 
@@ -1227,7 +1231,7 @@ Nešifrovaná data (Poly1305 autentifikační tag není zobrazen):
   |     see below for allowed blocks      |
   +----+----+----+----+----+----+----+----+
 ```
-Velikosti, bez započtení režie IP:
+Minimální MTU pro MLKEM768_X25519: Přibližně 1316 pro IPv4 a 1336 pro IPv6.
 
 | Typ | Kód typu | X délka | Délka Msg 1 | Délka Msg 1 Enc | Délka Msg 1 Dec | Délka PQ klíče | délka pl |
 |------|-----------|-------|-----------|---------------|---------------|------------|--------|
@@ -1345,10 +1349,11 @@ nezměněno
 
 Následující bloky obsahují pole verzí. Zůstanou verzí 2 (kvůli kompatibilitě s non-PQ Bobem) a nezmění se na verzi 3/4 pro PQ.
 
-- Žádost o přepojení (Relay Request)
-- Odpověď na přepojení (Relay Response)
-- Úvodní zpráva přepojení (Relay Intro)
-- Test protějšku (Peer Test)
+- SAMv3
+- Bittorrent
+- Pokyny pro vývojáře
+- Pojmenování / adresář / jump servery
+- Další dokumentace
 
 Ve všech případech použijte název transportu SSU2 jako obvykle. MLKEM-1024 není podporován.
 
@@ -1390,11 +1395,9 @@ Pro PQ-only podpisy souborů SU3 použijte OID definované v [IETF draft](https:
 
 Všimněte si, že nepovolujeme Ed25519 podepisování SU3 souborů, a ačkoli jsme definovali Ed25519ph podepisování, nikdy jsme se nedohodli na OID pro něj, ani jsme ho nepoužili.
 
-- SAMv3
-- Bittorrent
-- Pokyny pro vývojáře
-- Pojmenování / adresář / skokové servery
-- Ostatní dokumenty
+- Pokud je zpráva 1 menší než 919 bajtů, jedná se o současný ratchet protokol.
+- Pokud je zpráva 1 větší nebo rovna 919 bajtům, pravděpodobně se jedná o MLKEM512_X25519.
+  Zkuste nejprve MLKEM512_X25519, a pokud selže, zkuste současný ratchet protokol.
 
 ## Analýza režie
 
@@ -1545,24 +1548,29 @@ Používáme běžný proces podepisování (nazývaný Pure ML-DSA Signature Ge
 
 Zvýšení velikosti povede k mnohem větší fragmentaci tunelů pro NetDB úložiště, streaming handshakes a další zprávy. Zkontrolujte změny výkonu a spolehlivosti.
 
-- Pokud je zpráva 1 menší než 919 bajtů, jedná se o aktuální protokol ratchet.
-- Pokud je zpráva 1 větší nebo rovna 919 bajtům, pravděpodobně se jedná o MLKEM512_X25519.
-  Nejprve zkuste MLKEM512_X25519 a pokud selže, zkuste aktuální protokol ratchet.
+- X25519 + MLKEM512
+- X25519 + MLKEM768
+- X25519 + MLKEM1024
 
 Najděte a zkontrolujte jakýkoli kód, který omezuje velikost v bajtech u router infos a leasesets.
 
 Zkontrolovat a případně snížit maximální počet LS/RI uložených v RAM nebo na disku, aby se omezil nárůst úložiště. Zvýšit minimální požadavky na šířku pásma pro floodfilly?
 
-- X25519 + MLKEM512
-- X25519 + MLKEM768
-- X25519 + MLKEM1024
-
-Automatická klasifikace/detekce více protokolů na stejných tunnelech by měla být možná na základě kontroly délky zprávy 1 (New Session Message). Použitím MLKEM512_X25519 jako příkladu je zpráva 1 o 816 bajtů delší než současný ratchet protokol a minimální velikost zprávy 1 (pouze s DateTime payload) je 919 bajtů. Většina velikostí zprávy 1 se současným ratchet má payload menší než 816 bajtů, takže mohou být klasifikovány jako non-hybrid ratchet. Velké zprávy jsou pravděpodobně POST požadavky, které jsou vzácné.
-
 - Více než jeden MLKEM
 - ElG + jeden nebo více MLKEM
 - X25519 + jeden nebo více MLKEM
 - ElG + X25519 + jeden nebo více MLKEM
+
+Automatická klasifikace/detekce více protokolů na stejných tunnelech by měla být možná na základě kontroly délky zprávy 1 (New Session Message). Použitím MLKEM512_X25519 jako příkladu je zpráva 1 o 816 bajtů delší než současný ratchet protokol a minimální velikost zprávy 1 (pouze s DateTime payload) je 919 bajtů. Většina velikostí zprávy 1 se současným ratchet má payload menší než 816 bajtů, takže mohou být klasifikovány jako non-hybrid ratchet. Velké zprávy jsou pravděpodobně POST požadavky, které jsou vzácné.
+
+- Výběr Noise Hash - zůstat s SHA256 nebo upgradovat?
+  SHA256 by měl být dobrý na dalších 20-30 let, není ohrožen PQ,
+  Viz [prezentace NIST](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf) a [prezentace NCCOE](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf).
+  Pokud by byl SHA256 prolomen, měli bychom horší problémy (netDb).
+- NTCP2 samostatný port, samostatná adresa router
+- SSU2 relay / peer test
+- SSU2 pole verze
+- SSU2 verze adresy router
 
 Doporučená strategie je tedy:
 
@@ -1576,7 +1584,7 @@ Následující kombinace mohou být složité a NENÍ vyžadováno, aby byly pod
 
 Možná se nebudeme pokoušet podporovat více MLKEM algoritmů (například MLKEM512_X25519 a MLKEM_768_X25519) na stejné destinaci. Vyberte pouze jeden; to však závisí na tom, že vybereme preferovanou MLKEM variantu, aby ji mohly používat HTTP klientské tunnely. Závisí na implementaci.
 
-#### Forward Secrecy
+#### Velikost nové relace
 
 MŮŽEME se pokusit podporovat tři algoritmy (například X25519, MLKEM512_X25519 a MLKEM769_X25519) na stejné destinaci. Klasifikace a strategie opakování může být příliš složitá. Konfigurace a konfigurační UI může být příliš složité. Závisí na implementaci.
 
@@ -1584,7 +1592,7 @@ MŮŽEME se pokusit podporovat tři algoritmy (například X25519, MLKEM512_X255
 
 Pravděpodobně se NEBUDEME pokoušet podporovat algoritmy ElGamal a hybrid na stejné destinaci. ElGamal je zastaralý a ElGamal + hybrid pouze (bez X25519) nedává příliš smysl. Také ElGamal i Hybrid New Session Messages jsou obě velké, takže strategie klasifikace by často musely zkoušet obě dešifrování, což by bylo neefektivní. Závisí na implementaci.
 
-#### Velikost nové relace
+#### Obfuskace
 
 Klienti mohou používat stejné nebo různé X25519 statické klíče pro X25519 a hybridní protokoly na stejných tunelech, závisí na implementaci.
 

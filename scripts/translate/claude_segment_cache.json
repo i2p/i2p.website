@@ -662,7 +662,7 @@
           }
         }
       },
-      "file_hash": "fe7f7a745baf48712d4c60cceaef4387d089618cbb716eb81ddf5682d5773bfd"
+      "file_hash": "7a64e29e35a0480836277977add3ec017cd5cdfebf67aa80a084919bab04aa0b"
     },
     "en/blog/2002-05-29-i2p-dev-meeting.md": {
       "segments": {
@@ -5754,20 +5754,20 @@
           }
         },
         "table_019": {
-          "source_hash": "6adfd9f0bd0ec96c",
+          "source_hash": "bb329bb6728be2cc",
           "translations": {
-            "ko": "| Type | Type Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |",
-            "ru": "| Тип | Код типа | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |",
-            "cs": "| Typ | Kód typu | Y délka | Msg 2 délka | Msg 2 Enc délka | Msg 2 Dec délka | PQ CT délka | opt délka |\n|-----|----------|---------|-------------|-----------------|-----------------|-------------|-----------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |",
-            "de": "| Typ | Typ Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |",
-            "fr": "| Type | Code Type | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |",
-            "tr": "| Tip | Tip Kodu | Y uzunluğu | Msg 2 uzunluğu | Msg 2 Şif uzunluğu | Msg 2 Çöz uzunluğu | PQ CT uzunluğu | seç uzunluğu |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |",
-            "zh": "| 类型 | 类型代码 | Y 长度 | 消息 2 长度 | 消息 2 加密长度 | 消息 2 解密长度 | PQ CT 长度 | 可选长度 |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |",
-            "ar": "| النوع | كود النوع | طول Y | طول الرسالة 2 | طول الرسالة 2 المشفرة | طول الرسالة 2 المفكوكة | طول PQ CT | طول opt |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |",
-            "pt": "| Tipo | Código do Tipo | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |\n|------|----------------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |",
-            "es": "| Tipo | Código de Tipo | Longitud Y | Longitud Msg 2 | Longitud Msg 2 Enc | Longitud Msg 2 Dec | Longitud PQ CT | Longitud opt |\n|------|----------------|------------|----------------|--------------------|--------------------|----------------|--------------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |",
-            "hi": "| प्रकार | प्रकार कोड | Y लंबाई | संदेश 2 लंबाई | संदेश 2 एन्क्रिप्टेड लंबाई | संदेश 2 डिक्रिप्टेड लंबाई | PQ CT लंबाई | वैकल्पिक लंबाई |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+pad | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+pad | 1584 | 1584 | 1568 | 16 |",
-            "vi": "| Loại | Mã loại | Độ dài Y | Độ dài Msg 2 | Độ dài Msg 2 đã mã hóa | Độ dài Msg 2 đã giải mã | Độ dài CT PQ | Độ dài tùy chọn |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+đệm | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+đệm | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1136+đệm | 1104 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1616+đệm | 1584 | 1584 | 1568 | 16 |"
+            "vi": "| Loại | Mã loại | Độ dài Y | Độ dài Msg 2 | Độ dài Msg 2 đã mã hóa | Độ dài Msg 2 đã giải mã | Độ dài bản mã PQ | Độ dài tùy chọn |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |",
+            "tr": "| Tip | Tip Kodu | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | opt len |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |",
+            "cs": "| Typ | Kód typu | Délka Y | Délka Msg 2 | Délka Enc Msg 2 | Délka Dec Msg 2 | Délka PQ CT | Délka opt |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |",
+            "hi": "| प्रकार | प्रकार कोड | Y लंबाई | Msg 2 लंबाई | Msg 2 Enc लंबाई | Msg 2 Dec लंबाई | PQ CT लंबाई | opt लंबाई |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |",
+            "zh": "| 类型 | 类型代码 | Y 长度 | 消息 2 长度 | 消息 2 加密长度 | 消息 2 解密长度 | PQ CT 长度 | opt 长度 |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |",
+            "de": "| Typ | Typ-Code | Y-Länge | Nachricht-2-Länge | Nachricht-2-Enc-Länge | Nachricht-2-Dec-Länge | PQ-CT-Länge | opt-Länge |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |",
+            "pt": "| Tipo | Código do tipo | Comprimento Y | Comprimento Msg 2 | Comprimento Msg 2 Enc | Comprimento Msg 2 Dec | Comprimento PQ CT | Comprimento opt |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |",
+            "ko": "| 유형 | 유형 코드 | Y 길이 | Msg 2 길이 | Msg 2 Enc 길이 | Msg 2 Dec 길이 | PQ CT 길이 | opt 길이 |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |",
+            "ru": "| Тип | Код типа | Длина Y | Длина Msg 2 | Длина Msg 2 Enc | Длина Msg 2 Dec | Длина PQ CT | Длина opt |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |",
+            "ar": "| النوع | رمز النوع | طول Y | طول Msg 2 | طول Msg 2 المشفّر | طول Msg 2 المفكوك | طول PQ CT | طول opt |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |",
+            "fr": "| Type | Code de type | Longueur Y | Longueur Msg 2 | Longueur Msg 2 enc | Longueur Msg 2 déc | Longueur PQ CT | Longueur opt |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |",
+            "es": "| Tipo | Código de tipo | Long. Y | Long. Msg 2 | Long. Msg 2 Enc | Long. Msg 2 Dec | Long. PQ CT | Long. opt |\n|------|-----------|-------|-----------|---------------|---------------|-----------|---------|\n| X25519 | 4 | 32 | 64+pad | 32 | 16 | -- | 16 |\n| MLKEM512_X25519 | 5 | 32 | 848+pad | 816 | 784 | 768 | 16 |\n| MLKEM768_X25519 | 6 | 32 | 1168+pad | 1136 | 1104 | 1088 | 16 |\n| MLKEM1024_X25519 | 7 | 32 | 1648+pad | 1616 | 1584 | 1568 | 16 |"
           }
         },
         "p_106": {
@@ -5885,20 +5885,9 @@
           }
         },
         "p_110": {
-          "source_hash": "bcc294710a5cfe51",
+          "source_hash": "f509f5d447c571a0",
           "translations": {
-            "ko": "비-PQ, 비-방화벽과 동일한 주소/포트를 사용합니다. 하나의 PQ 변형만 지원됩니다. router 주소에서 v=2(평소와 같이)와 MLKEM 512/768/1024를 나타내는 새로운 매개변수 pq=[3|4|5]를 게시합니다. Alice는 세션 요청에서 임시 키의 MSB(key[31] & 0x80)를 설정하여 이것이 하이브리드 연결임을 나타냅니다. 위 내용을 참조하세요. 구 버전 router들은 pq 매개변수를 무시하고 평소와 같이 비-PQ로 연결합니다.",
-            "ru": "Различные адреса/порты как не-PQ, или только PQ, без файрвола НЕ поддерживаются. Это не будет реализовано до тех пор, пока не будет отключен не-PQ NTCP2, что произойдет через несколько лет. Когда не-PQ будет отключен, могут поддерживаться несколько вариантов PQ, но только один на адрес. В адресе router публикуется v=[3|4|5] для указания MLKEM 512/768/1024. Alice не устанавливает MSB эфемерного ключа. Старые router будут проверять параметр v и пропускать этот адрес как неподдерживаемый.",
-            "cs": "Jiná adresa/port než non-PQ, nebo pouze PQ, bez firewallu NENÍ podporováno. Toto nebude implementováno dokud nebude zakázáno non-PQ NTCP2, což bude za několik let. Když bude non-PQ zakázáno, může být podporováno více PQ variant, ale pouze jedna na adresu. V adrese routeru publikujte v=[3|4|5] pro označení MLKEM 512/768/1024. Alice nenastavuje MSB dočasného klíče. Starší routery zkontrolují parametr v a přeskočí tuto adresu jako nepodporovanou.",
-            "de": "Unterschiedliche Adresse/Port als nicht-PQ, oder nur-PQ, nicht-firewalled wird NICHT unterstützt. Dies wird nicht implementiert, bis nicht-PQ NTCP2 deaktiviert wird, was noch mehrere Jahre dauern wird. Wenn nicht-PQ deaktiviert ist, können mehrere PQ-Varianten unterstützt werden, aber nur eine pro Adresse. In der router-Adresse, veröffentliche v=[3|4|5] um MLKEM 512/768/1024 anzuzeigen. Alice setzt nicht das MSB des ephemeral key. Ältere router werden den v-Parameter prüfen und diese Adresse als nicht unterstützt überspringen.",
-            "fr": "Une adresse/port différente en tant que non-PQ, ou PQ uniquement, non-firewallé n'est PAS prise en charge. Ceci ne sera pas implémenté tant que NTCP2 non-PQ ne sera pas désactivé, dans plusieurs années. Lorsque le non-PQ sera désactivé, plusieurs variantes PQ pourront être prises en charge, mais seulement une par adresse. Dans l'adresse du router, publier v=[3|4|5] pour indiquer MLKEM 512/768/1024. Alice ne définit pas le MSB de la clé éphémère. Les anciens routers vérifieront le paramètre v et ignoreront cette adresse comme non prise en charge.",
-            "tr": "PQ olmayan ile farklı adres/port veya yalnızca PQ, güvenlik duvarı olmayan desteklenmiyor. Bu, PQ olmayan NTCP2 devre dışı bırakılana kadar, şu andan birkaç yıl sonrasına kadar uygulanmayacak. PQ olmayan devre dışı bırakıldığında, birden fazla PQ varyantı desteklenebilir, ancak adres başına yalnızca bir tane. Router adresinde, MLKEM 512/768/1024'ü belirtmek için v=[3|4|5] yayınla. Alice, geçici anahtarın MSB'sini ayarlamaz. Eski router'lar v parametresini kontrol edecek ve bu adresi desteklenmeyen olarak atlayacak.",
-            "zh": "不支持与非PQ使用不同的地址/端口，或仅支持PQ的非防火墙配置。这将不会实施，直到非PQ NTCP2被禁用，即从现在起的几年后。当非PQ被禁用时，可能会支持多个PQ变体，但每个地址只能有一个。在router地址中，发布v=[3|4|5]来表示MLKEM 512/768/1024。Alice不设置临时密钥的MSB。较旧的router会检查v参数并跳过此地址，因为不支持。",
-            "ar": "عنوان/منفذ مختلف عن غير-PQ، أو PQ فقط، غير محجوب بجدار الحماية غير مدعوم. لن يتم تنفيذ هذا حتى يتم تعطيل NTCP2 غير-PQ، بعد عدة سنوات من الآن. عندما يتم تعطيل غير-PQ، قد يتم دعم متغيرات PQ متعددة، ولكن واحد فقط لكل عنوان. في عنوان الـ router، انشر v=[3|4|5] للإشارة إلى MLKEM 512/768/1024. Alice لا تضع MSB للمفتاح المؤقت. الـ routers الأقدم ستتحقق من معامل v وتتجاوز هذا العنوان كغير مدعوم.",
-            "pt": "Endereço/porta diferentes como não-PQ, ou apenas PQ, não-firewall NÃO é suportado. Isso não será implementado até que o NTCP2 não-PQ seja desabilitado, daqui a vários anos. Quando o não-PQ for desabilitado, múltiplas variantes PQ podem ser suportadas, mas apenas uma por endereço. No endereço do router, publique v=[3|4|5] para indicar MLKEM 512/768/1024. Alice não define o MSB da chave efêmera. Routers mais antigos verificarão o parâmetro v e pularão este endereço como não suportado.",
-            "es": "No se admite una dirección/puerto diferente a los no-PQ, ni PQ exclusivo sin firewall. Esto no se implementará hasta que se deshabilite NTCP2 no-PQ, lo cual ocurrirá en varios años. Cuando se deshabilite el modo no-PQ, podrían admitirse múltiples variantes PQ, pero solo una por dirección. En la dirección del router, se publica v=[3|4|5] para indicar MLKEM 512/768/1024. Alice no establece el MSB de la clave efímera. Los routers más antiguos verificarán el parámetro v y omitirán esta dirección por no ser compatible.",
-            "hi": "गैर-पीक्यू, गैर-फायरवॉल वाले के समान ही पता/पोर्ट का उपयोग करें। केवल एक पीक्यू संस्करण समर्थित है। राउटर पते में, एमएलकेकेएम 512/768/1024 को इंगित करने के लिए v=2 (सामान्य रूप से) और नया पैरामीटर pq=[3|4|5] प्रकाशित करें। एलिस सत्र अनुरोध में अस्थायी कुंजी के एमएसबी (key[31] & 0x80) को सेट करती है ताकि यह इंगित किया जा सके कि यह एक संकर कनेक्शन है। ऊपर देखें। पुराने राउटर pq पैरामीटर को अनदेखा कर देंगे और सामान्य रूप से गैर-पीक्यू के रूप में कनेक्ट हो जाएंगे।",
-            "vi": "Sử dụng cùng địa chỉ/cổng như chế độ không PQ, không bị tường lửa. Chỉ hỗ trợ một biến thể PQ. Trong địa chỉ router, công bố v=2 (như thông thường) và tham số mới pq=[3|4|5] để chỉ định MLKEM 512/768/1024. Alice đặt bit MSB của khóa tạm thời (key[31] & 0x80) trong yêu cầu phiên để cho biết đây là kết nối lai (hybrid). Xem phần trên. Các router cũ hơn sẽ bỏ qua tham số pq và kết nối theo chế độ không PQ như thông thường."
+            "es": "Datos sin cifrar (etiqueta de autenticación Poly1305 no mostrada):"
           }
         },
         "p_111": {
@@ -6004,20 +5993,9 @@
           }
         },
         "p_116": {
-          "source_hash": "b310d72671ecc826",
+          "source_hash": "bcc294710a5cfe51",
           "translations": {
-            "ko": "정의된 메시지 크기를 최대 패딩으로 사용합니다. 즉, 최대 패딩은 다음과 같이 메시지 크기를 두 배로 만듭니다:",
-            "ru": "Обновите спецификацию SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) следующим образом:",
-            "cs": "Aktualizujte specifikaci SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) následovně:",
-            "de": "Aktualisieren Sie die SSU2-Spezifikation [/docs/specs/ssu2/](/docs/specs/ssu2/) wie folgt:",
-            "fr": "Mettre à jour la spécification SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) comme suit :",
-            "tr": "SSU2 spesifikasyonunu [/docs/specs/ssu2/](/docs/specs/ssu2/) aşağıdaki gibi güncelleyin:",
-            "zh": "按以下方式更新 SSU2 规范 [/docs/specs/ssu2/](/docs/specs/ssu2/)：",
-            "ar": "حدث مواصفات SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) كما يلي:",
-            "pt": "Atualize a especificação SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) da seguinte forma:",
-            "es": "Actualizar la especificación SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) de la siguiente manera:",
-            "hi": "पीक्यू कनेक्शन के लिए संदेश आकार को अधिकतम पैडिंग के रूप में परिभाषित करें, अर्थात अधिकतम पैडिंग संदेश आकार को दोगुना कर देगी, निम्नानुसार:",
-            "vi": "Sử dụng kích thước tin nhắn đã xác định làm độ đệm tối đa, nghĩa là, độ đệm tối đa sẽ gấp đôi kích thước tin nhắn đối với các kết nối PQ, như sau:"
+            "es": "Utilice la misma dirección/puerto que para una conexión no PQ y sin firewall. Solo se admite una variante PQ. En la dirección del router, publique v=2 (como de costumbre) y el nuevo parámetro pq=[3|4|5] para indicar MLKEM 512/768/1024. Alice establece el MSB de la clave efímera (key[31] & 0x80) en la solicitud de sesión para indicar que se trata de una conexión híbrida. Véase arriba. Los routers más antiguos ignorarán el parámetro pq y se conectarán como no PQ de la forma habitual."
           }
         },
         "table_020": {
@@ -6225,20 +6203,9 @@
           }
         },
         "p_122": {
-          "source_hash": "b1d381764ad97aaf",
+          "source_hash": "b310d72671ecc826",
           "translations": {
-            "ko": "논의: 모든 메시지 유형에 대해 버전 필드를 3 또는 4로 설정하는 것이 엄격히 필요하지 않을 수 있지만, 이렇게 하면 지원되지 않는 포스트 퀀텀 연결에 대한 초기 실패 감지에 도움이 됩니다. Token Request 및 Retry (유형 9와 10)는 일관성을 위해 버전 3/4를 가져야 합니다. Hole Punch 메시지 (유형 11)는 이러한 처리가 필요하지 않을 수 있지만 균일성을 위해 동일한 패턴을 따르겠습니다. Peer Test 메시지 (유형 7)는 세션 외부에서 사용되며 세션 시작 의도를 나타내지 않습니다.",
-            "ru": "Перед шифрованием заголовка:",
-            "cs": "Před šifrováním hlavičky:",
-            "de": "Vor der Header-Verschlüsselung:",
-            "fr": "Avant le chiffrement de l'en-tête :",
-            "tr": "Header şifrelemesinden önce:",
-            "zh": "在头部加密之前：",
-            "ar": "قبل تشفير الرأس:",
-            "pt": "Antes da criptografia do cabeçalho:",
-            "es": "Antes del cifrado de encabezado:",
-            "hi": "चर्चा: सभी संदेश प्रकारों के लिए संस्करण फ़ील्ड को 3 या 4 पर सेट करना जरूरी नहीं हो सकता, लेकिन इससे क्वांटम के बाद के असमर्थित कनेक्शन के लिए जल्दी विफलता का पता लगाने में मदद मिलती है। सुसंगतता के लिए टोकन अनुरोध और पुनः प्रयास (प्रकार 9 और 10) के संस्करण 3/4 होने चाहिए। होल पंच संदेशों (प्रकार 11) के लिए इस व्यवहार की आवश्यकता नहीं हो सकती, लेकिन एकरूपता के लिए हम इसी पैटर्न का पालन करेंगे। पीयर परीक्षण संदेश (प्रकार 7) सत्र के बाहर होता है और सत्र आरंभ करने के इरादे को इंगित नहीं करता।",
-            "vi": "Thảo luận: Việc thiết lập trường phiên bản thành 3 hoặc 4 có thể không bắt buộc đối với tất cả các loại tin nhắn, nhưng việc này hỗ trợ phát hiện lỗi sớm hơn đối với các kết nối hậu lượng tử không được hỗ trợ. Các tin nhắn Yêu cầu Token và Thử lại (loại 9 và 10) nên có phiên bản 3/4 để đảm bảo tính nhất quán. Các tin nhắn Hole Punch (loại 11) có thể không cần áp dụng cách này, nhưng chúng ta sẽ tuân theo cùng một mẫu để đảm bảo tính đồng nhất. Tin nhắn Kiểm thử ngang hàng (loại 7) nằm ngoài phiên và không thể hiện ý định khởi tạo phiên."
+            "es": "Utilice el tamaño de mensaje definido como el padding máximo, es decir, el padding máximo duplicará el tamaño del mensaje para conexiones PQ, de la siguiente manera:"
           }
         },
         "p_123": {
@@ -6409,18 +6376,9 @@
           }
         },
         "p_130": {
-          "source_hash": "b76186917beb93e9",
+          "source_hash": "4ffecba61ccdea5c",
           "translations": {
-            "ko": "참고: 타입 코드는 내부 사용 전용입니다. Router는 타입 4를 유지하며, 지원 여부는 router 주소에서 표시됩니다.",
-            "ru": "Минимальный MTU для MLKEM768_X25519: Около 1316 для IPv4 и 1336 для IPv6.",
-            "cs": "Minimální MTU pro MLKEM768_X25519: Přibližně 1316 pro IPv4 a 1336 pro IPv6.",
-            "de": "Mindest-MTU für MLKEM768_X25519: Etwa 1316 für IPv4 und 1336 für IPv6.",
-            "fr": "MTU minimum pour MLKEM768_X25519 : Environ 1316 pour IPv4 et 1336 pour IPv6.",
-            "tr": "MLKEM768_X25519 için minimum MTU: IPv4 için yaklaşık 1316 ve IPv6 için 1336.",
-            "zh": "MLKEM768_X25519 的最小 MTU：IPv4 为 1318，IPv6 为 1338。见下文。",
-            "ar": "الحد الأدنى لـ MTU لـ MLKEM768_X25519: 1318 لـ IPv4 و 1338 لـ IPv6. انظر أدناه.",
-            "pt": "MTU mínimo para MLKEM768_X25519: 1318 para IPv4 e 1338 para IPv6. Veja abaixo.",
-            "es": "MTU mínimo para MLKEM768_X25519: 1318 para IPv4 y 1338 para IPv6. Ver más abajo."
+            "es": "Antes del cifrado de cabeceras:"
           }
         },
         "p_131": {
@@ -6585,18 +6543,9 @@
           }
         },
         "p_138": {
-          "source_hash": "aaa8d3c8d74ad3e8",
+          "source_hash": "b76186917beb93e9",
           "translations": {
-            "ko": "변경되지 않음",
-            "ru": "неизменный",
-            "cs": "nezměněno",
-            "de": "unverändert",
-            "fr": "inchangé",
-            "tr": "değişmemiş",
-            "zh": "unchanged",
-            "ar": "لم يتغير",
-            "pt": "inalterado",
-            "es": "MTU mínimo para MLKEM768_X25519: 1318 para IPv4 y 1338 para IPv6. Ver más abajo."
+            "es": "MTU mínimo para MLKEM768_X25519: 1318 para IPv4 y 1338 para IPv6. Véase más abajo."
           }
         },
         "h4_026": {
@@ -6985,20 +6934,9 @@
           }
         },
         "p_154": {
-          "source_hash": "80a52b8898186534",
+          "source_hash": "9d8e77c854655247",
           "translations": {
-            "ko": "Destination 크기에 대한 지침을 제공하는 다른 문서들을 업데이트하세요:",
-            "ru": "Для PQ-only подписей SU3 файлов используйте OID, определенные в [черновике IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) для вариантов без предварительного хеширования для сертификатов. Мы не определяем гибридные подписи SU3 файлов, поскольку нам может потребоваться хешировать файлы дважды (хотя HashML-DSA и X2559 используют одну и ту же хеш-функцию SHA512). Кроме того, объединение двух ключей и подписей в сертификате X.509 было бы полностью нестандартным.",
-            "cs": "Pro PQ-only podpisy souborů SU3 použijte OID definované v [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) pro varianty bez prehash pro certifikáty. Nedefinujeme hybridní podpisy souborů SU3, protože bychom možná museli soubory hashovat dvakrát (ačkoli HashML-DSA a X2559 používají stejnou hash funkci SHA512). Také by zřetězení dvou klíčů a podpisů v X.509 certifikátu bylo zcela nestandardní.",
-            "de": "Für reine PQ-Signaturen von SU3-Dateien verwenden Sie die OIDs, die im [IETF-Entwurf](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) der Non-Prehash-Varianten für die Zertifikate definiert sind. Wir definieren keine hybriden Signaturen von SU3-Dateien, da wir die Dateien möglicherweise zweimal hashen müssten (obwohl HashML-DSA und X2559 dieselbe Hash-Funktion SHA512 verwenden). Außerdem wäre das Verketten von zwei Schlüsseln und Signaturen in einem X.509-Zertifikat völlig nicht-standardkonform.",
-            "fr": "Pour les signatures PQ uniquement des fichiers SU3, utilisez les OID définis dans le [brouillon IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) des variantes sans pré-hachage pour les certificats. Nous ne définissons pas de signatures hybrides des fichiers SU3, car nous pourrions devoir hacher les fichiers deux fois (bien que HashML-DSA et X2559 utilisent la même fonction de hachage SHA512). De plus, concaténer deux clés et signatures dans un certificat X.509 serait complètement non standard.",
-            "tr": "SU3 dosyalarının PQ-only imzaları için, sertifikalarda non-prehash varyantların [IETF taslağında](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) tanımlanan OID'leri kullanın. SU3 dosyalarının hibrit imzalarını tanımlamıyoruz, çünkü dosyaları iki kez hash'lememiz gerekebilir (HashML-DSA ve X2559 aynı hash fonksiyonu SHA512'yi kullanmasına rağmen). Ayrıca, bir X.509 sertifikasında iki anahtarı ve imzayı birleştirmek tamamen standart dışı olurdu.",
-            "zh": "对于SU3文件的仅PQ签名，使用[IETF草案](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)中为证书定义的非预哈希变体OID。我们不定义SU3文件的混合签名，因为我们可能需要对文件进行两次哈希处理（尽管HashML-DSA和X2559使用相同的哈希函数SHA512）。此外，在X.509证书中连接两个密钥和签名将是完全非标准的。",
-            "ar": "بالنسبة للتوقيعات PQ-only لملفات SU3، استخدم معرفات الكائنات (OIDs) المحددة في [مسودة IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) للمتغيرات غير المُجمّعة مسبقاً للشهادات. نحن لا نحدد التوقيعات الهجينة لملفات SU3، لأننا قد نضطر إلى تجميع الملفات مرتين (رغم أن HashML-DSA و X2559 يستخدمان نفس دالة التجميع SHA512). أيضاً، تسلسل مفتاحين وتوقيعين في شهادة X.509 سيكون غير معياري تماماً.",
-            "pt": "Atualize outros documentos que fornecem orientação sobre tamanhos de Destination, incluindo:",
-            "es": "Actualizar otros documentos que ofrecen orientación sobre los tamaños de Destination, incluyendo:",
-            "hi": "नए अधिकतम गंतव्य आकार 2599 होगा (आधार 64 में 3468)।",
-            "vi": "Kích thước Destination tối đa mới sẽ là 2599 (3468 ở cơ số 64)."
+            "es": "Direcciones con firewall (sin IP publicada): En la dirección del router, publique v=2 (como de costumbre). El parámetro pq DEBE publicarse en las direcciones con firewall, para admitir relay."
           }
         },
         "p_155": {
@@ -7235,18 +7173,9 @@
           }
         },
         "p_163": {
-          "source_hash": "cc0f39fedf797d3a",
+          "source_hash": "80a52b8898186534",
           "translations": {
-            "ko": "Java에서의 예비 테스트 결과:",
-            "ru": "Размер:",
-            "cs": "Velikost:",
-            "de": "Größe:",
-            "fr": "Taille :",
-            "tr": "Boyut:",
-            "zh": "大小：",
-            "ar": "الحجم:",
-            "pt": "Resultados preliminares de teste em Java:",
-            "es": "Tamaño:"
+            "es": "El nuevo tamaño máximo de Destination será 2599 (3468 en base 64)."
           }
         },
         "table_025": {
@@ -8854,20 +8783,9 @@
           }
         },
         "p_219": {
-          "source_hash": "349c5b744d83ef0f",
+          "source_hash": "c9f7c5150e0372ee",
           "translations": {
-            "ko": "같은 터널에서 기존 ratchet 프로토콜과 새로운 ratchet 프로토콜을 모두 지원할 수 없다면, 마이그레이션이 훨씬 더 어려워질 것입니다.",
-            "ru": "Наиболее тревожная модель угроз PQ (постквантовой криптографии) на данный момент — это сохранение трафика сегодня для расшифровки через много лет (прямая секретность). Гибридный подход защитил бы от этого.",
-            "cs": "Nejznepokojivějším modelem hrozby PQ v současnosti je ukládání provozu dnes za účelem dešifrování za mnoho let (forward secrecy). Hybridní přístup by proti tomu poskytl ochranu.",
-            "de": "Das derzeit besorgniserregendste PQ-Bedrohungsmodell ist die Speicherung von Datenverkehr heute zur Entschlüsselung in vielen Jahren (Forward Secrecy). Ein hybrider Ansatz würde davor schützen.",
-            "fr": "Le modèle de menace PQ le plus préoccupant actuellement est le stockage du trafic aujourd'hui, pour un déchiffrement dans de nombreuses années (confidentialité persistante). Une approche hybride protégerait contre cela.",
-            "tr": "Şu anda en endişe verici PQ tehdit modeli, trafiği bugün depolayıp bundan yıllar sonra şifresini çözmek (ileri gizlilik). Hibrit bir yaklaşım bunu koruyabilir.",
-            "zh": "目前最令人担忧的后量子威胁模型是存储今天的流量，以便在很多年后进行解密（前向保密）。混合方法可以防范这种威胁。",
-            "ar": "نموذج التهديد الأكثر إثارة للقلق في الحوسبة الكمية (PQ) الآن هو تخزين حركة البيانات اليوم، لفك تشفيرها بعد سنوات عديدة من الآن (السرية المستقبلية). النهج المختلط سيوفر الحماية من ذلك.",
-            "pt": "Se não conseguirmos suportar os protocolos ratchet antigos e novos nos mesmos tunnels, a migração será muito mais difícil.",
-            "es": "Si no podemos admitir los protocolos ratchet antiguo y nuevo en los mismos tunnels, la migración será mucho más difícil.",
-            "hi": "हस्ताक्षर रोलआउट एन्क्रिप्शन रोलआउट की तुलना में एक या अधिक वर्ष बाद होगा, क्योंकि पीछे की ओर संगतता संभव नहीं है। साथ ही, उद्योग में MLDSA को अपनाने को CA/ब्राउज़र फोरम और प्रमाणपत्र अधिकरण (Certificate Authorities) द्वारा मानकीकृत किया जाएगा। प्रमाणपत्र अधिकरणों को पहले हार्डवेयर सुरक्षा मॉड्यूल (HSM) समर्थन की आवश्यकता है, जो वर्तमान में उपलब्ध नहीं है [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)। हम उम्मीद करते हैं कि विशिष्ट पैरामीटर चयन पर निर्णय लेने में CA/ब्राउज़र फोरम की अगुवाई होगी, जिसमें संयुक्त हस्ताक्षरों का समर्थन करने या आवश्यक करने सहित [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)।",
-            "vi": "Việc triển khai chữ ký sẽ diễn ra muộn hơn việc triển khai mã hóa khoảng một năm hoặc hơn, vì không thể tương thích ngược. Ngoài ra, việc áp dụng MLDSA trong ngành sẽ được chuẩn hóa bởi Diễn đàn CA/TRình duyệt (CA/Browser Forum) và các Cơ quan Chứng thực (Certificate Authorities). Các CA cần hỗ trợ từ mô-đun bảo mật phần cứng (HSM) trước tiên, điều này hiện chưa khả dụng [CA/Browser Forum](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/). Chúng tôi kỳ vọng Diễn đàn CA/TRình duyệt sẽ dẫn dắt các quyết định về lựa chọn thông số cụ thể, bao gồm việc có hỗ trợ hoặc yêu cầu chữ ký tổ hợp hay không [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)."
+            "es": "Los routers verifican las firmas de leaseSet y, por lo tanto, no pueden conectarse ni recibir leaseSets para destinos de tipo 12-17. Se necesitarían varios ciclos de lanzamiento para depurar y asegurar el soporte antes de habilitarlo por defecto."
           }
         },
         "p_220": {
@@ -9121,7 +9039,16 @@
           "translations": {
             "vi": "Kích thước phiên mới",
             "hi": "नया सत्र आकार",
-            "es": "Tamaño de nueva sesión"
+            "es": "Tamaño de nueva sesión",
+            "tr": "Yeni Oturum Boyutu",
+            "cs": "Velikost nové relace",
+            "zh": "新会话大小",
+            "de": "Größe der neuen Sitzung",
+            "pt": "Tamanho da Nova Sessão",
+            "ko": "새 세션 크기",
+            "ru": "Размер новой сессии",
+            "ar": "حجم الجلسة الجديدة",
+            "fr": "Taille de la nouvelle session"
           }
         },
         "p_229": {
@@ -9152,11 +9079,20 @@
           "translations": {
             "vi": "Ẩn giấu",
             "hi": "विकृतिकरण",
-            "es": "Ofuscación"
+            "es": "Ofuscación",
+            "tr": "Gizleme",
+            "cs": "Obfuskace",
+            "zh": "混淆",
+            "de": "Verschleierung",
+            "pt": "Ofuscação",
+            "ko": "난독화",
+            "ru": "Обфускация",
+            "ar": "التعتيم",
+            "fr": "Obfuscation"
           }
         }
       },
-      "file_hash": "814bd655e32ea6225945f65f663db4004bbdf3b33cec8343913b321727118f90"
+      "file_hash": "02167f8892d9f91ce464274d3edc461c5a7b1c1ff8d33e26478455b41d64843e"
     },
     "en/docs/api/samv3.md": {
       "segments": {
@@ -16028,7 +15964,7 @@
           }
         }
       },
-      "file_hash": "50053cd2da6e42b918957fbf9de6083cc4951c99c15b09f9fa55e04b38d6487c"
+      "file_hash": "74b25342f128fa5ee2d5ad59dccf5eca6d2d9ee79b433e06174cc4931ab6f8b0"
     },
     "en/docs/specs/ntcp2.md": {
       "segments": {

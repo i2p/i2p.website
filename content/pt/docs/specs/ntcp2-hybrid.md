@@ -2,9 +2,9 @@
 title: "PQ Hybrid NTCP2"
 description: "Variante híbrida pós-quântica do protocolo de transporte NTCP2 usando ML-KEM"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "Transportes"
-accurateFor: "0.9.69"
+accurateFor: "0.9.71"
 ---
 
 ### Estado
@@ -21,7 +21,7 @@ Esta especificação documenta apenas as mudanças necessárias ao NTCP2 padrão
 
 ## Design
 
-Nós apoiamos o padrão NIST FIPS 203 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf), que é baseado, mas NÃO compatível com, CRYSTALS-Kyber.
+Nós suportamos os padrões NIST FIPS 203 e 204 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf) que são baseados em, mas NÃO compatíveis com, CRYSTALS-Kyber e CRYSTALS-Dilithium (versões 3.1, 3 e anteriores).
 
 ### Troca de Chaves
 
@@ -543,8 +543,8 @@ Tamanhos:
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1136+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1104</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1168+pad</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1104</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1088</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
@@ -553,8 +553,8 @@ Tamanhos:
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1616+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1584</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1648+pad</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1584</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
@@ -612,8 +612,8 @@ Aumento de tamanho (bytes):
 <td style="border: 1px solid var(--color-border); padding: 8px;">256</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">848</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">848</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1168</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1648</td>
 </tr>
 </table>
 ## Análise de Sobrecarga
@@ -726,12 +726,18 @@ Em todos os casos, use o nome de transporte NTCP2 como de costume. Routers mais 
 
 ## Referências
 
+* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
 * [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
 * [COMMON](/docs/specs/common-structures/)
+* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
 * [ECIES](/docs/specs/ecies/)
 * [FORUM](http://zzz.i2p/topics/3294)
 * [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 * [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
+* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
 * [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
 * [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
 * [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)

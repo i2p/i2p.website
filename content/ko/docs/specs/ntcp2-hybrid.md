@@ -2,9 +2,9 @@
 title: "PQ 하이브리드 NTCP2"
 description: "ML-KEM을 사용한 NTCP2 전송 프로토콜의 양자 내성 하이브리드 변형"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "전송 계층"
-accurateFor: "0.9.69"
+accurateFor: "0.9.71"
 ---
 
 ### 상태
@@ -21,7 +21,7 @@ PQ Hybrid NTCP2는 표준 NTCP2와 동일한 주소 및 포트에서만 정의�
 
 ## 설계
 
-우리는 CRYSTALS-Kyber를 기반으로 하지만 CRYSTALS-Kyber와는 호환되지 않는 NIST FIPS 203 표준 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)을 지원합니다.
+우리는 CRYSTALS-Kyber 및 CRYSTALS-Dilithium(버전 3.1, 3 및 이전 버전)을 기반으로 하지만 이와 호환되지 않는 NIST FIPS 203 및 204 표준 [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf) [FIPS 204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)을 지원합니다.
 
 ### 키 교환
 
@@ -543,8 +543,8 @@ Bob의 경우, X에 대한 AES 역난독화(de-obfuscation) 이후 X[31] & 0x80�
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1136+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1104</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1168+pad</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1104</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1088</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
@@ -553,8 +553,8 @@ Bob의 경우, X에 대한 AES 역난독화(de-obfuscation) 이후 X[31] & 0x80�
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1616+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1584</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1648+pad</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1584</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
@@ -612,8 +612,8 @@ API 0.9.68 (릴리스 2.11.0)까지 Java I2P는 비-PQ 연결에 대해 최대 2
 <td style="border: 1px solid var(--color-border); padding: 8px;">256</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">848</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">848</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1168</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1648</td>
 </tr>
 </table>
 ## 오버헤드 분석
@@ -726,12 +726,18 @@ NTCP2-PQ에 필요한 최소 라우터 버전은 아직 결정되지 않았습�
 
 ## 참고 자료
 
+* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
 * [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
 * [COMMON](/docs/specs/common-structures/)
+* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
 * [ECIES](/docs/specs/ecies/)
 * [FORUM](http://zzz.i2p/topics/3294)
 * [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
 * [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
+* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
 * [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
 * [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
 * [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
