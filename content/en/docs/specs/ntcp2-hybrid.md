@@ -2,9 +2,9 @@
 title: "PQ Hybrid NTCP2"
 description: "Post-quantum hybrid variant of the NTCP2 transport protocol using ML-KEM"
 slug: "ntcp2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "Transports"
-accurateFor: "0.9.69"
+accurateFor: "0.9.71"
 ---
 
 
@@ -622,8 +622,8 @@ Sizes:
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM768_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">6</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1136+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1104</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1168+pad</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1104</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1088</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
@@ -632,8 +632,8 @@ Sizes:
 <td style="border: 1px solid var(--color-border); padding: 8px;">MLKEM1024_X25519</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">7</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">32</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1616+pad</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1584</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1648+pad</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1584</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">1568</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">16</td>
@@ -724,8 +724,8 @@ that is, the maximum padding will double the message size for PQ connections, as
 <td style="border: 1px solid var(--color-border); padding: 8px;">256</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">848</td>
 <td style="border: 1px solid var(--color-border); padding: 8px;">848</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1136</td>
-<td style="border: 1px solid var(--color-border); padding: 8px;">1616</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1168</td>
+<td style="border: 1px solid var(--color-border); padding: 8px;">1648</td>
 </tr>
 </table>
 
