@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-10-23"
+lastupdated: "2026-10-24"
 status: "Ouvrir"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -1038,7 +1038,7 @@ Inchangé
 
 Dans tous les cas, utilisez le nom de transport NTCP2 comme d'habitude.
 
-Une adresse/port différente en tant que non-PQ, ou PQ uniquement, non-firewallé n'est PAS prise en charge. Ceci ne sera pas implémenté tant que NTCP2 non-PQ ne sera pas désactivé, dans plusieurs années. Lorsque le non-PQ sera désactivé, plusieurs variantes PQ pourront être prises en charge, mais seulement une par adresse. Dans l'adresse du router, publier v=[3|4|5] pour indiquer MLKEM 512/768/1024. Alice ne définit pas le MSB de la clé éphémère. Les anciens routers vérifieront le paramètre v et ignoreront cette adresse comme non prise en charge.
+Utiliser la même adresse/port que pour une connexion non-PQ et non-firewalled. Une seule variante PQ est prise en charge. Dans l'adresse du router, publier v=2 (comme d'habitude) et le nouveau paramètre pq=[3|4|5] pour indiquer MLKEM 512/768/1024. Alice positionne le MSB de la clé éphémère (key[31] & 0x80) dans la requête de session pour indiquer qu'il s'agit d'une connexion hybride. Voir ci-dessus. Les routers plus anciens ignoreront le paramètre pq et se connecteront en non-PQ comme d'habitude.
 
 Adresses derrière pare-feu (aucune IP publiée) : Dans l'adresse du router, publier v=2 (comme d'habitude). Il n'est pas nécessaire de publier un paramètre pq.
 
@@ -1052,7 +1052,7 @@ Jusqu'à l'API 0.9.68 (version 2.11.0), Java I2P implémentait un maximum de 256
 
 Utiliser la taille de message définie comme rembourrage maximum, c'est-à-dire que le rembourrage maximum doublera la taille du message pour les connexions PQ, comme suit :
 
-Mettre à jour la spécification SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) comme suit :
+Utiliser la taille de message définie comme padding maximal, c'est-à-dire que le padding maximal doublera la taille du message pour les connexions PQ, comme suit :
 
 | Remplissage Max du Message | non-PQ (jusqu'à 0.9.68) | non-PQ (à partir de 0.9.69) | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
 |---------------------|----------------------|-----------------------|-----------|-----------|------------|
@@ -1241,7 +1241,7 @@ MTU minimum pour MLKEM768_X25519 : Environ 1316 pour IPv4 et 1336 pour IPv6.
 | MLKEM1024_X25519 | 7 | n/d | trop gros | | | | |
 Note : Les codes de type sont uniquement à usage interne. Les routeurs resteront de type 4, et la prise en charge sera indiquée dans les adresses de routeur.
 
-MTU minimum pour MLKEM768_X25519 : Environ 1316 pour IPv4 et 1336 pour IPv6.
+Modifications : Le SSU2 actuel ne contient que les données de bloc dans la section ChaCha. Avec ML-KEM, la section ChaCha contiendra également la clé publique PQ chiffrée.
 
 Données non chiffrées (étiquette d'authentification Poly1305 non affichée) :
 
@@ -1325,15 +1325,15 @@ Tailles :
 ```
 Tailles, sans inclure la surcharge IP :
 
-| Type | Code de Type | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
-|------|--------------|-------|-----------|---------------|---------------|-----------|--------|
+| Type | Code de type | Long. Y | Long. Msg 2 | Long. Msg 2 Enc | Long. Msg 2 Dec | Long. PQ CT | Long. pl |
+|------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | n/a | trop gros | | | | |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | n/a | trop grand | | | | |
 Note : Les codes de type sont uniquement à usage interne. Les routeurs resteront de type 4, et la prise en charge sera indiquée dans les adresses de routeur.
 
-MTU minimum pour MLKEM768_X25519 : Environ 1316 pour IPv4 et 1336 pour IPv6.
+Modifications : Le SSU2 actuel ne contient que les données de bloc dans la section ChaCha. Avec ML-KEM, la section ChaCha contiendra également la clé publique PQ chiffrée.
 
 Signatures PQ : Les blocs Relay, les blocs Peer Test et les messages Peer Test contiennent tous des signatures. Malheureusement, les signatures PQ sont plus grandes que le MTU. Il n'existe actuellement aucun mécanisme pour fragmenter les blocs Relay ou Peer Test ou les messages sur plusieurs paquets UDP. Le protocole doit être étendu pour supporter la fragmentation. Cela sera fait dans une proposition séparée à déterminer. Jusqu'à ce que cela soit terminé, Relay et Peer Test ne seront pas supportés.
 
@@ -1391,7 +1391,7 @@ La section 8.1 du [projet IETF](https://datatracker.ietf.org/doc/draft-ietf-lamp
 
 ### Autres spécifications
 
-Pour les signatures PQ uniquement des fichiers SU3, utilisez les OID définis dans le [brouillon IETF](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) des variantes sans pré-hachage pour les certificats. Nous ne définissons pas de signatures hybrides des fichiers SU3, car nous pourrions devoir hacher les fichiers deux fois (bien que HashML-DSA et X2559 utilisent la même fonction de hachage SHA512). De plus, concaténer deux clés et signatures dans un certificat X.509 serait complètement non standard.
+La nouvelle taille maximale de Destination sera de 2599 (3468 en base 64).
 
 Notez que nous interdisons la signature Ed25519 des fichiers SU3, et bien que nous ayons défini la signature Ed25519ph, nous ne nous sommes jamais mis d'accord sur un OID pour celle-ci, ni ne l'avons utilisée.
 

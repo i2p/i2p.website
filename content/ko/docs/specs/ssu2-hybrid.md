@@ -2,9 +2,9 @@
 title: "PQ 하이브리드 SSU2"
 description: "ML-KEM을 사용하는 SSU2 전송 프로토콜의 포스트 양자 하이브리드 변형"
 slug: "ssu2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "전송 계층"
-accurateFor: "0.9.70"
+accurateFor: "0.9.71"
 ---
 
 ### 상태
@@ -295,18 +295,22 @@ MLKEM-1024은 키 크기가 표준 1500바이트 데이터그램에 맞지 않�
 
 - (0) 세션 요청
 - (1) 세션 생성됨
-- (9) 재시도 (참고: 종료와 함께 재시도는 버전 2-4 중 임의의 버전을 포함할 수 있음)
+- (9) 재시도
 - (10) 토큰 요청
+- (11) 홀 펀치
 
-다음 메시지에서는 장기 헤더(long header)의 ver(버전) 필드를 버전 2-4 중 아무 값으로나 설정하십시오. 버전 선택은 Charlie가 아닌 Alice의 몫이기 때문입니다. 항상 2로 설정하는 것도 허용됩니다. 구현체는 2-4 사이의 모든 값을 수용해야 합니다.
+다음 메시지에서는 MLKEM-512 또는 MLKEM-768이 지원되는 경우에도 평소와 같이 긴 헤더의 ver (version) 필드를 2로 설정합니다. 구현체는 상대방이 지원하는 경우 값을 3 또는 4로 설정할 수도 있지만, 이는 필수 사항이 아닙니다. 구현체는 2~4 범위의 모든 값을 수락해야 합니다.
 
-- (11) 홀 펀칭
+- (7) Peer Test (세션 외 메시지 5-7)
 
-다음 메시지에서는 MLKEM-512 또는 MLKEM-768을 지원하더라도 일반적으로 하듯이 긴 헤더의 ver(버전) 필드를 2로 설정하십시오. 상대편이 이를 지원하는 경우 구현체는 값을 3 또는 4로 설정할 수도 있지만, 이는 필수 사항이 아닙니다. 구현체는 2~4 사이의 모든 값을 수용해야 합니다.
+논의: 모든 메시지 유형에 대해 version 필드를 3 또는 4로 설정하는 것이 반드시 필요한 것은 아니지만, 이렇게 하면 지원되지 않는 포스트 양자(post-quantum) 연결에 대한 조기 오류 감지에 도움이 됩니다. Token Request 및 Retry(유형 9 및 10)는 일관성을 위해 버전 3/4를 사용해야 합니다. Hole Punch 메시지(유형 11)는 이러한 처리가 필요하지 않을 수 있지만, 통일성을 위해 동일한 패턴을 따릅니다. Peer Test 메시지(유형 7)는 세션 외부(out-of-session) 메시지로, 세션 시작 의도를 나타내지 않습니다.
 
-- (7) 피어 테스트 (세션 외 메시지 5-7)
+- Relay Request (릴레이 요청)
+- Relay Response (릴레이 응답)
+- Relay Intro (릴레이 소개)
+- Peer Test (피어 테스트)
 
-토론: 모든 메시지 유형에 대해 버전 필드를 3 또는 4로 설정하는 것이 반드시 엄격히 필요하지는 않을 수 있으나, 이렇게 함으로써 양자 이후 암호화를 지원하지 않는 연결의 경우 더 빠르게 실패를 감지할 수 있다. 토큰 요청(Token Request) 및 재시도(Retry) 메시지(유형 9 및 10)는 일관성을 위해 버전 3/4를 가져야 한다. 피어 테스트(Peer Test) 메시지(유형 7)는 세션 외부에서 전송되며 세션 시작 의도를 나타내지 않는다.
+헤더 암호화 이전:
 
 헤더 암호화 이전:
 
@@ -541,12 +545,12 @@ MLKEM768_X25519의 최소 MTU: IPv4의 경우 1318, IPv6의 경우 1338. 아래�
 ```
 IP 오버헤드를 제외한 크기:
 
-| 유형 | 유형 코드 | Y 길이 | Msg 2 길이 | Msg 2 암호화 길이 | Msg 2 복호화 길이 | PQ CT 길이 | pl 길이 |
+| 유형 | 유형 코드 | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | 해당 없음 | 너무 큼 | | | | |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | n/a | 너무 큼 | | | | |
 참고: 타입 코드는 내부 사용 전용입니다. router는 타입 4로 유지되며, 지원 여부는 router 주소에 표시됩니다.
 
 MLKEM768_X25519의 최소 MTU: IPv4의 경우 1318, IPv6의 경우 1338. 아래를 참조하십시오.
@@ -565,10 +569,35 @@ unchanged
 
 다음 블록들은 버전 필드를 포함합니다. 이 필드들은 (PQ를 지원하지 않는 Bob과의 호환성을 위해) 버전 2를 유지하며, PQ를 위해 버전 3/4로 변경되지 않습니다.
 
-- 리레이 요청
-- 리레이 응답
-- 리레이 소개
-- 피어 테스트
+* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
+* [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
+* [COMMON](/docs/specs/common-structures/)
+* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
+* [ECIES](/docs/specs/ecies/)
+* [FORUM](http://zzz.i2p/topics/3294)
+* [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+* [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
+* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
+* [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
+* [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
+* [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
+* [NIST-VECTORS](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values)
+* [Noise](https://noiseprotocol.org/noise.html)
+* [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
+* [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
+* [NTCP2](/docs/specs/ntcp2/)
+* [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [Prop165](/docs/proposals/165/)
+* [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [Rosenpass](https://rosenpass.eu/)
+* [Rosenpass-Whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)
+* [SSH-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/)
+* [SSU2](/docs/specs/ssu2/)
+* [TLS-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/)
 
 #### 게시된 주소
 

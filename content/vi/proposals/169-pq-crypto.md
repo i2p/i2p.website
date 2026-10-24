@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-10-23"
+lastupdated: "2026-10-24"
 status: "Mở"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.70"
@@ -1032,7 +1032,7 @@ Không đổi
 
 Trong mọi trường hợp, hãy sử dụng tên giao thức truyền tải NTCP2 như bình thường.
 
-Sử dụng cùng địa chỉ/cổng như chế độ không PQ, không bị tường lửa. Chỉ hỗ trợ một biến thể PQ. Trong địa chỉ router, công bố v=2 (như thông thường) và tham số mới pq=[3|4|5] để chỉ định MLKEM 512/768/1024. Alice đặt bit MSB của khóa tạm thời (key[31] & 0x80) trong yêu cầu phiên để cho biết đây là kết nối lai (hybrid). Xem phần trên. Các router cũ hơn sẽ bỏ qua tham số pq và kết nối theo chế độ không PQ như thông thường.
+Dùng cùng địa chỉ/cổng như non-PQ, không firewalled. Chỉ hỗ trợ một biến thể PQ. Trong địa chỉ router, công bố v=2 (như thường lệ) và tham số mới pq=[3|4|5] để chỉ định MLKEM 512/768/1024. Alice đặt MSB của ephemeral key (key[31] & 0x80) trong session request để chỉ ra rằng đây là kết nối hybrid. Xem phần trên. Các router cũ sẽ bỏ qua tham số pq và kết nối non-pq như thường lệ.
 
 Việc sử dụng địa chỉ/cổng khác nhau cho chế độ không dùng mật mã hậu lượng tử (non-PQ), hoặc chỉ dùng mật mã hậu lượng tử (PQ-only), không bị giới hạn bởi tường lửa HIỆN TẠI KHÔNG được hỗ trợ. Tính năng này sẽ không được triển khai cho đến khi NTCP2 không dùng mật mã hậu lượng tử bị vô hiệu hóa, điều này có thể diễn ra vài năm nữa. Khi chế độ không dùng mật mã hậu lượng tử bị tắt, có thể hỗ trợ nhiều biến thể PQ, nhưng chỉ một biến thể trên mỗi địa chỉ. Trong địa chỉ của router, hãy công bố v=[3|4|5] để chỉ định MLKEM 512/768/1024. Alice không thiết lập bit MSB của khóa tạm thời. Các router cũ hơn sẽ kiểm tra tham số v và bỏ qua địa chỉ này vì không hỗ trợ.
 
@@ -1046,7 +1046,7 @@ Theo đặc tả hiện tại, thông điệp 1 và 2 được định nghĩa l�
 
 Cho đến API 0.9.68 (phát hành 2.11.0), Java I2P thực hiện giới hạn tối đa 256 byte độ đệm cho các kết nối không dùng PQ, tuy nhiên điều này trước đây chưa được tài liệu hóa. Kể từ API 0.9.69 (phát hành 2.12.0), Java I2P áp dụng giới hạn độ đệm tối đa giống như đối với MLKEM-512 cho các kết nối không dùng PQ. Xem bảng dưới đây.
 
-Sử dụng kích thước tin nhắn đã xác định làm độ đệm tối đa, nghĩa là, độ đệm tối đa sẽ gấp đôi kích thước tin nhắn đối với các kết nối PQ, như sau:
+Sử dụng kích thước message đã được định nghĩa làm padding tối đa, tức là padding tối đa sẽ nhân đôi kích thước message đối với các kết nối PQ, như sau:
 
 | Kích thước đệm tối đa của tin nhắn | không-PQ (đến 0.9.68) | không-PQ (từ 0.9.69 trở đi) | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
 |---------------------|----------------------|-----------------------|-----------|-----------|------------|
@@ -1319,11 +1319,11 @@ Dữ liệu chưa được mã hóa (thẻ xác thực Poly1305 không hiển th
 ```
 Kích thước, không bao gồm phần đầu IP:
 
-| Loại | Mã loại | Độ dài Y | Độ dài Msg 2 | Độ dài Msg 2 đã mã hóa | Độ dài Msg 2 đã giải mã | Độ dài PQ CT | Độ dài pl |
-|------|---------|--------|------------|------------------|------------------|------------|--------|
+| Loại | Mã loại | Độ dài Y | Độ dài Msg 2 | Độ dài Msg 2 Enc | Độ dài Msg 2 Dec | Độ dài PQ CT | Độ dài pl |
+|------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | n/a | quá lớn | | | | |
 Lưu ý: Mã loại chỉ dùng nội bộ. Các bộ định tuyến sẽ giữ nguyên loại 4, và khả năng hỗ trợ sẽ được chỉ ra trong địa chỉ bộ định tuyến.
 
@@ -1385,7 +1385,7 @@ Các loại chữ ký bình thường bị cấm sử dụng cho tệp SU3; hãy
 
 ### Thông số khác
 
-Kích thước Destination tối đa mới sẽ là 2599 (3468 ở cơ số 64).
+Kích thước Destination tối đa mới sẽ là 2599 (3468 trong cơ số 64).
 
 Cập nhật các tài liệu khác cung cấp hướng dẫn về kích thước Destination, bao gồm:
 

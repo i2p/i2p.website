@@ -2,9 +2,9 @@
 title: "PQ Hybrid SSU2"
 description: "النسخة الهجينة المقاومة للحوسبة الكمية من بروتوكول النقل SSU2 باستخدام ML-KEM"
 slug: "ssu2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "وسائل النقل"
-accurateFor: "0.9.70"
+accurateFor: "0.9.71"
 ---
 
 ### الحالة
@@ -293,20 +293,24 @@ unchanged
 
 في الرسائل التالية، اضبط حقل ver (الإصدار) في الترويسة الطويلة على 3 أو 4، للإشارة إلى MLKEM-512 أو MLKEM-768.
 
-- (0) طلب جلسة
-- (1) تم إنشاء الجلسة
-- (9) إعادة المحاولة (ملاحظة: قد تحتوي إعادة المحاولة مع الإنهاء على أي إصدار من 2 إلى 4)
-- (10) طلب رمز مميز (Token)
+- (0) طلب الجلسة (Session Request)
+- (1) تم إنشاء الجلسة (Session Created)
+- (9) إعادة المحاولة (Retry)
+- (10) طلب الرمز (Token Request)
+- (11) اختراق الجدار (Hole Punch)
 
-في الرسالة التالية، قم بتعيين حقل ver (الإصدار) في الرأس الطويل لأي إصدار من 2 إلى 4، لأن اختيار الإصدار يعود لأليس وليس لتشارلي. من المقبول دائمًا تعيينه على 2. يجب أن تقبل التنفيذات أي قيمة بين 2 و4.
+في الرسائل التالية، اضبط حقل ver (الإصدار) في الترويسة الطويلة على القيمة 2 كالمعتاد، حتى في حال دعم MLKEM-512 أو MLKEM-768. يجوز للتطبيقات أيضاً ضبط هذه القيمة على 3 أو 4 إذا كان الطرف الآخر يدعم ذلك، غير أن هذا ليس إلزامياً. ينبغي للتطبيقات قبول أي قيمة تتراوح بين 2 و4.
 
-- (11) ثقب الثقب
+- (7) اختبار النظير (رسائل خارج الجلسة من 5 إلى 7)
 
-في الرسالة التالية، قم بتعيين حقل ver (الإصدار) في الرأس الطويل إلى 2، كما هو معتاد، حتى لو كان MLKEM-512 أو MLKEM-768 مدعومًا. يمكن للتنفيذات أيضًا تعيين القيمة إلى 3 أو 4، إذا كان الطرف الآخر يدعم ذلك، ولكن هذا ليس ضروريًا. يجب أن تقبل التنفيذات أي قيمة بين 2 و4.
+النقاش: قد لا يكون تعيين حقل الإصدار إلى 3 أو 4 ضرورياً بشكل صارم لجميع أنواع الرسائل، إلا أن القيام بذلك يُساعد في الكشف المبكر عن الإخفاقات المتعلقة باتصالات ما بعد الكم (post-quantum) غير المدعومة. يجب أن تحمل رسائل طلب الرمز المميز وإعادة المحاولة (النوعان 9 و10) الإصدارين 3/4 للاتساق. قد لا تستوجب رسائل Hole Punch (النوع 11) هذه المعالجة، غير أننا سنتبع النمط ذاته لتحقيق التوحيد. أما رسائل Peer Test (النوع 7) فهي خارج نطاق الجلسة ولا تشير إلى نية بدء جلسة جديدة.
 
-- (7) اختبار الند (رسائل خارج الجلسة 5-7)
+- طلب التتابع (Relay Request)
+- استجابة التتابع (Relay Response)
+- مقدمة التتابع (Relay Intro)
+- اختبار النظير (Peer Test)
 
-المناقشة: قد لا يكون تعيين حقل الإصدار إلى 3 أو 4 ضروريًا بشكل صارم لجميع أنواع الرسائل، لكن القيام بذلك يساعد في الكشف المبكر عن الفشل في الاتصالات غير المدعومة ما بعد الكمية. يجب أن تكون إصدارات رسائل طلب الرمز (Token Request) وإعادة المحاولة (Retry) (النوعان 9 و10) 3/4 لضمان الاتساق. رسائل اختبار الند (Peer Test) (النوع 7) تكون خارج الجلسة ولا تشير إلى النية بدء جلسة.
+قبل تشفير الترويسة:
 
 قبل تشفير الرأس:
 
@@ -541,12 +545,12 @@ unchanged
 ```
 الأحجام، باستثناء التحميل الزائد لبروتوكول IP:
 
-| النوع | كود النوع | طول Y | طول الرسالة 2 | طول تشفير الرسالة 2 | طول فك تشفير الرسالة 2 | طول PQ CT | طول pl |
+| النوع | رمز النوع | طول Y | طول Msg 2 | طول Msg 2 المشفّر | طول Msg 2 بعد فك التشفير | طول PQ CT | طول pl |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | غير متاح | كبير جداً | | | | |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | غير متاح | كبير جدًا | | | | |
 ملاحظة: رموز الأنواع مخصصة للاستخدام الداخلي فقط. ستظل الـ routers من النوع 4، وسيُشار إلى دعمها في عناوين الـ router.
 
 الحد الأدنى لـ MTU لـ MLKEM768_X25519: 1318 لـ IPv4 و1338 لـ IPv6. انظر أدناه.
@@ -565,10 +569,28 @@ unchanged
 
 تحتوي الكتل التالية على حقول الإصدار. ستبقى عند الإصدار 2 (للحفاظ على التوافق مع Bob غير-PQ)، ولن تتغير إلى الإصدار 3/4 في حالة PQ.
 
-- طلب تحويل
-- استجابة التحويل
-- مقدمة التحويل
-- اختبار الند
+* [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
+* [COMMON](/docs/specs/common-structures/)
+* [ECIES](/docs/specs/ecies/)
+* [FORUM](http://zzz.i2p/topics/3294)
+* [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+* [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+* [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
+* [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
+* [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
+* [NIST-VECTORS](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values)
+* [Noise](https://noiseprotocol.org/noise.html)
+* [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
+* [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
+* [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [Prop165](/docs/proposals/165/)
+* [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [Rosenpass](https://rosenpass.eu/)
+* [Rosenpass-Whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)
+* [SSH-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/)
+* [SSU2](/docs/specs/ssu2/)
+* [TLS-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/)
 
 #### العناوين المنشورة
 

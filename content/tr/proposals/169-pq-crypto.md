@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-10-23"
+lastupdated: "2026-10-24"
 status: "Aç"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -1038,7 +1038,7 @@ Değişmemiş
 
 Tüm durumlarda, her zamanki gibi NTCP2 transport adını kullanın.
 
-PQ olmayan ile farklı adres/port veya yalnızca PQ, güvenlik duvarı olmayan desteklenmiyor. Bu, PQ olmayan NTCP2 devre dışı bırakılana kadar, şu andan birkaç yıl sonrasına kadar uygulanmayacak. PQ olmayan devre dışı bırakıldığında, birden fazla PQ varyantı desteklenebilir, ancak adres başına yalnızca bir tane. Router adresinde, MLKEM 512/768/1024'ü belirtmek için v=[3|4|5] yayınla. Alice, geçici anahtarın MSB'sini ayarlamaz. Eski router'lar v parametresini kontrol edecek ve bu adresi desteklenmeyen olarak atlayacak.
+PQ olmayan ve güvenlik duvarı olmayan ile aynı adres/bağlantı noktasını kullanın. Yalnızca bir PQ varyantı desteklenir. Router adresinde, her zamanki gibi v=2 ve MLKEM 512/768/1024'ü belirtmek için yeni pq=[3|4|5] parametresini yayınlayın. Alice, bunun hibrit bir bağlantı olduğunu belirtmek için oturum isteğinde geçici anahtarın MSB'sini (key[31] & 0x80) ayarlar. Yukarıya bakın. Eski router'lar pq parametresini yok sayar ve her zamanki gibi non-pq şekilde bağlanır.
 
 Firewall'lu adresler (IP yayınlanmaz): Router adresinde, v=2 yayınlayın (her zamanki gibi). Bir pq parametresi yayınlamaya gerek yoktur.
 
@@ -1052,7 +1052,7 @@ API 0.9.68 (sürüm 2.11.0) aracılığıyla, Java I2P, PQ olmayan bağlantılar
 
 Tanımlanan mesaj boyutunu maksimum padding olarak kullanın, yani maksimum padding PQ bağlantıları için mesaj boyutunu ikiye katlayacaktır, şu şekilde:
 
-SSU2 spesifikasyonunu [/docs/specs/ssu2/](/docs/specs/ssu2/) aşağıdaki gibi güncelleyin:
+Tanımlanan mesaj boyutunu maksimum dolgu olarak kullanın; yani maksimum dolgu, PQ bağlantılarında mesaj boyutunu iki katına çıkaracaktır, aşağıdaki gibi:
 
 | Mesaj Maksimum Padding | non-PQ (0.9.68'e kadar) | non-PQ (0.9.69 itibariyle) | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
 |------------------------|--------------------------|----------------------------|-----------|-----------|------------|
@@ -1241,7 +1241,7 @@ MLKEM768_X25519 için minimum MTU: IPv4 için yaklaşık 1316 ve IPv6 için 1336
 | MLKEM1024_X25519 | 7 | n/a | çok büyük | | | | |
 Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
 
-MLKEM768_X25519 için minimum MTU: IPv4 için yaklaşık 1316 ve IPv6 için 1336.
+Değişiklikler: Mevcut SSU2, ChaCha bölümünde yalnızca blok verilerini içerir. ML-KEM ile birlikte, ChaCha bölümü ayrıca şifrelenmiş PQ public key'i de içerecektir.
 
 Şifrelenmemiş veri (Poly1305 kimlik doğrulama etiketi gösterilmiyor):
 
@@ -1325,15 +1325,15 @@ Boyutlar:
 ```
 IP ek yükü dahil edilmeyerek boyutlar:
 
-| Tip | Tip Kodu | Y uzunluğu | Msg 2 uzunluğu | Msg 2 Şif uzunluğu | Msg 2 Çöz uzunluğu | PQ CT uzunluğu | pl uzunluğu |
+| Tür | Tür Kodu | Y len | Mesaj 2 len | Mesaj 2 Şifreli len | Mesaj 2 Şifresiz len | PQ CT len | pl len |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | mevcut değil | çok büyük | | | | |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | n/a | çok büyük | | | | |
 Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar tip 4 olarak kalacak ve destek router adreslerinde belirtilecektir.
 
-MLKEM768_X25519 için minimum MTU: IPv4 için yaklaşık 1316 ve IPv6 için 1336.
+Değişiklikler: Mevcut SSU2, ChaCha bölümünde yalnızca blok verilerini içerir. ML-KEM ile birlikte, ChaCha bölümü ayrıca şifrelenmiş PQ public key'i de içerecektir.
 
 PQ İmzalar: Relay blokları, Peer Test blokları ve Peer Test mesajları hepsi imza içerir. Ne yazık ki, PQ imzalar MTU'dan daha büyüktür. Şu anda Relay veya Peer Test bloklarını ya da mesajlarını birden fazla UDP paketine parçalamak için bir mekanizma bulunmamaktadır. Protokol, parçalamayı destekleyecek şekilde genişletilmelidir. Bu, belirlenecek ayrı bir öneride yapılacaktır. Bu tamamlanana kadar, Relay ve Peer Test desteklenmeyecektir.
 
@@ -1391,7 +1391,7 @@ YAPILACAKLAR
 
 ### Diğer Spesifikasyonlar
 
-SU3 dosyalarının PQ-only imzaları için, sertifikalarda non-prehash varyantların [IETF taslağında](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) tanımlanan OID'leri kullanın. SU3 dosyalarının hibrit imzalarını tanımlamıyoruz, çünkü dosyaları iki kez hash'lememiz gerekebilir (HashML-DSA ve X2559 aynı hash fonksiyonu SHA512'yi kullanmasına rağmen). Ayrıca, bir X.509 sertifikasında iki anahtarı ve imzayı birleştirmek tamamen standart dışı olurdu.
+Yeni maksimum Destination boyutu 2599 olacaktır (base 64'te 3468).
 
 SU3 dosyalarının Ed25519 ile imzalanmasına izin vermediğimizi ve Ed25519ph imzalamayı tanımlamış olmamıza rağmen, bunun için hiçbir zaman bir OID üzerinde anlaşmadığımızı veya kullanmadığımızı unutmayın.
 

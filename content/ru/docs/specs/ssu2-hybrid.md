@@ -2,9 +2,9 @@
 title: "PQ Hybrid SSU2"
 description: "Постквантовый гибридный вариант транспортного протокола SSU2 с использованием ML-KEM"
 slug: "ssu2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "Транспорты"
-accurateFor: "0.9.70"
+accurateFor: "0.9.71"
 ---
 
 ### Статус
@@ -297,16 +297,20 @@ This is the "ekem1" message pattern:
 - (1) Сеанс создан
 - (9) Повтор (примечание: Повтор с завершением может содержать любую версию 2-4)
 - (10) Запрос токена
+- (11) Пробивка отверстия (Hole Punch)
 
-В следующем сообщении установите поле ver (версия) в длинном заголовке в любое значение от 2 до 4, поскольку выбор версии остаётся за Эллис, а не за Чарли. Допустимо всегда устанавливать значение 2. Реализации должны принимать любое значение в диапазоне от 2 до 4.
+В следующих сообщениях устанавливайте поле ver (версия) в длинном заголовке равным 2, как обычно, даже если поддерживается MLKEM-512 или MLKEM-768. Реализации также могут устанавливать значение 3 или 4, если другая сторона поддерживает это, однако это не обязательно. Реализации должны принимать любое значение от 2 до 4.
 
-- (11) Пробивка отверстий (Hole Punch)
+- (7) Peer Test (внесессионные сообщения 5-7)
 
-В следующем сообщении установите поле ver (версия) в длинном заголовке в 2, как обычно, даже если поддерживается MLKEM-512 или MLKEM-768. Реализации также могут установить значение в 3 или 4, если это поддерживается на другом конце, но это не обязательно. Реализации должны принимать любое значение от 2 до 4.
+Обсуждение: Установка поля версии в значение 3 или 4 может не быть строго обязательной для всех типов сообщений, однако это способствует более раннему обнаружению ошибок при неподдерживаемых постквантовых соединениях. Сообщения Token Request и Retry (типы 9 и 10) должны иметь версии 3/4 для обеспечения согласованности. Сообщения Hole Punch (тип 11) могут не требовать подобной обработки, однако мы будем следовать той же схеме для единообразия. Сообщения Peer Test (тип 7) являются внесессионными и не указывают на намерение инициировать сессию.
 
-- (7) Проверка пира (внешнесессионные сообщения 5-7)
+- Relay Request (запрос ретрансляции)
+- Relay Response (ответ ретрансляции)
+- Relay Intro (представление через ретранслятор)
+- Peer Test (тест узла)
 
-Обсуждение: установка поля версии в 3 или 4 может быть не строго необходимой для всех типов сообщений, однако это помогает быстрее выявлять ошибки при поддержке post-quantum соединений. Сообщениям Token Request и Retry (типы 9 и 10) следует присвоить версии 3/4 для обеспечения согласованности. Сообщения Peer Test (тип 7) передаются вне сессии и не указывают на намерение начать сессию.
+До шифрования заголовка:
 
 До шифрования заголовка:
 
@@ -541,12 +545,12 @@ This is the "ekem1" message pattern:
 ```
 Размеры, без учёта IP-накладных расходов:
 
-| Тип | Код типа | Длина Y | Длина сообщ. 2 | Длина зашифр. сообщ. 2 | Длина расшифр. сообщ. 2 | Длина PQ CT | Длина pl |
+| Тип | Код типа | Длина Y | Длина Msg 2 | Длина зашифрованного Msg 2 | Длина расшифрованного Msg 2 | Длина PQ CT | Длина pl |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | н/д | слишком большой | | | | |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | н/д | слишком велико | | | | |
 Примечание: коды типов предназначены только для внутреннего использования. Routers останутся типа 4, а поддержка будет указана в адресах router.
 
 Минимальный MTU для MLKEM768_X25519: 1318 для IPv4 и 1338 для IPv6. См. ниже.
@@ -565,10 +569,35 @@ This is the "ekem1" message pattern:
 
 Следующие блоки содержат поля версии. Они останутся версии 2 (для совместимости с Bob без постквантовой защиты) и не будут изменены на версию 3/4 для постквантового режима.
 
-- Запрос ретрансляции
-- Ответ ретрансляции
-- Введение ретрансляции
-- Проверка однорангового узла
+* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
+* [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
+* [COMMON](/docs/specs/common-structures/)
+* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
+* [ECIES](/docs/specs/ecies/)
+* [FORUM](http://zzz.i2p/topics/3294)
+* [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+* [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
+* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
+* [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
+* [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
+* [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
+* [NIST-VECTORS](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values)
+* [Noise](https://noiseprotocol.org/noise.html)
+* [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
+* [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
+* [NTCP2](/docs/specs/ntcp2/)
+* [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [Prop165](/docs/proposals/165/)
+* [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [Rosenpass](https://rosenpass.eu/)
+* [Rosenpass-Whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)
+* [SSH-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/)
+* [SSU2](/docs/specs/ssu2/)
+* [TLS-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/)
 
 #### Опубликованные адреса
 

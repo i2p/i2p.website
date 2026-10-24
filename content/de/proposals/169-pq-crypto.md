@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-10-23"
+lastupdated: "2026-10-24"
 status: "Öffnen"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -1038,7 +1038,7 @@ Unverändert
 
 Verwenden Sie in allen Fällen den NTCP2-Transportnamen wie gewohnt.
 
-Unterschiedliche Adresse/Port als nicht-PQ, oder nur-PQ, nicht-firewalled wird NICHT unterstützt. Dies wird nicht implementiert, bis nicht-PQ NTCP2 deaktiviert wird, was noch mehrere Jahre dauern wird. Wenn nicht-PQ deaktiviert ist, können mehrere PQ-Varianten unterstützt werden, aber nur eine pro Adresse. In der router-Adresse, veröffentliche v=[3|4|5] um MLKEM 512/768/1024 anzuzeigen. Alice setzt nicht das MSB des ephemeral key. Ältere router werden den v-Parameter prüfen und diese Adresse als nicht unterstützt überspringen.
+Verwenden Sie dieselbe Adresse und denselben Port wie im Nicht-PQ-Fall ohne Firewall. Es wird nur eine PQ-Variante unterstützt. Veröffentlichen Sie in der Router-Adresse v=2 (wie üblich) und den neuen Parameter pq=[3|4|5], um MLKEM 512/768/1024 anzugeben. Alice setzt das MSB des ephemeral key (key[31] & 0x80) in der Session-Anfrage, um anzugeben, dass dies eine hybride Verbindung ist. Siehe oben. Ältere Router ignorieren den pq-Parameter und verbinden wie üblich ohne PQ.
 
 Firewall-geschützte Adressen (keine IP veröffentlicht): In der router-Adresse v=2 veröffentlichen (wie üblich). Es ist nicht erforderlich, einen pq-Parameter zu veröffentlichen.
 
@@ -1052,7 +1052,7 @@ Bis API 0.9.68 (Release 2.11.0) implementierte Java I2P ein Maximum von 256 Byte
 
 Verwenden Sie die definierte Nachrichtengröße als maximales Padding, das heißt, das maximale Padding wird die Nachrichtengröße für PQ-Verbindungen verdoppeln, wie folgt:
 
-Aktualisieren Sie die SSU2-Spezifikation [/docs/specs/ssu2/](/docs/specs/ssu2/) wie folgt:
+Verwenden Sie die definierte Nachrichtengröße als maximales Padding; das heißt, das maximale Padding verdoppelt die Nachrichtengröße für PQ-Verbindungen, wie folgt:
 
 | Message Max Padding | non-PQ (bis 0.9.68) | non-PQ (ab 0.9.69) | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
 |---------------------|----------------------|-----------------------|-----------|-----------|------------|
@@ -1241,7 +1241,7 @@ Minimale MTU für MLKEM768_X25519: Etwa 1316 für IPv4 und 1336 für IPv6.
 | MLKEM1024_X25519 | 7 | n/a | zu groß | | | | |
 Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
 
-Mindest-MTU für MLKEM768_X25519: Etwa 1316 für IPv4 und 1336 für IPv6.
+Änderungen: Aktuelles SSU2 enthält nur die Blockdaten im ChaCha-Abschnitt. Mit ML-KEM wird der ChaCha-Abschnitt auch den verschlüsselten PQ-Public-Key enthalten.
 
 Unverschlüsselte Daten (Poly1305 auth tag nicht angezeigt):
 
@@ -1325,15 +1325,15 @@ Größen:
 ```
 Größen, ohne IP-Overhead:
 
-| Typ | Typ-Code | Y-Länge | Msg 2-Länge | Msg 2 Verschl.-Länge | Msg 2 Entschl.-Länge | PQ CT-Länge | pl-Länge |
-|-----|----------|---------|-------------|----------------------|----------------------|-------------|----------|
+| Typ | Typ-Code | Y-Len | Msg 2-Len | Msg 2 Enc-Len | Msg 2 Dec-Len | PQ CT-Len | pl-Len |
+|------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | n/a | zu groß | | | | |
 Hinweis: Typcodes sind nur für den internen Gebrauch bestimmt. Router bleiben Typ 4, und die Unterstützung wird in den Router-Adressen angegeben.
 
-Mindest-MTU für MLKEM768_X25519: Etwa 1316 für IPv4 und 1336 für IPv6.
+Änderungen: Aktuelles SSU2 enthält nur die Blockdaten im ChaCha-Abschnitt. Mit ML-KEM wird der ChaCha-Abschnitt auch den verschlüsselten PQ-Public-Key enthalten.
 
 PQ-Signaturen: Relay-Blöcke, Peer-Test-Blöcke und Peer-Test-Nachrichten enthalten alle Signaturen. Leider sind PQ-Signaturen größer als die MTU. Es gibt derzeit keinen Mechanismus, um Relay- oder Peer-Test-Blöcke oder -Nachrichten über mehrere UDP-Pakete zu fragmentieren. Das Protokoll muss erweitert werden, um Fragmentierung zu unterstützen. Dies wird in einem separaten Vorschlag erfolgen, der noch zu bestimmen ist. Bis dies abgeschlossen ist, werden Relay und Peer Test nicht unterstützt.
 
@@ -1391,7 +1391,7 @@ TODO
 
 ### Andere Spezifikationen
 
-Für reine PQ-Signaturen von SU3-Dateien verwenden Sie die OIDs, die im [IETF-Entwurf](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) der Non-Prehash-Varianten für die Zertifikate definiert sind. Wir definieren keine hybriden Signaturen von SU3-Dateien, da wir die Dateien möglicherweise zweimal hashen müssten (obwohl HashML-DSA und X2559 dieselbe Hash-Funktion SHA512 verwenden). Außerdem wäre das Verketten von zwei Schlüsseln und Signaturen in einem X.509-Zertifikat völlig nicht-standardkonform.
+Die neue maximale Destination-Größe wird 2599 betragen (3468 in Base64).
 
 Beachten Sie, dass wir Ed25519-Signierung von SU3-Dateien nicht zulassen, und obwohl wir Ed25519ph-Signierung definiert haben, haben wir uns nie auf eine OID dafür geeinigt oder sie verwendet.
 

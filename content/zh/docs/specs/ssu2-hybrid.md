@@ -2,9 +2,9 @@
 title: "PQ 混合 SSU2"
 description: "使用 ML-KEM 的 SSU2 传输协议后量子混合变体"
 slug: "ssu2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "传输层"
-accurateFor: "0.9.70"
+accurateFor: "0.9.71"
 ---
 
 ### 状态
@@ -295,18 +295,22 @@ unchanged
 
 - (0) 会话请求
 - (1) 会话已创建
-- (9) 重试（注意：终止式重试可能包含任何版本 2-4）
+- (9) 重试
 - (10) 令牌请求
-
-在以下消息中，将长头部中的 ver（版本）字段设置为 2-4 之间的任意版本，因为版本的选择由 Alice 决定，而非 Charlie。始终将其设置为 2 是可接受的。实现应接受 2-4 之间的任意值。
-
 - (11) 打洞
 
-在接下来的消息中，应照常将长头部中的 ver（版本）字段设置为 2，即使支持 MLKEM-512 或 MLKEM-768 也是如此。如果通信对方支持，实现也可以将该值设为 3 或 4，但这不是必需的。实现应接受 2 到 4 之间的任意值。
+在以下消息中，像往常一样将长头部中的 ver（版本）字段设置为 2，即使支持 MLKEM-512 或 MLKEM-768 也是如此。如果对端支持，实现也可以将该值设置为 3 或 4，但这并非必须。实现应接受 2-4 之间的任意值。
 
-- （7）对等测试（会话外消息 5-7）
+- (7) 对等测试（会话外消息 5-7）
 
-讨论：将版本字段设置为 3 或 4 可能并非对所有消息类型都严格必要，但这样做有助于更早地检测不支持的后量子连接故障。为保持一致性，令牌请求（Token Request）和重试（Retry）消息（类型 9 和 10）的版本应设为 3/4。对等测试消息（Peer Test，类型 7）属于会话外通信，不表示发起会话的意图。
+讨论：并非所有消息类型都严格要求将 version 字段设置为 3 或 4，但这样做有助于在不支持后量子连接时更早地检测到失败。Token Request 和 Retry（类型 9 和 10）应使用版本 3/4 以保持一致性。Hole Punch 消息（类型 11）可能不需要此处理，但为了统一性，我们将遵循相同的模式。Peer Test 消息（类型 7）处于会话外，不表明发起会话的意图。
+
+- 中继请求
+- 中继响应
+- 中继介绍
+- 节点测试
+
+头部加密之前：
 
 在头部加密之前：
 
@@ -541,12 +545,12 @@ MLKEM768_X25519 的最小 MTU：IPv4 为 1318，IPv6 为 1338。详见下文。
 ```
 数据包大小（不包含 IP 开销）：
 
-| 类型 | 类型代码 | Y 长度 | 消息 2 长度 | 消息 2 加密长度 | 消息 2 解密长度 | PQ CT 长度 | pl 长度 |
+| Type | Type Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | n/a | 过大 | | | | |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | 不适用 | 过大 | | | | |
 注意：类型代码仅供内部使用。Router 将保持类型 4，相关支持信息将在 router 地址中标注。
 
 MLKEM768_X25519 的最小 MTU：IPv4 为 1318，IPv6 为 1338。详见下文。
@@ -565,10 +569,35 @@ unchanged
 
 以下数据块包含版本字段。这些字段将保持版本 2（以兼容不支持后量子密码学的 Bob 端），不会为后量子密码学升级至版本 3/4。
 
-- 中继请求
-- 中继响应
-- 中继介绍
-- 节点测试
+* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
+* [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
+* [COMMON](/docs/specs/common-structures/)
+* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
+* [ECIES](/docs/specs/ecies/)
+* [FORUM](http://zzz.i2p/topics/3294)
+* [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+* [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
+* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
+* [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
+* [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
+* [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
+* [NIST-VECTORS](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values)
+* [Noise](https://noiseprotocol.org/noise.html)
+* [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
+* [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
+* [NTCP2](/docs/specs/ntcp2/)
+* [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [Prop165](/docs/proposals/165/)
+* [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [Rosenpass](https://rosenpass.eu/)
+* [Rosenpass-Whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)
+* [SSH-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/)
+* [SSU2](/docs/specs/ssu2/)
+* [TLS-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/)
 
 #### 已发布地址
 

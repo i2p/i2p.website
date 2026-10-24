@@ -2,9 +2,9 @@
 title: "PQ Hybrid SSU2"
 description: "Variante híbrida post-cuántica del protocolo de transporte SSU2 utilizando ML-KEM"
 slug: "ssu2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "Transportes"
-accurateFor: "0.9.70"
+accurateFor: "0.9.71"
 ---
 
 ### Estado
@@ -295,18 +295,22 @@ En los siguientes mensajes, establezca el campo ver (versión) en el encabezado 
 
 - (0) Solicitud de sesión
 - (1) Sesión creada
-- (9) Reintentar (nota: Reintentar con terminación puede contener cualquier versión 2-4)
+- (9) Reintento
 - (10) Solicitud de token
+- (11) Hole Punch
 
-En el siguiente mensaje, establezca el campo ver (versión) en el encabezado largo a cualquier versión entre 2 y 4, porque la elección de la versión corresponde a Alice, no a Charlie. Es aceptable establecerla siempre en 2. Las implementaciones deberían aceptar cualquier valor entre 2 y 4.
+En los siguientes mensajes, establezca el campo ver (versión) en la cabecera larga en 2, como de costumbre, incluso si se admite MLKEM-512 o MLKEM-768. Las implementaciones también pueden establecer el valor en 3 o 4, si el otro extremo lo soporta, pero esto no es necesario. Las implementaciones deben aceptar cualquier valor entre 2 y 4.
 
-- (11) Perforación de agujero
+- (7) Prueba de par (mensajes fuera de sesión 5-7)
 
-En el siguiente mensaje, establezca el campo ver (versión) en la cabecera larga a 2, como es habitual, incluso si se admite MLKEM-512 o MLKEM-768. Las implementaciones también pueden establecer el valor en 3 o 4, si el otro extremo lo admite, pero esto no es necesario. Las implementaciones deberían aceptar cualquier valor entre 2 y 4.
+Discusión: Establecer el campo de versión en 3 o 4 puede no ser estrictamente necesario para todos los tipos de mensajes, pero hacerlo ayuda a detectar fallos más tempranamente en conexiones post-cuánticas no compatibles. Los mensajes Token Request y Retry (tipos 9 y 10) deberían tener las versiones 3/4 por coherencia. Los mensajes Hole Punch (tipo 11) pueden no requerir este tratamiento, pero seguiremos el mismo patrón por uniformidad. Los mensajes Peer Test (tipo 7) están fuera de sesión y no indican intención de iniciar una sesión.
 
-- (7) Prueba de pares (mensajes fuera de sesión 5-7)
+- Relay Request
+- Relay Response
+- Relay Intro
+- Peer Test
 
-Discusión: Establecer el campo de versión en 3 o 4 puede no ser estrictamente necesario para todos los tipos de mensaje, pero hacerlo ayuda a detectar fallas más tempranas en conexiones post-cuánticas no compatibles. Los mensajes de Solicitud de Token y Reintento (tipos 9 y 10) deberían tener versiones 3/4 por consistencia. Los mensajes de Prueba entre Pares (tipo 7) están fuera de sesión y no indican la intención de iniciar una sesión.
+Antes del cifrado del encabezado:
 
 Antes del cifrado de cabecera:
 
@@ -541,11 +545,11 @@ Datos sin cifrar (etiqueta de autenticación Poly1305 no mostrada):
 ```
 Tamaños, sin incluir la sobrecarga de IP:
 
-| Tipo | Código de Tipo | Longitud Y | Longitud Msg 2 | Longitud Enc Msg 2 | Longitud Dec Msg 2 | Longitud PQ CT | Longitud pl |
-|------|----------------|------------|----------------|--------------------|--------------------|----------------|-------------|
+| Tipo | Código de tipo | Longitud Y | Longitud de Msg 2 | Longitud cifrada de Msg 2 | Longitud descifrada de Msg 2 | Longitud de CT PQ | Longitud de pl |
+|------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | n/a | demasiado grande | | | | |
 Nota: Los códigos de tipo son solo para uso interno. Los routers seguirán siendo de tipo 4, y el soporte se indicará en las direcciones del router.
 
@@ -565,10 +569,35 @@ sin cambios
 
 Los siguientes bloques contienen campos de versión. Permanecerán en la versión 2 (para mantener compatibilidad con un Bob no-PQ) y no cambiarán a la versión 3/4 para PQ.
 
-- Solicitud de retransmisión
-- Respuesta de retransmisión
-- Introducción de retransmisión
-- Prueba de pares
+* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
+* [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
+* [COMMON](/docs/specs/common-structures/)
+* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
+* [ECIES](/docs/specs/ecies/)
+* [FORUM](http://zzz.i2p/topics/3294)
+* [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+* [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
+* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
+* [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
+* [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
+* [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
+* [NIST-VECTORS](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values)
+* [Noise](https://noiseprotocol.org/noise.html)
+* [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
+* [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
+* [NTCP2](/docs/specs/ntcp2/)
+* [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [Prop165](/docs/proposals/165/)
+* [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [Rosenpass](https://rosenpass.eu/)
+* [Rosenpass-Whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)
+* [SSH-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/)
+* [SSU2](/docs/specs/ssu2/)
+* [TLS-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/)
 
 #### Direcciones Publicadas
 

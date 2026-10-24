@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-10-23"
+lastupdated: "2026-10-24"
 status: "Abrir"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -1032,7 +1032,7 @@ Inalterado
 
 Em todos os casos, use o nome do transporte NTCP2 como de costume.
 
-Endereço/porta diferentes como não-PQ, ou apenas PQ, não-firewall NÃO é suportado. Isso não será implementado até que o NTCP2 não-PQ seja desabilitado, daqui a vários anos. Quando o não-PQ for desabilitado, múltiplas variantes PQ podem ser suportadas, mas apenas uma por endereço. No endereço do router, publique v=[3|4|5] para indicar MLKEM 512/768/1024. Alice não define o MSB da chave efêmera. Routers mais antigos verificarão o parâmetro v e pularão este endereço como não suportado.
+Use o mesmo endereço/porta que o não-PQ, não-firewalled. Apenas uma variante PQ é suportada. No endereço do router, publique v=2 (como de costume) e o novo parâmetro pq=[3|4|5] para indicar MLKEM 512/768/1024. Alice define o MSB da chave efêmera (key[31] & 0x80) na solicitação de sessão para indicar que esta é uma conexão híbrida. Veja acima. Routers mais antigos ignorarão o parâmetro pq e conectarão como não-pq, como de costume.
 
 Endereços com firewall (nenhum IP publicado): No endereço do router, publique v=2 (como de costume). Não há necessidade de publicar um parâmetro pq.
 
@@ -1046,7 +1046,7 @@ Até a API 0.9.68 (versão 2.11.0), o Java I2P implementava um máximo de 256 by
 
 Use o tamanho de mensagem definido como o padding máximo, ou seja, o padding máximo dobrará o tamanho da mensagem para conexões PQ, conforme segue:
 
-Atualize a especificação SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) da seguinte forma:
+Use o tamanho de mensagem definido como o preenchimento máximo, ou seja, o preenchimento máximo dobrará o tamanho da mensagem para conexões PQ, da seguinte forma:
 
 | Preenchimento Máximo da Mensagem | não-PQ (até 0.9.68) | não-PQ (a partir de 0.9.69) | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
 |----------------------------------|----------------------|------------------------------|-----------|-----------|------------|
@@ -1235,7 +1235,7 @@ MTU mínimo para MLKEM768_X25519: 1318 para IPv4 e 1338 para IPv6. Veja abaixo.
 | MLKEM1024_X25519 | 7 | n/a | muito grande | | | | |
 Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão como tipo 4, e o suporte será indicado nos endereços do router.
 
-MTU mínimo para MLKEM768_X25519: 1318 para IPv4 e 1338 para IPv6. Veja abaixo.
+Mudanças: O SSU2 atual contém apenas os dados do bloco na seção ChaCha. Com ML-KEM, a seção ChaCha também conterá a chave pública PQ criptografada.
 
 Dados não criptografados (tag de autenticação Poly1305 não mostrada):
 
@@ -1319,15 +1319,15 @@ Tamanhos:
 ```
 Tamanhos, não incluindo sobrecarga IP:
 
-| Tipo | Código do Tipo | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
+| Tipo | Código do Tipo | Comprimento de Y | Comprimento da Msg 2 | Comprimento Codificado da Msg 2 | Comprimento Decodificado da Msg 2 | Comprimento do CT PQ | Comprimento do pl |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | n/a | muito grande | | | | |
 Nota: Os códigos de tipo são apenas para uso interno. Os routers permanecerão como tipo 4, e o suporte será indicado nos endereços do router.
 
-MTU mínimo para MLKEM768_X25519: 1318 para IPv4 e 1338 para IPv6. Veja abaixo.
+Mudanças: O SSU2 atual contém apenas os dados do bloco na seção ChaCha. Com ML-KEM, a seção ChaCha também conterá a chave pública PQ criptografada.
 
 Assinaturas PQ: Blocos de relay, blocos de Peer Test e mensagens de Peer Test contêm todas assinaturas. Infelizmente, as assinaturas PQ são maiores que o MTU. Não existe atualmente um mecanismo para fragmentar blocos de Relay ou Peer Test ou mensagens através de múltiplos pacotes UDP. O protocolo deve ser estendido para suportar fragmentação. Isso será feito numa proposta separada a ser determinada. Até que isso seja completado, Relay e Peer Test não serão suportados.
 
@@ -1385,7 +1385,7 @@ O novo tamanho máximo de Destination será 2599 (3468 em base 64).
 
 ### Outras Especificações
 
-Atualize outros documentos que fornecem orientação sobre tamanhos de Destination, incluindo:
+O novo tamanho máximo de Destination será 2599 (3468 em base 64).
 
 Aumento de tamanho (bytes):
 

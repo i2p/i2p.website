@@ -2,9 +2,9 @@
 title: "PQ Hibrit SSU2"
 description: "ML-KEM kullanan SSU2 taşıma protokolünün kuantum sonrası hibrit varyantı"
 slug: "ssu2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "Aktarımlar"
-accurateFor: "0.9.70"
+accurateFor: "0.9.71"
 ---
 
 ### Durum
@@ -295,18 +295,22 @@ Aşağıdaki mesajlarda, MLKEM-512 veya MLKEM-768'i belirtmek için uzun başlı
 
 - (0) Oturum İsteği
 - (1) Oturum Oluşturuldu
-- (9) Yeniden Dene (not: Sonlandırma ile Yeniden Dene, herhangi bir 2-4 sürümünü içerebilir)
+- (9) Yeniden Deneme
 - (10) Token İsteği
-
-Aşağıdaki mesajda, uzun başlıktaki ver (sürüm) alanını 2-4 arası herhangi bir sürüm olarak ayarlayın, çünkü sürüm seçimi Charlie'nin değil Alice'in yapar. Her zaman 2 olarak ayarlamak kabul edilebilir. Uygulamalar 2-4 arası herhangi bir değeri kabul etmelidir.
-
 - (11) Delik Açma
 
-Aşağıdaki mesajda, MLKEM-512 veya MLKEM-768'in desteklenmesi durumunda bile, uzun başlıkta ver (sürüm) alanını her zamanki gibi 2 olarak ayarlayın. Uygulamalar, karşı taraf destekliyorsa değeri 3 veya 4 olarak da ayarlayabilir, ancak bu gerekli değildir. Uygulamalar, 2-4 arası herhangi bir değeri kabul etmelidir.
+Aşağıdaki mesajlarda, MLKEM-512 veya MLKEM-768 desteklense bile, uzun başlıktaki ver (version/sürüm) alanını her zamanki gibi 2 olarak ayarlayın. Uygulamalar, karşı taraf destekliyorsa değeri 3 veya 4 olarak da ayarlayabilir; ancak bu zorunlu değildir. Uygulamalar 2-4 arasındaki herhangi bir değeri kabul etmelidir.
 
 - (7) Eş Testi (oturum dışı mesajlar 5-7)
 
-Tartışma: Sürüm alanının 3 veya 4 olarak ayarlanması tüm mesaj türleri için kesinlikle gerekli olmayabilir, ancak kuantuma dayanıksız olmayan desteklenmeyen bağlantılar için erken hata tespitini kolaylaştırır. Belirteç İstek ve Tekrar Mesajları (türleri 9 ve 10) tutarlılık açısından 3/4 sürümüne sahip olmalıdır. Eş Testi mesajları (tür 7) oturum dışıdır ve oturum başlatma niyetini belirtmez.
+Tartışma: Sürüm alanını 3 veya 4 olarak ayarlamak tüm mesaj türleri için kesinlikle gerekli olmayabilir; ancak bunu yapmak, desteklenmeyen post-kuantum bağlantıları için erken hata tespitine yardımcı olur. Token Request ve Retry mesajları (tür 9 ve 10), tutarlılık açısından 3/4 sürümlerine sahip olmalıdır. Hole Punch mesajları (tür 11) bu işlemi gerektirmeyebilir, ancak tekdüzelik için aynı kalıbı izleyeceğiz. Peer Test mesajları (tür 7) oturum dışıdır ve bir oturum başlatma niyetini göstermez.
+
+- Relay İsteği
+- Relay Yanıtı
+- Relay Girişi
+- Peer Testi
+
+Başlık şifrelemesinden önce:
 
 Başlık şifrelemesinden önce:
 
@@ -541,12 +545,12 @@ Ham içerikler:
 ```
 IP ek yükü dahil edilmeden boyutlar:
 
-| Tür | Tür Kodu | Y uzunluğu | Msg 2 uzunluğu | Msg 2 Şifreli uzunluğu | Msg 2 Şifresiz uzunluğu | PQ CT uzunluğu | pl uzunluğu |
+| Tür | Tür Kodu | Y uz | Msg 2 uz | Msg 2 Enc uz | Msg 2 Dec uz | PQ CT uz | pl uz |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | yok | çok büyük | | | | |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | n/a | çok büyük | | | | |
 Not: Tür kodları yalnızca dahili kullanım içindir. Router'lar 4. tür olarak kalacak ve destek, router adreslerinde belirtilecektir.
 
 MLKEM768_X25519 için minimum MTU: IPv4 için 1318 ve IPv6 için 1338. Aşağıya bakınız.
@@ -565,10 +569,35 @@ unchanged
 
 Aşağıdaki bloklar sürüm alanları içermektedir. Bu alanlar, (PQ desteklemeyen Bob ile uyumluluk sağlamak amacıyla) sürüm 2 olarak kalacak ve PQ için sürüm 3/4'e geçmeyecektir.
 
-- Yönlendirme İsteği
-- Yönlendirme Yanıtı
-- Yönlendirme Tanıtımı
-- Eş Testi
+* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
+* [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
+* [COMMON](/docs/specs/common-structures/)
+* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
+* [ECIES](/docs/specs/ecies/)
+* [FORUM](http://zzz.i2p/topics/3294)
+* [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+* [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
+* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
+* [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
+* [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
+* [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
+* [NIST-VECTORS](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values)
+* [Noise](https://noiseprotocol.org/noise.html)
+* [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
+* [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
+* [NTCP2](/docs/specs/ntcp2/)
+* [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [Prop165](/docs/proposals/165/)
+* [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [Rosenpass](https://rosenpass.eu/)
+* [Rosenpass-Whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)
+* [SSH-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/)
+* [SSU2](/docs/specs/ssu2/)
+* [TLS-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/)
 
 #### Yayınlanan Adresler
 

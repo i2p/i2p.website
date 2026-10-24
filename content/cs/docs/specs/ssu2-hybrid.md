@@ -2,9 +2,9 @@
 title: "PQ Hybrid SSU2"
 description: "Post-kvantová hybridní varianta transportního protokolu SSU2 využívající ML-KEM"
 slug: "ssu2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "Transporty"
-accurateFor: "0.9.70"
+accurateFor: "0.9.71"
 ---
 
 ### Stav
@@ -293,20 +293,24 @@ Dlouhá hlavička má 32 bajtů. Používá se před vytvořením relace, pro To
 
 V následujících zprávách nastavte pole ver (verze) v dlouhém záhlaví na hodnotu 3 nebo 4, což označuje MLKEM-512 nebo MLKEM-768.
 
-- (0) Požadavek na relaci
+- (0) Žádost o relaci
 - (1) Relace vytvořena
-- (9) Opakování (poznámka: Opakování s ukončením může obsahovat jakoukoli verzi 2–4)
-- (10) Požadavek na token
+- (9) Opakování
+- (10) Žádost o token
+- (11) Hole Punch
 
-V následující zprávě nastavte pole ver (verze) v dlouhém záhlaví na libovolnou verzi 2–4, protože volbu verze provádí Alice, nikoli Charlie. Přijatelné je ji vždy nastavit na 2. Implementace by měly přijímat jakoukoli hodnotu v rozsahu 2–4.
+V následujících zprávách nastavte pole ver (verze) v dlouhém záhlaví na hodnotu 2, jako obvykle, i když je podporováno MLKEM-512 nebo MLKEM-768. Implementace mohou také nastavit hodnotu na 3 nebo 4, pokud to druhá strana podporuje, není to však nutné. Implementace by měly přijímat jakoukoli hodnotu v rozsahu 2–4.
 
-- (11) Průraz otvoru
+- (7) Peer Test (zprávy mimo relaci 5-7)
 
-V následující zprávě nastavte pole ver (verze) v dlouhém záhlaví na 2, jak je obvyklé, i když je podporován MLKEM-512 nebo MLKEM-768. Implementace mohou hodnotu nastavit na 3 nebo 4, pokud to druhý konec podporuje, ale není to nutné. Implementace by měly přijímat jakoukoli hodnotu v rozsahu 2–4.
+Diskuze: Nastavení pole verze na 3 nebo 4 nemusí být striktně nutné pro všechny typy zpráv, ale napomáhá dřívější detekci selhání u nepodporovaných post-kvantových spojení. Zprávy Token Request a Retry (typy 9 a 10) by měly mít verze 3/4 pro konzistenci. Zprávy Hole Punch (typ 11) toto ošetření nemusí vyžadovat, ale budeme se řídit stejným vzorem pro jednotnost. Zprávy Peer Test (typ 7) jsou mimo relaci a nenaznačují záměr zahájit relaci.
 
-- (7) Test protějšku (zprávy mimo relaci 5–7)
+- Relay Request
+- Relay Response
+- Relay Intro
+- Peer Test
 
-Diskuze: Nastavení pole verze na 3 nebo 4 nemusí být striktně nutné pro všechny typy zpráv, ale usnadňuje dřívější detekci chyb u nepodporovaných post-kvantových připojení. Zprávy Token Request a Retry (typy 9 a 10) by měly mít z důvodu konzistence verze 3/4. Zprávy Peer Test (typ 7) jsou mimo relaci a neindikují záměr zahájit relaci.
+Před šifrováním záhlaví:
 
 Před šifrováním hlavičky:
 
@@ -541,11 +545,11 @@ Nezašifrovaná data (autentizační tag Poly1305 není zobrazen):
 ```
 Velikosti, bez zahrnutí IP režie:
 
-| Typ | Kód typu | Délka Y | Délka zprávy 2 | Délka šifr. zprávy 2 | Délka dešifr. zprávy 2 | Délka PQ CT | Délka pl |
+| Typ | Kód typu | Délka Y | Délka Msg 2 | Délka Msg 2 Enc | Délka Msg 2 Dec | Délka PQ CT | Délka pl |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | n/a | příliš velké | | | | |
 Poznámka: Kódy typů jsou určeny pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routeru.
 
@@ -565,10 +569,34 @@ unchanged
 
 Následující bloky obsahují pole verze. Zůstanou ve verzi 2 (kvůli kompatibilitě s non-PQ Bobem) a nebudou změněny na verzi 3/4 pro PQ.
 
-- Žádost o přepojení
-- Odpověď na přepojení
-- Úvod k přepojení
-- Test protějšku
+* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
+* [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
+* [COMMON](/docs/specs/common-structures/)
+* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
+* [ECIES](/docs/specs/ecies/)
+* [FORUM](http://zzz.i2p/topics/3294)
+* [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+* [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
+* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
+* [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
+* [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
+* [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
+* [NIST-VECTORS](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values)
+* [Noise](https://noiseprotocol.org/noise.html)
+* [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
+* [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
+* [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [Prop165](/docs/proposals/165/)
+* [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [Rosenpass](https://rosenpass.eu/)
+* [Rosenpass-Whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)
+* [SSH-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/)
+* [SSU2](/docs/specs/ssu2/)
+* [TLS-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/)
 
 #### Zveřejněné adresy
 

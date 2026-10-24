@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-10-23"
+lastupdated: "2026-10-24"
 status: "Abrir"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -1319,11 +1319,11 @@ Datos sin cifrar (etiqueta de autenticación Poly1305 no mostrada):
 ```
 Tamaños, sin incluir la sobrecarga IP:
 
-| Tipo | Código de tipo | Longitud Y | Longitud Msg 2 | Longitud enc Msg 2 | Longitud dec Msg 2 | Longitud PQ CT | Longitud pl |
-|------|----------------|------------|----------------|--------------------|--------------------|----------------|-------------|
+| Tipo | Código de tipo | Long. Y | Long. Msg 2 | Long. Msg 2 cif. | Long. Msg 2 desc. | Long. CT PQ | Long. pl |
+|------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | n/a | demasiado grande | | | | |
 Nota: Los códigos de tipo son solo para uso interno. Los routers permanecerán como tipo 4, y el soporte se indicará en las direcciones del router.
 

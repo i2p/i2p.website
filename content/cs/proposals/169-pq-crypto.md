@@ -6,7 +6,7 @@ aliases:
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"
-lastupdated: "2026-10-23"
+lastupdated: "2026-10-24"
 status: "Otevřít"
 thread: "http://zzz.i2p/topics/3294"
 target: "0.9.80"
@@ -1038,7 +1038,7 @@ Nezměněno
 
 Ve všech případech použijte název transportu NTCP2 jako obvykle.
 
-Jiná adresa/port než non-PQ, nebo pouze PQ, bez firewallu NENÍ podporováno. Toto nebude implementováno dokud nebude zakázáno non-PQ NTCP2, což bude za několik let. Když bude non-PQ zakázáno, může být podporováno více PQ variant, ale pouze jedna na adresu. V adrese routeru publikujte v=[3|4|5] pro označení MLKEM 512/768/1024. Alice nenastavuje MSB dočasného klíče. Starší routery zkontrolují parametr v a přeskočí tuto adresu jako nepodporovanou.
+Použijte stejnou adresu/port jako v případě bez PQ a bez firewallu. Podporována je pouze jedna varianta PQ. V adrese routeru publikujte v=2 (jako obvykle) a nový parametr pq=[3|4|5] označující MLKEM 512/768/1024. Alice v požadavku na relaci nastaví MSB efemérního klíče (key[31] & 0x80), aby označila, že jde o hybridní spojení. Viz výše. Starší routery budou parametr pq ignorovat a připojí se bez PQ jako obvykle.
 
 Adresy za firewallem (žádná IP není publikována): V adrese routeru publikujte v=2 (jako obvykle). Není potřeba publikovat parametr pq.
 
@@ -1052,7 +1052,7 @@ Až do API 0.9.68 (vydání 2.11.0) implementovala Java I2P maximum 256 bajtů p
 
 Použijte definovanou velikost zprávy jako maximální padding, to znamená, že maximální padding zdvojnásobí velikost zprávy pro PQ připojení následovně:
 
-Aktualizujte specifikaci SSU2 [/docs/specs/ssu2/](/docs/specs/ssu2/) následovně:
+Použijte definovanou velikost zprávy jako maximální padding, to znamená, že maximální padding u PQ připojení zdvojnásobí velikost zprávy, a to následovně:
 
 | Maximální padding zprávy | non-PQ (do 0.9.68) | non-PQ (od 0.9.69) | MLKEM-512 | MLKEM-768 | MLKEM-1024 |
 |--------------------------|--------------------|--------------------|-----------|-----------|------------|
@@ -1241,7 +1241,7 @@ Minimální MTU pro MLKEM768_X25519: Přibližně 1316 pro IPv4 a 1336 pro IPv6.
 | MLKEM1024_X25519 | 7 | n/a | příliš velké | | | | |
 Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routerů.
 
-Minimální MTU pro MLKEM768_X25519: Přibližně 1316 pro IPv4 a 1336 pro IPv6.
+Změny: Současné SSU2 obsahuje pouze bloková data v sekci ChaCha. S ML-KEM bude sekce ChaCha také obsahovat šifrovaný PQ veřejný klíč.
 
 Nešifrovaná data (Poly1305 auth tag nezobrazena):
 
@@ -1325,15 +1325,15 @@ Velikosti:
 ```
 Velikosti, bez započtení režie IP:
 
-| Typ | Kód typu | Y délka | Msg 2 délka | Msg 2 Enc délka | Msg 2 Dec délka | PQ CT délka | pl délka |
-|-----|-----------|---------|-------------|-----------------|-----------------|-------------|----------|
+| Typ | Kód typu | Délka Y | Délka Msg 2 | Délka šifrovaného Msg 2 | Délka dešifrovaného Msg 2 | Délka PQ CT | Délka pl |
+|------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | n/a | příliš velký | | | | |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | n/a | příliš velké | | | | |
 Poznámka: Kódy typů jsou pouze pro interní použití. Routery zůstanou typu 4 a podpora bude uvedena v adresách routerů.
 
-Minimální MTU pro MLKEM768_X25519: Přibližně 1316 pro IPv4 a 1336 pro IPv6.
+Změny: Současné SSU2 obsahuje pouze bloková data v sekci ChaCha. S ML-KEM bude sekce ChaCha také obsahovat šifrovaný PQ veřejný klíč.
 
 PQ podpisy: Relay bloky, Peer Test bloky a Peer Test zprávy obsahují podpisy. Bohužel jsou PQ podpisy větší než MTU. Neexistuje žádný současný mechanismus pro fragmentaci Relay nebo Peer Test bloků či zpráv napříč více UDP pakety. Protokol musí být rozšířen o podporu fragmentace. To bude provedeno v samostatném návrhu, který bude určen později. Dokud nebude dokončeno, Relay a Peer Test nebudou podporovány.
 
@@ -1391,7 +1391,7 @@ TODO
 
 ### Ostatní specifikace
 
-Pro PQ-only podpisy souborů SU3 použijte OID definované v [IETF draft](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/) pro varianty bez prehash pro certifikáty. Nedefinujeme hybridní podpisy souborů SU3, protože bychom možná museli soubory hashovat dvakrát (ačkoli HashML-DSA a X2559 používají stejnou hash funkci SHA512). Také by zřetězení dvou klíčů a podpisů v X.509 certifikátu bylo zcela nestandardní.
+Nová maximální velikost Destination bude 2599 (3468 v base 64).
 
 Všimněte si, že nepovolujeme Ed25519 podepisování SU3 souborů, a ačkoli jsme definovali Ed25519ph podepisování, nikdy jsme se nedohodli na OID pro něj, ani jsme ho nepoužili.
 

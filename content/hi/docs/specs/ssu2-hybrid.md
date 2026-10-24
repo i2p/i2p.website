@@ -2,9 +2,9 @@
 title: "PQ Hybrid SSU2"
 description: "ML-KEM का उपयोग करते हुए SSU2 ट्रांसपोर्ट प्रोटोकॉल का पोस्ट-क्वांटम हाइब्रिड वेरिएंट"
 slug: "ssu2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "Transports"
-accurateFor: "0.9.70"
+accurateFor: "0.9.71"
 ---
 
 ### स्थिति
@@ -541,12 +541,12 @@ MLKEM768_X25519 के लिए न्यूनतम MTU: IPv4 के लि�
 ```
 आकार, IP ओवरहेड को छोड़कर:
 
-| Type | Type Code | Y len | Msg 2 len | Msg 2 Enc len | Msg 2 Dec len | PQ CT len | pl len |
+| प्रकार | प्रकार कोड | Y लंबाई | Msg 2 लंबाई | Msg 2 Enc लंबाई | Msg 2 Dec लंबाई | PQ CT लंबाई | pl लंबाई |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | n/a | too big | | | | |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | लागू नहीं | बहुत बड़ा | | | | |
 नोट: Type codes केवल आंतरिक उपयोग के लिए हैं। Routers type 4 ही रहेंगे, और समर्थन router addresses में इंगित किया जाएगा।
 
 MLKEM768_X25519 के लिए न्यूनतम MTU: IPv4 के लिए 1318 और IPv6 के लिए 1338। नीचे देखें।

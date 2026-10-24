@@ -2,9 +2,9 @@
 title: "PQ Hybrid SSU2"
 description: "Biến thể lai hậu lượng tử của giao thức truyền tải SSU2 sử dụng ML-KEM"
 slug: "ssu2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "Transports"
-accurateFor: "0.9.70"
+accurateFor: "0.9.71"
 ---
 
 ### Trạng thái
@@ -293,20 +293,24 @@ Header dài có độ dài 32 byte. Nó được sử dụng trước khi một 
 
 Trong các thông điệp sau, đặt trường ver (version) trong long header thành 3 hoặc 4, để chỉ định MLKEM-512 hoặc MLKEM-768.
 
-- (0) Yêu cầu phiên
-- (1) Phiên đã tạo
-- (9) Thử lại (lưu ý: Thử lại với Chấm dứt có thể chứa bất kỳ phiên bản 2-4 nào)
-- (10) Yêu cầu mã thông báo
-
-Trong thông điệp dưới đây, hãy đặt trường ver (phiên bản) trong phần tiêu đề dài thành bất kỳ giá trị nào từ 2 đến 4, vì việc chọn phiên bản do Alice quyết định, không phải Charlie. Việc luôn đặt giá trị thành 2 là chấp nhận được. Các triển khai nên chấp nhận mọi giá trị từ 2 đến 4.
-
+- (0) Yêu cầu phiên (Session Request)
+- (1) Phiên đã tạo (Session Created)
+- (9) Thử lại (Retry)
+- (10) Yêu cầu token (Token Request)
 - (11) Đục lỗ (Hole Punch)
 
-Trong thông điệp dưới đây, hãy đặt trường ver (phiên bản) trong tiêu đề dài thành 2, như thông lệ, ngay cả khi hỗ trợ MLKEM-512 hoặc MLKEM-768. Các triển khai cũng có thể đặt giá trị thành 3 hoặc 4 nếu đầu bên kia hỗ trợ, nhưng điều này không bắt buộc. Các triển khai nên chấp nhận bất kỳ giá trị nào từ 2 đến 4.
+Trong các thông điệp sau, hãy đặt trường ver (version) trong phần header dài thành 2 như thông thường, ngay cả khi MLKEM-512 hoặc MLKEM-768 được hỗ trợ. Các triển khai cũng có thể đặt giá trị này thành 3 hoặc 4 nếu phía đầu kia hỗ trợ, nhưng điều này không bắt buộc. Các triển khai nên chấp nhận bất kỳ giá trị nào từ 2 đến 4.
 
-- (7) Kiểm tra ngang hàng (tin nhắn ngoài phiên 5-7)
+- (7) Kiểm tra ngang hàng (Peer Test) (các thông điệp ngoài phiên 5-7)
 
-Thảo luận: Việc thiết lập trường phiên bản thành 3 hoặc 4 có thể không bắt buộc đối với tất cả các loại tin nhắn, nhưng việc này giúp phát hiện lỗi sớm hơn đối với các kết nối hậu lượng tử không được hỗ trợ. Các tin nhắn Yêu cầu Token và Thử lại (loại 9 và 10) nên có phiên bản 3/4 để đảm bảo tính nhất quán. Tin nhắn Kiểm tra ngang hàng (loại 7) nằm ngoài phiên và không thể hiện ý định khởi tạo một phiên.
+Thảo luận: Việc đặt trường version thành 3 hoặc 4 có thể không thực sự cần thiết cho tất cả các loại thông điệp, nhưng làm như vậy giúp phát hiện lỗi sớm hơn đối với các kết nối hậu lượng tử (post-quantum) chưa được hỗ trợ. Token Request và Retry (loại 9 và 10) nên có version 3/4 để đảm bảo tính nhất quán. Các thông điệp Hole Punch (loại 11) có thể không yêu cầu cách xử lý này, nhưng chúng ta sẽ tuân theo cùng một mẫu để đảm bảo tính đồng nhất. Thông điệp Peer Test (loại 7) là thông điệp ngoài phiên (out-of-session) và không biểu thị ý định khởi tạo một phiên.
+
+- Yêu cầu chuyển tiếp (Relay Request)
+- Phản hồi chuyển tiếp (Relay Response)
+- Giới thiệu chuyển tiếp (Relay Intro)
+- Kiểm tra ngang hàng (Peer Test)
+
+Trước khi mã hóa header:
 
 Trước khi mã hóa tiêu đề:
 
@@ -541,12 +545,12 @@ Dữ liệu chưa được mã hóa (thẻ xác thực Poly1305 không hiển th
 ```
 Kích thước, không tính chi phí IP:
 
-| Loại | Mã loại | Độ dài Y | Độ dài Msg 2 | Độ dài Msg 2 đã mã hóa | Độ dài Msg 2 đã giải mã | Độ dài PQ CT | Độ dài pl |
+| Loại | Mã loại | Độ dài Y | Độ dài Msg 2 | Độ dài Msg 2 Enc | Độ dài Msg 2 Dec | Độ dài PQ CT | Độ dài pl |
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
-| MLKEM1024_X25519 | 7 | n/a | too big | | | | |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
+| MLKEM1024_X25519 | 7 | n/a | quá lớn | | | | |
 Lưu ý: Mã loại (type codes) chỉ dành cho mục đích nội bộ. Các router sẽ vẫn là loại 4, và hỗ trợ sẽ được chỉ định trong các địa chỉ router.
 
 MTU tối thiểu cho MLKEM768_X25519: 1318 đối với IPv4 và 1338 đối với IPv6. Xem bên dưới.
@@ -565,10 +569,35 @@ unchanged
 
 Các khối sau đây chứa các trường phiên bản. Chúng sẽ giữ nguyên phiên bản 2 (để tương thích với Bob không hỗ trợ PQ), và sẽ không thay đổi sang phiên bản 3/4 cho PQ.
 
-- Yêu cầu chuyển tiếp
-- Phản hồi chuyển tiếp
-- Giới thiệu chuyển tiếp
-- Kiểm tra ngang hàng
+* [CABFORUM](https://cabforum.org/2024/10/10/2024-10-10-minutes-of-the-code-signing-certificate-working-group/)
+* [Choosing-Hash](https://kerkour.com/fast-secure-hash-function-sha256-sha512-sha3-blake3)
+* [CLOUDFLARE](https://blog.cloudflare.com/pq-2024/)
+* [COMMON](/docs/specs/common-structures/)
+* [COMPOSITE-SIGS](https://datatracker.ietf.org/doc/draft-ietf-lamps-pq-composite-sigs/)
+* [ECIES](/docs/specs/ecies/)
+* [FORUM](http://zzz.i2p/topics/3294)
+* [FIPS202](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf)
+* [FIPS203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf)
+* [FIPS204](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf)
+* [FIPS205](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.205.pdf)
+* [MLDSA-OIDS](https://datatracker.ietf.org/doc/draft-ietf-lamps-dilithium-certificates/)
+* [NIST-PQ](https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards)
+* [NIST-PQ-UPDATE](https://csrc.nist.gov/csrc/media/Presentations/2022/update-on-post-quantum-encryption-and-cryptographi/Day%202%20-%20230pm%20Chen%20PQC%20ISPAB.pdf)
+* [NIST-PQ-END](https://www.nccoe.nist.gov/sites/default/files/2023-08/pqc-light-at-the-end-of-the-tunnel-presentation.pdf)
+* [NIST-VECTORS](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines/example-values)
+* [Noise](https://noiseprotocol.org/noise.html)
+* [Noise-Hybrid](https://github.com/noiseprotocol/noise_hfs_spec/blob/master/output/noise_hfs.pdf)
+* [NSA-PQ](https://media.defense.gov/2022/Sep/07/2003071836/-1/-1/0/CSI_CNSA_2.0_FAQ_.PDF)
+* [NTCP2](/docs/specs/ntcp2/)
+* [OPENSSL](https://openssl-library.org/post/2025-02-04-release-announcement-3.5/)
+* [Prop165](/docs/proposals/165/)
+* [PQ-WIREGUARD](https://eprint.iacr.org/2020/379.pdf)
+* [RFC-2104](https://tools.ietf.org/html/rfc2104)
+* [Rosenpass](https://rosenpass.eu/)
+* [Rosenpass-Whitepaper](https://raw.githubusercontent.com/rosenpass/rosenpass/papers-pdf/whitepaper.pdf)
+* [SSH-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-sshm-mlkem-hybrid-kex/)
+* [SSU2](/docs/specs/ssu2/)
+* [TLS-HYBRID](https://datatracker.ietf.org/doc/draft-ietf-tls-hybrid-design/)
 
 #### Địa chỉ đã công bố
 
