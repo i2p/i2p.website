@@ -2,9 +2,9 @@
 title: "PQ Hybrid SSU2"
 description: "Post-quantum hybrid variant of the SSU2 transport protocol using ML-KEM"
 slug: "ssu2-hybrid"
-lastupdated: "2026-04"
+lastupdated: "2026-10"
 category: "Transports"
-accurateFor: "0.9.70"
+accurateFor: "0.9.71"
 ---
 
 
@@ -639,7 +639,7 @@ Sizes, not including IP overhead:
 |------|-----------|-------|-----------|---------------|---------------|-----------|--------|
 | X25519 | 4 | 32 | 80+pl | 16+pl | pl | -- | pl |
 | MLKEM512_X25519 | 5 | 32 | 864+pl | 800+pl | 768+pl | 768 | pl |
-| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1118+pl | 1088+pl | 1088 | pl |
+| MLKEM768_X25519 | 6 | 32 | 1184+pl | 1120+pl | 1088+pl | 1088 | pl |
 | MLKEM1024_X25519 | 7 | n/a | too big | | | | |
 
 Note: Type codes are for internal use only. Routers will remain type 4,
