@@ -5,6 +5,8 @@ slug: "old-tunnel-implementation"
 aliases:
   - "/ar/docs/historical/tunnel-alt"
   - "/ar/docs/historical/tunnel-alt/"
+  - "/ar/tunnel"
+  - "/ar/tunnel/"
 lastUpdated: "2016-11"
 accurateFor: "historical"
 ---

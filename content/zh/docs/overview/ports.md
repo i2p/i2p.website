@@ -2,6 +2,9 @@
 title: "端口分配"
 description: "I2P端口分配、插件端口和保留范围的综合参考。"
 slug: "ports"
+aliases:
+  - "/zh/ports"
+  - "/zh/ports/"
 lastUpdated: "2026-06"
 accurateFor: "2.13.0"
 ---

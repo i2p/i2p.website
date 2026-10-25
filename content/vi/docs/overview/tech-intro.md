@@ -2,6 +2,9 @@
 title: "I2P: Giới thiệu Kỹ thuật"
 description: "Giới thiệu kỹ thuật về kiến trúc và hoạt động của I2P"
 slug: "tech-intro"
+aliases:
+  - "/vi/techintro"
+  - "/vi/techintro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

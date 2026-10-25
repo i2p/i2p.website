@@ -1,5 +1,8 @@
 ---
 title: "Về I2P"
+aliases:
+  - "/vi/team"
+  - "/vi/team/"
 description: "Tìm hiểu về The Invisible Internet Project - một mạng phủ ngang hàng, mã hóa hoàn toàn được thiết kế cho liên lạc ẩn danh."
 tagline: "The Invisible Internet Project"
 type: "about"

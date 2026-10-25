@@ -1,5 +1,8 @@
 ---
 title: "Bize Ulaşın"
+aliases:
+  - "/tr/impressum"
+  - "/tr/impressum/"
 description: "I2P projesi ile iletişime geçin - e-posta, forumlar, sosyal medya, IRC kanalları ve ekiple tanışın."
 type: "contact"
 layout: "contact"

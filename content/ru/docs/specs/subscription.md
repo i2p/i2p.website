@@ -2,7 +2,9 @@
 title: "Команды подписки на канал адресной книги"
 description: "Спецификация для расширения ленты подписки на адреса командами, позволяющими серверам имен транслировать обновления записей от владельцев имен хостов."
 slug: "subscription"
-aliases: 
+aliases:
+  - "/ru/docs/specs/subscription-spec"
+  - "/ru/docs/specs/subscription-spec/"
 category: "Форматы"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

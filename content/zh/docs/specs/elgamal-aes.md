@@ -2,6 +2,9 @@
 title: "ElGamal/AES + SessionTag 加密"
 description: "结合 ElGamal、AES、SHA-256 和一次性会话标签的传统端到端加密"
 slug: "elgamal-aes"
+aliases:
+  - "/zh/how_elgamalaes"
+  - "/zh/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

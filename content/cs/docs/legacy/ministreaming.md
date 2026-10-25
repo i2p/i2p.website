@@ -2,6 +2,9 @@
 title: "Ministreaming Library"
 description: "Historické poznámky k první TCP-like transportní vrstvě I2P"
 slug: "ministreaming"
+aliases:
+  - "/cs/ministreaming"
+  - "/cs/ministreaming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

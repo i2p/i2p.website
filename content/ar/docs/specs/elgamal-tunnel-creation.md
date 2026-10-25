@@ -2,6 +2,9 @@
 title: "مواصفات إنشاء الـ tunnel (ElGamal)"
 description: "مواصفات بناء الأنفاق القديمة المبنية على ElGamal، تم استبدالها بـ X25519"
 slug: "elgamal-tunnel-creation"
+aliases:
+  - "/ar/tunnel-alt-creation"
+  - "/ar/tunnel-alt-creation/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

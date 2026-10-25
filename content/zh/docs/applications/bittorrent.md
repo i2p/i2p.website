@@ -2,6 +2,9 @@
 title: "通过 I2P 使用 BitTorrent"
 description: "I2P 上 BitTorrent 客户端和追踪器的协议规范"
 slug: "bittorrent"
+aliases:
+  - "/zh/bittorrent"
+  - "/zh/bittorrent/"
 lastUpdated: "2026-08"
 accurateFor: "0.9.70"
 ---

@@ -1,8 +1,12 @@
 ---
 title: "I2P 개발 로드맵"
 aliases:
-  - "/en/get-involved/todo"
-  - "/en/get-involved/todo/"
+  - "/ko/get-involved/todo"
+  - "/ko/get-involved/todo/"
+  - "/ko/roadmap"
+  - "/ko/roadmap/"
+  - "/ko/todo"
+  - "/ko/todo/"
 description: "I2P 네트워크의 현재 개발 계획 및 역사적 이정표"
 ---
 

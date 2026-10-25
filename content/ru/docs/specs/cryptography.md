@@ -2,6 +2,9 @@
 title: "Спецификация низкоуровневой криптографии"
 description: "Низкоуровневые детали криптографических алгоритмов, используемых в I2P"
 slug: "cryptography"
+aliases:
+  - "/ru/how_cryptography"
+  - "/ru/how_cryptography/"
 category: "Дизайн"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

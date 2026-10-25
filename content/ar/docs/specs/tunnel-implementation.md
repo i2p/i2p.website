@@ -3,8 +3,10 @@ title: "تنفيذ Tunnel"
 description: "مواصفات عمليات tunnel في I2P وبناؤها ومعالجة الرسائل"
 slug: "tunnel-implementation"
 aliases:
-  - "/ar/docs/specs/tunnel-implementation"
-  - "/ar/docs/specs/tunnel-implementation/"
+  - "/ar/docs/specs/implementation"
+  - "/ar/docs/specs/implementation/"
+  - "/ar/tunnel-alt"
+  - "/ar/tunnel-alt/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

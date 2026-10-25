@@ -2,6 +2,13 @@
 title: "I2PTunnel"
 description: "Công cụ để giao tiếp và cung cấp dịch vụ trên I2P"
 slug: "i2ptunnel"
+aliases:
+  - "/vi/i2ptunnel"
+  - "/vi/i2ptunnel/"
+  - "/vi/i2ptunnel_migration"
+  - "/vi/i2ptunnel_migration/"
+  - "/vi/i2ptunnel_services"
+  - "/vi/i2ptunnel_services/"
 lastUpdated: "2023-10"
 accurateFor: "0.9.59"
 ---

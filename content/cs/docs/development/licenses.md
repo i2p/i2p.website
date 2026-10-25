@@ -8,7 +8,10 @@ type: docs
 aliases:
   - "/cs/docs/develop/licenses"
   - "/cs/docs/develop/licenses/"
-  - "/docs/develop/licenses/"
+  - "/cs/licenses"
+  - "/cs/licenses/"
+  - "/cs/license-agreements"
+  - "/cs/license-agreements/"
 ---
 
 Jak vyžaduje náš [model hrozeb](/docs/overview/threat-model//) (mimo jiné důvody), software vyvinutý pro podporu anonymní komunikační sítě, kterou nazýváme I2P, musí být volně dostupný, s otevřeným zdrojovým kódem a uživatelsky upravitelný. Abychom splnili tato kritéria, využíváme různé právní a softwarové inženýrské techniky, abychom odstranili co nejvíce překážek pro ty, kteří zvažují využití nebo přispění k projektu I2P.

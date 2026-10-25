@@ -2,6 +2,9 @@
 title: "소프트웨어 업데이트 사양"
 description: "I2P 소프트웨어 업데이트 메커니즘, SU3 파일 형식 및 뉴스 피드 사양"
 slug: "updates"
+aliases:
+  - "/ko/updates"
+  - "/ko/updates/"
 category: "설계"
 lastUpdated: "2025-04"
 accurateFor: "0.9.65"

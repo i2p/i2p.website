@@ -2,6 +2,9 @@
 title: "Spécification des plugins"
 description: "Règles d'empaquetage .xpi2p / .su3 pour les plugins I2P"
 slug: "plugin"
+aliases:
+  - "/fr/plugin_spec"
+  - "/fr/plugin_spec/"
 lastUpdated: "2022-01"
 accurateFor: "0.9.53"
 type: docs

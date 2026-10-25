@@ -2,6 +2,9 @@
 title: "Datagram"
 description: "Các định dạng thông điệp được xác thực, có thể trả lời và thô phía trên I2CP"
 slug: "datagrams"
+aliases:
+  - "/vi/datagrams"
+  - "/vi/datagrams/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

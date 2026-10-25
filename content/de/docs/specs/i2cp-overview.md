@@ -2,7 +2,11 @@
 title: "I2CP-Übersicht"
 description: "Überblick über das I2P-Clientprotokoll (I2CP) – Sitzungsverwaltung, Optionen, Nutzdatenformat und Multiplexing."
 slug: "i2cp-overview"
-aliases: 
+aliases:
+  - "/de/docs/protocol/i2cp"
+  - "/de/docs/protocol/i2cp/"
+  - "/de/i2cp"
+  - "/de/i2cp/"
 category: "Protokolle"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

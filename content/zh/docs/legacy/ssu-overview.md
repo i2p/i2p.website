@@ -2,6 +2,9 @@
 title: "安全半可靠UDP (SSU)"
 description: "在 SSU2 之前使用的原始 UDP 传输协议（已弃用）"
 slug: "ssu-overview"
+aliases:
+  - "/zh/udp"
+  - "/zh/udp/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.64"
 ---

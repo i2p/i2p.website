@@ -2,6 +2,9 @@
 title: "Спецификация обновления программного обеспечения"
 description: "Спецификация механизма обновления программного обеспечения I2P, формата файлов SU3 и новостной ленты"
 slug: "updates"
+aliases:
+  - "/ru/updates"
+  - "/ru/updates/"
 category: "Дизайн"
 lastUpdated: "2025-04"
 accurateFor: "0.9.65"

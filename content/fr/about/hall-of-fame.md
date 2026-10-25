@@ -1,5 +1,8 @@
 ---
 title: "Temple de la Renommée"
+aliases:
+  - "/fr/halloffame"
+  - "/fr/halloffame/"
 description: "Reconnaître les généreux soutiens qui ont contribué à I2P au fil des ans"
 ---
 

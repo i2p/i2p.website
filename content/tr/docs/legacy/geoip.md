@@ -2,6 +2,9 @@
 title: "GeoIP Dosya Formatları"
 description: "IP'den ülkeye arama işlemleri için eski GeoIP dosya formatı belirtimleri"
 slug: "geoip"
+aliases:
+  - "/tr/geoip"
+  - "/tr/geoip/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

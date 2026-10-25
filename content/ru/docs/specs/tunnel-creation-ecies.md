@@ -2,7 +2,9 @@
 title: "Спецификация создания туннелей (ECIES-X25519)"
 description: "Шифрование сообщений Tunnel Build с использованием криптографических примитивов ECIES-X25519 для обеспечения прямой секретности."
 slug: "tunnel-creation-ecies"
-aliases: 
+aliases:
+  - "/ru/docs/specs/tunnel-creation-ecies-spec"
+  - "/ru/docs/specs/tunnel-creation-ecies-spec/"
 category: "Протоколы"
 lastUpdated: "2025-06"
 accurateFor: "0.9.66"

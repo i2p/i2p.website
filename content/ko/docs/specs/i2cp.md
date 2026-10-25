@@ -2,7 +2,13 @@
 title: "I2P Client Protocol (I2CP)"
 description: "애플리케이션이 I2P router와 세션, tunnel, leaseSet을 협상하는 방법."
 slug: "i2cp"
-aliases: 
+aliases:
+  - "/ko/docs/api/i2cp"
+  - "/ko/docs/api/i2cp/"
+  - "/ko/docs/specs/i2cp-spec"
+  - "/ko/docs/specs/i2cp-spec/"
+  - "/ko/i2cp_spec"
+  - "/ko/i2cp_spec/"
 category: "프로토콜"
 lastUpdated: "2025-07"
 accurateFor: "0.9.67"

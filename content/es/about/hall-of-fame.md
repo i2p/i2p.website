@@ -1,5 +1,8 @@
 ---
 title: "Salón de la Fama"
+aliases:
+  - "/es/halloffame"
+  - "/es/halloffame/"
 description: "Reconociendo a los generosos patrocinadores que han contribuido a I2P a lo largo de los años"
 ---
 

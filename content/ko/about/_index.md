@@ -1,5 +1,8 @@
 ---
 title: "I2P 소개"
+aliases:
+  - "/ko/team"
+  - "/ko/team/"
 description: "익명 통신을 위해 설계된 완전 암호화된 피어 투 피어 오버레이 네트워크 - The Invisible Internet Project에 대해 알아보세요."
 tagline: "The Invisible Internet Project"
 type: "about"

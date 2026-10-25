@@ -1,5 +1,8 @@
 ---
 title: "关于 I2P"
+aliases:
+  - "/zh/team"
+  - "/zh/team/"
 description: "了解关于无形互联网项目——一个用于匿名通信的完全加密的点对点覆盖网络。"
 tagline: "无形互联网项目"
 type: "about"

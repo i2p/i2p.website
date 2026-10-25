@@ -7,10 +7,14 @@ accurateFor: "2.10.0"
 type: docs
 notes: अनुवाद भाग अपडेट करें
 aliases:
-  - "/hi/newdevelopers"
   - "/hi/docs/develop/new-developers"
   - "/hi/docs/develop/new-developers/"
-  - "/docs/develop/new-developers/"
+  - "/hi/newdevelopers"
+  - "/hi/newdevelopers/"
+  - "/hi/cvs"
+  - "/hi/cvs/"
+  - "/hi/monotone"
+  - "/hi/monotone/"
 ---
 
 तो आप I2P पर काम शुरू करना चाहते हैं? बहुत बढ़िया! यहाँ वेबसाइट या सॉफ़्टवेयर में योगदान करने, विकास करने, या अनुवाद बनाने के लिए शुरुआत करने की एक त्वरित मार्गदर्शिका है।

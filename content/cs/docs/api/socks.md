@@ -2,6 +2,9 @@
 title: "SOCKS Proxy"
 description: "Bezpečné používání SOCKS tunnel v I2P"
 slug: "socks"
+aliases:
+  - "/cs/socks"
+  - "/cs/socks/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

@@ -2,6 +2,9 @@
 title: "Secure Semireliable UDP (SSU)"
 description: "Giao thức truyền tải UDP gốc được sử dụng trước SSU2 (đã lỗi thời)"
 slug: "ssu-overview"
+aliases:
+  - "/vi/udp"
+  - "/vi/udp/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.64"
 ---

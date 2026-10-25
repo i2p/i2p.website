@@ -2,6 +2,9 @@
 title: "Spécification du fichier de configuration"
 description: "Spécification des fichiers de configuration I2P utilisés par le router et les applications"
 slug: "configuration"
+aliases:
+  - "/fr/configuration"
+  - "/fr/configuration/"
 category: "Formats"
 lastUpdated: "2023-01"
 accurateFor: "0.9.57"

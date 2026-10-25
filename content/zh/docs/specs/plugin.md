@@ -2,6 +2,9 @@
 title: "插件规范"
 description: "I2P插件的.xpi2p / .su3打包规则"
 slug: "plugin"
+aliases:
+  - "/zh/plugin_spec"
+  - "/zh/plugin_spec/"
 lastUpdated: "2022-01"
 accurateFor: "0.9.53"
 type: docs

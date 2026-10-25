@@ -2,6 +2,9 @@
 title: "Bittorrent sobre I2P"
 description: "Especificações de protocolo para clientes BitTorrent e trackers no I2P"
 slug: "bittorrent"
+aliases:
+  - "/pt/bittorrent"
+  - "/pt/bittorrent/"
 lastUpdated: "2026-08"
 accurateFor: "0.9.70"
 ---

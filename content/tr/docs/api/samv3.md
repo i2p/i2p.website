@@ -3,8 +3,8 @@ title: "SAMv3"
 description: "Java dışı I2P uygulamaları için Basit Anonim Mesajlaşma protokolü"
 slug: "samv3"
 aliases:
-  - "/docs/api/samv3"
-  - "/docs/api/samv3/"
+  - "/tr/samv3"
+  - "/tr/samv3/"
 lastUpdated: "2026-07"
 accurateFor: "0.9.70"
 ---

@@ -2,7 +2,9 @@
 title: "ECIES-X25519-AEAD-Ratchet"
 description: "Esquema de Cifrado Integrado de Curva Elíptica para el cifrado extremo a extremo de I2P"
 slug: "ecies"
-aliases: 
+aliases:
+  - "/es/docs/specs/ecies-x25519-aead-ratchet"
+  - "/es/docs/specs/ecies-x25519-aead-ratchet/"
 category: "Protocolos"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

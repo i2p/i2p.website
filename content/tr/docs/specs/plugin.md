@@ -2,6 +2,9 @@
 title: "Eklenti Spesifikasyonu"
 description: "I2P eklentileri için .xpi2p / .su3 paketleme kuralları"
 slug: "plugin"
+aliases:
+  - "/tr/plugin_spec"
+  - "/tr/plugin_spec/"
 lastUpdated: "2022-01"
 accurateFor: "0.9.53"
 type: docs

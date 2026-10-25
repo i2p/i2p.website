@@ -2,6 +2,9 @@
 title: "Installation de Plugins Personnalisés"
 description: "Installation, mise à jour et développement de plugins pour le routeur"
 slug: "plugins"
+aliases:
+  - "/fr/plugins"
+  - "/fr/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

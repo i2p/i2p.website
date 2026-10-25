@@ -5,6 +5,8 @@ slug: "bob"
 aliases:
   - "/vi/docs/api/bob"
   - "/vi/docs/api/bob/"
+  - "/vi/bob"
+  - "/vi/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

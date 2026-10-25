@@ -2,7 +2,11 @@
 title: "Visão geral do I2CP"
 description: "Visão geral do Protocolo de Cliente I2P (I2CP) - gerenciamento de sessão, opções, formato de carga útil e multiplexação."
 slug: "i2cp-overview"
-aliases: 
+aliases:
+  - "/pt/docs/protocol/i2cp"
+  - "/pt/docs/protocol/i2cp/"
+  - "/pt/i2cp"
+  - "/pt/i2cp/"
 category: "Protocolos"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

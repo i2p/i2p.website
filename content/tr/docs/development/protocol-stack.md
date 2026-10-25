@@ -4,7 +4,11 @@ description: "I2P protokol yığını katmanlarının genel bakışı"
 slug: "protocol-stack"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"
-aliases: 
+aliases:
+  - "/tr/docs/develop/protocol-stack"
+  - "/tr/docs/develop/protocol-stack/"
+  - "/tr/protocols"
+  - "/tr/protocols/"
 ---
 
 I2P yığını, anonim iletişimi sağlayan katmanlı bir tasarımdır. Her katman, altındaki katmanların yeteneklerine ek olarak belirli özellikler ekler. Her bileşen hakkında ek ayrıntılar için [Teknik Dokümantasyon İndeksi](/docs/develop/overview)'ne bakın.

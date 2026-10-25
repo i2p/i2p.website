@@ -1,5 +1,8 @@
 ---
 title: "قاعة الشهرة"
+aliases:
+  - "/ar/halloffame"
+  - "/ar/halloffame/"
 description: "الاعتراف بالداعمين السخيين الذين ساهموا في I2P على مر السنين"
 ---
 

@@ -2,6 +2,9 @@
 title: "مكتبة Ministreaming"
 description: "ملاحظات تاريخية حول أول طبقة نقل شبيهة بـ TCP في I2P"
 slug: "ministreaming"
+aliases:
+  - "/ar/ministreaming"
+  - "/ar/ministreaming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

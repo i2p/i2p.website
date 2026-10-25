@@ -2,6 +2,9 @@
 title: "Specifikace konfiguračního souboru"
 description: "Specifikace konfiguračních souborů I2P používaných routerem a aplikacemi"
 slug: "configuration"
+aliases:
+  - "/cs/configuration"
+  - "/cs/configuration/"
 category: "Formáty"
 lastUpdated: "2023-01"
 accurateFor: "0.9.57"

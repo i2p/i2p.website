@@ -2,7 +2,9 @@
 title: "ECIES-X25519-AEAD-Ratchet"
 description: "I2P 종단 간 암호화를 위한 타원곡선 통합 암호화 방식"
 slug: "ecies"
-aliases: 
+aliases:
+  - "/ko/docs/specs/ecies-x25519-aead-ratchet"
+  - "/ko/docs/specs/ecies-x25519-aead-ratchet/"
 category: "프로토콜"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

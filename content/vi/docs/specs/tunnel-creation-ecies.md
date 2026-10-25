@@ -2,7 +2,9 @@
 title: "Đặc tả Tạo Tunnel (ECIES-X25519)"
 description: "Mã hóa thông điệp Tunnel Build sử dụng các thành phần mật mã ECIES-X25519 để đảm bảo tính bảo mật chuyển tiếp."
 slug: "tunnel-creation-ecies"
-aliases: 
+aliases:
+  - "/vi/docs/specs/tunnel-creation-ecies-spec"
+  - "/vi/docs/specs/tunnel-creation-ecies-spec/"
 category: "Giao thức"
 lastUpdated: "2025-06"
 accurateFor: "0.9.66"

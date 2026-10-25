@@ -2,6 +2,9 @@
 title: "Cài Đặt Các Plugin Tùy Chỉnh"
 description: "Cài đặt, cập nhật và phát triển các plugin router"
 slug: "plugins"
+aliases:
+  - "/vi/plugins"
+  - "/vi/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

@@ -8,7 +8,8 @@ type: docs
 aliases:
   - "/hi/docs/develop/dev-guidelines"
   - "/hi/docs/develop/dev-guidelines/"
-  - "/docs/develop/dev-guidelines/"
+  - "/hi/dev-guidelines"
+  - "/hi/dev-guidelines/"
 ---
 
 पहले [New Developers Guide](/docs/develop/new-developers/) पढ़ें।

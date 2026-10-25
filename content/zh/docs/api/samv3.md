@@ -3,8 +3,8 @@ title: "SAMv3"
 description: "用于非 Java I2P 应用程序的简易匿名消息协议"
 slug: "samv3"
 aliases:
-  - "/docs/api/samv3"
-  - "/docs/api/samv3/"
+  - "/zh/samv3"
+  - "/zh/samv3/"
 lastUpdated: "2026-07"
 accurateFor: "0.9.70"
 ---

@@ -5,6 +5,8 @@ slug: "ntcp-discussion"
 aliases:
   - "/es/docs/discussions/ntcp"
   - "/es/docs/discussions/ntcp/"
+  - "/es/ntcp_discussion"
+  - "/es/ntcp_discussion/"
 lastUpdated: "2007-03"
 accurateFor: "historical"
 ---

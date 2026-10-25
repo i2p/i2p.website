@@ -2,6 +2,9 @@
 title: "Especificación de Archivo de Bloqueo y Base de Datos de Hosts"
 description: "Especificación del formato de archivo blockfile de I2P y las tablas en hostsdb.blockfile utilizadas por el Servicio de Nombres Blockfile"
 slug: "blockfile"
+aliases:
+  - "/es/blockfile"
+  - "/es/blockfile/"
 category: "Formatos"
 lastUpdated: "2023-11"
 accurateFor: "0.9.59"

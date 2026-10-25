@@ -3,6 +3,8 @@ title: "Streaming Protocol"
 description: "TCP-like transport used by most I2P applications"
 slug: "streaming"
 aliases:
+  - "/en/streaming"
+  - "/en/streaming/"
   - "/docs/api/streaming"
   - "/docs/api/streaming/"
 lastUpdated: "2026-01"

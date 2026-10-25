@@ -8,7 +8,8 @@ type: docs
 aliases:
   - "/cs/docs/develop/dev-guidelines"
   - "/cs/docs/develop/dev-guidelines/"
-  - "/docs/develop/dev-guidelines/"
+  - "/cs/dev-guidelines"
+  - "/cs/dev-guidelines/"
 ---
 
 Nejprve si přečtěte [Průvodce pro nové vývojáře](/docs/develop/new-developers/).

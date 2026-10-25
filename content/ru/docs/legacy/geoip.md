@@ -2,6 +2,9 @@
 title: "Форматы файлов GeoIP"
 description: "Спецификации устаревшего формата файлов GeoIP для поиска страны по IP-адресу"
 slug: "geoip"
+aliases:
+  - "/ru/geoip"
+  - "/ru/geoip/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

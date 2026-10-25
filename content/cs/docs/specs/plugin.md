@@ -2,6 +2,9 @@
 title: "Specifikace pluginů"
 description: ".xpi2p / .su3 pravidla balení pro I2P pluginy"
 slug: "plugin"
+aliases:
+  - "/cs/plugin_spec"
+  - "/cs/plugin_spec/"
 lastUpdated: "2022-01"
 accurateFor: "0.9.53"
 type: docs

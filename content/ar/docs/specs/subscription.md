@@ -2,7 +2,9 @@
 title: "أوامر خلاصة الاشتراك في دفتر العناوين"
 description: "مواصفة لتوسيع تغذية اشتراك العناوين بأوامر لتمكين خوادم الأسماء من بث تحديثات الإدخالات من أصحاب أسماء المضيفين."
 slug: "subscription"
-aliases: 
+aliases:
+  - "/ar/docs/specs/subscription-spec"
+  - "/ar/docs/specs/subscription-spec/"
 category: "التنسيقات"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

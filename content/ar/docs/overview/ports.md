@@ -2,6 +2,9 @@
 title: "تخصيصات المنافذ"
 description: "مرجع شامل لتخصيصات منافذ I2P ومنافذ الإضافات والنطاقات المحجوزة."
 slug: "ports"
+aliases:
+  - "/ar/ports"
+  - "/ar/ports/"
 lastUpdated: "2026-06"
 accurateFor: "2.13.0"
 ---

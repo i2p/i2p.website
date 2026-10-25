@@ -2,6 +2,9 @@
 title: "GeoIP-Dateiformate"
 description: "Legacy GeoIP-Dateiformatspezifikationen für IP-zu-Land-Lookups"
 slug: "geoip"
+aliases:
+  - "/de/geoip"
+  - "/de/geoip/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

@@ -2,6 +2,9 @@
 title: "Tunnel 라우팅"
 description: "I2P tunnel 용어, 구성 및 운영 개요"
 slug: "tunnel-routing"
+aliases:
+  - "/ko/how_tunnelrouting"
+  - "/ko/how_tunnelrouting/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.68"
 ---

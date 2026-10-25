@@ -2,6 +2,9 @@
 title: "ElGamal/AES + SessionTag Verschlüsselung"
 description: "Legacy End-to-End-Verschlüsselung, die ElGamal, AES, SHA-256 und einmalige Session-Tags kombiniert"
 slug: "elgamal-aes"
+aliases:
+  - "/de/how_elgamalaes"
+  - "/de/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

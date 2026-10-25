@@ -6,7 +6,8 @@ lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs
 aliases:
-  - "/docs/develop/security-key/"
+  - "/ru/docs/develop/security-key"
+  - "/ru/docs/develop/security-key/"
 ---
 
 ## Контакт по вопросам безопасности

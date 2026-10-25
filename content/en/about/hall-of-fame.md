@@ -1,5 +1,8 @@
 ---
 title: "Hall of Fame"
+aliases:
+  - "/en/halloffame"
+  - "/en/halloffame/"
 description: "Recognizing the generous supporters who have contributed to I2P over the years"
 ---
 

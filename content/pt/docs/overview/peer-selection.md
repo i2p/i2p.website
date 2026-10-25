@@ -2,6 +2,9 @@
 title: "Criação de Perfil e Seleção de Peers"
 description: "Como os routers I2P perfilam e selecionam peers para construir túneis"
 slug: "peer-selection"
+aliases:
+  - "/pt/how_peerselection"
+  - "/pt/how_peerselection/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

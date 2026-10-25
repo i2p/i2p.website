@@ -2,6 +2,11 @@
 title: "I2P: A Scalable Framework for Anonymous Communication"
 description: "Introduction to I2P architecture and operation"
 slug: "intro"
+aliases:
+  - "/en/intro"
+  - "/en/intro/"
+  - "/en/how_intro"
+  - "/en/how_intro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

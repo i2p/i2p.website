@@ -2,6 +2,9 @@
 title: "Transport Genel Bakış"
 description: "Router'lar arası nokta-nokta iletişim için I2P'nin transport katmanına genel bakış"
 slug: "transport"
+aliases:
+  - "/tr/transport"
+  - "/tr/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

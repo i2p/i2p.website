@@ -2,7 +2,9 @@
 title: "ECIES-X25519-AEAD-Ratchet"
 description: "Esquema de Criptografia Integrada de Curva Elíptica para criptografia ponta-a-ponta I2P"
 slug: "ecies"
-aliases: 
+aliases:
+  - "/pt/docs/specs/ecies-x25519-aead-ratchet"
+  - "/pt/docs/specs/ecies-x25519-aead-ratchet/"
 category: "Protocolos"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

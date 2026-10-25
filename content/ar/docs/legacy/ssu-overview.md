@@ -2,6 +2,9 @@
 title: "Secure Semireliable UDP (SSU)"
 description: "نقل UDP الأصلي المستخدم قبل SSU2 (مهجور)"
 slug: "ssu-overview"
+aliases:
+  - "/ar/udp"
+  - "/ar/udp/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.64"
 ---

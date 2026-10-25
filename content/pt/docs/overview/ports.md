@@ -2,6 +2,9 @@
 title: "Atribuições de Porta"
 description: "Referência abrangente das atribuições de portas I2P, portas de plugins e intervalos reservados."
 slug: "ports"
+aliases:
+  - "/pt/ports"
+  - "/pt/ports/"
 lastUpdated: "2026-06"
 accurateFor: "2.13.0"
 ---

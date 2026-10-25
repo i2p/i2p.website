@@ -2,6 +2,9 @@
 title: "Criptografia ElGamal/AES + SessionTag"
 description: "Criptografia end-to-end legada combinando ElGamal, AES, SHA-256 e tags de sessão únicas"
 slug: "elgamal-aes"
+aliases:
+  - "/pt/how_elgamalaes"
+  - "/pt/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

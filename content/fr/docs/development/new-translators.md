@@ -7,7 +7,8 @@ type: docs
 aliases:
   - "/fr/docs/develop/new-translators"
   - "/fr/docs/develop/new-translators/"
-  - "/docs/develop/new-translators/"
+  - "/fr/newtranslators"
+  - "/fr/newtranslators/"
 ---
 
 Vous souhaitez aider à rendre I2P accessible à plus de personnes dans le monde ? La traduction est l'une des contributions les plus précieuses que vous puissiez apporter au projet. Ce guide vous expliquera comment traduire la console du routeur.

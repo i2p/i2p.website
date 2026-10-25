@@ -7,10 +7,14 @@ accurateFor: "2.10.0"
 type: docs
 notes: 更新翻译部分
 aliases:
-  - "/zh/newdevelopers"
   - "/zh/docs/develop/new-developers"
   - "/zh/docs/develop/new-developers/"
-  - "/docs/develop/new-developers/"
+  - "/zh/newdevelopers"
+  - "/zh/newdevelopers/"
+  - "/zh/cvs"
+  - "/zh/cvs/"
+  - "/zh/monotone"
+  - "/zh/monotone/"
 ---
 
 所以你想开始为 I2P 做贡献？太好了！这里有一个快速指南，帮助你开始为网站或软件做贡献、进行开发或创建翻译。

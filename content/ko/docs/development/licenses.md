@@ -8,7 +8,10 @@ type: docs
 aliases:
   - "/ko/docs/develop/licenses"
   - "/ko/docs/develop/licenses/"
-  - "/docs/develop/licenses/"
+  - "/ko/licenses"
+  - "/ko/licenses/"
+  - "/ko/license-agreements"
+  - "/ko/license-agreements/"
 ---
 
 우리의 [위협 모델](/docs/overview/threat-model//)에서 요구하는 바와 같이 (그 외 다른 이유들도 있지만), I2P라고 부르는 익명 통신 네트워크를 지원하기 위해 개발된 소프트웨어는 자유롭게 이용 가능하고, 오픈 소스이며, 사용자가 수정할 수 있어야 합니다. 이러한 기준을 충족하기 위해, 우리는 I2P 프로젝트를 사용하거나 기여하려는 사람들의 진입 장벽을 최대한 제거하고자 다양한 법적 및 소프트웨어 엔지니어링 기법을 활용합니다.

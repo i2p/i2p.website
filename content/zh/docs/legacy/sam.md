@@ -5,6 +5,8 @@ slug: "sam"
 aliases:
   - "/zh/docs/api/sam"
   - "/zh/docs/api/sam/"
+  - "/zh/sam"
+  - "/zh/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

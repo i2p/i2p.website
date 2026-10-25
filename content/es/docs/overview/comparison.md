@@ -2,6 +2,11 @@
 title: "I2P vs Otras Redes de Privacidad"
 description: "Una comparación técnica y filosófica moderna que destaca las ventajas únicas del diseño de I2P"
 slug: "comparison"
+aliases:
+  - "/es/how_networkcomparisons"
+  - "/es/how_networkcomparisons/"
+  - "/es/othernetworks"
+  - "/es/othernetworks/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

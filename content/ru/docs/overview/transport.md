@@ -2,6 +2,9 @@
 title: "Обзор транспорта"
 description: "Обзор транспортного уровня I2P для связи между router'ами точка-точка"
 slug: "transport"
+aliases:
+  - "/ru/transport"
+  - "/ru/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

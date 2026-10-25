@@ -2,6 +2,9 @@
 title: "Ministreaming 라이브러리"
 description: "I2P의 첫 번째 TCP 유사 전송 계층에 대한 역사적 기록"
 slug: "ministreaming"
+aliases:
+  - "/ko/ministreaming"
+  - "/ko/ministreaming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

@@ -2,6 +2,9 @@
 title: "تثبيت الإضافات المخصصة"
 description: "تثبيت وتحديث وتطوير إضافات الموجه"
 slug: "plugins"
+aliases:
+  - "/ar/plugins"
+  - "/ar/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

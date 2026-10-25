@@ -2,6 +2,9 @@
 title: "데이터그램"
 description: "I2CP 위의 인증된, 응답 가능한, 그리고 원시 메시지 형식들"
 slug: "datagrams"
+aliases:
+  - "/ko/datagrams"
+  - "/ko/datagrams/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

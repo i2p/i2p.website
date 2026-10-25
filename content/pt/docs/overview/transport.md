@@ -2,6 +2,9 @@
 title: "Visão Geral do Transporte"
 description: "Visão geral da camada de transporte do I2P para comunicação ponto-a-ponto entre routers"
 slug: "transport"
+aliases:
+  - "/pt/transport"
+  - "/pt/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

@@ -2,6 +2,9 @@
 title: "Datagramme"
 description: "Authentifizierte, antwortfähige und rohe Nachrichtenformate über I2CP"
 slug: "datagrams"
+aliases:
+  - "/de/datagrams"
+  - "/de/datagrams/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

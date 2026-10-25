@@ -2,6 +2,9 @@
 title: "Phân tích và lựa chọn Peer"
 description: "Cách các I2P router lập hồ sơ và chọn lựa các peer để xây dựng tunnel"
 slug: "peer-selection"
+aliases:
+  - "/vi/how_peerselection"
+  - "/vi/how_peerselection/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

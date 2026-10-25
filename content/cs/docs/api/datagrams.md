@@ -2,6 +2,9 @@
 title: "Datagramy"
 description: "Autentizované, odpověditelné a surové formáty zpráv nad I2CP"
 slug: "datagrams"
+aliases:
+  - "/cs/datagrams"
+  - "/cs/datagrams/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

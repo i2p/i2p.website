@@ -1,5 +1,8 @@
 ---
 title: "हॉल ऑफ़ फ़ेम"
+aliases:
+  - "/hi/halloffame"
+  - "/hi/halloffame/"
 description: "उन उदार समर्थकों को पहचानने के लिए जिन्होंने वर्षों से I2P में योगदान दिया है"
 ---
 

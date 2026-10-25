@@ -1,8 +1,12 @@
 ---
 title: "Дорожная карта разработки I2P"
 aliases:
-  - "/en/get-involved/todo"
-  - "/en/get-involved/todo/"
+  - "/ru/get-involved/todo"
+  - "/ru/get-involved/todo/"
+  - "/ru/roadmap"
+  - "/ru/roadmap/"
+  - "/ru/todo"
+  - "/ru/todo/"
 description: "Текущие планы разработки и исторические вехи сети I2P"
 ---
 

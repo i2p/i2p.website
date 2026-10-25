@@ -2,6 +2,9 @@
 title: "Instalando Plugins Personalizados"
 description: "Instalando, atualizando e desenvolvendo plugins de roteador"
 slug: "plugins"
+aliases:
+  - "/pt/plugins"
+  - "/pt/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

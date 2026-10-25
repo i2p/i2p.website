@@ -2,6 +2,9 @@
 title: "I2P पर Bittorrent"
 description: "I2P पर BitTorrent clients और trackers के लिए प्रोटोकॉल विनिर्देश"
 slug: "bittorrent"
+aliases:
+  - "/hi/bittorrent"
+  - "/hi/bittorrent/"
 lastUpdated: "2026-08"
 accurateFor: "0.9.70"
 ---

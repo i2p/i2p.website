@@ -8,7 +8,12 @@ type: docs
 aliases:
   - "/hi/docs/develop/release-signing-key"
   - "/hi/docs/develop/release-signing-key/"
-  - "/docs/develop/release-signing-key/"
+  - "/hi/release-signing-key"
+  - "/hi/release-signing-key/"
+  - "/hi/developerskeys"
+  - "/hi/developerskeys/"
+  - "/hi/signedkeys"
+  - "/hi/signedkeys/"
 ---
 
 <p> रिलीज़ 0.9.57 और आगे की सभी रिलीज़ idk द्वारा साइन की गई हैं। उनकी वर्तमान public key है: </p> <p> <a href="/idk.key.asc" >PGP public key डाउनलोड करें</a> </p><p>

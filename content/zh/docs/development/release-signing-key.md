@@ -8,7 +8,12 @@ type: docs
 aliases:
   - "/zh/docs/develop/release-signing-key"
   - "/zh/docs/develop/release-signing-key/"
-  - "/docs/develop/release-signing-key/"
+  - "/zh/release-signing-key"
+  - "/zh/release-signing-key/"
+  - "/zh/developerskeys"
+  - "/zh/developerskeys/"
+  - "/zh/signedkeys"
+  - "/zh/signedkeys/"
 ---
 
 <p> 0.9.57 及之后的版本由 idk 签名。他当前的公钥是： </p> <p> <a href="/idk.key.asc" >下载 PGP 公钥</a> </p><p>

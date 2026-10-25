@@ -2,6 +2,9 @@
 title: "La Base de Datos de Red"
 description: "Entendiendo la base de datos de red distribuida (netDb) de I2P - una DHT especializada para información de contacto de routers y búsquedas de destinos"
 slug: "network-database"
+aliases:
+  - "/es/how_networkdatabase"
+  - "/es/how_networkdatabase/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.65"
 ---

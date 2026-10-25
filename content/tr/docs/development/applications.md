@@ -5,6 +5,8 @@ slug: "applications"
 aliases:
   - "/tr/docs/develop/applications"
   - "/tr/docs/develop/applications/"
+  - "/tr/applications"
+  - "/tr/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

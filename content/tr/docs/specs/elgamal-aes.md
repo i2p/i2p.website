@@ -2,6 +2,9 @@
 title: "ElGamal/AES + SessionTag Şifrelemesi"
 description: "ElGamal, AES, SHA-256 ve tek kullanımlık oturum etiketlerini birleştiren eski uçtan uca şifreleme"
 slug: "elgamal-aes"
+aliases:
+  - "/tr/how_elgamalaes"
+  - "/tr/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

@@ -2,9 +2,6 @@
 title: "PQ Hybrid ECIES-X25519-AEAD-Ratchet"
 description: "Biến thể lai lượng tử hậu của giao thức mã hóa ECIES sử dụng ML-KEM"
 slug: "ecies-hybrid"
-aliases:
-  - "/docs/specs/ecies-hybrid"
-  - "/docs/specs/ecies-hybrid/"
 category: "Các giao thức"
 lastUpdated: "2026-04"
 accurateFor: "0.9.69"

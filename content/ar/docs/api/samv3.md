@@ -3,8 +3,8 @@ title: "SAMv3"
 description: "بروتوكول المراسلة المجهولة البسيط للتطبيقات غير جافا في I2P"
 slug: "samv3"
 aliases:
-  - "/docs/api/samv3"
-  - "/docs/api/samv3/"
+  - "/ar/samv3"
+  - "/ar/samv3/"
 lastUpdated: "2026-07"
 accurateFor: "0.9.70"
 ---

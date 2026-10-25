@@ -2,6 +2,9 @@
 title: "पोर्ट असाइनमेंट"
 description: "I2P पोर्ट असाइनमेंट्स, प्लगइन पोर्ट्स, और आरक्षित रेंज का व्यापक संदर्भ।"
 slug: "ports"
+aliases:
+  - "/hi/ports"
+  - "/hi/ports/"
 lastUpdated: "2026-06"
 accurateFor: "2.13.0"
 ---

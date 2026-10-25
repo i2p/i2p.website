@@ -8,6 +8,11 @@ type: docs
 aliases:
   - "/en/docs/develop/licenses"
   - "/en/docs/develop/licenses/"
+  - "/en/licenses"
+  - "/en/licenses/"
+  - "/en/license-agreements"
+  - "/en/license-agreements/"
+  - "/docs/develop/licenses"
   - "/docs/develop/licenses/"
 ---
 

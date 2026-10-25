@@ -5,6 +5,8 @@ slug: "sam"
 aliases:
   - "/fr/docs/api/sam"
   - "/fr/docs/api/sam/"
+  - "/fr/sam"
+  - "/fr/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

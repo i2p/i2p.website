@@ -2,6 +2,9 @@
 title: "Chiffrement ElGamal/AES + SessionTag"
 description: "Chiffrement de bout en bout hérité combinant ElGamal, AES, SHA-256, et des étiquettes de session à usage unique"
 slug: "elgamal-aes"
+aliases:
+  - "/fr/how_elgamalaes"
+  - "/fr/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

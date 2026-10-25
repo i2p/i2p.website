@@ -2,7 +2,9 @@
 title: "Tunnel Oluşturma Spesifikasyonu (ECIES-X25519)"
 description: "İleri gizlilik için ECIES-X25519 kriptografik temel öğelerini kullanarak tunnel Build mesajı şifreleme."
 slug: "tunnel-creation-ecies"
-aliases: 
+aliases:
+  - "/tr/docs/specs/tunnel-creation-ecies-spec"
+  - "/tr/docs/specs/tunnel-creation-ecies-spec/"
 category: "Protokoller"
 lastUpdated: "2025-06"
 accurateFor: "0.9.66"

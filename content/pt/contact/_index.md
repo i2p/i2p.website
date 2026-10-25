@@ -1,5 +1,8 @@
 ---
 title: "Contacte-nos"
+aliases:
+  - "/pt/impressum"
+  - "/pt/impressum/"
 description: "Entre em contato com o projeto I2P - email, fóruns, redes sociais, canais IRC e conheça a equipe."
 type: "contact"
 layout: "contact"

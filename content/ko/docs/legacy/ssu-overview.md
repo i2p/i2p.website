@@ -2,6 +2,9 @@
 title: "Secure Semireliable UDP (SSU)"
 description: "SSU2 이전에 사용된 원래 UDP 전송 (더 이상 사용되지 않음)"
 slug: "ssu-overview"
+aliases:
+  - "/ko/udp"
+  - "/ko/udp/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.64"
 ---

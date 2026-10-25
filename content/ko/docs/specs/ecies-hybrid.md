@@ -2,9 +2,6 @@
 title: "PQ Hybrid ECIES-X25519-AEAD-Ratchet"
 description: "ML-KEM을 사용한 ECIES 암호화 프로토콜의 양자 후 하이브리드 변형"
 slug: "ecies-hybrid"
-aliases:
-  - "/docs/specs/ecies-hybrid"
-  - "/docs/specs/ecies-hybrid/"
 category: "프로토콜"
 lastUpdated: "2026-04"
 accurateFor: "0.9.69"

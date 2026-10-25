@@ -1,5 +1,8 @@
 ---
 title: "Liên Hệ Với Chúng Tôi"
+aliases:
+  - "/vi/impressum"
+  - "/vi/impressum/"
 description: "Liên hệ với dự án I2P - email, diễn đàn, mạng xã hội, kênh IRC, và gặp gỡ nhóm phát triển."
 type: "contact"
 layout: "contact"

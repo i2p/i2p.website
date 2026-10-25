@@ -2,6 +2,9 @@
 title: "Spécification de la base de données Blockfile et Hosts"
 description: "Spécification du format de fichier I2P blockfile et des tables dans le hostsdb.blockfile utilisé par le Blockfile Naming Service"
 slug: "blockfile"
+aliases:
+  - "/fr/blockfile"
+  - "/fr/blockfile/"
 category: "Formats"
 lastUpdated: "2023-11"
 accurateFor: "0.9.59"

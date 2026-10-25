@@ -2,6 +2,9 @@
 title: "مواصفات Blockfile وقاعدة بيانات المضيفين"
 description: "مواصفات تنسيق ملف I2P blockfile والجداول في hostsdb.blockfile المستخدمة من قبل خدمة التسمية Blockfile Naming Service"
 slug: "blockfile"
+aliases:
+  - "/ar/blockfile"
+  - "/ar/blockfile/"
 category: "التنسيقات"
 lastUpdated: "2023-11"
 accurateFor: "0.9.59"

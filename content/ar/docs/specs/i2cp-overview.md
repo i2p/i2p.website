@@ -2,7 +2,11 @@
 title: "نظرة عامة على I2CP"
 description: "نظرة عامة على بروتوكول عميل I2P (I2CP) - إدارة الجلسة، الخيارات، تنسيق الحمولة، والتعددية."
 slug: "i2cp-overview"
-aliases: 
+aliases:
+  - "/ar/docs/protocol/i2cp"
+  - "/ar/docs/protocol/i2cp/"
+  - "/ar/i2cp"
+  - "/ar/i2cp/"
 category: "البروتوكولات"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

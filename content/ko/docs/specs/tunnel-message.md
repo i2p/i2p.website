@@ -5,6 +5,8 @@ slug: "tunnel-message"
 aliases:
   - "/ko/docs/legacy/tunnel-message"
   - "/ko/docs/legacy/tunnel-message/"
+  - "/ko/tunnel_message_spec"
+  - "/ko/tunnel_message_spec/"
 category: "설계"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

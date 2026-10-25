@@ -8,7 +8,12 @@ type: docs
 aliases:
   - "/ar/docs/develop/release-signing-key"
   - "/ar/docs/develop/release-signing-key/"
-  - "/docs/develop/release-signing-key/"
+  - "/ar/release-signing-key"
+  - "/ar/release-signing-key/"
+  - "/ar/developerskeys"
+  - "/ar/developerskeys/"
+  - "/ar/signedkeys"
+  - "/ar/signedkeys/"
 ---
 
 <p> الإصدارات 0.9.57 وما بعدها موقعة بواسطة idk. مفتاحه العام الحالي هو: </p> <p> <a href="/idk.key.asc" >تحميل المفتاح العام PGP</a> </p><p>

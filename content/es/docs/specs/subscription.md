@@ -2,7 +2,9 @@
 title: "Comandos de Suscripción a Feeds de Libreta de Direcciones"
 description: "Especificación para extender la fuente de suscripción de direcciones con comandos que permitan a los servidores de nombres difundir actualizaciones de entradas desde los poseedores de nombres de host."
 slug: "subscription"
-aliases: 
+aliases:
+  - "/es/docs/specs/subscription-spec"
+  - "/es/docs/specs/subscription-spec/"
 category: "Formatos"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

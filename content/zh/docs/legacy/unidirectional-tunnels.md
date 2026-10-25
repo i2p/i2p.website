@@ -2,6 +2,9 @@
 title: "单向隧道"
 description: "I2P单向tunnel设计的历史概述"
 slug: "unidirectional"
+aliases:
+  - "/zh/unidirectional-tunnels"
+  - "/zh/unidirectional-tunnels/"
 lastUpdated: "2016-11"
 accurateFor: "0.9.27"
 ---

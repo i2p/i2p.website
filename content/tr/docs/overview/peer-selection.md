@@ -2,6 +2,9 @@
 title: "Eş Profilleme ve Seçimi"
 description: "I2P router'larının tunnel oluşturmak için eş profilleme ve seçme yöntemi"
 slug: "peer-selection"
+aliases:
+  - "/tr/how_peerselection"
+  - "/tr/how_peerselection/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

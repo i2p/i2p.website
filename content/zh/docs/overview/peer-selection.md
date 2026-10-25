@@ -2,6 +2,9 @@
 title: "节点分析和选择"
 description: "I2P router 如何分析和选择节点来构建 tunnel"
 slug: "peer-selection"
+aliases:
+  - "/zh/how_peerselection"
+  - "/zh/how_peerselection/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

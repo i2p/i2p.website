@@ -2,7 +2,9 @@
 title: "Spécification de création de tunnel (ECIES-X25519)"
 description: "Chiffrement des messages de construction de tunnel utilisant les primitives cryptographiques ECIES-X25519 pour la confidentialité persistante."
 slug: "tunnel-creation-ecies"
-aliases: 
+aliases:
+  - "/fr/docs/specs/tunnel-creation-ecies-spec"
+  - "/fr/docs/specs/tunnel-creation-ecies-spec/"
 category: "Protocoles"
 lastUpdated: "2025-06"
 accurateFor: "0.9.66"

@@ -2,6 +2,9 @@
 title: "Port-Zuweisungen"
 description: "Umfassende Referenz der I2P-Portzuweisungen, Plugin-Ports und reservierten Bereiche."
 slug: "ports"
+aliases:
+  - "/de/ports"
+  - "/de/ports/"
 lastUpdated: "2026-06"
 accurateFor: "2.13.0"
 ---

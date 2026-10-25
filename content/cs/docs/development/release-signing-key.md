@@ -8,7 +8,12 @@ type: docs
 aliases:
   - "/cs/docs/develop/release-signing-key"
   - "/cs/docs/develop/release-signing-key/"
-  - "/docs/develop/release-signing-key/"
+  - "/cs/release-signing-key"
+  - "/cs/release-signing-key/"
+  - "/cs/developerskeys"
+  - "/cs/developerskeys/"
+  - "/cs/signedkeys"
+  - "/cs/signedkeys/"
 ---
 
 <p> Vydání 0.9.57 a novější jsou podepsána idk. Jeho aktuální veřejný klíč je: </p> <p> <a href="/idk.key.asc" >Stáhnout veřejný PGP klíč</a> </p><p>

@@ -7,7 +7,6 @@ accurateFor: "0.9.67"
 aliases:
   - "/zh/docs/develop/overview"
   - "/zh/docs/develop/overview/"
-  - "/docs/development/overview/"
 ---
 
 

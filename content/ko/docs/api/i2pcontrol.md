@@ -2,6 +2,9 @@
 title: "I2PControl JSON-RPC"
 description: "I2PControl 웹앱을 통한 원격 router 관리 API"
 slug: "i2pcontrol"
+aliases:
+  - "/ko/i2pcontrol"
+  - "/ko/i2pcontrol/"
 lastUpdated: "2026-07-10"
 accurateFor: "2.12.0"
 reviewStatus: "needs-review"

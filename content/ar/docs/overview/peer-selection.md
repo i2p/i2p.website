@@ -2,6 +2,9 @@
 title: "تحليل النظراء واختيارهم"
 description: "كيف تقوم routers شبكة I2P بإنشاء ملفات تعريف واختيار النظراء لبناء tunnels"
 slug: "peer-selection"
+aliases:
+  - "/ar/how_peerselection"
+  - "/ar/how_peerselection/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

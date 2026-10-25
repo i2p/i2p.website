@@ -1,5 +1,8 @@
 ---
 title: "명예의 전당"
+aliases:
+  - "/ko/halloffame"
+  - "/ko/halloffame/"
 description: "수년간 I2P에 기여한 관대한 후원자들을 기립니다"
 ---
 

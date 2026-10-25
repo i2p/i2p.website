@@ -2,6 +2,9 @@
 title: "تشفير ElGamal/AES + SessionTag"
 description: "التشفير القديم من طرف إلى طرف الذي يجمع بين ElGamal وAES وSHA-256 وعلامات الجلسة لمرة واحدة"
 slug: "elgamal-aes"
+aliases:
+  - "/ar/how_elgamalaes"
+  - "/ar/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

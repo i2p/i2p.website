@@ -2,6 +2,9 @@
 title: "底层密码学规范"
 description: "I2P中使用的密码学算法的底层详细信息"
 slug: "cryptography"
+aliases:
+  - "/zh/how_cryptography"
+  - "/zh/how_cryptography/"
 category: "设计"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

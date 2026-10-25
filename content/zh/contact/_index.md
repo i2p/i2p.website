@@ -1,5 +1,8 @@
 ---
 title: "联系我们"
+aliases:
+  - "/zh/impressum"
+  - "/zh/impressum/"
 description: "联系I2P项目 - 电子邮件、论坛、社交媒体、IRC频道，并了解团队成员。"
 type: "contact"
 layout: "contact"

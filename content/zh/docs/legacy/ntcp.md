@@ -7,6 +7,8 @@ aliases:
   - "/zh/docs/transport/ntcp/"
   - "/zh/docs/ntcp"
   - "/zh/docs/ntcp/"
+  - "/zh/ntcp"
+  - "/zh/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

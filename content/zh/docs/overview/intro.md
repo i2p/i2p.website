@@ -2,6 +2,11 @@
 title: "I2P：可扩展的匿名通信框架"
 description: "I2P架构和运行原理介绍"
 slug: "intro"
+aliases:
+  - "/zh/intro"
+  - "/zh/intro/"
+  - "/zh/how_intro"
+  - "/zh/how_intro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

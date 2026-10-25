@@ -2,6 +2,9 @@
 title: "ElGamal/AES + SessionTag šifrování"
 description: "Starší end-to-end šifrování kombinující ElGamal, AES, SHA-256 a jednorázové session tagy"
 slug: "elgamal-aes"
+aliases:
+  - "/cs/how_elgamalaes"
+  - "/cs/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

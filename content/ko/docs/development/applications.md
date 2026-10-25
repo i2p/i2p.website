@@ -5,6 +5,8 @@ slug: "applications"
 aliases:
   - "/ko/docs/develop/applications"
   - "/ko/docs/develop/applications/"
+  - "/ko/applications"
+  - "/ko/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

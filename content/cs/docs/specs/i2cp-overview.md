@@ -2,7 +2,11 @@
 title: "Přehled I2CP"
 description: "Přehled I2P klientského protokolu (I2CP) – správa relací, možnosti, formát užitečného zatížení a multiplexování."
 slug: "i2cp-overview"
-aliases: 
+aliases:
+  - "/cs/docs/protocol/i2cp"
+  - "/cs/docs/protocol/i2cp/"
+  - "/cs/i2cp"
+  - "/cs/i2cp/"
 category: "Protokoly"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

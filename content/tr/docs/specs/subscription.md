@@ -2,7 +2,9 @@
 title: "Adres Defteri Abonelik Beslemesi Komutları"
 description: "Hostname sahiplerinden gelen giriş güncellemelerini name server'ların yayınlamasını sağlamak için adres abonelik feed'ini komutlarla genişletmeye yönelik spesifikasyon."
 slug: "subscription"
-aliases: 
+aliases:
+  - "/tr/docs/specs/subscription-spec"
+  - "/tr/docs/specs/subscription-spec/"
 category: "Formatlar"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

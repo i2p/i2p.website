@@ -2,6 +2,11 @@
 title: "I2P: Một Framework Có Thể Mở Rộng Cho Giao Tiếp Ẩn Danh"
 description: "Giới thiệu về kiến trúc và hoạt động của I2P"
 slug: "intro"
+aliases:
+  - "/vi/intro"
+  - "/vi/intro/"
+  - "/vi/how_intro"
+  - "/vi/how_intro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

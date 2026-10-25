@@ -2,6 +2,9 @@
 title: "Güvenli Yarı-Güvenilir UDP (SSU)"
 description: "SSU2'den önce kullanılan orijinal UDP taşıma protokolü (kullanımdan kaldırıldı)"
 slug: "ssu-overview"
+aliases:
+  - "/tr/udp"
+  - "/tr/udp/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.64"
 ---

@@ -2,6 +2,9 @@
 title: "Jednosměrné tunnely"
 description: "Historické shrnutí návrhu jednosměrných tunelů I2P"
 slug: "unidirectional"
+aliases:
+  - "/cs/unidirectional-tunnels"
+  - "/cs/unidirectional-tunnels/"
 lastUpdated: "2016-11"
 accurateFor: "0.9.27"
 ---

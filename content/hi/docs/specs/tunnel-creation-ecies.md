@@ -2,7 +2,9 @@
 title: "Tunnel निर्माण विनिर्देश (ECIES-X25519)"
 description: "फॉरवर्ड सिक्योरिटी के लिए ECIES-X25519 crypto primitives का उपयोग करके tunnel Build संदेश एन्क्रिप्शन।"
 slug: "tunnel-creation-ecies"
-aliases: 
+aliases:
+  - "/hi/docs/specs/tunnel-creation-ecies-spec"
+  - "/hi/docs/specs/tunnel-creation-ecies-spec/"
 category: "प्रोटोकॉल"
 lastUpdated: "2025-06"
 accurateFor: "0.9.66"

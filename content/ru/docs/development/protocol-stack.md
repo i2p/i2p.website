@@ -4,7 +4,11 @@ description: "Обзор уровней стека протоколов I2P"
 slug: "protocol-stack"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"
-aliases: 
+aliases:
+  - "/ru/docs/develop/protocol-stack"
+  - "/ru/docs/develop/protocol-stack/"
+  - "/ru/protocols"
+  - "/ru/protocols/"
 ---
 
 Стек I2P представляет собой многоуровневую архитектуру, обеспечивающую анонимную связь. Каждый уровень добавляет специфические возможности поверх нижележащих. Смотрите [Индекс технической документации](/docs/develop/overview) для получения дополнительной информации о каждом компоненте.

@@ -2,6 +2,9 @@
 title: "Resumen de Transportes"
 description: "Visión general de la capa de transporte de I2P para la comunicación punto a punto entre routers"
 slug: "transport"
+aliases:
+  - "/es/transport"
+  - "/es/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

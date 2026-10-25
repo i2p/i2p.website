@@ -5,6 +5,8 @@ slug: "applications"
 aliases:
   - "/cs/docs/develop/applications"
   - "/cs/docs/develop/applications/"
+  - "/cs/applications"
+  - "/cs/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

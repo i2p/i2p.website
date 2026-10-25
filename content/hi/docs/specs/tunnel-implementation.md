@@ -3,8 +3,10 @@ title: "Tunnel कार्यान्वयन"
 description: "I2P tunnel संचालन, निर्माण, और संदेश प्रसंस्करण का विनिर्देश"
 slug: "tunnel-implementation"
 aliases:
-  - "/hi/docs/specs/tunnel-implementation"
-  - "/hi/docs/specs/tunnel-implementation/"
+  - "/hi/docs/specs/implementation"
+  - "/hi/docs/specs/implementation/"
+  - "/hi/tunnel-alt"
+  - "/hi/tunnel-alt/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

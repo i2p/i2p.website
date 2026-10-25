@@ -2,6 +2,9 @@
 title: "مواصفات ملف التكوين"
 description: "مواصفات ملفات تكوين I2P المستخدمة من قبل router والتطبيقات"
 slug: "configuration"
+aliases:
+  - "/ar/configuration"
+  - "/ar/configuration/"
 category: "التنسيقات"
 lastUpdated: "2023-01"
 accurateFor: "0.9.57"

@@ -2,6 +2,9 @@
 title: "ट्रांसपोर्ट अवलोकन"
 description: "बिंदु-से-बिंदु router संचार के लिए I2P की transport layer का अवलोकन"
 slug: "transport"
+aliases:
+  - "/hi/transport"
+  - "/hi/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

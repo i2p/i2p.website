@@ -5,6 +5,8 @@ slug: "netdb"
 aliases:
   - "/zh/docs/legacy/netdb"
   - "/zh/docs/legacy/netdb/"
+  - "/zh/netdb_discussion"
+  - "/zh/netdb_discussion/"
 lastUpdated: "2008-03"
 accurateFor: "0.7"
 ---

@@ -2,6 +2,11 @@
 title: "I2P im Vergleich zu anderen Anonymisierungsnetzwerken"
 description: "Ein moderner technischer und philosophischer Vergleich, der die einzigartigen Designvorteile von I2P hervorhebt"
 slug: "comparison"
+aliases:
+  - "/de/how_networkcomparisons"
+  - "/de/how_networkcomparisons/"
+  - "/de/othernetworks"
+  - "/de/othernetworks/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

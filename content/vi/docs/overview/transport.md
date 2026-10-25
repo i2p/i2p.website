@@ -2,6 +2,9 @@
 title: "Tổng quan về Transport"
 description: "Tổng quan về tầng vận chuyển của I2P cho giao tiếp router điểm-điểm"
 slug: "transport"
+aliases:
+  - "/vi/transport"
+  - "/vi/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

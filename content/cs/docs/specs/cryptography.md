@@ -2,6 +2,9 @@
 title: "Specifikace nízkoúrovňové kryptografie"
 description: "Podrobnosti nízké úrovně kryptografických algoritmů používaných v I2P"
 slug: "cryptography"
+aliases:
+  - "/cs/how_cryptography"
+  - "/cs/how_cryptography/"
 category: "Design"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

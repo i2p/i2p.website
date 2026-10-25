@@ -2,6 +2,9 @@
 title: "Tunnels Unidirecionais"
 description: "Resumo histórico do design de tunnel unidirecional do I2P"
 slug: "unidirectional"
+aliases:
+  - "/pt/unidirectional-tunnels"
+  - "/pt/unidirectional-tunnels/"
 lastUpdated: "2016-11"
 accurateFor: "0.9.27"
 ---

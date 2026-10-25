@@ -2,7 +2,9 @@
 title: "ECIES-X25519-AEAD-Ratchet"
 description: "Схема интегрированного шифрования на эллиптических кривых для сквозного шифрования I2P"
 slug: "ecies"
-aliases: 
+aliases:
+  - "/ru/docs/specs/ecies-x25519-aead-ratchet"
+  - "/ru/docs/specs/ecies-x25519-aead-ratchet/"
 category: "Протоколы"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

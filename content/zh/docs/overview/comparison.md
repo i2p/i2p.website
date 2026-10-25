@@ -2,6 +2,11 @@
 title: "I2P 与其他隐私网络的比较"
 description: "一个现代化的技术和哲学比较，突出 I2P 独特的设计优势"
 slug: "comparison"
+aliases:
+  - "/zh/how_networkcomparisons"
+  - "/zh/how_networkcomparisons/"
+  - "/zh/othernetworks"
+  - "/zh/othernetworks/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

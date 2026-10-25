@@ -7,6 +7,9 @@ type: docs
 aliases:
   - "/en/docs/develop/new-translators"
   - "/en/docs/develop/new-translators/"
+  - "/en/newtranslators"
+  - "/en/newtranslators/"
+  - "/docs/develop/new-translators"
   - "/docs/develop/new-translators/"
 ---
 

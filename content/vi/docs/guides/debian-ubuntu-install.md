@@ -1,5 +1,8 @@
 ---
 title: "Cài đặt I2P trên Debian và Ubuntu"
+aliases:
+  - "/vi/debian"
+  - "/vi/debian/"
 description: "Hướng dẫn đầy đủ cài đặt I2P trên Debian, Ubuntu và các bản phái sinh sử dụng kho lưu trữ chính thức"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"

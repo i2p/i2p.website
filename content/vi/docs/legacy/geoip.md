@@ -2,6 +2,9 @@
 title: "Định dạng tệp GeoIP"
 description: "Đặc tả định dạng tệp GeoIP cũ cho việc tra cứu IP sang quốc gia"
 slug: "geoip"
+aliases:
+  - "/vi/geoip"
+  - "/vi/geoip/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

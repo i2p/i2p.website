@@ -2,6 +2,9 @@
 title: "The Network Database"
 description: "Understanding I2P's distributed network database (netDb) - a specialized DHT for router contact information and destination lookups"
 slug: "network-database"
+aliases:
+  - "/en/how_networkdatabase"
+  - "/en/how_networkdatabase/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.65"
 ---

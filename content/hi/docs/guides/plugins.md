@@ -2,6 +2,9 @@
 title: "कस्टम प्लगइन्स इंस्टॉल करना"
 description: "राउटर प्लगइन्स को इंस्टॉल, अपडेट और डेवलप करना"
 slug: "plugins"
+aliases:
+  - "/hi/plugins"
+  - "/hi/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

@@ -2,6 +2,9 @@
 title: "Đặc Tả Plugin"
 description: "Quy tắc đóng gói .xpi2p / .su3 cho các plugin I2P"
 slug: "plugin"
+aliases:
+  - "/vi/plugin_spec"
+  - "/vi/plugin_spec/"
 lastUpdated: "2022-01"
 accurateFor: "0.9.53"
 type: docs

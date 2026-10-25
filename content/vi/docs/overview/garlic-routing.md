@@ -2,6 +2,9 @@
 title: "Garlic Routing"
 description: "Hiểu về thuật ngữ, kiến trúc và triển khai garlic routing trong I2P"
 slug: "garlic-routing"
+aliases:
+  - "/vi/how_garlicrouting"
+  - "/vi/how_garlicrouting/"
 lastUpdated: "2025-10"
 accurateFor: "0.9.12"
 ---

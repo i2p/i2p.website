@@ -2,6 +2,9 @@
 title: "Düşük Seviye Kriptografi Spesifikasyonu"
 description: "I2P'de kullanılan kriptografik algoritmaların düşük seviye ayrıntıları"
 slug: "cryptography"
+aliases:
+  - "/tr/how_cryptography"
+  - "/tr/how_cryptography/"
 category: "Tasarım"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

@@ -4,7 +4,11 @@ description: "Descripción general de las capas del stack de protocolos de I2P"
 slug: "protocol-stack"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"
-aliases: 
+aliases:
+  - "/es/docs/develop/protocol-stack"
+  - "/es/docs/develop/protocol-stack/"
+  - "/es/protocols"
+  - "/es/protocols/"
 ---
 
 La pila de I2P es un diseño por capas que permite la comunicación anónima. Cada capa añade capacidades específicas sobre las que están debajo de ella. Consulta el [Índice de Documentación Técnica](/docs/develop/overview) para obtener detalles adicionales sobre cada componente.

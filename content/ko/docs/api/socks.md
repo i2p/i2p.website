@@ -2,6 +2,9 @@
 title: "SOCKS 프록시"
 description: "I2P의 SOCKS tunnel 안전하게 사용하기"
 slug: "socks"
+aliases:
+  - "/ko/socks"
+  - "/ko/socks/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

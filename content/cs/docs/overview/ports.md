@@ -2,6 +2,9 @@
 title: "Přiřazení portů"
 description: "Kompletní reference přiřazení portů I2P, portů pluginů a rezervovaných rozsahů."
 slug: "ports"
+aliases:
+  - "/cs/ports"
+  - "/cs/ports/"
 lastUpdated: "2026-06"
 accurateFor: "2.13.0"
 ---

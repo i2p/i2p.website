@@ -2,6 +2,9 @@
 title: "डेटाग्राम"
 description: "I2CP के ऊपर प्रमाणित, उत्तर देने योग्य, और कच्चे संदेश प्रारूप"
 slug: "datagrams"
+aliases:
+  - "/hi/datagrams"
+  - "/hi/datagrams/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

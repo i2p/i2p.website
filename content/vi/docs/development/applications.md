@@ -5,6 +5,8 @@ slug: "applications"
 aliases:
   - "/vi/docs/develop/applications"
   - "/vi/docs/develop/applications/"
+  - "/vi/applications"
+  - "/vi/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

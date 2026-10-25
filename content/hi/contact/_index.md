@@ -1,5 +1,8 @@
 ---
 title: "हमसे संपर्क करें"
+aliases:
+  - "/hi/impressum"
+  - "/hi/impressum/"
 description: "I2P प्रोजेक्ट से संपर्क करें - ईमेल, फोरम, सोशल मीडिया, IRC चैनल, और टीम से मिलें।"
 type: "contact"
 layout: "contact"

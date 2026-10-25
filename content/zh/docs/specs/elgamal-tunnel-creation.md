@@ -2,6 +2,9 @@
 title: "Tunnel 创建规范（ElGamal）"
 description: "基于传统 ElGamal 的 tunnel 构建规范，已被 X25519 替代"
 slug: "elgamal-tunnel-creation"
+aliases:
+  - "/zh/tunnel-alt-creation"
+  - "/zh/tunnel-alt-creation/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

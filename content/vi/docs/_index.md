@@ -1,5 +1,8 @@
 ---
 title: "Tài liệu"
+aliases:
+  - "/vi/how"
+  - "/vi/how/"
 description: "Tài liệu kỹ thuật cho mạng ẩn danh I2P"
 layout: "docs-home"
 outputs:

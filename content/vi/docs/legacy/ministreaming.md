@@ -2,6 +2,9 @@
 title: "Thư viện Ministreaming"
 description: "Ghi chú lịch sử về lớp vận chuyển giống TCP đầu tiên của I2P"
 slug: "ministreaming"
+aliases:
+  - "/vi/ministreaming"
+  - "/vi/ministreaming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

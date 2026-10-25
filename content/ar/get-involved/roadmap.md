@@ -1,8 +1,12 @@
 ---
 title: "خارطة طريق تطوير I2P"
 aliases:
-  - "/en/get-involved/todo"
-  - "/en/get-involved/todo/"
+  - "/ar/get-involved/todo"
+  - "/ar/get-involved/todo/"
+  - "/ar/roadmap"
+  - "/ar/roadmap/"
+  - "/ar/todo"
+  - "/ar/todo/"
 description: "خطط التطوير الحالية والمحطات التاريخية لشبكة I2P"
 ---
 

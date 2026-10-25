@@ -1,5 +1,8 @@
 ---
 title: "Onur Listesi"
+aliases:
+  - "/tr/halloffame"
+  - "/tr/halloffame/"
 description: "Yıllar boyunca I2P'ye katkıda bulunan cömert destekçilerini tanıyoruz"
 ---
 

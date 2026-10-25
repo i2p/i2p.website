@@ -2,6 +2,9 @@
 title: "Tunnel निर्माण विनिर्देश (ElGamal)"
 description: "विरासत ElGamal-आधारित tunnel निर्माण विनिर्देश, X25519 द्वारा प्रतिस्थापित"
 slug: "elgamal-tunnel-creation"
+aliases:
+  - "/hi/tunnel-alt-creation"
+  - "/hi/tunnel-alt-creation/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

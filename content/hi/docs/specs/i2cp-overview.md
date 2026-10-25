@@ -2,7 +2,11 @@
 title: "I2CP अवलोकन"
 description: "I2P क्लाइंट प्रोटोकॉल (I2CP) का अवलोकन - सत्र प्रबंधन, विकल्प, पेलोड प्रारूप और मल्टीप्लेक्सिंग।"
 slug: "i2cp-overview"
-aliases: 
+aliases:
+  - "/hi/docs/protocol/i2cp"
+  - "/hi/docs/protocol/i2cp/"
+  - "/hi/i2cp"
+  - "/hi/i2cp/"
 category: "प्रोटोकॉल"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

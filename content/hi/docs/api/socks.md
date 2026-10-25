@@ -2,6 +2,9 @@
 title: "SOCKS प्रॉक्सी"
 description: "I2P के SOCKS tunnel का सुरक्षित उपयोग"
 slug: "socks"
+aliases:
+  - "/hi/socks"
+  - "/hi/socks/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

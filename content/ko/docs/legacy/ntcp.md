@@ -7,6 +7,8 @@ aliases:
   - "/ko/docs/transport/ntcp/"
   - "/ko/docs/ntcp"
   - "/ko/docs/ntcp/"
+  - "/ko/ntcp"
+  - "/ko/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

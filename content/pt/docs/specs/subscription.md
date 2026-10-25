@@ -2,7 +2,9 @@
 title: "Comandos de Feed de Assinatura do Livro de Endereços"
 description: "Especificação para estender o feed de assinatura de endereços com comandos para permitir que servidores de nomes transmitam atualizações de entradas de detentores de nomes de host."
 slug: "subscription"
-aliases: 
+aliases:
+  - "/pt/docs/specs/subscription-spec"
+  - "/pt/docs/specs/subscription-spec/"
 category: "Formatos"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

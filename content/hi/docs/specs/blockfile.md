@@ -2,6 +2,9 @@
 title: "Blockfile और Hosts Database विशिष्टता"
 description: "I2P blockfile फ़ाइल फॉर्मेट और Blockfile Naming Service द्वारा उपयोग की जाने वाली hostsdb.blockfile में तालिकाओं का विनिर्देश"
 slug: "blockfile"
+aliases:
+  - "/hi/blockfile"
+  - "/hi/blockfile/"
 category: "प्रारूप"
 lastUpdated: "2023-11"
 accurateFor: "0.9.59"

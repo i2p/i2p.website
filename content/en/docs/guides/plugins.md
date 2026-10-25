@@ -2,6 +2,9 @@
 title: "Installing Custom Plugins"
 description: "Installing, updating, and developing router plugins"
 slug: "plugins"
+aliases:
+  - "/en/plugins"
+  - "/en/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

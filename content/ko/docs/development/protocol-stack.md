@@ -4,7 +4,11 @@ description: "I2P 프로토콜 스택 계층 개요"
 slug: "protocol-stack"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"
-aliases: 
+aliases:
+  - "/ko/docs/develop/protocol-stack"
+  - "/ko/docs/develop/protocol-stack/"
+  - "/ko/protocols"
+  - "/ko/protocols/"
 ---
 
 I2P 스택은 익명 통신을 가능하게 하는 계층화된 설계입니다. 각 계층은 하위 계층 위에 특정 기능을 추가합니다. 각 구성 요소에 대한 자세한 내용은 [기술 문서 색인](/docs/develop/overview)을 참조하세요.

@@ -2,7 +2,9 @@
 title: "ECIES-X25519-AEAD-Ratchet"
 description: "I2P端到端加密的椭圆曲线集成加密方案"
 slug: "ecies"
-aliases: 
+aliases:
+  - "/zh/docs/specs/ecies-x25519-aead-ratchet"
+  - "/zh/docs/specs/ecies-x25519-aead-ratchet/"
 category: "协议"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

@@ -2,6 +2,9 @@
 title: "I2P: مقدمة تقنية"
 description: "مقدمة تقنية لهندسة ومبدأ عمل I2P"
 slug: "tech-intro"
+aliases:
+  - "/ar/techintro"
+  - "/ar/techintro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

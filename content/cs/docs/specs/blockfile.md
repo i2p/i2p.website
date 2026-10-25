@@ -2,6 +2,9 @@
 title: "Specifikace Blockfile a databáze hostů"
 description: "Specifikace formátu souboru I2P blockfile a tabulek v hostsdb.blockfile používaných službou Blockfile Naming Service"
 slug: "blockfile"
+aliases:
+  - "/cs/blockfile"
+  - "/cs/blockfile/"
 category: "Formáty"
 lastUpdated: "2023-11"
 accurateFor: "0.9.59"

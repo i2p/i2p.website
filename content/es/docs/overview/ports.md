@@ -2,6 +2,9 @@
 title: "Asignaciones de Puerto"
 description: "Referencia completa de asignaciones de puertos I2P, puertos de plugins y rangos reservados."
 slug: "ports"
+aliases:
+  - "/es/ports"
+  - "/es/ports/"
 lastUpdated: "2026-06"
 accurateFor: "2.13.0"
 ---

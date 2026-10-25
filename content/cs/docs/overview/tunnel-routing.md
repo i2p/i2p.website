@@ -2,6 +2,9 @@
 title: "Směrování tunelů"
 description: "Přehled terminologie, konstrukce a provozu I2P tunnelů"
 slug: "tunnel-routing"
+aliases:
+  - "/cs/how_tunnelrouting"
+  - "/cs/how_tunnelrouting/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.68"
 ---

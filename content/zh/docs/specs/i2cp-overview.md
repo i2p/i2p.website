@@ -2,7 +2,11 @@
 title: "I2CP 概述"
 description: "I2P客户端协议（I2CP）概述——会话管理、选项、有效载荷格式和多路复用。"
 slug: "i2cp-overview"
-aliases: 
+aliases:
+  - "/zh/docs/protocol/i2cp"
+  - "/zh/docs/protocol/i2cp/"
+  - "/zh/i2cp"
+  - "/zh/i2cp/"
 category: "协议"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

@@ -2,6 +2,11 @@
 title: "I2P: गुमनाम संचार के लिए एक स्केलेबल फ्रेमवर्क"
 description: "I2P आर्किटेक्चर और संचालन का परिचय"
 slug: "intro"
+aliases:
+  - "/hi/intro"
+  - "/hi/intro/"
+  - "/hi/how_intro"
+  - "/hi/how_intro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

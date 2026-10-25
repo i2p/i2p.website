@@ -7,6 +7,8 @@ aliases:
   - "/en/docs/transport/ntcp/"
   - "/en/docs/ntcp"
   - "/en/docs/ntcp/"
+  - "/en/ntcp"
+  - "/en/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

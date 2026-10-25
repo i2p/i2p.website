@@ -2,6 +2,9 @@
 title: "数据报"
 description: "I2CP 之上的认证、可回复和原始消息格式"
 slug: "datagrams"
+aliases:
+  - "/zh/datagrams"
+  - "/zh/datagrams/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

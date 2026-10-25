@@ -3,7 +3,10 @@ title: "Addressbook Subscription Feed Commands"
 description: "Specification for extending the address subscription feed with commands to enable name servers to broadcast entry updates from hostname holders."
 slug: "subscription"
 aliases:
-  - /docs/specs/subscription-spec/
+  - "/en/docs/specs/subscription-spec"
+  - "/en/docs/specs/subscription-spec/"
+  - "/docs/specs/subscription-spec"
+  - "/docs/specs/subscription-spec/"
 category: "Formats"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

@@ -2,6 +2,9 @@
 title: "Síťová databáze"
 description: "Porozumění distribuované síťové databázi I2P (netDb) - specializované DHT pro kontaktní informace routerů a vyhledávání destinací"
 slug: "network-database"
+aliases:
+  - "/cs/how_networkdatabase"
+  - "/cs/how_networkdatabase/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.65"
 ---

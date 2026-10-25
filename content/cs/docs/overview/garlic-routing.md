@@ -2,6 +2,9 @@
 title: "Garlic Routing"
 description: "Porozumění terminologii, architektuře a implementaci garlic routing v I2P"
 slug: "garlic-routing"
+aliases:
+  - "/cs/how_garlicrouting"
+  - "/cs/how_garlicrouting/"
 lastUpdated: "2025-10"
 accurateFor: "0.9.12"
 ---

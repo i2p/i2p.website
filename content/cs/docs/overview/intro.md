@@ -2,6 +2,11 @@
 title: "I2P: Škálovatelný framework pro anonymní komunikaci"
 description: "Úvod do architektury a fungování I2P"
 slug: "intro"
+aliases:
+  - "/cs/intro"
+  - "/cs/intro/"
+  - "/cs/how_intro"
+  - "/cs/how_intro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

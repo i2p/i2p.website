@@ -1,5 +1,8 @@
 ---
 title: "Slovník"
+aliases:
+  - "/cs/glossary"
+  - "/cs/glossary/"
 description: "Běžné termíny a definice používané v dokumentaci I2P"
 lastUpdated: "2025-10"
 ---

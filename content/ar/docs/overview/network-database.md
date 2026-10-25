@@ -2,6 +2,9 @@
 title: "قاعدة بيانات الشبكة"
 description: "فهم قاعدة بيانات الشبكة الموزعة في I2P (netDb) - جدول تجزئة موزع متخصص لمعلومات الاتصال بـ router ومعاينات الوجهات"
 slug: "network-database"
+aliases:
+  - "/ar/how_networkdatabase"
+  - "/ar/how_networkdatabase/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.65"
 ---

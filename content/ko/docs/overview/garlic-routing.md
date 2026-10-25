@@ -2,6 +2,9 @@
 title: "Garlic Routing"
 description: "I2P에서 garlic routing 용어, 아키텍처 및 구현 이해하기"
 slug: "garlic-routing"
+aliases:
+  - "/ko/how_garlicrouting"
+  - "/ko/how_garlicrouting/"
 lastUpdated: "2025-10"
 accurateFor: "0.9.12"
 ---

@@ -2,6 +2,9 @@
 title: "प्लगइन विनिर्देश"
 description: "I2P plugins के लिए .xpi2p / .su3 पैकेजिंग नियम"
 slug: "plugin"
+aliases:
+  - "/hi/plugin_spec"
+  - "/hi/plugin_spec/"
 lastUpdated: "2022-01"
 accurateFor: "0.9.53"
 type: docs

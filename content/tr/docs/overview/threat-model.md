@@ -2,6 +2,9 @@
 title: "I2P'nin Tehdit Modeli"
 description: "I2P'nin tasarımında değerlendirilen saldırı türlerinin analizi ve mevcut koruma önlemleri"
 slug: "threat-model"
+aliases:
+  - "/tr/how_threatmodel"
+  - "/tr/how_threatmodel/"
 lastUpdated: "2010-11"
 accurateFor: "0.8.1"
 ---

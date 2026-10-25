@@ -2,6 +2,9 @@
 title: "توجيه Tunnel"
 description: "نظرة عامة على مصطلحات وبناء وتشغيل tunnel في I2P"
 slug: "tunnel-routing"
+aliases:
+  - "/ar/how_tunnelrouting"
+  - "/ar/how_tunnelrouting/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.68"
 ---

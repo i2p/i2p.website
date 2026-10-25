@@ -2,6 +2,9 @@
 title: "软件更新规范"
 description: "I2P 软件更新机制、SU3 文件格式和新闻订阅的规范说明"
 slug: "updates"
+aliases:
+  - "/zh/updates"
+  - "/zh/updates/"
 category: "设计"
 lastUpdated: "2025-04"
 accurateFor: "0.9.65"

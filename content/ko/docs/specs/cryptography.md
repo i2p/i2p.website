@@ -2,6 +2,9 @@
 title: "저수준 암호화 명세"
 description: "I2P에서 사용되는 암호화 알고리즘의 저수준 세부사항"
 slug: "cryptography"
+aliases:
+  - "/ko/how_cryptography"
+  - "/ko/how_cryptography/"
 category: "설계"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

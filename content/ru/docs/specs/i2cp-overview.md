@@ -2,7 +2,11 @@
 title: "Обзор I2CP"
 description: "Обзор протокола клиентов I2P (I2CP) — управление сессиями, параметры, формат полезной нагрузки и мультиплексирование."
 slug: "i2cp-overview"
-aliases: 
+aliases:
+  - "/ru/docs/protocol/i2cp"
+  - "/ru/docs/protocol/i2cp/"
+  - "/ru/i2cp"
+  - "/ru/i2cp/"
 category: "Протоколы"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

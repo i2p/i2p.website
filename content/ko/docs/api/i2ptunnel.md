@@ -2,6 +2,13 @@
 title: "I2PTunnel"
 description: "I2P와 인터페이스하고 서비스를 제공하기 위한 도구"
 slug: "i2ptunnel"
+aliases:
+  - "/ko/i2ptunnel"
+  - "/ko/i2ptunnel/"
+  - "/ko/i2ptunnel_migration"
+  - "/ko/i2ptunnel_migration/"
+  - "/ko/i2ptunnel_services"
+  - "/ko/i2ptunnel_services/"
 lastUpdated: "2023-10"
 accurateFor: "0.9.59"
 ---

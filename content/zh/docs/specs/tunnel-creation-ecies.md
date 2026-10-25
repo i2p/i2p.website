@@ -2,7 +2,9 @@
 title: "Tunnel 创建规范 (ECIES-X25519)"
 description: "使用 ECIES-X25519 加密原语的 Tunnel Build 消息加密，以实现前向保密。"
 slug: "tunnel-creation-ecies"
-aliases: 
+aliases:
+  - "/zh/docs/specs/tunnel-creation-ecies-spec"
+  - "/zh/docs/specs/tunnel-creation-ecies-spec/"
 category: "协议"
 lastUpdated: "2025-06"
 accurateFor: "0.9.66"

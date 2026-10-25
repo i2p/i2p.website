@@ -2,6 +2,9 @@
 title: "نموذج التهديدات الخاص بـ I2P"
 description: "تحليل الهجمات المُعتبرة في تصميم I2P والتدابير الوقائية المطبقة"
 slug: "threat-model"
+aliases:
+  - "/ar/how_threatmodel"
+  - "/ar/how_threatmodel/"
 lastUpdated: "2010-11"
 accurateFor: "0.8.1"
 ---

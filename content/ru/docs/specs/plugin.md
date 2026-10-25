@@ -2,6 +2,9 @@
 title: "Спецификация плагина"
 description: "Правила упаковки .xpi2p / .su3 для плагинов I2P"
 slug: "plugin"
+aliases:
+  - "/ru/plugin_spec"
+  - "/ru/plugin_spec/"
 lastUpdated: "2022-01"
 accurateFor: "0.9.53"
 type: docs

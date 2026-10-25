@@ -2,6 +2,9 @@
 title: "Ministreaming लाइब्रेरी"
 description: "I2P की पहली TCP-जैसी transport layer पर ऐतिहासिक टिप्पणियां"
 slug: "ministreaming"
+aliases:
+  - "/hi/ministreaming"
+  - "/hi/ministreaming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

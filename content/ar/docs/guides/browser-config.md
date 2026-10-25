@@ -2,6 +2,11 @@
 title: "تكوين متصفح الويب"
 description: "تكوين المتصفحات الشائعة لاستخدام بروكسيات HTTP/HTTPS الخاصة بـ I2P على سطح المكتب و Android"
 slug: "browser-config"
+aliases:
+  - "/ar/firefox"
+  - "/ar/firefox/"
+  - "/ar/htproxyports"
+  - "/ar/htproxyports/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs

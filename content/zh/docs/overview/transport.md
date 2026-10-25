@@ -2,6 +2,9 @@
 title: "传输概述"
 description: "I2P点对点router通信传输层概述"
 slug: "transport"
+aliases:
+  - "/zh/transport"
+  - "/zh/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

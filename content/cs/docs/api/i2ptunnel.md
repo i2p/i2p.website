@@ -2,6 +2,13 @@
 title: "I2PTunnel"
 description: "Nástroj pro komunikaci s I2P a poskytování služeb na I2P"
 slug: "i2ptunnel"
+aliases:
+  - "/cs/i2ptunnel"
+  - "/cs/i2ptunnel/"
+  - "/cs/i2ptunnel_migration"
+  - "/cs/i2ptunnel_migration/"
+  - "/cs/i2ptunnel_services"
+  - "/cs/i2ptunnel_services/"
 lastUpdated: "2023-10"
 accurateFor: "0.9.59"
 ---

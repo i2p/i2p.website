@@ -2,6 +2,9 @@
 title: "Spécification de mise à jour logicielle"
 description: "Spécification pour le mécanisme de mise à jour logicielle I2P, le format de fichier SU3, et le flux d'actualités"
 slug: "updates"
+aliases:
+  - "/fr/updates"
+  - "/fr/updates/"
 category: "Conception"
 lastUpdated: "2025-04"
 accurateFor: "0.9.65"

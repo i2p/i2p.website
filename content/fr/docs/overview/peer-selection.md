@@ -2,6 +2,9 @@
 title: "Profilage et sélection des pairs"
 description: "Comment les routeurs I2P profilent et sélectionnent les pairs pour construire des tunnels"
 slug: "peer-selection"
+aliases:
+  - "/fr/how_peerselection"
+  - "/fr/how_peerselection/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

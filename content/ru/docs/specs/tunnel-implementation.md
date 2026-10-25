@@ -3,8 +3,10 @@ title: "Реализация Tunnel"
 description: "Спецификация работы I2P tunnel, построения и обработки сообщений"
 slug: "tunnel-implementation"
 aliases:
-  - "/ru/docs/specs/tunnel-implementation"
-  - "/ru/docs/specs/tunnel-implementation/"
+  - "/ru/docs/specs/implementation"
+  - "/ru/docs/specs/implementation/"
+  - "/ru/tunnel-alt"
+  - "/ru/tunnel-alt/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

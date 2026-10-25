@@ -5,6 +5,8 @@ slug: "samv2"
 aliases:
   - "/ko/docs/api/samv2"
   - "/ko/docs/api/samv2/"
+  - "/ko/samv2"
+  - "/ko/samv2/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

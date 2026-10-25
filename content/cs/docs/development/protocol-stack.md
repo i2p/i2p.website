@@ -4,7 +4,11 @@ description: "Přehled vrstev protokolového zásobníku I2P"
 slug: "protocol-stack"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"
-aliases: 
+aliases:
+  - "/cs/docs/develop/protocol-stack"
+  - "/cs/docs/develop/protocol-stack/"
+  - "/cs/protocols"
+  - "/cs/protocols/"
 ---
 
 I2P stack je vrstvená architektura umožňující anonymní komunikaci. Každá vrstva přidává specifické schopnosti na ty pod ní. Pro další podrobnosti o každé komponentě si prohlédněte [Rejstřík technické dokumentace](/docs/develop/overview).

@@ -2,6 +2,9 @@
 title: "Specifikace aktualizace softwaru"
 description: "Specifikace pro mechanismus aktualizace softwaru I2P, formát souborů SU3 a zpravodajský kanál"
 slug: "updates"
+aliases:
+  - "/cs/updates"
+  - "/cs/updates/"
 category: "Návrh"
 lastUpdated: "2025-04"
 accurateFor: "0.9.65"

@@ -2,6 +2,9 @@
 title: "Tunnels Một Chiều"
 description: "Tóm tắt lịch sử thiết kế tunnel một chiều của I2P"
 slug: "unidirectional"
+aliases:
+  - "/vi/unidirectional-tunnels"
+  - "/vi/unidirectional-tunnels/"
 lastUpdated: "2016-11"
 accurateFor: "0.9.27"
 ---

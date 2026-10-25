@@ -4,7 +4,11 @@ description: "نظرة عامة على طبقات مجموعة بروتوكول�
 slug: "protocol-stack"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"
-aliases: 
+aliases:
+  - "/ar/docs/develop/protocol-stack"
+  - "/ar/docs/develop/protocol-stack/"
+  - "/ar/protocols"
+  - "/ar/protocols/"
 ---
 
 مجموعة I2P عبارة عن تصميم طبقي يمكّن من التواصل المجهول. كل طبقة تضيف قدرات محددة فوق تلك التي تحتها. راجع [فهرس الوثائق التقنية](/docs/develop/overview) للحصول على تفاصيل إضافية حول كل مكون.

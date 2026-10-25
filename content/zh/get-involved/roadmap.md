@@ -1,8 +1,12 @@
 ---
 title: "I2P 开发路线图"
 aliases:
-  - "/en/get-involved/todo"
-  - "/en/get-involved/todo/"
+  - "/zh/get-involved/todo"
+  - "/zh/get-involved/todo/"
+  - "/zh/roadmap"
+  - "/zh/roadmap/"
+  - "/zh/todo"
+  - "/zh/todo/"
 description: "I2P 网络的当前开发计划和历史里程碑"
 ---
 

@@ -2,6 +2,9 @@
 title: "Proxy SOCKS"
 description: "Usando o tunnel SOCKS do I2P com segurança"
 slug: "socks"
+aliases:
+  - "/pt/socks"
+  - "/pt/socks/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

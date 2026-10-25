@@ -2,6 +2,9 @@
 title: "I2PControl JSON-RPC"
 description: "Remote router management API via the I2PControl webapp"
 slug: "i2pcontrol"
+aliases:
+  - "/en/i2pcontrol"
+  - "/en/i2pcontrol/"
 lastUpdated: "2026-07-10"
 accurateFor: "2.12.0"
 reviewStatus: "needs-review"

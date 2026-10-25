@@ -1,5 +1,8 @@
 ---
 title: "在 Debian 和 Ubuntu 上安装 I2P"
+aliases:
+  - "/zh/debian"
+  - "/zh/debian/"
 description: "使用官方软件源在 Debian、Ubuntu 及其衍生版本上安装 I2P 的完整指南"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"

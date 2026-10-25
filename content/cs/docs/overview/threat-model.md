@@ -2,6 +2,9 @@
 title: "Model hrozeb I2P"
 description: "Analýza útoků uvažovaných v návrhu I2P a zavedených protiopatření"
 slug: "threat-model"
+aliases:
+  - "/cs/how_threatmodel"
+  - "/cs/how_threatmodel/"
 lastUpdated: "2010-11"
 accurateFor: "0.8.1"
 ---

@@ -2,6 +2,9 @@
 title: "ElGamal/AES + SessionTag шифрование"
 description: "Устаревшее сквозное шифрование, объединяющее ElGamal, AES, SHA-256 и одноразовые теги сеансов"
 slug: "elgamal-aes"
+aliases:
+  - "/ru/how_elgamalaes"
+  - "/ru/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

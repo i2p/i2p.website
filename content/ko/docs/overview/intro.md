@@ -2,6 +2,11 @@
 title: "I2P: 익명 통신을 위한 확장 가능한 프레임워크"
 description: "I2P 아키텍처 및 운영 소개"
 slug: "intro"
+aliases:
+  - "/ko/intro"
+  - "/ko/intro/"
+  - "/ko/how_intro"
+  - "/ko/how_intro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---
