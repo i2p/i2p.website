@@ -5,6 +5,9 @@ slug: "protocol-stack"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"
 aliases:
+  - "/en/docs/develop/protocol-stack"
+  - "/en/docs/develop/protocol-stack/"
+  - "/docs/develop/protocol-stack"
   - "/docs/develop/protocol-stack/"
 ---
 

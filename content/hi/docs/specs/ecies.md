@@ -2,7 +2,9 @@
 title: "ECIES-X25519-AEAD-Ratchet"
 description: "I2P end-to-end encryption के लिए Elliptic Curve Integrated Encryption Scheme"
 slug: "ecies"
-aliases: 
+aliases:
+  - "/hi/docs/specs/ecies-x25519-aead-ratchet"
+  - "/hi/docs/specs/ecies-x25519-aead-ratchet/"
 category: "प्रोटोकॉल"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

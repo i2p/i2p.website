@@ -2,9 +2,6 @@
 title: "Especificación de estructuras comunes"
 description: "Tipos de datos comunes a todos los protocolos I2P"
 slug: "common-structures"
-aliases:
-  - "/docs/specs/common-structures"
-  - "/docs/specs/common-structures/"
 category: "Diseño"
 lastUpdated: "2026-10"
 accurateFor: "0.9.71"

@@ -7,7 +7,6 @@ accurateFor: "0.9.67"
 aliases:
   - "/vi/docs/develop/overview"
   - "/vi/docs/develop/overview/"
-  - "/docs/development/overview/"
 ---
 
 

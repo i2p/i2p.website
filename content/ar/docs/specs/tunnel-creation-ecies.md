@@ -2,7 +2,9 @@
 title: "مواصفات إنشاء tunnel (ECIES-X25519)"
 description: "تشفير رسائل بناء tunnel باستخدام عمليات التشفير الأساسية ECIES-X25519 لتوفير السرية الأمامية."
 slug: "tunnel-creation-ecies"
-aliases: 
+aliases:
+  - "/ar/docs/specs/tunnel-creation-ecies-spec"
+  - "/ar/docs/specs/tunnel-creation-ecies-spec/"
 category: "البروتوكولات"
 lastUpdated: "2025-06"
 accurateFor: "0.9.66"

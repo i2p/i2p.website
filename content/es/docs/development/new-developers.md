@@ -7,10 +7,10 @@ accurateFor: "2.10.0"
 type: docs
 notes: actualizar parte de traducción
 aliases:
-  - "/es/newdevelopers"
   - "/es/docs/develop/new-developers"
   - "/es/docs/develop/new-developers/"
-  - "/docs/develop/new-developers/"
+  - "/es/newdevelopers"
+  - "/es/newdevelopers/"
 ---
 
 ¿Así que quieres empezar a trabajar en I2P? ¡Genial! Aquí tienes una guía rápida para comenzar a contribuir al sitio web o al software, realizar desarrollo o crear traducciones.

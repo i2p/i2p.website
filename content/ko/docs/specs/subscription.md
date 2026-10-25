@@ -2,7 +2,9 @@
 title: "주소록 구독 피드 명령어"
 description: "호스트명 소유자로부터 항목 업데이트를 name server가 브로드캐스트할 수 있도록 하는 명령으로 주소 구독 피드를 확장하기 위한 사양."
 slug: "subscription"
-aliases: 
+aliases:
+  - "/ko/docs/specs/subscription-spec"
+  - "/ko/docs/specs/subscription-spec/"
 category: "형식"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

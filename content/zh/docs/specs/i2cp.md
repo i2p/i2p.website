@@ -2,7 +2,11 @@
 title: "I2P 客户端协议 (I2CP)"
 description: "应用程序如何与 I2P router 协商会话、tunnel 和 leaseSet。"
 slug: "i2cp"
-aliases: 
+aliases:
+  - "/zh/docs/api/i2cp"
+  - "/zh/docs/api/i2cp/"
+  - "/zh/docs/specs/i2cp-spec"
+  - "/zh/docs/specs/i2cp-spec/"
 category: "协议"
 lastUpdated: "2025-07"
 accurateFor: "0.9.67"

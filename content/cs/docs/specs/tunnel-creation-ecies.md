@@ -2,7 +2,9 @@
 title: "Specifikace vytváření tunelů (ECIES-X25519)"
 description: "Šifrování zpráv Tunnel Build pomocí kryptografických primitiv ECIES-X25519 pro forward secrecy (dopřednou bezpečnost)."
 slug: "tunnel-creation-ecies"
-aliases: 
+aliases:
+  - "/cs/docs/specs/tunnel-creation-ecies-spec"
+  - "/cs/docs/specs/tunnel-creation-ecies-spec/"
 category: "Protokoly"
 lastUpdated: "2025-06"
 accurateFor: "0.9.66"

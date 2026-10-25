@@ -7,7 +7,6 @@ type: docs
 aliases:
   - "/tr/docs/develop/new-translators"
   - "/tr/docs/develop/new-translators/"
-  - "/docs/develop/new-translators/"
 ---
 
 I2P'yi dünya çapında daha fazla insana ulaştırmak için yardım etmek ister misiniz? Çeviri, projeye yapabileceğiniz en değerli katkılardan biridir. Bu kılavuz, router konsolu çevirme sürecinde size rehberlik edecektir.

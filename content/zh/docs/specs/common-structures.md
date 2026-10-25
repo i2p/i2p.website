@@ -2,9 +2,6 @@
 title: "通用结构规范"
 description: "所有 I2P 协议通用的数据类型"
 slug: "common-structures"
-aliases:
-  - "/docs/specs/common-structures"
-  - "/docs/specs/common-structures/"
 category: "设计"
 lastUpdated: "2026-10"
 accurateFor: "0.9.71"

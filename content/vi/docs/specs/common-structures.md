@@ -2,9 +2,6 @@
 title: "Đặc tả cấu trúc chung"
 description: "Các kiểu dữ liệu chung cho tất cả giao thức I2P"
 slug: "common-structures"
-aliases:
-  - "/docs/specs/common-structures"
-  - "/docs/specs/common-structures/"
 category: "Thiết kế"
 lastUpdated: "2026-10"
 accurateFor: "0.9.71"

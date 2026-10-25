@@ -2,7 +2,9 @@
 title: "Especificación de creación de túnel (ECIES-X25519)"
 description: "Cifrado de mensajes Tunnel Build usando primitivas criptográficas ECIES-X25519 para secreto hacia adelante."
 slug: "tunnel-creation-ecies"
-aliases: 
+aliases:
+  - "/es/docs/specs/tunnel-creation-ecies-spec"
+  - "/es/docs/specs/tunnel-creation-ecies-spec/"
 category: "Protocolos"
 lastUpdated: "2025-06"
 accurateFor: "0.9.66"

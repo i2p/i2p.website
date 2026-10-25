@@ -1,8 +1,5 @@
 ---
 title: "양자 후 암호화 프로토콜"
-aliases:
-  - "/proposals/169-pq-crypto"
-  - "/proposals/169-pq-crypto/"
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"

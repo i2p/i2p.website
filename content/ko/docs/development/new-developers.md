@@ -7,10 +7,10 @@ accurateFor: "2.10.0"
 type: docs
 notes: 번역 부분 업데이트
 aliases:
-  - "/ko/newdevelopers"
   - "/ko/docs/develop/new-developers"
   - "/ko/docs/develop/new-developers/"
-  - "/docs/develop/new-developers/"
+  - "/ko/newdevelopers"
+  - "/ko/newdevelopers/"
 ---
 
 I2P 작업을 시작하고 싶으신가요? 좋습니다! 여기 웹사이트나 소프트웨어에 기여하고, 개발을 하거나, 번역을 만드는 것을 시작하기 위한 간단한 가이드가 있습니다.

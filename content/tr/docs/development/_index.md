@@ -2,5 +2,6 @@
 title: "Develop"
 layout: section-redirect
 aliases:
-  - "/docs/develop/"
+  - "/tr/docs/develop"
+  - "/tr/docs/develop/"
 ---

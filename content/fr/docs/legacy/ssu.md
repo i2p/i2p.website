@@ -7,6 +7,8 @@ aliases:
   - "/fr/docs/transport/ssu/"
   - "/fr/docs/transports/ssu"
   - "/fr/docs/transports/ssu/"
+  - "/fr/docs/specs/ssu-spec"
+  - "/fr/docs/specs/ssu-spec/"
 category: "Transports"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

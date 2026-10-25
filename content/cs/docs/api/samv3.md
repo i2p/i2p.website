@@ -2,9 +2,6 @@
 title: "SAM V3"
 description: "Jednoduchý protokol pro anonymní zasílání zpráv pro aplikace I2P nevyužívající Javu"
 slug: "samv3"
-aliases:
-  - "/docs/api/samv3"
-  - "/docs/api/samv3/"
 lastUpdated: "2026-07"
 accurateFor: "0.9.70"
 ---

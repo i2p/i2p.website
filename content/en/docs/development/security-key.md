@@ -6,6 +6,9 @@ lastUpdated: "2026-01"
 accurateFor: "2.10.0"
 type: docs
 aliases:
+  - "/en/docs/develop/security-key"
+  - "/en/docs/develop/security-key/"
+  - "/docs/develop/security-key"
   - "/docs/develop/security-key/"
 ---
 

@@ -8,7 +8,6 @@ type: docs
 aliases:
   - "/fr/docs/develop/dev-guidelines"
   - "/fr/docs/develop/dev-guidelines/"
-  - "/docs/develop/dev-guidelines/"
 ---
 
 Lisez d'abord le [Guide des nouveaux développeurs](/docs/develop/new-developers/).

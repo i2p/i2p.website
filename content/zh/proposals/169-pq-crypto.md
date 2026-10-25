@@ -1,8 +1,5 @@
 ---
 title: "后量子密码协议"
-aliases:
-  - "/proposals/169-pq-crypto"
-  - "/proposals/169-pq-crypto/"
 number: "169"
 author: "zzz, orignal, drzed, eyedeekay"
 created: "2025-01-21"

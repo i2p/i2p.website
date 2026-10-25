@@ -8,6 +8,7 @@ type: docs
 aliases:
   - "/en/docs/develop/licenses"
   - "/en/docs/develop/licenses/"
+  - "/docs/develop/licenses"
   - "/docs/develop/licenses/"
 ---
 

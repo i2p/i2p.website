@@ -7,7 +7,6 @@ accurateFor: "0.9.67"
 aliases:
   - "/ko/docs/develop/overview"
   - "/ko/docs/develop/overview/"
-  - "/docs/development/overview/"
 ---
 
 

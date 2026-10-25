@@ -2,7 +2,9 @@
 title: "Příkazy pro odběr kanálů adresáře"
 description: "Specifikace pro rozšíření kanálu předplatného adres o příkazy umožňující jmenným serverům vysílat aktualizace záznamů od držitelů hostitelských jmen."
 slug: "subscription"
-aliases: 
+aliases:
+  - "/cs/docs/specs/subscription-spec"
+  - "/cs/docs/specs/subscription-spec/"
 category: "Formáty"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

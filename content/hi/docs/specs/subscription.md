@@ -2,7 +2,9 @@
 title: "पता पुस्तिका सब्स्क्रिप्शन फ़ीड कमांड"
 description: "hostname धारकों से entry अपडेट प्रसारित करने के लिए name servers को सक्षम बनाने हेतु commands के साथ address subscription feed को विस्तारित करने का विनिर्देश।"
 slug: "subscription"
-aliases: 
+aliases:
+  - "/hi/docs/specs/subscription-spec"
+  - "/hi/docs/specs/subscription-spec/"
 category: "प्रारूप"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

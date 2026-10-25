@@ -2,9 +2,6 @@
 title: "Ortak Yapılar Belirtimi"
 description: "Tüm I2P protokollerinde ortak olan veri türleri"
 slug: "common-structures"
-aliases:
-  - "/docs/specs/common-structures"
-  - "/docs/specs/common-structures/"
 category: "Tasarım"
 lastUpdated: "2026-10"
 accurateFor: "0.9.71"

@@ -8,7 +8,6 @@ type: docs
 aliases:
   - "/fr/docs/develop/release-signing-key"
   - "/fr/docs/develop/release-signing-key/"
-  - "/docs/develop/release-signing-key/"
 ---
 
 <p> Les versions 0.9.57 et suivantes sont signées par idk. Sa clé publique actuelle est : </p> <p> <a href="/idk.key.asc" >Télécharger la clé publique PGP</a> </p><p>

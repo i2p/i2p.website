@@ -7,7 +7,6 @@ accurateFor: "0.9.67"
 aliases:
   - "/cs/docs/develop/overview"
   - "/cs/docs/develop/overview/"
-  - "/docs/development/overview/"
 ---
 
 

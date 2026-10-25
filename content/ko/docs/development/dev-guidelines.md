@@ -8,7 +8,6 @@ type: docs
 aliases:
   - "/ko/docs/develop/dev-guidelines"
   - "/ko/docs/develop/dev-guidelines/"
-  - "/docs/develop/dev-guidelines/"
 ---
 
 먼저 [새 개발자 가이드](/docs/develop/new-developers/)를 읽어보세요.

@@ -7,6 +7,8 @@ aliases:
   - "/zh/docs/transport/ssu/"
   - "/zh/docs/transports/ssu"
   - "/zh/docs/transports/ssu/"
+  - "/zh/docs/specs/ssu-spec"
+  - "/zh/docs/specs/ssu-spec/"
 category: "传输协议"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

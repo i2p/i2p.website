@@ -7,7 +7,6 @@ type: docs
 aliases:
   - "/ar/docs/develop/new-translators"
   - "/ar/docs/develop/new-translators/"
-  - "/docs/develop/new-translators/"
 ---
 
 هل تريد المساعدة في جعل I2P متاحًا لمزيد من الأشخاص حول العالم؟ الترجمة هي واحدة من أكثر المساهمات قيمة التي يمكنك تقديمها للمشروع. سيرشدك هذا الدليل خلال ترجمة وحدة تحكم الموجه (router console).

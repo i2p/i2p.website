@@ -7,7 +7,6 @@ type: docs
 aliases:
   - "/cs/docs/develop/new-translators"
   - "/cs/docs/develop/new-translators/"
-  - "/docs/develop/new-translators/"
 ---
 
 Chcete pomoci zpřístupnit I2P více lidem po celém světě? Překlad je jeden z nejcennějších příspěvků, které můžete projektu poskytnout. Tento průvodce vás provede překladem konzole routeru.

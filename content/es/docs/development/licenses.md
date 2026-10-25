@@ -8,7 +8,6 @@ type: docs
 aliases:
   - "/es/docs/develop/licenses"
   - "/es/docs/develop/licenses/"
-  - "/docs/develop/licenses/"
 ---
 
 Como requiere nuestro [modelo de amenazas](/docs/overview/threat-model//) (entre otras razones), el software desarrollado para soportar la red de comunicación anónima que llamamos I2P debe estar disponible libremente, ser de código abierto y modificable por el usuario. Para cumplir con estos criterios, hacemos uso de una variedad de técnicas legales y de ingeniería de software con el fin de eliminar tantas barreras de entrada como sea posible para aquellos que consideren hacer uso de I2P o contribuir al proyecto.

@@ -1412,6 +1412,28 @@ def build_cache_for_file(
     return cached_count
 
 
+def localize_aliases(value: str, source_lang: str, target_lang: str) -> str:
+    """Rewrite source-language aliases for the target language.
+
+    Aliases are language-prefixed absolute paths (/en/docs/foo), so copying
+    them verbatim would point the translation's redirects at the English
+    path. Bare aliases (no language prefix) belong to the source file only.
+    See scripts/tools/add_aliases.py.
+    """
+    if value.startswith("\n"):
+        items = [line.strip()[1:].strip().strip("'\"")
+                 for line in value.split("\n") if line.strip().startswith("-")]
+    else:
+        items = [item.strip().strip("'\"")
+                 for item in value.strip().strip("[]").split(",") if item.strip()]
+
+    prefix = f"/{source_lang}/"
+    localized = [f"/{target_lang}/{a[len(prefix):]}" for a in items if a.startswith(prefix)]
+    if not localized:
+        return "[]"
+    return "\n" + "\n".join(f'  - "{a}"' for a in localized)
+
+
 def split_front_matter(text: str) -> tuple[List[FrontMatterEntry], str]:
     """Parse YAML front matter from markdown content."""
     if not text.startswith("---"):
@@ -1771,6 +1793,10 @@ def translate_file(
         content = source_path.read_text(encoding="utf-8")
         fm_entries, body = split_front_matter(content)
         tokens = tokenize_markdown(body)
+
+        for entry in fm_entries:
+            if entry.key == "aliases":
+                entry.translated = localize_aliases(entry.text, source_lang, target_lang)
 
         # Assign segment IDs for caching
         assign_segment_ids(fm_entries, tokens)

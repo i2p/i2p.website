@@ -2,9 +2,6 @@
 title: "SAM V3"
 description: "गैर-जावा I2P अनुप्रयोगों के लिए सरल गुमनाम संदेश प्रोटोकॉल"
 slug: "samv3"
-aliases:
-  - "/docs/api/samv3"
-  - "/docs/api/samv3/"
 lastUpdated: "2026-07"
 accurateFor: "0.9.70"
 ---

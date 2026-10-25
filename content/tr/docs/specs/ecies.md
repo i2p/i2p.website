@@ -2,7 +2,9 @@
 title: "ECIES-X25519-AEAD-Ratchet"
 description: "I2P uçtan uca şifreleme için Eliptik Eğri Entegre Şifreleme Şeması"
 slug: "ecies"
-aliases: 
+aliases:
+  - "/tr/docs/specs/ecies-x25519-aead-ratchet"
+  - "/tr/docs/specs/ecies-x25519-aead-ratchet/"
 category: "Protokoller"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

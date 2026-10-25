@@ -2,7 +2,9 @@
 title: "Addressbook-Abonnement-Feed-Befehle"
 description: "Spezifikation zur Erweiterung des Adressabonnement-Feeds mit Befehlen, um Name Servern zu ermöglichen, Eintragsänderungen von Hostname-Inhabern zu übertragen."
 slug: "subscription"
-aliases: 
+aliases:
+  - "/de/docs/specs/subscription-spec"
+  - "/de/docs/specs/subscription-spec/"
 category: "Formate"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

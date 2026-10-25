@@ -2,9 +2,6 @@
 title: "PQ 混合 ECIES-X25519-AEAD-Ratchet"
 description: "使用 ML-KEM 的 ECIES 加密协议的后量子混合变体"
 slug: "ecies-hybrid"
-aliases:
-  - "/docs/specs/ecies-hybrid"
-  - "/docs/specs/ecies-hybrid/"
 category: "协议"
 lastUpdated: "2026-04"
 accurateFor: "0.9.69"

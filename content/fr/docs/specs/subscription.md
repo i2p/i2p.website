@@ -2,7 +2,9 @@
 title: "Commandes de flux d'abonnement du carnet d'adresses"
 description: "Spécification pour étendre le flux d'abonnement d'adresses avec des commandes permettant aux serveurs de noms de diffuser les mises à jour d'entrées provenant des détenteurs de noms d'hôte."
 slug: "subscription"
-aliases: 
+aliases:
+  - "/fr/docs/specs/subscription-spec"
+  - "/fr/docs/specs/subscription-spec/"
 category: "Formats"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

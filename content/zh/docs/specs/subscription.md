@@ -2,7 +2,9 @@
 title: "地址簿订阅源命令"
 description: "扩展地址订阅源规范，通过命令使域名服务器能够广播来自主机名持有者的条目更新。"
 slug: "subscription"
-aliases: 
+aliases:
+  - "/zh/docs/specs/subscription-spec"
+  - "/zh/docs/specs/subscription-spec/"
 category: "格式"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

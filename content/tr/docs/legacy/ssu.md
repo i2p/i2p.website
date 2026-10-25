@@ -7,6 +7,8 @@ aliases:
   - "/tr/docs/transport/ssu/"
   - "/tr/docs/transports/ssu"
   - "/tr/docs/transports/ssu/"
+  - "/tr/docs/specs/ssu-spec"
+  - "/tr/docs/specs/ssu-spec/"
 category: "Taşımalar"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

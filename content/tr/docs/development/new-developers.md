@@ -7,10 +7,10 @@ accurateFor: "2.10.0"
 type: docs
 notes: çeviri bölümünü güncelle
 aliases:
-  - "/tr/newdevelopers"
   - "/tr/docs/develop/new-developers"
   - "/tr/docs/develop/new-developers/"
-  - "/docs/develop/new-developers/"
+  - "/tr/newdevelopers"
+  - "/tr/newdevelopers/"
 ---
 
 I2P üzerinde çalışmaya başlamak mı istiyorsunuz? Harika! İşte web sitesine veya yazılıma katkıda bulunmaya, geliştirme yapmaya veya çeviri oluşturmaya başlamak için hızlı bir kılavuz.

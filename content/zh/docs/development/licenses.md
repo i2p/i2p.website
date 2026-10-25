@@ -8,7 +8,6 @@ type: docs
 aliases:
   - "/zh/docs/develop/licenses"
   - "/zh/docs/develop/licenses/"
-  - "/docs/develop/licenses/"
 ---
 
 根据我们的[威胁模型](/docs/overview/threat-model//)（以及其他原因）的要求，为支持我们称之为I2P的匿名通信网络而开发的软件必须是免费可用、开源且用户可修改的。为了满足这些标准，我们采用了各种法律和软件工程技术，以尽可能消除那些考虑使用或为I2P项目做出贡献的人的进入障碍。

@@ -7,10 +7,10 @@ accurateFor: "2.10.0"
 type: docs
 notes: cập nhật phần dịch thuật
 aliases:
-  - "/vi/newdevelopers"
   - "/vi/docs/develop/new-developers"
   - "/vi/docs/develop/new-developers/"
-  - "/docs/develop/new-developers/"
+  - "/vi/newdevelopers"
+  - "/vi/newdevelopers/"
 ---
 
 Vậy là bạn muốn bắt đầu làm việc với I2P? Tuyệt vời! Đây là hướng dẫn nhanh để bắt đầu đóng góp vào website hoặc phần mềm, phát triển, hoặc tạo bản dịch.

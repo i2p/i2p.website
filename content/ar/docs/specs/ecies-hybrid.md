@@ -2,9 +2,6 @@
 title: "PQ Hybrid ECIES-X25519-AEAD-Ratchet"
 description: "المتغير الهجين لما بعد الكم لبروتوكول التشفير ECIES باستخدام ML-KEM"
 slug: "ecies-hybrid"
-aliases:
-  - "/docs/specs/ecies-hybrid"
-  - "/docs/specs/ecies-hybrid/"
 category: "البروتوكولات"
 lastUpdated: "2026-04"
 accurateFor: "0.9.69"

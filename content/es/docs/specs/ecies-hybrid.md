@@ -2,9 +2,6 @@
 title: "PQ Hybrid ECIES-X25519-AEAD-Ratchet"
 description: "Variante híbrida post-cuántica del protocolo de cifrado ECIES usando ML-KEM"
 slug: "ecies-hybrid"
-aliases:
-  - "/docs/specs/ecies-hybrid"
-  - "/docs/specs/ecies-hybrid/"
 category: "Protocolos"
 lastUpdated: "2026-04"
 accurateFor: "0.9.69"

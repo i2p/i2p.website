@@ -2,7 +2,9 @@
 title: "ECIES-X25519-AEAD-Ratchet"
 description: "مخطط التشفير المتكامل للمنحنى الإهليلجي للتشفير الشامل في I2P"
 slug: "ecies"
-aliases: 
+aliases:
+  - "/ar/docs/specs/ecies-x25519-aead-ratchet"
+  - "/ar/docs/specs/ecies-x25519-aead-ratchet/"
 category: "البروتوكولات"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

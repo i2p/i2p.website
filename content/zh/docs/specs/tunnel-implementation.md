@@ -3,8 +3,8 @@ title: "Tunnel 实现"
 description: "I2P tunnel 操作、构建和消息处理规范"
 slug: "tunnel-implementation"
 aliases:
-  - "/zh/docs/specs/tunnel-implementation"
-  - "/zh/docs/specs/tunnel-implementation/"
+  - "/zh/docs/specs/implementation"
+  - "/zh/docs/specs/implementation/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

@@ -2,9 +2,6 @@
 title: "Spezifikation gemeinsamer Strukturen"
 description: "Datentypen, die allen I2P-Protokollen gemeinsam sind"
 slug: "common-structures"
-aliases:
-  - "/docs/specs/common-structures"
-  - "/docs/specs/common-structures/"
 category: "Design"
 lastUpdated: "2026-10"
 accurateFor: "0.9.71"

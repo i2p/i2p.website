@@ -2,7 +2,9 @@
 title: "Tổng quan về I2CP"
 description: "Tổng quan về Giao thức Máy khách I2P (I2CP) - quản lý phiên, các tùy chọn, định dạng tải trọng và đa hợp."
 slug: "i2cp-overview"
-aliases: 
+aliases:
+  - "/vi/docs/protocol/i2cp"
+  - "/vi/docs/protocol/i2cp/"
 category: "Giao thức"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

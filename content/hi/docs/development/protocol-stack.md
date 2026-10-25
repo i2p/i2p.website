@@ -4,7 +4,9 @@ description: "I2P प्रोटोकॉल स्टैक परतों �
 slug: "protocol-stack"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"
-aliases: 
+aliases:
+  - "/hi/docs/develop/protocol-stack"
+  - "/hi/docs/develop/protocol-stack/"
 ---
 
 I2P stack एक स्तरित डिज़ाइन है जो गुमनाम संचार को सक्षम बनाता है। प्रत्येक स्तर अपने नीचे के स्तरों की क्षमताओं के ऊपर विशिष्ट सुविधाएं जोड़ता है। प्रत्येक घटक पर अतिरिक्त विवरण के लिए [Technical Documentation Index](/docs/develop/overview) देखें।

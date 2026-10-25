@@ -8,7 +8,6 @@ type: docs
 aliases:
   - "/tr/docs/develop/release-signing-key"
   - "/tr/docs/develop/release-signing-key/"
-  - "/docs/develop/release-signing-key/"
 ---
 
 <p> 0.9.57 ve sonraki sürümler idk tarafından imzalanmıştır. Güncel açık anahtarı: </p> <p> <a href="/idk.key.asc" >PGP açık anahtarını indir</a> </p><p>

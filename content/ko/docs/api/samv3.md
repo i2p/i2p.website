@@ -2,9 +2,6 @@
 title: "SAM V3"
 description: "비자바 I2P 애플리케이션을 위한 Simple Anonymous Messaging 프로토콜"
 slug: "samv3"
-aliases:
-  - "/docs/api/samv3"
-  - "/docs/api/samv3/"
 lastUpdated: "2026-07"
 accurateFor: "0.9.70"
 ---

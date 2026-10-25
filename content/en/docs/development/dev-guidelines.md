@@ -8,6 +8,7 @@ type: docs
 aliases:
   - "/en/docs/develop/dev-guidelines"
   - "/en/docs/develop/dev-guidelines/"
+  - "/docs/develop/dev-guidelines"
   - "/docs/develop/dev-guidelines/"
 ---
 

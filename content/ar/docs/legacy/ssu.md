@@ -7,6 +7,8 @@ aliases:
   - "/ar/docs/transport/ssu/"
   - "/ar/docs/transports/ssu"
   - "/ar/docs/transports/ssu/"
+  - "/ar/docs/specs/ssu-spec"
+  - "/ar/docs/specs/ssu-spec/"
 category: "طرق النقل"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

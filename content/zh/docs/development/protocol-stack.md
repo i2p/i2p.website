@@ -4,7 +4,9 @@ description: "I2P 协议栈层次概述"
 slug: "protocol-stack"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"
-aliases: 
+aliases:
+  - "/zh/docs/develop/protocol-stack"
+  - "/zh/docs/develop/protocol-stack/"
 ---
 
 I2P协议栈是一个分层设计，能够实现匿名通信。每一层都在下层功能的基础上增加特定的能力。有关每个组件的更多详细信息，请参阅[技术文档索引](/docs/develop/overview)。

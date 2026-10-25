@@ -2,7 +2,9 @@
 title: "I2CP'ye Genel Bakış"
 description: "I2P İstemci Protokolü'nün (I2CP) genel bakışı - oturum yönetimi, seçenekler, yük biçimi ve çoklama."
 slug: "i2cp-overview"
-aliases: 
+aliases:
+  - "/tr/docs/protocol/i2cp"
+  - "/tr/docs/protocol/i2cp/"
 category: "Protokoller"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

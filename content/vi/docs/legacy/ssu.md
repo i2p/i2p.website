@@ -7,6 +7,8 @@ aliases:
   - "/vi/docs/transport/ssu/"
   - "/vi/docs/transports/ssu"
   - "/vi/docs/transports/ssu/"
+  - "/vi/docs/specs/ssu-spec"
+  - "/vi/docs/specs/ssu-spec/"
 category: "Giao thức vận chuyển"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

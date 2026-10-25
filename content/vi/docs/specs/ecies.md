@@ -2,7 +2,9 @@
 title: "ECIES-X25519-AEAD-Ratchet"
 description: "Sơ đồ Mã hóa Tích hợp Đường cong Elliptic cho mã hóa đầu cuối I2P"
 slug: "ecies"
-aliases: 
+aliases:
+  - "/vi/docs/specs/ecies-x25519-aead-ratchet"
+  - "/vi/docs/specs/ecies-x25519-aead-ratchet/"
 category: "Giao thức"
 lastUpdated: "2025-06"
 accurateFor: "0.9.67"

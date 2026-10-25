@@ -1,8 +1,8 @@
 ---
 title: "I2P विकास रोडमैप"
 aliases:
-  - "/en/get-involved/todo"
-  - "/en/get-involved/todo/"
+  - "/hi/get-involved/todo"
+  - "/hi/get-involved/todo/"
 description: "I2P नेटवर्क के लिए वर्तमान विकास योजनाएं और ऐतिहासिक मील के पत्थर"
 ---
 

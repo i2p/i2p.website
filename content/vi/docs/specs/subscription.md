@@ -2,7 +2,9 @@
 title: "Lệnh Feed Đăng ký Sổ địa chỉ"
 description: "Đặc tả để mở rộng nguồn cấp đăng ký địa chỉ với các lệnh nhằm cho phép name server phát sóng các cập nhật mục từ những người nắm giữ hostname."
 slug: "subscription"
-aliases: 
+aliases:
+  - "/vi/docs/specs/subscription-spec"
+  - "/vi/docs/specs/subscription-spec/"
 category: "Định dạng"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

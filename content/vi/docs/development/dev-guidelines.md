@@ -8,7 +8,6 @@ type: docs
 aliases:
   - "/vi/docs/develop/dev-guidelines"
   - "/vi/docs/develop/dev-guidelines/"
-  - "/docs/develop/dev-guidelines/"
 ---
 
 Đọc [Hướng dẫn cho Nhà phát triển mới](/docs/develop/new-developers/) trước.

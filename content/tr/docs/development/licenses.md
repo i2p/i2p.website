@@ -8,7 +8,6 @@ type: docs
 aliases:
   - "/tr/docs/develop/licenses"
   - "/tr/docs/develop/licenses/"
-  - "/docs/develop/licenses/"
 ---
 
 [Tehdit modelimizin](/docs/overview/threat-model//) gerektirdiği şekilde (diğer nedenlerle birlikte), I2P adını verdiğimiz anonim iletişim ağını desteklemek için geliştirilen yazılımın özgürce erişilebilir, açık kaynaklı ve kullanıcı tarafından değiştirilebilir olması gerekmektedir. Bu kriterleri karşılamak için, I2P çabasından yararlanmayı veya ona katkıda bulunmayı düşünenler için giriş engellerini olabildiğince kaldırmak amacıyla çeşitli yasal ve yazılım mühendisliği tekniklerinden faydalanıyoruz.

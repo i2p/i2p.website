@@ -7,10 +7,10 @@ accurateFor: "2.10.0"
 type: docs
 notes: aktualizovat část překladu
 aliases:
-  - "/cs/newdevelopers"
   - "/cs/docs/develop/new-developers"
   - "/cs/docs/develop/new-developers/"
-  - "/docs/develop/new-developers/"
+  - "/cs/newdevelopers"
+  - "/cs/newdevelopers/"
 ---
 
 Takže chcete začít pracovat na I2P? Skvělé! Zde je rychlý průvodce, jak začít přispívat na webové stránky nebo software, vyvíjet nebo vytvářet překlady.

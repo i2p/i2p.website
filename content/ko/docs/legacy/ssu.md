@@ -7,6 +7,8 @@ aliases:
   - "/ko/docs/transport/ssu/"
   - "/ko/docs/transports/ssu"
   - "/ko/docs/transports/ssu/"
+  - "/ko/docs/specs/ssu-spec"
+  - "/ko/docs/specs/ssu-spec/"
 category: "전송 계층"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"
