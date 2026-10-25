@@ -57,15 +57,30 @@ HTTP klientská proxy poskytuje řadu služeb pro ochranu uživatele a pro lepš
 
 **Zpracování hlaviček požadavku:** - Odstranění hlaviček problematických z hlediska soukromí - Směrování na místní nebo vzdálený outproxy - Výběr outproxy, ukládání do mezipaměti a sledování dostupnosti - Vyhledávání cílů podle názvů hostitelů - Nahrazení hlavičky hostitele za b32 - Přidání hlavičky pro označení podpory transparentní dekomprese - Vynucení connection: close - Podpora proxy v souladu s RFC - Zpracování a odstranění hop-by-hop hlaviček v souladu s RFC - Volitelné digest a základní ověření uživatelského jména/hesla - Volitelné outproxy digest a základní ověření uživatelského jména/hesla - Ukládání všech hlaviček do vyrovnávací paměti před předáním pro vyšší efektivitu - Odkazy na jump servery - Zpracování jump odpovědí a formulářů (address helper) - Zpracování zaslepených b32 a formulářů pro přihlašovací údaje - Podpora standardních HTTP a HTTPS (CONNECT) požadavků
 
+- **X-Accept-Encoding:** x-i2p-gzip;q=1.0, identity;q=0.5, deflate;q=0, gzip;q=0, *;q=0
+
 **Zpracování hlaviček odpovědi:** - Kontrola, zda dekomprimovat odpověď - Vynucení connection: close - RFC-kompatibilní zpracování a odstranění hop-by-hop hlaviček - Ukládání všech hlaviček do vyrovnávací paměti před předáním pro efektivitu
 
+- **Content-Encoding:** x-i2p-gzip
+
 **Odpovědi HTTP chyb:** - Pro mnoho běžných i méně běžných chyb, aby uživatel věděl, co se stalo - Více než 20 unikátních přeložených, stylovaných a formátovaných chybových stránek pro různé chyby - Interní webový server pro poskytování formulářů, CSS, obrázků a chyb
+
+- X-Accept-Encoding není standardní header
+- Neprovádí dechunk/chunk per-hop; předává chunking end-to-end
+- Předává Transfer-Encoding header end-to-end
+- Používá Content-Encoding, ne Transfer-Encoding, k určení per-hop kódování
+- Zakazuje x-i2p gzipping když je nastaven Content-Encoding (ale to pravděpodobně nechceme dělat tak jako tak)
+- Serverová strana gzipuje server-sent chunking, místo aby prováděla dechunk-gzip-rechunk a dechunk-gunzip-rechunk
+- Gzipovaný obsah není následně chunkován. RFC 2616 vyžaduje, aby všechno Transfer-Encoding kromě "identity" bylo chunkováno.
+- Protože není chunking venku (po) gzip, je těžší najít konec dat, což ztěžuje jakoukoliv implementaci keepalive.
+- RFC 2616 říká, že Content-Length nesmí být odeslán pokud je přítomen Transfer-Encoding, ale my to děláme. Spec říká ignorovat Content-Length pokud je přítomen Transfer-Encoding, což prohlížeče dělají, takže to pro nás funguje.
 
 #### Transparentní komprese odpovědí {#transparent-response-compression}
 
 Komprese odpovědi i2ptunnel je požadována pomocí HTTP hlavičky:
 
-- **X-Accept-Encoding:** x-i2p-gzip;q=1.0, identity;q=0.5, deflate;q=0, gzip;q=0, *;q=0
+- *Outproxy:* **User-Agent:** Používá user agent z nedávného vydání Firefox na Windows
+- *Interní I2P použití:* **User-Agent:** MYOB/6.66 (AN/ON)
 
 Serverová strana odstraní tuto hop-by-hop hlavičku před odesláním požadavku na webový server. Složitá hlavička se všemi q hodnotami není nutná; servery by měly jen hledat "x-i2p-gzip" kdekoli v hlavičce.
 
@@ -77,15 +92,15 @@ Pokud je tato hlavička přítomna v odpovědi, HTTP klientský proxy ji transpa
 
 Tento návrh a současná implementace porušují RFC 2616 v několika ohledech:
 
-- X-Accept-Encoding není standardní header
-- Neprovádí dechunk/chunk per-hop; předává chunking end-to-end
-- Předává Transfer-Encoding header end-to-end
-- Používá Content-Encoding, ne Transfer-Encoding, k určení per-hop kódování
-- Zakazuje x-i2p gzipping když je nastaven Content-Encoding (ale to pravděpodobně nechceme dělat tak jako tak)
-- Serverová strana gzipuje server-sent chunking, místo aby prováděla dechunk-gzip-rechunk a dechunk-gunzip-rechunk
-- Gzipovaný obsah není následně chunkován. RFC 2616 vyžaduje, aby všechno Transfer-Encoding kromě "identity" bylo chunkováno.
-- Protože není chunking venku (po) gzip, je těžší najít konec dat, což ztěžuje jakoukoliv implementaci keepalive.
-- RFC 2616 říká, že Content-Length nesmí být odeslán pokud je přítomen Transfer-Encoding, ale my to děláme. Spec říká ignorovat Content-Length pokud je přítomen Transfer-Encoding, což prohlížeče dělají, takže to pro nás funguje.
+- X-Accept-Encoding není standardní hlavička
+- Neprovádí dechunk/chunk na každém hopu; chunking prochází end-to-end
+- Předává hlavičku Transfer-Encoding end-to-end
+- K určení kódování na každém hopu používá Content-Encoding, nikoli Transfer-Encoding
+- Zakazuje x-i2p gzipování, když je nastaven Content-Encoding (ale to pravděpodobně stejně nechceme dělat)
+- Serverová strana gzipuje chunkování odesílané serverem, místo aby prováděla dechunk-gzip-rechunk a dechunk-gunzip-rechunk
+- Gzipovaný obsah se následně nechunkuje. RFC 2616 vyžaduje, aby všechny Transfer-Encoding kromě "identity" byly chunkované.
+- Protože mimo (po) gzip neexistuje žádné chunkování, je obtížnější najít konec dat, což ztěžuje jakoukoli implementaci keepalive.
+- RFC 2616 říká, že Content-Length nesmí být odeslán, pokud je přítomno Transfer-Encoding, ale my ho posíláme. Specifikace říká, že pokud je přítomno Transfer-Encoding, má se Content-Length ignorovat, což prohlížeče dělají, takže nám to funguje.
 
 Změny pro implementaci hop-by-hop komprese odpovídající standardům způsobem zpětně kompatibilním jsou tématem pro další studium. Jakákoliv změna dechunk-gzip-rechunk by vyžadovala nový typ kódování, možná x-i2p-gzchunked. To by bylo identické s Transfer-Encoding: gzip, ale muselo by být signalizováno odlišně z důvodů kompatibility. Jakákoliv změna by vyžadovala formální návrh.
 
@@ -109,8 +124,8 @@ Implementace proxy musí správně fungovat s jinými implementacemi na druhé s
 
 V závislosti na tom, zda tunnel používá outproxy nebo ne, připojí následující User-Agent:
 
-- *Outproxy:* **User-Agent:** Používá user agent z nedávného vydání Firefox na Windows
-- *Interní I2P použití:* **User-Agent:** MYOB/6.66 (AN/ON)
+- *Outproxy:* **User-Agent:** Používá user agent z nedávného vydání Firefoxu na Windows
+- *Interní použití I2P:* **User-Agent:** MYOB/6.66 (AN/ON)
 
 ### IRC klient {#client-mode-irc}
 
@@ -120,9 +135,31 @@ Následující seznam povolených příkazů je určen pro příkazy příchozí
 
 **Seznam povolených:** - AUTHENTICATE - CAP - ERROR - H - JOIN - KICK - MODE - NICK - PART - PING - PROTOCTL - QUIT - TOPIC - WALLOPS
 
+- AUTHENTICATE
+- CAP
+- ERROR
+- H
+- JOIN
+- KICK
+- MODE
+- NICK
+- PART
+- PING
+- PROTOCTL
+- QUIT
+- TOPIC
+- WALLOPS
+
 Existuje také seznam povolených příkazů odchozích z IRC klienta na IRC server. Je poměrně rozsáhlý kvůli počtu IRC administrativních příkazů. Podrobnosti naleznete ve zdrojovém kódu IRCFilter.java.
 
 Odchozí filtr také upravuje následující příkazy pro odstranění identifikačních informací: - NOTICE - PART - PING - PRIVMSG - QUIT - USER
+
+- NOTICE
+- PART
+- PING
+- PRIVMSG
+- QUIT
+- USER
 
 ### SOCKS 4/4a/5 {#client-mode-socks}
 
@@ -156,13 +193,37 @@ HTTP server proxy poskytuje řadu služeb, které usnadňují a zabezpečují ho
 
 **Zpracování hlaviček požadavku:** - Validace hlaviček - Ochrana proti falšování hlaviček - Kontroly velikosti hlaviček - Volitelné odmítání inproxy a user-agent - Přidání X-I2P hlaviček, aby webserver věděl, odkud požadavek přišel - Nahrazení Host hlavičky pro usnadnění webserver vhosts - Vynucení connection: close - RFC-kompatibilní zpracování a odstranění hop-by-hop hlaviček - Ukládání všech hlaviček do vyrovnávací paměti před předáním kvůli efektivitě
 
+- Validace hlaviček
+- Ochrana proti podvržení hlaviček
+- Kontrola velikosti hlaviček
+- Volitelné odmítání inproxy a user-agent
+- Přidání hlaviček X-I2P, aby webserver věděl, odkud požadavek přišel
+- Nahrazení hlavičky Host pro snazší vhosts na webserveru
+- Vynucení connection: close
+- Zpracování a odstraňování hop-by-hop hlaviček v souladu s RFC
+- Bufferování všech hlaviček před předáním pro vyšší efektivitu
+
 **Ochrana proti DDoS:** - Omezování POST požadavků - Ochrana proti timeoutům a slowloris útokům - Dodatečné omezování probíhá ve streaming pro všechny typy tunelů
+
+- Omezování POST požadavků
+- Timeouty a ochrana proti slowloris
+- Dodatečné omezování probíhá ve streamingu pro všechny typy tunnelů
 
 **Zpracování hlaviček odpovědi:** - Odstranění některých hlaviček problematických z hlediska soukromí - Kontrola MIME typu a dalších hlaviček pro rozhodnutí o kompresi odpovědi - Vynucení connection: close - RFC-kompatibilní zpracování a odstranění hop-by-hop hlaviček - Ukládání všech hlaviček do vyrovnávací paměti před předáním pro efektivitu
 
+- Odstraňování některých hlaviček problematických z hlediska soukromí
+- Kontrola MIME typu a dalších hlaviček, zda komprimovat odpověď
+- Vynucení connection: close
+- Zpracování a odstraňování hop-by-hop hlaviček v souladu s RFC
+- Bufferování všech hlaviček před průchodem pro efektivitu
+
 **HTTP chybové odpovědi:** - Pro mnoho běžných i méně běžných chyb a při omezování, aby uživatel na straně klienta věděl, co se stalo
 
+- U mnoha běžných i méně běžných chyb a při throttlingu, aby uživatel na straně klienta věděl, co se stalo
+
 **Transparentní komprese odpovědí:** - Webový server a/nebo vrstva I2CP mohou komprimovat, ale webový server často nekomprimuje, a je nejefektivnější komprimovat na vysoké vrstvě, i když I2CP také komprimuje. HTTP server proxy spolupracuje s klientskou proxy pro transparentní kompresi odpovědí.
+
+- Webový server a/nebo vrstva I2CP mohou komprimovat, ale webový server to často nedělá, a je nejefektivnější komprimovat na vysoké vrstvě, i když I2CP také komprimuje. Proxy HTTP serveru spolupracuje s proxy na straně klienta na transparentní komprimaci odpovědí.
 
 ### HTTP Bidirectional {#server-mode-http-bidir}
 

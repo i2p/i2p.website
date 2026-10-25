@@ -58,15 +58,30 @@ Le proxy client HTTP fournit plusieurs services pour protéger l'utilisateur et 
 
 **Traitement des en-têtes de requête :** - Suppression des en-têtes problématiques pour la confidentialité - Routage vers un outproxy local ou distant - Sélection, mise en cache et suivi de la disponibilité des outproxy - Recherches de nom d'hôte vers destination - Remplacement de l'en-tête Host par b32 - Ajout d'en-tête pour indiquer la prise en charge de la décompression transparente - Forcer connection: close - Prise en charge de proxy conforme RFC - Traitement et suppression conformes RFC des en-têtes hop-by-hop - Authentification optionnelle par digest et nom d'utilisateur/mot de passe de base - Authentification optionnelle d'outproxy par digest et nom d'utilisateur/mot de passe de base - Mise en mémoire tampon de tous les en-têtes avant transmission pour l'efficacité - Liens de serveur de saut - Traitement des réponses de saut et formulaires (assistant d'adresse) - Traitement b32 aveugle et formulaires d'identifiants - Prend en charge les requêtes HTTP et HTTPS (CONNECT) standard
 
+- **X-Accept-Encoding:** x-i2p-gzip;q=1.0, identity;q=0.5, deflate;q=0, gzip;q=0, *;q=0
+
 **Traitement des en-têtes de réponse :** - Vérifier s'il faut décompresser la réponse - Forcer connection: close - Traitement et suppression des en-têtes hop-by-hop conformes à la RFC - Mise en mémoire tampon de tous les en-têtes avant transmission pour l'efficacité
 
+- **Content-Encoding:** x-i2p-gzip
+
 **Réponses d'erreur HTTP :** - Pour de nombreuses erreurs courantes et moins courantes, afin que l'utilisateur sache ce qui s'est passé - Plus de 20 pages d'erreur uniques traduites, stylisées et formatées pour diverses erreurs - Serveur web interne pour servir les formulaires, CSS, images et erreurs
+
+- X-Accept-Encoding n'est pas un en-tête standard
+- Ne décompresse/compresse pas par saut ; il transmet la compression de bout en bout
+- Transmet l'en-tête Transfer-Encoding de bout en bout
+- Utilise Content-Encoding, et non Transfer-Encoding, pour spécifier l'encodage par saut
+- Interdit la compression gzip x-i2p lorsque Content-Encoding est défini (mais nous ne voulons probablement pas le faire de toute façon)
+- Le côté serveur compresse en gzip la segmentation envoyée par le serveur, plutôt que de faire décompression-gzip-recompression et décompression-gunzip-recompression
+- Le contenu compressé en gzip n'est pas segmenté par la suite. RFC 2616 exige que tout Transfer-Encoding autre que "identity" soit segmenté.
+- Parce qu'il n'y a pas de segmentation à l'extérieur (après) le gzip, il est plus difficile de trouver la fin des données, rendant toute implémentation de keepalive plus difficile.
+- RFC 2616 dit que Content-Length ne doit pas être envoyé si Transfer-Encoding est présent, mais nous le faisons. La spécification dit d'ignorer Content-Length si Transfer-Encoding est présent, ce que font les navigateurs, donc cela fonctionne pour nous.
 
 #### Compression Transparente des Réponses {#transparent-response-compression}
 
 La compression de réponse i2ptunnel est demandée avec l'en-tête HTTP :
 
-- **X-Accept-Encoding:** x-i2p-gzip;q=1.0, identity;q=0.5, deflate;q=0, gzip;q=0, *;q=0
+- *Outproxy :* **User-Agent :** Utilise l'agent utilisateur d'une version récente de Firefox sur Windows
+- *Utilisation I2P interne :* **User-Agent :** MYOB/6.66 (AN/ON)
 
 Le côté serveur supprime cet en-tête hop-by-hop avant d'envoyer la requête au serveur web. L'en-tête élaboré avec toutes les valeurs q n'est pas nécessaire ; les serveurs doivent simplement rechercher "x-i2p-gzip" n'importe où dans l'en-tête.
 
@@ -79,14 +94,14 @@ Si cet en-tête est présent dans la réponse, le proxy client HTTP le décompre
 Cette conception et l'implémentation actuelle violent la RFC 2616 de plusieurs manières :
 
 - X-Accept-Encoding n'est pas un en-tête standard
-- Ne décompresse/compresse pas par saut ; il transmet la compression de bout en bout
+- N'effectue pas de déchunking/chunking par saut ; il laisse passer le chunking de bout en bout
 - Transmet l'en-tête Transfer-Encoding de bout en bout
 - Utilise Content-Encoding, et non Transfer-Encoding, pour spécifier l'encodage par saut
-- Interdit la compression gzip x-i2p lorsque Content-Encoding est défini (mais nous ne voulons probablement pas le faire de toute façon)
-- Le côté serveur compresse en gzip la segmentation envoyée par le serveur, plutôt que de faire décompression-gzip-recompression et décompression-gunzip-recompression
-- Le contenu compressé en gzip n'est pas segmenté par la suite. RFC 2616 exige que tout Transfer-Encoding autre que "identity" soit segmenté.
-- Parce qu'il n'y a pas de segmentation à l'extérieur (après) le gzip, il est plus difficile de trouver la fin des données, rendant toute implémentation de keepalive plus difficile.
-- RFC 2616 dit que Content-Length ne doit pas être envoyé si Transfer-Encoding est présent, mais nous le faisons. La spécification dit d'ignorer Content-Length si Transfer-Encoding est présent, ce que font les navigateurs, donc cela fonctionne pour nous.
+- Interdit la compression gzip x-i2p lorsque Content-Encoding est défini (mais nous ne voulons probablement pas faire cela de toute façon)
+- Le côté serveur applique gzip au chunking envoyé par le serveur, plutôt que de déchunker, compresser avec gzip, puis re-chunker, et de déchunker, décompresser avec gunzip, puis re-chunker
+- Le contenu compressé avec gzip n'est pas découpé en chunks ensuite. RFC 2616 exige que tout Transfer-Encoding autre que "identity" soit découpé en chunks.
+- Comme il n'y a pas de chunking à l'extérieur (après) du gzip, il est plus difficile de trouver la fin des données, ce qui rend toute implémentation de keepalive plus difficile.
+- RFC 2616 indique que Content-Length ne doit pas être envoyé si Transfer-Encoding est présent, mais nous le faisons. La spécification dit d'ignorer Content-Length si Transfer-Encoding est présent, ce que font les navigateurs, donc cela fonctionne pour nous.
 
 Les modifications pour implémenter une compression saut-par-saut conforme aux standards de manière rétro-compatible constituent un sujet d'étude supplémentaire. Tout changement au processus dechunk-gzip-rechunk nécessiterait un nouveau type d'encodage, peut-être x-i2p-gzchunked. Ceci serait identique à Transfer-Encoding: gzip, mais devrait être signalé différemment pour des raisons de compatibilité. Tout changement nécessiterait une proposition formelle.
 
@@ -110,8 +125,8 @@ Les implémentations de proxy doivent fonctionner correctement avec d'autres imp
 
 Selon que le tunnel utilise un outproxy ou non, il ajoutera le User-Agent suivant :
 
-- *Outproxy :* **User-Agent :** Utilise l'agent utilisateur d'une version récente de Firefox sur Windows
-- *Utilisation I2P interne :* **User-Agent :** MYOB/6.66 (AN/ON)
+- *Proxy de sortie :* **User-Agent :** Utilise la chaîne User-Agent d'une version récente de Firefox sous Windows
+- *Utilisation interne à I2P :* **User-Agent :** MYOB/6.66 (AN/ON)
 
 ### Client IRC {#client-mode-irc}
 
@@ -121,9 +136,31 @@ La liste d'autorisation suivante concerne les commandes entrantes du serveur IRC
 
 **Liste d'autorisation :** - AUTHENTICATE - CAP - ERROR - H - JOIN - KICK - MODE - NICK - PART - PING - PROTOCTL - QUIT - TOPIC - WALLOPS
 
+- AUTHENTICATE
+- CAP
+- ERROR
+- H
+- JOIN
+- KICK
+- MODE
+- NICK
+- PART
+- PING
+- PROTOCTL
+- QUIT
+- TOPIC
+- WALLOPS
+
 Il existe également une liste d'autorisation pour les commandes sortantes du client IRC vers le serveur IRC. Elle est assez volumineuse en raison du nombre de commandes administratives IRC. Voir le code source IRCFilter.java pour plus de détails.
 
 Le filtre sortant modifie également les commandes suivantes pour supprimer les informations d'identification : - NOTICE - PART - PING - PRIVMSG - QUIT - USER
+
+- NOTICE
+- PART
+- PING
+- PRIVMSG
+- QUIT
+- USER
 
 ### SOCKS 4/4a/5 {#client-mode-socks}
 
@@ -157,13 +194,37 @@ Le proxy de serveur HTTP fournit un certain nombre de services pour faciliter l'
 
 **Traitement des en-têtes de requête :** - Validation des en-têtes - Protection contre l'usurpation d'en-têtes - Vérifications de la taille des en-têtes - Rejet optionnel des inproxy et user-agent - Ajout d'en-têtes X-I2P pour que le serveur web sache d'où provient la requête - Remplacement de l'en-tête Host pour faciliter les vhosts du serveur web - Forcer connection: close - Traitement et suppression des en-têtes hop-by-hop conformes à la RFC - Mise en mémoire tampon de tous les en-têtes avant transmission pour l'efficacité
 
+- Validation des en-têtes
+- Protection contre l'usurpation d'en-têtes
+- Vérifications de la taille des en-têtes
+- Rejet optionnel de l'inproxy et du user-agent
+- Ajout d'en-têtes X-I2P pour que le serveur web sache d'où provient la requête
+- Remplacement de l'en-tête Host pour faciliter les vhosts du serveur web
+- Forcer connection: close
+- Traitement et suppression des en-têtes hop-by-hop conformes à la RFC
+- Mise en tampon de tous les en-têtes avant transmission pour plus d'efficacité
+
 **Protection DDoS :** - Limitation du débit POST - Protection contre les timeouts et slowloris - Une limitation supplémentaire se produit dans le streaming pour tous les types de tunnel
+
+- Limitation de débit des POST
+- Délais d’attente et protection contre slowloris
+- Une limitation de débit supplémentaire s’applique dans le streaming pour tous les types de tunnel
 
 **Traitement des en-têtes de réponse :** - Suppression de certains en-têtes problématiques pour la confidentialité - Vérification du type MIME et autres en-têtes pour déterminer s'il faut compresser la réponse - Forcer connection: close - Traitement et suppression conformes RFC des en-têtes hop-by-hop - Mise en mémoire tampon de tous les en-têtes avant transmission pour l'efficacité
 
+- Suppression de certains en-têtes problématiques pour la confidentialité
+- Vérification du type MIME et d'autres en-têtes pour déterminer s'il faut compresser la réponse
+- Forcer connection: close
+- Traitement et suppression des en-têtes hop-by-hop conformément à la RFC
+- Mise en tampon de tous les en-têtes avant leur transmission pour des raisons d'efficacité
+
 **Réponses d'erreur HTTP :** - Pour de nombreuses erreurs courantes et moins courantes ainsi que pour la limitation de débit, afin que l'utilisateur côté client sache ce qui s'est passé
 
+- Pour de nombreuses erreurs courantes et moins courantes, ainsi que sur la limitation de débit, afin que l'utilisateur côté client sache ce qui s'est passé
+
 **Compression transparente des réponses :** - Le serveur web et/ou la couche I2CP peuvent compresser, mais le serveur web ne le fait souvent pas, et il est plus efficace de compresser à un niveau élevé, même si I2CP compresse également. Le proxy serveur HTTP fonctionne en coopération avec le proxy côté client pour compresser les réponses de manière transparente.
+
+- Le serveur web et/ou la couche I2CP peuvent compresser, mais le serveur web ne le fait souvent pas, et il est plus efficace de compresser à un niveau supérieur, même si I2CP compresse aussi. Le proxy du serveur HTTP fonctionne en coopération avec le proxy côté client pour compresser les réponses de manière transparente.
 
 ### HTTP Bidirectionnel {#server-mode-http-bidir}
 

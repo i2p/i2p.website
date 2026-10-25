@@ -58,15 +58,30 @@ Der HTTP-Client-Proxy bietet eine Reihe von Diensten zum Schutz des Benutzers un
 
 **Request-Header-Verarbeitung:** - Entfernung datenschutzproblematischer Header - Weiterleitung zu lokalem oder entferntem Outproxy - Outproxy-Auswahl, Caching und Erreichbarkeitsverfolgung - Hostname-zu-Ziel-Lookups - Host-Header-Ersetzung zu b32 - Header hinzufügen um Unterstützung für transparente Dekomprimierung anzuzeigen - Erzwinge connection: close - RFC-konforme Proxy-Unterstützung - RFC-konforme Hop-by-Hop-Header-Verarbeitung und -Entfernung - Optionale Digest- und Basic-Benutzername/Passwort-Authentifizierung - Optionale Outproxy-Digest- und Basic-Benutzername/Passwort-Authentifizierung - Pufferung aller Header vor der Weiterleitung für bessere Effizienz - Jump-Server-Links - Jump-Response-Verarbeitung und Formulare (Address Helper) - Blinded-b32-Verarbeitung und Credential-Formulare - Unterstützt Standard-HTTP- und HTTPS-Anfragen (CONNECT)
 
+- **X-Accept-Encoding:** x-i2p-gzip;q=1.0, identity;q=0.5, deflate;q=0, gzip;q=0, *;q=0
+
 **Verarbeitung von Antwort-Headern:** - Prüfung, ob Antwort dekomprimiert werden soll - Erzwinge Verbindung: schließen - RFC-konforme Hop-by-Hop-Header-Verarbeitung und -Entfernung - Pufferung aller Header vor Weiterleitung für bessere Effizienz
 
+- **Content-Encoding:** x-i2p-gzip
+
 **HTTP-Fehlerantworten:** - Für viele häufige und weniger häufige Fehler, damit der Benutzer weiß, was passiert ist - Über 20 einzigartige übersetzte, gestylte und formatierte Fehlerseiten für verschiedene Fehler - Interner Webserver zum Bereitstellen von Formularen, CSS, Bildern und Fehlern
+
+- X-Accept-Encoding ist kein Standard-Header
+- Führt kein Dechunking/Chunking pro Hop durch; es überträgt Chunking Ende-zu-Ende
+- Überträgt Transfer-Encoding-Header Ende-zu-Ende
+- Verwendet Content-Encoding, nicht Transfer-Encoding, um die Kodierung pro Hop zu spezifizieren
+- Verbietet x-i2p-Gzipping, wenn Content-Encoding gesetzt ist (aber das wollen wir wahrscheinlich sowieso nicht)
+- Die Serverseite komprimiert das serverseitig gesendete Chunking mit gzip, anstatt Dechunk-Gzip-Rechunk und Dechunk-Gunzip-Rechunk durchzuführen
+- Der gzippte Inhalt wird danach nicht in Chunks aufgeteilt. RFC 2616 erfordert, dass alle Transfer-Encoding außer "identity" in Chunks aufgeteilt werden
+- Da es kein Chunking außerhalb (nach) dem Gzip gibt, ist es schwieriger, das Ende der Daten zu finden, was jede Implementierung von Keepalive erschwert
+- RFC 2616 besagt, dass Content-Length nicht gesendet werden darf, wenn Transfer-Encoding vorhanden ist, aber wir tun es. Die Spezifikation besagt, Content-Length zu ignorieren, wenn Transfer-Encoding vorhanden ist, was die Browser tun, also funktioniert es für uns
 
 #### Transparente Antwort-Komprimierung {#transparent-response-compression}
 
 Die i2ptunnel-Antwortenkompression wird mit dem HTTP-Header angefordert:
 
-- **X-Accept-Encoding:** x-i2p-gzip;q=1.0, identity;q=0.5, deflate;q=0, gzip;q=0, *;q=0
+- *Outproxy:* **User-Agent:** Verwendet den User-Agent einer aktuellen Firefox-Version unter Windows
+- *Interne I2P-Nutzung:* **User-Agent:** MYOB/6.66 (AN/ON)
 
 Die Serverseite entfernt diesen Hop-by-Hop-Header, bevor sie die Anfrage an den Webserver sendet. Der aufwendige Header mit allen q-Werten ist nicht notwendig; Server sollten einfach überall im Header nach "x-i2p-gzip" suchen.
 
@@ -79,14 +94,14 @@ Wenn dieser Header in der Antwort vorhanden ist, dekomprimiert der HTTP-Client-P
 Dieses Design und die aktuelle Implementierung verletzen RFC 2616 in mehreren Punkten:
 
 - X-Accept-Encoding ist kein Standard-Header
-- Führt kein Dechunking/Chunking pro Hop durch; es überträgt Chunking Ende-zu-Ende
-- Überträgt Transfer-Encoding-Header Ende-zu-Ende
-- Verwendet Content-Encoding, nicht Transfer-Encoding, um die Kodierung pro Hop zu spezifizieren
-- Verbietet x-i2p-Gzipping, wenn Content-Encoding gesetzt ist (aber das wollen wir wahrscheinlich sowieso nicht)
-- Die Serverseite komprimiert das serverseitig gesendete Chunking mit gzip, anstatt Dechunk-Gzip-Rechunk und Dechunk-Gunzip-Rechunk durchzuführen
-- Der gzippte Inhalt wird danach nicht in Chunks aufgeteilt. RFC 2616 erfordert, dass alle Transfer-Encoding außer "identity" in Chunks aufgeteilt werden
-- Da es kein Chunking außerhalb (nach) dem Gzip gibt, ist es schwieriger, das Ende der Daten zu finden, was jede Implementierung von Keepalive erschwert
-- RFC 2616 besagt, dass Content-Length nicht gesendet werden darf, wenn Transfer-Encoding vorhanden ist, aber wir tun es. Die Spezifikation besagt, Content-Length zu ignorieren, wenn Transfer-Encoding vorhanden ist, was die Browser tun, also funktioniert es für uns
+- Führt kein dechunk/chunk pro Hop durch; Chunking wird Ende-zu-Ende durchgereicht
+- Reicht den Transfer-Encoding-Header Ende-zu-Ende durch
+- Verwendet Content-Encoding statt Transfer-Encoding, um die Kodierung pro Hop anzugeben
+- Verbietet x-i2p-gzipping, wenn Content-Encoding gesetzt ist (aber das wollen wir wahrscheinlich ohnehin nicht tun)
+- Die Serverseite gzippt das vom Server gesendete Chunking, statt dechunk-gzip-rechunk und dechunk-gunzip-rechunk durchzuführen
+- Der gzip-komprimierte Inhalt wird danach nicht gechunkt. RFC 2616 verlangt, dass jede Transfer-Encoding außer "identity" gechunkt wird.
+- Da außerhalb (nach) des gzip kein Chunking erfolgt, ist das Ende der Daten schwieriger zu finden, was jede Implementierung von keepalive erschwert.
+- RFC 2616 besagt, dass Content-Length nicht gesendet werden darf, wenn Transfer-Encoding vorhanden ist, aber wir tun es. Die Spezifikation sagt, Content-Length zu ignorieren, wenn Transfer-Encoding vorhanden ist, was die Browser tun, daher funktioniert es für uns.
 
 Änderungen zur Implementierung einer standardskonformen Hop-by-Hop-Komprimierung auf rückwärtskompatible Weise sind ein Thema für weitere Untersuchungen. Jede Änderung an dechunk-gzip-rechunk würde einen neuen Kodierungstyp erfordern, möglicherweise x-i2p-gzchunked. Dies wäre identisch mit Transfer-Encoding: gzip, müsste aber aus Kompatibilitätsgründen anders signalisiert werden. Jede Änderung würde einen formellen Vorschlag erfordern.
 
@@ -121,9 +136,31 @@ Die folgende Erlaubnisliste gilt für Befehle, die vom IRC-Server an den IRC-Cli
 
 **Zulassungsliste:** - AUTHENTICATE - CAP - ERROR - H - JOIN - KICK - MODE - NICK - PART - PING - PROTOCTL - QUIT - TOPIC - WALLOPS
 
+- AUTHENTICATE
+- CAP
+- ERROR
+- H
+- JOIN
+- KICK
+- MODE
+- NICK
+- PART
+- PING
+- PROTOCTL
+- QUIT
+- TOPIC
+- WALLOPS
+
 Es gibt auch eine Erlaubnisliste für Befehle, die vom IRC-Client zum IRC-Server gesendet werden. Diese ist aufgrund der Anzahl an IRC-Verwaltungsbefehlen recht umfangreich. Siehe den IRCFilter.java-Quellcode für Details.
 
 Der ausgehende Filter modifiziert auch die folgenden Befehle, um identifizierende Informationen zu entfernen: - NOTICE - PART - PING - PRIVMSG - QUIT - USER
+
+- NOTICE
+- PART
+- PING
+- PRIVMSG
+- QUIT
+- USER
 
 ### SOCKS 4/4a/5 {#client-mode-socks}
 
@@ -157,13 +194,37 @@ Der HTTP-Server-Proxy bietet eine Reihe von Diensten, um das Hosting einer Websi
 
 **Request-Header-Verarbeitung:** - Header-Validierung - Header-Spoofing-Schutz - Header-Größenprüfungen - Optionale inproxy- und User-Agent-Ablehnung - X-I2P-Header hinzufügen, damit der Webserver weiß, woher die Anfrage kam - Host-Header-Ersetzung zur Vereinfachung von Webserver-vhosts - Erzwinge connection: close - RFC-konforme hop-by-hop Header-Verarbeitung und -Entfernung - Pufferung aller Header vor Weiterleitung zur Effizienzsteigerung
 
+- Header-Validierung
+- Schutz vor Header-Spoofing
+- Prüfung der Header-Größe
+- Optionale Ablehnung von Inproxy und User-Agent
+- Hinzufügen von X-I2P-Headern, damit der Webserver weiß, woher die Anfrage stammt
+- Ersetzung des Host-Headers, um vhosts auf dem Webserver zu erleichtern
+- Erzwungenes `connection: close`
+- RFC-konforme Verarbeitung und Entfernung von Hop-by-Hop-Headern
+- Pufferung aller Header vor der Weitergabe aus Effizienzgründen
+
 **DDoS-Schutz:** - POST-Drosselung - Timeouts und Slowloris-Schutz - Zusätzliche Drosselung erfolgt im Streaming für alle tunnel-Typen
+
+- POST-Throttling
+- Timeouts und Slowloris-Schutz
+- Zusätzliches Throttling erfolgt im Streaming für alle Tunneltypen
 
 **Verarbeitung der Antwort-Header:** - Entfernung einiger datenschutzproblematischer Header - Überprüfung von MIME-Typ und anderen Headern zur Bestimmung der Antwort-Komprimierung - Erzwingung von connection: close - RFC-konforme Verarbeitung und Entfernung von Hop-by-Hop-Headern - Pufferung aller Header vor der Weiterleitung für bessere Effizienz
 
+- Entfernen einiger datenschutzproblematischer Header
+- Prüfung anhand von MIME-Typ und weiteren Headern, ob die Antwort komprimiert werden soll
+- Erzwingen von connection: close
+- RFC-konforme Verarbeitung und Entfernung von Hop-by-Hop-Headern
+- Puffern aller Header vor der Weitergabe aus Effizienzgründen
+
 **HTTP-Fehlerantworten:** - Für viele häufige und nicht so häufige Fehler sowie bei Drosselung, damit der clientseitige Benutzer weiß, was passiert ist
 
+- Für viele häufige und weniger häufige Fehler sowie bei Drosselung, damit der Nutzer auf Clientseite weiß, was passiert ist
+
 **Transparente Antwort-Komprimierung:** - Der Webserver und/oder die I2CP-Schicht können komprimieren, aber der Webserver tut dies oft nicht, und es ist am effizientesten, auf einer hohen Schicht zu komprimieren, auch wenn I2CP ebenfalls komprimiert. Der HTTP-Server-Proxy arbeitet kooperativ mit dem clientseitigen Proxy zusammen, um Antworten transparent zu komprimieren.
+
+- Der Webserver und/oder die I2CP-Schicht können komprimieren, aber der Webserver tut dies oft nicht, und es ist am effizientesten, auf einer hohen Schicht zu komprimieren, selbst wenn I2CP ebenfalls komprimiert. Der HTTP-Server-Proxy arbeitet mit dem clientseitigen Proxy zusammen, um Antworten transparent zu komprimieren.
 
 ### HTTP Bidirektional {#server-mode-http-bidir}
 

@@ -9,7 +9,7 @@ aliases:
   - "/tr/htproxyports/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
-type: dokümantasyon
+type: docs
 ---
 
 Bu kılavuz, yaygın tarayıcıların I2P'nin yerleşik HTTP proxy'si üzerinden trafik göndermesi için nasıl yapılandırılacağını gösterir. Safari, Firefox ve Chrome/Chromium tarayıcılarını ayrıntılı adım adım talimatlarla kapsar.

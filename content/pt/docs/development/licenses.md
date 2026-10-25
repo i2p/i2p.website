@@ -189,7 +189,6 @@ A distribuição I2P contém vários recursos, refletindo a divisão do código-
     </tr>
   </tbody>
 </table>
-
 ### Exceção GPL {#java_exception}
 
 Embora possa ser redundante, apenas para maior clareza, o código sob GPL incluído no I2PTunnel e outros aplicativos deve ser disponibilizado sob a GPL com uma "exceção" adicional autorizando explicitamente o uso das bibliotecas padrão do Java:

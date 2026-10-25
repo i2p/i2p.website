@@ -333,6 +333,8 @@ accurateFor: "0.9.65"
 
 **`<i2p:update>`** : ملف تحديث (واحد أو أكثر). يجب أن يحتوي على عنصر فرعي واحد على الأقل.   - type (خاصية): "sud"، "su2"، أو "su3". يجب أن تكون فريدة عبر جميع عناصر `<i2p:update>`.   - `<i2p:clearnet>`: روابط التحميل المباشر خارج الشبكة (صفر أو أكثر). href (خاصية): رابط http عادي للإنترنت العادي.   - `<i2p:clearnetssl>`: روابط التحميل المباشر خارج الشبكة (صفر أو أكثر). href (خاصية): رابط https عادي للإنترنت العادي.   - `<i2p:torrent>`: رابط magnet داخل الشبكة. href (خاصية): رابط magnet.   - `<i2p:url>`: روابط التحميل المباشر داخل الشبكة (صفر أو أكثر). href (خاصية): رابط http .i2p داخل الشبكة.
 
+- آلية تحديث الـ router هي جزء من وحدة تحكم الـ router عبر الويب. لا يوجد حاليًا أي توفير لتحديثات الـ router المدمج الذي يفتقر إلى وحدة تحكم الـ router.
+
 ### تفاصيل إلغاءات i2p للـ Atom
 
 هذا العنصر اختياري ولا يوجد أكثر من عنصر `<i2p:revocations>` واحد في الخلاصة. هذه الميزة مدعومة اعتباراً من الإصدار 0.9.26.
@@ -369,10 +371,6 @@ TBD، غير مُنفذ، راجع الاقتراح 130. يتم تسليم تح�
 
 ## العمل المستقبلي
 
-- آلية تحديث الـ router هي جزء من وحدة تحكم الـ router عبر الويب. لا يوجد حاليًا أي توفير لتحديثات الـ router المدمج الذي يفتقر إلى وحدة تحكم الـ router.
-
-## المراجع
-
 - **[CRYPTO-SIG]** [التشفير - التوقيعات](/docs/specs/cryptography#sig)
 - **[I2P-SRC]** [كود مصدر I2P](https://github.com/i2p/i2p.i2p)
 - **[PLUGIN]** [مواصفة الإضافة](/docs/specs/plugin)
@@ -381,4 +379,16 @@ TBD، غير مُنفذ، راجع الاقتراح 130. يتم تسليم تح�
 - **[RFC-4287]** [RFC 4287 - تنسيق Atom Syndication](https://tools.ietf.org/html/rfc4287)
 - **[RFC-5280]** [RFC 5280 - قوائم إلغاء الشهادات](https://tools.ietf.org/html/rfc5280)
 - **[Signature]** [نوع التوقيع](/docs/specs/common-structures#signature)
+- **[SigningPublicKey]** [نوع SigningPublicKey](/docs/specs/common-structures#signingpublickey)
+
+## المراجع
+
+- **[CRYPTO-SIG]** [التشفير - التوقيعات](/docs/specs/cryptography#sig)
+- **[I2P-SRC]** [الشيفرة المصدرية لـ I2P](https://github.com/i2p/i2p.i2p)
+- **[PLUGIN]** [مواصفات Plugin](/docs/specs/plugin)
+- **[Python]** [توقيعات RSA الخام في Python](https://stackoverflow.com/questions/59573121/python-rsa-sign-a-string-with-nonewithrsa/68301530#68301530)
+- **[RFC-3339]** [RFC 3339 - التاريخ والوقت](https://tools.ietf.org/html/rfc3339)
+- **[RFC-4287]** [RFC 4287 - صيغة Atom للتغذية](https://tools.ietf.org/html/rfc4287)
+- **[RFC-5280]** [RFC 5280 - قوائم إلغاء الشهادات](https://tools.ietf.org/html/rfc5280)
+- **[Signature]** [نوع Signature](/docs/specs/common-structures#signature)
 - **[SigningPublicKey]** [نوع SigningPublicKey](/docs/specs/common-structures#signingpublickey)

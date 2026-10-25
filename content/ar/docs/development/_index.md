@@ -1,5 +1,5 @@
 ---
-title: "Develop"
+title: "التطوير"
 layout: section-redirect
 aliases:
   - "/ar/docs/develop"
