@@ -2,6 +2,9 @@
 title: "I2P: Introdução Técnica"
 description: "Introdução técnica à arquitetura e operação do I2P"
 slug: "tech-intro"
+aliases:
+  - "/pt/techintro"
+  - "/pt/techintro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

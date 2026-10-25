@@ -7,6 +7,8 @@ aliases:
   - "/zh/docs/api/i2cp/"
   - "/zh/docs/specs/i2cp-spec"
   - "/zh/docs/specs/i2cp-spec/"
+  - "/zh/i2cp_spec"
+  - "/zh/i2cp_spec/"
 category: "协议"
 lastUpdated: "2025-07"
 accurateFor: "0.9.67"

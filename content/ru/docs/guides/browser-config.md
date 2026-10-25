@@ -2,6 +2,11 @@
 title: "Настройка веб-браузера"
 description: "Настройка популярных браузеров для использования HTTP/HTTPS прокси I2P на десктопе и Android"
 slug: "browser-config"
+aliases:
+  - "/ru/firefox"
+  - "/ru/firefox/"
+  - "/ru/htproxyports"
+  - "/ru/htproxyports/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: документация

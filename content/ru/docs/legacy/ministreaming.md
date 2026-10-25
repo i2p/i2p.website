@@ -2,6 +2,9 @@
 title: "Библиотека Ministreaming"
 description: "Исторические заметки о первом TCP-подобном транспортном уровне I2P"
 slug: "ministreaming"
+aliases:
+  - "/ru/ministreaming"
+  - "/ru/ministreaming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

@@ -11,6 +11,10 @@ aliases:
   - "/de/docs/develop/new-developers/"
   - "/de/newdevelopers"
   - "/de/newdevelopers/"
+  - "/de/cvs"
+  - "/de/cvs/"
+  - "/de/monotone"
+  - "/de/monotone/"
 ---
 
 Sie möchten also an I2P mitarbeiten? Großartig! Hier ist eine kurze Anleitung für den Einstieg – sei es zur Mitarbeit an der Website oder der Software, zur Entwicklung oder zur Erstellung von Übersetzungen.

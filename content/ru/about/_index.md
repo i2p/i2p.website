@@ -1,5 +1,8 @@
 ---
 title: "О I2P"
+aliases:
+  - "/ru/team"
+  - "/ru/team/"
 description: "Узнайте о The Invisible Internet Project - полностью зашифрованной одноранговой накладной сети, предназначенной для анонимной коммуникации."
 tagline: "Невидимый Интернет-проект"
 type: "about"

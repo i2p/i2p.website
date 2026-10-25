@@ -7,6 +7,8 @@ accurateFor: "0.9.61"
 aliases:
   - "/de/docs/develop/protocol-stack"
   - "/de/docs/develop/protocol-stack/"
+  - "/de/protocols"
+  - "/de/protocols/"
 ---
 
 Der I2P-Stack ist ein geschichtetes Design, das anonyme Kommunikation ermöglicht. Jede Schicht fügt spezifische Fähigkeiten zu denen darunter hinzu. Siehe den [Index der technischen Dokumentation](/docs/develop/overview) für weitere Details zu jeder Komponente.

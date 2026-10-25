@@ -2,6 +2,11 @@
 title: "I2P와 다른 프라이버시 네트워크 비교"
 description: "I2P의 독특한 설계 장점을 강조하는 현대적인 기술 및 철학적 비교"
 slug: "comparison"
+aliases:
+  - "/ko/how_networkcomparisons"
+  - "/ko/how_networkcomparisons/"
+  - "/ko/othernetworks"
+  - "/ko/othernetworks/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

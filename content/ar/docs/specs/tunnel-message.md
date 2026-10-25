@@ -5,6 +5,8 @@ slug: "tunnel-message"
 aliases:
   - "/ar/docs/legacy/tunnel-message"
   - "/ar/docs/legacy/tunnel-message/"
+  - "/ar/tunnel_message_spec"
+  - "/ar/tunnel_message_spec/"
 category: "التصميم"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

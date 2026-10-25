@@ -2,6 +2,9 @@
 title: "Датаграммы"
 description: "Аутентифицированные, отвечаемые и необработанные форматы сообщений над I2CP"
 slug: "datagrams"
+aliases:
+  - "/ru/datagrams"
+  - "/ru/datagrams/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

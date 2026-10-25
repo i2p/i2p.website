@@ -2,6 +2,9 @@
 title: "Cifrado ElGamal/AES + SessionTag"
 description: "Cifrado de extremo a extremo heredado que combina ElGamal, AES, SHA-256 y etiquetas de sesión de un solo uso"
 slug: "elgamal-aes"
+aliases:
+  - "/es/how_elgamalaes"
+  - "/es/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

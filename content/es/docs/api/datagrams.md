@@ -2,6 +2,9 @@
 title: "Datagramas"
 description: "Formatos de mensajes autenticados, contestables y sin procesar por encima de I2CP"
 slug: "datagrams"
+aliases:
+  - "/es/datagrams"
+  - "/es/datagrams/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

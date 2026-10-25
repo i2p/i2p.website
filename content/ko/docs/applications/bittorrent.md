@@ -2,6 +2,9 @@
 title: "I2P를 통한 Bittorrent"
 description: "I2P에서 BitTorrent 클라이언트와 트래커를 위한 프로토콜 사양"
 slug: "bittorrent"
+aliases:
+  - "/ko/bittorrent"
+  - "/ko/bittorrent/"
 lastUpdated: "2026-08"
 accurateFor: "0.9.70"
 ---

@@ -5,6 +5,8 @@ slug: "i2cp-overview"
 aliases:
   - "/hi/docs/protocol/i2cp"
   - "/hi/docs/protocol/i2cp/"
+  - "/hi/i2cp"
+  - "/hi/i2cp/"
 category: "प्रोटोकॉल"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

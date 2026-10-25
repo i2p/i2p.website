@@ -1,5 +1,8 @@
 ---
 title: "Sözlük"
+aliases:
+  - "/tr/glossary"
+  - "/tr/glossary/"
 description: "I2P belgelerinde kullanılan yaygın terimler ve tanımlar"
 lastUpdated: "2025-10"
 ---

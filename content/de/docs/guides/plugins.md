@@ -2,6 +2,9 @@
 title: "Benutzerdefinierte Plugins installieren"
 description: "Installation, Aktualisierung und Entwicklung von Router-Plugins"
 slug: "plugins"
+aliases:
+  - "/de/plugins"
+  - "/de/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

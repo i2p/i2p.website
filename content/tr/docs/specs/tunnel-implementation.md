@@ -5,6 +5,8 @@ slug: "tunnel-implementation"
 aliases:
   - "/tr/docs/specs/implementation"
   - "/tr/docs/specs/implementation/"
+  - "/tr/tunnel-alt"
+  - "/tr/tunnel-alt/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

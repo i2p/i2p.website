@@ -2,6 +2,9 @@
 title: "Secure Semireliable UDP (SSU)"
 description: "Original UDP transport used prior to SSU2 (deprecated)"
 slug: "ssu-overview"
+aliases:
+  - "/en/udp"
+  - "/en/udp/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.64"
 ---

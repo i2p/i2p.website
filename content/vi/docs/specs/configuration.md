@@ -2,6 +2,9 @@
 title: "Đặc Tả Tệp Cấu Hình"
 description: "Đặc tả các tệp cấu hình I2P được sử dụng bởi router và các ứng dụng"
 slug: "configuration"
+aliases:
+  - "/vi/configuration"
+  - "/vi/configuration/"
 category: "Định dạng"
 lastUpdated: "2023-01"
 accurateFor: "0.9.57"

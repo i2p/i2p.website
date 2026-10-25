@@ -2,6 +2,9 @@
 title: "Cơ sở dữ liệu mạng"
 description: "Hiểu về cơ sở dữ liệu mạng phân tán (netDb) của I2P - một DHT chuyên biệt cho thông tin liên lạc router và tra cứu đích đến"
 slug: "network-database"
+aliases:
+  - "/vi/how_networkdatabase"
+  - "/vi/how_networkdatabase/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.65"
 ---

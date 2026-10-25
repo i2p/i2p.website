@@ -5,6 +5,8 @@ slug: "tunnel-message"
 aliases:
   - "/cs/docs/legacy/tunnel-message"
   - "/cs/docs/legacy/tunnel-message/"
+  - "/cs/tunnel_message_spec"
+  - "/cs/tunnel_message_spec/"
 category: "Návrh"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

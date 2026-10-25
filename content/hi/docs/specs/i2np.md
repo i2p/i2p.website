@@ -5,6 +5,8 @@ slug: "i2np"
 aliases:
   - "/hi/spec/i2np"
   - "/hi/spec/i2np/"
+  - "/hi/i2np_spec"
+  - "/hi/i2np_spec/"
 category: "प्रोटोकॉल"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

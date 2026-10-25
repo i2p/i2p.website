@@ -2,6 +2,9 @@
 title: "Tunnel Oluşturma Spesifikasyonu (ElGamal)"
 description: "X25519 ile değiştirilen eski ElGamal tabanlı tunnel oluşturma spesifikasyonu"
 slug: "elgamal-tunnel-creation"
+aliases:
+  - "/tr/tunnel-alt-creation"
+  - "/tr/tunnel-alt-creation/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

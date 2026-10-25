@@ -2,6 +2,9 @@
 title: "공통 구조 명세서"
 description: "모든 I2P 프로토콜에 공통되는 데이터 타입"
 slug: "common-structures"
+aliases:
+  - "/ko/common_structures_spec"
+  - "/ko/common_structures_spec/"
 category: "설계"
 lastUpdated: "2026-10"
 accurateFor: "0.9.71"

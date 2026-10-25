@@ -2,6 +2,9 @@
 title: "피어 프로파일링 및 선택"
 description: "I2P router가 tunnel 구축을 위해 피어를 프로파일링하고 선택하는 방법"
 slug: "peer-selection"
+aliases:
+  - "/ko/how_peerselection"
+  - "/ko/how_peerselection/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

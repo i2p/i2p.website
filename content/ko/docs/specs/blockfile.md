@@ -2,6 +2,9 @@
 title: "Blockfile 및 호스트 데이터베이스 사양"
 description: "Blockfile Naming Service에서 사용되는 I2P blockfile 파일 형식과 hostsdb.blockfile의 테이블에 대한 사양"
 slug: "blockfile"
+aliases:
+  - "/ko/blockfile"
+  - "/ko/blockfile/"
 category: "형식"
 lastUpdated: "2023-11"
 accurateFor: "0.9.59"

@@ -2,6 +2,9 @@
 title: "安装自定义插件"
 description: "安装、更新和开发路由器插件"
 slug: "plugins"
+aliases:
+  - "/zh/plugins"
+  - "/zh/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

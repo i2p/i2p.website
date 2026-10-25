@@ -7,6 +7,8 @@ accurateFor: "0.9.61"
 aliases:
   - "/en/docs/develop/protocol-stack"
   - "/en/docs/develop/protocol-stack/"
+  - "/en/protocols"
+  - "/en/protocols/"
   - "/docs/develop/protocol-stack"
   - "/docs/develop/protocol-stack/"
 ---

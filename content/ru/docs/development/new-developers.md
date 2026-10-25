@@ -11,6 +11,10 @@ aliases:
   - "/ru/docs/develop/new-developers/"
   - "/ru/newdevelopers"
   - "/ru/newdevelopers/"
+  - "/ru/cvs"
+  - "/ru/cvs/"
+  - "/ru/monotone"
+  - "/ru/monotone/"
 ---
 
 Итак, вы хотите начать работу над I2P? Отлично! Вот краткое руководство по началу работы: внесение вклада в веб-сайт или программное обеспечение, разработка или создание переводов.

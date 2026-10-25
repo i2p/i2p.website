@@ -2,6 +2,9 @@
 title: "Yapılandırma Dosyası Spesifikasyonu"
 description: "Router ve uygulamalar tarafından kullanılan I2P yapılandırma dosyalarının spesifikasyonu"
 slug: "configuration"
+aliases:
+  - "/tr/configuration"
+  - "/tr/configuration/"
 category: "Formatlar"
 lastUpdated: "2023-01"
 accurateFor: "0.9.57"

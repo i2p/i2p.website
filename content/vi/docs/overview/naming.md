@@ -7,6 +7,8 @@ aliases:
   - "/vi/docs/specs/naming/"
   - "/vi/docs/naming"
   - "/vi/docs/naming/"
+  - "/vi/naming"
+  - "/vi/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

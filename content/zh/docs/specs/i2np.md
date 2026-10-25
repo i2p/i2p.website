@@ -5,6 +5,8 @@ slug: "i2np"
 aliases:
   - "/zh/spec/i2np"
   - "/zh/spec/i2np/"
+  - "/zh/i2np_spec"
+  - "/zh/i2np_spec/"
 category: "协议"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

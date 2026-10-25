@@ -7,6 +7,8 @@ accurateFor: "0.9.61"
 aliases:
   - "/fr/docs/develop/protocol-stack"
   - "/fr/docs/develop/protocol-stack/"
+  - "/fr/protocols"
+  - "/fr/protocols/"
 ---
 
 La pile I2P est une conception en couches qui permet la communication anonyme. Chaque couche ajoute des capacités spécifiques par-dessus celles qui se trouvent en dessous. Consultez l'[Index de la Documentation Technique](/docs/develop/overview) pour des détails supplémentaires sur chaque composant.

@@ -7,6 +7,12 @@ aliases:
   - "/fr/about/performance/future/"
   - "/fr/about/performance/history"
   - "/fr/about/performance/history/"
+  - "/fr/performance"
+  - "/fr/performance/"
+  - "/fr/performance-history"
+  - "/fr/performance-history/"
+  - "/fr/benchmarks"
+  - "/fr/benchmarks/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

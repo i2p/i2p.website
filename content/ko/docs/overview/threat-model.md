@@ -2,6 +2,9 @@
 title: "I2P의 위협 모델"
 description: "I2P 설계에서 고려된 공격 분석 및 적용된 완화 방안"
 slug: "threat-model"
+aliases:
+  - "/ko/how_threatmodel"
+  - "/ko/how_threatmodel/"
 lastUpdated: "2010-11"
 accurateFor: "0.8.1"
 ---

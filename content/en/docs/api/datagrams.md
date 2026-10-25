@@ -2,6 +2,9 @@
 title: "Datagrams"
 description: "Authenticated, repliable, and raw message formats above I2CP"
 slug: "datagrams"
+aliases:
+  - "/en/datagrams"
+  - "/en/datagrams/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

@@ -5,6 +5,8 @@ slug: "applications"
 aliases:
   - "/fr/docs/develop/applications"
   - "/fr/docs/develop/applications/"
+  - "/fr/applications"
+  - "/fr/applications/"
 lastUpdated: "2013-05"
 accurateFor: "0.9.6"
 ---

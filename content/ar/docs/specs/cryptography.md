@@ -2,6 +2,9 @@
 title: "مواصفات التشفير منخفض المستوى"
 description: "التفاصيل المنخفضة المستوى للخوارزميات التشفيرية المستخدمة في I2P"
 slug: "cryptography"
+aliases:
+  - "/ar/how_cryptography"
+  - "/ar/how_cryptography/"
 category: "التصميم"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

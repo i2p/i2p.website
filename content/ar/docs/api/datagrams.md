@@ -2,6 +2,9 @@
 title: "Datagrams"
 description: "تنسيقات الرسائل المصادق عليها والقابلة للرد والخام فوق I2CP"
 slug: "datagrams"
+aliases:
+  - "/ar/datagrams"
+  - "/ar/datagrams/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

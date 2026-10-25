@@ -1,5 +1,8 @@
 ---
 title: "Thuật ngữ"
+aliases:
+  - "/vi/glossary"
+  - "/vi/glossary/"
 description: "Các thuật ngữ và định nghĩa phổ biến được sử dụng trong tài liệu I2P"
 lastUpdated: "2025-10"
 ---

@@ -2,6 +2,9 @@
 title: "Especificação de Criação de Tunnel (ElGamal)"
 description: "Especificação legada de construção de túnel baseada em ElGamal, substituída por X25519"
 slug: "elgamal-tunnel-creation"
+aliases:
+  - "/pt/tunnel-alt-creation"
+  - "/pt/tunnel-alt-creation/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

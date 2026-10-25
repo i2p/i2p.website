@@ -2,6 +2,9 @@
 title: "База данных сети"
 description: "Понимание распределенной сетевой базы данных I2P (netDb) - специализированной DHT для контактной информации router'ов и поиска назначений"
 slug: "network-database"
+aliases:
+  - "/ru/how_networkdatabase"
+  - "/ru/how_networkdatabase/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.65"
 ---

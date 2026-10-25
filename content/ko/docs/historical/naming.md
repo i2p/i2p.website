@@ -5,6 +5,8 @@ slug: "naming"
 aliases:
   - "/ko/docs/legacy/naming"
   - "/ko/docs/legacy/naming/"
+  - "/ko/naming_discussion"
+  - "/ko/naming_discussion/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

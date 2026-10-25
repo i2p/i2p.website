@@ -1,5 +1,8 @@
 ---
 title: "Glossar"
+aliases:
+  - "/de/glossary"
+  - "/de/glossary/"
 description: "Gängige Begriffe und Definitionen in der I2P-Dokumentation"
 lastUpdated: "2025-10"
 ---

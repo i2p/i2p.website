@@ -9,6 +9,8 @@ aliases:
   - "/ar/docs/transports/ssu/"
   - "/ar/docs/specs/ssu-spec"
   - "/ar/docs/specs/ssu-spec/"
+  - "/ar/udp_spec"
+  - "/ar/udp_spec/"
 category: "طرق النقل"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

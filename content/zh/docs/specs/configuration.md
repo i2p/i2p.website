@@ -2,6 +2,9 @@
 title: "配置文件规范"
 description: "router 和应用程序使用的 I2P 配置文件规范"
 slug: "configuration"
+aliases:
+  - "/zh/configuration"
+  - "/zh/configuration/"
 category: "格式"
 lastUpdated: "2023-01"
 accurateFor: "0.9.57"

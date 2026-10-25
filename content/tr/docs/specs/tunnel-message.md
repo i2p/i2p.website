@@ -5,6 +5,8 @@ slug: "tunnel-message"
 aliases:
   - "/tr/docs/legacy/tunnel-message"
   - "/tr/docs/legacy/tunnel-message/"
+  - "/tr/tunnel_message_spec"
+  - "/tr/tunnel_message_spec/"
 category: "Tasarım"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

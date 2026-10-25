@@ -8,6 +8,10 @@ type: docs
 aliases:
   - "/vi/docs/develop/licenses"
   - "/vi/docs/develop/licenses/"
+  - "/vi/licenses"
+  - "/vi/licenses/"
+  - "/vi/license-agreements"
+  - "/vi/license-agreements/"
 ---
 
 Như yêu cầu bởi [mô hình đe dọa](/docs/overview/threat-model//) của chúng tôi (cùng với các lý do khác), phần mềm được phát triển để hỗ trợ mạng lưới truyền thông ẩn danh mà chúng tôi gọi là I2P phải miễn phí, mã nguồn mở và có thể chỉnh sửa bởi người dùng. Để đáp ứng các tiêu chí này, chúng tôi sử dụng nhiều kỹ thuật pháp lý và kỹ thuật phần mềm khác nhau nhằm loại bỏ càng nhiều rào cản càng tốt cho những ai đang cân nhắc sử dụng hoặc đóng góp cho nỗ lực I2P.

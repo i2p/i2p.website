@@ -2,6 +2,9 @@
 title: "Datagramlar"
 description: "I2CP üzerinde kimlik doğrulamalı, yanıtlanabilir ve ham mesaj formatları"
 slug: "datagrams"
+aliases:
+  - "/tr/datagrams"
+  - "/tr/datagrams/"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"
 ---

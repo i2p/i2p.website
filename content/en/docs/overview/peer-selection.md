@@ -2,6 +2,9 @@
 title: "Peer Profiling and Selection"
 description: "How I2P routers profile and select peers for building tunnels"
 slug: "peer-selection"
+aliases:
+  - "/en/how_peerselection"
+  - "/en/how_peerselection/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

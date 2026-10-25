@@ -2,6 +2,9 @@
 title: "Tunnel राउटिंग"
 description: "I2P tunnel शब्दावली, निर्माण और संचालन का अवलोकन"
 slug: "tunnel-routing"
+aliases:
+  - "/hi/how_tunnelrouting"
+  - "/hi/how_tunnelrouting/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.68"
 ---

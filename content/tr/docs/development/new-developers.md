@@ -11,6 +11,10 @@ aliases:
   - "/tr/docs/develop/new-developers/"
   - "/tr/newdevelopers"
   - "/tr/newdevelopers/"
+  - "/tr/cvs"
+  - "/tr/cvs/"
+  - "/tr/monotone"
+  - "/tr/monotone/"
 ---
 
 I2P üzerinde çalışmaya başlamak mı istiyorsunuz? Harika! İşte web sitesine veya yazılıma katkıda bulunmaya, geliştirme yapmaya veya çeviri oluşturmaya başlamak için hızlı bir kılavuz.

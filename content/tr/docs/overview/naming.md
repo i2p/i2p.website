@@ -7,6 +7,8 @@ aliases:
   - "/tr/docs/specs/naming/"
   - "/tr/docs/naming"
   - "/tr/docs/naming/"
+  - "/tr/naming"
+  - "/tr/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

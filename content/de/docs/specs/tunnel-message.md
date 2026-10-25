@@ -5,6 +5,8 @@ slug: "tunnel-message"
 aliases:
   - "/de/docs/legacy/tunnel-message"
   - "/de/docs/legacy/tunnel-message/"
+  - "/de/tunnel_message_spec"
+  - "/de/tunnel_message_spec/"
 category: "Design"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

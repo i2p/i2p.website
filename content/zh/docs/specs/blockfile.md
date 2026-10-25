@@ -2,6 +2,9 @@
 title: "Blockfile 和主机数据库规范"
 description: "I2P blockfile 文件格式规范以及 Blockfile Naming Service 使用的 hostsdb.blockfile 中表的规范"
 slug: "blockfile"
+aliases:
+  - "/zh/blockfile"
+  - "/zh/blockfile/"
 category: "格式"
 lastUpdated: "2023-11"
 accurateFor: "0.9.59"

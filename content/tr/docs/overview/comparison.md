@@ -2,6 +2,11 @@
 title: "I2P ve Diğer Gizlilik Ağları"
 description: "I2P'nin benzersiz tasarım avantajlarını vurgulayan modern bir teknik ve felsefi karşılaştırma"
 slug: "comparison"
+aliases:
+  - "/tr/how_networkcomparisons"
+  - "/tr/how_networkcomparisons/"
+  - "/tr/othernetworks"
+  - "/tr/othernetworks/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

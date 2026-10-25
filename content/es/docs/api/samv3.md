@@ -2,6 +2,9 @@
 title: "SAMv3"
 description: "Protocolo de Mensajería Anónima Simple para aplicaciones I2P no Java"
 slug: "samv3"
+aliases:
+  - "/es/samv3"
+  - "/es/samv3/"
 lastUpdated: "2026-07"
 accurateFor: "0.9.70"
 ---

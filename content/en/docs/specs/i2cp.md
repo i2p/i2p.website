@@ -7,6 +7,8 @@ aliases:
   - "/en/docs/api/i2cp/"
   - "/en/docs/specs/i2cp-spec"
   - "/en/docs/specs/i2cp-spec/"
+  - "/en/i2cp_spec"
+  - "/en/i2cp_spec/"
   - "/docs/specs/i2cp-spec"
   - "/docs/specs/i2cp-spec/"
 category: "Protocols"

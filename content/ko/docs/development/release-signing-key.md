@@ -8,6 +8,12 @@ type: docs
 aliases:
   - "/ko/docs/develop/release-signing-key"
   - "/ko/docs/develop/release-signing-key/"
+  - "/ko/release-signing-key"
+  - "/ko/release-signing-key/"
+  - "/ko/developerskeys"
+  - "/ko/developerskeys/"
+  - "/ko/signedkeys"
+  - "/ko/signedkeys/"
 ---
 
 <p> 0.9.57 이후 릴리스는 idk가 서명합니다. 그의 현재 공개 키는 다음과 같습니다: </p> <p> <a href="/idk.key.asc" >PGP 공개 키 다운로드</a> </p><p>

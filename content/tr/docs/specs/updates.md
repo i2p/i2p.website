@@ -2,6 +2,9 @@
 title: "Yazılım Güncelleme Belirtimi"
 description: "I2P yazılım güncelleme mekanizması, SU3 dosya formatı ve haber beslemesi için spesifikasyon"
 slug: "updates"
+aliases:
+  - "/tr/updates"
+  - "/tr/updates/"
 category: "Tasarım"
 lastUpdated: "2025-04"
 accurateFor: "0.9.65"

@@ -7,6 +7,8 @@ aliases:
   - "/ko/docs/api/i2cp/"
   - "/ko/docs/specs/i2cp-spec"
   - "/ko/docs/specs/i2cp-spec/"
+  - "/ko/i2cp_spec"
+  - "/ko/i2cp_spec/"
 category: "프로토콜"
 lastUpdated: "2025-07"
 accurateFor: "0.9.67"

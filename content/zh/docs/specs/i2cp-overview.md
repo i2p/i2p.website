@@ -5,6 +5,8 @@ slug: "i2cp-overview"
 aliases:
   - "/zh/docs/protocol/i2cp"
   - "/zh/docs/protocol/i2cp/"
+  - "/zh/i2cp"
+  - "/zh/i2cp/"
 category: "协议"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

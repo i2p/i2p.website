@@ -2,6 +2,11 @@
 title: "I2P: Масштабируемая платформа для анонимного общения"
 description: "Введение в архитектуру и работу I2P"
 slug: "intro"
+aliases:
+  - "/ru/intro"
+  - "/ru/intro/"
+  - "/ru/how_intro"
+  - "/ru/how_intro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

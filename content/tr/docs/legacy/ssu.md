@@ -9,6 +9,8 @@ aliases:
   - "/tr/docs/transports/ssu/"
   - "/tr/docs/specs/ssu-spec"
   - "/tr/docs/specs/ssu-spec/"
+  - "/tr/udp_spec"
+  - "/tr/udp_spec/"
 category: "Taşımalar"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

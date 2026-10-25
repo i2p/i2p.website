@@ -5,6 +5,8 @@ slug: "i2np"
 aliases:
   - "/cs/spec/i2np"
   - "/cs/spec/i2np/"
+  - "/cs/i2np_spec"
+  - "/cs/i2np_spec/"
 category: "Protokoly"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

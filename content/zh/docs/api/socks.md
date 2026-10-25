@@ -2,6 +2,9 @@
 title: "SOCKS 代理"
 description: "安全使用I2P的SOCKS tunnel"
 slug: "socks"
+aliases:
+  - "/zh/socks"
+  - "/zh/socks/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

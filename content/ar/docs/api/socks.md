@@ -2,6 +2,9 @@
 title: "بروكسي SOCKS"
 description: "استخدام نفق SOCKS الخاص بـ I2P بأمان"
 slug: "socks"
+aliases:
+  - "/ar/socks"
+  - "/ar/socks/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

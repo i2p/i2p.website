@@ -5,6 +5,8 @@ slug: "i2np"
 aliases:
   - "/ko/spec/i2np"
   - "/ko/spec/i2np/"
+  - "/ko/i2np_spec"
+  - "/ko/i2np_spec/"
 category: "프로토콜"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

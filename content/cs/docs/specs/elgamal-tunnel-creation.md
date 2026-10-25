@@ -2,6 +2,9 @@
 title: "Specifikace vytváření tunelů (ElGamal)"
 description: "Starší specifikace budování tunelů založená na ElGamal, nahrazená X25519"
 slug: "elgamal-tunnel-creation"
+aliases:
+  - "/cs/tunnel-alt-creation"
+  - "/cs/tunnel-alt-creation/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

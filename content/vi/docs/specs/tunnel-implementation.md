@@ -5,6 +5,8 @@ slug: "tunnel-implementation"
 aliases:
   - "/vi/docs/specs/implementation"
   - "/vi/docs/specs/implementation/"
+  - "/vi/tunnel-alt"
+  - "/vi/tunnel-alt/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

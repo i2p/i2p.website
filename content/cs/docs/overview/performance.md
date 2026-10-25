@@ -7,6 +7,12 @@ aliases:
   - "/cs/about/performance/future/"
   - "/cs/about/performance/history"
   - "/cs/about/performance/history/"
+  - "/cs/performance"
+  - "/cs/performance/"
+  - "/cs/performance-history"
+  - "/cs/performance-history/"
+  - "/cs/benchmarks"
+  - "/cs/benchmarks/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

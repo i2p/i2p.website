@@ -2,6 +2,9 @@
 title: "مواصفات تحديث البرمجيات"
 description: "مواصفات آلية تحديث برنامج I2P وتنسيق ملف SU3 وخلاصة الأخبار"
 slug: "updates"
+aliases:
+  - "/ar/updates"
+  - "/ar/updates/"
 category: "التصميم"
 lastUpdated: "2025-04"
 accurateFor: "0.9.65"

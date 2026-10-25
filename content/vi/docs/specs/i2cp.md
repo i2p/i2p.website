@@ -7,6 +7,8 @@ aliases:
   - "/vi/docs/api/i2cp/"
   - "/vi/docs/specs/i2cp-spec"
   - "/vi/docs/specs/i2cp-spec/"
+  - "/vi/i2cp_spec"
+  - "/vi/i2cp_spec/"
 category: "Giao thức"
 lastUpdated: "2025-07"
 accurateFor: "0.9.67"

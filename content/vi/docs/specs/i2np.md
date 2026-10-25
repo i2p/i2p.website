@@ -5,6 +5,8 @@ slug: "i2np"
 aliases:
   - "/vi/spec/i2np"
   - "/vi/spec/i2np/"
+  - "/vi/i2np_spec"
+  - "/vi/i2np_spec/"
 category: "Giao thức"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

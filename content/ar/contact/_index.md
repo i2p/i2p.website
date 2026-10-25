@@ -1,5 +1,8 @@
 ---
 title: "اتصل بنا"
+aliases:
+  - "/ar/impressum"
+  - "/ar/impressum/"
 description: "تواصل مع مشروع I2P - البريد الإلكتروني والمنتديات ووسائل التواصل الاجتماعي وقنوات IRC والتعرف على الفريق."
 type: "contact"
 layout: "contact"

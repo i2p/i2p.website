@@ -2,6 +2,9 @@
 title: "Modelo de Ameaças do I2P"
 description: "Análise dos ataques considerados no design do I2P e as mitigações implementadas"
 slug: "threat-model"
+aliases:
+  - "/pt/how_threatmodel"
+  - "/pt/how_threatmodel/"
 lastUpdated: "2010-11"
 accurateFor: "0.8.1"
 ---

@@ -2,6 +2,9 @@
 title: "Profilování a výběr uzlů"
 description: "Jak I2P routery profilují a vybírají protějšky pro budování tunelů"
 slug: "peer-selection"
+aliases:
+  - "/cs/how_peerselection"
+  - "/cs/how_peerselection/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

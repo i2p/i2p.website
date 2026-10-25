@@ -2,6 +2,11 @@
 title: "Cấu hình Trình duyệt Web"
 description: "Cấu hình các trình duyệt phổ biến để sử dụng HTTP/HTTPS proxy của I2P trên máy tính để bàn và Android"
 slug: "browser-config"
+aliases:
+  - "/vi/firefox"
+  - "/vi/firefox/"
+  - "/vi/htproxyports"
+  - "/vi/htproxyports/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: tài liệu

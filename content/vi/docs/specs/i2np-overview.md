@@ -5,6 +5,8 @@ slug: "i2np-overview"
 aliases:
   - "/vi/docs/protocol/i2np"
   - "/vi/docs/protocol/i2np/"
+  - "/vi/i2np"
+  - "/vi/i2np/"
 category: "Giao thức"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

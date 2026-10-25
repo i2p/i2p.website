@@ -2,6 +2,9 @@
 title: "GeoIP 文件格式"
 description: "用于IP到国家查询的传统GeoIP文件格式规范"
 slug: "geoip"
+aliases:
+  - "/zh/geoip"
+  - "/zh/geoip/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

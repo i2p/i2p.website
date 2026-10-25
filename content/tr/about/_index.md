@@ -1,5 +1,8 @@
 ---
 title: "I2P Hakkında"
+aliases:
+  - "/tr/team"
+  - "/tr/team/"
 description: "Görünmez İnternet Projesi - anonim iletişim için tasarlanmış, tamamen şifrelenmiş, eşler arası bir katman ağı hakkında bilgi edinin."
 tagline: "Görünmez İnternet Projesi"
 type: "about"

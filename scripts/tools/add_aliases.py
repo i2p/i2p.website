@@ -95,6 +95,97 @@ ALIAS_PATHS = [
     # --- spec/proposals/* → proposals/* (wrong parent path) ---
     ("proposals/126-ipv6-peer-testing.md", ["spec/proposals/126-ipv6-peer-testing"]),
     ("proposals/158-ipv6-transport-enhancements.md", ["spec/proposals/158"]),
+    # --- Legacy short URLs from the old site (i2p.www i2p2www/legacy.py) ---
+    # Still linked from router consoles and installers, e.g. /htproxyports.
+    # Not mapped (no current equivalent, left as 404): clt, jbigi, jrandom-awol,
+    # links, manualwrapper, minwww, myi2p, pressetext-0.7, ratestats, ticket919,
+    # ticket1056, transition-guide, transition-guide.txt, upgrade-0.6.1.30
+    # Downloads and blog
+    ("downloads/_index.md", [
+        "d", "get", "download", "installation", "lab",
+        "windows", "mac", "macos", "easyinstall", "nsis",
+    ]),
+    ("docs/guides/debian-ubuntu-install.md", ["debian"]),
+    ("docs/guides/browser-config.md", ["firefox", "htproxyports"]),
+    ("blog/_index.md", ["announcements", "statusnotes", "meetings"]),
+    # About and get involved
+    ("about/_index.md", ["team"]),
+    ("about/hall-of-fame.md", ["halloffame"]),
+    ("contact/_index.md", ["impressum"]),
+    ("get-involved/_index.md", ["getinvolved", "bounties"] + [
+        f"bounty_{b}" for b in (
+            "arabic", "btcclient", "datastore", "debpack", "i2phex", "ipv6",
+            "netdb", "rutrans", "silc", "syndie2012", "unittests", "vuzeplugin",
+        )
+    ]),
+    ("get-involved/roadmap.md", ["roadmap", "todo"]),
+    ("misc/invisiblenet.md", ["invisiblenet"]),
+    # Development
+    ("docs/development/applications.md", ["applications"]),
+    ("docs/development/dev-guidelines.md", ["dev-guidelines"]),
+    ("docs/development/licenses.md", ["licenses", "license-agreements"]),
+    ("docs/development/new-developers.md", ["cvs", "monotone"]),
+    ("docs/development/new-translators.md", ["newtranslators"]),
+    ("docs/development/release-signing-key.md", [
+        "release-signing-key", "developerskeys", "signedkeys",
+    ]),
+    ("docs/development/protocol-stack.md", ["protocols"]),
+    # Overview
+    ("docs/_index.md", ["how"]),
+    ("docs/overview/intro.md", ["intro", "how_intro"]),
+    ("docs/overview/tech-intro.md", ["techintro"]),
+    ("docs/overview/glossary.md", ["glossary"]),
+    ("docs/overview/garlic-routing.md", ["how_garlicrouting"]),
+    ("docs/overview/comparison.md", ["how_networkcomparisons", "othernetworks"]),
+    ("docs/overview/network-database.md", ["how_networkdatabase"]),
+    ("docs/overview/peer-selection.md", ["how_peerselection"]),
+    ("docs/overview/threat-model.md", ["how_threatmodel"]),
+    ("docs/overview/tunnel-routing.md", ["how_tunnelrouting"]),
+    ("docs/overview/naming.md", ["naming"]),
+    ("docs/overview/performance.md", ["performance", "performance-history", "benchmarks"]),
+    ("docs/overview/ports.md", ["ports"]),
+    ("docs/overview/transport.md", ["transport"]),
+    # APIs and applications
+    ("docs/api/_index.md", ["api"]),
+    ("docs/api/datagrams.md", ["datagrams"]),
+    ("docs/api/i2pcontrol.md", ["i2pcontrol"]),
+    ("docs/api/i2ptunnel.md", ["i2ptunnel", "i2ptunnel_migration", "i2ptunnel_services"]),
+    ("docs/api/samv3.md", ["samv3"]),
+    ("docs/api/socks.md", ["socks"]),
+    ("docs/api/streaming.md", ["streaming"]),
+    ("docs/applications/_index.md", ["supported_applications"]),
+    ("docs/applications/bittorrent.md", ["bittorrent"]),
+    ("docs/guides/plugins.md", ["plugins"]),
+    # Specs
+    ("docs/specs/blockfile.md", ["blockfile"]),
+    ("docs/specs/common-structures.md", ["common_structures_spec"]),
+    ("docs/specs/configuration.md", ["configuration"]),
+    ("docs/specs/cryptography.md", ["how_cryptography"]),
+    ("docs/specs/elgamal-aes.md", ["how_elgamalaes"]),
+    ("docs/specs/elgamal-tunnel-creation.md", ["tunnel-alt-creation"]),
+    ("docs/specs/i2cp-overview.md", ["i2cp"]),
+    ("docs/specs/i2cp.md", ["i2cp_spec"]),
+    ("docs/specs/i2np-overview.md", ["i2np"]),
+    ("docs/specs/i2np.md", ["i2np_spec"]),
+    ("docs/specs/plugin.md", ["plugin_spec"]),
+    ("docs/specs/tunnel-implementation.md", ["tunnel-alt"]),
+    ("docs/specs/tunnel-message.md", ["tunnel_message_spec"]),
+    ("docs/specs/updates.md", ["updates"]),
+    # Legacy and historical docs
+    ("docs/legacy/bob.md", ["bob"]),
+    ("docs/legacy/geoip.md", ["geoip"]),
+    ("docs/legacy/ministreaming.md", ["ministreaming"]),
+    ("docs/legacy/ntcp.md", ["ntcp"]),
+    ("docs/legacy/old-tunnel-implementation.md", ["tunnel"]),
+    ("docs/legacy/sam.md", ["sam"]),
+    ("docs/legacy/samv2.md", ["samv2"]),
+    ("docs/legacy/ssu-overview.md", ["udp"]),
+    ("docs/legacy/ssu.md", ["udp_spec"]),
+    ("docs/legacy/unidirectional-tunnels.md", ["unidirectional-tunnels"]),
+    ("docs/historical/naming.md", ["naming_discussion"]),
+    ("docs/historical/netdb.md", ["netdb_discussion"]),
+    ("docs/historical/ntcp-discussion.md", ["ntcp_discussion"]),
+    ("docs/historical/tunnel.md", ["tunnel_discussion"]),
 ]
 
 # Bare-path aliases for URLs without a language prefix (e.g., www.i2p.net/docs/...).

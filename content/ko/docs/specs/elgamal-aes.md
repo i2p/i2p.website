@@ -2,6 +2,9 @@
 title: "ElGamal/AES + SessionTag 암호화"
 description: "ElGamal, AES, SHA-256, 그리고 일회성 세션 태그를 결합한 레거시 종단 간 암호화"
 slug: "elgamal-aes"
+aliases:
+  - "/ko/how_elgamalaes"
+  - "/ko/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

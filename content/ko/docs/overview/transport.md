@@ -2,6 +2,9 @@
 title: "Transport 개요"
 description: "지점 간 router 통신을 위한 I2P의 전송 계층 개요"
 slug: "transport"
+aliases:
+  - "/ko/transport"
+  - "/ko/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

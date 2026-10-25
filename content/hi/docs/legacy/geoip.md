@@ -2,6 +2,9 @@
 title: "GeoIP फ़ाइल प्रारूप"
 description: "IP से देश लुकअप के लिए लेगेसी GeoIP फ़ाइल प्रारूप विनिर्देश"
 slug: "geoip"
+aliases:
+  - "/hi/geoip"
+  - "/hi/geoip/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

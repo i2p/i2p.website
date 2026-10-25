@@ -2,6 +2,9 @@
 title: "सॉफ़्टवेयर अपडेट विनिर्देश"
 description: "I2P सॉफ्टवेयर अपडेट तंत्र, SU3 फ़ाइल प्रारूप, और समाचार फीड के लिए विनिर्देश"
 slug: "updates"
+aliases:
+  - "/hi/updates"
+  - "/hi/updates/"
 category: "डिज़ाइन"
 lastUpdated: "2025-04"
 accurateFor: "0.9.65"

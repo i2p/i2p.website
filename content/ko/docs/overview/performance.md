@@ -7,6 +7,12 @@ aliases:
   - "/ko/about/performance/future/"
   - "/ko/about/performance/history"
   - "/ko/about/performance/history/"
+  - "/ko/performance"
+  - "/ko/performance/"
+  - "/ko/performance-history"
+  - "/ko/performance-history/"
+  - "/ko/benchmarks"
+  - "/ko/benchmarks/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

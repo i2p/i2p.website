@@ -2,6 +2,9 @@
 title: "Network Database（网络数据库）"
 description: "理解I2P的分布式网络数据库(netDb) - 一个专门用于router联系信息和目标查找的DHT"
 slug: "network-database"
+aliases:
+  - "/zh/how_networkdatabase"
+  - "/zh/how_networkdatabase/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.65"
 ---

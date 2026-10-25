@@ -2,6 +2,9 @@
 title: "Bittorrent trên I2P"
 description: "Đặc tả giao thức cho các client BitTorrent và tracker trên I2P"
 slug: "bittorrent"
+aliases:
+  - "/vi/bittorrent"
+  - "/vi/bittorrent/"
 lastUpdated: "2026-08"
 accurateFor: "0.9.70"
 ---

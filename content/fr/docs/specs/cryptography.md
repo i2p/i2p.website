@@ -2,6 +2,9 @@
 title: "Spécification Cryptographique de Bas Niveau"
 description: "Détails de bas niveau des algorithmes cryptographiques utilisés dans I2P"
 slug: "cryptography"
+aliases:
+  - "/fr/how_cryptography"
+  - "/fr/how_cryptography/"
 category: "Conception"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

@@ -7,6 +7,8 @@ aliases:
   - "/ar/docs/specs/naming/"
   - "/ar/docs/naming"
   - "/ar/docs/naming/"
+  - "/ar/naming"
+  - "/ar/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

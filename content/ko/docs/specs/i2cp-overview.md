@@ -5,6 +5,8 @@ slug: "i2cp-overview"
 aliases:
   - "/ko/docs/protocol/i2cp"
   - "/ko/docs/protocol/i2cp/"
+  - "/ko/i2cp"
+  - "/ko/i2cp/"
 category: "프로토콜"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

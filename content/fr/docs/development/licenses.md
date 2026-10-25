@@ -8,6 +8,10 @@ type: docs
 aliases:
   - "/fr/docs/develop/licenses"
   - "/fr/docs/develop/licenses/"
+  - "/fr/licenses"
+  - "/fr/licenses/"
+  - "/fr/license-agreements"
+  - "/fr/license-agreements/"
 ---
 
 Comme l'exige notre [modèle de menace](/docs/overview/threat-model//) (entre autres raisons), le logiciel développé pour prendre en charge le réseau de communication anonyme que nous appelons I2P doit être librement disponible, open source et modifiable par l'utilisateur. Pour répondre à ces critères, nous utilisons diverses techniques juridiques et d'ingénierie logicielle afin d'éliminer autant de barrières à l'entrée que possible pour ceux qui envisagent d'utiliser ou de contribuer au projet I2P.

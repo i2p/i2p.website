@@ -5,6 +5,8 @@ slug: "tunnel-message"
 aliases:
   - "/fr/docs/legacy/tunnel-message"
   - "/fr/docs/legacy/tunnel-message/"
+  - "/fr/tunnel_message_spec"
+  - "/fr/tunnel_message_spec/"
 category: "Conception"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

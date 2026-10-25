@@ -5,6 +5,8 @@ slug: "tunnel"
 aliases:
   - "/de/docs/discussions/tunnel"
   - "/de/docs/discussions/tunnel/"
+  - "/de/tunnel_discussion"
+  - "/de/tunnel_discussion/"
 lastUpdated: "2019-07"
 accurateFor: "0.9.41"
 ---

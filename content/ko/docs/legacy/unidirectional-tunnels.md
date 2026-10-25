@@ -2,6 +2,9 @@
 title: "단방향 터널"
 description: "I2P의 단방향 tunnel 설계에 대한 역사적 요약"
 slug: "unidirectional"
+aliases:
+  - "/ko/unidirectional-tunnels"
+  - "/ko/unidirectional-tunnels/"
 lastUpdated: "2016-11"
 accurateFor: "0.9.27"
 ---

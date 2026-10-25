@@ -2,6 +2,9 @@
 title: "Tunnel Yönlendirme"
 description: "I2P tunnel terminolojisi, yapısı ve işleyişine genel bakış"
 slug: "tunnel-routing"
+aliases:
+  - "/tr/how_tunnelrouting"
+  - "/tr/how_tunnelrouting/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.68"
 ---

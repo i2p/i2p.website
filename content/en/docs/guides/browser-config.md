@@ -2,6 +2,11 @@
 title: "Web Browser Configuration"
 description: "Configure popular browsers to use I2P’s HTTP/HTTPS proxies on desktop and Android"
 slug: "browser-config"
+aliases:
+  - "/en/firefox"
+  - "/en/firefox/"
+  - "/en/htproxyports"
+  - "/en/htproxyports/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs

@@ -1,5 +1,8 @@
 ---
 title: "Acerca de I2P"
+aliases:
+  - "/es/team"
+  - "/es/team/"
 description: "Aprende sobre The Invisible Internet Project - una red de superposición totalmente encriptada, de igual a igual, diseñada para la comunicación anónima."
 tagline: "The Invisible Internet Project"
 type: "about"

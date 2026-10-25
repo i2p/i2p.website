@@ -9,6 +9,8 @@ aliases:
   - "/de/docs/transports/ssu/"
   - "/de/docs/specs/ssu-spec"
   - "/de/docs/specs/ssu-spec/"
+  - "/de/udp_spec"
+  - "/de/udp_spec/"
 category: "Transporte"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

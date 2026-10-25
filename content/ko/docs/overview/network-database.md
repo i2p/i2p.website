@@ -2,6 +2,9 @@
 title: "네트워크 데이터베이스"
 description: "I2P의 분산 네트워크 데이터베이스(netDb) 이해하기 - router 연락처 정보 및 목적지 조회를 위한 특수한 DHT"
 slug: "network-database"
+aliases:
+  - "/ko/how_networkdatabase"
+  - "/ko/how_networkdatabase/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.65"
 ---

@@ -11,6 +11,10 @@ aliases:
   - "/ar/docs/develop/new-developers/"
   - "/ar/newdevelopers"
   - "/ar/newdevelopers/"
+  - "/ar/cvs"
+  - "/ar/cvs/"
+  - "/ar/monotone"
+  - "/ar/monotone/"
 ---
 
 هل تريد البدء في العمل على I2P؟ رائع! إليك دليل سريع للبدء في المساهمة في الموقع الإلكتروني أو البرنامج، أو القيام بالتطوير، أو إنشاء الترجمات.

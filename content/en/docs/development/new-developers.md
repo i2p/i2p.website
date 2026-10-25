@@ -11,6 +11,10 @@ aliases:
   - "/en/docs/develop/new-developers/"
   - "/en/newdevelopers"
   - "/en/newdevelopers/"
+  - "/en/cvs"
+  - "/en/cvs/"
+  - "/en/monotone"
+  - "/en/monotone/"
   - "/docs/develop/new-developers"
   - "/docs/develop/new-developers/"
 ---

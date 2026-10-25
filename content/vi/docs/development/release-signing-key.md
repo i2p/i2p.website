@@ -8,6 +8,12 @@ type: docs
 aliases:
   - "/vi/docs/develop/release-signing-key"
   - "/vi/docs/develop/release-signing-key/"
+  - "/vi/release-signing-key"
+  - "/vi/release-signing-key/"
+  - "/vi/developerskeys"
+  - "/vi/developerskeys/"
+  - "/vi/signedkeys"
+  - "/vi/signedkeys/"
 ---
 
 <p> Các phiên bản từ 0.9.57 trở đi được ký bởi idk. Khóa công khai hiện tại của anh ấy là: </p> <p> <a href="/idk.key.asc" >Tải xuống khóa công khai PGP</a> </p><p>

@@ -7,6 +7,8 @@ aliases:
   - "/cs/docs/transport/ntcp/"
   - "/cs/docs/ntcp"
   - "/cs/docs/ntcp/"
+  - "/cs/ntcp"
+  - "/cs/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

@@ -7,6 +7,8 @@ accurateFor: "0.9.61"
 aliases:
   - "/hi/docs/develop/protocol-stack"
   - "/hi/docs/develop/protocol-stack/"
+  - "/hi/protocols"
+  - "/hi/protocols/"
 ---
 
 I2P stack एक स्तरित डिज़ाइन है जो गुमनाम संचार को सक्षम बनाता है। प्रत्येक स्तर अपने नीचे के स्तरों की क्षमताओं के ऊपर विशिष्ट सुविधाएं जोड़ता है। प्रत्येक घटक पर अतिरिक्त विवरण के लिए [Technical Documentation Index](/docs/develop/overview) देखें।

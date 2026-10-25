@@ -2,6 +2,13 @@
 title: "I2PTunnel"
 description: "用于与I2P接口并在I2P上提供服务的工具"
 slug: "i2ptunnel"
+aliases:
+  - "/zh/i2ptunnel"
+  - "/zh/i2ptunnel/"
+  - "/zh/i2ptunnel_migration"
+  - "/zh/i2ptunnel_migration/"
+  - "/zh/i2ptunnel_services"
+  - "/zh/i2ptunnel_services/"
 lastUpdated: "2023-10"
 accurateFor: "0.9.59"
 ---

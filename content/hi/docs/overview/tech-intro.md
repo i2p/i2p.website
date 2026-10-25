@@ -2,6 +2,9 @@
 title: "I2P: तकनीकी परिचय"
 description: "I2P आर्किटेक्चर और संचालन का तकनीकी परिचय"
 slug: "tech-intro"
+aliases:
+  - "/hi/techintro"
+  - "/hi/techintro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

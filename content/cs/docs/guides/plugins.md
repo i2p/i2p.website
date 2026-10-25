@@ -2,6 +2,9 @@
 title: "Instalace vlastních pluginů"
 description: "Instalace, aktualizace a vývoj pluginů routeru"
 slug: "plugins"
+aliases:
+  - "/cs/plugins"
+  - "/cs/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

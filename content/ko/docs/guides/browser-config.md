@@ -2,6 +2,11 @@
 title: "웹 브라우저 설정"
 description: "데스크톱과 Android에서 I2P의 HTTP/HTTPS 프록시를 사용하도록 인기 있는 브라우저 설정하기"
 slug: "browser-config"
+aliases:
+  - "/ko/firefox"
+  - "/ko/firefox/"
+  - "/ko/htproxyports"
+  - "/ko/htproxyports/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs

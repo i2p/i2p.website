@@ -2,6 +2,9 @@
 title: "Модель угроз I2P"
 description: "Анализ атак, учтенных при разработке I2P, и применяемых мер защиты"
 slug: "threat-model"
+aliases:
+  - "/ru/how_threatmodel"
+  - "/ru/how_threatmodel/"
 lastUpdated: "2010-11"
 accurateFor: "0.8.1"
 ---

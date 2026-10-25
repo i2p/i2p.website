@@ -2,6 +2,9 @@
 title: "Установка пользовательских плагинов"
 description: "Установка, обновление и разработка плагинов роутера"
 slug: "plugins"
+aliases:
+  - "/ru/plugins"
+  - "/ru/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

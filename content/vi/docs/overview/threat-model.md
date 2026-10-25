@@ -2,6 +2,9 @@
 title: "Mô hình Mối đe dọa của I2P"
 description: "Phân tích các cuộc tấn công được xem xét trong thiết kế của I2P và các biện pháp giảm thiểu đã được triển khai"
 slug: "threat-model"
+aliases:
+  - "/vi/how_threatmodel"
+  - "/vi/how_threatmodel/"
 lastUpdated: "2010-11"
 accurateFor: "0.8.1"
 ---

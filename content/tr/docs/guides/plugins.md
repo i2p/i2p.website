@@ -2,6 +2,9 @@
 title: "Özel Eklentilerin Kurulumu"
 description: "Router eklentilerini yükleme, güncelleme ve geliştirme"
 slug: "plugins"
+aliases:
+  - "/tr/plugins"
+  - "/tr/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

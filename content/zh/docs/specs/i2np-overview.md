@@ -5,6 +5,8 @@ slug: "i2np-overview"
 aliases:
   - "/zh/docs/protocol/i2np"
   - "/zh/docs/protocol/i2np/"
+  - "/zh/i2np"
+  - "/zh/i2np/"
 category: "协议"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

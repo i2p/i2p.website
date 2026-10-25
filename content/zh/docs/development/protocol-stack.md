@@ -7,6 +7,8 @@ accurateFor: "0.9.61"
 aliases:
   - "/zh/docs/develop/protocol-stack"
   - "/zh/docs/develop/protocol-stack/"
+  - "/zh/protocols"
+  - "/zh/protocols/"
 ---
 
 I2P协议栈是一个分层设计，能够实现匿名通信。每一层都在下层功能的基础上增加特定的能力。有关每个组件的更多详细信息，请参阅[技术文档索引](/docs/develop/overview)。

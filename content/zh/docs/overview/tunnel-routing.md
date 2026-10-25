@@ -2,6 +2,9 @@
 title: "Tunnel 路由"
 description: "I2P tunnel 术语、构建和运行概述"
 slug: "tunnel-routing"
+aliases:
+  - "/zh/how_tunnelrouting"
+  - "/zh/how_tunnelrouting/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.68"
 ---

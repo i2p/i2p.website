@@ -2,6 +2,9 @@
 title: "Phân Bổ Cổng"
 description: "Tài liệu tham khảo toàn diện về phân bổ cổng I2P, cổng plugin và các dải cổng được bảo lưu."
 slug: "ports"
+aliases:
+  - "/vi/ports"
+  - "/vi/ports/"
 lastUpdated: "2026-06"
 accurateFor: "2.13.0"
 ---

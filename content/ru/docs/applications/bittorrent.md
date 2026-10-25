@@ -2,6 +2,9 @@
 title: "Bittorrent через I2P"
 description: "Спецификации протокола для BitTorrent клиентов и трекеров в I2P"
 slug: "bittorrent"
+aliases:
+  - "/ru/bittorrent"
+  - "/ru/bittorrent/"
 lastUpdated: "2026-08"
 accurateFor: "0.9.70"
 ---

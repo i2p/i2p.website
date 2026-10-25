@@ -2,6 +2,11 @@
 title: "I2P в сравнении с другими анонимными сетями"
 description: "Современное техническое и философское сравнение, подчеркивающее уникальные преимущества дизайна I2P"
 slug: "comparison"
+aliases:
+  - "/ru/how_networkcomparisons"
+  - "/ru/how_networkcomparisons/"
+  - "/ru/othernetworks"
+  - "/ru/othernetworks/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

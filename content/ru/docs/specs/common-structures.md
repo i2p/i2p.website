@@ -2,6 +2,9 @@
 title: "Спецификация общих структур"
 description: "Типы данных, общие для всех протоколов I2P"
 slug: "common-structures"
+aliases:
+  - "/ru/common_structures_spec"
+  - "/ru/common_structures_spec/"
 category: "Дизайн"
 lastUpdated: "2026-10"
 accurateFor: "0.9.71"

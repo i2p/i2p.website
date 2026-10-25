@@ -5,6 +5,8 @@ slug: "i2cp-overview"
 aliases:
   - "/ru/docs/protocol/i2cp"
   - "/ru/docs/protocol/i2cp/"
+  - "/ru/i2cp"
+  - "/ru/i2cp/"
 category: "Протоколы"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

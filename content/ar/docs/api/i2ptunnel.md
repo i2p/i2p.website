@@ -2,6 +2,13 @@
 title: "I2PTunnel"
 description: "أداة للتفاعل مع I2P وتوفير الخدمات عليه"
 slug: "i2ptunnel"
+aliases:
+  - "/ar/i2ptunnel"
+  - "/ar/i2ptunnel/"
+  - "/ar/i2ptunnel_migration"
+  - "/ar/i2ptunnel_migration/"
+  - "/ar/i2ptunnel_services"
+  - "/ar/i2ptunnel_services/"
 lastUpdated: "2023-10"
 accurateFor: "0.9.59"
 ---

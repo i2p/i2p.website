@@ -2,6 +2,9 @@
 title: "Port Atamaları"
 description: "I2P port atamaları, eklenti portları ve ayrılmış aralıkların kapsamlı referansı."
 slug: "ports"
+aliases:
+  - "/tr/ports"
+  - "/tr/ports/"
 lastUpdated: "2026-06"
 accurateFor: "2.13.0"
 ---

@@ -2,6 +2,11 @@
 title: "I2P vs jiné sítě pro ochranu soukromí"
 description: "Moderní technické a filozofické srovnání zdůrazňující jedinečné designové výhody I2P"
 slug: "comparison"
+aliases:
+  - "/cs/how_networkcomparisons"
+  - "/cs/how_networkcomparisons/"
+  - "/cs/othernetworks"
+  - "/cs/othernetworks/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

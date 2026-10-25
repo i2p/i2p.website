@@ -1,5 +1,8 @@
 ---
 title: "Documentation"
+aliases:
+  - "/en/how"
+  - "/en/how/"
 description: "Technical documentation for the I2P anonymous network"
 layout: "docs-home"
 reviewStatus: "needs-review"

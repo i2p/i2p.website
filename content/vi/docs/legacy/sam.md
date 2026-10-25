@@ -5,6 +5,8 @@ slug: "sam"
 aliases:
   - "/vi/docs/api/sam"
   - "/vi/docs/api/sam/"
+  - "/vi/sam"
+  - "/vi/sam/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

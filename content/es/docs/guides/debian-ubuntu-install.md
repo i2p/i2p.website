@@ -1,5 +1,8 @@
 ---
 title: "Instalación de I2P en Debian y Ubuntu"
+aliases:
+  - "/es/debian"
+  - "/es/debian/"
 description: "Guía completa para instalar I2P en Debian, Ubuntu y sus derivados usando repositorios oficiales"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"

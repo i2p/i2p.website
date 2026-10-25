@@ -2,6 +2,9 @@
 title: "Instalación de Plugins Personalizados"
 description: "Instalación, actualización y desarrollo de plugins del router"
 slug: "plugins"
+aliases:
+  - "/es/plugins"
+  - "/es/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

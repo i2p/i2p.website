@@ -8,6 +8,8 @@ type: docs
 aliases:
   - "/zh/docs/develop/dev-guidelines"
   - "/zh/docs/develop/dev-guidelines/"
+  - "/zh/dev-guidelines"
+  - "/zh/dev-guidelines/"
 ---
 
 请先阅读[新开发者指南](/docs/develop/new-developers/)。

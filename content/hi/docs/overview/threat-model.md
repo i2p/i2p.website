@@ -2,6 +2,9 @@
 title: "I2P का खतरा मॉडल"
 description: "I2P के डिज़ाइन में विचार किए गए हमलों का विश्लेषण और उपलब्ध सुरक्षा उपाय"
 slug: "threat-model"
+aliases:
+  - "/hi/how_threatmodel"
+  - "/hi/how_threatmodel/"
 lastUpdated: "2010-11"
 accurateFor: "0.8.1"
 ---

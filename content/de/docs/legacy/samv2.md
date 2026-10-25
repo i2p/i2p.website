@@ -5,6 +5,8 @@ slug: "samv2"
 aliases:
   - "/de/docs/api/samv2"
   - "/de/docs/api/samv2/"
+  - "/de/samv2"
+  - "/de/samv2/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.20"
 ---

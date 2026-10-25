@@ -2,6 +2,9 @@
 title: "Biblioteca Ministreaming"
 description: "Notas históricas sobre a primeira camada de transporte semelhante ao TCP do I2P"
 slug: "ministreaming"
+aliases:
+  - "/pt/ministreaming"
+  - "/pt/ministreaming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

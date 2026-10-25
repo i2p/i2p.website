@@ -1,5 +1,8 @@
 ---
 title: "Глоссарий"
+aliases:
+  - "/ru/glossary"
+  - "/ru/glossary/"
 description: "Общие термины и определения, используемые в документации I2P"
 lastUpdated: "2025-10"
 ---

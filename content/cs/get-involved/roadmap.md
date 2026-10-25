@@ -3,6 +3,10 @@ title: "Plán vývoje I2P"
 aliases:
   - "/cs/get-involved/todo"
   - "/cs/get-involved/todo/"
+  - "/cs/roadmap"
+  - "/cs/roadmap/"
+  - "/cs/todo"
+  - "/cs/todo/"
 description: "Současné plány vývoje a historické milníky sítě I2P"
 ---
 

@@ -1,5 +1,8 @@
 ---
 title: "O I2P"
+aliases:
+  - "/cs/team"
+  - "/cs/team/"
 description: "Zjistěte více o projektu The Invisible Internet Project - plně šifrované peer-to-peer překryvné síti navržené pro anonymní komunikaci."
 tagline: "The Invisible Internet Project"
 type: "about"

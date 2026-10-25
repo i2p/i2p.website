@@ -2,6 +2,9 @@
 title: "Ağ Veritabanı"
 description: "I2P'nin dağıtık ağ veritabanını (netDb) anlama - router iletişim bilgileri ve hedef aramaları için özelleştirilmiş bir DHT"
 slug: "network-database"
+aliases:
+  - "/tr/how_networkdatabase"
+  - "/tr/how_networkdatabase/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.65"
 ---

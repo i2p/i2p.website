@@ -2,6 +2,9 @@
 title: "Especificação de Criptografia de Baixo Nível"
 description: "Detalhes de baixo nível dos algoritmos criptográficos utilizados no I2P"
 slug: "cryptography"
+aliases:
+  - "/pt/how_cryptography"
+  - "/pt/how_cryptography/"
 category: "Design"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

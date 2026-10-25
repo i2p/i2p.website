@@ -8,6 +8,12 @@ type: docs
 aliases:
   - "/en/docs/develop/release-signing-key"
   - "/en/docs/develop/release-signing-key/"
+  - "/en/release-signing-key"
+  - "/en/release-signing-key/"
+  - "/en/developerskeys"
+  - "/en/developerskeys/"
+  - "/en/signedkeys"
+  - "/en/signedkeys/"
   - "/docs/develop/release-signing-key"
   - "/docs/develop/release-signing-key/"
 ---

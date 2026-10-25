@@ -2,6 +2,9 @@
 title: "Đặc tả Mật mã Cấp thấp"
 description: "Chi tiết cấp thấp của các thuật toán mật mã được sử dụng trong I2P"
 slug: "cryptography"
+aliases:
+  - "/vi/how_cryptography"
+  - "/vi/how_cryptography/"
 category: "Thiết kế"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

@@ -2,6 +2,9 @@
 title: "Ministreaming 库"
 description: "I2P 首个类 TCP 传输层的历史记录"
 slug: "ministreaming"
+aliases:
+  - "/zh/ministreaming"
+  - "/zh/ministreaming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

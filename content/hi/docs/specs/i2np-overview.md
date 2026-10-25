@@ -5,6 +5,8 @@ slug: "i2np-overview"
 aliases:
   - "/hi/docs/protocol/i2np"
   - "/hi/docs/protocol/i2np/"
+  - "/hi/i2np"
+  - "/hi/i2np/"
 category: "प्रोटोकॉल"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

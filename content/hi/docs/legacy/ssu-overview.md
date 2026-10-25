@@ -2,6 +2,9 @@
 title: "Secure Semireliable UDP (SSU)"
 description: "SSU2 से पहले उपयोग किया गया मूल UDP transport (अब उपयोग में नहीं)"
 slug: "ssu-overview"
+aliases:
+  - "/hi/udp"
+  - "/hi/udp/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.64"
 ---

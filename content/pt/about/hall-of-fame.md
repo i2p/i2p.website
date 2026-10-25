@@ -1,5 +1,8 @@
 ---
 title: "Galeria da Fama"
+aliases:
+  - "/pt/halloffame"
+  - "/pt/halloffame/"
 description: "Reconhecendo os apoiadores generosos que contribuíram para o I2P ao longo dos anos"
 ---
 

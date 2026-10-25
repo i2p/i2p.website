@@ -7,6 +7,12 @@ aliases:
   - "/vi/about/performance/future/"
   - "/vi/about/performance/history"
   - "/vi/about/performance/history/"
+  - "/vi/performance"
+  - "/vi/performance/"
+  - "/vi/performance-history"
+  - "/vi/performance-history/"
+  - "/vi/benchmarks"
+  - "/vi/benchmarks/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

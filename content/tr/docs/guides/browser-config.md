@@ -2,6 +2,11 @@
 title: "Web Tarayıcı Yapılandırması"
 description: "Masaüstü ve Android'de popüler tarayıcıları I2P'nin HTTP/HTTPS proxy'lerini kullanacak şekilde yapılandırma"
 slug: "browser-config"
+aliases:
+  - "/tr/firefox"
+  - "/tr/firefox/"
+  - "/tr/htproxyports"
+  - "/tr/htproxyports/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: dokümantasyon

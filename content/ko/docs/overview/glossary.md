@@ -1,5 +1,8 @@
 ---
 title: "용어집"
+aliases:
+  - "/ko/glossary"
+  - "/ko/glossary/"
 description: "I2P 문서에서 사용되는 일반 용어 및 정의"
 lastUpdated: "2025-10"
 ---

@@ -2,6 +2,11 @@
 title: "Configuración del Navegador Web"
 description: "Configurar navegadores populares para usar los proxies HTTP/HTTPS de I2P en escritorio y Android"
 slug: "browser-config"
+aliases:
+  - "/es/firefox"
+  - "/es/firefox/"
+  - "/es/htproxyports"
+  - "/es/htproxyports/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs

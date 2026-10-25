@@ -5,6 +5,8 @@ slug: "i2np"
 aliases:
   - "/ar/spec/i2np"
   - "/ar/spec/i2np/"
+  - "/ar/i2np_spec"
+  - "/ar/i2np_spec/"
 category: "البروتوكولات"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

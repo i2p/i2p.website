@@ -2,6 +2,9 @@
 title: "Formáty souborů GeoIP"
 description: "Specifikace formátu starších GeoIP souborů pro vyhledávání IP adres podle zemí"
 slug: "geoip"
+aliases:
+  - "/cs/geoip"
+  - "/cs/geoip/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

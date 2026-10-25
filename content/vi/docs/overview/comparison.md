@@ -2,6 +2,11 @@
 title: "I2P so với các Mạng Riêng tư Khác"
 description: "So sánh kỹ thuật và triết lý hiện đại làm nổi bật những ưu thế thiết kế độc đáo của I2P"
 slug: "comparison"
+aliases:
+  - "/vi/how_networkcomparisons"
+  - "/vi/how_networkcomparisons/"
+  - "/vi/othernetworks"
+  - "/vi/othernetworks/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

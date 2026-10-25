@@ -2,6 +2,11 @@
 title: "वेब ब्राउज़र कॉन्फ़िगरेशन"
 description: "लोकप्रिय ब्राउज़रों को डेस्कटॉप और Android पर I2P के HTTP/HTTPS प्रॉक्सी का उपयोग करने के लिए कॉन्फ़िगर करें"
 slug: "browser-config"
+aliases:
+  - "/hi/firefox"
+  - "/hi/firefox/"
+  - "/hi/htproxyports"
+  - "/hi/htproxyports/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: दस्तावेज़

@@ -1,5 +1,8 @@
 ---
 title: "I2P'yi Debian ve Ubuntu'ya Kurma"
+aliases:
+  - "/tr/debian"
+  - "/tr/debian/"
 description: "I2P'yi Debian, Ubuntu ve türevlerinde resmi depolar kullanarak kurulum için eksiksiz kılavuz"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"

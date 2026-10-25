@@ -2,6 +2,9 @@
 title: "مواصفات الإضافة"
 description: "قواعد تغليف .xpi2p / .su3 لإضافات I2P"
 slug: "plugin"
+aliases:
+  - "/ar/plugin_spec"
+  - "/ar/plugin_spec/"
 lastUpdated: "2022-01"
 accurateFor: "0.9.53"
 type: docs

@@ -2,6 +2,9 @@
 title: "I2P üzerinden Bittorrent"
 description: "I2P üzerindeki BitTorrent istemcileri ve tracker'ları için protokol spesifikasyonları"
 slug: "bittorrent"
+aliases:
+  - "/tr/bittorrent"
+  - "/tr/bittorrent/"
 lastUpdated: "2026-08"
 accurateFor: "0.9.70"
 ---

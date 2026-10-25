@@ -2,6 +2,9 @@
 title: "Low-level Cryptography Specification"
 description: "Low-level details of the cryptographic algorithms used in I2P"
 slug: "cryptography"
+aliases:
+  - "/en/how_cryptography"
+  - "/en/how_cryptography/"
 category: "Design"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

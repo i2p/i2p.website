@@ -2,6 +2,9 @@
 title: "नेटवर्क डेटाबेस"
 description: "I2P के वितरित नेटवर्क डेटाबेस (netDb) को समझना - router संपर्क जानकारी और गंतव्य खोजों के लिए एक विशेषीकृत DHT"
 slug: "network-database"
+aliases:
+  - "/hi/how_networkdatabase"
+  - "/hi/how_networkdatabase/"
 lastUpdated: "2025-03"
 accurateFor: "0.9.65"
 ---

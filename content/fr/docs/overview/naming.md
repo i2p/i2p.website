@@ -7,6 +7,8 @@ aliases:
   - "/fr/docs/specs/naming/"
   - "/fr/docs/naming"
   - "/fr/docs/naming/"
+  - "/fr/naming"
+  - "/fr/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

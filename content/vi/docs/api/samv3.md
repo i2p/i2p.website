@@ -2,6 +2,9 @@
 title: "SAM V3"
 description: "Giao thức Gửi tin nhắn Ẩn danh Đơn giản dành cho các ứng dụng I2P không dùng Java"
 slug: "samv3"
+aliases:
+  - "/vi/samv3"
+  - "/vi/samv3/"
 lastUpdated: "2026-07"
 accurateFor: "0.9.70"
 ---

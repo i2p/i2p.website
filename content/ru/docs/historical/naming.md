@@ -5,6 +5,8 @@ slug: "naming"
 aliases:
   - "/ru/docs/legacy/naming"
   - "/ru/docs/legacy/naming/"
+  - "/ru/naming_discussion"
+  - "/ru/naming_discussion/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

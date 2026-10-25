@@ -2,6 +2,9 @@
 title: "Bittorrent عبر I2P"
 description: "مواصفات البروتوكول لعملاء BitTorrent ومتتبعات الملفات على I2P"
 slug: "bittorrent"
+aliases:
+  - "/ar/bittorrent"
+  - "/ar/bittorrent/"
 lastUpdated: "2026-08"
 accurateFor: "0.9.70"
 ---

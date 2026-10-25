@@ -2,6 +2,9 @@
 title: "I2P：技术介绍"
 description: "I2P架构和运行的技术介绍"
 slug: "tech-intro"
+aliases:
+  - "/zh/techintro"
+  - "/zh/techintro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

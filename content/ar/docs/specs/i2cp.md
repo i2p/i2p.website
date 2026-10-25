@@ -7,6 +7,8 @@ aliases:
   - "/ar/docs/api/i2cp/"
   - "/ar/docs/specs/i2cp-spec"
   - "/ar/docs/specs/i2cp-spec/"
+  - "/ar/i2cp_spec"
+  - "/ar/i2cp_spec/"
 category: "البروتوكولات"
 lastUpdated: "2025-07"
 accurateFor: "0.9.67"

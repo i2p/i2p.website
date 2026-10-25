@@ -2,6 +2,9 @@
 title: "Streaming Protocol"
 description: "TCP-like transport used by most I2P applications"
 slug: "streaming"
+aliases:
+  - "/hi/streaming"
+  - "/hi/streaming/"
 lastUpdated: "2026-01"
 accurateFor: "0.9.68"
 ---

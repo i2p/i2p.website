@@ -1,5 +1,8 @@
 ---
 title: "Kontaktujte nás"
+aliases:
+  - "/cs/impressum"
+  - "/cs/impressum/"
 description: "Kontaktujte projekt I2P - email, fóra, sociální sítě, IRC kanály a seznamte se s týmem."
 type: "contact"
 layout: "contact"

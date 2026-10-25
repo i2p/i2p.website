@@ -1,5 +1,8 @@
 ---
 title: "शब्दावली"
+aliases:
+  - "/hi/glossary"
+  - "/hi/glossary/"
 description: "I2P दस्तावेज़ीकरण में उपयोग किए जाने वाले सामान्य शब्द और परिभाषाएँ"
 lastUpdated: "2025-10"
 ---

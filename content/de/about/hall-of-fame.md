@@ -1,5 +1,8 @@
 ---
 title: "Ruhmeshalle"
+aliases:
+  - "/de/halloffame"
+  - "/de/halloffame/"
 description: "Anerkennung der großzügigen Unterstützer, die im Laufe der Jahre zu I2P beigetragen haben"
 ---
 

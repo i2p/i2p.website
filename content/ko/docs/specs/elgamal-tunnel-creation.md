@@ -2,6 +2,9 @@
 title: "터널 생성 사양 (ElGamal)"
 description: "X25519로 대체된 레거시 ElGamal 기반 tunnel 구축 사양"
 slug: "elgamal-tunnel-creation"
+aliases:
+  - "/ko/tunnel-alt-creation"
+  - "/ko/tunnel-alt-creation/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

@@ -2,6 +2,9 @@
 title: "Secure Semireliable UDP (SSU)"
 description: "Оригинальный UDP транспорт, использовавшийся до SSU2 (устарел)"
 slug: "ssu-overview"
+aliases:
+  - "/ru/udp"
+  - "/ru/udp/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.64"
 ---

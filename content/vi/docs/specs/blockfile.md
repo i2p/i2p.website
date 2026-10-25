@@ -2,6 +2,9 @@
 title: "Đặc tả Cơ sở dữ liệu Blockfile và Hosts"
 description: "Đặc tả định dạng tệp blockfile của I2P và các bảng trong hostsdb.blockfile được sử dụng bởi Dịch vụ Đặt tên Blockfile"
 slug: "blockfile"
+aliases:
+  - "/vi/blockfile"
+  - "/vi/blockfile/"
 category: "Định dạng"
 lastUpdated: "2023-11"
 accurateFor: "0.9.59"

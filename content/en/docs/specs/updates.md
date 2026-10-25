@@ -2,6 +2,9 @@
 title: "Software Update Specification"
 description: "Specification for the I2P software update mechanism, SU3 file format, and news feed"
 slug: "updates"
+aliases:
+  - "/en/updates"
+  - "/en/updates/"
 category: "Design"
 lastUpdated: "2025-04"
 accurateFor: "0.9.65"

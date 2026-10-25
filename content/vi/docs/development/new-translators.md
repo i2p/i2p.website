@@ -7,6 +7,8 @@ type: docs
 aliases:
   - "/vi/docs/develop/new-translators"
   - "/vi/docs/develop/new-translators/"
+  - "/vi/newtranslators"
+  - "/vi/newtranslators/"
 ---
 
 Bạn muốn giúp I2P tiếp cận được nhiều người hơn trên toàn thế giới? Dịch thuật là một trong những đóng góp có giá trị nhất bạn có thể làm cho dự án. Hướng dẫn này sẽ giúp bạn dịch router console.

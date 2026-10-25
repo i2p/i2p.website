@@ -2,6 +2,9 @@
 title: "SOCKS прокси"
 description: "Безопасное использование SOCKS tunnel I2P"
 slug: "socks"
+aliases:
+  - "/ru/socks"
+  - "/ru/socks/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

@@ -2,6 +2,11 @@
 title: "I2P: Un Marco Escalable para Comunicación Anónima"
 description: "Introducción a la arquitectura y funcionamiento de I2P"
 slug: "intro"
+aliases:
+  - "/es/intro"
+  - "/es/intro/"
+  - "/es/how_intro"
+  - "/es/how_intro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

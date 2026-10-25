@@ -1,5 +1,8 @@
 ---
 title: "Зал славы"
+aliases:
+  - "/ru/halloffame"
+  - "/ru/halloffame/"
 description: "Признание щедрых сторонников, которые внесли вклад в I2P на протяжении лет"
 ---
 

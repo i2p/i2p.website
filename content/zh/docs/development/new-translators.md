@@ -7,6 +7,8 @@ type: docs
 aliases:
   - "/zh/docs/develop/new-translators"
   - "/zh/docs/develop/new-translators/"
+  - "/zh/newtranslators"
+  - "/zh/newtranslators/"
 ---
 
 想要帮助让 I2P 惠及全球更多的人吗?翻译是您能为项目做出的最有价值的贡献之一。本指南将引导您完成 router console 的翻译工作。

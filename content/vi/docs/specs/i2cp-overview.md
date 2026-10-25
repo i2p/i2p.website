@@ -5,6 +5,8 @@ slug: "i2cp-overview"
 aliases:
   - "/vi/docs/protocol/i2cp"
   - "/vi/docs/protocol/i2cp/"
+  - "/vi/i2cp"
+  - "/vi/i2cp/"
 category: "Giao thức"
 lastUpdated: "2025-04"
 accurateFor: "0.9.66"

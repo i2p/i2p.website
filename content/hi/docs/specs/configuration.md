@@ -2,6 +2,9 @@
 title: "कॉन्फ़िगरेशन फाइल विनिर्देश"
 description: "राउटर और एप्लिकेशनों द्वारा उपयोग की जाने वाली I2P कॉन्फ़िगरेशन फ़ाइलों का विनिर्देश"
 slug: "configuration"
+aliases:
+  - "/hi/configuration"
+  - "/hi/configuration/"
 category: "प्रारूप"
 lastUpdated: "2023-01"
 accurateFor: "0.9.57"

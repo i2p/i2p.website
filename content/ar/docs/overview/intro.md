@@ -2,6 +2,11 @@
 title: "I2P: إطار عمل قابل للتوسع للتواصل المجهول"
 description: "مقدمة إلى هندسة I2P وعملياتها"
 slug: "intro"
+aliases:
+  - "/ar/intro"
+  - "/ar/intro/"
+  - "/ar/how_intro"
+  - "/ar/how_intro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

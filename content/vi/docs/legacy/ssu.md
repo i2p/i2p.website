@@ -9,6 +9,8 @@ aliases:
   - "/vi/docs/transports/ssu/"
   - "/vi/docs/specs/ssu-spec"
   - "/vi/docs/specs/ssu-spec/"
+  - "/vi/udp_spec"
+  - "/vi/udp_spec/"
 category: "Giao thức vận chuyển"
 lastUpdated: "2024-01"
 accurateFor: "0.9.61"

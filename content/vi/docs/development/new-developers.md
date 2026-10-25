@@ -11,6 +11,10 @@ aliases:
   - "/vi/docs/develop/new-developers/"
   - "/vi/newdevelopers"
   - "/vi/newdevelopers/"
+  - "/vi/cvs"
+  - "/vi/cvs/"
+  - "/vi/monotone"
+  - "/vi/monotone/"
 ---
 
 Vậy là bạn muốn bắt đầu làm việc với I2P? Tuyệt vời! Đây là hướng dẫn nhanh để bắt đầu đóng góp vào website hoặc phần mềm, phát triển, hoặc tạo bản dịch.

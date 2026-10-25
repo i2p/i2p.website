@@ -2,6 +2,9 @@
 title: "Назначение портов"
 description: "Полный справочник назначений портов I2P, портов плагинов и зарезервированных диапазонов."
 slug: "ports"
+aliases:
+  - "/ru/ports"
+  - "/ru/ports/"
 lastUpdated: "2026-06"
 accurateFor: "2.13.0"
 ---

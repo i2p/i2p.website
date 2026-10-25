@@ -2,6 +2,9 @@
 title: "포트 할당"
 description: "I2P 포트 할당, 플러그인 포트, 예약된 범위에 대한 포괄적인 참조 자료입니다."
 slug: "ports"
+aliases:
+  - "/ko/ports"
+  - "/ko/ports/"
 lastUpdated: "2026-06"
 accurateFor: "2.13.0"
 ---

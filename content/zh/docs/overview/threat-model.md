@@ -2,6 +2,9 @@
 title: "I2P的威胁模型"
 description: "I2P设计中考虑的攻击分析及其现有缓解措施"
 slug: "threat-model"
+aliases:
+  - "/zh/how_threatmodel"
+  - "/zh/how_threatmodel/"
 lastUpdated: "2010-11"
 accurateFor: "0.8.1"
 ---

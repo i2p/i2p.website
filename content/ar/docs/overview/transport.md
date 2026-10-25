@@ -2,6 +2,9 @@
 title: "نظرة عامة على النقل"
 description: "نظرة عامة على طبقة النقل في I2P للاتصال المباشر بين أجهزة router"
 slug: "transport"
+aliases:
+  - "/ar/transport"
+  - "/ar/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

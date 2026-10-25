@@ -2,6 +2,9 @@
 title: "تنسيقات ملف GeoIP"
 description: "مواصفات تنسيق ملف GeoIP القديم للبحث عن البلد من عنوان IP"
 slug: "geoip"
+aliases:
+  - "/ar/geoip"
+  - "/ar/geoip/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

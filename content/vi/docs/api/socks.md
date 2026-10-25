@@ -2,6 +2,9 @@
 title: "SOCKS Proxy"
 description: "Sử dụng SOCKS tunnel của I2P một cách an toàn"
 slug: "socks"
+aliases:
+  - "/vi/socks"
+  - "/vi/socks/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

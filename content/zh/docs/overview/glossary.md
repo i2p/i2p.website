@@ -1,5 +1,8 @@
 ---
 title: "术语表"
+aliases:
+  - "/zh/glossary"
+  - "/zh/glossary/"
 description: "I2P 文档中使用的常见术语和定义"
 lastUpdated: "2025-10"
 ---

@@ -2,6 +2,9 @@
 title: "설정 파일 규격"
 description: "router와 애플리케이션에서 사용하는 I2P 설정 파일 사양"
 slug: "configuration"
+aliases:
+  - "/ko/configuration"
+  - "/ko/configuration/"
 category: "형식"
 lastUpdated: "2023-01"
 accurateFor: "0.9.57"

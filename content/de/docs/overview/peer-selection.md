@@ -2,6 +2,9 @@
 title: "Peer-Profilerstellung und -Auswahl"
 description: "Wie I2P router Peers profilieren und für den Aufbau von tunnels auswählen"
 slug: "peer-selection"
+aliases:
+  - "/de/how_peerselection"
+  - "/de/how_peerselection/"
 lastUpdated: "2024-02"
 accurateFor: "0.9.62"
 ---

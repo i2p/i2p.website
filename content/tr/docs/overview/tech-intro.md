@@ -2,6 +2,9 @@
 title: "I2P: Teknik Giriş"
 description: "I2P mimarisi ve işleyişine teknik giriş"
 slug: "tech-intro"
+aliases:
+  - "/tr/techintro"
+  - "/tr/techintro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

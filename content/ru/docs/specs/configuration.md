@@ -2,6 +2,9 @@
 title: "Спецификация файла конфигурации"
 description: "Спецификация конфигурационных файлов I2P, используемых router и приложениями"
 slug: "configuration"
+aliases:
+  - "/ru/configuration"
+  - "/ru/configuration/"
 category: "Форматы"
 lastUpdated: "2023-01"
 accurateFor: "0.9.57"

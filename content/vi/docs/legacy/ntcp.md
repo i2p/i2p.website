@@ -7,6 +7,8 @@ aliases:
   - "/vi/docs/transport/ntcp/"
   - "/vi/docs/ntcp"
   - "/vi/docs/ntcp/"
+  - "/vi/ntcp"
+  - "/vi/ntcp/"
 lastUpdated: "2021-10"
 accurateFor: "0.9.52"
 ---

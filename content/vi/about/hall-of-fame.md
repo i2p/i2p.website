@@ -1,5 +1,8 @@
 ---
 title: "Đại sảnh Danh vọng"
+aliases:
+  - "/vi/halloffame"
+  - "/vi/halloffame/"
 description: "Vinh danh những người ủng hộ hào phóng đã đóng góp cho I2P qua các năm"
 ---
 

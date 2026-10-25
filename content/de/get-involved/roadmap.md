@@ -3,6 +3,10 @@ title: "I2P-Entwicklungs-Roadmap"
 aliases:
   - "/de/get-involved/todo"
   - "/de/get-involved/todo/"
+  - "/de/roadmap"
+  - "/de/roadmap/"
+  - "/de/todo"
+  - "/de/todo/"
 description: "Aktuelle Entwicklungspläne und historische Meilensteine für das I2P-Netzwerk"
 ---
 

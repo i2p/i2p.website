@@ -2,6 +2,9 @@
 title: "निम्न-स्तरीय क्रिप्टोग्राफी विनिर्देश"
 description: "I2P में उपयोग किए जाने वाले क्रिप्टोग्राफिक एल्गोरिदम की निम्न-स्तरीय जानकारी"
 slug: "cryptography"
+aliases:
+  - "/hi/how_cryptography"
+  - "/hi/how_cryptography/"
 category: "डिज़ाइन"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

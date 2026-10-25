@@ -2,6 +2,9 @@
 title: "Mã hóa ElGamal/AES + SessionTag"
 description: "Mã hóa đầu cuối đến cuối cũ kết hợp ElGamal, AES, SHA-256, và thẻ phiên một lần"
 slug: "elgamal-aes"
+aliases:
+  - "/vi/how_elgamalaes"
+  - "/vi/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

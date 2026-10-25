@@ -2,6 +2,9 @@
 title: "Specifikace běžných struktur"
 description: "Datové typy společné pro všechny I2P protokoly"
 slug: "common-structures"
+aliases:
+  - "/cs/common_structures_spec"
+  - "/cs/common_structures_spec/"
 category: "Design"
 lastUpdated: "2026-10"
 accurateFor: "0.9.71"

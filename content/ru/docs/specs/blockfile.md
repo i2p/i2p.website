@@ -2,6 +2,9 @@
 title: "Спецификация Blockfile и базы данных Hosts"
 description: "Спецификация формата файла I2P blockfile и таблиц в hostsdb.blockfile, используемых службой именования Blockfile"
 slug: "blockfile"
+aliases:
+  - "/ru/blockfile"
+  - "/ru/blockfile/"
 category: "Форматы"
 lastUpdated: "2023-11"
 accurateFor: "0.9.59"

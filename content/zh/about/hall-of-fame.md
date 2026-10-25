@@ -1,5 +1,8 @@
 ---
 title: "名人堂"
+aliases:
+  - "/zh/halloffame"
+  - "/zh/halloffame/"
 description: "感谢多年来为 I2P 做出贡献的慷慨支持者"
 ---
 

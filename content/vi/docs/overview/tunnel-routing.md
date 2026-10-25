@@ -2,6 +2,9 @@
 title: "Định tuyến Tunnel"
 description: "Tổng quan về thuật ngữ tunnel I2P, cấu trúc và hoạt động"
 slug: "tunnel-routing"
+aliases:
+  - "/vi/how_tunnelrouting"
+  - "/vi/how_tunnelrouting/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.68"
 ---

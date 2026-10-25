@@ -1,5 +1,8 @@
 ---
 title: "Debian과 Ubuntu에서 I2P 설치하기"
+aliases:
+  - "/ko/debian"
+  - "/ko/debian/"
 description: "공식 저장소를 사용하여 Debian, Ubuntu 및 파생 배포판에 I2P를 설치하는 전체 가이드"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"

@@ -1,5 +1,8 @@
 ---
 title: "قاموس المصطلحات"
+aliases:
+  - "/ar/glossary"
+  - "/ar/glossary/"
 description: "المصطلحات والتعريفات الشائعة المستخدمة في وثائق I2P"
 lastUpdated: "2025-10"
 ---

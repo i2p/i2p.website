@@ -2,6 +2,9 @@
 title: "Formats de fichiers GeoIP"
 description: "Spécifications du format de fichier GeoIP hérité pour la recherche de pays par IP"
 slug: "geoip"
+aliases:
+  - "/fr/geoip"
+  - "/fr/geoip/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

@@ -1,5 +1,8 @@
 ---
 title: "Связаться с нами"
+aliases:
+  - "/ru/impressum"
+  - "/ru/impressum/"
 description: "Свяжитесь с проектом I2P - электронная почта, форумы, социальные сети, IRC-каналы и знакомство с командой."
 type: "contact"
 layout: "contact"

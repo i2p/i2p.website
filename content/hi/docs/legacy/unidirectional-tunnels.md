@@ -2,6 +2,9 @@
 title: "एकदिशीय Tunnels"
 description: "I2P के unidirectional tunnel डिज़ाइन का ऐतिहासिक सारांश"
 slug: "unidirectional"
+aliases:
+  - "/hi/unidirectional-tunnels"
+  - "/hi/unidirectional-tunnels/"
 lastUpdated: "2016-11"
 accurateFor: "0.9.27"
 ---

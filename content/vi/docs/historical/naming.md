@@ -5,6 +5,8 @@ slug: "naming"
 aliases:
   - "/vi/docs/legacy/naming"
   - "/vi/docs/legacy/naming/"
+  - "/vi/naming_discussion"
+  - "/vi/naming_discussion/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

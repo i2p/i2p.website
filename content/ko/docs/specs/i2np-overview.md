@@ -5,6 +5,8 @@ slug: "i2np-overview"
 aliases:
   - "/ko/docs/protocol/i2np"
   - "/ko/docs/protocol/i2np/"
+  - "/ko/i2np"
+  - "/ko/i2np/"
 category: "프로토콜"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

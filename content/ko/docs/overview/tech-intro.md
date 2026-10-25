@@ -2,6 +2,9 @@
 title: "I2P: 기술 소개"
 description: "I2P 아키텍처 및 운영에 대한 기술적 소개"
 slug: "tech-intro"
+aliases:
+  - "/ko/techintro"
+  - "/ko/techintro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

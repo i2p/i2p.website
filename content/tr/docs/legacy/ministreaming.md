@@ -2,6 +2,9 @@
 title: "Ministreaming Kütüphanesi"
 description: "I2P'nin ilk TCP benzeri taşıma katmanına dair tarihi notlar"
 slug: "ministreaming"
+aliases:
+  - "/tr/ministreaming"
+  - "/tr/ministreaming/"
 lastUpdated: "2025-02"
 accurateFor: "historical"
 ---

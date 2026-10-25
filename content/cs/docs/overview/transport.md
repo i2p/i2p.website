@@ -2,6 +2,9 @@
 title: "Přehled transportu"
 description: "Přehled transportní vrstvy I2P pro komunikaci mezi routery typu point-to-point"
 slug: "transport"
+aliases:
+  - "/cs/transport"
+  - "/cs/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

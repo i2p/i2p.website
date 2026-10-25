@@ -2,6 +2,11 @@
 title: "I2P : Un Framework Évolutif pour la Communication Anonyme"
 description: "Introduction à l'architecture et au fonctionnement d'I2P"
 slug: "intro"
+aliases:
+  - "/fr/intro"
+  - "/fr/intro/"
+  - "/fr/how_intro"
+  - "/fr/how_intro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

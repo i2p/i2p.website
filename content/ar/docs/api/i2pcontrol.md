@@ -2,6 +2,9 @@
 title: "I2PControl JSON-RPC"
 description: "واجهة برمجة تطبيقات إدارة router عن بُعد عبر تطبيق I2PControl الويب"
 slug: "i2pcontrol"
+aliases:
+  - "/ar/i2pcontrol"
+  - "/ar/i2pcontrol/"
 lastUpdated: "2026-07-10"
 accurateFor: "2.12.0"
 reviewStatus: "needs-review"

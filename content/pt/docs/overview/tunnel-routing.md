@@ -2,6 +2,9 @@
 title: "Roteamento de Tunnel"
 description: "Visão geral da terminologia, construção e operação de tunnels I2P"
 slug: "tunnel-routing"
+aliases:
+  - "/pt/how_tunnelrouting"
+  - "/pt/how_tunnelrouting/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.68"
 ---

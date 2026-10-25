@@ -1,5 +1,8 @@
 ---
 title: "Síň slávy"
+aliases:
+  - "/cs/halloffame"
+  - "/cs/halloffame/"
 description: "Uznání štědrým podporovatelům, kteří přispěli na I2P během let"
 ---
 

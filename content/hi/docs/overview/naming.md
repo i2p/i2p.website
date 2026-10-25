@@ -7,6 +7,8 @@ aliases:
   - "/hi/docs/specs/naming/"
   - "/hi/docs/naming"
   - "/hi/docs/naming/"
+  - "/hi/naming"
+  - "/hi/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

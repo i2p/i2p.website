@@ -5,6 +5,8 @@ slug: "i2np"
 aliases:
   - "/pt/spec/i2np"
   - "/pt/spec/i2np/"
+  - "/pt/i2np_spec"
+  - "/pt/i2np_spec/"
 category: "Protocolos"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

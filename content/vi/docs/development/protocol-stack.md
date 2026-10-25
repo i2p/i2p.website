@@ -7,6 +7,8 @@ accurateFor: "0.9.61"
 aliases:
   - "/vi/docs/develop/protocol-stack"
   - "/vi/docs/develop/protocol-stack/"
+  - "/vi/protocols"
+  - "/vi/protocols/"
 ---
 
 Stack I2P là một thiết kế phân lớp cho phép giao tiếp ẩn danh. Mỗi lớp bổ sung các khả năng cụ thể trên các lớp bên dưới. Xem [Chỉ mục Tài liệu Kỹ thuật](/docs/develop/overview) để biết thêm chi tiết về từng thành phần.

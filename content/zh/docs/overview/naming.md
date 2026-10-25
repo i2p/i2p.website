@@ -7,6 +7,8 @@ aliases:
   - "/zh/docs/specs/naming/"
   - "/zh/docs/naming"
   - "/zh/docs/naming/"
+  - "/zh/naming"
+  - "/zh/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

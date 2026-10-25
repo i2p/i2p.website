@@ -2,6 +2,11 @@
 title: "I2P مقارنة بشبكات الخصوصية الأخرى"
 description: "مقارنة تقنية وفلسفية حديثة تُبرز مزايا التصميم الفريدة لـ I2P"
 slug: "comparison"
+aliases:
+  - "/ar/how_networkcomparisons"
+  - "/ar/how_networkcomparisons/"
+  - "/ar/othernetworks"
+  - "/ar/othernetworks/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

@@ -5,6 +5,8 @@ slug: "i2np-overview"
 aliases:
   - "/cs/docs/protocol/i2np"
   - "/cs/docs/protocol/i2np/"
+  - "/cs/i2np"
+  - "/cs/i2np/"
 category: "Protocols"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"

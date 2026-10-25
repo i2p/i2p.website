@@ -7,6 +7,8 @@ aliases:
   - "/ko/docs/specs/naming/"
   - "/ko/docs/naming"
   - "/ko/docs/naming/"
+  - "/ko/naming"
+  - "/ko/naming/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

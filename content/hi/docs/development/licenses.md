@@ -8,6 +8,10 @@ type: docs
 aliases:
   - "/hi/docs/develop/licenses"
   - "/hi/docs/develop/licenses/"
+  - "/hi/licenses"
+  - "/hi/licenses/"
+  - "/hi/license-agreements"
+  - "/hi/license-agreements/"
 ---
 
 जैसा कि हमारे [threat model](/docs/overview/threat-model//) (अन्य कारणों के साथ) द्वारा आवश्यक है, I2P नामक anonymous communication network को समर्थन देने के लिए विकसित सॉफ्टवेयर स्वतंत्र रूप से उपलब्ध, open source, और उपयोगकर्ता द्वारा संशोधनीय होना चाहिए। इन मानदंडों को पूरा करने के लिए, हम विभिन्न कानूनी और software engineering तकनीकों का उपयोग करते हैं ताकि I2P के उपयोग या योगदान पर विचार करने वालों के लिए प्रवेश में आने वाली बाधाओं को यथासंभव कम किया जा सके।

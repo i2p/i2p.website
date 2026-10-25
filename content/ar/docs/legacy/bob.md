@@ -5,6 +5,8 @@ slug: "bob"
 aliases:
   - "/ar/docs/api/bob"
   - "/ar/docs/api/bob/"
+  - "/ar/bob"
+  - "/ar/bob/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.8"
 ---

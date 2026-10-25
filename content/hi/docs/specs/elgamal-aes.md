@@ -2,6 +2,9 @@
 title: "ElGamal/AES + SessionTag Encryption"
 description: "ElGamal, AES, SHA-256, और one-time session tags को मिलाकर बनाई गई पुरानी end-to-end encryption"
 slug: "elgamal-aes"
+aliases:
+  - "/hi/how_elgamalaes"
+  - "/hi/how_elgamalaes/"
 lastUpdated: "2020-04"
 accurateFor: "0.9.46"
 ---

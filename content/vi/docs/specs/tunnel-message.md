@@ -5,6 +5,8 @@ slug: "tunnel-message"
 aliases:
   - "/vi/docs/legacy/tunnel-message"
   - "/vi/docs/legacy/tunnel-message/"
+  - "/vi/tunnel_message_spec"
+  - "/vi/tunnel_message_spec/"
 category: "Thiết kế"
 lastUpdated: "2021-01"
 accurateFor: "0.9.49"

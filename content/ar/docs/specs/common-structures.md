@@ -2,6 +2,9 @@
 title: "مواصفات الهياكل الشائعة"
 description: "أنواع البيانات المشتركة لجميع بروتوكولات I2P"
 slug: "common-structures"
+aliases:
+  - "/ar/common_structures_spec"
+  - "/ar/common_structures_spec/"
 category: "التصميم"
 lastUpdated: "2026-10"
 accurateFor: "0.9.71"

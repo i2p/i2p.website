@@ -2,6 +2,11 @@
 title: "I2P बनाम अन्य गोपनीयता नेटवर्क"
 description: "एक आधुनिक तकनीकी और दार्शनिक तुलना जो I2P के अद्वितीय डिज़ाइन लाभों को उजागर करती है"
 slug: "comparison"
+aliases:
+  - "/hi/how_networkcomparisons"
+  - "/hi/how_networkcomparisons/"
+  - "/hi/othernetworks"
+  - "/hi/othernetworks/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

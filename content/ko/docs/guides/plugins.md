@@ -2,6 +2,9 @@
 title: "사용자 정의 플러그인 설치"
 description: "라우터 플러그인 설치, 업데이트 및 개발"
 slug: "plugins"
+aliases:
+  - "/ko/plugins"
+  - "/ko/plugins/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 ---

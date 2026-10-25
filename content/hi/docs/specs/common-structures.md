@@ -2,6 +2,9 @@
 title: "सामान्य संरचनाएं विनिर्देश"
 description: "सभी I2P प्रोटोकॉल में सामान्य डेटा प्रकार"
 slug: "common-structures"
+aliases:
+  - "/hi/common_structures_spec"
+  - "/hi/common_structures_spec/"
 category: "डिज़ाइन"
 lastUpdated: "2026-10"
 accurateFor: "0.9.71"

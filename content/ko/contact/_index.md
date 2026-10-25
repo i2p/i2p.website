@@ -1,5 +1,8 @@
 ---
 title: "문의하기"
+aliases:
+  - "/ko/impressum"
+  - "/ko/impressum/"
 description: "I2P 프로젝트와 연락하기 - 이메일, 포럼, 소셜 미디어, IRC 채널을 통해 팀을 만나보세요."
 type: "contact"
 layout: "contact"

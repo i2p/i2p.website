@@ -2,6 +2,9 @@
 title: "Đặc tả Cập nhật Phần mềm"
 description: "Đặc tả cho cơ chế cập nhật phần mềm I2P, định dạng tệp SU3, và nguồn cấp tin tức"
 slug: "updates"
+aliases:
+  - "/vi/updates"
+  - "/vi/updates/"
 category: "Thiết kế"
 lastUpdated: "2025-04"
 accurateFor: "0.9.65"

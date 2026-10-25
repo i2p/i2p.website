@@ -2,6 +2,9 @@
 title: "Blockfile ve Hosts Veritabanı Spesifikasyonu"
 description: "Blockfile Naming Service tarafından kullanılan I2P blockfile dosya biçimi ve hostsdb.blockfile içindeki tabloların belirtimi"
 slug: "blockfile"
+aliases:
+  - "/tr/blockfile"
+  - "/tr/blockfile/"
 category: "Formatlar"
 lastUpdated: "2023-11"
 accurateFor: "0.9.59"

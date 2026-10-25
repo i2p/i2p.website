@@ -2,6 +2,9 @@
 title: "Aperçu du transport"
 description: "Aperçu de la couche transport d'I2P pour la communication router à router point-à-point"
 slug: "transport"
+aliases:
+  - "/fr/transport"
+  - "/fr/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

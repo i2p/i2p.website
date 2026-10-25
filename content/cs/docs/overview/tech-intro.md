@@ -2,6 +2,9 @@
 title: "I2P: Technický úvod"
 description: "Technický úvod do architektury a fungování I2P"
 slug: "tech-intro"
+aliases:
+  - "/cs/techintro"
+  - "/cs/techintro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

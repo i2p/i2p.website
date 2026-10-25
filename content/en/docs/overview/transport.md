@@ -2,6 +2,9 @@
 title: "Transport Overview"
 description: "Overview of I2P's transport layer for point-to-point router communication"
 slug: "transport"
+aliases:
+  - "/en/transport"
+  - "/en/transport/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.69"
 ---

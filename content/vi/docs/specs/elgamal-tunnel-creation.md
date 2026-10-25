@@ -2,6 +2,9 @@
 title: "Đặc tả Tạo Tunnel (ElGamal)"
 description: "Đặc tả xây dựng tunnel dựa trên ElGamal cũ, đã được thay thế bằng X25519"
 slug: "elgamal-tunnel-creation"
+aliases:
+  - "/vi/tunnel-alt-creation"
+  - "/vi/tunnel-alt-creation/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

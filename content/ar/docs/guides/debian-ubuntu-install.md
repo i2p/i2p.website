@@ -1,5 +1,8 @@
 ---
 title: "تثبيت I2P على Debian و Ubuntu"
+aliases:
+  - "/ar/debian"
+  - "/ar/debian/"
 description: "دليل كامل لتثبيت I2P على Debian وUbuntu والتوزيعات المشتقة منهما باستخدام المستودعات الرسمية"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"

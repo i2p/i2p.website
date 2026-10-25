@@ -5,6 +5,8 @@ slug: "old-tunnel-implementation"
 aliases:
   - "/ko/docs/historical/tunnel-alt"
   - "/ko/docs/historical/tunnel-alt/"
+  - "/ko/tunnel"
+  - "/ko/tunnel/"
 lastUpdated: "2016-11"
 accurateFor: "historical"
 ---

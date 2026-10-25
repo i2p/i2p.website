@@ -7,6 +7,8 @@ accurateFor: "0.9.61"
 aliases:
   - "/pt/docs/develop/protocol-stack"
   - "/pt/docs/develop/protocol-stack/"
+  - "/pt/protocols"
+  - "/pt/protocols/"
 ---
 
 A pilha I2P é um design em camadas que permite comunicação anônima. Cada camada adiciona capacidades específicas sobre aquelas abaixo dela. Consulte o [Índice de Documentação Técnica](/docs/develop/overview) para detalhes adicionais sobre cada componente.

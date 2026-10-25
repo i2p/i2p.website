@@ -2,6 +2,11 @@
 title: "网页浏览器配置"
 description: "在桌面和 Android 上配置常用浏览器以使用 I2P 的 HTTP/HTTPS 代理"
 slug: "browser-config"
+aliases:
+  - "/zh/firefox"
+  - "/zh/firefox/"
+  - "/zh/htproxyports"
+  - "/zh/htproxyports/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: docs

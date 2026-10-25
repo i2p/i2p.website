@@ -2,6 +2,11 @@
 title: "I2P: Anonim İletişim için Ölçeklenebilir Bir Çerçeve"
 description: "I2P mimarisi ve işleyişine giriş"
 slug: "intro"
+aliases:
+  - "/tr/intro"
+  - "/tr/intro/"
+  - "/tr/how_intro"
+  - "/tr/how_intro/"
 lastUpdated: "2025-01"
 accurateFor: "0.9.65"
 ---

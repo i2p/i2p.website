@@ -2,6 +2,9 @@
 title: "GeoIP 파일 형식"
 description: "IP 국가 조회를 위한 레거시 GeoIP 파일 형식 사양"
 slug: "geoip"
+aliases:
+  - "/ko/geoip"
+  - "/ko/geoip/"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"
 ---

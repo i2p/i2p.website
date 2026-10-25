@@ -2,6 +2,9 @@
 title: "Kryptographie-Spezifikation auf niedriger Ebene"
 description: "Details der kryptographischen Algorithmen, die in I2P verwendet werden, auf niedriger Ebene"
 slug: "cryptography"
+aliases:
+  - "/de/how_cryptography"
+  - "/de/how_cryptography/"
 category: "Design"
 lastUpdated: "2025-05"
 accurateFor: "0.9.66"

@@ -2,6 +2,9 @@
 title: "Однонаправленные туннели"
 description: "Исторический обзор дизайна однонаправленных tunnel I2P"
 slug: "unidirectional"
+aliases:
+  - "/ru/unidirectional-tunnels"
+  - "/ru/unidirectional-tunnels/"
 lastUpdated: "2016-11"
 accurateFor: "0.9.27"
 ---

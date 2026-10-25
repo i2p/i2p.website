@@ -2,6 +2,9 @@
 title: "Маршрутизация туннелей"
 description: "Обзор терминологии, построения и работы tunnel в I2P"
 slug: "tunnel-routing"
+aliases:
+  - "/ru/how_tunnelrouting"
+  - "/ru/how_tunnelrouting/"
 lastUpdated: "2026-03"
 accurateFor: "0.9.68"
 ---

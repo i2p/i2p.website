@@ -2,6 +2,11 @@
 title: "Konfigurace webového prohlížeče"
 description: "Nakonfigurujte oblíbené prohlížeče pro použití HTTP/HTTPS proxy I2P na desktopu a Androidu"
 slug: "browser-config"
+aliases:
+  - "/cs/firefox"
+  - "/cs/firefox/"
+  - "/cs/htproxyports"
+  - "/cs/htproxyports/"
 lastUpdated: "2025-10"
 accurateFor: "2.10.0"
 type: dokumentace

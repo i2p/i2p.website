@@ -2,6 +2,9 @@
 title: "플러그인 명세"
 description: "I2P 플러그인을 위한 .xpi2p / .su3 패키징 규칙"
 slug: "plugin"
+aliases:
+  - "/ko/plugin_spec"
+  - "/ko/plugin_spec/"
 lastUpdated: "2022-01"
 accurateFor: "0.9.53"
 type: docs

@@ -11,6 +11,10 @@ aliases:
   - "/hi/docs/develop/new-developers/"
   - "/hi/newdevelopers"
   - "/hi/newdevelopers/"
+  - "/hi/cvs"
+  - "/hi/cvs/"
+  - "/hi/monotone"
+  - "/hi/monotone/"
 ---
 
 तो आप I2P पर काम शुरू करना चाहते हैं? बहुत बढ़िया! यहाँ वेबसाइट या सॉफ़्टवेयर में योगदान करने, विकास करने, या अनुवाद बनाने के लिए शुरुआत करने की एक त्वरित मार्गदर्शिका है।
