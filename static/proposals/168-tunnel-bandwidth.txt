@@ -1,6 +1,6 @@
-===================================
+===========================
 Tunnel Bandwidth Parameters
-===================================
+===========================
 .. meta::
     :author: zzz
     :created: 2024-07-31
@@ -12,15 +12,12 @@ Tunnel Bandwidth Parameters
 .. contents::
 
 
-
 NOTE
 ====
 
 This proposal was approved and is now in the
-[Tunnel-Creation-ECIES]_ specification as of API 0.9.65.
+`Tunnel Creation ECIES specification </docs/specs/tunnel-implementation/#tunnel-creation-ecies>`__ as of API 0.9.65.
 There are no known implementations yet; implementation dates / API versions are TBD.
-
-
 
 Overview
 ========
@@ -44,29 +41,25 @@ This would be quite useful during times of overload or DDoS of a service.
 This proposal addresses these issues by adding bandwidth parameters to
 the tunnel build request and reply messages.
 
-
-
 Design
 ======
 
-Add bandwidth parameters to the records in ECIES tunnel build messages [Tunnel-Creation-ECIES]_
+Add bandwidth parameters to the records in ECIES tunnel build messages (see `Tunnel Creation ECIES specification </docs/specs/tunnel-implementation/#tunnel-creation-ecies>`__)
 in the tunnel build options mapping field. Use short parameter names since the space available
 for the options field is limited.
 Tunnel build messages are fixed-size so this does not increase the
 size of the messages.
 
-
-
 Specification
 =============
 
-Update the ECIES tunnel build message specification [Tunnel-Creation-ECIES]_
+Update the `ECIES tunnel build message specification </docs/specs/tunnel-implementation/#tunnel-creation-ecies>`__
 as follows:
 
 For both long and short ECIES build records:
 
 Build Request Options
----------------------------
+---------------------
 
 The following three options may be set in the tunnel build options mapping field of the record:
 A requesting router may include any, all, or none.
@@ -83,9 +76,8 @@ provide at least that much bandwidth.
 Request options are sent to each participant in the corresponding encrypted build request record,
 and are not visible to other participants.
 
-
 Build Reply Option
----------------------------
+------------------
 
 The following option may be set in the tunnel build reply options mapping field of the record,
 when the response is ACCEPTED:
@@ -110,9 +102,8 @@ as a best-effort commitment, but not a guarantee.
 Reply options are sent to the requesting router in the corresponding encrypted build reply record,
 and are not visible to other participants.
 
-
 Implementation Notes
-=====================
+====================
 
 Bandwidth parameters are as seen at the participating routers at the tunnel layer,
 i.e. the number of fixed-size 1 KB tunnel messages per second.
@@ -150,8 +141,6 @@ This proposal only affects tunnels created by the originator. There is no
 method defined to request or allocate bandwidth for "far-end" tunnels created
 by the the owner of the other end of an end-to-end connection.
 
-
-
 Security Analysis
 =================
 
@@ -175,13 +164,11 @@ to mitigate this risk:
 - Tracking average bandwidth per tunnel
 - Tracking requested vs. actual bandwidth used per tunnel
 
-
 Compatibility
-===============
+=============
 
 No issues. All known implementations currently ignore the mapping field in build messages,
 and correctly skip over a non-empty options field.
-
 
 Migration
 =========
@@ -191,10 +178,7 @@ Implementations may add support at any time, no coordination is needed.
 As there is currently no API version defined where support for this proposal is required,
 routers should check for a "b" response to confirm support.
 
-
-
 References
 ==========
 
-.. [Tunnel-Creation-ECIES]
-    {{ spec_url('tunnel-creation-ecies') }}
+- `Tunnel-Creation-ECIES </docs/specs/tunnel-implementation/#tunnel-creation-ecies>`__

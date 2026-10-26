@@ -17,7 +17,6 @@ Overview
 This proposal is about extending streaming to use multiple tunnels per
 connection, similar to multipath TCP.
 
-
 Motivation
 ==========
 
@@ -29,7 +28,6 @@ tunnels are used based on individual characteristics like:
 - Latency
 - Capacity
 - Availability
-
 
 Design
 ======

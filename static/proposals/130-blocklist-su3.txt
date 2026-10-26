@@ -16,13 +16,11 @@ Overview
 
 This proposal is to distribute blocklist updates in a separate su3 file.
 
-
 Motivation
 ==========
 
 Without this, the blocklist is only updated in the release.
 This format could be used in various router implementations.
-
 
 Design
 ======
@@ -31,7 +29,6 @@ Define the format to be wrapped in an su3 file.
 Allow blocking by IP or router hash.
 Routers may subscribe to a URL, or import a file obtained by other means.
 The su3 file contains a signature which must be verifed on import.
-
 
 Specification
 =============
@@ -46,15 +43,7 @@ Support for blocking with a net mask, e.g. x.y.0.0/16, is optional.
 To unblock an entry, precede it with a '!'.
 Comments start with a '#'.
 
-
 Migration
 =========
 
 n/a
-
-
-
-See Also
-========
-
-Proposal 129

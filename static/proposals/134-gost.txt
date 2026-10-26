@@ -14,19 +14,17 @@ GOST Sig Type
 Overview
 ========
 
-Elliptic curve signature  GOST R 34.10 used by officials and businesses in Russia.
+Elliptic curve signature GOST R 34.10 used by officials and businesses in Russia.
 Supporting it could simplify integration of existing apps (usually CryptoPro based).
 Hash function is GOST R 34.11 of 32 or 64 bytes.
 Basially works the same way as EcDSA, signature and public key size is 64 or 128 bytes.
 
-
 Motivation
 ==========
 
-Elliptic curve cryptography was never been trusted completely and produce a lot of speculation about possible backdoors. 
+Elliptic curve cryptography was never been trusted completely and produce a lot of speculation about possible backdoors.
 Hence there is no ultimate signature type trusted by everybody.
 Adding one more signature type will give people more choice what they trust more.
-
 
 Design
 ======
@@ -61,4 +59,3 @@ Migration
 
 These signature types are supposed to be used as optional signature type only.
 No migration is required. i2pd supports it already.
-

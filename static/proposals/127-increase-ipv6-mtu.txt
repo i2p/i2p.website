@@ -19,12 +19,10 @@ Overview
 This proposal is to increase the max SSU IPv6 MTU from 1472 to 1488.
 Implemented in 0.9.28.
 
-
 Motivation
 ==========
 
 IPv4 MTU must be a multiple of 16, + 12. IPv6 MTU must be a multiple of 16.
-
 
 When IPv6 support was first added years ago, we set the max IPv6 MTU to 1472, less than the
 IPv4 MTU of 1484. This was to keep things simple and ensure the IPv6 MTU was less
@@ -33,19 +31,16 @@ set the IPv6 MTU higher than the IPv4 MTU.
 
 The typical interface MTU is 1500, so we can reasonably increase the IPv6 MTU by 16 to 1488.
 
-
 Design
 ======
 
 Change the max from 1472 to 1488.
-
 
 Specification
 =============
 
 In the "Router Address" and "MTU" sections of the SSU overview,
 change the max IPv6 MTU from 1472 to 1488.
-
 
 Migration
 =========

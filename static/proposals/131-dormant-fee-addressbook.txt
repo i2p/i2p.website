@@ -26,24 +26,20 @@ It will let I2P to clean up that huge addressbook from abandoned entries.
 It will be effective mechanism against squatters. They will have to be online or pay.
 Even they use some parking page they will need to run an I2P router, that helps the network implicitly.
 
-
 Motivation
 ==========
 
 TBD
-
 
 Design
 ======
 
 TBD
 
-
 Specification
 =============
 
 TBD
-
 
 Migration
 =========

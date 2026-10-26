@@ -11,8 +11,9 @@ I2P proposal #166: Identity/Host Aware Tunnel Types
 
 .. contents::
 
+
 Proposal for a Host-Aware HTTP Proxy Tunnel Type
-------------------------------------------------
+================================================
 
 This is a proposal to resolve the “Shared Identity Problem” in
 conventional HTTP-over-I2P usage by introducing a new HTTP proxy tunnel
@@ -22,7 +23,7 @@ hidden service operators, against targeted user-agents(browsers) and the
 I2P Client Application itself.
 
 What is the “Shared Identity” problem?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 The “Shared Identity” problem occurs when a user-agent on a
 cryptographically addressed overlay network shares a cryptographic
@@ -78,30 +79,30 @@ The Shared Identity is not useful against a user who is using I2P solely
 to obfuscate geolocation. It also cannot be used to break I2P’s routing.
 It is only a problem of contextual identity management.
 
--  It is impossible to use the Shared Identity problem to geolocate an
-   I2P user.
--  It is impossible to use the Shared Identity problem to link I2P
-   sessions if they are not contemporary.
+- It is impossible to use the Shared Identity problem to geolocate an
+  I2P user.
+- It is impossible to use the Shared Identity problem to link I2P
+  sessions if they are not contemporary.
 
 However, it is possible to use it to degrade the anonymity of an I2P
 user in circumstances which are probably very common. One reason they
 are common is becase we encourage the use of Firefox, a web browser
 which supports “Tabbed” operation.
 
--  It is *always* possible to produce a fingerprint from the Shared
-   Identity problem in *any* web browser which supports requesting
-   third-party resources.
--  Disabling Javascript accomplishes **nothing** against the Shared
-   Identity problem.
--  If a link can be established between non-contemporary sessions such
-   as by “traditional” browser fingerprinting, then the Shared Identity
-   can be applied transitively, potentially enabling a non-contemporary
-   linking strategy.
--  If a link can be established between a clearnet activity and an I2P
-   identity, for instance, if the target is logged into a site with both
-   an I2P and a clearnet presence on both sides, the Shared Identity can
-   be applied transitively, potentially enabling complete
-   de-anonymization.
+- It is *always* possible to produce a fingerprint from the Shared
+  Identity problem in *any* web browser which supports requesting
+  third-party resources.
+- Disabling Javascript accomplishes **nothing** against the Shared
+  Identity problem.
+- If a link can be established between non-contemporary sessions such
+  as by “traditional” browser fingerprinting, then the Shared Identity
+  can be applied transitively, potentially enabling a non-contemporary
+  linking strategy.
+- If a link can be established between a clearnet activity and an I2P
+  identity, for instance, if the target is logged into a site with both
+  an I2P and a clearnet presence on both sides, the Shared Identity can
+  be applied transitively, potentially enabling complete
+  de-anonymization.
 
 How you view the severity of the Shared Identity problem as it applies
 to the I2P HTTP proxy depends on where you(or more to the point, a
@@ -165,13 +166,13 @@ Resource Considerations:
 The new HTTP proxy requires additional resources compared to the
 existing HTTP proxy. It will:
 
--  Potentially build more tunnels and I2PSocketManagers
--  Build tunnels more often
+- Potentially build more tunnels and I2PSocketManagers
+- Build tunnels more often
 
 Each of these requires:
 
--  Local computing resources
--  Network resources from peers
+- Local computing resources
+- Network resources from peers
 
 Settings:
 '''''''''
@@ -181,13 +182,13 @@ proxy should be configured to use as little as possible. Proxies which
 are part of the multiplexer(not the parent proxy) should be configured
 to:
 
--  Multiplexed I2PSocketManagers build 1 tunnel in, 1 tunnel out in their
-   tunnel pools
--  Multiplexed I2PSocketManagers take 3 hops by default.
--  Close sockets after 10 minutes of inactivity
--  I2PSocketManagers started by the Multiplexer share the lifespan of the
-   Multiplexer. Multiplexed tunnels are not “Destructed” until the
-   parent Multiplexer is.
+- Multiplexed I2PSocketManagers build 1 tunnel in, 1 tunnel out in their
+  tunnel pools
+- Multiplexed I2PSocketManagers take 3 hops by default.
+- Close sockets after 10 minutes of inactivity
+- I2PSocketManagers started by the Multiplexer share the lifespan of the
+  Multiplexer. Multiplexed tunnels are not “Destructed” until the
+  parent Multiplexer is.
 
 Diagrams:
 ^^^^^^^^^
@@ -198,14 +199,14 @@ section. As you can see, the HTTP proxy interacts with I2P sites
 directly using only one destination. In this scenario, HTTP is both the
 application and the contextual identity.
 
-.. code:: md
+.. code:: text
 
    **Current Situation: HTTP is the Application, HTTP is the Contextual Identity**
-                                                          __-> Outproxy <-> i2pgit.org
-                                                         /
+                                                         __-> Outproxy <-> i2pgit.org
+                                                        /
    Browser <-> HTTP Proxy(one Destination)<->I2PSocketManager <---> idk.i2p
-                                                         \__-> translate.idk.i2p
-                                                          \__-> git.idk.i2p
+                                                        \__-> translate.idk.i2p
+                                                         \__-> git.idk.i2p
 
 The diagram below represents the operation of a host-aware HTTP proxy,
 which corresponds to “Possibility 3.” under the “Is it a problem”
@@ -215,14 +216,14 @@ different HTTP proxy with a unique destination per-host. This prevents
 operators of multiple sites from being able to distinguish when the same
 person is visiting multiple sites which they operate.
 
-.. code:: md
+.. code:: text
 
    **After the Change: HTTP is the Application, Host is the Contextual Identity**
-                                                        __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
-                                                       /
+                                                       __-> I2PSocketManager(Destination A - Outproxies Only) <--> i2pgit.org
+                                                      /
    Browser <-> HTTP Proxy Multiplexer(No Destination) <---> I2PSocketManager(Destination B) <--> idk.i2p
-                                                       \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
-                                                        \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
+                                                      \__-> I2PSocketManager(Destination C) <--> translate.idk.i2p
+                                                       \__-> I2PSocketManager(Destination C) <--> git.idk.i2p
 
 Status:
 ^^^^^^^
@@ -240,7 +241,6 @@ Additionally, they lack good support for working interactively with
 encrypted leaseSets.
 
 Addendum: ``i2psocks``
-                      
 
 A simple application-oriented approach to isolating other types of
 clients is possible without implementing a new tunnel type or changing
@@ -260,7 +260,6 @@ proxy and socksify the underlying command:
    torsocks --port 7695 $command_to_proxy
 
 Addendum: ``example implementation of the attack``
-                                                  
 
 `An example implementation of the Shared Identity attack on HTTP
 User-Agents <https://github.com/eyedeekay/colluding_sites_attack/>`__
@@ -270,16 +269,3 @@ repository <https://git.idk.i2p/idk/i2p.host-aware-proxy>`__ These
 examples are deliberately designed to demonstrate that the attack works
 and would require modification(albeit minor) to be turned into a real
 attack.
-
-Citations:
-''''''''''
-
-https://old.reddit.com/r/i2p/comments/579idi/warning_i2p_is_linkablefingerprintable/
-https://api.pullpush.io/reddit/search/comment/?link_id=579idi
-https://github.com/eyedeekay/colluding_sites_attack/
-https://en.wikipedia.org/wiki/Shadow_profile
-https://github.com/eyedeekay/si-i2p-plugin/
-https://github.com/eyedeekay/eeproxy/
-https://geti2p.net/en/docs/api/socks
-https://i2pgit.org/idk/i2p.www/-/compare/master...166-identity-aware-proxies?from_project_id=17
-https://i2pgit.org/idk/i2p.i2p/-/tree/i2p.i2p.2.6.0-browser-proxy-post-keepalive?ref_type=heads

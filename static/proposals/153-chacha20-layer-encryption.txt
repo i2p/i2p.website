@@ -10,10 +10,11 @@ ChaCha Tunnel Layer Encryption
 
 .. contents::
 
+
 Overview
 ========
 
-This proposal builds on and requires the changes from proposal 152: ECIES Tunnels.
+This proposal builds on and requires the changes from `proposal 152: ECIES Tunnels </proposals/152-ecies-tunnels/>`__.
 
 Only tunnels built through hops supporting the BuildRequestRecord format for ECIES-X25519
 tunnels can implement this specification.
@@ -40,7 +41,7 @@ This section describes changes to:
 - Participant encryption + postprocessing
 - Outbound and Inbound Endpoint encryption + postprocessing
 
-For an overview of current tunnel message processing, see the [Tunnel-Implementation]_ spec.
+For an overview of current tunnel message processing, see the `Tunnel Implementation </docs/specs/tunnel-implementation/>`__ spec.
 
 Only changes for routers supporting ChaCha20 layer encryption are discussed.
 
@@ -69,49 +70,47 @@ accommodate the Poly1305 MAC.
 AEAD cannot be used on the messages directly, since iterative decryption is needed by outbound tunnels.
 Iterative decryption can only be achieved, in the way it's used now, using ChaCha20 without AEAD.
 
-.. raw:: html
+.. code:: text
 
-  {% highlight lang='dataspec' -%}
-+----+----+----+----+----+----+----+----+
-  |    Tunnel ID      |   tunnelNonce     |
-  +----+----+----+----+----+----+----+----+
-  | tunnelNonce cont. |    obfsNonce      |
-  +----+----+----+----+----+----+----+----+
-  |  obfsNonce cont.  |                   |
-  +----+----+----+----+                   +
-  |                                       |
-  +           Encrypted Data              +
-  ~                                       ~
-  |                                       |
-  +                   +----+----+----+----+
-  |                   |    Poly1305 MAC   |
-  +----+----+----+----+                   +  
-  |                                       |
-  +                   +----+----+----+----+
-  |                   |
-  +----+----+----+----+
+   +----+----+----+----+----+----+----+----+
+     |    Tunnel ID      |   tunnelNonce     |
+     +----+----+----+----+----+----+----+----+
+     | tunnelNonce cont. |    obfsNonce      |
+     +----+----+----+----+----+----+----+----+
+     |  obfsNonce cont.  |                   |
+     +----+----+----+----+                   +
+     |                                       |
+     +           Encrypted Data              +
+     ~                                       ~
+     |                                       |
+     +                   +----+----+----+----+
+     |                   |    Poly1305 MAC   |
+     +----+----+----+----+                   +  
+     |                                       |
+     +                   +----+----+----+----+
+     |                   |
+     +----+----+----+----+
 
-  Tunnel ID :: `TunnelId`
-         4 bytes
-         the ID of the next hop
+     Tunnel ID :: `TunnelId`
+            4 bytes
+            the ID of the next hop
 
-  tunnelNonce ::
-         8 bytes
-         the tunnel layer nonce
+     tunnelNonce ::
+            8 bytes
+            the tunnel layer nonce
 
-  obfsNonce ::
-         8 bytes
-         the tunnel layer nonce encryption nonce
+     obfsNonce ::
+            8 bytes
+            the tunnel layer nonce encryption nonce
 
-  Encrypted Data ::
-         992 bytes
-         the encrypted tunnel message
+     Encrypted Data ::
+            992 bytes
+            the encrypted tunnel message
 
-  Poly1305 MAC ::
-         16 bytes
+     Poly1305 MAC ::
+            16 bytes
 
-  total size: 1028 Bytes
-{% endhighlight %}
+     total size: 1028 Bytes
 
 Inner hops (with preceding and following hops), will have two ``AEADKeys``, one for decrypting
 the AEAD layer of the previous hop, and encrypting the AEAD layer to the following hop.
@@ -149,6 +148,8 @@ Inner I2NP messages containing AEAD frames (including the MAC) can be split acro
 but any dropped fragments will result in failed AEAD decryption (failed MAC verification) at the
 endpoint.
 
+.. _gateway-preprocessing--encryption:
+
 Gateway Preprocessing & Encryption
 ----------------------------------
 
@@ -157,8 +158,11 @@ When tunnels support ChaCha20 layer encryption, gateways will generate two 64-bi
 Inbound tunnels:
 
 - Encrypt the IV and tunnel message(s) using ChaCha20
+
 - Use 8-byte ``tunnelNonce`` and ``obfsNonce`` given the lifetime of tunnels
+
 - Use 8-byte ``obfsNonce`` for ``tunnelNonce`` encryption
+
 - Destroy tunnel before 2^(64 - 1) - 1 sets of messages: 2^63 - 1 = 9,223,372,036,854,775,807
 
   - Nonce limit in place to avoid collision of the 64-bit nonces
@@ -174,19 +178,17 @@ The inner I2NP messsages are wrapped in Garlic cloves, encrypted using end-to-en
 
 The IBGW preprocesses the messages into the appropriately formatted tunnel messages, and encrypts as following:
 
-.. raw:: html
+.. code:: text
 
-  {% highlight lang='dataspec' %}
 
-// IBGW generates random nonces, ensuring no collision in its Bloom filter for each nonce
-  tunnelNonce = Random(len = 64-bits)
-  obfsNonce = Random(len = 64-bits)
-  // IBGW ChaCha20 "encrypts" each of the preprocessed tunnel messages with its tunnelNonce and layerKey
-  encMsg = ChaCha20(msg = tunnel msg, nonce = tunnelNonce, key = layerKey)
+   // IBGW generates random nonces, ensuring no collision in its Bloom filter for each nonce
+     tunnelNonce = Random(len = 64-bits)
+     obfsNonce = Random(len = 64-bits)
+     // IBGW ChaCha20 "encrypts" each of the preprocessed tunnel messages with its tunnelNonce and layerKey
+     encMsg = ChaCha20(msg = tunnel msg, nonce = tunnelNonce, key = layerKey)
 
-  // ChaCha20-Poly1305 encrypt each message's encrypted data frame with the tunnelNonce and outAEADKey
-  (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
-{% endhighlight %}
+     // ChaCha20-Poly1305 encrypt each message's encrypted data frame with the tunnelNonce and outAEADKey
+     (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
 
 Tunnel message format will slightly change, using two 8-byte nonces instead of a 16-byte IV.
 The ``obfsNonce`` used for encrypting the nonce is appended to the 8-byte ``tunnelNonce``,
@@ -203,27 +205,25 @@ Outbound tunnels:
 - Use the same rules for layer nonces as Inbound tunnels
 - Generate random nonces once per set of tunnel messages sent
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
+.. code:: text
 
 
-// For each set of messages, generate unique, random nonces
-  tunnelNonce = Random(len = 64-bits)
-  obfsNonce = Random(len = 64-bits)
 
-  // For each hop, ChaCha20 the previous tunnelNonce with the current hop's IV key
-  tunnelNonce = ChaCha20(msg = prev. tunnelNonce, nonce = obfsNonce, key = hop's nonceKey)
+   // For each set of messages, generate unique, random nonces
+     tunnelNonce = Random(len = 64-bits)
+     obfsNonce = Random(len = 64-bits)
 
-  // For each hop, ChaCha20 "decrypt" the tunnel message with the current hop's tunnelNonce and layerKey
-  decMsg = ChaCha20(msg = tunnel msg(s), nonce = tunnelNonce, key = hop's layerKey)
+     // For each hop, ChaCha20 the previous tunnelNonce with the current hop's IV key
+     tunnelNonce = ChaCha20(msg = prev. tunnelNonce, nonce = obfsNonce, key = hop's nonceKey)
 
-  // For each hop, ChaCha20 "decrypt" the obfsNonce with the current hop's encrypted tunnelNonce and nonceKey
-  obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = hop's nonceKey)
+     // For each hop, ChaCha20 "decrypt" the tunnel message with the current hop's tunnelNonce and layerKey
+     decMsg = ChaCha20(msg = tunnel msg(s), nonce = tunnelNonce, key = hop's layerKey)
 
-  // After hop processing, ChaCha20-Poly1305 encrypt each tunnel message's "decrypted" data frame with the first hop's encrypted tunnelNonce and inAEADKey
-  (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = decMsg, nonce = first hop's encrypted tunnelNonce, key = first hop's inAEADKey / GW outAEADKey)
-{% endhighlight %}
+     // For each hop, ChaCha20 "decrypt" the obfsNonce with the current hop's encrypted tunnelNonce and nonceKey
+     obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = hop's nonceKey)
+
+     // After hop processing, ChaCha20-Poly1305 encrypt each tunnel message's "decrypted" data frame with the first hop's encrypted tunnelNonce and inAEADKey
+     (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = decMsg, nonce = first hop's encrypted tunnelNonce, key = first hop's inAEADKey / GW outAEADKey)
 
 Participant Processing
 ----------------------
@@ -244,32 +244,30 @@ After validation, the participant:
 - ChaCha20-Poly1305 decrypts each tunnel message's AEAD ciphertext with the received ``tunnelNonce`` and its ``inAEADKey``
 - ChaCha20 encrypts the ``tunnelNonce`` with its ``nonceKey`` and received ``obfsNonce``
 - ChaCha20 encrypts the each tunnel message's encrypted data frame with the encrypted ``tunnelNonce`` and its ``layerKey``
-- ChaCha20-Poly1305 encrypts each tunnel message's encrypted data frame the encrypted ``tunnelNonce`` and its ``outAEADKey`` 
+- ChaCha20-Poly1305 encrypts each tunnel message's encrypted data frame the encrypted ``tunnelNonce`` and its ``outAEADKey``
 - ChaCha20 encrypts the ``obfsNonce`` with its ``nonceKey`` and encrypted ``tunnelNonce``
-- Sends the tuple {``nextTunnelId``, encrypted (``tunnelNonce`` || ``obfsNonce``), AEAD ciphertext || MAC} to the next hop.
+- Sends the tuple {``nextTunnelId``, encrypted (``tunnelNonce`` \|\| ``obfsNonce``), AEAD ciphertext \|\| MAC} to the next hop.
 
-.. raw:: html
+.. code:: text
 
-  {% highlight lang='dataspec' %}
 
-// For verification, tunnel hops should check Bloom filter for each received nonce's uniqueness
-  // After verification, unwrap the AEAD frame(s) byChaCha20-Poly1305 decrypt each tunnel message's encrypted frame
-  // with the received tunnelNonce and inAEADKey 
-  encTunMsg = ChaCha20-Poly1305-Decrypt(msg = received encMsg \|\| MAC, nonce = received tunnelNonce, key = inAEADKey)
+   // For verification, tunnel hops should check Bloom filter for each received nonce's uniqueness
+     // After verification, unwrap the AEAD frame(s) byChaCha20-Poly1305 decrypt each tunnel message's encrypted frame
+     // with the received tunnelNonce and inAEADKey 
+     encTunMsg = ChaCha20-Poly1305-Decrypt(msg = received encMsg \|\| MAC, nonce = received tunnelNonce, key = inAEADKey)
 
-  // ChaCha20 encrypt the tunnelNonce with the obfsNonce and hop's nonceKey
-  tunnelNonce = ChaCha20(msg = received tunnelNonce, nonce = received obfsNonce, key = nonceKey)
+     // ChaCha20 encrypt the tunnelNonce with the obfsNonce and hop's nonceKey
+     tunnelNonce = ChaCha20(msg = received tunnelNonce, nonce = received obfsNonce, key = nonceKey)
 
-  // ChaCha20 encrypt each tunnel message's encrypted data frame with the encrypted tunnelNonce and hop's layerKey
-  encMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
+     // ChaCha20 encrypt each tunnel message's encrypted data frame with the encrypted tunnelNonce and hop's layerKey
+     encMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
 
-  // For AEAD protection, also ChaCha20-Poly1305 encrypt each message's encrypted data frame
-  // with the encrypted tunnelNonce and the hop's outAEADKey
-  (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
+     // For AEAD protection, also ChaCha20-Poly1305 encrypt each message's encrypted data frame
+     // with the encrypted tunnelNonce and the hop's outAEADKey
+     (encMsg, MAC) = ChaCha20-Poly1305-Encrypt(msg = encMsg, nonce = tunnelNonce, key = outAEADKey)
 
-  // ChaCha20 encrypt the received obfsNonce with the encrypted tunnelNonce and hop's nonceKey
-  obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
-{% endhighlight %}
+     // ChaCha20 encrypt the received obfsNonce with the encrypted tunnelNonce and hop's nonceKey
+     obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
 
 Inbound Endpoint Processing
 ---------------------------
@@ -285,23 +283,21 @@ For ChaCha20 tunnels, the following scheme will be used to decrypt each tunnel m
 - Repeat the steps for nonce and layer decryption for each hop in the tunnel, back to the IBGW
 - The AEAD frame decryption is only needed in the first round
 
-.. raw:: html
+.. code:: text
 
-  {% highlight lang='dataspec' %}
 
-// For the first round, ChaCha20-Poly1305 decrypt each message's encrypted data frame + MAC
-  // using the received tunnelNonce and inAEADKey
-  msg = encTunMsg \|\| MAC
-  tunnelNonce = received tunnelNonce
-  encTunMsg = ChaCha20-Poly1305-Decrypt(msg, nonce = tunnelNonce, key = inAEADKey)
+   // For the first round, ChaCha20-Poly1305 decrypt each message's encrypted data frame + MAC
+     // using the received tunnelNonce and inAEADKey
+     msg = encTunMsg \|\| MAC
+     tunnelNonce = received tunnelNonce
+     encTunMsg = ChaCha20-Poly1305-Decrypt(msg, nonce = tunnelNonce, key = inAEADKey)
 
-  // Repeat for each hop in the tunnel back to the IBGW
-  // For every round, ChaCha20 decrypt each hop's layer encryption on each message's encrypted data frame
-  // Replace the received tunnelNonce w/ the prior round's decrypted tunnelNonce for each hop
-  decMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
-  obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
-  tunnelNonce = ChaCha20(msg = tunnelNonce, nonce = obfsNonce, key = nonceKey)
-{% endhighlight %}
+     // Repeat for each hop in the tunnel back to the IBGW
+     // For every round, ChaCha20 decrypt each hop's layer encryption on each message's encrypted data frame
+     // Replace the received tunnelNonce w/ the prior round's decrypted tunnelNonce for each hop
+     decMsg = ChaCha20(msg = encTunMsg, nonce = tunnelNonce, key = layerKey)
+     obfsNonce = ChaCha20(msg = obfsNonce, nonce = tunnelNonce, key = nonceKey)
+     tunnelNonce = ChaCha20(msg = tunnelNonce, nonce = obfsNonce, key = nonceKey)
 
 Security Analysis for ChaCha20+ChaCha20-Poly1305 Tunnel Layer Encryption
 ------------------------------------------------------------------------
@@ -337,5 +333,4 @@ Both attacks are also blocked by disallowing multiple oracle calls using the sam
 References
 ==========
 
-.. [Tunnel-Implementation]
-   https://geti2p.net/en/docs/tunnels/implementation
+- `Tunnel-Implementation </docs/specs/tunnel-implementation/>`__

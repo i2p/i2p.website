@@ -18,7 +18,6 @@ Overview
 This proposal is about implementing proper multihoming support in I2P that can
 scale up to large sites.
 
-
 Motivation
 ==========
 
@@ -31,36 +30,42 @@ We need some sort of meta-LS, where the LS lists the 100 real LS hashes. This
 would be long-lived, a lot longer than 10 minutes. So it's a two-stage lookup
 for the LS, but the first stage could be cached for hours.
 
-
 Specification
 =============
 
 The meta-LeaseSet would have the following format::
 
-  - Destination
-  - Published Time stamp
-  - Expiration
+- Destination
+
+- Published Time stamp
+
+- Expiration
+
+- Flags
+
+- Properties
+
+- Number of entries
+
+- Number of revocations
+
+- Entries. Each entry contains:
+
+  - Hash
   - Flags
+  - Expiration
+  - Cost (priority)
   - Properties
-  - Number of entries
-  - Number of revocations
 
-  - Entries. Each entry contains:
-    - Hash
-    - Flags
-    - Expiration
-    - Cost (priority)
-    - Properties
+- Revocations. Each revocation contains:
 
-  - Revocations. Each revocation contains:
-    - Hash
-    - Flags
-    - Expiration
+  - Hash
+  - Flags
+  - Expiration
 
-  - Signature
+- Signature
 
 Flags and properties are included for maximum flexibility.
-
 
 Comments
 ========

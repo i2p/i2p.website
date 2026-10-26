@@ -16,11 +16,10 @@ Overview
 
 This proposal outlines a design for a protocol enabling an I2P client, service
 or external balancer process to manage multiple routers transparently hosting a
-single [Destination]_.
+single `Destination </docs/specs/common-structures/#destination>`__.
 
 The proposal currently does not specify a concrete implementation. It could be
-implemented as an extension to [I2CP]_, or as a new protocol.
-
+implemented as an extension to `I2CP </docs/specs/i2cp/>`__, or as a new protocol.
 
 Motivation
 ==========
@@ -28,7 +27,7 @@ Motivation
 Multihoming is where multiple routers are used to host the same Destination.
 The current way to multihome with I2P is to run the same Destination on each
 router independently; the router that gets used by clients at any particular
-time is the last one to publish a [LeaseSet]_.
+time is the last one to publish a LeaseSet.
 
 This is a hack and presumably won't work for large websites at scale. Say we had
 100 multihoming routers each with 16 tunnels. That's 1600 LeaseSet publishes
@@ -36,7 +35,7 @@ every 10 minutes, or almost 3 per second. The floodfills would get overwhelmed
 and throttles would kick in. And that's before we even mention the lookup
 traffic.
 
-[Prop123]_ solves this problem with a meta-LeaseSet, which lists the 100 real
+Proposal 123 solves this problem with a meta-LeaseSet, which lists the 100 real
 LeaseSet hashes. A lookup becomes a two-stage process: first looking up the
 meta-LeaseSet, and then one of the named LeaseSets. This is a good solution to
 the lookup traffic issue, but on its own it creates a significant privacy leak:
@@ -48,43 +47,44 @@ We need a way for an I2P client or service to spread a single Destination across
 multiple routers, in a way that is indistinguishable to using a single router
 (from the perspective of the LeaseSet itself).
 
-
 Design
 ======
 
 Definitions
 -----------
 
-    User
-        The person or organisation wanting to multihome their Destination(s). A
-        single Destination is considered here without loss of generality (WLOG).
+::
 
-    Client
-        The application or service running behind the Destination. It may be a
-        client-side, server-side, or peer-to-peer application; we refer to it as
-        a client in the sense that it connects to the I2P routers.
+   User
+       The person or organisation wanting to multihome their Destination(s). A
+       single Destination is considered here without loss of generality (WLOG).
 
-        The client consists of three parts, which may all be in the same process
-        or may be split across processes or machines (in a multi-client setup):
+   Client
+       The application or service running behind the Destination. It may be a
+       client-side, server-side, or peer-to-peer application; we refer to it as
+       a client in the sense that it connects to the I2P routers.
 
-        Balancer
-            The part of the client that manages peer selection and tunnel
-            building. There is a single balancer at any one time, and it
-            communicates with all I2P routers. There may be failover balancers.
+       The client consists of three parts, which may all be in the same process
+       or may be split across processes or machines (in a multi-client setup):
 
-        Frontend
-            The part of the client that can be operated in parallel. Each
-            frontend communicates with a single I2P router.
+       Balancer
+           The part of the client that manages peer selection and tunnel
+           building. There is a single balancer at any one time, and it
+           communicates with all I2P routers. There may be failover balancers.
 
-        Backend
-            The part of the client that is shared between all frontends. It has
-            no direct communication with any I2P router.
+       Frontend
+           The part of the client that can be operated in parallel. Each
+           frontend communicates with a single I2P router.
 
-    Router
-        An I2P router run by the user that sits at the boundary between the I2P
-        network and the user's network (akin to an edge device in corporate
-        networks). It builds tunnels under the command of a balancer, and routes
-        packets for a client or frontend.
+       Backend
+           The part of the client that is shared between all frontends. It has
+           no direct communication with any I2P router.
+
+   Router
+       An I2P router run by the user that sits at the boundary between the I2P
+       network and the user's network (akin to an edge device in corporate
+       networks). It builds tunnels under the command of a balancer, and routes
+       packets for a client or frontend.
 
 High-level overview
 -------------------
@@ -96,51 +96,50 @@ Imagine the following desired configuration:
 - All twelve tunnels should be published in a single LeaseSet.
 
 Single-client
-`````````````
-.. raw:: html
+-------------
 
-  {% highlight lang='text' %}
-                -{ [Tunnel 1]===\
-                 |-{ [Tunnel 2]====[Router 1]-----
-                 |-{ [Tunnel 3]===/               \
-                 |                                 \
-                 |-{ [Tunnel 4]===\                 \
-  [Destination]  |-{ [Tunnel 5]====[Router 2]-----   \
-    \            |-{ [Tunnel 6]===/               \   \
-     [LeaseSet]--|                               [Client]
-                 |-{ [Tunnel 7]===\               /   /
-                 |-{ [Tunnel 8]====[Router 3]-----   /
-                 |-{ [Tunnel 9]===/                 /
-                 |                                 /
-                 |-{ [Tunnel 10]==\               /
-                 |-{ [Tunnel 11]===[Router 4]-----
-                  -{ [Tunnel 12]==/
-{% endhighlight %}
+::
+
+                   -{ [Tunnel 1]===\
+                    |-{ [Tunnel 2]====[Router 1]-----
+                    |-{ [Tunnel 3]===/               \
+                    |                                 \
+                    |-{ [Tunnel 4]===\                 \
+     [Destination]  |-{ [Tunnel 5]====[Router 2]-----   \
+       \            |-{ [Tunnel 6]===/               \   \
+        [LeaseSet]--|                               [Client]
+                    |-{ [Tunnel 7]===\               /   /
+                    |-{ [Tunnel 8]====[Router 3]-----   /
+                    |-{ [Tunnel 9]===/                 /
+                    |                                 /
+                    |-{ [Tunnel 10]==\               /
+                    |-{ [Tunnel 11]===[Router 4]-----
+                     -{ [Tunnel 12]==/
 
 Multi-client
-````````````
-.. raw:: html
+------------
 
-  {% highlight lang='text' %}
-                -{ [Tunnel 1]===\
-                 |-{ [Tunnel 2]====[Router 1]---------[Frontend 1]
-                 |-{ [Tunnel 3]===/          \                    \
-                 |                            \                    \
-                 |-{ [Tunnel 4]===\            \                    \
-  [Destination]  |-{ [Tunnel 5]====[Router 2]---\-----[Frontend 2]   \
-    \            |-{ [Tunnel 6]===/          \   \                \   \
-     [LeaseSet]--|                         [Balancer]            [Backend]
-                 |-{ [Tunnel 7]===\          /   /                /   /
-                 |-{ [Tunnel 8]====[Router 3]---/-----[Frontend 3]   /
-                 |-{ [Tunnel 9]===/            /                    /
-                 |                            /                    /
-                 |-{ [Tunnel 10]==\          /                    /
-                 |-{ [Tunnel 11]===[Router 4]---------[Frontend 4]
-                  -{ [Tunnel 12]==/
-{% endhighlight %}
+::
+
+                   -{ [Tunnel 1]===\
+                    |-{ [Tunnel 2]====[Router 1]---------[Frontend 1]
+                    |-{ [Tunnel 3]===/          \                    \
+                    |                            \                    \
+                    |-{ [Tunnel 4]===\            \                    \
+     [Destination]  |-{ [Tunnel 5]====[Router 2]---\-----[Frontend 2]   \
+       \            |-{ [Tunnel 6]===/          \   \                \   \
+        [LeaseSet]--|                         [Balancer]            [Backend]
+                    |-{ [Tunnel 7]===\          /   /                /   /
+                    |-{ [Tunnel 8]====[Router 3]---/-----[Frontend 3]   /
+                    |-{ [Tunnel 9]===/            /                    /
+                    |                            /                    /
+                    |-{ [Tunnel 10]==\          /                    /
+                    |-{ [Tunnel 11]===[Router 4]---------[Frontend 4]
+                     -{ [Tunnel 12]==/
 
 General client process
-``````````````````````
+----------------------
+
 - Load or generate a Destination.
 
 - Open up a session with each router, tied to the Destination.
@@ -161,9 +160,10 @@ General client process
   - Publish the LeaseSet through one or more of the routers.
 
 Differences to I2CP
-```````````````````
+-------------------
+
 To create and manage this configuration, the client needs the following new
-functionality beyond what is currently provided by [I2CP]_:
+functionality beyond what is currently provided by `I2CP </docs/specs/i2cp/>`__:
 
 - Tell a router to build tunnels, without creating a LeaseSet for them.
 - Get a list of the current tunnels in the inbound pool.
@@ -178,71 +178,73 @@ in how the client manages its tunnels:
 Protocol outline
 ----------------
 
-.. raw:: html
+::
 
-  {% highlight %}
-         Client                           Router
+            Client                           Router
 
-                    --------------------->  Create Session
-   Session Status  <---------------------
-                    --------------------->  Get Fast Tier
-        Peer List  <---------------------
-                    --------------------->  Create Tunnel
-    Tunnel Status  <---------------------
-                    --------------------->  Get Tunnel Pool
-      Tunnel List  <---------------------
-                    --------------------->  Publish LeaseSet
-                    --------------------->  Send Packet
-      Send Status  <---------------------
-  Packet Received  <---------------------
-{% endhighlight %}
+                       --------------------->  Create Session
+      Session Status  <---------------------
+                       --------------------->  Get Fast Tier
+           Peer List  <---------------------
+                       --------------------->  Create Tunnel
+       Tunnel Status  <---------------------
+                       --------------------->  Get Tunnel Pool
+         Tunnel List  <---------------------
+                       --------------------->  Publish LeaseSet
+                       --------------------->  Send Packet
+         Send Status  <---------------------
+     Packet Received  <---------------------
 
 Messages
-````````
-    Create Session
-        Create a session for the given Destination.
+--------
 
-    Session Status
-        Confirmation that the session has been set up, and the client can now
-        start building tunnels.
+**Create Session**
 
-    Get Fast Tier
-        Request a list of the peers that the router currently would consider
-        building tunnels through.
+- Create a session for the given Destination.
 
-    Peer List
-        A list of peers known to the router.
+**Session Status**
 
-    Create Tunnel
-        Request that the router build a new tunnel through the specified peers.
+- Confirmation that the session has been set up, and the client can now start building tunnels.
 
-    Tunnel Status
-        The result of a particular tunnel build, once it is available.
+**Get Fast Tier**
 
-    Get Tunnel Pool
-        Request a list of the current tunnels in the inbound or outbound pool
-        for the Destination.
+- Request a list of the peers that the router currently would consider building tunnels through.
 
-    Tunnel List
-        A list of tunnels for the requested pool.
+**Peer List**
 
-    Publish LeaseSet
-        Request that the router publish the provided LeaseSet through one of the
-        outbound tunnels for the Destination. No reply status is needed; the
-        router should continue re-trying until it is satisfied that the LeaseSet
-        has been published.
+- A list of peers known to the router.
 
-    Send Packet
-        An outgoing packet from the client. Optionally specifies an outbound
-        tunnel through which the packet must (should?) be sent.
+**Create Tunnel**
 
-    Send Status
-        Informs the client of the success or failure of sending a packet.
+- Request that the router build a new tunnel through the specified peers.
 
-    Packet Received
-        An incoming packet for the client. Optionally specifies the inbound
-        tunnel through which the packet was received(?)
+**Tunnel Status**
 
+- The result of a particular tunnel build, once it is available.
+
+**Get Tunnel Pool**
+
+- Request a list of the current tunnels in the inbound or outbound pool for the Destination.
+
+**Tunnel List**
+
+- A list of tunnels for the requested pool.
+
+**Publish LeaseSet**
+
+- Request that the router publish the provided LeaseSet through one of the outbound tunnels for the Destination. No reply status is needed; the router should continue re-trying until it is satisfied that the LeaseSet has been published.
+
+**Send Packet**
+
+- An outgoing packet from the client. Optionally specifies an outbound tunnel through which the packet must (should?) be sent.
+
+**Send Status**
+
+- Informs the client of the success or failure of sending a packet.
+
+**Packet Received**
+
+- An incoming packet for the client. Optionally specifies the inbound tunnel through which the packet was received(?)
 
 Security implications
 =====================
@@ -262,16 +264,18 @@ observer to determine that the LeaseSet is multihomed:
   (IBGW, the node published in a Lease) is selected from a fraction of the tier
   (partitioned randomly per-tunnel pool by hash, not count):
 
-      1 hop
-          The whole fast tier
+  ::
 
-      2 hops
-          Half of the fast tier
-          (the default until mid-2014)
+     1 hop
+         The whole fast tier
 
-      3+ hops
-          A quarter of the fast tier
-          (3 being the current default)
+     2 hops
+         Half of the fast tier
+         (the default until mid-2014)
+
+     3+ hops
+         A quarter of the fast tier
+         (3 being the current default)
 
   That means on average the IBGWs will be from a set of 20-30 peers.
 
@@ -293,20 +297,18 @@ As the client has full control over which peers it selects, this information
 leakage could be reduced or eliminated by selecting IBGWs from a reduced set of
 peers.
 
-
 Compatibility
 =============
 
 This design is completely backwards-compatible with the network, because there
-are no changes to the [LeaseSet]_ format. All routers would need to be aware of
+are no changes to the LeaseSet format. All routers would need to be aware of
 the new protocol, but this is not a concern as they would all be controlled by
 the same entity.
-
 
 Performance and scalability notes
 =================================
 
-The upper limit of 16 [Leases]_ per LeaseSet is unaltered by this proposal. For
+The upper limit of 16 Leases per LeaseSet is unaltered by this proposal. For
 Destinations that require more tunnels than this, there are two possible network
 modifications:
 
@@ -316,31 +318,20 @@ modifications:
   packet sizes. The maximum feasible LeaseSet size is defined by the MTU of the
   underlying transports, and is therefore around 16kB.
 
-- Implement [Prop123]_ for tiered LeaseSets. In combination with this proposal,
+- Implement Proposal 123 for tiered LeaseSets. In combination with this proposal,
   the Destinations for the sub-LeaseSets could be spread across multiple
   routers, effectively acting like multiple IP addresses for a clearnet service.
-
 
 Acknowledgements
 ================
 
 Thanks to psi for the discussion that led to this proposal.
 
-
 References
 ==========
 
-.. [Destination]
-    {{ ctags_url('Destination') }}
-
-.. [I2CP]
-    {{ site_url('docs/protocol/i2cp', True) }}
-
-.. [Leases]
-    {{ ctags_url('Lease') }}
-
-.. [LeaseSet]
-    {{ ctags_url('LeaseSet') }}
-
-.. [Prop123]
-    {{ proposal_url('123') }}
+- `Destination </docs/specs/common-structures/#destination>`__
+- `I2CP </docs/specs/i2cp/>`__
+- `Leases </docs/specs/common-structures/#lease>`__
+- `LeaseSet </docs/specs/common-structures/#leaseset>`__
+- `Prop123 </proposals/123-new-netdb-entries/>`__

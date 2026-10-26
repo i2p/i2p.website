@@ -16,13 +16,11 @@ Overview
 
 This proposal is about increasing the size limit on I2NP messages.
 
-
 Motivation
 ==========
 
 iMule's use of 12KB datagrams exposed lots of problems. The actual limit today
 is more like 10KB.
-
 
 Design
 ======

@@ -16,24 +16,20 @@ Overview
 
 This proposal is use DNS over datagrams for subdomains.
 
-
 Motivation
 ==========
 
 TBD
-
 
 Design
 ======
 
 TBD
 
-
 Specification
 =============
 
 TBD
-
 
 Migration
 =========

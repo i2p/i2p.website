@@ -13,24 +13,20 @@ Tunnel Build Message Options
 
 Note
 ====
+
 This proposal was not implemented as specified,
 however, the ECIES long and short build messages (proposals 152 and 157)
 were designed with extensible options fields.
-See [SPEC]_ for the official specification.
-
+See the `Tunnel Creation ECIES specification </docs/specs/tunnel-implementation/#tunnel-creation-ecies>`__ for the official specification.
 
 Overview
 ========
 
-ref: http://i2p-projekt.i2p/spec/tunnel-creation
-
 Add a flexible, extensible mechanism for options in the I2NP Tunnel Build Records
 which are contained in the Tunnel Build and Tunnel Build Reply messages.
 
-
 Motivation
 ==========
-
 
 There are a few tentative, undocumented proposals coming to set options or configuration in the Tunnel Build Message,
 so the creator of the tunnel may pass some parameters to each tunnel hop.
@@ -41,8 +37,6 @@ Defining more option fields rigidly could cause problems later.
 
 This document proposes a new, flexible options mapping scheme.
 
-
-
 Design
 ======
 
@@ -52,7 +46,6 @@ These options are not yet defined, and are not required to be at this time.
 Don't use the "mapping" structure (which encodes a Java Properties object), it is too wasteful.
 Use a number to indicate each option and length, which results in a compact yet flexible encoding.
 Options must be registered by number in our specifications, but we will also reserve a range for experimental options.
-
 
 Specification
 =============
@@ -75,7 +68,7 @@ We will maintain a registry of option numbers in our specs, and also define a ra
 The option value is 0 to 15 bytes, to be interpreted by whatever needs that option. Unknown option numbers should be ignored.
 
 The options are concluded with an option number/length of 0/0, that is two 0 bytes.
- The remainder of the 29 bytes, if any, should be filled with random padding, as usual.
+The remainder of the 29 bytes, if any, should be filled with random padding, as usual.
 
 This encoding gives us space for 14 0-byte options, or 9 1-byte options, or 7 2-byte options.
 An alternative would be to use only one byte for the option number/length,
@@ -87,14 +80,11 @@ If the tunnel hop needs to return options to the creator, we may use the same fo
 prefixed by some magic number of several bytes (since we don't have a defined flag byte to indicate that options are present).
 There are 495 spare bytes in the TBRM.
 
-
 Notes
 =====
 
 These changes are to the Tunnel Build Records, and so may be used in all Build Message flavors -
 Tunnel Build Request, Variable Tunnel Build Request, Tunnel Build Reply, and Variable Tunnel Build Reply.
-
-
 
 Migration
 =========
@@ -104,10 +94,7 @@ The space can be converted to contain options without migration issues.
 In the build message, the presence of options is indicated in the flags byte.
 In the build reply message, the presence of options is indicated by a multi-byte magic number.
 
-
-
 References
 ==========
 
-.. [SPEC]
-   {{ spec_url('tunnel-creation-ecies') }}
+- `SPEC </docs/specs/tunnel-implementation/#tunnel-creation-ecies>`__

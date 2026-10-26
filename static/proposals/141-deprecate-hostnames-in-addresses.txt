@@ -24,7 +24,6 @@ publishing routers configured with hostnames should replace hostnames with IPs b
 and other routers should ignore addresses with hostnames.
 Routers should not do DNS lookups of published hostnames.
 
-
 Motivation
 ==========
 
@@ -46,7 +45,7 @@ of resolving a hostname to either an IPv4 or IPv6 address did not exist.
 
 In Java I2P, it's always been a challenge to propagate a configured
 hostname to both published transports, and the situation got more complex
-with IPv6. Open ticket 1050 http://trac.i2p2.i2p/ticket/1050 details some of the problems.
+with IPv6.
 It isn't clear if a dual-stack host should publish both a hostname and a literal
 IPv6 address or not. The hostname is published for the SSU address but not the NTCP address.
 
@@ -96,7 +95,6 @@ However, these changes are only short-term mitigations and do not fix the underl
 issues above. Therefore, the simplest and most complete fix is to prohibit
 hostnames in router infos, thus eliminating DNS lookups for them.
 
-
 Design
 ======
 
@@ -113,8 +111,6 @@ should not connect to the published router.
 In no case should a router do a DNS lookup of a published hostname,
 either directly or via an underlying library.
 
-
-
 Specification
 =============
 
@@ -125,12 +121,6 @@ router addresses that contain hostnames.
 This also applies to "ihost0", "ihost1", and "ihost2" parameters in an SSU address.
 Routers should ignore introducer addresses that contain hostnames.
 
-The relevant section is "Router Address Specification" in the transport specifications:
-http://i2p-projekt.i2p/en/docs/transport/ntcp
-and
-http://i2p-projekt.i2p/en/docs/transport/ssu
-
-
 Notes
 =====
 
@@ -139,7 +129,6 @@ While DNS lookups for reseed hosts are much less frequent,
 they could still be an issue. If necessary, this can be fixed simply
 by replacing the hostnames with IPs in the hardcoded list of URLs;
 no specification or code changes would be required.
-
 
 Migration
 =========

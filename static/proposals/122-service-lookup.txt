@@ -19,7 +19,6 @@ Overview
 This is the full-monty bombastic anything-goes-in-the-netdb proposal. AKA
 anycast. This would be the 4th proposed LS2 subtype.
 
-
 Motivation
 ==========
 
@@ -31,7 +30,6 @@ bootstrapping or information layer.
 There's nobody in charge so unlike with massive multihoming, you can't have a
 signed authoritative list. So you would just publish your record to a floodfill.
 The floodfill would aggregate these and send them as a response to queries.
-
 
 Example
 =======
@@ -55,7 +53,6 @@ When somebody did a lookup, they would get back a list of those records:
 - signature of floodfill
 
 Expirations would be relatively long, hours at least.
-
 
 Security implications
 =====================

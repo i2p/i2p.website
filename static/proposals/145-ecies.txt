@@ -22,7 +22,6 @@ Overview
 This proposal introduces new crypto type ECIES-P256 that can appear in certiticate part of identity, or as separate encryption key type in LeaseSet2.
 Can be used in RouterInfo, LeaseSet1 and LeaseSet2.
 
-
 ElGamal Key Locations
 ---------------------
 
@@ -48,13 +47,11 @@ The rest must be filled with random padding.
 - In a LS2
   This is the destination's encryption key. Key size is 64 bytes.
 
-
 EncTypes in Key Certs
 ---------------------
 
 ECIES-P256 uses encryption type 1.
 Encryption types 2 and 3 should be reserved for ECIES-P284 and ECIES-P521
-
 
 Asymmetric Crypto Uses
 ----------------------
@@ -62,11 +59,10 @@ Asymmetric Crypto Uses
 This proposal describes replacement ofElGamal for:
 
 1) Tunnel Build messages (key is in RouterIdentity). ElGamal block is 512 bytes
-  
+
 2) Client End-to-end ElGamal+AES/SessionTag (key is in LeaseSet, the Destination key is unused). ElGamal block is 514
 
 3) Router-to-router encryption of netdb and other I2NP msgs. ElGamal block is 514 bytes
-
 
 Goals
 -----
@@ -86,7 +82,6 @@ Justification
 ElGamal/AES+SessionTag engine always stuck on lack of tags, that produces dramatic perfomance degradation in I2P communications.
 Tunnel build is heaviest operation because originator must run ElGamal encryption 3 times per each tunnel build request.
 
-
 Cryptographic Primitives required
 =================================
 
@@ -95,7 +90,6 @@ Cryptographic Primitives required
 2) AES-CBC-256
 
 3) SHA256
-
 
 Detailed Proposal
 =================
@@ -106,20 +100,22 @@ LeaseSet's separate encryption key is based on key type from identity.
 
 ECIES block for ElGamal/AES+SessionTags
 ---------------------------------------
+
 ECIES block replaces ElGamal block for For ElGamal/AES+SessionTags. The length in 514 bytes.
-Consists of two parts 257 bytes each. 
+Consists of two parts 257 bytes each.
 The first part starts with zero and then P256 ephemeral public key of 64 bytes, the rest 192 bytes is random padding.
 The second part starts with zero and then AES-CBC-256 encrypted 256 bytes with the same content as in ElGamal.
 
 ECIES block for tunnel build record
-------------------------------------
+-----------------------------------
+
 Tunnel build record is the same, but without leading zeroes in blocks.
 A tunnel can be through any combination of routers' crypto types and it's done per record.
 Tunnel's originator encrypts records depending on tunnel participant's published crypto type, tunnel participant decrypts based on own crypto type.
 
-
 AES-CBC-256 key
 ---------------
+
 This is ECDH shared keys calculation where KDF is SHA256 over x coordinate.
 Let Alice as encryptor and Bob as decryptor.
 Assume k is Alice's randomly picked ephemeral P256 private key and P is Bob's public key.
@@ -130,5 +126,3 @@ Asssume K is Alice's ephemeral public key and p is Bob's private key.
 Bob take K from first block of received message and calculates S = p*K
 
 AES encryption key is SHA256(Sx) and iv is Sy.
-
-

@@ -5,24 +5,22 @@ I2P proposal #165: SSU2 fix
     :author: weko, orignal, the Anonymous, zzz
     :created: 2024-01-19
     :thread: http://i2pforum.i2p/viewforum.php?f=13
-    :lastupdated: 2024-11-17
-    :status: Open
+    :lastupdated: 2026-03-15
+    :status: Rejected
     :target: 0.9.62
 
 .. contents::
 
 
-
-Proposal by weko, orignal, the Anonymous and zzz.
-
+Status: Closed, obsolete. Replaced by a different fix integrated into proposal 169.
 
 Overview
---------
+========
 
 This document suggests changes to SSU2 following an attack on I2P that exploited vulnerabilities in SSU2. The primary goal is to enhance security and prevent Distributed Denial of Service (DDoS) attacks and de-anonymization attempts.
 
 Threat model
-------------
+============
 
 An attacker creates new fake RIs (router doesn’t exist): is regular RI,
 but he puts address, port, s and i keys from real Bob’s router, then he
@@ -35,14 +33,15 @@ good routers and do not framing attacker’s routers, if we ban IP with
 many RIs (instead better distrubute tunnel building to this RIs as to
 one router).
 
-
 Potential fixes
----------------
+===============
+
+.. _1-fix-with-support-for-old-before-the-change-routers:
 
 1. Fix with support for old (before the change) routers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------------
 
-.. _overview-1:
+.. \_overview-1:
 
 Overview
 ^^^^^^^^
@@ -66,10 +65,12 @@ So, there is a problem with fake SSU2-only RI flood: we can’t verify it
 by ourselves and are forced to wait when the real router will make
 connections with us.
 
-2. Verify RouterIdent during connection creation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _2-verify-routerident-during-connection-creation:
 
-.. _overview-2:
+2. Verify RouterIdent during connection creation
+------------------------------------------------
+
+.. \_overview-2:
 
 Overview
 ^^^^^^^^
@@ -99,7 +100,7 @@ scheme: Fix 1 for old routers and Fix 2 for new routers. If RI says new
 version, but while in the connection we didnt’s recieve the RouterIdent
 block - terminate and remove RI.
 
-.. _problems-1:
+.. \_problems-1:
 
 Problems
 ^^^^^^^^
@@ -114,17 +115,19 @@ Instead of 32 byte RouterIdent, we can probably use 4 byte
 siphash-of-the-hash, some HKDF or something else, which must be
 sufficient.
 
-3. Bob sets i = RouterIdent
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _3-bob-sets-i--routerident:
 
-.. _overview-3:
+3. Bob sets i = RouterIdent
+---------------------------
+
+.. \_overview-3:
 
 Overview
 ^^^^^^^^
 
 Bob uses his RouterIdent as i key.
 
-.. _behavior-1:
+.. \_behavior-1:
 
 Behavior
 ^^^^^^^^
@@ -138,7 +141,7 @@ make the connection, otherwise we should verify it first (see fix 1).
 With (1) Alice does not support old routers. With (2) Alice supports old
 routers.
 
-.. _problems-2:
+.. \_problems-2:
 
 Problems
 ^^^^^^^^
@@ -146,7 +149,7 @@ Problems
 An attacker can mask his fake routers as old, and with (2) we are
 waiting for ‘verified’ as in fix 1 anyways.
 
-.. _notes-1:
+.. \_notes-1:
 
 Notes
 ^^^^^
@@ -155,20 +158,22 @@ To save on RI size, better add handling if i key isn’t specified. If it
 is, then i = RouterIdent. In that case, Bob does not support old
 routers.
 
-4. Add one more MixHash to KDF of SessionRequest
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _4-add-one-more-mixhash-to-kdf-of-sessionrequest:
 
-.. _overview-4:
+4. Add one more MixHash to KDF of SessionRequest
+------------------------------------------------
+
+.. \_overview-4:
 
 Overview
 ^^^^^^^^
 
 Add MixHash(Bob's ident hash) to NOISE state of "SessionRequest" message, e.g.
-h = SHA256 (h || Bob's ident hash).
+h = SHA256 (h \|\| Bob's ident hash).
 It must be last MixHash used as ad for ENCYPT or DECRYPT.
 Additional SSU2 header flag "Verify Bob's ident" = 0x02 must be introduced.
 
-.. _behavior-4:
+.. \_behavior-4:
 
 Behavior
 ^^^^^^^^
@@ -182,21 +187,19 @@ Compatibity with older routers
 - Alice must check Bob's router version and if it satisfies miminal version supporting this proposal add this MixHash and set "Verify Bob's ident" flag. If router is older, Alice doesn't add MixHash and doesn't set "Verify Bob's ident" flag.
 - Bob checks "Verify Bob's ident" flag and adds this MixHash if it's set. Older router don't set this flag and this MixHash shouldn't be added.
 
-.. _problems-4:
+.. \_problems-4:
 
 Problems
 ^^^^^^^^
 
-- An attacker can claim fake routers with older version. At some point olders router should be used with precaution and  after they got verified by other ways.
-
+- An attacker can claim fake routers with older version. At some point olders router should be used with precaution and after they got verified by other ways.
 
 Backward compability
---------------------
+====================
 
 Described in fixes.
 
-
 Current status
---------------
+==============
 
 i2pd: Fix 1.

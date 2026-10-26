@@ -18,7 +18,6 @@ Overview
 This proposal is about a new LeaseSet format with support for newer encryption
 types.
 
-
 Motivation
 ==========
 
@@ -34,19 +33,23 @@ make use of more modern encryption types; routers that can fetch and read a LS2
 will be guaranteed to have support for any encryption types introduced alongside
 it.
 
-
 Specification
 =============
 
 The basic LS2 format would be like this:
 
 - dest
+
 - published timestamp (8 bytes)
+
 - expires (8 bytes)
+
 - subtype (1 byte) (regular, encrypted, meta, or service)
+
 - flags (2 bytes)
 
 - subtype-specific part:
+
   - encryption type, encryption key, and leases for regular
   - blob for encrypted
   - properties, hashes, ports, revocations, etc. for service

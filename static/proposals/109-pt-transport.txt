@@ -17,7 +17,6 @@ Overview
 This proposal is for creating an I2P transport that connects to other routers
 through Pluggable Transports.
 
-
 Motivation
 ==========
 
@@ -28,7 +27,6 @@ I2P already has a modular transport system that decreases the barrier to adding
 alternative transports. Adding support for PTs would provide I2P with an easy
 way to experiment with alternative protocols, and get ready for blocking
 resistance.
-
 
 Design
 ======

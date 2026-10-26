@@ -20,7 +20,6 @@ This proposal is to distribute blocklist updates in the news file,
 which is distributed in signed su3 format.
 Implemented in 0.9.28.
 
-
 Motivation
 ==========
 
@@ -28,7 +27,6 @@ Without this, the blocklist is only updated in the release.
 Uses existing news subscription.
 This format could be used in various router implementations, but only the Java router
 uses the news subscription now.
-
 
 Design
 ======
@@ -44,7 +42,6 @@ The signature must be verifed on import.
 The signer will be specified and may be different from the su3 signer.
 Routers may use a different trust list for the blocklist.
 
-
 Specification
 =============
 
@@ -56,14 +53,7 @@ IPv6 addresses may be in abbreviated format (containing "::").
 Support for blocking with a net mask, e.g. x.y.0.0/16, is optional.
 Support for host names is optional.
 
-
 Migration
 =========
 
 Routers that don't support this will ignore the new XML section.
-
-
-See Also
-========
-
-Proposal 130

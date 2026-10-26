@@ -18,557 +18,610 @@ This proposal exposes new information to the i2pcontrol API, allowing for greate
 Motivation
 ==========
 
-The use case for this proposal is creating a unified and simplified router console
-that can be shared across every router implementation with the standard suite of
-i2p tunnels. Essentially, this proposal allows for a more intuitive and
-user-friendly experience for users across the I2P network.
+The use case for this proposal is creating a unified and simplified router console that can be shared across every router implementation with the standard suite of i2p tunnels. Essentially, this proposal allows for a more intuitive and user-friendly experience for users across the I2P network.
 
-This proposal will also allow for greater flexibility in the I2P API for
-applications to implement and manage an I2P administrative interface.
-Exposing such information to i2pcontrol allows for users to create more advanced
-applications and provide better support for remote management.
+This proposal will also allow for greater flexibility in the I2P API for applications to implement and manage an I2P administrative interface. Exposing such information to i2pcontrol allows for users to create more advanced applications and provide better support for remote management.
 
 Design
 ======
 
-When users interact with the i2pcontrol API, they will be able to access new endpoints that provide the information mentioned above. For example, the i2pcontrol API will expose new methods `TunnelManager` and `AddressBook` that will allow users to enter parameters to create, delete, retrieve, and modify tunnels and addressbooks. Additionally, the pre-existing `RouterInfo` method will have new parameters to expose information about the router.
+When users interact with the i2pcontrol API, they will be able to access new endpoints that provide the information mentioned above.
+For example, the i2pcontrol API will expose new methods ``TunnelManager`` and ``AddressBook`` that will allow
+users to enter parameters to create, delete, retrieve, and modify tunnels and addressbooks.
+Additionally, the pre-existing ``RouterInfo`` method will have new parameters to expose information about the router.
 
 Security implications
 =====================
 
-There are no expected additional security implications from this proposal, as the information being exposed is already accessible through other means. However, it is important to ensure that proper authentication and authorization mechanisms are in place for accessing the i2pcontrol API, to prevent unauthorized access to sensitive information or control over the router.
+There are no expected additional security implications from this proposal,
+as the information being exposed is already accessible through other means.
+However, it is important to ensure that proper authentication and authorization mechanisms are in place for accessing the i2pcontrol API,
+to prevent unauthorized access to sensitive information or control over the router.
+
+.. _api-specification--methods:
 
 API Specification & Methods
 ===========================
 
 All requests follow the JSON-RPC 2.0 structure:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "MethodName",
-  "params": {
-    // method-specific parameters
-  },
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "method": "MethodName",
+     "params": {
+       // method-specific parameters
+     },
+     "id": 1
+   }
 
 Method - RouterInfo (GETTERS)
 -----------------------------
 
-Below contains the new parameters for `RouterInfo` method and what they return:
+Below contains the new parameters for ``RouterInfo`` method and what they return:
 
-- `i2p.router.news` - returns all router news entries. Return Type - `String`
-- `i2p.router.id` - returns the router hash as a Base64 string, or `null`. Return Type - `String`
-- `i2p.router.clockskew` - returns the average peer clock skew, or `null`. Return Type - `long`
-- `i2p.router.info` - returns the serialized RouterInfo as a Base64 string, or `null`. Return Type - `String`
-- `i2p.router.logs` - returns recent router log messages. Return Type - `List<String>`
-- `i2p.router.logs.clear` - clears the router log buffer and returns `"success"`. Return Type - `String`
+- ``i2p.router.news`` - returns all router news entries. Return Type - ``String``
 
-- `i2p.router.net.total.received.bytes` - returns total bytes received since startup. *(adopted from i2pd)* Return Type - `long`
-- `i2p.router.net.total.sent.bytes` - returns total bytes sent since startup. *(adopted from i2pd)* Return Type - `long`
-- `i2p.router.net.total.transit.bytes` - returns total transit bytes forwarded since startup. *(adopted from i2pd)* Return Type - `long`
-- `i2p.router.net.bw.transit.15s` - returns 15-second average transit bandwidth (bytes/sec). *(adopted from i2pd)* Return Type - `long`
+- ``i2p.router.id`` - returns the router hash as a Base64 string, or ``null``. Return Type - ``String``
 
-- `i2p.router.net.tunnels.shareratio` - returns the tunnel share ratio. Return Type - `double`
-- `i2p.router.net.tunnels.participating.info` - returns participating tunnel info. Return Type - `List<Map<String, Object>>`
-- `i2p.router.net.tunnels.i2ptunnel` - returns configured I2PTunnel controller info (quick stats of all). Return Type - `List<Map<String, Object>>`
-- `i2p.router.net.tunnels.exploratory.inbound` - returns exploratory inbound tunnel count. Return Type - `int`
-- `i2p.router.net.tunnels.exploratory.outbound` - returns exploratory outbound tunnel count. Return Type - `int`
-- `i2p.router.net.tunnels.exploratory.info.list` - returns exploratory tunnel info list. Return Type - `List<Map<String, Object>>`
-- `i2p.router.net.tunnels.client.inbound` - returns client inbound tunnel count. Return Type - `int`
-- `i2p.router.net.tunnels.client.outbound` - returns client outbound tunnel count. Return Type - `int`
-- `i2p.router.net.tunnels.client.info.list` - returns client tunnel info list. Return Type - `List<Map<String, Object>>`
+- ``i2p.router.clockskew`` - returns the average peer clock skew, or ``null``. Return Type - ``long``
 
-- `i2p.router.net.status.v6` - returns IPv6 network status code. *(adopted from i2pd)* Return Type - `int`
-- `i2p.router.net.error` - returns IPv4 network error code. *(adopted from i2pd)* Return Type - `int`
-- `i2p.router.net.error.v6` - returns IPv6 network error code. *(adopted from i2pd)* Return Type - `int`
-- `i2p.router.net.testing` - returns whether IPv4 network is in testing state (0 or 1). *(adopted from i2pd)* Return Type - `int`
-- `i2p.router.net.testing.v6` - returns whether IPv6 network is in testing state (0 or 1). *(adopted from i2pd)* Return Type - `int`
+- ``i2p.router.info`` - returns the serialized RouterInfo as a Base64 string, or ``null``. Return Type - ``String``
 
-- `i2p.router.net.tunnels.successrate` - returns recent tunnel build success rate (%). *(adopted from i2pd)* Return Type - `double`
-- `i2p.router.net.tunnels.totalsuccessrate` - returns total tunnel build success rate since startup (%). *(adopted from i2pd)* Return Type - `double`
-- `i2p.router.net.tunnels.queue` - returns tunnel build request queue size. *(adopted from i2pd)* Return Type - `int`
-- `i2p.router.net.tunnels.tbmqueue` - returns Tunnel Build Message queue size. *(adopted from i2pd)* Return Type - `int`
+- ``i2p.router.logs`` - returns recent router log messages. Return Type - ``List<String>``
 
-- `i2p.router.netdb.peers` - returns a list of known peer hashes. Return Type - `List<String>`
-- `i2p.router.netdb.activepeers.info` - returns serialized RouterInfo data for active peers. Return Type - `List<String>`
-- `i2p.router.netdb.ntcp.limit` - returns NTCP connection limit. Return Type - `int`
-- `i2p.router.netdb.ssu.limit` - returns SSU connection limit. Return Type - `int`
-- `i2p.router.netdb.bannedpeers` - returns banned peers with ban details. Return Type - `Map<String, Map<String, Object>>`
-- `i2p.router.netdb.activepeers.list` - returns active peer hashes. Return Type - `List<String>`
-- `i2p.router.netdb.peers.list` - returns known peer hashes. Return Type - `List<String>`
-- `i2p.router.netdb.peers.info` - returns serialized RouterInfo data for known peers. Return Type - `List<String>`
-- `i2p.router.netdb.activepeers.stats` - returns active peer stats. Return Type - `List<Map<String, Object>>`
+- ``i2p.router.logs.clear`` - clears the router log buffer and returns ``"success"``. Return Type - ``String``
 
-- `i2p.router.addressbook.private.list` - returns private address book entries. Return Type - `List<Map<String, String>>`
-- `i2p.router.addressbook.local.list` - returns local address book entries. Return Type - `List<Map<String, String>>`
-- `i2p.router.addressbook.router.list` - returns router address book entries. Return Type - `List<Map<String, String>>`
-- `i2p.router.addressbook.published.list` - returns published address book entries. Return Type - `List<Map<String, String>>`
-- `i2p.router.addressbook.subscriptions` - returns subscription file path and entries. Return Type - `Map<String, Object>`
-- `i2p.router.addressbook.config` - returns address book config path and entries. Return Type - `Map<String, Object>`
+- ``i2p.router.net.total.received.bytes`` - returns total bytes received since startup. *(adopted from i2pd)* Return Type - ``long``
+
+- ``i2p.router.net.total.sent.bytes`` - returns total bytes sent since startup. *(adopted from i2pd)* Return Type - ``long``
+
+- ``i2p.router.net.total.transit.bytes`` - returns total transit bytes forwarded since startup. *(adopted from i2pd)* Return Type - ``long``
+
+- ``i2p.router.net.bw.transit.15s`` - returns 15-second average transit bandwidth (bytes/sec). *(adopted from i2pd)* Return Type - ``long``
+
+- ``i2p.router.net.tunnels.shareratio`` - returns the tunnel share ratio. Return Type - ``double``
+
+- ``i2p.router.net.tunnels.participating.info`` - returns participating tunnel info. Return Type - ``List<Map<String, Object>>``
+
+- ``i2p.router.net.tunnels.i2ptunnel`` - returns configured I2PTunnel controller info (quick stats of all). Return Type - ``List<Map<String, Object>>``
+
+- ``i2p.router.net.tunnels.exploratory.inbound`` - returns exploratory inbound tunnel count. Return Type - ``int``
+
+- ``i2p.router.net.tunnels.exploratory.outbound`` - returns exploratory outbound tunnel count. Return Type - ``int``
+
+- ``i2p.router.net.tunnels.exploratory.info.list`` - returns exploratory tunnel info list. Return Type - ``List<Map<String, Object>>``
+
+- ``i2p.router.net.tunnels.client.inbound`` - returns client inbound tunnel count. Return Type - ``int``
+
+- ``i2p.router.net.tunnels.client.outbound`` - returns client outbound tunnel count. Return Type - ``int``
+
+- ``i2p.router.net.tunnels.client.info.list`` - returns client tunnel info list. Return Type - ``List<Map<String, Object>>``
+
+- ``i2p.router.net.status.v6`` - returns IPv6 network status code. *(adopted from i2pd)* Return Type - ``int``
+
+- ``i2p.router.net.error`` - returns IPv4 network error code. *(adopted from i2pd)* Return Type - ``int``
+
+- ``i2p.router.net.error.v6`` - returns IPv6 network error code. *(adopted from i2pd)* Return Type - ``int``
+
+- ``i2p.router.net.testing`` - returns whether IPv4 network is in testing state (0 or 1). *(adopted from i2pd)* Return Type - ``int``
+
+- ``i2p.router.net.testing.v6`` - returns whether IPv6 network is in testing state (0 or 1). *(adopted from i2pd)* Return Type - ``int``
+
+- ``i2p.router.net.tunnels.successrate`` - returns recent tunnel build success rate (%). *(adopted from i2pd)* Return Type - ``double``
+
+- ``i2p.router.net.tunnels.totalsuccessrate`` - returns total tunnel build success rate since startup (%). *(adopted from i2pd)* Return Type - ``double``
+
+- ``i2p.router.net.tunnels.queue`` - returns tunnel build request queue size. *(adopted from i2pd)* Return Type - ``int``
+
+- ``i2p.router.net.tunnels.tbmqueue`` - returns Tunnel Build Message queue size. *(adopted from i2pd)* Return Type - ``int``
+
+- ``i2p.router.netdb.peers`` - returns a list of known peer hashes. Return Type - ``List<String>``
+
+- ``i2p.router.netdb.activepeers.info`` - returns serialized RouterInfo data for active peers. Return Type - ``List<String>``
+
+- ``i2p.router.netdb.ntcp.limit`` - returns NTCP connection limit. Return Type - ``int``
+
+- ``i2p.router.netdb.ssu.limit`` - returns SSU connection limit. Return Type - ``int``
+
+- ``i2p.router.netdb.bannedpeers`` - returns banned peers with ban details. Return Type - ``Map<String, Map<String, Object>>``
+
+- ``i2p.router.netdb.activepeers.list`` - returns active peer hashes. Return Type - ``List<String>``
+
+- ``i2p.router.netdb.peers.list`` - returns known peer hashes. Return Type - ``List<String>``
+
+- ``i2p.router.netdb.peers.info`` - returns serialized RouterInfo data for known peers. Return Type - ``List<String>``
+
+- ``i2p.router.netdb.activepeers.stats`` - returns active peer stats. Return Type - ``List<Map<String, Object>>``
+
+- ``i2p.router.addressbook.private.list`` - returns private address book entries. Return Type - ``List<Map<String, String>>``
+
+- ``i2p.router.addressbook.local.list`` - returns local address book entries. Return Type - ``List<Map<String, String>>``
+
+- ``i2p.router.addressbook.router.list`` - returns router address book entries. Return Type - ``List<Map<String, String>>``
+
+- ``i2p.router.addressbook.published.list`` - returns published address book entries. Return Type - ``List<Map<String, String>>``
+
+- ``i2p.router.addressbook.subscriptions`` - returns subscription file path and entries. Return Type - ``Map<String, Object>``
+
+- ``i2p.router.addressbook.config`` - returns address book config path and entries. Return Type - ``Map<String, Object>``
 
 Example:
 
-```json
-{
-    "jsonrpc": "2.0",
-    "method": "RouterInfo",
-    "params": {
-        "i2p.router.id": "",
-    },
-    "id": 1
-}
-```
+.. code:: json
+
+   {
+       "jsonrpc": "2.0",
+       "method": "RouterInfo",
+       "params": {
+           "i2p.router.id": "",
+       },
+       "id": 1
+   }
 
 Return:
 
-```json
-{
-    "jsonrpc": "2.0",
-    "result": "{ data }",
-    "id": 1
-}
-```
+.. code:: json
+
+   {
+       "jsonrpc": "2.0",
+       "result": "{ data }",
+       "id": 1
+   }
 
 Method - AddressBook (SETTERS)
 ------------------------------
 
-For the `AddressBook` method, three parameters/arguments are required for deleting and adding entries to the address book:
+For the ``AddressBook`` method, three parameters/arguments are required for deleting and adding entries to the address book:
 
-- `Type` - corresponds to address book type:
-  - `private`
-  - `local`
-  - `router`
-  - `published`
-- `Hostname` - corresponds to the hostname or domain name associated with the address book entry.
-- `Destination` - corresponds to the destination associated with the address book entry.
-- `Delete` - this parameter is optional and is used to delete an address book entry. If this parameter is not provided, the method will add a new entry to the address book.
+- ``Type`` - corresponds to address book type:
+
+  - ``private``
+  - ``local``
+  - ``router``
+  - ``published``
+
+- ``Hostname`` - corresponds to the hostname or domain name associated with the address book entry.
+- ``Destination`` - corresponds to the destination associated with the address book entry.
+- ``Delete`` - this parameter is optional and is used to delete an address book entry. If this parameter is not provided, the method will add a new entry to the address book.
 
 Example:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "AddressBook",
-  "params": {
-    "Type": "private",
-    "Hostname": "example.i2p",
-    "Destination": "exampleDestinationString",
-    "Delete": "" <--- this parameter is optional
-  },
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "method": "AddressBook",
+     "params": {
+       "Type": "private",
+       "Hostname": "example.i2p",
+       "Destination": "exampleDestinationString",
+       "Delete": "" <--- this parameter is optional
+     },
+     "id": 1
+   }
 
 Return:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "success": true or false,        
-  "message": "Deleted/Added (hostname) in (address book type) address book" OR "Failed to delete/add (hostname) to (address book type) address book",
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "success": true or false,        
+     "message": "Deleted/Added (hostname) in (address book type) address book" OR "Failed to delete/add (hostname) to (address book type) address book",
+     "id": 1
+   }
 
 For editing AddressBookSubscriptions:
 
-- `SetSubscriptions` - this parameter is used to set the subscriptions for an address book entry. It takes a list of strings as an argument.
+- ``SetSubscriptions`` - this parameter is used to set the subscriptions for an address book entry. It takes a list of strings as an argument.
 
 Example:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "AddressBook",
-  "params": {
-    "SetSubscriptions": ["notbob.i2p", "helloworld.i2p", ...]
-  },
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "method": "AddressBook",
+     "params": {
+       "SetSubscriptions": ["notbob.i2p", "helloworld.i2p", ...]
+     },
+     "id": 1
+   }
 
 Return:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "success": true,
-  "message": "Successfully modified: /path/to/subscriptions.txt"
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "success": true,
+     "message": "Successfully modified: /path/to/subscriptions.txt"
+   }
 
 For editing AddressBookConfig:
 
-- `SetConfig` - this parameter is used to set the configuration for an address book entry.
-It takes a JSON object as an argument, which contains the configuration settings.
+- ``SetConfig`` - this parameter is used to set the configuration for an address book entry.
+  It takes a JSON object as an argument, which contains the configuration settings.
 
 Available/common config parameters:
 
-- `subscriptions` - file containing the list of subscription URLs.
-- `update_delay` - update interval in hours.
-- `published_addressbook` - path to the published address book.
-- `router_addressbook` - path to the router address book.
-- `local_addressbook` - path to the local address book.
-- `private_addressbook` - path to the private address book.
-- `proxy_port` - eepProxy port.
-- `proxy_host` - eepProxy hostname.
-- `should_publish` - whether to update the published address book.
-- `etags` - file containing subscription URL etags.
-- `last_modified` - file containing subscription URL last-modified timestamps.
-- `log` - log file path.
-- `theme` - theme.
+- ``subscriptions`` - file containing the list of subscription URLs.
+- ``update_delay`` - update interval in hours.
+- ``published_addressbook`` - path to the published address book.
+- ``router_addressbook`` - path to the router address book.
+- ``local_addressbook`` - path to the local address book.
+- ``private_addressbook`` - path to the private address book.
+- ``proxy_port`` - eepProxy port.
+- ``proxy_host`` - eepProxy hostname.
+- ``should_publish`` - whether to update the published address book.
+- ``etags`` - file containing subscription URL etags.
+- ``last_modified`` - file containing subscription URL last-modified timestamps.
+- ``log`` - log file path.
+- ``theme`` - theme.
 
 Example:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "AddressBook",
-  "params": {
-    "SetConfig": {
-      "subscriptions": "subscriptions.txt",
-      "update_delay": "12",
-      "published_addressbook": "../eepsite/docroot/hosts.txt",
-      "router_addressbook": "hosts.txt",
-      "local_addressbook": "../userhosts.txt",
-      "private_addressbook": "../privatehosts.txt",
-      "proxy_port": "4444",
-      "proxy_host": "127.0.0.1",
-      "should_publish": "true",
-      "etags": "etags.txt",
-      "last_modified": "last_modified.txt",
-      "log": "log.txt",
-      "theme": "light"
-    }
-  },
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "method": "AddressBook",
+     "params": {
+       "SetConfig": {
+         "subscriptions": "subscriptions.txt",
+         "update_delay": "12",
+         "published_addressbook": "../eepsite/docroot/hosts.txt",
+         "router_addressbook": "hosts.txt",
+         "local_addressbook": "../userhosts.txt",
+         "private_addressbook": "../privatehosts.txt",
+         "proxy_port": "4444",
+         "proxy_host": "127.0.0.1",
+         "should_publish": "true",
+         "etags": "etags.txt",
+         "last_modified": "last_modified.txt",
+         "log": "log.txt",
+         "theme": "light"
+       }
+     },
+     "id": 1
+   }
 
 Return:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "result": {
-    "success": true,
-    "message": "Successfully modified: /path/to/config.txt"
-  },
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "result": {
+       "success": true,
+       "message": "Successfully modified: /path/to/config.txt"
+     },
+     "id": 1
+   }
 
 Method - TunnelManager (1 MARKED GETTER, REST SETTERS)
--------------------------------------------------------
+------------------------------------------------------
 
-The `TunnelManager` method is used to create, edit, get, start, stop, restart, and delete I2PTunnel controllers.
+The ``TunnelManager`` method is used to create, edit, get, start, stop, restart, and delete I2PTunnel controllers.
 
 Required parameters:
 
-- `Name` - name of the tunnel. This is the tunnel's identifier.
-- `Action` - action to perform:
-  - `create`.
-  - `edit`
-  - `get`
-  - `start`
-  - `stop`
-  - `restart`
-  - `delete`
+- ``Name`` - name of the tunnel. This is the tunnel's identifier.
+- ``Action`` - action to perform:
+
+  - ``create``.
+  - ``edit``
+  - ``get``
+  - ``start``
+  - ``stop``
+  - ``restart``
+  - ``delete``
 
 Optional parameters:
 
-- `All` - boolean, whether to apply the action to all tunnels. This is only valid for `start`, `stop`, and `restart` actions.
+- ``All`` - boolean, whether to apply the action to all tunnels. This is only valid for ``start``, ``stop``, and ``restart`` actions.
 
-Supported tunnel types for `create`:
+Supported tunnel types for ``create``:
 
-- `client`
-- `httpclient`
-- `ircclient`
-- `socks`
-- `socksirc`
-- `connectclient`
-- `streamrclient`
+- ``client``
 
-- `server`
-- `httpserver`
-- `httpbidirserver`
-- `ircserver`
-- `streamrserver`
+- ``httpclient``
+
+- ``ircclient``
+
+- ``socks``
+
+- ``socksirc``
+
+- ``connectclient``
+
+- ``streamrclient``
+
+- ``server``
+
+- ``httpserver``
+
+- ``httpbidirserver``
+
+- ``ircserver``
+
+- ``streamrserver``
 
 Common parameters for creating/editing tunnels:
 
-- `Type` - tunnel type. Required for `create`.
-- `NewName` - optional new name when editing.
-- `Port` - local listen port.
-- `TargetHost` or `Host` - target host for server tunnels.
-- `TargetPort` - target port for server tunnels.
-- `TargetDestination` or `Destination` - destination for client tunnels that require one.
-- `StartOnLoad` - boolean, whether the tunnel should start when loaded.
-- `Description` - tunnel description.
-- `ReachableBy` - interface/address the tunnel listens on.
-- `Shared` - boolean, whether client tunnel should be shared.
-- `UseSSL` - boolean, enable SSL where supported.
-- `TunnelLength` - tunnel length, `0` to `3`.
-- `TunnelVariance` - tunnel variance, `-2` to `2`.
-- `TunnelQuantity` - tunnel quantity, `1` to `6`.
-- `TunnelBackupQuantity` - backup tunnel quantity, `0` to `3`.
-- `SigType` - signing key type.
-- `EncType` - encryption type.
-- `CustomOptions` - custom tunnel options.
+- ``Type`` - tunnel type. Required for ``create``.
+- ``NewName`` - optional new name when editing.
+- ``Port`` - local listen port.
+- ``TargetHost`` or ``Host`` - target host for server tunnels.
+- ``TargetPort`` - target port for server tunnels.
+- ``TargetDestination`` or ``Destination`` - destination for client tunnels that require one.
+- ``StartOnLoad`` - boolean, whether the tunnel should start when loaded.
+- ``Description`` - tunnel description.
+- ``ReachableBy`` - interface/address the tunnel listens on.
+- ``Shared`` - boolean, whether client tunnel should be shared.
+- ``UseSSL`` - boolean, enable SSL where supported.
+- ``TunnelLength`` - tunnel length, ``0`` to ``3``.
+- ``TunnelVariance`` - tunnel variance, ``-2`` to ``2``.
+- ``TunnelQuantity`` - tunnel quantity, ``1`` to ``6``.
+- ``TunnelBackupQuantity`` - backup tunnel quantity, ``0`` to ``3``.
+- ``SigType`` - signing key type.
+- ``EncType`` - encryption type.
+- ``CustomOptions`` - custom tunnel options.
 
 Client proxy options:
 
-- `ProxyList`
-- `UseOutproxyPlugin`
-- `ProxyAuth`
-- `ProxyUsername`
-- `ProxyPassword`
-- `OutproxyAuth`
-- `OutproxyUsername`
-- `OutproxyPassword`
-- `OutproxyType`
-- `SSLProxies`
-- `JumpList`
+- ``ProxyList``
+- ``UseOutproxyPlugin``
+- ``ProxyAuth``
+- ``ProxyUsername``
+- ``ProxyPassword``
+- ``OutproxyAuth``
+- ``OutproxyUsername``
+- ``OutproxyPassword``
+- ``OutproxyType``
+- ``SSLProxies``
+- ``JumpList``
 
 Client management options:
 
-- `ConnectDelay`
-- `Profile`
-- `DelayOpen`
-- `Reduce`
-- `ReduceCount`
-- `ReduceTime`
-- `Close`
-- `CloseTime`
-- `NewDest`
-- `PersistentClientKey`
-- `PrivKeyFile`
+- ``ConnectDelay``
+- ``Profile``
+- ``DelayOpen``
+- ``Reduce``
+- ``ReduceCount``
+- ``ReduceTime``
+- ``Close``
+- ``CloseTime``
+- ``NewDest``
+- ``PersistentClientKey``
+- ``PrivKeyFile``
 
 HTTP client filtering options:
 
-- `AllowUserAgent`
-- `AllowReferer`
-- `AllowAccept`
-- `AllowInternalSSL`
+- ``AllowUserAgent``
+- ``AllowReferer``
+- ``AllowAccept``
+- ``AllowInternalSSL``
 
 Server options:
 
-- `WebsiteHostname` or `SpoofedHost`
-- `BlockAccessInProxies`
-- `BlockUserAgents`
-- `UserAgents`
-- `UniqueLocalAddressPerClient`
-- `BlockReferers`
-- `MultiHoming`
-- `AccessOption`
-- `AccessList`
-- `FilterFilePath`
-- `MaxConcurrentConns`
-- `ClientPerMinute`
-- `ClientPerHour`
-- `ClientPerDay`
-- `TotalInPerMinute`
-- `TotalInPerHour`
-- `TotalInPerDay`
-- `PostLimit`
-- `PostLimitTime`
-- `PerClientPeriod`
-- `TotalPeriod`
-- `TotalBanTime`
+- ``WebsiteHostname`` or ``SpoofedHost``
+- ``BlockAccessInProxies``
+- ``BlockUserAgents``
+- ``UserAgents``
+- ``UniqueLocalAddressPerClient``
+- ``BlockReferers``
+- ``MultiHoming``
+- ``AccessOption``
+- ``AccessList``
+- ``FilterFilePath``
+- ``MaxConcurrentConns``
+- ``ClientPerMinute``
+- ``ClientPerHour``
+- ``ClientPerDay``
+- ``TotalInPerMinute``
+- ``TotalInPerHour``
+- ``TotalInPerDay``
+- ``PostLimit``
+- ``PostLimitTime``
+- ``PerClientPeriod``
+- ``TotalPeriod``
+- ``TotalBanTime``
 
 LeaseSet options:
 
-- `EncryptLeaseSet` - one of:
-  - `disable`
-  - `encrypted (aes)`
-  - `blinded`
-  - `blinded with lookup password`
-  - `encrypted (psk)`
-  - `encrypted with lookup password (psk)`
-  - `encrypted with per-user key (psk)`
-  - `encrypted with lookup password and per-user key (psk)`
-  - `encrypted with per-user key (dh)`
-  - `encrypted with lookup password and per-user key (dh)`
-- `OptionalLookup`
-- `LeaseSetClientAuths`
+- ``EncryptLeaseSet`` - one of:
+
+  - ``disable``
+  - ``encrypted (aes)``
+  - ``blinded``
+  - ``blinded with lookup password``
+  - ``encrypted (psk)``
+  - ``encrypted with lookup password (psk)``
+  - ``encrypted with per-user key (psk)``
+  - ``encrypted with lookup password and per-user key (psk)``
+  - ``encrypted with per-user key (dh)``
+  - ``encrypted with lookup password and per-user key (dh)``
+
+- ``OptionalLookup``
+- ``LeaseSetClientAuths``
 
 Create example:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "TunnelManager",
-  "params": {
-    "Name": "example-client",
-    "Action": "create",
-    "Type": "client",
-    "Port": 7656,
-    "TargetDestination": "exampleDestinationString",
-    "StartOnLoad": false,
-    ....
-  },
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "method": "TunnelManager",
+     "params": {
+       "Name": "example-client",
+       "Action": "create",
+       "Type": "client",
+       "Port": 7656,
+       "TargetDestination": "exampleDestinationString",
+       "StartOnLoad": false,
+       ....
+     },
+     "id": 1
+   }
 
 Return:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "result": {
-    "status": "success - created tunnel example-client" OR "error - { error message }",
-    "results": [ {/* information about where persistent keys are stored */} ]
-  },
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "result": {
+       "status": "success - created tunnel example-client" OR "error - { error message }",
+       "results": [ {/* information about where persistent keys are stored */} ]
+     },
+     "id": 1
+   }
 
 Edit example:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "TunnelManager",
-  "params": {
-    "Name": "example-client",
-    "Action": "edit",
-    "NewName": "renamed-client",
-    "Port": 7657,
-    "TargetDestination": "newDestinationString",
-    "StartOnLoad": true
-  },
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "method": "TunnelManager",
+     "params": {
+       "Name": "example-client",
+       "Action": "edit",
+       "NewName": "renamed-client",
+       "Port": 7657,
+       "TargetDestination": "newDestinationString",
+       "StartOnLoad": true
+     },
+     "id": 1
+   }
 
 Return:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "result": {
-    "status": "success - edited tunnel example-client" OR "error - { error message }"
-  },
-  "id": 1
-}
-```
+.. code:: json
 
-Get example (ONLY GETTER) Returns - `Map<String, Object>`(information) and `String` (status):
+   {
+     "jsonrpc": "2.0",
+     "result": {
+       "status": "success - edited tunnel example-client" OR "error - { error message }"
+     },
+     "id": 1
+   }
 
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "TunnelManager",
-  "params": {
-    "Name": "example-client",
-    "Action": "get"
-  },
-  "id": 1
-}
-```
+Get example (ONLY GETTER) Returns - ``Map<String, Object>``\ (information) and ``String`` (status):
 
-Return:
+.. code:: json
 
-```json
-{
-  "jsonrpc": "2.0",
-  "result": {
-    "status": "success - options for example-client" OR "error - { error message }",
-    "info": {
-      "client": true,
-      "status": "running",
-      "persistentClientKey": false,
-      "offlineKeys": false,
-      "targetDestination": "exampleDestinationString",
-      "localDestination": "exampleBase64Destination",
-      "destination": "exampleBase64Destination",
-      "destinationB32": "example.b32.i2p",
-      "rawConfig": {
-        "name": "example-client",
-        "type": "client"
-      }
-    }
-  },
-  "id": 1
-}
-```
-
-Start, Stop, Restart, Delete example They follow the same structure, just with different `Action` parameters:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "TunnelManager",
-  "params": {
-    "Name": "example-client",
-    "Action": "start"
-  },
-  "id": 1
-}
-```
+   {
+     "jsonrpc": "2.0",
+     "method": "TunnelManager",
+     "params": {
+       "Name": "example-client",
+       "Action": "get"
+     },
+     "id": 1
+   }
 
 Return:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "result": {
-    "status": "success - starting tunnel example-client" OR "error - { error message }"
-  },
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "result": {
+       "status": "success - options for example-client" OR "error - { error message }",
+       "info": {
+         "client": true,
+         "status": "running",
+         "persistentClientKey": false,
+         "offlineKeys": false,
+         "targetDestination": "exampleDestinationString",
+         "localDestination": "exampleBase64Destination",
+         "destination": "exampleBase64Destination",
+         "destinationB32": "example.b32.i2p",
+         "rawConfig": {
+           "name": "example-client",
+           "type": "client"
+         }
+       }
+     },
+     "id": 1
+   }
+
+Start, Stop, Restart, Delete example They follow the same structure, just with different ``Action`` parameters:
+
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "method": "TunnelManager",
+     "params": {
+       "Name": "example-client",
+       "Action": "start"
+     },
+     "id": 1
+   }
+
+Return:
+
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "result": {
+       "status": "success - starting tunnel example-client" OR "error - { error message }"
+     },
+     "id": 1
+   }
 
 Method - ClientServicesInfo *(adopted from i2pd)*
 -------------------------------------------------
 
-The `ClientServicesInfo` method returns status information about client services running on the router. Include the desired service keys (with any value) in `params` to request each service's status.
+The ``ClientServicesInfo`` method returns status information about client services running on the router. Include the desired service keys (with any value) in ``params`` to request each service's status.
 
 Supported parameters:
 
-- `I2PTunnel` - returns a map of configured tunnel names to their addresses, split into `client` and `server` sub-objects.
-- `HTTPProxy` - returns HTTP proxy enabled state and address.
-- `SOCKS` - returns SOCKS proxy enabled state and address.
-- `SAM` - returns SAM bridge enabled state and active session information.
-- `BOB` - returns BOB bridge enabled state. (Deprecated in Java I2P; always returns `false`.)
-- `I2CP` - returns I2CP server enabled state.
+- ``I2PTunnel`` - returns a map of configured tunnel names to their addresses, split into ``client`` and ``server`` sub-objects.
+- ``HTTPProxy`` - returns HTTP proxy enabled state and address.
+- ``SOCKS`` - returns SOCKS proxy enabled state and address.
+- ``SAM`` - returns SAM bridge enabled state and active session information.
+- ``BOB`` - returns BOB bridge enabled state. (Deprecated in Java I2P; always returns ``false``.)
+- ``I2CP`` - returns I2CP server enabled state.
 
 Example:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "ClientServicesInfo",
-  "params": {
-    "I2PTunnel": "",
-    "SAM": ""
-  },
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "method": "ClientServicesInfo",
+     "params": {
+       "I2PTunnel": "",
+       "SAM": ""
+     },
+     "id": 1
+   }
 
 Return:
 
-```json
-{
-  "jsonrpc": "2.0",
-  "result": {
-    "I2PTunnel": {
-      "client": {"my-client": {"address": "example.b32.i2p"}},
-      "server": {"my-server": {"address": "example.b32.i2p", "port": 8080}}
-    },
-    "SAM": {
-      "enabled": true,
-      "sessions": {}
-    }
-  },
-  "id": 1
-}
-```
+.. code:: json
+
+   {
+     "jsonrpc": "2.0",
+     "result": {
+       "I2PTunnel": {
+         "client": {"my-client": {"address": "example.b32.i2p"}},
+         "server": {"my-server": {"address": "example.b32.i2p", "port": 8080}}
+       },
+       "SAM": {
+         "enabled": true,
+         "sessions": {}
+       }
+     },
+     "id": 1
+   }
 
 Compatibility
 =============
@@ -581,7 +634,7 @@ Implementation
 Java I2P
 --------
 
-This proposal is not yet implemented in Java I2P, yet the code is available in the [i2p.plugins.i2pcontrol](https://github.com/i2p/i2p.plugins.i2pcontrol) repository under pull request [#6](https://github.com/i2p/i2p.plugins.i2pcontrol/pull/6). This was done to allow for testing and development of the new methods without affecting the existing code. This will be updated into the main I2P repository under i2pcontrol directory once the code is ready for production use.
+This proposal is not yet implemented in Java I2P, yet the code is available in the `i2p.plugins.i2pcontrol <https://github.com/i2p/i2p.plugins.i2pcontrol>`__ repository under pull request `#6 <https://github.com/i2p/i2p.plugins.i2pcontrol/pull/6>`__. This was done to allow for testing and development of the new methods without affecting the existing code. This will be updated into the main I2P repository under i2pcontrol directory once the code is ready for production use.
 
 i2pd
 ----

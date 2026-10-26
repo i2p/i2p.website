@@ -16,7 +16,6 @@ Overview
 
 This proposal is about adding support for DNS reverse lookups to I2P.
 
-
 Current Translation Mechanism
 =============================
 
@@ -50,7 +49,6 @@ This basically works but it depends on a naming service which (IMHO) itself is
 in a state of development and not mature enough (especially in respect to name
 distribution).
 
-
 A Scalable Solution
 ===================
 
@@ -69,13 +67,13 @@ usually performed by using the UDP protocol, GC itself is needed for data
 transport because it does carry UDP packets which I2P natively does not.
 
 Further advantages are associated with DNS:
-1) It is a well-known standard protocol, hence, it is continously improved and
-many tools (clients, servers, libraries,...) exist.
-2) It is a distributed system. It supports the name space being hosted on
-serveral servers in parallel by default.
-3) It supports cryptography (DNSSEC) which enables authentication of resource
-records. This could directly be tied with the keys of a destination.
 
+1) It is a well-known standard protocol, hence, it is continously improved and
+   many tools (clients, servers, libraries,...) exist.
+2) It is a distributed system. It supports the name space being hosted on
+   serveral servers in parallel by default.
+3) It supports cryptography (DNSSEC) which enables authentication of resource
+   records. This could directly be tied with the keys of a destination.
 
 Future Opportunities
 ====================

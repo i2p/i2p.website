@@ -18,7 +18,6 @@ Overview
 This proposal is about overhauling the NTCP transport to improve its resistance
 to automated identification.
 
-
 Motivation
 ==========
 
@@ -30,7 +29,6 @@ length (288, 304, 448, and 48 bytes).
 
 By adding random amounts of random data to each of the messages, we can make it
 a lot harder.
-
 
 Modifications to NTCP
 =====================
@@ -44,6 +42,7 @@ The following data will be added to the end of the 288-byte message 1:
 
 The ElG block is encrypted to Bob's public key. When decrypted to 222 bytes, it
 contains:
+
 - 214 bytes random padding
 - 4 bytes 0 reserved
 - 2 bytes padding length to follow

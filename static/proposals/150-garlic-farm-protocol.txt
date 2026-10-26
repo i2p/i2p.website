@@ -16,8 +16,7 @@ Overview
 
 This is the spec for the Garlic Farm wire protocol,
 based on JRaft, its "exts" code for implementation over TCP,
-and its "dmprinter" sample application [JRAFT]_.
-JRaft is an implementation of the Raft protocol [RAFT]_.
+and its "dmprinter" sample application `JRAFT <https://github.com/datatechnology/jraft>`__.
 
 We were unable to find any implementation with a documented wire protocol.
 However, the JRaft implementation is simple enough that we could
@@ -26,7 +25,6 @@ This proposal is the result of that effort.
 
 This will be the backend for coordination of routers publishing
 entries in a Meta LeaseSet. See proposal 123.
-
 
 Goals
 =====
@@ -37,7 +35,6 @@ Goals
 - Any bootstrapping is out-of-scope. At least one other server is assumed
   to be hardcoded, or configured out-of-band of this protocol.
 - Support both out-of-band and in-I2P use cases.
-
 
 Design
 ======
@@ -54,8 +51,6 @@ for the Meta LS2 cluster.
 The servers use a common algorithm to determine the publisher and contents
 of the Meta LS2.
 The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
-
-
 
 Specification
 =============
@@ -81,120 +76,104 @@ Goals:
 - Compatible with common standards, so implementations may use
   standard libraries if desired
 
-We will use an websocket-like handshake [WEBSOCKET]_ and
-HTTP Digest authentication [RFC-2617]_.
+We will use an websocket-like handshake and
+HTTP Digest authentication `RFC 2617 <https://tools.ietf.org/html/rfc2617>`__.
 RFC 2617 Basic authentication is NOT supported.
 When proxying through the HTTP proxy, communicate with
-the proxy as specified in [RFC-2616]_.
+the proxy as specified in `RFC 2616 <https://tools.ietf.org/html/rfc2616>`__.
 
 Credentials
-```````````
+~~~~~~~~~~~
 
 Whether usernames and passwords are per-cluster, or
 per-server, is implementation-dependent.
 
-
 HTTP Request 1
-``````````````
+~~~~~~~~~~~~~~
 
 The originator will send the following.
 
 All lines are teriminated with CRLF as required by HTTP.
 
-.. raw:: html
+.. code:: text
 
-  {% highlight %}
 
-GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
-  Host: (ip):(port)
-  Cache-Control: no-cache
-  Connection: close
-  (any other headers ignored)
-  (blank line)
+   GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
+     Host: (ip):(port)
+     Cache-Control: no-cache
+     Connection: close
+     (any other headers ignored)
+     (blank line)
 
-  CLUSTER is the name of the cluster (default "farm")
-  VERSION is the Garlic Farm version (currently "1")
-
-{% endhighlight %}
-
+     CLUSTER is the name of the cluster (default "farm")
+     VERSION is the Garlic Farm version (currently "1")
 
 HTTP Response 1
-```````````````
+~~~~~~~~~~~~~~~
 
 If the path is not correct, the recipient will send a standard "HTTP/1.1 404 Not Found" response,
-as in [RFC-2616]_.
+as in `RFC 2616 <https://tools.ietf.org/html/rfc2616>`__.
 
 If the path is correct, the recipient will send a standard "HTTP/1.1 401 Unauthorized" response,
 including the WWW-Authenticate HTTP digest authentication header,
-as in [RFC-2617]_.
+as in `RFC 2617 <https://tools.ietf.org/html/rfc2617>`__.
 
 Both parties will then close the socket.
 
-
 HTTP Request 2
-``````````````
+~~~~~~~~~~~~~~
 
 The originator will send the following,
-as in [RFC-2617]_ and [WEBSOCKET]_.
+as in `RFC 2617 <https://tools.ietf.org/html/rfc2617>`__.
 
 All lines are teriminated with CRLF as required by HTTP.
 
-.. raw:: html
+.. code:: text
 
-  {% highlight %}
 
-GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
-  Host: (ip):(port)
-  Cache-Control: no-cache
-  Connection: keep-alive, Upgrade
-  Upgrade: websocket
-  (Sec-Websocket-* headers if proxied)
-  Authorization: (HTTP digest authorization header as in RFC 2617)
-  (any other headers ignored)
-  (blank line)
+   GET /GarlicFarm/CLUSTER/VERSION/websocket HTTP/1.1
+     Host: (ip):(port)
+     Cache-Control: no-cache
+     Connection: keep-alive, Upgrade
+     Upgrade: websocket
+     (Sec-Websocket-* headers if proxied)
+     Authorization: (HTTP digest authorization header as in RFC 2617)
+     (any other headers ignored)
+     (blank line)
 
-  CLUSTER is the name of the cluster (default "farm")
-  VERSION is the Garlic Farm version (currently "1")
-
-{% endhighlight %}
-
+     CLUSTER is the name of the cluster (default "farm")
+     VERSION is the Garlic Farm version (currently "1")
 
 HTTP Response 2
-```````````````
+~~~~~~~~~~~~~~~
 
 If the authentication is not correct, the recipient will send another standard "HTTP/1.1 401 Unauthorized" response,
-as in [RFC-2617]_.
+as in `RFC 2617 <https://tools.ietf.org/html/rfc2617>`__.
 
 If the authentication is correct, the recipient will send the following response,
-as in [WEBSOCKET]_.
+as in the WebSocket protocol.
 
 All lines are teriminated with CRLF as required by HTTP.
 
-.. raw:: html
+.. code:: text
 
-  {% highlight %}
 
-HTTP/1.1 101 Switching Protocols
-  Connection: Upgrade
-  Upgrade: websocket
-  (Sec-Websocket-* headers)
-  (any other headers ignored)
-  (blank line)
-
-{% endhighlight %}
+   HTTP/1.1 101 Switching Protocols
+     Connection: Upgrade
+     Upgrade: websocket
+     (Sec-Websocket-* headers)
+     (any other headers ignored)
+     (blank line)
 
 After this is received, the socket remains open.
 The Raft protocol as defined below commences, on the same socket.
 
-
 Caching
-```````
+~~~~~~~
 
 Credentials shall be cached for at least one hour, so that
 subsequent connections may jump directly to
 "HTTP Request 2" above.
-
-
 
 Message Types
 -------------
@@ -213,99 +192,122 @@ efficient log synchronization.
 Message types 16-17 are the Log Compaction RPC messages defined
 in Raft section 7.
 
-
-========================  ======  ===========  =================   =====================================
-Message                   Number  Sent By      Sent To             Notes
-========================  ======  ===========  =================   =====================================
-RequestVoteRequest           1    Candidate    Follower            Standard Raft RPC; must not contain log entries
-RequestVoteResponse          2    Follower     Candidate           Standard Raft RPC
-AppendEntriesRequest         3    Leader       Follower            Standard Raft RPC
-AppendEntriesResponse        4    Follower     Leader / Client     Standard Raft RPC
-ClientRequest                5    Client       Leader / Follower   Response is AppendEntriesResponse; must contain Application log entries only
-AddServerRequest             6    Client       Leader              Must contain a single ClusterServer log entry only
-AddServerResponse            7    Leader       Client              Leader will also send a JoinClusterRequest
-RemoveServerRequest          8    Follower     Leader              Must contain a single ClusterServer log entry only
-RemoveServerResponse         9    Leader       Follower
-SyncLogRequest              10    Leader       Follower            Must contain a single LogPack log entry only
-SyncLogResponse             11    Follower     Leader
-JoinClusterRequest          12    Leader       New Server          Invitation to join; must contain a single Configuration log entry only
-JoinClusterResponse         13    New Server   Leader
-LeaveClusterRequest         14    Leader       Follower            Command to leave
-LeaveClusterResponse        15    Follower     Leader
-InstallSnapshotRequest      16    Leader       Follower            Raft Section 7; Must contain a single SnapshotSyncRequest log entry only
-InstallSnapshotResponse     17    Follower     Leader              Raft Section 7
-========================  ======  ===========  =================   =====================================
-
++-------------------------+--------+------------+---------------+------------------------+
+| Message                 | Number | Sent By    | Sent To       | Notes                  |
++=========================+========+============+===============+========================+
+| RequestVoteRequest      | 1      | Candidate  | Follower      | Standard Raft RPC;     |
+|                         |        |            |               | must not contain log   |
+|                         |        |            |               | entries                |
++-------------------------+--------+------------+---------------+------------------------+
+| RequestVoteResponse     | 2      | Follower   | Candidate     | Standard Raft RPC      |
++-------------------------+--------+------------+---------------+------------------------+
+| AppendEntriesRequest    | 3      | Leader     | Follower      | Standard Raft RPC      |
++-------------------------+--------+------------+---------------+------------------------+
+| AppendEntriesResponse   | 4      | Follower   | Leader /      | Standard Raft RPC      |
+|                         |        |            | Client        |                        |
++-------------------------+--------+------------+---------------+------------------------+
+| ClientRequest           | 5      | Client     | Leader /      | Response is            |
+|                         |        |            | Follower      | AppendEntriesResponse; |
+|                         |        |            |               | must contain           |
+|                         |        |            |               | Application log        |
+|                         |        |            |               | entries only           |
++-------------------------+--------+------------+---------------+------------------------+
+| AddServerRequest        | 6      | Client     | Leader        | Must contain a single  |
+|                         |        |            |               | ClusterServer log      |
+|                         |        |            |               | entry only             |
++-------------------------+--------+------------+---------------+------------------------+
+| AddServerResponse       | 7      | Leader     | Client        | Leader will also send  |
+|                         |        |            |               | a JoinClusterRequest   |
++-------------------------+--------+------------+---------------+------------------------+
+| RemoveServerRequest     | 8      | Follower   | Leader        | Must contain a single  |
+|                         |        |            |               | ClusterServer log      |
+|                         |        |            |               | entry only             |
++-------------------------+--------+------------+---------------+------------------------+
+| RemoveServerResponse    | 9      | Leader     | Follower      |                        |
++-------------------------+--------+------------+---------------+------------------------+
+| SyncLogRequest          | 10     | Leader     | Follower      | Must contain a single  |
+|                         |        |            |               | LogPack log entry only |
++-------------------------+--------+------------+---------------+------------------------+
+| SyncLogResponse         | 11     | Follower   | Leader        |                        |
++-------------------------+--------+------------+---------------+------------------------+
+| JoinClusterRequest      | 12     | Leader     | New Server    | Invitation to join;    |
+|                         |        |            |               | must contain a single  |
+|                         |        |            |               | Configuration log      |
+|                         |        |            |               | entry only             |
++-------------------------+--------+------------+---------------+------------------------+
+| JoinClusterResponse     | 13     | New Server | Leader        |                        |
++-------------------------+--------+------------+---------------+------------------------+
+| LeaveClusterRequest     | 14     | Leader     | Follower      | Command to leave       |
++-------------------------+--------+------------+---------------+------------------------+
+| LeaveClusterResponse    | 15     | Follower   | Leader        |                        |
++-------------------------+--------+------------+---------------+------------------------+
+| InstallSnapshotRequest  | 16     | Leader     | Follower      | Raft Section 7; Must   |
+|                         |        |            |               | contain a single       |
+|                         |        |            |               | SnapshotSyncRequest    |
+|                         |        |            |               | log entry only         |
++-------------------------+--------+------------+---------------+------------------------+
+| InstallSnapshotResponse | 17     | Follower   | Leader        | Raft Section 7         |
++-------------------------+--------+------------+---------------+------------------------+
 
 Establishment
 -------------
 
 After the HTTP handshake, the establishment sequence is as follows:
 
-.. raw:: html
-
-  {% highlight %}
-
-New Server Alice              Random Follower Bob
-
-  ClientRequest   ------->
-          <---------   AppendEntriesResponse
-
-  If Bob says he is the leader, continue as below.
-  Else, Alice must disconnect from Bob and connect to the leader.
+.. code:: text
 
 
-  New Server Alice              Leader Charlie
+   New Server Alice              Random Follower Bob
 
-  ClientRequest   ------->
-          <---------   AppendEntriesResponse
-  AddServerRequest   ------->
-          <---------   AddServerResponse
-          <---------   JoinClusterRequest
-  JoinClusterResponse  ------->
-          <---------   SyncLogRequest
-                       OR InstallSnapshotRequest
-  SyncLogResponse  ------->
-  OR InstallSnapshotResponse
+     ClientRequest   ------->
+             <---------   AppendEntriesResponse
 
-{% endhighlight %}
+     If Bob says he is the leader, continue as below.
+     Else, Alice must disconnect from Bob and connect to the leader.
+
+
+     New Server Alice              Leader Charlie
+
+     ClientRequest   ------->
+             <---------   AppendEntriesResponse
+     AddServerRequest   ------->
+             <---------   AddServerResponse
+             <---------   JoinClusterRequest
+     JoinClusterResponse  ------->
+             <---------   SyncLogRequest
+                          OR InstallSnapshotRequest
+     SyncLogResponse  ------->
+     OR InstallSnapshotResponse
 
 Disconnect Sequence:
 
-.. raw:: html
+.. code:: text
 
-  {% highlight %}
 
-Follower Alice              Leader Charlie
+   Follower Alice              Leader Charlie
 
-  RemoveServerRequest   ------->
-          <---------   RemoveServerResponse
-          <---------   LeaveClusterRequest
-  LeaveClusterResponse  ------->
-
-{% endhighlight %}
+     RemoveServerRequest   ------->
+             <---------   RemoveServerResponse
+             <---------   LeaveClusterRequest
+     LeaveClusterResponse  ------->
 
 Election Sequence:
 
-.. raw:: html
+.. code:: text
 
-  {% highlight %}
 
-Candidate Alice               Follower Bob
+   Candidate Alice               Follower Bob
 
-  RequestVoteRequest   ------->
-          <---------   RequestVoteResponse
+     RequestVoteRequest   ------->
+             <---------   RequestVoteResponse
 
-  if Alice wins election:
+     if Alice wins election:
 
-  Leader Alice                Follower Bob
+     Leader Alice                Follower Bob
 
-  AppendEntriesRequest   ------->
-  (heartbeat)
-          <---------   AppendEntriesResponse
-
-{% endhighlight %}
-
+     AppendEntriesRequest   ------->
+     (heartbeat)
+             <---------   AppendEntriesResponse
 
 Definitions
 -----------
@@ -315,37 +317,30 @@ Definitions
 - Terms: See Raft. Initialized to 0, increases monotonically
 - Indexes: See Raft. Initialized to 0, increases monotonically
 
-
-
 Requests
 --------
 
 Requests contain a header and zero or more log entries.
 Requests contain a fixed-size header and optional Log Entries of variable size.
 
-
 Request Header
-``````````````
+~~~~~~~~~~~~~~
 
 The request header is 45 bytes, as follows.
 All values are unsigned big-endian.
 
-.. raw:: html
+.. code:: text
 
-  {% highlight lang='dataspec' %}
 
-Message type:      1 byte
-  Source:            ID, 4 byte integer
-  Destination:       ID, 4 byte integer
-  Term:              Current term (see notes), 8 byte integer
-  Last Log Term:     8 byte integer
-  Last Log Index:    8 byte integer
-  Commit Index:      8 byte integer
-  Log entries size:  Total size in bytes, 4 byte integer
-  Log entries:       see below, total length as specified
-
-{% endhighlight %}
-
+   Message type:      1 byte
+     Source:            ID, 4 byte integer
+     Destination:       ID, 4 byte integer
+     Term:              Current term (see notes), 8 byte integer
+     Last Log Term:     8 byte integer
+     Last Log Index:    8 byte integer
+     Commit Index:      8 byte integer
+     Log entries size:  Total size in bytes, 4 byte integer
+     Log entries:       see below, total length as specified
 
 Notes
 ~~~~~
@@ -356,49 +351,41 @@ Otherwise, it is the leader's current term.
 In the AppendEntriesRequest, when the log entries size is zero,
 this message is a heartbeat (keepalive) message.
 
-
-
 Log Entries
-```````````
+~~~~~~~~~~~
 
 The log contains zero or more log entries.
 Each log entry is as follows.
 All values are unsigned big-endian.
 
-.. raw:: html
+.. code:: text
 
-  {% highlight lang='dataspec' %}
 
-Term:           8 byte integer
-  Value type:     1 byte
-  Entry size:     In bytes, 4 byte integer
-  Entry:          length as specified
-
-{% endhighlight %}
-
+   Term:           8 byte integer
+     Value type:     1 byte
+     Entry size:     In bytes, 4 byte integer
+     Entry:          length as specified
 
 Log Contents
-````````````
+~~~~~~~~~~~~
 
 All values are unsigned big-endian.
 
-========================  ======
-Log Value Type            Number
-========================  ======
-Application                  1
-Configuration                2
-ClusterServer                3
-LogPack                      4
-SnapshotSyncRequest          5
-========================  ======
-
+=================== ======
+Log Value Type      Number
+=================== ======
+Application         1
+Configuration       2
+ClusterServer       3
+LogPack             4
+SnapshotSyncRequest 5
+=================== ======
 
 Application
 ~~~~~~~~~~~
 
-Application contents are UTF-8 encoded [JSON]_.
+Application contents are UTF-8 encoded `JSON <https://www.json.org/>`__.
 See the Application Layer section below.
-
 
 Configuration
 ~~~~~~~~~~~~~
@@ -406,20 +393,15 @@ Configuration
 This is used for the leader to serialize a new cluster configuration and replicate to peers.
 It contains zero or more ClusterServer configurations.
 
+.. code:: text
 
-.. raw:: html
 
-  {% highlight lang='dataspec' %}
-
-Log Index:  8 byte integer
-  Last Log Index:  8 byte integer
-  ClusterServer Data for each server:
-    ID:                4 byte integer
-    Endpoint data len: In bytes, 4 byte integer
-    Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
-
-{% endhighlight %}
-
+   Log Index:  8 byte integer
+     Last Log Index:  8 byte integer
+     ClusterServer Data for each server:
+       ID:                4 byte integer
+       Endpoint data len: In bytes, 4 byte integer
+       Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
 
 ClusterServer
 ~~~~~~~~~~~~~
@@ -429,27 +411,19 @@ This is included only in a AddServerRequest or RemoveServerRequest message.
 
 When used in a AddServerRequest Message:
 
-.. raw:: html
+.. code:: text
 
-  {% highlight lang='dataspec' %}
 
-ID:                4 byte integer
-  Endpoint data len: In bytes, 4 byte integer
-  Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
-
-{% endhighlight %}
-
+   ID:                4 byte integer
+     Endpoint data len: In bytes, 4 byte integer
+     Endpoint data:     ASCII string of the form "tcp://localhost:9001", length as specified
 
 When used in a RemoveServerRequest Message:
 
-.. raw:: html
+.. code:: text
 
-  {% highlight lang='dataspec' %}
 
-ID:                4 byte integer
-
-{% endhighlight %}
-
+   ID:                4 byte integer
 
 LogPack
 ~~~~~~~
@@ -458,42 +432,30 @@ This is included only in a SyncLogRequest message.
 
 The following is gzipped before transmission:
 
-
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
-Index data len: In bytes, 4 byte integer
-  Log data len:   In bytes, 4 byte integer
-  Index data:     8 bytes for each index, length as specified
-  Log data:       length as specified
-
-{% endhighlight %}
+.. code:: text
 
 
+   Index data len: In bytes, 4 byte integer
+     Log data len:   In bytes, 4 byte integer
+     Index data:     8 bytes for each index, length as specified
+     Log data:       length as specified
 
 SnapshotSyncRequest
 ~~~~~~~~~~~~~~~~~~~
 
 This is included only in a InstallSnapshotRequest message.
 
-.. raw:: html
-
-  {% highlight lang='dataspec' %}
-
-Last Log Index:  8 byte integer
-  Last Log Term:   8 byte integer
-  Config data len: In bytes, 4 byte integer
-  Config data:     length as specified
-  Offset:          The offset of the data in the database, in bytes, 8 byte integer
-  Data len:        In bytes, 4 byte integer
-  Data:            length as specified
-  Is Done:         1 if done, 0 if not done (1 byte)
-
-{% endhighlight %}
+.. code:: text
 
 
-
+   Last Log Index:  8 byte integer
+     Last Log Term:   8 byte integer
+     Config data len: In bytes, 4 byte integer
+     Config data:     length as specified
+     Offset:          The offset of the data in the database, in bytes, 8 byte integer
+     Data len:        In bytes, 4 byte integer
+     Data:            length as specified
+     Is Done:         1 if done, 0 if not done (1 byte)
 
 Responses
 ---------
@@ -501,22 +463,20 @@ Responses
 All responses are 26 bytes, as follows.
 All values are unsigned big-endian.
 
-.. raw:: html
+.. code:: text
 
-  {% highlight lang='dataspec' %}
 
-Message type:   1 byte
-  Source:         ID, 4 byte integer
-  Destination:    Usually the actual destination ID (see notes), 4 byte integer
-  Term:           Current term, 8 byte integer
-  Next Index:     Initialized to leader last log index + 1, 8 byte integer
-  Is Accepted:    1 if accepted, 0 if not accepted (see notes), 1 byte
+   Message type:   1 byte
+     Source:         ID, 4 byte integer
+     Destination:    Usually the actual destination ID (see notes), 4 byte integer
+     Term:           Current term, 8 byte integer
+     Next Index:     Initialized to leader last log index + 1, 8 byte integer
+     Is Accepted:    1 if accepted, 0 if not accepted (see notes), 1 byte
 
-{% endhighlight %}
-
+.. _notes-1:
 
 Notes
-`````
+~~~~~
 
 The Destination ID is usually the actual destination for this message.
 However, for AppendEntriesResponse, AddServerResponse, and RemoveServerResponse,
@@ -524,7 +484,6 @@ it is the ID of the current leader.
 
 In the RequestVoteResponse, Is Accepted is 1 for a vote for the candidate (requestor),
 and 0 for no vote.
-
 
 Application Layer
 =================
@@ -537,11 +496,10 @@ of the Meta LS2.
 The server with the "best" recent status in the log is the Meta LS2 publisher.
 The publisher of the Meta LS2 is NOT necessarily the Raft Leader.
 
-
 Application Data Contents
 -------------------------
 
-Application contents are UTF-8 encoded [JSON]_,
+Application contents are UTF-8 encoded `JSON <https://json.org/>`__,
 for simplicity and extensibility.
 The full specification is TBD.
 The goal is to provide enough data to write an algorithm to determine the "best"
@@ -559,7 +517,6 @@ These data would not be supported in the first release.
 
 If "name: value" is listed, that specifies the JSON map key and value.
 Otherwise, specification is TBD.
-
 
 Cluster data (top level):
 
@@ -627,7 +584,6 @@ Meta LS sensing data:
 - Closest floodfills profile data
   for time periods yesterday, today, and tomorrow
 
-
 Administration Interface
 ========================
 
@@ -643,8 +599,6 @@ Requirements of an admin interface:
 - Ability to exclude hashes from metaLS (if current node is publisher)
 - Configuration import/export functionality for bulk deployments
 
-
-
 Router Interface
 ================
 
@@ -657,10 +611,9 @@ Requirements for Garlic Farm to router API (in-JVM java or i2pcontrol)
 - getLocalLeafHash(Hash masterHash)
 - getLocalLeafStatus(Hash leaf)
 - getRemoteMeasuredStatus(Hash masterOrLeaf) // probably not in MVP
-- publishMetaLS(Hash masterHash, List<MetaLease> contents) // or signed MetaLeaseSet? Who signs?
+- publishMetaLS(Hash masterHash, List contents) // or signed MetaLeaseSet? Who signs?
 - stopPublishingMetaLS(Hash masterHash)
 - authentication TBD?
-
 
 Justification
 =============
@@ -669,11 +622,10 @@ Atomix is too large and won't allow customization for us to route
 the protocol over I2P. Also, its wire format is undocumented, and depends
 on Java serialization.
 
+.. _notes-2:
 
 Notes
 =====
-
-
 
 Issues
 ======
@@ -681,33 +633,17 @@ Issues
 - There's no way for a client to find out about and connect to an unknown leader.
   It would be a minor change for a Follower to send the Configuration as a Log Entry in the AppendEntriesResponse.
 
-
-
 Migration
 =========
 
 No backward compatibility issues.
 
-
-
-
 References
 ==========
 
-.. [JRAFT]
-    https://github.com/datatechnology/jraft
-
-.. [JSON]
-    https://json.org/
-
-.. [RAFT]
-    /docs/research/ongaro2014-raft.pdf
-
-.. [RFC-2616]
-    https://tools.ietf.org/html/rfc2616
-
-.. [RFC-2617]
-    https://tools.ietf.org/html/rfc2617
-
-.. [WEBSOCKET]
-    https://en.wikipedia.org/wiki/WebSocket
+- `JRAFT <https://github.com/datatechnology/jraft>`__
+- `JSON <https://json.org/>`__
+- `RAFT </docs/research/ongaro2014-raft.pdf>`__
+- `RFC-2616 <https://tools.ietf.org/html/rfc2616>`__
+- `RFC-2617 <https://tools.ietf.org/html/rfc2617>`__
+- `WEBSOCKET <https://en.wikipedia.org/wiki/WebSocket>`__

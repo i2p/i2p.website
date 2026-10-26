@@ -19,7 +19,6 @@ a replacement or addition to our ElGamal asymmetric encryption.
 
 This is an informational document.
 
-
 Motivation
 ==========
 
@@ -27,23 +26,20 @@ ElGamal is old and slow, and there are better alternatives.
 However, there are several issues that must be addressed before we can add or change to any new algorithm.
 This document highlights these unresolved issues.
 
-
-
 Background Research
 ===================
 
 Anybody proposing new crypto must first be familiar with the following documents:
 
-- Proposal 111 NTCP2 https://geti2p.net/spec/proposals/111-ntcp-2
-- Proposal 123 LS2 https://geti2p.net/spec/proposals/123-new-netdb-entries
-- Proposal 136 experimental sig types https://geti2p.net/spec/proposals/136-experimental-sigtypes
-- Proposal 137 optional sig types https://geti2p.net/spec/proposals/137-optional-sigtypes
+- `Proposal 111 NTCP2 </proposals/111-ntcp-2/>`__
+- `Proposal 123 LS2 </proposals/123-new-netdb-entries/>`__
+- `Proposal 136 experimental sig types </proposals/136-experimental-sigtypes/>`__
+- `Proposal 137 optional sig types </proposals/137-optional-sigtypes/>`__
 - Discussion threads here for each of the above proposals, linked within
-- http://zzz.i2p/topics/2494 2018 proposal priorities
-- http://zzz.i2p/topics/2418 ECIES proposal
-- http://zzz.i2p/topics/1768 new asymmetric crypto overview
-- Low-level crypto overview https://geti2p.net/spec/cryptography
-
+- `2018 proposal priorities <http://zzz.i2p/topics/2494>`__
+- `ECIES proposal <http://zzz.i2p/topics/2418>`__
+- `New asymmetric crypto overview <http://zzz.i2p/topics/1768>`__
+- `Low-level crypto overview </docs/specs/common-structures/>`__
 
 Asymmetric Crypto Uses
 ======================
@@ -58,20 +54,17 @@ As a review, we use ElGamal for:
 
 4) Ephemeral DH for NTCP and SSU
 
-
 Design
 ======
 
 Any proposal to replace ElGamal with something else must provide the following details.
-
-
 
 Specification
 =============
 
 Any proposal for new asymmetric crypto must fully specify the following things.
 
-
+.. _1-general:
 
 1. General
 ----------
@@ -85,6 +78,7 @@ Answer the following questions in your proposal. Note that this may need to be a
 - Completely specify how and why this is backward compatible, and fully specify a migration plan.
 - Which unimplemented proposals are prerequisites for your proposal?
 
+.. _2-specific-crypto-type:
 
 2. Specific crypto type
 -----------------------
@@ -97,11 +91,5 @@ Answer the following questions in your proposal:
   For 3rd party or non-Java, provide links and licenses
 - Proposed crypto type number(s) (experimental range or not)
 
-
-
-
 Notes
 =====
-
-
-
