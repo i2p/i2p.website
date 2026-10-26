@@ -169,16 +169,18 @@ Only type 3 may be sent in a client-to-client Garlic message.
 
 ### Format
 
-Types 3, 7, and 9 all have a common format::
+Types 3, 7, and 9 all have a common format:
 
-  Standard LS2 Header
-  - as defined below
+```text
+Standard LS2 Header
+- as defined below
 
-  Type-Specific Part
-  - as defined below in each part
+Type-Specific Part
+- as defined below in each part
 
-  Standard LS2 Signature:
-  - Length as implied by sig type of signing key
+Standard LS2 Signature:
+- Length as implied by sig type of signing key
+```
 
 Type 5 (Encrypted) does not start with a Destination and has a
 different format. See below.

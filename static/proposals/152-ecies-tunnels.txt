@@ -329,13 +329,15 @@ Unencrypted size: 464 bytes
      bytes     x-x: other data as implied by flags or options
      bytes   x-463: random padding
 
-The flags field is the same as defined in `Tunnel Creation </docs/specs/tunnel-implementation/>`__ and contains the following::
+The flags field is the same as defined in `Tunnel Creation </docs/specs/tunnel-implementation/>`__ and contains the following:
 
-Bit order: 76543210 (bit 7 is MSB)
-bit 7: if set, allow messages from anyone
-bit 6: if set, allow messages to anyone, and send the reply to the
-specified next hop in a Tunnel Build Reply Message
-bits 5-0: Undefined, must set to 0 for compatibility with future options
+.. code:: text
+
+   Bit order: 76543210 (bit 7 is MSB)
+   bit 7: if set, allow messages from anyone
+   bit 6: if set, allow messages to anyone, and send the reply to the
+          specified next hop in a Tunnel Build Reply Message
+   bits 5-0: Undefined, must set to 0 for compatibility with future options
 
 Bit 7 indicates that the hop will be an inbound gateway (IBGW). Bit 6
 indicates that the hop will be an outbound endpoint (OBEP). If neither bit is
