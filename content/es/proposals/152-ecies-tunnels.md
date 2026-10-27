@@ -274,22 +274,24 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
 ```
 El campo flags es el mismo que se define en [Tunnel Creation](/docs/specs/tunnel-implementation/) y contiene lo siguiente::
 
+```text
+Bit order: 76543210 (bit 7 is MSB)
+bit 7: if set, allow messages from anyone
+bit 6: if set, allow messages to anyone, and send the reply to the
+       specified next hop in a Tunnel Build Reply Message
+bits 5-0: Undefined, must set to 0 for compatibility with future options
+```
 Orden de bits: 76543210 (el bit 7 es MSB)  bit 7: si está establecido, permitir mensajes de cualquiera  bit 6: si está establecido, permitir mensajes a cualquiera, y enviar la respuesta al
 
-        specified next hop in a Tunnel Build Reply Message
 bits 5-0: Sin definir, debe establecerse en 0 para compatibilidad con opciones futuras
 
 El bit 7 indica que el salto será un gateway de entrada (IBGW). El bit 6 indica que el salto será un endpoint de salida (OBEP). Si ningún bit está establecido, el salto será un participante intermedio. Ambos no pueden estar establecidos al mismo tiempo.
 
+#### Request Record Encrypted (ECIES)
+
 La expiración de la solicitud es para duración variable futura de tunnel. Por ahora, el único valor soportado es 600 (10 minutos).
 
 Las opciones de construcción del tunnel es una estructura Mapping tal como se define en [Estructuras Comunes](/docs/specs/common-structures/). Esto es para uso futuro. Actualmente no se han definido opciones. Si la estructura Mapping está vacía, esto son dos bytes 0x00 0x00. El tamaño máximo del Mapping (incluyendo el campo de longitud) es de 296 bytes, y el valor máximo del campo de longitud del Mapping es 294.
-
-#### Request Record Encrypted (ECIES)
-
-Todos los campos son big-endian excepto la clave pública efímera que es little-endian.
-
-Tamaño cifrado: 528 bytes
 
 ```text
 bytes    0-15: Hop's truncated identity hash
@@ -299,15 +301,15 @@ bytes    0-15: Hop's truncated identity hash
 ```
 ### Patrones de Handshake
 
-Los BuildReplyRecords encriptados son de 528 bytes tanto para ElGamal como para ECIES, por compatibilidad.
+Todos los campos son big-endian excepto la clave pública efímera que es little-endian.
 
 #### Reply Record Unencrypted (ElGamal)
 
+Tamaño cifrado: 528 bytes
+
+Los BuildReplyRecords encriptados son de 528 bytes tanto para ElGamal como para ECIES, por compatibilidad.
+
 Las respuestas ElGamal están cifradas con AES.
-
-Todos los campos están en big-endian.
-
-Tamaño sin cifrar: 528 bytes
 
 ```text
 bytes   0-31: SHA-256 Hash of bytes 32-527
@@ -318,16 +320,16 @@ bytes   0-31: SHA-256 Hash of bytes 32-527
 ```
 #### Reply Record Unencrypted (ECIES)
 
-Esta es la especificación propuesta del BuildReplyRecord de túnel para routers ECIES-X25519. Resumen de cambios:
+Todos los campos están en big-endian.
 
 - Agregar mapeo para opciones de respuesta de construcción
 - El registro sin cifrar es más largo porque hay menos sobrecarga de cifrado
 
+Tamaño sin cifrar: 528 bytes
+
+Esta es la especificación propuesta del BuildReplyRecord de túnel para routers ECIES-X25519. Resumen de cambios:
+
 Las respuestas ECIES están cifradas con ChaCha20/Poly1305.
-
-Todos los campos están en big-endian.
-
-Tamaño sin cifrar: 512 bytes
 
 ```text
 bytes    0-x: Tunnel Build Reply Options (Mapping)
@@ -335,28 +337,28 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
   bytes  x-510: Random padding
   byte     511: Reply byte
 ```
-Las opciones de respuesta de construcción de túnel es una estructura Mapping como se define en [Estructuras Comunes](/docs/specs/common-structures/). Esto es para uso futuro. Actualmente no se definen opciones. Si la estructura Mapping está vacía, esto son dos bytes 0x00 0x00. El tamaño máximo del Mapping (incluyendo el campo de longitud) es 511 bytes, y el valor máximo del campo de longitud del Mapping es 509.
+Todos los campos están en big-endian.
 
-El byte de respuesta es uno de los siguientes valores según se define en [Tunnel Creation](/docs/specs/tunnel-implementation/) para evitar el fingerprinting:
+Tamaño sin cifrar: 512 bytes
 
 - 0x00 (aceptar)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
 #### Reply Record Encrypted (ECIES)
 
-Tamaño cifrado: 528 bytes
+Las opciones de respuesta de construcción de túnel es una estructura Mapping como se define en [Estructuras Comunes](/docs/specs/common-structures/). Esto es para uso futuro. Actualmente no se definen opciones. Si la estructura Mapping está vacía, esto son dos bytes 0x00 0x00. El tamaño máximo del Mapping (incluyendo el campo de longitud) es 511 bytes, y el valor máximo del campo de longitud del Mapping es 509.
 
 ```text
 bytes   0-511: ChaCha20 encrypted BuildReplyRecord
   bytes 512-527: Poly1305 MAC
 ```
-Después de la transición completa a registros ECIES, las reglas de relleno por rangos son las mismas que para los registros de solicitud.
+El byte de respuesta es uno de los siguientes valores según se define en [Tunnel Creation](/docs/specs/tunnel-implementation/) para evitar el fingerprinting:
 
 ### Cifrado de solicitudes
 
-Los túneles mixtos están permitidos, y son necesarios, para la transición de ElGamal a ECIES. Durante el período de transición, un número creciente de routers tendrán claves bajo claves ECIES.
+Tamaño cifrado: 528 bytes
 
-El preprocesamiento de criptografía simétrica se ejecutará de la misma manera:
+Después de la transición completa a registros ECIES, las reglas de relleno por rangos son las mismas que para los registros de solicitud.
 
 - "encryption":
 
@@ -374,23 +376,23 @@ El preprocesamiento de criptografía simétrica se ejecutará de la misma manera
 - una vez por el salto
 - una vez en el procesamiento de respuesta final
 
+Los túneles mixtos están permitidos, y son necesarios, para la transición de ElGamal a ECIES. Durante el período de transición, un número creciente de routers tendrán claves bajo claves ECIES.
+
+El preprocesamiento de criptografía simétrica se ejecutará de la misma manera:
+
 Cuando se usan túneles mixtos, los creadores de túneles necesitarán basar el cifrado simétrico del BuildRequestRecord en el tipo de cifrado del salto actual y el anterior.
 
 Cada salto utilizará su propio tipo de cifrado para cifrar BuildReplyRecords, y los otros registros en el VariableTunnelBuildMessage (VTBM).
+
+- Remitente (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
 
 En la ruta de respuesta, el endpoint (remitente) necesitará deshacer el [Multiple Encryption](https://en.wikipedia.org/wiki/Multiple_encryption), usando la clave de respuesta de cada salto.
 
 Como ejemplo aclaratorio, veamos un túnel de salida con ECIES rodeado por ElGamal:
 
-- Remitente (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
-
 Todos los BuildRequestRecords están en su estado cifrado (usando ElGamal o ECIES).
 
 El cifrado AES256/CBC, cuando se utiliza, sigue siendo usado para cada registro, sin encadenamiento entre múltiples registros.
-
-Del mismo modo, ChaCha20 se utilizará para cifrar cada registro, no transmitiendo a través de todo el VTBM.
-
-Los registros de solicitud son preprocesados por el Sender (OBGW):
 
 - El registro de H3 está "cifrado" usando:
 
@@ -403,9 +405,9 @@ Los registros de solicitud son preprocesados por el Sender (OBGW):
 
 - El registro de H1 sale sin cifrado simétrico
 
-Solo H2 verifica la bandera de cifrado de respuesta, y ve que está seguida por AES256/CBC.
+Del mismo modo, ChaCha20 se utilizará para cifrar cada registro, no transmitiendo a través de todo el VTBM.
 
-Después de ser procesados por cada salto, los registros se encuentran en un estado "descifrado":
+Los registros de solicitud son preprocesados por el Sender (OBGW):
 
 - El registro de H3 es "descifrado" usando:
 
@@ -422,7 +424,7 @@ Después de ser procesados por cada salto, los registros se encuentran en un est
 - Clave de respuesta de H2 (ChaCha20)
 - Clave de respuesta de H1 (AES256/CBC)
 
-El creador del tunnel, también conocido como Inbound Endpoint (IBEP), postprocesa la respuesta:
+Solo H2 verifica la bandera de cifrado de respuesta, y ve que está seguida por AES256/CBC.
 
 - El registro de H3 está "encriptado" usando:
 
@@ -441,13 +443,13 @@ El creador del tunnel, también conocido como Inbound Endpoint (IBEP), postproce
 
 ### Cifrado de respuesta
 
-Estas claves se incluyen explícitamente en los ElGamal BuildRequestRecords. Para los ECIES BuildRequestRecords, se incluyen las claves de túnel y las claves de respuesta AES, pero las claves de respuesta ChaCha se derivan del intercambio DH. Consulta la [Propuesta 156](/proposals/156-ecies-routers) para detalles sobre las claves ECIES estáticas del router.
+Después de ser procesados por cada salto, los registros se encuentran en un estado "descifrado":
 
-A continuación se describe cómo derivar las claves transmitidas previamente en los registros de solicitud.
+El creador del tunnel, también conocido como Inbound Endpoint (IBEP), postprocesa la respuesta:
 
 #### KDF for Initial ck and h
 
-Esto es [NOISE](https://noiseprotocol.org/noise.html) estándar para el patrón "N" con un nombre de protocolo estándar.
+Estas claves se incluyen explícitamente en los ElGamal BuildRequestRecords. Para los ECIES BuildRequestRecords, se incluyen las claves de túnel y las claves de respuesta AES, pero las claves de respuesta ChaCha se derivan del intercambio DH. Consulta la [Propuesta 156](/proposals/156-ecies-routers) para detalles sobre las claves ECIES estáticas del router.
 
 ```text
 This is the "e" message pattern:
@@ -470,15 +472,15 @@ This is the "e" message pattern:
 ```
 #### KDF for Request Record
 
+A continuación se describe cómo derivar las claves transmitidas previamente en los registros de solicitud.
+
+Esto es [NOISE](https://noiseprotocol.org/noise.html) estándar para el patrón "N" con un nombre de protocolo estándar.
+
 Los creadores de tunnel ElGamal generan un par de claves X25519 efímero para cada salto ECIES en el tunnel, y usan el esquema anterior para cifrar su BuildRequestRecord. Los creadores de tunnel ElGamal usarán el esquema anterior a esta especificación para cifrar hacia saltos ElGamal.
 
 Los creadores de túneles ECIES necesitarán encriptar a la clave pública de cada salto ElGamal usando el esquema definido en [Tunnel Creation](/docs/specs/tunnel-implementation/). Los creadores de túneles ECIES usarán el esquema anterior para encriptar a los saltos ECIES.
 
 Esto significa que los saltos de túnel solo verán registros cifrados de su mismo tipo de cifrado.
-
-Para creadores de túneles ElGamal y ECIES, generarán pares de claves efímeras X25519 únicos por salto para cifrar hacia saltos ECIES.
-
-**IMPORTANTE**: Las claves efímeras deben ser únicas por salto ECIES y por registro de construcción. No usar claves únicas abre un vector de ataque para que los saltos que colaboran puedan confirmar que están en el mismo túnel.
 
 ```text
 // Each hop's X25519 static keypair (hesk, hepk) from the Router Identity
@@ -529,15 +531,15 @@ Para creadores de túneles ElGamal y ECIES, generarán pares de claves efímeras
   // Save for Reply Record KDF
   h = SHA256(h || ciphertext)
 ```
-``replyKey``, ``layerKey`` y ``layerIV`` aún deben incluirse dentro de los registros ElGamal, y pueden generarse aleatoriamente.
+Para creadores de túneles ElGamal y ECIES, generarán pares de claves efímeras X25519 únicos por salto para cifrar hacia saltos ECIES.
 
 ### Justificación
 
-Como se define en [Tunnel Creation](/docs/specs/tunnel-implementation/). No hay cambios en el cifrado para los saltos ElGamal.
+**IMPORTANTE**: Las claves efímeras deben ser únicas por salto ECIES y por registro de construcción. No usar claves únicas abre un vector de ataque para que los saltos que colaboran puedan confirmar que están en el mismo túnel.
 
 ### Reply Record Encryption (ECIES)
 
-El registro de respuesta está cifrado con ChaCha20/Poly1305.
+``replyKey``, ``layerKey`` y ``layerIV`` aún deben incluirse dentro de los registros ElGamal, y pueden generarse aleatoriamente.
 
 ```text
 // AEAD parameters
@@ -554,6 +556,10 @@ Como se define en [Tunnel Creation](/docs/specs/tunnel-implementation/). No hay 
 
 ### Security Analysis
 
+El registro de respuesta está cifrado con ChaCha20/Poly1305.
+
+Como se define en [Tunnel Creation](/docs/specs/tunnel-implementation/). No hay cambios en el cifrado para los saltos ElGamal.
+
 ElGamal no proporciona secreto hacia adelante para los Mensajes de Construcción de Túnel.
 
 AES256/CBC está en una situación ligeramente mejor, siendo vulnerable únicamente a un debilitamiento teórico de un ataque de `biclique` con texto plano conocido.
@@ -564,13 +570,9 @@ Un atacante necesitaría romper la encriptación ElGamal del siguiente salto par
 
 ElGamal es significativamente más intensivo en CPU que ECIES, lo que conduce a un potencial agotamiento de recursos.
 
-ECIES, utilizado con nuevas claves efímeras por-BuildRequestRecord o VariableTunnelBuildMessage, proporciona confidencialidad hacia adelante.
-
-ChaCha20Poly1305 proporciona cifrado AEAD, permitiendo que el destinatario verifique la integridad del mensaje antes de intentar el descifrado.
-
 ## Modelo de Amenazas
 
-Este diseño maximiza la reutilización de primitivas criptográficas, protocolos y código existentes. Este diseño minimiza el riesgo.
+ECIES, utilizado con nuevas claves efímeras por-BuildRequestRecord o VariableTunnelBuildMessage, proporciona confidencialidad hacia adelante.
 
 ## Implementation Notes
 
@@ -584,4 +586,23 @@ Este diseño maximiza la reutilización de primitivas criptográficas, protocolo
 
 ## Diseño
 
-Ver [Propuesta 156](/proposals/156-ecies-routers).
+ChaCha20Poly1305 proporciona cifrado AEAD, permitiendo que el destinatario verifique la integridad del mensaje antes de intentar el descifrado.
+
+## Referencias
+
+* [Common](/docs/specs/common-structures/)
+* [Criptografía](/docs/specs/cryptography/)
+* [ECIES-X25519](/docs/specs/ecies/)
+* [I2NP](/docs/specs/i2np/)
+* [NOISE](https://noiseprotocol.org/noise.html)
+* [NTCP2](/docs/specs/ntcp2/)
+* [Prop119](/proposals/119-bidirectional-tunnels/)
+* [Prop143](/proposals/143-build-message-options/)
+* [Prop153](/proposals/153-chacha20-layer-encryption/)
+* [Prop156](/proposals/156-ecies-routers/)
+* [Prop157](/proposals/157-new-tbm/)
+* [SPEC](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Creación de tunnel](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Cifrado múltiple](https://en.wikipedia.org/wiki/Multiple_encryption)
+* [RFC-7539](https://tools.ietf.org/html/rfc7539)
+* [RFC-7748](https://tools.ietf.org/html/rfc7748)

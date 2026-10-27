@@ -274,22 +274,24 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
 ```
 Le champ flags est identique à celui défini dans [Tunnel Creation](/docs/specs/tunnel-implementation/) et contient ce qui suit::
 
+```text
+Bit order: 76543210 (bit 7 is MSB)
+bit 7: if set, allow messages from anyone
+bit 6: if set, allow messages to anyone, and send the reply to the
+       specified next hop in a Tunnel Build Reply Message
+bits 5-0: Undefined, must set to 0 for compatibility with future options
+```
 Ordre des bits: 76543210 (le bit 7 est le MSB)  bit 7: si positionné, autoriser les messages de n'importe qui  bit 6: si positionné, autoriser l'envoi de messages à n'importe qui, et envoyer la réponse à
 
-        specified next hop in a Tunnel Build Reply Message
 bits 5 à 0 : Non définis, doivent être mis à 0 pour la compatibilité avec de futures options
 
 Le bit 7 indique que le saut sera une passerelle entrante (IBGW). Le bit 6 indique que le saut sera un point de sortie (OBEP). Si aucun des bits n’est positionné, le saut sera un participant intermédiaire. Les deux ne peuvent pas être positionnés simultanément.
 
+#### Enregistrement de requête chiffré (ECIES, schéma de chiffrement intégré à courbes elliptiques)
+
 L’expiration de la requête est destinée à une future durée de tunnel variable. Pour l’instant, la seule valeur prise en charge est 600 (10 minutes).
 
 Les options de construction de tunnel constituent une structure Mapping (structure clé-valeur) telle que définie dans [Common Structures](/docs/specs/common-structures/). Ceci est destiné à un usage futur. Aucune option n’est actuellement définie. Si la structure Mapping est vide, cela correspond à deux octets 0x00 0x00. La taille maximale du Mapping (champ de longueur inclus) est de 296 octets, et la valeur maximale du champ de longueur du Mapping est de 294.
-
-#### Enregistrement de requête chiffré (ECIES, schéma de chiffrement intégré à courbes elliptiques)
-
-Tous les champs sont en big-endian, à l’exception de la clé publique éphémère qui est en little-endian.
-
-Taille chiffrée : 528 octets
 
 ```text
 bytes    0-15: Hop's truncated identity hash
@@ -299,15 +301,15 @@ bytes    0-15: Hop's truncated identity hash
 ```
 ### Enregistrements de réponse de construction
 
-Les BuildReplyRecords (enregistrements de réponse de construction) chiffrés ont une taille de 528 octets, tant pour ElGamal que pour ECIES, par souci de compatibilité.
+Tous les champs sont en big-endian, à l’exception de la clé publique éphémère qui est en little-endian.
 
 #### Enregistrement de réponse non chiffré (ElGamal, cryptosystème de chiffrement asymétrique)
 
+Taille chiffrée : 528 octets
+
+Les BuildReplyRecords (enregistrements de réponse de construction) chiffrés ont une taille de 528 octets, tant pour ElGamal que pour ECIES, par souci de compatibilité.
+
 Les réponses ElGamal sont chiffrées avec AES.
-
-Tous les champs sont en big-endian (ordre des octets du plus significatif au moins significatif).
-
-Taille non chiffrée : 528 octets
 
 ```text
 bytes   0-31: SHA-256 Hash of bytes 32-527
@@ -318,16 +320,16 @@ bytes   0-31: SHA-256 Hash of bytes 32-527
 ```
 #### Enregistrement de réponse non chiffré (ECIES)
 
-Il s’agit de la spécification proposée du tunnel BuildReplyRecord (enregistrement de réponse de construction) pour les routers ECIES-X25519. Résumé des changements :
+Tous les champs sont en big-endian (ordre des octets du plus significatif au moins significatif).
 
 - Ajouter un mappage pour les options de réponse de construction
 - L’enregistrement non chiffré est plus long parce qu’il y a moins de surcharge liée au chiffrement
 
+Taille non chiffrée : 528 octets
+
+Il s’agit de la spécification proposée du tunnel BuildReplyRecord (enregistrement de réponse de construction) pour les routers ECIES-X25519. Résumé des changements :
+
 Les réponses ECIES (schéma de chiffrement intégré sur courbes elliptiques) sont chiffrées avec ChaCha20/Poly1305.
-
-Tous les champs sont en big-endian.
-
-Taille non chiffrée : 512 octets
 
 ```text
 bytes    0-x: Tunnel Build Reply Options (Mapping)
@@ -335,28 +337,28 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
   bytes  x-510: Random padding
   byte     511: Reply byte
 ```
-Les options de réponse de construction de tunnel constituent une structure Mapping (structure de correspondance) telle que définie dans [Common Structures](/docs/specs/common-structures/). Ceci est prévu pour un usage futur. Aucune option n’est actuellement définie. Si la structure Mapping est vide, cela correspond à deux octets 0x00 0x00. La taille maximale du Mapping (champ de longueur inclus) est de 511 octets, et la valeur maximale du champ de longueur du Mapping est de 509.
+Tous les champs sont en big-endian.
 
-L'octet de réponse est l'une des valeurs suivantes, telles que définies dans [Tunnel Creation](/docs/specs/tunnel-implementation/) pour éviter le fingerprinting :
+Taille non chiffrée : 512 octets
 
 - 0x00 (accepter)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
 #### Enregistrement de réponse chiffré (ECIES)
 
-Taille chiffrée: 528 octets
+Les options de réponse de construction de tunnel constituent une structure Mapping (structure de correspondance) telle que définie dans [Common Structures](/docs/specs/common-structures/). Ceci est prévu pour un usage futur. Aucune option n’est actuellement définie. Si la structure Mapping est vide, cela correspond à deux octets 0x00 0x00. La taille maximale du Mapping (champ de longueur inclus) est de 511 octets, et la valeur maximale du champ de longueur du Mapping est de 509.
 
 ```text
 bytes   0-511: ChaCha20 encrypted BuildReplyRecord
   bytes 512-527: Poly1305 MAC
 ```
-Après la transition complète vers les enregistrements ECIES (schéma de chiffrement intégré à courbes elliptiques), les règles de ranged padding (bourrage par plages) sont identiques à celles des enregistrements de requête.
+L'octet de réponse est l'une des valeurs suivantes, telles que définies dans [Tunnel Creation](/docs/specs/tunnel-implementation/) pour éviter le fingerprinting :
 
 ### Chiffrement symétrique des enregistrements
 
-Les tunnels mixtes sont autorisés et nécessaires pour la transition d’ElGamal vers ECIES. Pendant la période de transition, un nombre croissant de routers seront dotés de clés ECIES.
+Taille chiffrée: 528 octets
 
-Le prétraitement de la cryptographie symétrique s’effectuera de la même manière :
+Après la transition complète vers les enregistrements ECIES (schéma de chiffrement intégré à courbes elliptiques), les règles de ranged padding (bourrage par plages) sont identiques à celles des enregistrements de requête.
 
 - "encryption":
 
@@ -374,23 +376,23 @@ Le prétraitement de la cryptographie symétrique s’effectuera de la même man
   - une fois par le relais
   - une fois lors du traitement final de la réponse
 
+Les tunnels mixtes sont autorisés et nécessaires pour la transition d’ElGamal vers ECIES. Pendant la période de transition, un nombre croissant de routers seront dotés de clés ECIES.
+
+Le prétraitement de la cryptographie symétrique s’effectuera de la même manière :
+
 Lorsque des tunnels mixtes sont utilisés, les créateurs de tunnels devront baser le chiffrement symétrique de BuildRequestRecord (enregistrement de demande de construction) sur le type de chiffrement du saut actuel et du saut précédent.
 
 Chaque saut utilisera son propre type de chiffrement pour chiffrer les BuildReplyRecords et les autres enregistrements dans la VariableTunnelBuildMessage (VTBM).
+
+- Expéditeur (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
 
 Sur le chemin de réponse, l'extrémité (expéditeur) devra déchiffrer le [chiffrement multiple](https://en.wikipedia.org/wiki/Multiple_encryption), en utilisant la clé de réponse de chaque saut.
 
 Pour clarifier, examinons un tunnel sortant avec ECIES (schéma de chiffrement intégré à courbe elliptique) entouré par ElGamal (schéma de chiffrement asymétrique) :
 
-- Expéditeur (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
-
 Tous les BuildRequestRecords (enregistrements de requête de construction) sont à l’état chiffré (à l’aide d’ElGamal ou d’ECIES).
 
 Le chiffrement AES256/CBC, lorsqu'il est utilisé, est toujours appliqué à chaque enregistrement, sans chaînage entre plusieurs enregistrements.
-
-De même, ChaCha20 sera utilisé pour chiffrer chaque enregistrement, et non pas en flux sur l'ensemble du VTBM.
-
-Les enregistrements de requêtes sont prétraités par l’émetteur (OBGW) :
 
 - L'enregistrement de H3 est "chiffré" à l'aide de :
 
@@ -403,9 +405,9 @@ Les enregistrements de requêtes sont prétraités par l’émetteur (OBGW) :
 
 - L'enregistrement de H1 est envoyé sans chiffrement symétrique
 
-Seul H2 vérifie l'indicateur de chiffrement de la réponse, et constate que celui-ci est suivi de AES256/CBC.
+De même, ChaCha20 sera utilisé pour chiffrer chaque enregistrement, et non pas en flux sur l'ensemble du VTBM.
 
-Après avoir été traités par chaque saut, les enregistrements sont dans un état "déchiffré":
+Les enregistrements de requêtes sont prétraités par l’émetteur (OBGW) :
 
 - L'enregistrement de H3 est "déchiffré" à l'aide de :
 
@@ -422,7 +424,7 @@ Après avoir été traités par chaque saut, les enregistrements sont dans un é
   - Clé de réponse de H2 (ChaCha20)
   - Clé de réponse de H1 (AES256/CBC)
 
-Le créateur de tunnel, également appelé Inbound Endpoint (IBEP, point de terminaison entrant), post-traite la réponse :
+Seul H2 vérifie l'indicateur de chiffrement de la réponse, et constate que celui-ci est suivi de AES256/CBC.
 
 - L'enregistrement de H3 est "chiffré" à l'aide de :
 
@@ -441,13 +443,13 @@ Le créateur de tunnel, également appelé Inbound Endpoint (IBEP, point de term
 
 ### Clés des enregistrements de requête (ECIES)
 
-Ces clés sont explicitement incluses dans les BuildRequestRecords (enregistrements de requête de construction) ElGamal. Pour les BuildRequestRecords ECIES, les clés de tunnel et les clés de réponse AES sont incluses, mais les clés de réponse ChaCha sont dérivées de l’échange DH (Diffie-Hellman). Voir [Proposition 156](/proposals/156-ecies-routers) pour des détails sur les clés ECIES statiques du router.
+Après avoir été traités par chaque saut, les enregistrements sont dans un état "déchiffré":
 
-Vous trouverez ci-dessous une description de la manière de dériver les clés précédemment transmises dans les enregistrements de requête.
+Le créateur de tunnel, également appelé Inbound Endpoint (IBEP, point de terminaison entrant), post-traite la réponse :
 
 #### Fonction de dérivation de clé (KDF) pour ck et h initiaux
 
-Il s’agit de [NOISE](https://noiseprotocol.org/noise.html) standard pour le modèle "N" avec un nom de protocole standard.
+Ces clés sont explicitement incluses dans les BuildRequestRecords (enregistrements de requête de construction) ElGamal. Pour les BuildRequestRecords ECIES, les clés de tunnel et les clés de réponse AES sont incluses, mais les clés de réponse ChaCha sont dérivées de l’échange DH (Diffie-Hellman). Voir [Proposition 156](/proposals/156-ecies-routers) pour des détails sur les clés ECIES statiques du router.
 
 ```text
 This is the "e" message pattern:
@@ -470,15 +472,15 @@ This is the "e" message pattern:
 ```
 #### KDF (fonction de dérivation de clé) pour l’enregistrement de requête
 
+Vous trouverez ci-dessous une description de la manière de dériver les clés précédemment transmises dans les enregistrements de requête.
+
+Il s’agit de [NOISE](https://noiseprotocol.org/noise.html) standard pour le modèle "N" avec un nom de protocole standard.
+
 Les créateurs de tunnel ElGamal génèrent une paire de clés X25519 éphémère pour chaque saut ECIES dans le tunnel, et utilisent le schéma ci-dessus pour chiffrer leur BuildRequestRecord (enregistrement de requête de construction). Les créateurs de tunnel ElGamal utiliseront le schéma antérieur à cette spécification pour chiffrer à destination des sauts ElGamal.
 
 Les créateurs de tunnel ECIES devront chiffrer avec la clé publique de chaque saut ElGamal en utilisant le schéma défini dans [Tunnel Creation](/docs/specs/tunnel-implementation/). Les créateurs de tunnel ECIES utiliseront le schéma ci-dessus pour chiffrer à destination des sauts ECIES.
 
 Cela signifie que les sauts de tunnel ne voient que des enregistrements chiffrés correspondant à leur propre type de chiffrement.
-
-Les créateurs de tunnel ElGamal et ECIES généreront des paires de clés X25519 éphémères uniques par saut afin de chiffrer à destination des sauts ECIES.
-
-**IMPORTANT**: Les clés éphémères doivent être uniques pour chaque saut ECIES et pour chaque enregistrement de construction. Le fait de ne pas utiliser des clés uniques ouvre un vecteur d’attaque permettant à des nœuds relais en collusion de confirmer qu’ils se trouvent dans le même tunnel.
 
 ```text
 // Each hop's X25519 static keypair (hesk, hepk) from the Router Identity
@@ -529,15 +531,15 @@ Les créateurs de tunnel ElGamal et ECIES généreront des paires de clés X2551
   // Save for Reply Record KDF
   h = SHA256(h || ciphertext)
 ```
-``replyKey``, ``layerKey`` et ``layerIV`` doivent toujours être inclus dans les enregistrements ElGamal et peuvent être générés aléatoirement.
+Les créateurs de tunnel ElGamal et ECIES généreront des paires de clés X25519 éphémères uniques par saut afin de chiffrer à destination des sauts ECIES.
 
 ### Chiffrement de l'enregistrement de requête (ElGamal)
 
-Tel que défini dans [Création de tunnels](/docs/specs/tunnel-implementation/). Aucune modification du chiffrement pour les sauts ElGamal.
+**IMPORTANT**: Les clés éphémères doivent être uniques pour chaque saut ECIES et pour chaque enregistrement de construction. Le fait de ne pas utiliser des clés uniques ouvre un vecteur d’attaque permettant à des nœuds relais en collusion de confirmer qu’ils se trouvent dans le même tunnel.
 
 ### Chiffrement de l’enregistrement de réponse (ECIES)
 
-L’enregistrement de réponse est chiffré avec ChaCha20/Poly1305.
+``replyKey``, ``layerKey`` et ``layerIV`` doivent toujours être inclus dans les enregistrements ElGamal et peuvent être générés aléatoirement.
 
 ```text
 // AEAD parameters
@@ -550,9 +552,13 @@ L’enregistrement de réponse est chiffré avec ChaCha20/Poly1305.
 ```
 ### Chiffrement de l’enregistrement de réponse (ElGamal)
 
-Comme défini dans [Création de tunnel](/docs/specs/tunnel-implementation/). Il n’y a aucun changement concernant le chiffrement des sauts ElGamal.
+Tel que défini dans [Création de tunnels](/docs/specs/tunnel-implementation/). Aucune modification du chiffrement pour les sauts ElGamal.
 
 ### Analyse de sécurité
+
+L’enregistrement de réponse est chiffré avec ChaCha20/Poly1305.
+
+Comme défini dans [Création de tunnel](/docs/specs/tunnel-implementation/). Il n’y a aucun changement concernant le chiffrement des sauts ElGamal.
 
 ElGamal ne garantit pas la confidentialité persistante pour les messages de construction de tunnel.
 
@@ -564,13 +570,9 @@ Un attaquant devrait casser le chiffrement ElGamal du prochain saut pour obtenir
 
 ElGamal est nettement plus gourmand en ressources processeur qu’ECIES, ce qui peut entraîner un épuisement des ressources.
 
-ECIES, utilisé avec de nouvelles clés éphémères pour chaque BuildRequestRecord ou VariableTunnelBuildMessage, fournit la confidentialité persistante.
-
-ChaCha20Poly1305 fournit un chiffrement AEAD (chiffrement authentifié avec données associées), permettant au destinataire de vérifier l'intégrité du message avant de tenter le déchiffrement.
-
 ## Justification
 
-Cette conception maximise la réutilisation des primitives cryptographiques, des protocoles et du code existants. Cette conception minimise le risque.
+ECIES, utilisé avec de nouvelles clés éphémères pour chaque BuildRequestRecord ou VariableTunnelBuildMessage, fournit la confidentialité persistante.
 
 ## Notes d’implémentation
 
@@ -583,7 +585,7 @@ Cette conception maximise la réutilisation des primitives cryptographiques, des
 
 ## Migration
 
-Voir [Proposition 156](/proposals/156-ecies-routers).
+ChaCha20Poly1305 fournit un chiffrement AEAD (chiffrement authentifié avec données associées), permettant au destinataire de vérifier l'intégrité du message avant de tenter le déchiffrement.
 
 ## Références
 

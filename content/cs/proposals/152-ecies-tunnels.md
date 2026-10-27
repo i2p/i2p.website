@@ -274,22 +274,24 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
 ```
 Pole flags je stejné jako definované v [Tunnel Creation](/docs/specs/tunnel-implementation/) a obsahuje následující::
 
+```text
+Bit order: 76543210 (bit 7 is MSB)
+bit 7: if set, allow messages from anyone
+bit 6: if set, allow messages to anyone, and send the reply to the
+       specified next hop in a Tunnel Build Reply Message
+bits 5-0: Undefined, must set to 0 for compatibility with future options
+```
 Pořadí bitů: 76543210 (bit 7 je MSB)  bit 7: pokud je nastaven, povolit zprávy od kohokoliv  bit 6: pokud je nastaven, povolit zprávy komukoliv a odeslat odpověď na
 
-        specified next hop in a Tunnel Build Reply Message
 bity 5-0: Nedefinované, musí být nastaveny na 0 pro kompatibilitu s budoucími možnostmi
 
 Bit 7 označuje, že hop bude inbound gateway (IBGW). Bit 6 označuje, že hop bude outbound endpoint (OBEP). Pokud není nastaven žádný z bitů, hop bude intermediate participant. Oba nemohou být nastaveny současně.
 
+#### Request Record Encrypted (ECIES)
+
 Vypršení požadavku je pro budoucí proměnnou délku trvání tunnelu. Prozatím je jedinou podporovanou hodnotou 600 (10 minut).
 
 Možnosti pro budování tunnelu jsou struktura Mapping jak je definována v [Common Structures](/docs/specs/common-structures/). Toto je pro budoucí použití. Žádné možnosti nejsou v současnosti definovány. Pokud je struktura Mapping prázdná, jedná se o dva bajty 0x00 0x00. Maximální velikost Mapping (včetně pole délky) je 296 bajtů a maximální hodnota pole délky Mapping je 294.
-
-#### Request Record Encrypted (ECIES)
-
-Všechna pole jsou big-endian s výjimkou dočasného veřejného klíče, který je little-endian.
-
-Zašifrovaná velikost: 528 bajtů
 
 ```text
 bytes    0-15: Hop's truncated identity hash
@@ -299,15 +301,15 @@ bytes    0-15: Hop's truncated identity hash
 ```
 ### Vzory handshaku
 
-Šifrované BuildReplyRecords mají 528 bajtů jak pro ElGamal, tak pro ECIES, kvůli kompatibilitě.
+Všechna pole jsou big-endian s výjimkou dočasného veřejného klíče, který je little-endian.
 
 #### Reply Record Unencrypted (ElGamal)
 
+Zašifrovaná velikost: 528 bajtů
+
+Šifrované BuildReplyRecords mají 528 bajtů jak pro ElGamal, tak pro ECIES, kvůli kompatibilitě.
+
 ElGamal odpovědi jsou šifrovány pomocí AES.
-
-Všechna pole jsou big-endian.
-
-Nezašifrovaná velikost: 528 bytů
 
 ```text
 bytes   0-31: SHA-256 Hash of bytes 32-527
@@ -318,16 +320,16 @@ bytes   0-31: SHA-256 Hash of bytes 32-527
 ```
 #### Reply Record Unencrypted (ECIES)
 
-Toto je navrhovaná specifikace tunnel BuildReplyRecord pro ECIES-X25519 routery. Shrnutí změn:
+Všechna pole jsou big-endian.
 
 - Přidat mapování pro možnosti odpovědi sestavení
 - Nešifrovaný záznam je delší, protože je menší režie šifrování
 
+Nezašifrovaná velikost: 528 bytů
+
+Toto je navrhovaná specifikace tunnel BuildReplyRecord pro ECIES-X25519 routery. Shrnutí změn:
+
 ECIES odpovědi jsou šifrovány pomocí ChaCha20/Poly1305.
-
-Všechna pole jsou ve formátu big-endian.
-
-Nezašifrovaná velikost: 512 bytů
 
 ```text
 bytes    0-x: Tunnel Build Reply Options (Mapping)
@@ -335,28 +337,28 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
   bytes  x-510: Random padding
   byte     511: Reply byte
 ```
-Možnosti odpovědi na tunnel build je struktura Mapping jak je definována v [Common Structures](/docs/specs/common-structures/). Toto je pro budoucí použití. Aktuálně nejsou definovány žádné možnosti. Pokud je struktura Mapping prázdná, jedná se o dva bajty 0x00 0x00. Maximální velikost Mapping (včetně pole délky) je 511 bajtů a maximální hodnota pole délky Mapping je 509.
+Všechna pole jsou ve formátu big-endian.
 
-Odpověď byte je jedna z následujících hodnot definovaných v [Tunnel Creation](/docs/specs/tunnel-implementation/) k zamezení fingerprintingu:
+Nezašifrovaná velikost: 512 bytů
 
 - 0x00 (přijmout)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
 #### Reply Record Encrypted (ECIES)
 
-Šifrovaná velikost: 528 bajtů
+Možnosti odpovědi na tunnel build je struktura Mapping jak je definována v [Common Structures](/docs/specs/common-structures/). Toto je pro budoucí použití. Aktuálně nejsou definovány žádné možnosti. Pokud je struktura Mapping prázdná, jedná se o dva bajty 0x00 0x00. Maximální velikost Mapping (včetně pole délky) je 511 bajtů a maximální hodnota pole délky Mapping je 509.
 
 ```text
 bytes   0-511: ChaCha20 encrypted BuildReplyRecord
   bytes 512-527: Poly1305 MAC
 ```
-Po úplném přechodu na ECIES záznamy jsou pravidla pro rozsahové padding stejná jako pro záznamy požadavků.
+Odpověď byte je jedna z následujících hodnot definovaných v [Tunnel Creation](/docs/specs/tunnel-implementation/) k zamezení fingerprintingu:
 
 ### Šifrování požadavků
 
-Smíšené tunely jsou povolené a nezbytné pro přechod z ElGamal na ECIES. Během přechodného období bude narůstající počet routerů používat ECIES klíče.
+Šifrovaná velikost: 528 bajtů
 
-Preprocessing symetrické kryptografie bude probíhat stejným způsobem:
+Po úplném přechodu na ECIES záznamy jsou pravidla pro rozsahové padding stejná jako pro záznamy požadavků.
 
 - "šifrování":
 
@@ -374,23 +376,23 @@ Preprocessing symetrické kryptografie bude probíhat stejným způsobem:
 - jednou hopem
 - jednou při zpracování finální odpovědi
 
+Smíšené tunely jsou povolené a nezbytné pro přechod z ElGamal na ECIES. Během přechodného období bude narůstající počet routerů používat ECIES klíče.
+
+Preprocessing symetrické kryptografie bude probíhat stejným způsobem:
+
 Při použití smíšených tunelů budou tvůrci tunelů potřebovat založit symetrické šifrování BuildRequestRecord na typu šifrování aktuálního a předchozího hopu.
 
 Každý hop bude používat svůj vlastní typ šifrování pro šifrování BuildReplyRecords a dalších záznamů ve VariableTunnelBuildMessage (VTBM).
+
+- Odesílatel (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
 
 Na zpáteční cestě bude koncový bod (odesílatel) muset vrátit [Multiple Encryption](https://en.wikipedia.org/wiki/Multiple_encryption) zpět, pomocí klíče pro odpověď každého přeskoku.
 
 Jako objasňující příklad se podívejme na odchozí tunnel s ECIES obklopeným ElGamal:
 
-- Odesílatel (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
-
 Všechny BuildRequestRecords jsou ve svém šifrovaném stavu (pomocí ElGamal nebo ECIES).
 
 Šifra AES256/CBC, když je použita, je stále používána pro každý záznam, bez řetězení napříč více záznamy.
-
-Stejně tak bude ChaCha20 použito k šifrování každého záznamu, nikoli ke streamování přes celý VTBM.
-
-Záznamy požadavků jsou předem zpracovány Odesílatelem (OBGW):
 
 - Záznam H3 je "zašifrován" pomocí:
 
@@ -403,9 +405,9 @@ Záznamy požadavků jsou předem zpracovány Odesílatelem (OBGW):
 
 - Záznam H1 odchází bez symetrického šifrování
 
-Pouze H2 kontroluje příznak šifrování odpovědi a vidí, že je následován AES256/CBC.
+Stejně tak bude ChaCha20 použito k šifrování každého záznamu, nikoli ke streamování přes celý VTBM.
 
-Po zpracování každým hopem jsou záznamy ve stavu "dešifrováno":
+Záznamy požadavků jsou předem zpracovány Odesílatelem (OBGW):
 
 - Záznam H3 je "dešifrován" pomocí:
 
@@ -422,7 +424,7 @@ Po zpracování každým hopem jsou záznamy ve stavu "dešifrováno":
 - Odpovědní klíč H2 (ChaCha20)
 - Odpovědní klíč H1 (AES256/CBC)
 
-Tvůrce tunelu, také známý jako Inbound Endpoint (IBEP), zpracovává odpověď:
+Pouze H2 kontroluje příznak šifrování odpovědi a vidí, že je následován AES256/CBC.
 
 - Záznam H3 je "zašifrován" pomocí:
 
@@ -441,13 +443,13 @@ Tvůrce tunelu, také známý jako Inbound Endpoint (IBEP), zpracovává odpově
 
 ### Šifrování odpovědí
 
-Tyto klíče jsou explicitně zahrnuty v ElGamal BuildRequestRecords. Pro ECIES BuildRequestRecords jsou zahrnuty tunnel klíče a AES reply klíče, ale ChaCha reply klíče jsou odvozeny z DH výměny. Podrobnosti o statických ECIES klíčích routeru najdete v [Proposal 156](/proposals/156-ecies-routers).
+Po zpracování každým hopem jsou záznamy ve stavu "dešifrováno":
 
-Níže je popis toho, jak odvodit klíče dříve přenášené v záznamech požadavků.
+Tvůrce tunelu, také známý jako Inbound Endpoint (IBEP), zpracovává odpověď:
 
 #### KDF for Initial ck and h
 
-Toto je standardní [NOISE](https://noiseprotocol.org/noise.html) pro vzor "N" se standardním názvem protokolu.
+Tyto klíče jsou explicitně zahrnuty v ElGamal BuildRequestRecords. Pro ECIES BuildRequestRecords jsou zahrnuty tunnel klíče a AES reply klíče, ale ChaCha reply klíče jsou odvozeny z DH výměny. Podrobnosti o statických ECIES klíčích routeru najdete v [Proposal 156](/proposals/156-ecies-routers).
 
 ```text
 This is the "e" message pattern:
@@ -470,15 +472,15 @@ This is the "e" message pattern:
 ```
 #### KDF for Request Record
 
+Níže je popis toho, jak odvodit klíče dříve přenášené v záznamech požadavků.
+
+Toto je standardní [NOISE](https://noiseprotocol.org/noise.html) pro vzor "N" se standardním názvem protokolu.
+
 ElGamal tvůrci tunelů generují dočasný X25519 klíčový pár pro každý ECIES hop v tunelu a používají výše uvedené schéma pro šifrování svého BuildRequestRecord. ElGamal tvůrci tunelů budou používat schéma předcházející této specifikaci pro šifrování do ElGamal hopů.
 
 ECIES tvůrci tunelů budou muset šifrovat k veřejnému klíči každého ElGamal hopu pomocí schématu definovaného v [Tunnel Creation](/docs/specs/tunnel-implementation/). ECIES tvůrci tunelů budou používat výše uvedené schéma pro šifrování k ECIES hopům.
 
 To znamená, že hopové uzly tunelů uvidí pouze šifrované záznamy ze stejného typu šifrování.
-
-Pro tvůrce tunnelů ElGamal a ECIES budou generovat jedinečné dočasné X25519 páry klíčů pro každý hop při šifrování do ECIES hopů.
-
-**DŮLEŽITÉ**: Ephemeral klíče musí být jedinečné pro každý ECIES hop a pro každý build record. Nepoužívání jedinečných klíčů otevírá vektor útoku pro spolupracující hopy k potvrzení, že jsou ve stejném tunelu.
 
 ```text
 // Each hop's X25519 static keypair (hesk, hepk) from the Router Identity
@@ -529,15 +531,15 @@ Pro tvůrce tunnelů ElGamal a ECIES budou generovat jedinečné dočasné X2551
   // Save for Reply Record KDF
   h = SHA256(h || ciphertext)
 ```
-``replyKey``, ``layerKey`` a ``layerIV`` musí být stále zahrnuty uvnitř ElGamal záznamů a mohou být generovány náhodně.
+Pro tvůrce tunnelů ElGamal a ECIES budou generovat jedinečné dočasné X25519 páry klíčů pro každý hop při šifrování do ECIES hopů.
 
 ### Odůvodnění
 
-Jak je definováno v [Tunnel Creation](/docs/specs/tunnel-implementation/). Neexistují žádné změny v šifrování pro ElGamal hopy.
+**DŮLEŽITÉ**: Ephemeral klíče musí být jedinečné pro každý ECIES hop a pro každý build record. Nepoužívání jedinečných klíčů otevírá vektor útoku pro spolupracující hopy k potvrzení, že jsou ve stejném tunelu.
 
 ### Reply Record Encryption (ECIES)
 
-Odpověď record je šifrovaná pomocí ChaCha20/Poly1305.
+``replyKey``, ``layerKey`` a ``layerIV`` musí být stále zahrnuty uvnitř ElGamal záznamů a mohou být generovány náhodně.
 
 ```text
 // AEAD parameters
@@ -550,9 +552,13 @@ Odpověď record je šifrovaná pomocí ChaCha20/Poly1305.
 ```
 ### Záznamy požadavků na sestavení
 
-Jak je definováno v [Tunnel Creation](/docs/specs/tunnel-implementation/). Nejsou žádné změny v šifrování pro ElGamal hopy.
+Jak je definováno v [Tunnel Creation](/docs/specs/tunnel-implementation/). Neexistují žádné změny v šifrování pro ElGamal hopy.
 
 ### Security Analysis
+
+Odpověď record je šifrovaná pomocí ChaCha20/Poly1305.
+
+Jak je definováno v [Tunnel Creation](/docs/specs/tunnel-implementation/). Nejsou žádné změny v šifrování pro ElGamal hopy.
 
 ElGamal neposkytuje forward secrecy pro Tunnel Build Messages.
 
@@ -564,13 +570,9 @@ Jediný známý praktický útok proti AES256/CBC je padding oracle útok, když
 
 ElGamal je výrazně náročnější na CPU než ECIES, což vede k potenciálnímu vyčerpání zdrojů.
 
-ECIES, používané s novými dočasnými klíči pro každý BuildRequestRecord nebo VariableTunnelBuildMessage, poskytuje forward-secrecy.
-
-ChaCha20Poly1305 poskytuje AEAD šifrování, které umožňuje příjemci ověřit integritu zprávy před pokusem o dešifrování.
-
 ## Model hrozeb
 
-Tento design maximalizuje opětovné využití existujících kryptografických primitiv, protokolů a kódu. Tento design minimalizuje riziko.
+ECIES, používané s novými dočasnými klíči pro každý BuildRequestRecord nebo VariableTunnelBuildMessage, poskytuje forward-secrecy.
 
 ## Implementation Notes
 
@@ -583,4 +585,23 @@ Tento design maximalizuje opětovné využití existujících kryptografických 
 
 ## Návrh
 
-Viz [Návrh 156](/proposals/156-ecies-routers).
+ChaCha20Poly1305 poskytuje AEAD šifrování, které umožňuje příjemci ověřit integritu zprávy před pokusem o dešifrování.
+
+## Reference
+
+* [Obecné](/docs/specs/common-structures/)
+* [Kryptografie](/docs/specs/cryptography/)
+* [ECIES-X25519](/docs/specs/ecies/)
+* [I2NP](/docs/specs/i2np/)
+* [NOISE](https://noiseprotocol.org/noise.html)
+* [NTCP2](/docs/specs/ntcp2/)
+* [Prop119](/proposals/119-bidirectional-tunnels/)
+* [Prop143](/proposals/143-build-message-options/)
+* [Prop153](/proposals/153-chacha20-layer-encryption/)
+* [Prop156](/proposals/156-ecies-routers/)
+* [Prop157](/proposals/157-new-tbm/)
+* [SPEC](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Vytváření tunelů](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Násobené šifrování](https://en.wikipedia.org/wiki/Multiple_encryption)
+* [RFC-7539](https://tools.ietf.org/html/rfc7539)
+* [RFC-7748](https://tools.ietf.org/html/rfc7748)

@@ -272,22 +272,24 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
 ```
 flags फील्ड वही है जो [Tunnel Creation](/docs/specs/tunnel-implementation/) में परिभाषित है और इसमें निम्नलिखित शामिल है::
 
+```text
+Bit order: 76543210 (bit 7 is MSB)
+bit 7: if set, allow messages from anyone
+bit 6: if set, allow messages to anyone, and send the reply to the
+       specified next hop in a Tunnel Build Reply Message
+bits 5-0: Undefined, must set to 0 for compatibility with future options
+```
 Bit order: 76543210 (bit 7 MSB है)  bit 7: यदि सेट है, तो किसी से भी संदेश की अनुमति दें  bit 6: यदि सेट है, तो किसी को भी संदेश की अनुमति दें, और उत्तर को भेजें
 
-        specified next hop in a Tunnel Build Reply Message
 bits 5-0: अपरिभाषित, भविष्य के विकल्पों के साथ संगतता के लिए 0 पर सेट करना आवश्यक है
 
 बिट 7 इंगित करता है कि hop एक inbound gateway (IBGW) होगा। बिट 6 इंगित करता है कि hop एक outbound endpoint (OBEP) होगा। यदि कोई भी बिट सेट नहीं है, तो hop एक intermediate participant होगा। दोनों एक साथ सेट नहीं हो सकते।
 
+#### Request Record Encrypted (ECIES)
+
 अनुरोध की समाप्ति भविष्य के परिवर्तनीय tunnel अवधि के लिए है। अभी के लिए, केवल समर्थित मान 600 (10 मिनट) है।
 
 tunnel build विकल्प एक Mapping संरचना है जैसा कि [Common Structures](/docs/specs/common-structures/) में परिभाषित है। यह भविष्य के उपयोग के लिए है। वर्तमान में कोई विकल्प परिभाषित नहीं हैं। यदि Mapping संरचना खाली है, तो यह दो bytes 0x00 0x00 है। Mapping का अधिकतम आकार (length field सहित) 296 bytes है, और Mapping length field का अधिकतम मान 294 है।
-
-#### Request Record Encrypted (ECIES)
-
-सभी फ़ील्ड big-endian हैं सिवाय ephemeral public key के जो little-endian है।
-
-एन्क्रिप्टेड साइज़: 528 bytes
 
 ```text
 bytes    0-15: Hop's truncated identity hash
@@ -297,15 +299,15 @@ bytes    0-15: Hop's truncated identity hash
 ```
 ### हैंडशेक पैटर्न
 
-एन्क्रिप्टेड BuildReplyRecords ElGamal और ECIES दोनों के लिए संगतता हेतु 528 बाइट्स के होते हैं।
+सभी फ़ील्ड big-endian हैं सिवाय ephemeral public key के जो little-endian है।
 
 #### Reply Record Unencrypted (ElGamal)
 
+एन्क्रिप्टेड साइज़: 528 bytes
+
+एन्क्रिप्टेड BuildReplyRecords ElGamal और ECIES दोनों के लिए संगतता हेतु 528 बाइट्स के होते हैं।
+
 ElGamal उत्तर AES के साथ एन्क्रिप्ट किए जाते हैं।
-
-सभी फील्ड big-endian हैं।
-
-अनएन्क्रिप्टेड साइज़: 528 bytes
 
 ```text
 bytes   0-31: SHA-256 Hash of bytes 32-527
@@ -316,16 +318,16 @@ bytes   0-31: SHA-256 Hash of bytes 32-527
 ```
 #### Reply Record Unencrypted (ECIES)
 
-यह ECIES-X25519 routers के लिए tunnel BuildReplyRecord का प्रस्तावित विनिर्देश है। परिवर्तनों का सारांश:
+सभी फील्ड big-endian हैं।
 
 - बिल्ड रिप्लाई विकल्पों के लिए मैपिंग जोड़ें
 - अनएन्क्रिप्टेड रिकॉर्ड लंबा है क्योंकि कम एन्क्रिप्शन ओवरहेड होता है
 
+अनएन्क्रिप्टेड साइज़: 528 bytes
+
+यह ECIES-X25519 routers के लिए tunnel BuildReplyRecord का प्रस्तावित विनिर्देश है। परिवर्तनों का सारांश:
+
 ECIES replies ChaCha20/Poly1305 के साथ encrypt किए जाते हैं।
-
-सभी फ़ील्ड big-endian हैं।
-
-अनएन्क्रिप्टेड आकार: 512 bytes
 
 ```text
 bytes    0-x: Tunnel Build Reply Options (Mapping)
@@ -333,28 +335,28 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
   bytes  x-510: Random padding
   byte     511: Reply byte
 ```
-tunnel build reply options एक Mapping structure है जैसा कि [Common Structures](/docs/specs/common-structures/) में परिभाषित है। यह भविष्य के उपयोग के लिए है। वर्तमान में कोई options परिभाषित नहीं हैं। यदि Mapping structure खाली है, तो यह दो bytes 0x00 0x00 है। Mapping का अधिकतम आकार (length field सहित) 511 bytes है, और Mapping length field का अधिकतम मान 509 है।
+सभी फ़ील्ड big-endian हैं।
 
-Reply byte निम्नलिखित values में से एक है जो [Tunnel Creation](/docs/specs/tunnel-implementation/) में defined है fingerprinting से बचने के लिए:
+अनएन्क्रिप्टेड आकार: 512 bytes
 
 - 0x00 (स्वीकार करें)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
 #### Reply Record Encrypted (ECIES)
 
-एन्क्रिप्टेड साइज़: 528 bytes
+tunnel build reply options एक Mapping structure है जैसा कि [Common Structures](/docs/specs/common-structures/) में परिभाषित है। यह भविष्य के उपयोग के लिए है। वर्तमान में कोई options परिभाषित नहीं हैं। यदि Mapping structure खाली है, तो यह दो bytes 0x00 0x00 है। Mapping का अधिकतम आकार (length field सहित) 511 bytes है, और Mapping length field का अधिकतम मान 509 है।
 
 ```text
 bytes   0-511: ChaCha20 encrypted BuildReplyRecord
   bytes 512-527: Poly1305 MAC
 ```
-ECIES records में पूर्ण संक्रमण के बाद, ranged padding नियम request records के समान ही हैं।
+Reply byte निम्नलिखित values में से एक है जो [Tunnel Creation](/docs/specs/tunnel-implementation/) में defined है fingerprinting से बचने के लिए:
 
 ### अनुरोध एन्क्रिप्शन
 
-मिश्रित tunnels की अनुमति है, और ElGamal से ECIES में संक्रमण के लिए आवश्यक हैं। संक्रमणकालीन अवधि के दौरान, बढ़ती संख्या में routers को ECIES keys के तहत keyed किया जाएगा।
+एन्क्रिप्टेड साइज़: 528 bytes
 
-सममित क्रिप्टोग्राफी preprocessing उसी तरीके से चलेगी:
+ECIES records में पूर्ण संक्रमण के बाद, ranged padding नियम request records के समान ही हैं।
 
 - "encryption":
 
@@ -372,23 +374,23 @@ ECIES records में पूर्ण संक्रमण के बाद, 
 - एक बार hop द्वारा
 - एक बार final reply processing पर
 
+मिश्रित tunnels की अनुमति है, और ElGamal से ECIES में संक्रमण के लिए आवश्यक हैं। संक्रमणकालीन अवधि के दौरान, बढ़ती संख्या में routers को ECIES keys के तहत keyed किया जाएगा।
+
+सममित क्रिप्टोग्राफी preprocessing उसी तरीके से चलेगी:
+
 जब mixed tunnels का उपयोग किया जाता है, तो tunnel creators को BuildRequestRecord के symmetric encryption को current और previous hop के encryption type के आधार पर करना होगा।
 
 प्रत्येक hop BuildReplyRecords को encrypt करने के लिए अपना स्वयं का encryption type उपयोग करेगा, और VariableTunnelBuildMessage (VTBM) में अन्य records के लिए भी।
+
+- भेजने वाला (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
 
 जवाबी पथ पर, endpoint (प्रेषक) को [Multiple Encryption](https://en.wikipedia.org/wiki/Multiple_encryption) को पूर्ववत करना होगा, प्रत्येक hop की reply key का उपयोग करते हुए।
 
 एक स्पष्टीकरण उदाहरण के रूप में, आइए एक outbound tunnel को देखते हैं जो ECIES के साथ ElGamal से घिरा हुआ है:
 
-- भेजने वाला (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
-
 सभी BuildRequestRecords अपनी एन्क्रिप्टेड स्थिति में हैं (ElGamal या ECIES का उपयोग करके)।
 
 AES256/CBC cipher, जब उपयोग किया जाता है, अभी भी प्रत्येक record के लिए उपयोग किया जाता है, बिना कई records में chaining के।
-
-इसी तरह, ChaCha20 का उपयोग प्रत्येक record को encrypt करने के लिए किया जाएगा, पूरे VTBM में streaming के लिए नहीं।
-
-अनुरोध रिकॉर्ड्स को Sender (OBGW) द्वारा प्रीप्रोसेस किया जाता है:
 
 - H3 का record "encrypted" है इसका उपयोग करके:
 
@@ -401,9 +403,9 @@ AES256/CBC cipher, जब उपयोग किया जाता है, अ�
 
 - H1 का रिकॉर्ड symmetric encryption के बिना बाहर जाता है
 
-केवल H2 reply encryption flag की जांच करता है, और देखता है कि इसके बाद AES256/CBC है।
+इसी तरह, ChaCha20 का उपयोग प्रत्येक record को encrypt करने के लिए किया जाएगा, पूरे VTBM में streaming के लिए नहीं।
 
-प्रत्येक hop द्वारा प्रोसेस किए जाने के बाद, records "decrypted" स्थिति में होते हैं:
+अनुरोध रिकॉर्ड्स को Sender (OBGW) द्वारा प्रीप्रोसेस किया जाता है:
 
 - H3 का रिकॉर्ड इसका उपयोग करके "decrypted" किया जाता है:
 
@@ -420,7 +422,7 @@ AES256/CBC cipher, जब उपयोग किया जाता है, अ�
 - H2 की reply key (ChaCha20)
 - H1 की reply key (AES256/CBC)
 
-tunnel creator, जिसे Inbound Endpoint (IBEP) भी कहा जाता है, reply को postprocess करता है:
+केवल H2 reply encryption flag की जांच करता है, और देखता है कि इसके बाद AES256/CBC है।
 
 - H3 का record "encrypted" किया जाता है इसका उपयोग करके:
 
@@ -439,13 +441,13 @@ tunnel creator, जिसे Inbound Endpoint (IBEP) भी कहा जात�
 
 ### उत्तर एन्क्रिप्शन
 
-ये keys स्पष्ट रूप से ElGamal BuildRequestRecords में शामिल की जाती हैं। ECIES BuildRequestRecords के लिए, tunnel keys और AES reply keys शामिल की जाती हैं, लेकिन ChaCha reply keys DH exchange से derive की जाती हैं। router static ECIES keys के विवरण के लिए [Proposal 156](/proposals/156-ecies-routers) देखें।
+प्रत्येक hop द्वारा प्रोसेस किए जाने के बाद, records "decrypted" स्थिति में होते हैं:
 
-नीचे इस बात का विवरण है कि request records में पहले से भेजी गई keys को कैसे derive किया जाए।
+tunnel creator, जिसे Inbound Endpoint (IBEP) भी कहा जाता है, reply को postprocess करता है:
 
 #### KDF for Initial ck and h
 
-यह pattern "N" के लिए मानक प्रोटोकॉल नाम के साथ मानक [NOISE](https://noiseprotocol.org/noise.html) है।
+ये keys स्पष्ट रूप से ElGamal BuildRequestRecords में शामिल की जाती हैं। ECIES BuildRequestRecords के लिए, tunnel keys और AES reply keys शामिल की जाती हैं, लेकिन ChaCha reply keys DH exchange से derive की जाती हैं। router static ECIES keys के विवरण के लिए [Proposal 156](/proposals/156-ecies-routers) देखें।
 
 ```text
 This is the "e" message pattern:
@@ -468,15 +470,15 @@ This is the "e" message pattern:
 ```
 #### KDF for Request Record
 
+नीचे इस बात का विवरण है कि request records में पहले से भेजी गई keys को कैसे derive किया जाए।
+
+यह pattern "N" के लिए मानक प्रोटोकॉल नाम के साथ मानक [NOISE](https://noiseprotocol.org/noise.html) है।
+
 ElGamal tunnel creators प्रत्येक ECIES hop के लिए tunnel में एक ephemeral X25519 keypair generate करते हैं, और अपने BuildRequestRecord को encrypt करने के लिए उपरोक्त scheme का उपयोग करते हैं। ElGamal tunnel creators ElGamal hops को encrypt करने के लिए इस spec से पूर्व की scheme का उपयोग करेंगे।
 
 ECIES tunnel creators को प्रत्येक ElGamal hop की public key के लिए [Tunnel Creation](/docs/specs/tunnel-implementation/) में परिभाषित scheme का उपयोग करके encrypt करना होगा। ECIES tunnel creators ECIES hops के लिए encrypt करने हेतु उपरोक्त scheme का उपयोग करेंगे।
 
 इसका मतलब यह है कि tunnel hops केवल अपने समान encryption प्रकार के encrypted records को ही देख पाएंगे।
-
-ElGamal और ECIES tunnel creators के लिए, वे ECIES hops को encrypt करने के लिए प्रति-hop अद्वितीय ephemeral X25519 keypairs generate करेंगे।
-
-**महत्वपूर्ण**: Ephemeral keys प्रत्येक ECIES hop के लिए और प्रत्येक build record के लिए अद्वितीय होनी चाहिए। अद्वितीय keys का उपयोग न करना colluding hops के लिए एक attack vector खोलता है ताकि वे पुष्टि कर सकें कि वे एक ही tunnel में हैं।
 
 ```text
 // Each hop's X25519 static keypair (hesk, hepk) from the Router Identity
@@ -527,15 +529,15 @@ ElGamal और ECIES tunnel creators के लिए, वे ECIES hops को 
   // Save for Reply Record KDF
   h = SHA256(h || ciphertext)
 ```
-``replyKey``, ``layerKey`` और ``layerIV`` को अभी भी ElGamal records के अंदर शामिल किया जाना चाहिए, और इन्हें randomly generate किया जा सकता है।
+ElGamal और ECIES tunnel creators के लिए, वे ECIES hops को encrypt करने के लिए प्रति-hop अद्वितीय ephemeral X25519 keypairs generate करेंगे।
 
 ### औचित्य
 
-जैसा कि [Tunnel Creation](/docs/specs/tunnel-implementation/) में परिभाषित है। ElGamal hops के लिए encryption में कोई बदलाव नहीं है।
+**महत्वपूर्ण**: Ephemeral keys प्रत्येक ECIES hop के लिए और प्रत्येक build record के लिए अद्वितीय होनी चाहिए। अद्वितीय keys का उपयोग न करना colluding hops के लिए एक attack vector खोलता है ताकि वे पुष्टि कर सकें कि वे एक ही tunnel में हैं।
 
 ### Reply Record Encryption (ECIES)
 
-reply record ChaCha20/Poly1305 encrypted है।
+``replyKey``, ``layerKey`` और ``layerIV`` को अभी भी ElGamal records के अंदर शामिल किया जाना चाहिए, और इन्हें randomly generate किया जा सकता है।
 
 ```text
 // AEAD parameters
@@ -548,9 +550,13 @@ reply record ChaCha20/Poly1305 encrypted है।
 ```
 ### Build Request Records का निर्माण
 
-जैसा कि [Tunnel Creation](/docs/specs/tunnel-implementation/) में परिभाषित किया गया है। ElGamal hops के लिए एन्क्रिप्शन में कोई बदलाव नहीं हैं।
+जैसा कि [Tunnel Creation](/docs/specs/tunnel-implementation/) में परिभाषित है। ElGamal hops के लिए encryption में कोई बदलाव नहीं है।
 
 ### Security Analysis
+
+reply record ChaCha20/Poly1305 encrypted है।
+
+जैसा कि [Tunnel Creation](/docs/specs/tunnel-implementation/) में परिभाषित किया गया है। ElGamal hops के लिए एन्क्रिप्शन में कोई बदलाव नहीं हैं।
 
 ElGamal, Tunnel Build Messages के लिए forward secrecy प्रदान नहीं करता है।
 
@@ -562,13 +568,9 @@ AES256/CBC के विरुद्ध एकमात्र ज्ञात �
 
 ElGamal, ECIES की तुलना में काफी अधिक CPU-intensive है, जिससे संभावित resource exhaustion हो सकता है।
 
-ECIES, जो प्रति-BuildRequestRecord या VariableTunnelBuildMessage के लिए नई ephemeral keys के साथ उपयोग किया जाता है, forward-secrecy प्रदान करता है।
-
-ChaCha20Poly1305 AEAD एन्क्रिप्शन प्रदान करता है, जो प्राप्तकर्ता को डिक्रिप्शन का प्रयास करने से पहले संदेश की अखंडता को सत्यापित करने की अनुमति देता है।
-
 ## खतरा मॉडल
 
-यह डिज़ाइन मौजूदा cryptographic primitives, protocols, और code के पुन: उपयोग को अधिकतम करता है। यह डिज़ाइन जोखिम को न्यूनतम करता है।
+ECIES, जो प्रति-BuildRequestRecord या VariableTunnelBuildMessage के लिए नई ephemeral keys के साथ उपयोग किया जाता है, forward-secrecy प्रदान करता है।
 
 ## Implementation Notes
 
@@ -581,4 +583,23 @@ ChaCha20Poly1305 AEAD एन्क्रिप्शन प्रदान क�
 
 ## डिज़ाइन
 
-[Proposal 156](/proposals/156-ecies-routers) देखें।
+ChaCha20Poly1305 AEAD एन्क्रिप्शन प्रदान करता है, जो प्राप्तकर्ता को डिक्रिप्शन का प्रयास करने से पहले संदेश की अखंडता को सत्यापित करने की अनुमति देता है।
+
+## संदर्भ
+
+* [सामान्य](/docs/specs/common-structures/)
+* [क्रिप्टोग्राफी](/docs/specs/cryptography/)
+* [ECIES-X25519](/docs/specs/ecies/)
+* [I2NP](/docs/specs/i2np/)
+* [NOISE](https://noiseprotocol.org/noise.html)
+* [NTCP2](/docs/specs/ntcp2/)
+* [Prop119](/proposals/119-bidirectional-tunnels/)
+* [Prop143](/proposals/143-build-message-options/)
+* [Prop153](/proposals/153-chacha20-layer-encryption/)
+* [Prop156](/proposals/156-ecies-routers/)
+* [Prop157](/proposals/157-new-tbm/)
+* [SPEC](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Tunnel-Creation](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Multiple-Encryption](https://en.wikipedia.org/wiki/Multiple_encryption)
+* [RFC-7539](https://tools.ietf.org/html/rfc7539)
+* [RFC-7748](https://tools.ietf.org/html/rfc7748)

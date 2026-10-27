@@ -49,20 +49,19 @@ Các hàm Noise (khuôn khổ giao thức mật mã) khác được định ngh�
 
 ### Mục tiêu
 
-
-### Các mục tiêu không đặt ra
-
 - Thiết kế lại hoàn toàn các thông điệp dựng tunnel, yêu cầu một "flag day" (thời điểm chuyển đổi đồng loạt không tương thích ngược).
 - Thu nhỏ các thông điệp dựng tunnel (yêu cầu các hop (chặng trung gian) đều dùng ECIES và một đề xuất mới)
 - Sử dụng các tùy chọn dựng tunnel như được định nghĩa trong [Proposal 143](/proposals/143-build-message-options), chỉ bắt buộc đối với các thông điệp nhỏ
 - Các tunnel hai chiều - xem [Proposal 119](/proposals/119-bidirectional-tunnels)
 - Các thông điệp dựng tunnel nhỏ hơn - xem [Proposal 157](/proposals/157-new-tbm)
 
+### Các mục tiêu không đặt ra
+
+- Không có nút trung gian nào có thể xác định được bên khởi tạo của tunnel.
+
 ## Mô hình đe dọa
 
 ### Mục tiêu thiết kế
-
-- Không có nút trung gian nào có thể xác định được bên khởi tạo của tunnel.
 
 - Các hop (chặng) trung gian không thể xác định hướng của tunnel
   hoặc vị trí của mình trong tunnel.
@@ -75,6 +74,11 @@ Các hàm Noise (khuôn khổ giao thức mật mã) khác được định ngh�
 - Không thành viên nào của tunnel đi ra dùng cho việc xây dựng tunnel đi vào có thể đọc bất kỳ bản ghi yêu cầu nào,
   ngoại trừ việc OBEP (Outbound Endpoint - nút cuối của outbound tunnel) có thể thấy hash router bị cắt ngắn và khóa tạm thời dành cho IBGW (Inbound Gateway - cổng vào của inbound tunnel)
 
+- Sửa đổi một build record (bản ghi xây dựng)
+- Thay thế một build record
+- Thêm hoặc xóa một build record
+- Sắp xếp lại các build record
+
 ### Các cuộc tấn công gắn thẻ (tagging attacks)
 
 Một mục tiêu quan trọng của thiết kế xây dựng tunnel là khiến việc các router X và Y thông đồng biết rằng chúng đang ở trong cùng một tunnel trở nên khó khăn hơn. Nếu router X ở bước nhảy m và router Y ở bước nhảy m+1, hiển nhiên chúng sẽ biết. Nhưng nếu router X ở bước nhảy m và router Y ở bước nhảy m+n với n>1, thì điều đó sẽ khó hơn nhiều.
@@ -83,10 +87,8 @@ Tấn công gắn thẻ là khi router ở chặng trung gian X sửa đổi th�
 
 Các cuộc tấn công có thể xảy ra:
 
-- Sửa đổi một build record (bản ghi xây dựng)
-- Thay thế một build record
-- Thêm hoặc xóa một build record
-- Sắp xếp lại các build record
+- Mẫu bắt tay một chiều: N
+  Alice không gửi khóa tĩnh của mình cho Bob (N)
 
 TODO: Thiết kế hiện tại có ngăn chặn tất cả các cuộc tấn công này không?
 
@@ -97,9 +99,6 @@ TODO: Thiết kế hiện tại có ngăn chặn tất cả các cuộc tấn c�
 Đề xuất này nêu các yêu cầu dựa trên Noise Protocol Framework [NOISE](https://noiseprotocol.org/noise.html) (Bản sửa đổi 34, 2018-07-11). Theo thuật ngữ của Noise, Alice là bên khởi tạo (initiator), và Bob là bên phản hồi (responder).
 
 Đề xuất này dựa trên giao thức Noise Noise_N_25519_ChaChaPoly_SHA256. Giao thức Noise này sử dụng các nguyên thủy mật mã sau:
-
-- Mẫu bắt tay một chiều: N
-  Alice không gửi khóa tĩnh của mình cho Bob (N)
 
 - Hàm DH: X25519
   X25519 DH với độ dài khóa 32 byte như được quy định trong [RFC-7748](https://tools.ietf.org/html/rfc7748).
@@ -112,6 +111,10 @@ TODO: Thiết kế hiện tại có ngăn chặn tất cả các cuộc tấn c�
 - Hàm băm: SHA256
   Mã băm tiêu chuẩn 32 byte, đã được sử dụng rộng rãi trong I2P.
 
+- e = khóa tạm thời dùng một lần
+- s = khóa tĩnh
+- p = phần tải của thông điệp
+
 #### Bổ sung cho khung làm việc
 
 Không có.
@@ -122,9 +125,13 @@ Các quy trình bắt tay sử dụng các mẫu bắt tay [Noise](https://noise
 
 Bảng ánh xạ chữ cái sau đây được sử dụng:
 
-- e = khóa tạm thời dùng một lần
-- s = khóa tĩnh
-- p = phần tải của thông điệp
+- Loại bỏ băm router 32 byte không dùng
+- Thay đổi thời gian yêu cầu từ giờ sang phút
+- Thêm trường hết hạn cho thời gian tunnel biến đổi trong tương lai
+- Tăng dung lượng dành cho các cờ
+- Thêm Mapping cho các tùy chọn dựng bổ sung
+- Khóa phản hồi AES-256 và IV không được dùng cho bản ghi phản hồi của chính hop (chặng)
+- Bản ghi không được mã hóa dài hơn vì phần phụ trội mã hóa ít hơn
 
 Yêu cầu xây dựng giống hệt với Noise N pattern (mẫu Noise N). Điều này cũng giống hệt với thông điệp đầu tiên (Session Request) trong XK pattern (mẫu XK) được sử dụng trong [NTCP2](/docs/specs/ntcp2/).
 
@@ -219,13 +226,8 @@ bytes    0-15: Hop's truncated identity hash
 
 Đây là bản đặc tả được đề xuất cho BuildRequestRecord (bản ghi yêu cầu xây dựng) của tunnel dành cho các router ECIES-X25519. Tóm tắt các thay đổi:
 
-- Loại bỏ băm router 32 byte không dùng
-- Thay đổi thời gian yêu cầu từ giờ sang phút
-- Thêm trường hết hạn cho thời gian tunnel biến đổi trong tương lai
-- Tăng dung lượng dành cho các cờ
-- Thêm Mapping cho các tùy chọn dựng bổ sung
-- Khóa phản hồi AES-256 và IV không được dùng cho bản ghi phản hồi của chính hop (chặng)
-- Bản ghi không được mã hóa dài hơn vì phần phụ trội mã hóa ít hơn
+- Thêm ánh xạ cho các tùy chọn Build Reply (phản hồi xây dựng)
+- Bản ghi không được mã hóa dài hơn vì có ít phụ phí mã hóa hơn
 
 Bản ghi yêu cầu không chứa bất kỳ khóa trả lời ChaCha nào. Những khóa đó được dẫn xuất từ một KDF (hàm dẫn xuất khóa). Xem bên dưới.
 
@@ -252,22 +254,24 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
 ```
 Trường flags giống như được định nghĩa trong [Tạo Tunnel](/docs/specs/tunnel-implementation/) và chứa các nội dung sau đây::
 
+```text
+Bit order: 76543210 (bit 7 is MSB)
+bit 7: if set, allow messages from anyone
+bit 6: if set, allow messages to anyone, and send the reply to the
+       specified next hop in a Tunnel Build Reply Message
+bits 5-0: Undefined, must set to 0 for compatibility with future options
+```
 Thứ tự bit: 76543210 (bit 7 là MSB (bit có ý nghĩa lớn nhất))  bit 7: nếu được đặt, cho phép nhận thông điệp từ bất kỳ ai  bit 6: nếu được đặt, cho phép gửi thông điệp tới bất kỳ ai, và gửi phản hồi tới
 
-        specified next hop in a Tunnel Build Reply Message
 các bit 5-0: Không xác định, phải đặt thành 0 để đảm bảo khả năng tương thích với các tùy chọn trong tương lai
 
 Bit 7 cho biết chặng sẽ là một inbound gateway (IBGW).  Bit 6 cho biết chặng sẽ là một outbound endpoint (OBEP).  Nếu không bit nào được đặt, chặng sẽ là một chặng trung gian.  Không thể đặt cả hai cùng lúc.
 
+#### Bản ghi yêu cầu được mã hóa (ECIES, lược đồ mã hóa tích hợp trên đường cong elliptic)
+
 Request expiration (thời điểm hết hạn của yêu cầu) được dùng cho tính năng thời lượng tunnel thay đổi trong tương lai. Hiện tại, giá trị duy nhất được hỗ trợ là 600 (10 phút).
 
 Tùy chọn xây dựng tunnel là một cấu trúc Mapping (ánh xạ) như được định nghĩa trong [Common Structures](/docs/specs/common-structures/). Phần này dành cho việc sử dụng trong tương lai. Hiện chưa có tùy chọn nào được định nghĩa. Nếu cấu trúc Mapping trống, thì phần này là hai byte 0x00 0x00. Kích thước tối đa của Mapping (bao gồm cả trường độ dài) là 296 byte, và giá trị tối đa của trường độ dài Mapping là 294.
-
-#### Bản ghi yêu cầu được mã hóa (ECIES, lược đồ mã hóa tích hợp trên đường cong elliptic)
-
-Tất cả các trường đều ở dạng big-endian (thứ tự byte lớn trước), ngoại trừ khóa công khai tạm thời, vốn ở dạng little-endian (thứ tự byte nhỏ trước).
-
-Kích thước đã mã hóa: 528 byte
 
 ```text
 bytes    0-15: Hop's truncated identity hash
@@ -277,15 +281,15 @@ bytes    0-15: Hop's truncated identity hash
 ```
 ### Các bản ghi phản hồi xây dựng
 
-BuildReplyRecords được mã hóa (các bản ghi phản hồi xây dựng) có kích thước 528 byte cho cả ElGamal và ECIES, để đảm bảo khả năng tương thích.
+Tất cả các trường đều ở dạng big-endian (thứ tự byte lớn trước), ngoại trừ khóa công khai tạm thời, vốn ở dạng little-endian (thứ tự byte nhỏ trước).
 
 #### Bản ghi phản hồi không mã hóa (ElGamal)
 
+Kích thước đã mã hóa: 528 byte
+
+BuildReplyRecords được mã hóa (các bản ghi phản hồi xây dựng) có kích thước 528 byte cho cả ElGamal và ECIES, để đảm bảo khả năng tương thích.
+
 Các phản hồi ElGamal (một thuật toán mã hóa khóa công khai) được mã hóa bằng AES (chuẩn mã hóa đối xứng).
-
-Tất cả các trường sử dụng big-endian (thứ tự byte từ cao đến thấp).
-
-Kích thước chưa mã hóa: 528 byte
 
 ```text
 bytes   0-31: SHA-256 Hash of bytes 32-527
@@ -296,16 +300,16 @@ bytes   0-31: SHA-256 Hash of bytes 32-527
 ```
 #### Bản ghi phản hồi không được mã hóa (ECIES - lược đồ mã hóa tích hợp dựa trên đường cong elliptic)
 
+Tất cả các trường sử dụng big-endian (thứ tự byte từ cao đến thấp).
+
+- 0x00 (chấp nhận)
+- 30 (TUNNEL_REJECT_BANDWIDTH)
+
+Kích thước chưa mã hóa: 528 byte
+
 Đây là bản đặc tả được đề xuất cho BuildReplyRecord của tunnel áp dụng cho các routers ECIES-X25519. Tóm tắt các thay đổi:
 
-- Thêm ánh xạ cho các tùy chọn Build Reply (phản hồi xây dựng)
-- Bản ghi không được mã hóa dài hơn vì có ít phụ phí mã hóa hơn
-
 Các phản hồi ECIES (lược đồ mã hóa tích hợp đường cong elliptic) được mã hóa bằng ChaCha20/Poly1305.
-
-Tất cả các trường theo big-endian (thứ tự byte có ý nghĩa cao trước).
-
-Kích thước chưa mã hóa: 512 byte
 
 ```text
 bytes    0-x: Tunnel Build Reply Options (Mapping)
@@ -313,30 +317,27 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
   bytes  x-510: Random padding
   byte     511: Reply byte
 ```
-Các tùy chọn phản hồi xây dựng tunnel là một cấu trúc Mapping (ánh xạ) như được định nghĩa trong [Common Structures](/docs/specs/common-structures/). Đây là để sử dụng trong tương lai. Hiện chưa có tùy chọn nào được định nghĩa. Nếu cấu trúc Mapping trống, thì nó là hai byte 0x00 0x00. Kích thước tối đa của Mapping (bao gồm cả trường độ dài) là 511 byte, và giá trị tối đa của trường độ dài của Mapping là 509.
+Tất cả các trường theo big-endian (thứ tự byte có ý nghĩa cao trước).
 
-Byte phản hồi là một trong các giá trị sau đây, như được định nghĩa trong [Tunnel Creation](/docs/specs/tunnel-implementation/) để tránh bị nhận dạng qua dấu vân tay:
+Kích thước chưa mã hóa: 512 byte
 
-- 0x00 (chấp nhận)
-- 30 (TUNNEL_REJECT_BANDWIDTH)
+- "encryption":
 
 #### Bản ghi phản hồi được mã hóa (ECIES, lược đồ mã hóa tích hợp dựa trên đường cong elliptic)
 
-Kích thước đã mã hóa: 528 byte
+Các tùy chọn phản hồi xây dựng tunnel là một cấu trúc Mapping (ánh xạ) như được định nghĩa trong [Common Structures](/docs/specs/common-structures/). Đây là để sử dụng trong tương lai. Hiện chưa có tùy chọn nào được định nghĩa. Nếu cấu trúc Mapping trống, thì nó là hai byte 0x00 0x00. Kích thước tối đa của Mapping (bao gồm cả trường độ dài) là 511 byte, và giá trị tối đa của trường độ dài của Mapping là 509.
 
 ```text
 bytes   0-511: ChaCha20 encrypted BuildReplyRecord
   bytes 512-527: Poly1305 MAC
 ```
-Sau khi chuyển đổi hoàn toàn sang các bản ghi ECIES (Elliptic Curve Integrated Encryption Scheme - sơ đồ mã hóa tích hợp đường cong elliptic), các quy tắc đệm theo phạm vi giống như đối với các bản ghi yêu cầu.
+Byte phản hồi là một trong các giá trị sau đây, như được định nghĩa trong [Tunnel Creation](/docs/specs/tunnel-implementation/) để tránh bị nhận dạng qua dấu vân tay:
 
 ### Mã hóa đối xứng cho các bản ghi
 
-Các tunnels hỗn hợp được phép và là cần thiết để chuyển đổi từ ElGamal sang ECIES. Trong giai đoạn chuyển tiếp, ngày càng nhiều routers sẽ sử dụng khóa ECIES.
+Kích thước đã mã hóa: 528 byte
 
-Tiền xử lý mật mã đối xứng sẽ chạy theo cùng một cách:
-
-- "encryption":
+Sau khi chuyển đổi hoàn toàn sang các bản ghi ECIES (Elliptic Curve Integrated Encryption Scheme - sơ đồ mã hóa tích hợp đường cong elliptic), các quy tắc đệm theo phạm vi giống như đối với các bản ghi yêu cầu.
 
 - thuật toán mật mã chạy ở chế độ giải mã
   - các bản ghi yêu cầu được giải mã sớm trong bước tiền xử lý (nhằm che giấu các bản ghi yêu cầu đã mã hóa)
@@ -352,25 +353,25 @@ Tiền xử lý mật mã đối xứng sẽ chạy theo cùng một cách:
   - một lần do hop (nút trung gian) thực hiện
   - một lần trong bước xử lý phản hồi cuối cùng
 
+- Người gửi (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
+
+Các tunnels hỗn hợp được phép và là cần thiết để chuyển đổi từ ElGamal sang ECIES. Trong giai đoạn chuyển tiếp, ngày càng nhiều routers sẽ sử dụng khóa ECIES.
+
+Tiền xử lý mật mã đối xứng sẽ chạy theo cùng một cách:
+
 Khi sử dụng các tunnel hỗn hợp, bên tạo tunnel sẽ cần cấu hình việc mã hóa đối xứng của BuildRequestRecord (bản ghi yêu cầu xây dựng) dựa vào loại mã hóa của chặng hiện tại và chặng liền trước.
 
 Mỗi hop (chặng) sẽ sử dụng kiểu mã hóa riêng của nó để mã hóa BuildReplyRecords và các bản ghi khác trong VariableTunnelBuildMessage (VTBM).
+
+- Bản ghi của H3 được "mã hóa" bằng:
 
 Trên đường đi phản hồi, điểm cuối (người gửi) sẽ cần gỡ bỏ [Mã hóa nhiều lần](https://en.wikipedia.org/wiki/Multiple_encryption), bằng cách sử dụng khóa phản hồi của từng hop (bước nhảy).
 
 Để minh họa rõ hơn, hãy xem một tunnel đi ra với ECIES được bao bọc bởi ElGamal:
 
-- Người gửi (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
-
 Tất cả BuildRequestRecords đều ở trạng thái được mã hóa (sử dụng ElGamal hoặc ECIES).
 
 Mật mã AES256/CBC, khi được sử dụng, vẫn được áp dụng cho từng bản ghi, không xâu chuỗi qua nhiều bản ghi.
-
-Tương tự, ChaCha20 sẽ được dùng để mã hóa từng bản ghi, không mã hóa theo luồng trên toàn bộ VTBM (thông điệp VTBM).
-
-Các bản ghi yêu cầu được tiền xử lý bởi bên gửi (OBGW):
-
-- Bản ghi của H3 được "mã hóa" bằng:
 
 - Khóa phản hồi của H2 (ChaCha20)
   - Khóa phản hồi của H1 (AES256/CBC)
@@ -381,11 +382,11 @@ Các bản ghi yêu cầu được tiền xử lý bởi bên gửi (OBGW):
 
 - Bản ghi của H1 được gửi đi mà không có mã hóa đối xứng
 
-Chỉ H2 kiểm tra cờ mã hóa phản hồi, và nhận thấy nó được theo sau bởi AES256/CBC.
-
-Sau khi được xử lý qua từng hop (nút chuyển tiếp), các bản ghi ở trạng thái "decrypted":
-
 - Bản ghi của H3 được "giải mã" bằng:
+
+Tương tự, ChaCha20 sẽ được dùng để mã hóa từng bản ghi, không mã hóa theo luồng trên toàn bộ VTBM (thông điệp VTBM).
+
+Các bản ghi yêu cầu được tiền xử lý bởi bên gửi (OBGW):
 
 - Khóa hồi đáp của H3 (AES256/CBC)
 
@@ -400,9 +401,9 @@ Sau khi được xử lý qua từng hop (nút chuyển tiếp), các bản ghi 
   - Khóa phản hồi của H2 (ChaCha20)
   - Khóa phản hồi của H1 (AES256/CBC)
 
-Trình tạo tunnel, còn gọi là Inbound Endpoint (IBEP) (điểm cuối vào), thực hiện hậu xử lý đối với phản hồi:
-
 - Bản ghi của H3 được "mã hóa" bằng:
+
+Chỉ H2 kiểm tra cờ mã hóa phản hồi, và nhận thấy nó được theo sau bởi AES256/CBC.
 
 - Khóa phản hồi của H3 (AES256/CBC)
 
@@ -417,15 +418,20 @@ Trình tạo tunnel, còn gọi là Inbound Endpoint (IBEP) (điểm cuối vào
   - Khóa phản hồi của H2 (ChaCha20)
   - Khóa phản hồi của H1 (AES256/CBC)
 
+* Các router cũ không kiểm tra loại mã hóa của hop (bước nhảy) và sẽ gửi các bản ghi được mã hóa bằng ElGamal
+  bản ghi. Một số router gần đây có lỗi và sẽ gửi nhiều loại bản ghi sai định dạng.
+  Những người triển khai nên phát hiện và loại bỏ các bản ghi này trước khi thực hiện thao tác DH (trao đổi khóa Diffie-Hellman)
+  nếu có thể, để giảm mức sử dụng CPU.
+
 ### Các khóa của Request Record (ECIES)
 
-Những khóa này được bao gồm tường minh trong ElGamal BuildRequestRecords (bản ghi yêu cầu xây dựng). Đối với ECIES BuildRequestRecords, các khóa tunnel và khóa phản hồi AES được bao gồm, nhưng các khóa phản hồi ChaCha được dẫn xuất từ DH exchange (trao đổi khóa Diffie–Hellman). Xem [Đề xuất 156](/proposals/156-ecies-routers) để biết chi tiết về các khóa ECIES tĩnh của router.
+Sau khi được xử lý qua từng hop (nút chuyển tiếp), các bản ghi ở trạng thái "decrypted":
 
-Dưới đây là mô tả về cách dẫn xuất các khóa đã được truyền trước đó trong các bản ghi yêu cầu.
+Trình tạo tunnel, còn gọi là Inbound Endpoint (IBEP) (điểm cuối vào), thực hiện hậu xử lý đối với phản hồi:
 
 #### KDF (hàm dẫn xuất khóa) cho ck và h khởi tạo
 
-Đây là [NOISE](https://noiseprotocol.org/noise.html) tiêu chuẩn cho mẫu "N" với tên giao thức tiêu chuẩn.
+Những khóa này được bao gồm tường minh trong ElGamal BuildRequestRecords (bản ghi yêu cầu xây dựng). Đối với ECIES BuildRequestRecords, các khóa tunnel và khóa phản hồi AES được bao gồm, nhưng các khóa phản hồi ChaCha được dẫn xuất từ DH exchange (trao đổi khóa Diffie–Hellman). Xem [Đề xuất 156](/proposals/156-ecies-routers) để biết chi tiết về các khóa ECIES tĩnh của router.
 
 ```text
 This is the "e" message pattern:
@@ -448,15 +454,15 @@ This is the "e" message pattern:
 ```
 #### Hàm dẫn xuất khóa (KDF) cho bản ghi yêu cầu
 
+Dưới đây là mô tả về cách dẫn xuất các khóa đã được truyền trước đó trong các bản ghi yêu cầu.
+
+Đây là [NOISE](https://noiseprotocol.org/noise.html) tiêu chuẩn cho mẫu "N" với tên giao thức tiêu chuẩn.
+
 Các bên tạo tunnel dùng ElGamal (thuật toán mật mã ElGamal) tạo ra một cặp khóa X25519 (thuật toán trao đổi khóa dựa trên đường cong elliptic) tạm thời cho mỗi chặng ECIES (hệ mã dựa trên đường cong elliptic) trong tunnel, và dùng lược đồ ở trên để mã hóa BuildRequestRecord của họ. Các bên tạo tunnel dùng ElGamal sẽ dùng lược đồ trước đặc tả này để mã hóa tới các chặng ElGamal.
 
 Các bên tạo tunnel ECIES sẽ cần mã hóa bằng khóa công khai của từng hop (nút trung gian) ElGamal theo sơ đồ được định nghĩa trong [Tunnel Creation](/docs/specs/tunnel-implementation/). Các bên tạo tunnel ECIES sẽ sử dụng sơ đồ trên để mã hóa cho các hop ECIES.
 
 Điều này có nghĩa là các hop (chặng trung gian) của tunnel sẽ chỉ nhìn thấy các bản ghi được mã hóa bằng cùng kiểu mã hóa như của chúng.
-
-Đối với các trình tạo tunnel dùng ElGamal và ECIES, họ sẽ tạo các cặp khóa X25519 tạm thời, duy nhất cho mỗi hop (chặng) để mã hóa khi gửi tới các hop ECIES.
-
-**QUAN TRỌNG**: Khóa tạm thời phải là duy nhất cho mỗi hop ECIES (nút trung gian) và cho mỗi bản ghi xây dựng. Không dùng khóa duy nhất sẽ mở ra một hướng tấn công để các hop thông đồng xác nhận rằng chúng đang ở trong cùng một tunnel.
 
 ```text
 // Each hop's X25519 static keypair (hesk, hepk) from the Router Identity
@@ -507,15 +513,15 @@ Các bên tạo tunnel ECIES sẽ cần mã hóa bằng khóa công khai của t
   // Save for Reply Record KDF
   h = SHA256(h || ciphertext)
 ```
-``replyKey``, ``layerKey`` và ``layerIV`` vẫn phải được bao gồm trong các bản ghi ElGamal (mật mã bất đối xứng ElGamal) và có thể được tạo ngẫu nhiên.
+Đối với các trình tạo tunnel dùng ElGamal và ECIES, họ sẽ tạo các cặp khóa X25519 tạm thời, duy nhất cho mỗi hop (chặng) để mã hóa khi gửi tới các hop ECIES.
 
 ### Mã hóa bản ghi yêu cầu (ElGamal, thuật toán mật mã khóa công khai)
 
-Như được định nghĩa trong [Tunnel Creation](/docs/specs/tunnel-implementation/). Không có thay đổi nào đối với mã hóa cho các hop ElGamal.
+**QUAN TRỌNG**: Khóa tạm thời phải là duy nhất cho mỗi hop ECIES (nút trung gian) và cho mỗi bản ghi xây dựng. Không dùng khóa duy nhất sẽ mở ra một hướng tấn công để các hop thông đồng xác nhận rằng chúng đang ở trong cùng một tunnel.
 
 ### Mã hóa bản ghi phản hồi (ECIES - lược đồ mã hóa tích hợp dùng đường cong elliptic)
 
-Bản ghi phản hồi được mã hóa bằng ChaCha20/Poly1305.
+``replyKey``, ``layerKey`` và ``layerIV`` vẫn phải được bao gồm trong các bản ghi ElGamal (mật mã bất đối xứng ElGamal) và có thể được tạo ngẫu nhiên.
 
 ```text
 // AEAD parameters
@@ -528,9 +534,13 @@ Bản ghi phản hồi được mã hóa bằng ChaCha20/Poly1305.
 ```
 ### Mã hóa bản ghi phản hồi (ElGamal)
 
-Như được định nghĩa trong [Tạo Tunnel](/docs/specs/tunnel-implementation/). Không có thay đổi nào đối với việc mã hóa cho các chặng ElGamal.
+Như được định nghĩa trong [Tunnel Creation](/docs/specs/tunnel-implementation/). Không có thay đổi nào đối với mã hóa cho các hop ElGamal.
 
 ### Phân tích bảo mật
+
+Bản ghi phản hồi được mã hóa bằng ChaCha20/Poly1305.
+
+Như được định nghĩa trong [Tạo Tunnel](/docs/specs/tunnel-implementation/). Không có thay đổi nào đối với việc mã hóa cho các chặng ElGamal.
 
 ElGamal không cung cấp bảo mật chuyển tiếp (forward secrecy) cho các thông điệp xây dựng Tunnel.
 
@@ -542,28 +552,11 @@ Kẻ tấn công sẽ cần phá vỡ mã hóa ElGamal của nút kế tiếp đ
 
 ElGamal (thuật toán mật mã khóa công khai ElGamal) tiêu tốn CPU hơn đáng kể so với ECIES (hệ mã hóa dựa trên đường cong elliptic ECIES), dẫn đến nguy cơ cạn kiệt tài nguyên.
 
-ECIES (sơ đồ mã hóa tích hợp trên đường cong elliptic), khi được sử dụng với các khóa tạm thời mới cho mỗi BuildRequestRecord (bản ghi yêu cầu xây dựng) hoặc VariableTunnelBuildMessage (thông điệp xây dựng tunnel biến đổi), cung cấp tính bảo mật chuyển tiếp.
-
-ChaCha20Poly1305 cung cấp AEAD encryption (mã hóa xác thực kèm dữ liệu liên kết), cho phép bên nhận xác minh tính toàn vẹn của thông điệp trước khi tiến hành giải mã.
-
 ## Lý do
 
-Thiết kế này tối đa hóa việc tái sử dụng các nguyên thủy mật mã, các giao thức và mã nguồn hiện có. Thiết kế này giảm thiểu rủi ro.
+ECIES (sơ đồ mã hóa tích hợp trên đường cong elliptic), khi được sử dụng với các khóa tạm thời mới cho mỗi BuildRequestRecord (bản ghi yêu cầu xây dựng) hoặc VariableTunnelBuildMessage (thông điệp xây dựng tunnel biến đổi), cung cấp tính bảo mật chuyển tiếp.
 
 ## Ghi chú triển khai
-
-* Các router cũ không kiểm tra loại mã hóa của hop (bước nhảy) và sẽ gửi các bản ghi được mã hóa bằng ElGamal
-  bản ghi. Một số router gần đây có lỗi và sẽ gửi nhiều loại bản ghi sai định dạng.
-  Những người triển khai nên phát hiện và loại bỏ các bản ghi này trước khi thực hiện thao tác DH (trao đổi khóa Diffie-Hellman)
-  nếu có thể, để giảm mức sử dụng CPU.
-
-## Vấn đề
-
-## Di chuyển
-
-Xem [Đề xuất 156](/proposals/156-ecies-routers).
-
-## Tài liệu tham khảo
 
 * [Chung](/docs/specs/common-structures/)
 * [Mật mã học](/docs/specs/cryptography/)
@@ -579,5 +572,30 @@ Xem [Đề xuất 156](/proposals/156-ecies-routers).
 * [Đặc tả](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
 * [Tạo tunnel](/docs/specs/tunnel-implementation/)
 * [Mã hóa nhiều lần](https://en.wikipedia.org/wiki/Multiple_encryption)
+* [RFC-7539](https://tools.ietf.org/html/rfc7539)
+* [RFC-7748](https://tools.ietf.org/html/rfc7748)
+
+## Vấn đề
+
+## Di chuyển
+
+ChaCha20Poly1305 cung cấp AEAD encryption (mã hóa xác thực kèm dữ liệu liên kết), cho phép bên nhận xác minh tính toàn vẹn của thông điệp trước khi tiến hành giải mã.
+
+## Tài liệu tham khảo
+
+* [Chung](/docs/specs/common-structures/)
+* [Mật mã học](/docs/specs/cryptography/)
+* [ECIES-X25519](/docs/specs/ecies/)
+* [I2NP](/docs/specs/i2np/)
+* [NOISE](https://noiseprotocol.org/noise.html)
+* [NTCP2](/docs/specs/ntcp2/)
+* [Prop119](/proposals/119-bidirectional-tunnels/)
+* [Prop143](/proposals/143-build-message-options/)
+* [Prop153](/proposals/153-chacha20-layer-encryption/)
+* [Prop156](/proposals/156-ecies-routers/)
+* [Prop157](/proposals/157-new-tbm/)
+* [SPEC](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Tạo tunnel](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [Mã hóa nhiều lớp](https://en.wikipedia.org/wiki/Multiple_encryption)
 * [RFC-7539](https://tools.ietf.org/html/rfc7539)
 * [RFC-7748](https://tools.ietf.org/html/rfc7748)

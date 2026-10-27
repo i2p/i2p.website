@@ -272,22 +272,24 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
 ```
 حقل الأعلام هو نفسه كما هو معرّف في [إنشاء الأنفاق](/docs/specs/tunnel-implementation/) ويحتوي على ما يلي::
 
+```text
+Bit order: 76543210 (bit 7 is MSB)
+bit 7: if set, allow messages from anyone
+bit 6: if set, allow messages to anyone, and send the reply to the
+       specified next hop in a Tunnel Build Reply Message
+bits 5-0: Undefined, must set to 0 for compatibility with future options
+```
 ترتيب البت: 76543210 (البت 7 هو MSB)  البت 7: إذا تم تعيينه، السماح بالرسائل من أي شخص  البت 6: إذا تم تعيينه، السماح بالرسائل إلى أي شخص، وإرسال الرد إلى
 
-        specified next hop in a Tunnel Build Reply Message
 البتات 5-0: غير محددة، يجب تعيينها إلى 0 للتوافق مع الخيارات المستقبلية
 
 البت 7 يشير إلى أن القفزة ستكون بوابة دخول (IBGW). البت 6 يشير إلى أن القفزة ستكون نقطة نهاية خروج (OBEP). إذا لم يتم تعيين أي من البتين، فإن القفزة ستكون مشاركًا وسيطًا. لا يمكن تعيين كليهما في نفس الوقت.
 
+#### Request Record Encrypted (ECIES)
+
 انتهاء صلاحية الطلب مخصص لمدة tunnel متغيرة مستقبلية. في الوقت الحالي، القيمة الوحيدة المدعومة هي 600 (10 دقائق).
 
 خيارات بناء tunnel هي هيكل Mapping كما هو محدد في [الهياكل المشتركة](/docs/specs/common-structures/). هذا للاستخدام المستقبلي. لا توجد خيارات محددة حاليًا. إذا كان هيكل Mapping فارغًا، فهذا يعني بايتين 0x00 0x00. الحد الأقصى لحجم Mapping (بما في ذلك حقل الطول) هو 296 بايت، والقيمة القصوى لحقل طول Mapping هي 294.
-
-#### Request Record Encrypted (ECIES)
-
-جميع الحقول بترتيب البايت الكبير (big-endian) باستثناء المفتاح العام المؤقت (ephemeral public key) الذي يكون بترتيب البايت الصغير (little-endian).
-
-الحجم المشفر: 528 بايت
 
 ```text
 bytes    0-15: Hop's truncated identity hash
@@ -297,15 +299,15 @@ bytes    0-15: Hop's truncated identity hash
 ```
 ### أنماط المصافحة
 
-سجلات BuildReplyRecords المشفرة هي 528 بايت لكل من ElGamal و ECIES، من أجل التوافق.
+جميع الحقول بترتيب البايت الكبير (big-endian) باستثناء المفتاح العام المؤقت (ephemeral public key) الذي يكون بترتيب البايت الصغير (little-endian).
 
 #### Reply Record Unencrypted (ElGamal)
 
+الحجم المشفر: 528 بايت
+
+سجلات BuildReplyRecords المشفرة هي 528 بايت لكل من ElGamal و ECIES، من أجل التوافق.
+
 ردود ElGamal مشفرة باستخدام AES.
-
-جميع الحقول بصيغة big-endian.
-
-الحجم غير المُشفّر: 528 بايت
 
 ```text
 bytes   0-31: SHA-256 Hash of bytes 32-527
@@ -316,16 +318,16 @@ bytes   0-31: SHA-256 Hash of bytes 32-527
 ```
 #### Reply Record Unencrypted (ECIES)
 
-هذه هي المواصفة المقترحة لـ tunnel BuildReplyRecord لـ routers ECIES-X25519. ملخص التغييرات:
+جميع الحقول بصيغة big-endian.
 
 - إضافة تعيين لخيارات رد البناء
 - السجل غير المشفر أطول لأن هناك عبء تشفير أقل
 
+الحجم غير المُشفّر: 528 بايت
+
+هذه هي المواصفة المقترحة لـ tunnel BuildReplyRecord لـ routers ECIES-X25519. ملخص التغييرات:
+
 ردود ECIES مشفرة بـ ChaCha20/Poly1305.
-
-جميع الحقول بصيغة big-endian.
-
-الحجم غير المشفر: 512 بايت
 
 ```text
 bytes    0-x: Tunnel Build Reply Options (Mapping)
@@ -333,28 +335,28 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
   bytes  x-510: Random padding
   byte     511: Reply byte
 ```
-خيارات رد بناء tunnel هي هيكل Mapping كما هو محدد في [الهياكل المشتركة](/docs/specs/common-structures/). هذا للاستخدام المستقبلي. لا توجد خيارات محددة حالياً. إذا كان هيكل Mapping فارغاً، فهذا يكون بايتين 0x00 0x00. الحد الأقصى لحجم Mapping (بما في ذلك حقل الطول) هو 511 بايت، والقيمة القصوى لحقل طول Mapping هي 509.
+جميع الحقول بصيغة big-endian.
 
-بايت الرد هو إحدى القيم التالية كما هو محدد في [إنشاء الأنفاق](/docs/specs/tunnel-implementation/) لتجنب بصمة الهوية:
+الحجم غير المشفر: 512 بايت
 
 - 0x00 (قبول)
 - 30 (TUNNEL_REJECT_BANDWIDTH)
 
 #### Reply Record Encrypted (ECIES)
 
-الحجم المشفر: 528 بايت
+خيارات رد بناء tunnel هي هيكل Mapping كما هو محدد في [الهياكل المشتركة](/docs/specs/common-structures/). هذا للاستخدام المستقبلي. لا توجد خيارات محددة حالياً. إذا كان هيكل Mapping فارغاً، فهذا يكون بايتين 0x00 0x00. الحد الأقصى لحجم Mapping (بما في ذلك حقل الطول) هو 511 بايت، والقيمة القصوى لحقل طول Mapping هي 509.
 
 ```text
 bytes   0-511: ChaCha20 encrypted BuildReplyRecord
   bytes 512-527: Poly1305 MAC
 ```
-بعد الانتقال الكامل إلى سجلات ECIES، تكون قواعد الحشو المحدود النطاق هي نفسها المستخدمة لسجلات الطلبات.
+بايت الرد هو إحدى القيم التالية كما هو محدد في [إنشاء الأنفاق](/docs/specs/tunnel-implementation/) لتجنب بصمة الهوية:
 
 ### تشفير الطلبات
 
-الأنفاق المختلطة مسموحة وضرورية للانتقال من ElGamal إلى ECIES. خلال الفترة الانتقالية، سيزداد عدد أجهزة router التي تستخدم مفاتيح ECIES.
+الحجم المشفر: 528 بايت
 
-المعالجة المسبقة للتشفير المتماثل ستعمل بنفس الطريقة:
+بعد الانتقال الكامل إلى سجلات ECIES، تكون قواعد الحشو المحدود النطاق هي نفسها المستخدمة لسجلات الطلبات.
 
 - "التشفير":
 
@@ -372,23 +374,23 @@ bytes   0-511: ChaCha20 encrypted BuildReplyRecord
 - مرة واحدة بواسطة الـ hop
 - مرة واحدة في معالجة الرد النهائي
 
+الأنفاق المختلطة مسموحة وضرورية للانتقال من ElGamal إلى ECIES. خلال الفترة الانتقالية، سيزداد عدد أجهزة router التي تستخدم مفاتيح ECIES.
+
+المعالجة المسبقة للتشفير المتماثل ستعمل بنفس الطريقة:
+
 عند استخدام الأنفاق المختلطة، سيحتاج منشئو الأنفاق إلى تأسيس التشفير المتماثل لـ BuildRequestRecord على نوع التشفير للقفزة الحالية والسابقة.
 
 كل hop سيستخدم نوع التشفير الخاص به لتشفير BuildReplyRecords، والسجلات الأخرى في VariableTunnelBuildMessage (VTBM).
+
+- المرسل (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
 
 في مسار الرد، ستحتاج نقطة النهاية (المرسل) إلى إلغاء [التشفير المتعدد](https://en.wikipedia.org/wiki/Multiple_encryption)، باستخدام مفتاح الرد الخاص بكل قفزة.
 
 كمثال توضيحي، دعونا ننظر إلى tunnel صادر مع ECIES محاط بـ ElGamal:
 
-- المرسل (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
-
 جميع سجلات BuildRequestRecords في حالتها المشفرة (باستخدام ElGamal أو ECIES).
 
 يتم استخدام تشفير AES256/CBC، عند استخدامه، لكل سجل على حدة، دون ربط عبر سجلات متعددة.
-
-وبالمثل، سيتم استخدام ChaCha20 لتشفير كل سجل، وليس بث مستمر عبر VTBM بأكمله.
-
-يتم معالجة سجلات الطلبات مسبقاً بواسطة المرسل (OBGW):
 
 - سجل H3 "مُشفر" باستخدام:
 
@@ -401,9 +403,9 @@ bytes   0-511: ChaCha20 encrypted BuildReplyRecord
 
 - يتم إرسال سجل H1 بدون تشفير متماثل
 
-فقط H2 يفحص علامة تشفير الرد، ويرى أنها متبوعة بـ AES256/CBC.
+وبالمثل، سيتم استخدام ChaCha20 لتشفير كل سجل، وليس بث مستمر عبر VTBM بأكمله.
 
-بعد معالجتها من قبل كل hop، تكون السجلات في حالة "مفكوكة التشفير":
+يتم معالجة سجلات الطلبات مسبقاً بواسطة المرسل (OBGW):
 
 - يتم "فك تشفير" سجل H3 باستخدام:
 
@@ -420,7 +422,7 @@ bytes   0-511: ChaCha20 encrypted BuildReplyRecord
 - مفتاح الرد الخاص بـ H2 (ChaCha20)
 - مفتاح الرد الخاص بـ H1 (AES256/CBC)
 
-منشئ tunnel، المعروف أيضاً باسم Inbound Endpoint (IBEP)، يقوم بمعالجة الرد لاحقاً:
+فقط H2 يفحص علامة تشفير الرد، ويرى أنها متبوعة بـ AES256/CBC.
 
 - سجل H3 "مشفر" باستخدام:
 
@@ -439,13 +441,13 @@ bytes   0-511: ChaCha20 encrypted BuildReplyRecord
 
 ### تشفير الرد
 
-هذه المفاتيح مُضمنة صراحة في ElGamal BuildRequestRecords. بالنسبة لـ ECIES BuildRequestRecords، يتم تضمين مفاتيح tunnel ومفاتيح AES reply، لكن مفاتيح ChaCha reply مُشتقة من تبادل DH. راجع [الاقتراح 156](/proposals/156-ecies-routers) لتفاصيل مفاتيح router الثابتة ECIES.
+بعد معالجتها من قبل كل hop، تكون السجلات في حالة "مفكوكة التشفير":
 
-فيما يلي وصف لكيفية اشتقاق المفاتيح المرسلة مسبقاً في سجلات الطلبات.
+منشئ tunnel، المعروف أيضاً باسم Inbound Endpoint (IBEP)، يقوم بمعالجة الرد لاحقاً:
 
 #### KDF for Initial ck and h
 
-هذا هو [NOISE](https://noiseprotocol.org/noise.html) قياسي للنمط "N" مع اسم بروتوكول قياسي.
+هذه المفاتيح مُضمنة صراحة في ElGamal BuildRequestRecords. بالنسبة لـ ECIES BuildRequestRecords، يتم تضمين مفاتيح tunnel ومفاتيح AES reply، لكن مفاتيح ChaCha reply مُشتقة من تبادل DH. راجع [الاقتراح 156](/proposals/156-ecies-routers) لتفاصيل مفاتيح router الثابتة ECIES.
 
 ```text
 This is the "e" message pattern:
@@ -468,15 +470,15 @@ This is the "e" message pattern:
 ```
 #### KDF for Request Record
 
+فيما يلي وصف لكيفية اشتقاق المفاتيح المرسلة مسبقاً في سجلات الطلبات.
+
+هذا هو [NOISE](https://noiseprotocol.org/noise.html) قياسي للنمط "N" مع اسم بروتوكول قياسي.
+
 منشئو أنفاق ElGamal يولدون زوج مفاتيح X25519 مؤقت لكل قفزة ECIES في النفق، ويستخدمون المخطط أعلاه لتشفير BuildRequestRecord الخاص بهم. سيستخدم منشئو أنفاق ElGamal المخطط السابق لهذه المواصفة للتشفير إلى قفزات ElGamal.
 
 منشئو أنفاق ECIES سيحتاجون إلى التشفير لكل مفتاح عام لقفزة ElGamal باستخدام المخطط المحدد في [إنشاء الأنفاق](/docs/specs/tunnel-implementation/). سيستخدم منشئو أنفاق ECIES المخطط أعلاه للتشفير إلى قفزات ECIES.
 
 هذا يعني أن قفزات tunnel ستشاهد فقط السجلات المشفرة من نفس نوع التشفير الخاص بها.
-
-بالنسبة لمُنشِئي tunnel من نوع ElGamal و ECIES، فسيقومون بإنتاج أزواج مفاتيح X25519 مؤقتة فريدة لكل hop لتشفير hops من نوع ECIES.
-
-**مهم**: يجب أن تكون المفاتيح المؤقتة فريدة لكل hop في ECIES، ولكل سجل بناء. عدم استخدام مفاتيح فريدة يفتح ثغرة أمنية للـ hops المتواطئة لتأكيد أنها في نفس الـ tunnel.
 
 ```text
 // Each hop's X25519 static keypair (hesk, hepk) from the Router Identity
@@ -527,15 +529,15 @@ This is the "e" message pattern:
   // Save for Reply Record KDF
   h = SHA256(h || ciphertext)
 ```
-``replyKey`` و ``layerKey`` و ``layerIV`` يجب أن تُضمَّن أيضاً داخل سجلات ElGamal، ويمكن توليدها عشوائياً.
+بالنسبة لمُنشِئي tunnel من نوع ElGamal و ECIES، فسيقومون بإنتاج أزواج مفاتيح X25519 مؤقتة فريدة لكل hop لتشفير hops من نوع ECIES.
 
 ### المبرر
 
-كما هو محدد في [إنشاء الأنفاق](/docs/specs/tunnel-implementation/). لا توجد تغييرات على التشفير لقفزات ElGamal.
+**مهم**: يجب أن تكون المفاتيح المؤقتة فريدة لكل hop في ECIES، ولكل سجل بناء. عدم استخدام مفاتيح فريدة يفتح ثغرة أمنية للـ hops المتواطئة لتأكيد أنها في نفس الـ tunnel.
 
 ### Reply Record Encryption (ECIES)
 
-سجل الرد مُشفر بـ ChaCha20/Poly1305.
+``replyKey`` و ``layerKey`` و ``layerIV`` يجب أن تُضمَّن أيضاً داخل سجلات ElGamal، ويمكن توليدها عشوائياً.
 
 ```text
 // AEAD parameters
@@ -548,9 +550,13 @@ This is the "e" message pattern:
 ```
 ### سجلات طلب البناء
 
-كما هو محدد في [Tunnel Creation](/docs/specs/tunnel-implementation/). لا توجد تغييرات على التشفير لقفزات ElGamal.
+كما هو محدد في [إنشاء الأنفاق](/docs/specs/tunnel-implementation/). لا توجد تغييرات على التشفير لقفزات ElGamal.
 
 ### Security Analysis
+
+سجل الرد مُشفر بـ ChaCha20/Poly1305.
+
+كما هو محدد في [Tunnel Creation](/docs/specs/tunnel-implementation/). لا توجد تغييرات على التشفير لقفزات ElGamal.
 
 ElGamal لا يوفر السرية الأمامية لرسائل بناء الأنفاق.
 
@@ -562,13 +568,9 @@ AES256/CBC في وضع أفضل قليلاً، حيث أنه معرض فقط ل�
 
 ElGamal يستهلك موارد المعالج بشكل أكبر بكثير من ECIES، مما يؤدي إلى استنزاف محتمل للموارد.
 
-ECIES، المستخدم مع مفاتيح ephemeral جديدة لكل BuildRequestRecord أو VariableTunnelBuildMessage، يوفر forward-secrecy.
-
-يوفر ChaCha20Poly1305 تشفير AEAD، مما يسمح للمستقبل بالتحقق من سلامة الرسالة قبل محاولة فك التشفير.
-
 ## نموذج التهديد
 
-يهدف هذا التصميم إلى تعظيم إعادة استخدام العمليات التشفيرية والبروتوكولات والكود الموجودة. يقلل هذا التصميم من المخاطر.
+ECIES، المستخدم مع مفاتيح ephemeral جديدة لكل BuildRequestRecord أو VariableTunnelBuildMessage، يوفر forward-secrecy.
 
 ## Implementation Notes
 
@@ -578,4 +580,23 @@ ECIES، المستخدم مع مفاتيح ephemeral جديدة لكل BuildRequ
 
 ## التصميم
 
-راجع [Proposal 156](/proposals/156-ecies-routers).
+يوفر ChaCha20Poly1305 تشفير AEAD، مما يسمح للمستقبل بالتحقق من سلامة الرسالة قبل محاولة فك التشفير.
+
+## المراجع
+
+* [العام](/docs/specs/common-structures/)
+* [التشفير](/docs/specs/cryptography/)
+* [ECIES-X25519](/docs/specs/ecies/)
+* [I2NP](/docs/specs/i2np/)
+* [NOISE](https://noiseprotocol.org/noise.html)
+* [NTCP2](/docs/specs/ntcp2/)
+* [Prop119](/proposals/119-bidirectional-tunnels/)
+* [Prop143](/proposals/143-build-message-options/)
+* [Prop153](/proposals/153-chacha20-layer-encryption/)
+* [Prop156](/proposals/156-ecies-routers/)
+* [Prop157](/proposals/157-new-tbm/)
+* [SPEC](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [إنشاء tunnel](/docs/specs/tunnel-implementation/#tunnel-creation-ecies)
+* [التشفير المتعدد](https://en.wikipedia.org/wiki/Multiple_encryption)
+* [RFC-7539](https://tools.ietf.org/html/rfc7539)
+* [RFC-7748](https://tools.ietf.org/html/rfc7748)

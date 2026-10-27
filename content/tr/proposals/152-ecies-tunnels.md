@@ -49,20 +49,19 @@ Başka yerlerde tanımlanan diğer Noise (kriptografik el sıkışma protokolü)
 
 ### Hedefler
 
-
-### Amaçlanmayanlar
-
 - Bir "flag day" (eşgüdümlü, aynı anda yapılan zorunlu geçiş) gerektiren tunnel kurulum mesajlarının tamamen yeniden tasarlanması.
 - tunnel kurulum mesajlarının küçültülmesi (tüm atlamaların ECIES olması ve yeni bir öneri gerektirir)
 - [Proposal 143](/proposals/143-build-message-options)'te tanımlandığı üzere tunnel kurulum seçeneklerinin kullanımı, yalnızca küçük mesajlar için gereklidir
 - Çift yönlü tunnel'lar - bunun için bkz. [Proposal 119](/proposals/119-bidirectional-tunnels)
 - Daha küçük tunnel kurulum mesajları - bunun için bkz. [Proposal 157](/proposals/157-new-tbm)
 
+### Amaçlanmayanlar
+
+- Hiçbir atlama, tunnel'in başlatıcısını tespit edemez.
+
 ## Tehdit Modeli
 
 ### Tasarım Hedefleri
-
-- Hiçbir atlama, tunnel'in başlatıcısını tespit edemez.
 
 - Ara atlamalar, tunnel'in yönünü
   ya da tunnel içindeki konumlarını belirleyememelidir.
@@ -75,6 +74,11 @@ Başka yerlerde tanımlanan diğer Noise (kriptografik el sıkışma protokolü)
 - Gelen oluşturma (inbound build) için kullanılan outbound tunnel'ın hiçbir üyesi,
   OBEP (Outbound Endpoint)'in IBGW (Inbound Gateway) için kısaltılmış router karma değerini ve geçici anahtarı görebilmesi istisnası dışında, herhangi bir istek kaydını okuyamaz
 
+- Bir derleme kaydını düzenle
+- Bir derleme kaydını değiştir
+- Bir derleme kaydı ekle veya kaldır
+- Derleme kayıtlarını yeniden sırala
+
 ### Etiketleme Saldırıları
 
 Tunnel oluşturma tasarımının başlıca hedeflerinden biri, işbirliği yapan router X ve Y'nin tek bir tunnel içinde olduklarını bilmelerini zorlaştırmaktır. Eğer router X m. atlamada ve router Y m+1. atlamadaysa, bunu elbette bileceklerdir. Ancak router X m. atlamada ve router Y m+n. atlamadaysa (n>1), bunu bilmeleri çok daha zor olmalıdır.
@@ -83,10 +87,8 @@ Etiketleme saldırıları, orta atlama router X'in, tunnel oluşturma mesajını
 
 Olası saldırılar:
 
-- Bir derleme kaydını düzenle
-- Bir derleme kaydını değiştir
-- Bir derleme kaydı ekle veya kaldır
-- Derleme kayıtlarını yeniden sırala
+- Tek Yönlü El Sıkışma Deseni: N
+  Alice, statik anahtarını Bob'a iletmez (N)
 
 TODO: Mevcut tasarım tüm bu saldırıları önlüyor mu?
 
@@ -97,9 +99,6 @@ TODO: Mevcut tasarım tüm bu saldırıları önlüyor mu?
 Bu öneri, Noise Protocol Framework (Noise Protokol Çatısı) [NOISE](https://noiseprotocol.org/noise.html) (Revizyon 34, 2018-07-11) temel alınarak gereksinimleri tanımlar. Noise terminolojisinde, Alice başlatan, Bob ise yanıtlayandır.
 
 Bu öneri, Noise protokolü Noise_N_25519_ChaChaPoly_SHA256 üzerine dayanmaktadır. Bu Noise protokolü aşağıdaki kriptografik ilkeleri kullanır:
-
-- Tek Yönlü El Sıkışma Deseni: N
-  Alice, statik anahtarını Bob'a iletmez (N)
 
 - DH Fonksiyonu (Diffie-Hellman): X25519
   X25519 DH, [RFC-7748](https://tools.ietf.org/html/rfc7748) belgesinde belirtildiği gibi 32 bayt anahtar uzunluğuna sahiptir.
@@ -112,6 +111,10 @@ Bu öneri, Noise protokolü Noise_N_25519_ChaChaPoly_SHA256 üzerine dayanmaktad
 - Özet Fonksiyonu: SHA256
   Standart 32 baytlık özet, I2P'de halihazırda yaygın olarak kullanılıyor.
 
+- e = tek kullanımlık geçici anahtar
+- s = statik anahtar
+- p = mesaj yükü
+
 #### Çerçeveye eklemeler
 
 Hiçbiri.
@@ -122,9 +125,13 @@ El sıkışma işlemleri [Noise](https://noiseprotocol.org/noise.html) el sıkı
 
 Aşağıdaki harf eşlemesi kullanılır:
 
-- e = tek kullanımlık geçici anahtar
-- s = statik anahtar
-- p = mesaj yükü
+- Kullanılmayan 32 baytlık router hash'ini kaldır
+- İstek zamanını saatlerden dakikalara değiştir
+- İleride değişken tunnel süresi için bir sona erme alanı ekle
+- Bayraklar için daha fazla alan ekle
+- Ek derleme seçenekleri için Eşleme ekle
+- Atlamanın kendi yanıt kaydı için AES-256 yanıt anahtarı ve IV (başlatma vektörü) kullanılmaz
+- Şifrelenmemiş kayıt, şifreleme ek yükü daha az olduğu için daha uzundur
 
 Oluşturma isteği, Noise N pattern (Noise N deseni) ile özdeştir. Bu ayrıca [NTCP2](/docs/specs/ntcp2/) içinde kullanılan XK pattern (XK deseni) içindeki ilk (Session Request - Oturum İsteği) iletiyle de özdeştir.
 
@@ -219,13 +226,7 @@ bytes    0-15: Hop's truncated identity hash
 
 Bu, ECIES-X25519 routers için tunnel BuildRequestRecord (tunnel oluşturma isteği kaydı) için önerilen spesifikasyondur. Değişikliklerin özeti:
 
-- Kullanılmayan 32 baytlık router hash'ini kaldır
-- İstek zamanını saatlerden dakikalara değiştir
-- İleride değişken tunnel süresi için bir sona erme alanı ekle
-- Bayraklar için daha fazla alan ekle
-- Ek derleme seçenekleri için Eşleme ekle
-- Atlamanın kendi yanıt kaydı için AES-256 yanıt anahtarı ve IV (başlatma vektörü) kullanılmaz
-- Şifrelenmemiş kayıt, şifreleme ek yükü daha az olduğu için daha uzundur
+7. bit, atlamanın bir gelen ağ geçidi (IBGW) olacağını belirtir. 6. bit, atlamanın bir giden uç nokta (OBEP) olacağını belirtir. Her iki bit de ayarlanmadıysa, atlama ara katılımcı olacaktır. İkisi birden aynı anda ayarlanamaz.
 
 İstek kaydı hiçbir ChaCha yanıt anahtarı içermez. Bu anahtarlar bir KDF'den (anahtar türetme fonksiyonu) türetilir. Aşağıya bakın.
 
@@ -252,22 +253,24 @@ bytes     0-3: tunnel ID to receive messages as, nonzero
 ```
 Bayraklar alanı, [Tunnel Creation](/docs/specs/tunnel-implementation/) bölümünde tanımlananla aynıdır ve aşağıdakileri içerir::
 
+```text
+Bit order: 76543210 (bit 7 is MSB)
+bit 7: if set, allow messages from anyone
+bit 6: if set, allow messages to anyone, and send the reply to the
+       specified next hop in a Tunnel Build Reply Message
+bits 5-0: Undefined, must set to 0 for compatibility with future options
+```
 Bit sırası: 76543210 (bit 7 MSB'dir (en anlamlı bit))  bit 7: ayarlıysa, herhangi birinden gelen mesajlara izin ver  bit 6: ayarlıysa, herkese mesaj gönderimine izin ver ve yanıtı şuna gönder
 
-        specified next hop in a Tunnel Build Reply Message
 bitler 5-0: Tanımsız, gelecekteki seçeneklerle uyumluluk için 0 olarak ayarlanmalıdır
-
-7. bit, atlamanın bir gelen ağ geçidi (IBGW) olacağını belirtir. 6. bit, atlamanın bir giden uç nokta (OBEP) olacağını belirtir. Her iki bit de ayarlanmadıysa, atlama ara katılımcı olacaktır. İkisi birden aynı anda ayarlanamaz.
 
 İstek zaman aşımı, ileride değişken tunnel sürelerini desteklemek içindir. Şimdilik desteklenen tek değer 600'dür (10 dakika).
 
-tunnel oluşturma seçenekleri, [Common Structures](/docs/specs/common-structures/) bölümünde tanımlandığı gibi bir Mapping yapısıdır (eşleme yapısı). Bu, gelecekte kullanım içindir. Şu anda tanımlı herhangi bir seçenek yoktur. Mapping yapısı boşsa, bu iki bayttır: 0x00 0x00. Mapping'in azami boyutu (uzunluk alanı dahil) 296 bayttır ve Mapping uzunluk alanının alabileceği en yüksek değer 294'tür.
-
 #### Şifrelenmiş İstek Kaydı (ECIES)
 
-Tüm alanlar big-endian (büyük uçlu bayt sıralaması) olup, bunun istisnası little-endian (küçük uçlu bayt sıralaması) olan geçici açık anahtardır.
+tunnel oluşturma seçenekleri, [Common Structures](/docs/specs/common-structures/) bölümünde tanımlandığı gibi bir Mapping yapısıdır (eşleme yapısı). Bu, gelecekte kullanım içindir. Şu anda tanımlı herhangi bir seçenek yoktur. Mapping yapısı boşsa, bu iki bayttır: 0x00 0x00. Mapping'in azami boyutu (uzunluk alanı dahil) 296 bayttır ve Mapping uzunluk alanının alabileceği en yüksek değer 294'tür.
 
-Şifrelenmiş boyut: 528 bayt
+Tüm alanlar big-endian (büyük uçlu bayt sıralaması) olup, bunun istisnası little-endian (küçük uçlu bayt sıralaması) olan geçici açık anahtardır.
 
 ```text
 bytes    0-15: Hop's truncated identity hash
@@ -277,15 +280,15 @@ bytes    0-15: Hop's truncated identity hash
 ```
 ### Oluşturma Yanıt Kayıtları
 
-Uyumluluk amacıyla, şifrelenmiş BuildReplyRecords (tünel oluşturma yanıt kayıtları) hem ElGamal hem de ECIES için 528 bayttır.
+Şifrelenmiş boyut: 528 bayt
 
 #### Şifrelenmemiş Yanıt Kaydı (ElGamal)
+
+Uyumluluk amacıyla, şifrelenmiş BuildReplyRecords (tünel oluşturma yanıt kayıtları) hem ElGamal hem de ECIES için 528 bayttır.
 
 ElGamal (açık anahtarlı şifreleme algoritması) yanıtları AES (simetrik şifreleme standardı) ile şifrelenir.
 
 Tüm alanlar big-endian biçimindedir (en anlamlı baytın önce geldiği bayt sıralaması).
-
-Şifrelenmemiş boyut: 528 bayt
 
 ```text
 bytes   0-31: SHA-256 Hash of bytes 32-527
@@ -296,16 +299,16 @@ bytes   0-31: SHA-256 Hash of bytes 32-527
 ```
 #### Şifrelenmemiş Yanıt Kaydı (ECIES - Eliptik Eğri Bütünleşik Şifreleme Şeması)
 
-Bu, ECIES-X25519 router'lar için tunnel BuildReplyRecord'un önerilen belirtimidir. Değişikliklerin özeti:
+Şifrelenmemiş boyut: 528 bayt
 
 - build reply options (build yanıt seçenekleri) için Mapping ekle
 - Şifrelenmemiş kayıt, daha az şifreleme ek yükü olduğu için daha uzundur
 
+Bu, ECIES-X25519 router'lar için tunnel BuildReplyRecord'un önerilen belirtimidir. Değişikliklerin özeti:
+
 ECIES (Eliptik Eğri Entegre Şifreleme Şeması) yanıtları ChaCha20/Poly1305 ile şifrelenir.
 
 Tüm alanlar big-endian'dır (en anlamlı bayt önce).
-
-Şifrelenmemiş boyut: 512 bayt
 
 ```text
 bytes    0-x: Tunnel Build Reply Options (Mapping)
@@ -313,28 +316,28 @@ bytes    0-x: Tunnel Build Reply Options (Mapping)
   bytes  x-510: Random padding
   byte     511: Reply byte
 ```
-tunnel oluşturma yanıtı seçenekleri, [Ortak Yapılar](/docs/specs/common-structures/) bölümünde tanımlandığı gibi bir Mapping (eşleme) yapısıdır. Bu, gelecekte kullanım içindir. Şu anda herhangi bir seçenek tanımlı değildir. Mapping yapısı boşsa, bu iki bayttır: 0x00 0x00. Mapping'in (uzunluk alanı dahil) azami boyutu 511 bayttır ve Mapping uzunluk alanının alabileceği azami değer 509'dur.
+Şifrelenmemiş boyut: 512 bayt
 
-Yanıt baytı, parmak izi çıkarımını önlemek için [Tunnel Creation](/docs/specs/tunnel-implementation/)'da tanımlandığı üzere aşağıdaki değerlerden biridir:
+tunnel oluşturma yanıtı seçenekleri, [Ortak Yapılar](/docs/specs/common-structures/) bölümünde tanımlandığı gibi bir Mapping (eşleme) yapısıdır. Bu, gelecekte kullanım içindir. Şu anda herhangi bir seçenek tanımlı değildir. Mapping yapısı boşsa, bu iki bayttır: 0x00 0x00. Mapping'in (uzunluk alanı dahil) azami boyutu 511 bayttır ve Mapping uzunluk alanının alabileceği azami değer 509'dur.
 
 - 0x00 (kabul)
 - 30 (TUNNEL_REJECT_BANDWIDTH - bant genişliği nedeniyle reddedildi)
 
 #### Yanıt Kaydı Şifreli (ECIES - Eliptik Eğri Tabanlı Entegre Şifreleme Şeması)
 
-Şifrelenmiş boyut: 528 bayt
+Yanıt baytı, parmak izi çıkarımını önlemek için [Tunnel Creation](/docs/specs/tunnel-implementation/)'da tanımlandığı üzere aşağıdaki değerlerden biridir:
 
 ```text
 bytes   0-511: ChaCha20 encrypted BuildReplyRecord
   bytes 512-527: Poly1305 MAC
 ```
-ECIES (Eliptik Eğri Entegre Şifreleme Şeması) kayıtlarına tam geçişten sonra, aralıklandırılmış dolgu kuralları, istek kayıtları için olanlarla aynıdır.
+Şifrelenmiş boyut: 528 bayt
 
 ### Kayıtların simetrik olarak şifrelenmesi
 
-Karma tunnels kullanımı, ElGamal'dan ECIES'e geçiş için hem izinli hem de gereklidir. Geçiş dönemi boyunca, giderek daha fazla router ECIES anahtarlarıyla yapılandırılacaktır.
+ECIES (Eliptik Eğri Entegre Şifreleme Şeması) kayıtlarına tam geçişten sonra, aralıklandırılmış dolgu kuralları, istek kayıtları için olanlarla aynıdır.
 
-Simetrik şifreleme için ön işleme aynı şekilde çalışacaktır:
+Karma tunnels kullanımı, ElGamal'dan ECIES'e geçiş için hem izinli hem de gereklidir. Geçiş dönemi boyunca, giderek daha fazla router ECIES anahtarlarıyla yapılandırılacaktır.
 
 - "encryption":
 
@@ -352,23 +355,23 @@ Simetrik şifreleme için ön işleme aynı şekilde çalışacaktır:
   - her atlamada bir kez
   - nihai yanıtın işlenmesi sırasında bir kez
 
+Simetrik şifreleme için ön işleme aynı şekilde çalışacaktır:
+
 Karma tunnel'lar kullanıldığında, tunnel oluşturucularının BuildRequestRecord için kullanılan simetrik şifrelemeyi mevcut ve önceki atlamanın şifreleme türüne dayandırmaları gerekecektir.
 
 Her atlama, BuildReplyRecords (inşa yanıt kayıtları) ile VariableTunnelBuildMessage (VTBM) (değişken tünel inşa mesajı) içindeki diğer kayıtları şifrelemek için kendi şifreleme türünü kullanacaktır.
 
 Yanıt yolunda, uç nokta (gönderici), her atlamanın yanıt anahtarını kullanarak [Multiple Encryption](https://en.wikipedia.org/wiki/Multiple_encryption) katmanlarını çözmek zorundadır.
 
-Açıklayıcı bir örnek olarak, ElGamal (genel anahtarlı şifreleme algoritması) ile sarmalanmış ECIES (Eliptik Eğri Tümleşik Şifreleme Şeması) kullanan bir giden tunnel örneğine bakalım:
-
 - Gönderici (OBGW) -> ElGamal (H1) -> ECIES (H2) -> ElGamal (H3)
+
+Açıklayıcı bir örnek olarak, ElGamal (genel anahtarlı şifreleme algoritması) ile sarmalanmış ECIES (Eliptik Eğri Tümleşik Şifreleme Şeması) kullanan bir giden tunnel örneğine bakalım:
 
 Tüm BuildRequestRecords (oluşturma isteği kayıtları) şifrelenmiş durumdadır (ElGamal veya ECIES kullanılarak).
 
 AES256/CBC şifrelemesi, kullanıldığında, yine her kayıt için ayrı ayrı kullanılır; birden fazla kayıt arasında zincirleme yapılmaz.
 
 Benzer şekilde, ChaCha20 her bir kaydı şifrelemek için kullanılacak, tüm VTBM boyunca akış halinde değil.
-
-İstek kayıtları Gönderici (OBGW) tarafından ön işlemden geçirilir:
 
 - H3'nin kaydı, aşağıdakiler kullanılarak "şifrelenir":
 
@@ -381,9 +384,9 @@ Benzer şekilde, ChaCha20 her bir kaydı şifrelemek için kullanılacak, tüm V
 
 - H1'in kaydı simetrik şifreleme olmadan gönderilir
 
-Yalnızca H2 yanıt şifreleme bayrağını kontrol eder ve devamında AES256/CBC olduğunu görür.
+İstek kayıtları Gönderici (OBGW) tarafından ön işlemden geçirilir:
 
-Her bir atlama tarafından işlemden geçirildikten sonra, kayıtlar "şifresi çözülmüş" durumdadır:
+Yalnızca H2 yanıt şifreleme bayrağını kontrol eder ve devamında AES256/CBC olduğunu görür.
 
 - H3'ün kaydı, şu kullanılarak "şifresi çözülür":
 
@@ -400,7 +403,7 @@ Her bir atlama tarafından işlemden geçirildikten sonra, kayıtlar "şifresi �
   - H2'nin yanıt anahtarı (ChaCha20)
   - H1'in yanıt anahtarı (AES256/CBC)
 
-Tunnel oluşturucusu, diğer adıyla Inbound Endpoint (IBEP) (gelen uç noktası), yanıtı son işlemden geçirir:
+Her bir atlama tarafından işlemden geçirildikten sonra, kayıtlar "şifresi çözülmüş" durumdadır:
 
 - H3'nin kaydı, şunlar kullanılarak "şifrelenmiş"tir:
 
@@ -419,13 +422,13 @@ Tunnel oluşturucusu, diğer adıyla Inbound Endpoint (IBEP) (gelen uç noktası
 
 ### İstek Kaydı Anahtarları (ECIES)
 
-Bu anahtarlar, ElGamal BuildRequestRecords (tunnel oluşturma isteği kayıtları) içinde açıkça yer alır. ECIES BuildRequestRecords için, tunnel anahtarları ve AES yanıt anahtarları dahil edilir, ancak ChaCha yanıt anahtarları DH değişiminden türetilir. router’ın statik ECIES anahtarlarına ilişkin ayrıntılar için [Proposal 156](/proposals/156-ecies-routers) belgesine bakın.
+Tunnel oluşturucusu, diğer adıyla Inbound Endpoint (IBEP) (gelen uç noktası), yanıtı son işlemden geçirir:
 
-Aşağıda, istek kayıtlarında daha önce iletilen anahtarların nasıl türetileceğine dair bir açıklama yer almaktadır.
+Bu anahtarlar, ElGamal BuildRequestRecords (tunnel oluşturma isteği kayıtları) içinde açıkça yer alır. ECIES BuildRequestRecords için, tunnel anahtarları ve AES yanıt anahtarları dahil edilir, ancak ChaCha yanıt anahtarları DH değişiminden türetilir. router’ın statik ECIES anahtarlarına ilişkin ayrıntılar için [Proposal 156](/proposals/156-ecies-routers) belgesine bakın.
 
 #### Başlangıç ck ve h için KDF (anahtar türetme fonksiyonu)
 
-Bu, desen "N" için, standart bir protokol adıyla kullanılan standart [NOISE](https://noiseprotocol.org/noise.html) uygulamasıdır.
+Aşağıda, istek kayıtlarında daha önce iletilen anahtarların nasıl türetileceğine dair bir açıklama yer almaktadır.
 
 ```text
 This is the "e" message pattern:
@@ -448,6 +451,8 @@ This is the "e" message pattern:
 ```
 #### İstek Kaydı için KDF
 
+Bu, desen "N" için, standart bir protokol adıyla kullanılan standart [NOISE](https://noiseprotocol.org/noise.html) uygulamasıdır.
+
 ElGamal tunnel oluşturucuları, tunnel içindeki her ECIES hop (geçiş noktası) için geçici bir X25519 anahtar çifti oluşturur ve BuildRequestRecord verilerini şifrelemek için yukarıdaki yöntemi kullanır. ElGamal tunnel oluşturucuları, ElGamal hoplara şifreleme yaparken bu spesifikasyondan önceki yöntemi kullanacaktır.
 
 ECIES tunnel oluşturucularının, [Tunnel Creation](/docs/specs/tunnel-implementation/) bölümünde tanımlanan şemayı kullanarak her bir ElGamal hop (atlama) genel anahtarına şifreleme yapmaları gerekecektir. ECIES tunnel oluşturucuları, ECIES hop'lara şifreleme yapmak için yukarıdaki şemayı kullanacaktır.
@@ -455,8 +460,6 @@ ECIES tunnel oluşturucularının, [Tunnel Creation](/docs/specs/tunnel-implemen
 Bu, tunnel üzerindeki ara düğümlerin yalnızca kendi şifreleme türleriyle şifrelenmiş kayıtları göreceği anlamına gelir.
 
 ElGamal ve ECIES tunnel oluşturucuları, ECIES atlamalarına şifreli olarak iletmek için her atlama başına benzersiz ve geçici X25519 anahtar çiftleri oluşturacaklardır.
-
-**ÖNEMLİ**: Geçici anahtarlar, her ECIES atlaması ve her oluşturma kaydı için benzersiz olmalıdır. Benzersiz anahtarlar kullanmamak, işbirliği yapan atlamaların aynı tunnel içinde olduklarını doğrulamalarına olanak tanıyan bir saldırı vektörü açar.
 
 ```text
 // Each hop's X25519 static keypair (hesk, hepk) from the Router Identity
@@ -507,15 +510,15 @@ ElGamal ve ECIES tunnel oluşturucuları, ECIES atlamalarına şifreli olarak il
   // Save for Reply Record KDF
   h = SHA256(h || ciphertext)
 ```
-``replyKey``, ``layerKey`` ve ``layerIV`` hâlâ ElGamal kayıtlarının içine dahil edilmelidir ve rastgele oluşturulabilir.
+**ÖNEMLİ**: Geçici anahtarlar, her ECIES atlaması ve her oluşturma kaydı için benzersiz olmalıdır. Benzersiz anahtarlar kullanmamak, işbirliği yapan atlamaların aynı tunnel içinde olduklarını doğrulamalarına olanak tanıyan bir saldırı vektörü açar.
 
 ### İstek Kaydı Şifrelemesi (ElGamal; açık anahtarlı şifreleme algoritması)
 
-[Tunnel Oluşturma](/docs/specs/tunnel-implementation/) içinde tanımlandığı gibi. ElGamal atlamaları için şifrelemede herhangi bir değişiklik yoktur.
+``replyKey``, ``layerKey`` ve ``layerIV`` hâlâ ElGamal kayıtlarının içine dahil edilmelidir ve rastgele oluşturulabilir.
 
 ### Yanıt Kaydı Şifrelemesi (ECIES - Eliptik Eğri Entegre Şifreleme Şeması)
 
-Yanıt kaydı ChaCha20/Poly1305 ile şifrelenir.
+[Tunnel Oluşturma](/docs/specs/tunnel-implementation/) içinde tanımlandığı gibi. ElGamal atlamaları için şifrelemede herhangi bir değişiklik yoktur.
 
 ```text
 // AEAD parameters
@@ -528,9 +531,11 @@ Yanıt kaydı ChaCha20/Poly1305 ile şifrelenir.
 ```
 ### Yanıt Kaydı Şifrelemesi (ElGamal, açık anahtarlı şifreleme yöntemi)
 
-[Tunnel Oluşturma](/docs/specs/tunnel-implementation/) bölümünde tanımlandığı gibi. ElGamal atlamaları için şifrelemede herhangi bir değişiklik yoktur.
+Yanıt kaydı ChaCha20/Poly1305 ile şifrelenir.
 
 ### Güvenlik Analizi
+
+[Tunnel Oluşturma](/docs/specs/tunnel-implementation/) bölümünde tanımlandığı gibi. ElGamal atlamaları için şifrelemede herhangi bir değişiklik yoktur.
 
 ElGamal, Tunnel Build Messages için ileriye dönük gizlilik sağlamaz.
 
@@ -544,11 +549,9 @@ ElGamal (açık anahtar şifreleme şeması), ECIES’e (Eliptik Eğri Entegre �
 
 ECIES (Eliptik Eğri Tümleşik Şifreleme Şeması), her BuildRequestRecord veya VariableTunnelBuildMessage için yeni geçici anahtarlarla kullanıldığında, ileri gizlilik sağlar.
 
-ChaCha20Poly1305, alıcının şifre çözmeyi denemeden önce mesaj bütünlüğünü doğrulamasına olanak sağlayan AEAD şifrelemesi (İlişkili Verilerle Kimliği Doğrulanmış Şifreleme) sağlar.
-
 ## Gerekçe
 
-Bu tasarım, mevcut kriptografik yapıtaşlarının, protokollerin ve kodun yeniden kullanımını en üst düzeye çıkarır. Bu tasarım riski en aza indirir.
+ChaCha20Poly1305, alıcının şifre çözmeyi denemeden önce mesaj bütünlüğünü doğrulamasına olanak sağlayan AEAD şifrelemesi (İlişkili Verilerle Kimliği Doğrulanmış Şifreleme) sağlar.
 
 ## Uygulama Notları
 
@@ -561,7 +564,7 @@ Bu tasarım, mevcut kriptografik yapıtaşlarının, protokollerin ve kodun yeni
 
 ## Geçiş
 
-Bkz. [Öneri 156](/proposals/156-ecies-routers).
+Bu tasarım, mevcut kriptografik yapıtaşlarının, protokollerin ve kodun yeniden kullanımını en üst düzeye çıkarır. Bu tasarım riski en aza indirir.
 
 ## Kaynaklar
 
