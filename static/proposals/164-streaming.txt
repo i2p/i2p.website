@@ -1,6 +1,6 @@
-===================================
+=================
 Streaming Updates
-===================================
+=================
 .. meta::
     :author: zzz
     :created: 2023-01-24
@@ -11,7 +11,6 @@ Streaming Updates
     :implementedin: 0.9.58
 
 .. contents::
-
 
 
 Overview
@@ -27,9 +26,6 @@ sending it to some victim Charlie. Charlie will think that the packet came from
 Alice and respond to her. In most cases, this is harmless, but
 the SYN packet may contain initial data (such as a GET or POST) that
 Charlie will process immediately.
-
-
-
 
 Design
 ======
@@ -49,12 +45,10 @@ rewrite the hash.
 
 If Alice and Charlie are API 0.9.58 or newer, any replay attempt by Bob will be rejected.
 
-
-
 Specification
 =============
 
-Update [STREAMING]_ to add the following section:
+Update the `Streaming specification </docs/specs/streaming/>`__ to add the following section:
 
 Replay prevention
 -----------------
@@ -65,9 +59,9 @@ Alice must include Bob's destination hash in the SYNCHRONIZE packet as follows:
 
 .. raw:: html
 
-  {% highlight lang='dataspec' %}
+{% highlight lang='dataspec' %}
 Set NACK count field to 8
-  Set the NACKs field to Bob's 32-byte destination hash
+Set the NACKs field to Bob's 32-byte destination hash
 
 {% endhighlight %}
 
@@ -87,7 +81,6 @@ Destinations do not and cannot know what version the other end is running.
 No change is necessary for the SYNCHRONIZE ACK packet sent from Bob to Alice;
 do not include NACKs in that packet.
 
-
 Security Analysis
 =================
 
@@ -99,16 +92,13 @@ on the application-layer protocol and service.
 Peer-to-peer applications are probably more likely to be affected
 than client/server applications.
 
-
 Compatibility
-===============
+=============
 
 No issues. All known implementations currently ignore the NACKs field in the SYN packet.
 And even if they did not ignore it, and attempted to interpret it
 as NACKs for 8 different messages, those messages would not be outstanding
 during the SYNCHRONIZE handshake and the NACKs would not make any sense.
-
-
 
 Migration
 =========
@@ -116,10 +106,7 @@ Migration
 Implementations may add support at any time, no coordination is needed.
 Java I2P and i2pd routers implemented this in API 0.9.58 (released March 2023).
 
-
-
 References
 ==========
 
-.. [STREAMING]
-    {{ spec_url('streaming') }}
+- `STREAMING </docs/specs/streaming/>`__

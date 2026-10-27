@@ -26,67 +26,62 @@ All RPC paramters will now be lower case. This *will* break backwards
 compatibility with API1 implementations. The reasons for this is to provide
 users of >=API2 with simplest most coherent possible API.
 
-
 API 2 Specification
 ===================
 
-.. raw:: html
+.. code:: json
 
-  {% highlight lang='json' -%}
-{
-    "id": "id",
-    "method": "method_name",
-    "params": {
-      "token": "auth_token",
-      "method_param": "method_parameter_value",
-    },
-    "jsonrpc": "2.0"
-  }
+   {
+       "id": "id",
+       "method": "method_name",
+       "params": {
+         "token": "auth_token",
+         "method_param": "method_parameter_value",
+       },
+       "jsonrpc": "2.0"
+     }
 
-  {
-    "id": "id",
-    "result": "result_value",
-    "jsonrpc": "2.0"
-  }
-{% endhighlight %}
+     {
+       "id": "id",
+       "result": "result_value",
+       "jsonrpc": "2.0"
+     }
 
 Parameters
 ----------
 
-"id"
-  The id number or the request.
+**``"id"``**
 
-  Used to identify which reply was spawn by which request.
+The id number or the request. Used to identify which reply was spawn by which request.
 
-"method_name"
-  The name of the RPC that is being invoked.
+**``"method_name"``**
 
-"auth_token"
-  The session authentication token.
+The name of the RPC that is being invoked.
 
-  Needs to be supplied with every RPC except for the 'authenticate' call.
+**``"auth_token"``**
 
-"method_parameter_value"
-  The method parameter.
+The session authentication token. Needs to be supplied with every RPC except for the 'authenticate' call.
 
-  Used to offer a different flavors of a method.  Like 'get', 'set' and flavors
-  like that.
+**``"method_parameter_value"``**
 
-"result_value"
-  The value that the RPC returns. Its type and contents depends on the method
-  and which method.
+The method parameter. Used to offer a different flavors of a method. Like 'get', 'set' and flavors like that.
 
+**``"result_value"``**
+
+The value that the RPC returns. Its type and contents depends on the method and which method.
 
 Prefixes
 --------
 
 The RPC naming scheme is similar to how it's done in CSS, with vendor prefixes
-for the different API implementations (i2p, kovri, i2pd)::
+for the different API implementations (i2p, kovri, i2pd):
 
-    XXX.YYY.ZZZ
-    i2p.XXX.YYY.ZZZ
-    i2pd.XXX.YYY.ZZZ
-    kovri.XXX.YYY.ZZZ
+.. code:: text
+
+   XXX.YYY.ZZZ
+   i2p.XXX.YYY.ZZZ
+   i2pd.XXX.YYY.ZZZ
+   kovri.XXX.YYY.ZZZ
 
 The overall idea with vendor-specific prefixes is to allow for some wiggle room
 and let implementations innovate without having to wait for every other
@@ -94,367 +89,472 @@ implementation to catch up. If a RPC is implemented by all implementations its
 multiple prefixes can be removed and it can be included as a core RPC in the
 next API version.
 
-
 Method reading guide
 --------------------
 
- * **rpc.method**
+- **rpc.method**
 
-   * *parameter* [type of parameter]:  [null], [number], [string], [boolean],
-     [array] or [object]. [object] being a {key:value} map.
+  - *parameter* [type of parameter]: [null], [number], [string], [boolean],
+    [array] or [object]. [object] being a {key:value} map.
 
-::
+- Returns:
 
-  "return_value" [string] // This is the value returned by the RPC call
+.. code:: text
 
+   "return_value" [string] // This is the value returned by the RPC call
 
 Methods
 -------
 
-* **authenticate** - Given that a correct password is provided, this method provides you with a token for further access and a list of supported API levels.
+- **authenticate** - Given that a correct password is provided, this method provides you with a token for further access and a list of supported API levels.
 
-  * *password* [string]:  The password for this i2pcontrol implementation
+  - *password* [string]: The password for this i2pcontrol implementation
 
-  ::
+.. code:: text
 
-    [object]
-    {
-      "token" : [string], // The token to be used be supplied with all other RPC methods
-      "api" : [[int],[int], ...]  // A list of supported API levels.
-    }
+       [object]
+       {
+         "token" : [string], // The token to be used be supplied with all other RPC methods
+         "api" : [[int],[int], ...]  // A list of supported API levels.
+       }
 
+- **control.** - Control i2p
 
-* **control.** - Control i2p
+  - **control.reseed** - Start reseeding
 
-  * **control.reseed** - Start reseeding
+    - [nil]: No parameter needed
 
-    * [nil]: No parameter needed
+.. code:: text
 
-    ::
+         [nil]
 
-      [nil]
+- **control.restart** - Restart i2p instance
 
-  * **control.restart** - Restart i2p instance
+  - [nil]: No parameter needed
 
-    * [nil]: No parameter needed
+  Returns:
 
-    ::
+.. code:: text
 
-      [nil]
+         [nil]
 
-  * **control.restart.graceful** - Restart i2p instance gracefully
+- **control.restart.graceful** - Restart i2p instance gracefully
 
-    * [nil]: No parameter needed
+  - [nil]: No parameter needed
 
-    ::
+  Returns:
 
-      [nil]
+.. code:: text
 
-  * **control.shutdown** - Shut down i2p instance
+         [nil]
 
-    * [nil]: No parameter needed
+- **control.shutdown** - Shut down i2p instance
 
-    ::
+  - [nil]: No parameter needed
 
-      [nil]
+  Returns:
 
-  * **control.shutdown.graceful** - Shut down i2p instance gracefully
+.. code:: text
 
-    * [nil]: No parameter needed
+         [nil]
 
-    ::
+- **control.shutdown.graceful** - Shut down i2p instance gracefully
 
-      [nil]
+  - [nil]: No parameter needed
 
-  * **control.update.find** - **BLOCKING** Search for signed updates
+  Returns:
 
-    * [nil]: No parameter needed
+.. code:: text
 
-    ::
+         [nil]
 
-      true [boolean] // True iff signed update is available
+- **control.update.find** - **BLOCKING** Search for signed updates
 
-  * **control.update.start** - Start update process
+  - [nil]: No parameter needed
 
-    * [nil]: No parameter needed
+  Returns:
 
-    ::
+.. code:: text
 
-      [nil]
+         true [boolean] // True iff signed update is available
 
+- **control.update.start** - Start update process
 
-* **i2pcontrol.** - Configure i2pcontrol
+  - [nil]: No parameter needed
 
-  * **i2pcontrol.address** - Get/Set the ip address that i2pcontrol listens to.
+  Returns:
 
-    * *get* [null]: This parameter does not need to be set.
+.. code:: text
 
-    ::
+         [nil]
 
-      "0.0.0.0" [string]
+- **i2pcontrol.** - Configure i2pcontrol
 
-    * *set* [string]: This will be an ip address like "0.0.0.0" or "192.168.0.1"
+  - **i2pcontrol.address** - Get/Set the ip address that i2pcontrol listens to.
 
-    ::
+    - *get* [null]: This parameter does not need to be set.
 
-      [nil]
+.. code:: text
 
-  * **i2pcontrol.password** - Change the i2pcontrol password.
+         "0.0.0.0" [string]
 
-    * *set* [string]: Set the new password to this string
+::
 
-    ::
+   * *set* [string]: This will be an ip address like "0.0.0.0" or "192.168.0.1"
 
-      [nil]
+   Returns:
 
-  * **i2pcontrol.port** - Get/Set the port that i2pcontrol listens to.
+.. code:: text
 
-    * *get* [null]: This parameter does not need to be set.
+         [nil]
 
-    ::
+- **i2pcontrol.password** - Change the i2pcontrol password.
 
-      7650 [number]
+  - *set* [string]: Set the new password to this string
 
-    * *set* [number]: Change the port that i2pcontrol listens to to this port
+  Returns:
 
-    ::
+.. code:: text
 
-      [nil]
+         [nil]
 
+- **i2pcontrol.port** - Get/Set the port that i2pcontrol listens to.
 
-* **settings.** - Get/Set i2p instance settings
+  - *get* [null]: This parameter does not need to be set.
 
-  * **settings.advanced** - Advanced settings
+  Returns:
 
-    * *get*  [string]: Get the value of this setting
+.. code:: text
 
-    ::
+         7650 [number]
 
-      "setting-value" [string]
+::
 
-    * *getAll* [null]:
+   * *set* [number]: Change the port that i2pcontrol listens to to this port
 
-    ::
+   Returns:
 
-      [object]
-      {
-        "setting-name" : "setting-value", [string]
-        ".." : ".." 
-      }
+.. code:: text
 
-    * *set* [string]: Set the value of this setting
-    * *setAll* [object] {"setting-name" : "setting-value", ".." : ".." }
+         [nil]
 
-    ::
+- **settings.** - Get/Set i2p instance settings
 
-      [nil]
+  - **settings.advanced** - Advanced settings
 
-  * **settings.bandwidth.in** - Inbound bandwidth settings
-  * **settings.bandwidth.out** - Outbound bandwidth settings
+    - *get* [string]: Get the value of this setting
 
-    * *get* [nil]: This parameter does not need to be set.
+.. code:: text
 
-    ::
+         "setting-value" [string]
 
-      0 [number]
+::
 
-    * *set* [number]: Set the bandwidth limit
+   * *getAll* [null]:
 
-    ::
+   Returns:
 
-     [nil]
+.. code:: text
 
-  * **settings.ntcp.autoip** - Get IP auto detection setting for NTCP
+         [object]
+         {
+           "setting-name" : "setting-value", [string]
+           ".." : ".."
+         }
 
-    * *get* [null]: This parameter does not need to be set.
+::
 
-    ::
+   * *set* [string]: Set the value of this setting
+   * *setAll* [object] {"setting-name" : "setting-value", ".." : ".." }
 
-      true [boolean]
+   Returns:
 
-  * **settings.ntcp.hostname** - Get NTCP hostname
+.. code:: text
 
-    * *get* [null]: This parameter does not need to be set.
+         [nil]
 
-    ::
+- **settings.bandwidth.in** - Inbound bandwidth settings
 
-      "0.0.0.0" [string]
+- **settings.bandwidth.out** - Outbound bandwidth settings
 
-    * *set* [string]: Set new hostname
+  - *get* [nil]: This parameter does not need to be set.
 
-    ::
+  Returns:
 
-      [nil]
+.. code:: text
 
-  * **settings.ntcp.port** - NTCP port
+         0 [number]
 
-    * *get* [null]: This parameter does not need to be set.
+::
 
-    ::
+   * *set* [number]: Set the bandwidth limit
 
-      0 [number]
+   Returns:
 
-    * *set* [number]: Set new NTCP port.
+.. code:: text
 
-    ::
+        [nil]
 
-      [nil]
+- **settings.ntcp.autoip** - Get IP auto detection setting for NTCP
 
-    * *set* [boolean]: Set NTCP IP auto detection
+  - *get* [null]: This parameter does not need to be set.
 
-    ::
+  Returns:
 
-      [nil]
+.. code:: text
 
-  * **settings.ssu.autoip** - Configure IP auto detection setting for SSU
+         true [boolean]
 
-    * *get* [nil]: This parameter does not need to be set.
+- **settings.ntcp.hostname** - Get NTCP hostname
 
-    ::
+  - *get* [null]: This parameter does not need to be set.
 
-      true [boolean]
+  Returns:
 
-  * **settings.ssu.hostname** - Configure SSU hostname
+.. code:: text
 
-    * *get* [null]: This parameter does not need to be set.
+         "0.0.0.0" [string]
 
-    ::
+::
 
-      "0.0.0.0" [string]
+   * *set* [string]: Set new hostname
 
-    * *set* [string]: Set new SSU hostname
+   Returns:
 
-    ::
+.. code:: text
 
-      [nil]
+         [nil]
 
-  * **settings.ssu.port** - SSU port
+- **settings.ntcp.port** - NTCP port
 
-    * *get* [null]: This parameter does not need to be set.
+  - *get* [null]: This parameter does not need to be set.
 
-    ::
+  Returns:
 
-      0 [number]
+.. code:: text
 
-    * *set* [number]: Set new SSU port.
+         0 [number]
 
-    ::
+::
 
-      [nil]
+   * *set* [number]: Set new NTCP port.
 
-    * *set* [boolean]: Set SSU IP auto detection
+   Returns:
 
-    ::
+.. code:: text
 
-      [nil]
+         [nil]
 
-  * **settings.share** - Get bandwidth share percentage
+::
 
-    * *get* [null]: This parameter does not need to be set.
+   * *set* [boolean]: Set NTCP IP auto detection
 
-    ::
+   Returns:
 
-      0 [number] // Bandwidth share percentage (0-100)
+.. code:: text
 
-    * *set* [number]: Set bandwidth share percentage (0-100)
+         [nil]
 
-  * **settings.upnp** - Enable or disable UPNP
+- **settings.ssu.autoip** - Configure IP auto detection setting for SSU
 
-    * *get* [nil]: This parameter does not need to be set.
+  - *get* [nil]: This parameter does not need to be set.
 
-    ::
+  Returns:
 
-      true [boolean]
+.. code:: text
 
-    * *set* [boolean]: Set SSU IP auto detection
+         true [boolean]
 
-    ::
+- **settings.ssu.hostname** - Configure SSU hostname
 
-      [nil]
+  - *get* [null]: This parameter does not need to be set.
 
+  Returns:
 
+.. code:: text
 
-* **stats.** - Get stats from the i2p instance
+         "0.0.0.0" [string]
 
-  * **stats.advanced** - This method provides access to all stats kept within the instance.
+::
 
-    * *get* [string]:  Name of the advanced stat to be provided
-    * *Optional:* *period* [number]:  The period for the requested stat
+   * *set* [string]: Set new SSU hostname
 
-  * **stats.knownpeers** - Returns the number of known peers
-  * **stats.uptime** - Returns the time in ms since the router started
-  * **stats.bandwidth.in** - Returns the inbound bandwidth (ideally for the last second)
-  * **stats.bandwidth.in.total** - Returns the number of bytes received since last restart
-  * **stats.bandwidth.out** - Returns the outbound bandwidth (ideally for the last second)'
-  * **stats.bandwidth.out.total** - Returns the number of bytes sent since last restart'
-  * **stats.tunnels.participating** - Returns the number of tunnels participated in currently
-  * **stats.netdb.peers.active** - Returns the number of peers we've recently communicated with
-  * **stats.netdb.peers.fast** - Returns the number of 'fast' peers
-  * **stats.netdb.peers.highcapacity** - Returns the number of 'high capacity' peers
-  * **stats.netdb.peers.known** - Returns the number of known peers
+   Returns:
 
-    * *get* [null]: This parameter does not need to be set.
+.. code:: text
 
-    ::
+         [nil]
 
-      0.0 [number]
+- **settings.ssu.port** - SSU port
 
+  - *get* [null]: This parameter does not need to be set.
 
-* **status.** - Get i2p instance status
+  Returns:
 
-  * **status.router** - Get router status
+.. code:: text
 
-    * *get* [null]: This parameter does not need to be set.
+         0 [number]
 
-    ::
+::
 
-      "status" [string]
+   * *set* [number]: Set new SSU port.
 
-  * **status.net** - Get router network status
+   Returns:
 
-    * *get* [null]: This parameter does not need to be set.
+.. code:: text
 
-    ::
+         [nil]
 
-      0 [number]
-      /**
-       *    0 – OK
-       *    1 – TESTING
-       *    2 – FIREWALLED
-       *    3 – HIDDEN
-       *    4 – WARN_FIREWALLED_AND_FAST
-       *    5 – WARN_FIREWALLED_AND_FLOODFILL
-       *    6 – WARN_FIREWALLED_WITH_INBOUND_TCP
-       *    7 – WARN_FIREWALLED_WITH_UDP_DISABLED
-       *    8 – ERROR_I2CP
-       *    9 – ERROR_CLOCK_SKEW
-       *   10 – ERROR_PRIVATE_TCP_ADDRESS
-       *   11 – ERROR_SYMMETRIC_NAT
-       *   12 – ERROR_UDP_PORT_IN_USE
-       *   13 – ERROR_NO_ACTIVE_PEERS_CHECK_CONNECTION_AND_FIREWALL
-       *   14 – ERROR_UDP_DISABLED_AND_TCP_UNSET
-       */
+::
 
-  * **status.isfloodfill** - Is the i2p instance currently a floodfill
+   * *set* [boolean]: Set SSU IP auto detection
 
-    * *get* [null]: This parameter does not need to be set.
+   Returns:
 
-    ::
+.. code:: text
 
-      true [boolean]
+         [nil]
 
-  * **status.isreseeding** - Is the i2p instance currently reseeding
+- **settings.share** - Get bandwidth share percentage
 
-    * *get* [null]: This parameter does not need to be set.
+  - *get* [null]: This parameter does not need to be set.
 
-    ::
+  Returns:
 
-      true [boolean]
+.. code:: text
 
-  * **status.ip** - Public IP detected of this i2p instance
+         0 [number] // Bandwidth share percentage (0-100)
 
-    * *get* [null]: This parameter does not need to be set.
+::
 
-    ::
+   * *set* [number]: Set bandwidth share percentage (0-100)
 
-      "0.0.0.0" [string]
+   Returns:
+
+.. code:: text
+
+         [nil]
+
+- **settings.upnp** - Enable or disable UPNP
+
+  - *get* [nil]: This parameter does not need to be set.
+
+  Returns:
+
+.. code:: text
+
+         true [boolean]
+
+::
+
+   * *set* [boolean]: Set SSU IP auto detection
+
+   Returns:
+
+.. code:: text
+
+         [nil]
+
+- **stats.** - Get stats from the i2p instance
+
+  - **stats.advanced** - This method provides access to all stats kept within the instance.
+
+    - *get* [string]: Name of the advanced stat to be provided
+    - *Optional:* *period* [number]: The period for the requested stat
+
+  - **stats.knownpeers** - Returns the number of known peers
+
+  - **stats.uptime** - Returns the time in ms since the router started
+
+  - **stats.bandwidth.in** - Returns the inbound bandwidth (ideally for the last second)
+
+  - **stats.bandwidth.in.total** - Returns the number of bytes received since last restart
+
+  - **stats.bandwidth.out** - Returns the outbound bandwidth (ideally for the last second)'
+
+  - **stats.bandwidth.out.total** - Returns the number of bytes sent since last restart'
+
+  - **stats.tunnels.participating** - Returns the number of tunnels participated in currently
+
+  - **stats.netdb.peers.active** - Returns the number of peers we've recently communicated with
+
+  - **stats.netdb.peers.fast** - Returns the number of 'fast' peers
+
+  - **stats.netdb.peers.highcapacity** - Returns the number of 'high capacity' peers
+
+  - **stats.netdb.peers.known** - Returns the number of known peers
+
+    - *get* [null]: This parameter does not need to be set.
+
+.. code:: text
+
+         0.0 [number]
+
+- **status.** - Get i2p instance status
+
+  - **status.router** - Get router status
+
+    - *get* [null]: This parameter does not need to be set.
+
+    Returns:
+
+.. code:: text
+
+         "status" [string]
+
+- **status.net** - Get router network status
+
+  - *get* [null]: This parameter does not need to be set.
+
+  Returns:
+
+.. code:: text
+
+         0 [number]
+         /**
+          *    0 – OK
+          *    1 – TESTING
+          *    2 – FIREWALLED
+          *    3 – HIDDEN
+          *    4 – WARN_FIREWALLED_AND_FAST
+          *    5 – WARN_FIREWALLED_AND_FLOODFILL
+          *    6 – WARN_FIREWALLED_WITH_INBOUND_TCP
+          *    7 – WARN_FIREWALLED_WITH_UDP_DISABLED
+          *    8 – ERROR_I2CP
+          *    9 – ERROR_CLOCK_SKEW
+          *   10 – ERROR_PRIVATE_TCP_ADDRESS
+          *   11 – ERROR_SYMMETRIC_NAT
+          *   12 – ERROR_UDP_PORT_IN_USE
+          *   13 – ERROR_NO_ACTIVE_PEERS_CHECK_CONNECTION_AND_FIREWALL
+          *   14 – ERROR_UDP_DISABLED_AND_TCP_UNSET
+          */
+
+- **status.isfloodfill** - Is the i2p instance currently a floodfill
+
+  - *get* [null]: This parameter does not need to be set.
+
+  Returns:
+
+.. code:: text
+
+         true [boolean]
+
+- **status.isreseeding** - Is the i2p instance currently reseeding
+
+  - *get* [null]: This parameter does not need to be set.
+
+  Returns:
+
+.. code:: text
+
+         true [boolean]
+
+- **status.ip** - Public IP detected of this i2p instance
+
+  - *get* [null]: This parameter does not need to be set.
+
+  Returns:
+
+.. code:: text
+
+         "0.0.0.0" [string]

@@ -17,7 +17,6 @@ Overview
 Basic idea: Send one copy through your outbound tunnel, outbound endpoint
 distributes to all the inbound gateways. End-end encryption precluded.
 
-
 Design
 ======
 

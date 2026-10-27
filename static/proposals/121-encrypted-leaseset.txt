@@ -17,7 +17,6 @@ Overview
 
 This proposal is about redesigning the mechanism for encrypting LeaseSets.
 
-
 Motivation
 ==========
 
@@ -31,7 +30,6 @@ Reasons:
 - Lease expirations still exposed
 - Encryption pubkey still exposed
 
-
 Design
 ======
 
@@ -41,12 +39,11 @@ Goals
 - Make entire thing opaque
 - Keys for each recipient
 
-
 Strategy
 --------
 
 Do like GPG/OpenPGP does. Asymmetrically encrypt a symmetric key for each
-recipient. Data is decrypted with that asymmetric key. See e.g. [RFC-4880-S5.1]_
+recipient. Data is decrypted with that asymmetric key. See e.g. `RFC-4880-S5.1 <https://tools.ietf.org/html/rfc4880#section-5.1>`__
 IF we can find an algo that's small and fast.
 
 Trick is finding an asymmetric encryption that's small and fast. ElGamal at 514
@@ -56,7 +53,6 @@ See e.g. http://security.stackexchange.com/questions/824...
 
 This works for small numbers of recipients (or actually, keys; you can still
 distribute keys to multiple people if you like).
-
 
 Specification
 =============
@@ -71,9 +67,7 @@ Specification
 
 Encrypted data could be prefixed with some enctype specifier, or not.
 
-
 References
 ==========
 
-.. [RFC-4880-S5.1]
-    https://tools.ietf.org/html/rfc4880#section-5.1
+- `RFC-4880-S5.1 <https://tools.ietf.org/html/rfc4880#section-5.1>`__

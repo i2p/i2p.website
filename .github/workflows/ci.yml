@@ -150,6 +150,25 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install anthropic openai
+      - name: Sync proposal .txt files
+        id: proposals
+        run: |
+          # Pinned so regenerated .txt output doesn't change between pandoc releases
+          curl -sSL -o /tmp/pandoc.deb https://github.com/jgm/pandoc/releases/download/3.8.3/pandoc-3.8.3-1-amd64.deb
+          sudo dpkg -i /tmp/pandoc.deb
+          python3 scripts/tools/sync_proposal_txt.py
+          if [ -n "$(git status --porcelain static/proposals)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add static/proposals
+            git commit -m "Sync proposal .txt files from Markdown"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+            echo "committed=true" >> $GITHUB_OUTPUT
+          else
+            echo "committed=false" >> $GITHUB_OUTPUT
+          fi
       - name: Run Translation Script
         id: translate
         env:
@@ -167,13 +186,13 @@ jobs:
             echo "committed=false" >> $GITHUB_OUTPUT
           fi
       - name: Push translations to Gitea
-        if: steps.translate.outputs.committed == 'true'
+        if: steps.translate.outputs.committed == 'true' || steps.proposals.outputs.committed == 'true'
         run: |
           git remote add gitea "https://${{ secrets.GITEA_TOKEN }}@i2pgit.org/I2P_Developers/i2p.website.git" || true
           git push gitea HEAD:main
 
       - name: Trigger Deploy Workflow
-        if: steps.translate.outputs.committed == 'true'
+        if: steps.translate.outputs.committed == 'true' || steps.proposals.outputs.committed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |

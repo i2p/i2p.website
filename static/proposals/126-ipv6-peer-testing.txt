@@ -19,7 +19,6 @@ Overview
 This proposal is to implement SSU Peer Testing for IPv6.
 Implemented in 0.9.27.
 
-
 Motivation
 ==========
 
@@ -39,14 +38,12 @@ and guessing that we aren't if we haven't gotten an inbound conn in a while.
 The problem is that once you declare unreachable, you don't publish your v6 IP,
 and then you won't get any more (after the RI expires in everybody's netdb).
 
-
 Design
 ======
 
 Implement Peer Testing for IPv6,
 by removing previous restrictions that peer testing was only allowed for IPv4.
 The peer test message already has a field for IP length.
-
 
 Specification
 =============
@@ -58,7 +55,6 @@ the 'B' capability, if present for an IPv6 address, must be ignored.
 As of 0.9.27, peer testing is supported for IPv6 addresses, and
 the presence or absense of the 'B' capability in an IPv6 address
 indicates actual support (or lack of support).
-
 
 In the Peer Testing sections of the SSU overview and SSU specification, make the following changes:
 
@@ -74,7 +70,6 @@ Alice sends the request to Bob using an existing session over the transport (IPv
 When Bob receives a request from Alice via IPv4, Bob must select a Charlie that advertises an IPv4 address.
 When Bob receives a request from Alice via IPv6, Bob must select a Charlie that advertises an IPv6 address.
 The actual Bob-Charlie communication may be via IPv4 or IPv6 (i.e., independent of Alice's address type).
-
 
 Migration
 =========

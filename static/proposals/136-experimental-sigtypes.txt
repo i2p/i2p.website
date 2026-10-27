@@ -19,7 +19,6 @@ floodfills should accept netdb stores without checking the signature.
 
 This will support testing of new sig types.
 
-
 Motivation
 ==========
 
@@ -31,21 +30,14 @@ multiple sig types at once.
 Second, unless a router info or lease set with an experimental sig type can be stored at a floodfill,
 the new sig type is difficult to fully test or use on a trial basis.
 
-
-
 Design
 ======
 
 Floodfills should accept, and flood, LS stores with sig types in the experimental range,
 without checking the signature. Support for RI stores is TBD, and may have more security implications.
 
-
-
 Specification
 =============
-
-Ref: http://i2p-projekt.i2p/en/docs/spec/common-structures
-http://i2p-projekt.i2p/en/docs/spec/i2np
 
 For sig types in the experimental range, a floodfill should accept and flood netdb
 stores without checking the signature.
@@ -63,7 +55,6 @@ Floodfills should assume the signing public key length is 128, or derive it from
 the key certificate length, if longer. Some implementations may
 not support longer lengths unless the sig type is informally reserved.
 
-
 Migration
 =========
 
@@ -72,7 +63,6 @@ experimental sig type netdb entries may be stored to floodfills of that version 
 
 If some router implementations do not support this feature, the netdb store
 will fail, but that's the same as it is now.
-
 
 Issues
 ======
@@ -87,16 +77,8 @@ to reduce the ability of attackers to generate hash collisions.
 Similar issues will need to be addressed with non-zero encryption types,
 which has not yet been formally proposed.
 
-
 Notes
 =====
 
 NetDB stores of unknown sig types that are not in the experimental range will continue
 to be rejected by floodfills, as the signature cannot be verified.
-
-
-See Also
-========
-
-Proposal 134
-Proposal 137

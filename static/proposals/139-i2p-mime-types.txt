@@ -18,7 +18,6 @@ Define mime types for common I2P file formats.
 Include the definitions in Debian packages.
 Provide a handler for the .su3 type, and possibly others.
 
-
 Motivation
 ==========
 
@@ -36,8 +35,6 @@ directory viewer such as "nautilus" on Ubuntu.
 By standardizing the mime types, each router implementation may write handlers
 as appropriate, and the mime definition file may be shared by all implementations.
 
-
-
 Design
 ======
 
@@ -52,51 +49,46 @@ be specified here.
 We will also include the definitions with Jetty, and include them with
 the reseed software or instructions.
 
-
-
 Specification
 =============
 
-.blockfile 		application/x-i2p-blockfile
+.blockfile application/x-i2p-blockfile
 
-.config 		application/x-i2p-config
+.config application/x-i2p-config
 
-.dat	 		application/x-i2p-privkey
+.dat application/x-i2p-privkey
 
-.dat	 		application/x-i2p-dht
+.dat application/x-i2p-dht
 
-=.dat	 		application/x-i2p-routerinfo
+=.dat application/x-i2p-routerinfo
 
-.ht	 		application/x-i2p-errorpage
+.ht application/x-i2p-errorpage
 
-.info	 		application/x-i2p-routerinfo
+.info application/x-i2p-routerinfo
 
-.jrb	 		application/x-jrobin-rrd
+.jrb application/x-jrobin-rrd
 
-.su2			application/x-i2p-update
+.su2 application/x-i2p-update
 
-.su3	(generic)	application/x-i2p-su3
+.su3 (generic) application/x-i2p-su3
 
-.su3	(router update)	application/x-i2p-su3-update
+.su3 (router update) application/x-i2p-su3-update
 
-.su3	(plugin)	application/x-i2p-su3-plugin
+.su3 (plugin) application/x-i2p-su3-plugin
 
-.su3	(reseed)	application/x-i2p-su3-reseed
+.su3 (reseed) application/x-i2p-su3-reseed
 
-.su3	(news)		application/x-i2p-su3-news
+.su3 (news) application/x-i2p-su3-news
 
-.su3	(blocklist)	application/x-i2p-su3-blocklist
+.su3 (blocklist) application/x-i2p-su3-blocklist
 
-.sud			application/x-i2p-update
+.sud application/x-i2p-update
 
-.syndie	 		application/x-i2p-syndie
+.syndie application/x-i2p-syndie
 
-=.txt.gz 		application/x-i2p-peerprofile
+=.txt.gz application/x-i2p-peerprofile
 
-.xpi2p	 		application/x-i2p-plugin
-
-
-
+.xpi2p application/x-i2p-plugin
 
 Notes
 =====
@@ -113,9 +105,7 @@ See the draft i2p.sharedmimeinfo file in the zzz.i2p thread for examples.
 The important ones are the .su3 types, and those type have both
 a unique suffix and robust magic number definitions.
 
-
 Migration
 =========
 
 Not applicable.
-

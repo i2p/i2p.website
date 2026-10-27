@@ -15,9 +15,9 @@ Addressbook Subscription Feed Commands
 
 Note
 ====
-Network deployment completed.
-See [SPEC]_ for the official specification.
 
+Network deployment completed.
+See `SPEC </docs/specs/subscription/>`__ for the official specification.
 
 Overview
 ========
@@ -26,14 +26,15 @@ This proposal is about extending the address subscription feed with commands, to
 enable name servers to broadcast entry updates from hostname holders.
 Implemented in 0.9.26.
 
-
 Motivation
 ==========
 
 Right now, the hosts.txt subscription servers just send data in a hosts.txt
-format, which is as follows::
+format, which is as follows:
 
-    example.i2p=b64destination
+.. code:: text
+
+   example.i2p=b64destination
 
 There are several problems with this:
 
@@ -45,7 +46,6 @@ There are several problems with this:
   corresponding base hostname; this is currently only enforced individually by
   some name servers.
 
-
 Design
 ======
 
@@ -56,7 +56,6 @@ for these features through the regular subscription process.
 
 All command lines must be signed by the corresponding Destination. This ensures
 that changes are only made at the request of the hostname holder.
-
 
 Security implications
 =====================
@@ -72,7 +71,6 @@ giving hostname holders the ability to change the Destination associated with a
 hostname, in the event that they believe the Destination has been compromised;
 this is impossible with the current system.
 
-
 Specification
 =============
 
@@ -81,21 +79,25 @@ New line types
 
 This proposal adds two new types of lines:
 
-1. Add and Change commands::
+1. Add and Change commands:
 
-     example.i2p=b64destination#!key1=val1#key2=val2 ...
+   .. code:: text
 
-2. Remove commands::
+      example.i2p=b64destination#!key1=val1#key2=val2 ...
 
-     #!key1=val1#key2=val2 ...
+2. Remove commands:
+
+   .. code:: text
+
+      #!key1=val1#key2=val2 ...
 
 Ordering
-````````
+~~~~~~~~
+
 A feed is not necessarily in-order or complete. For example, a change command
 may be on a line before an add command, or without an add command.
 
 Keys may be in any order. Duplicate keys are not allowed. All keys and values are case-sensitive.
-
 
 Common keys
 -----------
@@ -103,30 +105,29 @@ Common keys
 Required in all commands:
 
 sig
-  B64 signature, using signing key from the destination
+B64 signature, using signing key from the destination
 
 References to a second hostname and/or destination:
 
 oldname
-  A second hostname (new or changed)
+A second hostname (new or changed)
 olddest
-  A second b64 destination (new or changed)
+A second b64 destination (new or changed)
 oldsig
-  A second b64 signature, using signing key from nolddest
+A second b64 signature, using signing key from nolddest
 
 Other common keys:
 
 action
-  A command
+A command
 name
-  The hostname, only present if not preceded by example.i2p=b64dest
+The hostname, only present if not preceded by example.i2p=b64dest
 dest
-  The b64 destination, only present if not preceded by example.i2p=b64dest
+The b64 destination, only present if not preceded by example.i2p=b64dest
 date
-  In seconds since epoch
+In seconds since epoch
 expires
-  In seconds since epoch
-
+In seconds since epoch
 
 Commands
 --------
@@ -142,152 +143,178 @@ Listed keys are required. All commands may contain additional key/value items
 not defined here.
 
 Add hostname
-````````````
+~~~~~~~~~~~~
+
 Preceded by example.i2p=b64dest
-  YES, this is the new host name and destination.
+YES, this is the new host name and destination.
 action
-  NOT included, it is implied.
+NOT included, it is implied.
 sig
-  signature
+signature
 
-Example::
+Example:
 
-  example.i2p=b64dest#!sig=b64sig
+.. code:: text
+
+   example.i2p=b64dest#!sig=b64sig
 
 Change hostname
-```````````````
+~~~~~~~~~~~~~~~
+
 Preceded by example.i2p=b64dest
-  YES, this is the new host name and old destination.
+YES, this is the new host name and old destination.
 action
-  changename
+changename
 oldname
-  the old hostname, to be replaced
+the old hostname, to be replaced
 sig
-  signature
+signature
 
-Example::
+Example:
 
-  example.i2p=b64dest#!action=changename#oldname=oldhostname#sig=b64sig
+.. code:: text
+
+   example.i2p=b64dest#!action=changename#oldname=oldhostname#sig=b64sig
 
 Change destination
-``````````````````
+~~~~~~~~~~~~~~~~~~
+
 Preceded by example.i2p=b64dest
-  YES, this is the old host name and new destination.
+YES, this is the old host name and new destination.
 action
-  changedest
+changedest
 olddest
-  the old dest, to be replaced
+the old dest, to be replaced
 oldsig
-  signature using olddest
+signature using olddest
 sig
-  signature
+signature
 
-Example::
+Example:
 
-  example.i2p=b64dest#!action=changedest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+.. code:: text
+
+   example.i2p=b64dest#!action=changedest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
 
 Add hostname alias
-``````````````````
+~~~~~~~~~~~~~~~~~~
+
 Preceded by example.i2p=b64dest
-  YES, this is the new (alias) host name and old destination.
+YES, this is the new (alias) host name and old destination.
 action
-  addname
+addname
 oldname
-  the old hostname
+the old hostname
 sig
-  signature
+signature
 
-Example::
+Example:
 
-  example.i2p=b64dest#!action=addname#oldname=oldhostname#sig=b64sig
+.. code:: text
+
+   example.i2p=b64dest#!action=addname#oldname=oldhostname#sig=b64sig
 
 Add destination alias
-`````````````````````
+~~~~~~~~~~~~~~~~~~~~~
+
 (Used for crypto upgrade)
 
 Preceded by example.i2p=b64dest
-  YES, this is the old host name and new (alternate) destination.
+YES, this is the old host name and new (alternate) destination.
 action
-  adddest
+adddest
 olddest
-  the old dest
+the old dest
 oldsig
-  signature using olddest
+signature using olddest
 sig
-  signature using dest
+signature using dest
 
-Example::
+Example:
 
-  example.i2p=b64dest#!action=adddest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+.. code:: text
+
+   example.i2p=b64dest#!action=adddest#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
 
 Add subdomain
-`````````````
+~~~~~~~~~~~~~
+
 Preceded by subdomain.example.i2p=b64dest
-  YES, this is the new host subdomain name and destination.
+YES, this is the new host subdomain name and destination.
 action
-  addsubdomain
+addsubdomain
 oldname
-  the higher-level hostname (example.i2p)
+the higher-level hostname (example.i2p)
 olddest
-  the higher-level destination (for example.i2p)
+the higher-level destination (for example.i2p)
 oldsig
-  signature using olddest
+signature using olddest
 sig
-  signature using dest
+signature using dest
 
-Example::
+Example:
 
-  subdomain.example.i2p=b64dest#!action=addsubdomain#oldname=example.i2p#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
+.. code:: text
+
+   subdomain.example.i2p=b64dest#!action=addsubdomain#oldname=example.i2p#olddest=oldb64dest#oldsig=b64sig#sig=b64sig
 
 Update metadata
-```````````````
+~~~~~~~~~~~~~~~
+
 Preceded by example.i2p=b64dest
-  YES, this is the old host name and destination.
+YES, this is the old host name and destination.
 action
-  update
+update
 sig
-  signature
+signature
 
 (add any updated keys here)
 
-Example::
+Example:
 
-  example.i2p=b64dest#!action=update#k1=v1#k2=v2#sig=b64sig
+.. code:: text
+
+   example.i2p=b64dest#!action=update#k1=v1#k2=v2#sig=b64sig
 
 Remove hostname
-```````````````
+~~~~~~~~~~~~~~~
+
 Preceded by example.i2p=b64dest
-  NO, these are specified in the options
+NO, these are specified in the options
 action
-  remove
+remove
 name
-  the hostname
+the hostname
 dest
-  the destination
+the destination
 sig
-  signature
+signature
 
-Example::
+Example:
 
-  #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+.. code:: text
+
+   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
 
 Remove all with this destination
-````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Preceded by example.i2p=b64dest
-  NO, these are specified in the options
+NO, these are specified in the options
 action
-  removeall
+removeall
 name
-  the old hostname, advisory only
+the old hostname, advisory only
 dest
-  the old dest, all with this dest are removed
+the old dest, all with this dest are removed
 sig
-  signature
+signature
 
-Example::
+Example:
 
-  #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
+.. code:: text
 
+   #!action=removeall#name=example.i2p#dest=b64destsig=b64sig
 
 Signatures
 ----------
@@ -313,7 +340,8 @@ oldsig is always the "inner" signature. Sign and verify without the 'oldsig' or
 the 'oldsig' key present but not the 'sig' key.
 
 Input for signatures
-````````````````````
+~~~~~~~~~~~~~~~~~~~~
+
 To generate a byte stream to create or verify the signature, serialize as follows:
 
 - Remove the "sig" key
@@ -333,7 +361,6 @@ Notes
 - Keys and values are case-sensitive
 - Host names must be in lower-case
 
-
 Compatibility
 =============
 
@@ -347,10 +374,7 @@ their subscription feeds. Thus it is important for name servers to persist
 command entries in some fashion, or enable etag support so that routers can
 fetch all past commands.
 
-
-
 References
 ==========
 
-.. [SPEC]
-    {{ spec_url('subscription') }}
+- `SPEC </docs/specs/subscription/>`__

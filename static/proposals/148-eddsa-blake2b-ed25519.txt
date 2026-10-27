@@ -14,11 +14,9 @@ RedDSA-BLAKE2b-Ed25519
 Overview
 ========
 
-
 This proposal adds a new signature type using BLAKE2b-512 with
 personalization strings and salts, to replace SHA-512.
 This will eliminate three classes of possible attacks.
-
 
 Motivation
 ==========
@@ -37,22 +35,20 @@ Therefore, we mostly deferred the solution to a separate proposal.
 While we did add some personalization features to the LS2 specification,
 we did not require any new hash functions.
 
-Many projects, such as ZCash [ZCASH]_, are using hash functions and
+Many projects, such as `ZCash <https://github.com/zcash/zips/tree/master/protocol/protocol.pdf>`__, are using hash functions and
 signature algorithms based on newer algorithms that are not vulnerable to
 the following attacks.
-
 
 Length Extension Attacks
 ------------------------
 
-SHA-256 and SHA-512 are vulnerable to Length Extension Attacks (LEA) [LEA]_.
+SHA-256 and SHA-512 are vulnerable to `Length Extension Attacks (LEA) <https://en.wikipedia.org/wiki/Length_extension_attack>`__.
 This is the case when actual data is signed, not the hash of the data.
 In most I2P protocols (streaming, datagrams, netdb, and others), the actual
 data is signed. One exception is SU3 files, where the hash is signed.
 The other exception is signed datagrams for DSA (sig type 0) only,
 where the hash is signed.
 For other signed datagram sig types, the data is signed.
-
 
 Cross-Protocol Attacks
 ----------------------
@@ -70,7 +66,6 @@ induce a victim to sign specially-crafted data which could be valid data
 in another context.
 Again, it is difficult or impossible to analyze all situations to know for sure.
 
-
 Duplicate Message Identification
 --------------------------------
 
@@ -84,13 +79,11 @@ all signatures will be different even when signing the same data.
 While Red25519 as defined in proposal 123 adds a random salt to the hash function,
 this does not solve the problem for unencrypted lease sets.
 
-
 Speed
 -----
 
 While not a primary motivation for this proposal,
 SHA-512 is relatively slow, and faster hash functions are available.
-
 
 Goals
 =====
@@ -101,7 +94,6 @@ Goals
 - Use standard curves
 - Use faster primitives if available
 
-
 Design
 ======
 
@@ -109,27 +101,24 @@ Modify the existing RedDSA_SHA512_Ed25519 signature type to use BLAKE2b-512
 instead of SHA-512. Add unique personalization strings for each use case.
 The new signature type may be used for both unblinded and blinded leasesets.
 
-
 Justification
 =============
 
-- BLAKE2b is not vulnerable to LEA [BLAKE2]_.
+- `BLAKE2b <https://blake2.net/blake2.pdf>`__ is not vulnerable to LEA.
 - BLAKE2b provides a standard way to add personalization strings for domain separation
 - BLAKE2b provides a standard way to add a random salt to prevent DMI.
 - BLAKE2b is faster than SHA-256 and SHA-512 (and MD5) on modern hardware,
-  according to [BLAKE2]_.
+  according to the `BLAKE2 specification <https://blake2.net/blake2.pdf>`__.
 - Ed25519 is still our fastest signature type, much faster than ECDSA, at least in Java.
-- Ed25519 [ED25519-REFS]_ requires a 512 bit cryptographic hash function.
+- `Ed25519 <http://cr.yp.to/papers.html#ed25519>`__ requires a 512 bit cryptographic hash function.
   It does not specify SHA-512. BLAKE2b is just as suitable for the hash function.
 - BLAKE2b is widely available in libraries for many programming languages, such as Noise.
-
 
 Specification
 =============
 
-Use unkeyed BLAKE2b-512 as in [BLAKE2]_ with salt and personalization.
+Use unkeyed BLAKE2b-512 as in the `BLAKE2 specification <https://blake2.net/blake2.pdf>`__ with salt and personalization.
 All uses of BLAKE2b signatures will use a 16-character personalization string.
-
 
 When used in RedDSA_BLAKE2b_Ed25519 signing,
 A random salt is allowed, however it is not necessary, as the signature algorithm
@@ -141,9 +130,8 @@ When calculating S, reset the salt to the default of all-zeros.
 When used in RedDSA_BLAKE2b_Ed25519 verification,
 do not use a random salt, use the default of all-zeros.
 
-The salt and personalization features are not specified in [RFC-7693]_;
-use those features as specified in [BLAKE2]_.
-
+The salt and personalization features are not specified in `RFC 7693 <https://tools.ietf.org/html/rfc7693>`__;
+use those features as specified in the `BLAKE2 specification <https://blake2.net/blake2.pdf>`__.
 
 Signature Type
 --------------
@@ -157,31 +145,29 @@ EdDSA_SHA512_Ed25519ph (signature type 8) for su3 files,
 because the prehashed version of EdDSA is not vulnerable to LEA.
 EdDSA_SHA512_Ed25519 (signature type 7) is not supported for su3 files.
 
-
-=======================  ===========  ======  =====
-        Type             Type Code    Since   Usage
-=======================  ===========  ======  =====
-RedDSA_BLAKE2b_Ed25519       12        TBD    For Router Identities, Destinations and encrypted leasesets only; never used for Router Identities
-=======================  ===========  ======  =====
-
-
++------------------------+-----------+-------+------------------------+
+| Type                   | Type Code | Since | Usage                  |
++========================+===========+=======+========================+
+| RedDSA_BLAKE2b_Ed25519 | 12        | TBD   | For Router Identities, |
+|                        |           |       | Destinations and       |
+|                        |           |       | encrypted leasesets    |
+|                        |           |       | only; never used for   |
+|                        |           |       | Router Identities      |
++------------------------+-----------+-------+------------------------+
 
 Common Structure Data Lengths
 -----------------------------
 
 The following applies to the new signature type.
 
-
-==================================  =============
-            Data Type                  Length    
-==================================  =============
-Hash                                     64      
-Private Key                              32      
-Public Key                               32      
-Signature                                64      
-==================================  =============
-
-
+=========== ======
+Data Type   Length
+=========== ======
+Hash        64
+Private Key 32
+Public Key  32
+Signature   64
+=========== ======
 
 Personalizations
 ----------------
@@ -197,39 +183,32 @@ handshake itself.
 Signed RouterInfos in DatabaseStore Messages will use the NetDb Entry personalization,
 just as if stored in the NetDB.
 
-
-==================================  ==========================
-         Usage                      16 Byte Personalization
-==================================  ==========================
-I2CP SessionConfig                  "I2CP_SessionConf"
-NetDB Entries (RI, LS, LS2)         "network_database"
-NTCP 1 handshake                    "NTCP_1_handshake"
-Signed Datagrams                    "sign_datagramI2P"
-Streaming                           "streaming_i2psig"
-SSU handshake                       "SSUHandshakeSign"
-SU3 Files                           n/a, not supported
-Unit tests                          "test1234test5678"
-==================================  ==========================
-
-
+=========================== =======================
+Usage                       16 Byte Personalization
+=========================== =======================
+I2CP SessionConfig          "I2CP_SessionConf"
+NetDB Entries (RI, LS, LS2) "network_database"
+NTCP 1 handshake            "NTCP_1_handshake"
+Signed Datagrams            "sign_datagramI2P"
+Streaming                   "streaming_i2psig"
+SSU handshake               "SSUHandshakeSign"
+SU3 Files                   n/a, not supported
+Unit tests                  "test1234test5678"
+=========================== =======================
 
 Notes
 =====
-
-
 
 Issues
 ======
 
 - Alternative 1: Proposal 146;
   Provides LEA resistance
-- Alternative 2: Ed25519ctx in RFC 8032;
+- Alternative 2: `Ed25519ctx in RFC 8032 <https://tools.ietf.org/html/rfc8032>`__;
   Provides LEA resistance and personalization.
   Standardized, but does anybody use it?
-  See [RFC-8032]_ and [ED25519CTX]_.
+  See `RFC 8032 <https://tools.ietf.org/html/rfc8032>`__ and `this discussion <https://moderncrypto.org/mail-archive/curves/2017/000925.html>`__.
 - Is "keyed" hashing useful to us?
-
-
 
 Migration
 =========
@@ -258,36 +237,14 @@ For the minimum router version 0.9.TBD, routers must ensure:
   but there's no way to know that, so the new sig type should not be used by default for some period
   of months or years after 0.9.TBD is released.
 
-
-
 References
 ==========
 
-.. [BLAKE2]
-   https://blake2.net/blake2.pdf
-
-.. [ED25519CTX]
-   https://moderncrypto.org/mail-archive/curves/2017/000925.html
-
-.. [ED25519-REFS]
-    "High-speed high-security signatures" by Daniel
-    J. Bernstein, Niels Duif, Tanja Lange, Peter Schwabe, and
-    Bo-Yin Yang. http://cr.yp.to/papers.html#ed25519
-
-.. [EDDSA-FAULTS]
-   https://news.ycombinator.com/item?id=15414760
-
-.. [LEA]
-   https://en.wikipedia.org/wiki/Length_extension_attack
-
-.. [RFC-7693]
-   https://tools.ietf.org/html/rfc7693
-
-.. [RFC-8032]
-   https://tools.ietf.org/html/rfc8032
-
-.. [ZCASH]
-   https://github.com/zcash/zips/tree/master/protocol/protocol.pdf
-
-
-
+- `BLAKE2 <https://blake2.net/blake2.pdf>`__
+- `ED25519CTX <https://moderncrypto.org/mail-archive/curves/2017/000925.html>`__
+- `"High-speed high-security signatures" by Daniel J. Bernstein, Niels Duif, Tanja Lange, Peter Schwabe, and Bo-Yin Yang <http://cr.yp.to/papers.html#ed25519>`__
+- `EDDSA-FAULTS <https://news.ycombinator.com/item?id=15414760>`__
+- `LEA <https://en.wikipedia.org/wiki/Length_extension_attack>`__
+- `RFC-7693 <https://tools.ietf.org/html/rfc7693>`__
+- `RFC-8032 <https://tools.ietf.org/html/rfc8032>`__
+- `ZCASH <https://github.com/zcash/zips/tree/master/protocol/protocol.pdf>`__

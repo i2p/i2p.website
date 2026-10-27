@@ -17,12 +17,10 @@ Overview
 This proposal is about adding a flag to streaming that specifies the type of
 end-to-end encryption being used.
 
-
 Motivation
 ==========
 
 High-loaded apps can encounter a shortage of ElGamal/AES+SessionTags tags.
-
 
 Design
 ======

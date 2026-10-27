@@ -17,13 +17,11 @@ Overview
 This is a proposal to organize peers so that they prefer connecting to other
 peers that are close to them in keyspace.
 
-
 Motivation
 ==========
 
 The idea is to improve tunnel build success, by increasing the probability that
 a router is already connected to another.
-
 
 Design
 ======
@@ -37,13 +35,14 @@ This change would require:
 2. Every router be aware that every router prefers connections near them in
    the keyspace.
 
-
 Advantages for Tunnel Building
 ------------------------------
 
 If you build a tunnel::
 
-    A -long-> B -short-> C -short-> D
+::
+
+   A -long-> B -short-> C -short-> D
 
 (long/random vs short hop in keyspace), you can guess where the tunnel build
 probably failed and try a different peer at that point. In addition, it would
@@ -52,14 +51,15 @@ since it may be someone colluding.
 
 If you build a tunnel::
 
-    A -long-> B -long-> C -short-> D
+::
+
+   A -long-> B -long-> C -short-> D
 
 and it fails, you can infer that it was more likely failing at C -> D and you
 can choose another D hop.
 
 You can also build tunnels so that the OBEP is closer to the IBGW and use those
 tunnels with OBEP that are closer to the given IBGW in a LeaseSet.
-
 
 Security Implications
 =====================
