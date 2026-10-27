@@ -1,6 +1,6 @@
-=========================
-Encrypted' Streaming Flag
-=========================
+==========================
+'Encrypted' Streaming Flag
+==========================
 .. meta::
     :author: orignal
     :created: 2015-01-21

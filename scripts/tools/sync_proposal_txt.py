@@ -30,6 +30,15 @@ META_KEYS = [
 ]
 
 
+def unquote_yaml_scalar(value):
+    """Remove one matching pair of outer YAML quotes and undo their escapes."""
+    if len(value) >= 2 and value[0] == value[-1] == '"':
+        return value[1:-1].replace('\\"', '"').replace("\\\\", "\\")
+    if len(value) >= 2 and value[0] == value[-1] == "'":
+        return value[1:-1].replace("''", "'")
+    return value
+
+
 def split_front_matter(text):
     """Return (front matter dict of scalar values, body)."""
     match = re.match(r"^---\s*\n(.*?)\n---\s*\n", text, re.DOTALL)
@@ -39,7 +48,7 @@ def split_front_matter(text):
     for line in match.group(1).split("\n"):
         kv = re.match(r"^([A-Za-z_]+):\s*(.*)$", line)
         if kv and kv.group(2):
-            meta[kv.group(1)] = kv.group(2).strip().strip("'\"")
+            meta[kv.group(1)] = unquote_yaml_scalar(kv.group(2).strip())
     return meta, text[match.end():]
 
 
