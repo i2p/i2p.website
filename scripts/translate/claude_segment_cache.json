@@ -126694,6 +126694,79 @@
         }
       },
       "file_hash": "efa5a804b5e09bc3d3cbb1b690324e7c8a2ba61393a13a92bdf93667dea4a66d"
+    },
+    "en/blog/2026-11-04-i2p-2-14-1-release.md": {
+      "segments": {
+        "fm_title": {
+          "source_hash": "038bcb4ad4f11234",
+          "translations": {
+            "fr": "Publication d'I2P 2.14.1",
+            "de": "I2P 2.14.1-Veröffentlichung",
+            "ko": "I2P 2.14.1 릴리스",
+            "vi": "Phát hành I2P 2.14.1",
+            "es": "Lanzamiento de I2P 2.14.1",
+            "zh": "I2P 2.14.1 版本发布",
+            "ar": "إصدار I2P 2.14.1",
+            "cs": "Vydání I2P 2.14.1",
+            "pt": "Lançamento do I2P 2.14.1",
+            "hi": "I2P 2.14.1 रिलीज़",
+            "tr": "I2P 2.14.1 Sürümü",
+            "ru": "Релиз I2P 2.14.1"
+          }
+        },
+        "p_001": {
+          "source_hash": "70304aff5feaf042",
+          "translations": {
+            "fr": "I2P 2.14.1 est publié avec un correctif pour un bug sérieux affectant la connectivité. La poignée de main NTCP2-PQ sortante ne prenait pas en compte les tailles de clés PQ plus grandes et échouait systématiquement. Le correctif améliorera la fiabilité des connexions et la stabilité du netdb, en particulier pour les router à faible bande passante et non floodfill.",
+            "de": "I2P 2.14.1 wurde mit einer Fehlerbehebung für einen schwerwiegenden Fehler veröffentlicht, der die Konnektivität beeinträchtigt. Der ausgehende NTCP2-PQ-Handshake berücksichtigte die größeren PQ-Schlüsselgrößen nicht und schlug stets fehl. Die Fehlerbehebung verbessert die Verbindungszuverlässigkeit und die netdb-Stabilität, insbesondere bei Routern mit geringer Bandbreite, die keine floodfill-Router sind.",
+            "ko": "연결성에 영향을 미치는 심각한 버그가 수정된 I2P 2.14.1이 출시되었습니다. outbound NTCP2-PQ handshake가 더 커진 PQ key 크기를 고려하지 않아 항상 실패했습니다. 이 수정은 특히 대역폭이 낮은 non-floodfill router의 연결 신뢰성과 netdb 안정성을 개선합니다.",
+            "vi": "I2P 2.14.1 đã được phát hành với bản sửa lỗi cho một lỗi nghiêm trọng ảnh hưởng đến khả năng kết nối. Quá trình handshake NTCP2-PQ gửi đi đã không tính đến kích thước khóa PQ lớn hơn và luôn thất bại. Bản sửa lỗi sẽ cải thiện độ tin cậy kết nối và độ ổn định của netdb, đặc biệt là đối với các router băng thông thấp, không phải floodfill.",
+            "es": "I2P 2.14.1 se ha publicado con una corrección para un grave bug que afectaba a la conectividad. El handshake saliente de NTCP2-PQ no tenía en cuenta los tamaños de clave PQ mayores y siempre fallaba. La corrección mejorará la fiabilidad de las conexiones y la estabilidad de la netdb, especialmente para los routers de menor ancho de banda que no son floodfill.",
+            "zh": "I2P 2.14.1 已发布，修复了一个影响连通性的严重 bug。出站 NTCP2-PQ 握手未考虑到更大的 PQ 密钥尺寸，因此总是失败。该修复将提升连接可靠性和 netdb 稳定性，尤其是对低带宽的非 floodfill router。",
+            "ar": "صدر I2P 2.14.1 مع إصلاح لخطأ جسيم يؤثر على الاتصال. لم تكن مصافحة NTCP2-PQ الصادرة تراعي أحجام مفاتيح PQ الأكبر وكانت تفشل دائمًا. سيحسّن الإصلاح موثوقية الاتصال واستقرار netdb، خصوصًا بالنسبة إلى routers ذات النطاق الترددي المنخفض غير floodfill.",
+            "cs": "Byl vydán I2P 2.14.1 s opravou závažné chyby ovlivňující konektivitu. Odchozí handshake NTCP2-PQ nezohledňoval větší velikosti PQ klíčů a vždy selhával. Oprava zlepší spolehlivost připojení a stabilitu netdb, zejména u routerů s nižší šířkou pásma, které nejsou floodfill.",
+            "pt": "O I2P 2.14.1 foi lançado com uma correção para um bug sério que afeta a conectividade. O handshake NTCP2-PQ de saída não levava em conta os tamanhos maiores das chaves PQ e sempre falhava. A correção melhorará a confiabilidade das conexões e a estabilidade do netdb, especialmente para routers com menor largura de banda e não-floodfill.",
+            "hi": "I2P 2.14.1 जारी किया गया है, जिसमें connectivity को प्रभावित करने वाले एक गंभीर bug का fix शामिल है। outbound NTCP2-PQ handshake बड़े PQ key sizes को ध्यान में नहीं रखता था और हमेशा fail हो जाता था। यह fix connection reliability और netdb stability को बेहतर बनाएगा, विशेष रूप से कम bandwidth वाले, non-floodfill routers के लिए।",
+            "tr": "I2P 2.14.1, bağlantıyı etkileyen ciddi bir hata düzeltmesiyle yayınlandı. Giden NTCP2-PQ el sıkışması, daha büyük PQ anahtar boyutlarını hesaba katmıyordu ve her zaman başarısız oluyordu. Düzeltme, özellikle düşük bant genişlikli, floodfill olmayan router'lar için bağlantı güvenilirliğini ve netdb kararlılığını iyileştirecek.",
+            "ru": "Выпущен I2P 2.14.1 с исправлением серьёзной ошибки, влияющей на связность. Исходящее рукопожатие NTCP2-PQ не учитывало увеличенные размеры ключей PQ и всегда завершалось неудачей. Исправление повысит надёжность соединений и стабильность netdb, особенно для router с низкой пропускной способностью, не являющихся floodfill."
+          }
+        },
+        "p_002": {
+          "source_hash": "ef52bd87a733b521",
+          "translations": {
+            "fr": "Comme d'habitude, nous recommandons de mettre à jour vers cette version. Le meilleur moyen de maintenir la sécurité et d'aider le réseau est d'exécuter la dernière version.",
+            "de": "Wie üblich empfehlen wir, auf diese Version zu aktualisieren. Der beste Weg, die Sicherheit zu wahren und das Netzwerk zu unterstützen, ist, die neueste Version zu betreiben.",
+            "ko": "평소와 마찬가지로 이번 릴리스로 업데이트하실 것을 권장합니다. 보안을 유지하고 네트워크에 도움이 되는 가장 좋은 방법은 최신 릴리스를 실행하는 것입니다.",
+            "vi": "Như thường lệ, chúng tôi khuyến nghị cập nhật lên bản phát hành này. Cách tốt nhất để duy trì bảo mật và hỗ trợ mạng là chạy bản phát hành mới nhất.",
+            "es": "Como de costumbre, se recomienda actualizar a esta versión. La mejor forma de mantener la seguridad y ayudar a la red es ejecutar la última versión.",
+            "zh": "一如既往，建议更新到此版本。维护安全并帮助网络的最佳方式是运行最新版本。",
+            "ar": "كالمعتاد، نوصي بالتحديث إلى هذا الإصدار. إن أفضل طريقة للحفاظ على الأمان ومساعدة الشبكة هي تشغيل أحدث إصدار.",
+            "cs": "Jako obvykle doporučujeme aktualizovat na tuto verzi. Nejlepší způsob, jak zachovat bezpečnost a pomoci síti, je provozovat nejnovější verzi.",
+            "pt": "Como de costume, recomendamos que você atualize para esta versão. A melhor maneira de manter a segurança e ajudar a rede é executar a versão mais recente.",
+            "hi": "हमेशा की तरह, हम अनुशंसा करते हैं कि आप इस रिलीज़ में अपडेट करें। सुरक्षा बनाए रखने और नेटवर्क की सहायता करने का सबसे अच्छा तरीका नवीनतम रिलीज़ चलाना है।",
+            "tr": "Her zamanki gibi, bu sürüme güncelleme yapmanızı öneriyoruz. Güvenliği korumanın ve ağa yardımcı olmanın en iyi yolu en son sürümü çalıştırmaktır.",
+            "ru": "Как обычно, мы рекомендуем обновиться до этого релиза. Лучший способ поддерживать безопасность и помогать сети — использовать последний релиз."
+          }
+        },
+        "p_003": {
+          "source_hash": "32968902a2c1964e",
+          "translations": {
+            "fr": "Journal des modifications complet : [i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)",
+            "de": "Vollständiges Changelog: [i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)",
+            "ko": "전체 변경 로그: [i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)",
+            "vi": "Nhật ký thay đổi đầy đủ: [i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)",
+            "es": "Changelog completo: [i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)",
+            "zh": "完整变更日志：[i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)",
+            "ar": "سجل التغييرات الكامل: [i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)",
+            "cs": "Úplný changelog: [i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)",
+            "pt": "Changelog completo: [i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)",
+            "hi": "पूरा changelog: [i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)",
+            "tr": "Tam değişiklik günlüğü: [i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)",
+            "ru": "Полный список изменений: [i2p-2.14.0...i2p-2.14.1](https://github.com/i2p/i2p.i2p/compare/i2p-2.14.0...i2p-2.14.1)"
+          }
+        }
+      },
+      "file_hash": "d32f6d34df34288e7656837b6510e5053fe8ec1fe1d5aa48af28605e84067772"
     }
   }
 }
