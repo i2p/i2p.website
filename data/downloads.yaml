@@ -1,7 +1,7 @@
 # Centralized Download Configuration
 # Update this single file for new releases - all language pages read from here
 
-current_version: "2.14.0"
+current_version: "2.14.1"
 android_version: "2.13.0"
 
 # GPG Signing Key (idk - for releases 0.9.57+)
@@ -12,16 +12,16 @@ signing_key:
 
 downloads:
   windows:
-    file: "i2pinstall_2.14.0-0_windows.exe"
+    file: "i2pinstall_2.14.1_windows.exe"
     size: "~27M"
     requirements: "Java required"
-    sha256: "a6ed12124cdd9265fa58b0f6c8160e328a15943c182eeb0a6e3351f42cd6f2bd"
+    sha256: "fb2e9875234f4981e36ebfaf5ded71f5ccc59c20180aaf6ca01da6f427db7fd5"
     links:
-      primary: "https://files.i2p.net/2.14.0/i2pinstall_2.14.0-0_windows.exe"
-      mirror: "https://mirror.stormycloud.org/2.14.0/i2pinstall_2.14.0-0_windows.exe"
+      primary: "https://files.i2p.net/2.14.1/i2pinstall_2.14.1_windows.exe"
+      mirror: "https://mirror.stormycloud.org/2.14.1/i2pinstall_2.14.1_windows.exe"
       torrent: "magnet:?xt=urn:btih:missing"
-      i2p: "http://mirror.stormycloud.i2p/2.14.0/i2pinstall_2.14.0-0_windows.exe"
-      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.14.0/i2pinstall_2.14.0-0_windows.exe"
+      i2p: "http://mirror.stormycloud.i2p/2.14.1/i2pinstall_2.14.1_windows.exe"
+      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.14.1/i2pinstall_2.14.1_windows.exe"
 
   windows_easy_installer:
     file: "I2P-Windows-Easy-Install-Bundle.exe"
@@ -40,47 +40,34 @@ downloads:
     file: "I2P-2.14.0.dmg"
     size: "~72M"
     requirements: "Apple Silicon - No Java needed"
-    sha256: "1327330c5a3e97c468e5822084e14b92832d5455a4522b99ee6f535d6604d51c"
-    sig: "https://files.i2p.net/2.14.0/I2P-2.14.0.dmg.sig"
-    links:
-      primary: "https://files.i2p.net/2.14.0/I2P-2.14.0.dmg"
-      mirror: "https://mirror.stormycloud.org/2.14.0/I2P-2.14.0.dmg"
-      torrent: "magnet:?xt=urn:btih:missing"
-      i2p: "http://mirror.stormycloud.i2p/2.14.0/I2P-2.14.0.dmg"
-      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.14.0/I2P-2.14.0.dmg"
+    coming_soon: true
 
   mac_linux:
-    file: "i2pinstall_2.14.0.jar"
+    file: "i2pinstall_2.14.1.jar"
     size: "~33M"
-    requirements: "Java 17 or higher"
-    sha256: "5593e5583a703cddbe738cff837026d9917b83491bd0cfbbeb2de0242b6c7990"
-    sig: "https://files.i2p.net/2.14.0/i2pinstall_2.14.0.jar.sig"
+    requirements: "Java 8 or higher"
+    sha256: "32ff06242894594bf870dc0ee520ccd04d3d9c3ab91f93ec5c81a345972a2294"
+    sig: "https://files.i2p.net/2.14.1/i2pinstall_2.14.1.jar.sig"
     links:
-      primary: "https://files.i2p.net/2.14.0/i2pinstall_2.14.0.jar"
-      mirror: "https://mirror.stormycloud.org/2.14.0/i2pinstall_2.14.0.jar"
+      primary: "https://files.i2p.net/2.14.1/i2pinstall_2.14.1.jar"
+      mirror: "https://mirror.stormycloud.org/2.14.1/i2pinstall_2.14.1.jar"
       torrent: "magnet:?xt=urn:btih:missing"
-      i2p: "http://mirror.stormycloud.i2p/2.14.0/i2pinstall_2.14.0.jar"
-      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.14.0/i2pinstall_2.14.0.jar"
+      i2p: "http://mirror.stormycloud.i2p/2.14.1/i2pinstall_2.14.1.jar"
+      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.14.1/i2pinstall_2.14.1.jar"
 
   android:
     file: "I2P-2.13.0.apk"
     size: "~9.3M"
     requirements: "Android 5.0+"
-    sha256: "62b8dfc58b517582b9c737e3ed70ac484eaffd5a6ab50537080aac65967e1c0a"
-    links:
-      primary: "https://files.i2p.net/2.13.0/I2P-2.13.0.apk"
-      mirror: "https://mirror.stormycloud.org/2.13.0/I2P-2.13.0.apk"
-      torrent: "magnet:?xt=urn:btih:missing"
-      i2p: "http://mirror.stormycloud.i2p/2.13.0/I2P-2.13.0.apk"
-      tor: "http://hhn4r4qyrmplmfiermza6p3d67a5ra7ecwjeoo5a5ddiogwhyjg675id.onion/2.13.0/I2P-2.13.0.apk"
+    coming_soon: true
 
-  source:
-    file: "i2psource_2.14.0.tar.bz2"
+    source:
+    file: "i2psource_2.14.1.tar.bz2"
     size: "~38M"
-    sha256: "943d086eb7a019f3d91269d81152817648059928eada01dd4e9cf7f3888d72b4"
-    sig: "https://files.i2p.net/2.14.0/i2psource_2.14.0.tar.bz2.sig"
+    sha256: "b9c73f27ca801cf77127dfcd9390356686862684a61a609ac000d652a62c7a71"
+    sig: "https://files.i2p.net/2.14.1/i2psource_2.14.1.tar.bz2.sig"
     links:
-      primary: "https://files.i2p.net/2.14.0/i2psource_2.14.0.tar.bz2"
+      primary: "https://files.i2p.net/2.14.1/i2psource_2.14.1.tar.bz2"
       torrent: "magnet:?xt=urn:btih:missing"
       github: "https://github.com/i2p/i2p.i2p"
 
