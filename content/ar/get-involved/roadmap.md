@@ -14,7 +14,7 @@ description: "خطط التطوير الحالية والمحطات التاري
 
 **I2P follows an incremental development model** with releases approximately every 13 weeks. This roadmap covers desktop and Android Java releases in a single, stable release path.
 
-**Last Updated:** 2026-10
+**Last Updated:** 2026-11
 
 </div>
 ## 🎯 الإصدارات القادمة
@@ -32,16 +32,6 @@ Target: Late January 2027
 
 </div>
 
-### Version 2.14.1
-<div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
-Target: Late November 2026
-</div>
-
-<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
-
-- NTCP2-PQ handshake fixes
-
-</div>
 
 ---
 
@@ -52,7 +42,16 @@ Target: Late November 2026
 
 <div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
 
-**Version 2.14.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released Octobery 20, 2026</span>
+**Version 2.14.1** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released November 4, 2026</span>
+
+- NTCP2-PQ handshake fixes
+
+</div>
+
+
+<div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
+
+**Version 2.14.0** <span style="color: var(--color-text-muted); font-size: 0.9rem;">— Released October 20, 2026</span>
 
 - Build fix for gettext 1.0
 - Build fix for izpack 5.2.6
