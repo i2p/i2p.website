@@ -21,6 +21,21 @@ description: "I2P 网络的当前开发计划和历史里程碑"
 
 <div style="border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 2rem;">
 
+### Version 2.16.0
+<div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
+Target: Late April 2027
+</div>
+
+<div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
+
+- i2psnark v2 initial support
+- Init fixes for systemd
+- NATPMP initial support
+- NetDB memory reduction
+
+</div>
+
+
 ### Version 2.15.0
 <div style="display: inline-block; background: var(--color-accent); color: white; padding: 0.25rem 0.75rem; border-radius: var(--radius-md); font-size: 0.875rem; margin-bottom: 1rem;">
 Target: Late January 2027
@@ -28,7 +43,12 @@ Target: Late January 2027
 
 <div style="background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border-left: 4px solid var(--color-success);">
 
-- i2psnark v2 initial support
+- Bug fixes all over
+- Fix Gradle tests
+- HTTP fixes
+- SSU2 PQ fixes
+- Security and robustness fixes
+- Update Jetty and Tomcat
 
 </div>
 
