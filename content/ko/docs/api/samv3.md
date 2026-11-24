@@ -105,15 +105,6 @@ SAMv3 버전은 I2P 릴리스 0.7.3(2009년 5월)에 도입되었으며 안정�
       <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://codeberg.org/weko/i2plib-fork">codeberg.org/weko/i2plib-fork</a></td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;">i2p-rs</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;">Rust</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3.1</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://github.com/i2p/i2p-rs">github.com/i2p/i2p-rs</a></td>
-    </tr>
-    <tr>
       <td style="border:1px solid var(--color-border); padding:0.5rem;">libsam3</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem;">C</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3.1</td>
@@ -195,15 +186,6 @@ SAMv3 버전은 I2P 릴리스 0.7.3(2009년 5월)에 도입되었으며 안정�
       <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://github.com/dryruby/i2p.rb">github.com/dryruby/i2p.rb</a></td>
     </tr>
     <tr>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;">solitude</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;">Rust</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3.1</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">WIP</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">WIP</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">WIP</td>
-      <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://github.com/syvita/solitude">github.com/syvita/solitude</a></td>
-    </tr>
-    <tr>
       <td style="border:1px solid var(--color-border); padding:0.5rem;">Samty</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem;">C++</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3.1</td>
@@ -220,6 +202,15 @@ SAMv3 버전은 I2P 릴리스 0.7.3(2009년 5월)에 도입되었으며 안정�
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">no</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">no</td>
       <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://github.com/bitcoin/bitcoin/blob/master/src/i2p.cpp">source (not a library, but good reference code)</a></td>
+    </tr>
+    <tr>
+      <td style="border:1px solid var(--color-border); padding:0.5rem;">yosemite</td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem;">Rust</td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">3.3</td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem; text-align:center;">yes</td>
+      <td style="border:1px solid var(--color-border); padding:0.5rem;"><a href="https://github.com/eepnet/yosemite">github.com/eepnet/yosemite</a></td>
     </tr>
   </tbody>
 </table>
